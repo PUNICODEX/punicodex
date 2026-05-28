@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ὄλυμπος — Ólympos | Home of the Gods | PUNYCODEX</title>
+    <meta name="description" content="The authentic digital shrine to Ólympos, the heavenly mountain home of the Greek gods. Explore correct Greek orthography and mythology.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Ólympos — Home of the Gods",
+    "description": "The authentic digital shrine to Ólympos, the heavenly mountain home of the Greek gods. Explore correct Greek orthography and mythology.",
+    "url": "https://punycodex.com/sites/olympos/",
+    "about": {
+        "@type": "Thing",
+        "name": "Ὄλυμπος",
+        "alternateName": [
+            "olympos",
+            "Ólympos"
+        ],
+        "description": "Heavenly (from Ὄλυμπος)"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNYCODEX",
+        "url": "https://punycodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punycodex.com/assets/images/og-default.svg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punycodex.com/sites/olympos/">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Ὄλυμπος — Ólympos | Home of the Gods | PUNYCODEX">
+    <meta property="og:description" content="The authentic digital shrine to Ólympos, the heavenly mountain home of the Greek gods. Explore correct Greek orthography and mythology.">
+    <meta property="og:url" content="https://punycodex.com/sites/olympos/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PUNYCODEX">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ὄλυμπος — Ólympos | Home of the Gods | PUNYCODEX">
+    <meta name="twitter:description" content="The authentic digital shrine to Ólympos, the heavenly mountain home of the Greek gods. Explore correct Greek orthography and mythology.">
+</head>
+<body>
+    <!-- Global Nav -->
+    <div style="position:fixed;top:0;left:0;width:100%;z-index:1001;background:rgba(10,10,10,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);">
+        <div style="max-width:1200px;margin:0 auto;padding:0.4rem clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;">
+            <a href="/" style="font-family:'Cinzel',serif;font-size:0.8rem;font-weight:700;letter-spacing:0.15em;color:#D4AF37;text-decoration:none;">PUNYCODEX</a>
+            <div style="display:flex;gap:1.5rem;">
+                <a href="/pantheon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Pantheon</a>
+                <a href="/lexicon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Lexicon</a>
+                <a href="/type/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Type</a>
+                <a href="/tiers/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Tiers</a>
+            </div>
+        </div>
+    </div>
+    <!-- Heaven Canvas -->
+    <canvas id="heaven-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="main-nav" style="top:40px;" id="main-nav">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo">
+                <img src="assets/olympos_logolockup.png" alt="Ólympos" class="nav-logo-img">
+            </a>
+            <div class="nav-links">
+                <a href="#the-name" class="nav-link">The Name</a>
+                <a href="#pronunciation" class="nav-link">Pronunciation</a>
+                <a href="#the-mountain" class="nav-link">The Mountain</a>
+                <a href="#myths" class="nav-link">Myths</a>
+                <a href="#pantheon" class="nav-link">Pantheon</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <h1 class="hero-title reveal-up">
+                    <span class="title-greek">Ὄλυμπος</span>
+                    <span class="title-divider"></span>
+                    <span class="title-trans">Ólympos</span>
+                </h1>
+                <p class="hero-subtitle reveal-up">Home of the Gods &middot; The Heavenly Mountain &middot; Throne of Zeus</p>
+                <div class="hero-meta reveal-up">
+                    <span class="meta-badge">Tier‑1 Accent‑Preserving</span>
+                    <span class="meta-domain">ólympos.com</span>
+                </div>
+                <div class="hero-cta reveal-up">
+                    <a href="#the-name" class="btn-primary">
+                        <span>Enter the Temple</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <img src="assets/olympos_landscape.png" alt="Ólympos — The heavenly mountain home of the gods" class="mascot-img">
+                <div class="mascot-glow"></div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- The Name Section -->
+    <section class="section section-name" id="the-name">
+        <div class="section-bg-glow"></div>
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">01</span>
+                <h2 class="section-title">The Authentic Name</h2>
+                <p class="section-subtitle">Why <em>ólympos.com</em> is the correct form</p>
+            </div>
+            
+            <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Greek Original</h3>
+                    <p class="card-greek">Ὄλυμπος</p>
+                    <p class="card-body">The name in its original Greek form. The rough breathing on the initial vowel and the acute accent mark the true Attic pronunciation. This is the mountain Homer sang into eternity — the seat of the immortals.</p>
+                </div>
+
+                <div class="name-card reveal-up" data-delay="100">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5">
+                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">ASCII Constraint</h3>
+                    <p class="card-ascii">OLYMPOS</p>
+                    <p class="card-body">Stripped of its Greek identity, the name was reduced to six Latin letters. Sports brands, tech companies, and modern geography claimed it. The breathing, the accent, the divine resonance — all erased.</p>
+                </div>
+
+                <div class="name-card reveal-up" data-delay="200">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Unicode Restoration</h3>
+                    <p class="card-unicode">Ólympos</p>
+                    <p class="card-body">The acute accent on the initial omicron restores the stress placement of the original Greek. This is not decoration — it is <strong>philological accuracy</strong>. The domain encodes to Punycode, but the browser displays the truth.</p>
+                </div>
+            </div>
+
+            <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">ólympos.com &rarr; xn--lympos-9wa.com</code>
+                    <p class="explainer-note">The non-ASCII character <strong>ó</strong> (U+00F3) is encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Ólympos</em>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pronunciation Section -->
+    <section class="section section-pronunciation" id="pronunciation">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">02</span>
+                <h2 class="section-title">Pronunciation</h2>
+                <p class="section-subtitle">How the mountain was truly spoken</p>
+            </div>
+
+            <div class="pronunciation-grid">
+                <div class="pronunciation-main reveal-up">
+                    <div class="ipa-display">
+                        <span class="ipa-text">/ó.ly.mpos/</span>
+                        <span class="ipa-label">Attic Greek Reconstruction</span>
+                    </div>
+                    <div class="pronunciation-breakdown">
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">ó-</span>
+                            <span class="phoneme-desc">The initial syllable carries the acute accent, indicating a rise in pitch. The omicron is short but stressed, giving the name its upward lift — like the mountain itself reaching toward heaven.</span>
+                        </div>
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">-ly-</span>
+                            <span class="phoneme-desc">The lambda followed by upsilon forms a light, liquid middle syllable. The upsilon was likely pronounced as a front rounded vowel [y], close to French <em>tu</em>.</span>
+                        </div>
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">-mpos</span>
+                            <span class="phoneme-desc">The final cluster combines mu, pi, omicron, and sigma. The -os ending is the standard Greek masculine nominative singular, here giving the mountain its proper name.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pronunciation-sidebar reveal-up" data-delay="150">
+                    <div class="sidebar-card">
+                        <h4 class="sidebar-title">Modern Approximation</h4>
+                        <p class="sidebar-text">"OH-lym-pos" — stress the first syllable with a clear, high pitch. The <em>y</em> is closer to the German <em>ü</em> than to English <em>ee</em>.</p>
+                        <div class="sidebar-divider"></div>
+                        <h4 class="sidebar-title">Etymology</h4>
+                        <ul class="kin-list">
+                            <li><strong>Greek</strong> olumpos — "heavenly, celestial"</li>
+                            <li><strong>Homer</strong> uses it as the home of the gods exclusively</li>
+                            <li><strong>LSJ</strong> attests the form as Ὄλυμπος</li>
+                            <li><strong>Related</strong> Olympus Mons — the Martian mountain named after the Greek original</li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-card accent-card">
+                        <h4 class="sidebar-title">The Accent Rule</h4>
+                        <p class="sidebar-text">In our Tier‑1 system, the acute on <em>Ó</em> preserves the stress placement of the original Greek. The name is oxytone — the acute falls on the antepenult, following standard Greek accentuation rules. This mark is a <strong>visual declaration</strong> — this is not the English "Olympus." This is the Greek <em>Ólympos</em>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Mountain Section -->
+    <section class="section section-mountain" id="the-mountain">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">03</span>
+                <h2 class="section-title">The Mountain</h2>
+                <p class="section-subtitle">Where earth touches heaven</p>
+            </div>
+
+            <div class="king-content">
+                <div class="king-intro reveal-up">
+                    <p class="lead-text">Mount Olympus in Thessaly rises <strong>2,917 metres</strong> into the Greek sky — the highest peak in the land. But the mountain of myth is far taller. It is the <strong>mythological peak above the clouds</strong> where the gods dwell in undying splendour, looking down upon the affairs of mortals with divine detachment and occasional intervention.</p>
+                </div>
+
+                <div class="domains-grid">
+                    <div class="domain-card reveal-up">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#D4AF37" stroke-width="1.5">
+                                <path d="M32 56L8 40L32 8L56 40L32 56Z"/>
+                                <path d="M32 8V56"/>
+                                <path d="M20 32H44"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">The Palace of Zeus</h4>
+                        <p class="domain-desc">At the summit stands the bronze-floored palace of Zeus, where the king of gods holds court and thunders his judgments across the cosmos.</p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="100">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#D4AF37" stroke-width="1.5">
+                                <circle cx="32" cy="32" r="20"/>
+                                <path d="M32 12V20"/>
+                                <path d="M32 44V52"/>
+                                <path d="M12 32H20"/>
+                                <path d="M44 32H52"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">The Thrones</h4>
+                        <p class="domain-desc">Twelve golden thrones encircle the divine council hall. Each Olympian has their seat, and none may usurp another's place in the celestial order.</p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="200">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#D4AF37" stroke-width="1.5">
+                                <path d="M12 48C12 32 20 16 32 16C44 16 52 32 52 48"/>
+                                <path d="M8 48H56"/>
+                                <path d="M24 32L28 24L32 32L36 24L40 32"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">The Gates of Clouds</h4>
+                        <p class="domain-desc">The <em>Pylai</em> — cloud-gates of thick mist — guard the mountain's approaches. Only the divine may pass freely; mortals who attempt the ascent risk hubris.</p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="300">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#D4AF37" stroke-width="1.5">
+                                <path d="M32 8C20 8 12 20 12 32C12 48 32 56 32 56C32 56 52 48 52 32C52 20 44 8 32 8Z"/>
+                                <path d="M32 20V36"/>
+                                <path d="M24 28H40"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">Hephaestus's Forge</h4>
+                        <p class="domain-desc">Beneath the mountain, or within it, the smith-god tends his volcanic workshops — crafting armour for heroes and thunderbolts for the king.</p>
+                    </div>
+                </div>
+
+                <div class="symbols-section reveal-up">
+                    <h3 class="symbols-title">Sacred Symbols</h3>
+                    <div class="symbols-list">
+                        <div class="symbol-item">
+                            <span class="symbol-name">The Eagle</span>
+                            <span class="symbol-meaning">Zeus's messenger, circling the summit as living standard of divine authority</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">Thunderbolt</span>
+                            <span class="symbol-meaning">Forged in the mountain's heart, hurled from its peak to affirm cosmic order</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">Golden Clouds</span>
+                            <span class="symbol-meaning">The chariot of the gods — mist that both reveals and conceals the divine</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">Ambrosia &amp; Nectar</span>
+                            <span class="symbol-meaning">The food and drink of immortality, served at the Olympian table</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">The Olive Branch</span>
+                            <span class="symbol-meaning">Peace among the gods — sacred to Athena, who claimed the mountain's earth</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Myths Section -->
+    <section class="section section-myths" id="myths">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">04</span>
+                <h2 class="section-title">The Myths</h2>
+                <p class="section-subtitle">Stories forged at the summit of the world</p>
+            </div>
+
+            <div class="myths-timeline">
+                <div class="myth-card reveal-up">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Council</span>
+                        <h3 class="myth-title">The Olympian Assembly</h3>
+                        <p class="myth-text">The gods gather in Zeus's great hall to deliberate the fates of mortals and immortals alike. Here Hera speaks with queenly authority, Athena offers counsel with owl-eyed wisdom, and Poseidon thunders dissent when the sea is slighted. No decision affecting the cosmos is made without this assembly — Olympus is not merely a residence, it is the <strong>capital of divine governance</strong>.</p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="100">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The War</span>
+                        <h3 class="myth-title">The Titanomachy</h3>
+                        <p class="myth-text">For ten years, the Olympians battled the Titans from Mount Olympus against Mount Othrys. Zeus freed the Cyclopes and the Hecatoncheires from Tartarus, and in gratitude they forged his thunderbolt. The war ended with the Titans cast into Tartarus, and the younger gods claimed Olympus as their eternal seat — the <strong>fortress of the new divine order</strong>.</p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="200">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Forge</span>
+                        <h3 class="myth-title">Hephaestus's Volcanic Workshop</h3>
+                        <p class="myth-text">Beneath Olympus, or within its smoking heart, Hephaestus tends his forge. Here he crafted Achilles' immortal armour, the shield that depicted the whole world in bronze. Here too he forged the thunderbolts that Zeus hurls from the summit — each one a shaft of divine fire that none may withstand. The mountain breathes smoke; the mountain <strong>creates war</strong>.</p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="300">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Mortal Gaze</span>
+                        <h3 class="myth-title">The Gods Look Down</h3>
+                        <p class="myth-text">From Olympus, the gods observe the world of men. They see the Trojan plains, the Greek cities, the wine-dark sea. They intervene — sending dreams, shaping storms, granting victory or ruin. The mountain is not separate from human affairs; it is the <strong>vantage point from which all affairs are judged</strong>. No prayer rises unseen from earth to Olympus.</p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="400">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">Hubris</span>
+                        <h3 class="myth-title">Bellerophon and Pegasus</h3>
+                        <p class="myth-text">Proud Bellerophon, tamer of the winged horse Pegasus, attempted to fly to Olympus itself. He soared through the gates of cloud, higher than any mortal had dared — until Zeus sent a gadfly to sting Pegasus, casting the hero back to earth. The mountain is for the gods alone. <strong>Mortals who reach too high are reminded of their place.</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pantheon Section -->
+    <section class="section section-pantheon" id="pantheon">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">05</span>
+                <h2 class="section-title">The Pantheon</h2>
+                <p class="section-subtitle">The Twelve Olympians who dwell on the mountain</p>
+            </div>
+
+            <div class="olympians-grid reveal-up">
+                <div class="olympian-card">
+                    <span class="olympian-greek">Ζεύς</span>
+                    <span class="olympian-name">Zeus</span>
+                    <span class="olympian-domain">King of the Gods</span>
+                </div>
+                <div class="olympian-card">
+                    <span class="olympian-greek">Ἥρα</span>
+                    <span class="olympian-name">Hera</span>
+                    <span class="olympian-domain">Queen of Heaven</span>
+                </div>
+                <div class="olympian-card">
+                    <span class="olympian-greek">Ποσειδῶν</span>
+                    <span class="olympian-name">Poseidon</span>
+                    <span class="olympian-domain">God of the Sea</span>
+                </div>
+                <div class="olympian-card">
+                    <span class="olympian-greek">Δημήτηρ</span>
+                    <span class="olympian-name">Demeter</span>
+                    <span class="olympian-domain">Goddess of the Harvest</span>
+                </div>
+                <div class="olympian-card">
+                    <span class="olympian-greek">Ἀθηνᾶ</span>
+                    <span class="olympian-name">Athena</span>
+                    <span class="olympian-domain">Goddess of Wisdom</span>
+                </div>
+                <div class="olympian-card">
+                    <span class="olympian-greek">Ἀπόλλων</span>
+                    <span class="olympian-name">Apollo</span>
+                    <span class="olympian-domain">God of Light &amp; Music</span>
+                </div>
+                <div class="olympian-card">
+                    <span class="olympian-greek">Ἄρτεμις</span>
+                    <span class="olympian-name">Artemis</span>
+                    <span class="olympian-domain">Goddess of the Hunt</span>
+                </div>
+                <div class="olympian-card">
+                    <span class="olympian-greek">Ἄρης</span>
+                    <span class="olympian-name">Ares</span>
+                    <span class="olympian-domain">God of War</span>
+                </div>
+                <div class="olympian-card">
+                    <span class="olympian-greek">Ἀφροδίτη</span>
+                    <span class="olympian-name">Aphrodite</span>
+                    <span class="olympian-domain">Goddess of Love</span>
+                </div>
+                <div class="olympian-card">
+                    <span class="olympian-greek">Ἥφαιστος</span>
+                    <span class="olympian-name">Hephaestus</span>
+                    <span class="olympian-domain">God of the Forge</span>
+                </div>
+                <div class="olympian-card">
+                    <span class="olympian-greek">Ἑρμῆς</span>
+                    <span class="olympian-name">Hermes</span>
+                    <span class="olympian-domain">Messenger of the Gods</span>
+                </div>
+                <div class="olympian-card">
+                    <span class="olympian-greek">Διόνυσος</span>
+                    <span class="olympian-name">Dionysos</span>
+                    <span class="olympian-domain">God of Wine &amp; Ecstasy</span>
+                </div>
+            </div>
+            <p class="olympians-note reveal-up" data-delay="200">* Hestia, goddess of the hearth, sometimes replaces Dionysos among the Twelve, depending on the source.</p>
+        </div>
+    </section>
+
+    <!-- Name Variations Section -->
+    <section class="section section-variations" id="variations">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">06</span>
+                <h2 class="section-title">Name Variations</h2>
+                <p class="section-subtitle">Attested forms across tradition</p>
+            </div>
+            <div class="variations-content reveal-up">
+                <div class="variation-row primary">
+                    <span class="variation-name">Ólympos</span>
+                    <span class="variation-label">Primary</span>
+                    <span class="variation-note">The Unicode restoration with acute accent on the initial omicron — preserving Greek stress placement.</span>
+                </div>
+                <div class="variation-row">
+                    <span class="variation-name">Olympos</span>
+                    <span class="variation-label">ASCII</span>
+                    <span class="variation-note">The stripped Latin form. Valid as a fallback, but lacks the philological precision of the accented form.</span>
+                </div>
+                <div class="variation-row">
+                    <span class="variation-name">Olympus</span>
+                    <span class="variation-label">Latinized</span>
+                    <span class="variation-note">The English form derives from Latin <em>Olympus</em>. Ólympos preserves the Greek acute and rejects the Latin flattening.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Names -->
+    <section class="section" id="related" style="background:#0A0A0A;padding:6rem 0;">
+        <div class="container" style="max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);">
+            <div style="text-align:center;margin-bottom:4rem;">
+                <span style="display:block;font-family:'Cinzel',serif;font-size:0.85rem;color:#D4AF37;letter-spacing:0.4em;margin-bottom:1rem;">07</span>
+                <h2 style="font-family:'Cinzel',serif;font-size:clamp(2rem,4vw,3.5rem);color:#F5F5F5;letter-spacing:0.05em;margin-bottom:1rem;">Related Names</h2>
+                <p style="font-size:clamp(1rem,1.5vw,1.25rem);color:#A0A0A0;font-style:italic;">More from the Greek pantheon</p>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;">
+                
+                <a href="/sites/zeus/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Zeús</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ζεύς</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">King of the Gods, Sky, Thunder</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Tier-1 Full</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/hera/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Hēra</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἥρα</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Queen of Heaven, Marriage</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Tier-1 Full</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/poseidon/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Poseidōn</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ποσειδῶν</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">God of the Sea, Earthquakes</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Tier-1 Full</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/apollon/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Ápollōn</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἀπόλλων</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Light, Music, Prophecy</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Dual-Tier</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/athena/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Athēnā</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἀθηνᾶ</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Wisdom, War, Crafts</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Tier-1 Full</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/artemis/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Ártemis</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἄρτεμις</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Hunt, Wilderness, Moon</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Tier-2 Accent-Preserving</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pantheon Connection -->
+    <section class="section section-pantheon-connect" id="pantheon-connect">
+        <div class="container">
+            <div class="pantheon-content reveal-up">
+                <div class="pantheon-text">
+                    <span class="pantheon-eyebrow">The PUNYCODEX</span>
+                    <h2 class="pantheon-title">One of Two Hundred Fifty-Five</h2>
+                    <p class="pantheon-body">Ólympos is the mountain that anchors the entire Greek pantheon. The seat of the gods, the summit of myth, the place where heaven and earth divide. But it is not alone. Across the encoded web, the authentic names of gods, heroes, and sacred places have been restored — each with its own domain, its own lore, its own truth.</p>
+                    <p class="pantheon-body">This is not a directory. This is a <strong>resurrection</strong>.</p>
+                    <a href="/lexicon/" class="btn-primary btn-ghost">
+                        <span>Enter the Codex</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="pantheon-mascot">
+                    <img src="assets/olympos_logomark.png" alt="Ólympos logomark" class="pantheon-mascot-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Type Tool CTA -->
+    <section style="padding:6rem 0;background:linear-gradient(180deg,#0A0A0A 0%,rgba(74,144,217,0.08) 100%);text-align:center;">
+        <div class="container" style="max-width:700px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);">
+            <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.75rem,3vw,2.5rem);color:#F5F5F5;margin-bottom:1.5rem;letter-spacing:0.05em;">Experience the Name</h2>
+            <p style="font-size:1.05rem;color:#A0A0A0;line-height:1.8;margin-bottom:2.5rem;">See how Ólympos behaves in the PUNYCODEX Type Tool — with predictive autocomplete, character-by-character breakdown, and scholarly constraint validation.</p>
+            <div style="display:inline-flex;align-items:center;gap:1rem;padding:1rem 2rem;background:rgba(0,0,0,0.3);border:1px solid rgba(212,175,55,0.25);border-radius:2px;font-family:'Fira Code','Courier New',monospace;font-size:1.1rem;color:#D4AF37;margin-bottom:1.5rem;">
+                <code>olympos</code>
+                <span style="color:#A0A0A0;">&rarr;</span>
+                <code>Ólympos</code>
+            </div>
+            <div>
+                <a href="/type/#olympos" style="display:inline-flex;align-items:center;gap:0.75rem;padding:1rem 2rem;background:linear-gradient(135deg,#D4AF37,#8B7355);color:#0A0A0A;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;transition:all 0.4s ease;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 40px rgba(212,175,55,0.3)';" onmouseout="this.style.transform='none';this.style.boxShadow='none';">
+                    <span>Open in Type Tool</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="footer-logo">PUNYCODEX</span>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Domain</span>
+                        <span class="footer-value">ólympos.com</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier‑1 Accent‑Preserving</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Greek Original</span>
+                        <span class="footer-value">Ὄλυμπος</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <img src="assets/olympos_logomark.png" alt="Ólympos logomark" class="footer-logomark">
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

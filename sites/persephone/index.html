@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Περσεφόνη — persephonē | Queen of the Underworld</title>
+    <meta name="description" content="The authentic digital shrine to persephonē, Queen of the Underworld and Goddess of Spring. Explore the correct Greek orthography, reconstructed pronunciation, and timeless mythology of Περσεφόνη.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Persephonē — Spring, Underworld, Vegetation",
+    "description": "The authentic digital shrine to Persephonē. Explore the correct Greek orthography, Unicode restoration, and scholarly sources for Persephonē.com.",
+    "url": "https://punycodex.com/sites/persephone/",
+    "about": {
+        "@type": "Thing",
+        "name": "Περσεφόνη",
+        "alternateName": [
+            "persephone",
+            "Persephonē"
+        ],
+        "description": "She who destroys the light (possibly)"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNYCODEX",
+        "url": "https://punycodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punycodex.com/assets/images/og-default.svg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punycodex.com/sites/persephone/">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Περσεφόνη — Persephonē | Spring, Underworld, Vegetation | PUNYCODEX">
+    <meta property="og:description" content="The authentic digital shrine to Persephonē. Explore the correct orthography, reconstructed pronunciation, and timeless mythology of Περσεφόνη.">
+    <meta property="og:url" content="https://punycodex.com/sites/persephone/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PUNYCODEX">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Περσεφόνη — Persephonē | Spring, Underworld, Vegetation | PUNYCODEX">
+    <meta name="twitter:description" content="The authentic digital shrine to Persephonē. Explore the correct orthography, reconstructed pronunciation, and timeless mythology of Περσεφόνη.">
+</head>
+<body>
+    <!-- Global Nav -->
+    <div style="position:fixed;top:0;left:0;width:100%;z-index:1001;background:rgba(10,10,10,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);">
+        <div style="max-width:1200px;margin:0 auto;padding:0.4rem clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;">
+            <a href="/" style="font-family:'Cinzel',serif;font-size:0.8rem;font-weight:700;letter-spacing:0.15em;color:#D4AF37;text-decoration:none;">PUNYCODEX</a>
+            <div style="display:flex;gap:1.5rem;">
+                <a href="/pantheon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Pantheon</a>
+                <a href="/lexicon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Lexicon</a>
+                <a href="/type/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Type</a>
+                <a href="/tiers/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Tiers</a>
+            </div>
+        </div>
+    </div>
+    <!-- Seasonal Canvas -->
+    <canvas id="seasonal-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="main-nav" style="top:40px;" id="main-nav">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo">
+                <img src="assets/persephone_logolockup.png" alt="persephonē" class="nav-logo-img">
+            </a>
+            <div class="nav-links">
+                <a href="#the-name" class="nav-link">The Name</a>
+                <a href="#pronunciation" class="nav-link">Pronunciation</a>
+                <a href="#the-pomegranate" class="nav-link">The Pomegranate</a>
+                <a href="#myths" class="nav-link">Myths</a>
+                <a href="#pantheon" class="nav-link">Pantheon</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow">The Duality of Seasons</p>
+                <h1 class="hero-title reveal-up">
+                    <span class="title-greek">Περσεφόνη</span>
+                    <span class="title-divider"></span>
+                    <span class="title-trans">persephonē</span>
+                </h1>
+                <p class="hero-subtitle reveal-up">Queen of the Underworld &middot; Goddess of Spring &middot; Bringer of Seasons</p>
+                <div class="hero-meta reveal-up">
+                    <div class="tier-bridge single-tier">
+                        <span class="meta-badge">Tier‑1</span>
+                    </div>
+                    <div class="domain-bridge">
+                        <span class="meta-domain">persephonē.com</span>
+                    </div>
+                </div>
+                <div class="hero-cta reveal-up">
+                    <a href="#the-name" class="btn-primary">
+                        <span>Enter the Seasons</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <img src="assets/persephone_mascot.png" alt="persephonē — Queen of the Underworld, crowned with spring blossoms" class="mascot-img">
+                <div class="mascot-glow"></div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- The Name Section -->
+    <section class="section section-name" id="the-name">
+        <div class="section-bg-glow"></div>
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">01</span>
+                <h2 class="section-title">The Authentic Names</h2>
+                <p class="section-subtitle">Why <em>persephonē.com</em> is the single correct restored form</p>
+            </div>
+            
+            <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Greek Original</h3>
+                    <p class="card-greek">Περσεφόνη</p>
+                    <p class="card-body">The name in its original Greek form. The acute on the <em>ó</em> — the pitch accent that falls on the third syllable like a footstep in soft earth. The long <em>ē</em> that sustains at the end, like a held breath. In transliteration, the macron on <em>ē</em> is preserved while the acute on the short vowel does not create a separate tier. A name that contains both <em>bloom</em> and <em>burial.</em></p>
+                </div>
+
+                <div class="name-card reveal-up" data-delay="100">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5">
+                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">ASCII Constraint</h3>
+                    <p class="card-ascii">PERSEPHONE</p>
+                    <p class="card-body">Reduced to a search query. A character in a video game. A name whispered in high school mythology units. The Queen of the Dead who commands every soul in the underworld — reduced to ten uppercase letters in a database field. The pomegranate is gone. The throne is gone. Only the label remains.</p>
+                </div>
+
+                <div class="name-card reveal-up" data-delay="200">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Unicode Restoration</h3>
+                    <p class="card-unicode">persephonē</p>
+                    <p class="card-body">The Greek Περσεφόνη carries an acute on the <em>ό</em> and a long <em>η</em> at the end — both features present in the original. Because the Greek has both stress and length, <strong>persephonē</strong> is Tier‑1: the full scholarly orthography. The macron on <em>ē</em> sustains at the end like a held breath. The PUNYCODEX owns the true name.</p>
+                </div>
+            </div>
+
+            <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">persephonē.com &rarr; xn--persephon-jhb.com</code>
+                    <p class="explainer-note">The single non-ASCII character — <strong>ē</strong> (U+0113) — encodes to a Punycode string. The acute on the short vowel does not create a separate valid tier. To the DNS, it is a unique domain. To humanity, it is the true name of the Queen of Seasons.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pronunciation Section -->
+    <section class="section section-pronunciation" id="pronunciation">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">02</span>
+                <h2 class="section-title">Pronunciation</h2>
+                <p class="section-subtitle">How the Queen of Seasons was truly spoken</p>
+            </div>
+
+            <div class="pronunciation-grid">
+                <div class="pronunciation-main reveal-up">
+                    <div class="ipa-display">
+                        <span class="ipa-text">/per.se.ˈpʰó.nɛː/</span>
+                        <span class="ipa-label">Attic Greek Reconstruction</span>
+                    </div>
+                    <div class="pronunciation-breakdown">
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">per-</span>
+                            <span class="phoneme-desc">Short <em>e</em>, unstressed — the sound of footsteps on soft earth. The <em>p</em> is unaspirated, gentle. It is the syllable of <strong>approach,</strong> of something drawing near through tall grass.</span>
+                        </div>
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">-se-</span>
+                            <span class="phoneme-desc">Short <em>e</em>, unstressed — light and quick, like a breath between words. The <em>s</em> hisses like wind through narcissus flowers. It is the sound of <strong>hesitation,</strong> of a girl who does not yet know she is being watched.</span>
+                        </div>
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">-phó-</span>
+                            <span class="phoneme-desc">The stressed syllable, pitched upward with the acute. The <em>ph</em> is aspirated — a burst of breath, like the gasp when the earth opens. The <em>ó</em> is short but carries the full weight of the name. It is the moment <strong>everything changes.</strong></span>
+                        </div>
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">-nē</span>
+                            <span class="phoneme-desc">The long <em>ē</em> sustains, holding the final vowel like a held note or a held hand. It does not end abruptly. It <em>lingers.</em> Like spring itself — always departing, always promised to return.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pronunciation-sidebar reveal-up" data-delay="150">
+                    <div class="sidebar-card">
+                        <h4 class="sidebar-title">Modern Approximation</h4>
+                        <p class="sidebar-text">"per-se-PHO-nee" — with the third syllable carrying a slight rise in pitch, like a question or a call. The final <em>ee</em> is held longer than English allows, like the "ay" in "say" sustained for half a second.</p>
+                        <div class="sidebar-divider"></div>
+                        <h4 class="sidebar-title">Etymological Notes</h4>
+                        <ul class="kin-list">
+                            <li><strong>Possible origin</strong> — πέρθω (perthō), "to destroy," + φονή (phonē), "murder"</li>
+                            <li><strong>Also linked to</strong> pre-Greek, non-Indo-European roots</li>
+                            <li><strong>The Destroyer</strong> — of winter, of barrenness, of the boundary between life and death</li>
+                            <li><strong>The Maiden</strong> — Kore, before she ate the seeds and became Queen</li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-card accent-card">
+                        <h4 class="sidebar-title">The Tier Identity</h4>
+                        <p class="sidebar-text">The Greek Περσεφόνη carries an acute on the <em>ό</em> and a long <em>η</em> at the end. Because the original has both stress and length, <strong>persephonē</strong> is Tier‑1. The transliteration preserves the macron, and the Greek preserves the acute. <strong>persephonē</strong> is the single authentic restored form. The PUNYCODEX owns the true name.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Pomegranate Section -->
+    <section class="section section-gift" id="the-pomegranate">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">03</span>
+                <h2 class="section-title">The Pomegranate</h2>
+                <p class="section-subtitle">Domains, symbols, and the fruit that divided the year</p>
+            </div>
+
+            <div class="gift-content">
+                <div class="gift-intro reveal-up">
+                    <p class="lead-text">persephonē is the most <strong>divided</strong> of all the gods. She is not merely the goddess of one thing. She is the goddess of <em>transition itself</em> — the bloom that becomes the grave, the maiden who becomes the queen, the spring that must surrender to winter. She is life that has tasted death. Death that remembers life.</p>
+                </div>
+
+                <div class="domains-grid">
+                    <div class="domain-card reveal-up">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#D4AF37" stroke-width="1.5">
+                                <circle cx="32" cy="24" r="10"/>
+                                <path d="M32 14v-4"/>
+                                <path d="M26 34c0 8 6 14 6 14s6-6 6-14"/>
+                                <path d="M24 30h16"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">Spring &amp; Vegetation</h4>
+                        <p class="domain-desc">Not merely flowers — <em>return.</em> When persephonē ascends from the underworld, the earth bursts into bloom. Dēmētēr's joy becomes spring itself. Every narcissus, every barley shoot, every vine tendril is her footstep on the stairs of return. <strong>She is the reason winter ends.</strong></p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="100">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#D4AF37" stroke-width="1.5">
+                                <path d="M32 8v48"/>
+                                <path d="M16 24h32"/>
+                                <path d="M20 16l12 12 12-12"/>
+                                <path d="M20 48l12-12 12 12"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">Queen of the Underworld</h4>
+                        <p class="domain-desc">She does not merely reside in Hades. She <em>rules</em> beside him. The dead address her as Queen. She judges souls. She grants passage to orpheus and denies it to others. <strong>She is more powerful in death than most gods are in life.</strong> The underworld is not her prison. It is her other throne.</p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="200">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#D4AF37" stroke-width="1.5">
+                                <circle cx="32" cy="32" r="14"/>
+                                <path d="M32 18v8l6 6"/>
+                                <path d="M32 8v4"/>
+                                <path d="M32 52v4"/>
+                                <path d="M8 32h4"/>
+                                <path d="M52 32h4"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">The Turning of Seasons</h4>
+                        <p class="domain-desc">Six seeds. Six months. The mathematics of grief and reunion. When she is above, it is spring and summer. When she is below, Dēmētēr mourns and the world freezes. <strong>She is the axis on which the year turns.</strong> Every autumn leaf is a countdown. Every crocus is a homecoming.</p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="300">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#D4AF37" stroke-width="1.5">
+                                <path d="M32 12c-8 0-14 6-14 14 0 10 14 22 14 22s14-12 14-22c0-8-6-14-14-14z"/>
+                                <circle cx="32" cy="26" r="6"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">Initiation &amp; Mystery</h4>
+                        <p class="domain-desc">The Eleusinian Mysteries were her cult — the most sacred rites in ancient Greece. Initiates who witnessed her mysteries were said to lose their fear of death. She is the goddess who <em>bridges</em> the two worlds and returns with knowledge. <strong>To know her is to no longer fear the dark.</strong></p>
+                    </div>
+                </div>
+
+                <div class="symbols-section reveal-up">
+                    <h3 class="symbols-title">Sacred Symbols</h3>
+                    <div class="symbols-list">
+                        <div class="symbol-item">
+                            <span class="symbol-name">The Pomegranate</span>
+                            <span class="symbol-meaning">The fruit of division — six seeds, six months. The moment of choice that cannot be undone. Every seed is a contract with eternity.</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">Narcissus Flower</span>
+                            <span class="symbol-meaning">The flower that lured her to the abduction — beauty as bait, bloom as betrayal, the moment before everything changes</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">Torch</span>
+                            <span class="symbol-meaning">The light she carries into and out of the underworld — the only flame that burns in both worlds, guiding souls and guiding herself home</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">Deer</span>
+                            <span class="symbol-meaning">Sacred animal — gentle, swift, and prey. The creature that moves between meadow and forest, between safety and the unknown</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">Crown of Asphodel</span>
+                            <span class="symbol-meaning">Her underworld crown — the flower of the dead, pale and eternal, growing in the fields of Hades where ordinary flowers cannot survive</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">The Cleft Earth</span>
+                            <span class="symbol-meaning">The opening in the meadow at Enna — the wound in the world through which she was taken, and through which she returns each spring</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Myths Section -->
+    <section class="section section-myths" id="myths">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">04</span>
+                <h2 class="section-title">The Myths</h2>
+                <p class="section-subtitle">Stories of abduction, transformation, and the price of eternity</p>
+            </div>
+
+            <div class="myths-timeline">
+                <div class="myth-card reveal-up">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Abduction</span>
+                        <h3 class="myth-title">The Rape of Persephone</h3>
+                        <p class="myth-text">In the meadows of Enna, the maiden Kore — daughter of Dēmētēr and Zeus — gathered flowers with her companions. The earth split open. Hades emerged in his black chariot and seized her. She screamed — a scream so terrible that Hekatē heard it from her cave, and the sun himself turned away. No one intervened. Zeus had given his silent consent. The earth closed over her. <strong>Spring ended in a single afternoon.</strong> Her mother did not yet know. The flowers she had dropped continued to bloom, ignorant that the girl who picked them would not return.</p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="100">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Search</span>
+                        <h3 class="myth-title">Dēmētēr's Desolation</h3>
+                        <p class="myth-text">Dēmētēr searched the earth for nine days, torch in hand, neither eating nor sleeping. She turned old men into lizards for lying about what they saw. She withered the crops of cities that refused her passage. Finally, Hekatē led her to Hēlios, the sun, who sees everything. He told her the truth: Hades had taken her daughter with Zeus's blessing. Dēmētēr's grief became rage, and her rage became winter. <strong>She refused to let anything grow until her daughter was returned.</strong> The gods began to starve. Mortals died. Zeus had no choice.</p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="200">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Seeds</span>
+                        <h3 class="myth-title">The Pomegranate Contract</h3>
+                        <p class="myth-text">Zeus sent Hermēs to retrieve her. Hades, cornered, offered persephonē a pomegranate — the food of the dead. She had fasted through her grief, refusing all sustenance in the underworld. But the fruit was sweet, and she was starving, and Hades was kind in his own terrible way. She ate six seeds. The Moirai themselves witnessed it. <strong>A contract sealed with fruit cannot be broken.</strong> Because she had eaten the food of the dead, she was bound to return. Six months above. Six months below. Forever. The compromise that created the seasons.</p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="300">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Return</span>
+                        <h3 class="myth-title">The Turning of the Year</h3>
+                        <p class="myth-text">Each spring, persephonē ascends the great stairs from the underworld. The earth cracks with crocuses. Dēmētēr weeps with joy, and her tears become rain. For six months, the world blooms. But each autumn, the pomegranate calls her back. The leaves fall. The earth hardens. Dēmētēr mourns again. <strong>She is the only god who truly understands both worlds — not as visitor, but as sovereign.</strong> She does not resent her division. She has made it into power. She is Queen in winter. She is Maiden in spring. She is both, and therefore she is more than either.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Related Names -->
+    <section class="section" id="related" style="background:#0A0A0A;padding:6rem 0;">
+        <div class="container" style="max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);">
+            <div style="text-align:center;margin-bottom:4rem;">
+                <span style="display:block;font-family:'Cinzel',serif;font-size:0.85rem;color:#D4AF37;letter-spacing:0.4em;margin-bottom:1rem;">05</span>
+                <h2 style="font-family:'Cinzel',serif;font-size:clamp(2rem,4vw,3.5rem);color:#F5F5F5;letter-spacing:0.05em;margin-bottom:1rem;">Related Names</h2>
+                <p style="font-size:clamp(1rem,1.5vw,1.25rem);color:#A0A0A0;font-style:italic;">More from the Greek pantheon</p>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;">
+                
+                <a href="/sites/apollon/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Ápollōn</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἀπόλλων</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Light, Music, Prophecy</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Dual-Tier</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/hades/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Hádēs</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἅιδης</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Underworld, Wealth</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Dual-Tier</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/hekate/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Hekátē</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἑκάτη</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Magic, Crossroads, Moon</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Dual-Tier</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/nike/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Níkē</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Νίκη</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Victory</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Dual-Tier</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/zeus/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Zeus</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ζεύς</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Sky, Thunder, King of Gods</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Tier-1</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/ares/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Árēs</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἄρης</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">War, Courage, Battle Fury</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Tier-1 Full</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+<!-- Pantheon Connection -->
+    <section class="section section-pantheon" id="pantheon">
+        <div class="container">
+            <div class="pantheon-content reveal-up">
+                <div class="pantheon-text">
+                    <span class="pantheon-eyebrow">The PUNYCODEX</span>
+                    <h2 class="pantheon-title">The Queen of Both Worlds</h2>
+                    <p class="pantheon-body">Zeus has thunder. Hades has the dead. Dēmētēr has the harvest. But persephonē has <strong>both worlds.</strong> She does not stand at the threshold — she <em>owns the rooms on either side of it.</em> Queen in winter. Maiden in spring. Six seeds, six months, one eternal contract. She does not fear the dark because she <em>rules</em> it. She does not cling to the light because she <em>knows it returns.</em> She is the only god who truly understands both realms — not as visitor, not as guide, but as <strong>sovereign.</strong></p>
+                    <p class="pantheon-body">This is not a directory. This is a <strong>resurrection</strong>.</p>
+                    <a href="/lexicon/" class="btn-primary btn-ghost">
+                        <span>Enter the Codex</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="pantheon-mascot">
+                    <img src="assets/persephone_mascot.png" alt="persephonē mascot" class="pantheon-mascot-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    
+    <!-- Type Tool CTA -->
+    <section style="padding:6rem 0;background:linear-gradient(180deg,#0A0A0A 0%,rgba(65,105,225,0.08) 100%);text-align:center;">
+        <div class="container" style="max-width:700px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);">
+            <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.75rem,3vw,2.5rem);color:#F5F5F5;margin-bottom:1.5rem;letter-spacing:0.05em;">Experience the Name</h2>
+            <p style="font-size:1.05rem;color:#A0A0A0;line-height:1.8;margin-bottom:2.5rem;">See how Persephonē behaves in the PUNYCODEX Type Tool — with predictive autocomplete, character-by-character breakdown, and scholarly constraint validation.</p>
+            <div style="display:inline-flex;align-items:center;gap:1rem;padding:1rem 2rem;background:rgba(0,0,0,0.3);border:1px solid rgba(212,175,55,0.25);border-radius:2px;font-family:'Fira Code','Courier New',monospace;font-size:1.1rem;color:#D4AF37;margin-bottom:1.5rem;">
+                <code>persephone</code>
+                <span style="color:#A0A0A0;">&rarr;</span>
+                <code>Persephonē</code>
+            </div>
+            <div>
+                <a href="/type/#persephone" style="display:inline-flex;align-items:center;gap:0.75rem;padding:1rem 2rem;background:linear-gradient(135deg,#D4AF37,#8B7355);color:#0A0A0A;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;transition:all 0.4s ease;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 40px rgba(212,175,55,0.3)';" onmouseout="this.style.transform='none';this.style.boxShadow='none';">
+                    <span>Open in Type Tool</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Name Variations Section -->
+    <section class="section section-variations" id="variations">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Name Variations</h2>
+                <p class="section-subtitle">The many faces of Persephonē across scripts and conventions.</p>
+            </div>
+            <div class="variations-grid">
+                <div class="variation-card primary">
+                    <span class="var-badge owned">Primary &mdash; Owned</span>
+                    <div class="var-name">Persephonē</div>
+                    <div class="var-form">Macron-only form</div>
+                    <p class="var-note">Our active domain. Standard academic convention with macron on eta. The ideal form with acute on omicron was unavailable.</p>
+                    <span class="var-domain">persephonē.com</span>
+                </div>
+                <div class="variation-card">
+                    <span class="var-badge ideal">Ideal &mdash; Unavailable</span>
+                    <div class="var-name">Persephónē</div>
+                    <div class="var-form">Acute + macron form</div>
+                    <p class="var-note">Fully accurate. Acute on omicron, macron on eta. Domain unavailable.</p>
+                    <span class="var-domain taken">Unavailable</span>
+                </div>
+                <div class="variation-card">
+                    <span class="var-badge ascii">ASCII</span>
+                    <div class="var-name">Persephone</div>
+                    <div class="var-form">Modern English form</div>
+                    <p class="var-note">Modern English form.</p>
+                    <span class="var-domain">persephone.com (taken)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="footer-logo">PUNYCODEX</span>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Domains</span>
+                        <span class="footer-value">persephonē.com</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier‑1</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Greek Original</span>
+                        <span class="footer-value">ΠΕΡΣΕΦΌΝΗ</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <img src="assets/persephone_logomark.png" alt="persephonē logomark" class="footer-logomark">
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The board has been reset</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

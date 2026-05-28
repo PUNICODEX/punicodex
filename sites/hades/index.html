@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ᾍδης — Hádēs | Lord of the Unseen</title>
+    <meta name="description" content="The authentic digital shrine to Hádēs, Lord of the Unseen. Explore the correct Greek orthography, reconstructed pronunciation, and timeless mythology of ᾍδης.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unica+One&family=Libre+Franklin:wght@300;400;600;700&family=Cinzel:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Hádēs — Underworld, Wealth",
+    "description": "The authentic digital shrine to Hádēs. Explore the correct Greek orthography, Unicode restoration, and scholarly sources for Hádēs.com.",
+    "url": "https://punycodex.com/sites/hades/",
+    "about": {
+        "@type": "Thing",
+        "name": "Ἅιδης",
+        "alternateName": [
+            "hades",
+            "Hádēs"
+        ],
+        "description": "The Unseen One (from ἀ- + εἶδον)"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNYCODEX",
+        "url": "https://punycodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punycodex.com/assets/images/og-default.svg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punycodex.com/sites/hades/">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Ἅιδης — Hádēs | Underworld, Wealth | PUNYCODEX">
+    <meta property="og:description" content="The authentic digital shrine to Hádēs. Explore the correct orthography, reconstructed pronunciation, and timeless mythology of Ἅιδης.">
+    <meta property="og:url" content="https://punycodex.com/sites/hades/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PUNYCODEX">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ἅιδης — Hádēs | Underworld, Wealth | PUNYCODEX">
+    <meta name="twitter:description" content="The authentic digital shrine to Hádēs. Explore the correct orthography, reconstructed pronunciation, and timeless mythology of Ἅιδης.">
+</head>
+<body>
+    <!-- Global Nav -->
+    <div style="position:fixed;top:0;left:0;width:100%;z-index:1001;background:rgba(10,10,10,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);">
+        <div style="max-width:1200px;margin:0 auto;padding:0.4rem clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;">
+            <a href="/" style="font-family:'Cinzel',serif;font-size:0.8rem;font-weight:700;letter-spacing:0.15em;color:#D4AF37;text-decoration:none;">PUNYCODEX</a>
+            <div style="display:flex;gap:1.5rem;">
+                <a href="/pantheon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Pantheon</a>
+                <a href="/lexicon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Lexicon</a>
+                <a href="/type/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Type</a>
+                <a href="/tiers/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Tiers</a>
+            </div>
+        </div>
+    </div>
+    <!-- Shadow Canvas -->
+    <canvas id="shadow-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="main-nav" style="top:40px;" id="main-nav">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo">
+                <img src="assets/hades_logolockup.png" alt="Hádēs" class="nav-logo-img">
+            </a>
+            <div class="nav-links">
+                <a href="#the-name" class="nav-link">The Name</a>
+                <a href="#pronunciation" class="nav-link">Pronunciation</a>
+                <a href="#the-unseen" class="nav-link">The Unseen</a>
+                <a href="#myths" class="nav-link">Myths</a>
+                <a href="#pantheon" class="nav-link">Pantheon</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <h1 class="hero-title reveal-up">
+                    <span class="title-greek">ᾍδης</span>
+                    <span class="title-divider"></span>
+                    <span class="title-trans">Hádēs</span>
+                </h1>
+                <p class="hero-subtitle reveal-up">Lord of the Unseen &middot; Keeper of the Dead &middot; Wealth of the Earth</p>
+                <div class="hero-meta reveal-up">
+                    <div class="tier-bridge">
+                        <span class="meta-badge tier-1">Tier‑1 Accent‑Preserving</span>
+                        <span class="tier-connector"></span>
+                        <span class="meta-badge tier-2">Tier‑2 Macron‑Preserving</span>
+                    </div>
+                    <div class="domain-bridge">
+                        <span class="meta-domain">hádēs.com</span>
+                        <span class="domain-connector">·</span>
+                        <span class="meta-domain-alt">hadēs.com</span>
+                    </div>
+                </div>
+                <div class="hero-cta reveal-up">
+                    <a href="#the-name" class="btn-primary">
+                        <span>Descend into Shadow</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <img src="assets/hades_mascot.png" alt="Hádēs — Lord of the Unseen, crowned in the Helm of Darkness" class="mascot-img">
+                <div class="mascot-glow"></div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- The Name Section -->
+    <section class="section section-name" id="the-name">
+        <div class="section-bg-glow"></div>
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">01</span>
+                <h2 class="section-title">The Authentic Names</h2>
+                <p class="section-subtitle">Why <em>hádēs.com</em> and <em>hadēs.com</em> are both correct forms</p>
+            </div>
+            
+            <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#C0C0C0" stroke-width="1.5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Greek Original</h3>
+                    <p class="card-greek">ᾍδης</p>
+                    <p class="card-body">The name in its original Greek form, with rough breathing and the long vowel <em>α</em> (alpha) marked by the macron in our Tier‑2 system. But here, in Tier‑1, the acute on the <em>á</em> declares him: <strong>not invisible</strong>, but <strong>unwilling to be seen</strong>. The accent is defiance.</p>
+                </div>
+
+                <div class="name-card reveal-up" data-delay="100">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#C0C0C0" stroke-width="1.5">
+                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">ASCII Constraint</h3>
+                    <p class="card-ascii">HADES</p>
+                    <p class="card-body">Reduced to five capital letters. A Disney villain. A video game protagonist. A word children shout on playgrounds. The Lord of the Unseen — the god whose very name Greeks feared to speak — became a cartoon. The acute accent was not decoration. It was <strong>protection</strong>.</p>
+                </div>
+
+                <div class="name-card reveal-up" data-delay="200">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#C0C0C0" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Unicode Restoration</h3>
+                    <p class="card-unicode">hádēs &middot; hadēs</p>
+                    <p class="card-body"><strong>Tier‑1</strong> preserves the acute on <em>á</em> — the pitch accent that strikes like a command. <strong>Tier‑2</strong> strips the accent but keeps the macron on <em>ē</em>. Both are authentic scholarly orthographies. Oxford prefers one. Cambridge prefers the other. The PUNYCODEX owns <strong>both</strong>. Neither is a compromise. Each is a different face of the same unseen king.</p>
+                </div>
+            </div>
+
+            <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">hádēs.com &rarr; xn--hads-1cd.com<br>hadēs.com &rarr; xn--hads-6cd.com</code>
+                    <p class="explainer-note">Both forms encode their non-ASCII characters — Tier‑1 with <strong>á</strong> (U+00E1) and <strong>ē</strong> (U+0113), Tier‑2 with <strong>ē</strong> (U+0113) alone. To the DNS, they are different Punycode strings. To humanity, they are both <em>Hádēs</em>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pronunciation Section -->
+    <section class="section section-pronunciation" id="pronunciation">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">02</span>
+                <h2 class="section-title">Pronunciation</h2>
+                <p class="section-subtitle">How the Unseen was truly spoken</p>
+            </div>
+
+            <div class="pronunciation-grid">
+                <div class="pronunciation-main reveal-up">
+                    <div class="ipa-display">
+                        <span class="ipa-text">/hái̯.dɛːs/</span>
+                        <span class="ipa-label">Attic Greek Reconstruction</span>
+                    </div>
+                    <div class="pronunciation-breakdown">
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">há-</span>
+                            <span class="phoneme-desc">Rough breathing with the acute stress on the alpha. The <em>hai</em> is a diphthong — start with [h], open into [a], glide toward [i]. The acute raises the pitch sharply on this syllable, like a challenge.</span>
+                        </div>
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">-dɛː-</span>
+                            <span class="phoneme-desc">Long epsilon, held. The <em>dē</em> is not a diphthong but a single long vowel with a following consonant. It is the sound of something being <em>pulled</em> — a name that drags the listener downward.</span>
+                        </div>
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">-s</span>
+                            <span class="phoneme-desc">Final voiceless sibilant. In Greek, this ending was common for masculine names. Here, it cuts off like a door closing. The name does not trail. It <em>ends</em>.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pronunciation-sidebar reveal-up" data-delay="150">
+                    <div class="sidebar-card">
+                        <h4 class="sidebar-title">Modern Approximation</h4>
+                        <p class="sidebar-text">"HAH‑days" — with the first syllable sharply stressed and the second held long. The <em>ā</em> is broad, like the "a" in "father" but pitched higher. The <em>ē</em> is the "e" in "air," stretched.</p>
+                        <div class="sidebar-divider"></div>
+                        <h4 class="sidebar-title">Etymological Truth</h4>
+                        <ul class="kin-list">
+                            <li><strong>ἀ-</strong> (a-) — "not, without"</li>
+                            <li><strong>ἰδεῖν</strong> (ideîn) — "to see"</li>
+                            <li><strong>Meaning</strong> — "The Unseen One"</li>
+                            <li><strong>Also known as</strong> Πλούτων (Ploutōn) — "Wealthy"</li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-card accent-card">
+                        <h4 class="sidebar-title">The Taboo Name</h4>
+                        <p class="sidebar-text">The Greeks rarely spoke his true name. They called him <em>Ploutōn</em> (Wealthy), <em>Eubouleus</em> (Good Counselor), or simply <em>The Host of Many</em>. To say <strong>Hádēs</strong> aloud was to invite his attention. The accent on our domain is not merely scholarly — it is <strong>restoration of a name too dangerous to forget</strong>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Unseen Section -->
+    <section class="section section-unseen" id="the-unseen">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">03</span>
+                <h2 class="section-title">The Unseen</h2>
+                <p class="section-subtitle">Domains, symbols, and sovereign darkness</p>
+            </div>
+
+            <div class="unseen-content">
+                <div class="unseen-intro reveal-up">
+                    <p class="lead-text">Hádēs is not death. He is <strong>the administrator of death</strong> — the bureaucrat of the afterlife, the judge who never sleeps, the husband who stole his bride and kept her anyway. He does not kill. He <em>receives</em>. Every soul that descends passes through his gates. Every gem mined from the earth was once his. He is not cruel. He is <strong>fair</strong> — and fairness is the most terrifying thing a god can be.</p>
+                </div>
+
+                <div class="domains-grid">
+                    <div class="domain-card reveal-up">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#C0C0C0" stroke-width="1.5">
+                                <path d="M32 8C20 8 12 18 12 32C12 48 32 56 32 56C32 56 52 48 52 32C52 18 44 8 32 8Z"/>
+                                <path d="M32 20V44M20 32H44"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">The Underworld</h4>
+                        <p class="domain-desc">Not hell. Not heaven. The place beneath the earth where all souls go — Tartarus for the wicked, Elysium for the heroic, and the Asphodel Meadows for everyone else.</p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="100">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#C0C0C0" stroke-width="1.5">
+                                <circle cx="32" cy="32" r="20"/>
+                                <circle cx="32" cy="32" r="12"/>
+                                <circle cx="32" cy="32" r="4"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">Wealth</h4>
+                        <p class="domain-desc">As <em>Ploutōn</em>, he is the god of mineral riches — gold, silver, gems. All wealth comes from below. The earth's treasures are his dowry.</p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="200">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#C0C0C0" stroke-width="1.5">
+                                <path d="M32 8L38 28H58L42 40L48 60L32 48L16 60L22 40L6 28H26L32 8Z" transform="rotate(180 32 32)"/>
+                                <path d="M32 16V32"/>
+                                <path d="M24 24L32 32L40 24"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">Justice</h4>
+                        <p class="domain-desc">He judges the dead with Minos and Rhadamanthus. There is no appeal. There is no bribe. The verdict is eternal — not because he is cruel, but because he is <em>accurate</em>.</p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="300">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#C0C0C0" stroke-width="1.5">
+                                <circle cx="32" cy="24" r="8"/>
+                                <path d="M32 32V48"/>
+                                <path d="M24 40H40"/>
+                                <path d="M20 48H44"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">The Dead</h4>
+                        <p class="domain-desc">Not merely corpses. The <em>psychai</em> — the shades, the breath-souls. He is their shepherd, their warden, their final host. He remembers every name.</p>
+                    </div>
+                </div>
+
+                <div class="symbols-section reveal-up">
+                    <h3 class="symbols-title">Sacred Symbols</h3>
+                    <div class="symbols-list">
+                        <div class="symbol-item">
+                            <span class="symbol-name">Helm of Darkness</span>
+                            <span class="symbol-meaning">Invisibility — the crown that renders the wearer unseen, even by gods</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">Bident</span>
+                            <span class="symbol-meaning">Two-pronged spear — not Poseidon's trident. Hádēs needs only two points: entry and exit.</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">Cerberus</span>
+                            <span class="symbol-meaning">The three-headed hound who guards the gates — not to keep the dead in, but to keep the living <em>out</em></span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">Cypress Tree</span>
+                            <span class="symbol-meaning">Evergreen mourning — planted at graveyards, its resin preserves what time forgets</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">Narcissus</span>
+                            <span class="symbol-meaning">The flower that lured Persephone to her abduction — beauty as bait, bloom as betrayal</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">Key</span>
+                            <span class="symbol-meaning">The key to the underworld — he who holds it controls the final threshold</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Myths Section -->
+    <section class="section section-myths" id="myths">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">04</span>
+                <h2 class="section-title">The Myths</h2>
+                <p class="section-subtitle">Stories from beneath the earth</p>
+            </div>
+
+            <div class="myths-timeline">
+                <div class="myth-card reveal-up">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Abduction</span>
+                        <h3 class="myth-title">Persephonē and the Narcissus</h3>
+                        <p class="myth-text">Hádēs did not storm Olympus to claim a bride. He simply made a flower so beautiful that Persephonē could not resist bending to pick it. The earth opened. His chariot rose. And she was gone before her mother could scream. Some call it kidnapping. Hádēs calls it <em>the only way to get a queen when you are not allowed above ground</em>. He gave her the pomegranate — six seeds — and bound her to return. This was not cruelty. This was <strong>marriage in the underworld</strong>, where every contract is eternal.</p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="100">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Musician</span>
+                        <h3 class="myth-title">Orpheus and Eurydice</h3>
+                        <p class="myth-text">Orpheus descended with his lyre and played so beautifully that Hádēs himself wept. He agreed to let Eurydice return — on one condition: Orpheus must not look back. The condition was not cruelty. It was <em>law</em>. When Orpheus turned, Hádēs did not laugh. He simply enforced the contract. The underworld does not make exceptions for love. If it did, it would not be the underworld.</p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="200">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Trickster</span>
+                        <h3 class="myth-title">Sisyphus and the Boulder</h3>
+                        <p class="myth-text">Sisyphus cheated death twice. He chained Thanatos. He escaped the underworld. He mocked the god who cannot be mocked. Hádēs did not kill him. He simply gave him a task: roll a boulder to the top of a hill. Forever. The boulder always rolls back down. This is not torture. This is <strong>administrative justice</strong> — the most perfectly fair punishment ever devised: effort without result, forever.</p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="300">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Hero</span>
+                        <h3 class="myth-title">Heracles and Cerberus</h3>
+                        <p class="myth-text">Heracles' final labor was to capture Cerberus — without weapons. He descended, wrestled the hound of hell with bare hands, and dragged him to the surface. Hádēs did not intervene. He simply watched. Some say he was impressed. Others say he knew Heracles would return eventually — everyone does. The underworld does not lose. It simply <em>waits</em>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Related Names -->
+    <section class="section" id="related" style="background:#0A0A0A;padding:6rem 0;">
+        <div class="container" style="max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);">
+            <div style="text-align:center;margin-bottom:4rem;">
+                <span style="display:block;font-family:'Cinzel',serif;font-size:0.85rem;color:#D4AF37;letter-spacing:0.4em;margin-bottom:1rem;">05</span>
+                <h2 style="font-family:'Cinzel',serif;font-size:clamp(2rem,4vw,3.5rem);color:#F5F5F5;letter-spacing:0.05em;margin-bottom:1rem;">Related Names</h2>
+                <p style="font-size:clamp(1rem,1.5vw,1.25rem);color:#A0A0A0;font-style:italic;">More from the Greek pantheon</p>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;">
+                
+                <a href="/sites/apollon/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Ápollōn</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἀπόλλων</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Light, Music, Prophecy</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Dual-Tier</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/hekate/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Hekátē</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἑκάτη</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Magic, Crossroads, Moon</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Dual-Tier</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/nike/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Níkē</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Νίκη</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Victory</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Dual-Tier</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/zeus/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Zeus</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ζεύς</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Sky, Thunder, King of Gods</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Tier-1</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/ares/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Árēs</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἄρης</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">War, Courage, Battle Fury</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Tier-1 Full</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/aphrodite/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Aphrodītē</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἀφροδίτη</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Love, Beauty, Pleasure</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Tier-1 Macron-Preserving</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+<!-- Pantheon Connection -->
+    <section class="section section-pantheon" id="pantheon">
+        <div class="container">
+            <div class="pantheon-content reveal-up">
+                <div class="pantheon-text">
+                    <span class="pantheon-eyebrow">The PUNYCODEX</span>
+                    <h2 class="pantheon-title">The Kingdom Beneath</h2>
+                    <p class="pantheon-body">Zeús rules the sky. Poseidōn rules the sea. Hádēs rules <em>everything else</em> — the soil, the stones, the bones, the gems, the graves. He does not compete. He does not campaign. He simply <strong>endures</strong>. Every god will one day be his guest. Every mortal already is.</p>
+                    <p class="pantheon-body">This is not a directory. This is a <strong>resurrection</strong>.</p>
+                    <a href="/lexicon/" class="btn-primary btn-ghost">
+                        <span>Enter the Codex</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="pantheon-mascot">
+                    <img src="assets/hades_mascot.png" alt="Hádēs mascot" class="pantheon-mascot-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    
+    <!-- Type Tool CTA -->
+    <section style="padding:6rem 0;background:linear-gradient(180deg,#0A0A0A 0%,rgba(65,105,225,0.08) 100%);text-align:center;">
+        <div class="container" style="max-width:700px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);">
+            <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.75rem,3vw,2.5rem);color:#F5F5F5;margin-bottom:1.5rem;letter-spacing:0.05em;">Experience the Name</h2>
+            <p style="font-size:1.05rem;color:#A0A0A0;line-height:1.8;margin-bottom:2.5rem;">See how Hádēs behaves in the PUNYCODEX Type Tool — with predictive autocomplete, character-by-character breakdown, and scholarly constraint validation.</p>
+            <div style="display:inline-flex;align-items:center;gap:1rem;padding:1rem 2rem;background:rgba(0,0,0,0.3);border:1px solid rgba(212,175,55,0.25);border-radius:2px;font-family:'Fira Code','Courier New',monospace;font-size:1.1rem;color:#D4AF37;margin-bottom:1.5rem;">
+                <code>hades</code>
+                <span style="color:#A0A0A0;">&rarr;</span>
+                <code>Hádēs</code>
+            </div>
+            <div>
+                <a href="/type/#hades" style="display:inline-flex;align-items:center;gap:0.75rem;padding:1rem 2rem;background:linear-gradient(135deg,#D4AF37,#8B7355);color:#0A0A0A;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;transition:all 0.4s ease;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 40px rgba(212,175,55,0.3)';" onmouseout="this.style.transform='none';this.style.boxShadow='none';">
+                    <span>Open in Type Tool</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+<footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="footer-logo">PUNYCODEX</span>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Domains</span>
+                        <span class="footer-value">hádēs.com &middot; hadēs.com</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Dual‑Tier Pair (Tier‑1 &amp; Tier‑2)</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Greek Original</span>
+                        <span class="footer-value">ᾍδης</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <img src="assets/hades_logomark.png" alt="Hádēs logomark" class="footer-logomark">
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The board has been reset</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

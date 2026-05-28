@@ -1,0 +1,523 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Χάος — Cháos | The First Void | PUNYCODEX</title>
+    <meta name="description" content="The authentic digital shrine to Cháos, the primordial void from which all existence emerged. Explore correct Greek orthography and mythology.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Cháos — The First Void",
+    "description": "The authentic digital shrine to Cháos, the primordial void from which all existence emerged. Explore correct Greek orthography and mythology.",
+    "url": "https://punycodex.com/sites/chaos/",
+    "about": {
+        "@type": "Thing",
+        "name": "Χάος",
+        "alternateName": [
+            "chaos",
+            "Chaos"
+        ],
+        "description": "Gap, yawning void (from χάος)"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNYCODEX",
+        "url": "https://punycodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punycodex.com/assets/images/og-default.svg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punycodex.com/sites/chaos/">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Χάος — Cháos | The First Void | PUNYCODEX">
+    <meta property="og:description" content="The authentic digital shrine to Cháos, the primordial void from which all existence emerged. Explore correct Greek orthography and mythology.">
+    <meta property="og:url" content="https://punycodex.com/sites/chaos/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PUNYCODEX">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Χάος — Cháos | The First Void | PUNYCODEX">
+    <meta name="twitter:description" content="The authentic digital shrine to Cháos, the primordial void from which all existence emerged. Explore correct Greek orthography and mythology.">
+</head>
+<body>
+    <!-- Global Nav -->
+    <div style="position:fixed;top:0;left:0;width:100%;z-index:1001;background:rgba(10,10,15,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);">
+        <div style="max-width:1200px;margin:0 auto;padding:0.4rem clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;">
+            <a href="/" style="font-family:'Cinzel',serif;font-size:0.8rem;font-weight:700;letter-spacing:0.15em;color:#ffd700;text-decoration:none;">PUNYCODEX</a>
+            <div style="display:flex;gap:1.5rem;">
+                <a href="/pantheon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#ffd700'" onmouseout="this.style.color='#A0A0A0'">Pantheon</a>
+                <a href="/lexicon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#ffd700'" onmouseout="this.style.color='#A0A0A0'">Lexicon</a>
+                <a href="/type/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#ffd700'" onmouseout="this.style.color='#A0A0A0'">Type</a>
+                <a href="/tiers/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#ffd700'" onmouseout="this.style.color='#A0A0A0'">Tiers</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vortex Canvas -->
+    <canvas id="vortex-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="main-nav" style="top:40px;" id="main-nav">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo">
+                <img src="assets/chaos_logolockup.png" alt="Cháos" class="nav-logo-img">
+            </a>
+            <div class="nav-links">
+                <a href="#the-name" class="nav-link">The Name</a>
+                <a href="#pronunciation" class="nav-link">Pronunciation</a>
+                <a href="#the-primordial" class="nav-link">The Primordial</a>
+                <a href="#myths" class="nav-link">Myths</a>
+                <a href="#pantheon" class="nav-link">Pantheon</a>
+                <a href="#variations" class="nav-link">Variations</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg" style="background-image:url('assets/chaos_landscape.png');"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <h1 class="hero-title reveal-up">
+                    <span class="title-greek">Χάος</span>
+                    <span class="title-divider"></span>
+                    <span class="title-trans">Cháos</span>
+                </h1>
+                <p class="hero-subtitle reveal-up">The First Void &middot; The Yawning Gap &middot; Origin of All</p>
+                <div class="hero-meta reveal-up">
+                    <span class="meta-badge">Tier‑2 Accent‑Preserving</span>
+                    <span class="meta-domain">cháos.com</span>
+                </div>
+                <div class="hero-cta reveal-up">
+                    <a href="#the-name" class="btn-primary">
+                        <span>Enter the Void</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <img src="assets/chaos_landscape.png" alt="Cháos — The primordial void, cosmic and formless" class="mascot-img">
+                <div class="mascot-glow"></div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- The Name Section -->
+    <section class="section section-name" id="the-name">
+        <div class="section-bg-glow"></div>
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">01</span>
+                <h2 class="section-title">The Authentic Name</h2>
+                <p class="section-subtitle">Why <em>cháos.com</em> preserves the Greek voice</p>
+            </div>
+            
+            <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ffd700" stroke-width="1.5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Greek Original</h3>
+                    <p class="card-greek">Χάος</p>
+                    <p class="card-body">The name in its original Ancient Greek form. A neuter noun built from the verb <em>chainō</em> (χαίνω), "to yawn, to gape." In Hesiod's <em>Theogony</em>, Χάος is the first thing to come into existence — not a god, not a place, but a <strong>state of being</strong>: the gaping emptiness that preceded all form, all matter, all divinity.</p>
+                </div>
+
+                <div class="name-card reveal-up" data-delay="100">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ffd700" stroke-width="1.5">
+                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">ASCII Constraint</h3>
+                    <p class="card-ascii">CHAOS</p>
+                    <p class="card-body">Stripped of its Greek identity, the word was reduced to five Latin letters. In modern English, "chaos" means disorder, confusion, randomness — a pale distortion of the original. The primordial void became a synonym for mess. The yawning gap that birthed gods was flattened into a word for traffic jams and cluttered desks.</p>
+                </div>
+
+                <div class="name-card reveal-up" data-delay="200">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ffd700" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Unicode Restoration</h3>
+                    <p class="card-unicode">Cháos</p>
+                    <p class="card-body">The acute accent on the <em>a</em> restores the stress placement of the original Greek. In Ancient Greek, the accent fell on the first syllable — <strong>khá-os</strong> — and the acute marks this precisely. Without it, the word loses its Greek identity. This is not decoration. It is <strong>philological accuracy.</strong></p>
+                </div>
+            </div>
+
+            <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">cháos.com &rarr; xn--chos-8ra.com</code>
+                    <p class="explainer-note">The non-ASCII character <strong>á</strong> (U+00E1) is encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Cháos</em>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pronunciation Section -->
+    <section class="section section-pronunciation" id="pronunciation">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">02</span>
+                <h2 class="section-title">Pronunciation</h2>
+                <p class="section-subtitle">How the void was truly spoken</p>
+            </div>
+
+            <div class="pronunciation-grid">
+                <div class="pronunciation-main reveal-up">
+                    <div class="ipa-display">
+                        <span class="ipa-text">/kʰá.os/</span>
+                        <span class="ipa-label">Attic Greek Reconstruction</span>
+                    </div>
+                    <div class="pronunciation-breakdown">
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">kʰ-</span>
+                            <span class="phoneme-desc">Aspirated voiceless velar stop. The <em>kh</em> is not a hard <em>k</em> — it carries a puff of breath, like the <em>h</em> in "hot" following immediately after the <em>k</em>. The Chi (Χ) demands this aspiration.</span>
+                        </div>
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">-á-</span>
+                            <span class="phoneme-desc">The alpha carries an acute accent, marking high pitch on the first syllable. In Ancient Greek, this was a <strong>musical rise</strong> — the voice lifted, then fell. The vowel is open and bright, like the <em>a</em> in "father."</span>
+                        </div>
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">-os</span>
+                            <span class="phoneme-desc">Short <em>o</em> followed by voiceless <em>s</em>. The second syllable is unstressed, lower in pitch, a gentle closing after the opening yawning sound of the first.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pronunciation-sidebar reveal-up" data-delay="150">
+                    <div class="sidebar-card">
+                        <h4 class="sidebar-title">Modern Approximation</h4>
+                        <p class="sidebar-text">"KHAH-os" — with a breathy <em>kh</em> and stress on the first syllable. The <em>a</em> is open and full. Do not say "KAY-os" — that is English, not Greek.</p>
+                        <div class="sidebar-divider"></div>
+                        <h4 class="sidebar-title">Etymological Kin</h4>
+                        <ul class="kin-list">
+                            <li><strong>Greek</strong> chainō (χαίνω) — "to yawn, gape"</li>
+                            <li><strong>Greek</strong> cháos (χάος) — "the yawning void"</li>
+                            <li><strong>Latin</strong> hiatus — "gap, opening" (same idea)</li>
+                            <li><strong>English</strong> chaos — descendant, but meaning shifted</li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-card accent-card">
+                        <h4 class="sidebar-title">The Accent Rule</h4>
+                        <p class="sidebar-text">In our Tier‑2 system, the acute on <em>á</em> preserves the single feature that distinguishes this name from its ASCII shadow: <strong>stress placement.</strong> The Greek original had pitch accent on the first syllable. English "chaos" has no such mark and no such memory. The accent here is a visual declaration — this is not the English word. This is the Greek <em>Cháos</em>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Primordial Section -->
+    <section class="section section-primordial" id="the-primordial">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">03</span>
+                <h2 class="section-title">The Primordial</h2>
+                <p class="section-subtitle">Before gods, before earth, before sky</p>
+            </div>
+
+            <div class="primordial-content">
+                <div class="primordial-intro reveal-up">
+                    <p class="lead-text">In the beginning, there was only <strong>Cháos.</strong> Not a god with a body and will, but a condition — the yawning gap, the formless void, the infinite absence from which all presence would eventually emerge. Hesiod's <em>Theogony</em> opens with these words: "First of all, Chaos came into being." Not Gaia. Not Ouranos. Not Zeús. The gap.</p>
+                </div>
+
+                <div class="domains-grid">
+                    <div class="domain-card reveal-up">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#ffd700" stroke-width="1.5">
+                                <circle cx="32" cy="32" r="24"/>
+                                <circle cx="32" cy="32" r="12"/>
+                                <circle cx="32" cy="32" r="4"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">The Yawning Gap</h4>
+                        <p class="domain-desc">Cháos is not evil. It is not good. It is <strong>pre-moral</strong> — the empty space between what will become earth and sky, the breathing room existence needs before it can begin.</p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="100">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#ffd700" stroke-width="1.5">
+                                <path d="M32 8L56 32L32 56L8 32Z"/>
+                                <path d="M32 20v24M20 32h24"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">First Existence</h4>
+                        <p class="domain-desc">In Hesiod's cosmogony, Cháos is the <strong>first thing to be.</strong> From it sprang Gaia (Earth), Tartaros (the Abyss), and Eros (Desire) — the foundational forces that would generate all else.</p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="200">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#ffd700" stroke-width="1.5">
+                                <path d="M32 4v56M4 32h56"/>
+                                <circle cx="32" cy="32" r="8"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">Parent of All</h4>
+                        <p class="domain-desc">From Cháos came Erebus (Darkness) and Nyx (Night). From their union came Aether (Light) and Hemera (Day). The void is not sterile — it is <strong>generative darkness.</strong></p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="300">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#ffd700" stroke-width="1.5">
+                                <path d="M8 32c0-16 10.7-24 24-24s24 8 24 24-10.7 24-24 24S8 48 8 32"/>
+                                <path d="M16 32c0-10.7 7.1-16 16-16s16 5.3 16 16"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">The Separation</h4>
+                        <p class="domain-desc">Cháos is what makes distinction possible. Without the gap, there is no above and below, no light and dark, no self and other. The void is <strong>the condition of differentiation.</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Myths Section -->
+    <section class="section section-myths" id="myths">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">04</span>
+                <h2 class="section-title">The Myths</h2>
+                <p class="section-subtitle">Stories of the void and what emerged from it</p>
+            </div>
+
+            <div class="myths-timeline">
+                <div class="myth-card reveal-up">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">Theogony</span>
+                        <h3 class="myth-title">The Birth of the Cosmos</h3>
+                        <p class="myth-text">Hesiod's <em>Theogony</em> (c. 700 BCE) tells the authoritative Greek creation narrative. First came Cháos — the yawning void. Then Gaia (Earth), broad-bosomed and sure-seated, and Tartaros (the Abyss), dark and misty, in the depths of the broad-pathed earth. And then Eros (Desire) — fairest among the deathless gods, who loosens limbs and subdues the mind and wise counsel in the breasts of gods and men. These four are the primordial forces. Everything else follows. Cháos itself gave birth to Erebus (Darkness) and Nyx (Night), who in turn produced Aether (Light) and Hemera (Day). The void is not passive — it <strong>generates</strong>.</p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="100">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Children</span>
+                        <h3 class="myth-title">Chaos Giving Birth</h3>
+                        <p class="myth-text">The genealogies of Greek myth are complex and sometimes contradictory, but the primordial line is clear: Cháos produces Erebus and Nyx. Nyx, alone, produces a terrifying brood — Moros (Doom), Ker (Destruction), Thanatos (Death), Hypnos (Sleep), the Oneiroi (Dreams), Momus (Blame), Oizys (Misery), the Hesperides, the Moirai (Fates), the Keres, Nemesis, Apate (Deceit), Philotes (Friendship), Geras (Old Age), and Eris (Strife). Many of these are not evil — they are <strong>necessary.</strong> Death and Sleep are siblings. Doom and Friendship share a grandmother. The void does not discriminate in its gifts.</p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="200">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">Separation</span>
+                        <h3 class="myth-title">The Division of Elements</h3>
+                        <p class="myth-text">After the first generation, the cosmos begins to sort itself. Gaia gives birth to Ouranos (Sky), the Mountains, and Pontos (Sea). Ouranos covers Gaia completely, and their union produces the Titans. But the separation of sky from earth — the creation of <strong>space</strong> — is itself a repetition of the primal gap. Cháos is not a one-time event. It is the ongoing condition that makes relationship, distance, and movement possible. Without the void, all things would be compressed into undifferentiated sameness.</p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="300">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">Philosophy</span>
+                        <h3 class="myth-title">Later Interpretations</h3>
+                        <p class="myth-text">Ovid, in his <em>Metamorphoses</em>, reimagined Cháos as a raw, confused mass of elements — not empty space, but undifferentiated matter. The Stoics identified Cháos with water or air. For the Neoplatonists, Cháos was the lowest emanation of the One, the furthest point from divine order. Modern physics finds echoes in the quantum vacuum — a seething field of potential energy, apparently empty yet capable of generating particle-antiparticle pairs. The void, it seems, has never stopped yawning.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pantheon / Related Names Section -->
+    <section class="section" id="pantheon" style="background:#0a0a0f;padding:6rem 0;">
+        <div class="container" style="max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);">
+            <div style="text-align:center;margin-bottom:4rem;">
+                <span style="display:block;font-family:'Cinzel',serif;font-size:0.85rem;color:#ffd700;letter-spacing:0.4em;margin-bottom:1rem;">05</span>
+                <h2 style="font-family:'Cinzel',serif;font-size:clamp(2rem,4vw,3.5rem);color:#e8e8ff;letter-spacing:0.05em;margin-bottom:1rem;">Related Primordials</h2>
+                <p style="font-size:clamp(1rem,1.5vw,1.25rem);color:#A0A0A0;font-style:italic;">The first generation born from the void</p>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;">
+                
+                <a href="/sites/gaia/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(255,215,0,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#ffd700;letter-spacing:0.05em;">Gaia</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Γαῖα</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Earth, the broad-bosomed mother of all</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,215,0,0.3);color:#ffd700;">Tier-2</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </div>
+                <a href="/sites/tartaros/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(255,215,0,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#ffd700;letter-spacing:0.05em;">Tartaros</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Τάρταρος</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">The deep abyss, prison of the Titans</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,215,0,0.3);color:#ffd700;">Tier-2</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </div>
+                <a href="/sites/eros/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(255,215,0,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#ffd700;letter-spacing:0.05em;">Érōs</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἔρως</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Desire, the force that loosens limbs</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,215,0,0.3);color:#ffd700;">Tier-2</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <div style="cursor:default;padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(255,215,0,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#ffd700;letter-spacing:0.05em;">Érebos</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἔρεβος</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Darkness, child of Chaos</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,215,0,0.3);color:#ffd700;">Tier-2</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <div style="cursor:default;padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(255,215,0,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#ffd700;letter-spacing:0.05em;">Nyx</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Νύξ</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Night, powerful mother of mysteries</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,215,0,0.3);color:#ffd700;">Tier-2</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </div>
+                <a href="/sites/pontos/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(255,215,0,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#ffd700;letter-spacing:0.05em;">Pontos</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Πόντος</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">The Sea, born from Gaia alone</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,215,0,0.3);color:#ffd700;">Tier-2</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Name Variations Section -->
+    <section class="section section-variations" id="variations">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">06</span>
+                <h2 class="section-title">Name Variations</h2>
+                <p class="section-subtitle">How the void is spelled across systems</p>
+            </div>
+
+            <div class="variations-grid reveal-up">
+                <div class="variation-card primary">
+                    <span class="variation-label">Primary</span>
+                    <span class="variation-name">Cháos</span>
+                    <p class="variation-desc">The Unicode restoration with acute accent on the first syllable. This preserves the stress placement of the original Greek and distinguishes the name from the English word "chaos." The acute is the <strong>only</strong> diacritic needed — the Greek original has no long vowels, no breathings in the capital form, just the pitch accent that tells you how the word was sung.</p>
+                </div>
+                <div class="variation-card">
+                    <span class="variation-label">ASCII Fallback</span>
+                    <span class="variation-name" style="text-decoration:line-through;text-decoration-color:rgba(139,0,0,0.5);">Chaos</span>
+                    <p class="variation-desc">The bare ASCII form. Historically valid as a transliteration, but it erases the stress and conflates the primordial void with the modern English word for disorder. In the PUNYCODEX system, this is the <strong>fallback</strong> — usable, but not authoritative.</p>
+                </div>
+            </div>
+
+            <div class="variations-note reveal-up">
+                <p>The acute on the first syllable marks stress — without it, the word loses its Greek identity. In Ancient Greek, <em>cháos</em> was pronounced with a rise in pitch on the first syllable, a musical accent that the Romans borrowed as stress and English flattened into nothing. The accent is a <strong>recovery of sound</strong>, not an ornament.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pantheon Connection -->
+    <section class="section section-pantheon" id="pantheon-connection">
+        <div class="container">
+            <div class="pantheon-content reveal-up">
+                <div class="pantheon-text">
+                    <span class="pantheon-eyebrow">The PUNYCODEX</span>
+                    <h2 class="pantheon-title">One of Two Hundred Fifty-Five</h2>
+                    <p class="pantheon-body">Cháos is the first. The void that precedes all others. But it is not alone. Across the encoded web, the authentic names of Greek, Norse, and other pantheons have been restored — each with its own domain, its own lore, its own truth.</p>
+                    <p class="pantheon-body">This is not a directory. This is a <strong>resurrection.</strong></p>
+                    <a href="/lexicon/" class="btn-primary btn-ghost">
+                        <span>Enter the Codex</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="pantheon-mascot">
+                    <img src="assets/chaos_landscape.png" alt="Cháos landscape" class="pantheon-mascot-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Type Tool CTA -->
+    <section style="padding:6rem 0;background:linear-gradient(180deg,#0a0a0f 0%,rgba(74,26,110,0.08) 100%);text-align:center;">
+        <div class="container" style="max-width:700px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);">
+            <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.75rem,3vw,2.5rem);color:#e8e8ff;margin-bottom:1.5rem;letter-spacing:0.05em;">Experience the Name</h2>
+            <p style="font-size:1.05rem;color:#A0A0A0;line-height:1.8;margin-bottom:2.5rem;">See how Cháos behaves in the PUNYCODEX Type Tool — with predictive autocomplete, character-by-character breakdown, and scholarly constraint validation.</p>
+            <div style="display:inline-flex;align-items:center;gap:1rem;padding:1rem 2rem;background:rgba(0,0,0,0.3);border:1px solid rgba(255,215,0,0.25);border-radius:2px;font-family:'Fira Code','Courier New',monospace;font-size:1.1rem;color:#ffd700;margin-bottom:1.5rem;">
+                <code>chaos</code>
+                <span style="color:#A0A0A0;">&rarr;</span>
+                <code>Cháos</code>
+            </div>
+            <div>
+                <a href="/type/#chaos" style="display:inline-flex;align-items:center;gap:0.75rem;padding:1rem 2rem;background:linear-gradient(135deg,#ffd700,#b8860b);color:#0a0a0f;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;transition:all 0.4s ease;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 40px rgba(255,215,0,0.3)';" onmouseout="this.style.transform='none';this.style.boxShadow='none';">
+                    <span>Open in Type Tool</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="footer-logo">PUNYCODEX</span>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Domain</span>
+                        <span class="footer-value">cháos.com</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier‑2 Accent‑Preserving</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Greek Original</span>
+                        <span class="footer-value">Χάος</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <img src="assets/chaos_logomark.png" alt="Cháos logomark" class="footer-logomark">
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

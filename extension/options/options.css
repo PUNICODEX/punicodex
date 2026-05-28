@@ -1,0 +1,206 @@
+:root {
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --text: #c9b8a0;
+    --text-dim: #7a6f5f;
+    --gold: #d4af37;
+    --gold-dim: rgba(212, 175, 55, 0.3);
+    --green: #6b9e75;
+    --font: 'Segoe UI', system-ui, sans-serif;
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    line-height: 1.6;
+    padding: 40px 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.options-header {
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--gold-dim);
+}
+
+.options-header h1 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--text);
+}
+
+.accent { color: var(--gold); }
+
+.subtitle {
+    font-family: var(--font);
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--text-dim);
+    margin-left: 8px;
+}
+
+.options-section {
+    margin-bottom: 28px;
+}
+
+.options-section h2 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    margin-bottom: 14px;
+}
+
+.option-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(201, 184, 160, 0.06);
+}
+
+.option-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.option-desc {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+}
+
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--gold);
+    cursor: pointer;
+}
+
+select {
+    width: 100%;
+    padding: 10px 12px;
+    background: var(--surface);
+    border: 1px solid rgba(201, 184, 160, 0.15);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 0.9rem;
+    outline: none;
+}
+
+select:focus {
+    border-color: var(--gold-dim);
+}
+
+.site-mode {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.radio-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.radio-row input[type="radio"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--gold);
+    flex-shrink: 0;
+}
+
+.radio-label {
+    color: var(--text);
+}
+
+.site-list {
+    width: 100%;
+    padding: 10px 12px;
+    background: var(--surface);
+    border: 1px solid rgba(201, 184, 160, 0.15);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: 'Fira Code', monospace;
+    font-size: 0.8rem;
+    line-height: 1.6;
+    resize: vertical;
+    outline: none;
+}
+
+.site-list:focus {
+    border-color: var(--gold-dim);
+}
+
+code {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.8rem;
+    background: var(--surface);
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: var(--gold);
+}
+
+.about-text {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+kbd {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.75rem;
+    background: var(--surface);
+    border: 1px solid rgba(201, 184, 160, 0.2);
+    border-radius: 4px;
+    padding: 2px 6px;
+    color: var(--text);
+}
+
+.options-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid var(--gold-dim);
+}
+
+.btn {
+    padding: 10px 28px;
+    border-radius: 6px;
+    font-family: var(--font);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:active { transform: scale(0.97); }
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--gold) 0%, #b8941f 100%);
+    color: #050505;
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.25);
+}
+
+.save-status {
+    font-size: 0.8rem;
+    color: var(--green);
+}

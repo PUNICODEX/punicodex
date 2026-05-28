@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ἑρμῆς — Hermēs | Messenger of the Gods</title>
+    <meta name="description" content="The authentic digital shrine to Hermēs, Messenger of the Gods. Explore the correct Greek orthography, reconstructed pronunciation, and timeless mythology of Ἑρμῆς.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Hermēs — Messengers, Commerce, Thieves",
+    "description": "The authentic digital shrine to Hermēs. Explore the correct Greek orthography, Unicode restoration, and scholarly sources for Hermēs.com.",
+    "url": "https://punycodex.com/sites/hermes/",
+    "about": {
+        "@type": "Thing",
+        "name": "Ἑρμῆς",
+        "alternateName": [
+            "hermes",
+            "Hermēs"
+        ],
+        "description": "Heap of stones, boundary marker"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNYCODEX",
+        "url": "https://punycodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punycodex.com/assets/images/og-default.svg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punycodex.com/sites/hermes/">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Ἑρμῆς — Hermēs | Messengers, Commerce, Thieves | PUNYCODEX">
+    <meta property="og:description" content="The authentic digital shrine to Hermēs. Explore the correct orthography, reconstructed pronunciation, and timeless mythology of Ἑρμῆς.">
+    <meta property="og:url" content="https://punycodex.com/sites/hermes/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PUNYCODEX">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ἑρμῆς — Hermēs | Messengers, Commerce, Thieves | PUNYCODEX">
+    <meta name="twitter:description" content="The authentic digital shrine to Hermēs. Explore the correct orthography, reconstructed pronunciation, and timeless mythology of Ἑρμῆς.">
+</head>
+<body>
+    <!-- Global Nav -->
+    <div style="position:fixed;top:0;left:0;width:100%;z-index:1001;background:rgba(10,10,10,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);">
+        <div style="max-width:1200px;margin:0 auto;padding:0.4rem clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;">
+            <a href="/" style="font-family:'Cinzel',serif;font-size:0.8rem;font-weight:700;letter-spacing:0.15em;color:#D4AF37;text-decoration:none;">PUNYCODEX</a>
+            <div style="display:flex;gap:1.5rem;">
+                <a href="/pantheon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Pantheon</a>
+                <a href="/lexicon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Lexicon</a>
+                <a href="/type/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Type</a>
+                <a href="/tiers/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Tiers</a>
+            </div>
+        </div>
+    </div>
+    <!-- Messenger Canvas -->
+    <canvas id="messenger-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="main-nav" style="top:40px;" id="main-nav">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo">
+                <img src="assets/hermes_logolockup.png" alt="Hermēs" class="nav-logo-img">
+            </a>
+            <div class="nav-links">
+                <a href="#the-name" class="nav-link">The Name</a>
+                <a href="#pronunciation" class="nav-link">Pronunciation</a>
+                <a href="#the-road" class="nav-link">The Road</a>
+                <a href="#myths" class="nav-link">Myths</a>
+                <a href="#pantheon" class="nav-link">Pantheon</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <h1 class="hero-title reveal-up">
+                    <span class="title-greek">Ἑρμῆς</span>
+                    <span class="title-divider"></span>
+                    <span class="title-trans">Hermēs</span>
+                </h1>
+                <p class="hero-subtitle reveal-up">Messenger of the Gods &middot; Psychopomp &middot; Lord of Thieves</p>
+                <div class="hero-meta reveal-up">
+                    <span class="meta-badge">Tier‑1</span>
+                    <span class="meta-domain">hermēs.com</span>
+                </div>
+                <div class="hero-cta reveal-up">
+                    <a href="#the-name" class="btn-primary">
+                        <span>Take Flight</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <img src="assets/hermes_mascot.png" alt="Hermēs — Messenger of the Gods, bearing the caduceus" class="mascot-img">
+                <div class="mascot-glow"></div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- The Name Section -->
+    <section class="section section-name" id="the-name">
+        <div class="section-bg-glow"></div>
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">01</span>
+                <h2 class="section-title">The Authentic Name</h2>
+                <p class="section-subtitle">Why <em>hermēs.com</em> is the correct form</p>
+            </div>
+            
+            <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Greek Original</h3>
+                    <p class="card-greek">Ἑρμῆς</p>
+                    <p class="card-body">The name in its original Greek form. The rough breathing on the epsilon, the long <em>ē</em>ta carrying the stress. A name spoken in whispers by merchants, in oaths by thieves, in prayers by travelers at crossroads. He is the god who moves between <em>all</em> worlds.</p>
+                </div>
+
+                <div class="name-card reveal-up" data-delay="100">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5">
+                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">ASCII Constraint</h3>
+                    <p class="card-ascii">HERMES</p>
+                    <p class="card-body">Reduced to a luxury brand. A delivery service. A fashion house. The god who invented the lyre, stole the sun god's cattle on his first day of life, and guides the dead to the underworld — reduced to a label on a handbag. The macron is not decoration. It is <strong>distance.</strong> It is the space between worlds.</p>
+                </div>
+
+                <div class="name-card reveal-up" data-delay="200">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Unicode Restoration</h3>
+                    <p class="card-unicode">hermēs</p>
+                    <p class="card-body">The macron on <em>ē</em> restores the long vowel. The Greek Ἑρμῆς carries an acute on the <em>η</em>, which is also long — stress and length fused into a single mark. Because the original has both features, <strong>hermēs</strong> is Tier‑1: the full scholarly orthography. The macron is the wing. The name is the flight.</p>
+                </div>
+            </div>
+
+            <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">hermēs.com &rarr; xn--herms-6ya.com</code>
+                    <p class="explainer-note">The non-ASCII character <strong>ē</strong> (U+0113) is encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Hermēs</em>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pronunciation Section -->
+    <section class="section section-pronunciation" id="pronunciation">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">02</span>
+                <h2 class="section-title">Pronunciation</h2>
+                <p class="section-subtitle">How the Messenger was truly spoken</p>
+            </div>
+
+            <div class="pronunciation-grid">
+                <div class="pronunciation-main reveal-up">
+                    <div class="ipa-display">
+                        <span class="ipa-text">/her.mɛ̂ːs/</span>
+                        <span class="ipa-label">Attic Greek Reconstruction</span>
+                    </div>
+                    <div class="pronunciation-breakdown">
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">her-</span>
+                            <span class="phoneme-desc">Rough breathing on the epsilon — a breathy, almost whispered <em>h</em> that launches into the vowel. It is the sound of a secret being told, of a message delivered at midnight, of a traveler clearing his throat before asking directions.</span>
+                        </div>
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">-mɛ̂ː-</span>
+                            <span class="phoneme-desc">Long epsilon with acute stress — the pitch rises sharply and holds. The <em>m</em> is liquid, smooth, the sound of a name passing from one mouth to another. This is the messenger's syllable: <em>transmitted, not possessed.</em></span>
+                        </div>
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">-s</span>
+                            <span class="phoneme-desc">The final sigma hisses like wind through wing feathers. Short, sharp, terminal. It is the sound of departure — the moment the messenger turns and is already <em>gone.</em></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pronunciation-sidebar reveal-up" data-delay="150">
+                    <div class="sidebar-card">
+                        <h4 class="sidebar-title">Modern Approximation</h4>
+                        <p class="sidebar-text">"HER-mace" — with the second syllable stressed and held longer than English allows. The <em>r</em> is lightly trilled, not the English soft version. The final <em>s</em> is crisp, never silent.</p>
+                        <div class="sidebar-divider"></div>
+                        <h4 class="sidebar-title">Etymological Notes</h4>
+                        <ul class="kin-list">
+                            <li><strong>Possible origin</strong> — ἕρμα (herma), "boundary stone, heap of stones"</li>
+                            <li><strong>Linked to</strong> ἑρμηνεύς (hermeneus), "interpreter"</li>
+                            <li><strong>Also linked to</strong> Ἑρμάνουβις, Egyptian syncretism</li>
+                            <li><strong>The herm</strong> — roadside stone pillars bearing his face</li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-card accent-card">
+                        <h4 class="sidebar-title">The Collapse</h4>
+                        <p class="sidebar-text">The Greek Ἑρμῆς carries an acute on the <em>η</em>, which is also long. Because the original has both stress and length, <strong>hermēs</strong> is Tier‑1. The transliteration preserves the macron, and the Greek preserves the acute. It is <strong>the name at maximum density</strong> — a single mark carrying the weight of both pitch and length. The macron is the wing that bears both.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Road Section -->
+    <section class="section section-road" id="the-road">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">03</span>
+                <h2 class="section-title">The Road</h2>
+                <p class="section-subtitle">Domains, symbols, and the art of crossing boundaries</p>
+            </div>
+
+            <div class="road-content">
+                <div class="road-intro reveal-up">
+                    <p class="lead-text">Hermēs is not the god of <strong>roads.</strong> He is the god of <strong>crossing.</strong> He moves between Olympus and earth, earth and underworld, waking and dreaming, commerce and theft. He is the only god who is welcome <em>everywhere</em> — because he is the only god who threatens no one. He does not rule. He <em>connects.</em> He does not conquer. He <em>delivers.</em></p>
+                </div>
+
+                <div class="domains-grid">
+                    <div class="domain-card reveal-up">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#D4AF37" stroke-width="1.5">
+                                <path d="M8 32L24 16L40 32L56 16"/>
+                                <path d="M8 48L24 32L40 48L56 32"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">Messenger</h4>
+                        <p class="domain-desc">The official herald of Olympus — but also the god of <em>unofficial</em> messages. Secrets, whispers, coded signals, the note passed under the table. He invented writing so that words could travel farther than voices.</p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="100">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#D4AF37" stroke-width="1.5">
+                                <path d="M32 8C32 8 20 20 20 32C20 44 32 56 32 56C32 56 44 44 44 32C44 20 32 8 32 8Z"/>
+                                <path d="M32 20V44"/>
+                                <path d="M24 32H40"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">Psychopomp</h4>
+                        <p class="domain-desc">The guide of souls. When you die, it is Hermēs who meets you at the boundary. Not Hádēs — Hádēs waits at the throne. Hermēs <em>walks with you.</em> He is the god of the last journey, the final road, the crossing no one makes alone.</p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="200">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#D4AF37" stroke-width="1.5">
+                                <path d="M20 48C20 32 28 16 32 12C36 16 44 32 44 48"/>
+                                <circle cx="32" cy="20" r="6"/>
+                                <path d="M16 48H48"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">Commerce &amp; Thieves</h4>
+                        <p class="domain-desc">He protects merchants and blesses thieves with equal enthusiasm. The marketplace and the dark alley are the same to him — both are <em>transactions.</em> He invented weights and measures, then taught mortals how to cheat with them. He is honest about his dishonesty.</p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="300">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#D4AF37" stroke-width="1.5">
+                                <path d="M32 4L38 24H58L42 36L48 56L32 44L16 56L22 36L6 24H26L32 4Z"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">Boundaries &amp; Dreams</h4>
+                        <p class="domain-desc">The herm — stone pillars at crossroads bearing his face — marked the boundary between territories, between known and unknown. He also governs dreams, the boundary between waking and sleep. Every threshold is his temple. Every crossing is his prayer.</p>
+                    </div>
+                </div>
+
+                <div class="symbols-section reveal-up">
+                    <h3 class="symbols-title">Sacred Symbols</h3>
+                    <div class="symbols-list">
+                        <div class="symbol-item">
+                            <span class="symbol-name">Caduceus</span>
+                            <span class="symbol-meaning">Two serpents intertwined on a staff — commerce, negotiation, healing, and the reconciliation of opposites</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">Winged Sandals</span>
+                            <span class="symbol-meaning">The talaria — speed without limit, the ability to move between all three realms in a single stride</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">Winged Helmet</span>
+                            <span class="symbol-meaning">The petasos — thought in motion, quick thinking, the mind that outpaces the body</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">Tortoise</span>
+                            <span class="symbol-meaning">The shell from which he invented the lyre — the slow made into music by the swift</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">Ram</span>
+                            <span class="symbol-meaning">Sacrifice and guidance — the animal that led Odysseus from the Cyclops's cave</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">Traveler's Cloak</span>
+                            <span class="symbol-meaning">The green chlamys — the road itself, the journey as sacred act, the stranger as potential god</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Myths Section -->
+    <section class="section section-myths" id="myths">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">04</span>
+                <h2 class="section-title">The Myths</h2>
+                <p class="section-subtitle">Stories of speed, cunning, and divine mischief</p>
+            </div>
+
+            <div class="myths-timeline">
+                <div class="myth-card reveal-up">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Birth</span>
+                        <h3 class="myth-title">The Cattle Thief</h3>
+                        <p class="myth-text">Born at dawn in a cave on Mount Kyllēnē. By noon he had invented the lyre from a tortoise shell. By dusk he had stolen fifty of Apollōn's sacred cattle, reversed their hooves to confuse the tracks, and hidden them in a cave. When accused, he played the lyre — the first music ever made. Apollōn wept. He traded the cattle for the instrument. On his <strong>first day of life</strong>, Hermēs had invented music, committed theft, and negotiated a peace treaty with a god. He was not precocious. He was <em>complete.</em></p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="100">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Slayer</span>
+                        <h3 class="myth-title">Argus Panoptes</h3>
+                        <p class="myth-text">Hēra set the hundred-eyed giant Argus to guard Io, the maiden Zeús had transformed into a cow. No one could approach — Argus never slept with all his eyes at once. Hermēs descended, disguised as a shepherd, and began to tell stories. He played the pipe. He spoke of the stars, the gods, the origin of the lyre. One by one, Argus's eyes closed. When the last eye shut, Hermēs drew his sword and severed the giant's head. <em>Hēra placed Argus's eyes on the peacock's tail.</em> This is the Hermēs method: win without fighting, kill without warning, turn your enemy's corpse into ornament.</p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="200">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Guide</span>
+                        <h3 class="myth-title">Psychopomp</h3>
+                        <p class="myth-text">When mortals die, it is Hermēs who leads them to the Styx. Not Hádēs — Hádēs judges. Not Kharōn — Kharōn ferries. Hermēs <em>walks with you.</em> He explains what is happening. He answers questions. He is the only god who treats the dead as <strong>guests</strong> rather than subjects. Orpheus followed him into the underworld. Persephone was returned by his guidance. He moves between life and death as easily as between waking and dream — because to Hermēs, <em>every boundary is a door.</em></p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="300">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Inventor</span>
+                        <h3 class="myth-title">Fire, Boxing, and the Stars</h3>
+                        <p class="myth-text">Hermēs invented fire. He invented boxing. He invented gymnastics, astronomy, weights and measures, and the alphabet. He gave humanity the tools to compete, to count, to communicate, to navigate. Why? Because every invention is a <em>message.</em> Fire says: <em>you need not fear the dark.</em> The alphabet says: <em>your voice can outlive you.</em> Astronomy says: <em>the gods have patterns you can learn.</em> Hermēs does not give gifts. He gives <strong>languages.</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Related Names -->
+    <section class="section" id="related" style="background:#0A0A0A;padding:6rem 0;">
+        <div class="container" style="max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);">
+            <div style="text-align:center;margin-bottom:4rem;">
+                <span style="display:block;font-family:'Cinzel',serif;font-size:0.85rem;color:#D4AF37;letter-spacing:0.4em;margin-bottom:1rem;">05</span>
+                <h2 style="font-family:'Cinzel',serif;font-size:clamp(2rem,4vw,3.5rem);color:#F5F5F5;letter-spacing:0.05em;margin-bottom:1rem;">Related Names</h2>
+                <p style="font-size:clamp(1rem,1.5vw,1.25rem);color:#A0A0A0;font-style:italic;">More from the Greek pantheon</p>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;">
+                
+                <a href="/sites/apollon/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Ápollōn</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἀπόλλων</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Light, Music, Prophecy</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Dual-Tier</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/hades/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Hádēs</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἅιδης</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Underworld, Wealth</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Dual-Tier</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/hekate/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Hekátē</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἑκάτη</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Magic, Crossroads, Moon</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Dual-Tier</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/nike/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Níkē</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Νίκη</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Victory</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Dual-Tier</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/zeus/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Zeus</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ζεύς</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Sky, Thunder, King of Gods</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Tier-1</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/ares/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Árēs</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἄρης</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">War, Courage, Battle Fury</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Tier-1 Full</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+<!-- Pantheon Connection -->
+    <section class="section section-pantheon" id="pantheon">
+        <div class="container">
+            <div class="pantheon-content reveal-up">
+                <div class="pantheon-text">
+                    <span class="pantheon-eyebrow">The PUNYCODEX</span>
+                    <h2 class="pantheon-title">The Thread That Binds the Gods</h2>
+                    <p class="pantheon-body">Zeús commands. Apollōn illuminates. Árēs destroys. But Hermēs <strong>connects.</strong> He is the only god who speaks to all the others without fear. He carries messages between enemies. He guides the dead past the lord of the dead himself. He moves through every realm, every hierarchy, every boundary — and is welcomed in all of them.</p>
+                    <p class="pantheon-body">This is not a directory. This is a <strong>resurrection</strong>.</p>
+                    <a href="/lexicon/" class="btn-primary btn-ghost">
+                        <span>Enter the Codex</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="pantheon-mascot">
+                    <img src="assets/hermes_mascot.png" alt="Hermēs mascot" class="pantheon-mascot-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    
+    <!-- Type Tool CTA -->
+    <section style="padding:6rem 0;background:linear-gradient(180deg,#0A0A0A 0%,rgba(65,105,225,0.08) 100%);text-align:center;">
+        <div class="container" style="max-width:700px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);">
+            <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.75rem,3vw,2.5rem);color:#F5F5F5;margin-bottom:1.5rem;letter-spacing:0.05em;">Experience the Name</h2>
+            <p style="font-size:1.05rem;color:#A0A0A0;line-height:1.8;margin-bottom:2.5rem;">See how Hermēs behaves in the PUNYCODEX Type Tool — with predictive autocomplete, character-by-character breakdown, and scholarly constraint validation.</p>
+            <div style="display:inline-flex;align-items:center;gap:1rem;padding:1rem 2rem;background:rgba(0,0,0,0.3);border:1px solid rgba(212,175,55,0.25);border-radius:2px;font-family:'Fira Code','Courier New',monospace;font-size:1.1rem;color:#D4AF37;margin-bottom:1.5rem;">
+                <code>hermes</code>
+                <span style="color:#A0A0A0;">&rarr;</span>
+                <code>Hermēs</code>
+            </div>
+            <div>
+                <a href="/type/#hermes" style="display:inline-flex;align-items:center;gap:0.75rem;padding:1rem 2rem;background:linear-gradient(135deg,#D4AF37,#8B7355);color:#0A0A0A;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;transition:all 0.4s ease;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 40px rgba(212,175,55,0.3)';" onmouseout="this.style.transform='none';this.style.boxShadow='none';">
+                    <span>Open in Type Tool</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Name Variations Section -->
+    <section class="section section-variations" id="variations">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Name Variations</h2>
+                <p class="section-subtitle">The many faces of Hermês across scripts and conventions.</p>
+            </div>
+            <div class="variations-grid">
+                <div class="variation-card primary">
+                    <span class="var-badge owned">Primary &mdash; Owned</span>
+                    <div class="var-name">Hermês</div>
+                    <div class="var-form">Circumflex form</div>
+                    <p class="var-note">Our active domain. The circumflex ê captures both stress and length of Greek Ἑρμῆς in a single character.</p>
+                    <span class="var-domain">hermês.com</span>
+                </div>
+                <div class="variation-card">
+                    <span class="var-badge owned">Fallback &mdash; Owned</span>
+                    <div class="var-name">Hermēs</div>
+                    <div class="var-form">Macron-only form</div>
+                    <p class="var-note">Standard academic convention. Preserves length but not stress position. Redirects to Hermês.</p>
+                    <span class="var-domain">hermēs.com</span>
+                </div>
+                <div class="variation-card">
+                    <span class="var-badge ascii">ASCII</span>
+                    <div class="var-name">Hermes</div>
+                    <div class="var-form">Modern English form</div>
+                    <p class="var-note">Modern English form.</p>
+                    <span class="var-domain">hermes.com (taken)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="footer-logo">PUNYCODEX</span>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Domain</span>
+                        <span class="footer-value">hermēs.com</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier‑1</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Greek Original</span>
+                        <span class="footer-value">Ἑρμῆς</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <img src="assets/hermes_logomark.png" alt="Hermēs logomark" class="footer-logomark">
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

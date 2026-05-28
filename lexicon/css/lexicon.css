@@ -1,0 +1,306 @@
+/* =====================================================
+   PUNYCODEX — Lexicon Browse Page Styles
+   ===================================================== */
+
+.lexicon-hero {
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 8rem;
+    padding-bottom: 3rem;
+    position: relative;
+    background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);
+}
+
+.lexicon-hero-content { max-width: 800px; }
+
+.lexicon-hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 400;
+    color: var(--white);
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+}
+
+.lexicon-hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--white-dim);
+    font-weight: 300;
+    margin-bottom: 2rem;
+}
+
+.lexicon-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.lexicon-stat {
+    text-align: center;
+}
+
+.lexicon-stat-value {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--primary);
+    display: block;
+}
+
+.lexicon-stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--white-dim);
+}
+
+/* ─── Filters ─── */
+.lexicon-filters {
+    background: var(--void);
+    border-bottom: 1px solid var(--white-faint);
+    padding: 2rem 0;
+    position: sticky;
+    top: 72px;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.filter-row {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.filter-row:last-child { margin-bottom: 0; }
+
+.filter-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--white-dim);
+    min-width: 80px;
+}
+
+.filter-pills {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.filter-pill {
+    padding: 0.4rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--white-faint);
+    border-radius: 2px;
+    font-size: 0.8rem;
+    color: var(--white-dim);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--font-body);
+    letter-spacing: 0.05em;
+}
+
+.filter-pill:hover {
+    border-color: color-mix(in srgb, var(--primary) 30%, transparent);
+    color: var(--primary);
+}
+
+.filter-pill.active {
+    background: color-mix(in srgb, var(--primary) 12%, transparent);
+    border-color: color-mix(in srgb, var(--primary) 50%, transparent);
+    color: var(--primary);
+}
+
+.filter-search {
+    flex: 1;
+    min-width: 250px;
+    max-width: 400px;
+    position: relative;
+}
+
+.filter-search input {
+    width: 100%;
+    padding: 0.6rem 1rem 0.6rem 2.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--white-faint);
+    border-radius: 2px;
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.filter-search input:focus {
+    outline: none;
+    border-color: color-mix(in srgb, var(--primary) 40%, transparent);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.filter-search input::placeholder { color: var(--white-dim); opacity: 0.6; }
+
+.filter-search svg {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.filter-sort {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filter-sort select {
+    padding: 0.4rem 2rem 0.4rem 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--white-faint);
+    border-radius: 2px;
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23A0A0A0' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+}
+
+.filter-sort select:focus {
+    outline: none;
+    border-color: color-mix(in srgb, var(--primary) 40%, transparent);
+}
+
+.filter-sort select option {
+    background: var(--void);
+    color: var(--white);
+}
+
+/* ─── Grid ─── */
+.lexicon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 3rem 0;
+}
+
+.lexicon-card {
+    padding: 2rem 1.5rem;
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid var(--white-faint);
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.4s var(--ease-out-expo);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.lexicon-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    transform: scaleX(0);
+    transition: transform 0.5s var(--ease-out-expo);
+}
+
+.lexicon-card:hover {
+    border-color: color-mix(in srgb, var(--primary) 25%, transparent);
+    background: rgba(255, 255, 255, 0.03);
+    transform: translateY(-4px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.lexicon-card:hover::before { transform: scaleX(1); }
+
+.lexicon-card-unicode {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--primary);
+    letter-spacing: 0.05em;
+}
+
+.lexicon-card-greek {
+    font-size: 0.9rem;
+    color: var(--white-dim);
+    font-style: italic;
+    min-height: 1.5em;
+}
+
+.lexicon-card-domain {
+    font-size: 0.85rem;
+    color: var(--white-dim);
+    line-height: 1.5;
+    flex: 1;
+}
+
+.lexicon-card-meta {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: auto;
+    padding-top: 0.5rem;
+}
+
+.lexicon-card-tier {
+    display: inline-block;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid color-mix(in srgb, var(--primary) 30%, transparent);
+    color: var(--primary);
+}
+
+.lexicon-card-pantheon {
+    display: inline-block;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid var(--white-faint);
+    color: var(--white-dim);
+}
+
+/* ─── Empty State ─── */
+.lexicon-empty {
+    text-align: center;
+    padding: 6rem 2rem;
+    grid-column: 1 / -1;
+}
+
+.lexicon-empty-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--white);
+    margin-bottom: 1rem;
+}
+
+.lexicon-empty-text {
+    color: var(--white-dim);
+    font-size: 1rem;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+    .lexicon-stats { gap: 1.5rem; }
+    .lexicon-stat-value { font-size: 1.5rem; }
+    .filter-row { gap: 1rem; }
+    .filter-label { min-width: auto; width: 100%; }
+    .filter-search { max-width: 100%; min-width: 100%; }
+    .lexicon-grid { grid-template-columns: 1fr; }
+}

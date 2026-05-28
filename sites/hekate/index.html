@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ἑκάτη — Hekátē | Triple Goddess of Magic, Crossroads and the Moon</title>
+    <meta name="description" content="The authentic digital shrine to Hekate, Triple Goddess of Magic, Crossroads and the Moon. Explore the correct Greek orthography, reconstructed pronunciation, and timeless mythology of Hekate.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Hekátē — Magic, Crossroads, Moon",
+    "description": "The authentic digital shrine to Hekátē. Explore the correct Greek orthography, Unicode restoration, and scholarly sources for Hekátē.com.",
+    "url": "https://punycodex.com/sites/hekate/",
+    "about": {
+        "@type": "Thing",
+        "name": "Ἑκάτη",
+        "alternateName": [
+            "hekate",
+            "Hekátē"
+        ],
+        "description": "She who works from afar (from ἑκάς)"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNYCODEX",
+        "url": "https://punycodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punycodex.com/assets/images/og-default.svg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punycodex.com/sites/hekate/">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Ἑκάτη — Hekátē | Magic, Crossroads, Moon | PUNYCODEX">
+    <meta property="og:description" content="The authentic digital shrine to Hekátē. Explore the correct orthography, reconstructed pronunciation, and timeless mythology of Ἑκάτη.">
+    <meta property="og:url" content="https://punycodex.com/sites/hekate/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PUNYCODEX">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ἑκάτη — Hekátē | Magic, Crossroads, Moon | PUNYCODEX">
+    <meta name="twitter:description" content="The authentic digital shrine to Hekátē. Explore the correct orthography, reconstructed pronunciation, and timeless mythology of Ἑκάτη.">
+</head>
+<body>
+    <!-- Global Nav -->
+    <div style="position:fixed;top:0;left:0;width:100%;z-index:1001;background:rgba(10,10,10,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);">
+        <div style="max-width:1200px;margin:0 auto;padding:0.4rem clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;">
+            <a href="/" style="font-family:'Cinzel',serif;font-size:0.8rem;font-weight:700;letter-spacing:0.15em;color:#D4AF37;text-decoration:none;">PUNYCODEX</a>
+            <div style="display:flex;gap:1.5rem;">
+                <a href="/pantheon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Pantheon</a>
+                <a href="/lexicon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Lexicon</a>
+                <a href="/type/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Type</a>
+                <a href="/tiers/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Tiers</a>
+            </div>
+        </div>
+    </div>
+    <canvas id="crossroads-canvas"></canvas>
+
+    <nav class="main-nav" style="top:40px;" id="main-nav">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo">
+                <img src="assets/hekate_logolockup.png" alt="Hekate" class="nav-logo-img">
+            </a>
+            <div class="nav-links">
+                <a href="#the-name" class="nav-link">The Names</a>
+                <a href="#pronunciation" class="nav-link">Pronunciation</a>
+                <a href="#the-crossroads" class="nav-link">The Crossroads</a>
+                <a href="#myths" class="nav-link">Myths</a>
+                <a href="#pantheon" class="nav-link">Pantheon</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <h1 class="hero-title reveal-up">
+                    <span class="title-greek">Ἑκάτη</span>
+                    <span class="title-divider"></span>
+                    <span class="title-trans">hekátē</span>
+                </h1>
+                <p class="hero-subtitle reveal-up">Triple Goddess of Magic &middot; Keeper of the Crossroads &middot; She Who Stands Between</p>
+                <div class="hero-meta reveal-up">
+                    <div class="tier-bridge">
+                        <span class="meta-badge tier-1">Tier-1 Accent-Preserving</span>
+                        <span class="tier-connector"></span>
+                        <span class="meta-badge tier-2">Tier-2 Macron-Preserving</span>
+                    </div>
+                    <div class="domain-bridge">
+                        <span class="meta-domain">hekátē.com</span>
+                        <span class="domain-connector">&middot;</span>
+                        <span class="meta-domain-alt">hekatē.com</span>
+                    </div>
+                </div>
+                <div class="hero-cta reveal-up">
+                    <a href="#the-name" class="btn-primary">
+                        <span>Enter the Temple</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <div class="hero-portal">
+                    <div class="portal-ring ring-1"></div>
+                    <div class="portal-ring ring-2"></div>
+                    <div class="portal-ring ring-3"></div>
+                </div>
+                <div class="hero-torch torch-left">
+                    <div class="torch-flame"></div>
+                    <div class="torch-handle"></div>
+                </div>
+                <div class="hero-torch torch-right">
+                    <div class="torch-flame"></div>
+                    <div class="torch-handle"></div>
+                </div>
+                <div class="hero-keys">
+                    <span class="float-key k1"></span>
+                    <span class="float-key k2"></span>
+                    <span class="float-key k3"></span>
+                    <span class="float-key k4"></span>
+                    <span class="float-key k5"></span>
+                </div>
+                <img src="assets/hekate_mascot.png" alt="Hekate - Triple Goddess of Magic, bearing twin torches" class="mascot-img">
+                <div class="mascot-glow"></div>
+                <div class="mascot-shadow"></div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <section class="section section-name" id="the-name">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">01</span>
+                <h2 class="section-title">The Authentic Names</h2>
+                <p class="section-subtitle">Why <em>hekátē.com</em> and <em>hekatē.com</em> are both correct forms</p>
+            </div>
+            <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <div class="card-inner">
+                        <div class="card-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="1.5">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                <path d="M2 17l10 5 10-5"/>
+                                <path d="M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Greek Original</h3>
+                        <p class="card-greek">Ἑκάτη</p>
+                        <p class="card-body">The name in its original Greek form. Three syllables spoken at the threshold. The rough breathing on the first vowel. The acute on the short alpha, sharp as a key turning in a lock. The long vowel stretched like the road between worlds. She is the goddess who stands <em>between.</em> Her name itself is a crossroads.</p>
+                    </div>
+                </div>
+                <div class="name-card reveal-up" data-delay="150">
+                    <div class="card-inner">
+                        <div class="card-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="1.5">
+                                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                <path d="M9 3v18M15 3v18M3 9h18M3 15h18"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">ASCII Constraint</h3>
+                        <p class="card-ascii">HEKATE</p>
+                        <p class="card-body">Reduced to a software library. A pharmaceutical compound. The triple goddess who holds the keys to the underworld, who guides souls through the dark, who stands at every crossroads with her twin torches &mdash; reduced to a <em>product code.</em> The acute was not decoration. It was <strong>the light of the first torch.</strong></p>
+                    </div>
+                </div>
+                <div class="name-card reveal-up" data-delay="300">
+                    <div class="card-inner">
+                        <div class="card-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Unicode Restoration</h3>
+                        <p class="card-unicode">hekátē &middot; hekatē</p>
+                        <p class="card-body"><strong>hekátē</strong> is <strong>Tier-1</strong> &mdash; accent-preserving, with the acute on the short alpha marking the rising pitch that makes the name a <em>summons.</em> <strong>hekatē</strong> is <strong>Tier-2</strong> &mdash; macron-preserving only, the held note on the long vowel stripped of its accent. Both are correct scholarly orthographies. The acute on the short vowel creates a <strong>dual-tier distinction</strong> that the ASCII world has completely erased.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box dual-box">
+                    <code class="explainer-code">hekátē.com &rarr; xn--hekate-kya.com</code>
+                    <code class="explainer-code">hekatē.com &rarr; xn--hekate-ux0c.com</code>
+                    <p class="explainer-note">The non-ASCII characters <strong>á</strong> (U+00E1) and <strong>ē</strong> (U+0113) are encoded while the ASCII remains visible. To the DNS, they are different Punycode strings. To humanity, they are both <em>Hekate.</em></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-pronunciation" id="pronunciation">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">02</span>
+                <h2 class="section-title">Pronunciation</h2>
+                <p class="section-subtitle">How the Threshold Keeper was truly spoken</p>
+            </div>
+            <div class="pronunciation-main reveal-up">
+                <div class="ipa-display">
+                    <span class="ipa-text">/he.ká.tē/</span>
+                    <div class="ipa-moons">
+                        <span class="moon-dot maiden" title="Maiden — invocation"></span>
+                        <span class="moon-dot mother" title="Mother — the threshold"></span>
+                        <span class="moon-dot crone" title="Crone — the long road"></span>
+                    </div>
+                </div>
+                <div class="phoneme-grid">
+                    <div class="phoneme-item">
+                        <span class="phoneme-symbol">he-</span>
+                        <span class="phoneme-label">The Maiden</span>
+                        <p class="phoneme-desc">Rough breathing, the <em>h</em> exhaled like breath on cold stone. The <em>e</em> is short, sharp, a door being opened. This syllable is the <strong>invocation</strong> &mdash; the name spoken into darkness to summon what waits.</p>
+                    </div>
+                    <div class="phoneme-item stressed">
+                        <span class="phoneme-symbol">-ká-</span>
+                        <span class="phoneme-label">The Mother</span>
+                        <p class="phoneme-desc">Short <em>a</em>, pitched upward with the acute &mdash; the stressed syllable, the sound of a key turning. The <em>k</em> is hard, unsoftened, the click of a lock opening. This is the <strong>threshold itself</strong> &mdash; the moment before you step through.</p>
+                    </div>
+                    <div class="phoneme-item">
+                        <span class="phoneme-symbol">-tē</span>
+                        <span class="phoneme-label">The Crone</span>
+                        <p class="phoneme-desc">Long <em>e</em>, sustained, the sound of footsteps echoing down a corridor that has no end. The <em>t</em> is crisp. The final vowel <em>does not end</em> &mdash; it simply <strong>fades into the dark.</strong></p>
+                    </div>
+                </div>
+            </div>
+            <div class="pronunciation-sidebar reveal-up">
+                <div class="sidebar-card">
+                    <h4 class="sidebar-title">Modern Approximation</h4>
+                    <p class="sidebar-text">"heh-KAH-tay" &mdash; with the first syllable breathy, the second pitched upward like a warning, the third held like a held breath. The <em>heh</em> is almost whispered. The <em>KAH</em> is the heart. The <em>tay</em> does not stop. It <em>dissolves.</em></p>
+                </div>
+                <div class="sidebar-card accent-card">
+                    <h4 class="sidebar-title">The Dual Mark</h4>
+                    <p class="sidebar-text">Hekate has two non-ASCII characters: the acute on the short <em>a</em> and the macron on the long <em>e</em>. The accent falls on the short vowel, creating the dual-tier distinction. Without the acute, she is merely <em>hekatē</em> &mdash; correct, but incomplete. Without the macron, she is <em>hekátē</em> &mdash; precise, but shortened. Together, they form the <strong>complete invocation.</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-crossroads" id="the-crossroads">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">03</span>
+                <h2 class="section-title">The Crossroads</h2>
+                <p class="section-subtitle">Domains, symbols, and the power of the threshold</p>
+            </div>
+            <div class="domains-grid">
+                <div class="domain-card reveal-up">
+                    <div class="domain-icon">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="#FF6B35" stroke-width="1.5">
+                            <path d="M32 8L20 56M32 8L44 56M20 32H44"/>
+                            <circle cx="32" cy="32" r="4" fill="#FF6B35"/>
+                        </svg>
+                    </div>
+                    <h4 class="domain-name">The Crossroads</h4>
+                    <p class="domain-desc">Not merely an intersection &mdash; <em>the point where all paths are equally real.</em> At the crossroads, every choice is possible and none is made. Hekate governs this paralysis. She does not choose for you. She <strong>ensures you cannot avoid choosing.</strong></p>
+                </div>
+                <div class="domain-card reveal-up" data-delay="100">
+                    <div class="domain-icon">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="#FF6B35" stroke-width="1.5">
+                            <path d="M20 48V16M32 48V16M44 48V16"/>
+                            <circle cx="20" cy="12" r="4" fill="#FF6B35"/>
+                            <circle cx="32" cy="12" r="4" fill="#C0C0C0"/>
+                            <circle cx="44" cy="12" r="4" fill="#FF6B35"/>
+                        </svg>
+                    </div>
+                    <h4 class="domain-name">Magic &amp; Witchcraft</h4>
+                    <p class="domain-desc">Hekate taught humanity magic &mdash; not as power, but as <em>language.</em> Spells are simply words spoken at the threshold between intention and result. She is the patron of every witch, every sorcerer, every <strong>one who dares to speak the world into being.</strong></p>
+                </div>
+                <div class="domain-card reveal-up" data-delay="200">
+                    <div class="domain-icon">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="#FF6B35" stroke-width="1.5">
+                            <path d="M32 8C20 8 12 18 12 32C12 48 22 56 32 56C42 56 52 48 52 32C52 18 44 8 32 8Z"/>
+                            <path d="M32 12V32"/>
+                        </svg>
+                    </div>
+                    <h4 class="domain-name">The Moon &amp; Night</h4>
+                    <p class="domain-desc">Hekate is the moon in all her phases &mdash; not merely the full moon of Artemis or the dark moon of Persephone. <em>All phases.</em> She is the waxing, the full, the waning, the new. She is the night that contains every kind of darkness.</p>
+                </div>
+                <div class="domain-card reveal-up" data-delay="300">
+                    <div class="domain-icon">
+                        <svg viewBox="0 0 64 64" fill="none" stroke="#FF6B35" stroke-width="1.5">
+                            <path d="M32 12L20 28H28V52H36V28H44L32 12Z"/>
+                        </svg>
+                    </div>
+                    <h4 class="domain-name">Souls &amp; the Underworld</h4>
+                    <p class="domain-desc">Hekate walks between the living and the dead. She meets souls at the threshold and guides them through. She is not death. She is <strong>the passage.</strong> Every soul that crosses, she has seen. Every ghost that lingers, she knows its name.</p>
+                </div>
+            </div>
+            <div class="symbols-section reveal-up">
+                <h3 class="symbols-title">Sacred Symbols</h3>
+                <div class="symbols-grid">
+                    <div class="symbol-item">
+                        <div class="symbol-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="1.5">
+                                <path d="M12 2v20M8 6l4-4 4 4M8 18l4 4 4-4"/>
+                            </svg>
+                        </div>
+                        <span class="symbol-name">Twin Torches</span>
+                        <span class="symbol-meaning">Light and shadow &mdash; one illuminates, one conceals</span>
+                    </div>
+                    <div class="symbol-item">
+                        <div class="symbol-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="1.5">
+                                <circle cx="8" cy="14" r="5"/>
+                                <path d="M18 4l-4 4M18 4l-2-2M18 4l2 2"/>
+                                <path d="M14 10l-2 2"/>
+                            </svg>
+                        </div>
+                        <span class="symbol-name">Keys at Waist</span>
+                        <span class="symbol-meaning">Keeper of thresholds &mdash; she opens gates with no handles</span>
+                    </div>
+                    <div class="symbol-item">
+                        <div class="symbol-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="1.5">
+                                <path d="M12 2a10 10 0 0 0 0 20 10 10 0 0 0 0-20z"/>
+                                <path d="M12 2a5 5 0 0 1 0 10 5 5 0 0 0 0 10"/>
+                            </svg>
+                        </div>
+                        <span class="symbol-name">Triple Moon</span>
+                        <span class="symbol-meaning">Maiden, Mother, Crone &mdash; one goddess in three aspects</span>
+                    </div>
+                    <div class="symbol-item">
+                        <div class="symbol-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="1.5">
+                                <path d="M4 4l16 16M20 4L4 20"/>
+                            </svg>
+                        </div>
+                        <span class="symbol-name">Midnight Cloak</span>
+                        <span class="symbol-meaning">The veil between worlds &mdash; darkness that separates life and death</span>
+                    </div>
+                    <div class="symbol-item">
+                        <div class="symbol-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="1.5">
+                                <path d="M10 5a4 4 0 0 1 4 4v4a4 4 0 0 1-4 4M6 9h8"/>
+                                <path d="M16 11l3-3 3 3M16 13l3 3 3-3"/>
+                            </svg>
+                        </div>
+                        <span class="symbol-name">Dogs</span>
+                        <span class="symbol-meaning">Guides of souls &mdash; her hounds lead the dead unseen</span>
+                    </div>
+                    <div class="symbol-item">
+                        <div class="symbol-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="1.5">
+                                <path d="M12 2C8 2 4 6 4 10c0 3 2 5 4 6v4h8v-4c2-1 4-3 4-6 0-4-4-8-8-8z"/>
+                                <circle cx="12" cy="9" r="2"/>
+                            </svg>
+                        </div>
+                        <span class="symbol-name">Polecat / Weasel</span>
+                        <span class="symbol-meaning">Transformation &mdash; creature that moves between worlds</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-myths" id="myths">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">04</span>
+                <h2 class="section-title">The Myths</h2>
+                <p class="section-subtitle">Stories of thresholds, choices, and the power of the in-between</p>
+            </div>
+            <div class="myths-grid">
+                <div class="myth-card reveal-up">
+                    <span class="myth-tag">The Gift</span>
+                    <h3 class="myth-title">Persephone's Guide</h3>
+                    <p class="myth-text">When Hades took Persephone to the underworld, Demeter wandered the earth in grief. But Persephone was not alone in the dark. Hekate was there. <em>She had always been there.</em> With her twin torches, she met Persephone at the threshold of the underworld and became her companion, her guide, her friend in the kingdom of the dead. She did not rescue Persephone. She <strong>walked with her.</strong> This is Hekate's gift: not salvation, but <em>company in the darkness.</em></p>
+                </div>
+                <div class="myth-card reveal-up" data-delay="150">
+                    <span class="myth-tag">The Choice</span>
+                    <h3 class="myth-title">Medea's Patron</h3>
+                    <p class="myth-text">Medea, princess of Colchis, was the most powerful witch in Greece. She could turn dragons to stone, make fire obey her voice, brew potions that raised the dead. And she worshipped only one goddess: <em>Hekate.</em> Before every spell, she called Hekate's name. Before every sacrifice, she invoked the triple goddess. When Medea killed her own children to punish Jason's betrayal, she did not pray for forgiveness. She prayed for <strong>power enough to survive the guilt.</strong> Hekate answered. She always answers those who dare to pay the price.</p>
+                </div>
+                <div class="myth-card reveal-up" data-delay="300">
+                    <span class="myth-tag">The Threshold</span>
+                    <h3 class="myth-title">The Hekateia</h3>
+                    <p class="myth-text">At every crossroads in ancient Greece, families placed a <em>Hekateion</em> &mdash; a small pillar with three faces, one for each direction. On the eve of the new moon, offerings were left: eggs, honey, garlic, small cakes. Not for worship. For <strong>protection.</strong> Because Hekate governs the liminal spaces, and the crossroads is where the restless dead gather. Leave her no offering, and she might not stop them from following you home. <em>This is not superstition. This is the original religion of thresholds.</em></p>
+                </div>
+                <div class="myth-card reveal-up" data-delay="450">
+                    <span class="myth-tag">The Transformation</span>
+                    <h3 class="myth-title">Galinthias</h3>
+                    <p class="myth-text">When Alcmene was in labor with Heracles, Hera sent witches to delay the birth. Galinthias, Alcmene's servant, tricked the witches by announcing the child was already born. The witches fled. Hera, enraged, transformed Galinthias into a polecat &mdash; a creature of the night, at home in burrows and thresholds. But Hekate took pity. She adopted the transformed woman as her sacred animal. <em>This is Hekate's nature: she does not undo transformations. She gives them meaning.</em> What Hera cursed, Hekate <strong>consecrated.</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Related Names -->
+    <section class="section" id="related" style="background:#0A0A0A;padding:6rem 0;">
+        <div class="container" style="max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);">
+            <div style="text-align:center;margin-bottom:4rem;">
+                <span style="display:block;font-family:'Cinzel',serif;font-size:0.85rem;color:#D4AF37;letter-spacing:0.4em;margin-bottom:1rem;">05</span>
+                <h2 style="font-family:'Cinzel',serif;font-size:clamp(2rem,4vw,3.5rem);color:#F5F5F5;letter-spacing:0.05em;margin-bottom:1rem;">Related Names</h2>
+                <p style="font-size:clamp(1rem,1.5vw,1.25rem);color:#A0A0A0;font-style:italic;">More from the Greek pantheon</p>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;">
+                
+                <a href="/sites/apollon/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Ápollōn</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἀπόλλων</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Light, Music, Prophecy</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Dual-Tier</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/hades/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Hádēs</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἅιδης</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Underworld, Wealth</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Dual-Tier</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/nike/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Níkē</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Νίκη</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Victory</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Dual-Tier</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/zeus/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Zeus</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ζεύς</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Sky, Thunder, King of Gods</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Tier-1</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/ares/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Árēs</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἄρης</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">War, Courage, Battle Fury</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Tier-1 Full</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/aphrodite/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Aphrodītē</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἀφροδίτη</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Love, Beauty, Pleasure</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Tier-1 Macron-Preserving</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+<section class="section section-pantheon" id="pantheon">
+        <div class="container">
+            <div class="pantheon-content reveal-up">
+                <div class="pantheon-text">
+                    <span class="pantheon-eyebrow">The PUNYCODEX</span>
+                    <h2 class="pantheon-title">The Key That Opens Every Lock</h2>
+                    <p class="pantheon-body">Zeus rules. Athena strategizes. Apollo illuminates. But Hekate <strong>stands between.</strong> She does not need a throne. She does not need worshippers. She needs only <em>thresholds.</em> Every door you open, every choice you make, every path you abandon &mdash; she is there. She was there before you arrived. She will remain after you leave. She is the only god who does not require belief. She requires only <strong>that you cross.</strong></p>
+                    <p class="pantheon-body">This is not a directory. This is a <strong>resurrection.</strong></p>
+                    <a href="/lexicon/" class="btn-primary btn-ghost">
+                        <span>Enter the Codex</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="pantheon-mascot">
+                    <img src="assets/hekate_mascot.png" alt="Hekate mascot" class="pantheon-mascot-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Type Tool CTA -->
+    <section style="padding:6rem 0;background:linear-gradient(180deg,#0A0A0A 0%,rgba(65,105,225,0.08) 100%);text-align:center;">
+        <div class="container" style="max-width:700px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);">
+            <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.75rem,3vw,2.5rem);color:#F5F5F5;margin-bottom:1.5rem;letter-spacing:0.05em;">Experience the Name</h2>
+            <p style="font-size:1.05rem;color:#A0A0A0;line-height:1.8;margin-bottom:2.5rem;">See how Hekátē behaves in the PUNYCODEX Type Tool — with predictive autocomplete, character-by-character breakdown, and scholarly constraint validation.</p>
+            <div style="display:inline-flex;align-items:center;gap:1rem;padding:1rem 2rem;background:rgba(0,0,0,0.3);border:1px solid rgba(212,175,55,0.25);border-radius:2px;font-family:'Fira Code','Courier New',monospace;font-size:1.1rem;color:#D4AF37;margin-bottom:1.5rem;">
+                <code>hekate</code>
+                <span style="color:#A0A0A0;">&rarr;</span>
+                <code>Hekátē</code>
+            </div>
+            <div>
+                <a href="/type/#hekate" style="display:inline-flex;align-items:center;gap:0.75rem;padding:1rem 2rem;background:linear-gradient(135deg,#D4AF37,#8B7355);color:#0A0A0A;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;transition:all 0.4s ease;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 40px rgba(212,175,55,0.3)';" onmouseout="this.style.transform='none';this.style.boxShadow='none';">
+                    <span>Open in Type Tool</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+<footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="footer-logo">PUNYCODEX</span>
+                    <p class="footer-tagline">Between the worlds. Between the letters.<br>Between the codes. She stands at the threshold.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">DOMAINS</span>
+                        <span class="footer-value">HEKÁTĒ.COM · HEKATĒ.COM</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">CLASSIFICATION</span>
+                        <span class="footer-value">DUAL‑TIER PAIR (TIER‑1 &amp; TIER‑2)</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">GREEK ORIGINAL</span>
+                        <span class="footer-value">ἙΚΆΤΗ</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <img src="assets/hekate_logomark.png" alt="Hekate logomark" class="footer-logomark">
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The board has been reset</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="scroll-marker" style="position:absolute;bottom:0;left:0;width:1px;height:1px;opacity:0;pointer-events:none;"></div>
+    <script src="script.js?v=6"></script>
+</body>
+</html>

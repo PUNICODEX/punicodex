@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PÚNYCODEX Type — Scholarly Transliteration Engine</title>
+    <meta name="description" content="Type classical names and watch them restore to their correct Unicode orthography. A predictive typing system for scholarly transliteration.">
+    <meta name="theme-color" content="#050505">
+    <meta name="color-scheme" content="dark">
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PÚNYCODEX">
+    <meta property="og:title" content="PÚNYCODEX Type — Scholarly Transliteration Engine">
+    <meta property="og:description" content="Type classical names and watch them restore to their correct Unicode orthography. A predictive typing system for scholarly transliteration.">
+    <meta property="og:url" content="https://punycodex.com/type/">
+    <meta property="og:image" content="https://punycodex.com/assets/images/og-type.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PÚNYCODEX Type — Scholarly Transliteration Engine">
+    <meta name="twitter:description" content="Type classical names and watch them restore to their correct Unicode orthography.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="css/type.css">
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%CE%A8%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+    <nav class="main-nav" id="main-nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-wordmark">P<span class="accent">U</span>NYCODEX</a>
+            <div class="nav-links">
+                <a href="/pantheon/" class="nav-link">Pantheon</a>
+                <a href="/lexicon/" class="nav-link">Lexicon</a>
+                <a href="/type/" class="nav-link active">Type</a>
+                <a href="/tiers/" class="nav-link">Tier System</a>
+                <a href="/codex/" class="nav-link">Codex</a>
+                <a href="/store/" class="nav-link">Store</a>
+                <a href="/about/" class="nav-link">About</a>
+                <a href="/contact/" class="nav-link">Contact</a>
+            </div>
+            <a href="/pantheon/" class="nav-cta"><span>Enter</span></a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="/pantheon/">Pantheon</a>
+        <a href="/type/">Type</a>
+        <a href="/tiers/">Tier System</a>
+        <a href="/codex/">Codex</a>
+        <a href="/store/">Store</a>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+    </div>
+
+    <main class="type-page">
+        <!-- Header -->
+        <section class="type-hero">
+            <div class="container">
+                <p class="section-eyebrow">The Engine</p>
+                <h1 class="display-lg">PÚNYCODEX <span class="type-accent">TYPE</span></h1>
+                <p class="body-lg type-subtitle">
+                    A predictive typing system for scholarly transliteration.
+                    Type a name. The system constrains you to valid Unicode paths only.
+                    Invalid keystrokes are rejected. Valid ones restore the gods.
+                </p>
+            </div>
+        </section>
+
+        <!-- Typing Interface -->
+        <section class="type-interface">
+            <div class="container">
+                <div class="type-workspace">
+                    <!-- Filter -->
+                    <div class="type-filter">
+                        <label for="pantheon-filter">Pantheon</label>
+                        <select id="pantheon-filter">
+                            <option value="all">All Pantheons</option>
+                            <option value="greek-all">Greek (Gods + Locations)</option>
+                            <option value="greek">Greek Gods</option>
+                            <option value="greek-location">Greek Locations</option>
+                            <option value="norse">Norse</option>
+                            <option value="egyptian">Egyptian</option>
+                            <option value="sanskrit">Sanskrit</option>
+                            <option value="celtic">Celtic</option>
+                            <option value="mesopotamian">Mesopotamian</option>
+                            <option value="polynesian">Polynesian</option>
+                            <option value="japanese">Japanese</option>
+                            <option value="nahuatl">Nahuatl</option>
+                            <option value="yoruba">Yoruba</option>
+                            <option value="slavic">Slavic</option>
+                            <option value="zoroastrian">Zoroastrian</option>
+                            <option value="incan">Incan</option>
+                        </select>
+                    </div>
+
+                    <!-- Input Area -->
+                    <div class="type-input-area">
+                        <input
+                            type="text"
+                            id="type-input"
+                            class="type-input"
+                            placeholder="Type a name..."
+                            autocomplete="off"
+                            autocorrect="off"
+                            autocapitalize="off"
+                            spellcheck="false"
+                            inputmode="verbatim"
+                            aria-label="Type a classical name"
+                            aria-autocomplete="list"
+                            aria-controls="type-completions"
+                            aria-expanded="false"
+                        >
+                        <div class="type-preview" id="type-preview" aria-hidden="true"></div>
+                    </div>
+
+                    <!-- Suggestions -->
+                    <div class="type-suggestions" id="type-suggestions"></div>
+
+                    <!-- Status -->
+                    <div class="type-status" id="type-status" aria-live="off">
+                        <span class="status-hint">Type a name to begin restoration...</span>
+                    </div>
+
+                    <!-- Completions -->
+                    <div class="type-completions" id="type-completions"></div>
+
+                    <!-- Breakdown -->
+                    <div class="type-breakdown" id="type-breakdown"></div>
+
+                    <!-- Result Card -->
+                    <div class="type-result hidden" id="type-result">
+                        <div class="result-card">
+                            <div class="result-header">
+                                <span class="result-label">Restored</span>
+                                <span class="result-tier" id="result-tier">Tier 1</span>
+                            </div>
+                            <div class="result-unicode" id="result-unicode" aria-label="Unicode restoration"></div>
+                            <div class="result-greek" id="result-greek" aria-label="Original script"></div>
+                            <div class="result-meta">
+                                <div class="result-row">
+                                    <span class="result-key">Domain</span>
+                                    <span class="result-value" id="result-domain"></span>
+                                </div>
+                                <div class="result-row">
+                                    <span class="result-key">Meaning</span>
+                                    <span class="result-value" id="result-meaning"></span>
+                                </div>
+                            </div>
+                            <div class="result-sources" id="result-sources"></div>
+                            <div class="result-actions">
+                                <button class="btn btn-primary" id="copy-btn">
+                                    <span>Copy Unicode</span>
+                                </button>
+                                <button class="btn btn-outline" id="clear-btn">
+                                    <span>Type Another</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="type-explain">
+            <div class="container">
+                <div class="explain-grid">
+                    <div class="explain-card">
+                        <div class="explain-number">01</div>
+                        <h3 class="heading-md">Constraint, Not Conversion</h3>
+                        <p class="body-md">
+                            Most tools convert after you type. PÚNYCODEX Type blocks invalid paths 
+                            in real time. If no attested name begins with your keystrokes, the input 
+                            is rejected. You cannot type garbage.
+                        </p>
+                    </div>
+                    <div class="explain-card">
+                        <div class="explain-number">02</div>
+                        <h3 class="heading-md">Scholarly Trie</h3>
+                        <p class="body-md">
+                            Every entry in the lexicon is sourced from accredited transliteration 
+                            systems: Greek with pitch accent and vowel length, Norse with eth and 
+                            thorn, Egyptian with alef and ayin. No invented spellings.
+                        </p>
+                    </div>
+                    <div class="explain-card">
+                        <div class="explain-number">03</div>
+                        <h3 class="heading-md">Teach By Restriction</h3>
+                        <p class="body-md">
+                            When you complete a valid name, the system shows exactly which characters 
+                            changed and why. Stress. Length. Special characters. Each transformation 
+                            is annotated with its philological basis.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats -->
+        <section class="type-stats">
+            <div class="container">
+                <div class="stats-bar-inline">
+                    <div class="stat-inline">
+                        <span class="stat-num">255</span>
+                        <span class="stat-label">Validated Entries</span>
+                    </div>
+                    <div class="stat-inline">
+                        <span class="stat-num">8</span>
+                        <span class="stat-label">Pantheons</span>
+                    </div>
+                    <div class="stat-inline">
+                        <span class="stat-num">∞</span>
+                        <span class="stat-label">Invalid Paths Blocked</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>PÚNYCODEX</h4>
+                    <p>The Unicode Pantheon — restoring the original names of world archetypes to the digital realm.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Explore</h4>
+                    <a href="/pantheon/">Pantheon</a>
+                    <a href="/type/">Type</a>
+                    <a href="/tiers/">Tier System</a>
+                    <a href="/store/">Store</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <a href="/about/">About</a>
+                    <a href="/contact/">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <a href="mailto:hello@punycodex.com">hello@punycodex.com</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 PÚNYCODEX. All rites reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/lexicon.js"></script>
+    <script src="/js/main.js" defer></script>
+    <script src="js/type.js" defer></script>
+
+</body>
+</html>

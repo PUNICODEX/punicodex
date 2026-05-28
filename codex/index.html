@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#050505">
+    <title>The Codex — PÚNYCODEX</title>
+    <meta name="description" content="Chronicles of the Unicode Pantheon: essays on linguistics, Greek mythology, domain technology, and the philosophy of digital restoration.">
+    <link rel="canonical" href="https://punycodex.com/codex/">
+    <meta property="og:title" content="The Codex — PÚNYCODEX">
+    <meta property="og:description" content="Chronicles of the Unicode Pantheon.">
+    <meta property="og:image" content="https://punycodex.com/assets/images/og-default.svg">
+    <meta property="og:url" content="https://punycodex.com/codex/">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/codex.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%CE%A8%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+    <nav class="main-nav" id="main-nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-wordmark">P<span class="accent">U</span>NYCODEX</a>
+            <div class="nav-links">
+                <a href="/pantheon/" class="nav-link">Pantheon</a>
+                <a href="/lexicon/" class="nav-link">Lexicon</a>
+                <a href="/tiers/" class="nav-link">Tier System</a>
+<a href="/type/" class="nav-link">Type</a>
+                <a href="/codex/" class="nav-link">Codex</a>
+                <a href="/store/" class="nav-link">Store</a>
+                <a href="/about/" class="nav-link">About</a>
+                <a href="/contact/" class="nav-link">Contact</a>
+            </div>
+            <a href="/pantheon/" class="nav-cta"><span>Enter</span></a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="/pantheon/">Pantheon</a><a href="/tiers/">Tier System</a><a href="/codex/">Codex</a>
+        <a href="/store/">Store</a><a href="/about/">About</a><a href="/contact/">Contact</a>
+    </div>
+
+    <main class="page-codex">
+        <section class="page-hero">
+            <div class="container">
+                <h1 class="display-lg text-center reveal-up">THE CODEX</h1>
+                <p class="body-lg text-center reveal-up">Chronicles of the Unicode Pantheon — essays on linguistics, mythology, and the craft of restoration.</p>
+            </div>
+        </section>
+
+        <section class="codex-content">
+            <div class="container">
+                <div class="codex-grid">
+                    <article class="codex-card reveal-up">
+                        <div class="codex-image">
+                            <div class="codex-image-placeholder" style="background: linear-gradient(135deg, #1a0a0a 0%, #2a1a1a 50%, #1a0a0a 100%);">
+                                <span class="codex-image-icon">&#x00B4;</span>
+                            </div>
+                        </div>
+                        <div class="codex-meta">
+                            <span class="codex-category">Linguistics</span>
+                            <span class="codex-date">December 2024</span>
+                            <span class="codex-readtime">6 min read</span>
+                        </div>
+                        <h2 class="codex-title">Why Greek Accents Matter in the Digital Age</h2>
+                        <p class="codex-excerpt body-md">The erasure of diacritics in ASCII domains is not a technical limitation — it is a cultural amnesia. When Ἀπόλλων becomes "Apollo," something irreplaceable is lost: the pitch accent that rises like a musical note, the long vowels that stretch across syllables like held breath. This essay explores why Unicode restoration is not pedantry, but philological justice.</p>
+                        <a href="#" class="codex-readmore" onclick="event.preventDefault(); PX.showToast('Full article coming soon')">Read More &rarr;</a>
+                    </article>
+
+                    <article class="codex-card reveal-up">
+                        <div class="codex-image">
+                            <div class="codex-image-placeholder" style="background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2a 50%, #0a0a1a 100%);">
+                                <span class="codex-image-icon">xn--</span>
+                            </div>
+                        </div>
+                        <div class="codex-meta">
+                            <span class="codex-category">Technology</span>
+                            <span class="codex-date">November 2024</span>
+                            <span class="codex-readtime">8 min read</span>
+                        </div>
+                        <h2 class="codex-title">The Anatomy of a Punycode Domain</h2>
+                        <p class="codex-excerpt body-md">How does zeús.com become xn--zes-9na.com? A deep dive into the IDNA2008 algorithm, the difference between encoding and representation, and why browsers intentionally hide the truth from users. Understanding Punycode is essential to understanding why Unicode domains remain invisible despite being technically possible for over a decade.</p>
+                        <a href="#" class="codex-readmore" onclick="event.preventDefault(); PX.showToast('Full article coming soon')">Read More &rarr;</a>
+                    </article>
+
+                    <article class="codex-card reveal-up">
+                        <div class="codex-image">
+                            <div class="codex-image-placeholder" style="background: linear-gradient(135deg, #1a1a0a 0%, #2a2a1a 50%, #1a1a0a 100%);">
+                                <span class="codex-image-icon">&#x03A8;</span>
+                            </div>
+                        </div>
+                        <div class="codex-meta">
+                            <span class="codex-category">Process</span>
+                            <span class="codex-date">October 2024</span>
+                            <span class="codex-readtime">10 min read</span>
+                        </div>
+                        <h2 class="codex-title">Building the Temple: A Technical Retrospective</h2>
+                        <p class="codex-excerpt body-md">Hand-crafting twenty archetype temples taught us about canvas performance, the Greek pitch accent system, and the theological weight of a single diacritic. This retrospective covers the architecture decisions, the animation challenges, the tier system evolution, and the philosophical moments that shaped the project.</p>
+                        <a href="#" class="codex-readmore" onclick="event.preventDefault(); PX.showToast('Full article coming soon')">Read More &rarr;</a>
+                    </article>
+                </div>
+
+                <div class="newsletter-cta reveal-up">
+                    <h3 class="heading-md text-center">Receive the Chronicles</h3>
+                    <p class="body-md text-center mb-4">New essays on linguistics, mythology, and domain restoration. No spam. No ASCII.</p>
+                    <form class="newsletter-form" onsubmit="event.preventDefault(); PX.showToast('Subscribed! Welcome to the Pantheon.'); this.reset();">
+                        <input type="email" placeholder="your@email.com" required class="newsletter-input">
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col"><h4>PÚNYCODEX</h4><p>The Unicode Pantheon — restoring the original names of world archetypes to the digital realm.</p></div>
+                <div class="footer-col"><h4>Explore</h4><a href="/pantheon/">Pantheon</a><a href="/tiers/">Tier System</a><a href="/codex/">Codex</a><a href="/store/">Store</a></div>
+                <div class="footer-col"><h4>Resources</h4><a href="/about/">About</a><a href="/contact/">Contact</a></div>
+                <div class="footer-col"><h4>Connect</h4><a href="mailto:hello@punycodex.com">hello@punycodex.com</a></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2024 PÚNYCODEX. All rites reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js" defer></script>
+</body>
+</html>

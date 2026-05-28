@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PÚNYCODEX — The Unicode Pantheon</title>
+    <meta name="description" content="PÚNYCODEX restores the original Unicode names of gods and world archetypes to the digital realm. 26 domains, 24 archetypes, one mission.">
+    <meta name="theme-color" content="#050505">
+    <meta name="color-scheme" content="dark">
+
+    <!-- Canonical & Open Graph -->
+    <link rel="canonical" href="https://punycodex.com/">
+    <meta property="og:title" content="PÚNYCODEX — The Unicode Pantheon">
+    <meta property="og:description" content="Restoring the original names of the gods to the digital realm through Unicode domain preservation.">
+    <meta property="og:image" content="https://punycodex.com/assets/images/og-default.svg">
+    <meta property="og:url" content="https://punycodex.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PÚNYCODEX">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PÚNYCODEX — The Unicode Pantheon">
+    <meta name="twitter:description" content="Restoring the original names of the gods to the digital realm.">
+    <meta name="twitter:image" content="https://punycodex.com/assets/images/og-default.svg">
+
+    <!-- Preconnect & DNS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+    <!-- Preload critical CSS -->
+    <link rel="preload" href="/css/main.css" as="style">
+    <link rel="preload" href="/css/home.css" as="style">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- GSAP (low priority, non-blocking) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer fetchpriority="low"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer fetchpriority="low"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/home.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%CE%A8%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+    <!-- ═══ LOADING SCREEN ═══ -->
+    <div class="loading-screen" id="loading-screen">
+        <div class="loading-shimmer"></div>
+        <div class="loading-psi">&#x03A8;</div>
+        <div class="loading-text" id="loading-text">
+            <span class="letter" style="--letter-index:0">P</span>
+            <span class="letter accent" style="--letter-index:1">U</span>
+            <span class="letter" style="--letter-index:2">N</span>
+            <span class="letter" style="--letter-index:3">Y</span>
+            <span class="letter" style="--letter-index:4">C</span>
+            <span class="letter" style="--letter-index:5">O</span>
+            <span class="letter" style="--letter-index:6">D</span>
+            <span class="letter" style="--letter-index:7">E</span>
+            <span class="letter" style="--letter-index:8">X</span>
+        </div>
+        <div class="loading-bar"></div>
+    </div>
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="main-nav" id="main-nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-wordmark">P<span class="accent">U</span>NYCODEX</a>
+            <div class="nav-links">
+                <a href="/pantheon/" class="nav-link">Pantheon</a>
+                <a href="/lexicon/" class="nav-link">Lexicon</a>
+                <a href="/tiers/" class="nav-link">Tier System</a>
+<a href="/type/" class="nav-link">Type</a>
+                <a href="/codex/" class="nav-link">Codex</a>
+                <a href="/store/" class="nav-link">Store</a>
+                <a href="/about/" class="nav-link">About</a>
+                <a href="/contact/" class="nav-link">Contact</a>
+            </div>
+            <a href="/pantheon/" class="nav-cta"><span>Enter</span></a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="/pantheon/">Pantheon</a>
+                <a href="/type/">Type</a>
+<a href="/tiers/">Tier System</a>
+<a href="/codex/">Codex</a>
+        <a href="/store/">Store</a>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+    </div>
+
+    <!-- ═══ HERO SECTION ═══ -->
+    <section class="hero" id="hero">
+        <canvas id="hero-canvas" class="hero-canvas"></canvas>
+        <div class="hero-vignette"></div>
+        <div class="hero-noise"></div>
+        <div class="hero-content">
+            <div class="hero-symbol reveal-scale">
+                <svg viewBox="0 0 100 100" class="psi-icon" aria-hidden="true">
+                    <path d="M50 5 L50 95 M50 25 Q25 25 20 50 Q25 75 50 75 Q75 75 80 50 Q75 25 50 25" 
+                          fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M50 60 L50 80 M45 70 L55 70 M42 75 L58 75" 
+                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="50" cy="12" r="3.5" fill="currentColor"/>
+                </svg>
+            </div>
+            <h1 class="display-xl text-center reveal-up">PÚNYCODEX</h1>
+            <p class="hero-tagline reveal-up">THE UNICODE PANTHEON</p>
+            <p class="hero-subtitle body-lg text-center reveal-up">
+                26 domains. 24 world archetypes. One mission: restore the original names of the gods to the digital realm.
+            </p>
+            <div class="hero-cta-row reveal-up">
+                <a href="/pantheon/" class="btn btn-primary btn-lg"><span>Explore the Pantheon</span></a>
+                <a href="/tiers/" class="btn btn-outline btn-lg"><span>Learn the Tiers</span></a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-line"></div>
+            <div class="scroll-dot"></div>
+            <span class="scroll-text">Scroll</span>
+        </div>
+    </section>
+
+    <!-- ═══ THE PANTHEON ═══ -->
+    <section class="section-pantheon" id="pantheon">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <p class="section-eyebrow">The Collection</p>
+                <h2 class="section-title display-lg">THE PANTHEON</h2>
+                <p class="section-subtitle body-lg">
+                    Every archetype restored to their true Unicode orthography. Click any portrait to enter their temple.
+                </p>
+            </div>
+            <div class="pantheon-grid" id="pantheon-grid" data-stagger>
+                <!-- Populated by JS -->
+            </div>
+            <p class="pantheon-status body-sm text-center reveal-up">
+                <span class="gold-text">20 temples consecrated.</span> 
+                <span class="dim-text">4 more await their rites.</span>
+            </p>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ TIER SYSTEM ═══ -->
+    <section class="section-tiers" id="tiers">
+        <div class="ambient-particles"></div>
+        <div class="container">
+            <div class="section-header reveal-up">
+                <p class="section-eyebrow">The Doctrine</p>
+                <h2 class="section-title display-lg">THE TIER SYSTEM</h2>
+                <p class="section-subtitle body-lg">
+                    Greek prosody determines restoration depth. Stress and length — the two pillars of authentic orthography.
+                </p>
+            </div>
+            <div class="tiers-grid">
+                <div class="tier-card tier-1-card reveal-up">
+                    <div class="tier-icon">&#x00B4; + &#x304;</div>
+                    <h3 class="tier-name">Tier 1</h3>
+                    <p class="tier-label">Full Restoration</p>
+                    <p class="tier-desc body-md">
+                        The Greek original carries <strong>both</strong> acute stress and a long vowel. 
+                        The transliteration preserves the full scholarly orthography.
+                    </p>
+                    <div class="tier-examples">
+                        <span class="tier-example">Zeús</span>
+                        <span class="tier-example">Poseidōn</span>
+                        <span class="tier-example">Athēnā</span>
+                        <span class="tier-example">Hermēs</span>
+                    </div>
+                </div>
+                <div class="tier-card tier-2-card reveal-up">
+                    <div class="tier-icon">&#x00B4;</div>
+                    <h3 class="tier-name">Tier 2</h3>
+                    <p class="tier-label">Partial Restoration</p>
+                    <p class="tier-desc body-md">
+                        The Greek original carries <strong>only one</strong> feature — either stress or length, 
+                        but not both. The transliteration preserves what remains.
+                    </p>
+                    <div class="tier-examples">
+                        <span class="tier-example">Ártemis</span>
+                        <span class="tier-example">Átlas</span>
+                        <span class="tier-example">Diónysos</span>
+                        <span class="tier-example">Médousa</span>
+                    </div>
+                </div>
+                <div class="tier-card tier-source-card reveal-up">
+                    <div class="tier-icon">&#x0391; + &#x03C9;</div>
+                    <h3 class="tier-name">The Greek Original</h3>
+                    <p class="tier-label">The Source</p>
+                    <p class="tier-desc body-md">
+                        Ancient Greek used <strong>pitch accent</strong> — rising and falling tones — 
+                        and distinguished <strong>long from short vowels</strong>. Our tier system maps these features to Unicode restoration depth.
+                    </p>
+                    <div class="tier-examples">
+                        <span class="tier-example">Ἀπόλλων</span>
+                        <span class="tier-example">Ἅιδης</span>
+                        <span class="tier-example">Ἑκάτη</span>
+                        <span class="tier-example">Νίκη</span>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-6 reveal-up">
+                <a href="/tiers/" class="btn btn-outline"><span>Read the Full Doctrine &rarr;</span></a>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ THE ORIGIN ═══ -->
+    <section class="section-origin" id="origin">
+        <div class="container">
+            <div class="origin-grid">
+                <div class="origin-text reveal-up">
+                    <p class="section-eyebrow">The Beginning</p>
+                    <h2 class="display-md mb-4">THE ORIGIN</h2>
+                    <p class="body-lg mb-3">
+                        It started with a single question: <em>Why do the gods live in ASCII?</em>
+                    </p>
+                    <p class="body-md mb-3">
+                        Zeus became "Zeus." Apollo became "Apollo." The pitch accents vanished. The long vowels collapsed. 
+                        Centuries of philological precision erased by a keyboard layout designed for English teleprinters.
+                    </p>
+                    <p class="body-md mb-4">
+                        PÚNYCODEX was born from a <strong>$600 investment</strong> and an obsession with correctness. 
+                        Twenty temples later, the pantheon is restored — one Unicode character at a time.
+                    </p>
+                    <a href="/about/" class="btn btn-outline"><span>Read the Full Origin &rarr;</span></a>
+                </div>
+                <div class="origin-stats reveal-up">
+                    <div class="stat-card">
+                        <span class="stat-number" data-count="26">0</span>
+                        <span class="stat-label">Domains Registered</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" data-count="24">0</span>
+                        <span class="stat-label">World Archetypes</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" data-count="20">0</span>
+                        <span class="stat-label">Temples Built</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" data-count="4">0</span>
+                        <span class="stat-label">Dual-Tier Pairs</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ THE CODEX ═══ -->
+    <section class="section-codex" id="codex">
+        <div class="ambient-particles"></div>
+        <div class="container">
+            <div class="section-header reveal-up">
+                <p class="section-eyebrow">Chronicles</p>
+                <h2 class="section-title display-lg">THE CODEX</h2>
+                <p class="section-subtitle body-lg">
+                    Essays on linguistics, mythology, and the craft of digital restoration.
+                </p>
+            </div>
+            <div class="codex-grid">
+                <article class="codex-card reveal-up">
+                    <div class="codex-image">
+                        <div class="codex-image-placeholder" style="background: linear-gradient(135deg, #0d0d0d 0%, #1a1212 50%, #0d0d0d 100%);">
+                            <span class="codex-image-icon">&#x00B4;</span>
+                        </div>
+                    </div>
+                    <div class="codex-meta">
+                        <span class="codex-category">Linguistics</span>
+                        <span class="codex-readtime">6 min read</span>
+                    </div>
+                    <h3 class="codex-title">Why Greek Accents Matter in the Digital Age</h3>
+                    <p class="codex-excerpt body-md">
+                        The erasure of diacritics in ASCII domains is not a technical limitation — it is a cultural amnesia. 
+                        When Ἀπόλλων becomes "Apollo," something irreplaceable is lost.
+                    </p>
+                </article>
+                <article class="codex-card reveal-up">
+                    <div class="codex-image">
+                        <div class="codex-image-placeholder" style="background: linear-gradient(135deg, #0d0d0d 0%, #12121a 50%, #0d0d0d 100%);">
+                            <span class="codex-image-icon">xn--</span>
+                        </div>
+                    </div>
+                    <div class="codex-meta">
+                        <span class="codex-category">Technology</span>
+                        <span class="codex-readtime">8 min read</span>
+                    </div>
+                    <h3 class="codex-title">The Anatomy of a Punycode Domain</h3>
+                    <p class="codex-excerpt body-md">
+                        How does zeús.com become xn--zes-9na.com? A deep dive into the IDNA2008 algorithm, 
+                        the difference between encoding and representation, and why browsers hide the truth.
+                    </p>
+                </article>
+                <article class="codex-card reveal-up">
+                    <div class="codex-image">
+                        <div class="codex-image-placeholder" style="background: linear-gradient(135deg, #0d0d0d 0%, #1a1a12 50%, #0d0d0d 100%);">
+                            <span class="codex-image-icon">&#x03A8;</span>
+                        </div>
+                    </div>
+                    <div class="codex-meta">
+                        <span class="codex-category">Process</span>
+                        <span class="codex-readtime">10 min read</span>
+                    </div>
+                    <h3 class="codex-title">Building the Temple: A Technical Retrospective</h3>
+                    <p class="codex-excerpt body-md">
+                        Hand-crafting twenty archetype temples taught us about canvas performance, 
+                        the Greek pitch accent system, and the theological weight of a single diacritic.
+                    </p>
+                </article>
+            </div>
+            <div class="text-center mt-6 reveal-up">
+                <a href="/codex/" class="btn btn-outline"><span>Browse the Codex &rarr;</span></a>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ CTA SECTION ═══ -->
+    <section class="section-cta" id="cta">
+        <div class="cta-rule"></div>
+        <div class="container">
+            <h2 class="display-lg text-center reveal-up">OWN A PIECE OF THE PANTHEON</h2>
+            <p class="body-lg text-center reveal-up">
+                The gods have returned. Their names are restored. Their temples are open.
+            </p>
+            <div class="text-center mt-5 reveal-up">
+                <a href="/pantheon/" class="btn btn-primary btn-lg"><span>Enter the Pantheon</span></a>
+            </div>
+        </div>
+        <div class="cta-rule"></div>
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>PÚNYCODEX</h4>
+                    <p>The Unicode Pantheon — restoring the original names of world archetypes to the digital realm through scholarly orthography and Unicode domain preservation.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Explore</h4>
+                    <a href="/pantheon/">Pantheon</a>
+                                        <a href="/type/">Type</a>
+<a href="/tiers/">Tier System</a>
+<a href="/codex/">Codex</a>
+                    <a href="/store/">Store</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <a href="/about/">About</a>
+                    <a href="/contact/">Contact</a>
+                    <a href="/404.html">404</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <a href="mailto:hello@punycodex.com">hello@punycodex.com</a>
+                    <a href="#" onclick="event.preventDefault(); PX.showToast('Coming soon')">GitHub</a>
+                    <a href="#" onclick="event.preventDefault(); PX.showToast('Coming soon')">Twitter / X</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 PÚNYCODEX. All rites reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/archetypes.js" defer></script>
+    <script src="/js/main.js" defer></script>
+    <script src="/js/home.js" defer></script>
+
+</body>
+</html>

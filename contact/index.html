@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#050505">
+    <title>Contact — PÚNYCODEX</title>
+    <meta name="description" content="Get in touch with PÚNYCODEX. Questions about the Unicode Pantheon, the tier system, or collaboration inquiries.">
+    <link rel="canonical" href="https://punycodex.com/contact/">
+    <meta property="og:title" content="Contact — PÚNYCODEX">
+    <meta property="og:description" content="Get in touch with the Unicode Pantheon.">
+    <meta property="og:image" content="https://punycodex.com/assets/images/og-default.svg">
+    <meta property="og:url" content="https://punycodex.com/contact/">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/contact.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%CE%A8%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+    <nav class="main-nav" id="main-nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-wordmark">P<span class="accent">U</span>NYCODEX</a>
+            <div class="nav-links">
+                <a href="/pantheon/" class="nav-link">Pantheon</a>
+                <a href="/lexicon/" class="nav-link">Lexicon</a>
+                <a href="/tiers/" class="nav-link">Tier System</a>
+<a href="/type/" class="nav-link">Type</a>
+                <a href="/codex/" class="nav-link">Codex</a>
+                <a href="/store/" class="nav-link">Store</a>
+                <a href="/about/" class="nav-link">About</a>
+                <a href="/contact/" class="nav-link">Contact</a>
+            </div>
+            <a href="/pantheon/" class="nav-cta"><span>Enter</span></a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="/pantheon/">Pantheon</a><a href="/tiers/">Tier System</a><a href="/codex/">Codex</a>
+        <a href="/store/">Store</a><a href="/about/">About</a><a href="/contact/">Contact</a>
+    </div>
+
+    <main class="page-contact">
+        <section class="contact-hero">
+            <div class="container">
+                <div class="contact-brand reveal-up">
+                    <svg viewBox="0 0 100 100" class="contact-psi" aria-hidden="true">
+                        <path d="M50 5 L50 95 M50 25 Q25 25 20 50 Q25 75 50 75 Q75 75 80 50 Q75 25 50 25" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="50" cy="12" r="4" fill="currentColor"/>
+                    </svg>
+                    <h1 class="display-md">PÚNYCODEX</h1>
+                </div>
+                <div class="contact-rule reveal-up"></div>
+            </div>
+        </section>
+
+        <section class="contact-content">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-form-wrapper reveal-up">
+                        <h2 class="heading-lg mb-4">Send a Message</h2>
+                        <form class="contact-form" onsubmit="event.preventDefault(); PX.showToast('Message sent! We will respond as swiftly as Hermēs.'); this.reset();">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required placeholder="Your name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required placeholder="your@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <select id="subject" name="subject">
+                                    <option>General Inquiry</option>
+                                    <option>Pantheon Question</option>
+                                    <option>Tier System Question</option>
+                                    <option>Collaboration</option>
+                                    <option>Press</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="6" required placeholder="Your message..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
+                        </form>
+                    </div>
+
+                    <div class="contact-info reveal-up">
+                        <h2 class="heading-lg mb-4">Direct Lines</h2>
+                        <div class="info-item">
+                            <span class="info-label">Email</span>
+                            <a href="mailto:hello@punycodex.com" class="info-value">hello@punycodex.com</a>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Response Time</span>
+                            <span class="info-value">Within 48 hours</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Location</span>
+                            <span class="info-value">The Digital Realm</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Social</span>
+                            <div class="info-socials">
+                                <a href="#" onclick="event.preventDefault(); PX.showToast('Coming soon')">GitHub</a>
+                                <a href="#" onclick="event.preventDefault(); PX.showToast('Coming soon')">Twitter / X</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col"><h4>PÚNYCODEX</h4><p>The Unicode Pantheon — restoring the original names of world archetypes to the digital realm.</p></div>
+                <div class="footer-col"><h4>Explore</h4><a href="/pantheon/">Pantheon</a><a href="/tiers/">Tier System</a><a href="/codex/">Codex</a><a href="/store/">Store</a></div>
+                <div class="footer-col"><h4>Resources</h4><a href="/about/">About</a><a href="/contact/">Contact</a></div>
+                <div class="footer-col"><h4>Connect</h4><a href="mailto:hello@punycodex.com">hello@punycodex.com</a></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2024 PÚNYCODEX. All rites reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js" defer></script>
+</body>
+</html>

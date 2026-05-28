@@ -1,0 +1,286 @@
+/* ═══════════════════════════════════════════════════════════
+   PÚNYCODEX — Pantheon Page Styles
+   ═══════════════════════════════════════════════════════════ */
+
+.page-pantheon {
+    padding-top: var(--nav-height);
+    position: relative;
+}
+
+.page-pantheon::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 20% 30%, rgba(212,175,55,0.02) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 70%, rgba(65,105,225,0.015) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.page-hero {
+    padding: var(--space-8) 0 var(--space-5);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.page-hero .section-eyebrow {
+    margin-bottom: var(--space-3);
+}
+
+.page-hero h1 {
+    margin-bottom: var(--space-3);
+    text-shadow: 0 0 60px var(--gold-dim);
+}
+
+.page-hero p {
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+/* Filter Bar */
+.filter-bar {
+    position: sticky;
+    top: var(--nav-height);
+    z-index: 100;
+    background: rgba(5, 5, 5, 0.95);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.06);
+    padding: var(--space-3) 0;
+    transition: all var(--duration-normal) var(--ease-smooth);
+}
+
+.filter-row {
+    display: flex;
+    gap: var(--space-3);
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: var(--space-3);
+}
+
+.filter-pills {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+    flex: 1;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.filter-pills::-webkit-scrollbar {
+    display: none;
+}
+
+.filter-pill {
+    padding: 8px 18px;
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    cursor: none;
+    transition: all var(--duration-normal) var(--ease-smooth);
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+}
+
+@media (pointer: coarse) {
+    .filter-pill { cursor: pointer; }
+}
+
+.filter-pill::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gold);
+    transform: translateX(-101%);
+    transition: transform var(--duration-normal) var(--ease-enter);
+}
+
+.filter-pill:hover {
+    border-color: rgba(212, 175, 55, 0.25);
+    color: var(--gold);
+}
+
+.filter-pill.active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--void);
+}
+
+.filter-pill.active::before {
+    transform: translateX(0);
+}
+
+.filter-pill span {
+    position: relative;
+    z-index: 1;
+}
+
+.search-box {
+    position: relative;
+    min-width: 260px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 16px 12px 44px;
+    background: rgba(20, 20, 20, 0.85);
+    border: 1px solid rgba(212, 175, 55, 0.08);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 14px;
+    outline: none;
+    transition: all var(--duration-normal) var(--ease-smooth);
+}
+
+.search-box input:focus {
+    border-color: rgba(212, 175, 55, 0.25);
+    box-shadow: 0 0 20px var(--gold-dim);
+}
+
+.search-box input::placeholder {
+    color: var(--text-dim);
+}
+
+.search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-dim);
+    pointer-events: none;
+    transition: color var(--duration-fast) var(--ease-smooth);
+}
+
+.search-box input:focus ~ .search-icon {
+    color: var(--gold);
+}
+
+.stats-bar {
+    display: flex;
+    gap: var(--space-5);
+    font-size: 13px;
+    color: var(--text-dim);
+    letter-spacing: 0.02em;
+}
+
+.stats-bar strong {
+    color: var(--gold);
+    font-weight: 600;
+    font-size: 16px;
+    margin-right: 4px;
+}
+
+@media (max-width: 768px) {
+    .filter-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    .stats-bar {
+        gap: var(--space-3);
+        flex-wrap: wrap;
+    }
+}
+
+/* Grid Section */
+.grid-section {
+    padding: var(--space-6) 0 var(--space-8);
+    position: relative;
+    z-index: 1;
+}
+
+.pantheon-grid-large {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-3);
+}
+
+@media (max-width: 1200px) {
+    .pantheon-grid-large {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .pantheon-grid-large {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-2);
+    }
+}
+
+.pantheon-grid-large .archetype-card {
+    padding: var(--space-4);
+    background: rgba(10, 10, 10, 0.5);
+    border-color: rgba(212, 175, 55, 0.06);
+}
+
+.pantheon-grid-large .archetype-card:hover {
+    background: rgba(15, 15, 15, 0.7);
+}
+
+.pantheon-grid-large .archetype-card .card-portrait {
+    width: 150px;
+    height: 150px;
+    border-width: 2px;
+}
+
+.pantheon-grid-large .archetype-card .card-name {
+    font-size: 22px;
+}
+
+.pantheon-grid-large .archetype-card .card-domain {
+    opacity: 1;
+    transform: none;
+    font-size: 13px;
+    margin-top: var(--space-1);
+    color: var(--text-dim);
+}
+
+.pantheon-grid-large .archetype-card .card-punycode {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 4px;
+    opacity: 0;
+    transition: opacity var(--duration-normal) var(--ease-smooth);
+    letter-spacing: 0.02em;
+}
+
+.pantheon-grid-large .archetype-card:hover .card-punycode {
+    opacity: 0.7;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: var(--space-8) 0;
+}
+
+.empty-state.hidden {
+    display: none;
+}
+
+.empty-icon {
+    font-size: 72px;
+    color: var(--gold-dim);
+    margin-bottom: var(--space-3);
+    opacity: 0.5;
+    animation: psiPulse 3s ease-in-out infinite;
+}
+
+.empty-state h3 {
+    margin-bottom: var(--space-2);
+}

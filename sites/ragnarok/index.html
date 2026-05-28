@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ragnarǫk — Doom of the Gods | Norse Apocalypse | PUNYCODEX</title>
+    <meta name="description" content="The authentic digital shrine to Ragnarǫk, the Norse doom of the gods. Explore correct Old Norse orthography and the Völuspá prophecy.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Ragnarǫk — Doom of the Gods | Norse Apocalypse",
+    "description": "The authentic digital shrine to Ragnarǫk, the Norse doom of the gods. Explore correct Old Norse orthography and the Völuspá prophecy.",
+    "url": "https://punycodex.com/sites/ragnarok/",
+    "about": {
+        "@type": "Thing",
+        "name": "Ragnarǫk",
+        "alternateName": [
+            "ragnarok",
+            "Ragnarok"
+        ],
+        "description": "Twilight of the gods (from ragna + rǫk)"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNYCODEX",
+        "url": "https://punycodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punycodex.com/assets/images/og-default.svg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punycodex.com/sites/ragnarok/">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Ragnarǫk — Doom of the Gods | Norse Apocalypse | PUNYCODEX">
+    <meta property="og:description" content="The authentic digital shrine to Ragnarǫk, the Norse doom of the gods. Explore correct Old Norse orthography and the Völuspá prophecy.">
+    <meta property="og:url" content="https://punycodex.com/sites/ragnarok/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PUNYCODEX">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ragnarǫk — Doom of the Gods | Norse Apocalypse | PUNYCODEX">
+    <meta name="twitter:description" content="The authentic digital shrine to Ragnarǫk, the Norse doom of the gods. Explore correct Old Norse orthography and the Völuspá prophecy.">
+</head>
+<body>
+    <!-- Global Nav -->
+    <div style="position:fixed;top:0;left:0;width:100%;z-index:1001;background:rgba(26,26,26,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);">
+        <div style="max-width:1200px;margin:0 auto;padding:0.4rem clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;">
+            <a href="/" style="font-family:'Cinzel',serif;font-size:0.8rem;font-weight:700;letter-spacing:0.15em;color:#ff8c00;text-decoration:none;">PUNYCODEX</a>
+            <div style="display:flex;gap:1.5rem;">
+                <a href="/pantheon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#a0a0a0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#ff8c00'" onmouseout="this.style.color='#a0a0a0'">Pantheon</a>
+                <a href="/lexicon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#a0a0a0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#ff8c00'" onmouseout="this.style.color='#a0a0a0'">Lexicon</a>
+                <a href="/type/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#a0a0a0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#ff8c00'" onmouseout="this.style.color='#a0a0a0'">Type</a>
+                <a href="/tiers/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#a0a0a0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#ff8c00'" onmouseout="this.style.color='#a0a0a0'">Tiers</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fire Canvas -->
+    <canvas id="fire-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="main-nav" style="top:40px;" id="main-nav">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo">
+                <img src="assets/ragnarok_logolockup.png" alt="Ragnarǫk" class="nav-logo-img">
+            </a>
+            <div class="nav-links">
+                <a href="#the-name" class="nav-link">The Name</a>
+                <a href="#pronunciation" class="nav-link">Pronunciation</a>
+                <a href="#the-doom" class="nav-link">The Doom</a>
+                <a href="#myths" class="nav-link">Myths</a>
+                <a href="#pantheon" class="nav-link">Pantheon</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <h1 class="hero-title reveal-up">
+                    <span class="title-greek">Ragnarǫk</span>
+                    <span class="title-divider"></span>
+                    <span class="title-trans">Doom of the Gods</span>
+                </h1>
+                <p class="hero-subtitle reveal-up">Doom of the Gods &middot; The Twilight &middot; The Final Battle</p>
+                <div class="hero-meta reveal-up">
+                    <span class="meta-badge">Tier‑2 Macron‑Preserving</span>
+                    <span class="meta-domain">ragnarǫk.com</span>
+                </div>
+                <div class="hero-cta reveal-up">
+                    <a href="#the-name" class="btn-primary">
+                        <span>Enter the Temple</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <img src="assets/ragnarok_landscape.png" alt="Ragnarǫk — The world burning at the end of all things, with fire rising from a shattered horizon" class="mascot-img">
+                <div class="mascot-glow"></div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- The Name Section -->
+    <section class="section section-name" id="the-name">
+        <div class="section-bg-glow"></div>
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">01</span>
+                <h2 class="section-title">The Authentic Name</h2>
+                <p class="section-subtitle">Why <em>ragnarǫk.com</em> preserves the Old Norse form</p>
+            </div>
+            
+            <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ff8c00" stroke-width="1.5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Old Norse Original</h3>
+                    <p class="card-greek">Ragnarǫk</p>
+                    <p class="card-body">The name in its original Old Norse form. A compound of <em>ragna</em>, the genitive plural of <em>regin</em> ("gods, powers"), and <em>rǫk</em> ("reason, origin, doom"). The ǫ — o-with-ogonek — represents a long back rounded vowel that modern English and Icelandic have lost or transformed. This is the form found in the Prose Edda and the Poetic Edda, the primary sources for Norse mythology.</p>
+                </div>
+
+                <div class="name-card reveal-up" data-delay="100">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ff8c00" stroke-width="1.5">
+                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">ASCII Constraint</h3>
+                    <p class="card-ascii">RAGNAROK</p>
+                    <p class="card-body">Stripped of its Norse identity, the name was reduced to eight Latin letters. A Marvel franchise. A video game series. A word tossed around to mean any generic catastrophe. The original orthography — the ogonek that marks the long vowel, the compound grammar that binds <em>ragna</em> to <em>rǫk</em> — was erased by systems that only understand A-Z.</p>
+                </div>
+
+                <div class="name-card reveal-up" data-delay="200">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ff8c00" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Unicode Restoration</h3>
+                    <p class="card-unicode">Ragnarǫk</p>
+                    <p class="card-body">The ǫ (U+01EB, Latin Small Letter O with Ogonek) restores the long vowel of the Old Norse original. This is not decoration — it is <strong>philological accuracy</strong>. The ogonek marks a nasalized or length distinction that the ASCII <em>o</em> cannot encode. The domain resolves to Punycode, but the browser displays the truth.</p>
+                </div>
+            </div>
+
+            <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">ragnarǫk.com &rarr; xn--ragnark-fnc.com</code>
+                    <p class="explainer-note">The non-ASCII character <strong>ǫ</strong> (U+01EB, Latin Small Letter O with Ogonek) is encoded while the ASCII remains visible. To the DNS, it is Punycode. To the Eddas, it is <em>Ragnarǫk</em>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pronunciation Section -->
+    <section class="section section-pronunciation" id="pronunciation">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">02</span>
+                <h2 class="section-title">Pronunciation</h2>
+                <p class="section-subtitle">How the doom was truly spoken</p>
+            </div>
+
+            <div class="pronunciation-grid">
+                <div class="pronunciation-main reveal-up">
+                    <div class="ipa-display">
+                        <span class="ipa-text">/ˈrɑɣnɑˌrɔk/</span>
+                        <span class="ipa-label">Old Norse Reconstruction</span>
+                    </div>
+                    <div class="pronunciation-breakdown">
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">Rag-</span>
+                            <span class="phoneme-desc">The initial <em>r</em> is trilled or tapped, not the English approximant. The <em>a</em> is open and back, like the <em>a</em> in "father." The <em>g</em> is a voiced velar fricative [ɣ] — not the hard English <em>g</em>, but a softer sound, like the <em>g</em> in Spanish "agua."</span>
+                        </div>
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">-nar-</span>
+                            <span class="phoneme-desc">The second <em>a</em> is again open and back. The <em>n</em> is alveolar, resonant. The syllable is unstressed, flowing quickly into the final element. In the compound, <em>ragna</em> means "of the gods" — the genitive plural that binds the whole name together.</span>
+                        </div>
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">-ǫk</span>
+                            <span class="phoneme-desc">The <em>ǫ</em> is a long back rounded vowel, deeper and more resonant than the short <em>o</em>. It carries the weight of the word — <em>rǫk</em> means "doom, judgment, final reckoning." The final <em>k</em> is voiceless, sharp, the sound of a door closing that will never open again.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pronunciation-sidebar reveal-up" data-delay="150">
+                    <div class="sidebar-card">
+                        <h4 class="sidebar-title">Modern Approximation</h4>
+                        <p class="sidebar-text">"RAHG-nah-rok" — with the <em>g</em> softened toward a fricative and the final vowel deeper and longer than English allows. The stress falls on the first syllable, with a secondary stress on the third. Do not pronounce it like the action movie.</p>
+                        <div class="sidebar-divider"></div>
+                        <h4 class="sidebar-title">Etymological Kin</h4>
+                        <ul class="kin-list">
+                            <li><strong>Old Norse</strong> regin — "gods, powers, divine ones"</li>
+                            <li><strong>Old Norse</strong> rǫk — "reason, origin, doom"</li>
+                            <li><strong>Gothic</strong> raihts — "right, straight" (same root)</li>
+                            <li><strong>English</strong> reckoning — distant cousin through Germanic *rakō</li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-card accent-card">
+                        <h4 class="sidebar-title">The Ogonek Rule</h4>
+                        <p class="sidebar-text">In our Tier‑2 system, the ogonek on <em>ǫ</em> preserves the vowel length of the original Old Norse. While modern Icelandic writes <em>Ragnarök</em> with an umlaut, the ǫ form preserves the older orthography found in the Eddas. This is not a macron, but it serves the same function — it marks a distinction that ASCII cannot see.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Doom Section -->
+    <section class="section section-doom" id="the-doom">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">03</span>
+                <h2 class="section-title">The Doom</h2>
+                <p class="section-subtitle">The Völuspá prophecy and the end of all things</p>
+            </div>
+
+            <div class="doom-content">
+                <div class="doom-intro reveal-up">
+                    <p class="lead-text">Ragnarǫk is not merely an ending. It is <strong>the ending</strong> — the cosmic catastrophe foretold in the Völuspá, the prophecy of the seeress who sees all of time at once. The gods know it is coming. They know they cannot stop it. And yet they prepare for it anyway — because that is what warriors do when the final battle is written in the fabric of the world.</p>
+                </div>
+
+                <div class="domains-grid">
+                    <div class="domain-card reveal-up">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#ff8c00" stroke-width="1.5">
+                                <path d="M32 8L38 24H58L42 36L48 56L32 44L16 56L22 36L6 24H26L32 8Z"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">Fimbulwinter</h4>
+                        <p class="domain-desc">Three winters with no summer between them. Snow from all directions. Kinship breaks down. Brothers fight brothers. Fathers kill sons. The wolf Skǫll swallows the sun. His brother Hati swallows the moon. The stars disappear from the sky.</p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="100">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#ff8c00" stroke-width="1.5">
+                                <path d="M32 8L36 28H56L40 40L44 60L32 48L20 60L24 40L8 28H28L32 8Z" transform="rotate(180 32 32)"/>
+                                <path d="M32 4V12M32 52V60M12 32H4M60 32H52"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">The Breaking of Bonds</h4>
+                        <p class="domain-desc">The wolf Fenrir, bound by the gods with the fetter Gleipnir, breaks free. The sea churns as Jǫrmungandr thrashes. The ship Naglfar — made from the untrimmed nails of the dead — is launched. Loki steers it, with the giants of Jǫtunheimr as his crew.</p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="200">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#ff8c00" stroke-width="1.5">
+                                <circle cx="32" cy="20" r="12"/>
+                                <path d="M32 32V52M20 52H44"/>
+                                <path d="M24 40H40"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">Gjallarhorn</h4>
+                        <p class="domain-desc">Heimdallr stands on Bifrǫst and blows his horn. The sound is heard in all nine worlds. The gods wake. Óðinn rides to Mímir's well for counsel. The Æsir assemble on the plain of Vígríðr, 100 leagues in every direction.</p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="300">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#ff8c00" stroke-width="1.5">
+                                <path d="M32 8C20 8 12 16 12 28C12 44 32 56 32 56C32 56 52 44 52 28C52 16 44 8 32 8Z"/>
+                                <path d="M32 20V36M24 28H40"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">The World Fire</h4>
+                        <p class="domain-desc">Surtr comes from the south with fire. The sun turns black. The earth sinks into the sea. The stars vanish. Steam rises. And life as the gods knew it — as the mortals knew it — is consumed in flame and flood.</p>
+                    </div>
+                </div>
+
+                <div class="symbols-section reveal-up">
+                    <h3 class="symbols-title">Omens of the End</h3>
+                    <div class="symbols-list">
+                        <div class="symbol-item">
+                            <span class="symbol-name">The Great Winter</span>
+                            <span class="symbol-meaning">Three consecutive winters with no summer — the first sign</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">The Wolf Swallows the Sun</span>
+                            <span class="symbol-meaning">Skǫll catches Sól; Hati catches Máni — the heavens fail</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">The Earth Shakes</span>
+                            <span class="symbol-meaning">Yggdrasill trembles; mountains crumble; the world-tree groans</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">Loki is Freed</span>
+                            <span class="symbol-meaning">Bound beneath the serpent's venom, he breaks his chains</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">Naglfar Sets Sail</span>
+                            <span class="symbol-meaning">The ship of the dead, piloted by Loki, carrying the giants</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Myths Section -->
+    <section class="section section-myths" id="myths">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">04</span>
+                <h2 class="section-title">The Myths</h2>
+                <p class="section-subtitle">The final battle and what comes after</p>
+            </div>
+
+            <div class="myths-timeline">
+                <div class="myth-card reveal-up">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The All-Father's End</span>
+                        <h3 class="myth-title">Óðinn vs Fenrir</h3>
+                        <p class="myth-text">Óðinn rides to battle on Sleipnir, wearing his golden helmet, carrying his spear Gungnir. He knows the prophecy. He knows that Fenrir, the wolf he bound, will swallow him whole. And yet he charges. The father of the gods and the monster born of his own blood-ties meet on the field. Fenrir's jaws close around Óðinn. The god is swallowed. His son Víðarr avenges him — stepping on the wolf's lower jaw, grasping the upper, and tearing the beast apart. But Óðinn does not return. <strong>The All-Father dies as he lived: facing the inevitable with courage he did not need to have.</strong></p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="100">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Thunderer's Fall</span>
+                        <h3 class="myth-title">Þórr vs Jǫrmungandr</h3>
+                        <p class="myth-text">Þórr, the strongest of the gods, faces his ancient enemy — the World Serpent, Jǫrmungandr, whom he once fished from the sea. They have hated each other since before the world was arranged. Þórr strikes the serpent with Mjǫllnir, his hammer. The blow is true. The serpent dies. But the venom of the World Serpent covers Þórr. He walks nine paces — and falls. The thunderer, the protector of mankind, the god who never stopped fighting for the world, <strong>dies saving the world that is already ending.</strong> His sons Móði and Magni inherit the hammer. But they inherit it in a world of ash.</p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="200">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Fertility God's Sacrifice</span>
+                        <h3 class="myth-title">Freyr vs Surtr</h3>
+                        <p class="myth-text">Freyr, the god of sunshine and rain, of growth and harvest, faces Surtr — the fire giant from Múspell, wielding a flaming sword that shines brighter than the sun. Freyr fights bravely. But he gave his sword to his servant Skírnir in exchange for the giantess Gerðr. He fights with a stag's antler. He falls. <strong>The god who made the earth fertile dies because he chose love over war.</strong> It is perhaps the most human moment in all of Ragnarǫk — a reminder that even gods make choices they cannot undo.</p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="300">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Trickster's Reckoning</span>
+                        <h3 class="myth-title">Loki vs Heimdallr</h3>
+                        <p class="myth-text">Loki, the father of lies, the mother of monsters, the god who was never fully one of the Æsir, faces Heimdallr — the watchman of the gods, the one who never slept, the one who saw everything. They kill each other. It is fitting: the all-seeing guardian against the master of deceit. In some tellings, Loki fights with a sword; in others, with his wits until the very end. Heimdallr's horn, Gjallarhorn, has already sounded. There is nothing left to guard. <strong>The watchman and the thief die together, as they always knew they would.</strong></p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="400">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Rebirth</span>
+                        <h3 class="myth-title">What Remains After the Fire</h3>
+                        <p class="myth-text">The earth rises again from the sea, green and beautiful. The sun has a daughter, no less bright. Víðarr and Váli survive. Móði and Magni inherit Mjǫllnir. Baldr and Höðr return from Helheimr, reconciled. Two humans, Líf and Lífþrasir, have hidden in Hǫðdmímis holt — the wood of Mímir's grove — and they repopulate the world. The gods meet at Iðavǫllr, where Ásgarðr once stood. <strong>Ragnarǫk is an ending, but it is also a beginning.</strong> The Norse cosmos is not linear — it is cyclical, woven from the same threads again and again, each time slightly different, each time the same.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Names -->
+    <section class="section" id="related" style="background:#1a1a1a;padding:6rem 0;">
+        <div class="container" style="max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);">
+            <div style="text-align:center;margin-bottom:4rem;">
+                <span style="display:block;font-family:'Cinzel',serif;font-size:0.85rem;color:#ff8c00;letter-spacing:0.4em;margin-bottom:1rem;">05</span>
+                <h2 style="font-family:'Cinzel',serif;font-size:clamp(2rem,4vw,3.5rem);color:#f5f5f5;letter-spacing:0.05em;margin-bottom:1rem;">Related Names</h2>
+                <p style="font-size:clamp(1rem,1.5vw,1.25rem);color:#a0a0a0;font-style:italic;">More from the Norse pantheon</p>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;">
+                
+                <a href="/sites/odinn/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(255,140,0,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#ff8c00;letter-spacing:0.05em;">Óðinn</span>
+                    <span style="font-size:0.9rem;color:#a0a0a0;font-style:italic;">—</span>
+                    <span style="font-size:0.8rem;color:#a0a0a0;line-height:1.5;">War, Wisdom, Poetry, Death</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,140,0,0.3);color:#ff8c00;">Tier-2</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#a0a0a0;">Norse</span>
+                    </div>
+                </a>
+                <a href="/sites/thor/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(255,140,0,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#ff8c00;letter-spacing:0.05em;">Þórr</span>
+                    <span style="font-size:0.9rem;color:#a0a0a0;font-style:italic;">—</span>
+                    <span style="font-size:0.8rem;color:#a0a0a0;line-height:1.5;">Thunder, Storms, Oak</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,140,0,0.3);color:#ff8c00;">Tier-2 Accent-Preserving</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#a0a0a0;">Norse</span>
+                    </div>
+                </a>
+                <a href="/sites/freyr/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(255,140,0,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#ff8c00;letter-spacing:0.05em;">Freyr</span>
+                    <span style="font-size:0.9rem;color:#a0a0a0;font-style:italic;">—</span>
+                    <span style="font-size:0.8rem;color:#a0a0a0;line-height:1.5;">Sunshine, Rain, Fertility</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,140,0,0.3);color:#ff8c00;">Tier-2</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#a0a0a0;">Norse</span>
+                    </div>
+                </a>
+                <a href="/sites/loki/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(255,140,0,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#ff8c00;letter-spacing:0.05em;">Loki</span>
+                    <span style="font-size:0.9rem;color:#a0a0a0;font-style:italic;">—</span>
+                    <span style="font-size:0.8rem;color:#a0a0a0;line-height:1.5;">Trickery, Fire, Chaos</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,140,0,0.3);color:#ff8c00;">Tier-2</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#a0a0a0;">Norse</span>
+                    </div>
+                </a>
+                <a href="/sites/fenrir/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(255,140,0,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#ff8c00;letter-spacing:0.05em;">Fenrir</span>
+                    <span style="font-size:0.9rem;color:#a0a0a0;font-style:italic;">—</span>
+                    <span style="font-size:0.8rem;color:#a0a0a0;line-height:1.5;">The Bound Wolf</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,140,0,0.3);color:#ff8c00;">Tier-2</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#a0a0a0;">Norse</span>
+                    </div>
+                </a>
+                <a href="/sites/jormungandr/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(255,140,0,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#ff8c00;letter-spacing:0.05em;">Jǫrmungandr</span>
+                    <span style="font-size:0.9rem;color:#a0a0a0;font-style:italic;">—</span>
+                    <span style="font-size:0.8rem;color:#a0a0a0;line-height:1.5;">World Serpent</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,140,0,0.3);color:#ff8c00;">Tier-2</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#a0a0a0;">Norse</span>
+                    </div>
+                </a>
+                <a href="/sites/surtr/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(255,140,0,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#ff8c00;letter-spacing:0.05em;">Surtr</span>
+                    <span style="font-size:0.9rem;color:#a0a0a0;font-style:italic;">—</span>
+                    <span style="font-size:0.8rem;color:#a0a0a0;line-height:1.5;">The Fire Giant</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,140,0,0.3);color:#ff8c00;">Tier-2</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#a0a0a0;">Norse</span>
+                    </div>
+                </a>
+                <a href="/sites/hel/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(255,140,0,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#ff8c00;letter-spacing:0.05em;">Hel</span>
+                    <span style="font-size:0.9rem;color:#a0a0a0;font-style:italic;">—</span>
+                    <span style="font-size:0.8rem;color:#a0a0a0;line-height:1.5;">Realm of the Dead</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,140,0,0.3);color:#ff8c00;">Tier-2</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#a0a0a0;">Norse</span>
+                    </div>
+                </a>
+                <a href="/sites/heimdallr/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(255,140,0,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#ff8c00;letter-spacing:0.05em;">Heimdallr</span>
+                    <span style="font-size:0.9rem;color:#a0a0a0;font-style:italic;">—</span>
+                    <span style="font-size:0.8rem;color:#a0a0a0;line-height:1.5;">Watchman of the Gods</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,140,0,0.3);color:#ff8c00;">Tier-2</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#a0a0a0;">Norse</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Name Variations -->
+    <section class="section section-variations" id="variations">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">06</span>
+                <h2 class="section-title">Name Variations</h2>
+                <p class="section-subtitle">Forms across time and orthography</p>
+            </div>
+
+            <div class="variations-grid reveal-up">
+                <div class="variation-card">
+                    <span class="variation-label">Primary</span>
+                    <span class="variation-name">Ragnarǫk</span>
+                    <p class="variation-desc">The Old Norse form preserved in the Poetic Edda and Prose Edda, with the ogonek marking the long back rounded vowel. This is the scholarly standard for Old Norse studies.</p>
+                </div>
+                <div class="variation-card">
+                    <span class="variation-label">ASCII</span>
+                    <span class="variation-name">Ragnarok</span>
+                    <p class="variation-desc">The stripped Latin form used in DNS, modern branding, and popular media. All phonetic and orthographic distinctions are flattened to seven basic letters.</p>
+                </div>
+                <div class="variation-card">
+                    <span class="variation-label">Modern Icelandic</span>
+                    <span class="variation-name">Ragnarök</span>
+                    <p class="variation-desc">The modern Icelandic form, with umlaut (ö) instead of ogonek (ǫ). Icelandic underwent a sound shift that changed the old ǫ to ö. This is the form most Icelanders would recognize today.</p>
+                </div>
+            </div>
+
+            <div class="variations-note reveal-up">
+                <p><strong>Note on orthography:</strong> Ragnarǫk preserves the Old Norse orthography with o-with-ogonek (ǫ, U+01EB), while Ragnarök uses the modern Icelandic umlaut (ö, U+00F6). Both represent legitimate scholarly traditions, but the ǫ form is preferred for Old Norse textual studies because it distinguishes the historical vowel from the modern Icelandic reflex. The PUNYCODEX restoration uses ǫ to honor the Eddas in their original orthography.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pantheon Connection -->
+    <section class="section section-pantheon" id="pantheon">
+        <div class="container">
+            <div class="pantheon-content reveal-up">
+                <div class="pantheon-text">
+                    <span class="pantheon-eyebrow">The PUNYCODEX</span>
+                    <h2 class="pantheon-title">One of the Nine Worlds</h2>
+                    <p class="pantheon-body">Ragnarǫk is not merely an event. It is the <strong>fulfillment of the Norse cosmos</strong> — the catastrophe that was built into the world from its first day. The gods knew it was coming. The giants knew it was coming. The serpent and the wolf knew. Only humanity was kept in the dark, and even they heard the prophecy in the Völuspá.</p>
+                    <p class="pantheon-body">This is not a directory. This is a <strong>resurrection.</strong></p>
+                    <a href="/lexicon/" class="btn-primary btn-ghost">
+                        <span>Enter the Codex</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="pantheon-mascot">
+                    <img src="assets/ragnarok_landscape.png" alt="Ragnarǫk landscape" class="pantheon-mascot-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Type Tool CTA -->
+    <section style="padding:6rem 0;background:linear-gradient(180deg,#1a1a1a 0%,rgba(139,0,0,0.08) 100%);text-align:center;">
+        <div class="container" style="max-width:700px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);">
+            <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.75rem,3vw,2.5rem);color:#f5f5f5;margin-bottom:1.5rem;letter-spacing:0.05em;">Experience the Name</h2>
+            <p style="font-size:1.05rem;color:#a0a0a0;line-height:1.8;margin-bottom:2.5rem;">See how Ragnarok behaves in the PUNYCODEX Type Tool — with predictive autocomplete, character-by-character breakdown, and scholarly constraint validation.</p>
+            <div style="display:inline-flex;align-items:center;gap:1rem;padding:1rem 2rem;background:rgba(0,0,0,0.3);border:1px solid rgba(255,140,0,0.25);border-radius:2px;font-family:'Fira Code','Courier New',monospace;font-size:1.1rem;color:#ff8c00;margin-bottom:1.5rem;">
+                <code>ragnarok</code>
+                <span style="color:#a0a0a0;">&rarr;</span>
+                <code>Ragnarǫk</code>
+            </div>
+            <div>
+                <a href="/type/#ragnarok" style="display:inline-flex;align-items:center;gap:0.75rem;padding:1rem 2rem;background:linear-gradient(135deg,#ff8c00,#8b0000);color:#1a1a1a;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;transition:all 0.4s ease;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 40px rgba(255,140,0,0.3)';" onmouseout="this.style.transform='none';this.style.boxShadow='none';">
+                    <span>Open in Type Tool</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="footer-logo">PUNYCODEX</span>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Domain</span>
+                        <span class="footer-value">ragnarǫk.com</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier‑2 Macron‑Preserving</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Old Norse Original</span>
+                        <span class="footer-value">Ragnarǫk</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <img src="assets/ragnarok_logomark.png" alt="Ragnarǫk logomark" class="footer-logomark">
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

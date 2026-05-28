@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PÚNYCODEX Type — Options</title>
+    <link rel="stylesheet" href="options.css">
+</head>
+<body>
+    <div class="options-container">
+        <header class="options-header">
+            <h1>P<span class="accent">U</span>NYCODEX <span class="subtitle">Type Settings</span></h1>
+        </header>
+
+        <section class="options-section">
+            <h2>General</h2>
+            <label class="option-row">
+                <span class="option-label">Enable inline autocomplete</span>
+                <input type="checkbox" id="opt-inline" checked>
+                <span class="option-desc">Show suggestions while typing in any text field</span>
+            </label>
+            <label class="option-row">
+                <span class="option-label">Show preview hint</span>
+                <input type="checkbox" id="opt-preview" checked>
+                <span class="option-desc">Display remaining letters as you type</span>
+            </label>
+        </section>
+
+        <section class="options-section">
+            <h2>Default Pantheon Filter</h2>
+            <select id="opt-pantheon">
+                <option value="all">All Pantheons</option>
+                <option value="greek-all">Greek (All)</option>
+                <option value="greek">Greek Gods</option>
+                <option value="greek-location">Greek Locations</option>
+                <option value="norse">Norse</option>
+                <option value="egyptian">Egyptian</option>
+                <option value="sanskrit">Sanskrit</option>
+                <option value="celtic">Celtic</option>
+                <option value="mesopotamian">Mesopotamian</option>
+                <option value="polynesian">Polynesian</option>
+                <option value="japanese">Japanese</option>
+                <option value="nahuatl">Nahuatl</option>
+                <option value="yoruba">Yoruba</option>
+                <option value="slavic">Slavic</option>
+                <option value="zoroastrian">Zoroastrian</option>
+                <option value="incan">Incan</option>
+            </select>
+        </section>
+
+        <section class="options-section">
+            <h2>Site Filter</h2>
+            <p class="option-desc" style="margin-bottom:12px;">
+                Control which websites the inline autocomplete appears on.
+                The popup (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>) always works everywhere.
+            </p>
+            <div class="site-mode">
+                <label class="radio-row">
+                    <input type="radio" name="site-mode" value="all" id="mode-all" checked>
+                    <span class="radio-label">Enable everywhere</span>
+                </label>
+                <label class="radio-row">
+                    <input type="radio" name="site-mode" value="allowlist" id="mode-allowlist">
+                    <span class="radio-label">Only enable on these sites</span>
+                </label>
+                <label class="radio-row">
+                    <input type="radio" name="site-mode" value="blocklist" id="mode-blocklist">
+                    <span class="radio-label">Disable on these sites</span>
+                </label>
+            </div>
+            <textarea id="site-list" class="site-list" rows="6" placeholder="example.com&#10;mail.google.com&#10;*.twitter.com"></textarea>
+            <p class="option-desc">One domain per line. Use <code>*.example.com</code> for subdomains.</p>
+        </section>
+
+        <section class="options-section">
+            <h2>About</h2>
+            <p class="about-text">
+                <strong>255 scholarly name restorations</strong> across 14 classical pantheons.
+                Sources include LSJ, Pape-Benseler, Faulkner, MW, and more.
+            </p>
+            <p class="about-text">
+                Keyboard shortcut: <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> (Mac: <kbd>⌘</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>)
+            </p>
+        </section>
+
+        <div class="options-actions">
+            <button class="btn btn-primary" id="save-btn">Save Settings</button>
+            <span class="save-status" id="save-status"></span>
+        </div>
+    </div>
+
+    <script src="options.js"></script>
+</body>
+</html>

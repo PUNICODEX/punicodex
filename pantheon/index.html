@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Pantheon — PÚNYCODEX</title>
+    <meta name="description" content="Explore the complete Unicode Pantheon. 24 world archetypes restored to their original orthography. Filter by tier, pantheon, or search by name.">
+    <meta name="theme-color" content="#050505">
+    <link rel="canonical" href="https://punycodex.com/pantheon/">
+    <meta property="og:title" content="The Pantheon — PÚNYCODEX">
+    <meta property="og:description" content="Explore the complete Unicode Pantheon of restored archetype names.">
+    <meta property="og:image" content="https://punycodex.com/assets/images/og-default.svg">
+    <meta property="og:url" content="https://punycodex.com/pantheon/">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/pantheon.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%CE%A8%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+    <!-- ═══ LOADING SCREEN ═══ -->
+    <div class="loading-screen" id="loading-screen">
+        <div class="loading-shimmer"></div>
+        <div class="loading-psi">&#x03A8;</div>
+        <div class="loading-text">
+            <span class="letter" style="--letter-index:0">P</span>
+            <span class="letter accent" style="--letter-index:1">U</span>
+            <span class="letter" style="--letter-index:2">N</span>
+            <span class="letter" style="--letter-index:3">Y</span>
+            <span class="letter" style="--letter-index:4">C</span>
+            <span class="letter" style="--letter-index:5">O</span>
+            <span class="letter" style="--letter-index:6">D</span>
+            <span class="letter" style="--letter-index:7">E</span>
+            <span class="letter" style="--letter-index:8">X</span>
+        </div>
+        <div class="loading-bar"></div>
+    </div>
+
+    <nav class="main-nav" id="main-nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-wordmark">P<span class="accent">U</span>NYCODEX</a>
+            <div class="nav-links">
+                <a href="/pantheon/" class="nav-link">Pantheon</a>
+                <a href="/lexicon/" class="nav-link">Lexicon</a>
+                <a href="/tiers/" class="nav-link">Tier System</a>
+<a href="/type/" class="nav-link">Type</a>
+                <a href="/codex/" class="nav-link">Codex</a>
+                <a href="/store/" class="nav-link">Store</a>
+                <a href="/about/" class="nav-link">About</a>
+                <a href="/contact/" class="nav-link">Contact</a>
+            </div>
+            <a href="/pantheon/" class="nav-cta"><span>Enter</span></a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="/pantheon/">Pantheon</a>
+                <a href="/type/">Type</a>
+<a href="/tiers/">Tier System</a>
+<a href="/codex/">Codex</a>
+        <a href="/store/">Store</a>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+    </div>
+
+    <main class="page-pantheon">
+        <section class="page-hero">
+            <div class="container">
+                <p class="section-eyebrow reveal-up">The Collection</p>
+                <h1 class="display-lg text-center reveal-up">THE PANTHEON</h1>
+                <p class="body-lg text-center reveal-up">Every archetype, fully restored. Browse, filter, and enter their temples.</p>
+            </div>
+        </section>
+
+        <section class="filter-bar" id="filter-bar">
+            <div class="container">
+                <div class="filter-row">
+                    <div class="filter-pills" id="filter-pills">
+                        <button class="filter-pill active" data-filter="all">All</button>
+                        <button class="filter-pill" data-filter="tier-1">Tier 1</button>
+                        <button class="filter-pill" data-filter="tier-2">Tier 2</button>
+                        <button class="filter-pill" data-filter="dual-tier">Dual-Tier</button>
+                        <button class="filter-pill" data-filter="olympian">Olympian</button>
+                        <button class="filter-pill" data-filter="chthonic">Chthonic</button>
+                        <button class="filter-pill" data-filter="titan">Titan</button>
+                        <button class="filter-pill" data-filter="norse">Norse</button>
+                        <button class="filter-pill" data-filter="built">Built</button>
+                        <button class="filter-pill" data-filter="awaiting">Awaiting</button>
+                    </div>
+                    <div class="search-box">
+                        <input type="text" id="search-input" placeholder="Find an archetype..." autocomplete="off">
+                        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="stats-bar" id="stats-bar">
+                    <span><strong id="stat-total">0</strong> Total</span>
+                    <span><strong id="stat-built">0</strong> Built</span>
+                    <span><strong id="stat-tier1">0</strong> Tier 1</span>
+                    <span><strong id="stat-tier2">0</strong> Tier 2</span>
+                    <span><strong id="stat-dual">0</strong> Dual-Tier</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid-section">
+            <div class="container">
+                <div class="pantheon-grid-large" id="pantheon-grid-large" data-stagger>
+                    <!-- Populated by JS -->
+                </div>
+                <div class="empty-state hidden" id="empty-state">
+                    <div class="empty-icon">&#x03A8;</div>
+                    <h3 class="heading-md">No archetypes match your query</h3>
+                    <p class="body-md">Try another invocation.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>PÚNYCODEX</h4>
+                    <p>The Unicode Pantheon — restoring the original names of world archetypes to the digital realm.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Explore</h4>
+                    <a href="/pantheon/">Pantheon</a>
+                                        <a href="/type/">Type</a>
+<a href="/tiers/">Tier System</a>
+<a href="/codex/">Codex</a>
+                    <a href="/store/">Store</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <a href="/about/">About</a>
+                    <a href="/contact/">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <a href="mailto:hello@punycodex.com">hello@punycodex.com</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 PÚNYCODEX. All rites reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/archetypes.js" defer></script>
+    <script src="/js/main.js" defer></script>
+    <script src="/js/pantheon.js" defer></script>
+</body>
+</html>

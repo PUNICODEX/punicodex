@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PÚNYCODEX Type</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="popup-container">
+        <header class="popup-header">
+            <span class="popup-logo">P<span class="accent">U</span>NYCODEX</span>
+            <span class="popup-badge">Type</span>
+        </header>
+
+        <div class="popup-filter">
+            <select id="pantheon-filter">
+                <option value="all">All Pantheons</option>
+                <option value="greek-all">Greek (All)</option>
+                <option value="greek">Greek Gods</option>
+                <option value="greek-location">Greek Locations</option>
+                <option value="norse">Norse</option>
+                <option value="egyptian">Egyptian</option>
+                <option value="sanskrit">Sanskrit</option>
+                <option value="celtic">Celtic</option>
+                <option value="mesopotamian">Mesopotamian</option>
+                <option value="polynesian">Polynesian</option>
+                <option value="japanese">Japanese</option>
+                <option value="nahuatl">Nahuatl</option>
+                <option value="yoruba">Yoruba</option>
+                <option value="slavic">Slavic</option>
+                <option value="zoroastrian">Zoroastrian</option>
+                <option value="incan">Incan</option>
+            </select>
+        </div>
+
+        <div class="popup-input-area">
+            <input
+                type="text"
+                id="type-input"
+                class="type-input"
+                placeholder="Type a name..."
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+                autofocus
+            >
+            <div class="type-preview" id="type-preview"></div>
+        </div>
+
+        <div class="popup-suggestions" id="popup-suggestions"></div>
+
+        <div class="popup-result hidden" id="popup-result">
+            <div class="result-card">
+                <div class="result-unicode" id="result-unicode"></div>
+                <div class="result-greek" id="result-greek"></div>
+                <div class="result-meta">
+                    <div class="result-row">
+                        <span class="result-key">Domain</span>
+                        <span class="result-value" id="result-domain"></span>
+                    </div>
+                    <div class="result-row">
+                        <span class="result-key">Meaning</span>
+                        <span class="result-value" id="result-meaning"></span>
+                    </div>
+                </div>
+                <div class="result-sources" id="result-sources"></div>
+                <div class="result-actions">
+                    <button class="btn btn-primary" id="copy-btn">
+                        <span>Copy Unicode</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="popup-completions" id="popup-completions" role="listbox"></div>
+
+        <footer class="popup-footer">
+            <span id="status-text">Type a name to begin restoration...</span>
+            <span class="popup-count">255 entries</span>
+        </footer>
+    </div>
+
+    <script src="../shared/lexicon.js"></script>
+    <script src="../shared/engine.js"></script>
+    <script src="popup.js"></script>
+</body>
+</html>

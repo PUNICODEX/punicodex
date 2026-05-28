@@ -1,0 +1,91 @@
+/* ═══════════════════════════════════════════════════════════
+   PÚNYCODEX — About Page Styles
+   ═══════════════════════════════════════════════════════════ */
+
+.page-about {
+    padding-top: var(--nav-height);
+}
+
+.page-hero {
+    padding: var(--space-7) 0 var(--space-5);
+}
+
+.page-hero p {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.about-section {
+    padding: var(--space-5) 0 var(--space-7);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-6);
+    align-items: start;
+}
+
+@media (max-width: 1024px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.about-article {
+    margin-bottom: var(--space-7);
+    max-width: 680px;
+}
+
+.about-article:last-child {
+    margin-bottom: 0;
+}
+
+.about-article .section-eyebrow {
+    margin-bottom: var(--space-2);
+}
+
+.about-article h2 {
+    margin-bottom: var(--space-3);
+}
+
+.about-sidebar {
+    position: sticky;
+    top: calc(var(--nav-height) + var(--space-4));
+}
+
+.sidebar-card {
+    background: var(--surface);
+    border: 1px solid var(--gold-dim);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    margin-bottom: var(--space-3);
+}
+
+.sidebar-card h4 {
+    margin-bottom: var(--space-3);
+    color: var(--gold);
+}
+
+.sidebar-stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid var(--gold-dim);
+}
+
+.sidebar-stat:last-child {
+    border-bottom: none;
+}
+
+.stat-num {
+    font-family: var(--font-display);
+    font-size: 24px;
+    color: var(--gold);
+}
+
+.stat-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+}

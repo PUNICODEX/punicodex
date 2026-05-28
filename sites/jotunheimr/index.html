@@ -1,0 +1,525 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jötunheimr — Land of the Giants | Norse Cosmology | PUNYCODEX</title>
+    <meta name="description" content="The authentic digital shrine to Jötunheimr, the Norse realm of the giants. Explore correct Old Norse orthography and mythology.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Jötunheimr — Land of the Giants | Norse Cosmology",
+    "description": "The authentic digital shrine to Jötunheimr, the Norse realm of the giants. Explore correct Old Norse orthography and mythology.",
+    "url": "https://punycodex.com/sites/jotunheimr/",
+    "about": {
+        "@type": "Thing",
+        "name": "Jötunheimr",
+        "alternateName": [
+            "jotunheimr",
+            "Jotunheimr",
+            "Jötunheimar"
+        ],
+        "description": "Land of the Giants, one of the Nine Worlds of Norse cosmology"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNYCODEX",
+        "url": "https://punycodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punycodex.com/assets/images/og-default.svg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punycodex.com/sites/jotunheimr/">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Jötunheimr — Land of the Giants | Norse Cosmology | PUNYCODEX">
+    <meta property="og:description" content="The authentic digital shrine to Jötunheimr, the Norse realm of the giants. Explore correct Old Norse orthography and mythology.">
+    <meta property="og:url" content="https://punycodex.com/sites/jotunheimr/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PUNYCODEX">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Jötunheimr — Land of the Giants | Norse Cosmology | PUNYCODEX">
+    <meta name="twitter:description" content="The authentic digital shrine to Jötunheimr, the Norse realm of the giants. Explore correct Old Norse orthography and mythology.">
+</head>
+<body>
+    <!-- Global Nav -->
+    <div style="position:fixed;top:0;left:0;width:100%;z-index:1001;background:rgba(5,10,20,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);">
+        <div style="max-width:1200px;margin:0 auto;padding:0.4rem clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;">
+            <a href="/" style="font-family:'Cinzel',serif;font-size:0.8rem;font-weight:700;letter-spacing:0.15em;color:#a5d8ff;text-decoration:none;">PUNYCODEX</a>
+            <div style="display:flex;gap:1.5rem;">
+                <a href="/pantheon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#90a4ae;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#a5d8ff'" onmouseout="this.style.color='#90a4ae'">Pantheon</a>
+                <a href="/lexicon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#90a4ae;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#a5d8ff'" onmouseout="this.style.color='#90a4ae'">Lexicon</a>
+                <a href="/type/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#90a4ae;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#a5d8ff'" onmouseout="this.style.color='#90a4ae'">Type</a>
+                <a href="/tiers/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#90a4ae;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#a5d8ff'" onmouseout="this.style.color='#90a4ae'">Tiers</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Snow Canvas -->
+    <canvas id="snow-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="main-nav" style="top:40px;" id="main-nav">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo">
+                <img src="assets/jotunheimr_logolockup.png" alt="Jötunheimr" class="nav-logo-img">
+            </a>
+            <div class="nav-links">
+                <a href="#the-name" class="nav-link">The Name</a>
+                <a href="#pronunciation" class="nav-link">Pronunciation</a>
+                <a href="#the-realm" class="nav-link">The Realm</a>
+                <a href="#myths" class="nav-link">Myths</a>
+                <a href="#pantheon" class="nav-link">Pantheon</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <h1 class="hero-title reveal-up">
+                    <span class="title-norse">Jötunheimr</span>
+                    <span class="title-divider"></span>
+                    <span class="title-trans">Land of the Giants</span>
+                </h1>
+                <p class="hero-subtitle reveal-up">Realm of Frost and Stone &middot; Beyond the Walls of Asgard</p>
+                <div class="hero-meta reveal-up">
+                    <span class="meta-badge">Tier‑2 Macron‑Preserving</span>
+                    <span class="meta-domain">jötunheimr.com</span>
+                </div>
+                <div class="hero-cta reveal-up">
+                    <a href="#the-name" class="btn-primary">
+                        <span>Enter the Realm</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <img src="assets/jotunheimr_landscape.png" alt="Jötunheimr — Frozen fortress of the giants, ice mountains and ancient stone" class="mascot-img">
+                <div class="mascot-glow"></div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- The Name Section -->
+    <section class="section section-name" id="the-name">
+        <div class="section-bg-glow"></div>
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">01</span>
+                <h2 class="section-title">The Authentic Name</h2>
+                <p class="section-subtitle">Why <em>jötunheimr.com</em> preserves the Old Norse length</p>
+            </div>
+            
+            <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#a5d8ff" stroke-width="1.5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Old Norse Original</h3>
+                    <p class="card-norse">Jötunheimr</p>
+                    <p class="card-body">The name in its original Old Norse form — a compound of <em>jötunn</em> (giant) and <em>heimr</em> (home, world, realm). The umlauted <strong>ö</strong> is not a stylistic flourish. It is the O-umlaut, a regular phonological change in Old Norse where original <em>*u</em> became <em>ö</em> when the following syllable contained <em>u</em> or <em>ō</em>. This is the same process that produced <em>lögr</em> from <em>*lagu-</em>. The ö preserves the <strong>length and vowel quality</strong> of the ancestral form — a living record of Germanic sound law.</p>
+                </div>
+
+                <div class="name-card reveal-up" data-delay="100">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#a5d8ff" stroke-width="1.5">
+                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">ASCII Constraint</h3>
+                    <p class="card-ascii">JOTUNHEIMR</p>
+                    <p class="card-body">Stripped of its umlaut, the name becomes flat and cold in a different way — the cold of a database entry, not a glacier. The ö is reduced to o, and with it goes the entire phonological history of the umlaut process. What remains is a string that any keyboard can type and no scholar can love. The ASCII form is legible, but it is <strong>not the name.</strong> It is the name's ghost.</p>
+                </div>
+
+                <div class="name-card reveal-up" data-delay="200">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#a5d8ff" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Unicode Restoration</h3>
+                    <p class="card-unicode">Jötunheimr</p>
+                    <p class="card-body">The umlaut <strong>ö</strong> (U+00F6, Latin Small Letter O with Diaeresis) restores the length marker that the ASCII form silently erases. In our Tier‑2 system, this is classified as <em>Macron‑Preserving</em> — the ö encodes the historical long vowel quality that resulted from umlaut. The domain encodes to Punycode, but the browser displays the truth: a name with its phonological history intact.</p>
+                </div>
+            </div>
+
+            <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">jötunheimr.com &rarr; xn--jtnheimr-0za.com</code>
+                    <p class="explainer-note">The non-ASCII character <strong>ö</strong> (U+00F6) is encoded while the ASCII remains visible. To the DNS, it is Punycode. To the Eddas, it is <em>Jötunheimr</em> — the realm where frost and stone conspire against the gods.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pronunciation Section -->
+    <section class="section section-pronunciation" id="pronunciation">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">02</span>
+                <h2 class="section-title">Pronunciation</h2>
+                <p class="section-subtitle">How the realm of giants was truly spoken</p>
+            </div>
+
+            <div class="pronunciation-grid">
+                <div class="pronunciation-main reveal-up">
+                    <div class="ipa-display">
+                        <span class="ipa-text">/ˈjøːtunˌhɛimr/</span>
+                        <span class="ipa-label">Old Norse Reconstruction</span>
+                    </div>
+                    <div class="pronunciation-breakdown">
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">Jø-</span>
+                            <span class="phoneme-desc">The <em>j</em> is a palatal approximant [j], like English "y." The <em>ö</em> is a front rounded vowel [øː] — start with the tongue position of [e] and round the lips as for [o]. It is long, stretching across the syllable like ice across a lake. This is the umlaut vowel, the sound that tells you this word has a history.</span>
+                        </div>
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">-tun-</span>
+                            <span class="phoneme-desc">The <em>t</em> is voiceless and dental. The <em>u</em> is a short back rounded vowel [u], crisp and closed. This syllable carries the second stress — lighter than the first, but audible. <em>Jötunn</em> means "giant, devourer, one who eats." The word itself is heavy.</span>
+                        </div>
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">-heimr</span>
+                            <span class="phoneme-desc">The diphthong <em>ei</em> — slide from open [ɛ] to close [i], the sound of wind across stone. The <em>m</em> is nasal, resonant. The final <em>r</em> is trilled or tapped, the Old Norse nominative singular masculine ending that English abandoned centuries ago. <strong>Jötunheimr.</strong> Four syllables. The first long and front-rounded, the second short and closed, the third sliding, the fourth vanishing into a tap of the tongue.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pronunciation-sidebar reveal-up" data-delay="150">
+                    <div class="sidebar-card">
+                        <h4 class="sidebar-title">Modern Approximation</h4>
+                        <p class="sidebar-text">"YUR-tun-haymr" — with the first vowel like the "eu" in French <em>feu</em>, held longer. The final <em>r</em> is lightly tapped or trilled. Do not pronounce it like English "er" — it is a real consonant, the grammatical ending that holds the word together.</p>
+                        <div class="sidebar-divider"></div>
+                        <h4 class="sidebar-title">Etymological Kin</h4>
+                        <ul class="kin-list">
+                            <li><strong>Old Norse</strong> jötunn — "giant, devourer"</li>
+                            <li><strong>Old Norse</strong> heimr — "world, home, dwelling"</li>
+                            <li><strong>Gothic</strong> haims — "village, home"</li>
+                            <li><strong>English</strong> home — same root, worn smooth</li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-card accent-card">
+                        <h4 class="sidebar-title">The O-Umlaut Rule</h4>
+                        <p class="sidebar-text">In Old Norse, the umlaut <em>ö</em> arose when an original <em>*u</em> was followed by <em>u</em> or <em>ō</em> in the next syllable. The <em>jötunn</em> stem originally contained a back vowel that fronted under this influence. Preserving the ö in <em>Jötunheimr</em> is not decoration — it is <strong>the recovery of a regular sound law</strong> that shaped the entire Old Norse language.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Realm Section -->
+    <section class="section section-realm" id="the-realm">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">03</span>
+                <h2 class="section-title">The Realm</h2>
+                <p class="section-subtitle">Frost, stone, and the kingdom beyond the gods</p>
+            </div>
+
+            <div class="realm-content">
+                <div class="realm-intro reveal-up">
+                    <p class="lead-text">Jötunheimr is not merely a place. It is the <strong>anti-realm</strong> — the world that exists in deliberate opposition to Ásgarðr. Where the gods have gold and light, the giants have ice and shadow. Where Ásgarðr is order, Jötunheimr is chaos in its most ancient, most magnificent form. It is one of the Nine Worlds, and without it, the cosmos would collapse. The giants are not evil. They are <strong>necessary.</strong> They are the force against which the gods define themselves.</p>
+                </div>
+
+                <div class="domains-grid">
+                    <div class="domain-card reveal-up">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#a5d8ff" stroke-width="1.5">
+                                <path d="M32 4L44 20H56L40 32L48 52L32 40L16 52L24 32L8 20H20L32 4Z"/>
+                                <path d="M32 40V60"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">The Nine Worlds</h4>
+                        <p class="domain-desc">Jötunheimr stands among the Nine Worlds of Yggdrasill's branches. It is the home of the <em>jötnar</em> — not merely "giants" in the modern sense, but primordial beings of enormous power, wisdom, and age. Without Jötunheimr, there is no cosmic balance.</p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="100">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#a5d8ff" stroke-width="1.5">
+                                <rect x="12" y="16" width="40" height="32" rx="2"/>
+                                <path d="M12 28h40M20 16v-4a12 12 0 0 1 24 0v4"/>
+                                <circle cx="32" cy="36" r="4"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">The Fortress of Utgard</h4>
+                        <p class="domain-desc">At the heart of Jötunheimr lies Utgarðr — the "Outer Enclosure" — a stronghold of illusions and impossible contests. It is ruled by Útgarða-Loki, the master of deception, whose magic can make the impossible seem trivial and the trivial seem impossible.</p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="200">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#a5d8ff" stroke-width="1.5">
+                                <path d="M32 8c-12 0-20 12-20 24 0 14 12 24 20 24s20-10 20-24C52 20 44 8 32 8z"/>
+                                <path d="M20 32c4-8 8-12 12-12s8 4 12 12"/>
+                                <path d="M32 20v24"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">Beyond Asgard's Walls</h4>
+                        <p class="domain-desc">The giants live outside the walls of Ásgarðr — literally and cosmologically. They are the <strong>other</strong> against which the Æsir define themselves. Yet the boundary is permeable: gods marry giants, giantesses bear divine children, and the worlds are linked by bridges and roots.</p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="300">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#ff6f00" stroke-width="1.5">
+                                <path d="M32 8L38 28H58L42 40L48 60L32 48L16 60L22 40L6 28H26L32 8Z"/>
+                                <path d="M32 48v8"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">Thor's Journeys</h4>
+                        <p class="domain-desc">Þórr travels to Jötunheimr more than any other god — by fishing boat with Hymir, by chariot across the sky, by deception and force. The giants are his adversaries, but also his in-laws. The world of frost is the forge on which his legend is hammered.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Myths Section -->
+    <section class="section section-myths" id="myths">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">04</span>
+                <h2 class="section-title">The Myths</h2>
+                <p class="section-subtitle">Stories of thunder, deception, and the world beyond the walls</p>
+            </div>
+
+            <div class="myths-timeline">
+                <div class="myth-card reveal-up">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Fishing Trip</span>
+                        <h3 class="myth-title">Thor and Hymir Fish for Jörmungandr</h3>
+                        <p class="myth-text">Þórr went fishing with the giant Hymir, the father of Týr. They rowed far out to sea, farther than Hymir was comfortable with. Þórr baited his hook with the head of an ox and cast it into the deep. The World Serpent, <strong>Jörmungandr</strong>, bit. The line went taut. The sea boiled. Þórr planted his feet against the boat's floor and hauled with all his divine strength. The serpent's head broke the surface — venom dripping, eyes like moons of poison. Þórr raised his hammer Mjǫllnir to strike the death-blow that would end the world-serpent forever. But Hymir, terrified, cut the line. Jörmungandr sank back into the black water. Þórr was so enraged that he struck Hymir with his fist and the giant fell overboard. The poem says that Þórr's fury was terrible to see. And the serpent waits, coiled around the world, until Ragnarǫk.</p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="100">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Contest</span>
+                        <h3 class="myth-title">Thor's Visit to Utgard-Loki</h3>
+                        <p class="myth-text">Þórr, Loki, and two servants traveled to Jötunheimr and came to the hall of Útgarða-Loki. The giant challenged them to contests. Loki lost an eating contest to Logi, who was <strong>fire itself.</strong> The servant Hugi outran thought. Then it was Þórr's turn. He was given a horn to drink from, but the horn was connected to the sea — he lowered it, but the tide still rises twice a day from his efforts. He was asked to lift a cat, but the cat was <strong>Jörmungandr in disguise</strong> — he lifted one paw, and the earth shook. He was asked to wrestle an old woman, but she was <strong>old age itself</strong> — no one defeats Elli. Utgard-Loki revealed the deceptions and admitted that Þórr's strength had terrified him. He would not risk another contest. The hall vanished. The giant was gone. And Þórr stood alone in the empty waste, his hammer heavy in his hand.</p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="200">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Builder</span>
+                        <h3 class="myth-title">The Giant Who Built Asgard's Walls</h3>
+                        <p class="myth-text">After the war with the Vanir, Ásgarðr needed new fortifications. A builder appeared — a giant, but a master craftsman. He offered to build an impenetrable wall in three seasons in exchange for Freyja, the sun, and the moon. The gods agreed on the condition that he finish in one season with no help but his stallion Svaðilfari. The builder worked with supernatural speed, and his horse was no ordinary beast — it hauled stones that would crush a team of oxen. As the deadline approached, the wall was nearly complete. The gods turned to Loki, who had negotiated the deal. Loki transformed into a mare and lured Svaðilfari away. The builder, enraged at the delay, revealed his true giant form. Þórr killed him with a single blow of Mjǫllnir. But Loki's trick had consequences: from the union of mare and stallion came <strong>Sleipnir</strong>, the eight-legged horse that would become Óðinn's steed. The wall was finished. The giant was dead. And the gods had their fortress — built by a giant, paid for with deception, and haunted by the horse that runs between worlds.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Names Section -->
+    <section class="section" id="related" style="background:#070f1a;padding:6rem 0;">
+        <div class="container" style="max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);">
+            <div style="text-align:center;margin-bottom:4rem;">
+                <span style="display:block;font-family:'Cinzel',serif;font-size:0.85rem;color:#a5d8ff;letter-spacing:0.4em;margin-bottom:1rem;">05</span>
+                <h2 style="font-family:'Cinzel',serif;font-size:clamp(2rem,4vw,3.5rem);color:#e3f2fd;letter-spacing:0.05em;margin-bottom:1rem;">Related Names</h2>
+                <p style="font-size:clamp(1rem,1.5vw,1.25rem);color:#90a4ae;font-style:italic;">More from the Norse pantheon</p>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;">
+                
+                <div style="cursor:default;padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(165,216,255,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#a5d8ff;letter-spacing:0.05em;">Þórr</span>
+                    <span style="font-size:0.9rem;color:#90a4ae;font-style:italic;">Thunder, Strength, Protection</span>
+                    <span style="font-size:0.8rem;color:#90a4ae;line-height:1.5;">The thunder-god who journeys to Jötunheimr</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(165,216,255,0.3);color:#a5d8ff;">Tier-2</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#90a4ae;">Norse</span>
+                    </div>
+                </div>
+                <a href="/sites/loki/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(165,216,255,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#a5d8ff;letter-spacing:0.05em;">Loki</span>
+                    <span style="font-size:0.9rem;color:#90a4ae;font-style:italic;">Trickery, Fire, Chaos</span>
+                    <span style="font-size:0.8rem;color:#90a4ae;line-height:1.5;">Half-giant, half-Æsir, all deception</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(165,216,255,0.3);color:#a5d8ff;">Tier-2</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#90a4ae;">Norse</span>
+                    </div>
+                </div>
+                <a href="/sites/skadi/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(165,216,255,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#a5d8ff;letter-spacing:0.05em;">Skaði</span>
+                    <span style="font-size:0.9rem;color:#90a4ae;font-style:italic;">Winter, Mountains, Hunting</span>
+                    <span style="font-size:0.8rem;color:#90a4ae;line-height:1.5;">The giantess of skis and snow</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(165,216,255,0.3);color:#a5d8ff;">Tier-2</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#90a4ae;">Norse</span>
+                    </div>
+                </div>
+                <a href="/sites/helheimr/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(165,216,255,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#a5d8ff;letter-spacing:0.05em;">Helheimr</span>
+                    <span style="font-size:0.9rem;color:#90a4ae;font-style:italic;">Realm of the Dead</span>
+                    <span style="font-size:0.8rem;color:#90a4ae;line-height:1.5;">Where the dead dwell beyond life</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(165,216,255,0.3);color:#a5d8ff;">Tier-2</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#90a4ae;">Norse</span>
+                    </div>
+                </div>
+                <a href="/sites/ymir/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(165,216,255,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#a5d8ff;letter-spacing:0.05em;">Ymir</span>
+                    <span style="font-size:0.9rem;color:#90a4ae;font-style:italic;">Primordial Giant, Progenitor</span>
+                    <span style="font-size:0.8rem;color:#90a4ae;line-height:1.5;">The first being, born from the void</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(165,216,255,0.3);color:#a5d8ff;">Tier-2</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#90a4ae;">Norse</span>
+                    </div>
+                </a>
+                <div style="cursor:default;padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(165,216,255,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#a5d8ff;letter-spacing:0.05em;">Gerðr</span>
+                    <span style="font-size:0.9rem;color:#90a4ae;font-style:italic;">Fertility, Fields</span>
+                    <span style="font-size:0.8rem;color:#90a4ae;line-height:1.5;">The beautiful giantess wed to Freyr</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(165,216,255,0.3);color:#a5d8ff;">Tier-2</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#90a4ae;">Norse</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Name Variations Section -->
+    <section class="section section-variations" id="variations">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">06</span>
+                <h2 class="section-title">Name Variations</h2>
+                <p class="section-subtitle">Forms of the name across time and orthography</p>
+            </div>
+
+            <div class="variations-content reveal-up">
+                <div class="variations-table">
+                    <div class="variation-row">
+                        <span class="variation-form">Jötunheimr</span>
+                        <span class="variation-label">Primary</span>
+                        <span class="variation-note">The Old Norse nominative singular, with O-umlaut ö and final -r preserved. This is the canonical form.</span>
+                    </div>
+                    <div class="variation-row">
+                        <span class="variation-form">Jotunheimr</span>
+                        <span class="variation-label">ASCII</span>
+                        <span class="variation-note">The ASCII fallback. The ö is reduced to o. Phonologically impoverished but DNS-compatible.</span>
+                    </div>
+                    <div class="variation-row">
+                        <span class="variation-form">Jötunheimar</span>
+                        <span class="variation-label">Modern Icelandic</span>
+                        <span class="variation-note">The modern Icelandic plural or oblique form. The nominative singular has shifted, but the root remains recognizable.</span>
+                    </div>
+                    <div class="variation-row">
+                        <span class="variation-form">Jǫtunheimr</span>
+                        <span class="variation-label">Normalized ON</span>
+                        <span class="variation-note">Some scholarly conventions use ǫ (o with ogonek) instead of ö for the umlaut vowel. Both represent the same phoneme.</span>
+                    </div>
+                </div>
+                <div class="variations-note">
+                    <p><strong>Note:</strong> Modern Icelandic uses <em>Jötunheimar</em> in many contexts, but <em>Jötunheimr</em> preserves the Old Norse nominative singular — the form that would have been spoken by the saga-tellers and poets who composed the Eddas. The final <em>-r</em> and the umlaut <em>ö</em> are not decorative. They are the grammatical and phonological skeleton of the word.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pantheon Connection -->
+    <section class="section section-pantheon" id="pantheon">
+        <div class="container">
+            <div class="pantheon-content reveal-up">
+                <div class="pantheon-text">
+                    <span class="pantheon-eyebrow">The PUNYCODEX</span>
+                    <h2 class="pantheon-title">One of the Nine</h2>
+                    <p class="pantheon-body">Jötunheimr is not merely a name — it is a <strong>world.</strong> One of the Nine Worlds of Norse cosmology, the realm of the giants stands in eternal tension with Ásgarðr. Without the giants, there are no stories. Without Jötunheimr, there is no Ragnarǫk, no fishing trip, no contest, no wall. The frost and stone are not the enemy. They are the <strong>necessary opposite.</strong></p>
+                    <p class="pantheon-body">This is not a directory. This is a <strong>resurrection.</strong></p>
+                    <a href="/lexicon/" class="btn-primary btn-ghost">
+                        <span>Enter the Codex</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="pantheon-mascot">
+                    <img src="assets/jotunheimr_landscape.png" alt="Jötunheimr landscape" class="pantheon-mascot-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Type Tool CTA -->
+    <section style="padding:6rem 0;background:linear-gradient(180deg,#070f1a 0%,rgba(21,101,192,0.08) 100%);text-align:center;">
+        <div class="container" style="max-width:700px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);">
+            <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.75rem,3vw,2.5rem);color:#e3f2fd;margin-bottom:1.5rem;letter-spacing:0.05em;">Experience the Name</h2>
+            <p style="font-size:1.05rem;color:#90a4ae;line-height:1.8;margin-bottom:2.5rem;">See how Jötunheimr behaves in the PUNYCODEX Type Tool — with predictive autocomplete, character-by-character breakdown, and scholarly constraint validation.</p>
+            <div style="display:inline-flex;align-items:center;gap:1rem;padding:1rem 2rem;background:rgba(0,0,0,0.3);border:1px solid rgba(165,216,255,0.25);border-radius:2px;font-family:'Fira Code','Courier New',monospace;font-size:1.1rem;color:#a5d8ff;margin-bottom:1.5rem;">
+                <code>jotunheimr</code>
+                <span style="color:#90a4ae;">&rarr;</span>
+                <code>Jötunheimr</code>
+            </div>
+            <div>
+                <a href="/type/#jotunheimr" style="display:inline-flex;align-items:center;gap:0.75rem;padding:1rem 2rem;background:linear-gradient(135deg,#1565c0,#0d47a1);color:#e3f2fd;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;transition:all 0.4s ease;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 40px rgba(21,101,192,0.3)';" onmouseout="this.style.transform='none';this.style.boxShadow='none';">
+                    <span>Open in Type Tool</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="footer-logo">PUNYCODEX</span>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Domain</span>
+                        <span class="footer-value">jötunheimr.com</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier‑2 Macron‑Preserving</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Old Norse Original</span>
+                        <span class="footer-value">Jötunheimr</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <img src="assets/jotunheimr_logomark.png" alt="Jötunheimr logomark" class="footer-logomark">
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

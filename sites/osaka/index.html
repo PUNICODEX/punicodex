@@ -1,0 +1,543 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大阪 — Ōsaka | Merchant City | PUNYCODEX</title>
+    <meta name="description" content="The authentic digital shrine to Ōsaka, Japan's merchant city. Explore correct Hepburn romanization and Japanese orthography.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Ōsaka — Merchant City, Kansai",
+    "description": "The authentic digital shrine to Ōsaka, Japan's merchant city. Explore correct Hepburn romanization and Japanese orthography.",
+    "url": "https://punycodex.com/sites/osaka/",
+    "about": {
+        "@type": "Thing",
+        "name": "大阪",
+        "alternateName": [
+            "osaka",
+            "Ōsaka"
+        ],
+        "description": "Large hill or slope"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNYCODEX",
+        "url": "https://punycodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punycodex.com/assets/images/og-default.svg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punycodex.com/sites/osaka/">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="大阪 — Ōsaka | Merchant City | PUNYCODEX">
+    <meta property="og:description" content="The authentic digital shrine to Ōsaka, Japan's merchant city. Explore correct Hepburn romanization and Japanese orthography.">
+    <meta property="og:url" content="https://punycodex.com/sites/osaka/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PUNYCODEX">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="大阪 — Ōsaka | Merchant City | PUNYCODEX">
+    <meta name="twitter:description" content="The authentic digital shrine to Ōsaka, Japan's merchant city. Explore correct Hepburn romanization and Japanese orthography.">
+</head>
+<body>
+    <!-- Global Nav -->
+    <div style="position:fixed;top:0;left:0;width:100%;z-index:1001;background:rgba(10,10,10,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);">
+        <div style="max-width:1200px;margin:0 auto;padding:0.4rem clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;">
+            <a href="/" style="font-family:'Cinzel',serif;font-size:0.8rem;font-weight:700;letter-spacing:0.15em;color:#ffd54f;text-decoration:none;">PUNYCODEX</a>
+            <div style="display:flex;gap:1.5rem;">
+                <a href="/pantheon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#ffd54f'" onmouseout="this.style.color='#A0A0A0'">Pantheon</a>
+                <a href="/lexicon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#ffd54f'" onmouseout="this.style.color='#A0A0A0'">Lexicon</a>
+                <a href="/type/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#ffd54f'" onmouseout="this.style.color='#A0A0A0'">Type</a>
+                <a href="/tiers/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#ffd54f'" onmouseout="this.style.color='#A0A0A0'">Tiers</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Night City Canvas -->
+    <canvas id="city-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="main-nav" style="top:40px;" id="main-nav">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo">
+                <img src="assets/osaka_logolockup.png" alt="Ōsaka" class="nav-logo-img">
+            </a>
+            <div class="nav-links">
+                <a href="#the-name" class="nav-link">The Name</a>
+                <a href="#pronunciation" class="nav-link">Pronunciation</a>
+                <a href="#the-city" class="nav-link">The City</a>
+                <a href="#history" class="nav-link">History</a>
+                <a href="#pantheon" class="nav-link">Pantheon</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <h1 class="hero-title reveal-up">
+                    <span class="title-greek">大阪</span>
+                    <span class="title-divider"></span>
+                    <span class="title-trans">Ōsaka</span>
+                </h1>
+                <p class="hero-subtitle reveal-up">Merchant City &middot; The Nation's Kitchen &middot; Kansai's Beating Heart</p>
+                <div class="hero-meta reveal-up">
+                    <span class="meta-badge">Tier‑1 Macron‑Preserving</span>
+                    <span class="meta-domain">ōsaka.com</span>
+                </div>
+                <div class="hero-cta reveal-up">
+                    <a href="#the-name" class="btn-primary">
+                        <span>Enter the Temple</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <img src="assets/osaka_landscape.png" alt="Ōsaka — Osaka Castle and the city skyline" class="mascot-img">
+                <div class="mascot-glow"></div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- The Name Section -->
+    <section class="section section-name" id="the-name">
+        <div class="section-bg-glow"></div>
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">01</span>
+                <h2 class="section-title">The Authentic Name</h2>
+                <p class="section-subtitle">Why <em>ōsaka.com</em> is the correct form</p>
+            </div>
+            
+            <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ffd54f" stroke-width="1.5">
+                            <rect x="3" y="3" width="18" height="18" rx="2"/>
+                            <path d="M8 12h8M12 8v8"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Japanese Original</h3>
+                    <p class="card-greek">大阪</p>
+                    <p class="card-body">The name in its original Japanese form. The kanji <em>大</em> (ō) means "large" or "great," while <em>阪</em> (saka) means "slope" or "hill." Together they evoke the topography of the Uemachi Plateau — the city's ancient heart.</p>
+                </div>
+
+                <div class="name-card reveal-up" data-delay="100">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ffd54f" stroke-width="1.5">
+                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">ASCII Constraint</h3>
+                    <p class="card-ascii">OSAKA</p>
+                    <p class="card-body">Stripped of its Japanese identity, the name was reduced to five Latin letters. Travel guides and corporations claimed it. The long vowel, the kanji, the history — all erased by systems that only understand A-Z.</p>
+                </div>
+
+                <div class="name-card reveal-up" data-delay="200">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ffd54f" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Unicode Restoration</h3>
+                    <p class="card-unicode">Ōsaka</p>
+                    <p class="card-body">The macron on <em>Ō</em> restores the long vowel and the dignity of the name. This is not decoration — it is <strong>Hepburn accuracy</strong>. The domain encodes to Punycode, but the browser displays the truth.</p>
+                </div>
+            </div>
+
+            <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">ōsaka.com &rarr; xn--saka-k3a.com</code>
+                    <p class="explainer-note">The non-ASCII character <strong>ō</strong> (U+014D) is encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Ōsaka</em>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pronunciation Section -->
+    <section class="section section-pronunciation" id="pronunciation">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">02</span>
+                <h2 class="section-title">Pronunciation</h2>
+                <p class="section-subtitle">How the merchant city was truly spoken</p>
+            </div>
+
+            <div class="pronunciation-grid">
+                <div class="pronunciation-main reveal-up">
+                    <div class="ipa-display">
+                        <span class="ipa-text">/oːsaka/</span>
+                        <span class="ipa-label">Hepburn Romanization</span>
+                    </div>
+                    <div class="pronunciation-breakdown">
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">ō</span>
+                            <span class="phoneme-desc">Long back rounded vowel [oː]. The macron marks that this vowel is held roughly twice as long as a short <em>o</em>. In the Kansai dialect, this is pronounced with a deeper, more rounded quality than standard Tokyo Japanese.</span>
+                        </div>
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">sa</span>
+                            <span class="phoneme-desc">Voiceless alveolar fricative [s] followed by open front unrounded vowel [a]. The <em>s</em> is sharp and crisp, never voiced as [z] in this position.</span>
+                        </div>
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">ka</span>
+                            <span class="phoneme-desc">Voiceless velar plosive [k] followed by open front unrounded vowel [a]. In Osaka-ben, the pitch accent falls differently than in Tokyo — the city name is often pronounced with a high-low-low pattern.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pronunciation-sidebar reveal-up" data-delay="150">
+                    <div class="sidebar-card">
+                        <h4 class="sidebar-title">Modern Approximation</h4>
+                        <p class="sidebar-text">"OH-sah-kah" — hold the first syllable longer than the others. The <em>ō</em> is the same vowel sound as in English "show," but sustained.</p>
+                        <div class="sidebar-divider"></div>
+                        <h4 class="sidebar-title">Etymology</h4>
+                        <ul class="kin-list">
+                            <li><strong>大</strong> (ō) — "large, great"</li>
+                            <li><strong>阪</strong> (saka) — "slope, hill"</li>
+                            <li><strong>Original spelling</strong> 大坂</li>
+                            <li><strong>Edo-period change</strong> 大阪</li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-card accent-card">
+                        <h4 class="sidebar-title">The Name Change</h4>
+                        <p class="sidebar-text">Historically written as <strong>大坂</strong> (Ōsaka), the character 坂 was changed to 阪 during the Edo period. The reason? 坂 could be read as "samurai falls" (士反), an ill omen. Tokugawa Ieyasu reportedly ordered the change to 阪 — a rarer character that avoided the superstition. The macron on <em>Ō</em> preserves this long vowel in Hepburn romanization, distinguishing it from the flat English "Osaka."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The City Section -->
+    <section class="section section-city" id="the-city">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">03</span>
+                <h2 class="section-title">The City</h2>
+                <p class="section-subtitle">Japan's merchant capital — where food, laughter, and neon never sleep</p>
+            </div>
+
+            <div class="city-content">
+                <div class="city-intro reveal-up">
+                    <p class="lead-text">Ōsaka is not merely a city. It is the <strong>nation's kitchen</strong> — the beating heart of Kansai where merchants built empires on street corners, where comedy was born from hardship, and where the neon glow of Dōtonbori reflects off canals that have carried cargo for four centuries.</p>
+                </div>
+
+                <div class="domains-grid">
+                    <div class="domain-card reveal-up">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#ffd54f" stroke-width="1.5">
+                                <circle cx="32" cy="32" r="20"/>
+                                <path d="M32 16V32L42 38"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">Street Food</h4>
+                        <p class="domain-desc">Takoyaki sizzling on iron plates, okonomiyaki layered with precision, kushikatsu fried to golden perfection. The city that eats first and asks questions later.</p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="100">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#ffd54f" stroke-width="1.5">
+                                <path d="M20 48L32 16L44 48H20Z"/>
+                                <path d="M24 40H40"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">Osaka Castle</h4>
+                        <p class="domain-desc">Toyotomi Hideyoshi's fortress, rebuilt in concrete and gold after burning three times. Five stories of history rising above the moat, surrounded by 600 cherry trees.</p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="200">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#ffd54f" stroke-width="1.5">
+                                <rect x="12" y="20" width="40" height="28" rx="2"/>
+                                <path d="M20 20V14H44V20"/>
+                                <circle cx="24" cy="40" r="4"/>
+                                <circle cx="40" cy="40" r="4"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">Dōtonbori</h4>
+                        <p class="domain-desc">The neon canal. Giant mechanical crabs, flashing billboards, and the running man sign. Ōsaka's entertainment district is a sensory symphony of commerce and chaos.</p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="300">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#ffd54f" stroke-width="1.5">
+                                <circle cx="32" cy="24" r="10"/>
+                                <path d="M16 52C16 40 24 36 32 36C40 36 48 40 48 52"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">Comedy Culture</h4>
+                        <p class="domain-desc">Manzai, stand-up, and the legendary Yoshimoto Kōgyō. Ōsaka gave Japan its sense of humor — fast-talking, self-deprecating, and relentlessly warm.</p>
+                    </div>
+                </div>
+
+                <div class="symbols-section reveal-up">
+                    <h3 class="symbols-title">City Icons</h3>
+                    <div class="symbols-list">
+                        <div class="symbol-item">
+                            <span class="symbol-name">The Running Man</span>
+                            <span class="symbol-meaning">The Glico sign in Dōtonbori — a beacon of aspiration since 1935</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">Kuidaore Taro</span>
+                            <span class="symbol-meaning">The drum-playing clown — "eat yourself broke" as philosophy</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">Shinsekai Tower</span>
+                            <span class="symbol-meaning">Tsūtenkaku, modeled on the Eiffel Tower, lit in neon every night</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">Whale Shark</span>
+                            <span class="symbol-meaning">The centerpiece of Kaiyūkan, one of the world's largest aquariums</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">The Phoenix</span>
+                            <span class="symbol-meaning">Tosa Mitsunobu's legendary ceiling painting at Shitennō-ji</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <section class="section section-history" id="history">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">04</span>
+                <h2 class="section-title">History</h2>
+                <p class="section-subtitle">From ancient capital to merchant metropolis</p>
+            </div>
+
+            <div class="myths-timeline">
+                <div class="myth-card reveal-up">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">Ancient Capital</span>
+                        <h3 class="myth-title">Naniwa — The First Port</h3>
+                        <p class="myth-text">Long before Edo or Kyōto rose to prominence, Naniwa served as Japan's gateway to the continent. As early as the 5th century, the port connected Yamato to Korea and China. By the 7th century, Emperor Kōtoku made it his capital — the first in recorded Japanese history. The remnants of the Naniwa Palace still whisper of a time when Ōsaka was the center of the world.</p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="100">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Unifier</span>
+                        <h3 class="myth-title">Toyotomi Hideyoshi's Castle</h3>
+                        <p class="myth-text">In 1583, Toyotomi Hideyoshi — the peasant who became ruler of Japan — chose Ōsaka as the site of his fortress. The original castle was the largest in the country, its gold-leafed keep visible for miles. Though it fell to Tokugawa Ieyasu in 1615 and burned to its foundations, the rebuilt concrete keep stands as a monument to ambition itself.</p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="200">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">Merchant Culture</span>
+                        <h3 class="myth-title">The Edo Period &middot; Tenka no Daidokoro</h3>
+                        <p class="myth-text">Excluded from politics by the Tokugawa shogunate, Ōsaka turned to commerce. The city became "The Nation's Kitchen" — the distribution hub for rice, sake, and goods from across Japan. The Dōjima Rice Exchange invented futures trading. Kabuki and bunraku flourished. Deprived of swords, Ōsaka forged wealth.</p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="300">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">Modern Powerhouse</span>
+                        <h3 class="myth-title">Industrial Giant &middot; City of the Future</h3>
+                        <p class="myth-text">Today Ōsaka is Japan's third-largest city and the heart of the Keihanshin megalopolis. Home to Panasonic, Sharp, Nintendo's origins, and Universal Studios Japan. The 1970 World Exposition announced Ōsaka's rebirth as a city of technology. Yet beneath the skyscrapers, the merchant spirit endures — in every food stall, every comedy club, every warm Kansai greeting.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pantheon / Related Names -->
+    <section class="section" id="related" style="background:#0d0d0d;padding:6rem 0;">
+        <div class="container" style="max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);">
+            <div style="text-align:center;margin-bottom:4rem;">
+                <span style="display:block;font-family:'Cinzel',serif;font-size:0.85rem;color:#ffd54f;letter-spacing:0.4em;margin-bottom:1rem;">05</span>
+                <h2 style="font-family:'Cinzel',serif;font-size:clamp(2rem,4vw,3.5rem);color:#fafafa;letter-spacing:0.05em;margin-bottom:1rem;">Related Names</h2>
+                <p style="font-size:clamp(1rem,1.5vw,1.25rem);color:#A0A0A0;font-style:italic;">More from the Japanese pantheon</p>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;">
+                
+                <a href="/sites/tokyo/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(255,213,79,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#ffd54f;letter-spacing:0.05em;">Tōkyō</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">東京</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Eastern Capital, Kanto</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,213,79,0.3);color:#ffd54f;">Tier-1</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Japanese</span>
+                    </div>
+                </div>
+                <a href="/sites/kyoto/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(255,213,79,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#ffd54f;letter-spacing:0.05em;">Kyōto</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">京都</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Imperial Capital, Kansai</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,213,79,0.3);color:#ffd54f;">Tier-1</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Japanese</span>
+                    </div>
+                </div>
+                <a href="/sites/kobe/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(255,213,79,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#ffd54f;letter-spacing:0.05em;">Kōbe</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">神戸</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Port City, Hyōgo</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,213,79,0.3);color:#ffd54f;">Tier-1</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Japanese</span>
+                    </div>
+                </a>
+                <div style="cursor:default;padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(255,213,79,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#ffd54f;letter-spacing:0.05em;">Nara</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">奈良</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Ancient Capital, Temples</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,213,79,0.3);color:#ffd54f;">Tier-2</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Japanese</span>
+                    </div>
+                </div>
+                <a href="/sites/nagoya/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(255,213,79,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#ffd54f;letter-spacing:0.05em;">Nagoya</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">名古屋</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Industrial Hub, Aichi</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,213,79,0.3);color:#ffd54f;">Tier-2</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Japanese</span>
+                    </div>
+                </div>
+                <a href="/sites/amaterasu/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(255,213,79,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#ffd54f;letter-spacing:0.05em;">Amaterasu</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">天照大神</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Sun Goddess, Shintō</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,213,79,0.3);color:#ffd54f;">Tier-2</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Japanese</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Name Variations -->
+    <section class="section section-variations" id="variations">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">06</span>
+                <h2 class="section-title">Name Variations</h2>
+                <p class="section-subtitle">How Ōsaka has been written across time and systems</p>
+            </div>
+
+            <div class="variations-grid reveal-up">
+                <div class="variation-card primary">
+                    <span class="variation-label">Primary</span>
+                    <span class="variation-name">Ōsaka</span>
+                    <p class="variation-desc">The Hepburn romanization with macron. This is the scholarly standard used in academic texts, international standards (ISO 3602), and by the Japan Foundation. The macron on Ō marks the long vowel [oː], distinguishing it from the short <em>o</em> found in words like <em>osoi</em> (slow).</p>
+                </div>
+                <div class="variation-card">
+                    <span class="variation-label">ASCII Fallback</span>
+                    <span class="variation-name">Osaka</span>
+                    <p class="variation-desc">The ASCII-constrained form used by airlines, URLs, and most English-language media. It is phonetically incomplete but functionally dominant. The missing macron erases the vowel length distinction central to Japanese phonology.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pantheon Connection -->
+    <section class="section section-pantheon" id="pantheon">
+        <div class="container">
+            <div class="pantheon-content reveal-up">
+                <div class="pantheon-text">
+                    <span class="pantheon-eyebrow">The PUNYCODEX</span>
+                    <h2 class="pantheon-title">One of Two Hundred Fifty‑Five</h2>
+                    <p class="pantheon-body">Ōsaka is the merchant city — the commercial soul of Japan. But it is not alone. Across the encoded web, the authentic names of cities, gods, and mythic figures have been restored — each with its own domain, its own lore, its own truth.</p>
+                    <p class="pantheon-body">This is not a directory. This is a <strong>resurrection</strong>.</p>
+                    <a href="/lexicon/" class="btn-primary btn-ghost">
+                        <span>Enter the Codex</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="pantheon-mascot">
+                    <img src="assets/osaka_landscape.png" alt="Ōsaka landscape" class="pantheon-mascot-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Type Tool CTA -->
+    <section style="padding:6rem 0;background:linear-gradient(180deg,#0d0d0d 0%,rgba(183,28,28,0.08) 100%);text-align:center;">
+        <div class="container" style="max-width:700px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);">
+            <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.75rem,3vw,2.5rem);color:#fafafa;margin-bottom:1.5rem;letter-spacing:0.05em;">Experience the Name</h2>
+            <p style="font-size:1.05rem;color:#A0A0A0;line-height:1.8;margin-bottom:2.5rem;">See how Osaka behaves in the PUNYCODEX Type Tool — with predictive autocomplete, character-by-character breakdown, and scholarly constraint validation.</p>
+            <div style="display:inline-flex;align-items:center;gap:1rem;padding:1rem 2rem;background:rgba(0,0,0,0.3);border:1px solid rgba(255,213,79,0.25);border-radius:2px;font-family:'Fira Code','Courier New',monospace;font-size:1.1rem;color:#ffd54f;margin-bottom:1.5rem;">
+                <code>osaka</code>
+                <span style="color:#A0A0A0;">&rarr;</span>
+                <code>Ōsaka</code>
+            </div>
+            <div>
+                <a href="/type/#osaka" style="display:inline-flex;align-items:center;gap:0.75rem;padding:1rem 2rem;background:linear-gradient(135deg,#b71c1c,#ffd54f);color:#0d0d0d;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;transition:all 0.4s ease;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 40px rgba(183,28,28,0.3)';" onmouseout="this.style.transform='none';this.style.boxShadow='none';">
+                    <span>Open in Type Tool</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="footer-logo">PUNYCODEX</span>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Domain</span>
+                        <span class="footer-value">ōsaka.com</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier‑1 Macron‑Preserving</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Japanese Original</span>
+                        <span class="footer-value">大阪</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <img src="assets/osaka_logomark.png" alt="Ōsaka logomark" class="footer-logomark">
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

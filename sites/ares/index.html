@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ἄρης — Árēs | God of War</title>
+    <meta name="description" content="The authentic digital shrine to Árēs, God of War. Explore the correct Greek orthography, reconstructed pronunciation, and timeless mythology of Ἄρης.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Árēs — War, Courage, Battle Fury",
+    "description": "The authentic digital shrine to Árēs. Explore the correct Greek orthography, Unicode restoration, and scholarly sources for Árēs.com.",
+    "url": "https://punycodex.com/sites/ares/",
+    "about": {
+        "@type": "Thing",
+        "name": "Ἄρης",
+        "alternateName": [
+            "ares",
+            "Árēs"
+        ],
+        "description": "Bane, ruin (possibly from ἀρά)"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNYCODEX",
+        "url": "https://punycodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punycodex.com/assets/images/og-default.svg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punycodex.com/sites/ares/">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Ἄρης — Árēs | War, Courage, Battle Fury | PUNYCODEX">
+    <meta property="og:description" content="The authentic digital shrine to Árēs. Explore the correct orthography, reconstructed pronunciation, and timeless mythology of Ἄρης.">
+    <meta property="og:url" content="https://punycodex.com/sites/ares/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PUNYCODEX">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ἄρης — Árēs | War, Courage, Battle Fury | PUNYCODEX">
+    <meta name="twitter:description" content="The authentic digital shrine to Árēs. Explore the correct orthography, reconstructed pronunciation, and timeless mythology of Ἄρης.">
+</head>
+<body>
+    <!-- Global Nav -->
+    <div style="position:fixed;top:0;left:0;width:100%;z-index:1001;background:rgba(10,10,10,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);">
+        <div style="max-width:1200px;margin:0 auto;padding:0.4rem clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;">
+            <a href="/" style="font-family:'Cinzel',serif;font-size:0.8rem;font-weight:700;letter-spacing:0.15em;color:#D4AF37;text-decoration:none;">PUNYCODEX</a>
+            <div style="display:flex;gap:1.5rem;">
+                <a href="/pantheon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Pantheon</a>
+                <a href="/lexicon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Lexicon</a>
+                <a href="/type/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Type</a>
+                <a href="/tiers/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Tiers</a>
+            </div>
+        </div>
+    </div>
+    <!-- Battlefield Canvas -->
+    <canvas id="battlefield-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="main-nav" style="top:40px;" id="main-nav">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo">
+                <img src="assets/ares_logolockup.png" alt="Árēs" class="nav-logo-img">
+            </a>
+            <div class="nav-links">
+                <a href="#the-name" class="nav-link">The Name</a>
+                <a href="#pronunciation" class="nav-link">Pronunciation</a>
+                <a href="#the-fury" class="nav-link">The Fury</a>
+                <a href="#myths" class="nav-link">Myths</a>
+                <a href="#pantheon" class="nav-link">Pantheon</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <h1 class="hero-title reveal-up">
+                    <span class="title-greek">Ἄρης</span>
+                    <span class="title-divider"></span>
+                    <span class="title-trans">Árēs</span>
+                </h1>
+                <p class="hero-subtitle reveal-up">God of War &middot; Lord of Battle Frenzy &middot; The Unyielding</p>
+                <div class="hero-meta reveal-up">
+                    <span class="meta-badge">Tier‑1</span>
+                    <span class="meta-domain">árēs.com</span>
+                </div>
+                <div class="hero-cta reveal-up">
+                    <a href="#the-name" class="btn-primary">
+                        <span>Enter the Arena</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <img src="assets/ares_mascot.png" alt="Árēs — God of War, in full battle armor" class="mascot-img">
+                <div class="mascot-glow"></div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- The Name Section -->
+    <section class="section section-name" id="the-name">
+        <div class="section-bg-glow"></div>
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">01</span>
+                <h2 class="section-title">The Authentic Name</h2>
+                <p class="section-subtitle">Why <em>árēs.com</em> is the correct form</p>
+            </div>
+            
+            <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#CD7F32" stroke-width="1.5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Greek Original</h3>
+                    <p class="card-greek">Ἄρης</p>
+                    <p class="card-body">The name in its original Greek form. The smooth breathing, the acute on the alpha, the long <em>ē</em>ta. Three letters that struck terror into every city-state from Sparta to Thebes. A name too short to be beautiful — and too dangerous to be ignored.</p>
+                </div>
+
+                <div class="name-card reveal-up" data-delay="100">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#CD7F32" stroke-width="1.5">
+                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">ASCII Constraint</h3>
+                    <p class="card-ascii">ARES</p>
+                    <p class="card-body">Reduced to a planet. A zodiac sign. A NASA mission. The god whose battle cry made armies break before a single blow — reduced to a four-letter acronym in a corporation's branding deck. The accent was not decoration. It was <strong>warning</strong>.</p>
+                </div>
+
+                <div class="name-card reveal-up" data-delay="200">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#CD7F32" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Unicode Restoration</h3>
+                    <p class="card-unicode">árēs</p>
+                    <p class="card-body">The acute on the <em>á</em> restores the pitch accent — the rising scream of the word. The macron on <em>ē</em> restores the long vowel. This is Tier‑1, the full scholarly orthography. When accent and macron both stand, the name is <strong>armed</strong>.</p>
+                </div>
+            </div>
+
+            <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">árēs.com &rarr; xn--rs-5cd.com</code>
+                    <p class="explainer-note">The non-ASCII characters <strong>á</strong> (U+00E1) and <strong>ē</strong> (U+0113) are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Árēs</em>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pronunciation Section -->
+    <section class="section section-pronunciation" id="pronunciation">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">02</span>
+                <h2 class="section-title">Pronunciation</h2>
+                <p class="section-subtitle">How the God of War was truly spoken</p>
+            </div>
+
+            <div class="pronunciation-grid">
+                <div class="pronunciation-main reveal-up">
+                    <div class="ipa-display">
+                        <span class="ipa-text">/á.rɛːs/</span>
+                        <span class="ipa-label">Attic Greek Reconstruction</span>
+                    </div>
+                    <div class="pronunciation-breakdown">
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">á-</span>
+                            <span class="phoneme-desc">Smooth breathing, but the acute on the alpha creates a sharp rising pitch — a challenge, a war cry, a declaration before the charge. It is not a gentle opening. It is a <em>threat made audible.</em></span>
+                        </div>
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">-rɛː-</span>
+                            <span class="phoneme-desc">The long epsilon is held with grim determination. The <em>r</em> is rolled, a growl in the throat. This syllable does not sing. It <em>grinds.</em> It is the sound of bronze on bronze.</span>
+                        </div>
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">-s</span>
+                            <span class="phoneme-desc">The final sigma hisses like a blade drawn from a scabbard. Short, sharp, terminal. It is the sound of a sentence ending in <strong>death.</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pronunciation-sidebar reveal-up" data-delay="150">
+                    <div class="sidebar-card">
+                        <h4 class="sidebar-title">Modern Approximation</h4>
+                        <p class="sidebar-text">"AH-ress" — with the first syllable pitched upward like a question, then held with menace. The <em>r</em> should be trilled, not the English soft <em>r</em>. Think of a dog's growl followed by a hiss.</p>
+                        <div class="sidebar-divider"></div>
+                        <h4 class="sidebar-title">Etymological Notes</h4>
+                        <ul class="kin-list">
+                            <li><strong>Root</strong> — ἀρή (arē), "ruin, bane, curse"</li>
+                            <li><strong>Also linked to</strong> Sanskrit <em>irasyati</em>, "to be angry"</li>
+                            <li><strong>The Destroyer</strong> — not merely a warrior, but ruin itself</li>
+                            <li><strong>Spartan worship</strong> — chains on his statue to keep him</li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-card accent-card">
+                        <h4 class="sidebar-title">The Spartan Warning</h4>
+                        <p class="sidebar-text">In Sparta, Árēs was worshipped with chains. The Spartans knew what other Greeks forgot: <em>war is not a tool. It is a force of nature that must be bound.</em> The accent on <em>á</em> is the chain. The macron on <em>ē</em> is the length of the leash.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Fury Section -->
+    <section class="section section-fury" id="the-fury">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">03</span>
+                <h2 class="section-title">The Fury</h2>
+                <p class="section-subtitle">Domains, symbols, and the cost of combat</p>
+            </div>
+
+            <div class="fury-content">
+                <div class="fury-intro reveal-up">
+                    <p class="lead-text">Árēs is not the god of <strong>victory.</strong> He is the god of <strong>war itself.</strong> Athēnā wins battles. Árēs <em>is</em> the battle. He does not care who wins. He cares that blood is spilled, that bronze strikes flesh, that men remember they are mortal. He is the only Olympian who was ever wounded by a mortal — and he returned to Olympus screaming. The other gods laughed at him. They did not understand: <strong>to be wounded and return is the definition of war.</strong></p>
+                </div>
+
+                <div class="domains-grid">
+                    <div class="domain-card reveal-up">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#CD7F32" stroke-width="1.5">
+                                <path d="M32 8L44 28H56L40 40L46 60L32 48L18 60L24 40L8 28H20L32 8Z"/>
+                                <path d="M32 20V40"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">Battle Frenzy</h4>
+                        <p class="domain-desc">The <em>lyssa</em> — the madness that makes a farmer kill his neighbor with a hoe. Árēs does not teach tactics. He removes <em>reason.</em> He is the red mist. The moment when training ends and instinct takes over.</p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="100">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#CD7F32" stroke-width="1.5">
+                                <path d="M32 4L36 24H56L40 36L46 56L32 44L18 56L24 36L8 24H28L32 4Z"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">Courage</h4>
+                        <p class="domain-desc">Not the absence of fear — the <em>overwhelming</em> of fear by something worse. Cowardice. Shame. The thought of being seen running. Árēs does not make men brave. He makes the alternative <em>unthinkable.</em></p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="200">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#CD7F32" stroke-width="1.5">
+                                <path d="M32 4V60"/>
+                                <path d="M8 32H56"/>
+                                <path d="M16 16L48 48"/>
+                                <path d="M48 16L16 48"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">Blood &amp; Ruin</h4>
+                        <p class="domain-desc">The etymology is the theology. <em>Arē</em> means ruin, bane, curse. Árēs does not distinguish between soldier and civilian, ally and enemy, justified and unjustified. He arrives when the first sword leaves its scabbard. He leaves when the last body cools.</p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="300">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#CD7F32" stroke-width="1.5">
+                                <circle cx="32" cy="32" r="20"/>
+                                <path d="M32 12V52"/>
+                                <path d="M12 32H52"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">Honorable Combat</h4>
+                        <p class="domain-desc">Paradoxically, Árēs also governed the rules of war — oaths sworn before battle, the sanctity of heralds, the protection of suppliants. Even chaos has <em>structure.</em> Even destruction has <em>etiquette.</em> This is his secret: he is not anarchy. He is <strong>disciplined fury.</strong></p>
+                    </div>
+                </div>
+
+                <div class="symbols-section reveal-up">
+                    <h3 class="symbols-title">Sacred Symbols</h3>
+                    <div class="symbols-list">
+                        <div class="symbol-item">
+                            <span class="symbol-name">Corinthian Helmet</span>
+                            <span class="symbol-meaning">The face of war — anonymity, terror, the transformation of man into weapon</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">Spear &amp; Shield</span>
+                            <span class="symbol-meaning">Offense and defense in balance — the delta emblem, the oldest military insignia</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">Crimson Cape</span>
+                            <span class="symbol-meaning">The cost of war — blood that does not wash out, passion that does not cool</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">Bronze Armor</span>
+                            <span class="symbol-meaning">Protection through preparation — the weight that makes a man remember he is mortal</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">Vulture</span>
+                            <span class="symbol-meaning">The aftermath — what remains when the armies have moved on</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">Burning Torch</span>
+                            <span class="symbol-meaning">War by night — the fire that destroys cities, the light that reveals horrors</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Myths Section -->
+    <section class="section section-myths" id="myths">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">04</span>
+                <h2 class="section-title">The Myths</h2>
+                <p class="section-subtitle">Stories of blood, shame, and absolute ferocity</p>
+            </div>
+
+            <div class="myths-timeline">
+                <div class="myth-card reveal-up">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Trap</span>
+                        <h3 class="myth-title">The Golden Net</h3>
+                        <p class="myth-text">Árēs and Aphrodītē conducted an affair behind Hephaistos's back. The smith god, master of craft, forged an unbreakable golden net so fine it was invisible. He caught them in the act, naked, entangled, and invited every Olympian to witness the spectacle. The gods laughed. Árēs — the god of war — was <strong>humiliated by a craftsman.</strong> This is the myth the Greeks told to remind themselves: brute force is nothing without intelligence. But they also told another version — Árēs returned to the battlefield the next day. Shame did not break him. It <em>fueled</em> him.</p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="100">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Imprisonment</span>
+                        <h3 class="myth-title">The Bronze Jar</h3>
+                        <p class="myth-text">The Aloadae giants — Otus and Ephialtes — grew so powerful they threatened Olympus itself. They captured Árēs and imprisoned him in a bronze jar for thirteen months. He screamed. He battered the walls. He nearly went mad. Hermēs eventually freed him, but the other gods never let him forget it. <em>Even the god of war can be trapped.</em> Even the embodiment of force can be <strong>contained.</strong> The Greeks understood what we forget: war is powerful, but it is not omnipotent.</p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="200">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Wound</span>
+                        <h3 class="myth-title">Diomedes at Troy</h3>
+                        <p class="myth-text">At the siege of Troy, the hero Diomedes — guided and empowered by Athēnā — attacked Árēs directly. He drove his spear into the god's side. Árēs bellowed and fled to Olympus, screaming like ten thousand men. Zeús mocked him. Hēra mocked him. But the Iliad records something deeper: <em>a mortal, with divine aid, wounded a god.</em> This is not Árēs's weakness. It is his <strong>truth.</strong> War wounds everyone. Even the god who invented it.</p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="300">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Progeny</span>
+                        <h3 class="myth-title">Phobos and Deimos</h3>
+                        <p class="myth-text">Árēs fathered two sons with Aphrodītē: Phobos (Fear) and Deimos (Terror). They rode with him into every battle. They did not fight. They simply <em>stood behind the lines and watched.</em> Their presence made brave men falter, made steady hands shake, made generals question their orders. This is Árēs's deepest teaching: <strong>the psychological wound precedes the physical one.</strong> Fear is the first weapon. Terror is the first casualty. The spear merely finishes what the mind has already broken.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Related Names -->
+    <section class="section" id="related" style="background:#0A0A0A;padding:6rem 0;">
+        <div class="container" style="max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);">
+            <div style="text-align:center;margin-bottom:4rem;">
+                <span style="display:block;font-family:'Cinzel',serif;font-size:0.85rem;color:#D4AF37;letter-spacing:0.4em;margin-bottom:1rem;">05</span>
+                <h2 style="font-family:'Cinzel',serif;font-size:clamp(2rem,4vw,3.5rem);color:#F5F5F5;letter-spacing:0.05em;margin-bottom:1rem;">Related Names</h2>
+                <p style="font-size:clamp(1rem,1.5vw,1.25rem);color:#A0A0A0;font-style:italic;">More from the Greek pantheon</p>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;">
+                
+                <a href="/sites/apollon/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Ápollōn</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἀπόλλων</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Light, Music, Prophecy</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Dual-Tier</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/hades/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Hádēs</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἅιδης</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Underworld, Wealth</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Dual-Tier</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/hekate/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Hekátē</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἑκάτη</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Magic, Crossroads, Moon</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Dual-Tier</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/nike/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Níkē</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Νίκη</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Victory</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Dual-Tier</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/zeus/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Zeus</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ζεύς</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Sky, Thunder, King of Gods</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Tier-1</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/aphrodite/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Aphrodītē</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἀφροδίτη</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Love, Beauty, Pleasure</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Tier-1 Macron-Preserving</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+<!-- Pantheon Connection -->
+    <section class="section section-pantheon" id="pantheon">
+        <div class="container">
+            <div class="pantheon-content reveal-up">
+                <div class="pantheon-text">
+                    <span class="pantheon-eyebrow">The PUNYCODEX</span>
+                    <h2 class="pantheon-title">The Fury Beneath the Order</h2>
+                    <p class="pantheon-body">Zeús rules. Athēnā plans. Apollōn illuminates. But Árēs <strong>destroys.</strong> He is the god the other gods mock and fear in equal measure. They need him — without war, there are no stories, no heroes, no empires. But they despise him — because he reminds them that even divinity is not immune to blood.</p>
+                    <p class="pantheon-body">This is not a directory. This is a <strong>resurrection</strong>.</p>
+                    <a href="/lexicon/" class="btn-primary btn-ghost">
+                        <span>Enter the Codex</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="pantheon-mascot">
+                    <img src="assets/ares_mascot.png" alt="Árēs mascot" class="pantheon-mascot-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    
+    <!-- Type Tool CTA -->
+    <section style="padding:6rem 0;background:linear-gradient(180deg,#0A0A0A 0%,rgba(65,105,225,0.08) 100%);text-align:center;">
+        <div class="container" style="max-width:700px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);">
+            <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.75rem,3vw,2.5rem);color:#F5F5F5;margin-bottom:1.5rem;letter-spacing:0.05em;">Experience the Name</h2>
+            <p style="font-size:1.05rem;color:#A0A0A0;line-height:1.8;margin-bottom:2.5rem;">See how Árēs behaves in the PUNYCODEX Type Tool — with predictive autocomplete, character-by-character breakdown, and scholarly constraint validation.</p>
+            <div style="display:inline-flex;align-items:center;gap:1rem;padding:1rem 2rem;background:rgba(0,0,0,0.3);border:1px solid rgba(212,175,55,0.25);border-radius:2px;font-family:'Fira Code','Courier New',monospace;font-size:1.1rem;color:#D4AF37;margin-bottom:1.5rem;">
+                <code>ares</code>
+                <span style="color:#A0A0A0;">&rarr;</span>
+                <code>Árēs</code>
+            </div>
+            <div>
+                <a href="/type/#ares" style="display:inline-flex;align-items:center;gap:0.75rem;padding:1rem 2rem;background:linear-gradient(135deg,#D4AF37,#8B7355);color:#0A0A0A;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;transition:all 0.4s ease;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 40px rgba(212,175,55,0.3)';" onmouseout="this.style.transform='none';this.style.boxShadow='none';">
+                    <span>Open in Type Tool</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+<footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="footer-logo">PUNYCODEX</span>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Domain</span>
+                        <span class="footer-value">árēs.com</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier‑1</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Greek Original</span>
+                        <span class="footer-value">Ἄρης</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <img src="assets/ares_logomark.png" alt="Árēs logomark" class="footer-logomark">
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

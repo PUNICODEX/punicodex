@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ἄτλας — átlas | Titan of Endurance</title>
+    <meta name="description" content="The authentic digital shrine to átlas, Titan of Endurance and Bearer of the Heavens. Explore the correct Greek orthography, reconstructed pronunciation, and timeless mythology of Ἄτλας.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Átlas — Bearer of the Heavens",
+    "description": "The authentic digital shrine to Átlas. Explore the correct Greek orthography, Unicode restoration, and scholarly sources for Átlas.com.",
+    "url": "https://punycodex.com/sites/atlas/",
+    "about": {
+        "@type": "Thing",
+        "name": "Ἄτλας",
+        "alternateName": [
+            "atlas",
+            "Átlas"
+        ],
+        "description": "Enduring, suffering (from τλάω)"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNYCODEX",
+        "url": "https://punycodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punycodex.com/assets/images/og-default.svg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punycodex.com/sites/atlas/">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Ἄτλας — Átlas | Bearer of the Heavens | PUNYCODEX">
+    <meta property="og:description" content="The authentic digital shrine to Átlas. Explore the correct orthography, reconstructed pronunciation, and timeless mythology of Ἄτλας.">
+    <meta property="og:url" content="https://punycodex.com/sites/atlas/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PUNYCODEX">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ἄτλας — Átlas | Bearer of the Heavens | PUNYCODEX">
+    <meta name="twitter:description" content="The authentic digital shrine to Átlas. Explore the correct orthography, reconstructed pronunciation, and timeless mythology of Ἄτλας.">
+</head>
+<body>
+    <!-- Global Nav -->
+    <div style="position:fixed;top:0;left:0;width:100%;z-index:1001;background:rgba(10,10,10,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);">
+        <div style="max-width:1200px;margin:0 auto;padding:0.4rem clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;">
+            <a href="/" style="font-family:'Cinzel',serif;font-size:0.8rem;font-weight:700;letter-spacing:0.15em;color:#D4AF37;text-decoration:none;">PUNYCODEX</a>
+            <div style="display:flex;gap:1.5rem;">
+                <a href="/pantheon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Pantheon</a>
+                <a href="/lexicon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Lexicon</a>
+                <a href="/type/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Type</a>
+                <a href="/tiers/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Tiers</a>
+            </div>
+        </div>
+    </div>
+    <!-- Celestial Canvas -->
+    <canvas id="celestial-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="main-nav" style="top:40px;" id="main-nav">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo">
+                <img src="assets/atlas_logolockup.png" alt="átlas" class="nav-logo-img">
+            </a>
+            <div class="nav-links">
+                <a href="#the-name" class="nav-link">The Name</a>
+                <a href="#pronunciation" class="nav-link">Pronunciation</a>
+                <a href="#the-burden" class="nav-link">The Burden</a>
+                <a href="#myths" class="nav-link">Myths</a>
+                <a href="#pantheon" class="nav-link">Pantheon</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow reveal-up">The Weight of Heaven</p>
+                <h1 class="hero-title reveal-up">
+                    <span class="title-greek">Ἄτλας</span>
+                    <span class="title-divider"></span>
+                    <span class="title-trans">átlas</span>
+                </h1>
+                <p class="hero-subtitle reveal-up">Titan of Endurance &middot; Bearer of the Heavens &middot; Pillar of the West</p>
+                <div class="hero-meta reveal-up">
+                    <div class="tier-bridge single-tier">
+                        <span class="meta-badge tier-2">Tier‑2</span>
+                    </div>
+                    <div class="domain-bridge">
+                        <span class="meta-domain">átlas.com</span>
+                    </div>
+                </div>
+                <div class="hero-cta reveal-up">
+                    <a href="#the-name" class="btn-primary">
+                        <span>Enter the Weight</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <img src="assets/atlas_mascot.png" alt="átlas — Titan of Endurance, bearing the celestial sphere" class="mascot-img">
+                <div class="mascot-glow"></div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- The Name Section -->
+    <section class="section section-name" id="the-name">
+        <div class="section-bg-glow"></div>
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">01</span>
+                <h2 class="section-title">The Authentic Names</h2>
+                <p class="section-subtitle">Why <em>átlas.com</em> preserves the ancient name where ASCII cannot</p>
+            </div>
+            
+            <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Greek Original</h3>
+                    <p class="card-greek">Ἄτλας</p>
+                    <p class="card-body">The name in its original Greek form. The rough breathing on the alpha, the acute that rises like a mountain peak. A name that speaks of <em>weight</em> — of something so heavy that only a Titan could bear it. The very sound is a strain.</p>
+                </div>
+
+                <div class="name-card reveal-up" data-delay="100">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5">
+                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">ASCII Constraint</h3>
+                    <p class="card-ascii">ATLAS</p>
+                    <p class="card-body">Reduced to a book of maps. A missile system. A spine. A Titan who holds the heavens on his shoulders — reduced to five uppercase letters in a database field. The weight is gone. The endurance is gone. Only the label remains.</p>
+                </div>
+
+                <div class="name-card reveal-up" data-delay="200">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Unicode Restoration</h3>
+                    <p class="card-unicode">átlas</p>
+                    <p class="card-body"><strong>Tier‑2</strong> preserves the acute on the first <em>á</em> — the pitch accent that rises like a column of stone. Because the alpha is short, the acute is the only mark. No macron is needed. The PUNYCODEX owns the authentic form. The ASCII is merely a shadow.</p>
+                </div>
+            </div>
+
+            <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">átlas.com &rarr; xn--tlas-4na.com</code>
+                    <p class="explainer-note">The single non-ASCII character — <strong>á</strong> (U+00E1) — encodes to a Punycode string. To the DNS, it is a different domain entirely. To humanity, it is the true name of the Titan who holds the sky.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pronunciation Section -->
+    <section class="section section-pronunciation" id="pronunciation">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">02</span>
+                <h2 class="section-title">Pronunciation</h2>
+                <p class="section-subtitle">How the Bearer of Heaven was truly spoken</p>
+            </div>
+
+            <div class="pronunciation-grid">
+                <div class="pronunciation-main reveal-up">
+                    <div class="ipa-display">
+                        <span class="ipa-text">/ˈá.tlas/</span>
+                        <span class="ipa-label">Attic Greek Reconstruction</span>
+                    </div>
+                    <div class="pronunciation-breakdown">
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">á-</span>
+                            <span class="phoneme-desc">Short <em>a</em>, pitched upward with the acute — the sound of a weight being <em>lifted</em>, of stone scraping against stone. It is the syllable of <strong>effort.</strong></span>
+                        </div>
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">-tlas</span>
+                            <span class="phoneme-desc">The <em>t</em> is crisp, almost a click — the sound of a column settling into place. The <em>l</em> is liquid but weighted, not flowing freely. The <em>a</em> is short, the <em>s</em> hisses like wind over a mountain peak. The name does not sing. It <em>holds.</em></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pronunciation-sidebar reveal-up" data-delay="150">
+                    <div class="sidebar-card">
+                        <h4 class="sidebar-title">Modern Approximation</h4>
+                        <p class="sidebar-text">"AH-tlas" — with the first syllable carrying a slight rise in pitch, as if lifting something heavy. The final <em>s</em> is sharper than English allows, like the hiss of wind across stone.</p>
+                        <div class="sidebar-divider"></div>
+                        <h4 class="sidebar-title">Etymological Notes</h4>
+                        <ul class="kin-list">
+                            <li><strong>Possible origin</strong> — τλάω (tlaō), "to endure," "to bear"</li>
+                            <li><strong>Also linked to</strong> τλήμων (tlēmōn), "suffering," "patient"</li>
+                            <li><strong>The Endurer</strong> — he does not resist; he <em>holds</em></li>
+                            <li><strong>The Pillar</strong> — his name became the word for "map-book" because his image adorned the first atlases</li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-card accent-card">
+                        <h4 class="sidebar-title">The Tier Identity</h4>
+                        <p class="sidebar-text">Because the acute falls on a <em>short</em> vowel (the first <em>a</em>), Tier‑1 preserves it with the accent mark. Tier‑2 would strip it entirely, giving plain <strong>Atlas</strong> — a word that now means "book of maps" more than "Titan." The PUNYCODEX preserves the divine name in its authentic form.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Burden Section -->
+    <section class="section section-gift" id="the-burden">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">03</span>
+                <h2 class="section-title">The Burden</h2>
+                <p class="section-subtitle">Domains, symbols, and the weight of eternity</p>
+            </div>
+
+            <div class="gift-content">
+                <div class="gift-intro reveal-up">
+                    <p class="lead-text">átlas is the most <strong>patient</strong> of all the Titans. He does not fight. He does not flee. He <em>holds.</em> When the Olympians defeated the Titans in the great war, they did not kill Atlas. They gave him a task that would last forever: to stand at the western edge of the world and bear the celestial sphere upon his shoulders. He has been holding it ever since.</p>
+                </div>
+
+                <div class="domains-grid">
+                    <div class="domain-card reveal-up">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#D4AF37" stroke-width="1.5">
+                                <circle cx="32" cy="20" r="12"/>
+                                <path d="M32 32v20"/>
+                                <path d="M24 44h16"/>
+                                <path d="M28 52h8"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">Endurance &amp; Stoic Strength</h4>
+                        <p class="domain-desc">Not merely strength — <em>patience.</em> Atlas does not flex or show his power. He simply does not yield. He is the god of those who carry what others cannot. The single parent. The caregiver. The founder who refuses to quit. His strength is not explosive. It is <strong>inexhaustible.</strong></p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="100">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#D4AF37" stroke-width="1.5">
+                                <circle cx="32" cy="32" r="14"/>
+                                <path d="M32 18v28M18 32h28"/>
+                                <path d="M22 22l20 20M22 42l20-20"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">The Celestial Sphere</h4>
+                        <p class="domain-desc">He holds the heavens — not the Earth, as later artists depicted. The <em>ouranos</em> itself rests upon his shoulders. All the stars, all the constellations, the turning of the cosmos. He is the <strong>pillar between the world and the infinite.</strong> Without him, the sky would fall.</p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="200">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#D4AF37" stroke-width="1.5">
+                                <path d="M8 48L20 28L32 36L44 20L56 40"/>
+                                <path d="M8 48h48"/>
+                                <circle cx="20" cy="28" r="3"/>
+                                <circle cx="32" cy="36" r="3"/>
+                                <circle cx="44" cy="20" r="3"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">Astronomy &amp; Cartography</h4>
+                        <p class="domain-desc">His name became the word for collections of maps because his image — holding the sphere of the world — adorned the cover of Mercator's first atlas. He is the patron of those who measure the Earth and map the stars. <strong>Every atlas is a shrine to his endurance.</strong></p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="300">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#D4AF37" stroke-width="1.5">
+                                <path d="M32 8v48M16 24l16-16 16 16"/>
+                                <path d="M16 40l16 16 16-16"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">The Western Edge</h4>
+                        <p class="domain-desc">He stands where the world ends and the ocean begins — the <em>Pillars of Heracles</em> were once called the <em>Pillars of Atlas.</em> He is the guardian of the threshold, the boundary-keeper, the one who stands between the known and the infinite. <strong>He is the last thing you see before the world falls away.</strong></p>
+                    </div>
+                </div>
+
+                <div class="symbols-section reveal-up">
+                    <h3 class="symbols-title">Sacred Symbols</h3>
+                    <div class="symbols-list">
+                        <div class="symbol-item">
+                            <span class="symbol-name">Celestial Sphere</span>
+                            <span class="symbol-meaning">The heavens themselves — the weight of infinity made tangible, the cosmos resting on mortal shoulders</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">The Atlas Mountains</span>
+                            <span class="symbol-meaning">His petrified form — when Perseus showed him Medusa's head, he became stone, creating the mountain range that bears his name</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">Pillars of Heaven</span>
+                            <span class="symbol-meaning">The boundary between earth and sky — the point where the mortal world touches the infinite</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">The Golden Apples</span>
+                            <span class="symbol-meaning">The apples of the Hesperides, his daughters — immortality guarded at the western edge of the world</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">The Titan Crown</span>
+                            <span class="symbol-meaning">Not a crown of gold but of stone — the weight he wears without complaint, the burden that defines him</span>
+                        </div>
+                        <div class="symbol-item">
+                            <span class="symbol-name">The Western Star</span>
+                            <span class="symbol-meaning">The last star to fade at dawn — his eye watching from the edge of the world, never sleeping</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Myths Section -->
+    <section class="section section-myths" id="myths">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">04</span>
+                <h2 class="section-title">The Myths</h2>
+                <p class="section-subtitle">Stories of strength, consequence, and eternal patience</p>
+            </div>
+
+            <div class="myths-timeline">
+                <div class="myth-card reveal-up">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The War</span>
+                        <h3 class="myth-title">The Titanomachy</h3>
+                        <p class="myth-text">When Zeus rose against Cronus, Atlas led the Titans in the great war for heaven. He fought with terrible strength, hurling mountains and calling earthquakes. But the Olympians prevailed. The Titans were cast down — into Tartarus, into rivers, into eternal sleep. Atlas alone was given a different punishment. Zeus looked at him and said: <em>"You who would hold up the sky in war will hold it up in peace. Forever."</em> It was not mercy. It was <strong>the most terrible sentence of all — to never rest, never yield, never die.</strong></p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="100">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Punishment</span>
+                        <h3 class="myth-title">Bearer of the Heavens</h3>
+                        <p class="myth-text">At the western edge of the world, where the ocean falls away into mist, Atlas stands. The celestial sphere rests upon his shoulders — not the Earth, as later poets misunderstood, but the <em>ouranos</em> itself. All the stars, the turning constellations, the very vault of heaven. He does not complain. He does not weep. He simply <em>holds.</em> Some say he has grown into the stone beneath him. Some say the stone has grown into him. After ten thousand years, there is no difference. <strong>He is the boundary between the world and the infinite.</strong></p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="200">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Trick</span>
+                        <h3 class="myth-title">Heracles and the Apples</h3>
+                        <p class="myth-text">Heracles, on his twelfth labor, needed the golden apples of the Hesperides — Atlas's daughters. He found the Titan still holding the sky and offered to take the burden for a moment if Atlas would fetch the apples. Atlas agreed. Heracles took the celestial sphere upon his shoulders and felt, for the first time, the true weight of infinity. Atlas returned with the apples — and offered to deliver them himself, leaving Heracles to hold the sky forever. But Heracles, cunning as he was strong, asked Atlas to hold the sky just for a moment while he adjusted his cloak. Atlas, pitying the mortal, agreed. Heracles walked away with the apples. <strong>Atlas still holds the sky. He has been holding it ever since.</strong></p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="300">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Stone</span>
+                        <h3 class="myth-title">Perseus and the Mountain</h3>
+                        <p class="myth-text">Perseus, returning with Medusa's head, passed the western edge where Atlas stood. The Titan, weary and suspicious, refused him shelter. Perseus, in his wrath, turned the Gorgon's face upon him. Atlas's body turned to stone — but the stone <em>grew.</em> It became a mountain range so vast that it splits two continents and touches the sky. The Atlas Mountains still bear his name. <strong>He was turned to stone, but the stone became a world.</strong> Even in death — if it was death — he could not stop holding up the heavens.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Related Names -->
+    <section class="section" id="related" style="background:#0A0A0A;padding:6rem 0;">
+        <div class="container" style="max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);">
+            <div style="text-align:center;margin-bottom:4rem;">
+                <span style="display:block;font-family:'Cinzel',serif;font-size:0.85rem;color:#D4AF37;letter-spacing:0.4em;margin-bottom:1rem;">05</span>
+                <h2 style="font-family:'Cinzel',serif;font-size:clamp(2rem,4vw,3.5rem);color:#F5F5F5;letter-spacing:0.05em;margin-bottom:1rem;">Related Names</h2>
+                <p style="font-size:clamp(1rem,1.5vw,1.25rem);color:#A0A0A0;font-style:italic;">More from the Greek pantheon</p>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;">
+                
+                <a href="/sites/apollon/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Ápollōn</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἀπόλλων</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Light, Music, Prophecy</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Dual-Tier</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/hades/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Hádēs</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἅιδης</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Underworld, Wealth</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Dual-Tier</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/hekate/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Hekátē</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἑκάτη</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Magic, Crossroads, Moon</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Dual-Tier</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/nike/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Níkē</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Νίκη</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Victory</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Dual-Tier</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/zeus/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Zeus</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ζεύς</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Sky, Thunder, King of Gods</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Tier-1</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+                <a href="/sites/ares/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
+                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Árēs</span>
+                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἄρης</span>
+                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">War, Courage, Battle Fury</span>
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Tier-1 Full</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+<!-- Pantheon Connection -->
+    <section class="section section-pantheon" id="pantheon">
+        <div class="container">
+            <div class="pantheon-content reveal-up">
+                <div class="pantheon-text">
+                    <span class="pantheon-eyebrow">The PUNYCODEX</span>
+                    <h2 class="pantheon-title">The Weight That Holds Everything</h2>
+                    <p class="pantheon-body">Zeus has thunder. Poseidōn has the sea. Árēs has war. But átlas has <strong>the weight.</strong> Without him, the sky would fall. Without endurance, all power crumbles. He is the oldest truth: that strength is not the ability to strike, but the ability to <em>hold</em> when everything demands that you let go.</p>
+                    <p class="pantheon-body">This is not a directory. This is a <strong>resurrection</strong>.</p>
+                    <a href="/lexicon/" class="btn-primary btn-ghost">
+                        <span>Enter the Codex</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="pantheon-mascot">
+                    <img src="assets/atlas_mascot.png" alt="átlas mascot" class="pantheon-mascot-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    
+    <!-- Type Tool CTA -->
+    <section style="padding:6rem 0;background:linear-gradient(180deg,#0A0A0A 0%,rgba(65,105,225,0.08) 100%);text-align:center;">
+        <div class="container" style="max-width:700px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);">
+            <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.75rem,3vw,2.5rem);color:#F5F5F5;margin-bottom:1.5rem;letter-spacing:0.05em;">Experience the Name</h2>
+            <p style="font-size:1.05rem;color:#A0A0A0;line-height:1.8;margin-bottom:2.5rem;">See how Átlas behaves in the PUNYCODEX Type Tool — with predictive autocomplete, character-by-character breakdown, and scholarly constraint validation.</p>
+            <div style="display:inline-flex;align-items:center;gap:1rem;padding:1rem 2rem;background:rgba(0,0,0,0.3);border:1px solid rgba(212,175,55,0.25);border-radius:2px;font-family:'Fira Code','Courier New',monospace;font-size:1.1rem;color:#D4AF37;margin-bottom:1.5rem;">
+                <code>atlas</code>
+                <span style="color:#A0A0A0;">&rarr;</span>
+                <code>Átlas</code>
+            </div>
+            <div>
+                <a href="/type/#atlas" style="display:inline-flex;align-items:center;gap:0.75rem;padding:1rem 2rem;background:linear-gradient(135deg,#D4AF37,#8B7355);color:#0A0A0A;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;transition:all 0.4s ease;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 40px rgba(212,175,55,0.3)';" onmouseout="this.style.transform='none';this.style.boxShadow='none';">
+                    <span>Open in Type Tool</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+<footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="footer-logo">PUNYCODEX</span>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Domain</span>
+                        <span class="footer-value">átlas.com</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier‑2</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Greek Original</span>
+                        <span class="footer-value">Ἄτλας</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <img src="assets/atlas_logomark.png" alt="átlas logomark" class="footer-logomark">
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

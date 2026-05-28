@@ -1,0 +1,528 @@
+/**
+ * PÚNYCODEX Type — Engine Unit Test Suite
+ * Run: node type/js/test-engine.js
+ * Exit code 0 = all passed, 1 = any failed
+ */
+
+const fs = require('fs');
+const path = require('path');
+const assert = require('assert');
+
+// ── Load lexicon ──────────────────────────────────────────
+const lexiconPath = path.join(__dirname, 'lexicon.js');
+const lexiconCode = fs.readFileSync(lexiconPath, 'utf8').replace('const LEXICON', 'var LEXICON');
+const lexiconFn = new Function(lexiconCode + '; return LEXICON;');
+const LEXICON = lexiconFn();
+
+// ── ANSI colors ───────────────────────────────────────────
+const C = {
+    reset: '\x1b[0m',
+    red: '\x1b[31m',
+    green: '\x1b[32m',
+    yellow: '\x1b[33m',
+    cyan: '\x1b[36m',
+    dim: '\x1b[2m',
+};
+
+let pass = 0;
+let fail = 0;
+const failures = [];
+
+function test(name, fn) {
+    try {
+        fn();
+        pass++;
+    } catch (err) {
+        fail++;
+        failures.push({ name, error: err.message });
+        console.log(`  ${C.red}✗${C.reset} ${name}`);
+        console.log(`     ${C.dim}${err.message}${C.reset}`);
+        return;
+    }
+}
+
+function section(name) {
+    console.log(`\n${C.cyan}▸ ${name}${C.reset}`);
+}
+
+// ═══════════════════════════════════════════════════════════
+// ENGINE RE-IMPLEMENTATION (for testing)
+// ═══════════════════════════════════════════════════════════
+
+class TrieNode {
+    constructor() {
+        this.children = {};
+        this.isEnd = false;
+        this.entry = null;
+    }
+}
+
+function buildTrie(lexicon) {
+    const root = new TrieNode();
+    lexicon.forEach(entry => {
+        const ascii = entry.ascii.toLowerCase();
+        let node = root;
+        for (const char of ascii) {
+            if (!node.children[char]) node.children[char] = new TrieNode();
+            node = node.children[char];
+        }
+        node.isEnd = true;
+        node.entry = entry;
+    });
+    return root;
+}
+
+function getNodeForPrefix(trie, prefix) {
+    let node = trie;
+    for (const char of prefix.toLowerCase()) {
+        if (!node.children[char]) return null;
+        node = node.children[char];
+    }
+    return node;
+}
+
+function getCompletions(trie, prefix, options = {}) {
+    const { limit = Infinity, pantheonFilter = 'all' } = options;
+    const node = getNodeForPrefix(trie, prefix);
+    if (!node) return [];
+    const entries = new Set();
+    function collect(n) {
+        if (n.entry) entries.add(n.entry);
+        for (const child of Object.values(n.children)) collect(child);
+    }
+    collect(node);
+    let results = Array.from(entries);
+    if (pantheonFilter !== 'all') {
+        results = results.filter(e =>
+            e.pantheon === pantheonFilter ||
+            (pantheonFilter === 'greek-all' &&
+                (e.pantheon === 'greek' || e.pantheon === 'greek-location'))
+        );
+    }
+    results.sort((a, b) => {
+        const lenDiff = a.ascii.length - b.ascii.length;
+        if (lenDiff !== 0) return lenDiff;
+        return a.ascii.localeCompare(b.ascii);
+    });
+    return results.slice(0, limit);
+}
+
+function getValidNextChars(trie, prefix, options = {}) {
+    const completions = getCompletions(trie, prefix, { ...options, limit: Infinity });
+    const nextChars = new Set();
+    completions.forEach(entry => {
+        const nextIndex = prefix.length;
+        if (nextIndex < entry.ascii.length) {
+            nextChars.add(entry.ascii[nextIndex].toLowerCase());
+        }
+    });
+    return Array.from(nextChars).sort();
+}
+
+function findExactMatch(trie, input, options = {}) {
+    const { pantheonFilter = 'all' } = options;
+    const node = getNodeForPrefix(trie, input);
+    if (node && node.isEnd) {
+        const entry = node.entry;
+        if (pantheonFilter !== 'all') {
+            const isGreek = pantheonFilter === 'greek-all' &&
+                (entry.pantheon === 'greek' || entry.pantheon === 'greek-location');
+            if (entry.pantheon !== pantheonFilter && !isGreek) return null;
+        }
+        return entry;
+    }
+    return null;
+}
+
+const trie = buildTrie(LEXICON);
+
+// ═══════════════════════════════════════════════════════════
+// TESTS
+// ═══════════════════════════════════════════════════════════
+
+section('Trie Construction');
+
+test('All entries are reachable in trie', () => {
+    LEXICON.forEach(entry => {
+        const node = getNodeForPrefix(trie, entry.ascii);
+        assert.ok(node, `${entry.id} not reachable`);
+        assert.strictEqual(node.isEnd, true, `${entry.id} not marked as end`);
+        assert.strictEqual(node.entry, entry, `${entry.id} wrong entry`);
+    });
+});
+
+test('Every prefix of every entry is reachable', () => {
+    LEXICON.forEach(entry => {
+        for (let i = 1; i < entry.ascii.length; i++) {
+            const prefix = entry.ascii.slice(0, i);
+            const node = getNodeForPrefix(trie, prefix);
+            assert.ok(node, `prefix "${prefix}" of ${entry.id} not reachable`);
+        }
+    });
+});
+
+test('Invalid prefix returns null', () => {
+    assert.strictEqual(getNodeForPrefix(trie, 'xyz'), null);
+    assert.strictEqual(getNodeForPrefix(trie, 'qqq'), null);
+    assert.strictEqual(getNodeForPrefix(trie, 'zzz'), null);
+});
+
+test('Empty prefix returns root node', () => {
+    const node = getNodeForPrefix(trie, '');
+    assert.ok(node);
+    assert.strictEqual(node.isEnd, false);
+});
+
+section('Exact Match');
+
+test('Exact match finds correct entry', () => {
+    const entry = findExactMatch(trie, 'apollon');
+    assert.ok(entry);
+    assert.strictEqual(entry.id, 'apollon');
+    assert.strictEqual(entry.unicode, 'Apóllōn');
+});
+
+test('Exact match is case-insensitive', () => {
+    const e1 = findExactMatch(trie, 'APOLLON');
+    const e2 = findExactMatch(trie, 'Apollon');
+    const e3 = findExactMatch(trie, 'aPoLlOn');
+    assert.ok(e1);
+    assert.ok(e2);
+    assert.ok(e3);
+    assert.strictEqual(e1.id, 'apollon');
+    assert.strictEqual(e2.id, 'apollon');
+    assert.strictEqual(e3.id, 'apollon');
+});
+
+test('Non-existent name returns null', () => {
+    assert.strictEqual(findExactMatch(trie, 'xyz'), null);
+    assert.strictEqual(findExactMatch(trie, 'qwerty'), null);
+});
+
+test('Prefix returns null (not exact)', () => {
+    assert.strictEqual(findExactMatch(trie, 'apo'), null);
+    assert.strictEqual(findExactMatch(trie, 'apoll'), null);
+});
+
+test('Exact match respects pantheon filter', () => {
+    const e = findExactMatch(trie, 'apollon', { pantheonFilter: 'greek' });
+    assert.ok(e);
+    assert.strictEqual(e.id, 'apollon');
+});
+
+test('Exact match blocked by wrong pantheon filter', () => {
+    const e = findExactMatch(trie, 'apollon', { pantheonFilter: 'norse' });
+    assert.strictEqual(e, null);
+});
+
+test('Exact match with greek-all includes greek-location', () => {
+    const e = findExactMatch(trie, 'athenai', { pantheonFilter: 'greek-all' });
+    assert.ok(e);
+    assert.strictEqual(e.pantheon, 'greek-location');
+});
+
+test('Exact match with greek-all includes greek gods', () => {
+    const e = findExactMatch(trie, 'zeus', { pantheonFilter: 'greek-all' });
+    assert.ok(e);
+    assert.strictEqual(e.pantheon, 'greek');
+});
+
+section('Completions');
+
+test('Empty prefix returns all entries', () => {
+    const all = getCompletions(trie, '');
+    assert.strictEqual(all.length, LEXICON.length);
+});
+
+test('Prefix "a" returns completions', () => {
+    const completions = getCompletions(trie, 'a');
+    assert.ok(completions.length > 0);
+    completions.forEach(c => {
+        assert.ok(c.ascii.toLowerCase().startsWith('a'), `${c.id} does not start with 'a'`);
+    });
+});
+
+test('Prefix "apo" returns apollon', () => {
+    const completions = getCompletions(trie, 'apo');
+    const ids = completions.map(c => c.id);
+    assert.ok(ids.includes('apollon'), `Expected apollon in [${ids.join(', ')}]`);
+});
+
+test('Invalid prefix returns empty', () => {
+    const completions = getCompletions(trie, 'xyz');
+    assert.strictEqual(completions.length, 0);
+});
+
+test('Completions are sorted by length then alphabetically', () => {
+    const completions = getCompletions(trie, '', { limit: 10 });
+    for (let i = 1; i < completions.length; i++) {
+        const prev = completions[i - 1];
+        const curr = completions[i];
+        const lenOk = prev.ascii.length <= curr.ascii.length;
+        const alphaOk = prev.ascii.length !== curr.ascii.length || prev.ascii.localeCompare(curr.ascii) <= 0;
+        assert.ok(lenOk, `Length sort violated: ${prev.ascii} (${prev.ascii.length}) > ${curr.ascii} (${curr.ascii.length})`);
+        assert.ok(alphaOk, `Alpha sort violated: ${prev.ascii} > ${curr.ascii}`);
+    }
+});
+
+test('Limit parameter works', () => {
+    const all = getCompletions(trie, '', { limit: 5 });
+    assert.strictEqual(all.length, 5);
+    const more = getCompletions(trie, '', { limit: 50 });
+    assert.strictEqual(more.length, 50);
+});
+
+test('Pantheon filter reduces results', () => {
+    const all = getCompletions(trie, '');
+    const greek = getCompletions(trie, '', { pantheonFilter: 'greek' });
+    const norse = getCompletions(trie, '', { pantheonFilter: 'norse' });
+    assert.ok(greek.length < all.length);
+    assert.ok(norse.length < all.length);
+    greek.forEach(e => assert.strictEqual(e.pantheon, 'greek'));
+    norse.forEach(e => assert.strictEqual(e.pantheon, 'norse'));
+});
+
+test('greek-all filter includes both greek and greek-location', () => {
+    const results = getCompletions(trie, '', { pantheonFilter: 'greek-all' });
+    assert.ok(results.length > 0);
+    results.forEach(e => {
+        assert.ok(e.pantheon === 'greek' || e.pantheon === 'greek-location',
+            `${e.id} has pantheon ${e.pantheon}, expected greek or greek-location`);
+    });
+});
+
+test('All 14 pantheon filters return non-empty results', () => {
+    const pantheons = ['greek', 'greek-location', 'norse', 'egyptian', 'sanskrit', 'celtic',
+        'mesopotamian', 'polynesian', 'japanese', 'nahuatl', 'yoruba', 'slavic', 'zoroastrian', 'incan'];
+    pantheons.forEach(p => {
+        const results = getCompletions(trie, '', { pantheonFilter: p });
+        assert.ok(results.length > 0, `Pantheon "${p}" returned empty results`);
+    });
+});
+
+section('Valid Next Characters');
+
+test('Empty input returns all first characters', () => {
+    const chars = getValidNextChars(trie, '');
+    const firstChars = new Set(LEXICON.map(e => e.ascii[0].toLowerCase()));
+    assert.deepStrictEqual(chars, Array.from(firstChars).sort());
+});
+
+test('"a" returns valid next chars', () => {
+    const chars = getValidNextChars(trie, 'a');
+    assert.ok(chars.length > 0);
+    chars.forEach(c => {
+        const completions = getCompletions(trie, 'a' + c);
+        assert.ok(completions.length > 0, `No completions for "a${c}"`);
+    });
+});
+
+test('Complete word returns empty next chars', () => {
+    const chars = getValidNextChars(trie, 'apollon');
+    assert.deepStrictEqual(chars, []);
+});
+
+test('Invalid prefix returns empty next chars', () => {
+    const chars = getValidNextChars(trie, 'xyz');
+    assert.deepStrictEqual(chars, []);
+});
+
+test('Next chars respect pantheon filter', () => {
+    const allChars = getValidNextChars(trie, '');
+    const greekChars = getValidNextChars(trie, '', { pantheonFilter: 'greek' });
+    assert.ok(greekChars.length <= allChars.length);
+    greekChars.forEach(c => {
+        const completions = getCompletions(trie, c, { pantheonFilter: 'greek' });
+        assert.ok(completions.length > 0);
+    });
+});
+
+section('Pantheon Distribution');
+
+test('Correct pantheon counts', () => {
+    const counts = {};
+    LEXICON.forEach(e => { counts[e.pantheon] = (counts[e.pantheon] || 0) + 1; });
+    assert.strictEqual(counts.greek, 98, 'Greek count');
+    assert.strictEqual(counts['greek-location'], 17, 'Greek-location count');
+    assert.strictEqual(counts.norse, 34, 'Norse count');
+    assert.strictEqual(counts.egyptian, 25, 'Egyptian count');
+    assert.strictEqual(counts.sanskrit, 25, 'Sanskrit count');
+    assert.strictEqual(counts.celtic, 6, 'Celtic count');
+    assert.strictEqual(counts.mesopotamian, 6, 'Mesopotamian count');
+    assert.strictEqual(counts.polynesian, 6, 'Polynesian count');
+    assert.strictEqual(counts.japanese, 15, 'Japanese count');
+    assert.strictEqual(counts.nahuatl, 10, 'Nahuatl count');
+    assert.strictEqual(counts.yoruba, 8, 'Yoruba count');
+    assert.strictEqual(counts.slavic, 6, 'Slavic count');
+    assert.strictEqual(counts.zoroastrian, 4, 'Zoroastrian count');
+    assert.strictEqual(counts.incan, 3, 'Incan count');
+});
+
+section('Unicode & Normalization');
+
+test('All unicode strings are NFC-normalized', () => {
+    LEXICON.forEach(entry => {
+        const nfc = entry.unicode.normalize('NFC');
+        assert.strictEqual(entry.unicode, nfc, `${entry.id} is not NFC`);
+    });
+});
+
+test('No replacement characters in unicode', () => {
+    LEXICON.forEach(entry => {
+        const codePoints = [...entry.unicode];
+        codePoints.forEach(cp => {
+            const code = cp.codePointAt(0);
+            assert.notStrictEqual(code, 0xFFFD, `${entry.id} contains replacement char`);
+        });
+    });
+});
+
+test('All ascii fields are lowercase a-z only', () => {
+    LEXICON.forEach(entry => {
+        assert.ok(/^[a-z]+$/.test(entry.ascii), `${entry.id} ascii "${entry.ascii}" invalid`);
+    });
+});
+
+section('Breakdown Integrity');
+
+test('Breakdown length equals ascii length for all entries', () => {
+    LEXICON.forEach(entry => {
+        assert.strictEqual(entry.breakdown.length, entry.ascii.length,
+            `${entry.id}: breakdown ${entry.breakdown.length} != ascii ${entry.ascii.length}`);
+    });
+});
+
+test('Each breakdown char matches corresponding ascii char', () => {
+    LEXICON.forEach(entry => {
+        entry.breakdown.forEach((step, j) => {
+            const expected = entry.ascii[j].toLowerCase();
+            assert.strictEqual(step.char.toLowerCase(), expected,
+                `${entry.id}[${j}]: "${step.char}" != "${entry.ascii[j]}"`);
+        });
+    });
+});
+
+test('All breakdown types are valid', () => {
+    const validTypes = ['stress', 'length', 'dual', 'special', 'drop', 'merge', 'same'];
+    LEXICON.forEach(entry => {
+        entry.breakdown.forEach((step, j) => {
+            assert.ok(validTypes.includes(step.type),
+                `${entry.id}[${j}]: invalid type "${step.type}"`);
+        });
+    });
+});
+
+section('Sources');
+
+test('All entries have sources array', () => {
+    LEXICON.forEach(entry => {
+        assert.ok(Array.isArray(entry.sources), `${entry.id}: sources not an array`);
+        assert.ok(entry.sources.length > 0, `${entry.id}: sources empty`);
+    });
+});
+
+test('All sources are non-empty strings', () => {
+    LEXICON.forEach(entry => {
+        entry.sources.forEach((src, i) => {
+            assert.ok(typeof src === 'string' && src.length > 0,
+                `${entry.id}.sources[${i}]: invalid source`);
+        });
+    });
+});
+
+test('Greek entries cite LSJ', () => {
+    LEXICON.filter(e => e.pantheon === 'greek').forEach(entry => {
+        assert.ok(entry.sources.includes('LSJ'), `${entry.id} missing LSJ`);
+    });
+});
+
+test('Egyptian entries cite Faulkner', () => {
+    LEXICON.filter(e => e.pantheon === 'egyptian').forEach(entry => {
+        assert.ok(entry.sources.includes('Faulkner'), `${entry.id} missing Faulkner`);
+    });
+});
+
+section('Uniqueness');
+
+test('All ids are unique', () => {
+    const ids = new Set();
+    LEXICON.forEach(entry => {
+        assert.ok(!ids.has(entry.id), `duplicate id: ${entry.id}`);
+        ids.add(entry.id);
+    });
+});
+
+test('All ascii values are unique', () => {
+    const asciis = new Set();
+    LEXICON.forEach(entry => {
+        assert.ok(!asciis.has(entry.ascii), `duplicate ascii: ${entry.ascii}`);
+        asciis.add(entry.ascii);
+    });
+});
+
+test('All unicode values are unique', () => {
+    const unicodes = new Set();
+    LEXICON.forEach(entry => {
+        assert.ok(!unicodes.has(entry.unicode), `duplicate unicode: ${entry.unicode}`);
+        unicodes.add(entry.unicode);
+    });
+});
+
+section('Regression Tests');
+
+test('IME composition does not break trie (simulated)', () => {
+    // During IME, validation is paused. Simulate by directly testing trie.
+    const node = getNodeForPrefix(trie, 'tokyo');
+    assert.ok(node);
+    assert.ok(node.isEnd);
+    assert.strictEqual(node.entry.unicode, 'Tōkyō');
+});
+
+test('Preview overlap fix: exact match returns locked preview', () => {
+    const entry = findExactMatch(trie, 'tokyo');
+    assert.ok(entry);
+    assert.strictEqual(entry.unicode, 'Tōkyō');
+});
+
+test('Sanskrit filter option exists and returns results', () => {
+    const results = getCompletions(trie, '', { pantheonFilter: 'sanskrit' });
+    assert.ok(results.length > 0);
+    results.forEach(e => assert.strictEqual(e.pantheon, 'sanskrit'));
+});
+
+test('Japanese entries with long vowels are reachable', () => {
+    const tokyo = findExactMatch(trie, 'tokyo');
+    assert.ok(tokyo);
+    assert.strictEqual(tokyo.unicode, 'Tōkyō');
+    const osaka = findExactMatch(trie, 'osaka');
+    assert.ok(osaka);
+    assert.strictEqual(osaka.unicode, 'Ōsaka');
+});
+
+test('Yoruba underdot entries are reachable', () => {
+    const shango = findExactMatch(trie, 'shango');
+    assert.ok(shango);
+    assert.strictEqual(shango.unicode, 'Ṣango');
+});
+
+test('Nahuatl macron entries are reachable', () => {
+    const quetzal = findExactMatch(trie, 'quetzalcoatl');
+    assert.ok(quetzal);
+    assert.strictEqual(quetzal.unicode, 'Quetzalcōātl');
+});
+
+// ═══════════════════════════════════════════════════════════
+// SUMMARY
+// ═══════════════════════════════════════════════════════════
+console.log(`\n${'='.repeat(50)}`);
+console.log(`  ${C.dim}Total entries in lexicon:${C.reset} ${LEXICON.length}`);
+console.log(`  ${C.green}✓ Passed:${C.reset} ${pass}`);
+if (fail > 0) {
+    console.log(`  ${C.red}✗ Failed:${C.reset} ${fail}`);
+    console.log(`\n${C.red}Failed tests:${C.reset}`);
+    failures.forEach(f => console.log(`  • ${f.name}`));
+    process.exit(1);
+} else {
+    console.log(`  ${C.green}✓ All ${pass} tests passed${C.reset}`);
+    process.exit(0);
+}

@@ -1,0 +1,222 @@
+# PUNYCODEX — Agent Reference
+
+## The Definitive Tier System (CANONICAL)
+
+### Dual‑Tier Names (4 total)
+**Apollo, Hades, Hekate, Nike**
+
+A name is dual‑tier **if and only if** all of the following are true:
+- The Greek original contains **BOTH** stress (acute/circumflex) **AND** at least one long vowel (η, ω, long α/ι/υ, or long diphthong)
+- There are **MULTIPLE** historically valid Unicode spellings (alternate stress positions, alternate long‑vowel interpretations, dialectal variation)
+- The ASCII fallback is **ALSO** historically legitimate (not merely modern English)
+- You **own** the domain variants
+- Each variant corresponds to a **real, attested, alternate restoration**
+
+These temples **must** display:
+- Two meta-badges: **Tier‑1** + **Tier‑2**
+- Two name cards or explicit dual‑tier explanation
+- Footer: **Dual‑Tier Pair (Tier‑1 & Tier‑2)**
+
+**Owned domains:**
+- `apollon.com` + `ápollōn.com`
+- `hades.com` + `hádēs.com` + `hādēs.com`
+- `hekate.com` + `hekátē.com`
+- `nike.com` + `níkē.com`
+
+---
+
+### Single‑Tier Tier‑1 Names (12 total)
+**Zeus, Árēs, Aphrodítē, Athēnē, Dēmētēr, Hēra, Hermês, Hēphaistos, Hestía, Poseidôn, Persephonē, Promētheus**
+
+A name is single‑tier Tier‑1 **if and only if** all of the following are true:
+- The Greek original contains **BOTH** stress (acute/circumflex) **AND** at least one long vowel
+- There is **ONLY ONE** historically valid Unicode restoration
+- The ASCII fallback is **NOT** ancient canonical (it is merely modern English or a brand collision)
+- You do **NOT** own multiple canonical variants that represent distinct spellings
+
+These temples **must** display:
+- One meta-badge: **Tier‑1**
+- One Unicode Restoration card
+- Footer: **Tier‑1**
+- Explanatory text must cite that the Greek original has both stress and length, making this the full scholarly orthography
+
+---
+
+### Single‑Tier Tier‑2 Names
+**Ártemis, Átlas, Diónysos, Médousa, Óðinn, Þórr, Kēr, etc.**
+
+A name is single‑tier Tier‑2 **if**:
+- The Greek original contains **ONLY ONE** feature (stress OR long vowel) **OR** neither feature
+
+These temples **must** display:
+- One meta-badge: **Tier‑2** (with subtype label if applicable, e.g., "Accent‑Preserving" or "Macron‑Preserving")
+- One Unicode Restoration card
+- Footer: **Tier‑2**
+- Explanatory text must cite which single feature is preserved
+
+---
+
+## Key Distinction
+
+| Property | Dual‑Tier (4) | Single‑Tier Tier‑1 (12) | Single‑Tier Tier‑2 |
+|----------|--------------|------------------------|-------------------|
+| Greek has both stress + length | ✔ | ✔ | ✘ |
+| Multiple valid Unicode spellings | ✔ | ✘ | N/A |
+| ASCII fallback is ancient canonical | ✔ | ✘ | varies |
+| Owns multiple domain variants | ✔ | ✘ | varies |
+| Layout | Two badges, dual footer | One badge, single footer | One badge, single footer |
+
+**Never flatten the Big Four.** Never dual‑tier the single‑tier names.
+
+---
+
+## Multi‑Form System (Evolved Convention)
+
+A name may have **multiple valid Unicode restorations**. The lexicon stores all attested forms; the temple displays them with explanation.
+
+### Fallback Hierarchy (Domain Selection)
+
+When the ideal form is unavailable, use the highest available fallback:
+
+| Priority | Form | Example | When to Use |
+|----------|------|---------|-------------|
+| 1 | **Full restoration** (all marks) | `Aphrodítē` | Ideal. Use when domain is available. |
+| 2 | **Circumflex** (stress + length in one char) | `Hermês`, `Poseidôn` | Use when the Greek has circumflex AND the domain is available. Typeable on phones. |
+| 3 | **Macron‑only** (standard academia) | `Hēra`, `Persephonē` | Default fallback. LSJ convention. Preserves length. Always defensible. |
+| 4 | **Variant form** (attested alternate) | `Athēnā` (Ἀθηνᾶ) | Use when the canonical form changes the final letter and would hurt recognizability. |
+| 5 | **Plain ASCII** | `Hera` | Last resort. Never primary. |
+
+### Rules
+
+- **Macron‑only is not wrong.** It is the standard convention in Liddell‑Scott‑Jones, Cambridge, and Oxford texts.
+- **Combined marks** (e.g., `ḗ` = acute + macron on one letter) are philologically ideal but often **untypeable on phones** and may be unavailable as domains.
+- **Wrong accent position** is worse than no accent. `ápollōn` (accent on wrong syllable) was **scrapped** in favor of plain `apollōn`.
+- **Recognizability matters.** `Athēnē` changes the final letter from familiar "Athena" — but now that `athēnē.com` is acquired, it is the primary. `athēnā.com` remains a valid variant redirect.
+
+### Name Variations Sections
+
+Every flagship temple **must** include a "Name Variations" section showing:
+- **Owned form** (primary badge) — the active domain
+- **Ideal form** — the fully accurate restoration, with availability status
+- **ASCII form** — the plain modern spelling
+- For each: the Unicode, the Greek mapping, and why this form is used
+
+This makes the collection transparent about its compromises and celebrates the philology rather than hiding it.
+
+---
+
+## Realms Page
+
+`/realms/` — A dedicated page for mythological **locations** (distinct from `/pantheon/` which shows gods).
+
+**Included realms:**
+- **Norse (7):** Helheimr, Álfheimr, Jötunheimr, Ásgarðr, Valhǫll, Miðgarðr, Ragnarǫk
+- **Greek (17):** Ólympos, Athēnai, Spártē, Delphoí, Kórinthos, Troía, Thēbaí, Krḗtē, Ithákē, Mykēnai, Dēlos, Boiōtia, Phōkis, Aitōlia, Ēpeiros, Thrákē, Sikyōn
+- **Japanese (8):** Tōkyō, Ōsaka, Kyōto, Kōbe, Nikkō, Hokkaidō, Shikoku, Nagoya
+
+The Realms page uses filter buttons (All / Norse / Greek / Japanese) and links each card to its temple.
+
+
+---
+
+## Temple Pages
+
+### Architecture
+
+**256 individual canonical landing pages** at `/sites/{id}/` — one per lexicon entry.
+
+| Type | Count | Location | Content Depth |
+|------|-------|----------|---------------|
+| Flagship | 40 | `sites/{id}/` (existing) | Hand-crafted: myths, pronunciation, symbols, domains, custom canvas |
+| Base | 216 | `sites/{id}/` (generated) | Programmatic: name cards, breakdown, tier explanation, sources, related entries |
+
+**Shared infrastructure:**
+- `css/temple-base.css` — Common temple styles (nav, hero, sections, cards, footer, responsive)
+- `js/temple-base.js` — Common interactions (scroll reveal, nav, mobile toggle, particle canvas)
+- `scripts/generate-temples.js` — Node.js build script that generates base temples from `type/js/lexicon.js`
+
+**Base temple sections (per page):**
+1. Hero — Greek name, Unicode restoration, domain badge, tier badge, Type Tool CTA
+2. The Name — 3 cards (Original → ASCII → Unicode) + Punycode explainer
+3. Character Breakdown — Step-by-step ASCII→Unicode transformation table
+4. Tier Classification — Scholarly explanation with stress/length/dual feature grid
+5. Scholarly Sources — Citation badges (LSJ, Beekes, Faulkner, etc.)
+6. Related Names — Same-pantheon entry cards
+7. Type Tool CTA — Link to `/type/#{id}` with pre-loaded name
+8. Footer — Domain, classification, original script
+
+**Every temple page has:**
+- Unique `<title>` and `<meta name="description">`
+- `<link rel="canonical">`
+- Open Graph tags (og:title, og:description, og:url, og:type, og:site_name)
+- Twitter Card tags (twitter:card, twitter:title, twitter:description)
+- Schema.org JSON-LD (WebPage + Thing)
+- Global navigation (Pantheon, Lexicon, Type, Tiers)
+
+**Generation is idempotent.** Running `node scripts/generate-temples.js` skips existing directories (preserving flagships).
+
+### Lexicon Browse Page
+
+`/lexicon/index.html` — A filterable, searchable grid of all 255 entries.
+
+- **Filters:** Pantheon pills (14), Tier pills (dual / tier-1 / tier-2)
+- **Search:** Debounced input matching ASCII, Unicode, Greek, domain
+- **Sort:** Alphabetical, Pantheon group, Tier
+- **Stats bar:** "263 entries · 14 pantheons · 4 dual-tier · 125 tier-1 · 134 tier-2"
+- Each card links to `/sites/{id}/`
+
+---
+
+## Testing Infrastructure
+
+Four test suites run via `node test/run-all.js`:
+
+1. **Lexicon Validator** (`type/js/validate.js`) — Schema, uniqueness, trie integrity, Unicode renderability, breakdown integrity, sources. 22,302+ assertions.
+2. **Engine Unit Tests** (`type/js/test-engine.js`) — 46 tests covering trie construction, exact match, completions, pantheon filtering, valid next characters, regression tests.
+3. **Link Checker** (`test/links.js`) — Scans all HTML files, validates 5,800+ internal links across 269 files.
+4. **SEO Validator** (`scripts/validate-seo.js`) — Verifies schema.org, meta tags, canonical URLs on all 255 temple pages.
+
+Browser test page: `type/test.html`
+
+---
+
+## Browser Extension
+
+A separate Chrome Extension (Manifest V3) lives in `extension/`. It shares the engine and lexicon with the website but is entirely independent.
+
+### Extension Structure
+```
+extension/
+├── manifest.json              # Manifest V3
+├── background/background.js   # Service worker
+├── content/                   # Inline autocomplete on any page
+│   ├── content.js
+│   └── content.css
+├── popup/                     # Full typing interface
+│   ├── popup.html
+│   ├── popup.css
+│   └── popup.js
+├── options/                   # Settings page
+│   ├── options.html
+│   ├── options.css
+│   └── options.js
+├── shared/                    # Reused from website
+│   ├── engine.js
+│   └── lexicon.js
+└── icons/
+    └── icon{16,32,48,128}.png
+```
+
+### Install (Developer Mode)
+1. Chrome → `chrome://extensions/` → Enable **Developer mode**
+2. Click **Load unpacked** → Select `extension/` folder
+
+### Build for Store
+```bash
+node extension/build.js   # Creates punycodex-type-extension.zip
+```
+
+### Keyboard Shortcut
+- `Ctrl+Shift+P` / `⌘+Shift+P` — Open popup
+
+The website code in `type/` must never be modified to serve the extension. The extension imports shared files from `extension/shared/` only.
