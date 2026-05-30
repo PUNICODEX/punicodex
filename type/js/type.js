@@ -3,6 +3,7 @@
  * Predictive transliteration with scholarly constraint
  * SSS-grade: IME-aware, accessible, keyboard-navigable,
  * haptic-enabled, URL-synced, NFC-normalized.
+ * Variant-aware: supports multiple Unicode restorations per ASCII root.
  */
 
 (function() {
@@ -20,14 +21,14 @@
     };
 
     // ═══════════════════════════════════════════════════════════
-    // TRIE BUILDER (lean — no dead weight)
+    // TRIE BUILDER (variant-aware)
     // ═══════════════════════════════════════════════════════════
 
     class TrieNode {
         constructor() {
             this.children = {};
             this.isEnd = false;
-            this.entry = null;
+            this.entries = []; // All variant entries at this terminal
         }
     }
 
@@ -43,7 +44,7 @@
                 node = node.children[char];
             }
             node.isEnd = true;
-            node.entry = entry;
+            node.entries.push(entry);
         });
         return root;
     }
@@ -67,6 +68,7 @@
     const resultMeaning = document.getElementById('result-meaning');
     const resultTier = document.getElementById('result-tier');
     const resultSources = document.getElementById('result-sources');
+    const resultVariants = document.getElementById('result-variants');
     const copyBtn = document.getElementById('copy-btn');
     const clearBtn = document.getElementById('clear-btn');
     const pantheonFilter = document.getElementById('pantheon-filter');
@@ -123,9 +125,12 @@
 
     function writeUrlState() {
         let newHash = '';
-        const entry = findExactMatch(currentInput);
-        if (entry) {
-            newHash = entry.id;
+        const matches = findExactMatches(currentInput);
+        const primary = matches[0];
+        if (selectedEntry) {
+            newHash = selectedEntry.id;
+        } else if (primary) {
+            newHash = primary.id;
         } else if (activePantheon !== 'all') {
             newHash = activePantheon;
         }
@@ -155,13 +160,22 @@
         return node;
     }
 
+    function filterByPantheon(entries) {
+        if (activePantheon === 'all') return entries;
+        return entries.filter(e =>
+            e.pantheon === activePantheon ||
+            (activePantheon === 'greek-all' &&
+                (e.pantheon === 'greek' || e.pantheon === 'greek-location'))
+        );
+    }
+
     function getCompletions(prefix, limit = CONFIG.maxCompletions) {
         const node = getNodeForPrefix(prefix);
         if (!node) return [];
 
         const entries = new Set();
         function collect(n) {
-            if (n.entry) entries.add(n.entry);
+            for (const e of n.entries) entries.add(e);
             for (const child of Object.values(n.children)) {
                 collect(child);
             }
@@ -169,15 +183,7 @@
         collect(node);
 
         let results = Array.from(entries);
-
-        // Pantheon filter
-        if (activePantheon !== 'all') {
-            results = results.filter(e =>
-                e.pantheon === activePantheon ||
-                (activePantheon === 'greek-all' &&
-                    (e.pantheon === 'greek' || e.pantheon === 'greek-location'))
-            );
-        }
+        results = filterByPantheon(results);
 
         // Rank: shorter names first, then alphabetical
         results.sort((a, b) => {
@@ -201,18 +207,17 @@
         return Array.from(nextChars).sort();
     }
 
-    function findExactMatch(input) {
+    function findExactMatches(input) {
         const node = getNodeForPrefix(input);
         if (node && node.isEnd) {
-            const entry = node.entry;
-            if (activePantheon !== 'all') {
-                const isGreek = activePantheon === 'greek-all' &&
-                    (entry.pantheon === 'greek' || entry.pantheon === 'greek-location');
-                if (entry.pantheon !== activePantheon && !isGreek) return null;
-            }
-            return entry;
+            return filterByPantheon(node.entries);
         }
-        return null;
+        return [];
+    }
+
+    function findExactMatch(input) {
+        const matches = findExactMatches(input);
+        return matches.length > 0 ? matches[0] : null;
     }
 
     // ═══════════════════════════════════════════════════════════
@@ -293,7 +298,13 @@
                 entry.pantheon === 'yoruba' ? '🥁' :
                 entry.pantheon === 'slavic' ? '🔥' :
                 entry.pantheon === 'zoroastrian' ? '☀️' :
-                entry.pantheon === 'incan' ? '🦙' : '✦';
+                entry.pantheon === 'incan' ? '🦙' :
+                entry.pantheon === 'chinese' ? '🐉' :
+                entry.pantheon === 'buddhist' ? '☸️' :
+                entry.pantheon === 'taoist' ? '☯️' :
+                entry.pantheon === 'korean' ? '🇰🇷' :
+                entry.pantheon === 'phoenician' ? '🌅' :
+                entry.pantheon === 'hittite' ? '🦁' : '✦';
             return `
                 <div class="completion-item" data-id="${entry.id}" id="completion-${i}" role="option" aria-selected="false">
                     <span class="completion-pantheon" aria-hidden="true">${pantheonLabel}</span>
@@ -341,10 +352,14 @@
     }
 
     function renderStatus() {
-        const entry = findExactMatch(currentInput);
+        const matches = findExactMatches(currentInput);
         let msg = '';
-        if (entry) {
-            msg = `✓ Valid — press Enter to confirm`;
+        if (matches.length > 0) {
+            if (matches.length > 1) {
+                msg = `✓ Valid — ${matches.length} variants found. Press Enter to confirm primary`;
+            } else {
+                msg = `✓ Valid — press Enter to confirm`;
+            }
             statusEl.innerHTML = `<span class="status-ok">${escapeHtml(msg)}</span>`;
         } else if (currentInput) {
             const completions = getCompletions(currentInput);
@@ -367,7 +382,7 @@
     }
 
     function renderBreakdown() {
-        const entry = findExactMatch(currentInput);
+        const entry = selectedEntry || findExactMatch(currentInput);
         if (!entry) {
             breakdownEl.innerHTML = '';
             return;
@@ -407,6 +422,37 @@
         `;
     }
 
+    function renderVariants() {
+        if (!resultVariants) return;
+        const matches = findExactMatches(currentInput);
+        if (matches.length <= 1) {
+            resultVariants.innerHTML = '';
+            return;
+        }
+
+        const activeId = selectedEntry ? selectedEntry.id : matches[0].id;
+        const pills = matches.map(m => {
+            const isActive = m.id === activeId;
+            return `<button class="variant-pill ${isActive ? 'active' : ''}" data-id="${m.id}" title="${escapeHtml(m.meaning)}">${escapeHtml(nfc(m.unicode))}</button>`;
+        }).join('');
+
+        resultVariants.innerHTML = `
+            <div class="variants-label">Accepted scholarly spellings (${matches.length})</div>
+            <div class="variants-row">${pills}</div>
+        `;
+
+        resultVariants.querySelectorAll('.variant-pill').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const id = btn.dataset.id;
+                const entry = LEXICON.find(e => e.id === id);
+                if (entry) {
+                    selectedEntry = entry;
+                    updateAll();
+                }
+            });
+        });
+    }
+
     function updateMeta(entry) {
         if (entry) {
             document.title = `PÚNYCODEX Type — ${nfc(entry.unicode)}`;
@@ -433,7 +479,7 @@
     }
 
     function renderResult() {
-        const entry = findExactMatch(currentInput);
+        const entry = selectedEntry || findExactMatch(currentInput);
         if (!entry) {
             resultEl.classList.add('hidden');
             updateMeta(null);
@@ -459,6 +505,8 @@
                 `<span class="source-badge">${escapeHtml(src)}</span>`
             ).join('');
         }
+
+        renderVariants();
 
         resultEl.classList.remove('hidden');
         resultEl.classList.remove('reveal');

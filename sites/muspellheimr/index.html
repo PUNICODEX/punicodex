@@ -1,0 +1,396 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muspellheimr — Realm of Fire | Norse Primordial | PUNYCODEX</title>
+    <meta name="description" content="The authentic digital shrine to Muspellheimr, the Norse Realm of Fire. Explore the correct Old Norse orthography, reconstructed pronunciation, and timeless mythology of Surtr's burning domain.">
+    <link rel="canonical" href="https://punycodex.com/sites/muspellheimr/">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Muspellheimr — Realm of Fire | Norse Primordial | PUNYCODEX">
+    <meta property="og:description" content="The authentic digital shrine to Muspellheimr, the Norse Realm of Fire. Explore the correct Old Norse orthography, reconstructed pronunciation, and timeless mythology of Surtr's burning domain.">
+    <meta property="og:url" content="https://punycodex.com/sites/muspellheimr/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PUNYCODEX">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Muspellheimr — Realm of Fire | Norse Primordial | PUNYCODEX">
+    <meta name="twitter:description" content="The authentic digital shrine to Muspellheimr, the Norse Realm of Fire. Explore the correct Old Norse orthography, reconstructed pronunciation, and timeless mythology of Surtr's burning domain.">
+    
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Muspellheimr — Realm of Fire | Norse Primordial",
+        "description": "The authentic digital shrine to Muspellheimr, the Norse Realm of Fire. Explore the correct Old Norse orthography, reconstructed pronunciation, and timeless mythology of Surtr's burning domain.",
+        "url": "https://punycodex.com/sites/muspellheimr/",
+        "about": {
+            "@type": "Thing",
+            "name": "Muspellheimr",
+            "alternateName": ["muspellheimr", "Muspelheim", "Muspell's realm"],
+            "description": "The primordial realm of fire, home of Surtr and the fire giants"
+        },
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "PUNYCODEX",
+            "url": "https://punycodex.com"
+        },
+        "primaryImageOfPage": {
+            "@type": "ImageObject",
+            "url": "https://punycodex.com/assets/images/og-default.svg"
+        }
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Global Nav -->
+    <div style="position:fixed;top:0;left:0;width:100%;z-index:1001;background:rgba(10,10,10,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);">
+        <div style="max-width:1200px;margin:0 auto;padding:0.4rem clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;">
+            <a href="/" style="font-family:'Cinzel',serif;font-size:0.8rem;font-weight:700;letter-spacing:0.15em;color:#D4AF37;text-decoration:none;">PUNYCODEX</a>
+            <div style="display:flex;gap:1.5rem;">
+                <a href="/pantheon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Pantheon</a>
+                <a href="/lexicon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Lexicon</a>
+                <a href="/type/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Type</a>
+                <a href="/tiers/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Tiers</a>
+            </div>
+        </div>
+    </div>
+    <!-- Legendary Fire Canvas -->
+    <canvas id="mist-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="main-nav" style="top:40px;" id="main-nav">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo">
+                <img src="assets/muspellheimr_logolockup.png" alt="Muspellheimr" class="nav-logo-img">
+            </a>
+            <div class="nav-links">
+                <a href="#the-name" class="nav-link">The Name</a>
+                <a href="#pronunciation" class="nav-link">Pronunciation</a>
+                <a href="#the-realm" class="nav-link">The Realm</a>
+                <a href="#myths" class="nav-link">Myths</a>
+                <a href="#pantheon" class="nav-link">Pantheon</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <h1 class="hero-title reveal-up">
+                    <span class="title-runic">Muspellheimr</span>
+                    <span class="title-divider"></span>
+                    <span class="title-trans">The World of Fire</span>
+                </h1>
+                <p class="hero-subtitle reveal-up">Fire &middot; Destruction &middot; The Primordial &middot; Surtr's Domain</p>
+                <div class="hero-meta reveal-up">
+                    <span class="meta-badge">Primordial Realm</span>
+                    <span class="meta-domain">Muspellheimr.com</span>
+                </div>
+                <div class="hero-cta reveal-up">
+                    <a href="#the-name" class="btn-primary">
+                        <span>Enter the Flame</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <img src="assets/muspellheimr_landscape.png" alt="Muspellheimr — The burning primordial realm of fire, with embers and molten rock" class="mascot-img">
+                <div class="mascot-glow"></div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- The Name Section -->
+    <section class="section section-name" id="the-name">
+        <div class="section-bg-glow"></div>
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">01</span>
+                <h2 class="section-title">The Authentic Name</h2>
+                <p class="section-subtitle">Why <em>Muspellheimr.com</em> is the correct form</p>
+            </div>
+            
+            <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#C75B39" stroke-width="1.5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Old Norse Original</h3>
+                    <p class="card-runic">Muspellheimr</p>
+                    <p class="card-body">The name in its original Old Norse form — a compound of <em>Muspell</em> (the primordial fire, the destructive force that existed before the world) and <em>heimr</em> (home, world, realm). In the Norse cosmos, Muspellheimr is one of the two primordial realms that existed before creation itself — the other being Niflheimr, the realm of ice and mist. Where Niflheimr was frozen and still, Muspellheimr burned with eternal fire. The heat from this realm and the cold from Niflheimr met in the void of Ginnungagap, and from their collision, the world was born. <strong>Muspell is not just fire — it is the first fire, the fire that will end everything.</strong></p>
+                </div>
+
+                <div class="name-card reveal-up" data-delay="100">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#C75B39" stroke-width="1.5">
+                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">ASCII Constraint</h3>
+                    <p class="card-ascii">MUSPELHEIM</p>
+                    <p class="card-body">Reduced to ten letters. A video game biome. A Marvel location. The name of a thousand products that use the Norse aesthetic without understanding the Norse meaning. The compound is flattened. The final <em>r</em> — the Old Norse nominative ending — is dropped. What remains is a brand, a clichÃ©, a void where a primordial realm once burned. In Old Norse, <em>heimr</em> is a complete word with grammatical force. Reducing it to <em>HEIM</em> strips the name of its linguistic integrity, like reducing <em>England</em> to <em>GLAND</em>.</p>
+                </div>
+
+                <div class="name-card reveal-up" data-delay="200">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#C75B39" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Scholarly Form</h3>
+                    <p class="card-unicode">Muspellheimr</p>
+                    <p class="card-body">The full Old Norse form, with the <em>-r</em> ending preserved — the nominative singular masculine marker that English silently drops. This is the form found in the <em>Poetic Edda</em>, the <em>Prose Edda</em>, and every academic text on Norse mythology. The domain is pure ASCII, but the word is complete. <strong>No Punycode is needed because no transformation is required.</strong> The Latin alphabet already contains every letter necessary to write this name correctly. This is not a compromise — it is the authentic orthography.</p>
+                </div>
+            </div>
+
+            <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">ASCII Fidelity</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Muspellheimr.com &rarr; Muspellheimr.com</code>
+                    <p class="explainer-note">Certain Old Norse names — particularly realm names like <strong>Muspellheimr</strong> — are written entirely in standard Latin letters and require no Unicode transformation. The ASCII form is already the scholarly standard for these words. However, this is not true of all Norse names. <strong>Ã“Ã°inn</strong> (with the eth, Ã°) and <strong>ÃžÃ³rr</strong> (with the thorn, Ã¾) carry characters that plain ASCII cannot represent. Those names benefit from full Unicode restoration. Realm names like Helheimr and Muspellheimr simply happen to use only the basic Latin alphabet — so the domain is the word, exactly as written.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pronunciation Section -->
+    <section class="section section-pronunciation" id="pronunciation">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">02</span>
+                <h2 class="section-title">Pronunciation</h2>
+                <p class="section-subtitle">How the realm of fire was truly spoken</p>
+            </div>
+
+            <div class="pronunciation-grid">
+                <div class="pronunciation-main reveal-up">
+                    <div class="ipa-display">
+                        <span class="ipa-text">/ˈmusˌpelˌhɛimr̩/</span>
+                        <span class="ipa-label">Old Norse Reconstruction</span>
+                    </div>
+                    <div class="pronunciation-breakdown">
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">Mus-</span>
+                            <span class="phoneme-desc">The <em>u</em> is short and rounded, like the <em>u</em> in "put" but tighter. The <em>s</em> is voiceless and crisp. The syllable is short, sharp, the name of the primordial fire itself — not a gentle flame but the <strong>first fire, the fire that consumes.</strong> It is the sound of sparks catching dry wood.</span>
+                        </div>
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">-pell-</span>
+                            <span class="phoneme-desc">The <em>e</em> is short and open, like the <em>e</em> in "bed." The double <em>ll</em> is geminated — held slightly longer than a single <em>l</em>. The syllable has weight, the sound of embers collapsing into ash. <strong>Muspell.</strong> The name carries the rhythm of burning — short, then sustained, then released.</span>
+                        </div>
+                        <div class="phoneme">
+                            <span class="phoneme-symbol">-heimr</span>
+                            <span class="phoneme-desc">The diphthong <em>ei</em> — slide from open <em>e</em> to close <em>i</em>, the sound of a sigh becoming a whisper. The <em>m</em> is nasal, resonant. The final <em>r</em> is trilled or tapped, not the English approximant — it is the standard Old Norse nominative ending, and it is spoken. <strong>Muspellheimr.</strong> Four syllables. The first two short and percussive, the third long and sliding, the fourth barely there — a tap on the roof of the mouth, then silence.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pronunciation-sidebar reveal-up" data-delay="150">
+                    <div class="sidebar-card">
+                        <h4 class="sidebar-title">Modern Approximation</h4>
+                        <p class="sidebar-text">"MOOS-pel-haymr" — with the final <em>r</em> lightly tapped or trilled. The <em>ei</em> is like the <em>ay</em> in "day" but crisper, more distinct. Do not swallow the final <em>r</em> — it is a real consonant, not decoration. The first syllable rhymes with "moose," not "muss."</p>
+                        <div class="sidebar-divider"></div>
+                        <h4 class="sidebar-title">Etymological Kin</h4>
+                        <ul class="kin-list">
+                            <li><strong>Old Norse</strong> Muspell — "the end of the world, destruction by fire"</li>
+                            <li><strong>Old Norse</strong> heimr — "world, home, dwelling"</li>
+                            <li><strong>Proto-Germanic</strong> *mūdiz — "mind, mood, courage" (disputed)</li>
+                            <li><strong>German</strong> Muspel — survives as the name of the fire realm</li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-card accent-card">
+                        <h4 class="sidebar-title">The Primordial Duality</h4>
+                        <p class="sidebar-text">Muspellheimr and Niflheimr are the two primordial realms. One is fire, one is ice. They existed before the gods, before the world, before time. Their collision in Ginnungagap created everything. To understand one is to understand the other — and to understand that creation itself comes from opposition.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Realm Section -->
+    <section class="section section-realm" id="the-realm">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">03</span>
+                <h2 class="section-title">The Realm</h2>
+                <p class="section-subtitle">What burns at the beginning and end of all things</p>
+            </div>
+
+            <div class="realm-content">
+                <div class="realm-intro reveal-up">
+                    <p class="lead-text">Muspellheimr is not Hell. It is not a place of punishment for the wicked. It is <strong>the primordial fire — the first thing that existed, and the thing that will end everything.</strong> In the beginning, there was only Ginnungagap, the great void. To the north lay Niflheimr, realm of ice and mist. To the south lay Muspellheimr, realm of fire and heat. The fire from the south met the ice from the north, and from their melting, the giant Ymir was born, and the cow AuÃ°umla, and from them came the gods and the world. But Muspellheimr did not disappear after creation. It still burns at the southern edge of the cosmos, guarded by Surtr, waiting for the end of days.</p>
+                </div>
+
+                <div class="domains-grid">
+                    <div class="domain-card reveal-up">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#C75B39" stroke-width="1.5">
+                                <path d="M32 8c-4 8-8 16-8 24 0 8 4 14 8 14s8-6 8-14c0-8-4-16-8-24z"/>
+                                <path d="M28 28c0-4 2-8 4-10"/>
+                                <circle cx="32" cy="44" r="4"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">The Primordial Fire</h4>
+                        <p class="domain-desc">Muspell is not ordinary fire. It is the <strong>first fire,</strong> the fire that existed before the world, before the gods, before time. In <em>VÃ¶luspÃ¡</em>, the seeress describes it as a place of brightness and burning, so hot that nothing from the other worlds can enter it. The flames send sparks and embers into the void, and these sparks will one day become the stars. Muspellheimr is creation and destruction in one realm.</p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="100">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#C75B39" stroke-width="1.5">
+                                <path d="M32 8L16 56h32L32 8z"/>
+                                <path d="M24 40h16"/>
+                                <circle cx="32" cy="28" r="4"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">Surtr the Fire Giant</h4>
+                        <p class="domain-desc">Surtr — "the Black One" — guards the frontier of Muspellheimr with a flaming sword that shines brighter than the sun. In <em>VÃ¶luspÃ¡</em>, it is prophesied that at Ragnarǫk, Surtr will lead the sons of Muspell from the south, and his sword will burn the world. Surtr is not evil. He is <strong>necessary.</strong> He is the guardian of the fire that made the world and the fire that will unmake it. At Ragnarǫk, he will fight Freyr and kill him — and then he will fling fire over the earth and burn all nine worlds.</p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="200">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#C75B39" stroke-width="1.5">
+                                <circle cx="32" cy="32" r="20"/>
+                                <circle cx="32" cy="32" r="12"/>
+                                <circle cx="32" cy="32" r="4"/>
+                                <path d="M32 8v8M32 48v8M8 32h8M48 32h8"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">The Sons of Muspell</h4>
+                        <p class="domain-desc">The fire giants who dwell in Muspellheimr are called the <em>sons of Muspell</em> — not because they are his literal children, but because they are born of the fire itself. They ride across the bridge BifrÃ¶st at Ragnarǫk, and the bridge breaks beneath them. They are described as innumerable, a host of burning warriors who have waited since the beginning of time for the moment when they will be unleashed. <strong>When they ride, the sky itself catches fire.</strong></p>
+                    </div>
+                    <div class="domain-card reveal-up" data-delay="300">
+                        <div class="domain-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#C75B39" stroke-width="1.5">
+                                <path d="M16 48c0-16 8-24 16-32 8 8 16 16 16 32H16z"/>
+                                <path d="M24 32c4-4 8-4 12 0"/>
+                                <circle cx="28" cy="24" r="2"/>
+                                <circle cx="36" cy="24" r="2"/>
+                            </svg>
+                        </div>
+                        <h4 class="domain-name">The Creation</h4>
+                        <p class="domain-desc">In <em>Gylfaginning</em>, Snorri Sturluson describes how the heat of Muspellheimr melted the ice of Niflheimr in Ginnungagap, and from the dripping water, the giant Ymir was formed. The cow AuÃ°umla licked the salt from the ice and revealed BÃºri, the first of the gods. <strong>Creation itself came from the meeting of fire and ice.</strong> Without Muspellheimr, there would be no world — and without it, there will be no end.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Myths Section -->
+    <section class="section section-myths" id="myths">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">04</span>
+                <h2 class="section-title">The Myths</h2>
+                <p class="section-subtitle">Stories of creation, Surtr, and the fire that ends the world</p>
+            </div>
+
+            <div class="myths-timeline">
+                <div class="myth-card reveal-up">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Creation</span>
+                        <h3 class="myth-title">Fire and Ice Make a World</h3>
+                        <p class="myth-text">Before the world, there was only Ginnungagap — the great void, the yawning chasm. To the north of it lay Niflheimr, where ice and poison and mist had accumulated for uncounted ages. To the south lay Muspellheimr, burning with flames so hot that nothing from the other worlds could endure them. The heat from the south met the ice from the north, and the ice began to melt. From the melting drops, the first being was formed — Ymir, the primordial giant, who was neither male nor female but contained within himself the potential for all giants. As the ice continued to melt, it formed the cow AuÃ°umla, who fed Ymir with her milk. AuÃ°umla licked the salty ice, and on the first day, a man's hair appeared. On the second day, his head. On the third day, the whole man emerged — BÃºri, the first of the gods. From BÃºri came Borr, and from Borr came Ã“Ã°inn, Vili, and VÃ© — the gods who would kill Ymir and build the world from his body. <strong>All of it began with Muspellheimr.</strong> The fire did not create directly — it created by meeting its opposite. That is the Norse understanding of existence: nothing comes from singularity. Everything comes from collision.</p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="100">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The Guardian</span>
+                        <h3 class="myth-title">Surtr and the Flaming Sword</h3>
+                        <p class="myth-text">Surtr sits at the frontier of Muspellheimr, guarding the border with a sword that shines brighter than the sun. He has been there since before the gods made the world. In <em>VÃ¶luspÃ¡</em>, the seeress describes him as coming from the south with fire, and in <em>Gylfaginning</em>, Snorri says that at Ragnarǫk, Surtr will ride first, and both before and behind him will be fire. Surtr's sword is one of the most powerful weapons in Norse mythology — it is not named, but it does not need a name. It is the fire itself, given shape. At Ragnarǫk, Surtr will fight Freyr, the god of harvest and peace. Freyr will fall, not because he is weak, but because he gave his own sword to his servant SkÃ­rnir in exchange for the giantess GerÃ°r. <strong>Surtr kills the god who gave away his weapon.</strong> That is the lesson: in a world that ends in fire, you do not disarm yourself for love.</p>
+                    </div>
+                </div>
+
+                <div class="myth-card reveal-up" data-delay="200">
+                    <div class="myth-marker"></div>
+                    <div class="myth-content">
+                        <span class="myth-tag">The End</span>
+                        <h3 class="myth-title">RagnarÃ¶k — The Sons of Muspell Ride</h3>
+                        <p class="myth-text">When Ragnarǫk begins, the sons of Muspell will ride from the south. Their leader is Surtr, and their number is beyond counting. They will cross the bridge BifrÃ¶st — the rainbow bridge that connects the worlds — and the bridge will break beneath them. They will meet the gods at VÃ­grÃ­Ã°r, the great plain where the final battle takes place. Surtr will fight Freyr and kill him. The fire giants will fight the gods of ÃsgarÃ°r. And when the battle is done, when the gods are dead and the world is broken, <strong>Surtr will fling fire over the earth and burn all nine worlds.</strong> The sun will turn black. The earth will sink into the sea. The stars will fall from the sky. And from the ashes, a new world will rise — a world without Surtr, without the fire giants, without the old gods. That is the Norse vision of apocalypse: not punishment, but renewal. The fire does not hate the world. The fire simply is — and what it burns, it makes ready for what comes next.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pantheon Connection -->
+    <section class="section section-pantheon" id="pantheon">
+        <div class="container">
+            <div class="pantheon-content reveal-up">
+                <div class="pantheon-text">
+                    <span class="pantheon-eyebrow">The PUNYCODEX</span>
+                    <h2 class="pantheon-title">One of Thirty-Four</h2>
+                    <p class="pantheon-body">The Norse cosmos is not a pantheon of gods alone — it is a <strong>map of worlds.</strong> ÃsgarÃ°r has the gods. MiÃ°garÃ°r has the humans. Jǫtunheimr has the giants. Ãlfheimr has the elves. Helheimr has the dead. And Muspellheimr has the fire — the primordial force that made everything and will unmake it. To understand the Norse universe, you must understand all nine realms — not just the ones that make good movies.</p>
+                    <p class="pantheon-body">This is not a directory. This is a <strong>resurrection.</strong></p>
+                    <a href="/lexicon/" class="btn-primary btn-ghost">
+                        <span>Enter the Lexicon</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="pantheon-mascot">
+                    <img src="assets/muspellheimr_landscape.png" alt="Muspellheimr landscape" class="pantheon-mascot-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="footer-logo">PUNYCODEX</span>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Domain</span>
+                        <span class="footer-value">Muspellheimr.com</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Primordial Realm</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Old Norse Original</span>
+                        <span class="footer-value">Muspellheimr</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <img src="assets/muspellheimr_logomark.png" alt="Muspellheimr logomark" class="footer-logomark">
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

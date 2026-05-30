@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src http://localhost:3456;">
+  <title>PUNYCODEX</title>
+  <link rel="stylesheet" href="browser.css">
+</head>
+<body>
+  <div class="browser-chrome">
+    <!-- ═══════════════════════════════════════════════════════
+         TITLEBAR — The seal of the vessel
+         ═══════════════════════════════════════════════════════ -->
+    <div class="titlebar">
+      <div class="window-controls no-drag">
+        <button class="win-btn close" id="winClose" title="Seal the Vessel">×</button>
+        <button class="win-btn minimize" id="winMinimize" title="Dim the Flame">−</button>
+        <button class="win-btn maximize" id="winMaximize" title="Expand the Sanctum">□</button>
+      </div>
+
+      <div class="nav-controls no-drag">
+        <button class="nav-btn" id="btnBack" title="Retrace">←</button>
+        <button class="nav-btn" id="btnForward" title="Advance">→</button>
+        <button class="nav-btn" id="btnReload" title="Rekindle">↻</button>
+      </div>
+
+      <!-- Inscription Field — the crown -->
+      <div class="omnibox-container no-drag">
+        <div class="trust-icon" id="trustIcon"></div>
+        <input type="text" class="omnibox" id="omnibox" placeholder="Inscribe a domain..." autocomplete="off" spellcheck="false">
+        <div class="url-display" id="urlDisplay"></div>
+        <div class="omnibox-dropdown hidden" id="omniboxDropdown"></div>
+      </div>
+
+      <div class="toolbar no-drag">
+        <button class="toolbar-btn sidebar-toggle" id="btnSidebar" title="Consult the Record">☰</button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         TAB STRIP — Votive tablets
+         ═══════════════════════════════════════════════════════ -->
+    <div class="tab-strip" id="tabStrip">
+      <div class="tabs-container" id="tabsContainer"></div>
+      <button class="new-tab-btn" id="btnNewTab" title="Open a New Tablet">+</button>
+    </div>
+
+    <!-- Progress bar — sacred flame during navigation -->
+    <div class="progress-bar hidden" id="progressBar">
+      <div class="progress-flame"></div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         CONTENT AREA — The viewing pool
+         ═══════════════════════════════════════════════════════ -->
+    <div class="content-area">
+      <!-- Webview container — holds all votive tablets -->
+      <div class="webview-container" id="webviewContainer"></div>
+
+      <!-- Error overlay — when a temple cannot be reached -->
+      <div class="error-overlay hidden" id="errorOverlay">
+        <div class="error-card">
+          <div class="error-sigil">𐄂</div>
+          <h2>Not Inscribed in the Canon</h2>
+          <p id="errorMessage">This domain has not been catalogued in the sacred index.</p>
+          <div class="error-actions">
+            <button class="error-btn" id="btnErrorCatalog">Consult the Oracle</button>
+            <button class="error-btn secondary" id="btnErrorProceed">Approach Anyway</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Temple Record / The Oracle sidebar -->
+      <aside class="domain-sidebar collapsed" id="domainSidebar">
+        <div class="sidebar-header">
+          <span id="sidebarTitle">Temple Record</span>
+          <button class="sidebar-close" id="btnCloseSidebar" title="Seal the Record">×</button>
+        </div>
+
+        <!-- Oracle: Catalog search -->
+        <div class="oracle-panel" id="oraclePanel">
+          <div class="oracle-search">
+            <input type="text" id="oracleInput" placeholder="Consult the Oracle..." autocomplete="off" spellcheck="false">
+          </div>
+          <div class="oracle-results" id="oracleResults"></div>
+        </div>
+
+        <!-- Temple Record: Site intelligence -->
+        <div class="record-panel hidden" id="recordPanel">
+          <div class="sidebar-content" id="sidebarContent">
+            <div class="sidebar-empty">Navigate to a sanctified Unicode domain to reveal its record.</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Variant banner — accepted scholarly spellings -->
+    <div class="variant-banner hidden" id="variantBanner"></div>
+
+    <!-- Server overlay — when the Oracle is silent -->
+    <div class="server-overlay hidden" id="serverOverlay">
+      <div class="server-card">
+        <div class="server-sigil">⏚</div>
+        <h2>The Oracle Is Silent</h2>
+        <p>The sacred index cannot be reached.</p>
+        <p class="server-hint">The flame must be rekindled.</p>
+        <button class="server-btn" id="btnRetryServer">Rekindle the Oracle</button>
+      </div>
+    </div>
+
+    <!-- Site info popup -->
+    <div class="site-popup hidden" id="sitePopup">
+      <div class="site-popup-arrow"></div>
+      <div class="site-popup-content" id="sitePopupContent"></div>
+    </div>
+  </div>
+
+  <script src="punycode-util.js"></script>
+  <script src="omnibox.js"></script>
+  <script src="oracle.js"></script>
+  <script src="sidebar.js"></script>
+  <script src="variant-banner.js"></script>
+  <script src="tabs.js"></script>
+  <script src="webview-manager.js"></script>
+  <script src="browser.js"></script>
+</body>
+</html>

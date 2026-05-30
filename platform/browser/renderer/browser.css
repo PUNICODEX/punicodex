@@ -1,0 +1,1272 @@
+/* ═══════════════════════════════════════════════════════════════
+   PUNYCODEX — Sacred Monumental Interface
+   Carved in stone. Illuminated from within.
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* The temple interior — warm, eternal */
+  --void: #080604;
+  --bg: #0d0b08;
+  --surface: #151310;
+  --surface-raised: #1c1915;
+  --surface-lit: #242019;
+
+  /* Sacred fire — gold that glows from within */
+  --flame: #c9a05a;
+  --flame-bright: #e0b870;
+  --flame-dim: #8a7040;
+  --flame-ember: rgba(201, 160, 90, 0.15);
+  --flame-channel: rgba(201, 160, 90, 0.08);
+
+  /* Sacred stones — functional, eternal */
+  --jade: #5a9070;
+  --jade-glow: rgba(90, 144, 112, 0.12);
+  --sapphire: #5a7898;
+  --sapphire-glow: rgba(90, 120, 152, 0.12);
+  --crimson: #905050;
+  --crimson-glow: rgba(144, 80, 80, 0.12);
+
+  /* Tier system — ordained by the Canon */
+  --tier-dual: var(--flame);
+  --tier-dual-glow: var(--flame-channel);
+  --tier-1: var(--jade);
+  --tier-1-glow: var(--jade-glow);
+  --tier-2: var(--sapphire);
+  --tier-2-glow: var(--sapphire-glow);
+
+  /* Ink — warm, like aged vellum */
+  --ink: #e4ddd0;
+  --ink-dim: #908878;
+  --ink-faint: #504840;
+  --ink-worn: #353028;
+
+  /* Structural — carved grooves, not borders */
+  --groove: rgba(201, 160, 90, 0.06);
+  --groove-strong: rgba(201, 160, 90, 0.12);
+  --groove-active: rgba(201, 160, 90, 0.20);
+
+  /* Typography */
+  --font-script: Georgia, "Times New Roman", "Palatino Linotype", serif;
+  --font-greek: "Gentium Plus", Georgia, "Arial Unicode MS", serif;
+  --font-data: "SF Mono", "Cascadia Code", "Fira Code", Consolas, monospace;
+  --font-ui: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-ui);
+  background: var(--void);
+  color: var(--ink);
+  overflow: hidden;
+  height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TEXTURE OVERLAY — subtle stone grain
+   ═══════════════════════════════════════════════════════════════ */
+
+.browser-chrome {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--bg);
+  position: relative;
+}
+
+.browser-chrome::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TITLEBAR — The seal of the vessel
+   ═══════════════════════════════════════════════════════════════ */
+
+.titlebar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--groove-strong);
+  -webkit-app-region: drag;
+  user-select: none;
+  position: relative;
+  z-index: 100;
+}
+
+.no-drag { -webkit-app-region: no-drag; }
+
+/* Window controls — sealed sigils */
+.window-controls {
+  display: flex;
+  gap: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.win-btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+  position: relative;
+}
+.win-btn:hover { opacity: 1; transform: scale(1.2); }
+.win-btn.close { background: var(--crimson); box-shadow: 0 0 6px var(--crimson-glow); }
+.win-btn.minimize { background: var(--flame-dim); }
+.win-btn.maximize { background: var(--jade); box-shadow: 0 0 6px var(--jade-glow); }
+
+/* Nav controls — ritual instruments */
+.nav-controls {
+  display: flex;
+  gap: 0.15rem;
+}
+
+.nav-btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  color: var(--ink-faint);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  -webkit-app-region: no-drag;
+  font-family: var(--font-script);
+}
+.nav-btn:hover { background: var(--surface-raised); color: var(--ink-dim); }
+.nav-btn:disabled { opacity: 0.2; cursor: default; }
+
+/* ═══════════════════════════════════════════════════════════════
+   INSCRIPTION FIELD — The crown
+   ═══════════════════════════════════════════════════════════════ */
+
+.omnibox-container {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--void);
+  border: 1px solid var(--groove);
+  border-radius: 6px;
+  padding: 0 0.875rem;
+  transition: all 0.4s ease;
+  -webkit-app-region: no-drag;
+}
+
+.omnibox-container:focus-within {
+  border-color: var(--flame-dim);
+  box-shadow: inset 0 0 0 1px var(--flame-channel), 0 0 20px var(--flame-ember);
+}
+
+.trust-icon {
+  width: 22px;
+  height: 22px;
+  margin-right: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+.trust-icon:hover { transform: scale(1.15); }
+.trust-icon.verified { color: var(--jade); text-shadow: 0 0 8px var(--jade-glow); }
+.trust-icon.verified::before { content: '◆'; }
+.trust-icon.unknown { color: var(--ink-faint); }
+.trust-icon.unknown::before { content: '◈'; }
+.trust-icon.broken { color: var(--crimson); text-shadow: 0 0 8px var(--crimson-glow); }
+.trust-icon.broken::before { content: '◈'; }
+.trust-icon.sealed::before { content: '🜏'; font-size: 12px; }
+
+.omnibox {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--ink);
+  font-size: 13.5px;
+  font-family: var(--font-script);
+  outline: none;
+  padding: 0.5rem 0;
+  letter-spacing: 0.02em;
+  -webkit-app-region: no-drag;
+}
+.omnibox::placeholder { color: var(--ink-faint); font-style: italic; font-family: var(--font-script); }
+
+/* Dropdown — revealed tablets */
+.omnibox-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border: 1px solid var(--groove-strong);
+  border-radius: 8px;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.7), inset 0 1px 0 var(--groove);
+  z-index: 1000;
+  max-height: 520px;
+  overflow-y: auto;
+  padding: 0.6rem;
+  -webkit-app-region: no-drag;
+}
+.omnibox-dropdown.hidden { display: none; }
+
+.dropdown-section { margin-bottom: 0.6rem; }
+.dropdown-section:last-child { margin-bottom: 0; }
+.dropdown-section-title {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-faint);
+  padding: 0.5rem 0.75rem 0.3rem;
+  font-weight: 600;
+  font-family: var(--font-ui);
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.7rem 0.875rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  margin-bottom: 0.1rem;
+  border: 1px solid transparent;
+}
+.dropdown-item:hover, .dropdown-item.active {
+  background: var(--surface-raised);
+  border-color: var(--groove);
+}
+.dropdown-item .di-unicode {
+  font-size: 1.2rem;
+  font-weight: 400;
+  min-width: 100px;
+  font-family: var(--font-script);
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+.dropdown-item .di-meta { flex: 1; min-width: 0; }
+.dropdown-item .di-greek {
+  font-size: 0.8rem;
+  color: var(--ink-dim);
+  font-family: var(--font-greek);
+}
+.dropdown-item .di-meaning {
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 0.15rem;
+}
+.dropdown-item .di-url {
+  font-size: 0.72rem;
+  color: var(--flame-dim);
+  font-family: var(--font-data);
+  margin-top: 0.2rem;
+}
+.dropdown-item .di-snippet {
+  font-size: 0.78rem;
+  color: var(--ink-dim);
+  line-height: 1.5;
+  margin-top: 0.3rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.dropdown-item .di-seo-meta {
+  font-size: 0.65rem;
+  color: var(--ink-faint);
+  margin-top: 0.35rem;
+  font-family: var(--font-data);
+  letter-spacing: 0.04em;
+}
+.dropdown-item .di-badge {
+  font-size: 0.58rem;
+  padding: 0.18rem 0.5rem;
+  border-radius: 3px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+}
+.di-badge.dual { background: var(--tier-dual-glow); color: var(--tier-dual); }
+.di-badge.tier-1 { background: var(--tier-1-glow); color: var(--tier-1); }
+.di-badge.tier-2 { background: var(--tier-2-glow); color: var(--tier-2); }
+.di-badge.flagship { background: var(--flame-channel); color: var(--flame); border: 1px solid var(--flame-dim); }
+.di-badge.available { background: var(--jade-glow); color: var(--jade); }
+.di-badge.unclaimed::before { content: '◆ '; font-size: 0.5rem; }
+
+.dropdown-footer {
+  border-top: 1px solid var(--groove);
+  padding: 0.6rem 0.875rem;
+  font-size: 0.8rem;
+  color: var(--ink-dim);
+  cursor: pointer;
+  border-radius: 0 0 6px 6px;
+  transition: color 0.25s;
+}
+.dropdown-footer:hover { color: var(--flame); }
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  gap: 0.15rem;
+  margin-left: 0.5rem;
+}
+
+.toolbar-btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  color: var(--ink-faint);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  -webkit-app-region: no-drag;
+}
+.toolbar-btn:hover { background: var(--surface-raised); color: var(--ink-dim); }
+.toolbar-btn.active { color: var(--flame); background: var(--flame-channel); }
+
+/* ═══════════════════════════════════════════════════════════════
+   TAB STRIP — Votive tablets
+   ═══════════════════════════════════════════════════════════════ */
+
+.tab-strip {
+  display: flex;
+  align-items: center;
+  background: var(--bg);
+  border-bottom: 1px solid var(--groove);
+  padding: 0 0.5rem;
+  gap: 0.15rem;
+  -webkit-app-region: drag;
+  position: relative;
+  z-index: 90;
+}
+
+.tabs-container {
+  display: flex;
+  flex: 1;
+  gap: 0.1rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tabs-container::-webkit-scrollbar { display: none; }
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.7rem;
+  background: transparent;
+  border: none;
+  border-radius: 6px 6px 0 0;
+  color: var(--ink-faint);
+  font-size: 0.78rem;
+  cursor: pointer;
+  max-width: 200px;
+  min-width: 70px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 0.3s ease;
+  position: relative;
+  -webkit-app-region: no-drag;
+  font-family: var(--font-script);
+  letter-spacing: 0.01em;
+}
+.tab:hover {
+  background: var(--surface);
+  color: var(--ink-dim);
+}
+.tab.active {
+  background: var(--surface-raised);
+  color: var(--ink);
+}
+.tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 15%;
+  right: 15%;
+  height: 2px;
+  background: var(--flame);
+  border-radius: 2px 2px 0 0;
+  opacity: 0.7;
+  box-shadow: 0 -2px 8px var(--flame-ember);
+}
+
+.tab-favicon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  opacity: 0.5;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tab-title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+
+.tab-close {
+  width: 16px;
+  height: 16px;
+  border: none;
+  background: transparent;
+  color: var(--ink-faint);
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0;
+  margin-left: 2px;
+  opacity: 0;
+  transition: all 0.2s;
+}
+.tab:hover .tab-close { opacity: 1; }
+.tab-close:hover {
+  background: var(--crimson-glow);
+  color: var(--crimson);
+}
+
+.new-tab-btn {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  color: var(--ink-faint);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  -webkit-app-region: no-drag;
+  transition: all 0.3s;
+  font-family: var(--font-script);
+}
+.new-tab-btn:hover {
+  background: var(--surface);
+  color: var(--ink);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CONTENT AREA — The viewing pool
+   ═══════════════════════════════════════════════════════════════ */
+
+.content-area {
+  flex: 1;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.webview-container {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: var(--void);
+}
+
+.page-webview {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: var(--void);
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page-webview.active {
+  visibility: visible;
+  pointer-events: auto;
+  z-index: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ERROR OVERLAY — Not Inscribed in the Canon
+   ═══════════════════════════════════════════════════════════════ */
+
+.error-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+.error-overlay.hidden { display: none; }
+
+.error-card {
+  text-align: center;
+  max-width: 480px;
+  padding: 3rem;
+}
+.error-sigil {
+  font-size: 3.5rem;
+  color: var(--ink-faint);
+  margin-bottom: 1.5rem;
+  opacity: 0.5;
+  font-family: var(--font-script);
+}
+.error-card h2 {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.03em;
+  color: var(--ink);
+}
+.error-card p {
+  color: var(--ink-dim);
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+.error-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.error-btn {
+  padding: 0.75rem 1.75rem;
+  background: var(--flame);
+  color: var(--void);
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.75rem;
+  transition: all 0.3s ease;
+  font-family: var(--font-ui);
+}
+.error-btn:hover {
+  background: var(--flame-bright);
+  box-shadow: 0 4px 20px var(--flame-ember);
+}
+.error-btn.secondary {
+  background: transparent;
+  color: var(--ink-dim);
+  border: 1px solid var(--groove-strong);
+}
+.error-btn.secondary:hover {
+  border-color: var(--flame-dim);
+  color: var(--flame);
+  background: var(--flame-channel);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SIDEBAR — Temple Record / The Oracle
+   ═══════════════════════════════════════════════════════════════ */
+
+.domain-sidebar {
+  width: 360px;
+  background: var(--surface);
+  border-left: 1px solid var(--groove-strong);
+  display: flex;
+  flex-direction: column;
+  transition: margin-right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 1;
+}
+.domain-sidebar.collapsed {
+  margin-right: -360px;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem;
+  border-bottom: 1px solid var(--groove);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-faint);
+  font-family: var(--font-ui);
+}
+
+.sidebar-close {
+  background: transparent;
+  border: none;
+  color: var(--ink-faint);
+  font-size: 1.2rem;
+  cursor: pointer;
+  line-height: 1;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.sidebar-close:hover { color: var(--ink); background: var(--surface-raised); }
+
+/* Oracle Panel */
+.oracle-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.oracle-panel.hidden { display: none; }
+
+.oracle-search {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--groove);
+}
+.oracle-search input {
+  width: 100%;
+  padding: 0.65rem 0.875rem;
+  background: var(--void);
+  border: 1px solid var(--groove);
+  border-radius: 4px;
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-family: var(--font-script);
+  outline: none;
+  transition: all 0.3s ease;
+}
+.oracle-search input:focus {
+  border-color: var(--flame-dim);
+  box-shadow: 0 0 0 3px var(--flame-channel);
+}
+.oracle-search input::placeholder { color: var(--ink-faint); font-style: italic; }
+
+.oracle-results {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.5rem 0;
+}
+
+/* Oracle entry row */
+.oracle-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  border-bottom: 1px solid var(--groove);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  align-items: center;
+}
+.oracle-row:hover {
+  background: var(--surface-raised);
+}
+.oracle-row .or-name {
+  font-family: var(--font-script);
+  font-size: 1rem;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+.oracle-row .or-greek {
+  font-family: var(--font-greek);
+  font-size: 0.8rem;
+  color: var(--ink-dim);
+  font-style: italic;
+  margin-top: 0.1rem;
+}
+.oracle-row .or-meta {
+  font-size: 0.7rem;
+  color: var(--ink-faint);
+  margin-top: 0.2rem;
+  font-family: var(--font-data);
+}
+.oracle-row .or-status {
+  font-size: 0.6rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+.or-status.live { background: var(--jade-glow); color: var(--jade); }
+.or-status.available { background: var(--flame-channel); color: var(--flame-dim); }
+.or-status.unclaimed { background: var(--sapphire-glow); color: var(--sapphire); }
+
+/* Record Panel */
+.record-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.record-panel.hidden { display: none; }
+
+.sidebar-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.25rem;
+}
+
+.sidebar-empty {
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 3rem 1rem;
+  font-style: italic;
+  line-height: 1.7;
+  font-family: var(--font-script);
+}
+
+/* Record sections */
+.sb-section {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--groove);
+}
+.sb-section:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.sb-section-title {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-faint);
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  font-family: var(--font-ui);
+}
+
+/* Hero — monumental inscription */
+.sb-hero {
+  text-align: center;
+  padding: 0.5rem 0 1.25rem;
+  position: relative;
+}
+.sb-hero-unicode {
+  font-size: 2.4rem;
+  font-weight: 400;
+  color: var(--ink);
+  font-family: var(--font-script);
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+}
+.sb-hero-greek {
+  font-size: 1.1rem;
+  color: var(--ink-dim);
+  margin-top: 0.4rem;
+  font-family: var(--font-greek);
+  font-style: italic;
+}
+.sb-hero-meta {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.sb-tier {
+  font-size: 0.6rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 3px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.sb-tier.dual { background: var(--tier-dual-glow); color: var(--tier-dual); }
+.sb-tier.tier-1 { background: var(--tier-1-glow); color: var(--tier-1); }
+.sb-tier.tier-2 { background: var(--tier-2-glow); color: var(--tier-2); }
+
+.sb-pantheon {
+  font-size: 0.8rem;
+  color: var(--ink-dim);
+  text-transform: capitalize;
+}
+
+.sb-meaning {
+  font-size: 0.92rem;
+  color: var(--ink);
+  line-height: 1.7;
+  font-family: var(--font-script);
+}
+.sb-domain {
+  font-size: 0.85rem;
+  color: var(--ink-dim);
+  margin-top: 0.4rem;
+  font-style: italic;
+}
+
+/* SEO metadata in sidebar */
+.sb-seo-block {
+  background: var(--void);
+  border: 1px solid var(--groove);
+  border-radius: 4px;
+  padding: 0.875rem;
+  margin-top: 0.5rem;
+}
+.sb-seo-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.35rem;
+  font-family: var(--font-script);
+}
+.sb-seo-desc {
+  font-size: 0.82rem;
+  color: var(--ink-dim);
+  line-height: 1.6;
+}
+.sb-seo-meta {
+  font-size: 0.68rem;
+  color: var(--ink-faint);
+  margin-top: 0.5rem;
+  font-family: var(--font-data);
+  letter-spacing: 0.04em;
+}
+
+/* Breakdown — inscription table */
+.sb-breakdown {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.85rem;
+}
+.sb-breakdown th {
+  text-align: left;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--groove-strong);
+  font-weight: 600;
+  font-family: var(--font-ui);
+}
+.sb-breakdown td {
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--groove);
+}
+.sb-breakdown tr:last-child td { border-bottom: none; }
+
+.sb-bd-from {
+  color: var(--ink-faint);
+  font-family: var(--font-data);
+  font-size: 0.8rem;
+}
+.sb-bd-to {
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: var(--font-script);
+}
+.sb-bd-type {
+  font-size: 0.58rem;
+  padding: 0.15rem 0.35rem;
+  border-radius: 3px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.sb-bd-type.same { background: rgba(138,135,160,0.08); color: var(--ink-faint); }
+.sb-bd-type.stress { background: var(--tier-2-glow); color: var(--tier-2); }
+.sb-bd-type.length { background: var(--tier-1-glow); color: var(--tier-1); }
+.sb-bd-type.dual { background: var(--tier-dual-glow); color: var(--tier-dual); }
+
+/* Sources */
+.sb-sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.sb-source {
+  font-size: 0.72rem;
+  background: var(--void);
+  padding: 0.25rem 0.5rem;
+  border-radius: 3px;
+  color: var(--ink-dim);
+  border: 1px solid var(--groove);
+  font-family: var(--font-data);
+}
+
+/* Registrar / Claim CTA */
+.sb-cta {
+  margin-top: 1rem;
+  padding: 0.875rem;
+  background: var(--void);
+  border: 1px solid var(--groove);
+  border-radius: 4px;
+  text-align: center;
+}
+.sb-cta-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--jade);
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+  font-family: var(--font-ui);
+}
+.sb-cta-text {
+  font-size: 0.85rem;
+  color: var(--ink-dim);
+  line-height: 1.5;
+  font-family: var(--font-script);
+}
+.sb-cta-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+  justify-content: center;
+}
+.sb-cta-link {
+  font-size: 0.7rem;
+  padding: 0.3rem 0.6rem;
+  background: var(--surface);
+  border: 1px solid var(--groove);
+  border-radius: 3px;
+  color: var(--ink-dim);
+  text-decoration: none;
+  font-family: var(--font-data);
+  transition: all 0.2s;
+}
+.sb-cta-link:hover {
+  border-color: var(--flame-dim);
+  color: var(--flame);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   VARIANT BANNER — Accepted scholarly spellings
+   ═══════════════════════════════════════════════════════════════ */
+
+.variant-banner {
+  background: var(--surface);
+  border-top: 1px solid var(--groove);
+  padding: 0.65rem 1.25rem;
+  font-size: 0.85rem;
+  color: var(--ink-dim);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-style: italic;
+  font-family: var(--font-script);
+}
+.variant-banner.hidden { display: none; }
+
+.variant-banner strong {
+  color: var(--ink);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.vb-pill {
+  font-size: 0.85rem;
+  padding: 0.25rem 0.6rem;
+  background: var(--void);
+  border: 1px solid var(--groove-strong);
+  border-radius: 4px;
+  color: var(--flame);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: var(--font-script);
+  font-style: normal;
+}
+.vb-pill:hover {
+  border-color: var(--flame);
+  background: var(--flame-channel);
+  box-shadow: 0 0 12px var(--flame-ember);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SERVER OVERLAY — The Oracle is silent
+   ═══════════════════════════════════════════════════════════════ */
+
+.server-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 6, 4, 0.92);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+.server-overlay.hidden { display: none; }
+
+.server-card {
+  background: var(--surface);
+  border: 1px solid var(--groove-strong);
+  border-radius: 8px;
+  padding: 3rem;
+  text-align: center;
+  max-width: 420px;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+}
+.server-sigil {
+  font-size: 3rem;
+  margin-bottom: 1.25rem;
+  opacity: 0.6;
+  color: var(--flame-dim);
+}
+.server-card h2 {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: 1.5rem;
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.02em;
+}
+.server-card p {
+  color: var(--ink-dim);
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+.server-hint {
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+  font-style: italic;
+}
+.server-btn {
+  margin-top: 2rem;
+  padding: 0.875rem 2rem;
+  background: var(--flame);
+  color: var(--void);
+  border: none;
+  border-radius: 4px;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.8rem;
+  transition: all 0.3s;
+  font-family: var(--font-ui);
+}
+.server-btn:hover {
+  background: var(--flame-bright);
+  box-shadow: 0 8px 24px var(--flame-ember);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SITE POPUP — Temple seal info
+   ═══════════════════════════════════════════════════════════════ */
+
+.site-popup {
+  position: absolute;
+  top: 48px;
+  left: 140px;
+  background: var(--surface);
+  border: 1px solid var(--groove-strong);
+  border-radius: 6px;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.6);
+  z-index: 1001;
+  min-width: 280px;
+  max-width: 340px;
+  padding: 1rem;
+}
+.site-popup.hidden { display: none; }
+
+.site-popup-content {
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+.site-popup-content .sp-title {
+  font-family: var(--font-script);
+  font-size: 1rem;
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+}
+.site-popup-content .sp-domain {
+  font-family: var(--font-data);
+  font-size: 0.75rem;
+  color: var(--flame-dim);
+  margin-bottom: 0.5rem;
+}
+.site-popup-content .sp-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid var(--groove);
+  font-size: 0.78rem;
+}
+.site-popup-content .sp-row:last-child { border-bottom: none; }
+.site-popup-content .sp-label { color: var(--ink-faint); }
+.site-popup-content .sp-value { color: var(--ink-dim); }
+
+/* ═══════════════════════════════════════════════════════════════
+   SCROLLBAR — refined
+   ═══════════════════════════════════════════════════════════════ */
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--ink-worn);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--ink-faint); }
+
+/* ═══════════════════════════════════════════════════════════════
+   ANIMATIONS — Sacred fire breathing
+   ═══════════════════════════════════════════════════════════════ */
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+@keyframes ember {
+  0%, 100% { box-shadow: 0 0 8px var(--flame-ember); }
+  50% { box-shadow: 0 0 16px var(--flame-ember), 0 0 32px rgba(201,160,90,0.06); }
+}
+
+.trust-icon.verified {
+  animation: breathe 4s ease-in-out infinite;
+}
+
+.tab.active::after {
+  animation: ember 3s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ORACLE PANTHEON HEADERS
+   ═══════════════════════════════════════════════════════════════ */
+
+.oracle-pantheon {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--flame-dim);
+  padding: 0.75rem 1.25rem 0.4rem;
+  font-weight: 700;
+  border-bottom: 1px solid var(--groove);
+  margin-bottom: 0.2rem;
+  font-family: var(--font-ui);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DROPDOWN SCROLL INTO VIEW
+   ═══════════════════════════════════════════════════════════════ */
+
+.dropdown-item.active {
+  scroll-margin: 0.5rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LOADING SPINNER — sacred circle
+   ═══════════════════════════════════════════════════════════════ */
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-sigil {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--groove);
+  border-top-color: var(--flame);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PROGRESS BAR — Sacred flame during navigation
+   ═══════════════════════════════════════════════════════════════ */
+
+.progress-bar {
+  height: 2px;
+  background: transparent;
+  position: relative;
+  overflow: hidden;
+  z-index: 10;
+}
+.progress-bar.hidden { display: none; }
+
+.progress-flame {
+  height: 100%;
+  width: 40%;
+  background: linear-gradient(90deg, transparent 0%, var(--flame) 50%, transparent 100%);
+  position: absolute;
+  left: -40%;
+  animation: flame-travel 1.2s ease-in-out infinite;
+}
+
+@keyframes flame-travel {
+  0% { left: -40%; }
+  100% { left: 100%; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   OMNIBOX URL DISPLAY — Real browser address bar
+   ═══════════════════════════════════════════════════════════════ */
+
+.url-display {
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 2.5rem;
+  right: 0.5rem;
+  font-size: 0.65rem;
+  color: var(--ink-faint);
+  font-family: var(--font-data);
+  letter-spacing: 0.02em;
+  pointer-events: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.omnibox-container:not(:focus-within) .url-display {
+  opacity: 1;
+}
+
+.url-display .url-protocol {
+  color: var(--ink-faint);
+}
+
+.url-display .url-domain {
+  color: var(--ink-dim);
+}
+
+.url-display .url-path {
+  color: var(--ink-faint);
+}
+
+.url-display .url-puny {
+  color: var(--flame-dim);
+  margin-left: 0.5rem;
+}

@@ -120,7 +120,6 @@ body {
 .nav-logo {
     display: flex;
     align-items: center;
-    justify-content: center;
     text-decoration: none;
     height: 100%;
 }
@@ -439,13 +438,13 @@ body {
 .hero-mascot {
     position: relative;
     display: flex;
-    justify-content: center;
     align-items: center;
 }
 
 .mascot-img {
-    max-height: 80vh;
-    width: auto;
+    width: 100%;
+    max-width: 480px;
+    height: auto;
     object-fit: contain;
     filter: drop-shadow(0 0 60px rgba(74, 44, 90, 0.3));
     position: relative;
@@ -1000,7 +999,6 @@ body {
     z-index: 2;
     display: flex;
     align-items: center;
-    justify-content: center;
 }
 
 .myth-marker::after {
@@ -1092,13 +1090,13 @@ body {
 
 .pantheon-mascot {
     display: flex;
-    justify-content: center;
     align-items: center;
 }
 
 .pantheon-mascot-img {
-    max-height: 500px;
-    width: auto;
+    width: 100%;
+    max-width: 480px;
+    height: auto;
     opacity: 0.6;
     filter: grayscale(30%) drop-shadow(0 0 40px rgba(74, 44, 90, 0.15));
     transition: all 0.6s ease;
@@ -1173,7 +1171,6 @@ body {
 
 .footer-seal {
     display: flex;
-    justify-content: center;
     align-items: center;
     padding: 2rem 0;
 }
@@ -1254,7 +1251,6 @@ body {
     }
     
     .hero-cta {
-        justify-content: center;
     }
     
     .title-divider {
@@ -1381,3 +1377,5 @@ body {
         transform: translateY(6px);
     }
 }
+
+/* mobile-overflow-fix */

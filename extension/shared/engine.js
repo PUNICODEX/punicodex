@@ -2,6 +2,7 @@
  * PÚNYCODEX Engine — Pure Scholarly Transliteration Core
  * Shared between website and browser extension.
  * No DOM dependencies. No side effects.
+ * Variant-aware: multiple entries can share the same ASCII root.
  */
 
 const PUNYCODEX_ENGINE = {
@@ -14,7 +15,7 @@ const PUNYCODEX_ENGINE = {
         constructor() {
             this.children = {};
             this.isEnd = false;
-            this.entry = null;
+            this.entries = []; // All entries sharing this ASCII terminal
         }
     },
 
@@ -30,7 +31,7 @@ const PUNYCODEX_ENGINE = {
                 node = node.children[char];
             }
             node.isEnd = true;
-            node.entry = entry;
+            node.entries.push(entry);
         });
         return root;
     },
@@ -68,7 +69,7 @@ const PUNYCODEX_ENGINE = {
 
         const entries = new Set();
         function collect(n) {
-            if (n.entry) entries.add(n.entry);
+            for (const e of n.entries) entries.add(e);
             for (const child of Object.values(n.children)) collect(child);
         }
         collect(node);
@@ -91,19 +92,40 @@ const PUNYCODEX_ENGINE = {
         return Array.from(nextChars).sort();
     },
 
+    /**
+     * Returns the primary (first) exact match for backward compatibility.
+     * If pantheon filter is active, returns the first variant matching the filter.
+     */
     findExactMatch(trie, input, options = {}) {
+        const matches = this.findExactMatches(trie, input, options);
+        return matches.length > 0 ? matches[0] : null;
+    },
+
+    /**
+     * Returns ALL exact-match variants for a given ASCII input.
+     * Respects pantheon filtering.
+     */
+    findExactMatches(trie, input, options = {}) {
         const { pantheonFilter = 'all' } = options;
         const node = this.getNodeForPrefix(trie, input);
-        if (node && node.isEnd) {
-            const entry = node.entry;
-            if (pantheonFilter !== 'all') {
-                const isGreek = pantheonFilter === 'greek-all' &&
-                    (entry.pantheon === 'greek' || entry.pantheon === 'greek-location');
-                if (entry.pantheon !== pantheonFilter && !isGreek) return null;
-            }
-            return entry;
+        if (!node || !node.isEnd) return [];
+        let results = node.entries.slice();
+        if (pantheonFilter !== 'all') {
+            results = this.filterByPantheon(results, pantheonFilter);
         }
-        return null;
+        return results;
+    },
+
+    /**
+     * Find all entries that share the same ASCII root as the given entry.
+     * Used for variant navigation.
+     */
+    findVariants(trie, entryId, lexicon) {
+        const entry = lexicon.find(e => e.id === entryId);
+        if (!entry) return [];
+        const node = this.getNodeForPrefix(trie, entry.ascii);
+        if (!node || !node.isEnd) return [];
+        return node.entries.filter(e => e.id !== entryId);
     },
 
     nfc(str) {
@@ -126,6 +148,12 @@ const PUNYCODEX_ENGINE = {
             'slavic': '🔥',
             'zoroastrian': '☀️',
             'incan': '🦙',
+            'chinese': '🐉',
+            'buddhist': '☸️',
+            'taoist': '☯️',
+            'korean': '🇰🇷',
+            'phoenician': '🌅',
+            'hittite': '🦁',
         }[pantheon] || '✦';
     },
 

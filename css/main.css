@@ -109,6 +109,12 @@ a {
     transition: color var(--duration-fast) var(--ease-smooth);
 }
 
+/* GPU layer promotion for animated elements */
+.hero-content, .hero-canvas, .psi-icon, .scroll-indicator {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
 button {
     font-family: inherit;
     cursor: none;
@@ -136,8 +142,7 @@ ul, ol {
     pointer-events: none;
     z-index: 99999;
     mix-blend-mode: difference;
-    transition: transform 0.15s var(--ease-smooth), width 0.3s var(--ease-smooth), height 0.3s var(--ease-smooth);
-    transform: translate(-50%, -50%);
+    transition: width 0.3s var(--ease-smooth), height 0.3s var(--ease-smooth);
     will-change: transform;
 }
 
@@ -164,8 +169,7 @@ ul, ol {
     pointer-events: none;
     z-index: 99998;
     opacity: 0;
-    transform: translate(-50%, -50%);
-    will-change: transform, opacity;
+    will-change: transform;
 }
 
 /* ─── Typography ─── */
@@ -471,6 +475,8 @@ ul, ol {
     padding: var(--space-7) 0 var(--space-4);
     background: var(--void);
     position: relative;
+    content-visibility: auto;
+    contain-intrinsic-size: 0 400px;
 }
 
 .site-footer::before {
@@ -574,7 +580,7 @@ ul, ol {
     font-weight: 600;
     letter-spacing: 0.06em;
     border-radius: var(--radius-md);
-    transition: all var(--duration-normal) var(--ease-smooth);
+    transition: color var(--duration-normal) var(--ease-smooth), border-color var(--duration-normal) var(--ease-smooth), box-shadow var(--duration-normal) var(--ease-smooth);
     position: relative;
     overflow: hidden;
     border: 1px solid transparent;
@@ -676,10 +682,11 @@ ul, ol {
     border-radius: var(--radius-lg);
     padding: var(--space-4);
     text-align: center;
-    transition: all var(--duration-slow) var(--ease-smooth);
+    transition: border-color var(--duration-slow) var(--ease-smooth), transform var(--duration-slow) var(--ease-smooth), background var(--duration-slow) var(--ease-smooth);
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    contain: layout style paint;
 }
 
 .archetype-card::before {

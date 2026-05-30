@@ -73,6 +73,8 @@ HTML_FILES.forEach(file => {
     const hrefMatches = content.matchAll(/href="([^"]+)"/g);
     for (const match of hrefMatches) {
         const href = match[1];
+        if (href.startsWith('about:')) continue; // Browser-internal URLs
+        if (href.includes('${')) continue; // JS template literal placeholders
         checked++;
         const result = resolveLink(file, href);
         if (result.internal && !result.exists) {
@@ -85,6 +87,8 @@ HTML_FILES.forEach(file => {
     for (const match of srcMatches) {
         const src = match[1];
         if (src.startsWith('data:')) continue;
+        if (src.startsWith('about:')) continue;
+        if (src.includes('${')) continue;
         checked++;
         const result = resolveLink(file, src);
         if (result.internal && !result.exists) {

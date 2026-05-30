@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claim Domain — PUNYCODEX</title>
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --surface-2: #1a1a26;
+      --text: #e8e6f0;
+      --text-dim: #8a87a0;
+      --accent: #c9a96e;
+      --accent-glow: rgba(201, 169, 110, 0.15);
+      --border: #2a2a3a;
+      --tier-dual: #c9a96e;
+      --tier-1: #7ec9a0;
+      --tier-2: #87aee8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    .container { max-width: 600px; margin: 0 auto; padding: 2rem 1rem; }
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2rem;
+    }
+    .logo {
+      font-size: 0.8rem;
+      letter-spacing: 0.3em;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+    .entry-preview {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .unicode-name { font-size: 2rem; font-weight: 700; }
+    .greek-name { color: var(--text-dim); font-size: 1rem; margin-top: 0.25rem; }
+    .meta {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    .badge {
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .tier-dual { background: rgba(201,169,110,0.15); color: var(--tier-dual); }
+    .tier-1 { background: rgba(126,201,160,0.15); color: var(--tier-1); }
+    .tier-2 { background: rgba(135,174,232,0.15); color: var(--tier-2); }
+    .pantheon-badge { background: var(--surface-2); color: var(--text-dim); border: 1px solid var(--border); }
+
+    .form-group { margin-bottom: 1.5rem; }
+    label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    input, select {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 1rem;
+      outline: none;
+    }
+    input:focus, select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .price-label { color: var(--text-dim); }
+    .price-value { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+    .btn {
+      width: 100%;
+      padding: 1rem;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.9; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .error { color: #e87e7e; margin-top: 1rem; text-align: center; }
+    .success { color: #7ec9a0; margin-top: 1rem; text-align: center; }
+    .loading { text-align: center; color: var(--text-dim); padding: 2rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">PUNYCODEX</div>
+    </header>
+
+    <div class="entry-preview" id="entryPreview">
+      <div class="loading">Loading...</div>
+    </div>
+
+    <form id="claimForm" style="display:none;">
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+      </div>
+
+      <div class="form-group">
+        <label for="unicodeVariant">Unicode Restoration</label>
+        <input type="text" id="unicodeVariant" name="unicodeVariant" required>
+      </div>
+
+      <div class="form-group">
+        <label for="templateType">Temple Template</label>
+        <select id="templateType" name="templateType">
+          <option value="scholarly">Scholarly — $15.00</option>
+          <option value="premium">Premium Animated — $35.00</option>
+        </select>
+      </div>
+
+      <div class="price-row">
+        <span class="price-label">Total</span>
+        <span class="price-value" id="priceDisplay">$15.00</span>
+      </div>
+
+      <button type="submit" class="btn" id="submitBtn">Claim Domain</button>
+      <div id="message"></div>
+    </form>
+  </div>
+
+  <script>
+    const API_BASE = '';
+    const params = new URLSearchParams(window.location.search);
+    const entryId = params.get('id');
+
+    let entryData = null;
+
+    async function loadEntry() {
+      try {
+        const res = await fetch(`${API_BASE}/api/entry/${entryId}`);
+        if (!res.ok) throw new Error('Entry not found');
+        entryData = await res.json();
+
+        const tierClass = entryData.tier === 'dual' ? 'tier-dual' : entryData.tier === '1' ? 'tier-1' : 'tier-2';
+        const tierLabel = entryData.tier === 'dual' ? 'Dual-Tier' : `Tier ${entryData.tier}`;
+
+        document.getElementById('entryPreview').innerHTML = `
+          <div class="unicode-name">${entryData.unicode}</div>
+          <div class="greek-name">${entryData.greek || ''}</div>
+          <div class="meta">
+            <span class="badge ${tierClass}">${tierLabel}</span>
+            <span class="badge pantheon-badge">${entryData.pantheon}</span>
+          </div>
+          <div style="margin-top:1rem;color:var(--text-dim);font-size:0.9rem;">${entryData.meaning || ''}</div>
+        `;
+
+        document.getElementById('unicodeVariant').value = entryData.unicode;
+        document.getElementById('claimForm').style.display = 'block';
+      } catch (e) {
+        document.getElementById('entryPreview').innerHTML = `<div class="error">${e.message}</div>`;
+      }
+    }
+
+    document.getElementById('templateType').addEventListener('change', (e) => {
+      const price = e.target.value === 'premium' ? '$35.00' : '$15.00';
+      document.getElementById('priceDisplay').textContent = price;
+    });
+
+    document.getElementById('claimForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      const msg = document.getElementById('message');
+      btn.disabled = true;
+      msg.textContent = 'Processing...';
+
+      try {
+        const res = await fetch(`${API_BASE}/api/claim`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            entryId: entryId,
+            email: document.getElementById('email').value,
+            unicodeVariant: document.getElementById('unicodeVariant').value,
+            templateType: document.getElementById('templateType').value
+          })
+        });
+
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error);
+
+        if (data.devMode) {
+          // Dev mode: redirect to success page with manual activation
+          window.location.href = `/claim-success?id=${data.claimId}&dev=1`;
+        } else {
+          // Production: redirect to Stripe
+          window.location.href = data.checkoutUrl;
+        }
+      } catch (e) {
+        btn.disabled = false;
+        msg.textContent = e.message;
+        msg.className = 'error';
+      }
+    });
+
+    loadEntry();
+  </script>
+</body>
+</html>

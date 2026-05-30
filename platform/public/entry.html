@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PUNYCODEX — Entry</title>
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --surface-2: #1a1a26;
+      --surface-hover: #1e1e2e;
+      --text: #e8e6f0;
+      --text-dim: #8a87a0;
+      --accent: #c9a96e;
+      --accent-glow: rgba(201, 169, 110, 0.15);
+      --border: #2a2a3a;
+      --tier-dual: #c9a96e;
+      --tier-1: #7ec9a0;
+      --tier-2: #87aee8;
+      --available: #7ec9a0;
+      --live: #87c9e8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .tagline {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      margin-top: 0.3rem;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    .loading, .error {
+      text-align: center;
+      padding: 4rem 1rem;
+      color: var(--text-dim);
+    }
+
+    .error { color: #e87e7e; }
+
+    /* ===== HERO ===== */
+    .hero {
+      text-align: center;
+      padding: 2rem 0 1.5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-unicode {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .hero-greek {
+      font-size: 1.4rem;
+      color: var(--text-dim);
+      margin-top: 0.5rem;
+      font-family: 'Georgia', 'Times New Roman', serif;
+    }
+
+    .hero-meta {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .tier-badge {
+      font-size: 0.7rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 4px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .tier-dual { background: rgba(201, 169, 110, 0.15); color: var(--tier-dual); }
+    .tier-1 { background: rgba(126, 201, 160, 0.15); color: var(--tier-1); }
+    .tier-2 { background: rgba(135, 174, 232, 0.15); color: var(--tier-2); }
+
+    .pantheon-badge {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      text-transform: capitalize;
+    }
+
+    .ascii-badge {
+      font-family: 'SF Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      background: var(--surface-2);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    /* ===== SECTIONS ===== */
+    .section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+
+    .meaning {
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+
+    .domain {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+    }
+
+    .etymology {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      font-style: italic;
+      margin-top: 0.5rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ===== BREAKDOWN TABLE ===== */
+    .breakdown-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .breakdown-table th {
+      text-align: left;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      padding: 0.5rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+      font-weight: 600;
+    }
+
+    .breakdown-table td {
+      padding: 0.6rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+
+    .breakdown-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .bd-char {
+      font-family: 'SF Mono', monospace;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+    }
+
+    .bd-to {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .bd-type {
+      font-size: 0.7rem;
+      padding: 0.15rem 0.4rem;
+      border-radius: 3px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .type-same { background: rgba(138, 135, 160, 0.15); color: #a5a2b8; }
+    .type-stress { background: rgba(135, 174, 232, 0.15); color: var(--tier-2); }
+    .type-length { background: rgba(126, 201, 160, 0.15); color: var(--tier-1); }
+    .type-dual { background: rgba(201, 169, 110, 0.15); color: var(--tier-dual); }
+    .type-special { background: rgba(232, 126, 126, 0.15); color: #e8a87e; }
+    .type-drop { background: rgba(138, 135, 160, 0.1); color: #5a5868; }
+
+    .bd-note {
+      color: var(--text-dim);
+      font-size: 0.85rem;
+    }
+
+    /* ===== SOURCES ===== */
+    .sources-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .source-tag {
+      font-size: 0.8rem;
+      background: var(--surface-2);
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      color: var(--text-dim);
+    }
+
+    /* ===== SITE CARD ===== */
+    .site-card {
+      background: var(--surface-2);
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin-top: 0.5rem;
+    }
+
+    .site-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .live-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--live);
+      box-shadow: 0 0 8px var(--live);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .live-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--live);
+      font-weight: 600;
+    }
+
+    .site-domain {
+      font-family: 'SF Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .site-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .site-description {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+    }
+
+    .site-actions {
+      margin-top: 1rem;
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .site-link {
+      font-size: 0.85rem;
+      color: var(--text);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .site-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .site-link.primary {
+      background: var(--accent);
+      color: #0a0a0f;
+      border-color: var(--accent);
+      font-weight: 600;
+    }
+
+    .site-link.primary:hover {
+      background: #d4b87e;
+    }
+
+    /* ===== AVAILABILITY ===== */
+    .available-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--available);
+      background: rgba(126, 201, 160, 0.1);
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+    }
+
+    .available-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--available);
+    }
+
+    .registrar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .registrar-link {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      text-decoration: none;
+      padding: 0.4rem 0.6rem;
+      border-radius: 6px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .registrar-link:hover {
+      border-color: var(--available);
+      color: var(--available);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover {
+      color: var(--accent);
+    }
+
+    @media (max-width: 600px) {
+      .hero-unicode { font-size: 2.5rem; }
+      .hero-greek { font-size: 1.1rem; }
+      .breakdown-table th, .breakdown-table td { padding: 0.4rem 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="search.html" class="logo">PUNYCODEX</a>
+    <div class="tagline">Search Engine for the Unicode Web</div>
+  </header>
+
+  <main id="main">
+    <div class="loading">Loading entry...</div>
+  </main>
+
+  <script>
+    const API_BASE = '';
+    const params = new URLSearchParams(location.search);
+    const entryId = params.get('id');
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    async function loadEntry() {
+      const main = document.getElementById('main');
+
+      if (!entryId) {
+        main.innerHTML = '<div class="error">No entry ID specified.</div>';
+        return;
+      }
+
+      try {
+        const res = await fetch(`${API_BASE}/api/entry/${encodeURIComponent(entryId)}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const entry = await res.json();
+        renderEntry(entry);
+      } catch (e) {
+        main.innerHTML = `<div class="error">Failed to load entry: ${escapeHtml(e.message)}</div>`;
+      }
+    }
+
+    function renderEntry(entry) {
+      const main = document.getElementById('main');
+      const tierClass = entry.tier === 'dual' ? 'tier-dual' : entry.tier === '1' ? 'tier-1' : 'tier-2';
+      const tierLabel = entry.tier === 'dual' ? 'Dual-Tier' : `Tier ${entry.tier}`;
+
+      let html = `<a href="search.html" class="back-link">&larr; Back to Search</a>`;
+
+      // Hero
+      html += `
+        <div class="hero">
+          <div class="hero-unicode">${escapeHtml(entry.unicode)}</div>
+          ${entry.greek && entry.greek !== '—' ? `<div class="hero-greek">${escapeHtml(entry.greek)}</div>` : ''}
+          <div class="hero-meta">
+            <span class="tier-badge ${tierClass}">${tierLabel}</span>
+            <span class="pantheon-badge">${escapeHtml(entry.pantheon)}</span>
+            <span class="ascii-badge">ASCII: ${escapeHtml(entry.ascii)}</span>
+          </div>
+        </div>
+      `;
+
+      // Meaning & Domain
+      html += `
+        <div class="section">
+          <div class="section-title">Meaning & Domain</div>
+          <div class="meaning">${escapeHtml(entry.meaning || '')}</div>
+          ${entry.domain ? `<div class="domain">${escapeHtml(entry.domain)}</div>` : ''}
+        </div>
+      `;
+
+      // Character Breakdown
+      if (entry.breakdown && entry.breakdown.length > 0) {
+        html += `
+          <div class="section">
+            <div class="section-title">Character Breakdown (${entry.breakdown.length} chars)</div>
+            <table class="breakdown-table">
+              <thead>
+                <tr>
+                  <th>ASCII</th>
+                  <th>Unicode</th>
+                  <th>Type</th>
+                  <th>Note</th>
+                </tr>
+              </thead>
+              <tbody>
+        `;
+        entry.breakdown.forEach(bd => {
+          const typeClass = `type-${bd.type}`;
+          html += `
+            <tr>
+              <td class="bd-char">${escapeHtml(bd.char)}</td>
+              <td class="bd-to">${escapeHtml(bd.to || '')}</td>
+              <td><span class="bd-type ${typeClass}">${escapeHtml(bd.type)}</span></td>
+              <td class="bd-note">${escapeHtml(bd.note || '')}</td>
+            </tr>
+          `;
+        });
+        html += `</tbody></table></div>`;
+      }
+
+      // Sources
+      if (entry.sources && entry.sources.length > 0) {
+        html += `
+          <div class="section">
+            <div class="section-title">Sources</div>
+            <div class="sources-list">
+              ${entry.sources.map(s => `<span class="source-tag">${escapeHtml(s)}</span>`).join('')}
+            </div>
+          </div>
+        `;
+      }
+
+      // Live Site
+      if (entry.site) {
+        const site = entry.site;
+        html += `
+          <div class="section">
+            <div class="section-title">Indexed Site</div>
+            <div class="site-card">
+              <div class="site-card-header">
+                <span class="live-indicator"></span>
+                <span class="live-label">Live</span>
+              </div>
+              <div class="site-domain">${escapeHtml(site.punycode)} <span style="color:var(--text-dim)">(${escapeHtml(site.domain)})</span></div>
+              ${site.title ? `<div class="site-title">${escapeHtml(site.title)}</div>` : ''}
+              ${site.description ? `<div class="site-description">${escapeHtml(site.description)}</div>` : ''}
+              <div class="site-actions">
+                <a href="https://${escapeHtml(site.punycode)}" target="_blank" rel="noopener" class="site-link primary">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                  Visit Site
+                </a>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      // Availability
+      else if (entry.availability) {
+        const puny = entry.punycode || entry.ascii + '.com';
+        const unicode = entry.unicode + '.com';
+        html += `
+          <div class="section">
+            <div class="section-title">Availability</div>
+            <div class="available-badge">Available for Registration</div>
+            <div class="site-domain">${escapeHtml(puny)} <span style="color:var(--text-dim)">(${escapeHtml(unicode)})</span></div>
+            <div class="site-description" style="margin-top:0.5rem">No indexed site found. This Unicode domain name may be available for registration.</div>
+            <div class="registrar-grid">
+              <a href="https://www.godaddy.com/domainsearch/find?domainToCheck=${encodeURIComponent(puny)}" target="_blank" rel="noopener" class="registrar-link">GoDaddy</a>
+              <a href="https://www.namecheap.com/domains/registration/results/?domain=${encodeURIComponent(puny)}" target="_blank" rel="noopener" class="registrar-link">Namecheap</a>
+              <a href="https://porkbun.com/checkout/search?q=${encodeURIComponent(puny)}" target="_blank" rel="noopener" class="registrar-link">Porkbun</a>
+              <a href="https://www.dynadot.com/domain/search.html?domain=${encodeURIComponent(puny)}" target="_blank" rel="noopener" class="registrar-link">Dynadot</a>
+            </div>
+          </div>
+        `;
+      }
+
+      main.innerHTML = html;
+      document.title = `${entry.unicode} — PUNYCODEX`;
+    }
+
+    loadEntry();
+  </script>
+</body>
+</html>

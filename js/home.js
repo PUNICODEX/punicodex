@@ -116,7 +116,7 @@
             }
         }
 
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < 4; i++) {
             nebulaClouds.push(new NebulaCloud());
         }
 
@@ -162,7 +162,7 @@
             }
         }
 
-        const starCount = isTouchDevice ? 80 : 180;
+        const starCount = isTouchDevice ? 50 : 100;
         for (let i = 0; i < starCount; i++) {
             stars.push(new Star());
         }
@@ -223,7 +223,7 @@
             }
         }
 
-        const particleCount = isTouchDevice ? 50 : 90;
+        const particleCount = isTouchDevice ? 30 : 50;
         for (let i = 0; i < particleCount; i++) {
             particles.push(new Particle());
         }
@@ -323,9 +323,11 @@
         }
 
         // ─── MAIN ANIMATION LOOP ───
+        let frameCount = 0;
         function animate(timestamp) {
             if (!isActive) return;
             time = timestamp;
+            frameCount++;
 
             ctx.clearRect(0, 0, width, height);
 
@@ -344,7 +346,10 @@
                 p.draw(ctx);
             });
 
-            drawConstellations(ctx);
+            // Draw constellations every 2nd frame to save GPU
+            if (frameCount % 2 === 0) {
+                drawConstellations(ctx);
+            }
 
             shootingStars.forEach(s => {
                 s.update();
@@ -628,7 +633,14 @@
 
         setTimeout(drawLines, 500);
         const debounce = window.PX && window.PX.debounce ? window.PX.debounce : function(fn, d) { let t; return function(...a) { clearTimeout(t); t = setTimeout(() => fn.apply(this, a), d); }; };
-        window.addEventListener('resize', debounce(drawLines, 300));
+        window.addEventListener('resize', debounce(drawLines, 500));
+
+        // Redraw on scroll end (cards may have shifted)
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(drawLines, 200);
+        }, { passive: true });
     }
 
     if (document.readyState === 'loading') {

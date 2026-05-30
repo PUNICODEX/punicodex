@@ -171,6 +171,8 @@
     padding: var(--space-8) 0;
     position: relative;
     overflow: hidden;
+    content-visibility: auto;
+    contain-intrinsic-size: 0 800px;
 }
 
 .section-pantheon::before {
@@ -250,6 +252,8 @@
     padding: var(--space-8) 0;
     position: relative;
     overflow: hidden;
+    content-visibility: auto;
+    contain-intrinsic-size: 0 800px;
 }
 
 .section-tiers::before {
@@ -284,9 +288,10 @@
     border-radius: var(--radius-lg);
     padding: var(--space-6);
     text-align: center;
-    transition: all var(--duration-slow) var(--ease-smooth);
+    transition: border-color var(--duration-slow) var(--ease-smooth), transform var(--duration-slow) var(--ease-smooth), box-shadow var(--duration-slow) var(--ease-smooth);
     position: relative;
     overflow: hidden;
+    contain: layout style paint;
 }
 
 .tier-card::before {
@@ -374,6 +379,8 @@
     padding: var(--space-8) 0;
     position: relative;
     overflow: hidden;
+    content-visibility: auto;
+    contain-intrinsic-size: 0 600px;
 }
 
 .section-origin::before {
@@ -420,9 +427,10 @@
     border-radius: var(--radius-lg);
     padding: var(--space-5);
     text-align: center;
-    transition: all var(--duration-slow) var(--ease-smooth);
+    transition: border-color var(--duration-slow) var(--ease-smooth), transform var(--duration-slow) var(--ease-smooth), box-shadow var(--duration-slow) var(--ease-smooth);
     position: relative;
     overflow: hidden;
+    contain: layout style paint;
 }
 
 .stat-card::before {
@@ -471,6 +479,8 @@
     padding: var(--space-8) 0;
     position: relative;
     overflow: hidden;
+    content-visibility: auto;
+    contain-intrinsic-size: 0 800px;
 }
 
 .section-codex::before {
@@ -504,9 +514,10 @@
     border: 1px solid rgba(212, 175, 55, 0.06);
     border-radius: var(--radius-lg);
     overflow: hidden;
-    transition: all var(--duration-slow) var(--ease-smooth);
+    transition: border-color var(--duration-slow) var(--ease-smooth), transform var(--duration-slow) var(--ease-smooth), box-shadow var(--duration-slow) var(--ease-smooth);
     cursor: pointer;
     position: relative;
+    contain: layout style paint;
 }
 
 .codex-card::before {
@@ -616,6 +627,8 @@
     padding: var(--space-8) 0;
     position: relative;
     overflow: hidden;
+    content-visibility: auto;
+    contain-intrinsic-size: 0 400px;
 }
 
 .section-cta::before {

@@ -45,7 +45,7 @@ function section(name) {
 section('Schema Validation');
 
 const REQUIRED_FIELDS = ['id', 'ascii', 'unicode', 'greek', 'pantheon', 'tier', 'tierLabel', 'domain', 'meaning', 'sources', 'breakdown'];
-const ALLOWED_PANTHEONS = ['greek', 'greek-location', 'norse', 'egyptian', 'sanskrit', 'celtic', 'mesopotamian', 'polynesian', 'japanese', 'nahuatl', 'yoruba', 'slavic', 'zoroastrian', 'incan'];
+const ALLOWED_PANTHEONS = ['greek', 'greek-location', 'norse', 'egyptian', 'sanskrit', 'celtic', 'mesopotamian', 'polynesian', 'japanese', 'nahuatl', 'yoruba', 'slavic', 'zoroastrian', 'incan', 'chinese', 'buddhist', 'taoist', 'korean', 'phoenician', 'hittite'];
 const ALLOWED_TIERS = ['dual', '1', '2'];
 const ASCII_REGEX = /^[a-z]+$/;
 
@@ -146,7 +146,7 @@ LEXICON.forEach(entry => {
     assert(!ids.has(entry.id), `duplicate id: ${entry.id}`);
     ids.add(entry.id);
 
-    assert(!asciis.has(entry.ascii), `duplicate ascii: ${entry.ascii} (${entry.id})`);
+    // NOTE: Duplicate ASCII is allowed for spelling variants (same ASCII, different Unicode)
     asciis.add(entry.ascii);
 
     assert(!unicodes.has(entry.unicode), `duplicate unicode: ${entry.unicode} (${entry.id})`);
@@ -162,7 +162,7 @@ class TrieNode {
     constructor() {
         this.children = {};
         this.isEnd = false;
-        this.entry = null;
+        this.entries = [];
     }
 }
 
@@ -176,7 +176,7 @@ function buildTrie(lexicon) {
             node = node.children[char];
         }
         node.isEnd = true;
-        node.entry = entry;
+        node.entries.push(entry);
     });
     return root;
 }
@@ -197,7 +197,7 @@ LEXICON.forEach(entry => {
     const node = getNodeForPrefix(entry.ascii);
     assert(node !== null, `[${entry.id}] not reachable in trie`);
     assert(node.isEnd === true, `[${entry.id}] trie node not marked as end`);
-    assert(node.entry === entry, `[${entry.id}] trie node has wrong entry`);
+    assert(node.entries.some(e => e.id === entry.id), `[${entry.id}] trie node missing entry`);
 });
 
 // Prefix reachability: every prefix of every entry must be reachable
@@ -219,7 +219,7 @@ function getCompletions(prefix, limit = Infinity) {
     if (!node) return [];
     const entries = new Set();
     function collect(n) {
-        if (n.entry) entries.add(n.entry);
+        for (const e of n.entries) entries.add(e);
         for (const child of Object.values(n.children)) collect(child);
     }
     collect(node);

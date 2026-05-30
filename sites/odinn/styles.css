@@ -102,7 +102,7 @@ body {
 }
 
 .nav-logo-img {
-    height: 36px;
+    height: 128px;
     width: auto;
     object-fit: contain;
 }
@@ -1160,7 +1160,7 @@ body {
     }
 
     .hero-mascot {
-        display: none;
+        order: -1;
     }
 
     .pronunciation-grid {
@@ -1181,7 +1181,7 @@ body {
     }
 
     .pantheon-mascot {
-        display: none;
+        order: -1;
     }
 
     .footer-grid {
@@ -1196,7 +1196,13 @@ body {
     .footer-block {
         text-align: center;
     }
-}
+
+    .mascot-img {
+        max-width: 320px;
+    }
+    .pantheon-mascot-img {
+        max-width: 280px;
+    }}
 
 @media (max-width: 768px) {
     :root {

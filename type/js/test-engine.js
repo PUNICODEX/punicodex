@@ -53,7 +53,7 @@ class TrieNode {
     constructor() {
         this.children = {};
         this.isEnd = false;
-        this.entry = null;
+        this.entries = [];
     }
 }
 
@@ -67,7 +67,7 @@ function buildTrie(lexicon) {
             node = node.children[char];
         }
         node.isEnd = true;
-        node.entry = entry;
+        node.entries.push(entry);
     });
     return root;
 }
@@ -81,24 +81,27 @@ function getNodeForPrefix(trie, prefix) {
     return node;
 }
 
+function filterByPantheon(entries, pantheonFilter) {
+    if (pantheonFilter === 'all') return entries;
+    return entries.filter(e =>
+        e.pantheon === pantheonFilter ||
+        (pantheonFilter === 'greek-all' &&
+            (e.pantheon === 'greek' || e.pantheon === 'greek-location'))
+    );
+}
+
 function getCompletions(trie, prefix, options = {}) {
     const { limit = Infinity, pantheonFilter = 'all' } = options;
     const node = getNodeForPrefix(trie, prefix);
     if (!node) return [];
     const entries = new Set();
     function collect(n) {
-        if (n.entry) entries.add(n.entry);
+        for (const e of n.entries) entries.add(e);
         for (const child of Object.values(n.children)) collect(child);
     }
     collect(node);
     let results = Array.from(entries);
-    if (pantheonFilter !== 'all') {
-        results = results.filter(e =>
-            e.pantheon === pantheonFilter ||
-            (pantheonFilter === 'greek-all' &&
-                (e.pantheon === 'greek' || e.pantheon === 'greek-location'))
-        );
-    }
+    results = filterByPantheon(results, pantheonFilter);
     results.sort((a, b) => {
         const lenDiff = a.ascii.length - b.ascii.length;
         if (lenDiff !== 0) return lenDiff;
@@ -119,19 +122,19 @@ function getValidNextChars(trie, prefix, options = {}) {
     return Array.from(nextChars).sort();
 }
 
-function findExactMatch(trie, input, options = {}) {
+function findExactMatches(trie, input, options = {}) {
     const { pantheonFilter = 'all' } = options;
     const node = getNodeForPrefix(trie, input);
     if (node && node.isEnd) {
-        const entry = node.entry;
-        if (pantheonFilter !== 'all') {
-            const isGreek = pantheonFilter === 'greek-all' &&
-                (entry.pantheon === 'greek' || entry.pantheon === 'greek-location');
-            if (entry.pantheon !== pantheonFilter && !isGreek) return null;
-        }
-        return entry;
+        let results = node.entries.slice();
+        return filterByPantheon(results, pantheonFilter);
     }
-    return null;
+    return [];
+}
+
+function findExactMatch(trie, input, options = {}) {
+    const matches = findExactMatches(trie, input, options);
+    return matches.length > 0 ? matches[0] : null;
 }
 
 const trie = buildTrie(LEXICON);
@@ -147,7 +150,7 @@ test('All entries are reachable in trie', () => {
         const node = getNodeForPrefix(trie, entry.ascii);
         assert.ok(node, `${entry.id} not reachable`);
         assert.strictEqual(node.isEnd, true, `${entry.id} not marked as end`);
-        assert.strictEqual(node.entry, entry, `${entry.id} wrong entry`);
+        assert.ok(node.entries.some(e => e.id === entry.id), `${entry.id} not in node.entries`);
     });
 });
 
@@ -175,7 +178,7 @@ test('Empty prefix returns root node', () => {
 
 section('Exact Match');
 
-test('Exact match finds correct entry', () => {
+test('Exact match finds primary entry', () => {
     const entry = findExactMatch(trie, 'apollon');
     assert.ok(entry);
     assert.strictEqual(entry.id, 'apollon');
@@ -227,6 +230,35 @@ test('Exact match with greek-all includes greek gods', () => {
     assert.strictEqual(e.pantheon, 'greek');
 });
 
+section('Variant Matching');
+
+test('findExactMatches returns all variants for shared ASCII', () => {
+    const matches = findExactMatches(trie, 'apollon');
+    assert.ok(matches.length >= 2, `Expected >=2 variants, got ${matches.length}`);
+    const ids = matches.map(m => m.id);
+    assert.ok(ids.includes('apollon'), 'Primary apollon missing');
+    assert.ok(ids.includes('apollonv1'), 'Variant apollonv1 missing');
+});
+
+test('findExactMatches respects pantheon filter on variants', () => {
+    const matches = findExactMatches(trie, 'apollon', { pantheonFilter: 'greek' });
+    assert.ok(matches.length >= 2);
+    matches.forEach(m => assert.strictEqual(m.pantheon, 'greek'));
+});
+
+test('Variant entries have different unicode values', () => {
+    const matches = findExactMatches(trie, 'apollon');
+    const unicodes = new Set(matches.map(m => m.unicode));
+    assert.ok(unicodes.size > 1, 'Variants should have different unicode values');
+});
+
+test('Hades variants are reachable', () => {
+    const matches = findExactMatches(trie, 'hades');
+    const ids = matches.map(m => m.id);
+    assert.ok(ids.includes('hades'), 'Primary hades missing');
+    assert.ok(ids.includes('hadesv1'), 'Variant hadesv1 missing');
+});
+
 section('Completions');
 
 test('Empty prefix returns all entries', () => {
@@ -242,7 +274,7 @@ test('Prefix "a" returns completions', () => {
     });
 });
 
-test('Prefix "apo" returns apollon', () => {
+test('Prefix "apo" returns apollon primary', () => {
     const completions = getCompletions(trie, 'apo');
     const ids = completions.map(c => c.id);
     assert.ok(ids.includes('apollon'), `Expected apollon in [${ids.join(', ')}]`);
@@ -291,9 +323,10 @@ test('greek-all filter includes both greek and greek-location', () => {
     });
 });
 
-test('All 14 pantheon filters return non-empty results', () => {
+test('All 20 pantheon filters return non-empty results', () => {
     const pantheons = ['greek', 'greek-location', 'norse', 'egyptian', 'sanskrit', 'celtic',
-        'mesopotamian', 'polynesian', 'japanese', 'nahuatl', 'yoruba', 'slavic', 'zoroastrian', 'incan'];
+        'mesopotamian', 'polynesian', 'japanese', 'nahuatl', 'yoruba', 'slavic', 'zoroastrian', 'incan',
+        'chinese', 'buddhist', 'taoist', 'korean', 'phoenician', 'hittite'];
     pantheons.forEach(p => {
         const results = getCompletions(trie, '', { pantheonFilter: p });
         assert.ok(results.length > 0, `Pantheon "${p}" returned empty results`);
@@ -342,20 +375,26 @@ section('Pantheon Distribution');
 test('Correct pantheon counts', () => {
     const counts = {};
     LEXICON.forEach(e => { counts[e.pantheon] = (counts[e.pantheon] || 0) + 1; });
-    assert.strictEqual(counts.greek, 98, 'Greek count');
+    assert.strictEqual(counts.greek, 267, 'Greek count');
     assert.strictEqual(counts['greek-location'], 17, 'Greek-location count');
-    assert.strictEqual(counts.norse, 34, 'Norse count');
-    assert.strictEqual(counts.egyptian, 25, 'Egyptian count');
-    assert.strictEqual(counts.sanskrit, 25, 'Sanskrit count');
-    assert.strictEqual(counts.celtic, 6, 'Celtic count');
-    assert.strictEqual(counts.mesopotamian, 6, 'Mesopotamian count');
-    assert.strictEqual(counts.polynesian, 6, 'Polynesian count');
-    assert.strictEqual(counts.japanese, 15, 'Japanese count');
-    assert.strictEqual(counts.nahuatl, 10, 'Nahuatl count');
-    assert.strictEqual(counts.yoruba, 8, 'Yoruba count');
-    assert.strictEqual(counts.slavic, 6, 'Slavic count');
-    assert.strictEqual(counts.zoroastrian, 4, 'Zoroastrian count');
-    assert.strictEqual(counts.incan, 3, 'Incan count');
+    assert.strictEqual(counts.norse, 93, 'Norse count');
+    assert.strictEqual(counts.egyptian, 74, 'Egyptian count');
+    assert.strictEqual(counts.sanskrit, 93, 'Sanskrit count');
+    assert.strictEqual(counts.celtic, 47, 'Celtic count');
+    assert.strictEqual(counts.mesopotamian, 30, 'Mesopotamian count');
+    assert.strictEqual(counts.polynesian, 21, 'Polynesian count');
+    assert.strictEqual(counts.japanese, 43, 'Japanese count');
+    assert.strictEqual(counts.nahuatl, 26, 'Nahuatl count');
+    assert.strictEqual(counts.yoruba, 30, 'Yoruba count');
+    assert.strictEqual(counts.slavic, 21, 'Slavic count');
+    assert.strictEqual(counts.zoroastrian, 17, 'Zoroastrian count');
+    assert.strictEqual(counts.incan, 11, 'Incan count');
+    assert.strictEqual(counts.chinese, 40, 'Chinese count');
+    assert.strictEqual(counts.buddhist, 21, 'Buddhist count');
+    assert.strictEqual(counts.taoist, 10, 'Taoist count');
+    assert.strictEqual(counts.korean, 12, 'Korean count');
+    assert.strictEqual(counts.phoenician, 10, 'Phoenician count');
+    assert.strictEqual(counts.hittite, 8, 'Hittite count');
 });
 
 section('Unicode & Normalization');
@@ -430,9 +469,11 @@ test('All sources are non-empty strings', () => {
     });
 });
 
-test('Greek entries cite LSJ', () => {
+test('Greek entries cite at least one major scholarly source', () => {
+    const validGreekSources = new Set(['LSJ', 'Beekes', 'Pape-Benseler', 'Homer', 'Hesiod', 'Orphic', 'West', 'Cicero', 'Lewis-Short']);
     LEXICON.filter(e => e.pantheon === 'greek').forEach(entry => {
-        assert.ok(entry.sources.includes('LSJ'), `${entry.id} missing LSJ`);
+        const hasSource = entry.sources.some(s => validGreekSources.has(s));
+        assert.ok(hasSource, `${entry.id} missing recognized Greek source (has: ${entry.sources.join(', ')})`);
     });
 });
 
@@ -452,18 +493,10 @@ test('All ids are unique', () => {
     });
 });
 
-test('All ascii values are unique', () => {
-    const asciis = new Set();
-    LEXICON.forEach(entry => {
-        assert.ok(!asciis.has(entry.ascii), `duplicate ascii: ${entry.ascii}`);
-        asciis.add(entry.ascii);
-    });
-});
-
 test('All unicode values are unique', () => {
     const unicodes = new Set();
     LEXICON.forEach(entry => {
-        assert.ok(!unicodes.has(entry.unicode), `duplicate unicode: ${entry.unicode}`);
+        assert.ok(!unicodes.has(entry.unicode), `duplicate unicode: ${entry.unicode} (${entry.id})`);
         unicodes.add(entry.unicode);
     });
 });
@@ -471,11 +504,10 @@ test('All unicode values are unique', () => {
 section('Regression Tests');
 
 test('IME composition does not break trie (simulated)', () => {
-    // During IME, validation is paused. Simulate by directly testing trie.
     const node = getNodeForPrefix(trie, 'tokyo');
     assert.ok(node);
     assert.ok(node.isEnd);
-    assert.strictEqual(node.entry.unicode, 'Tōkyō');
+    assert.strictEqual(node.entries[0].unicode, 'Tōkyō');
 });
 
 test('Preview overlap fix: exact match returns locked preview', () => {

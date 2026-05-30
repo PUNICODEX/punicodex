@@ -46,8 +46,8 @@
         cursor.className = 'custom-cursor';
         document.body.appendChild(cursor);
 
-        // Create trail dots (reduced from 8 to 4 for performance)
-        const trailCount = 4;
+        // Create trail dots (reduced to 2 for performance)
+        const trailCount = 2;
         const trails = [];
         for (let i = 0; i < trailCount; i++) {
             const trail = document.createElement('div');
@@ -64,14 +64,13 @@
             mouseY = e.clientY;
         });
 
-        // Tight cursor follow — main dot tracks near-instant, trails lag for aesthetics
+        // GPU-accelerated cursor — uses transform instead of left/top
         function animateCursor() {
             const mainEase = 0.78;
             cursorX += (mouseX - cursorX) * mainEase;
             cursorY += (mouseY - cursorY) * mainEase;
 
-            cursor.style.left = cursorX + 'px';
-            cursor.style.top = cursorY + 'px';
+            cursor.style.transform = `translate3d(${cursorX - 6}px, ${cursorY - 6}px, 0)`;
 
             let prevX = cursorX, prevY = cursorY;
             trails.forEach((trail, i) => {
@@ -291,12 +290,17 @@
         }, 1000);
     }
 
-    // Hide loading screen as soon as page is ready
-    if (document.readyState === 'complete') {
+    // Hide loading screen as soon as DOM is ready (max 600ms wait)
+    function readyHide() {
         hideLoadingScreen();
-    } else {
-        window.addEventListener('load', hideLoadingScreen);
     }
+    if (document.readyState !== 'loading') {
+        setTimeout(readyHide, 100);
+    } else {
+        document.addEventListener('DOMContentLoaded', () => setTimeout(readyHide, 100));
+    }
+    // Safety: never block longer than 600ms
+    setTimeout(hideLoadingScreen, 600);
 
     // ═══════════════════════════════════════════════════════════
     // SMOOTH SCROLL FOR ANCHOR LINKS

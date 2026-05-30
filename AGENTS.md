@@ -2,8 +2,8 @@
 
 ## The Definitive Tier System (CANONICAL)
 
-### Dual‑Tier Names (4 total)
-**Apollo, Hades, Hekate, Nike**
+### Dual‑Tier Names (3 total)
+**Apollo, Hekate, Nike**
 
 A name is dual‑tier **if and only if** all of the following are true:
 - The Greek original contains **BOTH** stress (acute/circumflex) **AND** at least one long vowel (η, ω, long α/ι/υ, or long diphthong)
@@ -19,14 +19,13 @@ These temples **must** display:
 
 **Owned domains:**
 - `apollon.com` + `ápollōn.com`
-- `hades.com` + `hádēs.com` + `hādēs.com`
 - `hekate.com` + `hekátē.com`
 - `nike.com` + `níkē.com`
 
 ---
 
-### Single‑Tier Tier‑1 Names (12 total)
-**Zeus, Árēs, Aphrodítē, Athēnē, Dēmētēr, Hēra, Hermês, Hēphaistos, Hestía, Poseidôn, Persephonē, Promētheus**
+### Single‑Tier Tier‑1 Names (13 total)
+**Zeus, Árēs, Aphrodítē, Athénā, Dēmētēr, Hēra, Hermês, Hēphaistos, Hestía, Poseidôn, Persephonē, Promētheus, Hádēs**
 
 A name is single‑tier Tier‑1 **if and only if** all of the following are true:
 - The Greek original contains **BOTH** stress (acute/circumflex) **AND** at least one long vowel
@@ -58,7 +57,7 @@ These temples **must** display:
 
 ## Key Distinction
 
-| Property | Dual‑Tier (4) | Single‑Tier Tier‑1 (12) | Single‑Tier Tier‑2 |
+| Property | Dual‑Tier (3) | Single‑Tier Tier‑1 (13) | Single‑Tier Tier‑2 |
 |----------|--------------|------------------------|-------------------|
 | Greek has both stress + length | ✔ | ✔ | ✘ |
 | Multiple valid Unicode spellings | ✔ | ✘ | N/A |
@@ -66,7 +65,7 @@ These temples **must** display:
 | Owns multiple domain variants | ✔ | ✘ | varies |
 | Layout | Two badges, dual footer | One badge, single footer | One badge, single footer |
 
-**Never flatten the Big Four.** Never dual‑tier the single‑tier names.
+**Never flatten the Big Three.** Never dual‑tier the single‑tier names.
 
 ---
 
@@ -220,3 +219,77 @@ node extension/build.js   # Creates punycodex-type-extension.zip
 - `Ctrl+Shift+P` / `⌘+Shift+P` — Open popup
 
 The website code in `type/` must never be modified to serve the extension. The extension imports shared files from `extension/shared/` only.
+
+
+---
+
+## Phase 2: Crawler & Search Engine (2026-05-29)
+
+PUNYCODEX is a **search engine for the Unicode web**, not a registrar.
+
+### Architecture
+
+```
+User Query → Lexicon Filter → Results Engine
+                              ├── Live Site → Business Card (title, desc, snippet)
+                              └── No Site   → Availability + Registrar Links
+```
+
+### Database Tables
+
+| Table | Purpose |
+|-------|---------|
+| `entries` | 263 lexicon items with tier, pantheon, meaning |
+| `indexed_sites` | Crawled xn-- domains with metadata |
+| `availability` | Lexicon entries with no live site → registrar links |
+| `breakdowns` | Character-by-character Unicode analysis |
+
+### Crawler Flow
+
+1. **Discovery**: Domain submitted (manual, bulk, or future CT log scan)
+2. **Normalize**: Convert to punycode + Unicode display form
+3. **Match Lexicon**: Link to entry by punycode, unicode, or ASCII core
+4. **Fetch**: HTTP(S) with 10s timeout, follow redirects
+5. **Extract**: Title, meta description, og:description, h1, first `<p>`
+6. **Store**: Upsert into `indexed_sites` with content hash dedup
+
+### API Endpoints
+
+**Phase 1 — Lexicon**
+- `GET /api/search?q=zeus&hasSite=true` — Rich results with site/availability
+- `GET /api/entry/:id` — Entry + breakdowns + site + availability
+- `GET /api/stats` — Entries, sites indexed, available
+
+**Phase 2 — Crawler**
+- `POST /api/crawl` — Crawl single domain
+- `POST /api/crawl/bulk` — Bulk crawl with concurrency
+- `POST /api/crawl/recrawl` — Re-crawl all active sites
+- `GET /api/sites` — List indexed sites (filter by status, pantheon)
+- `GET /api/sites/search?q=...` — Search indexed sites
+- `POST /api/sites/:punycode/spam` — Mark site as spam
+- `GET /api/crawler/stats` — Crawler metrics
+
+**Phase 2 — Availability**
+- `GET /api/availability/:entryId` — Check if domain is available
+- `POST /api/availability/:entryId` — Update availability status
+
+### Frontend
+
+- `/search.html` — Search engine with business card previews + availability layer
+- `/admin.html` — Crawler dashboard: stats, crawl triggers, site list, spam flagging
+
+### Ranking
+
+Results sorted by:
+1. `is_flagship DESC` — Our domains first
+2. `tier = 'dual' DESC` — Dual-tier next
+3. `tier = '1' DESC` — Tier-1 next
+4. `unicode ASC` — Alphabetical
+
+### Registrars (Affiliate Links)
+
+- GoDaddy, Namecheap, Porkbun, Dynadot, Spaceship
+
+### Flagship Domains (43)
+
+Seeded as `active` sites in `indexed_sites`. When DNS resolves and content is fetched, the crawler updates their real title/description.

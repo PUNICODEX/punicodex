@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claim Submitted — PUNYCODEX</title>
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --text: #e8e6f0;
+      --text-dim: #8a87a0;
+      --accent: #c9a96e;
+      --border: #2a2a3a;
+      --success: #7ec9a0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 3rem;
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+    }
+    .icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .subtitle { color: var(--text-dim); margin-bottom: 2rem; }
+    .detail {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      text-align: left;
+    }
+    .detail-label { font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; }
+    .detail-value { font-size: 1.1rem; font-weight: 600; }
+    .btn {
+      display: inline-block;
+      padding: 0.875rem 1.5rem;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 1rem;
+    }
+    .btn:hover { opacity: 0.9; }
+    .btn-secondary {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      margin-left: 0.5rem;
+    }
+    .status-pending { color: #e8c97e; }
+    .status-active { color: var(--success); }
+    .status-building { color: #87aee8; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon">🏛️</div>
+    <h1 id="title">Temple Claimed</h1>
+    <p class="subtitle" id="subtitle">Your claim is being processed.</p>
+
+    <div class="detail">
+      <div class="detail-label">Domain</div>
+      <div class="detail-value" id="domain">—</div>
+    </div>
+
+    <div class="detail">
+      <div class="detail-label">Status</div>
+      <div class="detail-value" id="status">—</div>
+    </div>
+
+    <div class="detail" id="repoDetail" style="display:none;">
+      <div class="detail-label">GitHub Repository</div>
+      <div class="detail-value" id="repoUrl">—</div>
+    </div>
+
+    <div class="detail" id="deployDetail" style="display:none;">
+      <div class="detail-label">Live URL</div>
+      <div class="detail-value"><a href="#" id="deployUrl" target="_blank" style="color:var(--accent);">—</a></div>
+    </div>
+
+    <div id="devActions" style="display:none;margin-top:1.5rem;">
+      <button class="btn" id="activateBtn">Activate & Build Temple</button>
+    </div>
+
+    <div style="margin-top: 2rem;">
+      <a href="search.html" class="btn">Back to Search</a>
+      <a href="dashboard.html" class="btn btn-secondary">My Dashboard</a>
+    </div>
+  </div>
+
+  <script>
+    const API_BASE = '';
+    const params = new URLSearchParams(window.location.search);
+    const claimId = params.get('id');
+    const isDev = params.get('dev') === '1';
+
+    async function loadClaim() {
+      try {
+        const res = await fetch(`${API_BASE}/api/claim/${claimId}`);
+        if (!res.ok) throw new Error('Claim not found');
+        const claim = await res.json();
+
+        document.getElementById('domain').textContent = claim.unicode_variant;
+        document.getElementById('status').textContent = claim.status;
+        document.getElementById('status').className = 'detail-value status-' + claim.status;
+
+        if (claim.github_repo) {
+          document.getElementById('repoDetail').style.display = 'block';
+          document.getElementById('repoUrl').innerHTML = `<a href="${claim.github_repo}" target="_blank" style="color:var(--accent);">View Repo</a>`;
+        }
+
+        if (claim.deploy_url) {
+          document.getElementById('deployDetail').style.display = 'block';
+          document.getElementById('deployUrl').href = claim.deploy_url;
+          document.getElementById('deployUrl').textContent = claim.deploy_url;
+          document.getElementById('title').textContent = 'Temple Live!';
+          document.getElementById('subtitle').textContent = 'Your Unicode domain temple is deployed.';
+        }
+
+        if (isDev && claim.status === 'pending') {
+          document.getElementById('devActions').style.display = 'block';
+        }
+      } catch (e) {
+        document.getElementById('title').textContent = 'Error';
+        document.getElementById('subtitle').textContent = e.message;
+      }
+    }
+
+    document.getElementById('activateBtn').addEventListener('click', async () => {
+      const btn = document.getElementById('activateBtn');
+      btn.disabled = true;
+      btn.textContent = 'Building...';
+
+      try {
+        const res = await fetch(`${API_BASE}/api/claim/${claimId}/activate`, { method: 'POST' });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error);
+
+        document.getElementById('repoDetail').style.display = 'block';
+        document.getElementById('repoUrl').innerHTML = `<a href="${data.repoUrl}" target="_blank" style="color:var(--accent);">View Repo</a>`;
+
+        document.getElementById('deployDetail').style.display = 'block';
+        document.getElementById('deployUrl').href = data.deployUrl;
+        document.getElementById('deployUrl').textContent = data.deployUrl;
+
+        document.getElementById('status').textContent = 'active';
+        document.getElementById('status').className = 'detail-value status-active';
+        document.getElementById('title').textContent = 'Temple Live!';
+        document.getElementById('subtitle').textContent = 'Your Unicode domain temple is deployed.';
+        document.getElementById('devActions').style.display = 'none';
+      } catch (e) {
+        btn.disabled = false;
+        btn.textContent = 'Activate & Build Temple';
+        alert('Build failed: ' + e.message);
+      }
+    });
+
+    loadClaim();
+  </script>
+</body>
+</html>
