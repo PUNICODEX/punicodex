@@ -18404,6 +18404,85 @@ const LEXICON = [
       { char: 'r', to: 'r', type: 'same', note: 'Same' },
       { char: 'a', to: 'a', type: 'same', note: 'Same' }
     ]
+  },
+  {
+    id: 'libye',
+    ascii: 'libye',
+    unicode: 'Libyē',
+    greek: 'Λιβύη',
+    pantheon: 'greek-location',
+    tier: '1',
+    tierLabel: 'Tier 1',
+    domain: 'Personified Continent of Africa',
+    meaning: 'The African continent (etymology uncertain)',
+    sources: ['LSJ', 'Herodotus'],
+    breakdown: [
+      { char: 'l', to: 'L', type: 'same', note: 'Lambda' },
+      { char: 'i', to: 'i', type: 'same', note: 'Iota' },
+      { char: 'b', to: 'b', type: 'same', note: 'Beta' },
+      { char: 'y', to: 'y', type: 'same', note: 'Upsilon' },
+      { char: 'e', to: 'ē', type: 'length', note: 'Eta: long vowel' }
+    ]
+  },
+  {
+    id: 'aigyptos',
+    ascii: 'aigyptos',
+    unicode: 'Aígyptos',
+    greek: 'Αἴγυπτος',
+    pantheon: 'greek-location',
+    tier: '1',
+    tierLabel: 'Tier 1',
+    domain: 'Personified Egypt, the Black Land',
+    meaning: 'From Egyptian Ḥwt-kꜣ-ptḥ ("House of the Ka of Ptah")',
+    sources: ['LSJ', 'Herodotus'],
+    breakdown: [
+      { char: 'a', to: 'A', type: 'same', note: 'Alpha' },
+      { char: 'i', to: 'í', type: 'stress', note: 'Acute on iota (diphthong ai)' },
+      { char: 'g', to: 'g', type: 'same', note: 'Gamma' },
+      { char: 'y', to: 'y', type: 'same', note: 'Upsilon' },
+      { char: 'p', to: 'p', type: 'same', note: 'Pi' },
+      { char: 't', to: 't', type: 'same', note: 'Tau' },
+      { char: 'o', to: 'o', type: 'same', note: 'Short omicron' },
+      { char: 's', to: 's', type: 'same', note: 'Sigma' }
+    ]
+  },
+  {
+    id: 'asia',
+    ascii: 'asia',
+    unicode: 'Asíā',
+    greek: 'Ἀσία',
+    pantheon: 'greek-location',
+    tier: '1',
+    tierLabel: 'Tier 1',
+    domain: 'Personified Continent of Asia',
+    meaning: 'The eastern continent (possibly from Assuwa)',
+    sources: ['LSJ', 'Herodotus'],
+    breakdown: [
+      { char: 'a', to: 'A', type: 'same', note: 'Alpha' },
+      { char: 's', to: 's', type: 'same', note: 'Sigma' },
+      { char: 'i', to: 'í', type: 'stress', note: 'Acute on iota' },
+      { char: 'a', to: 'ā', type: 'length', note: 'Macron: long alpha' }
+    ]
+  },
+  {
+    id: 'europe',
+    ascii: 'europe',
+    unicode: 'Eurṓpē',
+    greek: 'Εὐρώπη',
+    pantheon: 'greek-location',
+    tier: '1',
+    tierLabel: 'Tier 1',
+    domain: 'Personified Continent of Europe',
+    meaning: 'Broad-faced (from εὐρύς + ὤψ)',
+    sources: ['LSJ', 'Herodotus'],
+    breakdown: [
+      { char: 'e', to: 'E', type: 'same', note: 'Epsilon' },
+      { char: 'u', to: 'u', type: 'same', note: 'Upsilon' },
+      { char: 'r', to: 'r', type: 'same', note: 'Rho' },
+      { char: 'o', to: 'ṓ', type: 'dual', note: 'Omega with acute and length' },
+      { char: 'p', to: 'p', type: 'same', note: 'Pi' },
+      { char: 'e', to: 'ē', type: 'length', note: 'Eta: long vowel' }
+    ]
   }
 ];
 
