@@ -790,6 +790,8 @@ body {
     color: var(--fg-glow);
     margin-bottom: 0.75rem;
     letter-spacing: 0.04em;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .domain-desc {
@@ -1089,6 +1091,8 @@ body {
     font-weight: 500;
     color: var(--fg-dim);
     letter-spacing: 0.04em;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .footer-seal {
@@ -1188,6 +1192,7 @@ body {
     .footer-grid { grid-template-columns: 1fr; }
     
     .section { padding: 5rem 0; }
+        flex-direction: column;
 }
 
 @media (max-width: 480px) {

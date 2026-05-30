@@ -37,6 +37,7 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    overflow-x: hidden;
 }
 
 body {
@@ -315,6 +316,7 @@ body {
 .hero-cta {
     display: flex;
     gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .btn-primary {
@@ -612,6 +614,7 @@ body {
 
 .explainer-box {
     display: inline-block;
+    overflow-wrap: break-word;
 }
 
 .explainer-code {
@@ -844,6 +847,8 @@ body {
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: 0.75rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .domain-desc {
@@ -1109,6 +1114,8 @@ body {
     font-size: 0.95rem;
     color: var(--royal);
     letter-spacing: 0.05em;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .footer-seal {
@@ -1242,6 +1249,7 @@ body {
     
     .nav-links.active {
         display: flex;
+        flex-direction: column;
     }
     
     .nav-toggle {

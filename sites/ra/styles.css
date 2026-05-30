@@ -35,6 +35,7 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    overflow-x: hidden;
 }
 
 body {
@@ -788,6 +789,8 @@ body {
     color: var(--egypt-gold);
     margin-bottom: 0.75rem;
     letter-spacing: 0.04em;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .domain-desc {
@@ -1087,6 +1090,8 @@ body {
     font-weight: 500;
     color: var(--egypt-gold);
     letter-spacing: 0.05em;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .footer-seal {
@@ -1224,6 +1229,7 @@ body {
 
     .nav-links.active {
         display: flex;
+        flex-direction: column;
     }
 
     .nav-link {

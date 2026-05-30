@@ -69,6 +69,7 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    overflow-x: hidden;
 }
 
 body {
@@ -390,6 +391,7 @@ img {
 .hero-cta {
     display: flex;
     gap: var(--space-sm);
+    flex-wrap: wrap;
 }
 
 .btn-primary {
@@ -664,6 +666,7 @@ img {
     border-radius: 8px;
     padding: var(--space-md);
     border: 1px solid rgba(212,175,55,0.08);
+    overflow-wrap: break-word;
 }
 
 .explainer-box.dual-box {
@@ -945,6 +948,8 @@ img {
     font-weight: 600;
     color: var(--text-primary);
     margin-bottom: 0.5rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .domain-desc {
@@ -1240,6 +1245,8 @@ img {
     font-size: 0.9rem;
     color: var(--text-secondary);
     letter-spacing: 0.04em;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .footer-seal {
@@ -1391,6 +1398,7 @@ img {
     }
     .nav-links.active {
         display: flex;
+        flex-direction: column;
     }
     .nav-link {
         padding: 0.75rem 1rem;

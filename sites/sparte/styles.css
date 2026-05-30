@@ -1,5 +1,5 @@
-﻿/* =====================================================
-   SPÁRTĒ — The Warrior City-State
+/* =====================================================
+   SP�RTE � The Warrior City-State
    Custom styles. No framework. No template.
    ===================================================== */
 
@@ -265,6 +265,7 @@ body {
     transition: all 0.4s var(--ease-out-expo);
     position: relative;
     overflow: hidden;
+    flex-wrap: wrap;
 }
 .btn-primary::before {
     content: '';
@@ -462,6 +463,7 @@ body {
     border-radius: 2px;
     margin-bottom: 1rem;
     letter-spacing: 0.05em;
+    overflow-wrap: break-word;
 }
 .explainer-note {
     font-size: 0.9rem;
@@ -582,7 +584,7 @@ body {
     position: relative;
 }
 .kin-list li::before {
-    content: '→';
+    content: '?';
     position: absolute;
     left: 0;
     color: var(--bronze);
@@ -639,6 +641,8 @@ body {
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: 0.75rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 .domain-desc {
     font-size: 0.9rem;
@@ -908,6 +912,8 @@ body {
     font-size: 0.95rem;
     color: var(--bronze);
     letter-spacing: 0.05em;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 .footer-seal {
     display: flex;
