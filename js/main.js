@@ -101,6 +101,31 @@
     }
 
     // ═══════════════════════════════════════════════════════════
+    // MINIMAL CUSTOM CURSOR — position only, no rAF loop
+    // ═══════════════════════════════════════════════════════════
+
+    if (!isTouchDevice && !prefersReducedMotion) {
+        const cursor = document.createElement('div');
+        cursor.className = 'custom-cursor';
+        document.body.appendChild(cursor);
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.transform = `translate3d(${e.clientX - 6}px, ${e.clientY - 6}px, 0)`;
+        }, { passive: true });
+
+        document.addEventListener('mouseover', (e) => {
+            if (e.target.closest('a, button, .archetype-card, .tier-detail-card, .tier-tag, .nav-toggle')) {
+                cursor.classList.add('hover');
+            }
+        });
+        document.addEventListener('mouseout', (e) => {
+            if (e.target.closest('a, button, .archetype-card, .tier-detail-card, .tier-tag, .nav-toggle')) {
+                cursor.classList.remove('hover');
+            }
+        });
+    }
+
+    // ═══════════════════════════════════════════════════════════
     // SMOOTH SCROLL FOR ANCHOR LINKS
     // ═══════════════════════════════════════════════════════════
 

@@ -1003,3 +1003,27 @@ ul, ol {
         radial-gradient(ellipse at 80% 70%, rgba(65,105,225,0.03) 0%, transparent 60%);
     opacity: 0.5;
 }
+
+
+/* ─── Minimal Custom Cursor ─── */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    background: var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    mix-blend-mode: difference;
+    transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
+    will-change: transform;
+}
+.custom-cursor.hover {
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 1.5px solid var(--gold);
+    mix-blend-mode: normal;
+}
