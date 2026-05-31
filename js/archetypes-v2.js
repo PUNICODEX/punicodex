@@ -816,6 +816,7 @@ const ARCHETYPES = [
     {
         id: "sia",
         name: "Sia",
+        greek: "—",
         domain: "Divine Archetype",
         tier: "tier-2",
         tierDetail: "tier-2",
