@@ -166,8 +166,9 @@ const allEntries = [];
 for (const id of handcrafted) {
     const existing = existingMap[id];
     const lex = lexMap[id];
-    const mascotPath = findMascotPath(id);
+    let mascotPath = findMascotPath(id);
     const logomarkPath = findLogomarkPath(id);
+    if (!mascotPath && logomarkPath) mascotPath = logomarkPath;
     
     if (existing && existing.id) {
         // Use existing rich data, but update paths if found in site folder

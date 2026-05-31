@@ -9,7 +9,7 @@
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     /* ── Truth Canvas ─────────────────────────────────────────────────────── */
-    const canvas = document.getElementById('truth-canvas');
+    const canvas = document.getElementById('particle-canvas');
     if (!canvas || prefersReducedMotion) {
         if (canvas) canvas.style.display = 'none';
     } else {

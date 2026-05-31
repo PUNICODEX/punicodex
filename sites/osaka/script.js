@@ -10,6 +10,7 @@
     // Canvas Night City System
     // ============================
     const canvas = document.getElementById('city-canvas');
+    if (!canvas) return;
     const ctx = canvas.getContext('2d');
     let width, height;
     let streaks = [];

@@ -10,6 +10,7 @@
     // Canvas Heaven System
     // ============================
     const canvas = document.getElementById('heaven-canvas');
+    if (!canvas) return;
     const ctx = canvas.getContext('2d');
     let width, height;
     let clouds = [];
