@@ -44,7 +44,19 @@
     </script>
 </head>
 <body>
-    <nav class="main-nav" id="nav">
+    <!-- Global Nav -->
+    <div style="position:fixed;top:0;left:0;width:100%;z-index:1001;background:rgba(10,10,10,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);">
+        <div style="max-width:1200px;margin:0 auto;padding:0.4rem clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;">
+            <a href="/" style="font-family:'Cinzel',serif;font-size:0.8rem;font-weight:700;letter-spacing:0.15em;color:#D4AF37;text-decoration:none;">PUNYCODEX</a>
+            <div style="display:flex;gap:1.5rem;">
+                <a href="/pantheon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Pantheon</a>
+                <a href="/lexicon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Lexicon</a>
+                <a href="/type/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Type</a>
+                <a href="/tiers/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Tiers</a>
+            </div>
+        </div>
+    </div>
+    <nav class="main-nav" style="top:40px;" id="main-nav">
         <div class="nav-inner">
             <a href="/" class="nav-logo">
                 <img src="assets/aigyptos_logolockup.png" alt="Aígyptos" class="nav-logo-img">
@@ -65,18 +77,18 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <span class="hero-eyebrow">Realm · Civilizational Personification</span>
-                <h1 class="hero-title">
+                <span class="hero-eyebrow reveal-up">Realm · Civilizational Personification</span>
+                <h1 class="hero-title reveal-up">
                     <span class="title-greek">Αἴγυπτος</span>
                     <span class="title-divider"></span>
                     <span class="title-trans">Aígyptos</span>
                 </h1>
-                <p class="hero-subtitle">The Black Land</p>
-                <div class="hero-meta">
-                    <a href="https://A�gyptos.com" class="meta-badge meta-domain">A�gyptos.com</a>
-                    <span class="meta-badge">Tier-1</span>
+                <p class="hero-subtitle reveal-up">The Black Land</p>
+                <div class="hero-meta reveal-up">
+                    <span class="meta-badge">Tier-1 Accent-Preserving</span>
+                    <span class="meta-badge meta-domain">Aígyptos.com</span>
                 </div>
-                <div class="hero-cta">
+                <div class="hero-cta reveal-up">
                     <a href="#the-name" class="btn-primary">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                         Explore the Name
@@ -84,7 +96,7 @@
                     <a href="/type/#aigyptos" class="btn-ghost">Type Tool →</a>
                 </div>
             </div>
-            <div class="hero-mascot">
+            <div class="hero-mascot reveal-scale">
                 <img src="assets/aigyptos_mascot.png" alt="Aígyptos" class="mascot-img">
                 <div class="mascot-glow"></div>
             </div>
@@ -344,25 +356,33 @@
         </div>
     </section>
 
-    <footer>
+    <footer class="main-footer">
         <div class="container">
-            <div class="footer-content">
+            <div class="footer-grid">
                 <div class="footer-brand">
                     <span class="footer-logo">PUNYCODEX</span>
-                    <p>Restoring the original names of gods, realms, and archetypes to the digital world.</p>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
                 </div>
-                <div class="footer-links">
-                    <a href="/pantheon/">Pantheon</a>
-                    <a href="/realms/">Realms</a>
-                    <a href="/lexicon/">Lexicon</a>
-                    <a href="/type/">Type</a>
-                    <a href="/tiers/">Tiers</a>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Domain</span>
+                        <span class="footer-value">Aígyptos.com</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier-1 Accent-Preserving</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Greek Original</span>
+                        <span class="footer-value">Αἴγυπτος</span>
+                    </div>
                 </div>
             </div>
+            <div class="footer-seal">
+                <img src="assets/aigyptos_logomark.png" alt="Aígyptos logomark" class="footer-logomark">
+            </div>
             <div class="footer-bottom">
-                <p>Aígyptos — Realm (Civilizational Personification)</p>
-                <p>Original Greek: Αἴγυπτος</p>
-                <p>© PUNYCODEX. All realms restored.</p>
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
             </div>
         </div>
     </footer>
