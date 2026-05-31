@@ -9,7 +9,8 @@
     // ============================
     // Canvas Heaven System
     // ============================
-    const canvas = document.getElementById('heaven-canvas');
+const canvas = document.getElementById('heaven-canvas');
+    if (canvas) {    
     const ctx = canvas.getContext('2d');
     let width, height;
     let clouds = [];
@@ -355,7 +356,7 @@
     animateHeaven();
 
     // ============================
-    // Scroll Reveal System
+    }    // Scroll Reveal System
     // ============================
     const revealElements = document.querySelectorAll('.reveal-up, .reveal-scale');
     
@@ -458,7 +459,7 @@
     // ============================
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         revealElements.forEach(el => el.classList.add('revealed'));
-        canvas.style.display = 'none';
+        if (canvas) canvas.style.display = 'none';
     }
 
 })();
