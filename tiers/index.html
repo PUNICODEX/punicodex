@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,7 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/css/main.css?v=perf7">
-    <link rel="stylesheet" href="/css/tiers.css?v=perf7">
+    <link rel="stylesheet" href="/css/tiers.css?v=perf8">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%CE%A8%3C/text%3E%3C/svg%3E">
 </head>
 <body>
@@ -31,7 +31,7 @@
                 <a href="/realms/" class="nav-link">Realms</a>
                 <a href="/lexicon/" class="nav-link">Lexicon</a>
                 <a href="/tiers/" class="nav-link">Tier System</a>
-<a href="/type/" class="nav-link">Type</a>
+                <a href="/type/" class="nav-link">Type</a>
                 <a href="/codex/" class="nav-link">Codex</a>
                 <a href="/store/" class="nav-link">Store</a>
                 <a href="/about/" class="nav-link">About</a>
@@ -44,114 +44,373 @@
 
     <div class="mobile-menu" id="mobile-menu">
         <a href="/pantheon/">Pantheon</a>
-        <a href="/realms/">Realms</a><a href="/tiers/">Tier System</a><a href="/codex/">Codex</a>
-        <a href="/store/">Store</a><a href="/about/">About</a><a href="/contact/">Contact</a>
+        <a href="/realms/">Realms</a>
+        <a href="/tiers/">Tier System</a>
+        <a href="/codex/">Codex</a>
+        <a href="/store/">Store</a>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
     </div>
 
     <main class="page-tiers">
+
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- HERO — visible immediately, no scroll reveal               -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
         <section class="page-hero">
             <div class="container">
-                <h1 class="display-lg text-center reveal-up">THE TIER SYSTEM</h1>
-                <p class="body-lg text-center reveal-up">Greek prosody determines restoration depth. Two features — stress and length — define three tiers of authenticity.</p>
+                <p class="hero-eyebrow">The Doctrine</p>
+                <h1 class="display-lg text-center">THE TIER SYSTEM</h1>
+                <p class="body-lg text-center hero-lead">
+                    Greek prosody determines restoration depth. Two phonological features — <strong>stress</strong> and <strong>vowel length</strong> — define three tiers of scholarly authenticity. Every archetype in the pantheon is classified according to what survives from the original language.
+                </p>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="stat-number" data-count="54">0</span>
+                        <span class="stat-label">Temples</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="stat-number" data-count="24">0</span>
+                        <span class="stat-label">Tier-1</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="stat-number" data-count="26">0</span>
+                        <span class="stat-label">Tier-2</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="stat-number" data-count="4">0</span>
+                        <span class="stat-label">Dual-Tier</span>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="tiers-deep">
+        <div class="section-divider"></div>
+
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- PROSODY PRIMER — educational, interactive                  -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <section class="prosody-section">
             <div class="container">
-                <div class="tier-detail-grid">
-                    <div class="tier-detail-card tier-1-detail reveal-up">
-                        <div class="tier-header">
-                            <span class="tier-number">01</span>
-                            <h2 class="display-md">Tier 1</h2>
-                            <p class="tier-subtitle">Full Restoration</p>
+                <div class="section-header reveal-up">
+                    <p class="section-eyebrow">The Science</p>
+                    <h2 class="display-md text-center">Greek Prosody</h2>
+                    <p class="body-lg text-center">
+                        Ancient Greek was a pitch-accent language. Every word carried a melody — rising and falling tones — and distinguished long vowels from short. Our tier system maps these lost features to Unicode restoration depth.
+                    </p>
+                </div>
+
+                <div class="prosody-grid">
+                    <div class="prosody-card reveal-up">
+                        <div class="prosody-icon">
+                            <span class="accent-glyph acute">´</span>
                         </div>
-                        <div class="tier-visual">
-                            <div class="accent-demo">
-                                <span class="accent-mark acute">&acute;</span>
-                                <span class="plus">+</span>
-                                <span class="accent-mark macron">&macr;</span>
+                        <h3 class="prosody-title">Stress</h3>
+                        <p class="prosody-desc">
+                            The <strong>acute</strong> (´) marks rising pitch on a short vowel. The <strong>circumflex</strong> (ˆ) combines stress and length on one syllable. The grave (`) is a neutralized acute.
+                        </p>
+                        <div class="prosody-examples">
+                            <div class="prosody-example">
+                                <span class="ex-greek">Ζεύς</span>
+                                <span class="ex-arrow">→</span>
+                                <span class="ex-latin">Zeús</span>
+                                <span class="ex-note">acute on short</span>
                             </div>
-                            <p class="accent-label">Acute Stress + Long Vowel</p>
-                        </div>
-                        <div class="tier-body">
-                            <p class="body-md">The Greek original carries <strong>both</strong> an acute stress mark (or circumflex) <em>and</em> at least one long vowel (η, ω, long α/ι/υ, or long diphthong). The transliteration preserves the full scholarly orthography.</p>
-                            <p class="body-md">These names have <strong>only one valid Unicode restoration</strong>. Their ASCII fallbacks are not ancient canonical forms — they are modern English spellings. There is no linguistic ambiguity.</p>
-                        </div>
-                        <div class="tier-list">
-                            <h4 class="label">Archetypes (24)</h4>
-                            <div class="tier-archetype-tags" id="tier1-tags"></div>
+                            <div class="prosody-example">
+                                <span class="ex-greek">Ποσειδῶν</span>
+                                <span class="ex-arrow">→</span>
+                                <span class="ex-latin">Poseidôn</span>
+                                <span class="ex-note">circumflex</span>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="tier-detail-card tier-2-detail reveal-up">
-                        <div class="tier-header">
-                            <span class="tier-number">02</span>
-                            <h2 class="display-md">Tier 2</h2>
-                            <p class="tier-subtitle">Partial Restoration</p>
+                    <div class="prosody-card reveal-up">
+                        <div class="prosody-icon">
+                            <span class="accent-glyph macron">¯</span>
                         </div>
-                        <div class="tier-visual">
-                            <div class="accent-demo">
-                                <span class="accent-mark acute">&acute;</span>
-                                <span class="plus">or</span>
-                                <span class="accent-mark macron">&macr;</span>
+                        <h3 class="prosody-title">Length</h3>
+                        <p class="prosody-desc">
+                            Greek distinguished <strong>long</strong> from <strong>short</strong> vowels. η (ē) is always long; ω (ō) is always long. Long α, ι, υ exist but are harder to detect. We mark them with macrons (¯).
+                        </p>
+                        <div class="prosody-examples">
+                            <div class="prosody-example">
+                                <span class="ex-greek">Ἥρα</span>
+                                <span class="ex-arrow">→</span>
+                                <span class="ex-latin">Hēra</span>
+                                <span class="ex-note">η = long e</span>
                             </div>
-                            <p class="accent-label">Stress Only &nbsp;or&nbsp; Length Only</p>
-                        </div>
-                        <div class="tier-body">
-                            <p class="body-md">The Greek original carries <strong>only one</strong> feature — either acute stress or a long vowel, but not both. The transliteration preserves whichever feature remains.</p>
-                            <p class="body-md">These are still authentic scholarly orthographies, but they represent a <strong>partial restoration</strong> of the original phonological system.</p>
-                        </div>
-                        <div class="tier-list">
-                            <h4 class="label">Archetypes (26)</h4>
-                            <div class="tier-archetype-tags" id="tier2-tags"></div>
+                            <div class="prosody-example">
+                                <span class="ex-greek">Ἀφροδίτη</span>
+                                <span class="ex-arrow">→</span>
+                                <span class="ex-latin">Aphrodītē</span>
+                                <span class="ex-note">ῑ + η</span>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="tier-detail-card tier-dual-detail reveal-up">
-                        <div class="tier-header">
-                            <span class="tier-number">&infin;</span>
-                            <h2 class="display-md">Dual-Tier</h2>
-                            <p class="tier-subtitle">The Exceptional Four</p>
+                    <div class="prosody-card reveal-up">
+                        <div class="prosody-icon dual">
+                            <span class="accent-glyph acute">´</span>
+                            <span class="accent-glyph plus">+</span>
+                            <span class="accent-glyph macron">¯</span>
                         </div>
-                        <div class="tier-visual">
-                            <div class="accent-demo dual">
-                                <span class="accent-mark acute">&acute;</span>
-                                <span class="plus">+</span>
-                                <span class="accent-mark macron">&macr;</span>
-                                <span class="plus">&times;2</span>
+                        <h3 class="prosody-title">Both Together</h3>
+                        <p class="prosody-desc">
+                            When the Greek original carries <strong>both</strong> features, the transliteration preserves the full scholarly orthography. This is the philological ideal — every recoverable phonological detail retained.
+                        </p>
+                        <div class="prosody-examples">
+                            <div class="prosody-example">
+                                <span class="ex-greek">Ἥφαιστος</span>
+                                <span class="ex-arrow">→</span>
+                                <span class="ex-latin">Hēphaistos</span>
+                                <span class="ex-note">length + stress</span>
                             </div>
-                            <p class="accent-label">Both Features &times; Multiple Valid Forms</p>
-                        </div>
-                        <div class="tier-body">
-                            <p class="body-md">These four archetypes have <strong>multiple historically valid Unicode spellings</strong> because their Greek originals allow alternate stress positions, alternate long-vowel interpretations, or dialectal variation.</p>
-                            <p class="body-md">Their ASCII fallbacks are <strong>also historically legitimate</strong>. You own multiple domain variants. This is not a bug — it is a <strong>linguistic feature</strong> of these names.</p>
-                        </div>
-                        <div class="tier-list">
-                            <h4 class="label">Archetypes (4)</h4>
-                            <div class="tier-archetype-tags" id="tier-dual-tags"></div>
+                            <div class="prosody-example">
+                                <span class="ex-greek">Προμηθεύς</span>
+                                <span class="ex-arrow">→</span>
+                                <span class="ex-latin">Promētheus</span>
+                                <span class="ex-note">length + stress</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <div class="section-divider"></div>
+
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- THE THREE TIERS — visual comparison                        -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <section class="tiers-deep">
+            <div class="container">
+                <div class="section-header reveal-up">
+                    <p class="section-eyebrow">The Classification</p>
+                    <h2 class="display-md text-center">Three Tiers of Authenticity</h2>
+                </div>
+
+                <div class="tier-detail-grid">
+                    <div class="tier-detail-card tier-1-detail reveal-up">
+                        <div class="tier-badge-bar">
+                            <span class="tier-badge tier-1-badge">Tier 1</span>
+                            <span class="tier-count">24 archetypes</span>
+                        </div>
+                        <div class="tier-header">
+                            <div class="tier-visual">
+                                <div class="accent-demo">
+                                    <span class="accent-mark acute">´</span>
+                                    <span class="plus">+</span>
+                                    <span class="accent-mark macron">¯</span>
+                                </div>
+                                <p class="accent-label">Acute Stress + Long Vowel</p>
+                            </div>
+                            <h2 class="display-md">Full Restoration</h2>
+                        </div>
+                        <div class="tier-body">
+                            <p class="body-md">The Greek original carries <strong>both</strong> an acute stress mark (or circumflex) <em>and</em> at least one long vowel. The transliteration preserves the full scholarly orthography.</p>
+                            <p class="body-md">These names have <strong>only one valid Unicode restoration</strong>. Their ASCII fallbacks are modern English spellings — not ancient canonical forms.</p>
+                        </div>
+                        <div class="tier-list">
+                            <div class="tier-archetype-tags" id="tier1-tags"></div>
+                        </div>
+                        <button class="tier-filter-btn" data-filter="tier-1">See all in explorer →</button>
+                    </div>
+
+                    <div class="tier-detail-card tier-2-detail reveal-up">
+                        <div class="tier-badge-bar">
+                            <span class="tier-badge tier-2-badge">Tier 2</span>
+                            <span class="tier-count">26 archetypes</span>
+                        </div>
+                        <div class="tier-header">
+                            <div class="tier-visual">
+                                <div class="accent-demo">
+                                    <span class="accent-mark acute">´</span>
+                                    <span class="plus">or</span>
+                                    <span class="accent-mark macron">¯</span>
+                                </div>
+                                <p class="accent-label">Stress Only &nbsp;or&nbsp; Length Only</p>
+                            </div>
+                            <h2 class="display-md">Partial Restoration</h2>
+                        </div>
+                        <div class="tier-body">
+                            <p class="body-md">The Greek original carries <strong>only one</strong> feature — either acute stress or a long vowel, but not both. The transliteration preserves whichever feature remains.</p>
+                            <p class="body-md">These are still authentic scholarly orthographies, but they represent a <strong>partial restoration</strong> of the original phonological system.</p>
+                        </div>
+                        <div class="tier-list">
+                            <div class="tier-archetype-tags" id="tier2-tags"></div>
+                        </div>
+                        <button class="tier-filter-btn" data-filter="tier-2">See all in explorer →</button>
+                    </div>
+
+                    <div class="tier-detail-card tier-dual-detail reveal-up">
+                        <div class="tier-badge-bar">
+                            <span class="tier-badge dual-badge">Dual-Tier</span>
+                            <span class="tier-count">4 archetypes</span>
+                        </div>
+                        <div class="tier-header">
+                            <div class="tier-visual">
+                                <div class="accent-demo dual">
+                                    <span class="accent-mark acute">´</span>
+                                    <span class="plus">+</span>
+                                    <span class="accent-mark macron">¯</span>
+                                    <span class="plus">×2</span>
+                                </div>
+                                <p class="accent-label">Both Features × Multiple Valid Forms</p>
+                            </div>
+                            <h2 class="display-md">The Exceptional Four</h2>
+                        </div>
+                        <div class="tier-body">
+                            <p class="body-md">These four archetypes have <strong>multiple historically valid Unicode spellings</strong> because their Greek originals allow alternate stress positions, alternate long-vowel interpretations, or dialectal variation.</p>
+                            <p class="body-md">Their ASCII fallbacks are <strong>also historically legitimate</strong>. You own multiple domain variants. This is not a bug — it is a <strong>linguistic feature</strong> of these names.</p>
+                        </div>
+                        <div class="tier-list">
+                            <div class="tier-archetype-tags" id="tier-dual-tags"></div>
+                        </div>
+                        <button class="tier-filter-btn" data-filter="dual-tier">See all in explorer →</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- LIVE EXPLORER — interactive, filterable, searchable        -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <section class="explorer-section" id="explorer">
+            <div class="container">
+                <div class="section-header reveal-up">
+                    <p class="section-eyebrow">The Collection</p>
+                    <h2 class="display-md text-center">Explore by Tier</h2>
+                    <p class="body-lg text-center">
+                        All 54 archetypes, filterable by tier classification. Click any name to enter its temple.
+                    </p>
+                </div>
+
+                <div class="explorer-controls reveal-up">
+                    <div class="filter-pills">
+                        <button class="filter-pill active" data-filter="all">All <span class="pill-count">54</span></button>
+                        <button class="filter-pill" data-filter="tier-1">Tier-1 <span class="pill-count">24</span></button>
+                        <button class="filter-pill" data-filter="tier-2">Tier-2 <span class="pill-count">26</span></button>
+                        <button class="filter-pill" data-filter="dual-tier">Dual-Tier <span class="pill-count">4</span></button>
+                    </div>
+                    <div class="explorer-search-wrap">
+                        <input type="search" class="explorer-search" id="explorer-search" placeholder="Search names, Greek forms, domains..." autocomplete="off">
+                        <span class="search-icon">⌕</span>
+                    </div>
+                </div>
+
+                <div class="explorer-stats reveal-up" id="explorer-stats">
+                    Showing <strong id="showing-count">54</strong> of 54 archetypes
+                </div>
+
+                <div class="explorer-grid" id="explorer-grid"></div>
+
+                <div class="explorer-empty hidden" id="explorer-empty">
+                    <p class="body-lg">No archetypes match your search.</p>
+                    <button class="btn btn-outline" id="clear-search">Clear filters</button>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- THE BIG FOUR — dual-tier deep dive                         -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <section class="big-four-section">
+            <div class="container">
+                <div class="section-header reveal-up">
+                    <p class="section-eyebrow">The Exceptional Four</p>
+                    <h2 class="display-md text-center">Dual-Tier Names</h2>
+                    <p class="body-lg text-center">
+                        These four names carry both stress and length <em>and</em> support multiple historically valid restorations. Their domain variants are not duplicates — they are alternate scholarly readings.
+                    </p>
+                </div>
+
+                <div class="big-four-grid" id="big-four-grid"></div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- SCHOLARLY SOURCES                                          -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <section class="sources-section">
+            <div class="container">
+                <div class="section-header reveal-up">
+                    <p class="section-eyebrow">Methodology</p>
+                    <h2 class="display-md text-center">Scholarly Sources</h2>
+                    <p class="body-lg text-center">
+                        Every restoration is grounded in established philological reference. We do not invent accents — we recover them.
+                    </p>
+                </div>
+
+                <div class="sources-grid reveal-up">
+                    <div class="source-card">
+                        <span class="source-abbr">LSJ</span>
+                        <h4>Liddell-Scott-Jones</h4>
+                        <p class="body-sm">The standard Greek-English lexicon. Our macron conventions follow LSJ practice.</p>
+                    </div>
+                    <div class="source-card">
+                        <span class="source-abbr">Beekes</span>
+                        <h4>Beekes Etymological Dictionary</h4>
+                        <p class="body-sm">Indo-European etymology and reconstructed forms for Greek names.</p>
+                    </div>
+                    <div class="source-card">
+                        <span class="source-abbr">Cambridge</span>
+                        <h4>Cambridge Greek Grammar</h4>
+                        <p class="body-sm">Standard reference for accentuation rules and vowel quantity.</p>
+                    </div>
+                    <div class="source-card">
+                        <span class="source-abbr">Oxford</span>
+                        <h4>Oxford Classical Texts</h4>
+                        <p class="body-sm">Critical editions with full diacritical apparatus.</p>
+                    </div>
+                    <div class="source-card">
+                        <span class="source-abbr">Faulkner</span>
+                        <h4>Faulkner's Egyptian Dictionary</h4>
+                        <p class="body-sm">For Egyptian names and transliteration conventions.</p>
+                    </div>
+                    <div class="source-card">
+                        <span class="source-abbr">Smyth</span>
+                        <h4>Smyth Greek Grammar</h4>
+                        <p class="body-sm">The American standard for Greek accent and quantity.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ═══════════════════════════════════════════════════════════ -->
+        <!-- PUNYCODE CONVERTER — real conversion, improved UX          -->
+        <!-- ═══════════════════════════════════════════════════════════ -->
         <section class="converter-section">
             <div class="container">
                 <div class="converter-card reveal-up">
-                    <h3 class="heading-lg text-center mb-4">Live Punycode Converter</h3>
-                    <p class="body-md text-center mb-4">Type a Unicode domain to see its Punycode encoding.</p>
+                    <div class="converter-header">
+                        <h3 class="heading-lg text-center">Live Punycode Converter</h3>
+                        <p class="body-md text-center">Type a Unicode domain to see its Punycode encoding and the archetype it belongs to.</p>
+                    </div>
                     <div class="converter-input-row">
-                        <input type="text" id="converter-input" class="converter-input" placeholder="e.g. zeús.com">
+                        <input type="text" id="converter-input" class="converter-input" placeholder="e.g. zeús.com or ápollōn.com" autocomplete="off">
                         <button class="btn btn-primary" id="converter-btn">Convert</button>
                     </div>
                     <div class="converter-result hidden" id="converter-result">
-                        <div class="result-line">
-                            <span class="result-label">Unicode:</span>
+                        <div class="result-block">
+                            <span class="result-label">Unicode Domain</span>
                             <code class="result-value" id="result-unicode"></code>
                         </div>
-                        <div class="result-line">
-                            <span class="result-label">Punycode:</span>
+                        <div class="result-block">
+                            <span class="result-label">Punycode (ACE)</span>
                             <code class="result-value" id="result-punycode"></code>
+                        </div>
+                        <div class="result-block hidden" id="result-match-block">
+                            <span class="result-label">Archetype</span>
+                            <a class="result-match" id="result-match" href=""></a>
                         </div>
                     </div>
                 </div>
@@ -164,7 +423,7 @@
             <div class="footer-grid">
                 <div class="footer-col"><h4>PÚNYCODEX</h4><p>The Unicode Pantheon — restoring the original names of world archetypes to the digital realm.</p></div>
                 <div class="footer-col"><h4>Explore</h4><a href="/pantheon/">Pantheon</a>
-        <a href="/realms/">Realms</a><a href="/tiers/">Tier System</a><a href="/codex/">Codex</a><a href="/store/">Store</a></div>
+                <a href="/realms/">Realms</a><a href="/tiers/">Tier System</a><a href="/codex/">Codex</a><a href="/store/">Store</a></div>
                 <div class="footer-col"><h4>Resources</h4><a href="/about/">About</a><a href="/contact/">Contact</a></div>
                 <div class="footer-col"><h4>Connect</h4><a href="mailto:hello@punycodex.com">hello@punycodex.com</a></div>
             </div>
@@ -174,6 +433,6 @@
 
     <script src="/js/archetypes-v2.js?v=54" defer></script>
     <script src="/js/main.js?v=perf7" defer></script>
-    <script src="/js/tiers.js?v=perf7" defer></script>
+    <script src="/js/tiers.js?v=perf8" defer></script>
 </body>
 </html>
