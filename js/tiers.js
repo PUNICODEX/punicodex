@@ -15,7 +15,7 @@
         const tierDualContainer = document.getElementById('tier-dual-tags');
 
         if (tier1Container) {
-            const tier1 = ARCHETYPES.filter(a => a.tier === 'tier-1' && a.tierDetail === 'single-tier')
+            const tier1 = ARCHETYPES.filter(a => a.tier === 'tier-1')
                 .sort((a, b) => a.name.localeCompare(b.name));
             tier1Container.innerHTML = tier1.map(a =>
                 `<span class="tier-tag" title="${a.greek}">${a.name}</span>`
