@@ -10,15 +10,6 @@
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // ═══════════════════════════════════════════════════════════
-    // HERO CANVAS — CSS-class delegation (no JS animation loop)
-    // ═══════════════════════════════════════════════════════════
-
-    const heroCanvas = document.getElementById('hero-canvas');
-    if (heroCanvas) {
-        heroCanvas.classList.add('hero-canvas-ready');
-    }
-
-    // ═══════════════════════════════════════════════════════════
     // PANTHEON GRID RENDERING
     // ═══════════════════════════════════════════════════════════
 

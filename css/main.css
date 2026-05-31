@@ -808,41 +808,23 @@ ul, ol {
     100% { background-position: -200% 0; }
 }
 
-/* ─── Scroll Reveal (CSS fallback) ─── */
-.reveal-up,
-.reveal-scale,
-.reveal-fade {
-    transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),
-                transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+/* Native scroll reveal — triggered by IntersectionObserver adding .revealed */
+.reveal-up, .reveal-scale, .reveal-fade {
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
 }
+.reveal-up { opacity: 0; transform: translateY(40px); }
+.reveal-up.revealed { opacity: 1; transform: translateY(0); }
 
-.reveal-up {
-    opacity: 0;
-    transform: translateY(40px);
-}
+.reveal-scale { opacity: 0; transform: scale(0.92); }
+.reveal-scale.revealed { opacity: 1; transform: scale(1); }
 
-.reveal-scale {
-    opacity: 0;
-    transform: scale(0.92);
-}
+.reveal-fade { opacity: 0; }
+.reveal-fade.revealed { opacity: 1; }
 
-.reveal-fade {
-    opacity: 0;
-}
-
-.reveal-up.revealed,
-.reveal-scale.revealed,
-.reveal-fade.revealed {
-    opacity: 1;
-    transform: none;
-}
-
-/* Stagger children */
-[data-stagger] > .reveal-up,
-[data-stagger] > .reveal-scale,
-[data-stagger] > .reveal-fade {
-    transition-delay: calc(var(--stagger-index, 0) * 80ms);
-}
+/* Stagger children within [data-stagger] containers */
+[data-stagger] .reveal-up { transition-delay: calc(var(--stagger-index, 0) * 60ms); }
 
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
@@ -850,16 +832,6 @@ ul, ol {
         opacity: 1;
         transform: none;
         transition: none;
-    }
-
-    html {
-        scroll-behavior: auto;
-    }
-
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
     }
 }
 
@@ -1020,7 +992,7 @@ ul, ol {
 
 
 /* ═══════════════════════════════════════════════════════════
-   CSS-Only Hero Background (replaces canvas animation loop)
+   Hero Background — completely static, zero animation
    ═══════════════════════════════════════════════════════════ */
 
 .hero-canvas {
@@ -1028,47 +1000,6 @@ ul, ol {
     inset: 0;
     background:
         radial-gradient(ellipse at 20% 30%, rgba(212,175,55,0.04) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 70%, rgba(65,105,225,0.03) 0%, transparent 60%),
-        radial-gradient(ellipse at 50% 50%, rgba(212,175,55,0.02) 0%, transparent 70%);
-    animation: heroDrift 20s ease-in-out infinite alternate;
-    opacity: 0.6;
-}
-
-@keyframes heroDrift {
-    0%   { transform: scale(1) translate(0, 0); }
-    100% { transform: scale(1.08) translate(-2%, -1%); }
-}
-
-/* Static starfield dots via CSS — no JS, pure GPU */
-.hero-canvas.hero-canvas-ready::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-        radial-gradient(1.5px 1.5px at 10% 20%, rgba(212,175,55,0.5) 50%, transparent 50%),
-        radial-gradient(1px 1px at 30% 60%, rgba(212,175,55,0.3) 50%, transparent 50%),
-        radial-gradient(2px 2px at 50% 10%, rgba(212,175,55,0.4) 50%, transparent 50%),
-        radial-gradient(1px 1px at 70% 40%, rgba(212,175,55,0.35) 50%, transparent 50%),
-        radial-gradient(1.5px 1.5px at 80% 80%, rgba(212,175,55,0.45) 50%, transparent 50%),
-        radial-gradient(1px 1px at 20% 80%, rgba(212,175,55,0.25) 50%, transparent 50%),
-        radial-gradient(1.5px 1.5px at 60% 25%, rgba(212,175,55,0.3) 50%, transparent 50%),
-        radial-gradient(1px 1px at 40% 45%, rgba(212,175,55,0.2) 50%, transparent 50%),
-        radial-gradient(2px 2px at 90% 15%, rgba(212,175,55,0.35) 50%, transparent 50%),
-        radial-gradient(1px 1px at 15% 55%, rgba(212,175,55,0.3) 50%, transparent 50%),
-        radial-gradient(1.5px 1.5px at 55% 75%, rgba(212,175,55,0.25) 50%, transparent 50%),
-        radial-gradient(1px 1px at 85% 50%, rgba(212,175,55,0.2) 50%, transparent 50%),
-        radial-gradient(1.5px 1.5px at 5% 90%, rgba(212,175,55,0.3) 50%, transparent 50%),
-        radial-gradient(1px 1px at 45% 5%, rgba(212,175,55,0.35) 50%, transparent 50%),
-        radial-gradient(1.5px 1.5px at 75% 65%, rgba(212,175,55,0.4) 50%, transparent 50%),
-        radial-gradient(1px 1px at 25% 35%, rgba(212,175,55,0.2) 50%, transparent 50%),
-        radial-gradient(1px 1px at 65% 90%, rgba(212,175,55,0.25) 50%, transparent 50%),
-        radial-gradient(1.5px 1.5px at 95% 70%, rgba(212,175,55,0.3) 50%, transparent 50%),
-        radial-gradient(1px 1px at 35% 85%, rgba(212,175,55,0.35) 50%, transparent 50%),
-        radial-gradient(1px 1px at 50% 50%, rgba(200,200,220,0.15) 50%, transparent 50%);
-    animation: starTwinkle 4s ease-in-out infinite alternate;
-}
-
-@keyframes starTwinkle {
-    0%   { opacity: 0.7; }
-    100% { opacity: 1; }
+        radial-gradient(ellipse at 80% 70%, rgba(65,105,225,0.03) 0%, transparent 60%);
+    opacity: 0.5;
 }
