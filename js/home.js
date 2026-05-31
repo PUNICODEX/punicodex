@@ -100,6 +100,7 @@
     // ═══════════════════════════════════════════════════════════
 
     const heroContent = document.querySelector('.hero-content');
+    const heroCanvas = document.getElementById('hero-canvas');
 
     if (heroContent && !prefersReducedMotion) {
         let scrollTicking = false;

@@ -26,7 +26,7 @@
         });
 
         grid.innerHTML = sorted.map((a, index) => {
-            const url = a.built && a.domainUnicode ? `https://${a.domainUnicode}` : null;
+            const url = a.built && a.folder ? `/sites/${a.folder}/` : null;
             const tag = url ? 'a' : 'div';
             const hrefAttr = url ? `href="${url}"` : '';
             const unbuiltClass = !a.built ? 'unbuilt' : '';
