@@ -65,8 +65,6 @@
         const revealElements = document.querySelectorAll('.reveal-up, .reveal-scale, .reveal-fade');
         if (!revealElements.length) return;
 
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
         if (prefersReducedMotion) {
             revealElements.forEach(el => el.classList.add('revealed'));
             return;
