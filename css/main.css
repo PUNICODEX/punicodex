@@ -1117,3 +1117,42 @@ ul, ol {
     margin: 0 auto;
     max-width: 600px;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   Performance: content-visibility for off-screen sections
+   ═══════════════════════════════════════════════════════════ */
+
+/* Sections below the fold — skip layout/paint until visible */
+.section-pantheon,
+.section-tiers,
+.section-origin,
+.section-codex,
+.section-cta,
+.site-footer {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 500px;
+}
+
+/* Pantheon grid cards — each card is independently cullable */
+.archetype-card {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 300px;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    .hero-canvas,
+    .ambient-particles canvas,
+    .custom-cursor,
+    .cursor-trail {
+        display: none !important;
+    }
+}

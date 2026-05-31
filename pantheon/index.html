@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,11 +15,15 @@
     <meta name="twitter:card" content="summary_large_image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+    <link rel="preload" href="/css/main.css" as="style">
+    <link rel="preload" href="/css/pantheon.css" as="style">
+
     <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer fetchpriority="low"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer fetchpriority="low"></script>
 
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/pantheon.css">
@@ -171,7 +175,7 @@
     </footer>
 
     <script src="/js/archetypes-v2.js?v=54" defer></script>
-    <script src="/js/main.js" defer></script>
-    <script src="/js/pantheon.js?v=2" defer></script>
+    <script src="/js/main.js?v=perf" defer></script>
+    <script src="/js/pantheon.js?v=perf" defer></script>
 </body>
 </html>

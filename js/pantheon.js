@@ -14,6 +14,8 @@
     let currentFilter = 'all';
     let currentSearch = '';
     let allCards = [];
+    // Build O(1) lookup map to avoid ARCHETYPES.find() in hot loop
+    const archetypeMap = new Map((typeof ARCHETYPES !== 'undefined' ? ARCHETYPES : []).map(a => [a.id, a]));
 
     function buildGrid() {
         if (!grid || typeof ARCHETYPES === 'undefined') return;
@@ -34,7 +36,7 @@
             return `
                 <${tag} ${hrefAttr} class="archetype-card reveal-up ${unbuiltClass}" data-id="${a.id}" data-tier="${a.tier}" data-pantheon="${a.pantheon}" data-built="${a.built}" data-name="${(a.name || "").toLowerCase()}" data-greek="${(a.greek || "").toLowerCase()}" data-domain="${(a.domain || "").toLowerCase()}" style="--stagger-index:${index % 4}">
                     <div class="card-portrait">
-                        <img src="${a.mascotPath}" alt="${a.name} — ${a.domain}" data-fallback="${a.mascotFallback || a.mascotPath}" style="opacity:1; display:block;">
+                        <img src="${a.mascotPath}" alt="${a.name} — ${a.domain}" data-fallback="${a.mascotFallback || a.mascotPath}" loading="lazy" decoding="async" style="opacity:1; display:block;">
                     </div>
                     <p class="card-name">${a.name}</p>
                     <p class="card-greek">${a.greek}</p>
@@ -83,8 +85,7 @@
         let dualCount = 0;
 
         allCards.forEach(card => {
-            const id = card.dataset.id;
-            const archetype = ARCHETYPES.find(a => a.id === id);
+            const archetype = archetypeMap.get(card.dataset.id);
             if (!archetype) return;
 
             // Filter match

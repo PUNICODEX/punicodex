@@ -364,15 +364,30 @@
 
         animate(0);
 
+        // Pause when tab hidden
         document.addEventListener('visibilitychange', () => {
             if (document.hidden) {
                 isActive = false;
                 cancelAnimationFrame(animationId);
-            } else {
+            } else if (canvas.getBoundingClientRect().bottom > 0) {
                 isActive = true;
                 animate(0);
             }
         });
+
+        // Pause when scrolled past hero (IntersectionObserver)
+        const heroObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !isActive) {
+                    isActive = true;
+                    animate(0);
+                } else if (!entry.isIntersecting && isActive) {
+                    isActive = false;
+                    cancelAnimationFrame(animationId);
+                }
+            });
+        }, { threshold: 0 });
+        heroObserver.observe(canvas);
     }
 
     // ═══════════════════════════════════════════════════════════
@@ -576,7 +591,7 @@
     }
 
     // ═══════════════════════════════════════════════════════════
-    // CONSTELLATION SVG OVERLAY FOR PANTHEON
+    // CONSTELLATION SVG OVERLAY FOR PANTHEON — cached, throttled
     // ═══════════════════════════════════════════════════════════
 
     function initConstellationOverlay() {
@@ -592,6 +607,21 @@
         overlay.appendChild(svg);
 
         let lineElements = [];
+        let cardPositions = [];
+
+        function cacheCardPositions() {
+            const rect = section.getBoundingClientRect();
+            const cards = section.querySelectorAll('.archetype-card');
+            cardPositions = [];
+            cards.forEach((card, i) => {
+                const cr = card.getBoundingClientRect();
+                cardPositions.push({
+                    x: cr.left - rect.left + cr.width / 2,
+                    y: cr.top - rect.top + cr.height / 2,
+                    pantheon: ARCHETYPES[i] ? ARCHETYPES[i].pantheon : null
+                });
+            });
+        }
 
         function drawLines() {
             const rect = section.getBoundingClientRect();
@@ -601,18 +631,13 @@
             lineElements.forEach(line => line.remove());
             lineElements = [];
 
-            const cards = section.querySelectorAll('.archetype-card');
-            const pantheonGroups = {};
+            if (cardPositions.length === 0) cacheCardPositions();
 
-            cards.forEach((card, i) => {
-                const cardRect = card.getBoundingClientRect();
-                const x = cardRect.left - rect.left + cardRect.width / 2;
-                const y = cardRect.top - rect.top + cardRect.height / 2;
-                const archetype = ARCHETYPES[i];
-                if (archetype) {
-                    if (!pantheonGroups[archetype.pantheon]) pantheonGroups[archetype.pantheon] = [];
-                    pantheonGroups[archetype.pantheon].push({ x, y });
-                }
+            const pantheonGroups = {};
+            cardPositions.forEach(pos => {
+                if (!pos.pantheon) return;
+                if (!pantheonGroups[pos.pantheon]) pantheonGroups[pos.pantheon] = [];
+                pantheonGroups[pos.pantheon].push({ x: pos.x, y: pos.y });
             });
 
             Object.values(pantheonGroups).forEach(group => {
@@ -631,16 +656,9 @@
             });
         }
 
-        setTimeout(drawLines, 500);
+        setTimeout(() => { cacheCardPositions(); drawLines(); }, 600);
         const debounce = window.PX && window.PX.debounce ? window.PX.debounce : function(fn, d) { let t; return function(...a) { clearTimeout(t); t = setTimeout(() => fn.apply(this, a), d); }; };
-        window.addEventListener('resize', debounce(drawLines, 500));
-
-        // Redraw on scroll end (cards may have shifted)
-        let scrollTimeout;
-        window.addEventListener('scroll', () => {
-            clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(drawLines, 200);
-        }, { passive: true });
+        window.addEventListener('resize', debounce(() => { cacheCardPositions(); drawLines(); }, 500));
     }
 
     if (document.readyState === 'loading') {

@@ -23,8 +23,10 @@
         return true;
     }
 
-    // Wait for GSAP to load
-    function waitForGSAP(callback, maxAttempts = 50) {
+    // Wait for GSAP to load — use script onload, fall back to quick poll
+    function waitForGSAP(callback, maxAttempts = 30) {
+        if (initGSAP()) { callback(); return; }
+        // Poll at 50ms for up to 1.5s (much faster than 100ms x 50 = 5s)
         let attempts = 0;
         const interval = setInterval(() => {
             attempts++;
@@ -32,62 +34,70 @@
                 clearInterval(interval);
                 callback();
             }
-        }, 100);
+        }, 50);
     }
 
     // ═══════════════════════════════════════════════════════════
-    // CUSTOM CURSOR
+    // CUSTOM CURSOR — idle-paused, reduced-motion aware
     // ═══════════════════════════════════════════════════════════
 
     const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    if (!isTouchDevice) {
+    if (!isTouchDevice && !prefersReducedMotion) {
         const cursor = document.createElement('div');
         cursor.className = 'custom-cursor';
         document.body.appendChild(cursor);
 
-        // Create trail dots (reduced to 2 for performance)
-        const trailCount = 2;
-        const trails = [];
-        for (let i = 0; i < trailCount; i++) {
-            const trail = document.createElement('div');
-            trail.className = 'cursor-trail';
-            document.body.appendChild(trail);
-            trails.push({ el: trail, x: 0, y: 0 });
-        }
+        // Single trail dot (was 2, now 1 for performance)
+        const trail = document.createElement('div');
+        trail.className = 'cursor-trail';
+        document.body.appendChild(trail);
 
         let mouseX = 0, mouseY = 0;
         let cursorX = 0, cursorY = 0;
+        let trailX = 0, trailY = 0;
+        let idleRafId = null;
+        let idleTimeout = null;
+        const IDLE_MS = 80; // pause rAF after 80ms of no mousemove
+
+        function startCursor() {
+            if (idleRafId) return;
+            idleRafId = requestAnimationFrame(animateCursor);
+        }
+
+        function stopCursor() {
+            if (idleRafId) {
+                cancelAnimationFrame(idleRafId);
+                idleRafId = null;
+            }
+        }
 
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
+            // Show cursor immediately on move
+            cursor.style.transform = `translate3d(${mouseX - 6}px, ${mouseY - 6}px, 0)`;
+            trail.style.transform = `translate3d(${mouseX - 3}px, ${mouseY - 3}px, 0)`;
+            startCursor();
+            clearTimeout(idleTimeout);
+            idleTimeout = setTimeout(stopCursor, IDLE_MS);
         });
 
-        // GPU-accelerated cursor — uses transform instead of left/top
+        // GPU-accelerated cursor with eased follow
         function animateCursor() {
             const mainEase = 0.78;
             cursorX += (mouseX - cursorX) * mainEase;
             cursorY += (mouseY - cursorY) * mainEase;
-
             cursor.style.transform = `translate3d(${cursorX - 6}px, ${cursorY - 6}px, 0)`;
 
-            let prevX = cursorX, prevY = cursorY;
-            trails.forEach((trail, i) => {
-                const trailEase = 0.38 - (i * 0.06);
-                trail.x += (prevX - trail.x) * trailEase;
-                trail.y += (prevY - trail.y) * trailEase;
-                const opacity = 1 - (i / trailCount);
-                const scale = 1 - (i / trailCount) * 0.5;
-                trail.el.style.transform = `translate3d(${trail.x - 3}px, ${trail.y - 3}px, 0) scale(${scale})`;
-                trail.el.style.opacity = opacity * 0.35;
-                prevX = trail.x;
-                prevY = trail.y;
-            });
+            trailX += (cursorX - trailX) * 0.32;
+            trailY += (cursorY - trailY) * 0.32;
+            trail.style.transform = `translate3d(${trailX - 3}px, ${trailY - 3}px, 0) scale(0.75)`;
+            trail.style.opacity = '0.25';
 
-            requestAnimationFrame(animateCursor);
+            idleRafId = requestAnimationFrame(animateCursor);
         }
-        animateCursor();
 
         // Hover states
         const hoverSelectors = 'a, button, .archetype-card, .codex-card, .tier-card, .stat-card, .nav-toggle';
@@ -273,34 +283,34 @@
     }
 
     // ═══════════════════════════════════════════════════════════
-    // LOADING SCREEN
+    // LOADING SCREEN — near-instant dismissal
     // ═══════════════════════════════════════════════════════════
 
     const loadingScreen = document.querySelector('.loading-screen');
 
     function hideLoadingScreen() {
-        if (!loadingScreen) return;
+        if (!loadingScreen) {
+            initScrollReveals();
+            return;
+        }
         loadingScreen.classList.add('hidden');
+        // Fast 200ms transition, then remove from DOM
         setTimeout(() => {
             if (loadingScreen.parentNode) {
                 loadingScreen.parentNode.removeChild(loadingScreen);
             }
-            // Initialize scroll reveals after loading screen is gone
             initScrollReveals();
-        }, 1000);
+        }, 200);
     }
 
-    // Hide loading screen as soon as DOM is ready (max 600ms wait)
-    function readyHide() {
-        hideLoadingScreen();
-    }
+    // Hide immediately — no artificial delay
     if (document.readyState !== 'loading') {
-        setTimeout(readyHide, 100);
+        hideLoadingScreen();
     } else {
-        document.addEventListener('DOMContentLoaded', () => setTimeout(readyHide, 100));
+        document.addEventListener('DOMContentLoaded', hideLoadingScreen);
     }
-    // Safety: never block longer than 600ms
-    setTimeout(hideLoadingScreen, 600);
+    // Hard safety: never block longer than 300ms
+    setTimeout(hideLoadingScreen, 300);
 
     // ═══════════════════════════════════════════════════════════
     // SMOOTH SCROLL FOR ANCHOR LINKS
@@ -413,6 +423,19 @@
             }, duration);
         }
     };
+
+    // ═══════════════════════════════════════════════════════════
+    // SERVICE WORKER REGISTRATION
+    // ═══════════════════════════════════════════════════════════
+
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js')
+            .then(reg => {
+                // Check for updates on page load
+                reg.update();
+            })
+            .catch(() => { /* silent fail */ });
+    }
 
     // ═══════════════════════════════════════════════════════════
     // ACTIVE NAV LINK HIGHLIGHTING
