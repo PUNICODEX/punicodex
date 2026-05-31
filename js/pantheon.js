@@ -24,7 +24,7 @@
         });
 
         grid.innerHTML = sorted.map((a, index) => {
-            const url = a.built && a.folder ? `/sites/${a.folder}/` : null;
+            const url = a.built && a.domainUnicode ? `https://${a.domainUnicode}` : null;
             const tag = url ? 'a' : 'div';
             const hrefAttr = url ? `href="${url}"` : '';
             const unbuiltClass = !a.built ? 'unbuilt' : '';
@@ -34,7 +34,7 @@
             return `
                 <${tag} ${hrefAttr} class="archetype-card reveal-up ${unbuiltClass}" data-id="${a.id}" data-tier="${a.tier}" data-pantheon="${a.pantheon}" data-built="${a.built}" data-name="${(a.name || "").toLowerCase()}" data-greek="${(a.greek || "").toLowerCase()}" data-domain="${(a.domain || "").toLowerCase()}" style="--stagger-index:${index % 4}">
                     <div class="card-portrait">
-                        <img src="${a.mascotPath}" alt="${a.name} — ${a.domain}" loading="lazy" onerror="this.style.opacity='0'; this.parentElement.style.background='linear-gradient(90deg, rgba(255,255,255,0.02) 25%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.02) 75%)'; this.parentElement.style.backgroundSize='200% 100%'; this.parentElement.style.animation='skeletonShimmer 1.5s infinite';">
+                        <img src="${a.mascotPath}" alt="${a.name} — ${a.domain}" onerror="this.style.opacity='0'; this.parentElement.style.background='linear-gradient(90deg, rgba(255,255,255,0.02) 25%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.02) 75%)'; this.parentElement.style.backgroundSize='200% 100%'; this.parentElement.style.animation='skeletonShimmer 1.5s infinite';">
                     </div>
                     <p class="card-name">${a.name}</p>
                     <p class="card-greek">${a.greek}</p>
