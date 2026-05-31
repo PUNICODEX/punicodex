@@ -226,7 +226,7 @@ for (const a of allEntries) {
     const props = [];
     props.push(`id: "${a.id}"`);
     props.push(`name: "${a.name}"`);
-    if (a.greek) props.push(`greek: "${a.greek}"`);
+    props.push(`greek: "${a.greek || '—'}"`);
     props.push(`domain: "${a.domain}"`);
     if (a.tagline) props.push(`tagline: "${a.tagline}"`);
     props.push(`tier: "${a.tier}"`);

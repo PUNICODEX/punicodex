@@ -32,7 +32,7 @@
             const badgeText = !a.built ? 'Awaiting' : a.tier === 'tier-1' ? 'Tier 1' : a.tier === 'tier-2' ? 'Tier 2' : 'Dual-Tier';
 
             return `
-                <${tag} ${hrefAttr} class="archetype-card reveal-up ${unbuiltClass}" data-id="${a.id}" data-tier="${a.tier}" data-pantheon="${a.pantheon}" data-built="${a.built}" data-name="${a.name.toLowerCase()}" data-greek="${a.greek.toLowerCase()}" data-domain="${a.domain.toLowerCase()}" style="--stagger-index:${index % 4}">
+                <${tag} ${hrefAttr} class="archetype-card reveal-up ${unbuiltClass}" data-id="${a.id}" data-tier="${a.tier}" data-pantheon="${a.pantheon}" data-built="${a.built}" data-name="${(a.name || "").toLowerCase()}" data-greek="${(a.greek || "").toLowerCase()}" data-domain="${(a.domain || "").toLowerCase()}" style="--stagger-index:${index % 4}">
                     <div class="card-portrait">
                         <img src="${a.mascotPath}" alt="${a.name} — ${a.domain}" loading="lazy" onerror="this.style.opacity='0'; this.parentElement.style.background='linear-gradient(90deg, rgba(255,255,255,0.02) 25%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.02) 75%)'; this.parentElement.style.backgroundSize='200% 100%'; this.parentElement.style.animation='skeletonShimmer 1.5s infinite';">
                     </div>
@@ -80,10 +80,10 @@
             let searchMatch = true;
             if (q) {
                 searchMatch = (
-                    archetype.name.toLowerCase().includes(q) ||
-                    archetype.greek.toLowerCase().includes(q) ||
-                    archetype.domain.toLowerCase().includes(q) ||
-                    archetype.id.toLowerCase().includes(q)
+                    (archetype.name || "").toLowerCase().includes(q) ||
+                    (archetype.greek || "").toLowerCase().includes(q) ||
+                    (archetype.domain || "").toLowerCase().includes(q) ||
+                    (archetype.id || "").toLowerCase().includes(q)
                 );
             }
 
