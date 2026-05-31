@@ -1,195 +1,255 @@
-═══════════════════════════════════════════════════════════════════════════════
-                    PUNYCODEX — DNS Setup Guide
-                    42 Flagship Domains — All Records
-═══════════════════════════════════════════════════════════════════════════════
+PUNYCODEX DNS SETUP GUIDE
+=========================
 
-Generated: 2026-05-30
+Generated from js/archetypes-v2.js
 
-OVERVIEW
-========
-You have 42 Unicode domains deployed. DNS records need to be added so visitors
-actually reach your sites. This file contains EVERY record you need, organized
-by where to add it.
+CRITICAL: The user owns ONLY Unicode domains with diacritics.
+NO plain ASCII domains (except helheimr.com, muspellheimr.com, punycodex.com).
 
-  • 10 sites on Cloudflare Pages → need CNAME records
-  • 32 sites on Vercel → need A records (all point to 76.76.21.21)
+Total built temples: 54
 
-Some domains have Cloudflare zones (DNS managed in Cloudflare dashboard).
-Others have DNS at GoDaddy (no Cloudflare zone).
+--- Aígyptos (aigyptos) ---
+  Primary:     aígyptos.com
+  Punycode:    xn--agyptos-7ya.com
 
-===============================================================================
-PART 1: CLOUDFLARE DASHBOARD (20 domains have zones there)
-===============================================================================
+--- Aphrodītē (aphrodite) ---
+  Primary:     aphrodītē.com
+  Punycode:    xn--aphrodt-27a8s.com
+  Alternate:   aphrodítē.com
 
-Step 1: For domains with "PENDING" zones, first change nameservers at GoDaddy
-to the ones Cloudflare provided. Then proceed below.
+--- Árēs (ares) ---
+  Primary:     árēs.com
+  Punycode:    xn--rs-lia5r.com
 
-Step 2: In the Cloudflare dashboard, go to each domain → DNS → Records.
-Add the records below. IMPORTANT: Use GRAY CLOUD (unproxied) for all of them.
+--- Asíā (asia) ---
+  Primary:     asíā.com
+  Punycode:    xn--as-oja4f.com
 
----
+--- Athēnā (athena) ---
+  Primary:     athēnā.com
+  Punycode:    xn--athn-tsa0i.com
+  Alternate:   athénā.com
 
-CLOUDFLARE PAGES — CNAME Records (10 domains)
-----------------------------------------------
+--- Athēnai (athenai) ---
+  Primary:     athēnai.com
+  Punycode:    xn--athnai-r3a.com
 
-Domain: ker.com (punycode: xn--kr-wma.com)
-  Type: CNAME    Name: @    Target: ker-25i.pages.dev    TTL: Auto    Proxy: OFF
+--- Dēmētēr (demeter) ---
+  Primary:     dēmētēr.com
+  Punycode:    xn--dmtr-bvabb.com
 
-Domain: nike.com (punycode: xn--nk-nja7m.com)
-  Type: CNAME    Name: @    Target: nike-211.pages.dev    TTL: Auto    Proxy: OFF
+--- Eurṓpē (europe) ---
+  Primary:     eurṓpē.com
+  Punycode:    xn--eurp-eva0406b.com
+  Alternate:   eurōpē.com
 
-Domain: medousa.com (punycode: xn--mdousa-bva.com)
-  Type: CNAME    Name: @    Target: medousa-1bi.pages.dev    TTL: Auto    Proxy: OFF
+--- Gaîa (gaia) ---
+  Primary:     gaîa.com
+  Punycode:    xn--gaa-wma.com
 
-Domain: atlas.com (punycode: xn--tlas-4na.com)
-  Type: CNAME    Name: @    Target: atlas-2qy.pages.dev    TTL: Auto    Proxy: OFF
+--- Hēlios (helios) ---
+  Primary:     hēlios.com
+  Punycode:    xn--hlios-iza.com
 
-Domain: prometheus.com (punycode: xn--promtheus-ehb.com)
-  Type: CNAME    Name: @    Target: prometheus-259.pages.dev    TTL: Auto    Proxy: OFF
+--- Hēphaistos (hephaistos) ---
+  Primary:     hēphaistos.com
+  Punycode:    xn--hphaistos-bhb.com
 
-Domain: persephone.com (punycode: xn--persephon-jhb.com)
-  Type: CNAME    Name: @    Target: persephone-8a3.pages.dev    TTL: Auto    Proxy: OFF
+--- Hēra (hera) ---
+  Primary:     hēra.com
+  Punycode:    xn--hra-3qa.com
 
-Domain: hekate.com (punycode: xn--hekt-7na51a.com)
-  Type: CNAME    Name: @    Target: hekate-5o4.pages.dev    TTL: Auto    Proxy: OFF
+--- Hermēs (hermes) ---
+  Primary:     hermēs.com
+  Punycode:    xn--herms-lza.com
+  Alternate:   hermês.com
 
-Domain: hades.com (punycode: xn--hds-ela5w.com)
-  Type: CNAME    Name: @    Target: hades-en8.pages.dev    TTL: Auto    Proxy: OFF
+--- Hestía (hestia) ---
+  Primary:     hestía.com
+  Punycode:    xn--hesta-2sa.com
 
-Domain: hestia.com (punycode: xn--hesta-2sa.com)
-  Type: CNAME    Name: @    Target: hestia-6fs.pages.dev    TTL: Auto    Proxy: OFF
+--- Kōbe (kobe) ---
+  Primary:     kōbe.com
+  Punycode:    xn--kbe-qxa.com
 
-Domain: hephaistos.com (punycode: xn--hphaistos-bhb.com)
-  Type: CNAME    Name: @    Target: hephaistos-7xu.pages.dev    TTL: Auto    Proxy: OFF
+--- Kyōto (kyoto) ---
+  Primary:     kyōto.com
+  Punycode:    xn--kyto-m3a.com
 
----
+--- Libyē (libye) ---
+  Primary:     libyē.com
+  Punycode:    xn--liby-eva.com
 
-VERCEL — A Records (10 domains with Cloudflare zones)
-------------------------------------------------------
+--- Ōsaka (osaka) ---
+  Primary:     ōsaka.com
+  Punycode:    xn--saka-k3a.com
 
-Domain: zeus.com (punycode: xn--zes-9na.com)
-  Type: A    Name: @    Target: 76.76.21.21    TTL: Auto    Proxy: OFF
+--- Persephonē (persephone) ---
+  Primary:     persephonē.com
+  Punycode:    xn--persephon-jhb.com
 
-Domain: athena.com (punycode: xn--athn-dvab.com)
-  Type: A    Name: @    Target: 76.76.21.21    TTL: Auto    Proxy: OFF
+--- Poseidōn (poseidon) ---
+  Primary:     poseidōn.com
+  Punycode:    xn--poseidn-bmb.com
+  Alternate:   poseidôn.com
 
-Domain: poseidon.com (punycode: xn--poseidn-y0a.com)
-  Type: A    Name: @    Target: 76.76.21.21    TTL: Auto    Proxy: OFF
+--- Promētheus (prometheus) ---
+  Primary:     promētheus.com
+  Punycode:    xn--promtheus-ehb.com
 
-Domain: aphrodītē.com (punycode: xn--aphrodt-27a8s.com)
-  Type: A    Name: @    Target: 76.76.21.21    TTL: Auto    Proxy: OFF
+--- Selēnē (selene) ---
+  Primary:     selēnē.com
+  Punycode:    xn--seln-dvab.com
 
-Domain: demeter.com (punycode: xn--dmtr-bvabb.com)
-  Type: A    Name: @    Target: 76.76.21.21    TTL: Auto    Proxy: OFF
+--- Spártē (sparte) ---
+  Primary:     spártē.com
+  Punycode:    xn--sprt-6na61a.com
 
-Domain: ares.com (punycode: xn--rs-lia5r.com)
-  Type: A    Name: @    Target: 76.76.21.21    TTL: Auto    Proxy: OFF
+--- Zeús (zeus) ---
+  Primary:     zeús.com
+  Punycode:    xn--zes-9na.com
 
-Domain: artemis.com (punycode: xn--rtemis-ota.com)
-  Type: A    Name: @    Target: 76.76.21.21    TTL: Auto    Proxy: OFF
+--- Álfheimr (alfheimr) ---
+  Primary:     álfheimr.com
+  Punycode:    xn--lfheimr-gwa.com
 
-Domain: apollon.com (punycode: xn--aplln-1ta64d.com)
-  Type: A    Name: @    Target: 76.76.21.21    TTL: Auto    Proxy: OFF
+--- Ártemis (artemis) ---
+  Primary:     ártemis.com
+  Punycode:    xn--rtemis-ota.com
 
-Domain: hermes.com (punycode: xn--herms-ksa.com)
-  Type: A    Name: @    Target: 76.76.21.21    TTL: Auto    Proxy: OFF
+--- Átlas (atlas) ---
+  Primary:     átlas.com
+  Punycode:    xn--tlas-4na.com
 
-Domain: hera.com (punycode: xn--hra-3qa.com)
-  Type: A    Name: @    Target: 76.76.21.21    TTL: Auto    Proxy: OFF
+--- Cháos (chaos) ---
+  Primary:     cháos.com
+  Punycode:    xn--chos-6na.com
 
-===============================================================================
-PART 2: GODADDY DASHBOARD (22 domains — no Cloudflare zones)
-===============================================================================
+--- Delphoí (delphoi) ---
+  Primary:     delphoí.com
+  Punycode:    xn--delpho-8va.com
 
-For these domains, DNS is still managed at GoDaddy. Log in to GoDaddy,
-go to My Products → DNS, click each domain, and add the A record.
+--- Diónysos (dionysos) ---
+  Primary:     diónysos.com
+  Punycode:    xn--dinysos-m0a.com
 
-All 22 use the same A record:
-  Type: A    Name: @    Target: 76.76.21.21    TTL: 600 seconds (10 min)
+--- Helheimr (helheimr) ---
+  Primary:     helheimr.com
+  Punycode:    helheimr.com
 
----
+--- Jötunheimr (jotunheimr) ---
+  Primary:     jötunheimr.com
+  Punycode:    xn--jtunheimr-07a.com
 
-1.  selene.com      (xn--seln-dvab.com)
-2.  dionysos.com    (xn--dinysos-m0a.com)
-3.  gaia.com        (xn--gaa-wma.com)
-4.  chaos.com       (xn--chos-6na.com)
-5.  tartaros.com    (xn--trtaros-hwa.com)
-6.  pontos.com      (xn--pntos-0ta.com)
-7.  delphoi.com     (xn--delpho-8va.com)
-8.  olympos.com     (xn--lympos-9wa.com)
-9.  sparte.com      (xn--sprt-6na61a.com)
-10. helios.com      (xn--hlios-iza.com)
-11. alfheimr.com    (xn--lfheimr-gwa.com)
-12. jotunheimr.com  (xn--jtunheimr-07a.com)
-13. midgardr.com    (xn--migarr-qwad.com)
-14. ragnarok.com    (xn--ragnark-fnc.com)
-15. odinn.com       (xn--inn-2mao.com)
-16. thor.com        (xn--rr-4ja7b.com)
-17. ra.com          (xn--r-2w3e.com)
-18. shiva.com       (xn--iva-bza.com)
-19. kyoto.com       (xn--kyto-m3a.com)
-20. osaka.com       (xn--saka-k3a.com)
-21. kobe.com        (xn--kbe-qxa.com)
-22. athenai.com     (xn--athnai-r3a.com)
+--- Kēr (ker) ---
+  Primary:     kēr.com
+  Punycode:    xn--kr-wma.com
 
-===============================================================================
-PART 3: GODADDY ZONE FILE FORMAT (for bulk import if available)
-===============================================================================
+--- Médousa (medousa) ---
+  Primary:     médousa.com
+  Punycode:    xn--mdousa-bva.com
 
-Go to a domain's DNS management page in GoDaddy and look for
-"Import Zone File" or "Import DNS". Paste the block below for that domain.
+--- Miðgarðr (midgardr) ---
+  Primary:     miðgarðr.com
+  Punycode:    xn--migarr-qwad.com
 
---- For Vercel domains (A record) ---
-$ORIGIN <domain>.
-@ 600 IN A 76.76.21.21
+--- Muspellheimr (muspellheimr) ---
+  Primary:     muspellheimr.com
+  Punycode:    muspellheimr.com
 
---- For Cloudflare Pages domains (CNAME record) ---
-$ORIGIN <domain>.
-@ 600 IN CNAME <target>.
+--- Mꜣ (maat) ---
+  Primary:     mꜣ.com
+  Punycode:    xn--m-yw3e.com
 
-Example for zeus (Vercel):
-$ORIGIN xn--zes-9na.com.
-@ 600 IN A 76.76.21.21
+--- Mꜥ (maa) ---
+  Primary:     mꜥ.com
+  Punycode:    xn--m-2w3e.com
 
-Example for ker (Cloudflare Pages):
-$ORIGIN xn--kr-wma.com.
-@ 600 IN CNAME ker-25i.pages.dev.
+--- Óðinn (odinn) ---
+  Primary:     óðinn.com
+  Punycode:    xn--inn-2mao.com
 
-===============================================================================
-PART 4: Quick Checklist
-===============================================================================
+--- Ólympos (olympos) ---
+  Primary:     ólympos.com
+  Punycode:    xn--lympos-9wa.com
 
-□ Log in to Cloudflare dashboard
-  □ Add 10 CNAME records (Cloudflare Pages sites)
-  □ Add 10 A records (Vercel sites with Cloudflare zones)
-  □ For pending zones: change nameservers at GoDaddy first
+--- Póntos (pontos) ---
+  Primary:     póntos.com
+  Punycode:    xn--pntos-0ta.com
 
-□ Log in to GoDaddy
-  □ Add 22 A records (Vercel sites without Cloudflare zones)
+--- Ragnarǫk (ragnarok) ---
+  Primary:     ragnarǫk.com
+  Punycode:    xn--ragnark-fnc.com
 
-□ Wait 5-30 minutes for DNS propagation
+--- Rꜥ (ra) ---
+  Primary:     rꜥ.com
+  Punycode:    xn--r-2w3e.com
 
-□ Test: visit each punycode domain in a browser
-  Example: https://xn--zes-9na.com should load the Zeús temple
+--- Sꜥ (sia) ---
+  Primary:     sꜥ.com
+  Punycode:    xn--s-2w3e.com
 
-===============================================================================
-TROUBLESHOOTING
-===============================================================================
+--- Śiva (shiva) ---
+  Primary:     śiva.com
+  Punycode:    xn--iva-bza.com
 
-Q: I get a "domain not configured" error on Vercel
-A: The A record hasn't propagated yet. Wait 10-30 minutes, or check
-   https://vercel.com/dashboard and look for the domain status.
+--- Šw (shu) ---
+  Primary:     šw.com
+  Punycode:    xn--w-4ma.com
 
-Q: Cloudflare shows "Invalid SSL Certificate"
-A: You enabled the orange cloud (proxy). Toggle it to gray (unproxied) for
-   Cloudflare Pages custom domains.
+--- Tártaros (tartaros) ---
+  Primary:     tártaros.com
+  Punycode:    xn--trtaros-hwa.com
 
-Q: GoDaddy doesn't have an "Import Zone File" option
-A: Not all GoDaddy plans support this. Add records one by one using the
-   standard DNS editor. It takes about 30 seconds per domain.
+--- Þórr (thor) ---
+  Primary:     þórr.com
+  Punycode:    xn--rr-4ja7b.com
 
-Q: Can I automate the Cloudflare DNS?
-A: Yes! Update your API token at https://dash.cloudflare.com/profile/api-tokens
-   to include "Zone:Edit" permission. Then re-run the deployment scripts.
+--- ꜣb (ab) ---
+  Primary:     ꜣb.com
+  Punycode:    xn--b-xw3e.com
 
-═══════════════════════════════════════════════════════════════════════════════
+--- ꜣḫ (akh) ---
+  Primary:     ꜣḫ.com
+  Punycode:    xn--9gg9559c.com
+
+--- Ápollōn (apollon) ---
+  Primary:     ápollōn.com
+  Punycode:    xn--polln-wqa47e.com
+  Alternate:   apollōn.com
+  Alternate:   apóllōn.com
+
+--- Hádēs (hades) ---
+  Primary:     hádēs.com
+  Punycode:    xn--hds-ela5w.com
+  Alternate:   hādēs.com
+
+--- Hekátē (hekate) ---
+  Primary:     hekátē.com
+  Punycode:    xn--hekt-7na51a.com
+  Alternate:   hekatē.com
+
+--- Níkē (nike) ---
+  Primary:     níkē.com
+  Punycode:    xn--nk-nja7m.com
+  Alternate:   nikē.com
+  Alternate:   níkê.com
+
+CLOUDFLARE PAGES DEPLOYMENT
+---------------------------
+For each domain above, add a Custom Domain in Cloudflare Pages:
+  1. Go to your Pages project → Custom domains
+  2. Add the Unicode domain (e.g., selēnē.com)
+  3. Cloudflare will auto-generate the DNS record
+  4. Repeat for each domainAlt if pointing to the same build
+
+VERCEL DEPLOYMENT
+-----------------
+For each domain above, add a Domain in Vercel:
+  1. Go to Project Settings → Domains
+  2. Add the Punycode domain (e.g., xn--seln-dvab.com)
+  3. Vercel will provide DNS records to add at your registrar
+  4. Repeat for each domainAlt
+
+NOTE: Register all domains at your preferred registrar using
+      the Punycode form. The browser will display Unicode automatically.
