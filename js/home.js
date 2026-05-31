@@ -13,6 +13,11 @@
     // PANTHEON GRID RENDERING
     // ═══════════════════════════════════════════════════════════
 
+    function getArchetypeUrl(archetype) {
+        if (!archetype.built || !archetype.folder) return null;
+        return `/sites/${archetype.folder}/`;
+    }
+
     function renderPantheonGrid() {
         const grid = document.getElementById('pantheon-grid');
         if (!grid || typeof ARCHETYPES === 'undefined') return;
