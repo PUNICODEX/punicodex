@@ -24,8 +24,7 @@
         initSparkles();
     }
 
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    // resizeCanvas() called after all classes are defined (line ~215)
 
     // Horizontal light streaks — neon reflections on wet streets
     class Streak {
@@ -209,6 +208,8 @@
     }
 
     initSparkles();
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
 
     function animateCity() {
         // Very dark urban background
