@@ -43,8 +43,7 @@
     }
 
     function getArchetypeUrl(a) {
-        if (a.built && a.folder) return '/sites/' + a.folder + '/';
-        return null;
+        return a.domainUnicode ? 'https://' + a.domainUnicode : null;
     }
 
     // ═══════════════════════════════════════════════════════════
