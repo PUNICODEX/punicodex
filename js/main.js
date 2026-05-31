@@ -6,9 +6,12 @@
 (function() {
     'use strict';
 
+    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     // ═══════════════════════════════════════════════════════════
     // NAVIGATION
-    // ═══════════════════════════════════════════════════════════
+    // ═════════════════════════════════════════════════════════==
 
     const nav = document.querySelector('.main-nav');
     const navToggle = document.querySelector('.nav-toggle');
