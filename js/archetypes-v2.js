@@ -117,8 +117,8 @@ const ARCHETYPES = [
         domainAlt: ["athenai.com"],
         colors: { primary: "#D4AF37", secondary: "#228B22", glow: "rgba(212,175,55,0.3)" },
         logomarkPath: "/sites/athenai/assets/athenai_logomark.png",
-        mascotPath: "/sites/athenai/assets/athenai_logomark.png"
-        mascotFallback: "/sites/athenai/assets/athenai_logomark.png"
+        mascotPath: "/sites/athenai/assets/athenai_logomark.png",
+        mascotFallback: "/sites/athenai/assets/athenai_logomark.png",
         built: true,
         darkPunchline: false
     },
@@ -176,8 +176,8 @@ const ARCHETYPES = [
         domainAlt: ["gaia.com"],
         colors: { primary: "#D4AF37", secondary: "#4169E1", glow: "rgba(212,175,55,0.3)" },
         logomarkPath: "/sites/gaia/assets/gaia_logomark.png",
-        mascotPath: "/sites/gaia/assets/gaia_logomark.png"
-        mascotFallback: "/sites/gaia/assets/gaia_logomark.png"
+        mascotPath: "/sites/gaia/assets/gaia_logomark.png",
+        mascotFallback: "/sites/gaia/assets/gaia_logomark.png",
         built: true,
         darkPunchline: false
     },
@@ -292,8 +292,8 @@ const ARCHETYPES = [
         domainAlt: ["kobe.com"],
         colors: { primary: "#FF6B6B", secondary: "#4ECDC4", glow: "rgba(255,107,107,0.3)" },
         logomarkPath: "/sites/kobe/assets/kobe_logomark.png",
-        mascotPath: "/sites/kobe/assets/kobe_logomark.png"
-        mascotFallback: "/sites/kobe/assets/kobe_logomark.png"
+        mascotPath: "/sites/kobe/assets/kobe_logomark.png",
+        mascotFallback: "/sites/kobe/assets/kobe_logomark.png",
         built: true,
         darkPunchline: false
     },
@@ -312,8 +312,8 @@ const ARCHETYPES = [
         domainAlt: ["kyoto.com"],
         colors: { primary: "#FF6B6B", secondary: "#4ECDC4", glow: "rgba(255,107,107,0.3)" },
         logomarkPath: "/sites/kyoto/assets/kyoto_logomark.png",
-        mascotPath: "/sites/kyoto/assets/kyoto_logomark.png"
-        mascotFallback: "/sites/kyoto/assets/kyoto_logomark.png"
+        mascotPath: "/sites/kyoto/assets/kyoto_logomark.png",
+        mascotFallback: "/sites/kyoto/assets/kyoto_logomark.png",
         built: true,
         darkPunchline: false
     },
@@ -352,8 +352,8 @@ const ARCHETYPES = [
         domainAlt: ["osaka.com"],
         colors: { primary: "#FF6B6B", secondary: "#4ECDC4", glow: "rgba(255,107,107,0.3)" },
         logomarkPath: "/sites/osaka/assets/osaka_logomark.png",
-        mascotPath: "/sites/osaka/assets/osaka_logomark.png"
-        mascotFallback: "/sites/osaka/assets/osaka_logomark.png"
+        mascotPath: "/sites/osaka/assets/osaka_logomark.png",
+        mascotFallback: "/sites/osaka/assets/osaka_logomark.png",
         built: true,
         darkPunchline: false
     },
@@ -448,8 +448,8 @@ const ARCHETYPES = [
         domainAlt: ["sparte.com"],
         colors: { primary: "#D4AF37", secondary: "#228B22", glow: "rgba(212,175,55,0.3)" },
         logomarkPath: "/sites/sparte/assets/sparte_logomark.png",
-        mascotPath: "/sites/sparte/assets/sparte_logomark.png"
-        mascotFallback: "/sites/sparte/assets/sparte_logomark.png"
+        mascotPath: "/sites/sparte/assets/sparte_logomark.png",
+        mascotFallback: "/sites/sparte/assets/sparte_logomark.png",
         built: true,
         darkPunchline: false
     },
@@ -487,8 +487,8 @@ const ARCHETYPES = [
         domainAlt: ["alfheimr.com"],
         colors: { primary: "#4A90D9", secondary: "#8B0000", glow: "rgba(74,144,217,0.3)" },
         logomarkPath: "/sites/alfheimr/assets/alfheimr_logomark.png",
-        mascotPath: "/sites/alfheimr/assets/alfheimr_logomark.png"
-        mascotFallback: "/sites/alfheimr/assets/alfheimr_logomark.png"
+        mascotPath: "/sites/alfheimr/assets/alfheimr_logomark.png",
+        mascotFallback: "/sites/alfheimr/assets/alfheimr_logomark.png",
         built: true,
         darkPunchline: false
     },
@@ -545,8 +545,8 @@ const ARCHETYPES = [
         domainAlt: ["chaos.com"],
         colors: { primary: "#D4AF37", secondary: "#4169E1", glow: "rgba(212,175,55,0.3)" },
         logomarkPath: "/sites/chaos/assets/chaos_logomark.png",
-        mascotPath: "/sites/chaos/assets/chaos_logomark.png"
-        mascotFallback: "/sites/chaos/assets/chaos_logomark.png"
+        mascotPath: "/sites/chaos/assets/chaos_logomark.png",
+        mascotFallback: "/sites/chaos/assets/chaos_logomark.png",
         built: true,
         darkPunchline: false
     },
@@ -565,8 +565,8 @@ const ARCHETYPES = [
         domainAlt: ["delphoi.com"],
         colors: { primary: "#D4AF37", secondary: "#228B22", glow: "rgba(212,175,55,0.3)" },
         logomarkPath: "/sites/delphoi/assets/delphoi_logomark.png",
-        mascotPath: "/sites/delphoi/assets/delphoi_logomark.png"
-        mascotFallback: "/sites/delphoi/assets/delphoi_logomark.png"
+        mascotPath: "/sites/delphoi/assets/delphoi_logomark.png",
+        mascotFallback: "/sites/delphoi/assets/delphoi_logomark.png",
         built: true,
         darkPunchline: false
     },
@@ -603,8 +603,8 @@ const ARCHETYPES = [
         domainAlt: ["helheimr.com"],
         colors: { primary: "#4A90D9", secondary: "#8B0000", glow: "rgba(74,144,217,0.3)" },
         logomarkPath: "/sites/helheimr/assets/helheimr_logomark.png",
-        mascotPath: "/sites/helheimr/assets/helheimr_logomark.png"
-        mascotFallback: "/sites/helheimr/assets/helheimr_logomark.png"
+        mascotPath: "/sites/helheimr/assets/helheimr_logomark.png",
+        mascotFallback: "/sites/helheimr/assets/helheimr_logomark.png",
         built: true,
         darkPunchline: false
     },
@@ -623,8 +623,8 @@ const ARCHETYPES = [
         domainAlt: ["jotunheimr.com"],
         colors: { primary: "#4A90D9", secondary: "#8B0000", glow: "rgba(74,144,217,0.3)" },
         logomarkPath: "/sites/jotunheimr/assets/jotunheimr_logomark.png",
-        mascotPath: "/sites/jotunheimr/assets/jotunheimr_logomark.png"
-        mascotFallback: "/sites/jotunheimr/assets/jotunheimr_logomark.png"
+        mascotPath: "/sites/jotunheimr/assets/jotunheimr_logomark.png",
+        mascotFallback: "/sites/jotunheimr/assets/jotunheimr_logomark.png",
         built: true,
         darkPunchline: false
     },
@@ -681,8 +681,8 @@ const ARCHETYPES = [
         domainAlt: ["midgardr.com"],
         colors: { primary: "#4A90D9", secondary: "#8B0000", glow: "rgba(74,144,217,0.3)" },
         logomarkPath: "/sites/midgardr/assets/midgardr_logomark.png",
-        mascotPath: "/sites/midgardr/assets/midgardr_logomark.png"
-        mascotFallback: "/sites/midgardr/assets/midgardr_logomark.png"
+        mascotPath: "/sites/midgardr/assets/midgardr_logomark.png",
+        mascotFallback: "/sites/midgardr/assets/midgardr_logomark.png",
         built: true,
         darkPunchline: false
     },
@@ -701,8 +701,8 @@ const ARCHETYPES = [
         domainAlt: ["muspellheimr.com"],
         colors: { primary: "#4A90D9", secondary: "#8B0000", glow: "rgba(74,144,217,0.3)" },
         logomarkPath: "/sites/muspellheimr/assets/muspellheimr_logomark.png",
-        mascotPath: "/sites/muspellheimr/assets/muspellheimr_logomark.png"
-        mascotFallback: "/sites/muspellheimr/assets/muspellheimr_logomark.png"
+        mascotPath: "/sites/muspellheimr/assets/muspellheimr_logomark.png",
+        mascotFallback: "/sites/muspellheimr/assets/muspellheimr_logomark.png",
         built: true,
         darkPunchline: false
     },
@@ -780,8 +780,8 @@ const ARCHETYPES = [
         domainAlt: ["olympos.com"],
         colors: { primary: "#D4AF37", secondary: "#228B22", glow: "rgba(212,175,55,0.3)" },
         logomarkPath: "/sites/olympos/assets/olympos_logomark.png",
-        mascotPath: "/sites/olympos/assets/olympos_logomark.png"
-        mascotFallback: "/sites/olympos/assets/olympos_logomark.png"
+        mascotPath: "/sites/olympos/assets/olympos_logomark.png",
+        mascotFallback: "/sites/olympos/assets/olympos_logomark.png",
         built: true,
         darkPunchline: false
     },
@@ -800,8 +800,8 @@ const ARCHETYPES = [
         domainAlt: ["pontos.com"],
         colors: { primary: "#D4AF37", secondary: "#4169E1", glow: "rgba(212,175,55,0.3)" },
         logomarkPath: "/sites/pontos/assets/pontos_logomark.png",
-        mascotPath: "/sites/pontos/assets/pontos_logomark.png"
-        mascotFallback: "/sites/pontos/assets/pontos_logomark.png"
+        mascotPath: "/sites/pontos/assets/pontos_logomark.png",
+        mascotFallback: "/sites/pontos/assets/pontos_logomark.png",
         built: true,
         darkPunchline: false
     },
@@ -820,8 +820,8 @@ const ARCHETYPES = [
         domainAlt: ["ragnarok.com"],
         colors: { primary: "#4A90D9", secondary: "#8B0000", glow: "rgba(74,144,217,0.3)" },
         logomarkPath: "/sites/ragnarok/assets/ragnarok_logomark.png",
-        mascotPath: "/sites/ragnarok/assets/ragnarok_logomark.png"
-        mascotFallback: "/sites/ragnarok/assets/ragnarok_logomark.png"
+        mascotPath: "/sites/ragnarok/assets/ragnarok_logomark.png",
+        mascotFallback: "/sites/ragnarok/assets/ragnarok_logomark.png",
         built: true,
         darkPunchline: false
     },
@@ -919,8 +919,8 @@ const ARCHETYPES = [
         domainAlt: ["tartaros.com"],
         colors: { primary: "#D4AF37", secondary: "#4169E1", glow: "rgba(212,175,55,0.3)" },
         logomarkPath: "/sites/tartaros/assets/tartaros_logomark.png",
-        mascotPath: "/sites/tartaros/assets/tartaros_logomark.png"
-        mascotFallback: "/sites/tartaros/assets/tartaros_logomark.png"
+        mascotPath: "/sites/tartaros/assets/tartaros_logomark.png",
+        mascotFallback: "/sites/tartaros/assets/tartaros_logomark.png",
         built: true,
         darkPunchline: false
     },
