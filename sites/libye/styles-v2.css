@@ -361,15 +361,29 @@ body {
     transform: translate(3px, -3px);
 }
 
+/* btn-ghost fix � was missing layout/styles to match btn-primary */
 .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
     background: transparent;
     color: var(--gold);
     border: 1px solid var(--gold);
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-ghost:hover {
     background: rgba(212, 175, 55, 0.1);
     box-shadow: 0 10px 40px rgba(212, 175, 55, 0.15);
+    transform: translateY(-2px);
 }
 
 /* Hero Mascot */
