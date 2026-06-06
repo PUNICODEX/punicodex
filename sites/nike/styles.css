@@ -3014,7 +3014,6 @@ img {
     align-items: stretch;
 }
 .space-row--sidebar .space-slot--narrow {
-    width: 260px;
     flex-shrink: 0;
 }
 .space-column {
@@ -3048,6 +3047,12 @@ img {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+.space-slot--narrow {
+    flex: none;
+    width: 260px;
 }
 .space-meta {
     display: flex;
