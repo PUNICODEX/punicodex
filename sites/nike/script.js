@@ -11,7 +11,7 @@
  */
 
 const canvas = document.getElementById('victory-canvas');
-const ctx = canvas.getContext('2d');
+const ctx = canvas ? canvas.getContext('2d') : null;
 
 let width, height, dpr;
 let mouseX = 0, mouseY = 0;
@@ -19,6 +19,7 @@ let frameCount = 0;
 
 // Resize
 function resize() {
+    if (!canvas) return;
     dpr = Math.min(window.devicePixelRatio || 1, 2);
     width = window.innerWidth;
     height = window.innerHeight;
@@ -452,6 +453,7 @@ function initElements() {
 
 // ========== DRAW BACKGROUND ==========
 function drawBackground() {
+    if (!ctx) return;
     // Deep navy gradient
     const grad = ctx.createLinearGradient(0, 0, 0, height);
     grad.addColorStop(0, '#0a121f');
@@ -471,6 +473,7 @@ function drawBackground() {
 
 // ========== MAIN LOOP ==========
 function animate() {
+    if (!ctx) return;
     ctx.clearRect(0, 0, width, height);
     frameCount++;
 
@@ -526,9 +529,9 @@ document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
 
-    // Parallax on mascot
+    // Parallax on mascot (skip if no mascot on this page)
     const mascot = document.querySelector('.hero-mascot');
-    if (mascot) {
+    if (mascot && window.getComputedStyle(mascot).display !== 'none') {
         const rect = mascot.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
@@ -613,7 +616,9 @@ function initTilt() {
 }
 
 // ========== INITIALIZATION ==========
-window.addEventListener('resize', resize);
-resize();
+if (canvas) {
+    window.addEventListener('resize', resize);
+    resize();
+    animate();
+}
 initTilt();
-animate();
