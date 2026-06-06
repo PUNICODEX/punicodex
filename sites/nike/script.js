@@ -622,3 +622,21 @@ if (canvas) {
     animate();
 }
 initTilt();
+
+
+// ========== MEASURE ACTUAL FRAME DIMENSIONS ==========
+function measureSpaces() {
+    document.querySelectorAll('.space-slot').forEach(slot => {
+        const frame = slot.querySelector('.space-frame');
+        const dimsEl = slot.querySelector('.space-dims');
+        if (frame && dimsEl) {
+            const rect = frame.getBoundingClientRect();
+            const w = Math.round(rect.width);
+            const h = Math.round(rect.height);
+            dimsEl.textContent = w + ' \u00D7 ' + h + ' px';
+        }
+    });
+}
+
+window.addEventListener('load', measureSpaces);
+window.addEventListener('resize', measureSpaces);
