@@ -13,79 +13,483 @@
     <link rel="apple-touch-icon" href="icon192.png">
 </head>
 <body>
+    <canvas id="ambient-canvas" aria-hidden="true"></canvas>
+
+    <!-- ═══════════════════════════════════════════════
+         ONBOARDING OVERLAY
+         ═══════════════════════════════════════════════ -->
+    <div class="onboarding-overlay hidden" id="onboarding-overlay">
+        <div class="onboarding-backdrop" id="onboarding-backdrop"></div>
+        <div class="onboarding-container">
+            <div class="onboarding-slides" id="onboarding-slides">
+                <!-- Slide 1: Welcome -->
+                <div class="onboarding-slide active" data-slide="0">
+                    <div class="slide-visual welcome-visual">
+                        <span class="slide-logo">P<span class="accent">U</span>NYCODEX</span>
+                    </div>
+                    <h2 class="slide-title">The Unicode Type System</h2>
+                    <p class="slide-desc">Type mythological names in ASCII and convert them to scholarly Unicode — accents, macrons, and all.</p>
+                </div>
+                <!-- Slide 2: Type -->
+                <div class="onboarding-slide" data-slide="1">
+                    <div class="slide-visual type-visual">
+                        <div class="demo-input">
+                            <span class="demo-typed">apoll</span><span class="demo-cursor">|</span>
+                        </div>
+                        <div class="demo-chip">apóllōn</div>
+                    </div>
+                    <h2 class="slide-title">Type Mode</h2>
+                    <p class="slide-desc">Search any name. Tap the suggestion chip to copy the Unicode form. Long-press a chip to see scholarly variants.</p>
+                </div>
+                <!-- Slide 3: Compose -->
+                <div class="onboarding-slide" data-slide="2">
+                    <div class="slide-visual compose-visual">
+                        <div class="demo-text">The wrath of <span class="demo-converted">Achilles</span></div>
+                        <div class="demo-ribbon">achilles → <span class="demo-converted">Achilles</span></div>
+                    </div>
+                    <h2 class="slide-title">Compose Mode</h2>
+                    <p class="slide-desc">Write freely. The app detects names in your text and offers one-tap conversion to Unicode.</p>
+                </div>
+                <!-- Slide 4: Keyboard -->
+                <div class="onboarding-slide" data-slide="3">
+                    <div class="slide-visual keyboard-visual">
+                        <div class="demo-kbd-row">
+                            <div class="demo-kbd-key">q</div><div class="demo-kbd-key">w</div><div class="demo-kbd-key">e</div>
+                        </div>
+                        <div class="demo-kbd-row">
+                            <div class="demo-kbd-key accent">á</div><div class="demo-kbd-key space"></div><div class="demo-kbd-key">↵</div>
+                        </div>
+                    </div>
+                    <h2 class="slide-title">System Keyboard</h2>
+                    <p class="slide-desc">Install PÚNYCODEX as your Android keyboard for Unicode suggestions in any app — messages, notes, anywhere.</p>
+                </div>
+                <!-- Slide 5: Get Started -->
+                <div class="onboarding-slide" data-slide="4">
+                    <div class="slide-visual ready-visual">
+                        <svg class="slide-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 6L9 17l-5-5"/>
+                        </svg>
+                    </div>
+                    <h2 class="slide-title">You're Ready</h2>
+                    <p class="slide-desc">Explore the pantheon. Convert names. Make Unicode effortless.</p>
+                    <button class="onboarding-cta" id="onboarding-cta">Get Started</button>
+                </div>
+            </div>
+            <div class="onboarding-dots" id="onboarding-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <button class="onboarding-skip" id="onboarding-skip">Skip</button>
+        </div>
+    </div>
+
     <div id="app">
         <!-- Header -->
         <header class="app-header">
             <h1 class="app-logo">P<span class="accent">U</span>NYCODEX</h1>
-            <span class="app-badge">Type</span>
+            <button class="header-help" id="header-help" aria-label="Help">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+            </button>
         </header>
 
-        <!-- Pantheon Pills -->
-        <nav class="pantheon-pills" id="pantheon-pills">
-            <button class="pill active" data-value="all">All</button>
-            <button class="pill" data-value="greek">⚡ Greek</button>
-            <button class="pill" data-value="norse">❄️ Norse</button>
-            <button class="pill" data-value="egyptian">☀️ Egyptian</button>
-            <button class="pill" data-value="sanskrit">🕉️ Sanskrit</button>
-            <button class="pill" data-value="japanese">⛩️ Japanese</button>
-            <button class="pill" data-value="nahuatl">🐍 Nahuatl</button>
-            <button class="pill" data-value="yoruba">🥁 Yoruba</button>
-            <button class="pill" data-value="slavic">🔥 Slavic</button>
-            <button class="pill" data-value="celtic">🌿 Celtic</button>
-            <button class="pill" data-value="mesopotamian">🏛️ Mesopotamian</button>
-            <button class="pill" data-value="polynesian">🌊 Polynesian</button>
-            <button class="pill" data-value="zoroastrian">☀️ Zoroastrian</button>
-            <button class="pill" data-value="incan">🦙 Incan</button>
-        </nav>
+        <!-- Main Content -->
+        <main class="main-content" id="main-content">
+            <!-- ═══════════════════════════════════════════════
+                 TYPE MODE
+                 ═══════════════════════════════════════════════ -->
+            <section class="mode-panel active" id="panel-type">
+                <div class="quick-recents hidden" id="quick-recents"></div>
 
-        <!-- Input Area -->
-        <div class="input-section">
-            <div class="input-wrap">
-                <input
-                    type="text"
-                    id="type-input"
-                    class="type-input"
-                    placeholder="Type a name..."
-                    autocomplete="off"
-                    autocorrect="off"
-                    autocapitalize="off"
-                    spellcheck="false"
-                    inputmode="verbatim"
-                >
-                <button class="input-clear" id="input-clear" aria-label="Clear">×</button>
-            </div>
-            <div class="type-preview" id="type-preview"></div>
-        </div>
+                <nav class="pantheon-pills" id="pantheon-pills">
+                    <button class="pill active" data-value="all">All</button>
+                    <button class="pill" data-value="greek">⚡ Greek</button>
+                    <button class="pill" data-value="norse">❄️ Norse</button>
+                    <button class="pill" data-value="egyptian">☀️ Egyptian</button>
+                    <button class="pill" data-value="sanskrit">🕉️ Sanskrit</button>
+                    <button class="pill" data-value="japanese">⛩️ Japanese</button>
+                    <button class="pill" data-value="nahuatl">🐍 Nahuatl</button>
+                    <button class="pill" data-value="yoruba">🥁 Yoruba</button>
+                    <button class="pill" data-value="slavic">🔥 Slavic</button>
+                    <button class="pill" data-value="celtic">🌿 Celtic</button>
+                    <button class="pill" data-value="mesopotamian">🏛️ Mesopotamian</button>
+                    <button class="pill" data-value="polynesian">🌊 Polynesian</button>
+                    <button class="pill" data-value="zoroastrian">☀️ Zoroastrian</button>
+                    <button class="pill" data-value="incan">🦙 Incan</button>
+                    <button class="pill" data-value="chinese">🐉 Chinese</button>
+                    <button class="pill" data-value="buddhist">☸️ Buddhist</button>
+                </nav>
 
-        <!-- Suggestions -->
-        <div class="suggestions-row" id="suggestions-row"></div>
-
-        <!-- Result Card -->
-        <div class="result-card hidden" id="result-card">
-            <div class="result-unicode" id="result-unicode"></div>
-            <div class="result-greek" id="result-greek"></div>
-            <div class="result-meta">
-                <div class="meta-row">
-                    <span class="meta-key">Domain</span>
-                    <span class="meta-value" id="result-domain"></span>
+                <div class="input-section">
+                    <div class="input-wrap">
+                        <input type="text" id="type-input" class="type-input" placeholder="Type a name..."
+                            autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" inputmode="verbatim">
+                        <button class="input-clear" id="input-clear" aria-label="Clear">×</button>
+                    </div>
+                    <div class="type-preview" id="type-preview"></div>
                 </div>
-                <div class="meta-row">
-                    <span class="meta-key">Meaning</span>
-                    <span class="meta-value" id="result-meaning"></span>
+
+                <div class="suggestions-row" id="suggestions-row"></div>
+
+                <div class="result-card hidden" id="result-card">
+                    <div class="result-unicode" id="result-unicode"></div>
+                    <div class="result-greek" id="result-greek"></div>
+                    <div class="result-meta">
+                        <div class="meta-row">
+                            <span class="meta-key">Domain</span>
+                            <span class="meta-value" id="result-domain"></span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-key">Meaning</span>
+                            <span class="meta-value" id="result-meaning"></span>
+                        </div>
+                    </div>
+                    <div class="result-variants" id="result-variants"></div>
+                    <div class="result-sources" id="result-sources"></div>
+                    <div class="result-domain-status" id="result-domain-status"></div>
+                    <div class="result-actions">
+                        <button class="action-btn copy-btn" id="copy-btn">
+                            <span class="action-icon">⎘</span>
+                            <span class="action-label">Copy</span>
+                        </button>
+                        <button class="action-btn star-btn" id="star-btn">
+                            <span class="action-icon">☆</span>
+                            <span class="action-label">Save</span>
+                        </button>
+                        <button class="action-btn share-btn" id="share-type-btn">
+                            <span class="action-icon">↗</span>
+                            <span class="action-label">Share</span>
+                        </button>
+                    </div>
                 </div>
-            </div>
-            <div class="result-sources" id="result-sources"></div>
-            <button class="copy-btn" id="copy-btn">
-                <span class="copy-icon">⎘</span>
-                <span class="copy-label">Copy Unicode</span>
+
+                <div class="completions-list" id="completions-list"></div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════
+                 COMPOSE MODE
+                 ═══════════════════════════════════════════════ -->
+            <section class="mode-panel" id="panel-compose">
+                <div class="compose-toolbar">
+                    <span class="compose-hint">Type normally — Unicode suggestions appear automatically</span>
+                    <button class="toolbar-btn" id="compose-clear" title="Clear all">🗑</button>
+                </div>
+
+                <div class="compose-editor-wrap">
+                    <textarea id="compose-textarea" class="compose-textarea" placeholder="Start typing..."
+                        autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+                    <div class="compose-overlay" id="compose-overlay"></div>
+                </div>
+
+                <div class="suggestion-ribbon hidden" id="suggestion-ribbon">
+                    <div class="ribbon-label">✨ Convert</div>
+                    <div class="ribbon-chips" id="ribbon-chips"></div>
+                </div>
+
+                <div class="compose-preview hidden" id="compose-preview">
+                    <div class="preview-header">
+                        <span class="preview-label">Converted</span>
+                        <span class="preview-count" id="preview-count">0 conversions</span>
+                    </div>
+                    <div class="preview-text" id="preview-text"></div>
+                </div>
+
+                <div class="compose-actions">
+                    <button class="action-btn primary" id="compose-copy">
+                        <span class="action-icon">⎘</span>
+                        <span class="action-label">Copy Text</span>
+                    </button>
+                    <button class="action-btn primary" id="compose-share">
+                        <span class="action-icon">↗</span>
+                        <span class="action-label">Share</span>
+                    </button>
+                </div>
+
+                <div class="compose-log hidden" id="compose-log">
+                    <div class="log-title">This Session</div>
+                    <div class="log-list" id="log-list"></div>
+                </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════
+                 SAVED MODE
+                 ═══════════════════════════════════════════════ -->
+            <section class="mode-panel" id="panel-saved">
+                <div class="stats-grid" id="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="stat-total">0</div>
+                        <div class="stat-label">Conversions</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="stat-streak">0</div>
+                        <div class="stat-label">Day Streak</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="stat-favorite">—</div>
+                        <div class="stat-label">Top Pantheon</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="stat-unique">0</div>
+                        <div class="stat-label">Unique Names</div>
+                    </div>
+                </div>
+
+                <div class="history-section" id="favorites-section">
+                    <div class="history-header">
+                        <span class="history-title">⭐ Favorites</span>
+                        <span class="history-count" id="favorites-count">0</span>
+                    </div>
+                    <div class="history-list" id="favorites-list">
+                        <div class="history-empty">Star names in Type mode to see them here</div>
+                    </div>
+                </div>
+
+                <div class="history-section" id="recent-section">
+                    <div class="history-header">
+                        <span class="history-title">🕐 Recent</span>
+                        <button class="history-clear" id="clear-recent">Clear</button>
+                    </div>
+                    <div class="history-list" id="recent-list">
+                        <div class="history-empty">Your conversions will appear here</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════
+                 DIRECTORY MODE
+                 ═══════════════════════════════════════════════ -->
+            <section class="mode-panel" id="panel-directory">
+                <div class="dir-search-wrap">
+                    <input type="text" id="dir-search" class="dir-search" placeholder="Search characters, codes, names..."
+                        autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                    <button class="dir-search-clear hidden" id="dir-search-clear">×</button>
+                </div>
+
+                <nav class="pantheon-pills" id="dir-pills">
+                    <button class="pill active" data-value="all">All</button>
+                    <button class="pill" data-value="latin">Á Latin</button>
+                    <button class="pill" data-value="greek">α Greek</button>
+                    <button class="pill" data-value="cyrillic">Ж Cyrillic</button>
+                    <button class="pill" data-value="math">∑ Math</button>
+                    <button class="pill" data-value="arrows">→ Arrows</button>
+                    <button class="pill" data-value="box">┌ Box</button>
+                    <button class="pill" data-value="blocks">▓ Blocks</button>
+                    <button class="pill" data-value="shapes">● Shapes</button>
+                    <button class="pill" data-value="symbols">★ Symbols</button>
+                    <button class="pill" data-value="currency">€ Currency</button>
+                    <button class="pill" data-value="supsub">² Sup/Sub</button>
+                    <button class="pill" data-value="roman">Ⅰ Roman</button>
+                    <button class="pill" data-value="enclosed">① Enclosed</button>
+                    <button class="pill" data-value="dingbats">✂ Dingbats</button>
+                    <button class="pill" data-value="runic">ᚠ Runic</button>
+                    <button class="pill" data-value="punctuation">— Punctuation</button>
+                    <button class="pill" data-value="hieroglyphs">𓀀 Hieroglyphs</button>
+                    <button class="pill" data-value="gothic">𐌲 Gothic</button>
+                    <button class="pill" data-value="linearb">𐀀 Linear B</button>
+                    <button class="pill" data-value="cuneiform">𒀀 Cuneiform</button>
+                    <button class="pill" data-value="baybayin">ᜊ Baybayin</button>
+                    <button class="pill" data-value="alchemical">🜁 Alchemical</button>
+                    <button class="pill" data-value="braille">⠃ Braille</button>
+                    <button class="pill" data-value="domino">🁣 Games</button>
+                    <button class="pill" data-value="letterlike">ℛ Letter-like</button>
+                    <button class="pill" data-value="combining">◌̈ Combining</button>
+                </nav>
+
+                <div class="dir-count" id="dir-count">4,475 characters</div>
+
+                <div class="dir-grid" id="dir-grid"></div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════
+                 KEYBOARD MODE
+                 ═══════════════════════════════════════════════ -->
+            <section class="mode-panel" id="panel-keyboard">
+                <!-- Status Banner -->
+                <div class="keyboard-status-banner unknown" id="keyboard-status-banner">
+                    <div class="status-icon" id="kbd-status-icon">◈</div>
+                    <div class="status-text" id="kbd-status-text">Checking keyboard status...</div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="keyboard-quick-actions" id="keyboard-quick-actions">
+                    <button class="kbd-action-btn primary" id="kbd-settings-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                        </svg>
+                        <span>Open Keyboard Settings</span>
+                    </button>
+                    <button class="kbd-action-btn" id="kbd-switch-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="4" width="20" height="16" rx="2"/>
+                            <path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01M8 12h.01M12 12h.01M16 12h.01M7 16h10"/>
+                        </svg>
+                        <span>Switch to PÚNYCODEX</span>
+                    </button>
+                </div>
+
+                <!-- Setup Steps -->
+                <div class="keyboard-section-title">Setup</div>
+                <div class="setup-steps">
+                    <div class="setup-step" id="setup-step-1">
+                        <div class="step-num">1</div>
+                        <div class="step-content">
+                            <div class="step-title">Enable</div>
+                            <div class="step-desc">Turn on PÚNYCODEX in system settings</div>
+                        </div>
+                        <div class="step-check">○</div>
+                    </div>
+                    <div class="setup-step" id="setup-step-2">
+                        <div class="step-num">2</div>
+                        <div class="step-content">
+                            <div class="step-title">Set as Default</div>
+                            <div class="step-desc">Pick PÚNYCODEX from the keyboard switcher</div>
+                        </div>
+                        <div class="step-check">○</div>
+                    </div>
+                    <div class="setup-step" id="setup-step-3">
+                        <div class="step-num">3</div>
+                        <div class="step-content">
+                            <div class="step-title">Start Typing</div>
+                            <div class="step-desc">Type any name and tap a suggestion chip</div>
+                        </div>
+                        <div class="step-check">○</div>
+                    </div>
+                </div>
+
+                <!-- Visual Keyboard Diagram -->
+                <div class="keyboard-section-title">Interface Guide</div>
+                <div class="keyboard-diagram">
+                    <div class="kbd-row">
+                        <div class="kbd-key">q</div><div class="kbd-key">w</div><div class="kbd-key">e</div><div class="kbd-key">r</div><div class="kbd-key">t</div><div class="kbd-key">y</div><div class="kbd-key">u</div><div class="kbd-key">i</div><div class="kbd-key">o</div><div class="kbd-key">p</div>
+                    </div>
+                    <div class="kbd-row">
+                        <div class="kbd-key">a</div><div class="kbd-key">s</div><div class="kbd-key">d</div><div class="kbd-key">f</div><div class="kbd-key">g</div><div class="kbd-key">h</div><div class="kbd-key">j</div><div class="kbd-key">k</div><div class="kbd-key">l</div>
+                    </div>
+                    <div class="kbd-row">
+                        <div class="kbd-key shift">⇧</div><div class="kbd-key">z</div><div class="kbd-key">x</div><div class="kbd-key">c</div><div class="kbd-key">v</div><div class="kbd-key">b</div><div class="kbd-key">n</div><div class="kbd-key">m</div><div class="kbd-key backspace">⌫</div>
+                    </div>
+                    <div class="kbd-row">
+                        <div class="kbd-key sym">123</div>
+                        <div class="kbd-key space">space</div>
+                        <div class="kbd-key return">↵</div>
+                    </div>
+                    <!-- Suggestion bar overlay -->
+                    <div class="kbd-suggestion-bar">
+                        <div class="kbd-chip">apóllōn <span class="kbd-chip-hint">▼</span></div>
+                        <div class="kbd-chip dim">apollōn</div>
+                    </div>
+                </div>
+
+                <!-- Feature Callouts -->
+                <div class="guide-callouts">
+                    <div class="callout">
+                        <span class="callout-dot" style="background:var(--gold)"></span>
+                        <div class="callout-text">
+                            <strong>Suggestion Chips</strong>
+                            <span>Tap to commit Unicode instantly. Long-press for scholarly variants (ideal, macron-only, attested).</span>
+                        </div>
+                    </div>
+                    <div class="callout">
+                        <span class="callout-dot" style="background:var(--blue)"></span>
+                        <div class="callout-text">
+                            <strong>Accent Popups</strong>
+                            <span>Long-press any letter key for accented variants — á, é, í, ó, ú, and more.</span>
+                        </div>
+                    </div>
+                    <div class="callout">
+                        <span class="callout-dot" style="background:var(--green)"></span>
+                        <div class="callout-text">
+                            <strong>Shift & Caps</strong>
+                            <span>Tap ⇧ for single capital. Double-tap within 350ms for caps lock.</span>
+                        </div>
+                    </div>
+                    <div class="callout">
+                        <span class="callout-dot" style="background:var(--purple)"></span>
+                        <div class="callout-text">
+                            <strong>Symbol Keyboard</strong>
+                            <span>Tap 123 for numbers and symbols. Tap ABC to return to letters.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Native Stats -->
+                <div class="keyboard-section-title">Keyboard Stats</div>
+                <div class="keyboard-stats-native" id="keyboard-native-stats">
+                    <div class="native-stat">
+                        <div class="native-stat-value" id="native-total">—</div>
+                        <div class="native-stat-label">Completions Used</div>
+                    </div>
+                    <div class="native-stat">
+                        <div class="native-stat-value" id="native-favorite">—</div>
+                        <div class="native-stat-label">Favorite Character</div>
+                    </div>
+                </div>
+
+                <!-- Privacy Link -->
+                <div class="keyboard-privacy">
+                    <a href="https://punycodex.com/privacy" target="_blank" rel="noopener noreferrer" class="privacy-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        </svg>
+                        <span>Privacy Policy</span>
+                    </a>
+                    <span class="privacy-hint">Zero keylogging. Zero trackers.</span>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav" id="bottom-nav">
+            <button class="nav-btn active" data-mode="type" aria-label="Type mode">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                </svg>
+                <span class="nav-label">Type</span>
             </button>
+            <button class="nav-btn" data-mode="compose" aria-label="Compose mode">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                </svg>
+                <span class="nav-label">Compose</span>
+            </button>
+            <button class="nav-btn" data-mode="saved" aria-label="Saved mode">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+                <span class="nav-label">Saved</span>
+            </button>
+            <button class="nav-btn" data-mode="directory" aria-label="Directory mode">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+                    <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+                </svg>
+                <span class="nav-label">Directory</span>
+            </button>
+            <button class="nav-btn" data-mode="keyboard" aria-label="Keyboard mode">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                    <path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01M8 12h.01M12 12h.01M16 12h.01M7 16h10"/>
+                </svg>
+                <span class="nav-label">Keyboard</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Entry Detail Modal -->
+    <div class="detail-modal hidden" id="detail-modal">
+        <div class="detail-modal-backdrop" id="detail-modal-backdrop"></div>
+        <div class="detail-modal-sheet" id="detail-modal-sheet">
+            <div class="detail-modal-handle"></div>
+            <div class="detail-modal-content" id="detail-modal-content"></div>
         </div>
-
-        <!-- Completions -->
-        <div class="completions-list" id="completions-list"></div>
-
-        <!-- Bottom Spacer for safe area -->
-        <div class="safe-spacer"></div>
     </div>
 
     <!-- Toast -->
@@ -100,6 +504,7 @@
 
     <script src="shared/lexicon.js"></script>
     <script src="shared/engine.js"></script>
+    <script src="shared/unicode-dir.js"></script>
     <script src="js/mobile.js"></script>
     <script>
         if ('serviceWorker' in navigator) {
