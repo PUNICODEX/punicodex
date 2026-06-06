@@ -3098,11 +3098,13 @@ img {
 /* The Frame */
 .space-frame {
     position: relative;
+    width: 100%;
     background: linear-gradient(145deg, rgba(14,26,43,0.92), rgba(8,15,25,0.97));
     border: 1px solid rgba(212,175,55,0.1);
     border-radius: 10px;
     overflow: hidden;
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    box-sizing: border-box;
 }
 .space-frame-glow {
     position: absolute;
@@ -3155,10 +3157,11 @@ img {
 /* Proportional Frame Sizes */
 .space-frame--hero {
     aspect-ratio: 1200 / 400;
+    border-top: 3px solid var(--classic-gold);
 }
 .space-frame--column {
     aspect-ratio: 300 / 600;
-    max-height: 460px;
+    max-height: 340px;
 }
 .space-frame--inline {
     aspect-ratio: 800 / 300;
