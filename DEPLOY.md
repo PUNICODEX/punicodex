@@ -34,13 +34,35 @@ npx wrangler pages deploy . --project-name=punycodex --branch=main
 curl -s https://punycodex.com/ | head -5
 ```
 
-### 5. What NOT to do
+### 5. Multi-Account Deployment (Norse sites: helheimr, muspellheimr)
+Wrangler caches the last-used `account_id` in `node_modules/.cache/wrangler/pages.json`.
+**You MUST delete this cache before switching accounts**, or wrangler will send requests
+to the wrong account and fail with `Authentication error [code: 10000]`.
+
+```powershell
+# Main account (punycodex.com, hermes, nike, etc.)
+Get-Content .env | ForEach-Object { $k, $v = $_ -split '=', 2; [Environment]::SetEnvironmentVariable($k, $v, 'Process') }
+Remove-Item node_modules/.cache/wrangler/pages.json -Force -ErrorAction SilentlyContinue
+npx wrangler pages deploy . --project-name=hermes --branch=main --commit-dirty=true
+
+# Second account (helheimr.com, muspellheimr.com)
+$env:CLOUDFLARE_API_TOKEN = $env:CLOUDFLARE_API_TOKEN_NORSE
+$env:CLOUDFLARE_ACCOUNT_ID = $env:CLOUDFLARE_ACCOUNT_ID_NORSE
+Remove-Item node_modules/.cache/wrangler/pages.json -Force -ErrorAction SilentlyContinue
+npx wrangler pages deploy . --project-name=helheimr --branch=main --commit-dirty=true
+```
+
+**Env var names in `.env`:**
+- Main account: `CLOUDFLARE_API_TOKEN_MAIN` / `CLOUDFLARE_ACCOUNT_ID_MAIN`
+- Norse account: `CLOUDFLARE_API_TOKEN_NORSE` / `CLOUDFLARE_ACCOUNT_ID_NORSE`
+
+### 6. What NOT to do
 - ❌ Do NOT deploy to `--branch=master` and think it's live
 - ❌ Do NOT give the user `*.pages.dev` preview URLs as if they're the live site
 - ❌ Do NOT change CSS/JS without updating `?v=` query strings in HTML
 - ❌ Do NOT assume cache will invalidate itself — it won't
 
-### 6. If Something Looks Broken on Live
+### 7. If Something Looks Broken on Live
 1. Check if the HTML references the right `?v=` version
 2. Check if you deployed to `main`, not `master`
 3. Check `npx wrangler pages deployment list --project-name=punycodex` to confirm
