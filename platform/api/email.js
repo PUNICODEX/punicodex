@@ -41,8 +41,8 @@ async function sendEmail({ to, subject, html, text }) {
   }
 }
 
-function getDashboardUrl(token) {
-  return `${PLATFORM_URL}/sites/nike/dashboard/?token=${token}`;
+function getDashboardUrl(token, siteSlug = 'nike') {
+  return `${PLATFORM_URL}/sites/${siteSlug}/dashboard/?token=${token}`;
 }
 
 async function notifyPaymentPending({ email, slotName, companyName, stripeUrl }) {

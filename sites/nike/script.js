@@ -698,7 +698,7 @@ let selectedFileBase64 = null;
 // Fetch slots and update UI
 async function loadSlots() {
   try {
-    const res = await fetch(`${API_BASE}/api/slots`);
+    const res = await fetch(`${API_BASE}/api/slots?site=nike`);
     const data = await res.json();
     slotsData = data.slots || [];
     updateSlotUI();
@@ -747,8 +747,9 @@ function updateSlotUI() {
     }
 
     // Determine if this slot should render its own creative
-    // Bundle members (1-12) need a per-slot creative; slot 13 (bundle itself) uses main creative
-    const isBundleMember = slotId !== 13 && slot.booking_id && slotsData.find(s => s.id === 13 && s.current_booking_id === slot.booking_id);
+    // Bundle members need a per-slot creative; the bundle slot itself uses main creative
+    const bundleSlot = slotsData.find(s => s.is_bundle === 1);
+    const isBundleMember = bundleSlot && slotId !== bundleSlot.id && slot.booking_id && bundleSlot.current_booking_id === slot.booking_id;
     const hasOwnCreative = isBundleMember ? slot.has_slot_creative : !!slot.creative_path;
 
     if (slot.status === 'live' && hasOwnCreative) {

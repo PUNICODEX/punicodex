@@ -9,7 +9,7 @@ const { getSites, getSiteByPunycode, searchSites, searchWeb, getAvailability, se
 const { UnicodeCrawler } = require('./crawler');
 const { processQueue } = require('./scripts/bulk-crawl');
 const { didYouMean, relatedSearches, autocomplete } = require('./api/query-intel');
-const { getSlots, getSlotBySlug, getSlotById, createBooking, getBookingByToken, getBookingById, getBookingByStripeSession, updateBookingStripeSession, markBookingPaid, saveCreative, setBookingStatus, goLive, endBooking, getBookingsByEmail, recordEvent, getDashboardMetrics, getBundleMembers, getSlotCreatives, saveSlotCreative, updateSlotMeta } = require('./api/bookings');
+const { getSlots, getSlotBySlug, getSlotById, createBooking, getBookingByToken, getBookingById, getBookingByStripeSession, updateBookingStripeSession, markBookingPaid, saveCreative, setBookingStatus, goLive, endBooking, getBookingsByEmail, recordEvent, getDashboardMetrics, getBundleMembers, getSlotCreatives, saveSlotCreative, updateSlotMeta, isBundleSlot } = require('./api/bookings');
 const { login: adminLogin, validateAdminToken, getAllBookings, getBookingStats } = require('./api/admin');
 const { createBookingCheckoutSession, handleWebhook } = require('./api/stripe');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY || 'sk_test_placeholder');
@@ -430,13 +430,13 @@ app.post('/api/submit', (req, res) => {
 
 // --- Public Slots ---
 app.get('/api/slots', (req, res) => {
-  try { res.json({ slots: getSlots() }); }
+  try { res.json({ slots: getSlots(req.query.site || null) }); }
   catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.get('/api/slots/:slug', (req, res) => {
   try {
-    const slot = getSlotBySlug(req.params.slug);
+    const slot = getSlotBySlug(req.params.slug, req.query.site || null);
     if (!slot) return res.status(404).json({ error: 'Slot not found' });
     res.json(slot);
   } catch (err) { res.status(500).json({ error: err.message }); }
@@ -476,7 +476,9 @@ app.post('/api/bookings', async (req, res) => {
     const metaError = validateMeta(slot.width, customHeading, customSubtitle);
     if (metaError) return res.status(400).json({ error: metaError });
 
-    const { id, token } = createBooking({ slotId, email, companyName, websiteUrl, customHeading, customSubtitle, leaseMonths: months });
+    const siteSlug = slot.site_slug || 'nike';
+    const siteName = siteSlug === 'hermes' ? 'Hermês' : 'Níkē';
+    const { id, token } = createBooking({ slotId, email, companyName, websiteUrl, customHeading, customSubtitle, leaseMonths: months, siteSlug });
     const totalCents = slot.price_cents * months;
 
     // Create Stripe checkout session
@@ -489,6 +491,8 @@ app.post('/api/bookings', async (req, res) => {
         amountCents: totalCents,
         token,
         leaseMonths: months,
+        siteSlug,
+        siteName,
       });
     } catch (stripeErr) {
       // Stripe not configured — clean up booking and return clear error
@@ -510,6 +514,7 @@ app.post('/api/bookings', async (req, res) => {
       customSubtitle,
       leaseMonths: months,
     }).catch(() => {});
+    // Note: emails still show Níkē branding; dynamic branding enhancement deferred
 
     res.json({
       bookingId: id,
@@ -589,7 +594,7 @@ app.post('/api/bookings/:token/meta', (req, res) => {
     if (!booking) return res.status(404).json({ error: 'Booking not found' });
 
     // Per-slot meta update for bundle bookings
-    if (slotId && booking.slot_id === 13) {
+    if (slotId && isBundleSlot(booking.slot_id)) {
       const slot = getSlotById(slotId);
       if (!slot) return res.status(404).json({ error: 'Slot not found' });
       const metaError = validateMeta(slot.width, customHeading, customSubtitle);
@@ -842,8 +847,8 @@ function requireAdmin(req, res, next) {
 
 app.get('/api/admin/bookings', requireAdmin, (req, res) => {
   try {
-    const { status } = req.query;
-    res.json({ bookings: getAllBookings(status || null), stats: getBookingStats() });
+    const { status, site } = req.query;
+    res.json({ bookings: getAllBookings(status || null, site || null), stats: getBookingStats(site || null) });
   } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
@@ -945,6 +950,7 @@ app.post('/api/webhook', express.raw({ type: 'application/json' }), async (req, 
 // Serve uploads statically
 app.use('/uploads', express.static(UPLOADS_DIR));
 app.use('/sites/nike', express.static(path.join(__dirname, '..', 'sites', 'nike')));
+app.use('/sites/hermes', express.static(path.join(__dirname, '..', 'sites', 'hermes')));
 
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`PUNYCODEX Platform running on http://0.0.0.0:${PORT}`);

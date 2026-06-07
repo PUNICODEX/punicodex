@@ -20,9 +20,9 @@ function hashIp(ip) {
 
 // ─── Ad Slots ───
 
-function getSlots() {
+function getSlots(siteSlug = null) {
   const db = getDb();
-  const slots = db.prepare(`
+  let query = `
     SELECT s.*,
       b.status as booking_status, b.analytics_token, b.company_name, b.website_url, b.hide_meta, b.id as booking_id,
       COALESCE(sc.creative_path, b.creative_path) as creative_path,
@@ -33,14 +33,23 @@ function getSlots() {
     FROM ad_slots s
     LEFT JOIN bookings b ON s.current_booking_id = b.id
     LEFT JOIN slot_creatives sc ON b.id = sc.booking_id AND s.id = sc.slot_id
-    ORDER BY s.sort_order
-  `).all();
+  `;
+  const params = [];
+  if (siteSlug) {
+    query += ` WHERE s.site_slug = ?`;
+    params.push(siteSlug);
+  }
+  query += ` ORDER BY s.sort_order`;
+  const slots = db.prepare(query).all(...params);
   db.close();
   return slots;
 }
 
 function isBundleSlot(slotId) {
-  return slotId === 13;
+  const db = getDb();
+  const row = db.prepare('SELECT is_bundle FROM ad_slots WHERE id = ?').get(slotId);
+  db.close();
+  return row ? row.is_bundle === 1 : false;
 }
 
 function getBundleMembers(bundleSlotId) {
@@ -50,14 +59,20 @@ function getBundleMembers(bundleSlotId) {
   return rows.map(r => r.member_slot_id);
 }
 
-function getSlotBySlug(slug) {
+function getSlotBySlug(slug, siteSlug = null) {
   const db = getDb();
-  const slot = db.prepare(`
+  let query = `
     SELECT s.*, b.status as booking_status, b.analytics_token, b.company_name, b.website_url
     FROM ad_slots s
     LEFT JOIN bookings b ON s.current_booking_id = b.id
     WHERE s.slug = ?
-  `).get(slug);
+  `;
+  const params = [slug];
+  if (siteSlug) {
+    query += ` AND s.site_slug = ?`;
+    params.push(siteSlug);
+  }
+  const slot = db.prepare(query).get(...params);
   db.close();
   return slot;
 }
@@ -71,14 +86,14 @@ function getSlotById(id) {
 
 // ─── Bookings ───
 
-function createBooking({ slotId, email, companyName, websiteUrl, customHeading, customSubtitle, leaseMonths = 1 }) {
+function createBooking({ slotId, email, companyName, websiteUrl, customHeading, customSubtitle, leaseMonths = 1, siteSlug = null }) {
   const db = getDb();
   const token = generateToken();
   const stmt = db.prepare(`
-    INSERT INTO bookings (slot_id, email, company_name, website_url, custom_heading, custom_subtitle, status, analytics_token, lease_months)
-    VALUES (?, ?, ?, ?, ?, ?, 'pending_payment', ?, ?)
+    INSERT INTO bookings (slot_id, email, company_name, website_url, custom_heading, custom_subtitle, status, analytics_token, lease_months, site_slug)
+    VALUES (?, ?, ?, ?, ?, ?, 'pending_payment', ?, ?, ?)
   `);
-  const result = stmt.run(slotId, email, companyName || null, websiteUrl || null, customHeading || null, customSubtitle || null, token, leaseMonths);
+  const result = stmt.run(slotId, email, companyName || null, websiteUrl || null, customHeading || null, customSubtitle || null, token, leaseMonths, siteSlug || 'nike');
   const bookingId = result.lastInsertRowid;
 
   // If booking a bundle, reserve the bundle slot and all member slots
@@ -220,15 +235,21 @@ function endBooking(bookingId) {
   db.close();
 }
 
-function getBookingsByEmail(email) {
+function getBookingsByEmail(email, siteSlug = null) {
   const db = getDb();
-  const bookings = db.prepare(`
+  let query = `
     SELECT b.*, s.name as slot_name, s.slug as slot_slug, s.is_bundle
     FROM bookings b
     JOIN ad_slots s ON b.slot_id = s.id
     WHERE b.email = ?
-    ORDER BY b.created_at DESC
-  `).all(email);
+  `;
+  const params = [email];
+  if (siteSlug) {
+    query += ` AND b.site_slug = ?`;
+    params.push(siteSlug);
+  }
+  query += ` ORDER BY b.created_at DESC`;
+  const bookings = db.prepare(query).all(...params);
   db.close();
   return bookings;
 }

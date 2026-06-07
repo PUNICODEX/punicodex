@@ -35,7 +35,7 @@ async function createCheckoutSession({ claimId, email, unicodeVariant, templateT
   return { sessionUrl: session.url, sessionId: session.id };
 }
 
-async function createBookingCheckoutSession({ bookingId, email, slotName, amountCents, token, leaseMonths = 1 }) {
+async function createBookingCheckoutSession({ bookingId, email, slotName, amountCents, token, leaseMonths = 1, siteSlug = 'nike', siteName = 'Níkē' }) {
   const durationLabel = leaseMonths === 12 ? '12-month' : '30-day';
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
@@ -43,16 +43,16 @@ async function createBookingCheckoutSession({ bookingId, email, slotName, amount
       price_data: {
         currency: 'usd',
         product_data: {
-          name: `Níkē Ad Space: ${slotName}`,
-          description: `${durationLabel} advertising placement on Níkē.com`,
+          name: `${siteName} Ad Space: ${slotName}`,
+          description: `${durationLabel} advertising placement on ${siteName}.com`,
         },
         unit_amount: amountCents,
       },
       quantity: 1,
     }],
     mode: 'payment',
-    success_url: `${process.env.PLATFORM_URL || 'http://localhost:3456'}/sites/nike/?booking=${token}&paid=1`,
-    cancel_url: `${process.env.PLATFORM_URL || 'http://localhost:3456'}/sites/nike/?booking=${token}&canceled=1`,
+    success_url: `${process.env.PLATFORM_URL || 'http://localhost:3456'}/sites/${siteSlug}/?booking=${token}&paid=1`,
+    cancel_url: `${process.env.PLATFORM_URL || 'http://localhost:3456'}/sites/${siteSlug}/?booking=${token}&canceled=1`,
     customer_email: email,
     metadata: {
       type: 'booking',

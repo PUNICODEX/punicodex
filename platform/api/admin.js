@@ -35,7 +35,7 @@ function login(password) {
   return { success: true, token };
 }
 
-function getAllBookings(status = null) {
+function getAllBookings(status = null, siteSlug = null) {
   const db = getDb();
   let query = `
     SELECT b.*, s.name as slot_name, s.slug as slot_slug, s.width, s.height, s.is_bundle
@@ -43,9 +43,17 @@ function getAllBookings(status = null) {
     JOIN ad_slots s ON b.slot_id = s.id
   `;
   const params = [];
+  const conditions = [];
   if (status) {
-    query += ' WHERE b.status = ?';
+    conditions.push('b.status = ?');
     params.push(status);
+  }
+  if (siteSlug) {
+    conditions.push('b.site_slug = ?');
+    params.push(siteSlug);
+  }
+  if (conditions.length > 0) {
+    query += ' WHERE ' + conditions.join(' AND ');
   }
   query += ' ORDER BY b.created_at DESC';
   const bookings = db.prepare(query).all(...params);
@@ -53,13 +61,14 @@ function getAllBookings(status = null) {
   return bookings;
 }
 
-function getBookingStats() {
+function getBookingStats(siteSlug = null) {
   const db = getDb();
-  const totalLive = db.prepare("SELECT COUNT(*) as c FROM bookings WHERE status = 'live'").get().c;
-  const totalPending = db.prepare("SELECT COUNT(*) as c FROM bookings WHERE status = 'pending_approval'").get().c;
-  const totalPendingPayment = db.prepare("SELECT COUNT(*) as c FROM bookings WHERE status = 'pending_payment'").get().c;
-  const totalPendingUpload = db.prepare("SELECT COUNT(*) as c FROM bookings WHERE status = 'pending_upload'").get().c;
-  const revenue = db.prepare("SELECT COALESCE(SUM(amount_paid_cents), 0) as c FROM bookings WHERE status IN ('live', 'ended', 'approved')").get().c;
+  const siteClause = siteSlug ? ` AND site_slug = '${siteSlug}'` : '';
+  const totalLive = db.prepare(`SELECT COUNT(*) as c FROM bookings WHERE status = 'live'${siteClause}`).get().c;
+  const totalPending = db.prepare(`SELECT COUNT(*) as c FROM bookings WHERE status = 'pending_approval'${siteClause}`).get().c;
+  const totalPendingPayment = db.prepare(`SELECT COUNT(*) as c FROM bookings WHERE status = 'pending_payment'${siteClause}`).get().c;
+  const totalPendingUpload = db.prepare(`SELECT COUNT(*) as c FROM bookings WHERE status = 'pending_upload'${siteClause}`).get().c;
+  const revenue = db.prepare(`SELECT COALESCE(SUM(amount_paid_cents), 0) as c FROM bookings WHERE status IN ('live', 'ended', 'approved')${siteClause}`).get().c;
   db.close();
   return {
     totalLive,
