@@ -666,46 +666,68 @@ function updateSlotUI() {
 
 // Open booking modal for a slot
 function openBooking(slotId) {
-  const slot = slotsData.find(s => s.id === slotId);
-  if (!slot) return;
+  console.log('[PUNYCODEX] openBooking called:', slotId);
+  try {
+    // Robust ID comparison (handles string vs number IDs from API)
+    let slot = slotsData.find(s => String(s.id) === String(slotId));
 
-  currentSlotId = slotId;
-  currentBooking = null;
+    // Fallback to DOM if slotsData hasn't loaded yet
+    if (!slot) {
+      const slotEl = document.querySelector(`.space-slot[data-space="${String(slotId).padStart(2, '0')}"]`);
+      if (!slotEl) { console.log('[PUNYCODEX] No slotEl found'); return; }
+      const nameEl = slotEl.querySelector('.space-name');
+      const dimsEl = slotEl.querySelector('.space-dims');
+      const priceEl = slotEl.querySelector('.space-price');
+      const dimsMatch = dimsEl ? dimsEl.textContent.match(/(\d+)\s*×\s*(\d+)/) : null;
+      slot = {
+        name: nameEl ? nameEl.textContent : 'Slot',
+        width: dimsMatch ? parseInt(dimsMatch[1]) : 0,
+        height: dimsMatch ? parseInt(dimsMatch[2]) : 0,
+        price_cents: priceEl ? parseInt(priceEl.textContent.replace(/[^0-9]/g, '')) * 100 : 0,
+      };
+    }
 
-  // Reset form
-  els.email.value = '';
-  els.company.value = '';
-  els.website.value = '';
-  els.heading.value = '';
-  els.subtitle.value = '';
-  els.codeInput.value = '';
-  els.verifyError.textContent = '';
-  els.verifyError.style.display = 'none';
-  selectedFile = null;
-  selectedFileBase64 = null;
-  if (els.uploadPreview) els.uploadPreview.innerHTML = '';
-  if (els.uploadPrompt) els.uploadPrompt.style.display = 'flex';
-  if (els.uploadActions) els.uploadActions.style.display = 'none';
-  if (els.livePreview) els.livePreview.style.display = 'none';
-  if (els.rejectReason) els.rejectReason.textContent = '';
+    currentSlotId = slotId;
+    currentBooking = null;
 
-  // Set slot info
-  els.slotName.textContent = slot.name;
-  els.slotDims.textContent = `${slot.width} \u00d7 ${slot.height} px`;
-  const price = (slot.price_cents / 100).toFixed(0);
-  els.price.textContent = `$${price}`;
+    // Reset form
+    els.email.value = '';
+    els.company.value = '';
+    els.website.value = '';
+    els.heading.value = '';
+    els.subtitle.value = '';
+    els.codeInput.value = '';
+    els.verifyError.textContent = '';
+    els.verifyError.style.display = 'none';
+    selectedFile = null;
+    selectedFileBase64 = null;
+    if (els.uploadPreview) els.uploadPreview.innerHTML = '';
+    if (els.uploadPrompt) els.uploadPrompt.style.display = 'flex';
+    if (els.uploadActions) els.uploadActions.style.display = 'none';
+    if (els.livePreview) els.livePreview.style.display = 'none';
+    if (els.rejectReason) els.rejectReason.textContent = '';
 
-  // Set char limits
-  const limits = getCharLimits(slot.width);
-  els.headingLimit.textContent = limits.heading;
-  els.subtitleLimit.textContent = limits.subtitle;
+    // Set slot info
+    els.slotName.textContent = slot.name;
+    els.slotDims.textContent = `${slot.width} \u00d7 ${slot.height} px`;
+    const price = ((slot.price_cents || 0) / 100).toFixed(0);
+    els.price.textContent = `$${price}`;
 
-  // Show modal
-  modal.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
+    // Set char limits
+    const limits = getCharLimits(slot.width || 0);
+    els.headingLimit.textContent = limits.heading;
+    els.subtitleLimit.textContent = limits.subtitle;
 
-  // Show step 1
-  showStep(1);
+    // Show modal
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+
+    // Show step 1
+    showStep(1);
+    console.log('[PUNYCODEX] Modal opened for slot', slotId);
+  } catch (err) {
+    console.error('[PUNYCODEX] openBooking error:', err);
+  }
 }
 
 function getCharLimits(slotWidth) {
@@ -726,14 +748,15 @@ function closeModal() {
   document.body.style.overflow = '';
 }
 
-// Event delegation for reserve buttons
-document.querySelectorAll('.space-reserve').forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const slotEl = btn.closest('.space-slot');
-    const slotId = parseInt(slotEl.dataset.space, 10);
-    openBooking(slotId);
-  });
+// Event: Click anywhere on a slot to open booking
+document.addEventListener('click', (e) => {
+  const slotEl = e.target.closest('.space-slot');
+  if (!slotEl) return;
+  // Don't intercept clicks on live ad links
+  if (e.target.closest('a.space-live-ad')) return;
+  const slotId = parseInt(slotEl.dataset.space, 10);
+  console.log('[PUNYCODEX] Slot clicked:', slotId);
+  openBooking(slotId);
 });
 
 // Close modal

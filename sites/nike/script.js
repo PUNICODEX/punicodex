@@ -850,37 +850,44 @@ function applyCharLimits(width) {
 }
 
 function openModal(slotId) {
-  currentSlotId = slotId;
-  let slot = slotsData.find(s => s.id === slotId);
+  console.log('[PUNYCODEX] openModal called:', slotId);
+  try {
+    currentSlotId = slotId;
+    // Robust ID comparison (handles string vs number IDs from API)
+    let slot = slotsData.find(s => String(s.id) === String(slotId));
 
-  // Fallback to DOM if slotsData hasn't loaded yet
-  if (!slot) {
-    const slotEl = document.querySelector(`.space-slot[data-space="${String(slotId).padStart(2, '0')}"]`);
-    if (!slotEl) return;
-    const nameEl = slotEl.querySelector('.space-name');
-    const dimsEl = slotEl.querySelector('.space-dims');
-    const priceEl = slotEl.querySelector('.space-price');
-    const dimsMatch = dimsEl ? dimsEl.textContent.match(/(\d+)\s*×\s*(\d+)/) : null;
-    slot = {
-      name: nameEl ? nameEl.textContent : 'Slot',
-      width: dimsMatch ? parseInt(dimsMatch[1]) : 0,
-      height: dimsMatch ? parseInt(dimsMatch[2]) : 0,
-      price_cents: priceEl ? parseInt(priceEl.textContent.replace(/[^0-9]/g, '')) * 100 : 0,
-    };
+    // Fallback to DOM if slotsData hasn't loaded yet
+    if (!slot) {
+      const slotEl = document.querySelector(`.space-slot[data-space="${String(slotId).padStart(2, '0')}"]`);
+      if (!slotEl) { console.log('[PUNYCODEX] No slotEl found'); return; }
+      const nameEl = slotEl.querySelector('.space-name');
+      const dimsEl = slotEl.querySelector('.space-dims');
+      const priceEl = slotEl.querySelector('.space-price');
+      const dimsMatch = dimsEl ? dimsEl.textContent.match(/(\d+)\s*×\s*(\d+)/) : null;
+      slot = {
+        name: nameEl ? nameEl.textContent : 'Slot',
+        width: dimsMatch ? parseInt(dimsMatch[1]) : 0,
+        height: dimsMatch ? parseInt(dimsMatch[2]) : 0,
+        price_cents: priceEl ? parseInt(priceEl.textContent.replace(/[^0-9]/g, '')) * 100 : 0,
+      };
+    }
+
+    currentSlotPriceCents = slot.price_cents || 0;
+    currentLeaseMonths = 1;
+    if (els.leaseMonthly) els.leaseMonthly.classList.add('active');
+    if (els.leaseYearly) els.leaseYearly.classList.remove('active');
+    updatePriceDisplay();
+    els.slotName.textContent = slot.name;
+    els.slotDims.textContent = `${slot.width} × ${slot.height} px`;
+    applyCharLimits(slot.width || 0);
+    clearBookingError();
+    showStep('1');
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    console.log('[PUNYCODEX] Modal opened for slot', slotId);
+  } catch (err) {
+    console.error('[PUNYCODEX] openModal error:', err);
   }
-
-  currentSlotPriceCents = slot.price_cents || 0;
-  currentLeaseMonths = 1;
-  if (els.leaseMonthly) els.leaseMonthly.classList.add('active');
-  if (els.leaseYearly) els.leaseYearly.classList.remove('active');
-  updatePriceDisplay();
-  els.slotName.textContent = slot.name;
-  els.slotDims.textContent = `${slot.width} × ${slot.height} px`;
-  applyCharLimits(slot.width || 0);
-  clearBookingError();
-  showStep('1');
-  modal.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
 }
 
 function updatePriceDisplay() {
@@ -909,14 +916,13 @@ function resetUpload() {
 }
 
 // Event: Click anywhere on an available frame to open booking
-document.body.addEventListener('click', (e) => {
-  const frame = e.target.closest('.space-frame');
-  if (!frame) return;
+document.addEventListener('click', (e) => {
+  const slotEl = e.target.closest('.space-slot');
+  if (!slotEl) return;
   // Don't intercept clicks on live ad links
   if (e.target.closest('a.space-live-ad')) return;
-  const slotEl = frame.closest('.space-slot');
-  if (!slotEl) return;
   const slotId = parseInt(slotEl.dataset.space, 10);
+  console.log('[PUNYCODEX] Slot clicked:', slotId);
   openModal(slotId);
 });
 
