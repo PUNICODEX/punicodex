@@ -3515,6 +3515,31 @@ img {
     text-align: center;
     margin-top: 0.5rem;
 }
+.booking-toggle {
+    display: flex;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(212,175,55,0.12);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+.booking-toggle-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding: 0.6rem;
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.booking-toggle-btn.active {
+    background: rgba(212,175,55,0.15);
+    color: var(--classic-gold);
+}
 .booking-char-limit {
     font-size: 0.7rem;
     font-weight: 400;

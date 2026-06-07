@@ -383,7 +383,7 @@
                         <div class="booking-detail">${b.website_url || 'No website'}</div>
                         ${b.custom_heading ? `<div class="booking-detail" style="color:var(--gold);">Heading: ${b.custom_heading}</div>` : ''}
                         ${b.custom_subtitle ? `<div class="booking-detail" style="color:var(--gold);">Subtitle: ${b.custom_subtitle}</div>` : ''}
-                        <div class="booking-detail">$${(b.amount_paid_cents / 100).toFixed(2)} &middot; ${b.width}×${b.height}</div>
+                        <div class="booking-detail">$${(b.amount_paid_cents / 100).toFixed(2)} &middot; ${b.width}×${b.height} &middot; ${b.lease_months === 12 ? '12 months' : '1 month'}</div>
                         ${b.admin_note ? `<div class="booking-detail" style="color:#ff6b6b;">Note: ${b.admin_note}</div>` : ''}
                     </div>
                     <div class="booking-actions">

@@ -61,7 +61,8 @@ async function notifyPaymentPending({ email, slotName, companyName, stripeUrl })
   });
 }
 
-async function notifyUploadReady({ email, slotName, companyName, bookingToken }) {
+async function notifyUploadReady({ email, slotName, companyName, bookingToken, leaseMonths = 1 }) {
+  const duration = leaseMonths === 12 ? '12 months' : '1 month';
   return sendEmail({
     to: email,
     subject: `Upload your creative for ${slotName}`,
@@ -69,7 +70,7 @@ async function notifyUploadReady({ email, slotName, companyName, bookingToken })
       <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
         <h2 style="color:#d4af37;">Níkē.com — Payment Received</h2>
         <p>Hi ${companyName || 'there'},</p>
-        <p>Thank you for your payment for <strong>${slotName}</strong>.</p>
+        <p>Thank you for your payment for <strong>${slotName}</strong> (${duration}).</p>
         <p>Now it's time to upload your creative:</p>
         <p><a href="${getDashboardUrl(bookingToken)}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">Upload Creative</a></p>
       </div>
@@ -126,7 +127,8 @@ async function notifyRejected({ email, slotName, companyName, note, bookingToken
   });
 }
 
-async function notifyLive({ email, slotName, companyName, bookingToken }) {
+async function notifyLive({ email, slotName, companyName, bookingToken, leaseMonths = 1 }) {
+  const duration = leaseMonths === 12 ? '12 months' : '1 month';
   return sendEmail({
     to: email,
     subject: `Your ad is now live on Níkē.com`,
@@ -134,7 +136,7 @@ async function notifyLive({ email, slotName, companyName, bookingToken }) {
       <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
         <h2 style="color:#d4af37;">Níkē.com — You're Live!</h2>
         <p>Hi ${companyName || 'there'},</p>
-        <p>Your ad on <strong>${slotName}</strong> is now live on Níkē.com.</p>
+        <p>Your ad on <strong>${slotName}</strong> is now live on Níkē.com for <strong>${duration}</strong>.</p>
         <p>Track performance in your dashboard:</p>
         <p><a href="${getDashboardUrl(bookingToken)}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">Open Analytics Dashboard</a></p>
       </div>
@@ -193,9 +195,11 @@ async function sendVerificationCode({ email, code }) {
   });
 }
 
-async function sendBookingConfirmation({ email, slotName, companyName, amountCents, token, customHeading, customSubtitle }) {
+async function sendBookingConfirmation({ email, slotName, companyName, amountCents, token, customHeading, customSubtitle, leaseMonths = 1 }) {
   const dashboardUrl = getDashboardUrl(token);
   const panelUrl = `${PLATFORM_URL}/advertiser-panel.html?token=${token}`;
+  const durationLabel = leaseMonths === 12 ? '12 months' : '1 month';
+  const priceLabel = leaseMonths === 12 ? `$${(amountCents / 100).toFixed(2)}` : `$${(amountCents / 100).toFixed(2)}/mo`;
   return sendEmail({
     to: email,
     subject: `Your reservation for ${slotName} — Complete your setup`,
@@ -203,7 +207,7 @@ async function sendBookingConfirmation({ email, slotName, companyName, amountCen
       <div style="font-family:system-ui,sans-serif;max-width:520px;margin:0 auto;color:#111;">
         <h2 style="color:#d4af37;">Níkē.com — Reservation Confirmed</h2>
         <p>Hi ${companyName || 'there'},</p>
-        <p>You've reserved <strong>${slotName}</strong> for <strong>$${(amountCents / 100).toFixed(2)}/mo</strong>.</p>
+        <p>You've reserved <strong>${slotName}</strong> for <strong>${durationLabel}</strong> at <strong>${priceLabel}</strong>.</p>
         ${customHeading ? `<p><strong>Heading:</strong> ${customHeading}</p>` : ''}
         ${customSubtitle ? `<p><strong>Subtitle:</strong> ${customSubtitle}</p>` : ''}
         <p>Manage everything from your advertiser panel:</p>

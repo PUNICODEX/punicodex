@@ -62,6 +62,9 @@ db.exec(`
 try { db.exec(`ALTER TABLE bookings ADD COLUMN custom_heading TEXT`); } catch (e) {}
 try { db.exec(`ALTER TABLE bookings ADD COLUMN custom_subtitle TEXT`); } catch (e) {}
 
+// Add lease duration column (idempotent)
+try { db.exec(`ALTER TABLE bookings ADD COLUMN lease_months INTEGER DEFAULT 1`); } catch (e) {}
+
 // Create analytics_events table
 db.exec(`
   CREATE TABLE IF NOT EXISTS analytics_events (

@@ -71,14 +71,14 @@ function getSlotById(id) {
 
 // ─── Bookings ───
 
-function createBooking({ slotId, email, companyName, websiteUrl, customHeading, customSubtitle }) {
+function createBooking({ slotId, email, companyName, websiteUrl, customHeading, customSubtitle, leaseMonths = 1 }) {
   const db = getDb();
   const token = generateToken();
   const stmt = db.prepare(`
-    INSERT INTO bookings (slot_id, email, company_name, website_url, custom_heading, custom_subtitle, status, analytics_token)
-    VALUES (?, ?, ?, ?, ?, ?, 'pending_payment', ?)
+    INSERT INTO bookings (slot_id, email, company_name, website_url, custom_heading, custom_subtitle, status, analytics_token, lease_months)
+    VALUES (?, ?, ?, ?, ?, ?, 'pending_payment', ?, ?)
   `);
-  const result = stmt.run(slotId, email, companyName || null, websiteUrl || null, customHeading || null, customSubtitle || null, token);
+  const result = stmt.run(slotId, email, companyName || null, websiteUrl || null, customHeading || null, customSubtitle || null, token, leaseMonths);
   const bookingId = result.lastInsertRowid;
 
   // If booking a bundle, reserve the bundle slot and all member slots
@@ -174,8 +174,10 @@ function setBookingStatus(bookingId, status, note = null) {
 
 function goLive(bookingId) {
   const db = getDb();
+  const bookingMeta = db.prepare('SELECT slot_id, lease_months FROM bookings WHERE id = ?').get(bookingId);
   const now = new Date().toISOString();
-  const ends = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
+  const months = bookingMeta?.lease_months || 1;
+  const ends = new Date(Date.now() + months * 30 * 24 * 60 * 60 * 1000).toISOString();
   db.prepare(`
     UPDATE bookings
     SET status = 'live', started_at = ?, ends_at = ?, updated_at = CURRENT_TIMESTAMP

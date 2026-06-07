@@ -670,6 +670,8 @@ const els = {
   sendCode: document.getElementById('booking-send-code'),
   verifyBtn: document.getElementById('booking-verify-btn'),
   resendCode: document.getElementById('booking-resend-code'),
+  leaseMonthly: document.getElementById('lease-monthly'),
+  leaseYearly: document.getElementById('lease-yearly'),
   codeInput: document.getElementById('booking-code'),
   verifyEmail: document.getElementById('booking-verify-email'),
   verifyError: document.getElementById('booking-verify-error'),
@@ -870,14 +872,24 @@ function openModal(slotId) {
     };
   }
 
+  currentSlotPriceCents = slot.price_cents || 0;
+  currentLeaseMonths = 1;
+  if (els.leaseMonthly) els.leaseMonthly.classList.add('active');
+  if (els.leaseYearly) els.leaseYearly.classList.remove('active');
+  updatePriceDisplay();
   els.slotName.textContent = slot.name;
   els.slotDims.textContent = `${slot.width} × ${slot.height} px`;
-  els.price.innerHTML = `$${(slot.price_cents / 100).toLocaleString()}<span>/mo</span>`;
   applyCharLimits(slot.width || 0);
   clearBookingError();
   showStep('1');
   modal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
+}
+
+function updatePriceDisplay() {
+  const total = currentSlotPriceCents * currentLeaseMonths;
+  const label = currentLeaseMonths === 12 ? '/yr' : '/mo';
+  els.price.innerHTML = `$${(total / 100).toLocaleString()}<span>${label}</span>`;
 }
 
 function closeModal() {
@@ -921,6 +933,24 @@ els.subtitle.addEventListener('input', () => {
   const max = parseInt(els.subtitle.maxLength, 10) || 0;
   updateCharCounter(els.subtitle, els.subtitleCount, max);
 });
+
+// Lease period toggle
+if (els.leaseMonthly) {
+  els.leaseMonthly.addEventListener('click', () => {
+    currentLeaseMonths = 1;
+    els.leaseMonthly.classList.add('active');
+    if (els.leaseYearly) els.leaseYearly.classList.remove('active');
+    updatePriceDisplay();
+  });
+}
+if (els.leaseYearly) {
+  els.leaseYearly.addEventListener('click', () => {
+    currentLeaseMonths = 12;
+    els.leaseYearly.classList.add('active');
+    if (els.leaseMonthly) els.leaseMonthly.classList.remove('active');
+    updatePriceDisplay();
+  });
+}
 
 // Step 1: Send verification code
 async function sendVerificationCode() {
@@ -994,6 +1024,7 @@ els.verifyBtn.addEventListener('click', async () => {
         websiteUrl: els.website.value.trim(),
         customHeading: els.heading ? els.heading.value.trim() : '',
         customSubtitle: els.subtitle ? els.subtitle.value.trim() : '',
+        leaseMonths: currentLeaseMonths,
       }),
     });
     const data = await res.json();

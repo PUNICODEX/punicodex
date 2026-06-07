@@ -35,7 +35,8 @@ async function createCheckoutSession({ claimId, email, unicodeVariant, templateT
   return { sessionUrl: session.url, sessionId: session.id };
 }
 
-async function createBookingCheckoutSession({ bookingId, email, slotName, amountCents, token }) {
+async function createBookingCheckoutSession({ bookingId, email, slotName, amountCents, token, leaseMonths = 1 }) {
+  const durationLabel = leaseMonths === 12 ? '12-month' : '30-day';
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     line_items: [{
@@ -43,7 +44,7 @@ async function createBookingCheckoutSession({ bookingId, email, slotName, amount
         currency: 'usd',
         product_data: {
           name: `Níkē Ad Space: ${slotName}`,
-          description: `30-day advertising placement on Níkē.com`,
+          description: `${durationLabel} advertising placement on Níkē.com`,
         },
         unit_amount: amountCents,
       },
@@ -57,6 +58,7 @@ async function createBookingCheckoutSession({ bookingId, email, slotName, amount
       type: 'booking',
       booking_id: String(bookingId),
       slot_name: slotName,
+      lease_months: String(leaseMonths),
     },
   });
 

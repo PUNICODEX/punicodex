@@ -464,8 +464,10 @@ function validateMeta(width, customHeading, customSubtitle) {
 
 app.post('/api/bookings', async (req, res) => {
   try {
-    const { slotId, email, companyName, websiteUrl, customHeading, customSubtitle } = req.body;
+    const { slotId, email, companyName, websiteUrl, customHeading, customSubtitle, leaseMonths = 1 } = req.body;
     if (!slotId || !email) return res.status(400).json({ error: 'slotId and email required' });
+    const months = parseInt(leaseMonths, 10) || 1;
+    if (![1, 12].includes(months)) return res.status(400).json({ error: 'leaseMonths must be 1 or 12' });
 
     const slot = getSlotById(slotId);
     if (!slot) return res.status(404).json({ error: 'Slot not found' });
@@ -474,7 +476,8 @@ app.post('/api/bookings', async (req, res) => {
     const metaError = validateMeta(slot.width, customHeading, customSubtitle);
     if (metaError) return res.status(400).json({ error: metaError });
 
-    const { id, token } = createBooking({ slotId, email, companyName, websiteUrl, customHeading, customSubtitle });
+    const { id, token } = createBooking({ slotId, email, companyName, websiteUrl, customHeading, customSubtitle, leaseMonths: months });
+    const totalCents = slot.price_cents * months;
 
     // Create Stripe checkout session
     let stripeResult;
@@ -483,8 +486,9 @@ app.post('/api/bookings', async (req, res) => {
         bookingId: id,
         email,
         slotName: slot.name,
-        amountCents: slot.price_cents,
+        amountCents: totalCents,
         token,
+        leaseMonths: months,
       });
     } catch (stripeErr) {
       // Stripe not configured — clean up booking and return clear error
@@ -500,16 +504,19 @@ app.post('/api/bookings', async (req, res) => {
       email,
       slotName: slot.name,
       companyName,
-      amountCents: slot.price_cents,
+      amountCents: totalCents,
       token,
       customHeading,
       customSubtitle,
+      leaseMonths: months,
     }).catch(() => {});
 
     res.json({
       bookingId: id,
       token,
       stripeUrl: stripeResult.sessionUrl,
+      leaseMonths: months,
+      totalCents,
     });
   } catch (err) {
     console.error('Booking creation error:', err);
@@ -570,6 +577,7 @@ app.get('/api/bookings/:token/all', (req, res) => {
       created_at: b.created_at,
       is_bundle: b.is_bundle,
       slot_id: b.slot_id,
+      lease_months: b.lease_months,
     })) });
   } catch (err) { res.status(500).json({ error: err.message }); }
 });
@@ -881,6 +889,7 @@ app.post('/api/admin/bookings/:id/golive', requireAdmin, (req, res) => {
       slotName: booking.slot_name,
       companyName: booking.company_name,
       bookingToken: booking.analytics_token,
+      leaseMonths: booking.lease_months,
     }).catch(() => {});
     res.json({ success: true, status: 'live' });
   } catch (err) { res.status(500).json({ error: err.message }); }
@@ -922,6 +931,7 @@ app.post('/api/webhook', express.raw({ type: 'application/json' }), async (req, 
           slotName: booking.slot_name,
           companyName: booking.company_name,
           bookingToken: booking.analytics_token,
+          leaseMonths: booking.lease_months,
         }).catch(() => {});
       }
     }
