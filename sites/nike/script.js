@@ -1042,6 +1042,8 @@ async function handleReturnFromStripe() {
       if (booking.status === 'pending_upload') {
         setupUploadStep(slot);
         showStep('2');
+        const dashLink2 = document.getElementById('booking-dash-link-2');
+        if (dashLink2) dashLink2.href = `${API_BASE}/sites/nike/dashboard/?token=${token}`;
       } else {
         showStep('3');
         els.dashboardLink.href = `${API_BASE}/sites/nike/dashboard/?token=${token}`;
@@ -1067,7 +1069,7 @@ async function handleReturnFromStripe() {
 }
 
 function setupUploadStep(slot) {
-  els.uploadDims.innerHTML = `<strong>${slot.width} × ${slot.height} px</strong> required for this slot`;
+  els.uploadDims.innerHTML = `Recommended size: <strong style="color:var(--classic-gold);">${slot.width} × ${slot.height} px</strong>`;
   els.uploadDims.className = 'booking-modal-subtitle booking-upload-dims';
   resetUpload();
 }
