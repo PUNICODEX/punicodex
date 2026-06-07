@@ -1,5 +1,6 @@
 // Auto-generated from js/archetypes-v2.js
-// Routes custom domains to their respective temple folders
+// 1. Redirects deity domains → punycodex.com/{id} (bypasses homograph warnings)
+// 2. Rewrites punycodex.com/{id}/* → /sites/{id}/* (clean ASCII URLs)
 
 const DOMAIN_MAP = {
   'aígyptos.com': '/sites/aigyptos',
@@ -248,18 +249,45 @@ const DOMAIN_MAP = {
   'ꜣḫ.com': '/sites/akh'
 };
 
+// Build reverse map: domain → archetype id
+const DOMAIN_TO_ID = {};
+for (const [domain, path] of Object.entries(DOMAIN_MAP)) {
+  const id = path.replace('/sites/', '');
+  DOMAIN_TO_ID[domain] = id;
+}
+
+// Set of archetype IDs for path-based routing on punycodex.com
+const ARCHETYPE_IDS = new Set(Object.values(DOMAIN_MAP).map(p => p.replace('/sites/', '')));
+
 export const config = {
   matcher: '/:path*',
 };
 
 export default function middleware(request) {
+  const url = new URL(request.url);
   const host = request.headers.get('host');
-  const target = DOMAIN_MAP[host];
 
-  if (target) {
-    const url = new URL(request.url);
-    url.pathname = target + url.pathname;
-    return fetch(url);
+  // ─── 1. Domain redirect ────────────────────────────────────────────
+  // Unicode/punycode domains → 301 redirect to punycodex.com/{id}
+  const id = DOMAIN_TO_ID[host];
+  if (id) {
+    url.hostname = 'punycodex.com';
+    url.pathname = '/' + id + url.pathname;
+    return Response.redirect(url.toString(), 301);
+  }
+
+  // ─── 2. Archetype path rewrite ─────────────────────────────────────
+  // punycodex.com/{id}/* → internally serves /sites/{id}/*
+  // URL stays as /{id}/* for clean SEO and UX
+  const pathParts = url.pathname.split('/').filter(Boolean);
+  const potentialId = pathParts[0];
+
+  if (ARCHETYPE_IDS.has(potentialId)) {
+    const prefix = '/' + potentialId;
+    if (url.pathname === prefix || url.pathname.startsWith(prefix + '/')) {
+      url.pathname = '/sites' + url.pathname;
+      return fetch(url);
+    }
   }
 
   return fetch(request);
