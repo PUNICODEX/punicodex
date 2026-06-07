@@ -714,10 +714,9 @@ function updateSlotUI() {
     const slot = slotsData.find(s => s.id === slotId);
     if (!slot) return;
 
-    const btn = slotEl.querySelector('.space-reserve');
     const frame = slotEl.querySelector('.space-frame');
     const meta = slotEl.querySelector('.space-meta');
-    if (!btn || !frame) return;
+    if (!frame) return;
 
     // Remove any existing dynamic overlays
     const existingOverlay = frame.querySelector('.space-frame-overlay');
@@ -754,7 +753,6 @@ function updateSlotUI() {
 
     if (slot.status === 'live' && hasOwnCreative) {
       // LIVE: render actual creative with click tracking
-      btn.style.display = 'none';
       const pixelUrl = `${API_BASE}/api/analytics/pixel.gif?b=${slot.analytics_token}`;
       const clickUrl = `${API_BASE}/api/analytics/click?b=${slot.analytics_token}&url=${encodeURIComponent(slot.website_url || '#')}`;
       frame.innerHTML = `
@@ -771,7 +769,6 @@ function updateSlotUI() {
       }
     } else if (slot.status !== 'available') {
       // RESERVED: hide button, show overlay inside frame
-      btn.style.display = 'none';
       const overlay = document.createElement('div');
       overlay.className = 'space-frame-overlay';
       overlay.innerHTML = `
@@ -789,7 +786,6 @@ function updateSlotUI() {
       }
     } else {
       // AVAILABLE: show button, remove overlays, restore placeholder
-      btn.style.display = '';
       const badge = slotEl.querySelector('.space-reserved-badge');
       if (badge) badge.remove();
       // Restore default placeholder content if it was replaced
@@ -798,7 +794,7 @@ function updateSlotUI() {
           <div class="space-frame-glow"></div>
           <div class="space-frame-content">
             <span class="space-placeholder-logo">◆</span>
-            <span class="space-placeholder-text">Your Brand Here</span>
+            
           </div>
         `;
       }
@@ -912,9 +908,11 @@ function resetUpload() {
   els.uploadInput.value = '';
 }
 
-// Event: Reserve button clicks
-document.querySelectorAll('.space-reserve').forEach(btn => {
-  btn.addEventListener('click', (e) => {
+// Event: Click anywhere on an available frame to open booking
+document.querySelectorAll('.space-frame').forEach(frame => {
+  frame.addEventListener('click', (e) => {
+    // Don't intercept clicks on live ad links
+    if (e.target.closest('a.space-live-ad')) return;
     const slotEl = e.target.closest('.space-slot');
     if (!slotEl) return;
     const slotId = parseInt(slotEl.dataset.space, 10);
