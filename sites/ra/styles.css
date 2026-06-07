@@ -67,7 +67,7 @@ body {
     left: 0;
     width: 100%;
     z-index: 100;
-    padding: 1.5rem 2rem;
+    padding: 0.35rem 0;
     transition: background 0.4s var(--transition-smooth), 
                 backdrop-filter 0.4s var(--transition-smooth),
                 box-shadow 0.4s var(--transition-smooth);
@@ -77,15 +77,17 @@ body {
     background: rgba(10, 8, 6, 0.85);
     backdrop-filter: blur(20px) saturate(1.2);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
-    padding: 0.75rem 2rem;
+    padding: 0.25rem 0;
 }
 
 .nav-inner {
-    max-width: 1400px;
+    max-width: var(--container-max, 1200px);
     margin: 0 auto;
+    padding: 0 clamp(1.5rem, 5vw, 3rem);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 72px;
     gap: 2rem;
 }
 
