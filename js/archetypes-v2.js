@@ -839,6 +839,7 @@ const ARCHETYPES = [
         tier: "tier-1",
         tierDetail: "tier-2",
         pantheon: "egyptian",
+        hasAdSite: true,
         folder: "ra",
         domainUnicode: "rꜥ.com",
         domainPunycode: "xn--r-2w3e.com",

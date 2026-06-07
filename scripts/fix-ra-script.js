@@ -1,0 +1,15 @@
+const fs = require('fs');
+let content = fs.readFileSync('sites/ra/script.js', 'utf8');
+content = content.replace(/Hermês/g, 'Rꜥ');
+content = content.replace(/Hermes/g, 'Ra');
+content = content.replace(/hermes/g, 'ra');
+content = content.replace(/HERMES_API_BASE/g, 'RA_API_BASE');
+content = content.replace(/SITE_SLUG = 'hermes'/g, "SITE_SLUG = 'ra'");
+content = content.replace(/site=hermes/g, 'site=ra');
+content = content.replace(/messenger-canvas/g, 'solar-canvas');
+content = content.replace(/#0a1f15/g, '#0A0806');
+content = content.replace(/#0e1a1a/g, '#0E0C0A');
+content = content.replace(/#1B3A3A/g, '#1A1814');
+content = content.replace(/#D4941E/g, '#D4AF37');
+fs.writeFileSync('sites/ra/script.js', content, 'utf8');
+console.log('Updated script.js');

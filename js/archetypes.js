@@ -796,6 +796,7 @@ const ARCHETYPES = [
     {
         id: "ra",
         name: "Rꜥ",
+        hasAdSite: true,
         greek: "—",
         domain: "Sun, Creation, Kingship",
         tagline: "Sun (from Egyptian rꜥ)",

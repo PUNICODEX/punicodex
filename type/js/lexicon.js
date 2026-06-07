@@ -5412,6 +5412,7 @@ const LEXICON = [
   {
     id: 'ra',
     ascii: 'ra',
+    hasAdSite: true,
     unicode: 'Rꜥ',
     greek: '—',
     pantheon: 'egyptian',
