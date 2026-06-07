@@ -909,15 +909,15 @@ function resetUpload() {
 }
 
 // Event: Click anywhere on an available frame to open booking
-document.querySelectorAll('.space-frame').forEach(frame => {
-  frame.addEventListener('click', (e) => {
-    // Don't intercept clicks on live ad links
-    if (e.target.closest('a.space-live-ad')) return;
-    const slotEl = e.target.closest('.space-slot');
-    if (!slotEl) return;
-    const slotId = parseInt(slotEl.dataset.space, 10);
-    openModal(slotId);
-  });
+document.body.addEventListener('click', (e) => {
+  const frame = e.target.closest('.space-frame');
+  if (!frame) return;
+  // Don't intercept clicks on live ad links
+  if (e.target.closest('a.space-live-ad')) return;
+  const slotEl = frame.closest('.space-slot');
+  if (!slotEl) return;
+  const slotId = parseInt(slotEl.dataset.space, 10);
+  openModal(slotId);
 });
 
 modalClose.addEventListener('click', closeModal);

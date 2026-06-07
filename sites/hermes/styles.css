@@ -1346,8 +1346,7 @@ img {
     .hero-meta {
         align-items: center;
     }
-    .hero-cta {
-    }
+    
     .name-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -3164,48 +3163,9 @@ img {
 
 /* Proportional Frame Sizes */
 
-
 /* Elite reserve button inside frame */
-.space-frame-content .space-reserve,
-.space-frame-content .space-reserve:hover,
-.space-frame-content .space-reserve--throne:hover {
-    background: linear-gradient(135deg, rgba(232,195,75,1), var(--classic-gold));
-    box-shadow: 0 3px 14px rgba(212,175,55,0.4);
-    transform: translateY(-1px);
-    border-color: rgba(212,175,55,0.8);
-}
-.space-frame-content .space-reserve:active,
-.space-frame-content .space-reserve--throne:active {
-    transform: translateY(0);
-    box-shadow: 0 1px 4px rgba(212,175,55,0.25);
-}
 
 /* Frame-type specific button sizing */
-.space-frame--hero .space-reserve,
-.space-frame--throne .space-reserve {
-    font-size: clamp(0.55rem, 1.4vw, 0.9rem);
-    padding: clamp(0.35rem, 0.9vw, 0.7rem) clamp(0.7rem, 1.8vw, 1.3rem);
-    letter-spacing: 0.2em;
-}
-.space-frame--column .space-reserve {
-    font-size: clamp(0.45rem, 1.2vw, 0.75rem);
-    padding: clamp(0.3rem, 0.8vw, 0.6rem) clamp(0.55rem, 1.4vw, 1rem);
-}
-.space-frame--inline .space-reserve,
-.space-frame--content .space-reserve,
-.space-frame--half .space-reserve {
-    font-size: clamp(0.4rem, 1vw, 0.7rem);
-    padding: clamp(0.2rem, 0.6vw, 0.5rem) clamp(0.45rem, 1.2vw, 0.9rem);
-}
-.space-frame--ribbon .space-reserve,
-.space-frame--badge .space-reserve,
-.space-frame--text .space-reserve,
-.space-frame--emblem .space-reserve,
-.space-frame--footer .space-reserve {
-    font-size: clamp(0.3rem, 0.8vw, 0.55rem);
-    padding: clamp(0.12rem, 0.4vw, 0.35rem) clamp(0.3rem, 0.9vw, 0.7rem);
-    letter-spacing: 0.1em;
-}
 
 /* Frame is the interactive element */
 .space-frame {
@@ -3244,6 +3204,126 @@ img {
 .space-frame:hover .space-frame-glow {
     opacity: 0.7;
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   ARCHETYPE ANIMATIONS — HERMES
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Frame is the interactive element */
+.space-frame {
+    cursor: pointer;
+}
+
+/* Shimmer sweep across frame */
+.space-frame::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(212,175,55,0.06), transparent);
+    transform: skewX(-20deg);
+    animation: shimmer-sweep 6s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Archetype symbol replaces diamond */
+.space-placeholder-logo {
+    font-size: 0;
+    background: transparent;
+    border: none;
+    width: 32px;
+    height: 32px;
+}
+.space-placeholder-logo::before {
+    content: '⚕';
+    font-size: 1.1rem;
+    color: var(--classic-gold);
+    animation: hermes-symbol 8s linear infinite;
+    display: block;
+}
+
+/* Floating particles inside frame */
+.space-frame-content::before {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgba(192,192,192,0.35);
+    top: 60%;
+    left: 25%;
+    animation: float-up 4s ease-in-out infinite;
+    pointer-events: none;
+}
+.space-frame-content .particle-2,
+.space-frame-content .particle-3 {
+    display: none;
+}
+
+/* Elegant "Available" hover label */
+.space-frame-content::after {
+    content: 'Available';
+    position: absolute;
+    bottom: 8%;
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    font-family: var(--font-display);
+    font-size: clamp(0.28rem, 0.7vw, 0.5rem);
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(212,175,55,0.5);
+    opacity: 0;
+    transition: all 0.35s ease;
+    pointer-events: none;
+    white-space: nowrap;
+}
+.space-frame:hover .space-frame-content::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    color: rgba(212,175,55,0.75);
+}
+
+/* Refined glow on hover */
+.space-frame:hover {
+    border-color: rgba(212,175,55,0.25);
+    box-shadow: 0 0 20px rgba(212,175,55,0.06), inset 0 0 30px rgba(212,175,55,0.03);
+}
+.space-frame:hover .space-frame-glow {
+    opacity: 0.7;
+}
+
+@keyframes hermes-symbol {
+    0% { transform: rotate(0deg); filter: drop-shadow(0 0 2px rgba(212,175,55,0.2)); }
+    100% { transform: rotate(360deg); filter: drop-shadow(0 0 6px rgba(212,175,55,0.5)); }
+}
+@keyframes hermes-streak {
+    0% { transform: translateX(-120%); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateX(120%); opacity: 0; }
+}
+
+@keyframes shimmer-sweep {
+    0% { left: -100%; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { left: 200%; opacity: 0; }
+}
+@keyframes float-up {
+    0% { transform: translateY(0) scale(1); opacity: 0; }
+    15% { opacity: 0.6; }
+    85% { opacity: 0.6; }
+    100% { transform: translateY(-30px) scale(0.3); opacity: 0; }
+}
+@keyframes available-pulse {
+    0%, 100% { opacity: 0.25; transform: translateX(-50%) translateY(4px) scale(0.92); }
+    50% { opacity: 0.85; transform: translateX(-50%) translateY(0) scale(1); }
+}
+
 .space-frame--hero {
     aspect-ratio: 1200 / 400;
     border-top: 3px solid var(--classic-gold);
@@ -3294,71 +3374,6 @@ img {
 }
 
 /* Space Footer (Price + Reserve, outside frame) */
-.space-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding-top: 0.25rem;
-}
-.space-price {
-    font-family: var(--font-display);
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--classic-gold);
-    line-height: 1;
-}
-.space-price span {
-    font-size: 0.7rem;
-    font-weight: 500;
-    color: var(--text-muted);
-    letter-spacing: 0.05em;
-    margin-left: 0.15rem;
-}
-.space-price--throne {
-    font-size: 2rem;
-}
-.space-price-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-}
-.space-price-note {
-    font-size: 0.7rem;
-    color: var(--text-muted);
-    font-style: italic;
-}
-.space-reserve {
-    padding: 0.5rem 1.5rem;
-    background: transparent;
-    border: 1px solid rgba(212,148,30,0.3);
-    border-radius: 6px;
-    font-family: var(--font-display);
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--classic-gold);
-    text-decoration: none;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-}
-.space-reserve:hover {
-    background: var(--classic-gold);
-    color: #0A0A0A;
-    border-color: var(--classic-gold);
-}
-.space-reserve--throne {
-    background: var(--gradient-gold);
-    color: #0A0A0A;
-    border-color: transparent;
-    padding: 0.65rem 2rem;
-    font-size: 0.8rem;
-}
-.space-reserve--throne:hover {
-    box-shadow: 0 8px 30px rgba(212,148,30,0.4);
-    transform: translateY(-2px);
-}
 
 /* Divider */
 .spaces-divider {
@@ -3476,18 +3491,6 @@ img {
     .space-frame-content .space-placeholder-logo {
         font-size: 0.7rem;
     }
-                        .space-frame-content .space-reserve,
-        .space-footer {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.4rem;
-    }
-    .space-reserve {
-        width: 100%;
-        text-align: center;
-        font-size: 0.65rem;
-        padding: 0.5rem 0.75rem;
-    }
     .space-meta {
         flex-wrap: wrap;
         gap: 0.25rem;
@@ -3497,9 +3500,6 @@ img {
     }
     .space-name {
         font-size: 0.65rem;
-    }
-    .space-price {
-        font-size: 0.6rem;
     }
     .space-exclusive {
         margin-left: 0;
@@ -3955,4 +3955,31 @@ img {
 }
 .my-bookings-nav:hover {
     background: rgba(212,148,30,0.1);
+
+    .space-placeholder-logo {
+        width: 24px;
+        height: 24px;
+    }
+    .space-placeholder-logo::before {
+        font-size: 0.85rem;
+    }
+    /* Mobile: Available pulses randomly per slot */
+    .space-frame-content::after {
+        opacity: 0.5;
+        animation: available-pulse 3.5s ease-in-out infinite;
+    }
+    .space-slot:nth-child(1) .space-frame-content::after { animation-delay: 0s; }
+    .space-slot:nth-child(2) .space-frame-content::after { animation-delay: 0.7s; }
+    .space-slot:nth-child(3) .space-frame-content::after { animation-delay: 1.4s; }
+    .space-slot:nth-child(4) .space-frame-content::after { animation-delay: 2.1s; }
+    .space-slot:nth-child(5) .space-frame-content::after { animation-delay: 0.3s; }
+    .space-slot:nth-child(6) .space-frame-content::after { animation-delay: 1.0s; }
+    .space-slot:nth-child(7) .space-frame-content::after { animation-delay: 1.7s; }
+    .space-slot:nth-child(8) .space-frame-content::after { animation-delay: 2.4s; }
+    .space-slot:nth-child(9) .space-frame-content::after { animation-delay: 0.5s; }
+    .space-slot:nth-child(10) .space-frame-content::after { animation-delay: 1.2s; }
+    .space-slot:nth-child(11) .space-frame-content::after { animation-delay: 1.9s; }
+    .space-slot:nth-child(12) .space-frame-content::after { animation-delay: 2.6s; }
+    .space-slot:nth-child(13) .space-frame-content::after { animation-delay: 0.9s; }
+
 }

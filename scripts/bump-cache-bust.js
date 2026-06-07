@@ -1,21 +1,21 @@
 const fs = require('fs');
 
 const bumps = [
-  // Nike: perf30 -> perf31
-  { file: 'sites/nike/index.html', from: '?v=perf30', to: '?v=perf31' },
-  { file: 'sites/nike/lore/index.html', from: '?v=perf30', to: '?v=perf31' },
-  { file: 'sites/nike/lore/extended/index.html', from: '?v=perf30', to: '?v=perf31' },
-  { file: 'sites/nike/gallery/index.html', from: '?v=perf30', to: '?v=perf31' },
-  // Hermes: perf7 -> perf8
-  { file: 'sites/hermes/index.html', from: '?v=perf7', to: '?v=perf8' },
-  { file: 'sites/hermes/lore/index.html', from: '?v=perf7', to: '?v=perf8' },
-  { file: 'sites/hermes/lore/extended/index.html', from: '?v=perf7', to: '?v=perf8' },
-  { file: 'sites/hermes/gallery/index.html', from: '?v=perf7', to: '?v=perf8' },
-  // Ra: perf12 -> perf13
-  { file: 'sites/ra/index.html', from: '?v=perf12', to: '?v=perf13' },
-  { file: 'sites/ra/lore/index.html', from: '?v=perf12', to: '?v=perf13' },
-  { file: 'sites/ra/lore/extended/index.html', from: '?v=perf12', to: '?v=perf13' },
-  { file: 'sites/ra/gallery/index.html', from: '?v=perf12', to: '?v=perf13' },
+  // Nike: perf31 -> perf32
+  { file: 'sites/nike/index.html', from: '?v=perf31', to: '?v=perf32' },
+  { file: 'sites/nike/lore/index.html', from: '?v=perf31', to: '?v=perf32' },
+  { file: 'sites/nike/lore/extended/index.html', from: '?v=perf31', to: '?v=perf32' },
+  { file: 'sites/nike/gallery/index.html', from: '?v=perf31', to: '?v=perf32' },
+  // Hermes: perf8 -> perf9
+  { file: 'sites/hermes/index.html', from: '?v=perf8', to: '?v=perf9' },
+  { file: 'sites/hermes/lore/index.html', from: '?v=perf8', to: '?v=perf9' },
+  { file: 'sites/hermes/lore/extended/index.html', from: '?v=perf8', to: '?v=perf9' },
+  { file: 'sites/hermes/gallery/index.html', from: '?v=perf8', to: '?v=perf9' },
+  // Ra: perf13 -> perf14
+  { file: 'sites/ra/index.html', from: '?v=perf13', to: '?v=perf14' },
+  { file: 'sites/ra/lore/index.html', from: '?v=perf13', to: '?v=perf14' },
+  { file: 'sites/ra/lore/extended/index.html', from: '?v=perf13', to: '?v=perf14' },
+  { file: 'sites/ra/gallery/index.html', from: '?v=perf13', to: '?v=perf14' },
 ];
 
 for (const b of bumps) {
