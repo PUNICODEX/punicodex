@@ -98,6 +98,43 @@ db.exec(`
   );
 `);
 
+// Create bundle_members table — maps bundle slots to their constituent slots
+db.exec(`
+  CREATE TABLE IF NOT EXISTS bundle_members (
+    bundle_slot_id INTEGER NOT NULL,
+    member_slot_id INTEGER NOT NULL,
+    PRIMARY KEY (bundle_slot_id, member_slot_id),
+    FOREIGN KEY (bundle_slot_id) REFERENCES ad_slots(id),
+    FOREIGN KEY (member_slot_id) REFERENCES ad_slots(id)
+  );
+`);
+
+// Create slot_creatives table — per-slot creative overrides within a bundle booking
+db.exec(`
+  CREATE TABLE IF NOT EXISTS slot_creatives (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    booking_id INTEGER NOT NULL,
+    slot_id INTEGER NOT NULL,
+    creative_path TEXT,
+    custom_heading TEXT,
+    custom_subtitle TEXT,
+    website_url TEXT,
+    UNIQUE(booking_id, slot_id),
+    FOREIGN KEY (booking_id) REFERENCES bookings(id)
+  );
+  CREATE INDEX IF NOT EXISTS idx_slot_creatives_booking ON slot_creatives(booking_id);
+`);
+
+// Seed bundle_members for Total Conquest (slot 13 → slots 1-12) if not present
+const bundleCount = db.prepare('SELECT COUNT(*) as c FROM bundle_members WHERE bundle_slot_id = 13').get().c;
+if (bundleCount === 0) {
+  const insertBundle = db.prepare('INSERT INTO bundle_members (bundle_slot_id, member_slot_id) VALUES (?, ?)');
+  for (let i = 1; i <= 12; i++) {
+    insertBundle.run(13, i);
+  }
+  console.log('Seeded bundle_members for Total Conquest');
+}
+
 // Seed ad_slots if empty
 const count = db.prepare('SELECT COUNT(*) as c FROM ad_slots').get().c;
 if (count === 0) {

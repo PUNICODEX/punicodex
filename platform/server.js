@@ -9,7 +9,7 @@ const { getSites, getSiteByPunycode, searchSites, searchWeb, getAvailability, se
 const { UnicodeCrawler } = require('./crawler');
 const { processQueue } = require('./scripts/bulk-crawl');
 const { didYouMean, relatedSearches, autocomplete } = require('./api/query-intel');
-const { getSlots, getSlotBySlug, getSlotById, createBooking, getBookingByToken, getBookingById, getBookingByStripeSession, updateBookingStripeSession, markBookingPaid, saveCreative, setBookingStatus, goLive, endBooking, getBookingsByEmail, recordEvent, getDashboardMetrics } = require('./api/bookings');
+const { getSlots, getSlotBySlug, getSlotById, createBooking, getBookingByToken, getBookingById, getBookingByStripeSession, updateBookingStripeSession, markBookingPaid, saveCreative, setBookingStatus, goLive, endBooking, getBookingsByEmail, recordEvent, getDashboardMetrics, getBundleMembers, getSlotCreatives, saveSlotCreative, updateSlotMeta } = require('./api/bookings');
 const { login: adminLogin, validateAdminToken, getAllBookings, getBookingStats } = require('./api/admin');
 const { createBookingCheckoutSession, handleWebhook } = require('./api/stripe');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY || 'sk_test_placeholder');
@@ -568,15 +568,28 @@ app.get('/api/bookings/:token/all', (req, res) => {
       creative_path: b.creative_path,
       company_name: b.company_name,
       created_at: b.created_at,
+      is_bundle: b.is_bundle,
+      slot_id: b.slot_id,
     })) });
   } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.post('/api/bookings/:token/meta', (req, res) => {
   try {
-    const { customHeading, customSubtitle } = req.body;
+    const { customHeading, customSubtitle, slotId } = req.body;
     const booking = getBookingByToken(req.params.token);
     if (!booking) return res.status(404).json({ error: 'Booking not found' });
+
+    // Per-slot meta update for bundle bookings
+    if (slotId && booking.slot_id === 13) {
+      const slot = getSlotById(slotId);
+      if (!slot) return res.status(404).json({ error: 'Slot not found' });
+      const metaError = validateMeta(slot.width, customHeading, customSubtitle);
+      if (metaError) return res.status(400).json({ error: metaError });
+      updateSlotMeta(booking.id, slotId, { customHeading, customSubtitle });
+      return res.json({ success: true });
+    }
+
     const metaError = validateMeta(booking.width, customHeading, customSubtitle);
     if (metaError) return res.status(400).json({ error: metaError });
     db.prepare('UPDATE bookings SET custom_heading = ?, custom_subtitle = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?')
@@ -682,6 +695,63 @@ app.post('/api/bookings/:token/upload', (req, res) => {
     console.error('Upload error:', err);
     res.status(500).json({ error: err.message });
   }
+});
+
+// Per-slot creative upload (for bundle bookings)
+app.post('/api/bookings/:token/slot/:slotId/upload', (req, res) => {
+  try {
+    const { image, filename } = req.body;
+    const slotId = parseInt(req.params.slotId, 10);
+    if (!image || !filename) return res.status(400).json({ error: 'image and filename required' });
+
+    const booking = getBookingByToken(req.params.token);
+    if (!booking) return res.status(404).json({ error: 'Booking not found' });
+    if (booking.slot_id !== 13) return res.status(400).json({ error: 'Per-slot upload only available for bundle bookings' });
+    if (!['pending_upload', 'rejected', 'approved', 'live'].includes(booking.status)) {
+      return res.status(400).json({ error: `Cannot upload in status: ${booking.status}` });
+    }
+
+    const members = getBundleMembers(13);
+    if (!members.includes(slotId)) {
+      return res.status(400).json({ error: 'Invalid slot for this bundle' });
+    }
+
+    const match = image.match(/^data:(image\/(png|jpeg|jpg|webp));base64,(.+)$/);
+    if (!match) return res.status(400).json({ error: 'Invalid image format. Must be base64 data URI.' });
+
+    const mimeType = match[1];
+    const base64Data = match[3];
+    const buffer = Buffer.from(base64Data, 'base64');
+
+    if (buffer.length > 2 * 1024 * 1024) {
+      return res.status(400).json({ error: 'Image must be under 2MB' });
+    }
+
+    const ext = mimeType.split('/')[1];
+    const safeName = `${Date.now()}.${ext}`;
+    const slotDir = path.join(UPLOADS_DIR, String(booking.id), String(slotId));
+    if (!fs.existsSync(slotDir)) fs.mkdirSync(slotDir, { recursive: true });
+    const filePath = path.join(slotDir, safeName);
+    fs.writeFileSync(filePath, buffer);
+
+    const publicPath = `/uploads/${booking.id}/${slotId}/${safeName}`;
+    saveSlotCreative(booking.id, slotId, publicPath, filename);
+
+    res.json({ success: true, path: publicPath });
+  } catch (err) {
+    console.error('Slot upload error:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Get all per-slot creatives for a bundle booking
+app.get('/api/bookings/:token/slots', (req, res) => {
+  try {
+    const booking = getBookingByToken(req.params.token);
+    if (!booking) return res.status(404).json({ error: 'Booking not found' });
+    const creatives = getSlotCreatives(booking.id);
+    res.json({ bookingId: booking.id, slotId: booking.slot_id, creatives });
+  } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 // --- Analytics ---

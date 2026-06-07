@@ -168,6 +168,19 @@
         .status-live { background: rgba(74,222,128,0.15); color: var(--success); border: 1px solid rgba(74,222,128,0.3); }
         .status-rejected { background: rgba(255,107,107,0.1); color: var(--danger); }
         .status-ended { background: rgba(255,255,255,0.05); color: var(--text-muted); }
+        .bundle-badge-admin {
+            display: inline-block;
+            background: var(--gold);
+            color: #000;
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 0.15rem 0.5rem;
+            border-radius: 100px;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
         .booking-card-body {
             padding: 1rem;
         }
@@ -246,6 +259,7 @@
         const API_BASE = window.location.origin;
         let adminToken = localStorage.getItem('nike_admin_token');
         let currentFilter = 'all';
+        let allBookings = [];
 
         async function api(path, opts = {}) {
             const res = await fetch(`${API_BASE}${path}`, {
@@ -297,6 +311,7 @@
         }
 
         function renderDashboard(bookings, stats) {
+            allBookings = bookings;
             const filters = ['all', 'pending_payment', 'pending_upload', 'pending_approval', 'approved', 'live', 'rejected', 'ended'];
             const filterLabels = {
                 all: 'All',
@@ -335,6 +350,7 @@
                 : `<div class="booking-card-thumb placeholder">No creative uploaded</div>`;
             const showThumb = b.creative_path ? thumb : '';
             const thumbClass = b.creative_path ? '' : ' placeholder';
+            const bundleBadge = b.is_bundle ? '<span class="bundle-badge-admin">Bundle</span>' : '';
 
             let actions = '';
             if (b.status === 'pending_approval') {
@@ -357,7 +373,7 @@
             return `
                 <div class="booking-card">
                     <div class="booking-card-header">
-                        <span class="booking-card-slot">${b.slot_name}</span>
+                        <span class="booking-card-slot">${b.slot_name}${bundleBadge}</span>
                         <span class="booking-card-status status-${b.status}">${b.status.replace(/_/g, ' ')}</span>
                     </div>
                     <div class="booking-card-body">
@@ -394,12 +410,21 @@
         }
 
         async function goLive(id) {
+            const booking = allBookings.find(b => b.id === id);
+            const msg = booking && booking.is_bundle
+                ? 'Go live with Total Conquest? This will activate ALL 13 slots at once.'
+                : 'Go live with this booking?';
+            if (!confirm(msg)) return;
             await api(`/api/admin/bookings/${id}/golive`, { method: 'POST', body: JSON.stringify({}) });
             loadBookings();
         }
 
         async function endBooking(id) {
-            if (!confirm('End this booking? The slot will become available again.')) return;
+            const booking = allBookings.find(b => b.id === id);
+            const msg = booking && booking.is_bundle
+                ? 'End Total Conquest? This will free ALL 13 slots at once.'
+                : 'End this booking? The slot will become available again.';
+            if (!confirm(msg)) return;
             await api(`/api/admin/bookings/${id}/end`, { method: 'POST', body: JSON.stringify({}) });
             loadBookings();
         }

@@ -744,7 +744,12 @@ function updateSlotUI() {
       if (dimsEl) dimsEl.textContent = `${slot.width} × ${slot.height} px`;
     }
 
-    if (slot.status === 'live' && slot.creative_path) {
+    // Determine if this slot should render its own creative
+    // Bundle members (1-12) need a per-slot creative; slot 13 (bundle itself) uses main creative
+    const isBundleMember = slotId !== 13 && slot.booking_id && slotsData.find(s => s.id === 13 && s.current_booking_id === slot.booking_id);
+    const hasOwnCreative = isBundleMember ? slot.has_slot_creative : !!slot.creative_path;
+
+    if (slot.status === 'live' && hasOwnCreative) {
       // LIVE: render actual creative with click tracking
       btn.style.display = 'none';
       const pixelUrl = `${API_BASE}/api/analytics/pixel.gif?b=${slot.analytics_token}`;

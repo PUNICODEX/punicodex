@@ -281,6 +281,70 @@
             color: var(--text-muted);
         }
         .chart-container { height: 200px; margin: 1rem 0; }
+        /* Bundle manager */
+        .bundle-banner {
+            background: linear-gradient(135deg, rgba(212,175,55,0.08), rgba(212,175,55,0.02));
+            border: 1px solid rgba(212,175,55,0.15);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .bundle-badge {
+            background: var(--gold);
+            color: #000;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 0.3rem 0.75rem;
+            border-radius: 100px;
+        }
+        .bundle-title { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--gold); }
+        .bundle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+        .bundle-slot {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .bundle-slot-header {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .bundle-slot-name { font-family: 'Cinzel', serif; font-size: 0.8rem; color: var(--gold); }
+        .bundle-slot-dims { font-size: 0.65rem; color: var(--text-muted); }
+        .bundle-slot-creative {
+            background: linear-gradient(145deg, rgba(14,26,43,0.92), rgba(8,15,25,0.97));
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .bundle-slot-creative img { max-width: 100%; max-height: 180px; object-fit: contain; display: block; }
+        .bundle-slot-creative.placeholder { color: var(--text-muted); font-size: 0.75rem; padding: 1.5rem; text-align: center; }
+        .bundle-slot-actions { padding: 0.75rem 1rem; display: flex; gap: 0.5rem; }
+        .bundle-slot-btn {
+            flex: 1;
+            padding: 0.45rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+        }
         @media (max-width: 768px) {
             .panel-header { padding: 1rem; }
             .panel-container { padding: 1rem; }
@@ -321,11 +385,14 @@
     <!-- Editor Modal -->
     <div class="editor-overlay" id="editor-overlay">
         <div class="editor-panel">
-            <h3>Edit Placement</h3>
+            <h3 id="editor-title">Edit Placement</h3>
+            <p id="editor-slot-info" style="font-size:0.75rem;color:var(--text-muted);margin-bottom:1rem;display:none;"></p>
             <label class="editor-label">Heading</label>
             <input type="text" class="editor-input" id="edit-heading" placeholder="Your heading">
             <label class="editor-label">Subtitle</label>
             <input type="text" class="editor-input" id="edit-subtitle" placeholder="Your subtitle">
+            <label class="editor-label">Destination URL</label>
+            <input type="url" class="editor-input" id="edit-url" placeholder="https://yourbrand.com">
             <label class="editor-label">New Creative</label>
             <div class="editor-upload-zone" id="edit-upload-zone">
                 <input type="file" class="editor-upload-input" id="edit-upload-input" accept="image/png,image/jpeg,image/webp">
@@ -345,7 +412,9 @@
         const params = new URLSearchParams(window.location.search);
         const token = params.get('token');
         let bookings = [];
+        let slotCreatives = {}; // Map: token -> { slotId -> creativeData }
         let currentEditToken = null;
+        let currentEditSlotId = null;
         let selectedFileBase64 = null;
 
         async function api(path, opts = {}) {
@@ -376,11 +445,15 @@
                 document.getElementById('panel-company').textContent = bookings[0].company_name || 'Advertiser Panel';
             }
 
-            // Enrich with dashboard metrics
+            // Enrich with dashboard metrics and slot creatives for bundles
             for (let b of bookings) {
                 const metrics = await api(`/api/analytics/dashboard?token=${b.token}`);
                 b.metrics = metrics ? metrics.metrics : null;
                 b.booking = metrics ? metrics.booking : null;
+                if (b.is_bundle) {
+                    const sc = await api(`/api/bookings/${b.token}/slots`);
+                    slotCreatives[b.token] = sc && sc.creatives ? sc.creatives : [];
+                }
             }
 
             renderOverview();
@@ -412,6 +485,78 @@
                 const statusClass = b.status === 'live' ? 'status-live' : b.status === 'ended' ? 'status-ended' : 'status-pending';
                 const creative = b.booking?.creative_path ? `<img src="${API_BASE}${b.booking.creative_path}" alt="Creative">` : '<div class="placement-creative placeholder">No creative uploaded</div>';
                 const canEdit = b.status !== 'ended';
+
+                // Bundle booking: render main card + slot grid
+                if (b.is_bundle) {
+                    const creatives = slotCreatives[b.token] || [];
+                    const creativeMap = {};
+                    creatives.forEach(c => { creativeMap[c.slot_id] = c; });
+                    // Define all 13 slots in bundle
+                    const bundleSlots = [
+                        { id: 1, name: 'Crown Position', dims: '1136 × 379' },
+                        { id: 2, name: 'Victory Column', dims: '260 × 520' },
+                        { id: 3, name: 'Champion Strip', dims: '844 × 317' },
+                        { id: 4, name: 'Wingspan I', dims: '844 × 394' },
+                        { id: 5, name: 'Wingspan II', dims: '552 × 309' },
+                        { id: 6, name: 'Wingspan III', dims: '552 × 309' },
+                        { id: 7, name: 'Golden Ribbon', dims: '511 × 131' },
+                        { id: 8, name: 'Laurel Badge', dims: '306 × 115' },
+                        { id: 9, name: 'Inscription', dims: '255 × 87' },
+                        { id: 10, name: 'Emblem I', dims: '552 × 221' },
+                        { id: 11, name: 'Emblem II', dims: '552 × 221' },
+                        { id: 12, name: 'Foundation', dims: '1136 × 95' },
+                        { id: 13, name: 'Total Conquest', dims: '1136 × 379' },
+                    ];
+                    const slotGrid = bundleSlots.map(s => {
+                        const sc = creativeMap[s.id];
+                        const slotCreative = sc && sc.creative_path
+                            ? `<img src="${API_BASE}${sc.creative_path}" alt="${s.name}">`
+                            : '<div class="bundle-slot-creative placeholder">No creative</div>';
+                        const slotHeading = sc?.custom_heading || '';
+                        const slotSubtitle = sc?.custom_subtitle || '';
+                        const slotUrl = sc?.website_url || '';
+                        return `
+                            <div class="bundle-slot">
+                                <div class="bundle-slot-header">
+                                    <div>
+                                        <div class="bundle-slot-name">${s.name}</div>
+                                        <div class="bundle-slot-dims">${s.dims}</div>
+                                    </div>
+                                </div>
+                                <div class="bundle-slot-creative">${slotCreative}</div>
+                                ${canEdit ? `
+                                    <div class="bundle-slot-actions">
+                                        <button class="bundle-slot-btn btn-primary" onclick="openEditor('${b.token}', '${escapeJs(slotHeading)}', '${escapeJs(slotSubtitle)}', ${s.id}, '${escapeJs(slotUrl)}')">Edit</button>
+                                    </div>
+                                ` : ''}
+                            </div>
+                        `;
+                    }).join('');
+
+                    return `
+                        <div class="placement-card" style="grid-column: 1 / -1;">
+                            <div class="placement-card-header">
+                                <span class="placement-card-name">${b.slot_name} <span class="bundle-badge">Bundle</span></span>
+                                <span class="placement-card-status ${statusClass}">${b.status.replace(/_/g, ' ')}</span>
+                            </div>
+                            <div class="placement-creative">${creative}</div>
+                            <div class="placement-stats">
+                                <div class="placement-stat"><div class="placement-stat-value">${(m.totalImpressions || 0).toLocaleString()}</div><div class="placement-stat-label">Impressions</div></div>
+                                <div class="placement-stat"><div class="placement-stat-value">${(m.totalClicks || 0).toLocaleString()}</div><div class="placement-stat-label">Clicks</div></div>
+                                <div class="placement-stat"><div class="placement-stat-value">${m.ctr || '0.00'}%</div><div class="placement-stat-label">CTR</div></div>
+                            </div>
+                            <div class="bundle-banner">
+                                <span class="bundle-badge">13 Slots</span>
+                                <span class="bundle-title">Manage individual creatives for each slot below</span>
+                            </div>
+                            <div style="padding: 0 1.25rem 1.25rem;">
+                                <div class="bundle-grid">${slotGrid}</div>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // Single slot booking: original render
                 return `
                     <div class="placement-card">
                         <div class="placement-card-header">
@@ -426,7 +571,7 @@
                         </div>
                         ${canEdit ? `
                             <div class="placement-actions">
-                                <button class="placement-btn btn-primary" onclick="openEditor('${b.token}', '${b.booking?.custom_heading || ''}', '${b.booking?.custom_subtitle || ''}')">Edit</button>
+                                <button class="placement-btn btn-primary" onclick="openEditor('${b.token}', '${escapeJs(b.booking?.custom_heading || '')}', '${escapeJs(b.booking?.custom_subtitle || '')}')">Edit</button>
                                 <a class="placement-btn btn-secondary" href="${API_BASE}/sites/nike/dashboard/?token=${b.token}" target="_blank">Analytics</a>
                             </div>
                         ` : ''}
@@ -435,19 +580,38 @@
             }).join('');
         }
 
-        function openEditor(tk, heading, subtitle) {
+        function escapeJs(str) {
+            if (!str) return '';
+            return str.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '&quot;');
+        }
+
+        function openEditor(tk, heading, subtitle, slotId = null, url = '') {
             currentEditToken = tk;
+            currentEditSlotId = slotId;
             selectedFileBase64 = null;
             document.getElementById('edit-heading').value = heading || '';
             document.getElementById('edit-subtitle').value = subtitle || '';
+            document.getElementById('edit-url').value = url || '';
             document.getElementById('edit-preview').style.display = 'none';
             document.getElementById('edit-upload-input').value = '';
+            const titleEl = document.getElementById('editor-title');
+            const infoEl = document.getElementById('editor-slot-info');
+            if (slotId) {
+                const slotNames = {1:'Crown Position',2:'Victory Column',3:'Champion Strip',4:'Wingspan I',5:'Wingspan II',6:'Wingspan III',7:'Golden Ribbon',8:'Laurel Badge',9:'Inscription',10:'Emblem I',11:'Emblem II',12:'Foundation',13:'Total Conquest'};
+                titleEl.textContent = `Edit ${slotNames[slotId] || 'Slot'}`;
+                infoEl.textContent = `Slot #${slotId} — Upload a creative sized for this slot`;
+                infoEl.style.display = 'block';
+            } else {
+                titleEl.textContent = 'Edit Placement';
+                infoEl.style.display = 'none';
+            }
             document.getElementById('editor-overlay').classList.add('active');
         }
 
         function closeEditor() {
             document.getElementById('editor-overlay').classList.remove('active');
             currentEditToken = null;
+            currentEditSlotId = null;
             selectedFileBase64 = null;
         }
 
@@ -472,17 +636,24 @@
             if (!currentEditToken) return;
             const heading = document.getElementById('edit-heading').value.trim();
             const subtitle = document.getElementById('edit-subtitle').value.trim();
+            const url = document.getElementById('edit-url').value.trim();
 
             // Update meta text
+            const metaBody = { customHeading: heading, customSubtitle: subtitle };
+            if (currentEditSlotId) metaBody.slotId = currentEditSlotId;
+            if (url) metaBody.websiteUrl = url;
             await fetch(`${API_BASE}/api/bookings/${currentEditToken}/meta`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ customHeading: heading, customSubtitle: subtitle }),
+                body: JSON.stringify(metaBody),
             });
 
             // Upload creative if selected
             if (selectedFileBase64) {
-                const res = await fetch(`${API_BASE}/api/bookings/${currentEditToken}/upload`, {
+                const uploadUrl = currentEditSlotId
+                    ? `${API_BASE}/api/bookings/${currentEditToken}/slot/${currentEditSlotId}/upload`
+                    : `${API_BASE}/api/bookings/${currentEditToken}/upload`;
+                const res = await fetch(uploadUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ image: selectedFileBase64, filename: 'creative.png' }),

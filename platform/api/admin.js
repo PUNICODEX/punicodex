@@ -38,7 +38,7 @@ function login(password) {
 function getAllBookings(status = null) {
   const db = getDb();
   let query = `
-    SELECT b.*, s.name as slot_name, s.slug as slot_slug, s.width, s.height
+    SELECT b.*, s.name as slot_name, s.slug as slot_slug, s.width, s.height, s.is_bundle
     FROM bookings b
     JOIN ad_slots s ON b.slot_id = s.id
   `;

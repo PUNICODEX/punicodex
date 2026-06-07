@@ -23,13 +23,31 @@ function hashIp(ip) {
 function getSlots() {
   const db = getDb();
   const slots = db.prepare(`
-    SELECT s.*, b.status as booking_status, b.analytics_token, b.company_name, b.website_url, b.creative_path, b.custom_heading, b.custom_subtitle, b.hide_meta
+    SELECT s.*,
+      b.status as booking_status, b.analytics_token, b.company_name, b.website_url, b.hide_meta, b.id as booking_id,
+      COALESCE(sc.creative_path, b.creative_path) as creative_path,
+      COALESCE(sc.custom_heading, b.custom_heading) as custom_heading,
+      COALESCE(sc.custom_subtitle, b.custom_subtitle) as custom_subtitle,
+      COALESCE(sc.website_url, b.website_url) as website_url,
+      CASE WHEN sc.creative_path IS NOT NULL THEN 1 ELSE 0 END as has_slot_creative
     FROM ad_slots s
     LEFT JOIN bookings b ON s.current_booking_id = b.id
+    LEFT JOIN slot_creatives sc ON b.id = sc.booking_id AND s.id = sc.slot_id
     ORDER BY s.sort_order
   `).all();
   db.close();
   return slots;
+}
+
+function isBundleSlot(slotId) {
+  return slotId === 13;
+}
+
+function getBundleMembers(bundleSlotId) {
+  const db = getDb();
+  const rows = db.prepare('SELECT member_slot_id FROM bundle_members WHERE bundle_slot_id = ?').all(bundleSlotId);
+  db.close();
+  return rows.map(r => r.member_slot_id);
 }
 
 function getSlotBySlug(slug) {
@@ -61,8 +79,24 @@ function createBooking({ slotId, email, companyName, websiteUrl, customHeading, 
     VALUES (?, ?, ?, ?, ?, ?, 'pending_payment', ?)
   `);
   const result = stmt.run(slotId, email, companyName || null, websiteUrl || null, customHeading || null, customSubtitle || null, token);
+  const bookingId = result.lastInsertRowid;
+
+  // If booking a bundle, reserve the bundle slot and all member slots
+  if (isBundleSlot(slotId)) {
+    const members = getBundleMembers(slotId);
+    const reserveStmt = db.prepare(`
+      UPDATE ad_slots SET status = 'reserved', current_booking_id = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?
+    `);
+    // Reserve member slots 1-12
+    for (const memberId of members) {
+      reserveStmt.run(bookingId, memberId);
+    }
+    // Reserve the bundle slot itself (13)
+    reserveStmt.run(bookingId, slotId);
+  }
+
   db.close();
-  return { id: result.lastInsertRowid, token };
+  return { id: bookingId, token };
 }
 
 function getBookingByToken(token) {
@@ -148,8 +182,17 @@ function goLive(bookingId) {
     WHERE id = ?
   `).run(now, ends, bookingId);
   const booking = db.prepare('SELECT * FROM bookings WHERE id = ?').get(bookingId);
+  // Set bundle slot live
   db.prepare(`UPDATE ad_slots SET status = 'live', current_booking_id = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?`)
     .run(bookingId, booking.slot_id);
+  // Cascade to all member slots
+  if (isBundleSlot(booking.slot_id)) {
+    const members = getBundleMembers(booking.slot_id);
+    const cascadeStmt = db.prepare(`UPDATE ad_slots SET status = 'live', current_booking_id = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?`);
+    for (const memberId of members) {
+      cascadeStmt.run(bookingId, memberId);
+    }
+  }
   db.close();
   return booking;
 }
@@ -160,16 +203,25 @@ function endBooking(bookingId) {
   db.prepare(`
     UPDATE bookings SET status = 'ended', updated_at = CURRENT_TIMESTAMP WHERE id = ?
   `).run(bookingId);
+  // Free bundle slot
   db.prepare(`
     UPDATE ad_slots SET status = 'available', current_booking_id = NULL, updated_at = CURRENT_TIMESTAMP WHERE id = ?
   `).run(booking.slot_id);
+  // Cascade to all member slots
+  if (isBundleSlot(booking.slot_id)) {
+    const members = getBundleMembers(booking.slot_id);
+    const cascadeStmt = db.prepare(`UPDATE ad_slots SET status = 'available', current_booking_id = NULL, updated_at = CURRENT_TIMESTAMP WHERE id = ?`);
+    for (const memberId of members) {
+      cascadeStmt.run(memberId);
+    }
+  }
   db.close();
 }
 
 function getBookingsByEmail(email) {
   const db = getDb();
   const bookings = db.prepare(`
-    SELECT b.*, s.name as slot_name, s.slug as slot_slug
+    SELECT b.*, s.name as slot_name, s.slug as slot_slug, s.is_bundle
     FROM bookings b
     JOIN ad_slots s ON b.slot_id = s.id
     WHERE b.email = ?
@@ -177,6 +229,60 @@ function getBookingsByEmail(email) {
   `).all(email);
   db.close();
   return bookings;
+}
+
+// ─── Slot Creatives (for bundle bookings) ───
+
+function getSlotCreative(bookingId, slotId) {
+  const db = getDb();
+  const row = db.prepare('SELECT * FROM slot_creatives WHERE booking_id = ? AND slot_id = ?').get(bookingId, slotId);
+  db.close();
+  return row || null;
+}
+
+function getSlotCreatives(bookingId) {
+  const db = getDb();
+  const rows = db.prepare(`
+    SELECT sc.*, s.name as slot_name, s.width, s.height, s.slug as slot_slug
+    FROM slot_creatives sc
+    JOIN ad_slots s ON sc.slot_id = s.id
+    WHERE sc.booking_id = ?
+  `).all(bookingId);
+  db.close();
+  return rows;
+}
+
+function saveSlotCreative(bookingId, slotId, filePath, originalName) {
+  const db = getDb();
+  const existing = db.prepare('SELECT id FROM slot_creatives WHERE booking_id = ? AND slot_id = ?').get(bookingId, slotId);
+  if (existing) {
+    db.prepare(`UPDATE slot_creatives SET creative_path = ?, creative_original_name = ? WHERE booking_id = ? AND slot_id = ?`)
+      .run(filePath, originalName, bookingId, slotId);
+  } else {
+    db.prepare(`INSERT INTO slot_creatives (booking_id, slot_id, creative_path, creative_original_name) VALUES (?, ?, ?, ?)`)
+      .run(bookingId, slotId, filePath, originalName);
+  }
+  db.close();
+}
+
+function updateSlotMeta(bookingId, slotId, { customHeading, customSubtitle, websiteUrl }) {
+  const db = getDb();
+  const existing = db.prepare('SELECT id FROM slot_creatives WHERE booking_id = ? AND slot_id = ?').get(bookingId, slotId);
+  if (existing) {
+    const sets = [];
+    const params = [];
+    if (customHeading !== undefined) { sets.push('custom_heading = ?'); params.push(customHeading || null); }
+    if (customSubtitle !== undefined) { sets.push('custom_subtitle = ?'); params.push(customSubtitle || null); }
+    if (websiteUrl !== undefined) { sets.push('website_url = ?'); params.push(websiteUrl || null); }
+    if (sets.length > 0) {
+      params.push(bookingId, slotId);
+      db.prepare(`UPDATE slot_creatives SET ${sets.join(', ')} WHERE booking_id = ? AND slot_id = ?`).run(...params);
+    }
+  } else {
+    db.prepare(`INSERT INTO slot_creatives (booking_id, slot_id, custom_heading, custom_subtitle, website_url) VALUES (?, ?, ?, ?, ?)`)
+      .run(bookingId, slotId, customHeading || null, customSubtitle || null, websiteUrl || null);
+  }
+  db.close();
 }
 
 // ─── Analytics ───
@@ -281,4 +387,10 @@ module.exports = {
   getDashboardMetrics,
   generateToken,
   hashIp,
+  isBundleSlot,
+  getBundleMembers,
+  getSlotCreative,
+  getSlotCreatives,
+  saveSlotCreative,
+  updateSlotMeta,
 };
