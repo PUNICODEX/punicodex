@@ -310,7 +310,7 @@
                 e.cognates.map(c => {
                     const isLink = nodeMap.has(c.id);
                     const tag = isLink ? 'a' : 'span';
-                    const href = isLink ? ` href="/sites/${c.id}/"` : '';
+                    const href = isLink ? ` href="/sites/${c.id}/lore/"` : '';
                     return `<${tag}${href} class="sidebar-cognate">${escapeHtml(c.form)} <span class="sidebar-cognate-lang">${c.language}</span></${tag}>`;
                 }).join('') +
                 '</div>';
@@ -318,7 +318,7 @@
 
         sidebar.innerHTML = `
             <div class="sidebar-content">
-                <a href="/sites/${entry.id}/" class="sidebar-title">${escapeHtml(entry.unicode)}</a>
+                <a href="/sites/${entry.id}/lore/" class="sidebar-title">${escapeHtml(entry.unicode)}</a>
                 <span class="sidebar-greek">${entry.greek !== '—' ? escapeHtml(entry.greek) : ''}</span>
                 <span class="sidebar-domain">${escapeHtml(entry.domain)}</span>
                 ${e.protoForm ? `<div class="sidebar-proto"><span class="sidebar-proto-label">${escapeHtml(protoLabel)}</span><span class="sidebar-proto-form">${escapeHtml(e.protoForm)}</span></div>` : ''}

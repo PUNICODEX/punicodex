@@ -174,7 +174,7 @@ function generateTempleHTML(entry, related) {
         ? entry.etymology.cognates.slice(0, 3).map(c => {
             const isInternal = LEXICON.some(e => e.id === c.id);
             const tag = isInternal ? 'a' : 'span';
-            const href = isInternal ? ` href="/sites/${c.id}/"` : '';
+            const href = isInternal ? ` href="/sites/${c.id}/lore/"` : '';
             return `<${tag}${href} class="cognate-card reveal-up">
                 <span class="cognate-lang">${escapeHtml(c.language)}</span>
                 <span class="cognate-form">${escapeHtml(c.form)}</span>
@@ -547,7 +547,7 @@ ${JSON.stringify({
                     if (cognateEntry) {
                         const cSubtype = getTierSubtype(cognateEntry);
                         return `
-                <a href="/sites/${cognateEntry.id}/" class="related-card reveal-up">
+                <a href="/sites/${cognateEntry.id}/lore/" class="related-card reveal-up">
                     <span class="related-name">${escapeHtml(cognateEntry.unicode)}</span>
                     <span class="related-greek">${cognateEntry.greek && cognateEntry.greek !== '—' ? escapeHtml(cognateEntry.greek) : ''}</span>
                     <span class="related-domain">${escapeHtml(cognateEntry.domain)}</span>
@@ -575,7 +575,7 @@ ${JSON.stringify({
                 ${related.map(r => {
                     const rSubtype = getTierSubtype(r);
                     return `
-                <a href="/sites/${r.id}/" class="related-card reveal-up">
+                <a href="/sites/${r.id}/lore/" class="related-card reveal-up">
                     <span class="related-name">${escapeHtml(r.unicode)}</span>
                     <span class="related-greek">${r.greek && r.greek !== '—' ? escapeHtml(r.greek) : ''}</span>
                     <span class="related-domain">${escapeHtml(r.domain)}</span>

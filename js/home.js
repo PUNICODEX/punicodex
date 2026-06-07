@@ -14,7 +14,7 @@
     // ═══════════════════════════════════════════════════════════
 
     function getArchetypeUrl(archetype) {
-        return archetype.domainUnicode ? `https://${archetype.domainUnicode}` : null;
+        return `/sites/${archetype.id}/lore/`;
     }
 
     function renderPantheonGrid() {

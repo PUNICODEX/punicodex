@@ -160,7 +160,7 @@
             const subtype = getTierSubtype(entry);
             const hasOriginal = entry.greek && entry.greek !== '—';
             return `
-                <a href="/sites/${entry.id}/" class="lexicon-card reveal-up">
+                <a href="/sites/${entry.id}/lore/" class="lexicon-card reveal-up">
                     <span class="lexicon-card-unicode">${escapeHtml(entry.unicode)}</span>
                     <span class="lexicon-card-greek">${hasOriginal ? escapeHtml(entry.greek) : '&nbsp;'}</span>
                     <span class="lexicon-card-domain">${escapeHtml(entry.domain)}</span>
