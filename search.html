@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search — PUNYCODEX</title>
+    <meta name="description" content="Search the Unicode web with PUNYCODEX. Find scholarly Unicode domains, explore etymology, and discover available names.">
+    <link rel="canonical" href="https://punycodex.com/search.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf7">
+    <meta name="theme-color" content="#050505">
+    <meta name="color-scheme" content="dark">
+    <style>
+        .search-redirect { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem; }
+        .search-redirect h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem; }
+        .search-redirect p { color: var(--white-dim); font-size: 1.1rem; max-width: 500px; margin-bottom: 2rem; line-height: 1.6; }
+        .search-redirect .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.9rem 2rem; border-radius: 4px; background: var(--primary); color: var(--black); font-family: var(--font-display); font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: opacity 0.2s; }
+        .search-redirect .btn-primary:hover { opacity: 0.9; }
+        .search-redirect .btn-ghost { display: inline-block; margin-top: 1rem; color: var(--white-dim); text-decoration: none; font-size: 0.9rem; }
+        .search-redirect .btn-ghost:hover { color: var(--primary); }
+    </style>
+</head>
+<body>
+    <nav class="main-nav" id="main-nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">PUNYCODEX</a>
+            <div class="nav-links">
+                <a href="/pantheon/" class="nav-link">Pantheon</a>
+                <a href="/realms/" class="nav-link">Realms</a>
+                <a href="/lexicon/" class="nav-link">Lexicon</a>
+                <a href="/type/" class="nav-link">Type</a>
+                <a href="/search.html" class="nav-link active">Search</a>
+                <a href="/tiers/" class="nav-link">Tier System</a>
+                <a href="/codex/" class="nav-link">Codex</a>
+                <a href="/about/" class="nav-link">About</a>
+                <a href="/contact/" class="nav-link">Contact</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="search-redirect">
+        <h1>Search the Unicode Web</h1>
+        <p>The PUNYCODEX search engine indexes Unicode domains across the internet. Explore live sites, check availability, and discover the scholarly orthography behind every name.</p>
+        <a href="http://localhost:3456/search.html" class="btn-primary">
+            <span>Open Search Engine</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+        <a href="/lexicon/" class="btn-ghost">Browse the Lexicon instead →</a>
+    </div>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

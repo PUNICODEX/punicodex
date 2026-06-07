@@ -1,0 +1,33 @@
+<?php
+
+/*
+ * Reversed favicon.ico
+ *   Last revised on April 16th, 2001
+ *   http://mise.wox.org/favicon/
+ */
+
+mt_srand ((double) microtime() * 1000000);
+
+function rnd_str($len = 20) {
+  for ( $i = 0; $i < $len; $i++ ) {
+     $str .= substr("abcdefghijklnmopqrstuvwxyzABCDEFGHIJKLNMOPQRSTUVWXYZ0123456789", mt_rand(0,62), 1 );
+  }
+return $str;
+}
+
+$junk = rnd_str(6);
+
+if (strstr(getenv("HTTP_USER_AGENT"), "MSIE")) {
+  $location = "http://www.msn.com/$junk/FAVICON_MUST_DIE/favicon.ico";
+} elseif (strstr($HTTP_USER_AGENT, "Konqueror")) {
+  $location = "http://www.kde.org/$junk/FAVICON_MUST_DIE/favicon.ico";
+} else {
+ /*
+  * huh?!
+  */
+     $location = "http://www.kde.org/$junk/FAVICON_MUST_DIE/favicon.ico";
+}
+
+header ("Location: $location");
+
+?>

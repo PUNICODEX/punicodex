@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cognate Network — PUNYCODEX</title>
+    <meta name="description" content="Explore the etymological connections between mythological names across pantheons. A force-directed graph of Proto-Indo-European, Afro-Asiatic, and Polynesian cognates.">
+    <link rel="canonical" href="https://punycodex.com/lexicon/cognates.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf7">
+    <link rel="stylesheet" href="/lexicon/css/cognate-graph.css?v=perf7">
+    <meta name="theme-color" content="#050505">
+    <meta name="color-scheme" content="dark">
+</head>
+<body>
+    <nav class="main-nav" id="main-nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">PUNYCODEX</a>
+            <div class="nav-links">
+                <a href="/pantheon/" class="nav-link">Pantheon</a>
+                <a href="/realms/" class="nav-link">Realms</a>
+                <a href="/lexicon/" class="nav-link">Lexicon</a>
+                <a href="/type/" class="nav-link">Type</a>
+                <a href="/tiers/" class="nav-link">Tier System</a>
+                <a href="/codex/" class="nav-link">Codex</a>
+                <a href="/store/" class="nav-link">Store</a>
+                <a href="/about/" class="nav-link">About</a>
+                <a href="/contact/" class="nav-link">Contact</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <header class="graph-hero">
+        <div class="container">
+            <h1 class="graph-hero-title">Cognate Network</h1>
+            <p class="graph-hero-subtitle">The hidden threads connecting gods across millennia. Drag nodes. Click to explore.</p>
+            <div class="graph-legend">
+                <span class="legend-item"><span class="legend-dot" style="background:#D4AF37"></span>PIE</span>
+                <span class="legend-item"><span class="legend-dot" style="background:#C0C0C0"></span>Norse</span>
+                <span class="legend-item"><span class="legend-dot" style="background:#4169E1"></span>Greek</span>
+                <span class="legend-item"><span class="legend-dot" style="background:#FF9933"></span>Sanskrit</span>
+                <span class="legend-item"><span class="legend-dot" style="background:#1E3A5F"></span>Egyptian</span>
+                <span class="legend-item"><span class="legend-dot" style="background:#50C878"></span>Polynesian</span>
+                <span class="legend-item"><span class="legend-dot" style="background:#808080"></span>Other</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="graph-main">
+        <div class="graph-canvas-wrap">
+            <canvas id="cognate-canvas" aria-label="Cognate relationship graph"></canvas>
+            <div class="graph-controls">
+                <button class="graph-btn" id="btn-reset" title="Reset view">⟲</button>
+                <button class="graph-btn" id="btn-pause" title="Pause physics">⏸</button>
+            </div>
+        </div>
+        <aside class="graph-sidebar" id="graph-sidebar">
+            <div class="sidebar-empty">
+                <p>Click a node to explore its etymology and cognates.</p>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="footer-logo">PUNYCODEX</a>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/type/js/lexicon.js"></script>
+    <script src="/lexicon/js/cognate-graph.js"></script>
+</body>
+</html>

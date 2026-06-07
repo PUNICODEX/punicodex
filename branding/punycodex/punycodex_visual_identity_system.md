@@ -27,7 +27,7 @@ Every deity incorporates **#D4AF37** (Classic Gold) as a unifying accent color �
 | 2 | **APOLLON** | apóllōn.com | `apollon_mascot.png` | `apollon_logomark.png` | `apollon_logolockup.png` |
 | 3 | **ARES** | árēs.com | `ares_mascot.png` | `ares_logomark.png` | `ares_logolockup.png` |
 | 4 | **ARTEMIS** | ártemis.com | `artemis_mascot.png` | `artemis_logomark.png` | `artemis_logolockup.png` |
-| 5 | **ATHENA** | athēnā.com | `athena_mascot.png` | `athena_logomark.png` | `athena_logolockup.png` |
+| 5 | **ATHENA** | athénā.com | `athena_mascot.png` | `athena_logomark.png` | `athena_logolockup.png` |
 | 6 | **ATLAS** | átlas.com | `atlas_mascot.png` | `atlas_logomark.png` | `atlas_logolockup.png` |
 | 7 | **DEMETER** | dēmētēr.com | `demeter_mascot.png` | `demeter_logomark.png` | `demeter_logolockup.png` |
 | 8 | **DIONYSOS** | diónysos.com | `dionysos_mascot.png` | `dionysos_logomark.png` | `dionysos_logolockup.png` |
@@ -171,7 +171,7 @@ Every deity incorporates **#D4AF37** (Classic Gold) as a unifying accent color �
 ---
 
 ## ATHENA — Goddess of Wisdom & Strategic Warfare
-**Domain**: athēnā.com
+**Domain**: athénā.com
 
 | Element | Specification |
 |---------|--------------|

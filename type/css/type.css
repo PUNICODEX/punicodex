@@ -418,6 +418,12 @@
     max-width: 180px;
 }
 
+.breakdown-stack {
+    margin-left: auto;
+    font-size: 0.8em;
+    opacity: 0.7;
+}
+
 /* ── Result ────────────────────────────────────────────── */
 .type-result {
     transition: opacity 0.4s, transform 0.4s;
@@ -482,8 +488,89 @@
     font-family: var(--font-display);
     font-size: 1.25rem;
     color: var(--stone);
-    margin-bottom: 24px;
+    margin-bottom: 8px;
     font-style: italic;
+}
+
+.result-variations {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--white-faint);
+    border-radius: 8px;
+}
+
+.result-variations.hidden {
+    display: none;
+}
+
+.result-variations-label {
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--stone-dim);
+}
+
+.variations-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+}
+
+.variation-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-family: var(--font-mono);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--white-faint);
+    color: var(--white-dim);
+    cursor: default;
+}
+
+.variation-owned {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(212, 175, 55, 0.08);
+}
+
+.variation-ideal {
+    border-color: var(--secondary);
+    color: var(--secondary);
+    background: rgba(65, 105, 225, 0.08);
+}
+
+.variation-alt-stress {
+    border-color: var(--ember);
+    color: var(--ember);
+    background: rgba(192, 108, 84, 0.08);
+}
+
+.variation-macron-only {
+    border-color: var(--stone);
+    color: var(--stone);
+    background: rgba(150, 150, 150, 0.08);
+}
+
+.variation-ascii {
+    border-color: var(--white-faint);
+    color: var(--white-dim);
+    font-style: italic;
+}
+
+.variation-decomposed {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: rgba(212, 175, 55, 0.08);
+    font-size: 0.8rem;
+}
 }
 
 .result-meta {
@@ -720,4 +807,153 @@
         height: 40px;
         font-size: 0.9rem;
     }
+}
+/* ═══════════════════════════════════════════════════════════
+   Stacked Diacritics — Visual Unicode Decomposition
+   Injected into temple-base.css and type.css; kept here as
+   canonical reference.
+   ═══════════════════════════════════════════════════════════ */
+
+.stacked-diacritics {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.05em;
+    vertical-align: bottom;
+    font-family: var(--font-mono, 'SF Mono', Monaco, 'Cascadia Code', monospace);
+}
+
+.sd-char {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1;
+    vertical-align: bottom;
+    min-width: 1ch;
+}
+
+.sd-marks {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-size: 0.5em;
+    line-height: 0.7;
+    height: 0.6em;
+    margin-bottom: 0.08em;
+    white-space: nowrap;
+    opacity: 0.8;
+}
+
+.sd-mark {
+    display: inline-block;
+}
+
+.sd-base {
+    font-size: 1em;
+    line-height: 1;
+}
+
+.sd-plain {
+    font-size: 1em;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   Variant Pills — Scholarly Name Variations (Type Tool)
+   ═══════════════════════════════════════════════════════════ */
+
+.variants-label {
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--white-dim);
+    margin-bottom: 0.5rem;
+}
+
+.variants-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.variant-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.75rem;
+    border-radius: 100px;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    border: 1px solid var(--white-faint);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--white);
+    cursor: default;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.variant-pill:hover {
+    border-color: var(--primary-dim);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.variant-pill-owned {
+    border-color: var(--secondary);
+    background: rgba(var(--secondary-rgb, 196, 161, 109), 0.08);
+}
+
+.variant-pill-owned::after {
+    content: 'OWNED';
+    font-size: 0.5rem;
+    letter-spacing: 0.08em;
+    margin-left: 0.4rem;
+    padding: 0.08rem 0.3rem;
+    border-radius: 4px;
+    background: var(--secondary);
+    color: var(--black);
+    font-weight: 700;
+}
+
+.variant-pill-ideal {
+    border-color: var(--primary);
+    border-style: dashed;
+}
+
+.variant-pill-alt-stress {
+    border-color: var(--accent);
+}
+
+.variant-pill-macron-only {
+    border-color: var(--white-dim);
+}
+
+.variant-pill-ascii {
+    border-color: var(--white-faint);
+    border-style: dotted;
+    color: var(--white-dim);
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   Type Tool — Etymology Preview
+   ═══════════════════════════════════════════════════════════ */
+
+.etymology-form {
+    font-family: var(--font-mono);
+    font-style: italic;
+    color: var(--secondary);
+}
+
+.etymology-form::first-letter {
+    color: var(--primary);
+}
+
+.etymology-lang {
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--white-dim);
+    margin-left: 0.4rem;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    border: 1px solid var(--white-faint);
 }

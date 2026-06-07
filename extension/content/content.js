@@ -10,7 +10,7 @@
     const trie = engine.buildTrie(LEXICON);
 
     // Settings
-    let settings = { enabled: true, pantheonFilter: 'all', inlineMode: true, siteMode: 'all', siteList: [] };
+    let settings = { enabled: true, pantheonFilter: 'all', inlineMode: true, showPreview: true, siteMode: 'all', siteList: [] };
     chrome.runtime.sendMessage({ action: 'getSettings' }, (response) => {
         if (response) settings = { ...settings, ...response };
     });
@@ -101,7 +101,7 @@
     }
 
     function showDropdown(completions) {
-        if (completions.length === 0) {
+        if (completions.length === 0 || !settings.showPreview) {
             hideDropdown();
             return;
         }

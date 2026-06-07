@@ -3,18 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PUNYCODEX — Search the Unicode Web</title>
+  <title>PUNYCODEX — Curated Unicode Real Estate</title>
   <style>
     :root {
-      --bg: #0a0a0f;
-      --surface: #12121a;
-      --surface-2: #1a1a26;
-      --surface-hover: #1e1e2e;
+      --bg: #0d0d12;
+      --surface: #14141c;
+      --surface-2: #1c1c28;
+      --surface-hover: #222230;
       --text: #e8e6f0;
       --text-dim: #8a87a0;
+      --text-muted: #5a5870;
       --accent: #c9a96e;
-      --accent-glow: rgba(201, 169, 110, 0.15);
+      --accent-glow: rgba(201, 169, 110, 0.12);
       --border: #2a2a3a;
+      --link-blue: #8ab4f8;
+      --link-green: #a5d6a7;
+      --gold: #c9a96e;
       --tier-dual: #c9a96e;
       --tier-1: #7ec9a0;
       --tier-2: #87aee8;
@@ -25,76 +29,60 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
-      line-height: 1.6;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
     }
 
+    /* ====== HEADER ====== */
     header {
-      text-align: center;
-      padding: 3rem 1rem 1.5rem;
+      padding: 1.5rem 1rem 0.75rem;
       border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .header-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
     }
 
     .logo {
-      font-size: 2.5rem;
+      font-size: 1.4rem;
       font-weight: 800;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.12em;
       color: var(--accent);
-      text-shadow: 0 0 40px var(--accent-glow);
     }
 
-    .tagline {
-      color: var(--text-dim);
-      font-size: 1.05rem;
-      margin-top: 0.5rem;
+    .logo-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
       letter-spacing: 0.05em;
-    }
-
-    .stats-bar {
-      display: flex;
-      justify-content: center;
-      gap: 2.5rem;
-      margin-top: 1.5rem;
-      flex-wrap: wrap;
-    }
-
-    .stat {
-      text-align: center;
-    }
-
-    .stat-value {
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: var(--accent);
-    }
-
-    .stat-label {
-      font-size: 0.7rem;
-      color: var(--text-dim);
       text-transform: uppercase;
-      letter-spacing: 0.1em;
     }
 
-    .search-section {
-      max-width: 850px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-
+    /* ====== SEARCH BOX ====== */
     .search-box {
       position: relative;
+      margin-bottom: 0.75rem;
     }
 
     .search-box input {
       width: 100%;
-      padding: 1rem 1.5rem;
-      font-size: 1.1rem;
-      background: var(--surface);
-      border: 2px solid var(--border);
-      border-radius: 12px;
+      padding: 0.85rem 1rem 0.85rem 2.75rem;
+      font-size: 1rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
       color: var(--text);
       outline: none;
       transition: border-color 0.2s, box-shadow 0.2s;
@@ -102,61 +90,925 @@
 
     .search-box input:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 4px var(--accent-glow);
+      box-shadow: 0 0 0 3px var(--accent-glow);
     }
 
     .search-box input::placeholder {
-      color: var(--text-dim);
+      color: var(--text-muted);
     }
 
-    .filters {
+    .search-box .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .search-box .search-clear {
+      position: absolute;
+      right: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0.25rem;
+      display: none;
+      font-size: 1.1rem;
+    }
+
+    .search-box .search-clear.visible {
+      display: block;
+    }
+
+    /* ====== AUTOCOMPLETE ====== */
+    .autocomplete-dropdown {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      right: 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      z-index: 100;
+      max-height: 320px;
+      overflow-y: auto;
+      display: none;
+    }
+
+    .autocomplete-dropdown.visible {
+      display: block;
+    }
+
+    .autocomplete-item {
+      padding: 0.65rem 1rem;
+      cursor: pointer;
       display: flex;
-      gap: 0.75rem;
-      margin-top: 1rem;
-      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6rem;
+      border-bottom: 1px solid rgba(42,42,58,0.5);
+      transition: background 0.15s;
     }
 
-    .filters select {
-      padding: 0.5rem 1rem;
+    .autocomplete-item:last-child {
+      border-bottom: none;
+    }
+
+    .autocomplete-item:hover,
+    .autocomplete-item.active {
+      background: var(--surface-hover);
+    }
+
+    .autocomplete-item:first-child {
+      border-radius: 12px 12px 0 0;
+    }
+
+    .autocomplete-item:last-child {
+      border-radius: 0 0 12px 12px;
+    }
+
+    .autocomplete-icon {
+      font-size: 0.9rem;
+      width: 1.2rem;
+      text-align: center;
+    }
+
+    .autocomplete-text {
+      flex: 1;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    .autocomplete-meta {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: capitalize;
+    }
+
+    /* ====== DID YOU MEAN ====== */
+    .did-you-mean {
+      padding: 0.6rem 1rem;
+      background: var(--surface-2);
+      border-left: 3px solid var(--accent);
+      margin: 0.5rem 0;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.9rem;
+    }
+
+    .did-you-mean a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .did-you-mean a:hover {
+      text-decoration: underline;
+    }
+
+    /* ====== RELATED SEARCHES ====== */
+    .related-searches {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: var(--surface);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .related-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .related-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .related-chip {
+      padding: 0.4rem 0.8rem;
       background: var(--surface-2);
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 20px;
+      font-size: 0.85rem;
       color: var(--text);
-      font-size: 0.9rem;
+      text-decoration: none;
       cursor: pointer;
-      outline: none;
+      transition: all 0.15s;
     }
 
-    .filters select:focus {
+    .related-chip:hover {
       border-color: var(--accent);
+      color: var(--accent);
     }
 
-    .results {
-      max-width: 850px;
-      margin: 1.5rem auto;
+    /* ====== MODE TABS ====== */
+    .mode-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
       padding: 0 1rem;
     }
 
-    .result-count {
+    .mode-tab {
+      padding: 0.6rem 1.25rem;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
       color: var(--text-dim);
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+      letter-spacing: 0.01em;
+      margin-bottom: -1px;
+    }
+
+    .mode-tab:hover {
+      color: var(--text);
+    }
+
+    .unicode-toggle {
+      margin-left: auto;
       display: flex;
-      justify-content: space-between;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      cursor: pointer;
+      user-select: none;
+      padding: 0 0.5rem;
+    }
+
+    .unicode-toggle input {
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .unicode-badge {
+      font-size: 0.65rem;
+      padding: 0.1rem 0.35rem;
+      background: rgba(201, 169, 110, 0.15);
+      color: var(--accent);
+      border-radius: 3px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .mode-tab.active {
+      color: var(--link-blue);
+      border-bottom-color: var(--link-blue);
+    }
+
+    /* ====== RESULTS AREA ====== */
+    .results {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0.75rem 1rem 2rem;
+      min-height: 300px;
+    }
+
+    .result-count {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      margin-bottom: 0.75rem;
+      padding: 0.5rem 0;
+    }
+
+    /* ====== SERP RESULT ====== */
+    .serp-result {
+      padding: 0.85rem 0.5rem;
+      border-radius: 8px;
+      margin: 0 -0.5rem;
+      transition: background 0.15s;
+      outline: none;
+    }
+
+    .serp-result:hover,
+    .serp-result:focus {
+      background: var(--surface-2);
+    }
+
+    .serp-result:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: -2px;
+    }
+
+    .serp-header {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+
+    .serp-favicon {
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-top: 1px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+
+    .serp-favicon-fallback {
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.7rem;
+    }
+
+    .serp-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .serp-url-line {
+      font-size: 0.78rem;
+      line-height: 1.4;
+      margin-bottom: 0.15rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      flex-wrap: wrap;
+    }
+
+    .serp-domain {
+      color: var(--link-green);
+      font-weight: 400;
+    }
+
+    .serp-sep {
+      color: var(--text-muted);
+      font-size: 0.7rem;
+    }
+
+    .serp-breadcrumb {
+      color: var(--text-muted);
+    }
+
+    .serp-title {
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--link-blue);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.25rem;
+      line-height: 1.35;
+      word-break: break-word;
+    }
+
+    .serp-title:hover {
+      text-decoration: underline;
+    }
+
+    .serp-title mark {
+      background: transparent;
+      color: inherit;
+      font-weight: 600;
+    }
+
+    .serp-snippet {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      line-height: 1.55;
+      max-width: 100%;
+      word-break: break-word;
+    }
+
+    .serp-snippet mark {
+      background: rgba(201, 169, 110, 0.2);
+      color: var(--accent);
+      padding: 0 2px;
+      border-radius: 2px;
+      font-weight: 500;
+    }
+
+    .serp-date {
+      color: var(--text-muted);
+    }
+
+    .serp-thumbnail-wrap {
+      margin-left: auto;
+      padding-left: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .serp-thumbnail {
+      width: 92px;
+      height: 92px;
+      border-radius: 8px;
+      object-fit: cover;
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+
+    .serp-meta {
+      display: flex;
+      gap: 0.4rem;
+      margin-top: 0.4rem;
+      flex-wrap: wrap;
       align-items: center;
     }
 
-    .result-count .filter-hint {
-      font-size: 0.8rem;
-      color: var(--text-dim);
+    .serp-badge {
+      font-size: 0.68rem;
+      padding: 0.12rem 0.45rem;
+      border-radius: 3px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
     }
 
-    /* ====== ENTRY CARD ====== */
+    .serp-badge.flagship {
+      background: rgba(201, 169, 110, 0.1);
+      color: var(--accent);
+      border: 1px solid rgba(201, 169, 110, 0.15);
+    }
+
+    .serp-badge.tier-dual { background: rgba(201, 169, 110, 0.08); color: var(--tier-dual); }
+    .serp-badge.tier-1 { background: rgba(126, 201, 160, 0.08); color: var(--tier-1); }
+    .serp-badge.tier-2 { background: rgba(135, 174, 232, 0.08); color: var(--tier-2); }
+
+    .serp-badge.pantheon {
+      background: var(--surface);
+      color: var(--text-dim);
+      text-transform: capitalize;
+      border: 1px solid var(--border);
+    }
+
+    .serp-utilities {
+      display: flex;
+      gap: 0.85rem;
+      margin-top: 0.35rem;
+      padding-left: 0;
+    }
+
+    .serp-utility {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .serp-utility:hover {
+      color: var(--link-blue);
+      text-decoration: underline;
+    }
+
+    .serp-unicode-domain {
+      font-size: 0.78rem;
+      color: var(--accent);
+      font-family: 'SF Mono', monospace;
+      margin-top: 0.2rem;
+      opacity: 0.7;
+    }
+
+    /* ====== LOADING SKELETON ====== */
+    .skeleton {
+      background: linear-gradient(90deg, var(--surface-2) 25%, var(--surface-hover) 50%, var(--surface-2) 75%);
+      background-size: 200% 100%;
+      animation: skeleton 1.5s ease-in-out infinite;
+      border-radius: 4px;
+    }
+
+    @keyframes skeleton {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    .skeleton-result {
+      padding: 0.85rem 0.5rem;
+      margin: 0 -0.5rem;
+    }
+
+    .skeleton-header {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+
+    .skeleton-favicon {
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      border-radius: 50%;
+    }
+
+    .skeleton-body {
+      flex: 1;
+    }
+
+    .skeleton-line {
+      height: 0.7rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .skeleton-line.short {
+      width: 40%;
+    }
+
+    .skeleton-line.medium {
+      width: 70%;
+    }
+
+    .skeleton-line.title {
+      height: 1.1rem;
+      width: 55%;
+      margin-bottom: 0.4rem;
+    }
+
+    /* ====== EMPTY STATE ====== */
+    .empty {
+      text-align: center;
+      color: var(--text-dim);
+      padding: 3rem 1rem;
+    }
+
+    .empty-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      opacity: 0.4;
+    }
+
+    .empty-title {
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+
+    .empty-sub {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .build-cta {
+      margin-top: 1.5rem;
+      padding: 1.25rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .build-cta h3 {
+      color: var(--accent);
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .build-cta p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-bottom: 0.75rem;
+    }
+
+    /* ====== KNOWLEDGE PANEL ====== */
+    .knowledge-panel {
+      background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      margin-bottom: 1.25rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .knowledge-panel::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--tier-dual), var(--tier-1), var(--tier-2));
+      opacity: 0.6;
+    }
+
+    .kp-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .kp-name {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .kp-greek {
+      font-size: 1rem;
+      color: var(--accent);
+      font-family: 'Georgia', 'Times New Roman', serif;
+      margin-top: 0.2rem;
+    }
+
+    .kp-meaning {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      margin-top: 0.3rem;
+    }
+
+    .kp-badges {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    .kp-badge {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .kp-badge.tier-dual { background: rgba(201, 169, 110, 0.12); color: var(--tier-dual); }
+    .kp-badge.tier-1 { background: rgba(126, 201, 160, 0.12); color: var(--tier-1); }
+    .kp-badge.tier-2 { background: rgba(135, 174, 232, 0.12); color: var(--tier-2); }
+    .kp-badge.pantheon { background: var(--surface-hover); color: var(--text-dim); border: 1px solid var(--border); text-transform: capitalize; }
+
+    .kp-sites {
+      margin-top: 1rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .kp-sites-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.5rem;
+    }
+
+    .kp-site-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .kp-site-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.4rem 0.5rem;
+      border-radius: 6px;
+      transition: background 0.15s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .kp-site-item:hover {
+      background: var(--surface-hover);
+    }
+
+    .kp-site-favicon {
+      width: 18px;
+      height: 18px;
+      border-radius: 3px;
+      object-fit: cover;
+      background: var(--surface);
+    }
+
+    .kp-site-domain {
+      font-size: 0.85rem;
+      color: var(--link-green);
+      font-weight: 500;
+    }
+
+    .kp-site-title {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .kp-related {
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .kp-related-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.4rem;
+    }
+
+    .kp-related-chip {
+      padding: 0.25rem 0.6rem;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      font-size: 0.8rem;
+      color: var(--text);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .kp-related-chip:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .serp-freshness {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .serp-freshness.recent {
+      color: var(--tier-1);
+    }
+
+    /* ====== PEOPLE ALSO ASK ====== */
+    .paa-section {
+      margin: 1rem 0 1.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .paa-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      padding: 0.9rem 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .paa-item {
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+    }
+
+    .paa-item:last-child {
+      border-bottom: none;
+    }
+
+    .paa-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.85rem 1rem;
+      font-size: 0.9rem;
+      color: var(--text);
+      transition: background 0.15s;
+    }
+
+    .paa-question:hover {
+      background: var(--surface-hover);
+    }
+
+    .paa-chevron {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      transition: transform 0.2s;
+    }
+
+    .paa-item.expanded .paa-chevron {
+      transform: rotate(180deg);
+    }
+
+    .paa-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.25s ease, padding 0.25s ease;
+      padding: 0 1rem;
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+
+    .paa-item.expanded .paa-answer {
+      max-height: 300px;
+      padding: 0 1rem 0.9rem;
+    }
+
+    .serp-sitelinks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.35rem;
+      padding-left: 0;
+    }
+
+    .serp-sitelink {
+      font-size: 0.78rem;
+      color: var(--link-blue);
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .serp-sitelink:hover {
+      text-decoration: underline;
+    }
+
+    .serp-sitelink::before {
+      content: '› ';
+      color: var(--text-muted);
+    }
+
+    .serp-video-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    .serp-sitemap-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      background: var(--surface-2);
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      margin-top: 0.25rem;
+    }
+
+    /* ====== LEASE STATUS BADGES ====== */
+    .lease-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-left: 0.4rem;
+    }
+    .lease-badge.flagship {
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      color: #451a03;
+    }
+    .lease-badge.leased {
+      background: linear-gradient(135deg, #34d399, #10b981);
+      color: #064e3b;
+    }
+    .lease-badge.available {
+      background: linear-gradient(135deg, #60a5fa, #3b82f6);
+      color: #1e3a8a;
+    }
+
+    /* ====== TENANT CARD ====== */
+    .tenant-card {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.4rem;
+      padding: 0.4rem 0.6rem;
+      background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(16,185,129,0.03));
+      border: 1px solid rgba(16,185,129,0.2);
+      border-radius: 8px;
+      font-size: 0.8rem;
+    }
+    .tenant-card .tenant-label {
+      color: var(--text-dim);
+      font-size: 0.72rem;
+    }
+    .tenant-card .tenant-name {
+      color: #10b981;
+      font-weight: 600;
+    }
+    .tenant-card .tenant-category {
+      color: var(--text-muted);
+      font-size: 0.72rem;
+      margin-left: auto;
+    }
+
+    /* ====== AVAILABILITY CARDS ====== */
+    .availability-section {
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+    .availability-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .avail-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.75rem 1rem;
+      background: var(--surface);
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+      margin-bottom: 0.5rem;
+    }
+    .avail-card .avail-domain {
+      font-weight: 600;
+      color: var(--link-blue);
+      font-size: 0.9rem;
+    }
+    .avail-card .avail-meaning {
+      color: var(--text-dim);
+      font-size: 0.78rem;
+    }
+    .avail-card .avail-action {
+      margin-left: auto;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #3b82f6;
+      background: rgba(59,130,246,0.1);
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+    .avail-card .avail-action:hover {
+      background: rgba(59,130,246,0.2);
+    }
+
+    /* ====== DOMAIN DISCOVERY CARDS ====== */
     .entry-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 14px;
-      margin-bottom: 1rem;
+      border-radius: 12px;
+      margin-bottom: 0.75rem;
       overflow: hidden;
       transition: border-color 0.2s, transform 0.2s;
     }
@@ -177,65 +1029,65 @@
     .entry-header {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      padding: 1rem 1.25rem 0.5rem;
+      gap: 0.6rem;
+      padding: 0.85rem 1rem 0.4rem;
+      flex-wrap: wrap;
     }
 
     .entry-unicode {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: 700;
     }
 
     .entry-greek {
       color: var(--text-dim);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
 
     .tier-badge {
-      font-size: 0.65rem;
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
+      font-size: 0.6rem;
+      padding: 0.15rem 0.4rem;
+      border-radius: 3px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.05em;
     }
 
-    .tier-dual { background: rgba(201, 169, 110, 0.15); color: var(--tier-dual); }
-    .tier-1 { background: rgba(126, 201, 160, 0.15); color: var(--tier-1); }
-    .tier-2 { background: rgba(135, 174, 232, 0.15); color: var(--tier-2); }
+    .tier-dual { background: rgba(201, 169, 110, 0.12); color: var(--tier-dual); }
+    .tier-1 { background: rgba(126, 201, 160, 0.12); color: var(--tier-1); }
+    .tier-2 { background: rgba(135, 174, 232, 0.12); color: var(--tier-2); }
 
     .pantheon-badge {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: var(--text-dim);
       text-transform: capitalize;
     }
 
     .entry-meta {
-      padding: 0 1.25rem 0.75rem;
+      padding: 0 1rem 0.6rem;
       color: var(--text-dim);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
 
-    /* ====== BUSINESS CARD (LIVE SITE) ====== */
-    .business-card {
+    .business-card, .availability-card {
       background: var(--surface-2);
       border-top: 1px solid var(--border);
-      padding: 1rem 1.25rem;
+      padding: 0.85rem 1rem;
     }
 
     .business-card-header {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.5rem;
+      gap: 0.4rem;
+      margin-bottom: 0.4rem;
     }
 
     .live-indicator {
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       background: var(--live);
-      box-shadow: 0 0 8px var(--live);
+      box-shadow: 0 0 6px var(--live);
       animation: pulse 2s infinite;
     }
 
@@ -245,7 +1097,7 @@
     }
 
     .live-label {
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--live);
@@ -254,55 +1106,44 @@
 
     .site-domain {
       font-family: 'SF Mono', monospace;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--accent);
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.2rem;
       word-break: break-all;
     }
 
     .site-title {
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 600;
       color: var(--text);
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.2rem;
     }
 
     .site-description {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: var(--text-dim);
       line-height: 1.5;
     }
 
-    .site-snippet {
-      font-size: 0.8rem;
-      color: var(--text-dim);
-      margin-top: 0.5rem;
-      padding: 0.5rem;
-      background: var(--bg);
-      border-radius: 6px;
-      border-left: 2px solid var(--border);
-      font-style: italic;
-    }
-
     .site-actions {
-      margin-top: 0.75rem;
+      margin-top: 0.6rem;
       display: flex;
-      gap: 0.75rem;
+      gap: 0.6rem;
       flex-wrap: wrap;
     }
 
     .site-link {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--text);
       text-decoration: none;
-      padding: 0.4rem 0.75rem;
+      padding: 0.35rem 0.65rem;
       border-radius: 6px;
       background: var(--surface);
       border: 1px solid var(--border);
       transition: all 0.2s;
       display: inline-flex;
       align-items: center;
-      gap: 0.3rem;
+      gap: 0.25rem;
     }
 
     .site-link:hover {
@@ -321,49 +1162,42 @@
       background: #d4b87e;
     }
 
-    /* ====== AVAILABILITY CARD ====== */
-    .availability-card {
-      background: var(--surface-2);
-      border-top: 1px solid var(--border);
-      padding: 1rem 1.25rem;
-    }
-
     .available-badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      font-size: 0.75rem;
+      gap: 0.35rem;
+      font-size: 0.7rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.05em;
       color: var(--available);
-      background: rgba(126, 201, 160, 0.1);
-      padding: 0.3rem 0.6rem;
-      border-radius: 4px;
-      margin-bottom: 0.5rem;
+      background: rgba(126, 201, 160, 0.08);
+      padding: 0.25rem 0.5rem;
+      border-radius: 3px;
+      margin-bottom: 0.4rem;
     }
 
     .available-badge::before {
       content: '';
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
       background: var(--available);
     }
 
     .registrar-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 0.5rem;
-      margin-top: 0.75rem;
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      gap: 0.4rem;
+      margin-top: 0.6rem;
     }
 
     .registrar-link {
-      font-size: 0.78rem;
+      font-size: 0.74rem;
       color: var(--text-dim);
       text-decoration: none;
-      padding: 0.4rem 0.6rem;
-      border-radius: 6px;
+      padding: 0.35rem 0.5rem;
+      border-radius: 5px;
       background: var(--bg);
       border: 1px solid var(--border);
       text-align: center;
@@ -375,132 +1209,668 @@
       color: var(--available);
     }
 
-    .loading, .empty {
-      text-align: center;
-      color: var(--text-dim);
-      padding: 3rem;
+    /* ====== FILTERS ====== */
+    .filters {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: 0.75rem;
+      flex-wrap: wrap;
+      padding: 0 0.5rem;
     }
 
+    .filters select {
+      padding: 0.4rem 0.75rem;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-size: 0.85rem;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .filters select:focus {
+      border-color: var(--accent);
+    }
+
+    /* ====== UTILITIES ====== */
+    .hidden { display: none !important; }
+
     @media (max-width: 600px) {
-      .logo { font-size: 1.8rem; }
-      .entry-unicode { font-size: 1.2rem; }
-      .stats-bar { gap: 1.5rem; }
+      .serp-thumbnail-wrap { display: none; }
+      .serp-title { font-size: 1.05rem; }
+      .serp-snippet { font-size: 0.85rem; }
+      .logo { font-size: 1.2rem; }
       .registrar-grid { grid-template-columns: repeat(2, 1fr); }
     }
+
+    /* Availability layer */
+    .availability-section { margin-top:24px; padding:20px; background: linear-gradient(135deg, rgba(201,169,110,0.08) 0%, rgba(201,169,110,0.02) 100%); border:1px solid var(--gold); border-radius:12px; }
+    .availability-title { font-family:'Cinzel',serif; font-size:15px; font-weight:600; color:var(--gold); margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+    .avail-card { display:flex; justify-content:space-between; align-items:center; background:var(--surface); padding:14px 16px; border-radius:8px; border:1px solid var(--border); margin-bottom:10px; transition:all .2s; }
+    .avail-card:hover { border-color:var(--gold); background:var(--surface-2); }
+    .avail-card:last-child { margin-bottom:0; }
+    .avail-domain { font-family:'Cinzel',serif; font-size:15px; color:var(--text); }
+    .avail-meaning { font-size:12px; color:var(--text-muted); margin-top:3px; }
+    .avail-action { color:var(--gold); font-size:13px; font-weight:500; white-space:nowrap; padding:6px 14px; border:1px solid var(--gold); border-radius:6px; transition:all .2s; text-decoration:none; }
+    .avail-action:hover { background:var(--gold); color:#0a0a0a; }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo">PUNYCODEX</div>
-    <div class="tagline">Search Engine for the Unicode Web</div>
-    <div class="stats-bar" id="statsBar">
-      <div class="stat"><div class="stat-value" id="statEntries">—</div><div class="stat-label">Entries</div></div>
-      <div class="stat"><div class="stat-value" id="statSites">—</div><div class="stat-label">Sites Indexed</div></div>
-      <div class="stat"><div class="stat-value" id="statAvailable">—</div><div class="stat-label">Available</div></div>
+    <div class="header-inner">
+      <div class="logo-row">
+        <div class="logo">PUNYCODEX</div>
+        <div class="logo-sub">Curated Unicode Real Estate Platform</div>
+      </div>
+      <div class="search-box">
+        <span class="search-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </span>
+        <input type="text" id="searchInput" placeholder="Search gods, myths, and curated domains..." autocomplete="off" autocapitalize="off" spellcheck="false">
+        <button class="search-clear" id="searchClear">×</button>
+        <div class="autocomplete-dropdown" id="autocompleteDropdown"></div>
+      </div>
     </div>
   </header>
 
-  <section class="search-section">
-    <div class="search-box">
-      <input type="text" id="searchInput" placeholder="Search gods, names, meanings..." autocomplete="off">
-    </div>
-    <div class="filters">
-      <select id="pantheonFilter">
-        <option value="">All Pantheons</option>
-      </select>
-      <select id="tierFilter">
-        <option value="">All Tiers</option>
-        <option value="dual">Dual-Tier</option>
-        <option value="1">Tier 1</option>
-        <option value="2">Tier 2</option>
-      </select>
-      <select id="siteFilter">
-        <option value="">All</option>
-        <option value="true">With Site</option>
-        <option value="false">Available</option>
-      </select>
-    </div>
-  </section>
+  <div class="mode-tabs">
+    <button class="mode-tab active" data-mode="web">Discover</button>
+    <button class="mode-tab" data-mode="network">Our Properties</button>
+    <button class="mode-tab" data-mode="domains">Available</button>
+    <label class="unicode-toggle" title="Only show domains with actual Unicode characters (xn--)">
+      <input type="checkbox" id="unicodeOnly" onchange="toggleUnicodeOnly()">
+      <span>Unicode Only</span>
+    </label>
+  </div>
 
   <section class="results" id="results">
-    <div class="empty">Type to search the Unicode web...</div>
+    <div class="empty">
+      <div class="empty-icon">🌐</div>
+      <div class="empty-title">Search the Unicode Web</div>
+      <div class="empty-sub">Find gods, domains, and sites across the Unicode namespace</div>
+    </div>
   </section>
 
   <script>
     const API_BASE = '';
     let debounceTimer;
+    let currentMode = 'web';
+    let focusedIndex = -1;
+    let currentResults = [];
 
-    async function loadStats() {
+    // ====== MODE SWITCHING ======
+    const modeTabs = document.querySelectorAll('.mode-tab');
+    const searchInput = document.getElementById('searchInput');
+    const searchClear = document.getElementById('searchClear');
+    const resultsEl = document.getElementById('results');
+
+    modeTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const mode = tab.dataset.mode;
+        setMode(mode);
+      });
+    });
+
+    function setMode(mode) {
+      currentMode = mode;
+      modeTabs.forEach(t => t.classList.toggle('active', t.dataset.mode === mode));
+      searchInput.placeholder = mode === 'domains' ? 'Find gods, names, meanings...' : 'Search gods, myths, and curated domains...';
+      searchInput.focus();
+      
+      if (!searchInput.value.trim()) {
+        showEmptyState(mode);
+      } else {
+        if (mode === 'domains') searchDomains();
+        else searchWeb();
+      }
+      
+      window.location.hash = mode;
+    }
+
+    if (window.location.hash === '#domains') {
+      setMode('domains');
+    }
+
+    function showEmptyState(mode) {
+      if (mode === 'web') {
+        resultsEl.innerHTML = `
+          <div class="empty">
+            <div class="empty-icon">🌐</div>
+            <div class="empty-title">Discover the Unicode Web</div>
+            <div class="empty-sub">Search gods, myths, and curated domains across the Unicode namespace</div>
+          </div>
+        `;
+      } else {
+        resultsEl.innerHTML = `
+          <div class="empty">
+            <div class="empty-icon">🔱</div>
+            <div class="empty-title">Find a Domain</div>
+            <div class="empty-sub">Search the PUNYCODEX lexicon of 850 Unicode domain names</div>
+          </div>
+        `;
+      }
+    }
+
+    // ====== SEARCH INPUT ======
+    searchInput.addEventListener('input', () => {
+      searchClear.classList.toggle('visible', searchInput.value.length > 0);
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        if (currentMode === 'web') {
+          fetchAutocomplete(searchInput.value.trim());
+          searchWeb();
+        }
+        else searchDomains();
+      }, 200);
+    });
+
+    searchClear.addEventListener('click', () => {
+      searchInput.value = '';
+      searchClear.classList.remove('visible');
+      hideAutocomplete();
+      searchInput.focus();
+      showEmptyState(currentMode);
+    });
+
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        clearTimeout(debounceTimer);
+        hideAutocomplete();
+        if (currentMode === 'web') searchWeb();
+        else searchDomains();
+      }
+    });
+
+    // Hide autocomplete on click outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.search-box')) hideAutocomplete();
+    });
+
+    // ====== KEYBOARD NAVIGATION ======
+    document.addEventListener('keydown', (e) => {
+      if (e.target === searchInput) {
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          focusResult(0);
+        }
+        return;
+      }
+      
+      const results = document.querySelectorAll('.serp-result');
+      if (results.length === 0) return;
+      
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        focusResult(Math.min(focusedIndex + 1, results.length - 1));
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (focusedIndex <= 0) {
+          searchInput.focus();
+          focusedIndex = -1;
+        } else {
+          focusResult(focusedIndex - 1);
+        }
+      } else if (e.key === 'Escape') {
+        searchInput.focus();
+        focusedIndex = -1;
+      }
+    });
+
+    function focusResult(index) {
+      const results = document.querySelectorAll('.serp-result');
+      focusedIndex = index;
+      results.forEach((r, i) => {
+        if (i === index) {
+          r.focus();
+          r.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      });
+    }
+
+    // ====== LOADING SKELETON ======
+    function showSkeleton(count = 3) {
+      let html = '';
+      for (let i = 0; i < count; i++) {
+        html += `
+          <div class="skeleton-result">
+            <div class="skeleton-header">
+              <div class="skeleton-favicon skeleton"></div>
+              <div class="skeleton-body">
+                <div class="skeleton-line short skeleton"></div>
+                <div class="skeleton-line title skeleton"></div>
+                <div class="skeleton-line medium skeleton"></div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+      resultsEl.innerHTML = html;
+    }
+
+    // ====== AUTOCOMPLETE ======
+    async function fetchAutocomplete(q) {
+      if (!q || q.length < 1) { hideAutocomplete(); return; }
       try {
-        const res = await fetch(`${API_BASE}/api/stats`);
+        const res = await fetch(`${API_BASE}/api/search/suggest?q=${encodeURIComponent(q)}&limit=8`);
         const data = await res.json();
-        document.getElementById('statEntries').textContent = data.total;
-        document.getElementById('statSites').textContent = data.sites?.active || 0;
-        document.getElementById('statAvailable').textContent = data.sites?.available || 0;
-      } catch (e) {
-        console.error('Stats load failed', e);
-      }
+        renderAutocomplete(data.suggestions);
+      } catch { hideAutocomplete(); }
     }
 
-    async function loadPantheons() {
-      try {
-        const res = await fetch(`${API_BASE}/api/pantheons`);
-        const pantheons = await res.json();
-        const select = document.getElementById('pantheonFilter');
-        pantheons.forEach(p => {
-          const opt = document.createElement('option');
-          opt.value = p;
-          opt.textContent = p.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-          select.appendChild(opt);
+    function renderAutocomplete(suggestions) {
+      const dropdown = document.getElementById('autocompleteDropdown');
+      if (!suggestions.length) { hideAutocomplete(); return; }
+
+      let html = '';
+      suggestions.forEach((s, i) => {
+        const icon = s.type === 'entry' ? '🔱' : '🌐';
+        const meta = s.type === 'entry' ? (s.pantheon || 'entry') : 'site';
+        html += `
+          <div class="autocomplete-item" data-index="${i}" data-text="${escapeHtml(s.text)}">
+            <span class="autocomplete-icon">${icon}</span>
+            <span class="autocomplete-text">${escapeHtml(s.text)}</span>
+            <span class="autocomplete-meta">${meta}</span>
+          </div>
+        `;
+      });
+
+      dropdown.innerHTML = html;
+      dropdown.classList.add('visible');
+
+      dropdown.querySelectorAll('.autocomplete-item').forEach(item => {
+        item.addEventListener('click', () => {
+          searchInput.value = item.dataset.text;
+          hideAutocomplete();
+          searchWeb();
         });
+      });
+    }
+
+    function hideAutocomplete() {
+      document.getElementById('autocompleteDropdown').classList.remove('visible');
+    }
+
+    // ====== WEB SEARCH ======
+    // ====== CLICK TRACKING WITH DWELL TIME ======
+    // Sends exactly ONE event per click: with actual dwell time if user returns,
+    // or dwellTime=0 if they don't return within 30 seconds.
+    let pendingClick = null;
+    let pendingClickTimer = null;
+
+    function sendClickEvent(query, siteId, position, dwellTimeMs) {
+      fetch('/api/search/click', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query, siteId, position, dwellTimeMs })
+      }).catch(() => {}); // Silent fail
+    }
+
+    function trackClick(query, siteId, position) {
+      // Cancel any previous pending click
+      if (pendingClickTimer) clearTimeout(pendingClickTimer);
+
+      pendingClick = { query, siteId, position, clickTime: Date.now() };
+
+      // If user never returns, send with dwellTime=0 after 30s
+      pendingClickTimer = setTimeout(() => {
+        if (pendingClick) {
+          sendClickEvent(pendingClick.query, pendingClick.siteId, pendingClick.position, 0);
+          pendingClick = null;
+        }
+      }, 30000);
+    }
+
+    window.addEventListener('blur', () => {
+      if (pendingClick) pendingClick.leftAt = Date.now();
+    });
+
+    window.addEventListener('focus', () => {
+      if (pendingClick && pendingClick.leftAt) {
+        const dwellTimeMs = Math.min(Date.now() - pendingClick.leftAt, 300000);
+        sendClickEvent(pendingClick.query, pendingClick.siteId, pendingClick.position, dwellTimeMs);
+        pendingClick = null;
+        if (pendingClickTimer) clearTimeout(pendingClickTimer);
+      }
+    });
+
+    async function searchWeb() {
+      const q = searchInput.value.trim();
+      if (!q) { showEmptyState(currentMode); return; }
+
+      showSkeleton();
+
+      const apiMode = currentMode === 'network' ? 'network' : 'all';
+      try {
+        const [searchRes, dymRes, relatedRes, knowledgeRes, paaRes] = await Promise.all([
+          fetch(`${API_BASE}/api/search/web?q=${encodeURIComponent(q)}&limit=20&mode=${apiMode}`),
+          fetch(`${API_BASE}/api/search/didyoumean?q=${encodeURIComponent(q)}&limit=3`),
+          fetch(`${API_BASE}/api/search/related?q=${encodeURIComponent(q)}&limit=6`),
+          fetch(`${API_BASE}/api/search/knowledge?q=${encodeURIComponent(q)}`).catch(() => ({ ok: false })),
+          fetch(`${API_BASE}/api/search/paa?q=${encodeURIComponent(q)}&limit=4`).catch(() => ({ ok: false }))
+        ]);
+
+        const data = await searchRes.json();
+        const dymData = await dymRes.json();
+        const relatedData = await relatedRes.json();
+        let knowledgeData = null;
+        if (knowledgeRes.ok) {
+          try { knowledgeData = await knowledgeRes.json(); } catch { /* ignore */ }
+        }
+        let paaData = null;
+        if (paaRes.ok) {
+          try { paaData = await paaRes.json(); } catch { /* ignore */ }
+        }
+
+        currentResults = data.results;
+        renderWebResults(data, dymData.suggestions, relatedData.related, knowledgeData, paaData?.questions);
       } catch (e) {
-        console.error('Pantheons load failed', e);
+        resultsEl.innerHTML = `<div class="empty"><div class="empty-title">Error</div><div class="empty-sub">${e.message}</div></div>`;
       }
     }
 
-    async function search() {
-      const q = document.getElementById('searchInput').value;
-      const pantheon = document.getElementById('pantheonFilter').value;
-      const tier = document.getElementById('tierFilter').value;
-      const hasSite = document.getElementById('siteFilter').value;
-      const resultsEl = document.getElementById('results');
+    function renderWebResults(data, didYouMean, related, knowledgePanel, paaQuestions) {
+      // Filter to Unicode-only if toggle is on
+      const unicodeOnly = document.getElementById('unicodeOnly')?.checked;
+      if (unicodeOnly && data.results) {
+        data.results = data.results.filter(r => r.isPunycode);
+      }
 
-      if (!q && !pantheon && !tier && !hasSite) {
-        resultsEl.innerHTML = '<div class="empty">Type to search the Unicode web...</div>';
+      let html = '';
+
+      // Knowledge panel (if available)
+      if (knowledgePanel && knowledgePanel.entry) {
+        const e = knowledgePanel.entry;
+        const tierClass = e.tier === 'dual' ? 'tier-dual' : e.tier === '1' ? 'tier-1' : 'tier-2';
+        const tierLabel = e.tier === 'dual' ? 'Dual-Tier' : `Tier ${e.tier}`;
+
+        html += `<div class="knowledge-panel">`;
+        html += `<div class="kp-header">`;
+        html += `<div>`;
+        html += `<div class="kp-name">${escapeHtml(e.unicode)}</div>`;
+        if (e.greek && e.greek !== '-') html += `<div class="kp-greek">${escapeHtml(e.greek)}</div>`;
+        if (e.meaning) html += `<div class="kp-meaning">${escapeHtml(e.meaning)}</div>`;
+        html += `<div class="kp-badges">`;
+        html += `<span class="kp-badge ${tierClass}">${tierLabel}</span>`;
+        html += `<span class="kp-badge pantheon">${escapeHtml(e.pantheon)}</span>`;
+        html += `</div></div></div>`;
+
+        if (knowledgePanel.sites && knowledgePanel.sites.length) {
+          html += `<div class="kp-sites"><div class="kp-sites-title">Live Sites</div><div class="kp-site-list">`;
+          knowledgePanel.sites.forEach(s => {
+            html += `<a href="https://${s.punycode}" target="_blank" rel="noopener" class="kp-site-item">`;
+            if (s.favicon_path) {
+              html += `<img class="kp-site-favicon" src="${s.favicon_path}" alt="" onerror="this.style.display='none'">`;
+            }
+            html += `<span class="kp-site-domain">${escapeHtml(s.punycode)}</span>`;
+            if (s.title) html += `<span class="kp-site-title">${escapeHtml(s.title)}</span>`;
+            html += `</a>`;
+          });
+          html += `</div></div>`;
+        }
+
+        if (knowledgePanel.related && knowledgePanel.related.length) {
+          html += `<div class="kp-related"><div class="kp-sites-title">Related</div><div class="kp-related-grid">`;
+          knowledgePanel.related.forEach(r => {
+            const label = r.unicode || r.ascii;
+            html += `<span class="kp-related-chip" onclick="searchFor('${escapeHtml(label)}')">${escapeHtml(label)}</span>`;
+          });
+          html += `</div></div>`;
+        }
+
+        html += `</div>`; // knowledge-panel
+      }
+
+      if (data.results.length === 0) {
+        let html = `
+          <div class="empty">
+            <div class="empty-icon">🔍</div>
+            <div class="empty-title">No results for "${escapeHtml(data.query)}"</div>
+            <div class="empty-sub">We're building the Unicode web index. Try a broader search.</div>
+        `;
+        if (didYouMean && didYouMean.length) {
+          html += `<div class="did-you-mean">Did you mean: ${didYouMean.map(s => `<a onclick="searchFor('${escapeHtml(s.text)}')">${escapeHtml(s.text)}</a>`).join(', ')}?</div>`;
+        }
+        html += `
+            <div class="build-cta">
+              <h3>🚧 Index Under Construction</h3>
+              <p>Have a Unicode domain to share?</p>
+              <a href="admin.html" class="site-link primary">Submit a Domain</a>
+            </div>
+          </div>
+        `;
+        resultsEl.innerHTML = html;
         return;
       }
 
-      resultsEl.innerHTML = '<div class="loading">Searching the index...</div>';
+      // Did you mean banner (only if we got suggestions and they're different from query)
+      if (didYouMean && didYouMean.length && didYouMean[0].text.toLowerCase() !== data.query.toLowerCase()) {
+        html += `<div class="did-you-mean">Did you mean: ${didYouMean.map(s => `<a onclick="searchFor('${escapeHtml(s.text)}')">${escapeHtml(s.text)}</a>`).join(', ')}?</div>`;
+      }
+
+      // People Also Ask
+      if (paaQuestions && paaQuestions.length) {
+        html += `<div class="paa-section">`;
+        html += `<div class="paa-title">People Also Ask</div>`;
+        paaQuestions.forEach((qa, idx) => {
+          html += `<div class="paa-item" onclick="togglePaa(this)">`;
+          html += `<div class="paa-question">${escapeHtml(qa.question)}<span class="paa-chevron">▼</span></div>`;
+          html += `<div class="paa-answer">${escapeHtml(qa.answer)}</div>`;
+          html += `</div>`;
+        });
+        html += `</div>`;
+      }
+
+      const semanticBadge = data.isSemanticFallback ? `<span style="color:var(--link-blue);margin-left:0.5rem;font-size:0.75rem">🧠 semantic match</span>` : '';
+      html += `<div class="result-count">About ${data.results.length} results (${data.timing}s)${semanticBadge}</div>`;
+
+      data.results.forEach((r, i) => {
+        const tierClass = r.tier === 'dual' ? 'tier-dual' : r.tier === '1' ? 'tier-1' : 'tier-2';
+        const tierLabel = r.tier === 'dual' ? 'Dual-Tier' : `Tier ${r.tier}`;
+        
+        html += `<div class="serp-result" tabindex="0" data-index="${i}" data-site-id="${r.id}">`;
+        
+        html += `<div class="serp-header">`;
+        
+        // Favicon
+        if (r.faviconPath) {
+          html += `<img class="serp-favicon" src="${r.faviconPath}" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">`;
+          html += `<div class="serp-favicon-fallback" style="display:none">🌐</div>`;
+        } else {
+          html += `<div class="serp-favicon-fallback">🌐</div>`;
+        }
+        
+        html += `<div class="serp-body">`;
+        
+        // URL line
+        const breadcrumb = r.title ? r.title.split(/[\|\–\-—]/)[0].trim().substring(0, 40) : '';
+        html += `
+          <div class="serp-url-line">
+            <span class="serp-domain">${escapeHtml(r.punycode)}</span>
+            ${breadcrumb && breadcrumb !== r.punycode ? `<span class="serp-sep">›</span><span class="serp-breadcrumb">${escapeHtml(breadcrumb)}</span>` : ''}
+          </div>
+        `;
+
+        // Title
+        html += `<a href="${r.url}" target="_blank" rel="noopener" class="serp-title" onclick="trackClick('${escapeHtml(data.query)}', ${r.id}, ${i})">${r.title || r.domain}</a>`;
+
+        // Snippet with date prefix
+        let snippet = r.snippet || r.description || 'No description available.';
+        const datePrefix = r.publishedDate ? formatDate(r.publishedDate) + ' — ' : '';
+        html += `<div class="serp-snippet">${datePrefix}${snippet}</div>`;
+
+        // Freshness indicator
+        if (r.publishedDate) {
+          const relDate = formatRelativeDate(r.publishedDate);
+          const freshClass = relDate.includes('h') || relDate.includes('d') ? 'recent' : '';
+          html += `<div class="serp-freshness ${freshClass}">${relDate}</div>`;
+        }
+
+        // Meta badges
+        html += `<div class="serp-meta">`;
+        if (r.isPunycode) html += `<span class="unicode-badge">🌐 Unicode</span>`;
+        if (r.isFlagship) html += `<span class="serp-badge flagship">🏛️ Flagship</span>`;
+        if (r.tier && r.tierLabel) html += `<span class="serp-badge ${tierClass}">${tierLabel}</span>`;
+        if (r.pantheon) html += `<span class="serp-badge pantheon">${r.pantheon}</span>`;
+        if (r.sitemapEntries > 0) html += `<span class="serp-sitemap-badge">📑 ${r.sitemapEntries} pages</span>`;
+        if (r.ogVideo) html += `<span class="serp-sitemap-badge">▶️ Video</span>`;
+        // Lease status badge
+        if (r.leaseStatus === 'flagship' || r.isFlagship) {
+          html += `<span class="lease-badge flagship">👑 Crown Jewel</span>`;
+        } else if (r.tenant && r.tenant.name) {
+          html += `<span class="lease-badge leased">🔒 Leased</span>`;
+        } else if (r.leaseStatus === 'available') {
+          html += `<span class="lease-badge available">🔑 Available</span>`;
+        }
+        html += `</div>`;
+
+        // Tenant business card
+        if (r.tenant && r.tenant.name) {
+          html += `<div class="tenant-card">`;
+          html += `<span class="tenant-label">🏪</span>`;
+          html += `<span class="tenant-name">${escapeHtml(r.tenant.name)}</span>`;
+          if (r.tenant.category) html += `<span class="tenant-category">${escapeHtml(r.tenant.category)}</span>`;
+          if (r.tenant.frontUrl) {
+            html += `<a href="${r.tenant.frontUrl}" target="_blank" rel="noopener" style="margin-left:auto;font-size:0.72rem;color:var(--link-blue)">Visit Store →</a>`;
+          }
+          html += `</div>`;
+        }
+
+        // Sub-page sitelinks from deep crawl (preferred)
+        if (r.subPages && r.subPages.length > 0) {
+          html += `<div class="serp-sitelinks">`;
+          r.subPages.forEach(p => {
+            const label = p.h1 || p.title || p.url;
+            html += `<a href="${p.url}" target="_blank" rel="noopener" class="serp-sitelink">${escapeHtml(label.substring(0, 35))}</a>`;
+          });
+          html += `</div>`;
+        }
+        // Fallback: anchor text quick links
+        else if (r.anchorTexts && r.anchorTexts.length > 0) {
+          const links = r.anchorTexts.slice(0, 4);
+          html += `<div class="serp-sitelinks">`;
+          links.forEach(a => {
+            const text = typeof a === 'string' ? a : (a.text || '');
+            const href = typeof a === 'string' ? r.url : (a.href || r.url);
+            if (text) html += `<a href="${href}" target="_blank" rel="noopener" class="serp-sitelink">${escapeHtml(text.substring(0, 30))}</a>`;
+          });
+          html += `</div>`;
+        }
+
+        // Unicode domain display
+        if (r.domain !== r.punycode) {
+          html += `<div class="serp-unicode-domain">${escapeHtml(r.domain)}</div>`;
+        }
+
+        // Utility links
+        html += `
+          <div class="serp-utilities">
+            <span class="serp-utility" onclick="showSimilar('${r.punycode}')">Similar</span>
+            <a href="${r.url}" target="_blank" rel="noopener" class="serp-utility">Visit ↗</a>
+          </div>
+        `;
+
+        html += `</div>`; // serp-body
+        
+        // Thumbnail
+        if (r.ogImagePath) {
+          html += `<div class="serp-thumbnail-wrap"><img class="serp-thumbnail" src="${r.ogImagePath}" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>`;
+        }
+        
+        html += `</div>`; // serp-header
+        html += `</div>`; // serp-result
+      });
+
+      // Related searches
+      if (related && related.length) {
+        html += `
+          <div class="related-searches">
+            <div class="related-title">Related Searches</div>
+            <div class="related-grid">
+              ${related.map(r => `<span class="related-chip" onclick="searchFor('${escapeHtml(r.unicode || r.ascii)}')">${escapeHtml(r.unicode || r.ascii)}</span>`).join('')}
+            </div>
+          </div>
+        `;
+      }
+
+      // Availability layer — domains for lease matching this query
+      if (data.availability && data.availability.length) {
+        html += `<div class="availability-section">`;
+        html += `<div class="availability-title">🔑 Available for Lease</div>`;
+        data.availability.forEach(avail => {
+          const tierClass = avail.tier === 'dual' ? 'tier-dual' : avail.tier === '1' ? 'tier-1' : 'tier-2';
+          const tierLabel = avail.tier === 'dual' ? 'Dual-Tier' : `Tier ${avail.tier}`;
+          html += `<div class="avail-card">`;
+          html += `<div>`;
+          html += `<div class="avail-domain">${escapeHtml(avail.punycode)}</div>`;
+          html += `<div class="avail-meaning">${escapeHtml(avail.unicode)} — ${escapeHtml(avail.meaning || '')} <span class="serp-badge ${tierClass}">${tierLabel}</span></div>`;
+          html += `</div>`;
+          html += `<a href="https://www.namecheap.com/domains/registration/results/?domain=${encodeURIComponent(avail.punycode)}" target="_blank" rel="noopener" class="avail-action">Register →</a>`;
+          html += `</div>`;
+        });
+        html += `</div>`;
+      }
+
+      resultsEl.innerHTML = html;
+      focusedIndex = -1;
+    }
+
+    function searchFor(text) {
+      searchInput.value = text;
+      searchWeb();
+    }
+
+    function toggleUnicodeOnly() {
+      searchWeb();
+    }
+
+    function togglePaa(el) {
+      el.classList.toggle('expanded');
+    }
+
+    async function showSimilar(punycode) {
+      try {
+        const res = await fetch(`${API_BASE}/api/sites/duplicates?threshold=3`);
+        const data = await res.json();
+        // Find cluster containing this punycode
+        const cluster = data.clusters.find(c => c.sites.some(s => s.punycode === punycode));
+        if (cluster && cluster.sites.length > 1) {
+          const others = cluster.sites.filter(s => s.punycode !== punycode);
+          const list = others.map(s => `• ${s.punycode}${s.title ? ' — ' + s.title : ''}`).join('\n');
+          alert(`Similar pages (${cluster.count - 1} found):\n\n${list}`);
+        } else {
+          alert('No similar pages found in the index.');
+        }
+      } catch (e) {
+        alert('Could not fetch similar pages.');
+      }
+    }
+
+    // ====== DOMAIN DISCOVERY ======
+    async function searchDomains() {
+      const q = searchInput.value.trim();
+      if (!q) { showEmptyState('domains'); return; }
+
+      resultsEl.innerHTML = '<div class="empty"><div class="empty-sub">Searching the lexicon...</div></div>';
 
       try {
         const params = new URLSearchParams();
         if (q) params.set('q', q);
-        if (pantheon) params.set('pantheon', pantheon);
-        if (tier) params.set('tier', tier);
-        if (hasSite) params.set('hasSite', hasSite);
-
         const res = await fetch(`${API_BASE}/api/search?${params}`);
         const data = await res.json();
-        renderResults(data);
+        renderDomainResults(data);
       } catch (e) {
-        resultsEl.innerHTML = `<div class="empty">Error: ${e.message}</div>`;
+        resultsEl.innerHTML = `<div class="empty"><div class="empty-title">Error</div><div class="empty-sub">${e.message}</div></div>`;
       }
     }
 
-    function renderResults(data) {
-      const resultsEl = document.getElementById('results');
-
+    function renderDomainResults(data) {
       if (data.entries.length === 0) {
-        resultsEl.innerHTML = '<div class="empty">No results found.</div>';
+        resultsEl.innerHTML = '<div class="empty"><div class="empty-title">No results found</div></div>';
         return;
       }
 
-      let html = `
-        <div class="result-count">
-          <span>${data.total} result${data.total !== 1 ? 's' : ''}</span>
-          <span class="filter-hint">Sort: Tier &rarr; Unicode</span>
-        </div>
-      `;
+      let html = `<div class="result-count">${data.total} result${data.total !== 1 ? 's' : ''}</div>`;
 
       data.entries.forEach(entry => {
         const tierClass = entry.tier === 'dual' ? 'tier-dual' : entry.tier === '1' ? 'tier-1' : 'tier-2';
@@ -510,7 +1880,6 @@
 
         html += `<div class="entry-card ${cardClass}">`;
         
-        // Header (clickable)
         html += `
           <a href="entry.html?id=${entry.id}" style="text-decoration:none;color:inherit;display:block;">
             <div class="entry-header">
@@ -523,7 +1892,6 @@
           </a>
         `;
 
-        // Business card (live site)
         if (hasSite) {
           const site = entry.site;
           html += `
@@ -532,31 +1900,24 @@
                 <span class="live-indicator"></span>
                 <span class="live-label">Live Site</span>
               </div>
-              <div class="site-domain">${site.punycode} <span style="color:var(--text-dim)">(${site.domain})</span></div>
+              <div class="site-domain">${site.punycode}</div>
               ${site.title ? `<div class="site-title">${escapeHtml(site.title)}</div>` : ''}
               ${site.description ? `<div class="site-description">${escapeHtml(site.description)}</div>` : ''}
-              ${site.snippet ? `<div class="site-snippet">${escapeHtml(site.snippet)}</div>` : ''}
               <div class="site-actions">
-                <a href="https://${site.punycode}" target="_blank" rel="noopener" class="site-link primary">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                  Visit Site
-                </a>
+                <a href="https://${site.punycode}" target="_blank" rel="noopener" class="site-link primary">Visit ↗</a>
                 <a href="entry.html?id=${entry.id}" class="site-link">Lexicon Entry</a>
               </div>
             </div>
           `;
         }
-
-        // Availability card (no live site)
         else if (entry.availability) {
           const puny = entry.punycode || entry.ascii + '.com';
-          const unicode = entry.unicode + '.com';
           html += `
             <div class="availability-card">
               <div class="available-badge">Available</div>
-              <div class="site-domain">${puny} <span style="color:var(--text-dim)">(${unicode})</span></div>
-              <div class="site-description">No indexed site found. This Unicode domain name may be available for registration.</div>
-              <div class="site-actions" style="margin-top:0.75rem;">
+              <div class="site-domain">${puny}</div>
+              <div class="site-description">This Unicode domain name may be available for registration.</div>
+              <div class="site-actions">
                 <a href="entry.html?id=${entry.id}" class="site-link">View Entry</a>
               </div>
               <div class="registrar-grid">
@@ -575,6 +1936,7 @@
       resultsEl.innerHTML = html;
     }
 
+    // ====== UTILITIES ======
     function escapeHtml(str) {
       if (!str) return '';
       const div = document.createElement('div');
@@ -582,17 +1944,38 @@
       return div.innerHTML;
     }
 
-    document.getElementById('searchInput').addEventListener('input', () => {
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(search, 150);
-    });
+    function formatDate(isoString) {
+      try {
+        const d = new Date(isoString);
+        if (isNaN(d.getTime())) return '';
+        const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+      } catch { return ''; }
+    }
 
-    document.getElementById('pantheonFilter').addEventListener('change', search);
-    document.getElementById('tierFilter').addEventListener('change', search);
-    document.getElementById('siteFilter').addEventListener('change', search);
+    function formatRelativeDate(isoString) {
+      try {
+        const d = new Date(isoString);
+        if (isNaN(d.getTime())) return '';
+        const now = new Date();
+        const diffMs = now - d;
+        const diffSec = Math.floor(diffMs / 1000);
+        const diffMin = Math.floor(diffSec / 60);
+        const diffHr = Math.floor(diffMin / 60);
+        const diffDay = Math.floor(diffHr / 24);
+        const diffWeek = Math.floor(diffDay / 7);
+        const diffMonth = Math.floor(diffDay / 30);
+        const diffYear = Math.floor(diffDay / 365);
 
-    loadStats();
-    loadPantheons();
+        if (diffSec < 60) return 'just now';
+        if (diffMin < 60) return `${diffMin}m ago`;
+        if (diffHr < 24) return `${diffHr}h ago`;
+        if (diffDay < 7) return `${diffDay}d ago`;
+        if (diffWeek < 4) return `${diffWeek}w ago`;
+        if (diffMonth < 12) return `${diffMonth}mo ago`;
+        return `${diffYear}y ago`;
+      } catch { return ''; }
+    }
   </script>
 </body>
 </html>

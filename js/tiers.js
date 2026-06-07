@@ -1,6 +1,6 @@
 /**
- * PÚNYCODEX — Tier System Page JavaScript v2
- * Hero counters, tier explorer, Big Four, real punycode converter
+ * PÚNYCODEX — Tier System Page JavaScript v3
+ * Hero counters, tier explorer, multi-domain deep dive, real punycode converter
  */
 
 (function() {
@@ -55,8 +55,7 @@
 
         const containers = {
             'tier1-tags': data.filter(a => a.tier === 'tier-1').sort((a, b) => a.name.localeCompare(b.name)),
-            'tier2-tags': data.filter(a => a.tier === 'tier-2').sort((a, b) => a.name.localeCompare(b.name)),
-            'tier-dual-tags': data.filter(a => a.tier === 'dual-tier').sort((a, b) => a.name.localeCompare(b.name))
+            'tier2-tags': data.filter(a => a.tier === 'tier-2').sort((a, b) => a.name.localeCompare(b.name))
         };
 
         Object.entries(containers).forEach(([id, items]) => {
@@ -94,8 +93,8 @@
 
     function buildExplorerCard(a) {
         const url = getArchetypeUrl(a);
-        const tierClass = a.tier === 'tier-1' ? 'tier-1' : a.tier === 'tier-2' ? 'tier-2' : 'dual-tier';
-        const tierLabel = a.tier === 'tier-1' ? 'T1' : a.tier === 'tier-2' ? 'T2' : 'Dual';
+        const tierClass = a.tier === 'tier-1' ? 'tier-1' : 'tier-2';
+        const tierLabel = a.tier === 'tier-1' ? 'T1' : 'T2';
 
         const inner = `
             <div class="ex-card-header">
@@ -135,11 +134,11 @@
             );
         }
 
-        // Sort: dual first, then tier-1, then tier-2, then alphabetically
+        // Sort: tier-1 first, then tier-2, then alphabetically
         filtered.sort((a, b) => {
-            const tierOrder = { 'dual-tier': 0, 'tier-1': 1, 'tier-2': 2 };
-            const ta = tierOrder[a.tier] ?? 3;
-            const tb = tierOrder[b.tier] ?? 3;
+            const tierOrder = { 'tier-1': 0, 'tier-2': 1 };
+            const ta = tierOrder[a.tier] ?? 2;
+            const tb = tierOrder[b.tier] ?? 2;
             if (ta !== tb) return ta - tb;
             return a.name.localeCompare(b.name);
         });
@@ -209,28 +208,31 @@
     }
 
     // ═══════════════════════════════════════════════════════════
-    // BIG FOUR — dual-tier deep dive
+    // MULTI-DOMAIN NAMES — deep dive for names with multiple domains
     // ═══════════════════════════════════════════════════════════
-    function buildBigFour() {
+    function buildMultiDomain() {
         const container = document.getElementById('big-four-grid');
         if (!container) return;
-        const data = getArchetypes().filter(a => a.tier === 'dual-tier').sort((a, b) => a.name.localeCompare(b.name));
+        // Find archetypes with domainAlt entries (multiple owned domains)
+        const data = getArchetypes().filter(a => a.domainAlt && a.domainAlt.length > 0).sort((a, b) => a.name.localeCompare(b.name));
         if (!data.length) return;
 
         const notes = {
-            apollon: 'The circumflex on -ôn represents both stress and length on the final syllable. The plain ASCII "apollon.com" is also a historically attested form.',
-            hades: 'The smooth breathing (Ἅ-) and the long vowel η create multiple valid restorations: hádēs (acute), hādēs (macron-only), and hades (plain).',
-            hekate: 'The acute on the first syllable (hekátē) is the standard Attic form. The plain "hekate.com" reflects the modern English spelling.',
-            nike: 'The acute on the first syllable (níkē) preserves the pitch accent. The plain "nike.com" drops all marks but remains recognizable.'
+            apollon: 'Two valid restorations: apóllōn (acute + macron, Tier 1) and apollōn (macron-only, Tier 2). Both are scholarly. Both are owned.',
+            hades: 'Two valid restorations: hádēs (acute + macron, Tier 1) and hádes (acute-only, Tier 2). Both preserve what Greek gave us.',
+            hekate: 'Two valid restorations: hekátē (acute + macron, Tier 1) and hekatē (macron-only, Tier 2). The acute on the first syllable is the standard Attic form.',
+            nike: 'Three valid restorations: níkē (acute + macron, Tier 1), nikē (macron-only, Tier 2), and níkê (circumflex, Tier 2). Victory has many faces.',
+            aphrodite: 'Two valid restorations: aphrodítē (acute + macron, Tier 1) and aphrodītē (macron-only, Tier 2). Both are philologically defensible.',
+            poseidon: 'Two valid restorations: poseidôn (circumflex, Tier 2) and poseidōn (macron-only, Tier 2). Both preserve length; neither preserves stress. They converge.',
+            hermes: 'Two valid restorations: hermês (circumflex, Tier 2) and hermēs (macron-only, Tier 2). Both preserve length; the circumflex adds stress in a single sign.'
         };
 
         container.innerHTML = data.map(a => {
             const url = getArchetypeUrl(a);
             const note = notes[a.id] || '';
-            const alts = (a.domainAlt && a.domainAlt.length) ? a.domainAlt : [];
+            const alts = a.domainAlt || [];
             const forms = [
-                { label: 'Full', value: a.name, domain: a.domainUnicode },
-                { label: 'ASCII', value: a.id.charAt(0).toUpperCase() + a.id.slice(1), domain: a.id + '.com' }
+                { label: 'Primary', value: a.name, domain: a.domainUnicode }
             ];
             alts.forEach(alt => {
                 forms.push({ label: 'Variant', value: alt.replace('.com', ''), domain: alt });
@@ -260,7 +262,7 @@
         }).join('');
     }
 
-    buildBigFour();
+    buildMultiDomain();
 
     // ═══════════════════════════════════════════════════════════
     // REAL PUNYCODE CONVERTER (using browser URL API)

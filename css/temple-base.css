@@ -783,6 +783,14 @@ body {
     background: rgba(255, 255, 255, 0.02);
 }
 
+.breakdown-stack {
+    display: inline-block;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+    font-size: 0.75em;
+    opacity: 0.7;
+}
+
 .breakdown-note {
     font-size: 0.9rem;
     color: var(--white-dim);
@@ -879,7 +887,8 @@ body {
     gap: 0.75rem;
 }
 
-.source-badge {
+.source-badge,
+a.source-badge {
     display: inline-block;
     padding: 0.4rem 1rem;
     border: 1px solid color-mix(in srgb, var(--primary) 25%, transparent);
@@ -889,6 +898,7 @@ body {
     color: var(--primary);
     background: color-mix(in srgb, var(--primary) 5%, transparent);
     font-family: var(--font-mono);
+    text-decoration: none;
     transition: all 0.3s ease;
 }
 
@@ -1168,4 +1178,330 @@ body {
     .scroll-line {
         animation: none;
     }
+}
+/* ═══════════════════════════════════════════════════════════
+   Stacked Diacritics — Visual Unicode Decomposition
+   Injected into temple-base.css and type.css; kept here as
+   canonical reference.
+   ═══════════════════════════════════════════════════════════ */
+
+.stacked-diacritics {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.05em;
+    vertical-align: bottom;
+    font-family: var(--font-mono, 'SF Mono', Monaco, 'Cascadia Code', monospace);
+}
+
+.sd-char {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1;
+    vertical-align: bottom;
+    min-width: 1ch;
+}
+
+.sd-marks {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-size: 0.5em;
+    line-height: 0.7;
+    height: 0.6em;
+    margin-bottom: 0.08em;
+    white-space: nowrap;
+    opacity: 0.8;
+}
+
+.sd-mark {
+    display: inline-block;
+}
+
+.sd-base {
+    font-size: 1em;
+    line-height: 1;
+}
+
+.sd-plain {
+    font-size: 1em;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   Variant Chips — Scholarly Name Variations
+   ═══════════════════════════════════════════════════════════ */
+
+.variants-panel {
+    max-width: 800px;
+    margin: 2rem auto 0;
+    padding: 1.5rem 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--white-faint);
+    border-radius: 12px;
+    text-align: center;
+}
+
+.variants-panel-label {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--white-dim);
+    margin-bottom: 0.75rem;
+}
+
+.variants-panel-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-bottom: 0.75rem;
+}
+
+.variant-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.4rem 0.9rem;
+    border-radius: 100px;
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    border: 1px solid var(--white-faint);
+    background: rgba(255, 255, 255, 0.03);
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.variant-chip:hover {
+    border-color: var(--primary-dim);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.variant-owned {
+    border-color: var(--secondary);
+    background: rgba(var(--secondary-rgb, 196, 161, 109), 0.08);
+}
+
+.variant-owned::after {
+    content: 'OWNED';
+    font-size: 0.55rem;
+    letter-spacing: 0.08em;
+    margin-left: 0.5rem;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+    background: var(--secondary);
+    color: var(--black);
+    font-weight: 700;
+}
+
+.variant-ideal {
+    border-color: var(--primary);
+    border-style: dashed;
+}
+
+.variant-alt-stress {
+    border-color: var(--accent);
+}
+
+.variant-macron-only {
+    border-color: var(--white-dim);
+}
+
+.variant-ascii {
+    border-color: var(--white-faint);
+    border-style: dotted;
+}
+
+.variants-panel-note {
+    font-size: 0.8rem;
+    color: var(--white-dim);
+    line-height: 1.5;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   Etymology Section — Deep Ancestry Display
+   ═══════════════════════════════════════════════════════════ */
+
+.section-etymology {
+    background: rgba(212, 175, 55, 0.02);
+}
+
+.etymology-proto {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--white-faint);
+    border-radius: 12px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.proto-badge {
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border-radius: 100px;
+    border: 1px solid var(--primary-dim);
+    color: var(--primary);
+}
+
+.proto-form {
+    font-family: var(--font-mono);
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--secondary);
+    letter-spacing: 0.02em;
+}
+
+.proto-form::first-letter {
+    color: var(--primary);
+}
+
+.proto-gloss {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--white-dim);
+}
+
+.etymology-derivation {
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    text-align: center;
+}
+
+.cognate-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto 2rem;
+}
+
+.cognate-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--white-faint);
+    border-radius: 10px;
+    text-decoration: none;
+    transition: transform 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.cognate-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary-dim);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.cognate-lang {
+    font-family: var(--font-display);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--white-dim);
+}
+
+.cognate-form {
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    color: var(--white);
+}
+
+.cognate-rel {
+    font-size: 0.8rem;
+    color: var(--primary);
+    text-transform: capitalize;
+}
+
+.cognate-note {
+    font-size: 0.75rem;
+    color: var(--white-dim);
+    line-height: 1.4;
+    margin-top: 0.3rem;
+}
+
+.etymology-certainty {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.certainty-badge {
+    display: inline-block;
+    padding: 0.35rem 1rem;
+    border-radius: 100px;
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid;
+}
+
+.certainty-attested {
+    border-color: #4ade80;
+    color: #4ade80;
+    background: rgba(74, 222, 128, 0.08);
+}
+
+.certainty-speculative {
+    border-color: #fbbf24;
+    color: #fbbf24;
+    background: rgba(251, 191, 36, 0.08);
+}
+
+.certainty-disputed {
+    border-color: #f87171;
+    color: #f87171;
+    background: rgba(248, 113, 113, 0.08);
+}
+
+.certainty-unknown {
+    border-color: var(--white-dim);
+    color: var(--white-dim);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   Related Names — Cognate Subsection
+   ═══════════════════════════════════════════════════════════ */
+
+.related-cognates-header,
+.related-same-header {
+    max-width: 900px;
+    margin: 0 auto 1.5rem;
+    text-align: center;
+}
+
+.related-subtitle {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+}
+
+.related-subtitle-desc {
+    font-size: 0.85rem;
+    color: var(--white-dim);
+    margin: 0;
+}
+
+.related-cognate-rel {
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--primary-dim);
+    margin-top: 0.3rem;
 }

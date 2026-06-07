@@ -1,4 +1,4 @@
-﻿const { spawn } = require('child_process');
+const { spawn } = require('child_process');
 const { domainToASCII } = require('url');
 const path = require('path');
 const fs = require('fs');
@@ -7,10 +7,10 @@ const ROOT = path.join(__dirname, '..');
 const VERCEL = 'vercel';
 
 const SITES = [
-  { id: 'libye', unicode: 'Libyē' },
-  { id: 'aigyptos', unicode: 'Aígyptos' },
-  { id: 'asia', unicode: 'Asíā' },
-  { id: 'europe', unicode: 'Eurṓpē' },
+  { id: 'libye', unicode: 'Libye' },
+  { id: 'aigyptos', unicode: 'A�gyptos' },
+  { id: 'asia', unicode: 'As�a' },
+  { id: 'europe', unicode: 'Eur?pe' },
 ];
 
 for (const s of SITES) {
@@ -41,7 +41,7 @@ function runVercel(args, cwd) {
 }
 
 async function main() {
-  console.log('═══ Deploy 4 Continental Temples to Vercel ═══\n');
+  console.log('--- Deploy 4 Continental Temples to Vercel ---\n');
   const results = [];
 
   for (const s of SITES) {
@@ -57,12 +57,12 @@ async function main() {
       error: null,
     };
 
-    console.log(`\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
-    console.log(`[${s.id}] ${s.unicode} → ${s.punycode}`);
-    console.log(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
+    console.log(`\n?????????????????????????????????????????????????`);
+    console.log(`[${s.id}] ${s.unicode} ? ${s.punycode}`);
+    console.log(`?????????????????????????????????????????????????`);
 
     if (!fs.existsSync(path.join(s.siteDir, 'index.html'))) {
-      console.log('⚠ No index.html found. Skipping.');
+      console.log('? No index.html found. Skipping.');
       result.deploy = 'no_site';
       results.push(result);
       continue;
@@ -78,7 +78,7 @@ async function main() {
     ]);
 
     if (!deployRes.ok) {
-      console.error(`  ❌ Deploy failed (exit ${deployRes.code})`);
+      console.error(`  ? Deploy failed (exit ${deployRes.code})`);
       result.deploy = 'failed';
       result.error = deployRes.stderr.slice(-300);
       results.push(result);
@@ -88,7 +88,7 @@ async function main() {
 
     const urlMatch = deployRes.stdout.match(/https:\/\/[^\s\n]+\.vercel\.app/);
     result.deployUrl = urlMatch ? urlMatch[0] : `https://${s.projectName}.vercel.app`;
-    console.log(`  ✓ Deployed: ${result.deployUrl}`);
+    console.log(`  ? Deployed: ${result.deployUrl}`);
     result.deploy = 'ok';
 
     await sleep(1500);
@@ -102,19 +102,19 @@ async function main() {
     ]);
 
     if (domainRes.ok) {
-      console.log('  ✓ Domain added.');
+      console.log('  ? Domain added.');
       result.domain = 'ok';
       const aRecordMatch = domainRes.stdout.match(/A\s+\S+\s+([\d.]+)/);
       if (aRecordMatch) {
-        result.dnsInstruction = `A  ${s.punycode}  →  ${aRecordMatch[1]}`;
+        result.dnsInstruction = `A  ${s.punycode}  ?  ${aRecordMatch[1]}`;
       }
     } else {
       const alreadyExists = domainRes.stderr.includes('already exists') || domainRes.stdout.includes('already exists');
       if (alreadyExists) {
-        console.log('  ✓ Domain already added.');
+        console.log('  ? Domain already added.');
         result.domain = 'already_added';
       } else {
-        console.log(`  ⚠ Domain add issue: ${domainRes.stderr.slice(-200)}`);
+        console.log(`  ? Domain add issue: ${domainRes.stderr.slice(-200)}`);
         result.domain = 'warning';
       }
     }
@@ -124,12 +124,12 @@ async function main() {
   }
 
   // Summary
-  console.log('\n\n═══════════════════════════════════════════════════');
+  console.log('\n\n---------------------------------------------------');
   console.log('DEPLOYMENT SUMMARY');
-  console.log('═══════════════════════════════════════════════════');
+  console.log('---------------------------------------------------');
   for (const r of results) {
-    const deployStatus = r.deploy === 'ok' ? '✓' : (r.deploy === 'failed' ? '✗' : '⚠');
-    const domainStatus = r.domain === 'ok' ? '✓' : (r.domain === 'failed' ? '✗' : '⚠');
+    const deployStatus = r.deploy === 'ok' ? '?' : (r.deploy === 'failed' ? '?' : '?');
+    const domainStatus = r.domain === 'ok' ? '?' : (r.domain === 'failed' ? '?' : '?');
     console.log(`${deployStatus} ${r.id} | deploy: ${r.deploy} | domain: ${r.domain}`);
     if (r.deployUrl) console.log(`   URL: ${r.deployUrl}`);
     if (r.dnsInstruction) console.log(`   DNS: ${r.dnsInstruction}`);
@@ -144,7 +144,7 @@ async function main() {
   for (const r of results) {
     if (r.deploy === 'ok') {
       dnsOut += `${r.unicode} (${r.punycode})\n`;
-      dnsOut += `  A  ${r.punycode}  →  76.76.21.21\n\n`;
+      dnsOut += `  A  ${r.punycode}  ?  76.76.21.21\n\n`;
     }
   }
   fs.writeFileSync(dnsFile, dnsOut);

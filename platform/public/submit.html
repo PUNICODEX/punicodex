@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit a Unicode Domain — PUNYCODEX</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🔱%3C/text%3E%3C/svg%3E">
+  <style>
+    :root {
+      --bg: #0c0c14;
+      --surface: #151520;
+      --surface-2: #1e1e2e;
+      --surface-hover: #262636;
+      --border: #2a2a3e;
+      --text: #e8e8f0;
+      --text-dim: #a0a0b8;
+      --text-muted: #6e6e8a;
+      --accent: #c9a96e;
+      --accent-hover: #d4b87a;
+      --link-green: #7ec9a0;
+      --error: #e07070;
+      --success: #7ec9a0;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-decoration: none;
+      margin-bottom: 2.5rem;
+      letter-spacing: 0.08em;
+    }
+    .brand:hover { color: var(--accent-hover); }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      width: 100%;
+      max-width: 480px;
+    }
+    .card h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .card p {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+    .field { margin-bottom: 1.2rem; }
+    .field label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .field input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .field input:focus { border-color: var(--accent); }
+    .field input::placeholder { color: var(--text-muted); }
+    .hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+    }
+    .btn {
+      width: 100%;
+      padding: 0.85rem;
+      background: var(--accent);
+      color: #0c0c14;
+      border: none;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn:hover { background: var(--accent-hover); }
+    .btn:active { transform: scale(0.98); }
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .result {
+      margin-top: 1.25rem;
+      padding: 1rem;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      display: none;
+    }
+    .result.success {
+      background: rgba(126, 201, 160, 0.1);
+      border: 1px solid rgba(126, 201, 160, 0.3);
+      color: var(--success);
+      display: block;
+    }
+    .result.error {
+      background: rgba(224, 112, 112, 0.1);
+      border: 1px solid rgba(224, 112, 112, 0.3);
+      color: var(--error);
+      display: block;
+    }
+    .result.already {
+      background: rgba(201, 169, 110, 0.1);
+      border: 1px solid rgba(201, 169, 110, 0.3);
+      color: var(--accent);
+      display: block;
+    }
+    .stats {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+    .stats span { color: var(--text-dim); font-weight: 600; }
+    footer {
+      margin-top: auto;
+      padding-top: 2rem;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      text-align: center;
+    }
+    footer a { color: var(--text-dim); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <a href="search.html" class="brand">🔱 PUNYCODEX</a>
+
+  <div class="card">
+    <h1>Submit a Unicode Domain</h1>
+    <p>Have a Unicode domain? Add it to the PUNYCODEX search index. We'll crawl it and make it discoverable.</p>
+
+    <div class="field">
+      <label for="domain">Domain</label>
+      <input type="text" id="domain" placeholder="münchen.de or xn--mnchen-3ya.de" autocomplete="off">
+      <div class="hint">Enter the Unicode or punycode form. Both work.</div>
+    </div>
+
+    <div class="field">
+      <label for="email">Email (optional)</label>
+      <input type="email" id="email" placeholder="you@example.com" autocomplete="off">
+      <div class="hint">We'll notify you when your domain is indexed.</div>
+    </div>
+
+    <button class="btn" id="submitBtn" onclick="handleSubmit()">Submit Domain</button>
+
+    <div class="result" id="resultBox"></div>
+  </div>
+
+  <div class="stats">
+    <div><span id="activeCount">—</span> active sites</div>
+    <div><span id="pantheonCount">—</span> pantheons</div>
+  </div>
+
+  <footer>
+    <a href="search.html">Search</a> · <a href="admin.html">Admin</a> · PUNYCODEX Platform
+  </footer>
+
+  <script>
+    const API_BASE = '';
+
+    async function loadStats() {
+      try {
+        const res = await fetch(`${API_BASE}/api/crawler/stats`);
+        const data = await res.json();
+        document.getElementById('activeCount').textContent = data.active_sites;
+        document.getElementById('pantheonCount').textContent = data.by_pantheon?.filter(p => p.pantheon).length || '—';
+      } catch {}
+    }
+
+    async function handleSubmit() {
+      const domain = document.getElementById('domain').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const btn = document.getElementById('submitBtn');
+      const box = document.getElementById('resultBox');
+
+      if (!domain) {
+        box.className = 'result error';
+        box.textContent = 'Please enter a domain.';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Submitting...';
+      box.className = 'result';
+      box.textContent = '';
+
+      try {
+        const res = await fetch(`${API_BASE}/api/submit`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ domain, email })
+        });
+        const data = await res.json();
+
+        if (data.alreadyIndexed) {
+          box.className = 'result already';
+          box.textContent = `This domain is already in our index (status: ${data.status}).`;
+        } else if (data.success) {
+          box.className = 'result success';
+          box.textContent = `Added to queue! We'll crawl ${data.punycode} shortly.`;
+          document.getElementById('domain').value = '';
+        } else {
+          box.className = 'result error';
+          box.textContent = data.error || 'Something went wrong.';
+        }
+      } catch (e) {
+        box.className = 'result error';
+        box.textContent = 'Network error. Please try again.';
+      }
+
+      btn.disabled = false;
+      btn.textContent = 'Submit Domain';
+    }
+
+    document.getElementById('domain').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') handleSubmit();
+    });
+
+    loadStats();
+  </script>
+</body>
+</html>

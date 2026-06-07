@@ -1,0 +1,47 @@
+/* ═══════════════════════════════════════════════════════════
+   Stacked Diacritics — Visual Unicode Decomposition
+   Injected into temple-base.css and type.css; kept here as
+   canonical reference.
+   ═══════════════════════════════════════════════════════════ */
+
+.stacked-diacritics {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.05em;
+    vertical-align: bottom;
+    font-family: var(--font-mono, 'SF Mono', Monaco, 'Cascadia Code', monospace);
+}
+
+.sd-char {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1;
+    vertical-align: bottom;
+    min-width: 1ch;
+}
+
+.sd-marks {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-size: 0.5em;
+    line-height: 0.7;
+    height: 0.6em;
+    margin-bottom: 0.08em;
+    white-space: nowrap;
+    opacity: 0.8;
+}
+
+.sd-mark {
+    display: inline-block;
+}
+
+.sd-base {
+    font-size: 1em;
+    line-height: 1;
+}
+
+.sd-plain {
+    font-size: 1em;
+}

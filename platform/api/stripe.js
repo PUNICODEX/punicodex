@@ -25,12 +25,41 @@ async function createCheckoutSession({ claimId, email, unicodeVariant, templateT
     cancel_url: `${process.env.PLATFORM_URL || 'http://localhost:3456'}/claim?id=${claimId}&canceled=true`,
     customer_email: email,
     metadata: {
+      type: 'claim',
       claim_id: String(claimId),
       unicode_variant: unicodeVariant,
     },
   });
 
   updateClaimStripeSession(claimId, session.id);
+  return { sessionUrl: session.url, sessionId: session.id };
+}
+
+async function createBookingCheckoutSession({ bookingId, email, slotName, amountCents, token }) {
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ['card'],
+    line_items: [{
+      price_data: {
+        currency: 'usd',
+        product_data: {
+          name: `Níkē Ad Space: ${slotName}`,
+          description: `30-day advertising placement on Níkē.com`,
+        },
+        unit_amount: amountCents,
+      },
+      quantity: 1,
+    }],
+    mode: 'payment',
+    success_url: `${process.env.PLATFORM_URL || 'http://localhost:3456'}/sites/nike/?booking=${token}&paid=1`,
+    cancel_url: `${process.env.PLATFORM_URL || 'http://localhost:3456'}/sites/nike/?booking=${token}&canceled=1`,
+    customer_email: email,
+    metadata: {
+      type: 'booking',
+      booking_id: String(bookingId),
+      slot_name: slotName,
+    },
+  });
+
   return { sessionUrl: session.url, sessionId: session.id };
 }
 
@@ -50,15 +79,24 @@ async function handleWebhook(payload, signature) {
 
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object;
-    const claim = markClaimPaid(session.id, session.payment_intent);
-    return { event: 'payment.success', claim };
+    const metadata = session.metadata || {};
+    
+    if (metadata.type === 'booking') {
+      const { markBookingPaid } = require('./bookings');
+      const booking = markBookingPaid(session.id, session.payment_intent, session.amount_total);
+      return { event: 'payment.success', type: 'booking', booking };
+    } else {
+      const claim = markClaimPaid(session.id, session.payment_intent);
+      return { event: 'payment.success', type: 'claim', claim };
+    }
   }
 
-  return { event: event.type, claim: null };
+  return { event: event.type, claim: null, booking: null };
 }
 
 module.exports = {
   createCheckoutSession,
+  createBookingCheckoutSession,
   handleWebhook,
   PRICE_BASE,
   PRICE_PREMIUM

@@ -1,5 +1,6 @@
 const Database = require('better-sqlite3');
 const path = require('path');
+const { embedText, rerankWithVectors, searchAllVectors } = require('./semantic-search');
 
 const DB_PATH = path.join(__dirname, '..', 'db', 'punycodex.db');
 let db;
@@ -10,6 +11,52 @@ function getDb() {
     db.pragma('journal_mode = WAL');
   }
   return db;
+}
+
+/**
+ * Compute click-based ranking boosts for sites.
+ * Returns Map<site_id, boost> where boost is 0-0.5 based on click history.
+ */
+function getClickBoosts(query, siteIds) {
+  const db = getDb();
+  if (!siteIds || siteIds.length === 0) return new Map();
+
+  const placeholders = siteIds.map(() => '?').join(',');
+
+  // Global click count per site (all time)
+  const globalClicks = db.prepare(`
+    SELECT site_id, COUNT(*) as clicks
+    FROM search_clicks
+    WHERE site_id IN (${placeholders})
+    GROUP BY site_id
+  `).all(...siteIds);
+
+  // Query-specific click count
+  const queryClicks = db.prepare(`
+    SELECT c.site_id, COUNT(*) as clicks
+    FROM search_clicks c
+    JOIN search_queries q ON c.query_id = q.id
+    WHERE q.query = ? AND c.site_id IN (${placeholders})
+    GROUP BY c.site_id
+  `).all(query.trim(), ...siteIds);
+
+  const maxGlobal = Math.max(...globalClicks.map(r => r.clicks), 1);
+  const maxQuery = Math.max(...queryClicks.map(r => r.clicks), 1);
+
+  const boosts = new Map();
+  for (const siteId of siteIds) {
+    const globalCount = globalClicks.find(r => r.site_id === siteId)?.clicks || 0;
+    const queryCount = queryClicks.find(r => r.site_id === siteId)?.clicks || 0;
+
+    // Global boost: logarithmic scale, max 0.2
+    const globalBoost = Math.log1p(globalCount) / Math.log1p(maxGlobal) * 0.2;
+    // Query-specific boost: logarithmic scale, max 0.3
+    const queryBoost = Math.log1p(queryCount) / Math.log1p(maxQuery) * 0.3;
+
+    boosts.set(siteId, globalBoost + queryBoost);
+  }
+
+  return boosts;
 }
 
 function getSites({ status, pantheon, entryId, limit = 50, offset = 0 }) {
@@ -62,6 +109,511 @@ function searchSites(q, limit = 20) {
   `).all(like, like, like, like, like, like, limit);
 }
 
+/**
+ * Web search: FTS5-powered content search with composite relevance scoring.
+ * 
+ * SCORING FORMULA (Phase 3 — Content Quality):
+ *   composite_score = bm25(fts) * multiplier
+ *   multiplier = 1.0 + tier_bonus + flagship_bonus + archetype_bonus + freshness_bonus + quality_bonus
+ * 
+ * Where:
+ *   - bm25: SQLite FTS5 BM25 score (negative, lower = better match)
+ *   - tier_bonus: dual=0.5, tier-1=0.3, tier-2=0.1
+ *   - flagship_bonus: 0.2 if is_flagship
+ *   - archetype_bonus: 0.0-1.0 from indexed_sites.archetype_score
+ *   - freshness_bonus: 0.0-0.15 from freshness_score (0-1 scale)
+ *   - quality_bonus: 0.0-0.15 from quality_score (0-100 scale, normalized)
+ * 
+ * This additive structure makes it trivial to add new ranking dimensions
+ * without rewriting the ORDER BY clause.
+ * 
+ * Returns SERP-style results with highlighted snippets.
+ */
+async function searchWeb(q, limit = 20, mode = 'all') {
+  const db = getDb();
+  if (!q || !q.trim()) {
+    return { results: [], total: 0, query: q, timing: 0 };
+  }
+
+  const startTime = Date.now();
+  const ftsQuery = q.trim().split(/\s+/).filter(w => w.length > 0).join(' ');
+
+  // Primary: FTS5 with BM25 scoring + ranking boosts
+  let results = [];
+  try {
+    const rows = db.prepare(`
+      SELECT 
+        s.*,
+        bm25(indexed_sites_fts) AS bm25_score,
+        bm25(indexed_sites_fts) * (
+          1.0 +
+          CASE 
+            WHEN s.tier = 'dual' THEN 0.5
+            WHEN s.tier = '1' THEN 0.3
+            WHEN s.tier = '2' THEN 0.1
+            ELSE 0.0
+          END +
+          CASE WHEN s.is_flagship = 1 THEN 1.5 ELSE 0.0 END +
+          CASE WHEN s.tenant_name IS NOT NULL THEN 0.5 ELSE 0.0 END +
+          COALESCE(s.archetype_score, 0.0) +
+          COALESCE(s.freshness_score, 0.5) * 0.15 +
+          COALESCE(s.quality_score, 50.0) / 100.0 * 0.15 +
+          COALESCE(s.pagerank, 0.0) / 100.0 * 0.4 +
+          COALESCE(s.authority_score, 0.0) / 100.0 * 0.3 +
+          CASE WHEN s.punycode LIKE 'xn--%' THEN 0.5 ELSE 0.0 END
+        ) AS composite_score,
+        (
+          1.0 +
+          CASE 
+            WHEN s.tier = 'dual' THEN 0.5
+            WHEN s.tier = '1' THEN 0.3
+            WHEN s.tier = '2' THEN 0.1
+            ELSE 0.0
+          END +
+          CASE WHEN s.is_flagship = 1 THEN 1.5 ELSE 0.0 END +
+          CASE WHEN s.tenant_name IS NOT NULL THEN 0.5 ELSE 0.0 END +
+          COALESCE(s.archetype_score, 0.0) +
+          COALESCE(s.freshness_score, 0.5) * 0.15 +
+          COALESCE(s.quality_score, 50.0) / 100.0 * 0.15 +
+          COALESCE(s.pagerank, 0.0) / 100.0 * 0.4 +
+          COALESCE(s.authority_score, 0.0) / 100.0 * 0.3 +
+          CASE WHEN s.punycode LIKE 'xn--%' THEN 0.5 ELSE 0.0 END
+        ) AS multiplier,
+        snippet(indexed_sites_fts, 2, '<mark>', '</mark>', '...', 25) AS title_snippet,
+        snippet(indexed_sites_fts, 3, '<mark>', '</mark>', '...', 25) AS desc_snippet,
+        snippet(indexed_sites_fts, 6, '<mark>', '</mark>', '...', 25) AS snippet_highlight,
+        snippet(indexed_sites_fts, 7, '<mark>', '</mark>', '...', 25) AS og_snippet,
+        snippet(indexed_sites_fts, 8, '<mark>', '</mark>', '...', 25) AS og_desc_snippet
+      FROM indexed_sites_fts
+      JOIN indexed_sites s ON indexed_sites_fts.rowid = s.id
+      WHERE indexed_sites_fts MATCH ?
+        AND s.status != 'spam'
+        AND (s.is_flagship = 1 OR s.quality_score >= 0.3 OR s.tenant_name IS NOT NULL)
+        ${mode === 'network' ? "AND (s.is_flagship = 1 OR s.tenant_name IS NOT NULL)" : ''}
+      ORDER BY composite_score ASC
+      LIMIT ?
+    `).all(ftsQuery, limit);
+
+    results = rows.map(row => {
+      // Best snippet hierarchy: OG desc > Twitter desc > meta desc > FTS snippet > h1 > first_p > content_snippet
+      const bestSnippet = row.og_desc_snippet || row.og_snippet || row.snippet_highlight 
+        || row.desc_snippet || row.title_snippet
+        || row.og_description || row.twitter_description || row.h1 || row.first_p 
+        || row.description || row.content_snippet || '';
+
+      // Best title hierarchy: OG title > Twitter title > meta title
+      const bestTitle = row.og_title || row.twitter_title || row.title || row.domain;
+
+      return {
+        id: row.id,
+        domain: row.domain,
+        punycode: row.punycode,
+        title: bestTitle,
+        snippet: bestSnippet,
+        description: row.og_description || row.twitter_description || row.description || '',
+        url: `https://${row.punycode}`,
+        lexiconEntryId: row.lexicon_entry_id,
+        pantheon: row.pantheon,
+        tier: row.tier,
+        tierLabel: row.tier_label,
+        isFlagship: row.is_flagship === 1,
+        status: row.status,
+        lastCrawled: row.last_crawled,
+        publishedDate: row.published_date,
+        faviconPath: row.favicon_path,
+        ogImagePath: row.og_image_path,
+        lang: row.lang,
+        wordCount: row.word_count,
+        responseTimeMs: row.response_time_ms,
+        rankScore: row.composite_score,
+        scoreBreakdown: {
+          bm25: row.bm25_score,
+          multiplier: row.multiplier,
+          tierBonus: row.tier === 'dual' ? 0.5 : row.tier === '1' ? 0.3 : row.tier === '2' ? 0.1 : 0,
+          flagshipBonus: row.is_flagship === 1 ? 1.5 : 0,
+          tenantBonus: row.tenant_name ? 0.5 : 0,
+          archetypeBonus: row.archetype_score || 0,
+          freshnessBonus: (row.freshness_score || 0.5) * 0.15,
+          qualityBonus: (row.quality_score || 50) / 100 * 0.15,
+          pagerankBonus: (row.pagerank || 0) / 100 * 0.4,
+          authorityBonus: (row.authority_score || 0) / 100 * 0.3,
+          punycodeBonus: row.punycode && row.punycode.startsWith('xn--') ? 0.5 : 0
+        },
+        leaseStatus: row.lease_status,
+        isFlagship: row.is_flagship === 1,
+        freshnessScore: row.freshness_score,
+        qualityScore: row.quality_score,
+        readabilityScore: row.readability_score,
+        tenant: row.tenant_name ? {
+          name: row.tenant_name,
+          category: row.tenant_category,
+          frontUrl: row.tenant_front_url
+        } : null,
+        sitemapEntries: row.sitemap_entries,
+        anchorTexts: row.anchor_texts ? JSON.parse(row.anchor_texts) : null,
+        ogVideo: row.og_video,
+        ogVideoType: row.og_video_type,
+        ratingValue: row.rating_value,
+        ratingCount: row.rating_count,
+        isPunycode: row.punycode && row.punycode.startsWith('xn--'),
+        matchedTerms: extractMatchedTerms(bestSnippet)
+      };
+    });
+
+    // Fetch sub-pages for all results in a single query
+    if (results.length > 0) {
+      const siteIds = results.map(r => r.id);
+      const placeholders = siteIds.map(() => '?').join(',');
+      const subPages = db.prepare(`
+        SELECT site_id, url, title, description, h1, word_count, content_hash
+        FROM site_pages
+        WHERE site_id IN (${placeholders})
+        ORDER BY word_count DESC
+      `).all(...siteIds);
+
+      const pagesBySite = {};
+      const seenHashes = {};
+      for (const p of subPages) {
+        if (!pagesBySite[p.site_id]) {
+          pagesBySite[p.site_id] = [];
+          seenHashes[p.site_id] = new Set();
+        }
+        // Skip root-path pages (redirects to home page, SPA hash links)
+        try {
+          const u = new URL(p.url);
+          if (u.pathname === '/' || u.pathname === '/index.html') continue;
+        } catch { continue; }
+        // Deduplicate by content hash
+        if (seenHashes[p.site_id].has(p.content_hash)) continue;
+        seenHashes[p.site_id].add(p.content_hash);
+        pagesBySite[p.site_id].push(p);
+      }
+
+      results = results.map(r => ({
+        ...r,
+        subPages: (pagesBySite[r.id] || []).slice(0, 4)
+      }));
+    }
+  } catch (e) {
+    console.error('FTS5 error:', e.message);
+  }
+
+  // Fallback 1: Semantic vector search if FTS returned nothing
+  let isSemanticFallback = false;
+  if (results.length === 0) {
+    try {
+      const queryEmbedding = await embedText(q);
+      if (queryEmbedding) {
+        const vectorMatches = searchAllVectors(queryEmbedding, db, limit);
+        if (vectorMatches.length > 0) {
+          const siteIds = vectorMatches.map(m => m.siteId);
+          const placeholders = siteIds.map(() => '?').join(',');
+          const fallbackRows = db.prepare(`
+            SELECT s.* FROM indexed_sites s WHERE s.id IN (${placeholders})
+          `).all(...siteIds);
+
+          // Preserve vector match order
+          const rowMap = new Map(fallbackRows.map(r => [r.id, r]));
+          results = vectorMatches.map(m => {
+            const row = rowMap.get(m.siteId);
+            if (!row) return null;
+            const rawSnippet = row.og_description || row.twitter_description || row.h1 || row.first_p || row.description || row.content_snippet || '';
+            return {
+              id: row.id,
+              domain: row.domain,
+              punycode: row.punycode,
+              title: row.og_title || row.twitter_title || row.title || row.domain,
+              snippet: highlightTerms(rawSnippet, q),
+              description: row.og_description || row.twitter_description || row.description || '',
+              url: `https://${row.punycode}`,
+              lexiconEntryId: row.lexicon_entry_id,
+              pantheon: row.pantheon,
+              tier: row.tier,
+              tierLabel: row.tier_label,
+              isFlagship: row.is_flagship === 1,
+              status: row.status,
+              lastCrawled: row.last_crawled,
+              publishedDate: row.published_date,
+              faviconPath: row.favicon_path,
+              ogImagePath: row.og_image_path,
+              lang: row.lang,
+              rankScore: null,
+              matchedTerms: q.trim().split(/\s+/).filter(w => w.length > 0),
+              semanticScore: m.similarity,
+              isSemanticFallback: true
+            };
+          }).filter(Boolean);
+          isSemanticFallback = true;
+        }
+      }
+    } catch (e) {
+      // Vector fallback is optional
+    }
+  }
+
+  // Fallback 2: LIKE search if both FTS and vector returned nothing
+  if (results.length === 0) {
+    const like = `%${q}%`;
+    const fallbackRows = db.prepare(`
+      SELECT s.*, e.unicode as entry_unicode
+      FROM indexed_sites s
+      LEFT JOIN entries e ON s.lexicon_entry_id = e.id
+      WHERE s.status = 'active'
+        AND (s.title LIKE ? OR s.description LIKE ? OR s.content_snippet LIKE ?
+          OR s.h1 LIKE ? OR s.first_p LIKE ? OR s.domain LIKE ? OR s.punycode LIKE ?
+          OR s.og_title LIKE ? OR s.og_description LIKE ?
+          OR s.twitter_title LIKE ? OR s.twitter_description LIKE ?
+          OR e.unicode LIKE ? OR e.ascii LIKE ?)
+      ORDER BY s.is_flagship DESC, COALESCE(s.authority_score, 0) DESC, s.tier = 'dual' DESC, s.tier = '1' DESC
+      LIMIT ?
+    `).all(like, like, like, like, like, like, like, like, like, like, like, like, like, limit);
+
+    results = fallbackRows.map(row => {
+      const rawSnippet = row.og_description || row.twitter_description || row.h1 || row.first_p || row.description || row.content_snippet || '';
+      return {
+        id: row.id,
+        domain: row.domain,
+        punycode: row.punycode,
+        title: row.og_title || row.twitter_title || row.title || row.domain,
+        snippet: highlightTerms(rawSnippet, q),
+        description: row.og_description || row.twitter_description || row.description || '',
+        url: `https://${row.punycode}`,
+        lexiconEntryId: row.lexicon_entry_id,
+        pantheon: row.pantheon,
+        tier: row.tier,
+        tierLabel: row.tier_label,
+        isFlagship: row.is_flagship === 1,
+        status: row.status,
+        lastCrawled: row.last_crawled,
+        publishedDate: row.published_date,
+        faviconPath: row.favicon_path,
+        ogImagePath: row.og_image_path,
+        lang: row.lang,
+        rankScore: null,
+        matchedTerms: q.trim().split(/\s+/).filter(w => w.length > 0),
+        isFallback: true
+      };
+    });
+
+    // Fetch sub-pages for fallback results too
+    if (results.length > 0) {
+      const siteIds = results.map(r => r.id);
+      const placeholders = siteIds.map(() => '?').join(',');
+      const subPages = db.prepare(`
+        SELECT site_id, url, title, description, h1, word_count, content_hash
+        FROM site_pages
+        WHERE site_id IN (${placeholders})
+        ORDER BY word_count DESC
+      `).all(...siteIds);
+
+      const pagesBySite = {};
+      const seenHashes = {};
+      for (const p of subPages) {
+        if (!pagesBySite[p.site_id]) {
+          pagesBySite[p.site_id] = [];
+          seenHashes[p.site_id] = new Set();
+        }
+        // Skip root-path pages (redirects to home page, SPA hash links)
+        try {
+          const u = new URL(p.url);
+          if (u.pathname === '/' || u.pathname === '/index.html') continue;
+        } catch { continue; }
+        // Deduplicate by content hash
+        if (seenHashes[p.site_id].has(p.content_hash)) continue;
+        seenHashes[p.site_id].add(p.content_hash);
+        pagesBySite[p.site_id].push(p);
+      }
+
+      results = results.map(r => ({
+        ...r,
+        subPages: (pagesBySite[r.id] || []).slice(0, 4)
+      }));
+    }
+  }
+
+  // ====== PHASE 7: ENTITY RANKING BOOST ======
+  // Find best-matching lexicon entry and boost sites that mention it
+  let entityBonusApplied = false;
+  let matchedEntryId = null;
+  try {
+    const query = q.trim().toLowerCase();
+    const entry = db.prepare(`
+      SELECT id, pantheon FROM entries
+      WHERE LOWER(ascii) = ? OR LOWER(unicode) = ? OR LOWER(id) = ?
+      LIMIT 1
+    `).get(query, query, query);
+
+    if (!entry) {
+      // Try partial match
+      const partial = db.prepare(`
+        SELECT id, pantheon FROM entries
+        WHERE LOWER(ascii) LIKE ? OR LOWER(unicode) LIKE ?
+        ORDER BY tier = 'dual' DESC, tier = '1' DESC
+        LIMIT 1
+      `).get(`%${query}%`, `%${query}%`);
+      if (partial) matchedEntryId = partial.id;
+    } else {
+      matchedEntryId = entry.id;
+    }
+
+    if (matchedEntryId && results.length > 0) {
+      // Get sites that mention this entry
+      const mentionRows = db.prepare(`
+        SELECT site_id, mention_count FROM entity_mentions WHERE entry_id = ?
+      `).all(matchedEntryId);
+      const mentionMap = new Map(mentionRows.map(r => [r.site_id, r.mention_count]));
+
+      // Also get same-pantheon mentions for broader semantic boost
+      const pantheon = entry?.pantheon;
+      let pantheonBonusMap = new Map();
+      if (pantheon) {
+        const pantheonRows = db.prepare(`
+          SELECT site_id, SUM(mention_count) as total FROM entity_mentions
+          WHERE pantheon = ? AND entry_id != ?
+          GROUP BY site_id
+        `).all(pantheon, matchedEntryId);
+        pantheonBonusMap = new Map(pantheonRows.map(r => [r.site_id, Math.min(r.total, 5)]));
+      }
+
+      results = results.map(r => {
+        const directMentions = mentionMap.get(r.id) || 0;
+        const pantheonMentions = pantheonBonusMap.get(r.id) || 0;
+        const entityBonus = Math.min(directMentions * 0.05, 0.15) + Math.min(pantheonMentions * 0.02, 0.05);
+
+        if (entityBonus > 0) {
+          return {
+            ...r,
+            rankScore: (r.rankScore || 0) * (1.0 - entityBonus), // Less negative = better
+            scoreBreakdown: {
+              ...r.scoreBreakdown,
+              entityBonus: parseFloat(entityBonus.toFixed(3))
+            }
+          };
+        }
+        return r;
+      });
+
+      // Re-sort after entity bonus
+      results.sort((a, b) => (a.rankScore || 0) - (b.rankScore || 0));
+      entityBonusApplied = true;
+    }
+  } catch (e) {
+    // Entity ranking is optional — don't break search if it fails
+  }
+
+  // ====== PHASE 8: CLICK FEEDBACK BOOST ======
+  // Boost sites that users have previously clicked for this or similar queries
+  let clickBoostApplied = false;
+  try {
+    if (results.length > 0) {
+      const siteIds = results.map(r => r.id);
+      const clickBoosts = getClickBoosts(q, siteIds);
+
+      results = results.map(r => {
+        const boost = clickBoosts.get(r.id) || 0;
+        if (boost > 0) {
+          return {
+            ...r,
+            rankScore: (r.rankScore || 0) * (1.0 - boost),
+            scoreBreakdown: {
+              ...r.scoreBreakdown,
+              clickBoost: parseFloat(boost.toFixed(3))
+            }
+          };
+        }
+        return r;
+      });
+
+      // Re-sort after click boost
+      results.sort((a, b) => (a.rankScore || 0) - (b.rankScore || 0));
+      clickBoostApplied = true;
+    }
+  } catch (e) {
+    // Click boost is optional
+  }
+
+  // ====== PHASE 9: SEMANTIC RE-RANKING ======
+  let semanticReranked = false;
+  let semanticScore = null;
+  if (results.length > 0) {
+    try {
+      const queryEmbedding = await embedText(q);
+      if (queryEmbedding) {
+        results = rerankWithVectors(results, queryEmbedding, 0.35);
+        semanticReranked = true;
+        semanticScore = results[0]?.semanticScore || null;
+      }
+    } catch (e) {
+      // Semantic re-ranking is optional — don't break search if it fails
+      console.error('[search] Semantic re-ranking failed:', e.message);
+    }
+  }
+
+  // ====== AVAILABILITY LAYER ======
+  // Find lexicon entries matching the query that are available for lease
+  let availability = [];
+  try {
+    if (mode !== 'network') {
+      const query = q.trim().toLowerCase();
+      const availRows = db.prepare(`
+        SELECT a.entry_id, a.domain, a.punycode, a.status, a.registrar_links,
+               e.unicode, e.ascii, e.meaning, e.tier, e.pantheon
+        FROM availability a
+        JOIN entries e ON a.entry_id = e.id
+        WHERE (LOWER(e.ascii) = ? OR LOWER(e.unicode) = ? OR LOWER(e.id) = ?
+               OR LOWER(e.ascii) LIKE ? OR LOWER(e.unicode) LIKE ?)
+          AND a.status = 'available'
+        ORDER BY e.tier = 'dual' DESC, e.tier = '1' DESC
+        LIMIT 5
+      `).all(query, query, query, `%${query}%`, `%${query}%`);
+
+      for (const row of availRows) {
+        availability.push({
+          entryId: row.entry_id,
+          domain: row.domain,
+          punycode: row.punycode,
+          unicode: row.unicode,
+          ascii: row.ascii,
+          meaning: row.meaning,
+          tier: row.tier,
+          pantheon: row.pantheon,
+          registrarLinks: row.registrar_links ? JSON.parse(row.registrar_links) : {}
+        });
+      }
+    }
+  } catch (e) {
+    // Availability is optional
+  }
+
+  const timing = ((Date.now() - startTime) / 1000).toFixed(3);
+  return { results, total: results.length, query: q, timing, mode, entityBonusApplied, matchedEntryId, clickBoostApplied, semanticReranked, isSemanticFallback, availability };
+}
+
+function extractMatchedTerms(snippet) {
+  const terms = [];
+  const re = /<mark>([^<]+)<\/mark>/gi;
+  let m;
+  while ((m = re.exec(snippet)) !== null) {
+    const term = m[1].toLowerCase();
+    if (!terms.includes(term)) terms.push(term);
+  }
+  return terms;
+}
+
+function highlightTerms(text, query) {
+  const words = query.trim().split(/\s+/).filter(w => w.length > 2);
+  let result = text;
+  for (const word of words) {
+    const re = new RegExp(`(${escapeRegExp(word)})`, 'gi');
+    result = result.replace(re, '<mark>$1</mark>');
+  }
+  return result;
+}
+
+function escapeRegExp(str) {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 function getAvailability(entryId) {
   const db = getDb();
   const avail = db.prepare('SELECT * FROM availability WHERE entry_id = ?').get(entryId);
@@ -109,8 +661,329 @@ function getCrawlerStats() {
     `).all(),
     last_crawled: db.prepare(`
       SELECT MAX(last_crawled) as last_crawled FROM indexed_sites
-    `).get().last_crawled
+    `).get().last_crawled,
+    queue: {
+      pending: db.prepare("SELECT COUNT(*) as c FROM crawl_queue WHERE status = 'pending'").get().c,
+      crawling: db.prepare("SELECT COUNT(*) as c FROM crawl_queue WHERE status = 'crawling'").get().c,
+      crawled: db.prepare("SELECT COUNT(*) as c FROM crawl_queue WHERE status = 'crawled'").get().c,
+      error: db.prepare("SELECT COUNT(*) as c FROM crawl_queue WHERE status = 'error'").get().c,
+      spam: db.prepare("SELECT COUNT(*) as c FROM crawl_queue WHERE status = 'spam'").get().c,
+      total_discovered: db.prepare('SELECT COUNT(*) as c FROM discovered_domains').get().c
+    },
+    punycode: {
+      unicode: db.prepare("SELECT COUNT(*) as c FROM indexed_sites WHERE status = 'active' AND punycode LIKE 'xn--%'").get().c,
+      ascii: db.prepare("SELECT COUNT(*) as c FROM indexed_sites WHERE status = 'active' AND punycode NOT LIKE 'xn--%'").get().c
+    },
+    entities: {
+      mentions: db.prepare('SELECT COUNT(*) as c FROM entity_mentions').get().c,
+      sites: db.prepare('SELECT COUNT(DISTINCT site_id) as c FROM entity_mentions').get().c
+    }
   };
+}
+
+function getQueue({ status, limit = 50, offset = 0 }) {
+  const db = getDb();
+  let sql = 'SELECT * FROM crawl_queue WHERE 1=1';
+  let countSql = 'SELECT COUNT(*) as total FROM crawl_queue WHERE 1=1';
+  const params = [];
+
+  if (status) {
+    sql += ' AND status = ?';
+    countSql += ' AND status = ?';
+    params.push(status);
+  }
+
+  sql += ' ORDER BY priority DESC, discovery_date ASC';
+  sql += ' LIMIT ? OFFSET ?';
+
+  const items = db.prepare(sql).all(...params, limit, offset);
+  const { total } = db.prepare(countSql).get(...params);
+
+  return { items, total, limit, offset };
+}
+
+function addToQueue(domain, punycode, source = 'manual', priority = 0) {
+  const db = getDb();
+  db.prepare(`
+    INSERT OR IGNORE INTO crawl_queue (domain, punycode, source, status, priority)
+    VALUES (?, ?, ?, 'pending', ?)
+  `).run(domain, punycode, source, priority);
+}
+
+function getDiscoveredDomains({ source, limit = 50, offset = 0 }) {
+  const db = getDb();
+  let sql = 'SELECT * FROM discovered_domains WHERE 1=1';
+  let countSql = 'SELECT COUNT(*) as total FROM discovered_domains WHERE 1=1';
+  const params = [];
+
+  if (source) {
+    sql += ' AND source = ?';
+    countSql += ' AND source = ?';
+    params.push(source);
+  }
+
+  sql += ' ORDER BY last_seen DESC';
+  sql += ' LIMIT ? OFFSET ?';
+
+  const items = db.prepare(sql).all(...params, limit, offset);
+  const { total } = db.prepare(countSql).get(...params);
+
+  return { items, total, limit, offset };
+}
+
+/**
+ * Find near-duplicate content clusters using simhash Hamming distance.
+ * Returns groups of sites with similar content (distance <= threshold).
+ */
+function findDuplicateClusters(threshold = 3, minClusterSize = 2, limit = 100) {
+  const db = getDb();
+  const { hammingDistance } = require('../scripts/content-quality');
+
+  // Fetch active sites with simhash
+  const sites = db.prepare(`
+    SELECT id, domain, punycode, title, simhash, content_length, lexicon_entry_id
+    FROM indexed_sites
+    WHERE status = 'active' AND simhash IS NOT NULL AND simhash != ''
+    ORDER BY id
+    LIMIT ?
+  `).all(limit * 5);
+
+  const clusters = [];
+  const visited = new Set();
+
+  for (let i = 0; i < sites.length; i++) {
+    if (visited.has(sites[i].id)) continue;
+
+    const cluster = [sites[i]];
+    visited.add(sites[i].id);
+
+    for (let j = i + 1; j < sites.length; j++) {
+      if (visited.has(sites[j].id)) continue;
+      if (!sites[j].simhash) continue;
+
+      try {
+        const dist = hammingDistance(sites[i].simhash, sites[j].simhash);
+        if (dist <= threshold) {
+          cluster.push(sites[j]);
+          visited.add(sites[j].id);
+        }
+      } catch (e) {
+        // Invalid hash format, skip
+      }
+    }
+
+    if (cluster.length >= minClusterSize) {
+      clusters.push({
+        representative: cluster[0],
+        count: cluster.length,
+        sites: cluster.map(s => ({
+          id: s.id,
+          domain: s.domain,
+          punycode: s.punycode,
+          title: s.title
+        }))
+      });
+    }
+  }
+
+  return clusters;
+}
+
+/**
+ * Get knowledge panel data for a query.
+ * Returns the best matching lexicon entry + live sites + related entries.
+ */
+function getKnowledgePanelData(q) {
+  const db = getDb();
+  if (!q || !q.trim()) return null;
+
+  const query = q.trim().toLowerCase();
+
+  // Try exact match first
+  let entry = db.prepare(`
+    SELECT * FROM entries
+    WHERE LOWER(ascii) = ? OR LOWER(unicode) = ? OR LOWER(id) = ?
+    LIMIT 1
+  `).get(query, query, query);
+
+  // Try LIKE match
+  if (!entry) {
+    entry = db.prepare(`
+      SELECT * FROM entries
+      WHERE LOWER(ascii) LIKE ? OR LOWER(unicode) LIKE ? OR LOWER(meaning) LIKE ?
+      ORDER BY tier = 'dual' DESC, tier = '1' DESC
+      LIMIT 1
+    `).get(`%${query}%`, `%${query}%`, `%${query}%`);
+  }
+
+  if (!entry) return null;
+
+  // Get live sites for this entry
+  const sites = db.prepare(`
+    SELECT domain, punycode, title, description, favicon_path, og_image_path, tier, pantheon
+    FROM indexed_sites
+    WHERE lexicon_entry_id = ? AND status = 'active'
+    ORDER BY is_flagship DESC, tier = 'dual' DESC, tier = '1' DESC
+    LIMIT 5
+  `).all(entry.id);
+
+  // Get related entries (same pantheon, different id)
+  const related = db.prepare(`
+    SELECT id, unicode, ascii, greek, meaning, tier, pantheon
+    FROM entries
+    WHERE pantheon = ? AND id != ?
+    ORDER BY RANDOM()
+    LIMIT 6
+  `).all(entry.pantheon, entry.id);
+
+  return {
+    entry: {
+      id: entry.id,
+      unicode: entry.unicode,
+      ascii: entry.ascii,
+      greek: entry.greek,
+      meaning: entry.meaning,
+      tier: entry.tier,
+      pantheon: entry.pantheon,
+      etymology: entry.etymology,
+      notes: entry.notes
+    },
+    sites,
+    related
+  };
+}
+
+/**
+ * Generate "People Also Ask" questions from entity co-occurrence graph.
+ */
+function generatePeopleAlsoAsk(q, limit = 4) {
+  const db = getDb();
+  if (!q || !q.trim()) return [];
+
+  const query = q.trim().toLowerCase();
+
+  // Find best matching entry
+  let entry = db.prepare(`
+    SELECT id, unicode, ascii, greek, meaning, pantheon, tier, etymology
+    FROM entries
+    WHERE LOWER(ascii) = ? OR LOWER(unicode) = ? OR LOWER(id) = ?
+    LIMIT 1
+  `).get(query, query, query);
+
+  if (!entry) {
+    entry = db.prepare(`
+      SELECT id, unicode, ascii, greek, meaning, pantheon, tier, etymology
+      FROM entries
+      WHERE LOWER(ascii) LIKE ? OR LOWER(unicode) LIKE ?
+      ORDER BY tier = 'dual' DESC, tier = '1' DESC
+      LIMIT 1
+    `).get(`%${query}%`, `%${query}%`);
+  }
+
+  const questions = [];
+
+  if (entry) {
+    // Q1: Meaning
+    if (entry.meaning) {
+      questions.push({
+        question: `What does ${entry.unicode} mean?`,
+        answer: entry.meaning,
+        source: 'lexicon'
+      });
+    }
+
+    // Q2: Greek form
+    if (entry.greek && entry.greek !== '-') {
+      questions.push({
+        question: `What is the Greek form of ${entry.unicode}?`,
+        answer: entry.greek,
+        source: 'lexicon'
+      });
+    }
+
+    // Q3: Pantheon
+    if (entry.pantheon) {
+      questions.push({
+        question: `Which pantheon does ${entry.unicode} belong to?`,
+        answer: `${entry.unicode} belongs to the ${entry.pantheon} pantheon.`,
+        source: 'lexicon'
+      });
+    }
+
+    // Q4: Tier
+    if (entry.tier) {
+      const tierLabel = entry.tier === 'dual' ? 'Dual-Tier' : `Tier ${entry.tier}`;
+      questions.push({
+        question: `What is the Unicode tier of ${entry.unicode}?`,
+        answer: `${entry.unicode} is classified as ${tierLabel} — ${entry.tier === 'dual' ? 'it has multiple historically valid Unicode spellings.' : entry.tier === '1' ? 'it contains both stress and long vowels with a single valid restoration.' : 'it preserves one scholarly feature (stress or length).'}.`,
+        source: 'lexicon'
+      });
+    }
+
+    // Q5: Co-mentioned entities (semantic graph)
+    const coEntities = db.prepare(`
+      SELECT e.id, e.unicode, e.ascii, e.meaning, COUNT(*) as co_count
+      FROM entity_mentions em1
+      JOIN entity_mentions em2 ON em1.site_id = em2.site_id
+      JOIN entries e ON em2.entry_id = e.id
+      WHERE em1.entry_id = ? AND em2.entry_id != ?
+      GROUP BY e.id
+      ORDER BY co_count DESC
+      LIMIT ?
+    `).all(entry.id, entry.id, limit);
+
+    for (const ce of coEntities) {
+      questions.push({
+        question: `How is ${entry.unicode} related to ${ce.unicode}?`,
+        answer: `Both ${entry.unicode} and ${ce.unicode} appear together in ${ce.co_count} indexed page${ce.co_count > 1 ? 's' : ''} across the Unicode web.${ce.meaning ? ` ${ce.unicode} means "${ce.meaning}".` : ''}`,
+        source: 'semantic_graph'
+      });
+    }
+
+    // Q6: Etymology
+    if (entry.etymology) {
+      questions.push({
+        question: `What is the etymology of ${entry.unicode}?`,
+        answer: entry.etymology,
+        source: 'lexicon'
+      });
+    }
+  }
+
+  return questions.slice(0, limit + 2);
+}
+
+/**
+ * Submit a domain for indexing (webmaster flow).
+ */
+function submitDomain(domain, source = 'webmaster') {
+  const db = getDb();
+  try {
+    const punycode = require('url').domainToASCII(domain);
+    if (!punycode) return { success: false, error: 'Invalid domain' };
+
+    // Check if already indexed
+    const existing = db.prepare('SELECT status FROM indexed_sites WHERE punycode = ?').get(punycode);
+    if (existing) {
+      return { success: true, alreadyIndexed: true, status: existing.status, punycode };
+    }
+
+    // Add to queue
+    db.prepare(`
+      INSERT OR IGNORE INTO crawl_queue (domain, punycode, source, status, priority)
+      VALUES (?, ?, ?, 'pending', 10)
+    `).run(domain, punycode, source);
+
+    // Also add to discovered_domains
+    db.prepare(`
+      INSERT OR IGNORE INTO discovered_domains (domain, punycode, source)
+      VALUES (?, ?, ?)
+    `).run(domain, punycode, source);
+
+    return { success: true, punycode, queued: true };
+  } catch (e) {
+    return { success: false, error: e.message };
+  }
 }
 
 function markSiteSpam(punycode) {
@@ -122,8 +995,16 @@ module.exports = {
   getSites,
   getSiteByPunycode,
   searchSites,
+  searchWeb,
   getAvailability,
   setAvailability,
   getCrawlerStats,
-  markSiteSpam
+  markSiteSpam,
+  getQueue,
+  addToQueue,
+  getDiscoveredDomains,
+  findDuplicateClusters,
+  getKnowledgePanelData,
+  generatePeopleAlsoAsk,
+  submitDomain
 };

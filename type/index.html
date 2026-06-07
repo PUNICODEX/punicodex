@@ -1,24 +1,24 @@
-ï»¿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PÃšNYCODEX Type â€” Scholarly Transliteration Engine</title>
+    <title>PÚNYCODEX Type — Scholarly Transliteration Engine</title>
     <meta name="description" content="Type classical names and watch them restore to their correct Unicode orthography. A predictive typing system for scholarly transliteration.">
     <meta name="theme-color" content="#050505">
     <meta name="color-scheme" content="dark">
 
     <!-- Open Graph / Social -->
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="PÃšNYCODEX">
-    <meta property="og:title" content="PÃšNYCODEX Type â€” Scholarly Transliteration Engine">
+    <meta property="og:site_name" content="PÚNYCODEX">
+    <meta property="og:title" content="PÚNYCODEX Type — Scholarly Transliteration Engine">
     <meta property="og:description" content="Type classical names and watch them restore to their correct Unicode orthography. A predictive typing system for scholarly transliteration.">
     <link rel="canonical" href="https://punycodex.com/type/">
     <meta property="og:url" content="https://punycodex.com/type/">
     <meta property="og:image" content="https://punycodex.com/assets/images/og-type.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="PÃšNYCODEX Type â€” Scholarly Transliteration Engine">
+    <meta name="twitter:title" content="PÚNYCODEX Type — Scholarly Transliteration Engine">
     <meta name="twitter:description" content="Type classical names and watch them restore to their correct Unicode orthography.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,6 +46,7 @@
                 <a href="/realms/" class="nav-link">Realms</a>
                 <a href="/lexicon/" class="nav-link">Lexicon</a>
                 <a href="/type/" class="nav-link active">Type</a>
+                <a href="/search.html" class="nav-link">Search</a>
                 <a href="/tiers/" class="nav-link">Tier System</a>
                 <a href="/codex/" class="nav-link">Codex</a>
                 <a href="/store/" class="nav-link">Store</a>
@@ -75,7 +76,7 @@
         <section class="type-hero">
             <div class="container">
                 <p class="section-eyebrow">The Engine</p>
-                <h1 class="display-lg">PÃšNYCODEX <span class="type-accent">TYPE</span></h1>
+                <h1 class="display-lg">PÚNYCODEX <span class="type-accent">TYPE</span></h1>
                 <p class="body-lg type-subtitle">
                     A predictive typing system for scholarly transliteration.
                     Type a name. The system constrains you to valid Unicode paths only.
@@ -154,6 +155,7 @@
                             </div>
                             <div class="result-unicode" id="result-unicode" aria-label="Unicode restoration"></div>
                             <div class="result-greek" id="result-greek" aria-label="Original script"></div>
+                            <div class="result-variations hidden" id="result-variations" aria-label="Valid scholarly variations"></div>
                             <div class="result-meta">
                                 <div class="result-row">
                                     <span class="result-key">Domain</span>
@@ -162,6 +164,10 @@
                                 <div class="result-row">
                                     <span class="result-key">Meaning</span>
                                     <span class="result-value" id="result-meaning"></span>
+                                </div>
+                                <div class="result-row hidden" id="result-etymology-row">
+                                    <span class="result-key">Root</span>
+                                    <span class="result-value" id="result-etymology"></span>
                                 </div>
                             </div>
                             <div class="result-sources" id="result-sources"></div>
@@ -187,7 +193,7 @@
                         <div class="explain-number">01</div>
                         <h3 class="heading-md">Constraint, Not Conversion</h3>
                         <p class="body-md">
-                            Most tools convert after you type. PÃšNYCODEX Type blocks invalid paths 
+                            Most tools convert after you type. PÚNYCODEX Type blocks invalid paths 
                             in real time. If no attested name begins with your keystrokes, the input 
                             is rejected. You cannot type garbage.
                         </p>
@@ -227,7 +233,7 @@
                         <span class="stat-label">Pantheons</span>
                     </div>
                     <div class="stat-inline">
-                        <span class="stat-num">âˆž</span>
+                        <span class="stat-num">8</span>
                         <span class="stat-label">Invalid Paths Blocked</span>
                     </div>
                 </div>
@@ -239,8 +245,8 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <h4>PÃšNYCODEX</h4>
-                    <p>The Unicode Pantheon â€” restoring the original names of world archetypes to the digital realm.</p>
+                    <h4>PÚNYCODEX</h4>
+                    <p>The Unicode Pantheon — restoring the original names of world archetypes to the digital realm.</p>
                 </div>
                 <div class="footer-col">
                     <h4>Explore</h4>
@@ -257,11 +263,11 @@
                 </div>
                 <div class="footer-col">
                     <h4>Connect</h4>
-                    <a href="mailto:hello@punycodex.com">hello@punycodex.com</a>
+                    <a href="mailto:punycodex@gmail.com">punycodex@gmail.com</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 PÃšNYCODEX. All rites reserved.</p>
+                <p>&copy; 2024 PÚNYCODEX. All rites reserved.</p>
             </div>
         </div>
     </footer>
@@ -269,6 +275,7 @@
     <!-- Scripts -->
     <script src="js/lexicon.js?v=perf7" defer></script>
     <script src="/js/main.js?v=perf7" defer></script>
+    <script src="/js/stacked-diacritics.js?v=perf7" defer></script>
     <script src="js/type.js?v=perf7" defer></script>
 
 </body>

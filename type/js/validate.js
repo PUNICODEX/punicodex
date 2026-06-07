@@ -97,6 +97,84 @@ LEXICON.forEach((entry, i) => {
             `[${label}] greek/original script "${entry.greek}" doesn't contain Greek, Devanagari, or CJK blocks`);
     }
 
+    // Variants check (optional)
+    const ALLOWED_VARIANT_TYPES = ['ideal', 'owned', 'alt-stress', 'macron-only', 'ascii'];
+    if (entry.variants !== undefined) {
+        assert(Array.isArray(entry.variants), `[${label}] variants must be an array`);
+        const variantUnicodes = new Set();
+        entry.variants.forEach((v, k) => {
+            assert(typeof v === 'object' && v !== null,
+                `[${label}] variants[${k}] must be an object`);
+            assert(typeof v.unicode === 'string' && v.unicode.length > 0,
+                `[${label}] variants[${k}] missing unicode`);
+            assert(v.unicode === v.unicode.normalize('NFC'),
+                `[${label}] variants[${k}] unicode "${v.unicode}" is not NFC-normalized`);
+            assert(typeof v.type === 'string',
+                `[${label}] variants[${k}] missing type`);
+            assert(ALLOWED_VARIANT_TYPES.includes(v.type),
+                `[${label}] variants[${k}] type "${v.type}" not in allowed set: ${ALLOWED_VARIANT_TYPES.join(', ')}`);
+            assert(typeof v.note === 'string',
+                `[${label}] variants[${k}] missing note`);
+            assert(v.unicode !== entry.unicode,
+                `[${label}] variants[${k}] unicode "${v.unicode}" duplicates parent unicode`);
+            assert(!variantUnicodes.has(v.unicode),
+                `[${label}] variants[${k}] unicode "${v.unicode}" is duplicated within variants`);
+            variantUnicodes.add(v.unicode);
+        });
+    }
+
+    // Dual-tier entries must have variants
+    if (entry.tier === 'dual') {
+        assert(entry.variants && entry.variants.length >= 2,
+            `[${label}] dual-tier entry must have at least 2 variants, got ${entry.variants ? entry.variants.length : 0}`);
+    }
+
+    // Etymology check (optional)
+    const ALLOWED_PROTO_LANGUAGES = ['proto-indo-european', 'proto-afro-asiatic', 'proto-polynesian', 'proto-uto-aztecan', 'proto-sino-tibetan', 'proto-mayan', 'isolate', 'unknown'];
+    const ALLOWED_CERTAINTY = ['attested', 'speculative', 'disputed', 'unknown'];
+    const ALLOWED_COGNATE_RELATIONSHIPS = ['cognate', 'loan', 'derivative', 'variant', 'uncertain'];
+    if (entry.etymology !== undefined) {
+        assert(typeof entry.etymology === 'object' && entry.etymology !== null,
+            `[${label}] etymology must be an object`);
+        const e = entry.etymology;
+        if (e.protoForm !== undefined) {
+            assert(typeof e.protoForm === 'string',
+                `[${label}] etymology.protoForm must be a string`);
+        }
+        if (e.protoLanguage !== undefined) {
+            assert(ALLOWED_PROTO_LANGUAGES.includes(e.protoLanguage),
+                `[${label}] etymology.protoLanguage "${e.protoLanguage}" not in allowed set: ${ALLOWED_PROTO_LANGUAGES.join(', ')}`);
+        }
+        if (e.protoGloss !== undefined) {
+            assert(typeof e.protoGloss === 'string',
+                `[${label}] etymology.protoGloss must be a string`);
+        }
+        if (e.derivation !== undefined) {
+            assert(typeof e.derivation === 'string',
+                `[${label}] etymology.derivation must be a string`);
+        }
+        if (e.certainty !== undefined) {
+            assert(ALLOWED_CERTAINTY.includes(e.certainty),
+                `[${label}] etymology.certainty "${e.certainty}" not in allowed set: ${ALLOWED_CERTAINTY.join(', ')}`);
+        }
+        if (e.cognates !== undefined) {
+            assert(Array.isArray(e.cognates),
+                `[${label}] etymology.cognates must be an array`);
+            e.cognates.forEach((c, k) => {
+                assert(typeof c === 'object' && c !== null,
+                    `[${label}] etymology.cognates[${k}] must be an object`);
+                assert(typeof c.language === 'string' && c.language.length > 0,
+                    `[${label}] etymology.cognates[${k}] missing language`);
+                assert(typeof c.form === 'string' && c.form.length > 0,
+                    `[${label}] etymology.cognates[${k}] missing form`);
+                assert(typeof c.relationship === 'string',
+                    `[${label}] etymology.cognates[${k}] missing relationship`);
+                assert(ALLOWED_COGNATE_RELATIONSHIPS.includes(c.relationship),
+                    `[${label}] etymology.cognates[${k}] relationship "${c.relationship}" not in allowed set: ${ALLOWED_COGNATE_RELATIONSHIPS.join(', ')}`);
+            });
+        }
+    }
+
     // Sources check
     if (Array.isArray(entry.sources)) {
         assert(entry.sources.length > 0, `[${label}] sources array must not be empty`);

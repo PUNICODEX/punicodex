@@ -18,7 +18,7 @@ These temples **must** display:
 - Footer: **Dual‑Tier Pair (Tier‑1 & Tier‑2)**
 
 **Owned domains:**
-- `apollon.com` + `ápollōn.com`
+- `apóllōn.com` + `apollōn.com`
 - `hekate.com` + `hekátē.com`
 - `nike.com` + `níkē.com`
 
@@ -90,7 +90,7 @@ When the ideal form is unavailable, use the highest available fallback:
 - **Macron‑only is not wrong.** It is the standard convention in Liddell‑Scott‑Jones, Cambridge, and Oxford texts.
 - **Combined marks** (e.g., `ḗ` = acute + macron on one letter) are philologically ideal but often **untypeable on phones** and may be unavailable as domains.
 - **Wrong accent position** is worse than no accent. `ápollōn` (accent on wrong syllable) was **scrapped** in favor of plain `apollōn`.
-- **Recognizability matters.** `Athēnē` changes the final letter from familiar "Athena" — but now that `athēnē.com` is acquired, it is the primary. `athēnā.com` remains a valid variant redirect.
+- **Recognizability matters.** `Athēnē` changes the final letter from familiar "Athena" — but now that `athénā.com` is acquired, it is the primary.
 
 ### Name Variations Sections
 
@@ -293,3 +293,9 @@ Results sorted by:
 ### Flagship Domains (43)
 
 Seeded as `active` sites in `indexed_sites`. When DNS resolves and content is fetched, the crawler updates their real title/description.
+
+
+## Unicode Domain Constraint
+
+Only ~8% of discovered domains are actual punycode (xn--) domains. Unicode IDN registration is primarily supported in .com (79 of 93 punycode domains), with minimal support in .net/.org. Other TLDs (.de, .fr, .jp, .eu, etc.) largely do not support IDN registration. The search engine compensates by applying a +0.5 multiplier bonus to all xn-- domains and providing a 'Unicode Only' filter toggle.
+

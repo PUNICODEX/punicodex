@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mark Yamashita | Unity & Software Engineer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portfolio of Mark Yamashita, senior Unity and software engineer focused on realtime systems, networking, and developer tools.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">
+        <a href="#top">yama.com</a>
+      </div>
+      <nav class="nav">
+        <a href="#work">Work</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <p class="eyebrow">Senior Unity & Software Engineer</p>
+          <h1>Mark Yamashita</h1>
+          <p class="hero-tagline">
+            I design and ship realtime systems, networking stacks, and tools that help teams build games and interactive products with confidence.
+          </p>
+          <div class="hero-actions">
+            <a href="#work" class="button primary">View selected work</a>
+            <a href="#experience" class="button secondary">View experience</a>
+            <a href="assets/resume/Mark_Yamashita_Resume.pdf" class="button secondary" download>
+              Download resume (PDF)
+            </a>
+          </div>
+          <div class="hero-meta">
+            <span>Unity · C# · WebGL · gRPC Web · iOS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+
+    <!-- Snapshot / Skills -->
+    <section class="section section-muted">
+      <div class="container">
+        <h2>What I focus on</h2>
+        <div class="pill-grid">
+          <div class="pill">
+            Architecting clean Unity UI and game systems for mobile, desktop, and WebGL.
+          </div>
+          <div class="pill">
+            Building client-server systems, including APIs, gRPC-Web clients, REST integrations, and deterministic replay tools.
+          </div>
+          <div class="pill">
+            Profiling and tuning frame rate, memory, and build size on constrained hardware.
+          </div>
+          <div class="pill">
+            Creating editor tools, validators, and workflows that improve development speed and reliability.
+          </div>
+          <div class="pill">
+            Prioritizing maintainable architecture with readable code, clear boundaries, and data flow that teams can extend.
+          </div>
+          <div class="pill">
+            Building systems with debuggability in mind using structured logging, predictable behavior, and tools to reproduce complex issues.
+          </div>
+          <div class="pill">
+            Designing APIs with clear contracts, validation at the boundary, and structured error handling.
+          </div>
+          <div class="pill">
+            Picking up new domains quickly and delivering reliable systems across frontend, backend, and client platforms.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Selected Work -->
+    <section id="work" class="section">
+      <div class="container">
+        <h2>Selected work</h2>
+        <div class="card-grid">
+
+          <article class="card">
+            <h3>PariMAX WebGL HHR Client</h3>
+            <p class="card-meta">1/ST Technology · Unity · WebGL · gRPC Web</p>
+            <p>
+              Led development of PariMAX’s first Unity WebGL client for real money historical horse racing games. 
+              Built a reusable gRPC Web networking package with typed requests, retries, and structured logging used across titles.
+            </p>
+            <ul class="card-list">
+              <li>Converted a legacy Unity PC title to WebGL with build-size, performance, and cross-browser optimizations.</li>
+              <li>Built the entire Unity gRPC-Web integration path using a custom JavaScript bridge, Webpack bundling, and .jslib interop.</li>
+              <li>Collaborated with backend teams on secure, server-authoritative flows.</li>
+            </ul>            
+          </article>
+
+          <article class="card">
+            <h3>WhoAmMAI</h3>
+            <p class="card-meta">Personal project · Cloudflare Workers · React · TypeScript · LLM integration</p>
+            <p>
+              LLM-powered daily guessing game exploring serverless APIs, structured model output, validation, and constrained game loops.
+            </p>
+            <ul class="card-list">
+              <li>Built a React web app with a Cloudflare Worker API.</li>
+              <li>Designed structured JSON output boundaries for LLM intent parsing and response handling.</li>
+              <li>Added API validation, structured error responses, and protected admin-route patterns.</li>
+              <li>Designed API boundaries to separate parsing, validation, and game logic for maintainability.</li>
+            </ul>
+            <p><a href="https://github.com/markyama/whoammai" target="_blank" rel="noreferrer" class="button secondary">View GitHub repo</a></p>
+          </article>
+
+          <article class="card">
+            <h3>BotBattle</h3>
+            <p class="card-meta">Personal project · Go backend · TypeScript frontend</p>
+            <p>
+              A competitive bot platform with a deterministic battle loop and replayable simulations. 
+              Designed as a way to deepen backend, API, and systems skills beyond game clients.
+            </p>
+            <ul class="card-list">
+              <li>Implemented a bot upload API with validation and structured error responses.</li>
+              <li>Outlined the architecture for a seedable battle engine supporting reproducible matches and debugging.</li>
+              <li>Designed a deterministic simulation model to enable reproducible matches and debugging.</li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="section section-muted">
+      <div class="container">
+        <h2>Experience</h2>
+
+        <div class="experience-item">
+          <div class="experience-header">
+            <div>
+              <h3>Senior Software Engineer</h3>
+              <p class="experience-company">1/ST Technology – AmTote International · Remote</p>
+            </div>
+            <div class="experience-dates">2023 – Present</div>
+          </div>
+          <ul>
+            <li>Led Unity WebGL client development for real time HHR casino games, including PariMAX’s first WebGL title.</li>
+            <li>Built and maintained a gRPC Web networking package reused across products.</li>
+            <li>Created editor tools and validators that improved content workflows and data safety.</li>
+            <li>Profiled and optimized frame rate and memory on constrained hardware.</li>
+          </ul>
+        </div>
+
+        <div class="experience-item">
+          <div class="experience-header">
+            <div>
+              <h3>Unity Game Developer</h3>
+              <p class="experience-company">Igloosoft Games · Remote</p>
+            </div>
+            <div class="experience-dates">2021 – 2023</div>
+          </div>
+          <ul>
+            <li>Implemented core systems for a 2D survival and colony game across PC and consoles.</li>
+            <li>Worked on AI, animation, and performance tuning for large worlds.</li>
+            <li>Built internal tools to speed up world generation and designer workflows.</li>
+          </ul>
+        </div>
+
+        <div class="experience-item">
+          <div class="experience-header">
+            <div>
+              <h3>Lead iOS Developer</h3>
+              <p class="experience-company">24x7digital · Los Angeles, CA</p>
+            </div>
+            <div class="experience-dates">2008 – 2025</div>
+          </div>
+          <ul>
+            <li>Created the TeachMe app series, reaching more than two million downloads.</li>
+            <li>Modernized Aw Craps into a freemium title with improved purchase and restore flows.</li>
+            <li>Prototyped a VR version of BC Blackjack for Meta Quest using Unity XR and OpenXR.</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <div class="container">
+        <h2>Contact</h2>
+        <p>
+          I am interested in roles where I can solve hard engineering problems across systems, backend, and mobile, building modern, efficient, and maintainable solutions. I love designing software that is robust, performant, and thoughtfully engineered, regardless of platform or language.        </p>
+        <div class="contact-list">
+          <p><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection#59203834381920383438773a3634"><span class="__cf_email__" data-cfemail="7f061e121e3f061e121e511c1012">[email&#160;protected]</span></a></p>
+          <p><strong>LinkedIn:</strong> 
+            <a href="https://linkedin.com/in/markyama" target="_blank" rel="noreferrer">
+              linkedin.com/in/markyama
+            </a>
+          </p>
+            </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Mark Yamashita</span>
+      <span>Built on Cloudflare Pages</span>
+    </div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // simple dynamic year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

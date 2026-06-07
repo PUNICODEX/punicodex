@@ -26,12 +26,12 @@
         });
 
         grid.innerHTML = sorted.map((a, index) => {
-            const url = a.domainUnicode ? `https://${a.domainUnicode}` : null;
-            const tag = url ? 'a' : 'div';
-            const hrefAttr = url ? `href="${url}"` : '';
+            const url = `/sites/${a.id}/lore/`;
+            const tag = 'a';
+            const hrefAttr = `href="${url}"`;
             const unbuiltClass = !a.built ? 'unbuilt' : '';
-            const tierClass = a.tier === 'dual-tier' ? 'dual-tier' : a.tier;
-            const badgeText = !a.built ? 'Awaiting' : a.tier === 'tier-1' ? 'Tier 1' : a.tier === 'tier-2' ? 'Tier 2' : 'Dual-Tier';
+            const tierClass = a.tier;
+            const badgeText = !a.built ? 'Awaiting' : a.tier === 'tier-1' ? 'Tier 1' : 'Tier 2';
 
             return `
                 <${tag} ${hrefAttr} class="archetype-card reveal-up ${unbuiltClass}" data-id="${a.id}" data-tier="${a.tier}" data-pantheon="${a.pantheon}" data-built="${a.built}" data-name="${(a.name || "").toLowerCase()}" data-greek="${(a.greek || "").toLowerCase()}" data-domain="${(a.domain || "").toLowerCase()}" style="--stagger-index:${index % 4}">
@@ -82,7 +82,6 @@
         let builtCount = 0;
         let tier1Count = 0;
         let tier2Count = 0;
-        let dualCount = 0;
 
         allCards.forEach(card => {
             const archetype = archetypeMap.get(card.dataset.id);
@@ -116,7 +115,7 @@
                 if (archetype.built) builtCount++;
                 if (archetype.tier === 'tier-1') tier1Count++;
                 if (archetype.tier === 'tier-2') tier2Count++;
-                if (archetype.tier === 'dual-tier') dualCount++;
+
             }
         });
 
@@ -125,7 +124,7 @@
         document.getElementById('stat-built').textContent = builtCount;
         document.getElementById('stat-tier1').textContent = tier1Count;
         document.getElementById('stat-tier2').textContent = tier2Count;
-        document.getElementById('stat-dual').textContent = dualCount;
+
 
         // Show/hide empty state
         if (visibleCount === 0) {

@@ -1,5 +1,5 @@
 import re
-content = open('archetypes-temp.js').read()
+content = open('js/archetypes-v2.js', encoding='utf-8').read()
 tiers = re.findall(r'tier:\s*"([^"]+)".*?tierDetail:\s*"([^"]+)"', content, re.DOTALL)
 from collections import Counter
 print('Tier + tierDetail distribution:')

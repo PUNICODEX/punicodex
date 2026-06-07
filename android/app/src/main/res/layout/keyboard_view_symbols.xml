@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/symbols_keyboard_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#080808"
+    android:paddingStart="@dimen/keyboard_padding_h"
+    android:paddingEnd="@dimen/keyboard_padding_h"
+    android:paddingTop="@dimen/keyboard_padding_top"
+    android:paddingBottom="@dimen/keyboard_padding_bottom">
+
+    <LinearLayout
+        android:id="@+id/symbols_keyboard_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Suggestion Bar (reused from letter layout via code) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/suggestion_row_height"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:id="@+id/symbols_typed_word"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:text=""
+                android:textColor="#555555"
+                android:textSize="15sp"
+                android:fontFamily="sans-serif-medium"
+                android:maxLength="22"
+                android:ellipsize="end"
+                android:maxLines="1" />
+
+            <HorizontalScrollView
+                android:id="@+id/symbols_suggestion_scroll"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/symbols_suggestion_row"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical" />
+            </HorizontalScrollView>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#151515"
+            android:layout_marginBottom="4dp" />
+
+        <!-- Numbers Row 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/key_row_height"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/row_gap">
+
+            <Button android:id="@+id/key_1" style="@style/KeyButton" android:text="1" />
+            <Button android:id="@+id/key_2" style="@style/KeyButton" android:text="2" />
+            <Button android:id="@+id/key_3" style="@style/KeyButton" android:text="3" />
+            <Button android:id="@+id/key_4" style="@style/KeyButton" android:text="4" />
+            <Button android:id="@+id/key_5" style="@style/KeyButton" android:text="5" />
+            <Button android:id="@+id/key_6" style="@style/KeyButton" android:text="6" />
+            <Button android:id="@+id/key_7" style="@style/KeyButton" android:text="7" />
+            <Button android:id="@+id/key_8" style="@style/KeyButton" android:text="8" />
+            <Button android:id="@+id/key_9" style="@style/KeyButton" android:text="9" />
+            <Button android:id="@+id/key_0" style="@style/KeyButton" android:text="0" />
+        </LinearLayout>
+
+        <!-- Symbols Row 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/key_row_height"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/row_gap">
+
+            <Button android:id="@+id/key_excl" style="@style/KeyButton" android:text="!" />
+            <Button android:id="@+id/key_at" style="@style/KeyButton" android:text="@" />
+            <Button android:id="@+id/key_hash" style="@style/KeyButton" android:text="#" />
+            <Button android:id="@+id/key_dollar" style="@style/KeyButton" android:text="$" />
+            <Button android:id="@+id/key_percent" style="@style/KeyButton" android:text="%" />
+            <Button android:id="@+id/key_caret" style="@style/KeyButton" android:text="^" />
+            <Button android:id="@+id/key_amp" style="@style/KeyButton" android:text="&amp;" />
+            <Button android:id="@+id/key_asterisk" style="@style/KeyButton" android:text="*" />
+            <Button android:id="@+id/key_lparen" style="@style/KeyButton" android:text="(" />
+            <Button android:id="@+id/key_rparen" style="@style/KeyButton" android:text=")" />
+        </LinearLayout>
+
+        <!-- Symbols Row 2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/key_row_height"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_marginBottom="@dimen/row_gap">
+
+            <Button android:id="@+id/key_minus" style="@style/KeyButton" android:text="-" />
+            <Button android:id="@+id/key_underscore" style="@style/KeyButton" android:text="_" />
+            <Button android:id="@+id/key_equals" style="@style/KeyButton" android:text="=" />
+            <Button android:id="@+id/key_plus" style="@style/KeyButton" android:text="+" />
+            <Button android:id="@+id/key_lbracket" style="@style/KeyButton" android:text="[" />
+            <Button android:id="@+id/key_rbracket" style="@style/KeyButton" android:text="]" />
+            <Button android:id="@+id/key_lbrace" style="@style/KeyButton" android:text="{" />
+            <Button android:id="@+id/key_rbrace" style="@style/KeyButton" android:text="}" />
+            <Button android:id="@+id/key_pipe" style="@style/KeyButton" android:text="|" />
+        </LinearLayout>
+
+        <!-- Symbols Row 3 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/key_row_height"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/row_gap">
+
+            <Button android:id="@+id/key_sym_shift" style="@style/KeyButtonWide" android:text="⇧" />
+            <Button android:id="@+id/key_colon" style="@style/KeyButton" android:text=":" />
+            <Button android:id="@+id/key_semicolon" style="@style/KeyButton" android:text=";" />
+            <Button android:id="@+id/key_quote" style="@style/KeyButton" android:text="&quot;" />
+            <Button android:id="@+id/key_apostrophe" style="@style/KeyButton" android:text="'" />
+            <Button android:id="@+id/key_slash" style="@style/KeyButton" android:text="/" />
+            <Button android:id="@+id/key_backslash" style="@style/KeyButton" android:text="?" />
+            <Button android:id="@+id/key_lt" style="@style/KeyButton" android:text="&lt;" />
+            <Button android:id="@+id/key_gt" style="@style/KeyButton" android:text="&gt;" />
+            <Button android:id="@+id/key_sym_backspace" style="@style/KeyButtonWide" android:text="⌫" />
+        </LinearLayout>
+
+        <!-- Bottom Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/key_row_height"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button android:id="@+id/key_abc" style="@style/KeyButtonWide" android:text="ABC" />
+            <Button android:id="@+id/key_sym_comma" style="@style/KeyButtonPunct" android:text="," />
+            <Button android:id="@+id/key_sym_space" style="@style/KeyButtonSpace" android:text="" />
+            <Button android:id="@+id/key_sym_period" style="@style/KeyButtonPunct" android:text="." />
+            <Button android:id="@+id/key_sym_return" style="@style/KeyButtonWide" android:text="↵" />
+        </LinearLayout>
+
+        <!-- System bar avoidance spacer -->
+        <View
+            android:id="@+id/symbols_bottom_spacer"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/system_bar_spacer"
+            android:background="@android:color/transparent" />
+    </LinearLayout>
+</FrameLayout>

@@ -1,5 +1,5 @@
-﻿/**
- * SPÁRTĒ — The Warrior City-State
+/**
+ * SP�RTE � The Warrior City-State
  * Interactive Layer: Dust, Spear Glints, Heat Shimmer, Reveals, Navigation
  */
 

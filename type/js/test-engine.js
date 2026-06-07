@@ -232,31 +232,31 @@ test('Exact match with greek-all includes greek gods', () => {
 
 section('Variant Matching');
 
-test('findExactMatches returns all variants for shared ASCII', () => {
+test('findExactMatches returns primary entry for shared ASCII', () => {
     const matches = findExactMatches(trie, 'apollon');
-    assert.ok(matches.length >= 2, `Expected >=2 variants, got ${matches.length}`);
+    assert.ok(matches.length >= 1, `Expected >=1 match, got ${matches.length}`);
     const ids = matches.map(m => m.id);
     assert.ok(ids.includes('apollon'), 'Primary apollon missing');
-    assert.ok(ids.includes('apollonv1'), 'Variant apollonv1 missing');
 });
 
-test('findExactMatches respects pantheon filter on variants', () => {
+test('Primary entries carry variants array', () => {
+    const matches = findExactMatches(trie, 'apollon');
+    const primary = matches.find(m => m.id === 'apollon');
+    assert.ok(primary, 'Primary apollon missing');
+    assert.ok(primary.variants && primary.variants.length >= 2, 'Expected >=2 variants on primary entry');
+});
+
+test('findExactMatches respects pantheon filter', () => {
     const matches = findExactMatches(trie, 'apollon', { pantheonFilter: 'greek' });
-    assert.ok(matches.length >= 2);
+    assert.ok(matches.length >= 1);
     matches.forEach(m => assert.strictEqual(m.pantheon, 'greek'));
 });
 
-test('Variant entries have different unicode values', () => {
-    const matches = findExactMatches(trie, 'apollon');
-    const unicodes = new Set(matches.map(m => m.unicode));
-    assert.ok(unicodes.size > 1, 'Variants should have different unicode values');
-});
-
-test('Hades variants are reachable', () => {
+test('Hades primary entry has variants', () => {
     const matches = findExactMatches(trie, 'hades');
-    const ids = matches.map(m => m.id);
-    assert.ok(ids.includes('hades'), 'Primary hades missing');
-    assert.ok(ids.includes('hadesv1'), 'Variant hadesv1 missing');
+    const primary = matches.find(m => m.id === 'hades');
+    assert.ok(primary, 'Primary hades missing');
+    assert.ok(primary.variants && primary.variants.length >= 2, 'Expected >=2 variants on primary entry');
 });
 
 section('Completions');
@@ -375,11 +375,11 @@ section('Pantheon Distribution');
 test('Correct pantheon counts', () => {
     const counts = {};
     LEXICON.forEach(e => { counts[e.pantheon] = (counts[e.pantheon] || 0) + 1; });
-    assert.strictEqual(counts.greek, 267, 'Greek count');
+    assert.strictEqual(counts.greek, 251, 'Greek count');
     assert.strictEqual(counts['greek-location'], 21, 'Greek-location count');
-    assert.strictEqual(counts.norse, 93, 'Norse count');
-    assert.strictEqual(counts.egyptian, 74, 'Egyptian count');
-    assert.strictEqual(counts.sanskrit, 93, 'Sanskrit count');
+    assert.strictEqual(counts.norse, 85, 'Norse count');
+    assert.strictEqual(counts.egyptian, 61, 'Egyptian count');
+    assert.strictEqual(counts.sanskrit, 85, 'Sanskrit count');
     assert.strictEqual(counts.celtic, 47, 'Celtic count');
     assert.strictEqual(counts.mesopotamian, 30, 'Mesopotamian count');
     assert.strictEqual(counts.polynesian, 21, 'Polynesian count');

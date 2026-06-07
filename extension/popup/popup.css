@@ -382,3 +382,13 @@ body {
 .popup-result.reveal {
     animation: reveal 0.3s ease forwards;
 }
+
+/* Rejected keystroke flash */
+@keyframes reject-flash {
+    0% { background: rgba(192, 108, 84, 0.2); border-color: var(--ember); }
+    100% { background: transparent; border-color: rgba(212, 175, 55, 0.2); }
+}
+
+.reject-flash {
+    animation: reject-flash 0.3s ease;
+}

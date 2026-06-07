@@ -64,11 +64,13 @@
     const resultEl = document.getElementById('type-result');
     const resultUnicode = document.getElementById('result-unicode');
     const resultGreek = document.getElementById('result-greek');
+    const resultVariations = document.getElementById('result-variations');
     const resultDomain = document.getElementById('result-domain');
     const resultMeaning = document.getElementById('result-meaning');
     const resultTier = document.getElementById('result-tier');
     const resultSources = document.getElementById('result-sources');
-    const resultVariants = document.getElementById('result-variants');
+    const resultEtymology = document.getElementById('result-etymology');
+    const resultEtymologyRow = document.getElementById('result-etymology-row');
     const copyBtn = document.getElementById('copy-btn');
     const clearBtn = document.getElementById('clear-btn');
     const pantheonFilter = document.getElementById('pantheon-filter');
@@ -422,37 +424,6 @@
         `;
     }
 
-    function renderVariants() {
-        if (!resultVariants) return;
-        const matches = findExactMatches(currentInput);
-        if (matches.length <= 1) {
-            resultVariants.innerHTML = '';
-            return;
-        }
-
-        const activeId = selectedEntry ? selectedEntry.id : matches[0].id;
-        const pills = matches.map(m => {
-            const isActive = m.id === activeId;
-            return `<button class="variant-pill ${isActive ? 'active' : ''}" data-id="${m.id}" title="${escapeHtml(m.meaning)}">${escapeHtml(nfc(m.unicode))}</button>`;
-        }).join('');
-
-        resultVariants.innerHTML = `
-            <div class="variants-label">Accepted scholarly spellings (${matches.length})</div>
-            <div class="variants-row">${pills}</div>
-        `;
-
-        resultVariants.querySelectorAll('.variant-pill').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const id = btn.dataset.id;
-                const entry = LEXICON.find(e => e.id === id);
-                if (entry) {
-                    selectedEntry = entry;
-                    updateAll();
-                }
-            });
-        });
-    }
-
     function updateMeta(entry) {
         if (entry) {
             document.title = `PÚNYCODEX Type — ${nfc(entry.unicode)}`;
@@ -495,8 +466,43 @@
             resultGreek.style.display = 'none';
         }
 
+        if (resultVariations && (entry.variants || (typeof StackedDiacritics !== 'undefined' && StackedDiacritics.hasStackedDiacritics(entry.unicode)))) {
+            let html = '<span class="result-variations-label">Valid Variations</span><div class="variations-list">';
+            if (entry.variants && entry.variants.length > 0) {
+                entry.variants.forEach(v => {
+                    html += `<span class="variation-chip variation-${v.type}">${escapeHtml(v.unicode)}</span>`;
+                });
+            }
+            if (typeof StackedDiacritics !== 'undefined' && StackedDiacritics.hasStackedDiacritics(entry.unicode)) {
+                html += `<span class="variation-chip variation-decomposed" title="Decomposed view">${StackedDiacritics.render(entry.unicode)}</span>`;
+            }
+            html += '</div>';
+            resultVariations.innerHTML = html;
+            resultVariations.classList.remove('hidden');
+        } else if (resultVariations) {
+            resultVariations.classList.add('hidden');
+        }
+
         resultDomain.textContent = entry.domain;
         resultMeaning.textContent = entry.meaning;
+        if (resultEtymology && resultEtymologyRow) {
+            if (entry.etymology && entry.etymology.protoForm) {
+                const protoLabel = {
+                    'proto-indo-european': 'PIE',
+                    'proto-afro-asiatic': 'Afro-Asiatic',
+                    'proto-polynesian': 'Proto-Polynesian',
+                    'proto-uto-aztecan': 'Proto-Uto-Aztecan',
+                    'proto-sino-tibetan': 'Proto-Sino-Tibetan',
+                    'proto-mayan': 'Proto-Mayan',
+                    'isolate': 'Isolate',
+                    'unknown': 'Unknown'
+                }[entry.etymology.protoLanguage] || entry.etymology.protoLanguage;
+                resultEtymology.innerHTML = `<span class="etymology-form">${escapeHtml(entry.etymology.protoForm)}</span> <span class="etymology-lang">${escapeHtml(protoLabel)}</span>`;
+                resultEtymologyRow.classList.remove('hidden');
+            } else {
+                resultEtymologyRow.classList.add('hidden');
+            }
+        }
         resultTier.textContent = entry.tierLabel;
         resultTier.className = `result-tier tier-${entry.tier}`;
 
@@ -505,8 +511,6 @@
                 `<span class="source-badge">${escapeHtml(src)}</span>`
             ).join('');
         }
-
-        renderVariants();
 
         resultEl.classList.remove('hidden');
         resultEl.classList.remove('reveal');

@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Níkē Advertiser Panel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <style>
+        :root {
+            --bg: #080e19;
+            --bg-elevated: #0e1a2b;
+            --bg-card: #121f33;
+            --gold: #d4af37;
+            --gold-dim: rgba(212,175,55,0.15);
+            --text: #e8e4dc;
+            --text-muted: #7a8a9e;
+            --success: #4ade80;
+            --danger: #ff6b6b;
+            --warning: #fbbf24;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+        .panel-header {
+            background: var(--bg-elevated);
+            border-bottom: 1px solid var(--gold-dim);
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .panel-header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--gold);
+        }
+        .panel-header p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .panel-nav {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .panel-nav-btn {
+            background: transparent;
+            border: 1px solid var(--gold-dim);
+            color: var(--gold);
+            padding: 0.4rem 1rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .panel-nav-btn.active, .panel-nav-btn:hover {
+            background: rgba(212,175,55,0.1);
+        }
+        .panel-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .panel-section { display: none; }
+        .panel-section.active { display: block; }
+
+        /* Overview cards */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .overview-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .overview-value {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        .overview-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        /* Placement cards */
+        .placements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 1.5rem;
+        }
+        .placement-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .placement-card-header {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .placement-card-name {
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--gold);
+        }
+        .placement-card-status {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+        }
+        .status-live { background: rgba(74,222,128,0.1); color: var(--success); border: 1px solid rgba(74,222,128,0.2); }
+        .status-pending { background: rgba(251,191,36,0.1); color: var(--warning); }
+        .status-ended { background: rgba(255,255,255,0.05); color: var(--text-muted); }
+        .placement-creative {
+            background: linear-gradient(145deg, rgba(14,26,43,0.92), rgba(8,15,25,0.97));
+            min-height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .placement-creative img {
+            max-width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+            display: block;
+        }
+        .placement-creative.placeholder {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            padding: 2rem;
+            text-align: center;
+        }
+        .placement-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: rgba(255,255,255,0.04);
+        }
+        .placement-stat {
+            background: var(--bg-card);
+            padding: 1rem;
+            text-align: center;
+        }
+        .placement-stat-value {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        .placement-stat-label {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-top: 0.25rem;
+        }
+        .placement-actions {
+            padding: 1rem 1.25rem;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .placement-btn {
+            flex: 1;
+            min-width: 100px;
+            padding: 0.6rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: opacity 0.2s;
+            text-align: center;
+        }
+        .placement-btn:hover { opacity: 0.85; }
+        .btn-primary { background: var(--gold); color: #000; }
+        .btn-secondary { background: transparent; color: var(--gold); border: 1px solid rgba(212,175,55,0.3); }
+
+        /* Editor modal */
+        .editor-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(6px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .editor-overlay.active { display: flex; }
+        .editor-panel {
+            background: var(--bg-elevated);
+            border: 1px solid var(--gold-dim);
+            border-radius: 14px;
+            width: 100%;
+            max-width: 480px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+        .editor-panel h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .editor-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin: 1rem 0 0.5rem;
+            display: block;
+        }
+        .editor-input {
+            width: 100%;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(212,175,55,0.12);
+            border-radius: 8px;
+            padding: 0.7rem 1rem;
+            color: var(--text);
+            font-size: 0.95rem;
+            outline: none;
+        }
+        .editor-input:focus { border-color: var(--gold); }
+        .editor-upload-zone {
+            border: 2px dashed rgba(212,175,55,0.2);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .editor-upload-zone:hover { border-color: var(--gold); background: rgba(212,175,55,0.03); }
+        .editor-upload-input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+        .editor-preview { max-width: 100%; max-height: 200px; border-radius: 6px; margin-top: 1rem; display: none; }
+        .editor-actions { display: flex; gap: 0.5rem; margin-top: 1.5rem; }
+        .editor-btn {
+            flex: 1;
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+        }
+        .editor-btn-primary { background: var(--gold); color: #000; }
+        .editor-btn-secondary { background: transparent; color: var(--gold); border: 1px solid rgba(212,175,55,0.3); }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-muted);
+        }
+        .chart-container { height: 200px; margin: 1rem 0; }
+        @media (max-width: 768px) {
+            .panel-header { padding: 1rem; }
+            .panel-container { padding: 1rem; }
+            .placements-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="panel-header">
+        <div>
+            <h1 id="panel-company">Advertiser Panel</h1>
+            <p id="panel-email">Loading...</p>
+        </div>
+        <div class="panel-nav">
+            <button class="panel-nav-btn active" onclick="showTab('overview')">Overview</button>
+            <button class="panel-nav-btn" onclick="showTab('placements')">Placements</button>
+        </div>
+    </div>
+
+    <div class="panel-container">
+        <div class="panel-section active" id="tab-overview">
+            <div class="overview-grid" id="overview-grid">
+                <div class="overview-card"><div class="overview-value">—</div><div class="overview-label">Active Placements</div></div>
+                <div class="overview-card"><div class="overview-value">—</div><div class="overview-label">Total Impressions</div></div>
+                <div class="overview-card"><div class="overview-value">—</div><div class="overview-label">Total Clicks</div></div>
+                <div class="overview-card"><div class="overview-value">—</div><div class="overview-label">Avg CTR</div></div>
+            </div>
+            <div id="overview-charts"></div>
+        </div>
+
+        <div class="panel-section" id="tab-placements">
+            <div class="placements-grid" id="placements-grid">
+                <div class="empty-state">Loading your placements...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Editor Modal -->
+    <div class="editor-overlay" id="editor-overlay">
+        <div class="editor-panel">
+            <h3>Edit Placement</h3>
+            <label class="editor-label">Heading</label>
+            <input type="text" class="editor-input" id="edit-heading" placeholder="Your heading">
+            <label class="editor-label">Subtitle</label>
+            <input type="text" class="editor-input" id="edit-subtitle" placeholder="Your subtitle">
+            <label class="editor-label">New Creative</label>
+            <div class="editor-upload-zone" id="edit-upload-zone">
+                <input type="file" class="editor-upload-input" id="edit-upload-input" accept="image/png,image/jpeg,image/webp">
+                <p>Drag & drop or click to upload</p>
+                <p style="font-size:0.75rem;color:var(--text-muted);">PNG, JPG, WebP &middot; Max 2MB</p>
+                <img class="editor-preview" id="edit-preview" alt="Preview">
+            </div>
+            <div class="editor-actions">
+                <button class="editor-btn editor-btn-primary" onclick="saveEdit()">Save Changes</button>
+                <button class="editor-btn editor-btn-secondary" onclick="closeEditor()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = window.location.origin;
+        const params = new URLSearchParams(window.location.search);
+        const token = params.get('token');
+        let bookings = [];
+        let currentEditToken = null;
+        let selectedFileBase64 = null;
+
+        async function api(path, opts = {}) {
+            const res = await fetch(`${API_BASE}${path}`, { ...opts, headers: { 'Content-Type': 'application/json', ...opts.headers } });
+            return res.json();
+        }
+
+        function showTab(name) {
+            document.querySelectorAll('.panel-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.panel-nav-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('tab-' + name).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        async function loadData() {
+            if (!token) {
+                document.getElementById('placements-grid').innerHTML = '<div class="empty-state">No access token provided.</div>';
+                return;
+            }
+            // Fetch all bookings for this token's owner
+            const all = await api(`/api/bookings/${token}/all`);
+            if (!all || all.error) {
+                document.getElementById('placements-grid').innerHTML = '<div class="empty-state">Invalid or expired link.</div>';
+                return;
+            }
+            bookings = all.bookings || [];
+            if (bookings.length > 0) {
+                document.getElementById('panel-company').textContent = bookings[0].company_name || 'Advertiser Panel';
+            }
+
+            // Enrich with dashboard metrics
+            for (let b of bookings) {
+                const metrics = await api(`/api/analytics/dashboard?token=${b.token}`);
+                b.metrics = metrics ? metrics.metrics : null;
+                b.booking = metrics ? metrics.booking : null;
+            }
+
+            renderOverview();
+            renderPlacements();
+        }
+
+        function renderOverview() {
+            const active = bookings.filter(b => b.status === 'live').length;
+            const totalImp = bookings.reduce((s, b) => s + (b.metrics?.totalImpressions || 0), 0);
+            const totalClk = bookings.reduce((s, b) => s + (b.metrics?.totalClicks || 0), 0);
+            const ctr = totalImp > 0 ? ((totalClk / totalImp) * 100).toFixed(2) : '0.00';
+
+            document.getElementById('overview-grid').innerHTML = `
+                <div class="overview-card"><div class="overview-value">${active}</div><div class="overview-label">Active Placements</div></div>
+                <div class="overview-card"><div class="overview-value">${totalImp.toLocaleString()}</div><div class="overview-label">Total Impressions</div></div>
+                <div class="overview-card"><div class="overview-value">${totalClk.toLocaleString()}</div><div class="overview-label">Total Clicks</div></div>
+                <div class="overview-card"><div class="overview-value">${ctr}%</div><div class="overview-label">Avg CTR</div></div>
+            `;
+        }
+
+        function renderPlacements() {
+            const grid = document.getElementById('placements-grid');
+            if (bookings.length === 0) {
+                grid.innerHTML = '<div class="empty-state">No placements found.</div>';
+                return;
+            }
+            grid.innerHTML = bookings.map(b => {
+                const m = b.metrics || {};
+                const statusClass = b.status === 'live' ? 'status-live' : b.status === 'ended' ? 'status-ended' : 'status-pending';
+                const creative = b.booking?.creative_path ? `<img src="${API_BASE}${b.booking.creative_path}" alt="Creative">` : '<div class="placement-creative placeholder">No creative uploaded</div>';
+                const canEdit = b.status !== 'ended';
+                return `
+                    <div class="placement-card">
+                        <div class="placement-card-header">
+                            <span class="placement-card-name">${b.slot_name}</span>
+                            <span class="placement-card-status ${statusClass}">${b.status.replace(/_/g, ' ')}</span>
+                        </div>
+                        <div class="placement-creative">${creative}</div>
+                        <div class="placement-stats">
+                            <div class="placement-stat"><div class="placement-stat-value">${(m.totalImpressions || 0).toLocaleString()}</div><div class="placement-stat-label">Impressions</div></div>
+                            <div class="placement-stat"><div class="placement-stat-value">${(m.totalClicks || 0).toLocaleString()}</div><div class="placement-stat-label">Clicks</div></div>
+                            <div class="placement-stat"><div class="placement-stat-value">${m.ctr || '0.00'}%</div><div class="placement-stat-label">CTR</div></div>
+                        </div>
+                        ${canEdit ? `
+                            <div class="placement-actions">
+                                <button class="placement-btn btn-primary" onclick="openEditor('${b.token}', '${b.booking?.custom_heading || ''}', '${b.booking?.custom_subtitle || ''}')">Edit</button>
+                                <a class="placement-btn btn-secondary" href="${API_BASE}/sites/nike/dashboard/?token=${b.token}" target="_blank">Analytics</a>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function openEditor(tk, heading, subtitle) {
+            currentEditToken = tk;
+            selectedFileBase64 = null;
+            document.getElementById('edit-heading').value = heading || '';
+            document.getElementById('edit-subtitle').value = subtitle || '';
+            document.getElementById('edit-preview').style.display = 'none';
+            document.getElementById('edit-upload-input').value = '';
+            document.getElementById('editor-overlay').classList.add('active');
+        }
+
+        function closeEditor() {
+            document.getElementById('editor-overlay').classList.remove('active');
+            currentEditToken = null;
+            selectedFileBase64 = null;
+        }
+
+        document.getElementById('edit-upload-zone').addEventListener('click', () => document.getElementById('edit-upload-input').click());
+        document.getElementById('edit-upload-input').addEventListener('change', e => {
+            if (!e.target.files.length) return;
+            const file = e.target.files[0];
+            const allowed = ['image/png', 'image/jpeg', 'image/webp'];
+            if (!allowed.includes(file.type)) { alert('PNG, JPG, or WebP only'); return; }
+            if (file.size > 2 * 1024 * 1024) { alert('Max 2MB'); return; }
+            const reader = new FileReader();
+            reader.onload = ev => {
+                selectedFileBase64 = ev.target.result;
+                const preview = document.getElementById('edit-preview');
+                preview.src = selectedFileBase64;
+                preview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        });
+
+        async function saveEdit() {
+            if (!currentEditToken) return;
+            const heading = document.getElementById('edit-heading').value.trim();
+            const subtitle = document.getElementById('edit-subtitle').value.trim();
+
+            // Update meta text
+            await fetch(`${API_BASE}/api/bookings/${currentEditToken}/meta`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ customHeading: heading, customSubtitle: subtitle }),
+            });
+
+            // Upload creative if selected
+            if (selectedFileBase64) {
+                const res = await fetch(`${API_BASE}/api/bookings/${currentEditToken}/upload`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ image: selectedFileBase64, filename: 'creative.png' }),
+                });
+                const data = await res.json();
+                if (!data.success) { alert(data.error || 'Upload failed'); return; }
+            }
+            closeEditor();
+            loadData();
+        }
+
+        document.getElementById('editor-overlay').addEventListener('click', e => {
+            if (e.target.id === 'editor-overlay') closeEditor();
+        });
+
+        loadData();
+    </script>
+</body>
+</html>

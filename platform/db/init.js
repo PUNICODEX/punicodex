@@ -27,6 +27,8 @@ db.exec(`
     domain TEXT,
     meaning TEXT,
     sources TEXT,
+    etymology TEXT,
+    variants TEXT,
     has_flagship INTEGER DEFAULT 0,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
   );
@@ -68,8 +70,8 @@ fs.unlinkSync(tmpPath);
 
 // Insert entries
 const insertEntry = db.prepare(`
-  INSERT INTO entries (id, ascii, unicode, greek, pantheon, tier, tier_label, domain, meaning, sources, has_flagship)
-  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  INSERT INTO entries (id, ascii, unicode, greek, pantheon, tier, tier_label, domain, meaning, sources, etymology, variants, has_flagship)
+  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 `);
 
 const insertBreakdown = db.prepare(`
@@ -84,12 +86,13 @@ const insertFts = db.prepare(`
 
 // Flagship IDs
 const flagshipIds = new Set([
-  'zeus','athena','poseidon','apollon','ares','artemis','aphrodite',
-  'demeter','hermes','hera','hephaistos','hestia','hades','hekate',
-  'persephone','prometheus','atlas','medousa','nike','ker','selene',
-  'dionysos','gaia','chaos','tartaros','pontos','delphoi','olympos',
-  'sparte','helios','alfheimr','jotunheimr','midgardr','helheimr',
-  'ragnarok','odinn','thor','ra','shiva','kyoto','osaka','kobe','athenai'
+  'ab','aigyptos','akh','alfheimr','aphrodite','apollon','ares','artemis',
+  'asia','athena','athenai','atlas','delphoi','demeter','europe','gaia',
+  'hades','hekate','helheimr','helios','hephaistos','hera','hermes',
+  'hestia','jotunheimr','ker','kobe','kyoto','libye','maa','medousa',
+  'midgardr','muspellheimr','nike','odinn','olympos','osaka','persephone',
+  'pontos','poseidon','prometheus','ra','ragnarok','selene','shiva',
+  'sparte','thor','zeus'
 ]);
 
 const insertEntryTxn = db.transaction((entries) => {
@@ -105,6 +108,8 @@ const insertEntryTxn = db.transaction((entries) => {
       entry.domain || null,
       entry.meaning || null,
       entry.sources ? JSON.stringify(entry.sources) : null,
+      entry.etymology ? JSON.stringify(entry.etymology) : null,
+      entry.variants ? JSON.stringify(entry.variants) : null,
       flagshipIds.has(entry.id) ? 1 : 0
     );
 

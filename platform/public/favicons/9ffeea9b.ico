@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Page introuvable · kai.fr</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff;
+    font-family: 'Segoe UI', sans-serif;
+}
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+    padding: 2rem 1rem;
+}
+.wrapper {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    max-width: 640px;
+    width: 100%;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 16px;
+    background: rgba(0,0,0,.05);
+    animation: fadeIn .6s ease;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.num-404 {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 7rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    color: #ffffff;
+    line-height: 1;
+    margin-bottom: .1em;
+    animation: glitch 4s infinite;
+}
+@keyframes glitch {
+    0%,90%,100% { transform: none; }
+    92%         { transform: translateX(-3px) skewX(-1deg); }
+    94%         { transform: translateX(3px) skewX(1deg); }
+    96%         { transform: translateX(-2px); }
+}
+.domain {
+    font-size: 1.4rem;
+    font-family: 'Segoe UI', sans-serif;
+    color: #ffffff;
+    margin-bottom: .4rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+.title {
+    font-size: 1.4rem;
+    font-family: 'Segoe UI', sans-serif;
+    color: #ffffff;
+    margin-bottom: .5rem;
+    font-weight: 600;
+}
+.sub {
+    font-size: .88rem;
+    color: rgba(255,255,255,.8);
+    margin-bottom: 1.8rem;
+    line-height: 1.6;
+}
+.uri {
+    display: inline-block;
+    font-size: .78rem;
+    color: rgba(255,255,255,.8);
+    font-family: monospace;
+    background: rgba(255,255,255,.2);
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    opacity: .7;
+}
+.bar-wrap {
+    background: rgba(255,255,255,.2);
+    border-radius: 99px;
+    height: 5px;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto 1rem;
+    overflow: hidden;
+}
+.bar-fill {
+    height: 100%;
+    width: 0%;
+    background: #ffffff;
+    border-radius: 99px;
+    animation: fillBar 2s linear forwards;
+}
+@keyframes fillBar {
+    from { width: 0%; }
+    to   { width: 100%; }
+}
+.countdown-msg {
+    font-size: .82rem;
+    color: rgba(255,255,255,.8);
+    margin-bottom: 1.5rem;
+    font-style: italic;
+}
+.btn-home {
+    display: inline-block;
+    padding: 10px 28px;
+    border: 2px solid #ffffff;
+    border-radius: 99px;
+    color: #ffffff;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: .9rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background .25s, color .25s;
+    letter-spacing: 0.04em;
+}
+.btn-home:hover {
+    background: #ffffff;
+    color: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+@media (max-width: 480px) {
+    .num-404 { font-size: 6rem; }
+    .wrapper { margin: 1rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="domain">kai.fr</div>
+    <div class="num-404">404</div>
+    <div class="title">Page introuvable</div>
+    <div class="sub">La page que vous cherchez n'existe pas<br>ou a été déplacée.</div>
+    <div class="uri">/favicon.ico</div>
+
+    <div class="bar-wrap">
+        <div class="bar-fill"></div>
+    </div>
+    <div class="countdown-msg">Retour à l'accueil dans <strong id="cnt">2</strong>s…</div>
+
+    <a class="btn-home" href="https://kai.fr/">← Retour à l'accueil</a>
+</div>
+
+<script>
+(function() {
+    var home = "https:\/\/kai.fr\/";
+    var cnt  = document.getElementById('cnt');
+    var n    = 2;
+    var iv = setInterval(function() {
+        n--;
+        cnt.textContent = n;
+        if (n <= 0) {
+            clearInterval(iv);
+            window.location.href = home;
+        }
+    }, 1000);
+})();
+</script>
+
+</body>
+</html>

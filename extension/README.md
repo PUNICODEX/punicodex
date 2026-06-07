@@ -4,7 +4,7 @@ Scholarly transliteration for classical names. Type `apollo` → Ápollōn.
 
 ## Features
 
-- **255 entries** across 14 pantheons (Greek, Norse, Egyptian, Sanskrit, Japanese, Nahuatl, Yoruba, and more)
+- **895 entries** across 14 pantheons (Greek, Norse, Egyptian, Sanskrit, Japanese, Nahuatl, Yoruba, and more)
 - **Inline autocomplete** on any website — type in any input field and see suggestions
 - **Popup lookup** — press `Ctrl+Shift+P` (Mac: `⌘+Shift+P`) for the full typing interface
 - **Source citations** — every entry cites standard references (LSJ, Faulkner, MW, etc.)
@@ -38,7 +38,7 @@ extension/
 │   └── options.js
 ├── shared/
 │   ├── engine.js          # Pure trie engine (shared with website)
-│   └── lexicon.js         # 255-entry scholarly lexicon
+│   └── lexicon.js         # 895-entry scholarly lexicon
 └── icons/
     └── icon{16,32,48,128}.png
 ```
