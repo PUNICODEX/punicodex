@@ -259,7 +259,8 @@ const ARCHETYPES = [
         mascotFallback: "/sites/hermes/assets/hermes_mascot.webp",
         logomarkPath: "/sites/hermes/assets/hermes_logomark.webp",
         built: true,
-        darkPunchline: false
+        darkPunchline: false,
+        hasAdSite: true
     },
     {
         id: "hestia",
@@ -1066,6 +1067,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/nike/assets/nike_mascot.webp",
         logomarkPath: "/sites/nike/assets/nike_logomark.webp",
         built: true,
-        darkPunchline: false
+        darkPunchline: false,
+        hasAdSite: true
     },
 ];

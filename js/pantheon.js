@@ -26,7 +26,7 @@
         });
 
         grid.innerHTML = sorted.map((a, index) => {
-            const url = `/sites/${a.id}/lore/`;
+            const url = a.hasAdSite ? `/sites/${a.id}/lore/` : `/sites/${a.id}/`;
             const tag = 'a';
             const hrefAttr = `href="${url}"`;
             const unbuiltClass = !a.built ? 'unbuilt' : '';
