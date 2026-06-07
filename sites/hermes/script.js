@@ -444,7 +444,7 @@ const revealObserver = new IntersectionObserver((entries) => {
         if (entry.isIntersecting) {
             const delay = entry.target.dataset.delay || 0;
             setTimeout(() => {
-                entry.target.classList.add('revealed');
+                entry.target.classList.add('visible');
             }, delay);
             revealObserver.unobserve(entry.target);
         }
