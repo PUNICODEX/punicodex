@@ -8,9 +8,9 @@ const VERCEL = 'vercel';
 
 const SITES = [
   { id: 'libye', unicode: 'Libye' },
-  { id: 'aigyptos', unicode: 'A�gyptos' },
-  { id: 'asia', unicode: 'As�a' },
-  { id: 'europe', unicode: 'Eur?pe' },
+  { id: 'aigyptos', unicode: 'Aígyptos' },
+  { id: 'asia', unicode: 'Asíā' },
+  { id: 'europe', unicode: 'Eurṓpē' },
 ];
 
 for (const s of SITES) {
