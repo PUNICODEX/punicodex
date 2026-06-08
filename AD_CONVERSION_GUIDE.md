@@ -1,38 +1,32 @@
 # PUNYCODEX — Base Temple to Ad Homepage Conversion Guide
 
-> Convert any existing base temple (`/sites/{id}/`) into a revenue-generating ad homepage with 13 leaseable slots, booking modal, and lore/gallery pages.
+> Convert any existing base temple into a revenue-generating ad homepage with 13 slots, booking modal, and lore/gallery/extended pages.
 >
-> **Scope:** 47 base temples remaining (4 complete: Nike, Hermès, Ra, Akh)
+> **Scope:** 47 base temples remaining. All share the same structure.
 >
-> **Non-negotiable:** All file edits must preserve Unicode. Use Node.js `fs.readFileSync(path, 'utf8')` / `fs.writeFileSync(path, content, 'utf8')`. PowerShell `Get-Content`/`Set-Content` corrupts Greek/Egyptian characters.
+> **Non-negotiable:** Use Node.js `fs.readFileSync(path, 'utf8')` / `fs.writeFileSync(path, content, 'utf8')`. PowerShell corrupts Unicode.
 
 ---
 
 ## ⚠️ The Clone Trap
 
-**Never** copy the most recently converted temple and run string replacements. You will get wrong slot names, wrong mythology, wrong colors. Always use **Nike** as the structural template — it has the most generic slot names and least archetype-specific DNA.
+Never copy the most recently converted temple and run string replacements. Use **Nike** as the structural template — it has the most generic slot names and least archetype-specific DNA.
 
-**Prevention:**
-1. Use Nike as the template for structure only.
-2. Slot names must be archetype-themed ("Thunder Crown" for Zeus, not "Solar Disk").
-3. Lore and gallery content must be authored, not replaced.
-4. After conversion, run the Content Residue Check (Section 8).
+After conversion, run the Content Residue Check (Section 9) to catch leaked DNA.
 
 ---
 
-## What Every Base Temple Looks Like
-
-All 47 base temples share this structure:
+## Base Temple Anatomy (All 47 Are Identical)
 
 ```
 sites/{temple}/
 ├── index.html          # Hero, Name, Pronunciation, Myths, Pantheon, Footer
-├── styles.css          # Temple colors, canvas animation, components
-├── script.js           # Canvas, scroll reveal, nav toggle
+├── styles.css          # ~1,400 lines: colors, canvas, components, responsive
+├── script.js           # ~300 lines: canvas, scroll reveal, nav toggle
 └── assets/
-    ├── {temple}_logolockup.png/webp
-    ├── {temple}_logomark.png/webp
-    └── {temple}_mascot.png/webp   # may be missing
+    ├── {temple}_logolockup.png / .webp
+    ├── {temple}_logomark.png / .webp
+    └── {temple}_mascot.png / .webp   # may be missing
 ```
 
 **Missing:** `lore/`, `gallery/`, `lore/extended/`, ad slots, booking modal.
@@ -41,7 +35,7 @@ sites/{temple}/
 
 ## The 8 Steps
 
-### 1. Backup
+### Step 1 — Backup
 
 ```bash
 cp sites/zeus/index.html sites/zeus/index.html.bak
@@ -49,7 +43,9 @@ cp sites/zeus/styles.css sites/zeus/styles.css.bak
 cp sites/zeus/script.js sites/zeus/script.js.bak
 ```
 
-### 2. Copy Nike Structure
+---
+
+### Step 2 — Copy Nike Structure
 
 ```bash
 mkdir -p sites/zeus/lore/extended
@@ -60,22 +56,26 @@ cp sites/nike/lore/extended/index.html sites/zeus/lore/extended/
 cp sites/nike/gallery/index.html sites/zeus/gallery/
 ```
 
-### 3. Transplant Identity
+---
 
-Edit `sites/zeus/index.html`:
+### Step 3 — Transplant Identity (Ad Homepage)
 
-| Element | What to change | Example |
-|---------|---------------|---------|
-| `<title>` | Temple's Unicode name | `Ζεύς — Endorsed by the King of the Gods` |
-| `<meta name="description">` | Archetype-specific | `Your brand, endorsed by Zeús...` |
-| Schema.org JSON-LD | Name, URL, description | `Ζεύς`, `https://punycodex.com/sites/zeus/` |
-| `.endorsement-eyebrow` | Tagline | `Endorsed by` |
-| `.endorsement-title` | Unicode name | `The King of the Gods, <span class="endorsement-greek">Ζεύς</span>` |
-| `.endorsement-lead` | Archetype tagline | `Twelve sacred frames. One temple. Rule the sky.` |
-| `.endorsement-mascot-img` | Mascot asset | `assets/zeus_mascot.png` |
-| Nav links | Point to lore/gallery | `<a href="lore/">Lore</a>`, `<a href="gallery/">Gallery</a>` |
+Edit `sites/zeus/index.html`. Use Nike's DOM structure. Change only these values:
 
-**Slot names:** Rename all 13 `.space-name` values to archetype-themed names. Keep the structure identical.
+| Element | What to change |
+|---------|---------------|
+| `<title>` | `Ζεύς — Endorsed by the King of the Gods` |
+| `<meta name="description">` | Archetype-specific description |
+| `<meta property="og:*">` | Canonical URL, title, description |
+| Schema.org JSON-LD | Name, URL, description |
+| `.endorsement-eyebrow` | `Endorsed by` |
+| `.endorsement-title` | `The King of the Gods, <span class="endorsement-greek">Ζεύς</span>` |
+| `.endorsement-lead` | Archetype tagline (e.g. `Twelve sacred frames. One temple. Rule the sky.`) |
+| `.endorsement-mascot-img` | `assets/zeus_mascot.png` / `.webp` |
+| Nav links | `<a href="lore/">Lore</a>`, `<a href="gallery/">Gallery</a>` |
+| `.global-brand` | Link text: `PUNYCODEX` (already generic) |
+
+**Slot names:** Rename all 13 `.space-name` values to archetype-themed names. Keep the DOM structure identical.
 
 **Slot IDs:** Remap `data-space="01"` → `"40"` through `"13"` → `"52"`:
 
@@ -83,38 +83,73 @@ Edit `sites/zeus/index.html`:
 const fs = require('fs');
 let html = fs.readFileSync('sites/zeus/index.html', 'utf8');
 for (let i = 1; i <= 13; i++) {
-  const old = String(i).padStart(2, '0');
-  const neu = String(39 + i);  // 40–52
-  html = html.split('data-space="' + old + '"').join('data-space="' + neu + '"');
+  const old = 'data-space="' + String(i).padStart(2, '0') + '"';
+  const neu = 'data-space="' + String(39 + i) + '"';
+  html = html.split(old).join(neu);
 }
 fs.writeFileSync('sites/zeus/index.html', html, 'utf8');
 ```
 
-**Cache bust:** Change `?v=perf37` to `?v=perf1` (or any new version).
+**Cache bust:** Change `?v=perf37` to `?v=perf1`.
 
-### 4. Fix Paths in Subdirectories
+---
 
-| File | Change |
-|------|--------|
-| `lore/index.html` | `assets/zeus_` → `../assets/zeus_` |
-| `lore/index.html` | `styles.css` → `../styles.css` |
-| `lore/extended/index.html` | `assets/zeus_` → `../../assets/zeus_` |
-| `lore/extended/index.html` | `styles.css` → `../styles.css` |
-| `gallery/index.html` | `assets/zeus_` → `../assets/zeus_` |
-| `gallery/index.html` | `styles.css` → `../styles.css` |
+### Step 4 — Fix Paths in Subdirectories
 
-### 5. Merge CSS
+| File | Find | Replace |
+|------|------|---------|
+| `lore/index.html` | `assets/zeus_` | `../assets/zeus_` |
+| `lore/index.html` | `styles.css` | `../styles.css` |
+| `lore/extended/index.html` | `assets/zeus_` | `../../assets/zeus_` |
+| `lore/extended/index.html` | `styles.css` | `../styles.css` |
+| `gallery/index.html` | `assets/zeus_` | `../assets/zeus_` |
+| `gallery/index.html` | `styles.css` | `../styles.css` |
 
-Keep the base temple's `styles.css`. Append the ad-slot + booking CSS from Nike. The simplest method:
+---
 
-```bash
-# Extract everything after the temple-specific styles from Nike
-# (ad slots, booking modal, endorsement hero, responsive rules)
-# Append to base temple:
-cat sites/nike/styles.css >> sites/zeus/styles.css
+### Step 5 — Merge CSS
+
+**Strategy:** Keep the base temple's entire `styles.css`. Append **only** the ad-specific blocks from Nike's CSS.
+
+**Do NOT append Nike's entire CSS.** Nike's file is 3,982 lines and contains ~100 unused selectors (dead code from earlier iterations). Appending it all bloats the file and risks cascade conflicts.
+
+**Extract these blocks from Nike's CSS and append them to the base temple:**
+
+```
+/* ===== REDUCED MOTION ===== */
+/* ===== TAB NAVIGATION ===== */
+/* ===== QUICK FACTS ===== */
+/* ===== ETymology ===== */
+/* ===== UNICODE BREAKDOWN TABLE ===== */
+/* ===== CULTURAL SIGNIFICANCE ===== */
+/* ===== FAQ ===== */
+/* ===== SOURCES ===== */
+/* ===== GALLERY ===== */
+/* ===== RESPONSIVE (Gallery) ===== */
+/* ===== HOME / LEASE PAGE STYLES ===== */
+/* ===== RESPONSIVE LEASE PAGE ===== */
+/* ===== ENDORSEMENT HERO ===== */
+/* ===== RESPONSIVE (Lease) ===== */
+/* ===== HOW IT WORKS ===== */
+/* ===== RESPONSIVE TEMPLATE ===== */
+/* ===== TEMPLATE SLOTS (PROPORTIONAL) ===== */
+/* ===== RESPONSIVE TEMPLATE ===== */
+/* ===== 12 SACRED SPACES ===== */
+/* ===== RESPONSIVE SPACES ===== */
+/* ===== BOOKING MODAL ===== */
 ```
 
-Then add missing CSS variables to `:root`:
+**Skip these dead blocks:**
+
+```
+/* ===== AD ZONES (Home/Endorsements) ===== */      → Unused in all Nike HTML
+/* ===== PRICING STEPS ===== */                      → Unused
+/* ===== HEKAWEB PARTNER ===== */                    → Unused
+```
+
+**Extraction method:** Open `sites/nike/styles.css`. Find each block by its section comment (`/* ===== BLOCK NAME ===== */`). Copy from the comment to just before the next `/* =====` comment. Paste at the end of `sites/zeus/styles.css`.
+
+**After appending, add missing variables to `:root`:**
 
 ```css
 :root {
@@ -153,7 +188,7 @@ Then add missing CSS variables to `:root`:
 }
 ```
 
-**Verify:** Run the CSS Variable Audit:
+**Verify with the CSS Variable Audit:**
 
 ```bash
 node -e "
@@ -167,43 +202,65 @@ console.log('All variables defined');
 "
 ```
 
-### 6. Merge JS
+**Critical checks:**
+- Ensure `img { max-width: 100%; display: block; }` exists in the reset
+- Ensure `.container { padding: 0 var(--space-md); }` exists
 
-The base temple's `script.js` has canvas animation + scroll reveal + nav. Nike's `script.js` has booking system + scroll reveal + nav.
+---
 
-**Strategy:** Keep Nike's `script.js` (it has the booking system). Paste the base temple's canvas code at the very top.
+### Step 6 — Merge JS
 
-1. Open `sites/zeus/script.js.bak`
-2. Find the canvas code (top of file, contains `getElementById('...-canvas')`)
-3. Copy it
-4. Open `sites/nike/script.js` → save as `sites/zeus/script.js`
-5. Paste the canvas code at line 1
-6. Update:
-   - `const API_BASE = window.ZEUS_API_BASE || 'http://localhost:3456'`
-   - `const SITE_SLUG = 'zeus'`
-   - `fetch(\`${API_BASE}/api/slots?site=zeus\`)`
-   - `els.dashboardLink.href = \`${API_BASE}/sites/zeus/dashboard/?token=${token}\``
+**Strategy:** Keep the base temple's `script.js` intact. Append Nike's booking system.
 
-### 7. Create Lore Content
+**Nike's `script.js` has dead canvas code at the top (632 lines, no `<canvas>` element in HTML). Do not copy it.**
 
-Copy content from `sites/zeus/index.html.bak` into `sites/zeus/lore/index.html`:
+**Extraction:** Open `sites/nike/script.js`. Find this line:
 
-| From `index.html.bak` | To `lore/index.html` |
-|----------------------|----------------------|
-| Hero section | Lore hero section |
-| The Name section | Name grid section |
-| Tier Classification | Tier section |
-| Pronunciation | Pronunciation grid |
-| Domains/Symbols | Domains + Symbols sections |
-| Myths timeline | Myths timeline |
-| Related Names | Related names grid |
-| Footer (with seal) | Footer (with seal) |
+```javascript
+// ========== NIKE BOOKING SYSTEM ==========
+```
 
-**Do not** string-replace. Move the HTML verbatim. Update paths from `assets/` to `../assets/`.
+Copy **from this comment to the end of the file**. Paste at the end of `sites/zeus/script.js`.
 
-For `lore/extended/index.html` and `gallery/index.html`: write authentic content. Use Nike's structure, Zeus's mythology.
+**Update these 4 values in the pasted booking code:**
 
-### 8. Content Residue Check
+```javascript
+const API_BASE = window.ZEUS_API_BASE || 'http://localhost:3456';
+const SITE_SLUG = 'zeus';
+// fetch(`${API_BASE}/api/slots?site=zeus`)
+// els.dashboardLink.href = `${API_BASE}/sites/zeus/dashboard/?token=${token}`
+```
+
+**Why this works:** The base temple's JS already handles canvas, scroll reveal, and nav toggle. Nike's booking system is self-contained and attaches its own event listeners. No conflicts.
+
+---
+
+### Step 7 — Create Lore Content
+
+The base temple's `index.html.bak` contains all the lore content. Move it into the new lore page.
+
+**From `index.html.bak` → To `lore/index.html`:**
+
+| Section in backup | Destination in lore page |
+|-------------------|-------------------------|
+| Hero (`<section class="hero">`) | Lore hero section |
+| The Name (`#the-name`) | Name grid section |
+| Tier Classification (`#tier`) | Tier section |
+| Pronunciation (`#pronunciation`) | Pronunciation grid |
+| Domains / Symbols / King | Domains + Symbols sections |
+| Myths (`#myths`) | Myths timeline |
+| Pantheon / Related Names | Related names grid |
+| Footer (`<footer class="main-footer">`) | Footer (with seal) |
+
+**How to move:** Open both files side by side. In `lore/index.html` (Nike template), find the placeholder sections. Replace each placeholder with the matching section from `index.html.bak`. Update asset paths from `assets/` to `../assets/`.
+
+**For `lore/extended/index.html`:** Write extended scholarship. Use Nike's structure, the temple's actual mythology.
+
+**For `gallery/index.html`:** Write authentic captions. Use Nike's grid structure.
+
+---
+
+### Step 8 — Content Residue Check
 
 ```bash
 node -e "
@@ -230,23 +287,29 @@ for (const f of files) {
 
 ### Visual
 - [ ] 13 slots visible, numbered 01–13
-- [ ] Slot names are archetype-themed (no foreign pantheon references)
+- [ ] Slot names are archetype-themed
 - [ ] Clicking any slot opens booking modal
-- [ ] Modal shows correct slot name, dimensions, and price
+- [ ] Modal shows correct slot name, dimensions, price
 - [ ] Archetype symbol animates
 - [ ] Hero has correct top padding (`--nav-height` defined)
 - [ ] Container has horizontal padding
-- [ ] Mascot alignment matches Nike/Hermès
+- [ ] Mascot alignment matches Nike
+- [ ] Lore page renders correctly (no broken styles)
+- [ ] Gallery page renders correctly
 
 ### Functional
 - [ ] API call `?site={slug}` returns 13 slots
 - [ ] No JS errors in console
+- [ ] Base temple canvas still animates
+- [ ] Scroll reveal still works
+- [ ] Nav toggle still works
 - [ ] Content Residue Check passes
 
 ### Links
 - [ ] Nav: Lore → `/sites/{temple}/lore/`
 - [ ] Nav: Gallery → `/sites/{temple}/gallery/`
 - [ ] Extended Lore CTA → `extended/`
+- [ ] All `../` and `../../` paths resolve
 
 ---
 
@@ -279,9 +342,8 @@ for (const f of files) {
 | Ra | 27–39 |
 | Akh | 40–52 |
 | *Next* | 53–65 |
-| *Next* | 66–78 |
 
 ---
 
-*Document version: 3.0*
+*Document version: 4.0*
 *Last updated: 2026-06-06*
