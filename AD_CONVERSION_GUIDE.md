@@ -150,6 +150,17 @@ SELECT id, name, site_slug, price_cents FROM ad_slots WHERE site_slug = 'zeus';
 
 ## 3. Step 1 — Copy Base Template
 
+There are **two conversion paths**. Pick the right one:
+
+| Path | When to use | Risk |
+|------|-------------|------|
+| **A. Blank slate** | Temple directory does not exist yet | Low |
+| **B. Base temple merge** | Temple already has `index.html`, `styles.css`, `script.js`, `assets/` | **High** — easy to nuke existing content |
+
+---
+
+### Path A: Blank Slate (temple does not exist)
+
 Use **Nike** as the canonical base (most complete, least domain-specific). Copy to the new temple directory.
 
 ```bash
@@ -159,13 +170,97 @@ cp -r sites/nike sites/zeus
 
 **Why Nike?** Nike's slot names (Crown Position, Victory Column, Champion Strip) are generic enough that they don't leak Greek/Nike-specific DNA into unrelated archetypes. Copying Ra for Akh produced "Solar Disk" and "Scarab Badge" — completely wrong for a death god. Copying Hermès would produce "Winged Crown" and "Caduceus Badge" — also wrong. Nike is the safe default.
 
-### 3.1 Immediate cleanup in new directory
+#### A.1 Immediate cleanup in new directory
 
 Delete Nike-specific assets that will be replaced:
 ```bash
 rm sites/zeus/assets/nike_mascot.png
 rm sites/zeus/assets/nike_mascot.webp
 # Keep the placeholder/structure, replace content
+```
+
+---
+
+### Path B: Base Temple Merge (temple already exists)
+
+**This is the Akh path.** 47 temples already have a flagship-style home page with hero, name section, myths, canvas animations, and footer. You cannot copy Nike over them — you will destroy their existing content.
+
+#### B.1 What already exists vs. what you must create
+
+| File/Dir | Already exists? | Action |
+|----------|----------------|--------|
+| `index.html` | ✅ Yes (flagship hero, name, myths, footer) | **Replace** with ad homepage structure (keep temple identity) |
+| `styles.css` | ✅ Yes (temple-specific colors, canvas, animations) | **Merge** — keep existing styles, inject ad slot + booking CSS |
+| `script.js` | ✅ Yes (temple-specific canvas, interactions) | **Merge** — preserve canvas/animations, inject booking system |
+| `assets/*` | ✅ Yes (logolockup, logomark, mascot?) | **Keep** — add mascot PNG/WebP if missing |
+| `lore/index.html` | ❌ No | **Create** from Nike/Hermès template |
+| `gallery/index.html` | ❌ No | **Create** from Nike/Hermès template |
+| `lore/extended/index.html` | ❌ No | **Create** from Nike/Hermès template |
+
+#### B.2 Step-by-step merge workflow
+
+**Step 1 — Backup**
+```bash
+cp sites/zeus/index.html sites/zeus/index.html.bak
+cp sites/zeus/styles.css sites/zeus/styles.css.bak
+cp sites/zeus/script.js sites/zeus/script.js.bak
+```
+
+**Step 2 — Replace `index.html`**
+Use Nike's `index.html` as the **structural template**, but transplant the temple's identity:
+- Keep Nike's DOM structure (endorsement hero, 13 slots, booking modal, spaces-layout)
+- Replace title, meta, OG tags, JSON-LD with the temple's Unicode name
+- Replace `.endorsement-title`, `.endorsement-lead`, `.endorsement-eyebrow` with temple-specific copy
+- Replace mascot `src`/`srcset` with the temple's mascot asset
+- Replace nav links if the base temple had different sections
+- **CRITICAL:** Do not copy Nike's `lore/` or `gallery/` into the existing temple — those don't exist yet and will be created in Step 4
+
+**Step 3 — Merge `styles.css`**
+This is the most complex step. The base temple's CSS contains:
+- `:root` variables (temple-specific colors)
+- Global reset (`*`, `html`, `body`)
+- Temple-specific components (canvas, hero, name grid, myths, footer)
+- Responsive rules
+
+You must **append** the following blocks from Nike's CSS **without overwriting** the existing styles:
+1. Ad slot styles (`.space-*` classes, ~500 lines)
+2. Booking modal styles (`.booking-*` classes, ~400 lines)
+3. Endorsement hero styles (`.endorsement-*` classes)
+4. Any missing `:root` variables (see Section 5.1.1 CSS Variable Audit)
+
+**Merge strategy:**
+```bash
+# Extract the ad-specific blocks from Nike
+cat sites/nike/styles.css | sed -n '/END 12 SACRED SPACES/,/END BOOKING/p' > /tmp/nike-ad-blocks.css
+# Append to the base temple's CSS
+cat /tmp/nike-ad-blocks.css >> sites/zeus/styles.css
+# Then run the CSS Variable Audit (Section 5.1.1)
+```
+
+**Step 4 — Merge `script.js`**
+The base temple's `script.js` contains canvas animations (e.g., Zeus's lightning canvas, Akh's starfield). You must preserve these.
+
+**Merge strategy:**
+1. Rename the base temple's `script.js` to `script.js.bak`
+2. Copy Nike's `script.js` (booking system) to `sites/zeus/script.js`
+3. Open the backup and extract the canvas animation code (usually an IIFE at the top)
+4. Paste that IIFE at the top of the new `script.js`, before the booking system code
+5. Update `API_BASE`, `SITE_SLUG`, and fetch URLs in the booking system
+
+**Step 5 — Create lore/gallery/extended**
+Use Nike's lore/gallery/extended pages as **structure templates**:
+```bash
+cp -r sites/nike/lore sites/zeus/
+cp -r sites/nike/gallery sites/zeus/
+```
+Then rewrite all content (see Section 7). **Do not** string-replace — write authentic mythology.
+
+**Step 6 — Create mascot assets**
+If the temple does not have a mascot:
+```bash
+# Create from existing logomark or generate new
+convert sites/zeus/assets/zeus_logomark.png -resize 500x500 sites/zeus/assets/zeus_mascot.png
+cwebp -q 85 sites/zeus/assets/zeus_mascot.png -o sites/zeus/assets/zeus_mascot.webp
 ```
 
 ---
