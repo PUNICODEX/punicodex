@@ -202,9 +202,116 @@ console.log('All variables defined');
 "
 ```
 
-**Critical checks:**
-- Ensure `img { max-width: 100%; display: block; }` exists in the reset
-- Ensure `.container { padding: 0 var(--space-md); }` exists
+**Step 5b — Color Replacement (CRITICAL)**
+
+Nike's extracted CSS blocks contain 50+ hardcoded colors. If you append them unchanged, the ad page will be Nike navy (`#0a121f`) + Nike gold (`rgba(212,175,55,0.X)`) instead of the temple's own palette.
+
+**Real damage:** Akh's endorsement hero currently has `#0a121f` (Nike navy) instead of `#0a0512` (Akh violet). There are 100+ gold borders that should be violet.
+
+**The 4 color categories to replace:**
+
+| Category | Nike's Color | What it controls | Replace with |
+|----------|-------------|------------------|--------------|
+| Darkest background | `#0a121f`, `#0e1a2b`, `#0f1f35`, `rgba(8,15,25,X)`, `rgba(10,18,31,X)` | Page backgrounds, gradients | Temple's darkest bg |
+| Card surface | `rgba(14,26,43,X)` | Card backgrounds, modal panels | Temple's card bg |
+| Primary accent | `rgba(212,175,55,X)`, `#D4AF37` | Borders, glows, hover states | Temple's accent color |
+| Secondary accent | `rgba(27,58,92,X)` | Secondary glows, subtle borders | Temple's secondary color |
+
+**Universal colors (do NOT replace):**
+- Success: `#2ecc71`, `#4ade80`
+- Error: `#c44`, `#ff6b6b`, `rgba(255,107,107,0.08)`
+- Warning: `#fbbf24`
+- Neutral: `#000`, `rgba(0,0,0,X)`, `#A0A0A0`, `rgba(255,255,255,X)`
+
+**How to find your temple's colors:**
+
+Open `sites/zeus/styles.css.bak`. Look at `:root`. These are the colors that define the temple's identity:
+
+```css
+/* Zeus example */
+--void-deep: #050505        /* → replaces #0a121f (darkest bg) */
+--void: #0A0A0A            /* → replaces rgba(8,15,25,X) (page bg) */
+--gold: #D4AF37            /* → replaces rgba(212,175,55,X) (accent) */
+--lightning: #4169E1       /* → replaces rgba(27,58,92,X) (secondary) */
+--storm: #1E3A5F           /* → card bg candidate */
+
+/* Akh example */
+--bg-deep: #0a0512         /* → replaces #0a121f */
+--bg-void: #06030a         /* → replaces rgba(8,15,25,X) */
+--accent-gold-egypt: #D4AF37  /* → replaces rgba(212,175,55,X) */
+--accent-star: #9B7EDE     /* → replaces rgba(27,58,92,X) */
+--bg-card: rgba(16,12,24,0.8)  /* → replaces rgba(14,26,43,X) */
+```
+
+**Color replacement script:**
+
+After extracting Nike's blocks and appending them, run this BEFORE the variable audit:
+
+```javascript
+const fs = require('fs');
+
+const TEMPLE = 'zeus';
+const cssPath = `sites/${TEMPLE}/styles.css`;
+let css = fs.readFileSync(cssPath, 'utf8');
+
+// ═══════════════════════════════════════════════════════════════
+// STEP 1: Define your temple's colors (fill these in from :root)
+// ═══════════════════════════════════════════════════════════════
+const replacements = {
+  // Darkest background (Nike navy → temple darkest)
+  '#0a121f': '#050505',
+  '#0e1a2b': '#0A0A0A',
+  '#0f1f35': '#0A0A0A',
+  
+  // Page background rgba (Nike → temple)
+  // Use a function for rgba with variable opacity
+};
+
+// For rgba replacements, we need regex patterns
+const rgbaReplacements = [
+  // Nike navy-blue backgrounds → temple background
+  { from: /rgba\(8,\s*15,\s*25,/g, to: 'rgba(5,5,5,' },
+  { from: /rgba\(10,\s*18,\s*31,/g, to: 'rgba(10,10,10,' },
+  
+  // Card surfaces → temple card color
+  // Zeus has no explicit card color, use void-mid or storm
+  { from: /rgba\(14,\s*26,\s*43,/g, to: 'rgba(30,58,95,' },
+  
+  // Secondary accent → temple secondary
+  { from: /rgba\(27,\s*58,\s*92,/g, to: 'rgba(65,105,225,' },
+  
+  // Primary gold accent → temple accent (Zeus gold is same as Nike, skip)
+  // If your temple uses a different accent, uncomment:
+  // { from: /rgba\(212,\s*175,\s*55,/g, to: 'rgba(201,162,39,' },
+];
+
+// Apply hex replacements
+for (const [from, to] of Object.entries(replacements)) {
+  css = css.split(from).join(to);
+}
+
+// Apply rgba replacements
+for (const { from, to } of rgbaReplacements) {
+  css = css.replace(from, to);
+}
+
+fs.writeFileSync(cssPath, css, 'utf8');
+console.log('Colors replaced for', TEMPLE);
+```
+
+**For Akh (different accent):**
+
+```javascript
+const rgbaReplacements = [
+  { from: /rgba\(8,\s*15,\s*25,/g, to: 'rgba(6,3,10,' },
+  { from: /rgba\(10,\s*18,\s*31,/g, to: 'rgba(10,5,18,' },
+  { from: /rgba\(14,\s*26,\s*43,/g, to: 'rgba(16,12,24,' },
+  { from: /rgba\(27,\s*58,\s*92,/g, to: 'rgba(155,126,222,' },
+  // Akh keeps Egyptian gold #D4AF37 — same as Nike, no change needed
+];
+```
+
+**Verify:** Open the ad page in a browser. The endorsement hero background, slot borders, and booking modal should match the temple's palette, not Nike's navy.
 
 ---
 
