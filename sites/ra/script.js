@@ -511,6 +511,7 @@ if (!document.getElementById('booking-modal')) {
 
 let slotsData = [];
 let currentSlotId = null;
+let currentSlotPriceCents = 0;
 let currentBooking = null;
 
 // DOM refs
@@ -707,10 +708,10 @@ function openBooking(slotId) {
     if (els.rejectReason) els.rejectReason.textContent = '';
 
     // Set slot info
+    currentSlotPriceCents = slot.price_cents || 0;
     els.slotName.textContent = slot.name;
     els.slotDims.textContent = `${slot.width} \u00d7 ${slot.height} px`;
-    const price = ((slot.price_cents || 0) / 100).toFixed(0);
-    els.price.textContent = `$${price}`;
+    updatePrice();
 
     // Set char limits
     const limits = getCharLimits(slot.width || 0);
@@ -781,11 +782,9 @@ if (els.leaseMonthly && els.leaseYearly) {
 }
 
 function updatePrice() {
-  const slot = slotsData.find(s => s.id === currentSlotId);
-  if (!slot) return;
   const isYearly = els.leaseYearly && els.leaseYearly.classList.contains('active');
   const months = isYearly ? 12 : 1;
-  const total = (slot.price_cents * months / 100).toFixed(0);
+  const total = (currentSlotPriceCents * months / 100).toFixed(0);
   els.price.textContent = `$${total}`;
 }
 
