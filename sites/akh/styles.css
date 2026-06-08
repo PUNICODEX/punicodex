@@ -23,12 +23,58 @@
     --font-body: 'Lato', 'Helvetica Neue', sans-serif;
     --transition-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
     --section-spacing: 10rem;
+
+    /* Layout & Spacing (shared with flagship template) */
+    --max-width: 1200px;
+    --nav-height: 72px;
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 2rem;
+    --space-lg: 4rem;
+    --space-xl: 6rem;
+    --space-2xl: 8rem;
+
+    /* Egyptian Gold Palette */
+    --classic-gold: #D4AF37;
+    --pale-gold: #E8D5A3;
+    --gold-dim: #B8983C;
+    --gold-bright: #F0D070;
+    --text-gold: #D4AF37;
+
+    /* Surfaces (violet-tinted) */
+    --bg-primary: #0a0512;
+    --bg-secondary: #0e0a18;
+    --bg-nav: rgba(10, 5, 18, 0.95);
+    --bg-card: rgba(16, 12, 24, 0.8);
+    --bg-elevated: #1a1028;
+
+    /* Text */
+    --text-primary: #e8e0f0;
+    --text-secondary: #a098b0;
+    --text-muted: #6a6080;
+    --font-greek: 'Georgia', 'Times New Roman', serif;
+
+    /* Gradients */
+    --gradient-card: linear-gradient(135deg, rgba(16,12,24,0.85), rgba(8,5,12,0.92));
+    --gradient-gold: linear-gradient(135deg, var(--classic-gold), var(--gold-bright));
+
+    /* Shadows */
+    --shadow-gold: 0 0 30px rgba(212, 175, 55, 0.15);
+    --shadow-card: 0 8px 32px rgba(0,0,0,0.4);
+
+    /* States */
+    --success: #4ade80;
 }
 
 *, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    display: block;
 }
 
 html {
@@ -412,6 +458,7 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 var(--space-md);
     position: relative;
     z-index: 2;
 }
