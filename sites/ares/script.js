@@ -452,9 +452,6 @@
 
     /* =====================================================
        
-    } else {
-      console.log('[ares] Canvas battlefield-canvas not present on this page');
-    }
     SCROLL REVEALS
        ===================================================== */
     const revealObserver = new IntersectionObserver((entries) => {
@@ -476,10 +473,14 @@
     /* =====================================================
        NAV SCROLL EFFECT
        ===================================================== */
-    const nav = document.getElementById('main-nav');
+    
+    } else {
+      console.log('[ares] Canvas battlefield-canvas not present on this page');
+    }const nav = document.getElementById('main-nav');
     let lastScroll = 0;
 
-    window.addEventListener('scroll', () => {
+    window.addEventListen
+    er('scroll', () => {
         const currentScroll = window.pageYOffset;
         if (currentScroll > 80) {
             nav.classList.add('scrolled');

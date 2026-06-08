@@ -475,9 +475,7 @@ document.addEventListener('mousemove', (e) => {
     mouseY = e.clientY;
 
     
-    } else {
-      console.log('[demeter] Canvas harvest-canvas not present on this page');
-    }
+    
     // Parallax on mascot
     const mascot = document.querySelector('.hero-mascot');
     if (mascot) {
@@ -511,7 +509,10 @@ document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right, .reveal-scal
 });
 
 // ========== NAV SCROLL EFFECT ==========
-const nav = document.getElementById('main-nav');
+
+    } else {
+      console.log('[demeter] Canvas harvest-canvas not present on this page');
+    }const nav = document.getElementById('main-nav');
 let lastScrollY = 0;
 
 window.addEventListener('scroll', () => {

@@ -419,9 +419,6 @@
 
     /* =====================================================
        
-    } else {
-      console.log('[atlas] Canvas celestial-canvas not present on this page');
-    }
     SCROLL REVEALS
        ===================================================== */
     const revealObserver = new IntersectionObserver((entries) => {
@@ -443,10 +440,14 @@
     /* =====================================================
        NAV SCROLL EFFECT
        ===================================================== */
-    const nav = document.getElementById('main-nav');
+    
+    } else {
+      console.log('[atlas] Canvas celestial-canvas not present on this page');
+    }const nav = document.getElementById('main-nav');
     let lastScroll = 0;
 
-    window.addEventListener('scroll', () => {
+    window.addEventListe
+    ner('scroll', () => {
         const currentScroll = window.pageYOffset;
         if (currentScroll > 80) {
             nav.classList.add('scrolled');

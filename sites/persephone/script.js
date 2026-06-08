@@ -514,13 +514,7 @@
     resizeCanvas();
     animateCanvas();
 
-    /* =====================================================
-       
-    } else {
-      console.log('[persephone] Canvas seasonal-canvas not present on this page');
-    }
-    SCROLL REVEALS
-       ===================================================== */
+    /* ===================================================== SCROLL REVEALS ===================================================== */
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -540,7 +534,10 @@
     /* =====================================================
        NAV SCROLL EFFECT
        ===================================================== */
-    const nav = document.getElementById('main-nav');
+    
+    } else {
+      console.log('[persephone] Canvas seasonal-canvas not present on this page');
+    }const nav = document.getElementById('main-nav');
     let lastScroll = 0;
 
     window.addEventListener('scroll', () => {

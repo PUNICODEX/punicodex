@@ -200,9 +200,6 @@
             if (n.y < 0 || n.y > height) n.vy *= -1;
 
             
-    } else {
-      console.log('[athena] Canvas strategy-canvas not present on this page');
-    }
     // Mouse influence
             const dx = mouseX - n.x;
             const dy = mouseY - n.y;
@@ -655,10 +652,14 @@
     /* =====================================================
        NAV SCROLL EFFECT
        ===================================================== */
-    const nav = document.getElementById('main-nav');
+    
+    } else {
+      console.log('[athena] Canvas strategy-canvas not present on this page');
+    }const nav = document.getElementById('main-nav');
     let lastScroll = 0;
 
-    window.addEventListener('scroll', () => {
+    window.addEventListe
+    ner('scroll', () => {
         const currentScroll = window.pageYOffset;
         if (currentScroll > 80) {
             nav.classList.add('scrolled');
