@@ -11632,6 +11632,41 @@ const LEXICON = [
     ]
   },
   {
+    id: 'sia',
+    ascii: 'sia',
+    unicode: 'sꜥ',
+    greek: '—',
+    pantheon: 'egyptian',
+    tier: '2',
+    tierLabel: 'Tier 2',
+    domain: 'Perception, Intellect, Divine Understanding',
+    meaning: 'Perception, intellect, divine understanding',
+    sources: [
+      'Faulkner',
+      'Wb'
+    ],
+    breakdown: [
+      {
+        char: 's',
+        to: 's',
+        type: 'same',
+        note: 'Same'
+      },
+      {
+        char: 'i',
+        to: 'ꜥ',
+        type: 'special',
+        note: 'Ayin: voiced pharyngeal fricative'
+      },
+      {
+        char: 'a',
+        to: '',
+        type: 'drop',
+        note: 'Not written'
+      }
+    ]
+  },
+  {
     id: 'shu',
     ascii: 'shu',
     unicode: 'Šw',
