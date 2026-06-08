@@ -206,62 +206,176 @@ cp sites/zeus/styles.css sites/zeus/styles.css.bak
 cp sites/zeus/script.js sites/zeus/script.js.bak
 ```
 
-**Step 2 — Replace `index.html`**
+**Step 2 — Content Migration Map**
+
+The base temple's `index.html` is ~400-500 lines with rich content. You are **splitting** it into two pages:
+
+| Base Temple Section | Goes to Ad Homepage? | Goes to Lore Page? | Action |
+|---------------------|---------------------|-------------------|--------|
+| Hero (eyebrow, title, subtitle, CTA, mascot) | ✅ Endorsement hero | ✅ Lore hero | Adapt copy for each |
+| The Name (name cards, punycode) | ❌ | ✅ | Move verbatim |
+| Tier Classification | ❌ | ✅ | Move verbatim |
+| Pronunciation (IPA, sidebar cards) | ❌ | ✅ | Move verbatim |
+| Domains/Symbols/King | ❌ | ✅ | Move verbatim |
+| Myths (timeline) | ❌ | ✅ | Move verbatim |
+| Related Names / Pantheon | ❌ | ✅ | Move verbatim |
+| Footer (domain, classification, seal) | ⚠️ Simplified footer | ✅ Full footer | Simplify for ad page |
+| Canvas animation (lightning, starfield) | ✅ Keep in script | ❌ | Preserve in merged JS |
+
+**How to extract:** Open `index.html.bak` and `index.html` (Nike template) side by side. Copy each section from the backup into the lore page. The ad homepage only keeps the endorsement hero + 13 slots + booking modal + simplified footer.
+
+**Step 3 — Replace `index.html`**
 Use Nike's `index.html` as the **structural template**, but transplant the temple's identity:
 - Keep Nike's DOM structure (endorsement hero, 13 slots, booking modal, spaces-layout)
 - Replace title, meta, OG tags, JSON-LD with the temple's Unicode name
 - Replace `.endorsement-title`, `.endorsement-lead`, `.endorsement-eyebrow` with temple-specific copy
 - Replace mascot `src`/`srcset` with the temple's mascot asset
-- Replace nav links if the base temple had different sections
-- **CRITICAL:** Do not copy Nike's `lore/` or `gallery/` into the existing temple — those don't exist yet and will be created in Step 4
+- Replace nav links: base temples use page anchors (`#the-name`, `#pronunciation`), ad pages use directory links (`lore/`, `gallery/`). Update the nav:
+  ```html
+  <!-- BEFORE (base temple) -->
+  <a href="#the-name" class="nav-link">The Name</a>
+  <a href="#pronunciation" class="nav-link">Pronunciation</a>
+  
+  <!-- AFTER (ad page) -->
+  <a href="lore/" class="nav-link">Lore</a>
+  <a href="gallery/" class="nav-link">Gallery</a>
+  ```
+- **CRITICAL:** Do not copy Nike's `lore/` or `gallery/` into the existing temple — those don't exist yet and will be created in Step 5
 
-**Step 3 — Merge `styles.css`**
+**Step 4 — Merge `styles.css`**
 This is the most complex step. The base temple's CSS contains:
 - `:root` variables (temple-specific colors)
 - Global reset (`*`, `html`, `body`)
 - Temple-specific components (canvas, hero, name grid, myths, footer)
 - Responsive rules
 
-You must **append** the following blocks from Nike's CSS **without overwriting** the existing styles:
-1. Ad slot styles (`.space-*` classes, ~500 lines)
-2. Booking modal styles (`.booking-*` classes, ~400 lines)
-3. Endorsement hero styles (`.endorsement-*` classes)
-4. Any missing `:root` variables (see Section 5.1.1 CSS Variable Audit)
+You must **append** the following blocks from Nike's CSS **without overwriting** the existing styles. Use the section comments as extraction markers:
 
-**Merge strategy:**
 ```bash
-# Extract the ad-specific blocks from Nike
-cat sites/nike/styles.css | sed -n '/END 12 SACRED SPACES/,/END BOOKING/p' > /tmp/nike-ad-blocks.css
-# Append to the base temple's CSS
-cat /tmp/nike-ad-blocks.css >> sites/zeus/styles.css
-# Then run the CSS Variable Audit (Section 5.1.1)
+# Extract ad-specific blocks from Nike (line numbers from Nike v2.0)
+# Block 1: Global strip + endorsement hero + partner + template slots
+sed -n '2137,2655p' sites/nike/styles.css > /tmp/nike-ad-core.css
+
+# Block 2: 12 Sacred Spaces + responsive + booking modal + my bookings
+sed -n '2992,3982p' sites/nike/styles.css > /tmp/nike-ad-spaces.css
+
+# Append to base temple
+cat /tmp/nike-ad-core.css >> sites/zeus/styles.css
+cat /tmp/nike-ad-spaces.css >> sites/zeus/styles.css
 ```
 
-**Step 4 — Merge `script.js`**
+**Variable reconciliation table** (common base temple vars → required ad vars):
+
+| Base Temple Var | Example Value | Required Ad Var | Reconcile Action |
+|-----------------|---------------|-----------------|------------------|
+| `--gold` | `#D4AF37` | `--classic-gold` | Add `--classic-gold: var(--gold);` or replace |
+| `--gold-dim` | `#8B7355` | `--gold-dim` | Keep if value matches, else add ad-specific |
+| `--void` / `--bg-deep` | `#0A0A0A` | `--bg-primary` | Add `--bg-primary: var(--void);` |
+| `--void-deep` | `#050505` | `--bg-secondary` | Add `--bg-secondary: var(--void-deep);` |
+| `--white` / `--fg-bone` | `#F5F5F5` | `--text-primary` | Add `--text-primary: var(--white);` |
+| `--white-dim` / `--fg-dim` | `#A0A0A0` | `--text-secondary` | Add `--text-secondary: var(--white-dim);` |
+| *(missing)* | — | `--nav-height` | **Must add**: `--nav-height: 72px;` |
+| *(missing)* | — | `--space-md` | **Must add**: `--space-md: 2rem;` |
+| *(missing)* | — | `--shadow-gold` | **Must add**: `--shadow-gold: 0 0 30px rgba(212,175,55,0.15);` |
+
+**CRITICAL:** After appending, run the CSS Variable Audit (Section 5.1.1). Do not skip this.
+
+**CRITICAL:** Ensure the base temple has `img { max-width: 100%; display: block; }` in its reset. If not, add it.
+
+**CRITICAL:** Ensure `.container` has `padding: 0 var(--space-md);`. If the base temple defined `.container` differently, update it.
+
+**Step 5 — Merge `script.js`**
 The base temple's `script.js` contains canvas animations (e.g., Zeus's lightning canvas, Akh's starfield). You must preserve these.
 
-**Merge strategy:**
-1. Rename the base temple's `script.js` to `script.js.bak`
-2. Copy Nike's `script.js` (booking system) to `sites/zeus/script.js`
-3. Open the backup and extract the canvas animation code (usually an IIFE at the top)
-4. Paste that IIFE at the top of the new `script.js`, before the booking system code
-5. Update `API_BASE`, `SITE_SLUG`, and fetch URLs in the booking system
+**How to identify the canvas code:**
+Open `script.js.bak`. The canvas animation is almost always:
+- An IIFE (Immediately Invoked Function Expression) at the **very top** of the file
+- Contains `document.getElementById('...-canvas')` or `document.querySelector('canvas')`
+- Contains `requestAnimationFrame` or `setInterval`
+- 50-200 lines
 
-**Step 5 — Create lore/gallery/extended**
+**Example (Akh's starfield):**
+```javascript
+(function() {
+    const canvas = document.getElementById('starfield-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    // ... starfield animation code ...
+})();
+```
+
+**Merge strategy:**
+1. Copy Nike's `script.js` (booking system) to `sites/zeus/script.js`
+2. Open `script.js.bak` and copy the canvas IIFE
+3. Paste it at the **top** of the new `script.js`, before the booking system code
+4. Update these 4 values in the booking system:
+   ```javascript
+   const API_BASE = window.ZEUS_API_BASE || 'http://localhost:3456';
+   const SITE_SLUG = 'zeus';
+   // In loadSlots(): fetch(`${API_BASE}/api/slots?site=zeus`)
+   // In dashboard link: `${API_BASE}/sites/zeus/dashboard/?token=${token}`
+   ```
+
+**Step 6 — Create lore/gallery/extended**
 Use Nike's lore/gallery/extended pages as **structure templates**:
 ```bash
-cp -r sites/nike/lore sites/zeus/
-cp -r sites/nike/gallery sites/zeus/
+mkdir -p sites/zeus/lore/extended
+mkdir -p sites/zeus/gallery
+cp sites/nike/lore/index.html sites/zeus/lore/
+cp sites/nike/lore/extended/index.html sites/zeus/lore/extended/
+cp sites/nike/gallery/index.html sites/zeus/gallery/
 ```
-Then rewrite all content (see Section 7). **Do not** string-replace — write authentic mythology.
 
-**Step 6 — Create mascot assets**
-If the temple does not have a mascot:
+**Path fixes for subdirectories:**
+| File | Asset path | Fix |
+|------|-----------|-----|
+| `lore/index.html` | `assets/zeus_mascot.png` | `../assets/zeus_mascot.png` |
+| `lore/extended/index.html` | `assets/zeus_mascot.png` | `../../assets/zeus_mascot.png` |
+| `gallery/index.html` | `assets/zeus_mascot.png` | `../assets/zeus_mascot.png` |
+| `gallery/index.html` | `styles.css` | `../styles.css` |
+| `lore/index.html` | `styles.css` | `../styles.css` |
+
+Then **extract content from `index.html.bak`** and paste it into the lore page sections. Do not write from scratch if the base temple already has good content — move it.
+
+**Step 7 — Update slot IDs and prices**
+Nike's slots use `data-space="01"` through `data-space="13"`. For a new temple starting at ID 40, update to `data-space="40"` through `data-space="52"`:
+
 ```bash
-# Create from existing logomark or generate new
+node -e "
+const fs = require('fs');
+const file = 'sites/zeus/index.html';
+let html = fs.readFileSync(file, 'utf8');
+for (let i = 1; i <= 13; i++) {
+  const oldSpace = String(i).padStart(2, '0');
+  const newSpace = String(39 + i); // 40-52
+  html = html.replace(new RegExp('data-space=\"' + oldSpace + '\"', 'g'), 'data-space=\"' + newSpace + '\"');
+}
+fs.writeFileSync(file, html, 'utf8');
+"
+```
+
+Prices (`data-price-cents`) stay identical across all temples:
+- Slot 1 (Crown): `120000` ($1,200)
+- Slot 2 (Column): `80000` ($800)
+- Slot 3 (Strip): `60000` ($600)
+- Slots 4-8: `50000`, `40000`, `35000`, `30000`, `25000`
+- Slots 9-11: `18000`, `15000`, `12000`
+- Slot 12 (Footer): `30000`
+- Slot 13 (Throne bundle): `515000` ($5,150)
+
+**Step 8 — Create mascot assets**
+Check what exists:
+```bash
+ls sites/zeus/assets/*mascot* 2>/dev/null || echo "No mascot found"
+```
+
+If missing, create from logomark:
+```bash
 convert sites/zeus/assets/zeus_logomark.png -resize 500x500 sites/zeus/assets/zeus_mascot.png
 cwebp -q 85 sites/zeus/assets/zeus_mascot.png -o sites/zeus/assets/zeus_mascot.webp
 ```
+
+If the temple has no logomark either, generate a placeholder or commission one.
 
 ---
 
