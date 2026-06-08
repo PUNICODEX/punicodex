@@ -3051,14 +3051,14 @@ body {
 
 /* ===== 12 SACRED SPACES ===== */
 .spaces-section {
-    background: linear-gradient(180deg, #0f1f35 0%, #0a121f 30%, #0e1a2b 60%, #0a121f 100%);
-    border-top: 1px solid rgba(212,175,55,0.06);
-    border-bottom: 1px solid rgba(212,175,55,0.06);
+    background: linear-gradient(180deg, #0f1f1a 0%, #0a1f15 30%, #0e1a1a 60%, #0a1f15 100%);
+    border-top: 1px solid rgba(155,126,222,0.06);
+    border-bottom: 1px solid rgba(155,126,222,0.06);
 }
 .spaces-legend {
     text-align: center;
     font-size: 0.8rem;
-    color: var(--text-muted);
+    color: var(--fg-dim);
     font-style: italic;
     margin-bottom: 1rem;
 }
@@ -3080,6 +3080,502 @@ body {
 }
 .space-row--sidebar .space-slot--narrow {
     flex-shrink: 0;
+}
+.space-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.space-row--halves > .space-slot {
+    flex: 1;
+}
+.space-row--triple > .space-slot:nth-child(1) {
+    flex: 2;
+}
+.space-row--triple > .space-slot:nth-child(2) {
+    flex: 1.2;
+}
+.space-row--triple > .space-slot:nth-child(3) {
+    flex: 1;
+}
+.space-row--quad > .space-slot:nth-child(1),
+.space-row--quad > .space-slot:nth-child(2) {
+    flex: 1;
+}
+.space-row--quad > .space-slot:nth-child(3) {
+    flex: 2.5;
+}
+
+/* Individual Space Slot */
+.space-slot {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+.space-slot--narrow {
+    flex: none;
+    width: 260px;
+}
+.space-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.space-num {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--accent-star-bright);
+    opacity: 0.4;
+    line-height: 1;
+    min-width: 36px;
+}
+.space-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+.space-name {
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--fg-bone);
+    letter-spacing: 0.04em;
+}
+.space-dims {
+    font-family: 'Consolas', monospace;
+    font-size: 0.7rem;
+    color: var(--fg-dim);
+    letter-spacing: 0.05em;
+}
+.space-exclusive {
+    margin-left: auto;
+    font-family: var(--font-display);
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-star-bright);
+    padding: 0.25rem 0.75rem;
+    background: rgba(155,126,222,0.08);
+    border: 1px solid rgba(155,126,222,0.2);
+    border-radius: 100px;
+}
+
+/* The Frame */
+.space-frame {
+    position: relative;
+    width: 100%;
+    background: linear-gradient(145deg, rgba(14,26,20,0.92), rgba(8,15,10,0.97));
+    border: 1px solid rgba(155,126,222,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color 0.5s ease;
+    box-sizing: border-box;
+}
+.space-frame-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(155,126,222,0.05) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+.space-frame:hover {
+    border-color: rgba(155,126,222,0.3);
+}
+
+.space-frame-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(27,58,36,0.06), rgba(10,18,15,0.12));
+}
+.space-placeholder-logo {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(155,126,222,0.08);
+    border: 1px solid rgba(155,126,222,0.18);
+    border-radius: 6px;
+    color: var(--accent-star-bright);
+    font-size: 0.8rem;
+    flex-shrink: 0;
+}
+.space-placeholder-text {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--fg-dim);
+    letter-spacing: 0.05em;
+}
+
+/* Proportional Frame Sizes */
+
+/* Elite reserve button inside frame */
+
+/* Frame-type specific button sizing */
+
+/* Frame is the interactive element */
+.space-frame {
+    cursor: pointer;
+}
+
+/* Elegant "Available" hover label */
+.space-frame-content::after {
+    content: 'Available';
+    position: absolute;
+    bottom: 8%;
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    font-family: var(--font-display);
+    font-size: clamp(0.28rem, 0.7vw, 0.5rem);
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(155,126,222,0.5);
+    opacity: 0;
+    transition: all 0.35s ease;
+    pointer-events: none;
+    white-space: nowrap;
+}
+.space-frame:hover .space-frame-content::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    color: rgba(155,126,222,0.75);
+}
+
+/* Refined glow on hover */
+.space-frame:hover {
+    border-color: rgba(155,126,222,0.25);
+    box-shadow: 0 0 20px rgba(155,126,222,0.06), inset 0 0 30px rgba(155,126,222,0.03);
+}
+.space-frame:hover .space-frame-glow {
+    opacity: 0.7;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ARCHETYPE ANIMATIONS — HERMES
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Frame is the interactive element */
+.space-frame {
+    cursor: pointer;
+}
+
+/* Shimmer sweep across frame */
+.space-frame::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(155,126,222,0.06), transparent);
+    transform: skewX(-20deg);
+    animation: shimmer-sweep 6s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Archetype symbol replaces diamond */
+.space-placeholder-logo {
+    font-size: 0;
+    background: transparent;
+    border: none;
+    width: 32px;
+    height: 32px;
+}
+.space-placeholder-logo::before {
+    content: '⚕';
+    font-size: 1.1rem;
+    color: var(--accent-star-bright);
+    animation: hermes-symbol 8s linear infinite;
+    display: block;
+}
+
+/* Floating particles inside frame */
+.space-frame-content::before {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgba(192,192,192,0.35);
+    top: 60%;
+    left: 25%;
+    animation: float-up 4s ease-in-out infinite;
+    pointer-events: none;
+}
+.space-frame-content .particle-2,
+.space-frame-content .particle-3 {
+    display: none;
+}
+
+/* Elegant "Available" hover label */
+.space-frame-content::after {
+    content: 'Available';
+    position: absolute;
+    bottom: 8%;
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    font-family: var(--font-display);
+    font-size: clamp(0.28rem, 0.7vw, 0.5rem);
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(155,126,222,0.5);
+    opacity: 0;
+    transition: all 0.35s ease;
+    pointer-events: none;
+    white-space: nowrap;
+}
+.space-frame:hover .space-frame-content::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    color: rgba(155,126,222,0.75);
+}
+
+/* Refined glow on hover */
+.space-frame:hover {
+    border-color: rgba(155,126,222,0.25);
+    box-shadow: 0 0 20px rgba(155,126,222,0.06), inset 0 0 30px rgba(155,126,222,0.03);
+}
+.space-frame:hover .space-frame-glow {
+    opacity: 0.7;
+}
+
+@keyframes hermes-symbol {
+    0% { transform: rotate(0deg); filter: drop-shadow(0 0 2px rgba(155,126,222,0.2)); }
+    100% { transform: rotate(360deg); filter: drop-shadow(0 0 6px rgba(155,126,222,0.5)); }
+}
+@keyframes hermes-streak {
+    0% { transform: translateX(-120%); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateX(120%); opacity: 0; }
+}
+
+@keyframes shimmer-sweep {
+    0% { left: -100%; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { left: 200%; opacity: 0; }
+}
+@keyframes float-up {
+    0% { transform: translateY(0) scale(1); opacity: 0; }
+    15% { opacity: 0.6; }
+    85% { opacity: 0.6; }
+    100% { transform: translateY(-30px) scale(0.3); opacity: 0; }
+}
+@keyframes available-pulse {
+    0%, 100% { opacity: 0.25; transform: translateX(-50%) translateY(4px) scale(0.92); }
+    50% { opacity: 0.85; transform: translateX(-50%) translateY(0) scale(1); }
+}
+
+.space-frame--hero {
+    aspect-ratio: 1200 / 400;
+    border-top: 3px solid var(--accent-star-bright);
+}
+.space-frame--column {
+    aspect-ratio: 300 / 600;
+}
+.space-frame--inline {
+    aspect-ratio: 800 / 300;
+    max-height: 240px;
+}
+.space-frame--content {
+    aspect-ratio: 600 / 280;
+    max-height: 220px;
+}
+.space-frame--half {
+    aspect-ratio: 500 / 280;
+    max-height: 220px;
+}
+.space-frame--ribbon {
+    aspect-ratio: 700 / 180;
+    max-height: 160px;
+}
+.space-frame--badge {
+    aspect-ratio: 400 / 150;
+    max-height: 140px;
+}
+.space-frame--text {
+    aspect-ratio: 350 / 120;
+    max-height: 120px;
+}
+.space-frame--emblem {
+    aspect-ratio: 250 / 100;
+    max-height: 100px;
+}
+.space-frame--footer {
+    aspect-ratio: 1200 / 100;
+    max-height: 100px;
+}
+.space-frame--throne {
+    aspect-ratio: 1200 / 400;
+    max-height: 300px;
+    background: linear-gradient(145deg, rgba(155,126,222,0.06), rgba(14,26,20,0.95));
+    border-color: rgba(155,126,222,0.25);
+}
+.space-frame--throne .space-frame-content {
+    background: linear-gradient(135deg, rgba(155,126,222,0.05), rgba(27,58,36,0.1));
+}
+
+/* Space Footer (Price + Reserve, outside frame) */
+
+/* Divider */
+.spaces-divider {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem 0;
+}
+.spaces-divider span {
+    flex: 1;
+    height: 1px;
+    background: rgba(155,126,222,0.12);
+}
+.spaces-divider em {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-style: italic;
+    color: var(--fg-dim);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+/* Full Page Slot Special */
+.space-slot--fullpage .space-name {
+    color: var(--accent-star-bright);
+}
+.space-slot--fullpage .space-num {
+    opacity: 0.8;
+}
+
+/* ===== RESPONSIVE SPACES ===== */
+@media (max-width: 1024px) {
+    .space-row--sidebar {
+        flex-direction: column;
+    }
+    .space-row--sidebar .space-slot--narrow {
+        width: 100%;
+        max-width: 320px;
+    }
+    .space-row--sidebar .space-frame--column {
+        max-height: 360px;
+        aspect-ratio: 3 / 2;
+    }
+    .space-row--halves,
+    .space-row--triple,
+    .space-row--quad {
+        flex-wrap: wrap;
+    }
+    .space-row--halves > .space-slot,
+    .space-row--triple > .space-slot,
+    .space-row--quad > .space-slot {
+        flex: 1 1 calc(50% - 1rem);
+        min-width: 240px;
+    }
+    .space-row--quad > .space-slot:nth-child(3) {
+        flex: 1 1 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .spaces-layout {
+        gap: 1rem;
+    }
+    .space-row {
+        gap: 0.5rem;
+    }
+    .space-slot {
+        gap: 0.35rem;
+    }
+    .space-row--sidebar {
+        flex-direction: row;
+    }
+    .space-row--sidebar .space-slot--narrow {
+        width: 80px;
+        max-width: none;
+    }
+    .space-row--sidebar .space-frame--column {
+        flex: 1;
+        aspect-ratio: auto;
+        min-height: 0;
+    }
+    .space-row--halves,
+    .space-row--triple,
+    .space-row--quad {
+        flex-wrap: nowrap;
+    }
+    .space-row--halves > .space-slot,
+    .space-row--triple > .space-slot,
+    .space-row--quad > .space-slot {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+    .space-row--quad > .space-slot:nth-child(3) {
+        flex: 2.5;
+    }
+    .space-frame--hero,
+    .space-frame--throne {
+        max-height: none;
+    }
+    .space-frame--inline {
+        max-height: none;
+    }
+    .space-frame--content,
+    .space-frame--half {
+        max-height: none;
+    }
+    .space-row--triple > .space-slot:nth-child(2) {
+        flex: 1.8;
+    }
+    .space-row--quad > .space-slot:nth-child(2) {
+        flex: 1.5;
+    }
+    .space-frame-content {
+        gap: 0.15rem;
+    }
+    .space-frame-content .space-placeholder-logo {
+        font-size: 0.7rem;
+    }
+    .space-meta {
+        flex-wrap: wrap;
+        gap: 0.25rem;
+    }
+    .space-num {
+        font-size: 0.6rem;
+    }
+    .space-name {
+        font-size: 0.65rem;
+    }
+    .space-exclusive {
+        margin-left: 0;
+        font-size: 0.5rem;
+    }
+}
+
+.booking-error {
+    background: rgba(255,107,107,0.08);
+    border: 1px solid rgba(255,107,107,0.2);
+    color: #ff6b6b;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
 }
 
 /* ===== BOOKING MODAL ===== */
