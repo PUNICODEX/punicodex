@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ἑρμῆς — Gallery | Art, Sculpture &amp; Depictions | PUNYCODEX</title>
+    <meta name="description" content="A curated gallery of Ἑρμῆς, Greek Messenger of the Gods, through history — from ancient vase paintings to Praxiteles' masterpiece.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+
+    <link rel="canonical" href="https://punycodex.com/ra/gallery/">
+
+    <meta property="og:title" content="Ἑρμῆς — Gallery | Art &amp; Sculpture | PUNYCODEX">
+    <meta property="og:description" content="A curated gallery of Ἑρμῆς, Greek Messenger of the Gods, through history.">
+    <meta property="og:url" content="https://punycodex.com/ra/gallery/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PUNYCODEX">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ἑρμῆς — Gallery | Art &amp; Sculpture | PUNYCODEX">
+    <meta name="twitter:description" content="A curated gallery of Ἑρμῆς, Greek Messenger of the Gods, through history.">
+</head>
+<body>
+    <!-- Global Nav -->
+    <div style="position:fixed;top:0;left:0;width:100%;z-index:1001;background:rgba(10,10,10,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);">
+        <div style="max-width:1200px;margin:0 auto;padding:0.4rem clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;">
+            <a href="https://punycodex.com/" style="font-family:'Cinzel',serif;font-size:0.8rem;font-weight:700;letter-spacing:0.15em;color:#D4AF37;text-decoration:none;">PUNYCODEX</a>
+            <div style="display:flex;gap:1.5rem;">
+                <a href="https://punycodex.com/pantheon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Pantheon</a>
+                <a href="https://punycodex.com/lexicon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Lexicon</a>
+                <a href="https://punycodex.com/type/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Type</a>
+                <a href="https://punycodex.com/tiers/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Tiers</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Messenger Canvas -->
+    <canvas id="afterlife-canvas"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" style="top:40px;" id="main-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/akh_logolockup.webp" type="image/webp"><img src="../assets/akh_logolockup.png" alt="Ἑρμῆς" class="nav-logo-img"></picture>
+            </a>
+            <div class="nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/" class="nav-link">Lore</a>
+                <a href="./" class="nav-link active">Gallery</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow reveal-up">Visual Legacy</p>
+                <h1 class="hero-title reveal-up">
+                    <span class="title-greek">Ꜣḫ</span>
+                    <span class="title-divider"></span>
+                    <span class="title-trans">Gallery</span>
+                </h1>
+                <p class="hero-subtitle reveal-up">Art &middot; Sculpture &middot; Tomb Painting &middot; Coinage &middot; Architecture</p>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <picture><source srcset="../assets/akh_mascot.webp" type="image/webp"><img src="../assets/akh_mascot.png" alt="Ἑρμῆς — Messenger of the Gods" class="mascot-img"></picture>
+                <div class="mascot-glow"></div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="section" id="gallery" style="padding:6rem 0;">
+        <div class="container">
+            <div class="gallery-grid">
+                <div class="gallery-item reveal-up">
+                    <div class="gallery-image" style="background:linear-gradient(135deg, rgba(26,24,20,0.3), rgba(10,8,6,0.5));display:flex;align-items:center;justify-content:center;min-height:280px;">
+                        <span style="font-family:'Cinzel',serif;font-size:1.5rem;color:#D4AF37;opacity:0.6;">Weighing of the Heart</span>
+                    </div>
+                    <div class="gallery-caption">
+                        <h3>The Weighing of the Heart</h3>
+                        <p>Book of the Dead of Hunefer, c. 1275 BCE — The heart of the deceased is weighed against the feather of Ma'at. If light, the soul becomes an akh and ascends to the starry sky.ing above his falcon head.</p>
+                    </div>
+                </div>
+                <div class="gallery-item reveal-up" data-delay="100">
+                    <div class="gallery-image" style="background:linear-gradient(135deg, rgba(26,24,20,0.3), rgba(10,8,6,0.5));display:flex;align-items:center;justify-content:center;min-height:280px;">
+                        <span style="font-family:'Cinzel',serif;font-size:1.5rem;color:#D4AF37;opacity:0.6;">Falcon of Horus</span>
+                    </div>
+                    <div class="gallery-caption">
+                        <h3>Horus of Behdet</h3>
+                        <p>Tomb of Tutankhamun, c. 1323 BCE — Anubis attends the mummy, guardian of the threshold, jackal-headed sentinel of the embalming house and the Western desert.light.</p>
+                    </div>
+                </div>
+                <div class="gallery-item reveal-up" data-delay="200">
+                    <div class="gallery-image" style="background:linear-gradient(135deg, rgba(26,24,20,0.3), rgba(10,8,6,0.5));display:flex;align-items:center;justify-content:center;min-height:280px;">
+                        <span style="font-family:'Cinzel',serif;font-size:1.5rem;color:#D4AF37;opacity:0.6;">The Scarab</span>
+                    </div>
+                    <div class="gallery-caption">
+                        <h3>The Scarab of Khepri</h3>
+                        <p>Coffin Texts spell, c. 2000 BCE — The akh rises as a crested ibis, its wings outstretched, carrying the transfigured spirit toward the circumpolar stars.on, symbol of eternal rebirth.</p>
+                    </div>
+                </div>
+                <div class="gallery-item reveal-up" data-delay="300">
+                    <div class="gallery-image" style="background:linear-gradient(135deg, rgba(26,24,20,0.3), rgba(10,8,6,0.5));display:flex;align-items:center;justify-content:center;min-height:280px;">
+                        <span style="font-family:'Cinzel',serif;font-size:1.5rem;color:#D4AF37;opacity:0.6;">Opening of the Mouth</span>
+                    </div>
+                    <div class="gallery-caption">
+                        <h3>The Opening of the Mouth Ceremony</h3>
+                        <p>Tomb of Seti I, c. 1279 BCE — The sem priest touches the mummy's mouth with an adze, restoring the senses so the dead may breathe, speak, and eat in the afterlife.h his fiery spear of dawn.</p>
+                    </div>
+                </div>
+                <div class="gallery-item reveal-up" data-delay="400">
+                    <div class="gallery-image" style="background:linear-gradient(135deg, rgba(26,24,20,0.3), rgba(10,8,6,0.5));display:flex;align-items:center;justify-content:center;min-height:280px;">
+                        <span style="font-family:'Cinzel',serif;font-size:1.5rem;color:#D4AF37;opacity:0.6;">The Obelisk</span>
+                    </div>
+                    <div class="gallery-caption">
+                        <h3>The Benben Stone</h3>
+                        <p>Pyramidion of Amenemhat III, c. 1850 BCE — The sacred pyramidion capped with gold, the petrified ray of the sun reaching toward the heavens.</p>
+                    </div>
+                </div>
+                <div class="gallery-item reveal-up" data-delay="500">
+                    <div class="gallery-image" style="background:linear-gradient(135deg, rgba(26,24,20,0.3), rgba(10,8,6,0.5));display:flex;align-items:center;justify-content:center;min-height:280px;">
+                        <span style="font-family:'Cinzel',serif;font-size:1.5rem;color:#D4AF37;opacity:0.6;">Akh & Ma'at</span>
+                    </div>
+                    <div class="gallery-caption">
+                        <h3>The Field of Reeds</h3>
+                        <p>Tomb of Nefertari, c. 1255 BCE — The transfigured spirit offers the feather of Maat to the queen, the symbol of cosmic order by which all souls are judged.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="footer-logo">PUNYCODEX</span>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Domain</span>
+                        <span class="footer-value">Ꜣḫ.com &middot; Ꜣḫ.com</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier‑1</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Greek Original</span>
+                        <span class="footer-value">Ἑρμῆς</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <picture><source srcset="../assets/akh_logomark.webp" type="image/webp"><img src="../assets/akh_logomark.png" alt="Ꜣḫ logomark" class="footer-logomark"></picture>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js?v=perf20"></script>
+</body>
+</html>

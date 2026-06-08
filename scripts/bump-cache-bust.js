@@ -16,6 +16,11 @@ const bumps = [
   { file: 'sites/ra/lore/index.html', from: '?v=perf18', to: '?v=perf19' },
   { file: 'sites/ra/lore/extended/index.html', from: '?v=perf18', to: '?v=perf19' },
   { file: 'sites/ra/gallery/index.html', from: '?v=perf18', to: '?v=perf19' },
+  // Akh: perf19 -> perf20
+  { file: 'sites/akh/index.html', from: '?v=perf19', to: '?v=perf20' },
+  { file: 'sites/akh/lore/index.html', from: '?v=perf19', to: '?v=perf20' },
+  { file: 'sites/akh/lore/extended/index.html', from: '?v=perf19', to: '?v=perf20' },
+  { file: 'sites/akh/gallery/index.html', from: '?v=perf19', to: '?v=perf20' },
 ];
 
 for (const b of bumps) {

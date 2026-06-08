@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ἑρμῆς Analytics Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <style>
+        :root {
+            --bg: #080e19;
+            --bg-elevated: #0E0C0A;
+            --gold: #D4AF37;
+            --gold-dim: rgba(212,148,30,0.15);
+            --text: #e8e4dc;
+            --text-muted: #7a8a9e;
+            --success: #4ade80;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+        .dash-header {
+            background: var(--bg-elevated);
+            border-bottom: 1px solid var(--gold-dim);
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .dash-header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--gold);
+        }
+        .dash-header p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .dash-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .dash-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .dash-card {
+            background: var(--bg-elevated);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+        .dash-card-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+        .dash-card-value {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        .dash-card-sub {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+        .dash-section {
+            background: var(--bg-elevated);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .dash-section h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .dash-preview {
+            background: linear-gradient(145deg, rgba(14,26,20,0.92), rgba(8,15,10,0.97));
+            border: 1px solid rgba(212,148,30,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            margin-bottom: 1rem;
+        }
+        .dash-preview img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            display: block;
+        }
+        .dash-preview.placeholder {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .dash-upload-zone {
+            border: 2px dashed rgba(212,148,30,0.2);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        .dash-upload-zone:hover, .dash-upload-zone.dragover {
+            border-color: var(--gold);
+            background: rgba(212,148,30,0.03);
+        }
+        .dash-upload-input {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .dash-upload-icon { font-size: 1.8rem; color: var(--gold); display: block; margin-bottom: 0.5rem; }
+        .dash-upload-hint { font-size: 0.75rem; color: var(--text-muted); }
+        .dash-upload-preview { max-width: 100%; max-height: 200px; border-radius: 6px; margin-top: 1rem; display: none; }
+        .dash-upload-actions { display: none; gap: 0.5rem; margin-top: 1rem; }
+        .dash-btn {
+            background: var(--gold);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            padding: 0.7rem 1.5rem;
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .dash-btn:hover { opacity: 0.9; }
+        .dash-btn--secondary {
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid rgba(212,148,30,0.3);
+        }
+        .dash-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.35rem 1rem;
+            border-radius: 100px;
+            margin-left: 1rem;
+        }
+        .dash-status-live { background: rgba(74,222,128,0.1); color: var(--success); border: 1px solid rgba(74,222,128,0.2); }
+        .dash-status-pending { background: rgba(251,191,36,0.1); color: #fbbf24; border: 1px solid rgba(251,191,36,0.2); }
+        .dash-status-ended { background: rgba(255,255,255,0.05); color: var(--text-muted); }
+        .dash-referrers { list-style: none; }
+        .dash-referrers li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            font-size: 0.85rem;
+        }
+        .dash-referrers li:last-child { border-bottom: none; }
+        .dash-empty {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-muted);
+        }
+        .dash-empty h2 { font-family: 'Cinzel', serif; color: var(--gold); margin-bottom: 0.5rem; }
+        .chart-container { position: relative; height: 260px; }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="dash-empty">
+            <h2>Loading Dashboard...</h2>
+            <p>Please wait while we fetch your analytics.</p>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = window.AKH_API_BASE || 'http://localhost:3456';
+        const token = new URLSearchParams(window.location.search).get('token');
+
+        let chartInstance = null;
+        let selectedFileBase64 = null;
+        let selectedFileName = null;
+
+        async function fetchDashboard() {
+            if (!token) {
+                renderError('No access token provided.');
+                return;
+            }
+            try {
+                const res = await fetch(`${API_BASE}/api/analytics/dashboard?token=${token}`);
+                const data = await res.json();
+                if (data.error) {
+                    renderError(data.error);
+                    return;
+                }
+                render(data);
+            } catch (err) {
+                renderError('Failed to load dashboard.');
+            }
+        }
+
+        function renderError(msg) {
+            document.getElementById('app').innerHTML = `
+                <div class="dash-empty">
+                    <h2>Dashboard Unavailable</h2>
+                    <p>${msg}</p>
+                </div>
+            `;
+        }
+
+        function render(data) {
+            const b = data.booking;
+            const m = data.metrics;
+            const statusClass = b.status === 'live' ? 'dash-status-live' : b.status === 'ended' ? 'dash-status-ended' : 'dash-status-pending';
+            const timeLeft = b.ends_at ? getTimeLeft(b.ends_at) : 'N/A';
+
+            const dailyMap = {};
+            m.daily.forEach(d => {
+                if (!dailyMap[d.day]) dailyMap[d.day] = { impressions: 0, clicks: 0 };
+                dailyMap[d.day][d.event_type === 'impression' ? 'impressions' : 'clicks'] = d.count;
+            });
+            const labels = Object.keys(dailyMap).sort().slice(-30);
+            const impData = labels.map(d => dailyMap[d]?.impressions || 0);
+            const clickData = labels.map(d => dailyMap[d]?.clicks || 0);
+
+            document.getElementById('app').innerHTML = `
+                <div class="dash-header">
+                    <div>
+                        <h1>${b.company_name || 'Advertiser'} Dashboard</h1>
+                        <p>${b.slot_name} &middot; ${b.width}×${b.height}px</p>
+                    </div>
+                    <span class="dash-status ${statusClass}">${b.status.replace(/_/g, ' ').toUpperCase()}</span>
+                </div>
+                <div class="dash-container">
+                    <div class="dash-grid">
+                        <div class="dash-card">
+                            <div class="dash-card-label">Impressions</div>
+                            <div class="dash-card-value">${m.totalImpressions.toLocaleString()}</div>
+                            <div class="dash-card-sub">${m.uniqueImpressions.toLocaleString()} unique</div>
+                        </div>
+                        <div class="dash-card">
+                            <div class="dash-card-label">Clicks</div>
+                            <div class="dash-card-value">${m.totalClicks.toLocaleString()}</div>
+                            <div class="dash-card-sub">CTR: ${m.ctr}%</div>
+                        </div>
+                        <div class="dash-card">
+                            <div class="dash-card-label">Time Remaining</div>
+                            <div class="dash-card-value" style="font-size:1.4rem;">${timeLeft}</div>
+                            <div class="dash-card-sub">${b.ends_at ? new Date(b.ends_at).toLocaleDateString() : '—'}</div>
+                        </div>
+                    </div>
+
+                    <div class="dash-section">
+                        <h2>Performance (Last 30 Days)</h2>
+                        <div class="chart-container">
+                            <canvas id="dashChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="dash-section">
+                        <h2>Creative Preview</h2>
+                        <div class="dash-preview ${b.creative_path ? '' : 'placeholder'}">
+                            ${b.creative_path ? `<img src="${API_BASE}${b.creative_path}" alt="Creative">` : 'No creative uploaded'}
+                        </div>
+                        ${b.status !== 'ended' ? `
+                            <div class="dash-upload-zone" id="dash-upload-zone">
+                                <input type="file" class="dash-upload-input" id="dash-upload-input" accept="image/png,image/jpeg,image/webp">
+                                <div class="dash-upload-prompt">
+                                    <span class="dash-upload-icon">&#8679;</span>
+                                    <p>Drag & drop or click to swap creative</p>
+                                    <p class="dash-upload-hint">PNG, JPG, or WebP &middot; Max 2MB</p>
+                                </div>
+                                <img class="dash-upload-preview" id="dash-upload-preview" alt="Preview">
+                            </div>
+                            <div class="dash-upload-actions" id="dash-upload-actions">
+                                <button class="dash-btn" onclick="submitUpload()">Submit New Creative</button>
+                                <button class="dash-btn dash-btn--secondary" onclick="resetUpload()">Cancel</button>
+                            </div>
+                        ` : ''}
+                    </div>
+
+                    ${m.referrers.length > 0 ? `
+                        <div class="dash-section">
+                            <h2>Top Referrers</h2>
+                            <ul class="dash-referrers">
+                                ${m.referrers.map(r => `<li><span>${r.referrer}</span><span>${r.count}</span></li>`).join('')}
+                            </ul>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+
+            initChart(labels, impData, clickData);
+            initUploadHandlers();
+        }
+
+        function getTimeLeft(endIso) {
+            const diff = new Date(endIso) - Date.now();
+            if (diff <= 0) return 'Expired';
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            return days > 0 ? `${days}d ${hours}h` : `${hours}h`;
+        }
+
+        function initChart(labels, impData, clickData) {
+            const ctx = document.getElementById('dashChart');
+            if (!ctx) return;
+            if (chartInstance) chartInstance.destroy();
+            chartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels.map(d => d.slice(5)),
+                    datasets: [
+                        {
+                            label: 'Impressions',
+                            data: impData,
+                            borderColor: '#D4AF37',
+                            backgroundColor: 'rgba(212,148,30,0.08)',
+                            fill: true,
+                            tension: 0.3,
+                            pointRadius: 2,
+                        },
+                        {
+                            label: 'Clicks',
+                            data: clickData,
+                            borderColor: '#4ade80',
+                            backgroundColor: 'rgba(74,222,128,0.08)',
+                            fill: true,
+                            tension: 0.3,
+                            pointRadius: 2,
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { labels: { color: '#7a8a9e', font: { size: 11 } } }
+                    },
+                    scales: {
+                        x: { ticks: { color: '#7a8a9e', maxTicksLimit: 10 }, grid: { color: 'rgba(255,255,255,0.03)' } },
+                        y: { ticks: { color: '#7a8a9e' }, grid: { color: 'rgba(255,255,255,0.03)' } },
+                    }
+                }
+            });
+        }
+
+        function initUploadHandlers() {
+            const zone = document.getElementById('dash-upload-zone');
+            const input = document.getElementById('dash-upload-input');
+            if (!zone || !input) return;
+
+            zone.addEventListener('click', () => input.click());
+            zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
+            zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
+            zone.addEventListener('drop', e => {
+                e.preventDefault();
+                zone.classList.remove('dragover');
+                if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+            });
+            input.addEventListener('change', e => {
+                if (e.target.files.length) handleFile(e.target.files[0]);
+            });
+        }
+
+        function handleFile(file) {
+            const allowed = ['image/png', 'image/jpeg', 'image/webp'];
+            if (!allowed.includes(file.type)) { alert('PNG, JPG, or WebP only'); return; }
+            if (file.size > 2 * 1024 * 1024) { alert('Max 2MB'); return; }
+            selectedFileName = file.name;
+            const reader = new FileReader();
+            reader.onload = e => {
+                selectedFileBase64 = e.target.result;
+                const preview = document.getElementById('dash-upload-preview');
+                const prompt = document.querySelector('.dash-upload-prompt');
+                const actions = document.getElementById('dash-upload-actions');
+                preview.src = selectedFileBase64;
+                preview.style.display = 'block';
+                prompt.style.display = 'none';
+                actions.style.display = 'flex';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function resetUpload() {
+            selectedFileBase64 = null;
+            selectedFileName = null;
+            const preview = document.getElementById('dash-upload-preview');
+            const prompt = document.querySelector('.dash-upload-prompt');
+            const actions = document.getElementById('dash-upload-actions');
+            const input = document.getElementById('dash-upload-input');
+            if (preview) preview.style.display = 'none';
+            if (prompt) prompt.style.display = 'block';
+            if (actions) actions.style.display = 'none';
+            if (input) input.value = '';
+        }
+
+        async function submitUpload() {
+            if (!selectedFileBase64 || !token) return;
+            try {
+                const res = await fetch(`${API_BASE}/api/bookings/${token}/upload`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ image: selectedFileBase64, filename: selectedFileName }),
+                });
+                const data = await res.json();
+                if (data.success) {
+                    alert('Creative submitted for approval.');
+                    fetchDashboard();
+                } else {
+                    alert(data.error || 'Upload failed');
+                }
+            } catch (err) {
+                alert('Upload error');
+            }
+        }
+
+        fetchDashboard();
+    </script>
+</body>
+</html>
