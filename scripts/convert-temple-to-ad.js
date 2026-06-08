@@ -470,11 +470,19 @@ function applySurgicalCanvasWrapping(baseJs, templeId) {
 
   // Boundary patterns that indicate the end of the canvas code block.
   // These are patterns that appear AFTER the canvas init and BEFORE any
-  // scroll reveal, navigation, parallax, or other non-canvas code.
-  // IMPORTANT: Do NOT use generic section delimiters like '// ====' because
-  // they appear at both the START and END of sections. Only use specific
-  // section names or DOM element references that uniquely identify non-canvas code.
-  const boundaryPatterns = [
+  // scroll reveal, navigation, or other non-canvas code.
+  //
+  // We split into two groups:
+  //   - codePatterns: searched in STRIPPED code (no comments) to avoid matching
+  //     these inside canvas code comments.
+  //   - commentPatterns: searched in ORIGINAL code because they appear in section
+  //     comments like '// ========== SCROLL REVEALS =========='. If we strip
+  //     single-line comments, these patterns disappear entirely.
+  //
+  // IMPORTANT: Do NOT add overly generic patterns like '// Parallax' or '// Mouse'
+  // because they can match canvas code comments (e.g., '// Parallax on mascot'
+  // inside a canvas mouse-tracking section).
+  const codePatterns = [
     'const revealElements = document.querySelectorAll',
     'const revealElements = document.querySelector',
     "const nav = document.getElementById('main-nav')",
@@ -482,6 +490,9 @@ function applySurgicalCanvasWrapping(baseJs, templeId) {
     "const nav = document.querySelector('.main-nav')",
     "const navToggle = document.getElementById('nav-toggle')",
     "const navLinks = document.querySelector('.nav-links')",
+  ];
+
+  const commentPatterns = [
     '// Scroll Reveal',
     '// Reveal',
     '/* Scroll Reveals',
@@ -494,11 +505,7 @@ function applySurgicalCanvasWrapping(baseJs, templeId) {
     'NAV SCROLL EFFECT',
     'MOBILE NAV TOGGLE',
     '// Mobile Nav',
-    '// Parallax',
-    '/* Parallax',
     'MASCOT PARALLAX',
-    '// Mouse',
-    '/* Mouse',
     '// Smooth Scroll',
     '/* Smooth Scroll',
     'SMOOTH SCROLL',
@@ -507,12 +514,23 @@ function applySurgicalCanvasWrapping(baseJs, templeId) {
     'PREFERS REDUCED MOTION',
   ];
 
-  // Strip comments to avoid matching patterns inside comments or strings.
+  // Strip only multi-line comments for code-pattern search.
+  // Single-line comments are preserved so comment patterns remain findable.
   const strippedJs = stripJsComments(baseJs);
 
   let boundaryPos = -1;
-  for (const pattern of boundaryPatterns) {
+
+  // Search code patterns in stripped code
+  for (const pattern of codePatterns) {
     const pos = strippedJs.indexOf(pattern, initPos + initLen);
+    if (pos !== -1 && (boundaryPos === -1 || pos < boundaryPos)) {
+      boundaryPos = pos;
+    }
+  }
+
+  // Search comment patterns in ORIGINAL code
+  for (const pattern of commentPatterns) {
+    const pos = baseJs.indexOf(pattern, initPos + initLen);
     if (pos !== -1 && (boundaryPos === -1 || pos < boundaryPos)) {
       boundaryPos = pos;
     }

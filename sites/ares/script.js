@@ -9,7 +9,7 @@
     /* =====================================================
        BATTLEFIELD CANVAS
        ===================================================== */
-    const canvas = document.getElementById('battlefield-canvas');
+const canvas = document.getElementById('battlefield-canvas');
     const ctx = canvas ? canvas.getContext('2d') : null;
     if (ctx) {
     let width, height;
@@ -450,9 +450,11 @@
     initDebris();
     animateCanvas();
 
+    } else {
+      console.log('[ares] Canvas battlefield-canvas not present on this page');
+    }
     /* =====================================================
-       
-    SCROLL REVEALS
+       SCROLL REVEALS
        ===================================================== */
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -473,14 +475,10 @@
     /* =====================================================
        NAV SCROLL EFFECT
        ===================================================== */
-    
-    } else {
-      console.log('[ares] Canvas battlefield-canvas not present on this page');
-    }const nav = document.getElementById('main-nav');
+    const nav = document.getElementById('main-nav');
     let lastScroll = 0;
 
-    window.addEventListen
-    er('scroll', () => {
+    window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
         if (currentScroll > 80) {
             nav.classList.add('scrolled');

@@ -10,7 +10,7 @@
     /* =====================================================
        FORGE CANVAS
        ===================================================== */
-    const canvas = document.getElementById('forge-canvas');
+const canvas = document.getElementById('forge-canvas');
     const ctx = canvas ? canvas.getContext('2d') : null;
     if (ctx) {
     let width, height;
@@ -422,9 +422,11 @@
     initEmbers();
     animateCanvas();
 
+    } else {
+      console.log('[hephaistos] Canvas forge-canvas not present on this page');
+    }
     /* =====================================================
-       
-    SCROLL REVEALS
+       SCROLL REVEALS
        ===================================================== */
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -445,14 +447,10 @@
     /* =====================================================
        NAV SCROLL EFFECT
        ===================================================== */
-    
-    } else {
-      console.log('[hephaistos] Canvas forge-canvas not present on this page');
-    }const nav = document.getElementById('main-nav');
+    const nav = document.getElementById('main-nav');
     let lastScroll = 0;
 
-    window.addEventListen
-    er('scroll', () => {
+    window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
         if (currentScroll > 80) {
             nav.classList.add('scrolled');

@@ -9,7 +9,7 @@
     /* =====================================================
        CELESTIAL CANVAS
        ===================================================== */
-    const canvas = document.getElementById('celestial-canvas');
+const canvas = document.getElementById('celestial-canvas');
     const ctx = canvas ? canvas.getContext('2d') : null;
     if (ctx) {
     let width, height;
@@ -417,9 +417,11 @@
     initDust();
     animateCanvas();
 
+    } else {
+      console.log('[atlas] Canvas celestial-canvas not present on this page');
+    }
     /* =====================================================
-       
-    SCROLL REVEALS
+       SCROLL REVEALS
        ===================================================== */
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -440,10 +442,7 @@
     /* =====================================================
        NAV SCROLL EFFECT
        ===================================================== */
-    
-    } else {
-      console.log('[atlas] Canvas celestial-canvas not present on this page');
-    }const nav = document.getElementById('main-nav');
+    const nav = document.getElementById('main-nav');
     let lastScroll = 0;
 
     window.addEventListener('scroll', () => {

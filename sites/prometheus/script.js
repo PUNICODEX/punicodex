@@ -9,7 +9,7 @@
     /* =====================================================
        FIREBRINGER CANVAS
        ===================================================== */
-    const canvas = document.getElementById('firebringer-canvas');
+const canvas = document.getElementById('firebringer-canvas');
     const ctx = canvas ? canvas.getContext('2d') : null;
     if (ctx) {
     let width, height;
@@ -427,7 +427,12 @@
     initEmbers();
     animateCanvas();
 
-    /* ===================================================== SCROLL REVEALS ===================================================== */
+    } else {
+      console.log('[prometheus] Canvas firebringer-canvas not present on this page');
+    }
+    /* =====================================================
+       SCROLL REVEALS
+       ===================================================== */
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -447,10 +452,7 @@
     /* =====================================================
        NAV SCROLL EFFECT
        ===================================================== */
-    
-    } else {
-      console.log('[prometheus] Canvas firebringer-canvas not present on this page');
-    }const nav = document.getElementById('main-nav');
+    const nav = document.getElementById('main-nav');
     let lastScroll = 0;
 
     window.addEventListener('scroll', () => {

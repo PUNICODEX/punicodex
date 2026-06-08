@@ -9,7 +9,7 @@
     /* =====================================================
        THRESHOLD CANVAS
        ===================================================== */
-    const canvas = document.getElementById('seasonal-canvas');
+const canvas = document.getElementById('seasonal-canvas');
     const ctx = canvas ? canvas.getContext('2d') : null;
     if (ctx) {
     let width, height;
@@ -514,7 +514,12 @@
     resizeCanvas();
     animateCanvas();
 
-    /* ===================================================== SCROLL REVEALS ===================================================== */
+    } else {
+      console.log('[persephone] Canvas seasonal-canvas not present on this page');
+    }
+    /* =====================================================
+       SCROLL REVEALS
+       ===================================================== */
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -534,10 +539,7 @@
     /* =====================================================
        NAV SCROLL EFFECT
        ===================================================== */
-    
-    } else {
-      console.log('[persephone] Canvas seasonal-canvas not present on this page');
-    }const nav = document.getElementById('main-nav');
+    const nav = document.getElementById('main-nav');
     let lastScroll = 0;
 
     window.addEventListener('scroll', () => {

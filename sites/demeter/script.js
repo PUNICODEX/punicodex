@@ -474,8 +474,6 @@ document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
 
-    
-    
     // Parallax on mascot
     const mascot = document.querySelector('.hero-mascot');
     if (mascot) {
@@ -488,6 +486,13 @@ document.addEventListener('mousemove', (e) => {
     }
 });
 
+window.addEventListener('resize', resize);
+resize();
+initTilt();
+animate();
+    } else {
+      console.log('[demeter] Canvas harvest-canvas not present on this page');
+    }
 // ========== SCROLL REVEALS ==========
 const observerOptions = {
     root: null,
@@ -509,15 +514,7 @@ document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right, .reveal-scal
 });
 
 // ========== NAV SCROLL EFFECT ==========
-
-    window.addEventListener('resize', resize);
-    resize();
-    initTilt();
-    animate();
-    } else {
-      console.log('[demeter] Canvas harvest-canvas not present on this page');
-    }
-    const nav = document.getElementById('main-nav');
+const nav = document.getElementById('main-nav');
 let lastScrollY = 0;
 
 window.addEventListener('scroll', () => {
@@ -569,6 +566,9 @@ function initTilt() {
         });
     });
 }
+
+// ========== INITIALIZATION ==========
+
 
 // ========== BOOKING SYSTEM ==========
 const API_BASE = window.DEMETER_API_BASE || 'http://localhost:3456'; // Set window.DEMETER_API_BASE in HTML for production

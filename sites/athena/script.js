@@ -10,7 +10,7 @@
     /* =====================================================
        WAR ROOM CANVAS
        ===================================================== */
-    const canvas = document.getElementById('strategy-canvas');
+const canvas = document.getElementById('strategy-canvas');
     const ctx = canvas ? canvas.getContext('2d') : null;
     if (ctx) {
     let width, height;
@@ -199,8 +199,7 @@
             if (n.x < 0 || n.x > width) n.vx *= -1;
             if (n.y < 0 || n.y > height) n.vy *= -1;
 
-            
-    // Mouse influence
+            // Mouse influence
             const dx = mouseX - n.x;
             const dy = mouseY - n.y;
             const dist = Math.hypot(dx, dy);
@@ -630,6 +629,9 @@
     initLeaves();
     animateCanvas();
 
+    } else {
+      console.log('[athena] Canvas strategy-canvas not present on this page');
+    }
     /* =====================================================
        SCROLL REVEALS
        ===================================================== */
@@ -652,10 +654,7 @@
     /* =====================================================
        NAV SCROLL EFFECT
        ===================================================== */
-    
-    } else {
-      console.log('[athena] Canvas strategy-canvas not present on this page');
-    }const nav = document.getElementById('main-nav');
+    const nav = document.getElementById('main-nav');
     let lastScroll = 0;
 
     window.addEventListener('scroll', () => {
