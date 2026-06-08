@@ -862,13 +862,12 @@ function openModal(slotId) {
       if (!slotEl) { console.log('[PUNYCODEX] No slotEl found'); return; }
       const nameEl = slotEl.querySelector('.space-name');
       const dimsEl = slotEl.querySelector('.space-dims');
-      const priceEl = slotEl.querySelector('.space-price');
       const dimsMatch = dimsEl ? dimsEl.textContent.match(/(\d+)\s*×\s*(\d+)/) : null;
       slot = {
         name: nameEl ? nameEl.textContent : 'Slot',
         width: dimsMatch ? parseInt(dimsMatch[1]) : 0,
         height: dimsMatch ? parseInt(dimsMatch[2]) : 0,
-        price_cents: priceEl ? parseInt(priceEl.textContent.replace(/[^0-9]/g, '')) * 100 : 0,
+        price_cents: parseInt(slotEl.dataset.priceCents, 10) || 0,
       };
     }
 
