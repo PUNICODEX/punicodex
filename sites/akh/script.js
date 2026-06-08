@@ -19,7 +19,7 @@ let time = 0;
 
 // Color palette
 const GOLDENROD = { r: 212, g: 148, b: 30 };
-const INDIGO = { r: 35, g: 45, b: 100 };
+const INDIGO = { r: 20, g: 20, b: 30 };
 const GOLD = { r: 212, g: 148, b: 30 };
 const CREAM = { r: 245, g: 245, b: 220 };
 const OLIVE = { r: 85, g: 107, b: 47 };
@@ -353,8 +353,8 @@ function drawFlashes() {
 
 function drawOverlay() {
     const gradient = ctx.createRadialGradient(width / 2, height / 2, 0, width / 2, height / 2, Math.max(width, height) * 0.7);
-    gradient.addColorStop(0, 'rgba(6, 6, 18, 0)');
-    gradient.addColorStop(1, 'rgba(6, 6, 18, 0.5)');
+    gradient.addColorStop(0, 'rgba(5, 5, 8, 0)');
+    gradient.addColorStop(1, 'rgba(5, 5, 8, 0.5)');
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, width, height);
 }
@@ -375,7 +375,7 @@ function animateCanvas() {
     if (!ctx) return;
     ctx.clearRect(0, 0, width, height);
 
-    ctx.fillStyle = 'rgba(6, 6, 18, 0.15)';
+    ctx.fillStyle = 'rgba(5, 5, 8, 0.15)';
     ctx.fillRect(0, 0, width, height);
 
     time += 16;
