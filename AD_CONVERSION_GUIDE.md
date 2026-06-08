@@ -8,6 +8,20 @@
 
 ---
 
+## ⚠️ The Clone Trap (READ FIRST)
+
+**The most common and embarrassing mistake:** Copying the most recently converted temple (e.g., Ra) and running string replacements to create the next one (e.g., Akh). This produces a **Frankenstein** — the new temple looks correct on the surface but is riddled with the old temple's DNA: wrong slot names, wrong mythology in lore, wrong colors, wrong symbols, and wrong hero copy.
+
+**Real example:** Akh (Anubis, death/afterlife) was initially converted from Ra (sun god). The result had "Solar Disk," "Falcon's Wing," and "Scarab" as slot names. The lore described the sun barge, Khepri the scarab, and the self-created sun god. The CSS had emerald-green solar gradients. It was Ra wearing an Akh mask.
+
+**Prevention:**
+1. Never copy the *most recent* conversion. Use Nike (the canonical base) or build from the original temple's pre-conversion HTML.
+2. The Archetype Worksheet (Section 1) is **mandatory**, not optional. Fill it before touching code.
+3. After automation, run the **Content Residue Check** (Section 8.4) to catch leaked archetype DNA.
+4. Lore and gallery must be **authored, not replaced**. String-replaced mythology is poison.
+
+---
+
 ## Table of Contents
 
 1. [Pre-Flight: Archetype Worksheet](#1-pre-flight-archetype-worksheet)
@@ -29,16 +43,20 @@
 
 Before touching code, define these 6 values. They drive every customization decision.
 
-| # | Question | Example (Nike) | Example (Hermès) | Example (Ra) |
-|---|----------|---------------|------------------|--------------|
-| 1 | **Archetype name** | Victory | Speed/Messenger | Sun/Fire |
-| 2 | **Primary symbol** Unicode | `✦` (victory star) | `⚕` (caduceus) | `☉` (sun disk) |
-| 3 | **Symbol animation** | Wingbeat pulse (scale ±15%, rotate ±5°) | Slow rotation (360° over 8s) | Pulse glow (scale 1→1.2→1) |
-| 4 | **Shimmer color accent** | Pure gold `#D4AF37` | Silver-gold `#C0C0C0` | Amber `#FFB43C` |
-| 5 | **Slot names (13 total)** | Crown Position, Victory Column, Champion Strip… | Winged Crown, Herald's Column, Traveler's Strip… | Solar Disk, Horizon Throne, Falcon's Wing… |
-| 6 | **Mascot asset path** | `assets/nike_mascot.png` | `assets/hermes_mascot.png` | `assets/ra_mascot.png` |
+| # | Question | Example (Nike) | Example (Hermès) | Example (Ra) | Example (Akh) |
+|---|----------|---------------|------------------|--------------|---------------|
+| 1 | **Archetype name** | Victory | Speed/Messenger | Sun/Fire | Death/Afterlife |
+| 2 | **Primary symbol** Unicode | `✦` (victory star) | `⚕` (caduceus) | `☉` (sun disk) | `☥` (ankh) |
+| 3 | **Symbol animation** | Wingbeat pulse (scale ±15%, rotate ±5°) | Slow rotation (360° over 8s) | Pulse glow (scale 1→1.2→1) | Gentle rotation + glow (scale 1→1.15→1) |
+| 4 | **Background color** | Deep charcoal `#0A0A0A` | Deep emerald `#0A120A` | Warm brown `#0A0806` | Pure black `#050505` |
+| 5 | **Shimmer color accent** | Pure gold `#D4AF37` | Silver-gold `#C0C0C0` | Amber `#FFB43C` | Gold `#C9A227` |
+| 6 | **Slot names (13 total)** | Crown Position, Victory Column, Champion Strip… | Winged Crown, Herald's Column, Traveler's Strip… | Solar Disk, Horizon Throne, Falcon's Wing… | Jackal Crown, Canopic Column, Threshold Strip… |
+| 7 | **Mascot asset path** | `assets/nike_mascot.png` | `assets/hermes_mascot.png` | `assets/ra_mascot.png` | `assets/akh_mascot.png` |
+| 8 | **Hero endorsement line** | "Endorsed by the Goddess of Victory, Níkē" | "Endorsed by the Messenger of the Gods, Hermês" | "Endorsed by the Sun God, Rꜥ" | "Endorsed by the Guardian of the Dead, Ꜣḫ" |
 
 **Output:** Fill in `scripts/archetype-registry.js` (create if missing) so future scripts can look up these values programmatically.
+
+**Slot name rule:** Every one of the 13 slot names must evoke the archetype. Generic names like "Content I" or "Text I" are acceptable only for slots 9–12 (the smaller emblems/footer). Slots 1–8 must be archetype-themed. If you find yourself writing "Solar Disk" for a death god, you have fallen into the Clone Trap.
 
 ---
 
@@ -132,12 +150,14 @@ SELECT id, name, site_slug, price_cents FROM ad_slots WHERE site_slug = 'zeus';
 
 ## 3. Step 1 — Copy Base Template
 
-Use Nike as the canonical base (most complete). Copy to the new temple directory.
+Use **Nike** as the canonical base (most complete, least domain-specific). Copy to the new temple directory.
 
 ```bash
 # From project root
 cp -r sites/nike sites/zeus
 ```
+
+**Why Nike?** Nike's slot names (Crown Position, Victory Column, Champion Strip) are generic enough that they don't leak Greek/Nike-specific DNA into unrelated archetypes. Copying Ra for Akh produced "Solar Disk" and "Scarab Badge" — completely wrong for a death god. Copying Hermès would produce "Winged Crown" and "Caduceus Badge" — also wrong. Nike is the safe default.
 
 ### 3.1 Immediate cleanup in new directory
 
@@ -172,8 +192,12 @@ Replace:
 The HTML has a fixed layout. **Do not change the DOM structure** — only change:
 - `data-space` values → your ID block (e.g., 40–52)
 - `data-price-cents` values → match database (copy from Nike/Hermès, they're identical)
-- `.space-name` text → archetype-themed slot names
+- `.space-name` text → **archetype-themed slot names (mandatory)**
 - `.space-dims` text → dimensions (same for all temples)
+
+**CRITICAL:** The slot names are the most visible archetype signal. "Solar Disk" on a death-god temple is an immediate credibility destroyer. Every slot name must pass the sniff test: *would this word appear in a museum exhibit about this god?*
+- ❌ Ra → Akh: "Solar Disk," "Horizon Throne," "Falcon's Wing" — these are Ra's domains
+- ✅ Akh slot names: "Jackal Crown" (Anubis's head), "Canopic Column" (embalming jars), "Threshold Strip" (boundary between worlds), "Scales Badge" (weighing of the heart)
 
 **Critical:** `data-space` must be **zero-padded 2 digits** for slots 01–09, plain for 10+. The JS does `parseInt(dataset.space, 10)` which handles both.
 
@@ -222,7 +246,12 @@ File: `sites/{temple}/styles.css`
 
 ### 5.1 Base CSS is already copied from Nike
 
-Nike's CSS is the merged result of temple styles + advertising styles. You generally **do not need to rewrite CSS from scratch**.
+Nike's CSS is the merged result of temple styles + advertising styles. You generally **do not need to rewrite CSS from scratch** — **BUT** you must change the color palette to match the archetype.
+
+**Color traps to avoid:**
+- Copying Ra's CSS for a non-solar Egyptian god leaves warm brown/gold `void-*` variables and green gradient accents. Anubis (death) needs pure black. Thoth (wisdom) needs midnight blue.
+- Copying Hermès leaves emerald-green canvas backgrounds. Apollo (music/light) needs warm amber.
+- Always update `--void-deep`, `--void-mid`, `--void-light` to match the archetype's emotional temperature.
 
 ### 5.2 Archetype-specific animation block
 
@@ -420,7 +449,14 @@ Keep the `[PUNYCODEX]` prefix on all `console.log` / `console.error` calls so de
 
 ### 7.1 Lore page (`sites/{temple}/lore/index.html`)
 
-The lore page is the standard temple lore page **plus** the extended lore CTA section. Copy from the existing temple's lore page, then add at the bottom before the footer:
+**⚠️ DANGER ZONE:** This is where the Clone Trap does the most damage. Do **NOT** copy another temple's lore page and run string replacements. You will end up with the wrong myths, wrong symbols, wrong genealogy, and wrong cultural impact.
+
+**The correct process:**
+1. Use the original temple's pre-conversion lore as the **structure template** (HTML layout, section order, CSS classes).
+2. **Write entirely new content** for every section: hero description, name cards, tier explanation, pronunciation, myths, pantheon, and extended lore CTA.
+3. If you are not confident writing authentic mythology, research first. Do not guess. Wrong mythology is worse than no mythology.
+
+The lore page structure (copy from Nike for layout only):
 
 ```html
 <!-- Extended Lore CTA -->
@@ -453,15 +489,22 @@ The lore page is the standard temple lore page **plus** the extended lore CTA se
 
 ### 7.2 Extended lore page (`sites/{temple}/lore/extended/index.html`)
 
-Copy the existing temple's extended lore page wholesale. Only change:
+**Same warning as 7.1.** Do not copy another temple's extended lore. Write it from scratch using the original temple's pre-conversion content as your primary source, supplemented by scholarly sources.
+
+What to change:
 - Title, meta, OG tags
 - Canonical URL
-- Content (obviously)
+- **Content — entirely authored, not replaced**
 - Mascot asset paths (`../../assets/...`)
+- FAQ questions must be relevant to the actual archetype (e.g., "What is the difference between the Ꜣḫ and the kꜣ?" not "What is the Homeric Hymn to Ra?")
 
 ### 7.3 Gallery page (`sites/{temple}/gallery/index.html`)
 
-Copy the existing temple's gallery page. Only change titles, meta, and asset paths.
+Copy Nike's gallery page for **structure only**. Every caption, title, and description must reference the correct archetype's actual art and archaeology.
+
+**Gallery caption test:** If you can replace the god's name with another god's name and the sentence still makes sense, your caption is too generic and probably cloned. Example of a cloned caption:
+- ❌ "The transfigured spirit sails the barge across the sky" — this is Ra, not Akh
+- ✅ "Anubis kneels beside the scales, adjusting the beam, as the heart is weighed against the feather of Ma'at" — this is Akh/Anubis
 
 ---
 
@@ -556,6 +599,39 @@ Even with scripts, ALWAYS manually verify these 5 Unicode-critical spots:
 4. Any `data-*` attributes with Unicode
 5. The `extended/` lore page content (usually the densest with Unicode)
 
+### 8.4 Content Residue Check (POST-AUTOMATION)
+
+After running any conversion script, run this check to catch leaked archetype DNA:
+
+```bash
+node -e "
+const fs = require('fs');
+const files = [
+  'sites/{temple}/index.html',
+  'sites/{temple}/lore/index.html',
+  'sites/{temple}/lore/extended/index.html',
+  'sites/{temple}/gallery/index.html',
+];
+const forbidden = [
+  'solar disk', 'sun god', 'sun barge', 'Mandjet',
+  'Khepri', 'scarab pushing', 'falcon-headed', 'Apep',
+  'caduceus', 'winged sandals', 'winged helmet',
+  'Hermes', 'Mercury', 'Trismegistus',
+  // Add pantheon-specific forbidden words
+];
+for (const f of files) {
+  const h = fs.readFileSync(f, 'utf8');
+  for (const word of forbidden) {
+    if (h.toLowerCase().includes(word.toLowerCase())) {
+      console.log('CLONE DNA: ' + word + ' in ' + f);
+    }
+  }
+}
+"
+```
+
+**Zero tolerance:** If any forbidden word appears, the conversion is not done. Fix it before committing.
+
 ---
 
 ## 9. Step 7 — Testing Checklist
@@ -573,14 +649,23 @@ Before any commit, verify:
 - [ ] Shimmer sweep travels across frames
 - [ ] Mobile: column slot (slot 2) fills full vertical height
 - [ ] Mobile: "Available" text pulses with staggered delays
+- [ ] **Slot names pass the archetype sniff test** (no foreign-pantheon references)
 
 ### 9.2 Functional
 - [ ] API call `?site={slug}` returns 13 slots in Network tab
 - [ ] Console shows `[PUNYCODEX] Modal opened for slot X` on click
 - [ ] Console shows `[PUNYCODEX] openModal called: X`
 - [ ] No JS errors in console
+- [ ] **Content Residue Check passes** (Section 8.4) — zero foreign archetype DNA
 
-### 9.3 Unicode integrity
+### 9.3 Authenticity
+- [ ] Hero tagline matches archetype (not a string-replaced version of another god)
+- [ ] Lore myths are about the correct god, not another god with a find-and-replace
+- [ ] Gallery captions reference correct art/archaeology
+- [ ] Color palette matches archetype temperature (not inherited from source template)
+- [ ] JSON-LD `alternateName` lists correct epithets, not another god's names
+
+### 9.4 Unicode integrity
 - [ ] Open file in browser devtools → Sources → verify Greek/Egyptian chars render
 - [ ] Run `node test/run-all.js` (if temple is in lexicon)
 
@@ -607,6 +692,8 @@ feat(temples): convert {temple} to ad homepage
 - Booking modal with Stripe integration
 - Lore + Gallery pages with extended lore CTA
 - Archetype symbol: {symbol} ({description})
+- Color palette: {palette} (not cloned from {source})
+- Content Residue Check: PASS (zero foreign archetype DNA)
 - Cache-bust: {temple} perf1
 ```
 
@@ -659,13 +746,17 @@ vercel --prod
 | **Wisdom/Knowledge** | Gentle breathe (scale 1→1.05) | Orbiting dots | Spiral |
 | **Nature/Growth** | Sway (rotate ±3°) | Leaf fall | Downward drift |
 | **Water/Sea** | Horizontal shimmer | Wave oscillation | Bubble rise |
+| **Death/Afterlife** | Slow rotation + glow fade | Rising particles (souls) | Upward drift, starfield |
+| **Underworld/Shadow** | Subtle pulse (barely visible) | Mist drift | Horizontal fog |
 
 ### Color accents
 
 Always derive from the pantheon's classic association:
 - Greek: Gold `#D4AF37`
 - Norse: Ice silver `#C0D6E4`
-- Egyptian: Solar amber `#FFB43C`
+- Egyptian (solar): Solar amber `#FFB43C`
+- Egyptian (death): Gold on black `#C9A227` on `#050505`
+- Egyptian (wisdom): Lapis `#1E3A5F` on midnight `#080818`
 - Japanese: Vermilion `#E34234`
 - Celtic: Forest green `#228B22`
 - Hindu: Saffron `#F4C430`
@@ -727,6 +818,7 @@ vercel --prod
 
 ---
 
-*Document version: 1.0*
+*Document version: 2.0*
 *Last updated: 2026-06-06*
 *Author: PUNYCODEX Agent*
+*Evolution note: v2.0 adds the Clone Trap warning, Content Residue Check, and archetype authenticity safeguards after the Akh→Ra cloning incident.*
