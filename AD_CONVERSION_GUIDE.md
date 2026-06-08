@@ -253,6 +253,86 @@ Nike's CSS is the merged result of temple styles + advertising styles. You gener
 - Copying Hermès leaves emerald-green canvas backgrounds. Apollo (music/light) needs warm amber.
 - Always update `--void-deep`, `--void-mid`, `--void-light` to match the archetype's emotional temperature.
 
+**⚠️ CSS VARIABLE TRAP — NEW (post-Akh fix)**
+
+When you merge ad-slot CSS from Nike/Hermès/Ra into a new temple, the merged styles reference dozens of custom properties (`--nav-height`, `--space-md`, `--classic-gold`, `--bg-primary`, `--text-muted`, `--gradient-card`, `--shadow-gold`, etc.). If the target temple's `:root` does not define these, every `var(--*)` becomes **invalid at computed-value time** — the browser silently drops the entire declaration.
+
+**Real damage from Akh:**
+- `--nav-height` missing → `padding-top: calc(40px + var(--nav-height) + 3rem)` invalid → hero content flush against navbar
+- `--space-md` missing → `padding: 0 var(--space-md)` invalid → `.container` has no horizontal padding
+- No global `img { display: block }` → Hermes has it, Akh didn't → endorsement mascot rendered as inline instead of block, causing horizontal centering drift
+
+**Prevention:**
+1. After merging CSS, run the variable audit (Section 5.1.1).
+2. Add **all** missing variables to the target's `:root`, mapping them to the archetype's palette (not the source's).
+3. Ensure the target has the same global reset as the source — especially `img { max-width: 100%; display: block; }`.
+4. Verify `.container` matches the source: `max-width`, `margin: 0 auto`, **and `padding: 0 var(--space-md)`**.
+
+#### 5.1.1 CSS Variable Audit Script
+
+Run this after any CSS merge to catch undefined variables:
+
+```bash
+node -e "
+const fs = require('fs');
+const css = fs.readFileSync('sites/{temple}/styles.css', 'utf8');
+const uses = [...css.matchAll(/var\\(--([\\w-]+)\\)/g)].map(m => m[1]);
+const defs = [...css.matchAll(/--([\\w-]+)\\s*:/g)].map(m => m[1]);
+const missing = [...new Set(uses)].filter(v => !new Set(defs).has(v));
+if (missing.length) {
+  console.error('MISSING VARS:', missing.sort().join(', '));
+  process.exit(1);
+} else {
+  console.log('All CSS variables defined ✓');
+}
+"
+```
+
+**Required variables every converted temple must define** (adapt values to archetype):
+
+```css
+:root {
+  /* Layout & Spacing */
+  --max-width: 1200px;
+  --nav-height: 72px;
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 6rem;
+  --space-2xl: 8rem;
+
+  /* Accent (archetype-specific) */
+  --classic-gold: #D4AF37;      /* or solar amber, lapis, saffron, etc. */
+  --pale-gold: #E8D5A3;
+  --gold-dim: #B8983C;
+  --gold-bright: #F0D070;
+  --text-gold: #D4AF37;
+
+  /* Surfaces (archetype-specific) */
+  --bg-primary: #0a0512;
+  --bg-secondary: #0e0a18;
+  --bg-nav: rgba(10, 5, 18, 0.95);
+  --bg-card: rgba(16, 12, 24, 0.8);
+  --bg-elevated: #1a1028;
+
+  /* Text */
+  --text-primary: #e8e0f0;
+  --text-secondary: #a098b0;
+  --text-muted: #6a6080;
+  --font-greek: 'Georgia', 'Times New Roman', serif;
+
+  /* Gradients & Shadows */
+  --gradient-card: linear-gradient(135deg, rgba(16,12,24,0.85), rgba(8,5,12,0.92));
+  --gradient-gold: linear-gradient(135deg, var(--classic-gold), var(--gold-bright));
+  --shadow-gold: 0 0 30px rgba(212, 175, 55, 0.15);
+  --shadow-card: 0 8px 32px rgba(0,0,0,0.4);
+
+  /* States */
+  --success: #4ade80;
+}
+```
+
 ### 5.2 Archetype-specific animation block
 
 Find the block starting with:
@@ -650,6 +730,9 @@ Before any commit, verify:
 - [ ] Mobile: column slot (slot 2) fills full vertical height
 - [ ] Mobile: "Available" text pulses with staggered delays
 - [ ] **Slot names pass the archetype sniff test** (no foreign-pantheon references)
+- [ ] **Hero padding-top is correct** — inspect `.endorsement-hero` in DevTools; if padding-top is 0 or missing, `--nav-height` is undefined
+- [ ] **Mascot alignment matches source template** — if it drifts left/right compared to Nike/Hermès, check global `img { display: block }` and `.container` padding
+- [ ] **Container has horizontal padding** — `.container` should show `padding-left: 2rem` and `padding-right: 2rem` in computed styles
 
 ### 9.2 Functional
 - [ ] API call `?site={slug}` returns 13 slots in Network tab
