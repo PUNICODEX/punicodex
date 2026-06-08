@@ -658,8 +658,7 @@
     }const nav = document.getElementById('main-nav');
     let lastScroll = 0;
 
-    window.addEventListe
-    ner('scroll', () => {
+    window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
         if (currentScroll > 80) {
             nav.classList.add('scrolled');

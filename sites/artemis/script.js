@@ -546,9 +546,14 @@ document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right, .reveal-scal
 
 // ========== NAV SCROLL EFFECT ==========
 
+    window.addEventListener('resize', resize);
+    resize();
+    initTilt();
+    animate();
     } else {
       console.log('[artemis] Canvas hunt-canvas not present on this page');
-    }const nav = document.getElementById('main-nav');
+    }
+    const nav = document.getElementById('main-nav');
 let lastScrollY = 0;
 
 window.addEventListener('scroll', () => {
@@ -600,13 +605,6 @@ function initTilt() {
         });
     });
 }
-
-// ========== INITIALIZATION ==========
-window.addEventListener('resize', resize);
-resize();
-initTilt();
-animate();
-
 
 // ========== BOOKING SYSTEM ==========
 const API_BASE = window.ARTEMIS_API_BASE || 'http://localhost:3456'; // Set window.ARTEMIS_API_BASE in HTML for production

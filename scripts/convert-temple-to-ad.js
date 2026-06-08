@@ -545,11 +545,52 @@ function applySurgicalCanvasWrapping(baseJs, templeId) {
   const block = baseJs.slice(initPos + initLen, boundaryPos);
   const after = baseJs.slice(boundaryPos);
 
-  return before +
+  let result = before +
     `const canvas = document.getElementById('${canvasId}');\n    const ctx = canvas ? canvas.getContext('2d') : null;\n    if (ctx) {` +
     block +
     `\n    } else {\n      console.log('[${templeId}] Canvas ${canvasId} not present on this page');\n    }\n    ` +
     after;
+
+  // Post-process: guard unguarded canvas.style.display references after } else {
+  const elseBlockEnd = result.indexOf(`console.log('[${templeId}] Canvas ${canvasId} not present on this page');\n    }\n`);
+  if (elseBlockEnd !== -1) {
+    const afterElsePos = elseBlockEnd + `console.log('[${templeId}] Canvas ${canvasId} not present on this page');\n    }\n`.length;
+    const afterElse = result.slice(afterElsePos);
+    // Replace unguarded canvas.style.display = '...';
+    const guarded = afterElse.replace(/(^|\n)(\s*)(canvas\.style\.display\s*=\s*['"][^'"]+['"];)/g, (match, newline, indent, stmt) => {
+      // Don't double-guard
+      const preceding = afterElse.slice(Math.max(0, afterElse.indexOf(match) - 20), afterElse.indexOf(match));
+      if (preceding.includes('if (canvas)')) return match;
+      return newline + indent + 'if (canvas) ' + stmt;
+    });
+    result = result.slice(0, afterElsePos) + guarded;
+  }
+
+  // Post-process: move canvas init calls (resize(), animate(), etc.) from after } else { to inside if (ctx)
+  const initCallPattern = /\n(\s*)(resize|initTilt|animate|initElements|animateCanvas|animateLightning|initMist|initSparks|initKeys|initEmbers|initWaves|initParticles|initFlares|initTrails|initTendrils|initSouls|initHelm|initFire|initButterflies|initLeaves|initWheat|initSunbeams|initStars|initDust|initGlow|initOrbs|initPaths|initSnow|initRain|initFog|initClouds|initLightning|initBolts|initBranches|initSegments|initGlows|initFlashes|initPulses|initRings|initSpirals|initHexes|initNodes|initLinks|initTriangles|initCircles|initSquares|initDiamonds|initCrosses|initArrows|initDots|initLines|initCurves|initShapes|initForms|initPatterns|initTextures|initGradients|initShadows|initHighlights|initReflections|initRefractions|initDiffractions|initInterference|initScattering|initAbsorption|initEmission|initTransmission)\s*\(\)\s*;?\s*\n/g;
+
+  if (elseBlockEnd !== -1) {
+    const afterElsePos = elseBlockEnd + `console.log('[${templeId}] Canvas ${canvasId} not present on this page');\n    }\n`.length;
+    const afterElse = result.slice(afterElsePos);
+    const initCalls = [];
+    let m;
+    const maxScan = 800;
+    const scanArea = afterElse.slice(0, maxScan);
+    while ((m = initCallPattern.exec(scanArea)) !== null) {
+      initCalls.push(m[0]);
+    }
+    if (initCalls.length > 0) {
+      // Remove init calls from after } else {
+      let cleanedAfter = afterElse;
+      for (const call of initCalls) {
+        cleanedAfter = cleanedAfter.replace(call, '');
+      }
+      // Insert them before } else {
+      result = result.slice(0, afterElsePos) + initCalls.join('') + cleanedAfter;
+    }
+  }
+
+  return result;
 }
 
 function mergeJs(templePath, templeId, colors) {

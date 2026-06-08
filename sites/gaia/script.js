@@ -427,13 +427,14 @@
     // ============================
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         revealElements.forEach(el => el.classList.add('revealed'));
-        canvas.style.display = 'none';
+        if (canvas) canvas.style.display = 'none';
     }
 
     // ============================
     // Hide canvas on very small screens
     // ============================
     function checkCanvasVisibility() {
+        if (!canvas) return;
         if (window.innerWidth < 360) {
             canvas.style.display = 'none';
         } else if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {

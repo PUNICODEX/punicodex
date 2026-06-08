@@ -472,7 +472,7 @@
     // ============================
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         revealElements.forEach(el => el.classList.add('revealed'));
-        canvas.style.display = 'none';
+        if (canvas) canvas.style.display = 'none';
     }
 
 })();
