@@ -15,6 +15,31 @@ const { SOURCE_CATALOG } = require('../type/js/source-catalog.js');
 // Stacked diacritics are no longer rendered inline in base temples;
 // they remain available via the Type Tool and flagship temples.
 
+// ─── Flagship Preservation ───
+// Load handcrafted flagship IDs from archetypes-v2.js so they are never
+// overwritten by base-temple generation, even if a previous run left them
+// with a base-temple HTML comment/CSS link.
+function loadBuiltArchetypeIds() {
+    try {
+        const archetypePath = path.join(__dirname, '..', 'js', 'archetypes-v2.js');
+        const content = fs.readFileSync(archetypePath, 'utf8');
+        const ids = new Set();
+        const regex = /id:\s*"([^"]+)"/g;
+        let match;
+        while ((match = regex.exec(content)) !== null) {
+            const idx = content.lastIndexOf('built:', match.index);
+            const builtLine = content.substring(idx, idx + 20);
+            if (builtLine.includes('true')) {
+                ids.add(match[1]);
+            }
+        }
+        return ids;
+    } catch {
+        return new Set();
+    }
+}
+const BUILT_ARCHETYPE_IDS = loadBuiltArchetypeIds();
+
 // ─── Pantheon Theming ───
 const PANTHEON_COLORS = {
     greek:            { primary: '#D4AF37', primaryDim: '#8B7355', primaryBright: '#F0D878', secondary: '#4169E1' },
@@ -665,6 +690,10 @@ function main() {
         const indexPath = path.join(dir, 'index.html');
 
         // Skip flagships (hand-crafted temples that don't reference shared assets)
+        if (BUILT_ARCHETYPE_IDS.has(entry.id)) {
+            skipped++;
+            continue;
+        }
         if (fs.existsSync(indexPath)) {
             const existing = fs.readFileSync(indexPath, 'utf8');
             const isBaseTemple = existing.includes('temple-base.css') ||
