@@ -174,7 +174,7 @@ function generateTempleHTML(entry, related) {
         ? entry.etymology.cognates.slice(0, 3).map(c => {
             const isInternal = LEXICON.some(e => e.id === c.id);
             const tag = isInternal ? 'a' : 'span';
-            const href = isInternal ? ` href="/sites/${c.id}${c.hasAdSite ? '/lore/' : '/'}"` : '';
+            const href = isInternal ? ` href="https://punycodex.com/sites/${c.id}${c.hasAdSite ? '/lore/' : '/'}"` : '';
             return `<${tag}${href} class="cognate-card reveal-up">
                 <span class="cognate-lang">${escapeHtml(c.language)}</span>
                 <span class="cognate-form">${escapeHtml(c.form)}</span>
@@ -247,7 +247,7 @@ ${JSON.stringify({
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/temple-base.css">
+    <link rel="stylesheet" href="https://punycodex.com/css/temple-base.css">
     <style>
         :root {
             --primary: ${colors.primary};
@@ -264,12 +264,12 @@ ${JSON.stringify({
     <!-- Navigation -->
     <nav class="main-nav" id="main-nav">
         <div class="nav-inner">
-            <a href="/" class="nav-logo">PUNYCODEX</a>
+            <a href="https://punycodex.com/" class="nav-logo">PUNYCODEX</a>
             <div class="nav-links">
-                <a href="/pantheon/" class="nav-link">Pantheon</a>
-                <a href="/lexicon/" class="nav-link">Lexicon</a>
-                <a href="/type/#${entry.id}" class="nav-link">Type</a>
-                <a href="/tiers/" class="nav-link">Tiers</a>
+                <a href="https://punycodex.com/pantheon/" class="nav-link">Pantheon</a>
+                <a href="https://punycodex.com/lexicon/" class="nav-link">Lexicon</a>
+                <a href="https://punycodex.com/type/#${entry.id}" class="nav-link">Type</a>
+                <a href="https://punycodex.com/tiers/" class="nav-link">Tiers</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
@@ -305,7 +305,7 @@ ${JSON.stringify({
                     `}
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="/type/#${entry.id}" class="btn-primary">
+                    <a href="https://punycodex.com/type/#${entry.id}" class="btn-primary">
                         <span>Try the Type Tool</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"/>
@@ -547,7 +547,7 @@ ${JSON.stringify({
                     if (cognateEntry) {
                         const cSubtype = getTierSubtype(cognateEntry);
                         return `
-                <a href="/sites/${cognateEntry.id}${cognateEntry.hasAdSite ? '/lore/' : '/'}" class="related-card reveal-up">
+                <a href="https://punycodex.com/sites/${cognateEntry.id}${cognateEntry.hasAdSite ? '/lore/' : '/'}" class="related-card reveal-up">
                     <span class="related-name">${escapeHtml(cognateEntry.unicode)}</span>
                     <span class="related-greek">${cognateEntry.greek && cognateEntry.greek !== '—' ? escapeHtml(cognateEntry.greek) : ''}</span>
                     <span class="related-domain">${escapeHtml(cognateEntry.domain)}</span>
@@ -575,7 +575,7 @@ ${JSON.stringify({
                 ${related.map(r => {
                     const rSubtype = getTierSubtype(r);
                     return `
-                <a href="/sites/${r.id}${r.hasAdSite ? '/lore/' : '/'}" class="related-card reveal-up">
+                <a href="https://punycodex.com/sites/${r.id}${r.hasAdSite ? '/lore/' : '/'}" class="related-card reveal-up">
                     <span class="related-name">${escapeHtml(r.unicode)}</span>
                     <span class="related-greek">${r.greek && r.greek !== '—' ? escapeHtml(r.greek) : ''}</span>
                     <span class="related-domain">${escapeHtml(r.domain)}</span>
@@ -585,7 +585,7 @@ ${JSON.stringify({
             </div>
             ` : `
             <div class="tier-explanation reveal-up">
-                <p class="lead-text">Explore the full <a href="/lexicon/" style="color:var(--primary);">Lexicon</a> to discover more names from the ${pantheonLabel} tradition.</p>
+                <p class="lead-text">Explore the full <a href="https://punycodex.com/lexicon/" style="color:var(--primary);">Lexicon</a> to discover more names from the ${pantheonLabel} tradition.</p>
             </div>
             `}
         </div>
@@ -602,7 +602,7 @@ ${JSON.stringify({
                     <span style="color:var(--white-dim);">&rarr;</span>
                     <code>${escapeHtml(entry.unicode)}</code>
                 </div>
-                <a href="/type/#${entry.id}" class="btn-primary">
+                <a href="https://punycodex.com/type/#${entry.id}" class="btn-primary">
                     <span>Open in Type Tool</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M7 17L17 7M17 7H7M17 7V17"/>
@@ -617,7 +617,7 @@ ${JSON.stringify({
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="/" class="footer-logo">PUNYCODEX</a>
+                    <a href="https://punycodex.com/" class="footer-logo">PUNYCODEX</a>
                     <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
                 </div>
                 <div class="footer-info">
@@ -641,7 +641,7 @@ ${JSON.stringify({
         </div>
     </footer>
 
-    <script src="/js/temple-base.js"></script>
+    <script src="https://punycodex.com/js/temple-base.js"></script>
 </body>
 </html>`;
 }
