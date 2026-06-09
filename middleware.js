@@ -265,7 +265,8 @@ export const config = {
 
 export default function middleware(request) {
   const url = new URL(request.url);
-  const host = request.headers.get('host');
+  // Normalize host: lowercase, strip port, trim whitespace
+  const host = (request.headers.get('host') || '').toLowerCase().split(':')[0].trim();
 
   // ─── 1. Domain redirect ────────────────────────────────────────────
   // Unicode/punycode domains → 301 redirect to punycodex.com/{id}
@@ -273,7 +274,10 @@ export default function middleware(request) {
   if (id) {
     url.hostname = 'punycodex.com';
     url.pathname = '/' + id + url.pathname;
-    return Response.redirect(url.toString(), 301);
+    const response = Response.redirect(url.toString(), 301);
+    // Prevent edge caching of this redirect; force revalidation
+    response.headers.set('Cache-Control', 'public, max-age=0, must-revalidate');
+    return response;
   }
 
   // ─── 2. Archetype path rewrite ─────────────────────────────────────
