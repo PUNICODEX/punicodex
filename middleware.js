@@ -274,10 +274,13 @@ export default function middleware(request) {
   if (id) {
     url.hostname = 'punycodex.com';
     url.pathname = '/' + id + url.pathname;
-    const response = Response.redirect(url.toString(), 301);
-    // Prevent edge caching of this redirect; force revalidation
-    response.headers.set('Cache-Control', 'public, max-age=0, must-revalidate');
-    return response;
+    return new Response(null, {
+      status: 301,
+      headers: {
+        'Location': url.toString(),
+        'Cache-Control': 'public, max-age=0, must-revalidate',
+      },
+    });
   }
 
   // ─── 2. Archetype path rewrite ─────────────────────────────────────
