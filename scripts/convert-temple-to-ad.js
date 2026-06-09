@@ -654,7 +654,64 @@ function mergeJs(templePath, templeId, colors) {
   // Standardize console prefix
   bookingJs = bookingJs.replace(/\[PUNYCODEX\]/g, `[PUNYCODEX:${templeId}]`);
 
-  return baseJs + '\n\n' + bookingJs;
+  // Inject shared UI code (scroll reveal, nav scroll, mobile toggle) if missing
+  const hasReveal = baseJs.includes('revealObserver') || baseJs.includes('revealElements');
+  let uiJs = '';
+  if (!hasReveal) {
+    uiJs = `
+
+// ========== SCROLL REVEAL SYSTEM ==========
+const revealElements = document.querySelectorAll('.reveal-up, .reveal-scale');
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const delay = parseInt(entry.target.dataset.delay) || 0;
+            setTimeout(() => {
+                entry.target.classList.add('revealed');
+            }, delay);
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+});
+revealElements.forEach(el => revealObserver.observe(el));
+
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    revealElements.forEach(el => el.classList.add('revealed'));
+}
+
+// ========== NAV SCROLL EFFECT ==========
+const nav = document.getElementById('main-nav');
+if (nav) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+    }, { passive: true });
+}
+
+// ========== MOBILE NAV TOGGLE ==========
+const navToggle = document.getElementById('nav-toggle');
+const navLinks = document.querySelector('.nav-links');
+if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        navToggle.classList.toggle('active');
+    });
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            navToggle.classList.remove('active');
+        });
+    });
+}`;
+  }
+
+  return baseJs + '\n\n' + uiJs + bookingJs;
 }
 
 // ─── SLOT NAME GENERATION ────────────────────────────────────────────────
