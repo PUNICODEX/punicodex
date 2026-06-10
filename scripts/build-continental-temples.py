@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Build flagship temples for Libyē, Aígyptos, Asíā, and Eurṓpē.
+Build flagship temples for Libyē, Aígyptos, Asía, and Eurṓpē.
 Uses Olympios CSS/JS for styling but generates clean custom HTML.
 """
 from pathlib import Path
@@ -132,7 +132,7 @@ SITES = {
             ('The Silk Road', 'The great arteries of trade that carried goods, ideas, and stories between East and West for millennia.'),
         ],
         'myth_cards': [
-            ('The Titan Bloodline', 'As the wife of Iapetus, Asíā bore four sons who shaped the Greek cosmos: Atlas who holds the sky, Prometheus who gave fire to man, Epimetheus who gave the animals their gifts, and Menoetius whose pride was struck down by Zeus.'),
+            ('The Titan Bloodline', 'As the wife of Iapetus, Asía bore four sons who shaped the Greek cosmos: Atlas who holds the sky, Prometheus who gave fire to man, Epimetheus who gave the animals their gifts, and Menoetius whose pride was struck down by Zeus.'),
             ('The Gift of Fire', 'Through her son Prometheus, the wisdom of the East reached Greece. The arts of metallurgy, astronomy, and medicine — all attributed to Asian origins in Greek tradition.'),
             ('The Trojan Shore', 'On the Asian coast of the Hellespont stood Troy — the city whose fall became the founding myth of Greek literature. The Iliad is, in part, a story of Asia.'),
         ],
@@ -143,7 +143,7 @@ SITES = {
             ('Tethys', 'Τηθύς', 'Mother of Rivers', '/sites/tethys/'),
         ],
         'variations': [
-            ('Asíā', 'Full Restoration', 'Greek Ἀσία with acute and macron'),
+            ('Asía', 'Full Restoration', 'Greek Ἀσία with acute and macron'),
             ('Asia', 'ASCII Form', 'Modern spelling without diacritics'),
             ('Asía', 'Accent Only', 'Preserves the stress but not the length'),
         ],
@@ -159,7 +159,7 @@ SITES = {
         'pronunciation': '/eu.róː.pɛː/',
         'pronunciation_note': 'Classical Greek: eu-RO-pee (acute on omega, long eta)',
         'etymology': 'From Greek Εὐρώπη (Eurṓpē), traditionally interpreted as "broad-faced" or "wide-gazing" from εὐρύς (eurýs, "wide") + ὤψ (ṓps, "face, eye"). The name originally belonged to the Phoenician princess abducted by Zeus in the form of a white bull, before becoming the designation for the continent.',
-        'mythology': 'Eurṓpē is the personification of the European continent in Greek mythology, a Phoenician princess of extraordinary beauty whose name became attached to the lands northwest of the Greek world. In the most famous myth, Zeus fell in love with her and, transforming into a magnificent white bull, carried her across the sea to Crete — a journey that gave the continent its name. Herodotus knew the threefold division of the world into Libyē, Asíā, and Eurṓpē, debating whether the continents were equal in size and wondering at the great rivers that defined them.',
+        'mythology': 'Eurṓpē is the personification of the European continent in Greek mythology, a Phoenician princess of extraordinary beauty whose name became attached to the lands northwest of the Greek world. In the most famous myth, Zeus fell in love with her and, transforming into a magnificent white bull, carried her across the sea to Crete — a journey that gave the continent its name. Herodotus knew the threefold division of the world into Libyē, Asía, and Eurṓpē, debating whether the continents were equal in size and wondering at the great rivers that defined them.',
         'symbols': 'White Bull, Crescent, Western Star',
         'tier': 'Realm',
         'tier_subtype': 'Continental Personification',
@@ -180,7 +180,7 @@ SITES = {
         'myth_cards': [
             ('The Abduction', 'Zeus saw the Phoenician princess gathering flowers by the sea. He transformed into a white bull of unearthly beauty. When she climbed upon his back, he plunged into the waves and carried her to Crete.'),
             ('The Sons of Europe', 'On Crete, Eurṓpē bore three sons to Zeus: Minos, who became the great lawgiver; Rhadamanthus, who judged the dead; and Sarpedon, who ruled Lycia and fought at Troy.'),
-            ('The Three Continents', 'Herodotus divided the world into three: Libyē to the south, Asíā to the east, and Eurṓpē to the northwest. He wondered at their boundaries — the Nile, the Phasis, the Hellespont — and whether any man could truly say where one ended and another began.'),
+            ('The Three Continents', 'Herodotus divided the world into three: Libyē to the south, Asía to the east, and Eurṓpē to the northwest. He wondered at their boundaries — the Nile, the Phasis, the Hellespont — and whether any man could truly say where one ended and another began.'),
         ],
         'pantheon_cards': [
             ('Zeus', 'Ζεύς', 'King of the Gods', '/sites/zeus/'),

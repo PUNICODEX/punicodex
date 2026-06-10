@@ -49678,7 +49678,7 @@ const LEXICON = [
   {
     id: 'asia',
     ascii: 'asia',
-    unicode: 'Asíā',
+    unicode: 'Asía',
     greek: 'Ἀσία',
     pantheon: 'greek-location',
     tier: '1',

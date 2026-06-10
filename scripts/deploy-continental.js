@@ -9,7 +9,7 @@ const VERCEL = 'vercel';
 const SITES = [
   { id: 'libye', unicode: 'Libye' },
   { id: 'aigyptos', unicode: 'Aígyptos' },
-  { id: 'asia', unicode: 'Asíā' },
+  { id: 'asia', unicode: 'Asía' },
   { id: 'europe', unicode: 'Eurṓpē' },
 ];
 

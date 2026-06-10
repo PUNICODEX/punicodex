@@ -427,7 +427,7 @@ const flagships = [
   { id: 'akh', domain: 'Ꜣḫ.com', punycode: 'xn--9gg9559c.com', pantheon: 'egyptian', tier: '2', tier_label: 'Tier-2' },
   { id: 'maa', domain: 'Mꜥ.com', punycode: 'xn--m-2w3e.com', pantheon: 'egyptian', tier: '2', tier_label: 'Tier-2' },
   { id: 'aigyptos', domain: 'Aígyptos.com', punycode: 'xn--agyptos-7ya.com', pantheon: 'greek-location', tier: '1', tier_label: 'Tier-1' },
-  { id: 'asia', domain: 'Asíā.com', punycode: 'xn--as-oja4f.com', pantheon: 'greek-location', tier: '1', tier_label: 'Tier-1' },
+  { id: 'asia', domain: 'Asía.com', punycode: 'xn--asa-sma.com', pantheon: 'greek-location', tier: '1', tier_label: 'Tier-1' },
   { id: 'europe', domain: 'Eurṓpē.com', punycode: 'xn--eurp-eva0406b.com', pantheon: 'greek-location', tier: '1', tier_label: 'Tier-1' },
   { id: 'libye', domain: 'Libyē.com', punycode: 'xn--liby-eva.com', pantheon: 'greek-location', tier: '1', tier_label: 'Tier-1' },
   { id: 'muspellheimr', domain: 'Muspellheimr.com', punycode: 'muspellheimr.com', pantheon: 'norse', tier: '2', tier_label: 'Tier-2' },

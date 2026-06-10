@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms & Conditions — PUNYCODEX</title>
+  <meta name="description" content="PUNYCODEX Terms & Conditions. Advertising leases, type tool usage, search engine terms, and all product agreements.">
+  <link rel="canonical" href="https://punycodex.com/terms/">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --surface-raised: #1a1a24;
+      --border: #2a2a3a;
+      --text: #e8e6f0;
+      --text-muted: #8a8599;
+      --accent: #D4AF37;
+      --accent-dim: rgba(212,175,55,0.15);
+      --font-body: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    .header {
+      text-align: center;
+      padding: 3rem 0 2rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2.5rem;
+    }
+    .header h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .header p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .last-updated {
+      display: inline-block;
+      background: var(--accent-dim);
+      color: var(--accent);
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-top: 1rem;
+    }
+
+    .group-list { margin-top: 2rem; }
+    .group-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .group-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .group-card:hover a { text-decoration: none; }
+    .group-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--surface-raised);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+    .group-content { flex: 1; }
+    .group-content h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+    }
+    .group-content p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 0.5rem;
+    }
+    .group-meta {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .group-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .group-status {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .status-live { background: rgba(74, 166, 88, 0.15); color: #4a6; }
+    .status-soon { background: rgba(212, 175, 55, 0.15); color: var(--accent); }
+    .status-planned { background: rgba(138, 133, 153, 0.15); color: var(--text-muted); }
+
+    .global-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+    .global-section h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+    .global-section p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+    .global-section ul {
+      margin: 0.5rem 0 0 1.25rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .global-section li { margin-bottom: 0.35rem; }
+
+    .footer-cta {
+      text-align: center;
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+    .footer-cta a {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--bg);
+      padding: 0.75rem 2rem;
+      border-radius: 6px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.85rem;
+    }
+    .footer-cta a:hover { text-decoration: none; opacity: 0.9; }
+
+    @media (max-width: 600px) {
+      .container { padding: 1rem; }
+      .header h1 { font-size: 1.35rem; }
+      .group-card { flex-direction: column; gap: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Terms & Conditions</h1>
+      <p>Legal agreements, usage policies, and licensing terms for all PUNYCODEX products and services.</p>
+      <span class="last-updated">Effective Date: June 11, 2026</span>
+    </header>
+
+    <div class="global-section">
+      <h2>Global Provisions</h2>
+      <p>The following provisions apply to all PUNYCODEX services unless explicitly overridden by a product-specific agreement:</p>
+      <ul>
+        <li><strong>Governing Law:</strong> All disputes are governed by the laws of New South Wales, Australia.</li>
+        <li><strong>Arbitration:</strong> Unresolved disputes are submitted to binding arbitration under ACICA rules.</li>
+        <li><strong>Intellectual Property:</strong> PUNYCODEX retains all rights to its branding, domain names, code, and designs.</li>
+        <li><strong>Modification:</strong> Material changes to any agreement are notified via email with at least 30 days notice.</li>
+        <li><strong>Privacy:</strong> See our <a href="/privacy/">Privacy Policy</a> for data handling practices.</li>
+        <li><strong>Contact:</strong> <a href="mailto:support@punycodex.com">support@punycodex.com</a></li>
+      </ul>
+    </div>
+
+    <div class="group-list">
+      <h2 style="font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:1rem;">Product-Specific Agreements</h2>
+
+      <a href="/terms/advertising/" class="group-card">
+        <div class="group-icon">&#128;</div>
+        <div class="group-content">
+          <h3>Advertising Space Lease Agreement <span class="group-status status-live">Live</span></h3>
+          <p>Terms for leasing advertising slots on PUNYCODEX flagship temple pages. Covers pricing, view-based benchmarks, content standards, approval process, payment, and termination.</p>
+          <div class="group-meta">
+            <span>13 slot types</span>
+            <span>Monthly & Yearly leases</span>
+            <span>Performance-based pricing</span>
+          </div>
+        </div>
+      </a>
+
+      <div class="group-card" style="opacity:0.6;">
+        <div class="group-icon">&#9000;</div>
+        <div class="group-content">
+          <h3>Type Tool & Keyboard <span class="group-status status-soon">Coming Soon</span></h3>
+          <p>Terms of use for the PUNYCODEX Unicode type tool, keyboard extensions, and browser plugins. Covers licensing, redistribution, and acceptable use.</p>
+          <div class="group-meta">
+            <span>Free & Paid tiers</span>
+            <span>Browser extensions</span>
+            <span>Keyboard input</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="group-card" style="opacity:0.6;">
+        <div class="group-icon">&#128269;</div>
+        <div class="group-content">
+          <h3>Search Engine <span class="group-status status-soon">Coming Soon</span></h3>
+          <p>Terms for using the PUNYCODEX search engine for Unicode domains. Covers query usage, API access, rate limits, and data usage.</p>
+          <div class="group-meta">
+            <span>API access</span>
+            <span>Rate limits</span>
+            <span>Crawler terms</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="group-card" style="opacity:0.5;">
+        <div class="group-icon">&#128241;</div>
+        <div class="group-content">
+          <h3>Mobile App <span class="group-status status-planned">Planned</span></h3>
+          <p>Terms for the PUNYCODEX mobile application. Covers app store distribution, in-app purchases, and device permissions.</p>
+          <div class="group-meta">
+            <span>iOS & Android</span>
+            <span>In-app purchases</span>
+            <span>Push notifications</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="group-card" style="opacity:0.5;">
+        <div class="group-icon">&#127760;</div>
+        <div class="group-content">
+          <h3>Domain Registry & Marketplace <span class="group-status status-planned">Planned</span></h3>
+          <p>Terms for buying, selling, and transferring Unicode domains through the PUNYCODEX marketplace. Covers escrow, disputes, and transfer fees.</p>
+          <div class="group-meta">
+            <span>Escrow service</span>
+            <span>Transfer fees</span>
+            <span>Dispute resolution</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-cta">
+      <a href="/">Return to PUNYCODEX</a>
+    </div>
+  </div>
+</body>
+</html>

@@ -63,6 +63,12 @@ const AD_CSS_BLOCKS = [
   'BOOKING MODAL',
   'REDUCED MOTION',
   'GALLERY',
+  'QUICK FACTS',
+  'ETymology',
+  'UNICODE BREAKDOWN TABLE',
+  'CULTURAL SIGNIFICANCE',
+  'FAQ',
+  'SOURCES',
 ];
 
 // Dead blocks to skip
@@ -893,8 +899,8 @@ function generateLorePage(entry, colors, sections, templePath, originalHtml) {
   const tierLabel = entry.tierLabel;
   const domainsText = getDomainsText(entry, colors.isFlagship);
 
-  if (colors.isFlagship && originalHtml) {
-    // For flagships, preserve the original temple content as the lore page
+  if (originalHtml) {
+    // For all temples, preserve the original temple content as the lore page
     // Use Cheerio for robust DOM manipulation
     const $ = cheerio.load(originalHtml);
 
@@ -923,6 +929,9 @@ function generateLorePage(entry, colors, sections, templePath, originalHtml) {
       const href = $(el).attr('href');
       $(el).attr('href', href.replace('styles.css', '../styles.css'));
     });
+    // Generated temples use absolute shared paths — redirect to local ad CSS/JS
+    $('link[href*="/css/temple-base.css"]').attr('href', '../styles.css');
+    $('script[src*="/js/temple-base.js"]').attr('src', '../script.js');
     $('script[src="script.js"]').attr('src', '../script.js');
     $('script[src^="script.js?v="]').each((i, el) => {
       const src = $(el).attr('src');
@@ -1178,7 +1187,20 @@ function validateCssVariables(cssPath) {
 }
 
 function validateCloneDna(files, templeId) {
-  const forbidden = ['solar disk', 'sun god', 'sun barge', 'Khepri', 'scarab', 'caduceus', 'winged sandals', 'Hermes', 'victory-canvas', 'Victory Column', 'Champion Strip'];
+  const forbidden = [
+    // Deity-specific artifacts that should never leak
+    'solar disk', 'sun god', 'sun barge', 'Khepri', 'scarab',
+    'caduceus', 'winged sandals', 'Hermes',
+    'victory-canvas', 'Victory Column', 'Champion Strip',
+    // Rich Nike mythology signals
+    'She does not award victory', 'She is the award',
+    'Winged Victory of Samothrace', 'Temple of Athena Nike',
+    'victory of the people', 'victory cry',
+    'NEE-kay', 'NIGH-kee', 'NYKE',
+    'How Victory was truly spoken', 'How do you pronounce',
+    'Who were the parents of', 'What are the symbols of',
+    'Pallas and Styx', 'Pallas', 'Styx',
+  ];
   let clean = true;
   for (const f of files) {
     const h = fs.readFileSync(f, 'utf8');
@@ -1273,10 +1295,8 @@ function main() {
   fs.writeFileSync(path.join(templePath, 'script.js'), js, 'utf8');
 
   // Generate HTML files
-  // Save original flagship HTML before overwriting (needed for lore page)
-  let originalHtml = colors.isFlagship
-    ? fs.readFileSync(path.join(templePath, 'index.html'), 'utf8')
-    : null;
+  // Save original temple HTML before overwriting (needed for lore page)
+  let originalHtml = fs.readFileSync(path.join(templePath, 'index.html'), 'utf8');
 
   // Re-run guard: if originalHtml is already the ad homepage, try to restore from backup
   if (originalHtml && originalHtml.includes('endorsement-hero')) {
@@ -1315,14 +1335,14 @@ function main() {
     fs.writeFileSync(path.join(templePath, 'dashboard', 'index.html'), dash, 'utf8');
   }
 
-  // Copy extended lore
-  const nikeExtended = path.join(NIKE_DIR, 'lore', 'extended', 'index.html');
-  if (fs.existsSync(nikeExtended)) {
-    let ext = fs.readFileSync(nikeExtended, 'utf8');
-    ext = ext.replace(/nike/g, templeId);
-    ext = ext.replace(/Níkē/g, entry.unicode);
-    ext = ext.replace(/Νίκη/g, entry.greek || entry.unicode);
-    fs.writeFileSync(path.join(templePath, 'lore', 'extended', 'index.html'), ext, 'utf8');
+  // Extended lore: only Nike has a real extended lore page.
+  // For all other temples, skip — the main lore page already preserves
+  // the original temple content (etymology, breakdown, sources, etc.)
+  if (templeId === 'nike') {
+    const nikeExtended = path.join(NIKE_DIR, 'lore', 'extended', 'index.html');
+    if (fs.existsSync(nikeExtended)) {
+      fs.copyFileSync(nikeExtended, path.join(templePath, 'lore', 'extended', 'index.html'));
+    }
   }
 
   // Validation
