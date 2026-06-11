@@ -1,5 +1,15 @@
 # PUNYCODEX — Agent Reference
 
+## Critical File Guardrails
+
+### `vercel.json` — NEVER append duplicate keys
+`vercel.json` must remain valid JSON with exactly one instance of each top-level key. A previous batch script accidentally appended a second `redirects` array after `rewrites`, creating invalid duplicate keys that broke Vercel routing for `punycodex.com/{id}` paths. **Always validate JSON structure after any automated modification.** If regenerating `vercel.json`, overwrite the entire file — never append.
+
+### `middleware.js` — Routing source of truth
+All domain redirects and path rewrites are handled by `middleware.js`. `vercel.json` should only contain `headers` (security + cache control). Do NOT add `redirects` or `rewrites` to `vercel.json` unless explicitly migrating routing out of the middleware.
+
+---
+
 ## The Definitive Tier System (CANONICAL)
 
 ### Dual‑Tier Names (3 total)

@@ -3049,6 +3049,18 @@ body {
     color: var(--text-muted);
     letter-spacing: 0.05em;
 }
+.gallery-img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    display: block;
+    border-bottom: 1px solid rgba(255,215,0,0.1);
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), filter 0.6s ease;
+}
+.gallery-item:hover .gallery-img {
+    transform: scale(1.03);
+    filter: brightness(1.08);
+}
 .gallery-caption {
     padding: var(--space-md);
     font-size: 0.88rem;

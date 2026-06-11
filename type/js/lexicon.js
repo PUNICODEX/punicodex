@@ -49784,6 +49784,90 @@ const LEXICON = [
       certainty: 'attested',
       cognates: []
     }
+  },
+  {
+    id: 'rta',
+    ascii: 'rta',
+    unicode: '\u1E5Ata',
+    greek: '',
+    pantheon: 'sanskrit',
+    tier: '2',
+    tierLabel: 'Tier 2',
+    domain: 'Cosmic Order, Truth, Law',
+    meaning: 'Truth, cosmic order, natural law. The Vedic principle of righteousness and universal harmony.',
+    sources: ['\u1E5Cgveda', 'Br\u0101hma\u1E47as', 'Upani\u1E63ads'],
+    variants: [
+      { unicode: 'Rita', type: 'alt', note: 'Older European convention (German philology)' },
+      { unicode: 'Rta', type: 'ascii', note: 'Plain ASCII fallback' }
+    ],
+    breakdown: [
+      { char: 'r', to: '\u1E5B', type: 'diacritic', note: 'Vocalic r — dot below marks syllabic /r/' },
+      { char: 't', to: 't', type: 'same', note: 'Same' },
+      { char: 'a', to: 'a', type: 'same', note: 'Same' }
+    ]
+  },
+  {
+    id: 'ba',
+    ascii: 'ba',
+    unicode: 'B\uA723',
+    greek: '',
+    pantheon: 'egyptian',
+    tier: '2',
+    tierLabel: 'Tier 2',
+    domain: 'Soul, Personality, Manifestation',
+    meaning: 'The soul, personality, or manifestation of a person. One of the five components of the Egyptian soul.',
+    sources: ['Faulkner', 'Gardiner', 'Allen'],
+    variants: [
+      { unicode: 'Ba', type: 'ascii', note: 'Modern English' }
+    ],
+    breakdown: [
+      { char: 'b', to: 'B', type: 'same', note: 'Same, capitalized' },
+      { char: 'a', to: '\uA723', type: 'special', note: 'Egyptological aleph — glottal stop or specific vocalic quality' }
+    ]
+  },
+  {
+    id: 'ka',
+    ascii: 'ka',
+    unicode: 'K\uA723',
+    greek: '',
+    pantheon: 'egyptian',
+    tier: '2',
+    tierLabel: 'Tier 2',
+    domain: 'Vital Essence, Life Force',
+    meaning: 'The vital essence, life force, or double of a person. Created at birth and surviving death.',
+    sources: ['Faulkner', 'Gardiner', 'Allen'],
+    variants: [
+      { unicode: 'Ka', type: 'ascii', note: 'Modern English' }
+    ],
+    breakdown: [
+      { char: 'k', to: 'K', type: 'same', note: 'Same, capitalized' },
+      { char: 'a', to: '\uA723', type: 'special', note: 'Egyptological aleph — glottal stop or specific vocalic quality' }
+    ]
+  },
+  {
+    id: 'astart',
+    ascii: 'astart',
+    unicode: 'A\u0161tart',
+    greek: '',
+    pantheon: 'canaanite',
+    tier: '2',
+    tierLabel: 'Tier 2',
+    domain: 'Love, War, Fertility, Venus',
+    meaning: 'She of the womb. The planet Venus as deity. Queen of heaven.',
+    sources: ['Ugaritic texts', 'CIS', 'KAI'],
+    variants: [
+      { unicode: 'Ashtart', type: 'alt', note: 'Hebraic/Biblical form' },
+      { unicode: 'Astarte', type: 'alt', note: 'Greek-influenced form (Astarte)' },
+      { unicode: 'Astart', type: 'ascii', note: 'Plain ASCII' }
+    ],
+    breakdown: [
+      { char: 'a', to: 'A', type: 'same', note: 'Same, capitalized' },
+      { char: 's', to: '\u0161', type: 'diacritic', note: 'Caron marks voiceless postalveolar fricative /\u0283/' },
+      { char: 't', to: 't', type: 'same', note: 'Same' },
+      { char: 'a', to: 'a', type: 'same', note: 'Same' },
+      { char: 'r', to: 'r', type: 'same', note: 'Same' },
+      { char: 't', to: 't', type: 'same', note: 'Same' }
+    ]
   }
 ];
 
