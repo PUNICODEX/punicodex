@@ -20,6 +20,89 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Ōsaka — Gallery | Merchant City, Kansai | PUNYCODEX">
     <meta name="twitter:description" content="A curated gallery of Ōsaka, Merchant City, Kansai, through history.">
+  <style>
+/* Gallery lightbox */
+.gallery-item {
+    cursor: zoom-in;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+}
+.gallery-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: rgba(5,5,8,0.92);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.gallery-lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+.gallery-lightbox-content {
+    position: relative;
+    max-width: min(1200px, 95vw);
+    max-height: min(900px, 90vh);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.gallery-lightbox-img {
+    max-width: 100%;
+    max-height: min(820px, 82vh);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+}
+.gallery-lightbox-caption {
+    font-size: 0.95rem;
+    color: #E0E0E0;
+    text-align: center;
+    max-width: 80ch;
+    line-height: 1.6;
+    padding: 0 1rem;
+}
+.gallery-lightbox-close {
+    position: absolute;
+    top: -3rem;
+    right: 0;
+    background: none;
+    border: none;
+    color: #D4AF37;
+    font-size: 2.5rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+.gallery-lightbox-close:hover,
+.gallery-lightbox-close:focus {
+    color: #F5F5F5;
+    transform: scale(1.1);
+}
+@media (max-width: 640px) {
+    .gallery-lightbox {
+        padding: 1rem;
+    }
+    .gallery-lightbox-close {
+        top: -2.5rem;
+        font-size: 2rem;
+    }
+}
+  </style>
 </head>
 <body>
     <!-- Global Nav -->
@@ -96,13 +179,13 @@
             </div>
 
                         <div class="gallery-grid">
-    <div class="gallery-item reveal-up">
+    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Osaka_Castle,_Keep_tower,_South_view_20190415_1.jpg/960px-Osaka_Castle,_Keep_tower,_South_view_20190415_1.jpg" data-caption="Osaka Castle, Japan." aria-label="View full image: Osaka Castle, Japan.">
       <picture>
         <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Osaka_Castle,_Keep_tower,_South_view_20190415_1.jpg/960px-Osaka_Castle,_Keep_tower,_South_view_20190415_1.jpg.webp" type="image/webp">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Osaka_Castle,_Keep_tower,_South_view_20190415_1.jpg/960px-Osaka_Castle,_Keep_tower,_South_view_20190415_1.jpg" alt="Osaka Castle, Japan." loading="lazy" class="gallery-img" decoding="async">
       </picture>
-      <p class="gallery-caption"><strong>Osaka Castle</strong> â€” The fortress of Toyotomi Hideyoshi, rebuilt in concrete and gold, symbol of Japanese unification.</p>
-    </div>
+      <p class="gallery-caption"><strong>Osaka Castle</strong> — The fortress of Toyotomi Hideyoshi, rebuilt in concrete and gold, symbol of Japanese unification.</p>
+    </button>
     </div>
         </div>
     </section>
@@ -142,4 +225,40 @@
     <script src="../script.js?v=perf1"></script>
 
 
+<div class="gallery-lightbox" id="gallery-lightbox" aria-modal="true" role="dialog" aria-label="Image preview">
+  <div class="gallery-lightbox-content">
+    <button class="gallery-lightbox-close" id="gallery-lightbox-close" aria-label="Close" type="button">&times;</button>
+    <img class="gallery-lightbox-img" id="gallery-lightbox-img" src="" alt="">
+    <p class="gallery-lightbox-caption" id="gallery-lightbox-caption"></p>
+  </div>
+</div>
+<script>
+(function(){
+  const lb = document.getElementById('gallery-lightbox');
+  const img = document.getElementById('gallery-lightbox-img');
+  const cap = document.getElementById('gallery-lightbox-caption');
+  const close = document.getElementById('gallery-lightbox-close');
+  if (!lb || !img || !close) return;
+  function open(src, caption) {
+    img.src = src;
+    img.alt = caption || '';
+    cap.textContent = caption || '';
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    close.focus();
+  }
+  function closeLb() {
+    lb.classList.remove('active');
+    img.src = '';
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('.gallery-item[data-full-src]').forEach(item => {
+    item.addEventListener('click', () => open(item.dataset.fullSrc, item.dataset.caption));
+    item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(item.dataset.fullSrc, item.dataset.caption); } });
+  });
+  close.addEventListener('click', closeLb);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && lb.classList.contains('active')) closeLb(); });
+})();
+</script>
 </body></html>

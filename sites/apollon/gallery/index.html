@@ -20,6 +20,89 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Apóllōn — Gallery | Light, Music, Prophecy | PUNYCODEX">
     <meta name="twitter:description" content="A curated gallery of Apóllōn, Light, Music, Prophecy, through history.">
+  <style>
+/* Gallery lightbox */
+.gallery-item {
+    cursor: zoom-in;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+}
+.gallery-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: rgba(5,5,8,0.92);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.gallery-lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+.gallery-lightbox-content {
+    position: relative;
+    max-width: min(1200px, 95vw);
+    max-height: min(900px, 90vh);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.gallery-lightbox-img {
+    max-width: 100%;
+    max-height: min(820px, 82vh);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+}
+.gallery-lightbox-caption {
+    font-size: 0.95rem;
+    color: #E0E0E0;
+    text-align: center;
+    max-width: 80ch;
+    line-height: 1.6;
+    padding: 0 1rem;
+}
+.gallery-lightbox-close {
+    position: absolute;
+    top: -3rem;
+    right: 0;
+    background: none;
+    border: none;
+    color: #D4AF37;
+    font-size: 2.5rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+.gallery-lightbox-close:hover,
+.gallery-lightbox-close:focus {
+    color: #F5F5F5;
+    transform: scale(1.1);
+}
+@media (max-width: 640px) {
+    .gallery-lightbox {
+        padding: 1rem;
+    }
+    .gallery-lightbox-close {
+        top: -2.5rem;
+        font-size: 2rem;
+    }
+}
+  </style>
 </head>
 <body>
     <!-- Global Nav -->
@@ -96,69 +179,69 @@
             </div>
 
                         <div class="gallery-grid">
-    <div class="gallery-item reveal-up">
+    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Apollo%20of%20the%20Belvedere.jpg/960px-Apollo%20of%20the%20Belvedere.jpg" data-caption="Apollo Belvedere, Roman copy. Vatican Museums." aria-label="View full image: Apollo Belvedere, Roman copy. Vatican Museums.">
       <picture>
         <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Apollo%20of%20the%20Belvedere.jpg/960px-Apollo%20of%20the%20Belvedere.jpg.webp" type="image/webp">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Apollo%20of%20the%20Belvedere.jpg/960px-Apollo%20of%20the%20Belvedere.jpg" alt="Apollo Belvedere, Roman copy. Vatican Museums." loading="lazy" class="gallery-img" decoding="async">
       </picture>
-      <p class="gallery-caption"><strong>Apollo Belvedere</strong> â€” Roman copy of a Greek original by Leochares, c. 330 BCE. The ideal of male beauty and divine composure.</p>
-    </div>
-    <div class="gallery-item reveal-up" data-delay="100">
+      <p class="gallery-caption"><strong>Apollo Belvedere</strong> — Roman copy of a Greek original by Leochares, c. 330 BCE. The ideal of male beauty and divine composure.</p>
+    </button>
+    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Apollo_of_the_Belvedere.jpg/960px-Apollo_of_the_Belvedere.jpg" data-caption="Apollo Belvedere full view. Vatican Museums." aria-label="View full image: Apollo Belvedere full view. Vatican Museums." data-delay="100">
       <picture>
         <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Apollo_of_the_Belvedere.jpg/960px-Apollo_of_the_Belvedere.jpg.webp" type="image/webp">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Apollo_of_the_Belvedere.jpg/960px-Apollo_of_the_Belvedere.jpg" alt="Apollo Belvedere full view. Vatican Museums." loading="lazy" class="gallery-img" decoding="async">
       </picture>
-      <p class="gallery-caption"><strong>Apollo Belvedere (full)</strong> â€” The god stands in contrapposto, having just released an arrow from his bow.</p>
-    </div>
-    <div class="gallery-item reveal-up" data-delay="200">
+      <p class="gallery-caption"><strong>Apollo Belvedere (full)</strong> — The god stands in contrapposto, having just released an arrow from his bow.</p>
+    </button>
+    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Rome_Apollo_Lykeios_type.jpg/960px-Rome_Apollo_Lykeios_type.jpg" data-caption="Apollo Lykeios, Roman copy. Louvre Museum, Paris." aria-label="View full image: Apollo Lykeios, Roman copy. Louvre Museum, Paris." data-delay="200">
       <picture>
         <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Rome_Apollo_Lykeios_type.jpg/960px-Rome_Apollo_Lykeios_type.jpg.webp" type="image/webp">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Rome_Apollo_Lykeios_type.jpg/960px-Rome_Apollo_Lykeios_type.jpg" alt="Apollo Lykeios, Roman copy. Louvre Museum, Paris." loading="lazy" class="gallery-img" decoding="async">
       </picture>
-      <p class="gallery-caption"><strong>Apollo Lykeios</strong> â€” The god rests on a support, a mantle draped over his arm. Found at the Lyceum gymnasium in Athens.</p>
-    </div>
-    <div class="gallery-item reveal-up" data-delay="300">
+      <p class="gallery-caption"><strong>Apollo Lykeios</strong> — The god rests on a support, a mantle draped over his arm. Found at the Lyceum gymnasium in Athens.</p>
+    </button>
+    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Apollo_Sauroktonos_Louvre_Ma441_n01.jpg/960px-Apollo_Sauroktonos_Louvre_Ma441_n01.jpg" data-caption="Apollo Sauroktonos by Praxiteles, Roman copy. Louvre Museum." aria-label="View full image: Apollo Sauroktonos by Praxiteles, Roman copy. Louvre Museum." data-delay="300">
       <picture>
         <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Apollo_Sauroktonos_Louvre_Ma441_n01.jpg/960px-Apollo_Sauroktonos_Louvre_Ma441_n01.jpg.webp" type="image/webp">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Apollo_Sauroktonos_Louvre_Ma441_n01.jpg/960px-Apollo_Sauroktonos_Louvre_Ma441_n01.jpg" alt="Apollo Sauroktonos by Praxiteles, Roman copy. Louvre Museum." loading="lazy" class="gallery-img" decoding="async">
       </picture>
-      <p class="gallery-caption"><strong>Apollo Sauroktonos</strong> â€” Praxiteles, c. 350 BCE. The young god leans against a tree, about to spear a lizard.</p>
-    </div>
-    <div class="gallery-item reveal-up" data-delay="0">
+      <p class="gallery-caption"><strong>Apollo Sauroktonos</strong> — Praxiteles, c. 350 BCE. The young god leans against a tree, about to spear a lizard.</p>
+    </button>
+    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Delphi_Apollo_Temple.jpg/960px-Delphi_Apollo_Temple.jpg" data-caption="Ruins of the Temple of Apollo at Delphi, Greece." aria-label="View full image: Ruins of the Temple of Apollo at Delphi, Greece." data-delay="0">
       <picture>
         <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Delphi_Apollo_Temple.jpg/960px-Delphi_Apollo_Temple.jpg.webp" type="image/webp">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Delphi_Apollo_Temple.jpg/960px-Delphi_Apollo_Temple.jpg" alt="Ruins of the Temple of Apollo at Delphi, Greece." loading="lazy" class="gallery-img" decoding="async">
       </picture>
-      <p class="gallery-caption"><strong>Temple of Apollo at Delphi</strong> â€” The omphalos, the navel of the world. Where the Pythia spoke prophecy.</p>
-    </div>
-    <div class="gallery-item reveal-up" data-delay="100">
+      <p class="gallery-caption"><strong>Temple of Apollo at Delphi</strong> — The omphalos, the navel of the world. Where the Pythia spoke prophecy.</p>
+    </button>
+    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Apollo_and_Daphne_%28Bernini%29.jpg/960px-Apollo_and_Daphne_%28Bernini%29.jpg" data-caption="Apollo and Daphne by Gian Lorenzo Bernini, 1622–1625. Galleria Borghese, Rome." aria-label="View full image: Apollo and Daphne by Gian Lorenzo Bernini, 1622–1625. Galleria Borghese, Rome." data-delay="100">
       <picture>
         <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Apollo_and_Daphne_%28Bernini%29.jpg/960px-Apollo_and_Daphne_%28Bernini%29.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Apollo_and_Daphne_%28Bernini%29.jpg/960px-Apollo_and_Daphne_%28Bernini%29.jpg" alt="Apollo and Daphne by Gian Lorenzo Bernini, 1622â€“1625. Galleria Borghese, Rome." loading="lazy" class="gallery-img" decoding="async">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Apollo_and_Daphne_%28Bernini%29.jpg/960px-Apollo_and_Daphne_%28Bernini%29.jpg" alt="Apollo and Daphne by Gian Lorenzo Bernini, 1622–1625. Galleria Borghese, Rome." loading="lazy" class="gallery-img" decoding="async">
       </picture>
-      <p class="gallery-caption"><strong>Apollo and Daphne</strong> â€” Gian Lorenzo Bernini, 1622â€“25. Marble transformed into living flesh, bark, and laurel leaves.</p>
-    </div>
-    <div class="gallery-item reveal-up" data-delay="200">
+      <p class="gallery-caption"><strong>Apollo and Daphne</strong> — Gian Lorenzo Bernini, 1622–25. Marble transformed into living flesh, bark, and laurel leaves.</p>
+    </button>
+    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Apollo_Tityos_Leto_Louvre_G375.jpg/960px-Apollo_Tityos_Leto_Louvre_G375.jpg" data-caption="Apollo slaying Python, Attic red-figure pelike, c. 460 BCE. Louvre Museum." aria-label="View full image: Apollo slaying Python, Attic red-figure pelike, c. 460 BCE. Louvre Museum." data-delay="200">
       <picture>
         <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Apollo_Tityos_Leto_Louvre_G375.jpg/960px-Apollo_Tityos_Leto_Louvre_G375.jpg.webp" type="image/webp">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Apollo_Tityos_Leto_Louvre_G375.jpg/960px-Apollo_Tityos_Leto_Louvre_G375.jpg" alt="Apollo slaying Python, Attic red-figure pelike, c. 460 BCE. Louvre Museum." loading="lazy" class="gallery-img" decoding="async">
       </picture>
-      <p class="gallery-caption"><strong>Apollo Slaying Python</strong> â€” Attic red-figure pelike, c. 460 BCE. The god avenges his mother by killing the serpent.</p>
-    </div>
-    <div class="gallery-item reveal-up" data-delay="300">
+      <p class="gallery-caption"><strong>Apollo Slaying Python</strong> — Attic red-figure pelike, c. 460 BCE. The god avenges his mother by killing the serpent.</p>
+    </button>
+    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/0_Apollo_kitharoidos_-_Musei_capitolini.JPG/960px-0_Apollo_kitharoidos_-_Musei_capitolini.JPG" data-caption="Apollo Citharoedus, Roman statue. Capitoline Museums, Rome." aria-label="View full image: Apollo Citharoedus, Roman statue. Capitoline Museums, Rome." data-delay="300">
       <picture>
         <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/0_Apollo_kitharoidos_-_Musei_capitolini.JPG/960px-0_Apollo_kitharoidos_-_Musei_capitolini.JPG.webp" type="image/webp">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/0_Apollo_kitharoidos_-_Musei_capitolini.JPG/960px-0_Apollo_kitharoidos_-_Musei_capitolini.JPG" alt="Apollo Citharoedus, Roman statue. Capitoline Museums, Rome." loading="lazy" class="gallery-img" decoding="async">
       </picture>
-      <p class="gallery-caption"><strong>Apollo Citharoedus</strong> â€” The lyre-player. Music so perfect it could charm stones and bend the will of gods.</p>
-    </div>
-    <div class="gallery-item reveal-up" data-delay="0">
+      <p class="gallery-caption"><strong>Apollo Citharoedus</strong> — The lyre-player. Music so perfect it could charm stones and bend the will of gods.</p>
+    </button>
+    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Statue_of_Apollo_Hermitage_GR-4186_n1.jpg/960px-Statue_of_Apollo_Hermitage_GR-4186_n1.jpg" data-caption="Apollo, Roman copy. Hermitage Museum, Saint Petersburg." aria-label="View full image: Apollo, Roman copy. Hermitage Museum, Saint Petersburg." data-delay="0">
       <picture>
         <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Statue_of_Apollo_Hermitage_GR-4186_n1.jpg/960px-Statue_of_Apollo_Hermitage_GR-4186_n1.jpg.webp" type="image/webp">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Statue_of_Apollo_Hermitage_GR-4186_n1.jpg/960px-Statue_of_Apollo_Hermitage_GR-4186_n1.jpg" alt="Apollo, Roman copy. Hermitage Museum, Saint Petersburg." loading="lazy" class="gallery-img" decoding="async">
       </picture>
-      <p class="gallery-caption"><strong>Apollo</strong> â€” Roman copy, Hermitage Museum. The archer god, perfect in form, terrible in wrath.</p>
-    </div>
+      <p class="gallery-caption"><strong>Apollo</strong> — Roman copy, Hermitage Museum. The archer god, perfect in form, terrible in wrath.</p>
+    </button>
     </div>
         </div>
     </section>
@@ -198,4 +281,40 @@
     <script src="../script.js?v=perf1"></script>
 
 
+<div class="gallery-lightbox" id="gallery-lightbox" aria-modal="true" role="dialog" aria-label="Image preview">
+  <div class="gallery-lightbox-content">
+    <button class="gallery-lightbox-close" id="gallery-lightbox-close" aria-label="Close" type="button">&times;</button>
+    <img class="gallery-lightbox-img" id="gallery-lightbox-img" src="" alt="">
+    <p class="gallery-lightbox-caption" id="gallery-lightbox-caption"></p>
+  </div>
+</div>
+<script>
+(function(){
+  const lb = document.getElementById('gallery-lightbox');
+  const img = document.getElementById('gallery-lightbox-img');
+  const cap = document.getElementById('gallery-lightbox-caption');
+  const close = document.getElementById('gallery-lightbox-close');
+  if (!lb || !img || !close) return;
+  function open(src, caption) {
+    img.src = src;
+    img.alt = caption || '';
+    cap.textContent = caption || '';
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    close.focus();
+  }
+  function closeLb() {
+    lb.classList.remove('active');
+    img.src = '';
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('.gallery-item[data-full-src]').forEach(item => {
+    item.addEventListener('click', () => open(item.dataset.fullSrc, item.dataset.caption));
+    item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(item.dataset.fullSrc, item.dataset.caption); } });
+  });
+  close.addEventListener('click', closeLb);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && lb.classList.contains('active')) closeLb(); });
+})();
+</script>
 </body></html>

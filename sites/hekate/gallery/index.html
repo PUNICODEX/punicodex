@@ -20,6 +20,89 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Hekátē — Gallery | Magic, Crossroads, Moon | PUNYCODEX">
     <meta name="twitter:description" content="A curated gallery of Hekátē, Magic, Crossroads, Moon, through history.">
+  <style>
+/* Gallery lightbox */
+.gallery-item {
+    cursor: zoom-in;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+}
+.gallery-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: rgba(5,5,8,0.92);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.gallery-lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+.gallery-lightbox-content {
+    position: relative;
+    max-width: min(1200px, 95vw);
+    max-height: min(900px, 90vh);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.gallery-lightbox-img {
+    max-width: 100%;
+    max-height: min(820px, 82vh);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+}
+.gallery-lightbox-caption {
+    font-size: 0.95rem;
+    color: #E0E0E0;
+    text-align: center;
+    max-width: 80ch;
+    line-height: 1.6;
+    padding: 0 1rem;
+}
+.gallery-lightbox-close {
+    position: absolute;
+    top: -3rem;
+    right: 0;
+    background: none;
+    border: none;
+    color: #D4AF37;
+    font-size: 2.5rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+.gallery-lightbox-close:hover,
+.gallery-lightbox-close:focus {
+    color: #F5F5F5;
+    transform: scale(1.1);
+}
+@media (max-width: 640px) {
+    .gallery-lightbox {
+        padding: 1rem;
+    }
+    .gallery-lightbox-close {
+        top: -2.5rem;
+        font-size: 2rem;
+    }
+}
+  </style>
 </head>
 <body>
     <!-- Global Nav -->
@@ -96,48 +179,48 @@
             </div>
 
                         <div class="gallery-grid">
-    <div class="gallery-item reveal-up">
+    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Hecate_Chiaramonti_Inv1922.jpg/960px-Hecate_Chiaramonti_Inv1922.jpg" data-caption="Hecate Chiaramonti, Roman copy. Vatican Museums." aria-label="View full image: Hecate Chiaramonti, Roman copy. Vatican Museums.">
       <picture>
         <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Hecate_Chiaramonti_Inv1922.jpg/960px-Hecate_Chiaramonti_Inv1922.jpg.webp" type="image/webp">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Hecate_Chiaramonti_Inv1922.jpg/960px-Hecate_Chiaramonti_Inv1922.jpg" alt="Hecate Chiaramonti, Roman copy. Vatican Museums." loading="lazy" class="gallery-img" decoding="async">
       </picture>
-      <p class="gallery-caption"><strong>Hecate Chiaramonti</strong> â€” Vatican Museums. The triple-bodied goddess, guardian of crossroads and protector of the home.</p>
-    </div>
-    <div class="gallery-item reveal-up" data-delay="100">
+      <p class="gallery-caption"><strong>Hecate Chiaramonti</strong> — Vatican Museums. The triple-bodied goddess, guardian of crossroads and protector of the home.</p>
+    </button>
+    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Statue_of_Hecate,_3rd_century_AD,_Antalya_Museum,_Turkey.jpg/960px-Statue_of_Hecate,_3rd_century_AD,_Antalya_Museum,_Turkey.jpg" data-caption="Statue of Hecate, 3rd century AD, Antalya Museum, Turkey." aria-label="View full image: Statue of Hecate, 3rd century AD, Antalya Museum, Turkey." data-delay="100">
       <picture>
         <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Statue_of_Hecate,_3rd_century_AD,_Antalya_Museum,_Turkey.jpg/960px-Statue_of_Hecate,_3rd_century_AD,_Antalya_Museum,_Turkey.jpg.webp" type="image/webp">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Statue_of_Hecate,_3rd_century_AD,_Antalya_Museum,_Turkey.jpg/960px-Statue_of_Hecate,_3rd_century_AD,_Antalya_Museum,_Turkey.jpg" alt="Statue of Hecate, 3rd century AD, Antalya Museum, Turkey." loading="lazy" class="gallery-img" decoding="async">
       </picture>
-      <p class="gallery-caption"><strong>Hecate of Antalya</strong> â€” 3rd century AD. The triple-formed goddess stands with her torches, guardian of necropolis and night.</p>
-    </div>
-    <div class="gallery-item reveal-up" data-delay="200">
+      <p class="gallery-caption"><strong>Hecate of Antalya</strong> — 3rd century AD. The triple-formed goddess stands with her torches, guardian of necropolis and night.</p>
+    </button>
+    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Hecate_fights_against_Klytios_%28left%29%3B_Artemis_against_Otos_%28right%29%2C_East_Frieze%2C_Gigantomachy_Frieze%2C_Pergamon_Altar%2C_Pergamon_Museum%2C_Berlin_%285913491142%29.jpg/960px-Hecate_fights_against_Klytios_%28left%29%3B_Artemis_against_Otos_%28right%29%2C_East_Frieze%2C_Gigantomachy_Frieze%2C_Pergamon_Altar%2C_Pergamon_Museum%2C_Berlin_%285913491142%29.jpg" data-caption="Hecate fighting Klytios on the Pergamon Altar, c. 180 BCE. Pergamon Museum, Berlin." aria-label="View full image: Hecate fighting Klytios on the Pergamon Altar, c. 180 BCE. Pergamon Museum, Berlin." data-delay="200">
       <picture>
         <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Hecate_fights_against_Klytios_%28left%29%3B_Artemis_against_Otos_%28right%29%2C_East_Frieze%2C_Gigantomachy_Frieze%2C_Pergamon_Altar%2C_Pergamon_Museum%2C_Berlin_%285913491142%29.jpg/960px-Hecate_fights_against_Klytios_%28left%29%3B_Artemis_against_Otos_%28right%29%2C_East_Frieze%2C_Gigantomachy_Frieze%2C_Pergamon_Altar%2C_Pergamon_Museum%2C_Berlin_%285913491142%29.jpg.webp" type="image/webp">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Hecate_fights_against_Klytios_%28left%29%3B_Artemis_against_Otos_%28right%29%2C_East_Frieze%2C_Gigantomachy_Frieze%2C_Pergamon_Altar%2C_Pergamon_Museum%2C_Berlin_%285913491142%29.jpg/960px-Hecate_fights_against_Klytios_%28left%29%3B_Artemis_against_Otos_%28right%29%2C_East_Frieze%2C_Gigantomachy_Frieze%2C_Pergamon_Altar%2C_Pergamon_Museum%2C_Berlin_%285913491142%29.jpg" alt="Hecate fighting Klytios on the Pergamon Altar, c. 180 BCE. Pergamon Museum, Berlin." loading="lazy" class="gallery-img" decoding="async">
       </picture>
-      <p class="gallery-caption"><strong>Hecate on the Pergamon Altar</strong> â€” c. 180 BCE. The goddess battles the Giant Klytios alongside Artemis, torches blazing in marble fury.</p>
-    </div>
-    <div class="gallery-item reveal-up" data-delay="300">
+      <p class="gallery-caption"><strong>Hecate on the Pergamon Altar</strong> — c. 180 BCE. The goddess battles the Giant Klytios alongside Artemis, torches blazing in marble fury.</p>
+    </button>
+    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Hekate_2.jpg/960px-Hekate_2.jpg" data-caption="Hecate statue, Antalya Museum." aria-label="View full image: Hecate statue, Antalya Museum." data-delay="300">
       <picture>
         <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Hekate_2.jpg/960px-Hekate_2.jpg.webp" type="image/webp">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Hekate_2.jpg/960px-Hekate_2.jpg" alt="Hecate statue, Antalya Museum." loading="lazy" class="gallery-img" decoding="async">
       </picture>
-      <p class="gallery-caption"><strong>Hecate</strong> â€” Antalya Museum. The goddess of crossroads preserved in a Roman-period statue, eyes fixed on the boundaries between worlds.</p>
-    </div>
-    <div class="gallery-item reveal-up" data-delay="0">
+      <p class="gallery-caption"><strong>Hecate</strong> — Antalya Museum. The goddess of crossroads preserved in a Roman-period statue, eyes fixed on the boundaries between worlds.</p>
+    </button>
+    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Afyonkarahisar_Archaeological_Museum_Statue_of_triple_Hecate,_Roman_period,_2nd_century_AD_1984.jpg/960px-Afyonkarahisar_Archaeological_Museum_Statue_of_triple_Hecate,_Roman_period,_2nd_century_AD_1984.jpg" data-caption="Triple Hecate statue, Roman period, Afyonkarahisar Archaeological Museum." aria-label="View full image: Triple Hecate statue, Roman period, Afyonkarahisar Archaeological Museum." data-delay="0">
       <picture>
         <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Afyonkarahisar_Archaeological_Museum_Statue_of_triple_Hecate,_Roman_period,_2nd_century_AD_1984.jpg/960px-Afyonkarahisar_Archaeological_Museum_Statue_of_triple_Hecate,_Roman_period,_2nd_century_AD_1984.jpg.webp" type="image/webp">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Afyonkarahisar_Archaeological_Museum_Statue_of_triple_Hecate,_Roman_period,_2nd_century_AD_1984.jpg/960px-Afyonkarahisar_Archaeological_Museum_Statue_of_triple_Hecate,_Roman_period,_2nd_century_AD_1984.jpg" alt="Triple Hecate statue, Roman period, Afyonkarahisar Archaeological Museum." loading="lazy" class="gallery-img" decoding="async">
       </picture>
-      <p class="gallery-caption"><strong>Triple Hecate</strong> â€” Roman period, 2nd century AD. Three bodies, three faces, watching every direction at the crossroads.</p>
-    </div>
-    <div class="gallery-item reveal-up" data-delay="100">
+      <p class="gallery-caption"><strong>Triple Hecate</strong> — Roman period, 2nd century AD. Three bodies, three faces, watching every direction at the crossroads.</p>
+    </button>
+    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Artemis_Hekate%2C_3rd_century_B._C.%2C_Apollonia._-_Limestone%2C_91.5_cm._Archaeological_Museum_of_Tirana.jpg/960px-Artemis_Hekate%2C_3rd_century_B._C.%2C_Apollonia._-_Limestone%2C_91.5_cm._Archaeological_Museum_of_Tirana.jpg" data-caption="Artemis-Hekate, 3rd century BCE, Archaeological Museum of Tirana." aria-label="View full image: Artemis-Hekate, 3rd century BCE, Archaeological Museum of Tirana." data-delay="100">
       <picture>
         <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Artemis_Hekate%2C_3rd_century_B._C.%2C_Apollonia._-_Limestone%2C_91.5_cm._Archaeological_Museum_of_Tirana.jpg/960px-Artemis_Hekate%2C_3rd_century_B._C.%2C_Apollonia._-_Limestone%2C_91.5_cm._Archaeological_Museum_of_Tirana.jpg.webp" type="image/webp">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Artemis_Hekate%2C_3rd_century_B._C.%2C_Apollonia._-_Limestone%2C_91.5_cm._Archaeological_Museum_of_Tirana.jpg/960px-Artemis_Hekate%2C_3rd_century_B._C.%2C_Apollonia._-_Limestone%2C_91.5_cm._Archaeological_Museum_of_Tirana.jpg" alt="Artemis-Hekate, 3rd century BCE, Archaeological Museum of Tirana." loading="lazy" class="gallery-img" decoding="async">
       </picture>
-      <p class="gallery-caption"><strong>Artemis-Hekate</strong> â€” 3rd century BCE, Apollonia. A limestone fusion of huntress and goddess of the crossroads, protector of the necropolis.</p>
-    </div>
+      <p class="gallery-caption"><strong>Artemis-Hekate</strong> — 3rd century BCE, Apollonia. A limestone fusion of huntress and goddess of the crossroads, protector of the necropolis.</p>
+    </button>
     </div>
         </div>
     </section>
@@ -177,4 +260,40 @@
     <script src="../script.js?v=perf1"></script>
 
 
+<div class="gallery-lightbox" id="gallery-lightbox" aria-modal="true" role="dialog" aria-label="Image preview">
+  <div class="gallery-lightbox-content">
+    <button class="gallery-lightbox-close" id="gallery-lightbox-close" aria-label="Close" type="button">&times;</button>
+    <img class="gallery-lightbox-img" id="gallery-lightbox-img" src="" alt="">
+    <p class="gallery-lightbox-caption" id="gallery-lightbox-caption"></p>
+  </div>
+</div>
+<script>
+(function(){
+  const lb = document.getElementById('gallery-lightbox');
+  const img = document.getElementById('gallery-lightbox-img');
+  const cap = document.getElementById('gallery-lightbox-caption');
+  const close = document.getElementById('gallery-lightbox-close');
+  if (!lb || !img || !close) return;
+  function open(src, caption) {
+    img.src = src;
+    img.alt = caption || '';
+    cap.textContent = caption || '';
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    close.focus();
+  }
+  function closeLb() {
+    lb.classList.remove('active');
+    img.src = '';
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('.gallery-item[data-full-src]').forEach(item => {
+    item.addEventListener('click', () => open(item.dataset.fullSrc, item.dataset.caption));
+    item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(item.dataset.fullSrc, item.dataset.caption); } });
+  });
+  close.addEventListener('click', closeLb);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && lb.classList.contains('active')) closeLb(); });
+})();
+</script>
 </body></html>

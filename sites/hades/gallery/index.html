@@ -20,6 +20,89 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Hádēs — Gallery | Underworld, Wealth | PUNYCODEX">
     <meta name="twitter:description" content="A curated gallery of Hádēs, Underworld, Wealth, through history.">
+  <style>
+/* Gallery lightbox */
+.gallery-item {
+    cursor: zoom-in;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+}
+.gallery-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: rgba(5,5,8,0.92);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.gallery-lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+.gallery-lightbox-content {
+    position: relative;
+    max-width: min(1200px, 95vw);
+    max-height: min(900px, 90vh);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.gallery-lightbox-img {
+    max-width: 100%;
+    max-height: min(820px, 82vh);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+}
+.gallery-lightbox-caption {
+    font-size: 0.95rem;
+    color: #E0E0E0;
+    text-align: center;
+    max-width: 80ch;
+    line-height: 1.6;
+    padding: 0 1rem;
+}
+.gallery-lightbox-close {
+    position: absolute;
+    top: -3rem;
+    right: 0;
+    background: none;
+    border: none;
+    color: #D4AF37;
+    font-size: 2.5rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+.gallery-lightbox-close:hover,
+.gallery-lightbox-close:focus {
+    color: #F5F5F5;
+    transform: scale(1.1);
+}
+@media (max-width: 640px) {
+    .gallery-lightbox {
+        padding: 1rem;
+    }
+    .gallery-lightbox-close {
+        top: -2.5rem;
+        font-size: 2rem;
+    }
+}
+  </style>
 </head>
 <body>
     <!-- Global Nav -->
@@ -96,48 +179,48 @@
             </div>
 
                         <div class="gallery-grid">
-    <div class="gallery-item reveal-up">
+    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Acheloos_Painter_-_ABV_383_12_-_Sisyphos_with_Persephone_and_Hades_-_M%C3%BCnchen_AS_1549_-_01.jpg/960px-Acheloos_Painter_-_ABV_383_12_-_Sisyphos_with_Persephone_and_Hades_-_M%C3%BCnchen_AS_1549_-_01.jpg" data-caption="Hades, detail from the Judgement of Paris, Attic black-figure amphora, c. 550 BCE." aria-label="View full image: Hades, detail from the Judgement of Paris, Attic black-figure amphora, c. 550 BCE.">
       <picture>
         <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Acheloos_Painter_-_ABV_383_12_-_Sisyphos_with_Persephone_and_Hades_-_M%C3%BCnchen_AS_1549_-_01.jpg/960px-Acheloos_Painter_-_ABV_383_12_-_Sisyphos_with_Persephone_and_Hades_-_M%C3%BCnchen_AS_1549_-_01.jpg.webp" type="image/webp">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Acheloos_Painter_-_ABV_383_12_-_Sisyphos_with_Persephone_and_Hades_-_M%C3%BCnchen_AS_1549_-_01.jpg/960px-Acheloos_Painter_-_ABV_383_12_-_Sisyphos_with_Persephone_and_Hades_-_M%C3%BCnchen_AS_1549_-_01.jpg" alt="Hades, detail from the Judgement of Paris, Attic black-figure amphora, c. 550 BCE." loading="lazy" class="gallery-img" decoding="async">
       </picture>
-      <p class="gallery-caption"><strong>Hades</strong> â€” Attic black-figure, c. 550 BCE. The unseen king, rarely depicted, for mortals feared to speak his name.</p>
-    </div>
-    <div class="gallery-item reveal-up" data-delay="100">
+      <p class="gallery-caption"><strong>Hades</strong> — Attic black-figure, c. 550 BCE. The unseen king, rarely depicted, for mortals feared to speak his name.</p>
+    </button>
+    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Persephone_Hades_BM_Vase_E82.jpg/960px-Persephone_Hades_BM_Vase_E82.jpg" data-caption="Hades and Persephone, Attic red-figure krater, c. 430 BCE. British Museum." aria-label="View full image: Hades and Persephone, Attic red-figure krater, c. 430 BCE. British Museum." data-delay="100">
       <picture>
         <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Persephone_Hades_BM_Vase_E82.jpg/960px-Persephone_Hades_BM_Vase_E82.jpg.webp" type="image/webp">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Persephone_Hades_BM_Vase_E82.jpg/960px-Persephone_Hades_BM_Vase_E82.jpg" alt="Hades and Persephone, Attic red-figure krater, c. 430 BCE. British Museum." loading="lazy" class="gallery-img" decoding="async">
       </picture>
-      <p class="gallery-caption"><strong>Hades and Persephone</strong> â€” Attic red-figure, c. 430 BCE. The king and queen of the dead, enthroned in shadows.</p>
-    </div>
-    <div class="gallery-item reveal-up" data-delay="200">
+      <p class="gallery-caption"><strong>Hades and Persephone</strong> — Attic red-figure, c. 430 BCE. The king and queen of the dead, enthroned in shadows.</p>
+    </button>
+    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Serapis%2C%20with%20a%20modius%20on%20the%20head%2C%20depicted%20as%20Pluto%2C%20next%20to%20him%20is%20standing%20the%20three%20headed%20dog%20Cerberus%2C%20guardian%20of%20the%20Hades%2C%20from%20the%20Roman%20Villa%20of%20Chiragan%2C%20Mus%C3%A9e%20des%20Antiques%20de%20Toulouse%20(16353062906).jpg/960px-Serapis%2C%20with%20a%20modius%20on%20the%20head%2C%20depicted%20as%20Pluto%2C%20next%20to%20him%20is%20standing%20the%20three%20headed%20dog%20Cerberus%2C%20guardian%20of%20the%20Hades%2C%20from%20the%20Roman%20Villa%20of%20Chiragan%2C%20Mus%C3%A9e%20des%20Antiques%20de%20Toulouse%20(16353062906).jpg" data-caption="Serapis as Pluto with Cerberus, Roman sculpture from the Villa of Chiragan. Musée Saint-Raymond, Toulouse." aria-label="View full image: Serapis as Pluto with Cerberus, Roman sculpture from the Villa of Chiragan. Musée Saint-Raymond, Toulouse." data-delay="200">
       <picture>
         <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Serapis%2C%20with%20a%20modius%20on%20the%20head%2C%20depicted%20as%20Pluto%2C%20next%20to%20him%20is%20standing%20the%20three%20headed%20dog%20Cerberus%2C%20guardian%20of%20the%20Hades%2C%20from%20the%20Roman%20Villa%20of%20Chiragan%2C%20Mus%C3%A9e%20des%20Antiques%20de%20Toulouse%20(16353062906).jpg/960px-Serapis%2C%20with%20a%20modius%20on%20the%20head%2C%20depicted%20as%20Pluto%2C%20next%20to%20him%20is%20standing%20the%20three%20headed%20dog%20Cerberus%2C%20guardian%20of%20the%20Hades%2C%20from%20the%20Roman%20Villa%20of%20Chiragan%2C%20Mus%C3%A9e%20des%20Antiques%20de%20Toulouse%20(16353062906).jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Serapis%2C%20with%20a%20modius%20on%20the%20head%2C%20depicted%20as%20Pluto%2C%20next%20to%20him%20is%20standing%20the%20three%20headed%20dog%20Cerberus%2C%20guardian%20of%20the%20Hades%2C%20from%20the%20Roman%20Villa%20of%20Chiragan%2C%20Mus%C3%A9e%20des%20Antiques%20de%20Toulouse%20(16353062906).jpg/960px-Serapis%2C%20with%20a%20modius%20on%20the%20head%2C%20depicted%20as%20Pluto%2C%20next%20to%20him%20is%20standing%20the%20three%20headed%20dog%20Cerberus%2C%20guardian%20of%20the%20Hades%2C%20from%20the%20Roman%20Villa%20of%20Chiragan%2C%20Mus%C3%A9e%20des%20Antiques%20de%20Toulouse%20(16353062906).jpg" alt="Serapis as Pluto with Cerberus, Roman sculpture from the Villa of Chiragan. MusÃ©e Saint-Raymond, Toulouse." loading="lazy" class="gallery-img" decoding="async">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Serapis%2C%20with%20a%20modius%20on%20the%20head%2C%20depicted%20as%20Pluto%2C%20next%20to%20him%20is%20standing%20the%20three%20headed%20dog%20Cerberus%2C%20guardian%20of%20the%20Hades%2C%20from%20the%20Roman%20Villa%20of%20Chiragan%2C%20Mus%C3%A9e%20des%20Antiques%20de%20Toulouse%20(16353062906).jpg/960px-Serapis%2C%20with%20a%20modius%20on%20the%20head%2C%20depicted%20as%20Pluto%2C%20next%20to%20him%20is%20standing%20the%20three%20headed%20dog%20Cerberus%2C%20guardian%20of%20the%20Hades%2C%20from%20the%20Roman%20Villa%20of%20Chiragan%2C%20Mus%C3%A9e%20des%20Antiques%20de%20Toulouse%20(16353062906).jpg" alt="Serapis as Pluto with Cerberus, Roman sculpture from the Villa of Chiragan. Musée Saint-Raymond, Toulouse." loading="lazy" class="gallery-img" decoding="async">
       </picture>
-      <p class="gallery-caption"><strong>Pluto with Cerberus</strong> â€” Roman sculpture from the Villa of Chiragan, MusÃ©e Saint-Raymond, Toulouse. Hades as Serapis-Pluto, guardian of the dead, with his three-headed hound.</p>
-    </div>
-    <div class="gallery-item reveal-up" data-delay="300">
+      <p class="gallery-caption"><strong>Pluto with Cerberus</strong> — Roman sculpture from the Villa of Chiragan, Musée Saint-Raymond, Toulouse. Hades as Serapis-Pluto, guardian of the dead, with his three-headed hound.</p>
+    </button>
+    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Herakles_Kerberos_Staatliche_Antikensammlungen_1493.jpg/960px-Herakles_Kerberos_Staatliche_Antikensammlungen_1493.jpg" data-caption="Heracles and Cerberus, Attic black-figure amphora, c. 525 BCE. British Museum." aria-label="View full image: Heracles and Cerberus, Attic black-figure amphora, c. 525 BCE. British Museum." data-delay="300">
       <picture>
         <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Herakles_Kerberos_Staatliche_Antikensammlungen_1493.jpg/960px-Herakles_Kerberos_Staatliche_Antikensammlungen_1493.jpg.webp" type="image/webp">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Herakles_Kerberos_Staatliche_Antikensammlungen_1493.jpg/960px-Herakles_Kerberos_Staatliche_Antikensammlungen_1493.jpg" alt="Heracles and Cerberus, Attic black-figure amphora, c. 525 BCE. British Museum." loading="lazy" class="gallery-img" decoding="async">
       </picture>
-      <p class="gallery-caption"><strong>Cerberus</strong> â€” Attic black-figure, c. 525 BCE. The hound of Hades, three-headed guardian of the threshold.</p>
-    </div>
-    <div class="gallery-item reveal-up" data-delay="0">
+      <p class="gallery-caption"><strong>Cerberus</strong> — Attic black-figure, c. 525 BCE. The hound of Hades, three-headed guardian of the threshold.</p>
+    </button>
+    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Apulian_Red_Figure_volute_krater_with_scenes_of_the_Underworld%2C_ca._340-330_BC%2C_Staatliche_Antikensammlungen%2C_Munich_%288956886411%29.jpg/960px-Apulian_Red_Figure_volute_krater_with_scenes_of_the_Underworld%2C_ca._340-330_BC%2C_Staatliche_Antikensammlungen%2C_Munich_%288956886411%29.jpg" data-caption="Odysseus in the underworld, Attic red-figure krater, c. 450 BCE. Louvre Museum." aria-label="View full image: Odysseus in the underworld, Attic red-figure krater, c. 450 BCE. Louvre Museum." data-delay="0">
       <picture>
         <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Apulian_Red_Figure_volute_krater_with_scenes_of_the_Underworld%2C_ca._340-330_BC%2C_Staatliche_Antikensammlungen%2C_Munich_%288956886411%29.jpg/960px-Apulian_Red_Figure_volute_krater_with_scenes_of_the_Underworld%2C_ca._340-330_BC%2C_Staatliche_Antikensammlungen%2C_Munich_%288956886411%29.jpg.webp" type="image/webp">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Apulian_Red_Figure_volute_krater_with_scenes_of_the_Underworld%2C_ca._340-330_BC%2C_Staatliche_Antikensammlungen%2C_Munich_%288956886411%29.jpg/960px-Apulian_Red_Figure_volute_krater_with_scenes_of_the_Underworld%2C_ca._340-330_BC%2C_Staatliche_Antikensammlungen%2C_Munich_%288956886411%29.jpg" alt="Odysseus in the underworld, Attic red-figure krater, c. 450 BCE. Louvre Museum." loading="lazy" class="gallery-img" decoding="async">
       </picture>
-      <p class="gallery-caption"><strong>The Nekyia</strong> â€” Odysseus summons spirits in Hades. The underworld as the Greeks imagined it.</p>
-    </div>
-    <div class="gallery-item reveal-up" data-delay="100">
+      <p class="gallery-caption"><strong>The Nekyia</strong> — Odysseus summons spirits in Hades. The underworld as the Greeks imagined it.</p>
+    </button>
+    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Persephone_Hades_BM_Vase_E82.jpg/960px-Persephone_Hades_BM_Vase_E82.jpg" data-caption="Persephone and Hades, detail. British Museum." aria-label="View full image: Persephone and Hades, detail. British Museum." data-delay="100">
       <picture>
         <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Persephone_Hades_BM_Vase_E82.jpg/960px-Persephone_Hades_BM_Vase_E82.jpg.webp" type="image/webp">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Persephone_Hades_BM_Vase_E82.jpg/960px-Persephone_Hades_BM_Vase_E82.jpg" alt="Persephone and Hades, detail. British Museum." loading="lazy" class="gallery-img" decoding="async">
       </picture>
-      <p class="gallery-caption"><strong>The Rape of Persephone</strong> â€” The moment the underworld gained its queen, and the world gained winter.</p>
-    </div>
+      <p class="gallery-caption"><strong>The Rape of Persephone</strong> — The moment the underworld gained its queen, and the world gained winter.</p>
+    </button>
     </div>
         </div>
     </section>
@@ -177,4 +260,40 @@
     <script src="../script.js?v=perf1"></script>
 
 
+<div class="gallery-lightbox" id="gallery-lightbox" aria-modal="true" role="dialog" aria-label="Image preview">
+  <div class="gallery-lightbox-content">
+    <button class="gallery-lightbox-close" id="gallery-lightbox-close" aria-label="Close" type="button">&times;</button>
+    <img class="gallery-lightbox-img" id="gallery-lightbox-img" src="" alt="">
+    <p class="gallery-lightbox-caption" id="gallery-lightbox-caption"></p>
+  </div>
+</div>
+<script>
+(function(){
+  const lb = document.getElementById('gallery-lightbox');
+  const img = document.getElementById('gallery-lightbox-img');
+  const cap = document.getElementById('gallery-lightbox-caption');
+  const close = document.getElementById('gallery-lightbox-close');
+  if (!lb || !img || !close) return;
+  function open(src, caption) {
+    img.src = src;
+    img.alt = caption || '';
+    cap.textContent = caption || '';
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    close.focus();
+  }
+  function closeLb() {
+    lb.classList.remove('active');
+    img.src = '';
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('.gallery-item[data-full-src]').forEach(item => {
+    item.addEventListener('click', () => open(item.dataset.fullSrc, item.dataset.caption));
+    item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(item.dataset.fullSrc, item.dataset.caption); } });
+  });
+  close.addEventListener('click', closeLb);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && lb.classList.contains('active')) closeLb(); });
+})();
+</script>
 </body></html>
