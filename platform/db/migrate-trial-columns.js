@@ -4,6 +4,13 @@ const { getDbPath } = require('./db');
 const db = new Database(getDbPath());
 db.pragma('journal_mode = WAL');
 
+// Ensure bookings table exists before adding columns
+db.exec(`
+  CREATE TABLE IF NOT EXISTS bookings (
+    id INTEGER PRIMARY KEY AUTOINCREMENT
+  )
+`);
+
 const columns = [
   { name: 'trial_months', def: 'INTEGER DEFAULT 0' },
   { name: 'trial_ends_at', def: 'TEXT' },

@@ -20,7 +20,7 @@
         yoruba: '#c97e9e', slavic: '#c97e7e', zoroastrian: '#e8c07e',
         incan: '#c9c97e', chinese: '#e87e7e', buddhist: '#c9a0c9',
         taoist: '#7ec9a0', korean: '#c97e7e', phoenician: '#c9a07e',
-        hittite: '#a0c9c9', 'greek-location': '#c9a96e'
+        hittite: '#a0c9c9', 'greek-location': '#c9a96e', canaanite: '#8B4513'
     };
 
     // ═══════════════════════════════════════════════

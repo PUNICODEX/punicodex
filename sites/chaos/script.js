@@ -911,3 +911,25 @@ loadSlots();
 handleReturnFromStripe();
 
 } // end else (booking modal exists)
+
+
+// ===== HERO VIDEO PAUSE/PLAY TOGGLE =====
+(function() {
+  const figure = document.querySelector('.endorsement-mascot--video');
+  if (!figure) return;
+  const video = figure.querySelector('video');
+  const btn = figure.querySelector('.video-pause');
+  if (!video || !btn) return;
+
+  btn.addEventListener('click', () => {
+    if (video.paused) {
+      video.play();
+      btn.setAttribute('aria-label', 'Pause animation');
+      btn.textContent = '❚❚';
+    } else {
+      video.pause();
+      btn.setAttribute('aria-label', 'Play animation');
+      btn.textContent = '▶';
+    }
+  });
+})();

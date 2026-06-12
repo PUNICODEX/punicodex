@@ -306,7 +306,8 @@
                 entry.pantheon === 'taoist' ? '☯️' :
                 entry.pantheon === 'korean' ? '🇰🇷' :
                 entry.pantheon === 'phoenician' ? '🌅' :
-                entry.pantheon === 'hittite' ? '🦁' : '✦';
+                entry.pantheon === 'hittite' ? '🦁' :
+                entry.pantheon === 'canaanite' ? '🌴' : '✦';
             return `
                 <div class="completion-item" data-id="${entry.id}" id="completion-${i}" role="option" aria-selected="false">
                     <span class="completion-pantheon" aria-hidden="true">${pantheonLabel}</span>

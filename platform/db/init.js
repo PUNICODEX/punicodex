@@ -92,7 +92,11 @@ const flagshipIds = new Set([
   'hestia','jotunheimr','ker','kobe','kyoto','libye','maa','medousa',
   'midgardr','muspellheimr','nike','odinn','olympos','osaka','persephone',
   'pontos','poseidon','prometheus','ra','ragnarok','selene','shiva',
-  'sparte','thor','zeus'
+  'sparte','thor','zeus',
+  'el','baal','anat','asherah','kronos','enlil','ishtar','typhon',
+  'chaos','dionysos','maat','sia','shu','tartaros',
+  'aether','astart','ba','enki','eros','ganesha','heka','horus','kali',
+  'prajapati','rta','vishnu'
 ]);
 
 const insertEntryTxn = db.transaction((entries) => {

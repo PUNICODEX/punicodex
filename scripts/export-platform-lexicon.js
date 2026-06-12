@@ -8,12 +8,17 @@ const { domainToASCII } = require('url');
 const { LEXICON } = require('../type/js/lexicon.js');
 
 const hasFlagship = new Set([
-    'apollon','hades','hekate','nike','zeus','ares','aphrodite','athena','demeter',
-    'hera','hermes','hephaistos','hestia','poseidon','persephone','prometheus',
-    'artemis','atlas','dionysos','medousa','thor','freyja','loki','tyr','baldr',
-    'odin','njord','heimdallr','shiva','vishnu','krishna','brahma','ganesha',
-    'surya','chandra','ra','osiris','isis','anubis','thoth','amun','ptah',
-    'set','bastet','sobek','khnum'
+    'ab','aigyptos','akh','alfheimr','aphrodite','apollon','ares','artemis',
+    'asia','athena','athenai','atlas','delphoi','demeter','europe','gaia',
+    'hades','hekate','helheimr','helios','hephaistos','hera','hermes',
+    'hestia','jotunheimr','ker','kobe','kyoto','libye','maa','medousa',
+    'midgardr','muspellheimr','nike','odinn','olympos','osaka','persephone',
+    'pontos','poseidon','prometheus','ra','ragnarok','selene','shiva',
+    'sparte','thor','zeus',
+    'el','baal','anat','asherah','kronos','enlil','ishtar','typhon',
+    'chaos','dionysos','maat','sia','shu','tartaros',
+    'aether','astart','ba','enki','eros','ganesha','heka','horus','kali',
+    'prajapati','rta','vishnu'
 ]);
 
 function getPunycode(unicode) {

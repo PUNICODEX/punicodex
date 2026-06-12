@@ -45,7 +45,7 @@ function section(name) {
 section('Schema Validation');
 
 const REQUIRED_FIELDS = ['id', 'ascii', 'unicode', 'greek', 'pantheon', 'tier', 'tierLabel', 'domain', 'meaning', 'sources', 'breakdown'];
-const ALLOWED_PANTHEONS = ['greek', 'greek-location', 'norse', 'egyptian', 'sanskrit', 'celtic', 'mesopotamian', 'polynesian', 'japanese', 'nahuatl', 'yoruba', 'slavic', 'zoroastrian', 'incan', 'chinese', 'buddhist', 'taoist', 'korean', 'phoenician', 'hittite'];
+const ALLOWED_PANTHEONS = ['greek', 'greek-location', 'norse', 'egyptian', 'sanskrit', 'celtic', 'mesopotamian', 'polynesian', 'japanese', 'nahuatl', 'yoruba', 'slavic', 'zoroastrian', 'incan', 'chinese', 'buddhist', 'taoist', 'korean', 'phoenician', 'hittite', 'canaanite'];
 const ALLOWED_TIERS = ['dual', '1', '2'];
 const ASCII_REGEX = /^[a-z]+$/;
 

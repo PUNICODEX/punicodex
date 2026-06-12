@@ -27,10 +27,13 @@ function loadBuiltArchetypeIds() {
         const regex = /id:\s*"([^"]+)"/g;
         let match;
         while ((match = regex.exec(content)) !== null) {
-            const idx = content.lastIndexOf('built:', match.index);
-            const builtLine = content.substring(idx, idx + 20);
-            if (builtLine.includes('true')) {
-                ids.add(match[1]);
+            // The built flag always follows the id within the same archetype object.
+            const idx = content.indexOf('built:', match.index);
+            if (idx !== -1) {
+                const builtLine = content.substring(idx, idx + 20);
+                if (builtLine.includes('true')) {
+                    ids.add(match[1]);
+                }
             }
         }
         return ids;
@@ -56,6 +59,7 @@ const PANTHEON_COLORS = {
     slavic:           { primary: '#C0C0C0', primaryDim: '#808080', primaryBright: '#E8E8E8', secondary: '#228B22' },
     zoroastrian:      { primary: '#FF4500', primaryDim: '#CC3700', primaryBright: '#FF6633', secondary: '#F5F5F5' },
     incan:            { primary: '#D4AF37', primaryDim: '#8B7355', primaryBright: '#F0D878', secondary: '#DC143C' },
+    canaanite:        { primary: '#8B4513', primaryDim: '#5D2E0C', primaryBright: '#B87333', secondary: '#D4AF37' },
 };
 
 const PANTHEON_LABELS = {
@@ -73,6 +77,7 @@ const PANTHEON_LABELS = {
     slavic: 'Slavic',
     zoroastrian: 'Zoroastrian',
     incan: 'Incan',
+    canaanite: 'Canaanite',
 };
 
 // ─── Helpers ───
@@ -736,4 +741,16 @@ function main() {
     }
 }
 
-main();
+if (require.main === module) {
+    main();
+}
+
+module.exports = {
+    generateTempleHTML,
+    getTierSubtype,
+    getRelatedEntries,
+    getPunycode,
+    PANTHEON_LABELS,
+    LEXICON,
+    SOURCE_CATALOG
+};

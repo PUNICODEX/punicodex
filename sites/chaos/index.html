@@ -63,7 +63,7 @@
     <nav class="main-nav tab-nav" id="main-nav">
         <div class="nav-inner">
             <a href="#hero" class="nav-logo">
-                <img src="assets/chaos_logolockup.png" onerror="this.style.display='none'" alt="Cháos" class="nav-logo-img"/>
+                <picture><source srcset="assets/chaos_logolockup.webp" type="image/webp"><img src="assets/chaos_logolockup.png" alt="Cháos" class="nav-logo-img"></picture>
             </a>
             <div class="nav-links">
                 <a href="./" class="nav-link active">Home</a>
@@ -80,9 +80,16 @@
     <header class="endorsement-hero" id="hero">
         <div class="container">
             <div class="endorsement-hero-content reveal-up">
-                <div class="endorsement-mascot">
-                    <img src="assets/chaos_mascot.png" onerror="this.style.display='none'" alt="Cháos — The First Void" class="endorsement-mascot-img"/>
-                </div>
+                <figure class="endorsement-mascot endorsement-mascot--video">
+                    <video autoplay muted loop playsinline
+                           poster="assets/chaos_hero_poster.jpg"
+                           aria-label="Animated portrait of Cháos, the first void">
+                        <source src="assets/chaos_hero_video.webm" type="video/webm">
+                        <source src="assets/chaos_hero_video.mp4" type="video/mp4">
+                        <img src="assets/chaos_mascot.png" alt="Cháos — The First Void">
+                    </video>
+                    <button class="video-pause" aria-label="Pause animation">❚❚</button>
+                </figure>
                 <p class="endorsement-eyebrow">Endorsed by</p>
                 <h1 class="endorsement-title">The First Void, <span class="endorsement-greek">Cháos</span></h1>
                 <p class="endorsement-lead">Twelve sacred frames. One temple. Claim your place.</p>

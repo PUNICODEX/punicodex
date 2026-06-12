@@ -154,6 +154,7 @@ const PUNYCODEX_ENGINE = {
             'korean': '🇰🇷',
             'phoenician': '🌅',
             'hittite': '🦁',
+            'canaanite': '🌴',
         }[pantheon] || '✦';
     },
 

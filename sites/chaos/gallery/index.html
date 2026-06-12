@@ -125,7 +125,7 @@
     <nav class="main-nav tab-nav" style="top:40px;" id="main-nav">
         <div class="nav-inner">
             <a href="../" class="nav-logo">
-                <img src="../assets/chaos_logolockup.svg" alt="Cháos" class="nav-logo-img"/>
+                <picture><source srcset="../assets/chaos_logolockup.webp" type="image/webp"><img src="../assets/chaos_logolockup.png" alt="Cháos" class="nav-logo-img"></picture>
             </a>
             <div class="nav-links">
                 <a href="../index.html" class="nav-link">Home</a>
@@ -159,7 +159,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <img src="../assets/chaos_mascot.svg" alt="Cháos — The First Void" class="mascot-img"/>
+                <picture><source srcset="../assets/chaos_mascot.webp" type="image/webp"><img src="../assets/chaos_mascot.png" alt="Cháos — The First Void" class="mascot-img"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -178,21 +178,14 @@
                 <p class="section-subtitle">Cháos through the eyes of sculptors, painters, and craftsmen across three millennia</p>
             </div>
 
-                        <div class="gallery-grid">
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Michelangelo_Buonarroti_018.jpg/960px-Michelangelo_Buonarroti_018.jpg" data-caption="The Creation of the Sun, Moon and Plants by Michelangelo, 1508–1512. Sistine Chapel." aria-label="View full image: The Creation of the Sun, Moon and Plants by Michelangelo, 1508–1512. Sistine Chapel.">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Michelangelo_Buonarroti_018.jpg/960px-Michelangelo_Buonarroti_018.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Michelangelo_Buonarroti_018.jpg/960px-Michelangelo_Buonarroti_018.jpg" alt="The Creation of the Sun, Moon and Plants by Michelangelo, 1508–1512. Sistine Chapel." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>The Primordial Void</strong> — Michelangelo, Sistine Chapel. Before light, before form: the chaos from which all emerged.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Francisco_de_Goya,_Saturno_devorando_a_su_hijo_(1819-1823).jpg/960px-Francisco_de_Goya,_Saturno_devorando_a_su_hijo_(1819-1823).jpg" data-caption="Saturn Devouring His Son by Francisco Goya, c. 1823. Prado Museum." aria-label="View full image: Saturn Devouring His Son by Francisco Goya, c. 1823. Prado Museum." data-delay="100">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Francisco_de_Goya,_Saturno_devorando_a_su_hijo_(1819-1823).jpg/960px-Francisco_de_Goya,_Saturno_devorando_a_su_hijo_(1819-1823).jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Francisco_de_Goya,_Saturno_devorando_a_su_hijo_(1819-1823).jpg/960px-Francisco_de_Goya,_Saturno_devorando_a_su_hijo_(1819-1823).jpg" alt="Saturn Devouring His Son by Francisco Goya, c. 1823. Prado Museum." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Saturn Devouring His Son</strong> — Goya, c. 1823. Chaos as primal terror: the father who consumes his children.</p>
-    </button>
+                                    <div class="gallery-grid">
+    <div class="gallery-item reveal-up">
+      <div class="gallery-placeholder">
+        <span class="gallery-label">Gallery images coming soon</span>
+        <span class="gallery-meta">Cháos — The First Void</span>
+      </div>
+      <p class="gallery-caption">A curated collection of Cháos, The First Void, through history.</p>
+    </div>
     </div>
         </div>
     </section>
@@ -221,7 +214,7 @@
                 </div>
             </div>
             <div class="footer-seal">
-                <img src="../assets/chaos_logomark.svg" alt="Cháos logomark" class="footer-logomark"/>
+                <picture><source srcset="../assets/chaos_logomark.webp" type="image/webp"><img src="../assets/chaos_logomark.png" alt="Cháos logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>
@@ -230,11 +223,9 @@
     </footer>
 
     <script src="../script.js?v=perf1"></script>
-
-
 <div class="gallery-lightbox" id="gallery-lightbox" aria-modal="true" role="dialog" aria-label="Image preview">
   <div class="gallery-lightbox-content">
-    <button class="gallery-lightbox-close" id="gallery-lightbox-close" aria-label="Close" type="button">&times;</button>
+    <button class="gallery-lightbox-close" id="gallery-lightbox-close" aria-label="Close" type="button">×</button>
     <img class="gallery-lightbox-img" id="gallery-lightbox-img" src="" alt="">
     <p class="gallery-lightbox-caption" id="gallery-lightbox-caption"></p>
   </div>
@@ -268,4 +259,6 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && lb.classList.contains('active')) closeLb(); });
 })();
 </script>
+
+
 </body></html>

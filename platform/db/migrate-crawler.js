@@ -449,6 +449,24 @@ const flagships = [
   { id: 'osaka', domain: 'ōsaka.com', punycode: 'xn--saka-k3a.com', pantheon: 'japanese', tier: '1', tier_label: 'Tier-1' },
   { id: 'kobe', domain: 'kōbe.com', punycode: 'xn--kbe-qxa.com', pantheon: 'japanese', tier: '1', tier_label: 'Tier-1' },
   { id: 'athenai', domain: 'athēnai.com', punycode: 'xn--athnai-r3a.com', pantheon: 'greek-location', tier: '1', tier_label: 'Tier-1' },
+  // Canaanite flagships
+  { id: 'el', domain: 'ēl.com', punycode: 'xn--l-oia.com', pantheon: 'canaanite', tier: '2', tier_label: 'Tier-2' },
+  { id: 'baal', domain: 'baꜥal.com', punycode: 'xn--baal-re8o.com', pantheon: 'canaanite', tier: '2', tier_label: 'Tier-2' },
+  { id: 'anat', domain: 'ꜥanat.com', punycode: 'xn--anat-pe8o.com', pantheon: 'canaanite', tier: '2', tier_label: 'Tier-2' },
+  { id: 'asherah', domain: 'ꜥasherah.com', punycode: 'xn--asherah-dv2z.com', pantheon: 'canaanite', tier: '2', tier_label: 'Tier-2' },
+  // Greek & Mesopotamian flagships
+  { id: 'kronos', domain: 'krónos.com', punycode: 'xn--krnos-1ta.com', pantheon: 'greek', tier: '2', tier_label: 'Tier-2' },
+  { id: 'typhon', domain: 'typhōn.com', punycode: 'xn--typhn-j9a.com', pantheon: 'greek', tier: '1', tier_label: 'Tier-1' },
+  { id: 'enlil', domain: 'enlīl.com', punycode: 'xn--enll-sya.com', pantheon: 'mesopotamian', tier: '2', tier_label: 'Tier-2' },
+  { id: 'ishtar', domain: 'ištar.com', punycode: 'xn--itar-g6a.com', pantheon: 'mesopotamian', tier: '2', tier_label: 'Tier-2' },
+  // Additional built flagships
+  { id: 'aigyptos', domain: 'aígyptos.com', punycode: 'xn--agyptos-7ya.com', pantheon: 'greek-location', tier: '1', tier_label: 'Tier-1' },
+  { id: 'chaos', domain: 'cháos.com', punycode: 'xn--chos-6na.com', pantheon: 'greek', tier: '2', tier_label: 'Tier-2' },
+  { id: 'dionysos', domain: 'diónysos.com', punycode: 'xn--dinysos-m0a.com', pantheon: 'greek', tier: '2', tier_label: 'Tier-2' },
+  { id: 'maat', domain: 'mꜣꜥt.com', punycode: 'xn--mt-sq8hia.com', pantheon: 'egyptian', tier: '2', tier_label: 'Tier-2' },
+  { id: 'sia', domain: 'sꜥ.com', punycode: 'xn--s-2w3e.com', pantheon: 'egyptian', tier: '2', tier_label: 'Tier-2' },
+  { id: 'shu', domain: 'šw.com', punycode: 'xn--w-4ma.com', pantheon: 'egyptian', tier: '2', tier_label: 'Tier-2' },
+  { id: 'tartaros', domain: 'tártaros.com', punycode: 'xn--trtaros-hwa.com', pantheon: 'greek', tier: '2', tier_label: 'Tier-2' },
 ];
 
 const insertSite = db.prepare(`

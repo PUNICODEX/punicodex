@@ -132,12 +132,12 @@ The Realms page uses filter buttons (All / Norse / Greek / Japanese) and links e
 
 ### Architecture
 
-**256 individual canonical landing pages** at `/sites/{id}/` — one per lexicon entry.
+**856 individual canonical landing pages** at `/sites/{id}/` — one per lexicon entry.
 
 | Type | Count | Location | Content Depth |
 |------|-------|----------|---------------|
-| Flagship | 40 | `sites/{id}/` (existing) | Hand-crafted: myths, pronunciation, symbols, domains, custom canvas |
-| Base | 216 | `sites/{id}/` (generated) | Programmatic: name cards, breakdown, tier explanation, sources, related entries |
+| Flagship | 74 | `sites/{id}/` (existing / hand-expanded) | Hand-crafted: myths, pronunciation, symbols, domains, custom canvas |
+| Base | 794 | `sites/{id}/` (generated) | Programmatic: name cards, breakdown, tier explanation, sources, related entries |
 
 **Shared infrastructure:**
 - `css/temple-base.css` — Common temple styles (nav, hero, sections, cards, footer, responsive)
@@ -166,12 +166,12 @@ The Realms page uses filter buttons (All / Norse / Greek / Japanese) and links e
 
 ### Lexicon Browse Page
 
-`/lexicon/index.html` — A filterable, searchable grid of all 255 entries.
+`/lexicon/index.html` — A filterable, searchable grid of all 856 entries.
 
-- **Filters:** Pantheon pills (14), Tier pills (dual / tier-1 / tier-2)
+- **Filters:** Pantheon pills (21), Tier pills (dual / tier-1 / tier-2)
 - **Search:** Debounced input matching ASCII, Unicode, Greek, domain
 - **Sort:** Alphabetical, Pantheon group, Tier
-- **Stats bar:** "263 entries · 14 pantheons · 4 dual-tier · 125 tier-1 · 134 tier-2"
+- **Stats bar:** "856 entries · 21 pantheons · 4 dual-tier · 268 tier-1 · 584 tier-2"
 - Each card links to `/sites/{id}/`
 
 ---
@@ -180,10 +180,10 @@ The Realms page uses filter buttons (All / Norse / Greek / Japanese) and links e
 
 Four test suites run via `node test/run-all.js`:
 
-1. **Lexicon Validator** (`type/js/validate.js`) — Schema, uniqueness, trie integrity, Unicode renderability, breakdown integrity, sources. 22,302+ assertions.
-2. **Engine Unit Tests** (`type/js/test-engine.js`) — 46 tests covering trie construction, exact match, completions, pantheon filtering, valid next characters, regression tests.
-3. **Link Checker** (`test/links.js`) — Scans all HTML files, validates 5,800+ internal links across 269 files.
-4. **SEO Validator** (`scripts/validate-seo.js`) — Verifies schema.org, meta tags, canonical URLs on all 255 temple pages.
+1. **Lexicon Validator** (`type/js/validate.js`) — Schema, uniqueness, trie integrity, Unicode renderability, breakdown integrity, sources. 74,000+ assertions.
+2. **Engine Unit Tests** (`type/js/test-engine.js`) — 49 tests covering trie construction, exact match, completions, pantheon filtering, valid next characters, regression tests.
+3. **Link Checker** (`test/links.js`) — Scans all HTML files, validates 44,748 internal links across 2,098 files.
+4. **SEO Validator** (`scripts/validate-seo.js`) — Verifies schema.org, meta tags, canonical URLs on all 856 temple pages.
 
 Browser test page: `type/test.html`
 
@@ -300,7 +300,7 @@ Results sorted by:
 
 - GoDaddy, Namecheap, Porkbun, Dynadot, Spaceship
 
-### Flagship Domains (43)
+### Flagship Domains (74)
 
 Seeded as `active` sites in `indexed_sites`. When DNS resolves and content is fetched, the crawler updates their real title/description.
 

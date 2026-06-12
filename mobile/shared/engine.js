@@ -126,6 +126,7 @@ const PUNYCODEX_ENGINE = {
             'slavic': '🔥',
             'zoroastrian': '☀️',
             'incan': '🦙',
+            'canaanite': '🌴',
         }[pantheon] || '✦';
     },
 

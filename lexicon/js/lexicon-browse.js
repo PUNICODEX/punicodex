@@ -45,7 +45,8 @@
         mesopotamian: 'isolate',
         yoruba: 'isolate',
         incan: 'isolate',
-        hittite: 'isolate'
+        hittite: 'isolate',
+        canaanite: 'proto-afro-asiatic'
     };
 
     function deriveProtoLanguage(entry) {
@@ -71,6 +72,7 @@
         slavic: 'Slavic',
         zoroastrian: 'Zoroastrian',
         incan: 'Incan',
+        canaanite: 'Canaanite',
     };
 
     // ─── Tier subtype helper (mirrors generator logic) ───

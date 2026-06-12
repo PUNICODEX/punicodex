@@ -326,7 +326,7 @@ test('greek-all filter includes both greek and greek-location', () => {
 test('All 20 pantheon filters return non-empty results', () => {
     const pantheons = ['greek', 'greek-location', 'norse', 'egyptian', 'sanskrit', 'celtic',
         'mesopotamian', 'polynesian', 'japanese', 'nahuatl', 'yoruba', 'slavic', 'zoroastrian', 'incan',
-        'chinese', 'buddhist', 'taoist', 'korean', 'phoenician', 'hittite'];
+        'chinese', 'buddhist', 'taoist', 'korean', 'phoenician', 'hittite', 'canaanite'];
     pantheons.forEach(p => {
         const results = getCompletions(trie, '', { pantheonFilter: p });
         assert.ok(results.length > 0, `Pantheon "${p}" returned empty results`);
@@ -393,8 +393,9 @@ test('Correct pantheon counts', () => {
     assert.strictEqual(counts.buddhist, 21, 'Buddhist count');
     assert.strictEqual(counts.taoist, 10, 'Taoist count');
     assert.strictEqual(counts.korean, 12, 'Korean count');
-    assert.strictEqual(counts.phoenician, 11, 'Phoenician count');
+    assert.strictEqual(counts.phoenician, 8, 'Phoenician count');
     assert.strictEqual(counts.hittite, 8, 'Hittite count');
+    assert.strictEqual(counts.canaanite, 4, 'Canaanite count');
 });
 
 section('Unicode & Normalization');
