@@ -1505,3 +1505,84 @@ a.source-badge {
     color: var(--primary-dim);
     margin-top: 0.3rem;
 }
+
+/* =====================================================
+   AI-Generated Knowledge Panel
+   ===================================================== */
+.ai-panel {
+    background: linear-gradient(180deg, rgba(212,175,55,0.06) 0%, rgba(15,15,15,0.4) 100%);
+    border: 1px solid rgba(212,175,55,0.15);
+    border-radius: 16px;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: var(--container-max);
+    position: relative;
+    z-index: 2;
+}
+.ai-panel-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+}
+.ai-panel-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--primary);
+    margin: 0;
+}
+.ai-panel-badge {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(212,175,55,0.12);
+    color: var(--primary);
+    border: 1px solid rgba(212,175,55,0.2);
+}
+.ai-panel-badge.pending { background: rgba(251,191,36,0.12); color: #fbbf24; border-color: rgba(251,191,36,0.25); }
+.ai-panel-badge.approved { background: rgba(74,222,128,0.12); color: #4ade80; border-color: rgba(74,222,128,0.25); }
+.ai-panel-body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+}
+@media (min-width: 768px) {
+    .ai-panel-body {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+.ai-card {
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 1.25rem;
+}
+.ai-card.full-width {
+    grid-column: 1 / -1;
+}
+.ai-card-title {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--primary-dim);
+    margin-bottom: 0.5rem;
+}
+.ai-card p {
+    color: var(--white-dim);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    margin: 0;
+}
+.ai-card p strong {
+    color: var(--white);
+    font-weight: 700;
+}
+.ai-summary {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--white);
+}

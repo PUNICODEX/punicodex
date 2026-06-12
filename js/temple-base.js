@@ -278,3 +278,69 @@
     };
 
 })();
+
+    // ============================
+    // AI-Generated Knowledge Panel
+    // ============================
+    (function injectAIPanel() {
+        const pathMatch = window.location.pathname.match(/\/sites\/([^/]+)\/?/);
+        if (!pathMatch) return;
+        const entryId = pathMatch[1];
+
+        fetch(`${window.location.origin}/api/entry/${encodeURIComponent(entryId)}`)
+            .then(res => res.ok ? res.json() : null)
+            .then(entry => {
+                if (!entry || !entry.ai_summary) return;
+
+                const section = document.createElement('section');
+                section.className = 'ai-panel';
+                section.id = 'ai-panel';
+
+                const status = entry.ai_review_status || 'pending';
+                const badgeClass = status === 'approved' ? 'approved' : 'pending';
+                const badgeText = status === 'approved' ? 'AI reviewed' : 'AI-generated, pending review';
+
+                let cards = '';
+                cards += `<div class="ai-card full-width"><div class="ai-card-title">Oracle Summary</div><p class="ai-summary">${linkifyAIData(entry.ai_summary)}</p></div>`;
+                if (entry.ai_symbols) {
+                    cards += `<div class="ai-card"><div class="ai-card-title">Key Symbols</div><p>${linkifyAIData(entry.ai_symbols)}</p></div>`;
+                }
+                if (entry.ai_pronunciation) {
+                    cards += `<div class="ai-card"><div class="ai-card-title">Pronunciation</div><p>${linkifyAIData(entry.ai_pronunciation)}</p></div>`;
+                }
+                if (entry.ai_etymology_narrative) {
+                    cards += `<div class="ai-card full-width"><div class="ai-card-title">Etymology</div><p>${linkifyAIData(entry.ai_etymology_narrative)}</p></div>`;
+                }
+                if (entry.ai_relevance_today) {
+                    cards += `<div class="ai-card full-width"><div class="ai-card-title">Why This Name Matters Today</div><p>${linkifyAIData(entry.ai_relevance_today)}</p></div>`;
+                }
+
+                section.innerHTML = `
+                    <div class="ai-panel-header">
+                        <h2 class="ai-panel-title">Knowledge Panel</h2>
+                        <span class="ai-panel-badge ${badgeClass}">${badgeText}</span>
+                    </div>
+                    <div class="ai-panel-body">
+                        ${cards}
+                    </div>
+                `;
+
+                // Insert before the sources/related sections, or after hero.
+                const sourcesSection = document.getElementById('sources') || document.getElementById('etymology');
+                if (sourcesSection && sourcesSection.parentNode) {
+                    sourcesSection.parentNode.insertBefore(section, sourcesSection);
+                } else {
+                    const hero = document.getElementById('hero');
+                    if (hero && hero.nextElementSibling) {
+                        hero.parentNode.insertBefore(section, hero.nextElementSibling);
+                    }
+                }
+
+            })
+            .catch(err => console.error('AI panel failed to load:', err));
+
+        function linkifyAIData(text) {
+            if (!text) return '';
+            return text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+        }
+    })();

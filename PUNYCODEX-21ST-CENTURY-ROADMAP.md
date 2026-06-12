@@ -184,7 +184,7 @@ This roadmap is split into six phases. Each phase has concrete deliverables, fil
 - Follow-up questions like “What does he mean?” resolve to the active entity.
 - Oracle refuses to answer when no relevant data exists.
 
-### 2.2 AI-Generated Temple Knowledge Panels
+### 2.2 AI-Generated Temple Knowledge Panels ✅
 
 **Deliverables:**
 - For every entry, generate and cache:
@@ -197,14 +197,18 @@ This roadmap is split into six phases. Each phase has concrete deliverables, fil
 - Store generated content in `entries.ai_summary`, `entries.ai_symbols`, etc.
 
 **File targets:**
-- `platform/scripts/enrich-entries.js` (new)
-- `platform/api/search.js` (expose AI fields)
-- `sites/{id}/index.html` templates display AI panels.
+- `platform/db/migrate-ai-columns.js`
+- `platform/scripts/enrich-entries.js`
+- `platform/api/search.js`
+- `js/temple-base.js`
+- `css/temple-base.css`
+- `platform/public/admin-ai-review.html`
+- `platform/server.js`
 
 **Acceptance criteria:**
 - Every temple page shows an AI-generated summary.
 - Generated content is marked “AI-generated, pending review” until approved.
-- Human reviewer can approve/reject each generated block.
+- Human reviewer can approve/reject/regenerate each entry from the admin panel.
 
 ### 2.3 Hybrid Ranking Model
 

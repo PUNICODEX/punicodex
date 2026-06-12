@@ -989,6 +989,94 @@ app.post('/api/admin/trial-reminders', requireAdmin, async (req, res) => {
   } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
+// --- AI Content Review ---
+app.get('/api/admin/ai-review/stats', requireAdmin, (req, res) => {
+  try {
+    const row = db.prepare(`
+      SELECT
+        COUNT(*) as total,
+        SUM(CASE WHEN ai_review_status = 'pending' THEN 1 ELSE 0 END) as pending,
+        SUM(CASE WHEN ai_review_status = 'approved' THEN 1 ELSE 0 END) as approved,
+        SUM(CASE WHEN ai_review_status = 'rejected' THEN 1 ELSE 0 END) as rejected
+      FROM entries
+    `).get();
+    res.json(row);
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.get('/api/admin/ai-review', requireAdmin, (req, res) => {
+  try {
+    const { status = 'pending', limit = 50, offset = 0 } = req.query;
+    const allowed = ['pending', 'approved', 'rejected', 'all'];
+    const filterStatus = allowed.includes(status) ? status : 'pending';
+    const limitNum = Math.min(parseInt(limit, 10) || 50, 200);
+    const offsetNum = parseInt(offset, 10) || 0;
+
+    let where = filterStatus === 'all' ? '1=1' : 'ai_review_status = ?';
+    const params = filterStatus === 'all' ? [] : [filterStatus];
+
+    const entries = db.prepare(`
+      SELECT id, unicode, ascii, pantheon, tier_label, ai_summary, ai_symbols, ai_pronunciation,
+             ai_etymology_narrative, ai_relevance_today, ai_enriched_at, ai_review_status
+      FROM entries
+      WHERE ${where}
+      ORDER BY ai_enriched_at DESC
+      LIMIT ? OFFSET ?
+    `).all(...params, limitNum, offsetNum);
+
+    const { total } = db.prepare(`
+      SELECT COUNT(*) as total FROM entries WHERE ${where}
+    `).get(...params);
+
+    res.json({ entries, total, status: filterStatus, limit: limitNum, offset: offsetNum });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.post('/api/admin/ai-review/:id', requireAdmin, (req, res) => {
+  try {
+    const { status, summary, symbols, pronunciation, etymologyNarrative, relevanceToday } = req.body;
+    const entry = db.prepare('SELECT * FROM entries WHERE id = ?').get(req.params.id);
+    if (!entry) return res.status(404).json({ error: 'Entry not found' });
+
+    if (status === 'regenerate') {
+      const { enrichEntry } = require('./scripts/enrich-entries');
+      const data = enrichEntry(entry);
+      db.prepare(`
+        UPDATE entries SET
+          ai_summary = ?, ai_symbols = ?, ai_pronunciation = ?, ai_etymology_narrative = ?,
+          ai_relevance_today = ?, ai_enriched_at = ?, ai_review_status = ?
+        WHERE id = ?
+      `).run(
+        data.ai_summary, data.ai_symbols, data.ai_pronunciation, data.ai_etymology_narrative,
+        data.ai_relevance_today, data.ai_enriched_at, data.ai_review_status, req.params.id
+      );
+      const updated = db.prepare('SELECT * FROM entries WHERE id = ?').get(req.params.id);
+      return res.json({ success: true, entry: updated, regenerated: true });
+    }
+
+    const allowedStatuses = ['pending', 'approved', 'rejected'];
+    const updates = [];
+    const params = [];
+
+    if (status && allowedStatuses.includes(status)) {
+      updates.push('ai_review_status = ?');
+      params.push(status);
+    }
+    if (summary !== undefined) { updates.push('ai_summary = ?'); params.push(summary); }
+    if (symbols !== undefined) { updates.push('ai_symbols = ?'); params.push(symbols); }
+    if (pronunciation !== undefined) { updates.push('ai_pronunciation = ?'); params.push(pronunciation); }
+    if (etymologyNarrative !== undefined) { updates.push('ai_etymology_narrative = ?'); params.push(etymologyNarrative); }
+    if (relevanceToday !== undefined) { updates.push('ai_relevance_today = ?'); params.push(relevanceToday); }
+
+    if (updates.length === 0) return res.status(400).json({ error: 'No fields to update' });
+
+    params.push(req.params.id);
+    db.prepare(`UPDATE entries SET ${updates.join(', ')}, ai_enriched_at = CURRENT_TIMESTAMP WHERE id = ?`).run(...params);
+    const updated = db.prepare('SELECT * FROM entries WHERE id = ?').get(req.params.id);
+    res.json({ success: true, entry: updated });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
 app.post('/api/admin/bookings/:id/report', requireAdmin, async (req, res) => {
   try {
     const booking = getBookingById(req.params.id);
