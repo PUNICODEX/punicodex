@@ -1,8 +1,9 @@
 const Database = require('better-sqlite3');
 const path = require('path');
 const { domainToASCII } = require('url');
+const { getDbPath } = require('../db/db');
 
-const DB_PATH = path.join(__dirname, '..', 'db', 'punycodex.db');
+const DB_PATH = getDbPath();
 let db;
 
 function getDb() {

@@ -6,13 +6,14 @@
  */
 const Database = require('better-sqlite3');
 const path = require('path');
+const { getDbPath } = require('../db/db');
 
 const MODEL = 'Xenova/all-MiniLM-L6-v2';
 let embedder = null;
 let modelLoading = false;
 let modelLoadError = null;
 
-const DB_PATH = path.join(__dirname, '..', 'db', 'punycodex.db');
+const DB_PATH = getDbPath();
 
 async function getEmbedder() {
   if (embedder) return embedder;

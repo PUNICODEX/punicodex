@@ -265,6 +265,12 @@ export const config = {
 
 export default function middleware(request) {
   const url = new URL(request.url);
+
+  // Skip API routes — let Vercel Functions handle them
+  if (url.pathname.startsWith('/api/')) {
+    return fetch(request);
+  }
+
   // Normalize host: lowercase, strip port, trim whitespace
   const host = (request.headers.get('host') || '').toLowerCase().split(':')[0].trim();
 

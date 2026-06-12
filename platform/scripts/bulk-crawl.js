@@ -3,13 +3,11 @@
  * Processes domains from crawl_queue, runs the crawler, applies quality scoring.
  */
 const Database = require('better-sqlite3');
-const path = require('path');
-
-const DB_PATH = path.join(__dirname, '..', 'db', 'punycodex.db');
+const { getDbPath } = require('../db/db');
 const { UnicodeCrawler } = require('../crawler');
 const { scoreQuality } = require('./quality-scorer');
 
-const db = new Database(DB_PATH);
+const db = new Database(getDbPath());
 db.pragma('journal_mode = WAL');
 
 async function processQueue(options = {}) {
