@@ -158,10 +158,12 @@ This roadmap is split into six phases. Each phase has concrete deliverables, fil
 **Duration:** 2 → 4 months  
 **Goal:** Add conversational search, AI-generated knowledge panels, and a self-improving ranking system.
 
-### 2.1 “Ask the Oracle” Conversational Search
+### 2.1 “Ask the Oracle” Conversational Search ✅
 
 **Deliverables:**
 - Chat UI embedded in `/search.html` and a dedicated `/oracle.html`.
+- Multi-turn history with pronoun/anaphora resolution.
+- Follow-up suggestion chips.
 - RAG pipeline over:
   - `entries` (lexicon)
   - `indexed_sites` (crawled tenant content)
@@ -171,14 +173,15 @@ This roadmap is split into six phases. Each phase has concrete deliverables, fil
 - If no data supports the answer, the oracle says so.
 
 **File targets:**
-- `platform/api/oracle.js` (new)
-- `platform/public/oracle.html` (new)
-- `platform/public/search.html`
-- `platform/api/query-intel.js`
+- `platform/api/oracle.js`
+- `api/oracle/index.js`
+- `/oracle.html`
+- `/search.html`
 
 **Acceptance criteria:**
 - “Who is Poseidôn and what business is on his domain?” returns a synthesized answer with links.
 - Citation chips are clickable.
+- Follow-up questions like “What does he mean?” resolve to the active entity.
 - Oracle refuses to answer when no relevant data exists.
 
 ### 2.2 AI-Generated Temple Knowledge Panels

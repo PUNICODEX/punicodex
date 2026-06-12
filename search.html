@@ -1316,6 +1316,9 @@
       border: 1px solid var(--border);
       border-radius: 16px;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      max-height: 520px;
     }
     .oracle-header {
       display: flex;
@@ -1325,35 +1328,67 @@
       border-bottom: 1px solid var(--border);
       cursor: pointer;
       user-select: none;
+      flex-shrink: 0;
     }
     .oracle-header:hover { background: var(--surface-hover); }
     .oracle-icon { font-size: 1.1rem; }
     .oracle-title { font-weight: 600; font-size: 0.95rem; color: var(--accent); }
     .oracle-sub { margin-left: auto; font-size: 0.75rem; color: var(--text-muted); }
-    .oracle-body { padding: 1rem; }
-    .oracle-answer {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: var(--text);
-      margin-bottom: 1rem;
+    .oracle-body {
+      padding: 1rem;
+      overflow-y: auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
     }
-    .oracle-answer a { color: var(--link-blue); text-decoration: none; }
-    .oracle-answer a:hover { text-decoration: underline; }
+    .oracle-message {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      max-width: 90%;
+    }
+    .oracle-message.user { align-self: flex-end; }
+    .oracle-message.oracle { align-self: flex-start; }
+    .oracle-bubble {
+      padding: 0.75rem 1rem;
+      border-radius: 14px;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: var(--text);
+    }
+    .oracle-message.user .oracle-bubble {
+      background: var(--accent);
+      color: #0a0a0a;
+      border-bottom-right-radius: 4px;
+    }
+    .oracle-message.oracle .oracle-bubble {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-bottom-left-radius: 4px;
+    }
+    .oracle-bubble a { color: var(--link-blue); text-decoration: none; }
+    .oracle-bubble a:hover { text-decoration: underline; }
+    .oracle-meta {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      padding: 0 0.25rem;
+    }
     .oracle-citations-title {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--text-muted);
-      margin-bottom: 0.5rem;
+      margin: 0.5rem 0 0.25rem;
     }
     .oracle-citations {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
+      gap: 0.4rem;
     }
     .oracle-citation {
-      font-size: 0.8rem;
-      padding: 0.35rem 0.7rem;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
       background: var(--bg);
       border: 1px solid var(--border);
       border-radius: 999px;
@@ -1364,6 +1399,26 @@
     .oracle-citation:hover {
       border-color: var(--accent);
       color: var(--accent);
+    }
+    .oracle-followups {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+    }
+    .oracle-followup {
+      font-size: 0.8rem;
+      padding: 0.4rem 0.75rem;
+      background: rgba(212,175,55,0.08);
+      border: 1px solid rgba(212,175,55,0.25);
+      border-radius: 999px;
+      color: var(--accent);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .oracle-followup:hover {
+      background: rgba(212,175,55,0.18);
+      border-color: var(--accent);
     }
     .oracle-empty {
       color: var(--text-muted);
@@ -1382,6 +1437,37 @@
       color: #ff8a8a;
       font-size: 0.9rem;
     }
+    .oracle-input-row {
+      display: flex;
+      gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      flex-shrink: 0;
+    }
+    .oracle-input {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.6rem 1rem;
+      color: var(--text);
+      font-size: 0.9rem;
+      outline: none;
+    }
+    .oracle-input:focus { border-color: var(--accent); }
+    .oracle-send {
+      background: var(--accent);
+      color: #0a0a0a;
+      border: none;
+      border-radius: 999px;
+      padding: 0 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .oracle-send:hover { opacity: 0.85; }
+    .oracle-send:disabled { opacity: 0.5; cursor: not-allowed; }
   </style>
 </head>
 <body>
@@ -1447,10 +1533,14 @@
     <div class="oracle-header" onclick="toggleOracle()">
       <span class="oracle-icon">🔮</span>
       <span class="oracle-title">Ask the Oracle</span>
-      <span class="oracle-sub" id="oracleSub">AI-curated answer</span>
+      <span class="oracle-sub" id="oracleSub">AI-curated answers</span>
     </div>
     <div class="oracle-body" id="oracleBody">
-      <div class="oracle-empty">Type a question above and the Oracle will answer from the PUNYCODEX knowledge base.</div>
+      <div class="oracle-empty">Type a question below and the Oracle will answer from the PUNYCODEX knowledge base.</div>
+    </div>
+    <div class="oracle-input-row" id="oracleInputRow">
+      <input type="text" class="oracle-input" id="oracleInput" placeholder="Ask a follow-up..." onkeydown="if(event.key==='Enter')sendOracleMessage()">
+      <button class="oracle-send" id="oracleSend" onclick="sendOracleMessage()">Ask</button>
     </div>
   </section>
 
@@ -2175,51 +2265,131 @@
 
     // ====== ASK THE ORACLE ======
     let oracleCollapsed = false;
+    let oracleHistory = [];
+    let oracleThreadId = 0;
 
     function toggleOracle() {
       const body = document.getElementById('oracleBody');
+      const inputRow = document.getElementById('oracleInputRow');
       oracleCollapsed = !oracleCollapsed;
-      body.style.display = oracleCollapsed ? 'none' : 'block';
+      body.style.display = oracleCollapsed ? 'none' : 'flex';
+      inputRow.style.display = oracleCollapsed ? 'none' : 'flex';
     }
 
     async function updateOracle(q) {
+      oracleHistory = [];
+      oracleThreadId = Date.now();
       const body = document.getElementById('oracleBody');
       if (!q) {
-        body.innerHTML = '<div class="oracle-empty">Type a question above and the Oracle will answer from the PUNYCODEX knowledge base.</div>';
+        body.innerHTML = '<div class="oracle-empty">Type a question below and the Oracle will answer from the PUNYCODEX knowledge base.</div>';
         return;
       }
-      body.innerHTML = '<div class="oracle-loading"><span>🔮</span><span>The Oracle is consulting the archives...</span></div>';
+      // Seed the thread with the search query as the first user message.
+      await sendOracleMessage(q, false);
+    }
+
+    async function sendOracleMessage(overrideText, clearInput = true) {
+      const input = document.getElementById('oracleInput');
+      const sendBtn = document.getElementById('oracleSend');
+      const text = overrideText || (input ? input.value.trim() : '');
+      if (!text) return;
+
+      if (clearInput && input) input.value = '';
+      sendBtn.disabled = true;
+
+      addOracleMessage('user', text);
+      addOracleLoading();
+
       try {
-        const res = await fetch(`${API_BASE}/api/oracle/?q=${encodeURIComponent(q)}`);
+        const historyParam = encodeURIComponent(JSON.stringify(oracleHistory));
+        const res = await fetch(`${API_BASE}/api/oracle/?q=${encodeURIComponent(text)}&history=${historyParam}`);
         if (!res.ok) throw new Error('Oracle unavailable');
         const data = await res.json();
-        renderOracle(data);
+        removeOracleLoading();
+        addOracleMessage('oracle', data.answer, data.citations, data.followUps, data.primaryId);
       } catch (err) {
-        body.innerHTML = `<div class="oracle-error">The Oracle is resting: ${escapeHtml(err.message)}</div>`;
+        removeOracleLoading();
+        addOracleMessage('oracle', `The Oracle is resting: ${escapeHtml(err.message)}`, [], []);
+      } finally {
+        sendBtn.disabled = false;
+        if (input) input.focus();
       }
     }
 
-    function renderOracle(data) {
+    function addOracleMessage(role, text, citations = [], followUps = [], primaryId = null) {
       const body = document.getElementById('oracleBody');
-      let html = '';
+      // Remove empty state if present
+      const empty = body.querySelector('.oracle-empty');
+      if (empty) empty.remove();
 
-      if (data.answer) {
-        html += `<div class="oracle-answer">${linkifyOracleAnswer(escapeHtml(data.answer))}</div>`;
-      }
+      const wrapper = document.createElement('div');
+      wrapper.className = `oracle-message ${role}`;
 
-      if (data.citations && data.citations.length) {
-        html += `<div class="oracle-citations-title">Sources</div>`;
-        html += `<div class="oracle-citations">`;
-        for (const c of data.citations) {
-          const label = escapeHtml(c.label);
-          const url = escapeHtml(c.url);
-          const isExternal = url.startsWith('http');
-          html += `<a href="${url}" class="oracle-citation" ${isExternal ? 'target="_blank" rel="noopener"' : ''}>${label}</a>`;
+      const bubble = document.createElement('div');
+      bubble.className = 'oracle-bubble';
+      bubble.innerHTML = role === 'oracle' ? linkifyOracleAnswer(escapeHtml(text)) : escapeHtml(text);
+      wrapper.appendChild(bubble);
+
+      const meta = document.createElement('div');
+      meta.className = 'oracle-meta';
+      meta.textContent = role === 'oracle' ? 'Oracle · just now' : 'You · just now';
+      wrapper.appendChild(meta);
+
+      if (role === 'oracle' && citations && citations.length) {
+        const citeTitle = document.createElement('div');
+        citeTitle.className = 'oracle-citations-title';
+        citeTitle.textContent = 'Sources';
+        wrapper.appendChild(citeTitle);
+        const citeWrap = document.createElement('div');
+        citeWrap.className = 'oracle-citations';
+        for (const c of citations) {
+          const a = document.createElement('a');
+          a.className = 'oracle-citation';
+          a.href = c.url;
+          a.textContent = c.label;
+          if (c.url.startsWith('http')) {
+            a.target = '_blank';
+            a.rel = 'noopener';
+          }
+          citeWrap.appendChild(a);
         }
-        html += `</div>`;
+        wrapper.appendChild(citeWrap);
       }
 
-      body.innerHTML = html || '<div class="oracle-empty">The Oracle has no answer for that yet.</div>';
+      if (role === 'oracle' && followUps && followUps.length) {
+        const fuWrap = document.createElement('div');
+        fuWrap.className = 'oracle-followups';
+        for (const fu of followUps) {
+          const chip = document.createElement('button');
+          chip.className = 'oracle-followup';
+          chip.textContent = fu;
+          chip.onclick = () => sendOracleMessage(fu);
+          fuWrap.appendChild(chip);
+        }
+        wrapper.appendChild(fuWrap);
+      }
+
+      body.appendChild(wrapper);
+      body.scrollTop = body.scrollHeight;
+
+      oracleHistory.push({ role, text, primaryId });
+      // Keep history bounded to last 10 turns to avoid URL length issues.
+      if (oracleHistory.length > 20) oracleHistory = oracleHistory.slice(-20);
+    }
+
+    function addOracleLoading() {
+      const body = document.getElementById('oracleBody');
+      const wrapper = document.createElement('div');
+      wrapper.className = 'oracle-message oracle';
+      wrapper.id = 'oracleLoadingMessage';
+      wrapper.innerHTML = '<div class="oracle-bubble oracle-loading"><span>🔮</span><span>The Oracle is consulting the archives...</span></div>';
+      body.appendChild(wrapper);
+      body.scrollTop = body.scrollHeight;
+    }
+
+    function removeOracleLoading() {
+      const el = document.getElementById('oracleLoadingMessage');
+      if (el) el.remove();
     }
 
     function linkifyOracleAnswer(text) {

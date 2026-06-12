@@ -1,11 +1,10 @@
 /**
- * Ask the Oracle — RAG-style Q&A over the PUNYCODEX knowledge base.
+ * Ask the Oracle — conversational RAG-style Q&A over the PUNYCODEX knowledge base.
  *
- * Phase 1 (current): deterministic retrieval + template synthesis.
- * If an LLM API key is configured via ORACLE_LLM_API_KEY and
- * ORACLE_LLM_MODEL, the pipeline will call it in a future phase.
- * For the prototype we generate answers from retrieved context so the
- * feature works immediately and is fully grounded in PUNYCODEX data.
+ * Phase 2.1: multi-turn chat, follow-up suggestions, and history-aware retrieval.
+ * If an LLM API key is configured via ORACLE_LLM_API_KEY and ORACLE_LLM_MODEL,
+ * the pipeline can optionally call it in a future phase. For now we generate
+ * grounded answers deterministically from retrieved context.
  */
 const Database = require('better-sqlite3');
 const { getDbPath } = require('../db/db');
@@ -39,6 +38,8 @@ const STOP_WORDS = new Set([
 function tokenize(q) {
   return String(q)
     .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-z0-9\s]/g, ' ')
     .split(/\s+/)
     .filter(w => w.length >= 3 && !STOP_WORDS.has(w));
@@ -52,6 +53,8 @@ function detectIntent(q) {
   if (/\b(business|company|tenant|lease|advertiser)\b/.test(lower)) return 'tenant';
   if (/\b(how is|related to|connection between|compare)\b/.test(lower)) return 'relation';
   if (/\b(etymology|origin|root|comes from)\b/.test(lower)) return 'etymology';
+  if (/\b(tell me more|more about|explain|describe)\b/.test(lower)) return 'explore';
+  if (/\b(claim|get this name|buy this domain|how much|price|cost)\b/.test(lower)) return 'acquisition';
   return 'general';
 }
 
@@ -74,6 +77,30 @@ function etymologySummary(etymology) {
     parts.push(`Cognates include ${cognates}.`);
   }
   return parts.join(' ');
+}
+
+function resolveAnaphora(q, history) {
+  const lower = q.toLowerCase();
+  const anaphoric = /\b(he|she|it|they|them|their|this|that|these|those|the name|this name)\b/.test(lower);
+  if (!anaphoric) return q;
+
+  // Find the most recent oracle turn that had a primary entry.
+  for (let i = history.length - 1; i >= 0; i--) {
+    const turn = history[i];
+    if (turn.role === 'oracle' && turn.primaryId) {
+      const database = getDb();
+      const entry = database.prepare('SELECT unicode, ascii FROM entries WHERE id = ?').get(turn.primaryId);
+      if (entry) {
+        const name = entry.unicode || entry.ascii;
+        // Replace common anaphoric phrases with the entity name
+        return lower
+          .replace(/\b(he|she|it|they|them)\b/gi, name)
+          .replace(/\b(this|that|these|those)\b/gi, name)
+          .replace(/\b(the name|this name)\b/gi, name);
+      }
+    }
+  }
+  return q;
 }
 
 function retrieveEntries(q, limit = 3) {
@@ -167,7 +194,45 @@ function retrieveRelated(entry, limit = 3) {
   `).all(entry.id, entry.id, limit);
 }
 
-function synthesizeAnswer(q, entries, sites, related, intent) {
+function generateFollowUps(intent, primary, related = [], sites = []) {
+  const followUps = [];
+  if (!primary) {
+    followUps.push('Who is the most important Greek deity?');
+    followUps.push('What realms are in the Norse pantheon?');
+    followUps.push('Which names are available to lease?');
+    return followUps;
+  }
+
+  const name = primary.unicode || primary.ascii;
+
+  if (intent === 'who' || intent === 'general' || intent === 'explore') {
+    followUps.push(`What does ${name} mean?`);
+    followUps.push(`What is the etymology of ${name}?`);
+  }
+  if (intent === 'meaning' || intent === 'etymology') {
+    followUps.push(`Who is ${name}?`);
+    followUps.push(`Which businesses are on ${name}?`);
+  }
+  if (intent === 'tenant' || intent === 'commercial') {
+    followUps.push(`Who is ${name}?`);
+    followUps.push(`How do I lease ${name}?`);
+  }
+  if (intent === 'relation' || intent === 'general') {
+    if (related.length) {
+      followUps.push(`How is ${name} related to ${related[0].unicode || related[0].ascii}?`);
+    }
+  }
+  if (sites.length && !followUps.some(f => f.includes('business'))) {
+    followUps.push(`Which businesses are on ${name}?`);
+  }
+  if (!followUps.some(f => f.includes('lease')) && (primary.has_flagship || primary.tier)) {
+    followUps.push(`How do I lease ${name}?`);
+  }
+
+  return followUps.slice(0, 3);
+}
+
+function synthesizeAnswer(q, entries, sites, related, intent, history = []) {
   const primary = entries[0];
   const context = {
     query: q,
@@ -199,57 +264,88 @@ function synthesizeAnswer(q, entries, sites, related, intent) {
     });
   }
 
+  const isFollowUp = history.length > 0 && history.some(h => h.role === 'user');
+  const followIntro = isFollowUp && primary ? `Following up on **${primary.unicode}** — ` : '';
+
   if (intent === 'who' && primary) {
-    answer = `**${primary.unicode}** is a ${primary.tier === 'dual' ? 'Dual-Tier' : `Tier ${primary.tier}`} Unicode name from the **${primary.pantheon}** pantheon. ${primary.meaning ? `It means “${primary.meaning}.”` : ''} ${primary.domain ? `The domain or sphere associated with ${primary.unicode} is ${primary.domain}.` : ''}`;
+    answer = `${followIntro}**${primary.unicode}** is a ${primary.tier === 'dual' ? 'Dual-Tier' : `Tier ${primary.tier}`} Unicode name from the **${primary.pantheon}** pantheon. ${primary.meaning ? `It means “${primary.meaning}.”` : ''} ${primary.domain ? `The domain or sphere associated with ${primary.unicode} is ${primary.domain}.` : ''}`;
   } else if (intent === 'meaning' && primary) {
-    answer = `**${primary.unicode}** means “${primary.meaning || 'unknown'}.” ${primary.domain ? `It is associated with ${primary.domain}.` : ''}`;
+    answer = `${followIntro}**${primary.unicode}** means “${primary.meaning || 'unknown'}.” ${primary.domain ? `It is associated with ${primary.domain}.` : ''}`;
   } else if (intent === 'etymology' && primary) {
     const ety = etymologySummary(primary.etymology);
-    answer = `The etymology of **${primary.unicode}**: ${ety || 'We do not yet have a detailed etymology on file.'}`;
+    answer = `${followIntro}The etymology of **${primary.unicode}**: ${ety || 'We do not yet have a detailed etymology on file.'}`;
   } else if (intent === 'tenant' || intent === 'commercial') {
     if (sites.length) {
       const names = sites.map(s => s.tenant_name || s.title || s.domain).join(', ');
-      answer = `On PUNYCODEX, the following businesses are connected to your query: **${names}**.`;
+      answer = `${followIntro}On PUNYCODEX, the following businesses are connected to your query: **${names}**.`;
       if (primary) {
         answer += ` The entry **${primary.unicode}** (${primary.meaning || primary.domain || primary.pantheon}) provides the mythological context for these results.`;
       }
     } else if (primary) {
-      answer = `**${primary.unicode}** is the PUNYCODEX entry for your query, but no tenant is currently leasing this name. You could claim it.`;
+      answer = `${followIntro}**${primary.unicode}** is the PUNYCODEX entry for your query, but no tenant is currently leasing this name. You could claim it.`;
     } else {
       answer = `We don’t have a matching business or entry for “${q}” yet. Try a mythological name or realm.`;
     }
   } else if (intent === 'relation' && primary) {
     if (related.length) {
       const relatedList = related.map(r => `**${r.unicode}**`).join(', ');
-      answer = `**${primary.unicode}** is often mentioned alongside ${relatedList} across the indexed Unicode web.`;
+      answer = `${followIntro}**${primary.unicode}** is often mentioned alongside ${relatedList} across the indexed Unicode web.`;
     } else {
-      answer = `**${primary.unicode}** does not yet have enough semantic connections in our index. As we crawl more sites, related entities will appear here.`;
+      answer = `${followIntro}**${primary.unicode}** does not yet have enough semantic connections in our index. As we crawl more sites, related entities will appear here.`;
     }
+  } else if (intent === 'acquisition' && primary) {
+    answer = `${followIntro}**${primary.unicode}** is a PUNYCODEX entry. You can lease ad space on its temple page or claim the Unicode domain through our platform. Use the “Lease this Space” buttons on the temple page or contact us to discuss domain acquisition.`;
   } else {
-    // general
+    // general / explore
     if (primary) {
-      answer = `Here is what PUNYCODEX knows about **${primary.unicode}**: ${primary.meaning ? `it means “${primary.meaning}.”` : ''} ${primary.domain ? `It is associated with ${primary.domain}.` : ''} ${primary.pantheon ? `It belongs to the ${primary.pantheon} pantheon.` : ''}`;
+      answer = `${followIntro}Here is what PUNYCODEX knows about **${primary.unicode}**: ${primary.meaning ? `it means “${primary.meaning}.”` : ''} ${primary.domain ? `It is associated with ${primary.domain}.` : ''} ${primary.pantheon ? `It belongs to the ${primary.pantheon} pantheon.` : ''}`;
     } else if (sites.length) {
-      answer = `We found these indexed sites related to “${q}”: ${sites.map(s => `**${s.tenant_name || s.title || s.domain}**`).join(', ')}.`;
+      answer = `${followIntro}We found these indexed sites related to “${q}”: ${sites.map(s => `**${s.tenant_name || s.title || s.domain}**`).join(', ')}.`;
     } else {
       answer = `I don’t have enough data in the PUNYCODEX knowledge base to answer “${q}” confidently. Try a deity, realm, or mythological concept.`;
     }
   }
 
-  return { answer, citations, context };
+  const followUps = generateFollowUps(intent, primary, related, sites);
+
+  return { answer, citations, context, followUps, primaryId: primary ? primary.id : null };
 }
 
-function askOracle(q) {
+function askOracle(q, history = []) {
   if (!q || !q.trim()) {
-    return { answer: 'Ask me about a deity, realm, symbol, or business on PUNYCODEX.', citations: [], context: {} };
+    return {
+      answer: 'Ask me about a deity, realm, symbol, or business on PUNYCODEX.',
+      citations: [],
+      context: {},
+      followUps: generateFollowUps('general', null),
+      primaryId: null
+    };
   }
 
-  const intent = detectIntent(q);
-  const entries = retrieveEntries(q);
-  const sites = retrieveSites(q);
-  const related = entries.length ? retrieveRelated(entries[0]) : [];
+  const resolvedQ = resolveAnaphora(q, history);
+  const intent = detectIntent(resolvedQ);
+  let entries = retrieveEntries(resolvedQ);
 
-  return synthesizeAnswer(q, entries, sites, related, intent);
+  // If current query is anaphoric and returned nothing, fall back to the last primary entity.
+  if (!entries.length && resolvedQ !== q && history.length) {
+    for (let i = history.length - 1; i >= 0; i--) {
+      const turn = history[i];
+      if (turn.role === 'oracle' && turn.primaryId) {
+        const database = getDb();
+        const fallback = database.prepare('SELECT * FROM entries WHERE id = ?').get(turn.primaryId);
+        if (fallback) {
+          entries = [fallback];
+          break;
+        }
+      }
+    }
+  }
+
+  const primary = entries[0];
+  const sites = retrieveSites(resolvedQ);
+  const related = primary ? retrieveRelated(primary) : [];
+
+  return synthesizeAnswer(resolvedQ, entries, sites, related, intent, history);
 }
 
 module.exports = { askOracle, detectIntent, retrieveEntries, retrieveSites };
