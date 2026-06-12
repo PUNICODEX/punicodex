@@ -85,14 +85,14 @@ function getSlotById(id) {
 
 // ─── Bookings ───
 
-function createBooking({ slotId, email, companyName, websiteUrl, customHeading, customSubtitle, leaseMonths = 1, siteSlug = null }) {
+function createBooking({ slotId, email, companyName, websiteUrl, customHeading, customSubtitle, leaseMonths = 1, trialMonths = 0, siteSlug = null }) {
   const db = getDb();
   const token = generateToken();
   const stmt = db.prepare(`
-    INSERT INTO bookings (slot_id, email, company_name, website_url, custom_heading, custom_subtitle, status, analytics_token, lease_months, site_slug)
-    VALUES (?, ?, ?, ?, ?, ?, 'pending_payment', ?, ?, ?)
+    INSERT INTO bookings (slot_id, email, company_name, website_url, custom_heading, custom_subtitle, status, analytics_token, lease_months, trial_months, site_slug)
+    VALUES (?, ?, ?, ?, ?, ?, 'pending_payment', ?, ?, ?, ?)
   `);
-  const result = stmt.run(slotId, email, companyName || null, websiteUrl || null, customHeading || null, customSubtitle || null, token, leaseMonths, siteSlug || 'nike');
+  const result = stmt.run(slotId, email, companyName || null, websiteUrl || null, customHeading || null, customSubtitle || null, token, leaseMonths, trialMonths, siteSlug || 'nike');
   const bookingId = result.lastInsertRowid;
 
   // If booking a bundle, reserve the bundle slot and all member slots
@@ -151,13 +151,13 @@ function updateBookingStripeSession(bookingId, sessionId) {
   db.close();
 }
 
-function markBookingPaid(sessionId, paymentIntent, amountCents) {
+function markBookingPaid(sessionId, paymentIntent, amountCents, subscriptionId = null) {
   const db = getDb();
   db.prepare(`
     UPDATE bookings
-    SET stripe_payment_intent = ?, amount_paid_cents = ?, status = 'pending_upload', updated_at = CURRENT_TIMESTAMP
+    SET stripe_payment_intent = ?, amount_paid_cents = ?, stripe_subscription_id = ?, status = 'pending_upload', updated_at = CURRENT_TIMESTAMP
     WHERE stripe_session_id = ?
-  `).run(paymentIntent, amountCents, sessionId);
+  `).run(paymentIntent, amountCents, subscriptionId || null, sessionId);
   const booking = db.prepare('SELECT * FROM bookings WHERE stripe_session_id = ?').get(sessionId);
   db.close();
   return booking;
@@ -186,25 +186,39 @@ function setBookingStatus(bookingId, status, note = null) {
   db.close();
 }
 
+function addMonths(date, months) {
+  const d = new Date(date);
+  d.setUTCMonth(d.getUTCMonth() + months);
+  return d;
+}
+
 async function goLive(bookingId) {
   const db = getDb();
   const bookingMeta = db.prepare(`
-    SELECT b.slot_id, b.lease_months, b.company_name, b.website_url, b.custom_heading,
+    SELECT b.slot_id, b.lease_months, b.trial_months, b.company_name, b.website_url, b.custom_heading,
            s.site_slug
     FROM bookings b
     JOIN ad_slots s ON b.slot_id = s.id
     WHERE b.id = ?
   `).get(bookingId);
 
-  const now = new Date().toISOString();
+  const now = new Date();
+  const nowIso = now.toISOString();
   const months = bookingMeta?.lease_months || 1;
-  const ends = new Date(Date.now() + months * 30 * 24 * 60 * 60 * 1000).toISOString();
+  const trialMonths = bookingMeta?.trial_months || 0;
+  const trialEnds = trialMonths > 0 ? addMonths(now, trialMonths) : now;
+  const trialEndsIso = trialEnds.toISOString();
+  const billingStartsIso = trialMonths > 0 ? trialEndsIso : nowIso;
+  const ends = addMonths(now, months);
+  const endsIso = ends.toISOString();
+
+  const billingStatus = trialMonths > 0 ? 'trialing' : 'active';
 
   db.prepare(`
     UPDATE bookings
-    SET status = 'live', started_at = ?, ends_at = ?, updated_at = CURRENT_TIMESTAMP
+    SET status = 'live', started_at = ?, ends_at = ?, trial_ends_at = ?, billing_starts_at = ?, billing_status = ?, updated_at = CURRENT_TIMESTAMP
     WHERE id = ?
-  `).run(now, ends, bookingId);
+  `).run(nowIso, endsIso, trialEndsIso, billingStartsIso, billingStatus, bookingId);
 
   const booking = db.prepare('SELECT * FROM bookings WHERE id = ?').get(bookingId);
 
@@ -260,11 +274,39 @@ async function goLive(bookingId) {
   return booking;
 }
 
+function setBillingStatus(bookingId, status) {
+  const db = getDb();
+  db.prepare(`UPDATE bookings SET billing_status = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?`).run(status, bookingId);
+  db.close();
+}
+
+function recordTrialReminder(bookingId, type) {
+  const db = getDb();
+  const col = type === '7d' ? 'reminder_7d_sent' : 'reminder_1d_sent';
+  db.prepare(`UPDATE bookings SET ${col} = 1, updated_at = CURRENT_TIMESTAMP WHERE id = ?`).run(bookingId);
+  db.close();
+}
+
+function getTrialsNeedingReminder() {
+  const db = getDb();
+  const rows = db.prepare(`
+    SELECT b.*, s.name as slot_name, s.slug as slot_slug
+    FROM bookings b
+    JOIN ad_slots s ON b.slot_id = s.id
+    WHERE b.status = 'live'
+      AND b.trial_months > 0
+      AND b.trial_ends_at IS NOT NULL
+      AND b.billing_status = 'trialing'
+  `).all();
+  db.close();
+  return rows;
+}
+
 function endBooking(bookingId) {
   const db = getDb();
   const booking = db.prepare('SELECT * FROM bookings WHERE id = ?').get(bookingId);
   db.prepare(`
-    UPDATE bookings SET status = 'ended', updated_at = CURRENT_TIMESTAMP WHERE id = ?
+    UPDATE bookings SET status = 'ended', billing_status = 'canceled', updated_at = CURRENT_TIMESTAMP WHERE id = ?
   `).run(bookingId);
   // Free bundle slot
   db.prepare(`
@@ -462,4 +504,7 @@ module.exports = {
   getSlotCreatives,
   saveSlotCreative,
   updateSlotMeta,
+  setBillingStatus,
+  recordTrialReminder,
+  getTrialsNeedingReminder,
 };

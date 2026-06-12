@@ -1,12 +1,11 @@
 const Database = require('better-sqlite3');
-const path = require('path');
 const crypto = require('crypto');
+const { getDbPath } = require('../db/db');
 
-const DB_PATH = path.join(__dirname, '..', 'db', 'punycodex.db');
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'nike-admin-2026';
 
 function getDb() {
-  const db = new Database(DB_PATH);
+  const db = new Database(getDbPath());
   db.pragma('journal_mode = WAL');
   return db;
 }
@@ -68,6 +67,7 @@ function getBookingStats(siteSlug = null) {
   const totalPending = db.prepare(`SELECT COUNT(*) as c FROM bookings WHERE status = 'pending_approval'${siteClause}`).get().c;
   const totalPendingPayment = db.prepare(`SELECT COUNT(*) as c FROM bookings WHERE status = 'pending_payment'${siteClause}`).get().c;
   const totalPendingUpload = db.prepare(`SELECT COUNT(*) as c FROM bookings WHERE status = 'pending_upload'${siteClause}`).get().c;
+  const totalTrialing = db.prepare(`SELECT COUNT(*) as c FROM bookings WHERE status = 'live' AND billing_status = 'trialing'${siteClause}`).get().c;
   const revenue = db.prepare(`SELECT COALESCE(SUM(amount_paid_cents), 0) as c FROM bookings WHERE status IN ('live', 'ended', 'approved')${siteClause}`).get().c;
   db.close();
   return {
@@ -75,6 +75,7 @@ function getBookingStats(siteSlug = null) {
     totalPending,
     totalPendingPayment,
     totalPendingUpload,
+    totalTrialing,
     revenueCents: revenue,
     revenueDollars: (revenue / 100).toFixed(2),
   };

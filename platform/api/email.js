@@ -195,11 +195,15 @@ async function sendVerificationCode({ email, code }) {
   });
 }
 
-async function sendBookingConfirmation({ email, slotName, companyName, amountCents, token, customHeading, customSubtitle, leaseMonths = 1 }) {
+async function sendBookingConfirmation({ email, slotName, companyName, amountCents, token, customHeading, customSubtitle, leaseMonths = 1, trialMonths = 0 }) {
   const dashboardUrl = getDashboardUrl(token);
   const panelUrl = `${PLATFORM_URL}/advertiser-panel.html?token=${token}`;
   const durationLabel = leaseMonths === 12 ? '12 months' : '1 month';
+  const trialLabel = trialMonths > 0 ? `${trialMonths}-month free trial, then ` : '';
   const priceLabel = leaseMonths === 12 ? `$${(amountCents / 100).toFixed(2)}` : `$${(amountCents / 100).toFixed(2)}/mo`;
+  const trialBadge = trialMonths > 0
+    ? `<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:1rem;margin:1rem 0;"><strong>Free trial:</strong> Your first ${trialMonths} month${trialMonths > 1 ? 's' : ''} are free. Billing begins after the trial ends.</div>`
+    : '';
   return sendEmail({
     to: email,
     subject: `Your reservation for ${slotName} — Complete your setup`,
@@ -207,7 +211,8 @@ async function sendBookingConfirmation({ email, slotName, companyName, amountCen
       <div style="font-family:system-ui,sans-serif;max-width:520px;margin:0 auto;color:#111;">
         <h2 style="color:#d4af37;">Níkē.com — Reservation Confirmed</h2>
         <p>Hi ${companyName || 'there'},</p>
-        <p>You've reserved <strong>${slotName}</strong> for <strong>${durationLabel}</strong> at <strong>${priceLabel}</strong>.</p>
+        <p>You've reserved <strong>${slotName}</strong> for <strong>${durationLabel}</strong> at <strong>${trialLabel}${priceLabel}</strong>.</p>
+        ${trialBadge}
         ${customHeading ? `<p><strong>Heading:</strong> ${customHeading}</p>` : ''}
         ${customSubtitle ? `<p><strong>Subtitle:</strong> ${customSubtitle}</p>` : ''}
         <p>Manage everything from your advertiser panel:</p>
@@ -216,6 +221,42 @@ async function sendBookingConfirmation({ email, slotName, companyName, amountCen
           <a href="${dashboardUrl}" style="display:block;background:transparent;color:#d4af37;border:2px solid #d4af37;padding:14px;text-align:center;text-decoration:none;border-radius:8px;font-weight:600;">Analytics Dashboard</a>
         </div>
         <p style="color:#666;font-size:0.8rem;">Your panel link is unique to you. Keep it safe.</p>
+      </div>
+    `,
+  });
+}
+
+async function notifyTrialStarted({ email, slotName, companyName, trialMonths, trialEndsAt, bookingToken }) {
+  const dashboardUrl = getDashboardUrl(bookingToken);
+  const endDate = trialEndsAt ? new Date(trialEndsAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'the end of your trial';
+  return sendEmail({
+    to: email,
+    subject: `Your ${trialMonths}-month free trial for ${slotName} has started`,
+    html: `
+      <div style="font-family:system-ui,sans-serif;max-width:520px;margin:0 auto;color:#111;">
+        <h2 style="color:#d4af37;">Níkē.com — Trial Started</h2>
+        <p>Hi ${companyName || 'there'},</p>
+        <p>Your ad on <strong>${slotName}</strong> is now live on its <strong>${trialMonths}-month free trial</strong>.</p>
+        <p>Billing will begin on <strong>${endDate}</strong>. We'll send reminders 7 days and 1 day before billing starts.</p>
+        <p><a href="${dashboardUrl}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">View Dashboard</a></p>
+      </div>
+    `,
+  });
+}
+
+async function notifyTrialEnding({ email, slotName, companyName, daysLeft, trialEndsAt, bookingToken }) {
+  const dashboardUrl = getDashboardUrl(bookingToken);
+  const endDate = trialEndsAt ? new Date(trialEndsAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'soon';
+  return sendEmail({
+    to: email,
+    subject: `Your ${slotName} free trial ends in ${daysLeft} day${daysLeft === 1 ? '' : 's'}`,
+    html: `
+      <div style="font-family:system-ui,sans-serif;max-width:520px;margin:0 auto;color:#111;">
+        <h2 style="color:#d4af37;">Níkē.com — Trial Ending Soon</h2>
+        <p>Hi ${companyName || 'there'},</p>
+        <p>Your free trial for <strong>${slotName}</strong> ends on <strong>${endDate}</strong> (${daysLeft} day${daysLeft === 1 ? '' : 's'} left).</p>
+        <p>Billing will start automatically after the trial ends. If you want to cancel before then, contact us.</p>
+        <p><a href="${dashboardUrl}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">View Dashboard</a></p>
       </div>
     `,
   });
@@ -270,6 +311,8 @@ module.exports = {
   notifyApproved,
   notifyRejected,
   notifyLive,
+  notifyTrialStarted,
+  notifyTrialEnding,
   sendDashboardLinks,
   sendVerificationCode,
   sendBookingConfirmation,

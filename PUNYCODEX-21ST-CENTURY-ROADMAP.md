@@ -110,19 +110,23 @@ This roadmap is split into six phases. Each phase has concrete deliverables, fil
 - Human can run `node platform/scripts/ai-curator.js` and get a JSON report.
 - Scores appear on temple pages.
 
-### 1.5 Tenant Onboarding & Free Lease
+### 1.5 Tenant Onboarding & Free Lease ✅
 
 **Deliverables:**
 - Free trial lease mode: 3 or 6 months.
 - Stripe subscription scheduled to start after trial.
 - Reminder emails at 7 days and 1 day before billing.
-- Admin can convert a trial to paid or end it.
+- Admin can create, end, or run reminders for trial leases.
 
 **File targets:**
 - `platform/api/bookings.js`
 - `platform/api/stripe.js`
 - `platform/api/email.js`
+- `platform/api/admin.js`
+- `platform/server.js`
 - `platform/public/admin-bookings.html`
+- `platform/scripts/trial-reminders.js`
+- `platform/db/migrate-trial-columns.js`
 
 **Acceptance criteria:**
 - A booking created with `leaseMonths` is marked as trial until the end date.

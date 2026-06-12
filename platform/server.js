@@ -9,11 +9,11 @@ const { getSites, getSiteByPunycode, searchSites, searchWeb, getAvailability, se
 const { UnicodeCrawler } = require('./crawler');
 const { processQueue } = require('./scripts/bulk-crawl');
 const { didYouMean, relatedSearches, autocomplete } = require('./api/query-intel');
-const { getSlots, getSlotBySlug, getSlotById, createBooking, getBookingByToken, getBookingById, getBookingByStripeSession, updateBookingStripeSession, markBookingPaid, saveCreative, setBookingStatus, goLive, endBooking, getBookingsByEmail, recordEvent, getDashboardMetrics, getBundleMembers, getSlotCreatives, saveSlotCreative, updateSlotMeta, isBundleSlot } = require('./api/bookings');
+const { getSlots, getSlotBySlug, getSlotById, createBooking, getBookingByToken, getBookingById, getBookingByStripeSession, updateBookingStripeSession, markBookingPaid, saveCreative, setBookingStatus, goLive, endBooking, getBookingsByEmail, recordEvent, getDashboardMetrics, getBundleMembers, getSlotCreatives, saveSlotCreative, updateSlotMeta, isBundleSlot, setBillingStatus, recordTrialReminder, getTrialsNeedingReminder } = require('./api/bookings');
 const { login: adminLogin, validateAdminToken, getAllBookings, getBookingStats } = require('./api/admin');
 const { createBookingCheckoutSession, handleWebhook } = require('./api/stripe');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY || 'sk_test_placeholder');
-const { notifyUploadReady, notifyAdminPending, notifyApproved, notifyRejected, notifyLive, sendDashboardLinks, sendVerificationCode, sendBookingConfirmation, sendAnalyticsReport } = require('./api/email');
+const { notifyUploadReady, notifyAdminPending, notifyApproved, notifyRejected, notifyLive, notifyTrialStarted, notifyTrialEnding, sendDashboardLinks, sendVerificationCode, sendBookingConfirmation, sendAnalyticsReport } = require('./api/email');
 const fs = require('fs');
 const crypto = require('crypto');
 
@@ -471,10 +471,13 @@ function validateMeta(width, customHeading, customSubtitle) {
 
 app.post('/api/bookings', async (req, res) => {
   try {
-    const { slotId, email, companyName, websiteUrl, customHeading, customSubtitle, leaseMonths = 1 } = req.body;
+    const { slotId, email, companyName, websiteUrl, customHeading, customSubtitle, leaseMonths = 1, trialMonths = 0 } = req.body;
     if (!slotId || !email) return res.status(400).json({ error: 'slotId and email required' });
     const months = parseInt(leaseMonths, 10) || 1;
     if (![1, 12].includes(months)) return res.status(400).json({ error: 'leaseMonths must be 1 or 12' });
+    const trial = parseInt(trialMonths, 10) || 0;
+    if (![0, 3, 6].includes(trial)) return res.status(400).json({ error: 'trialMonths must be 0, 3, or 6' });
+    if (trial >= months) return res.status(400).json({ error: 'trialMonths must be less than leaseMonths' });
 
     const slot = getSlotById(slotId);
     if (!slot) return res.status(404).json({ error: 'Slot not found' });
@@ -485,8 +488,9 @@ app.post('/api/bookings', async (req, res) => {
 
     const siteSlug = slot.site_slug || 'nike';
     const siteName = siteSlug === 'hermes' ? 'Hermês' : 'Níkē';
-    const { id, token } = createBooking({ slotId, email, companyName, websiteUrl, customHeading, customSubtitle, leaseMonths: months, siteSlug });
-    const totalCents = slot.price_cents * months;
+    const { id, token } = createBooking({ slotId, email, companyName, websiteUrl, customHeading, customSubtitle, leaseMonths: months, trialMonths: trial, siteSlug });
+    const isTrial = trial > 0;
+    const amountCents = isTrial ? slot.price_cents : slot.price_cents * months;
 
     // Create Stripe checkout session
     let stripeResult;
@@ -495,9 +499,10 @@ app.post('/api/bookings', async (req, res) => {
         bookingId: id,
         email,
         slotName: slot.name,
-        amountCents: totalCents,
+        amountCents,
         token,
         leaseMonths: months,
+        trialMonths: trial,
         siteSlug,
         siteName,
       });
@@ -515,11 +520,12 @@ app.post('/api/bookings', async (req, res) => {
       email,
       slotName: slot.name,
       companyName,
-      amountCents: totalCents,
+      amountCents: isTrial ? amountCents * (months - trial) : amountCents,
       token,
       customHeading,
       customSubtitle,
       leaseMonths: months,
+      trialMonths: trial,
     }).catch(() => {});
     // Note: emails still show Níkē branding; dynamic branding enhancement deferred
 
@@ -528,7 +534,9 @@ app.post('/api/bookings', async (req, res) => {
       token,
       stripeUrl: stripeResult.sessionUrl,
       leaseMonths: months,
-      totalCents,
+      trialMonths: trial,
+      totalCents: amountCents,
+      mode: stripeResult.mode,
     });
   } catch (err) {
     console.error('Booking creation error:', err);
@@ -859,6 +867,42 @@ app.get('/api/admin/bookings', requireAdmin, (req, res) => {
   } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
+app.post('/api/admin/bookings/create', requireAdmin, (req, res) => {
+  try {
+    const { slotId, email, companyName, websiteUrl, customHeading, customSubtitle, leaseMonths = 12, trialMonths = 3 } = req.body;
+    if (!slotId || !email) return res.status(400).json({ error: 'slotId and email required' });
+    const months = parseInt(leaseMonths, 10) || 12;
+    const trial = parseInt(trialMonths, 10) || 0;
+    if (![1, 12].includes(months)) return res.status(400).json({ error: 'leaseMonths must be 1 or 12' });
+    if (![0, 3, 6].includes(trial)) return res.status(400).json({ error: 'trialMonths must be 0, 3, or 6' });
+    if (trial >= months) return res.status(400).json({ error: 'trialMonths must be less than leaseMonths' });
+
+    const slot = getSlotById(slotId);
+    if (!slot) return res.status(404).json({ error: 'Slot not found' });
+
+    const metaError = validateMeta(slot.width, customHeading, customSubtitle);
+    if (metaError) return res.status(400).json({ error: metaError });
+
+    const siteSlug = slot.site_slug || 'nike';
+    const { id, token } = createBooking({ slotId, email, companyName, websiteUrl, customHeading, customSubtitle, leaseMonths: months, trialMonths: trial, siteSlug });
+    setBookingStatus(id, 'pending_upload', 'Admin-created trial lease');
+
+    sendBookingConfirmation({
+      email,
+      slotName: slot.name,
+      companyName,
+      amountCents: trial > 0 ? slot.price_cents : slot.price_cents * months,
+      token,
+      customHeading,
+      customSubtitle,
+      leaseMonths: months,
+      trialMonths: trial,
+    }).catch(() => {});
+
+    res.json({ bookingId: id, token, status: 'pending_upload', leaseMonths: months, trialMonths: trial });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
 app.post('/api/admin/bookings/:id/approve', requireAdmin, (req, res) => {
   try {
     const booking = getBookingById(req.params.id);
@@ -896,21 +940,52 @@ app.post('/api/admin/bookings/:id/golive', requireAdmin, async (req, res) => {
     const booking = getBookingById(req.params.id);
     if (!booking) return res.status(404).json({ error: 'Booking not found' });
     await goLive(req.params.id);
-    notifyLive({
-      email: booking.email,
-      slotName: booking.slot_name,
-      companyName: booking.company_name,
-      bookingToken: booking.analytics_token,
-      leaseMonths: booking.lease_months,
-    }).catch(() => {});
-    res.json({ success: true, status: 'live' });
+    const isTrial = (booking.trial_months || 0) > 0;
+    if (isTrial) {
+      notifyTrialStarted({
+        email: booking.email,
+        slotName: booking.slot_name,
+        companyName: booking.company_name,
+        trialMonths: booking.trial_months,
+        trialEndsAt: booking.trial_ends_at,
+        bookingToken: booking.analytics_token,
+      }).catch(() => {});
+    } else {
+      notifyLive({
+        email: booking.email,
+        slotName: booking.slot_name,
+        companyName: booking.company_name,
+        bookingToken: booking.analytics_token,
+        leaseMonths: booking.lease_months,
+      }).catch(() => {});
+    }
+    res.json({ success: true, status: 'live', trial: isTrial });
   } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
-app.post('/api/admin/bookings/:id/end', requireAdmin, (req, res) => {
+app.post('/api/admin/bookings/:id/end', requireAdmin, async (req, res) => {
   try {
+    const booking = getBookingById(req.params.id);
+    if (!booking) return res.status(404).json({ error: 'Booking not found' });
+    // Cancel Stripe subscription if one exists
+    if (booking.stripe_subscription_id) {
+      try {
+        await stripe.subscriptions.cancel(booking.stripe_subscription_id);
+      } catch (stripeErr) {
+        console.error('Stripe cancel error:', stripeErr.message);
+      }
+    }
     endBooking(req.params.id);
     res.json({ success: true, status: 'ended' });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+// Trigger trial reminders manually or via cron
+app.post('/api/admin/trial-reminders', requireAdmin, async (req, res) => {
+  try {
+    const { runTrialReminders } = require('./scripts/trial-reminders');
+    const result = await runTrialReminders();
+    res.json({ success: true, ...result });
   } catch (err) { res.status(500).json({ error: err.message }); }
 });
 

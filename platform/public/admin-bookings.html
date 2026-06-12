@@ -250,6 +250,47 @@
             padding: 4rem 2rem;
             color: var(--text-muted);
         }
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            padding: 2rem;
+        }
+        .modal {
+            background: var(--bg-elevated);
+            border: 1px solid var(--gold-dim);
+            border-radius: 12px;
+            width: 100%;
+            max-width: 420px;
+            padding: 1.5rem;
+        }
+        .modal h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .modal input, .modal select {
+            width: 100%;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--gold-dim);
+            border-radius: 8px;
+            padding: 0.65rem 0.9rem;
+            color: var(--text);
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+            outline: none;
+        }
+        .modal input:focus, .modal select:focus { border-color: var(--gold); }
+        .modal-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .modal-actions button { flex: 1; }
     </style>
 </head>
 <body>
@@ -330,8 +371,11 @@
                     <div class="admin-stats">
                         <div class="stat"><div class="stat-value">${stats.totalLive}</div><div class="stat-label">Live</div></div>
                         <div class="stat"><div class="stat-value">${stats.totalPending}</div><div class="stat-label">Pending</div></div>
+                        <div class="stat"><div class="stat-value">${stats.totalTrialing || 0}</div><div class="stat-label">Trialing</div></div>
                         <div class="stat"><div class="stat-value">$${stats.revenueDollars}</div><div class="stat-label">Revenue</div></div>
                     </div>
+                    <button class="action-btn btn-golive" onclick="runTrialReminders()" style="flex:none;min-width:auto;padding:0.5rem 1rem;">Run Trial Reminders</button>
+                    <button class="action-btn btn-golive" onclick="showCreateForm()" style="flex:none;min-width:auto;padding:0.5rem 1rem;">New Trial</button>
                 </div>
                 <div class="admin-filters">
                     ${filters.map(f => `
@@ -351,6 +395,10 @@
             const showThumb = b.creative_path ? thumb : '';
             const thumbClass = b.creative_path ? '' : ' placeholder';
             const bundleBadge = b.is_bundle ? '<span class="bundle-badge-admin">Bundle</span>' : '';
+            const trialBadge = (b.trial_months || 0) > 0 ? '<span class="bundle-badge-admin" style="background:#4ade80;color:#000;">Trial</span>' : '';
+            const trialInfo = (b.trial_months || 0) > 0 && b.trial_ends_at
+              ? `<div class="booking-detail" style="color:#4ade80;">Trial ends ${new Date(b.trial_ends_at).toLocaleDateString()}</div>`
+              : '';
 
             let actions = '';
             if (b.status === 'pending_approval') {
@@ -373,7 +421,7 @@
             return `
                 <div class="booking-card">
                     <div class="booking-card-header">
-                        <span class="booking-card-slot">${b.slot_name}${bundleBadge}</span>
+                        <span class="booking-card-slot">${b.slot_name}${bundleBadge}${trialBadge}</span>
                         <span class="booking-card-status status-${b.status}">${b.status.replace(/_/g, ' ')}</span>
                     </div>
                     <div class="booking-card-body">
@@ -383,7 +431,8 @@
                         <div class="booking-detail">${b.website_url || 'No website'}</div>
                         ${b.custom_heading ? `<div class="booking-detail" style="color:var(--gold);">Heading: ${b.custom_heading}</div>` : ''}
                         ${b.custom_subtitle ? `<div class="booking-detail" style="color:var(--gold);">Subtitle: ${b.custom_subtitle}</div>` : ''}
-                        <div class="booking-detail">$${(b.amount_paid_cents / 100).toFixed(2)} &middot; ${b.width}×${b.height} &middot; ${b.lease_months === 12 ? '12 months' : '1 month'}</div>
+                        <div class="booking-detail">$${(b.amount_paid_cents / 100).toFixed(2)} &middot; ${b.width}×${b.height} &middot; ${b.lease_months || 1} month${(b.lease_months || 1) > 1 ? 's' : ''}${(b.trial_months || 0) > 0 ? ` (first ${b.trial_months} free)` : ''}</div>
+                        ${trialInfo}
                         ${b.admin_note ? `<div class="booking-detail" style="color:#ff6b6b;">Note: ${b.admin_note}</div>` : ''}
                     </div>
                     <div class="booking-actions">
@@ -439,6 +488,80 @@
             } catch (err) {
                 btn.textContent = 'Failed';
                 setTimeout(() => btn.textContent = 'Send Report', 2000);
+            }
+        }
+
+        async function runTrialReminders() {
+            const btn = event.target;
+            const original = btn.textContent;
+            btn.textContent = 'Running...';
+            try {
+                const data = await api('/api/admin/trial-reminders', { method: 'POST', body: JSON.stringify({}) });
+                btn.textContent = `Sent ${data.sent7 + data.sent1}`;
+                setTimeout(() => { btn.textContent = original; loadBookings(); }, 2000);
+            } catch (err) {
+                btn.textContent = 'Failed';
+                setTimeout(() => btn.textContent = original, 2000);
+            }
+        }
+
+        function showCreateForm() {
+            const modal = document.createElement('div');
+            modal.className = 'modal-overlay';
+            modal.id = 'create-modal';
+            modal.innerHTML = `
+                <div class="modal">
+                    <h3>Create Trial Lease</h3>
+                    <select id="create-slot"></select>
+                    <input type="email" id="create-email" placeholder="Tenant email">
+                    <input type="text" id="create-company" placeholder="Company name">
+                    <input type="url" id="create-website" placeholder="Website URL">
+                    <select id="create-lease"><option value="12">12 months</option><option value="1">1 month</option></select>
+                    <select id="create-trial"><option value="3">3 months free</option><option value="6">6 months free</option><option value="0">No trial</option></select>
+                    <div class="modal-actions">
+                        <button class="action-btn btn-end" onclick="closeCreateForm()">Cancel</button>
+                        <button class="action-btn btn-golive" onclick="submitCreateForm()">Create</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            loadCreateSlots();
+        }
+
+        function closeCreateForm() {
+            const modal = document.getElementById('create-modal');
+            if (modal) modal.remove();
+        }
+
+        async function loadCreateSlots() {
+            const select = document.getElementById('create-slot');
+            const data = await api('/api/slots');
+            select.innerHTML = (data.slots || []).map(s => `<option value="${s.id}">${s.name} (${s.site_slug}) — $${(s.price_cents/100).toFixed(2)}/mo</option>`).join('');
+        }
+
+        async function submitCreateForm() {
+            const slotId = parseInt(document.getElementById('create-slot').value, 10);
+            const email = document.getElementById('create-email').value.trim();
+            const companyName = document.getElementById('create-company').value.trim();
+            const websiteUrl = document.getElementById('create-website').value.trim();
+            const leaseMonths = parseInt(document.getElementById('create-lease').value, 10);
+            const trialMonths = parseInt(document.getElementById('create-trial').value, 10);
+            if (!email || !email.includes('@')) return alert('Valid email required');
+            if (trialMonths >= leaseMonths) return alert('Trial must be shorter than lease');
+
+            const btn = event.target;
+            btn.textContent = 'Creating...';
+            try {
+                const data = await api('/api/admin/bookings/create', {
+                    method: 'POST',
+                    body: JSON.stringify({ slotId, email, companyName, websiteUrl, leaseMonths, trialMonths }),
+                });
+                if (data.error) throw new Error(data.error);
+                closeCreateForm();
+                loadBookings();
+            } catch (err) {
+                alert(err.message);
+                btn.textContent = 'Create';
             }
         }
 

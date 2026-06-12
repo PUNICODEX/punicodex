@@ -8,9 +8,10 @@
     },
     "scripts": {
         "test": "node test/run-all.js",
-        "db": "node platform/db/init.js && node platform/db/migrate-crawler.js",
+        "db": "node platform/db/init.js && node platform/db/migrate-crawler.js && node platform/db/migrate-trial-columns.js",
         "platform": "node platform/server.js",
-        "db-init": "node platform/db/init.js && node platform/db/migrate-crawler.js",
+        "db-init": "node platform/db/init.js && node platform/db/migrate-crawler.js && node platform/db/migrate-trial-columns.js",
+        "trial-reminders": "node platform/scripts/trial-reminders.js",
         "generate-temples": "node scripts/generate-temples.js",
         "validate": "node type/js/validate.js && node scripts/validate-accuracy.js && node type/js/test-engine.js",
         "export-platform": "node scripts/export-platform-lexicon.js",

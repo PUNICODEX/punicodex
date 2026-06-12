@@ -35,22 +35,26 @@ async function createCheckoutSession({ claimId, email, unicodeVariant, templateT
   return { sessionUrl: session.url, sessionId: session.id };
 }
 
-async function createBookingCheckoutSession({ bookingId, email, slotName, amountCents, token, leaseMonths = 1, siteSlug = 'nike', siteName = 'Níkē' }) {
+async function createBookingCheckoutSession({ bookingId, email, slotName, amountCents, token, leaseMonths = 1, trialMonths = 0, siteSlug = 'nike', siteName = 'Níkē' }) {
+  const isTrial = trialMonths > 0;
   const durationLabel = leaseMonths === 12 ? '12-month' : '30-day';
-  const session = await stripe.checkout.sessions.create({
-    payment_method_types: ['card'],
-    line_items: [{
-      price_data: {
-        currency: 'usd',
-        product_data: {
-          name: `${siteName} Ad Space: ${slotName}`,
-          description: `${durationLabel} advertising placement on ${siteName}.com`,
-        },
-        unit_amount: amountCents,
+  const trialLabel = isTrial ? `${trialMonths}-month free trial, then ` : '';
+
+  const lineItem = {
+    price_data: {
+      currency: 'usd',
+      product_data: {
+        name: `${siteName} Ad Space: ${slotName}`,
+        description: `${trialLabel}${durationLabel} advertising placement on ${siteName}.com`,
       },
-      quantity: 1,
-    }],
-    mode: 'payment',
+      unit_amount: amountCents,
+    },
+    quantity: 1,
+  };
+
+  const sessionConfig = {
+    payment_method_types: ['card'],
+    line_items: [lineItem],
     success_url: `${process.env.PLATFORM_URL || 'http://localhost:3456'}/sites/${siteSlug}/?booking=${token}&paid=1`,
     cancel_url: `${process.env.PLATFORM_URL || 'http://localhost:3456'}/sites/${siteSlug}/?booking=${token}&canceled=1`,
     customer_email: email,
@@ -59,10 +63,26 @@ async function createBookingCheckoutSession({ bookingId, email, slotName, amount
       booking_id: String(bookingId),
       slot_name: slotName,
       lease_months: String(leaseMonths),
+      trial_months: String(trialMonths),
     },
-  });
+  };
 
-  return { sessionUrl: session.url, sessionId: session.id };
+  if (isTrial) {
+    sessionConfig.mode = 'subscription';
+    lineItem.price_data.recurring = { interval: 'month' };
+    sessionConfig.subscription_data = {
+      trial_period_days: trialMonths * 30,
+      metadata: {
+        booking_id: String(bookingId),
+      },
+    };
+  } else {
+    sessionConfig.mode = 'payment';
+  }
+
+  const session = await stripe.checkout.sessions.create(sessionConfig);
+
+  return { sessionUrl: session.url, sessionId: session.id, mode: sessionConfig.mode };
 }
 
 async function handleWebhook(payload, signature) {
@@ -85,8 +105,12 @@ async function handleWebhook(payload, signature) {
     
     if (metadata.type === 'booking') {
       const { markBookingPaid } = require('./bookings');
-      const booking = markBookingPaid(session.id, session.payment_intent, session.amount_total);
-      return { event: 'payment.success', type: 'booking', booking };
+      const isSubscription = session.mode === 'subscription';
+      const paymentIntent = isSubscription ? (session.subscription || null) : session.payment_intent;
+      const amountTotal = isSubscription ? 0 : session.amount_total;
+      const subscriptionId = isSubscription ? (session.subscription || null) : null;
+      const booking = markBookingPaid(session.id, paymentIntent, amountTotal, subscriptionId);
+      return { event: 'payment.success', type: 'booking', booking, mode: session.mode };
     } else {
       const claim = markClaimPaid(session.id, session.payment_intent);
       return { event: 'payment.success', type: 'claim', claim };
