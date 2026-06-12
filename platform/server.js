@@ -884,11 +884,11 @@ app.post('/api/admin/bookings/:id/reject', requireAdmin, (req, res) => {
   } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
-app.post('/api/admin/bookings/:id/golive', requireAdmin, (req, res) => {
+app.post('/api/admin/bookings/:id/golive', requireAdmin, async (req, res) => {
   try {
     const booking = getBookingById(req.params.id);
     if (!booking) return res.status(404).json({ error: 'Booking not found' });
-    goLive(req.params.id);
+    await goLive(req.params.id);
     notifyLive({
       email: booking.email,
       slotName: booking.slot_name,

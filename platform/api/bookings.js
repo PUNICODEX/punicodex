@@ -1,11 +1,10 @@
 const Database = require('better-sqlite3');
-const path = require('path');
 const crypto = require('crypto');
-
-const DB_PATH = path.join(__dirname, '..', 'db', 'punycodex.db');
+const { getDbPath } = require('../db/db');
+const { extractAndSave } = require('./keyword-extractor');
 
 function getDb() {
-  const db = new Database(DB_PATH);
+  const db = new Database(getDbPath());
   db.pragma('journal_mode = WAL');
   return db;
 }
@@ -187,21 +186,32 @@ function setBookingStatus(bookingId, status, note = null) {
   db.close();
 }
 
-function goLive(bookingId) {
+async function goLive(bookingId) {
   const db = getDb();
-  const bookingMeta = db.prepare('SELECT slot_id, lease_months FROM bookings WHERE id = ?').get(bookingId);
+  const bookingMeta = db.prepare(`
+    SELECT b.slot_id, b.lease_months, b.company_name, b.website_url, b.custom_heading,
+           s.site_slug
+    FROM bookings b
+    JOIN ad_slots s ON b.slot_id = s.id
+    WHERE b.id = ?
+  `).get(bookingId);
+
   const now = new Date().toISOString();
   const months = bookingMeta?.lease_months || 1;
   const ends = new Date(Date.now() + months * 30 * 24 * 60 * 60 * 1000).toISOString();
+
   db.prepare(`
     UPDATE bookings
     SET status = 'live', started_at = ?, ends_at = ?, updated_at = CURRENT_TIMESTAMP
     WHERE id = ?
   `).run(now, ends, bookingId);
+
   const booking = db.prepare('SELECT * FROM bookings WHERE id = ?').get(bookingId);
+
   // Set bundle slot live
   db.prepare(`UPDATE ad_slots SET status = 'live', current_booking_id = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?`)
     .run(bookingId, booking.slot_id);
+
   // Cascade to all member slots
   if (isBundleSlot(booking.slot_id)) {
     const members = getBundleMembers(booking.slot_id);
@@ -210,6 +220,42 @@ function goLive(bookingId) {
       cascadeStmt.run(bookingId, memberId);
     }
   }
+
+  // Push tenant details to indexed_sites so the search engine can crawl
+  // their real website and extract SEO keywords.
+  if (bookingMeta?.website_url && bookingMeta?.site_slug) {
+    db.prepare(`
+      UPDATE indexed_sites
+      SET tenant_name = COALESCE(tenant_name, ?),
+          tenant_front_url = COALESCE(tenant_front_url, ?),
+          tenant_category = COALESCE(tenant_category, ?),
+          lease_status = COALESCE(lease_status, 'leased')
+      WHERE lexicon_entry_id = ? AND status = 'active'
+    `).run(
+      bookingMeta.company_name || null,
+      bookingMeta.website_url,
+      bookingMeta.custom_heading || bookingMeta.company_name || null,
+      bookingMeta.site_slug
+    );
+
+    // Crawl the tenant's real site and extract keywords immediately.
+    try {
+      const site = db.prepare(`
+        SELECT * FROM indexed_sites
+        WHERE lexicon_entry_id = ? AND status = 'active'
+        ORDER BY is_flagship DESC, id ASC
+        LIMIT 1
+      `).get(bookingMeta.site_slug);
+      if (site) {
+        db.close();
+        await extractAndSave(site);
+        return booking;
+      }
+    } catch (err) {
+      console.error(`Keyword extraction failed for booking ${bookingId}:`, err.message);
+    }
+  }
+
   db.close();
   return booking;
 }
