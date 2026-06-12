@@ -2,6 +2,7 @@ const Database = require('better-sqlite3');
 const path = require('path');
 const { embedText, rerankWithVectors, searchAllVectors } = require('./semantic-search');
 const { getDbPath } = require('../db/db');
+const { searchKeywords } = require('./keyword-extractor');
 
 const DB_PATH = getDbPath();
 let db;
@@ -297,6 +298,48 @@ async function searchWeb(q, limit = 20, mode = 'all') {
     }
   } catch (e) {
     console.error('FTS5 error:', e.message);
+  }
+
+  // ====== KEYWORD INDEX FALLBACK ======
+  // Tenants can provide a front URL; we crawl it and extract their existing
+  // SEO keywords rather than forcing them to type keywords into a dashboard.
+  // Surface those sites when the query matches their extracted keyword set.
+  try {
+    if (results.length < limit) {
+      const keywordMatches = searchKeywords(q, limit);
+      const existingIds = new Set(results.map(r => r.id));
+      for (const row of keywordMatches) {
+        if (existingIds.has(row.id)) continue;
+        existingIds.add(row.id);
+        const rawSnippet = row.og_description || row.twitter_description || row.h1 || row.first_p || row.description || row.content_snippet || '';
+        results.push({
+          id: row.id,
+          domain: row.domain,
+          punycode: row.punycode,
+          title: row.og_title || row.twitter_title || row.title || row.domain,
+          snippet: highlightTerms(rawSnippet, q),
+          description: row.og_description || row.twitter_description || row.description || '',
+          url: `https://${row.punycode}`,
+          lexiconEntryId: row.lexicon_entry_id,
+          pantheon: row.pantheon,
+          tier: row.tier,
+          tierLabel: row.tier_label,
+          isFlagship: row.is_flagship === 1,
+          status: row.status,
+          lastCrawled: row.last_crawled,
+          publishedDate: row.published_date,
+          faviconPath: row.favicon_path,
+          ogImagePath: row.og_image_path,
+          lang: row.lang,
+          rankScore: null,
+          matchedTerms: [row.keyword],
+          isKeywordMatch: true,
+          keywordSource: row.keyword_source
+        });
+      }
+    }
+  } catch (e) {
+    console.error('Keyword fallback error:', e.message);
   }
 
   // Fallback 1: Semantic vector search if FTS returned nothing

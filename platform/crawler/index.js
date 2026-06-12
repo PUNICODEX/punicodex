@@ -2,6 +2,7 @@ const { URL } = require('url');
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const { extractAndSave } = require('../api/keyword-extractor');
 
 const FAVICON_DIR = path.join(__dirname, '..', 'public', 'favicons');
 const THUMBNAIL_DIR = path.join(__dirname, '..', 'public', 'thumbnails');
@@ -689,6 +690,15 @@ class UnicodeCrawler {
       entry ? entry.tierLabel : null,
       result.content_hash
     );
+
+    // Extract SEO keywords from the crawled page (and the tenant's front URL if set).
+    try {
+      const siteRow = this.db.prepare('SELECT * FROM indexed_sites WHERE domain = ?').get(domain);
+      if (siteRow) await extractAndSave(siteRow);
+    } catch (err) {
+      // Keyword extraction should never break the crawl.
+      console.error('Keyword extraction failed:', err.message);
+    }
 
     return {
       domain, status: 'active',
