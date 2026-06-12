@@ -94,33 +94,23 @@
     .filter-pill { cursor: pointer; }
 }
 
-.filter-pill::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--gold);
-    transform: translateX(-101%);
-    transition: transform var(--duration-normal) var(--ease-enter);
-}
-
 .filter-pill:hover {
     border-color: rgba(212, 175, 55, 0.25);
     color: var(--gold);
+    background: rgba(212, 175, 55, 0.08);
 }
 
 .filter-pill.active {
     background: var(--gold);
     border-color: var(--gold);
     color: var(--void);
+    font-weight: 600;
 }
 
-.filter-pill.active::before {
-    transform: translateX(0);
-}
-
-.filter-pill span {
-    position: relative;
-    z-index: 1;
+.filter-pill.active:hover {
+    color: var(--void);
+    background: var(--gold-bright);
+    border-color: var(--gold-bright);
 }
 
 .search-box {

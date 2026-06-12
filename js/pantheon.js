@@ -119,11 +119,15 @@
             }
         });
 
-        // Update stats
-        document.getElementById('stat-total').textContent = visibleCount;
-        document.getElementById('stat-built').textContent = builtCount;
-        document.getElementById('stat-tier1').textContent = tier1Count;
-        document.getElementById('stat-tier2').textContent = tier2Count;
+        // Update stats (fallback to 0 if elements missing)
+        const statTotal = document.getElementById('stat-total');
+        const statBuilt = document.getElementById('stat-built');
+        const statTier1 = document.getElementById('stat-tier1');
+        const statTier2 = document.getElementById('stat-tier2');
+        if (statTotal) statTotal.textContent = visibleCount;
+        if (statBuilt) statBuilt.textContent = builtCount;
+        if (statTier1) statTier1.textContent = tier1Count;
+        if (statTier2) statTier2.textContent = tier2Count;
 
 
         // Show/hide empty state
@@ -156,11 +160,16 @@
         }, 350));
     }
 
-    // Initial build
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', buildGrid);
-    } else {
+    // Initial build + stats
+    function init() {
         buildGrid();
+        applyFilter();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
     }
 
 })();

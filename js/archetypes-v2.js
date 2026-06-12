@@ -480,7 +480,7 @@ const ARCHETYPES = [
     {
         id: "alfheimr",
         name: "Álfheimr",
-        greek: "—",
+        greek: "Álfheimr",
         domain: "Realm of the Light Elves",
         tagline: "Elf-home (from álfr + heimr)",
         tier: "tier-1",
@@ -597,7 +597,7 @@ const ARCHETYPES = [
     {
         id: "helheimr",
         name: "Helheimr",
-        greek: "—",
+        greek: "Helheimr",
         domain: "Realm of the Dead",
         tier: "tier-1",
         tierDetail: "tier-2",
@@ -616,7 +616,7 @@ const ARCHETYPES = [
     {
         id: "jotunheimr",
         name: "Jötunheimr",
-        greek: "—",
+        greek: "Jötunheimr",
         domain: "Land of the Giants",
         tagline: "Giant-home (from jötunn + heimr)",
         tier: "tier-1",
@@ -674,7 +674,7 @@ const ARCHETYPES = [
     {
         id: "midgardr",
         name: "Miðgarðr",
-        greek: "—",
+        greek: "Miðgarðr",
         domain: "Middle Enclosure (Earth)",
         tagline: "Middle enclosure (from mið + garðr)",
         tier: "tier-1",
@@ -694,7 +694,7 @@ const ARCHETYPES = [
     {
         id: "muspellheimr",
         name: "Muspellheimr",
-        greek: "—",
+        greek: "Muspellheimr",
         domain: "World of Fire",
         tagline: "Muspel-home (world-ender)",
         tier: "tier-1",
@@ -714,7 +714,7 @@ const ARCHETYPES = [
     {
         id: "maat",
         name: "Mꜣ",
-        greek: "—",
+        greek: "Mꜣ",
         domain: "Truth, Justice, Order",
         tagline: "Truth, straightness (Egyptian mꜣꜥt)",
         tier: "tier-1",
@@ -734,7 +734,7 @@ const ARCHETYPES = [
     {
         id: "maa",
         name: "Mꜥ",
-        greek: "—",
+        greek: "Mꜥ",
         domain: "Vision, Perception, Understanding",
         tagline: "To see, to perceive, to understand. A core verb root, extremely common in texts",
         tier: "tier-1",
@@ -754,7 +754,7 @@ const ARCHETYPES = [
     {
         id: "odinn",
         name: "Óðinn",
-        greek: "—",
+        greek: "Óðinn",
         domain: "Allfather",
         tagline: "The Frenzied One · Lord of the Hanged",
         tier: "tier-1",
@@ -813,7 +813,7 @@ const ARCHETYPES = [
     {
         id: "ragnarok",
         name: "Ragnarǫk",
-        greek: "—",
+        greek: "Ragnarǫk",
         domain: "Doom of the Gods",
         tagline: "Twilight of the gods (from ragna + rǫk)",
         tier: "tier-1",
@@ -833,7 +833,7 @@ const ARCHETYPES = [
     {
         id: "ra",
         name: "Rꜥ",
-        greek: "—",
+        greek: "Rꜥ",
         domain: "Sun, Creation, Kingship",
         tagline: "Sun (from Egyptian rꜥ)",
         tier: "tier-1",
@@ -854,7 +854,7 @@ const ARCHETYPES = [
     {
         id: "sia",
         name: "Sꜥ",
-        greek: "—",
+        greek: "Sꜥ",
         domain: "Divine Archetype",
         tier: "tier-1",
         tierDetail: "tier-2",
@@ -873,7 +873,7 @@ const ARCHETYPES = [
     {
         id: "shiva",
         name: "Śiva",
-        greek: "—",
+        greek: "शिव",
         domain: "Destruction, Transformation, Dance",
         tagline: "Auspicious, kind (from शिव)",
         tier: "tier-1",
@@ -893,7 +893,7 @@ const ARCHETYPES = [
     {
         id: "shu",
         name: "Šw",
-        greek: "—",
+        greek: "Šw",
         domain: "Air, Wind, Lions",
         tagline: "Emptiness, he who rises up",
         tier: "tier-1",
@@ -933,7 +933,7 @@ const ARCHETYPES = [
     {
         id: "thor",
         name: "Þórr",
-        greek: "—",
+        greek: "Þórr",
         domain: "Thunder, Storms, Oak",
         tagline: "Thunder (from *þunraz)",
         tier: "tier-1",
@@ -944,16 +944,16 @@ const ARCHETYPES = [
         domainPunycode: "xn--rr-4ja7b.com",
         domainAlt: [],
         colors: { primary: "#4A90D9", secondary: "#8B0000", glow: "rgba(74,144,217,0.3)" },
-        mascotPath: "/sites/thor/assets/thorr_mascot.webp",
-        mascotFallback: "/sites/thor/assets/thorr_mascot.webp",
-        logomarkPath: "/sites/thor/assets/thorr_logomark.webp",
+        mascotPath: "/sites/thor/assets/thor_mascot.webp",
+        mascotFallback: "/sites/thor/assets/thor_mascot.webp",
+        logomarkPath: "/sites/thor/assets/thor_logomark.webp",
         built: true,
         darkPunchline: false
     },
     {
         id: "ab",
         name: "ꜣb",
-        greek: "—",
+        greek: "ꜣb",
         domain: "Heart, Conscience, Emotion",
         tagline: "Heart. Central to the weighing of the heart ritual. Represents conscience, emotion, moral worth",
         tier: "tier-1",
@@ -973,7 +973,7 @@ const ARCHETYPES = [
     {
         id: "akh",
         name: "ꜣḫ",
-        greek: "—",
+        greek: "ꜣḫ",
         domain: "Soul, Afterlife, Transfiguration",
         tagline: "Akh, transfigured spirit; effective, luminous being. One of the highest forms of the soul",
         tier: "tier-1",
