@@ -80,9 +80,16 @@
     <header class="endorsement-hero" id="hero">
         <div class="container">
             <div class="endorsement-hero-content reveal-up">
-                <div class="endorsement-mascot">
-                    <picture><source srcset="assets/aether_mascot.webp" type="image/webp"><img src="assets/aether_mascot.png" alt="Aithḗr — Upper Air, Light" class="endorsement-mascot-img"></picture>
-                </div>
+                <figure class="endorsement-mascot endorsement-mascot--video">
+                    <video autoplay muted loop playsinline
+                           poster="assets/aether_hero_poster.jpg"
+                           aria-label="Animated portrait of Aithḗr, Greek personification of the upper air">
+                        <source src="assets/aether_hero_video.webm" type="video/webm">
+                        <source src="assets/aether_hero_video.mp4" type="video/mp4">
+                        <img src="assets/aether_mascot.png" alt="Aithḗr — Upper Air, Light">
+                    </video>
+                    <button class="video-pause" aria-label="Pause animation">❚❚</button>
+                </figure>
                 <p class="endorsement-eyebrow">Endorsed by</p>
                 <h1 class="endorsement-title">Upper Air, Light, <span class="endorsement-greek">Aithḗr</span></h1>
                 <p class="endorsement-lead">Twelve sacred frames. One temple. Claim your place.</p>

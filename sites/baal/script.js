@@ -347,7 +347,7 @@
 
 
 // ========== BOOKING SYSTEM ==========
-const API_BASE = window.ENKI_API_BASE || 'http://localhost:3456'; // Set window.ENKI_API_BASE in HTML for production
+const API_BASE = window.BAAL_API_BASE || 'http://localhost:3456'; // Set window.BAAL_API_BASE in HTML for production
 
 // Only initialize on pages with the booking modal
 if (!document.getElementById('booking-modal')) {
@@ -414,7 +414,7 @@ let selectedFileBase64 = null;
 // Fetch slots and update UI
 async function loadSlots() {
   try {
-    const res = await fetch(`${API_BASE}/api/slots?site=enki`);
+    const res = await fetch(`${API_BASE}/api/slots?site=baal`);
     const data = await res.json();
     slotsData = data.slots || [];
     updateSlotUI();
@@ -566,7 +566,7 @@ function applyCharLimits(width) {
 }
 
 function openModal(slotId) {
-  console.log('[PUNYCODEX:enki] openModal called:', slotId);
+  console.log('[PUNYCODEX:baal] openModal called:', slotId);
   try {
     currentSlotId = slotId;
     // Robust ID comparison (handles string vs number IDs from API)
@@ -575,7 +575,7 @@ function openModal(slotId) {
     // Fallback to DOM if slotsData hasn't loaded yet
     if (!slot) {
       const slotEl = document.querySelector(`.space-slot[data-space="${String(slotId).padStart(2, '0')}"]`);
-      if (!slotEl) { console.log('[PUNYCODEX:enki] No slotEl found'); return; }
+      if (!slotEl) { console.log('[PUNYCODEX:baal] No slotEl found'); return; }
       const nameEl = slotEl.querySelector('.space-name');
       const dimsEl = slotEl.querySelector('.space-dims');
       const dimsMatch = dimsEl ? dimsEl.textContent.match(/(\d+)\s*×\s*(\d+)/) : null;
@@ -599,9 +599,9 @@ function openModal(slotId) {
     showStep('1');
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
-    console.log('[PUNYCODEX:enki] Modal opened for slot', slotId);
+    console.log('[PUNYCODEX:baal] Modal opened for slot', slotId);
   } catch (err) {
-    console.error('[PUNYCODEX:enki] openModal error:', err);
+    console.error('[PUNYCODEX:baal] openModal error:', err);
   }
 }
 
@@ -637,7 +637,7 @@ document.addEventListener('click', (e) => {
   // Don't intercept clicks on live ad links
   if (e.target.closest('a.space-live-ad')) return;
   const slotId = parseInt(slotEl.dataset.space, 10);
-  console.log('[PUNYCODEX:enki] Slot clicked:', slotId);
+  console.log('[PUNYCODEX:baal] Slot clicked:', slotId);
   openModal(slotId);
 });
 
@@ -794,23 +794,23 @@ async function handleReturnFromStripe() {
         setupUploadStep(slot);
         showStep('2');
         const dashLink2 = document.getElementById('booking-dash-link-2');
-        if (dashLink2) dashLink2.href = `${API_BASE}/sites/enki/dashboard/?token=${token}`;
+        if (dashLink2) dashLink2.href = `${API_BASE}/sites/baal/dashboard/?token=${token}`;
       } else {
         showStep('3');
-        els.dashboardLink.href = `${API_BASE}/sites/enki/dashboard/?token=${token}`;
+        els.dashboardLink.href = `${API_BASE}/sites/baal/dashboard/?token=${token}`;
       }
       await loadSlots(); // refresh UI so button disappears
     } else if (booking.status === 'pending_approval') {
       openModal(booking.slot_id);
       showStep('3');
-      els.dashboardLink.href = `${API_BASE}/sites/enki/dashboard/?token=${token}`;
+      els.dashboardLink.href = `${API_BASE}/sites/baal/dashboard/?token=${token}`;
     } else if (booking.status === 'rejected') {
       openModal(booking.slot_id);
       showRejected(booking);
     } else if (booking.status === 'live') {
       openModal(booking.slot_id);
       showStep('3');
-      els.dashboardLink.href = `${API_BASE}/sites/enki/dashboard/?token=${token}`;
+      els.dashboardLink.href = `${API_BASE}/sites/baal/dashboard/?token=${token}`;
     } else if (booking.status === 'pending_payment') {
       showBookingError('Payment is still processing. Please refresh in a moment.');
     }
@@ -898,7 +898,7 @@ els.submitUpload.addEventListener('click', async () => {
     const data = await res.json();
     if (data.success) {
       showStep('3');
-      els.dashboardLink.href = `${API_BASE}/sites/enki/dashboard/?token=${currentBooking.analytics_token}`;
+      els.dashboardLink.href = `${API_BASE}/sites/baal/dashboard/?token=${currentBooking.analytics_token}`;
     } else {
       showBookingError(data.error || 'Upload failed');
       showStep('2');
@@ -977,28 +977,6 @@ loadSlots();
 handleReturnFromStripe();
 
 } // end else (booking modal exists)
-
-
-// ===== HERO VIDEO PAUSE TOGGLE =====
-(function initHeroVideo() {
-  const figure = document.querySelector('.endorsement-mascot--video');
-  if (!figure) return;
-  const video = figure.querySelector('video');
-  const btn = figure.querySelector('.video-pause');
-  if (!video || !btn) return;
-
-  btn.addEventListener('click', () => {
-    if (video.paused) {
-      video.play();
-      btn.setAttribute('aria-label', 'Pause animation');
-      btn.textContent = '❚❚';
-    } else {
-      video.pause();
-      btn.setAttribute('aria-label', 'Play animation');
-      btn.textContent = '▶';
-    }
-  });
-})();
 
 
 // ===== HERO VIDEO PAUSE/PLAY TOGGLE =====

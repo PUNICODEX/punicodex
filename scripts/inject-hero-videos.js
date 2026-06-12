@@ -5,14 +5,29 @@ const ROOT = path.join(__dirname, '..');
 
 const sites = [
   {
+    id: 'aether',
+    label: 'Aithḗr, Greek personification of the upper air',
+    fallbackAlt: 'Aithḗr — Upper Air, Light'
+  },
+  {
     id: 'anat',
     label: 'Anat, Canaanite goddess of war and the hunt',
     fallbackAlt: 'ꜥAnat — Goddess of War and the Hunt'
   },
   {
+    id: 'baal',
+    label: 'Baꜥal, Canaanite storm lord',
+    fallbackAlt: 'Baꜥal — Storm God, Lord of the Heavens'
+  },
+  {
     id: 'chaos',
     label: 'Cháos, the first void',
     fallbackAlt: 'Cháos — The First Void'
+  },
+  {
+    id: 'enki',
+    label: 'Enki, Sumerian god of fresh water and wisdom',
+    fallbackAlt: 'Enki — Water, Wisdom, Crafts, Creation'
   },
   {
     id: 'enlil',
@@ -25,6 +40,11 @@ const sites = [
     fallbackAlt: 'Ištar — Love, War, Fertility, Venus'
   },
   {
+    id: 'kronos',
+    label: 'Krónos, Titan of time and harvest',
+    fallbackAlt: 'Krónos — Time, Harvest, Titans'
+  },
+  {
     id: 'asherah',
     label: 'ʿAsherah, Canaanite mother goddess',
     fallbackAlt: 'ꜥAsherah — Mother Goddess, Lady of the Sea'
@@ -33,6 +53,11 @@ const sites = [
     id: 'el',
     label: 'Ēl, supreme Canaanite god',
     fallbackAlt: 'Ēl — God, Father of Gods'
+  },
+  {
+    id: 'tartaros',
+    label: 'Tártaros, the primordial abyss',
+    fallbackAlt: 'Tártaros — The Primordial Abyss'
   },
   {
     id: 'typhon',

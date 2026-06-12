@@ -7,12 +7,17 @@ const ROOT = path.join(__dirname, '..');
 const srcRoot = path.join(ROOT, 'extended flagship materials', 'punycodex');
 
 const jobs = [
+  { id: 'aether', folder: 'Aither', video: 'aither_hero_video.mp4' },
   { id: 'anat', folder: 'Anat', video: 'anat_hero_video.mp4' },
+  { id: 'baal', folder: 'Baal', video: 'baal_hero_video.mp4' },
   { id: 'chaos', folder: 'Chaos', video: 'chaos_hero_video_phenomenon.mp4' },
+  { id: 'enki', folder: 'Ea', video: 'ea_hero_video.mp4' },
   { id: 'enlil', folder: 'Enlil', video: 'enlil_hero_video.mp4' },
   { id: 'ishtar', folder: 'Ishtar', video: 'ishtar_hero_video.mp4' },
+  { id: 'kronos', folder: 'Kronos', video: 'kronos_hero_video.mp4' },
   { id: 'asherah', folder: 'Asherah', video: 'asherah_hero_video.mp4' },
   { id: 'el', folder: 'El', video: 'el_hero_video.mp4' },
+  { id: 'tartaros', folder: 'Tartaros', video: 'tartaros_hero_video.mp4' },
   { id: 'typhon', folder: 'Typhon', video: 'typhon_hero_video.mp4' },
 ];
 
