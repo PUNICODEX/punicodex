@@ -549,6 +549,19 @@
       border: 1px solid var(--border);
     }
 
+    .score-badge {
+      font-size: 0.65rem;
+      padding: 0.12rem 0.45rem;
+      border-radius: 3px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      background: rgba(212,175,55,0.1);
+      color: var(--accent);
+      border: 1px solid rgba(212,175,55,0.18);
+      cursor: help;
+    }
+
     .serp-utilities {
       display: flex;
       gap: 0.85rem;
@@ -1526,6 +1539,13 @@
         <option value="recently_crawled">Recently crawled</option>
         <option value="confidence">Confidence</option>
       </select>
+      <span class="filter-label">Rank</span>
+      <select class="filter-select" id="variantFilter" onchange="setVariant(this.value)" title="A/B ranking variant">
+        <option value="default">Default</option>
+        <option value="authority">Authority</option>
+        <option value="discovery">Discovery</option>
+        <option value="commercial">Commercial</option>
+      </select>
     </div>
   </div>
 
@@ -1560,6 +1580,7 @@
     let currentTier = '';
     let currentPantheon = '';
     let currentSort = 'relevance';
+    let currentVariant = 'default';
     let focusedIndex = -1;
     let currentResults = [];
 
@@ -1600,6 +1621,11 @@
 
     function setSort(value) {
       currentSort = value;
+      triggerSearch();
+    }
+
+    function setVariant(value) {
+      currentVariant = value;
       triggerSearch();
     }
 
@@ -1863,6 +1889,7 @@
       if (currentPantheon) params.set('pantheon', currentPantheon);
       const sort = currentMode === 'web' && currentSort === 'confidence' ? 'relevance' : currentSort;
       if (sort) params.set('sort', sort);
+      if (currentVariant && currentVariant !== 'default') params.set('variant', currentVariant);
 
       try {
         const [searchRes, dymRes, relatedRes, knowledgeRes, paaRes] = await Promise.all([
@@ -2037,6 +2064,11 @@
         if (r.pantheon) html += `<span class="serp-badge pantheon">${r.pantheon}</span>`;
         if (r.sitemapEntries > 0) html += `<span class="serp-sitemap-badge">📑 ${r.sitemapEntries} pages</span>`;
         if (r.ogVideo) html += `<span class="serp-sitemap-badge">▶️ Video</span>`;
+        if (typeof r.rankScore === 'number') {
+          const bd = r.scoreBreakdown || {};
+          const bdText = Object.entries(bd).map(([k, v]) => `${k}: ${Number(v).toFixed(2)}`).join(' | ');
+          html += `<span class="score-badge" title="Rank score: ${r.rankScore.toFixed(3)}&#10;Variant: ${r.rankVariant || 'default'}&#10;${escapeHtml(bdText)}" data-breakdown='${JSON.stringify(bd).replace(/'/g, "&#39;")}'>★ ${r.rankScore.toFixed(2)}</span>`;
+        }
         // Lease status badge
         if (r.leaseStatus === 'flagship' || r.isFlagship) {
           html += `<span class="lease-badge flagship">👑 Crown Jewel</span>`;

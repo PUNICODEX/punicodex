@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') return res.status(200).end();
 
   try {
-    const { q, limit, mode, type, pantheon, tier, sort } = req.query;
+    const { q, limit, mode, type, pantheon, tier, sort, variant } = req.query;
     if (!q || !q.trim()) return res.status(400).json({ error: 'q parameter required' });
 
     const results = await searchWeb(q, {
@@ -20,7 +20,8 @@ module.exports = async (req, res) => {
       type: type || 'all',
       pantheon,
       tier,
-      sort: sort || 'relevance'
+      sort: sort || 'relevance',
+      variant: variant || 'default'
     });
 
     try {

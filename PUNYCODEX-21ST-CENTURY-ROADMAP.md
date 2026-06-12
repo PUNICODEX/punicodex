@@ -210,7 +210,7 @@ This roadmap is split into six phases. Each phase has concrete deliverables, fil
 - Generated content is marked “AI-generated, pending review” until approved.
 - Human reviewer can approve/reject/regenerate each entry from the admin panel.
 
-### 2.3 Hybrid Ranking Model
+### 2.3 Hybrid Ranking Model ✅
 
 **Deliverables:**
 - Combine signals into a single rank score:
@@ -225,13 +225,17 @@ This roadmap is split into six phases. Each phase has concrete deliverables, fil
 - A/B test ranking variants.
 
 **File targets:**
-- `platform/api/ranker.js` (new)
+- `platform/api/ranker.js`
 - `platform/api/crawler-db.js`
-- `platform/api/search.js`
+- `api/search/web/index.js`
+- `platform/server.js`
+- `search.html`
+- `platform/scripts/test-ranker.js`
 
 **Acceptance criteria:**
 - Search results for the same query can be sorted by the new ranker.
 - Score breakdown is visible on hover.
+- Four A/B variants (default, authority, discovery, commercial) selectable from the UI.
 - Ranker passes regression tests.
 
 ### 2.4 AI Curator Agent

@@ -171,7 +171,7 @@ app.get('/api/sites/search', (req, res) => {
 // Web search: FTS5-powered content search with relevance ranking + semantic re-ranking
 app.get('/api/search/web', async (req, res) => {
   try {
-    const { q, limit, mode, type, pantheon, tier, sort } = req.query;
+    const { q, limit, mode, type, pantheon, tier, sort, variant } = req.query;
     if (!q || !q.trim()) return res.status(400).json({ error: 'q parameter required' });
     const results = await searchWeb(q, {
       limit: limit ? parseInt(limit, 10) : 20,
@@ -179,7 +179,8 @@ app.get('/api/search/web', async (req, res) => {
       type: type || 'all',
       pantheon,
       tier,
-      sort: sort || 'relevance'
+      sort: sort || 'relevance',
+      variant: variant || 'default'
     });
 
     // Log the query for analytics

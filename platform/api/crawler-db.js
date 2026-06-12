@@ -3,6 +3,7 @@ const path = require('path');
 const { embedText, rerankWithVectors, searchAllVectors } = require('./semantic-search');
 const { getDbPath } = require('../db/db');
 const { searchKeywords } = require('./keyword-extractor');
+const { rankResults, listVariants } = require('./ranker');
 
 const DB_PATH = getDbPath();
 let db;
@@ -132,7 +133,7 @@ function searchSites(q, limit = 20) {
  * Returns SERP-style results with highlighted snippets.
  */
 async function searchWeb(q, options = {}) {
-  const { limit = 20, mode = 'all', type = 'all', pantheon, tier, sort = 'relevance' } = options;
+  const { limit = 20, mode = 'all', type = 'all', pantheon, tier, sort = 'relevance', variant = 'default' } = options;
   const db = getDb();
   if (!q || !q.trim()) {
     return { results: [], total: 0, query: q, timing: 0 };
@@ -624,6 +625,16 @@ async function searchWeb(q, options = {}) {
     }
   }
 
+  // ====== HYBRID RANKING ======
+  // Apply the unified ranker with A/B variant support.
+  let rankerApplied = false;
+  try {
+    results = rankResults(results, q, { variant });
+    rankerApplied = true;
+  } catch (e) {
+    console.error('[search] Ranker failed:', e.message);
+  }
+
   // ====== AVAILABILITY LAYER ======
   // Find lexicon entries matching the query that are available for lease
   let availability = [];
@@ -661,7 +672,22 @@ async function searchWeb(q, options = {}) {
   }
 
   const timing = ((Date.now() - startTime) / 1000).toFixed(3);
-  return { results, total: results.length, query: q, timing, mode, entityBonusApplied, matchedEntryId, clickBoostApplied, semanticReranked, isSemanticFallback, availability };
+  return {
+    results,
+    total: results.length,
+    query: q,
+    timing,
+    mode,
+    entityBonusApplied,
+    matchedEntryId,
+    clickBoostApplied,
+    semanticReranked,
+    isSemanticFallback,
+    availability,
+    rankerApplied,
+    variant: variant || 'default',
+    variants: listVariants()
+  };
 }
 
 function extractMatchedTerms(snippet) {
