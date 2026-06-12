@@ -24,7 +24,7 @@ function collectHtml(dir) {
     for (const entry of entries) {
         const fullPath = path.join(dir, entry.name);
         if (entry.isDirectory()) {
-            if (['node_modules','.git','.kimi','assets','branding','website','android'].includes(entry.name)) continue;
+            if (['node_modules','.git','.kimi','assets','branding','website','android','.backup'].includes(entry.name)) continue;
             collectHtml(fullPath);
         } else if (entry.name.endsWith('.html')) {
             HTML_FILES.push(fullPath);

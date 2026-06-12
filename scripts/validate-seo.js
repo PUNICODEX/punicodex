@@ -53,8 +53,12 @@ function checkPage(entry) {
     const canonMatch = html.match(/<link rel="canonical" href="([^"]*)">/);
     if (!canonMatch) {
         errors.push({ id: entry.id, issue: 'Missing canonical URL' });
-    } else if (!canonMatch[1].includes(`/sites/${entry.id}/`)) {
-        errors.push({ id: entry.id, issue: `Wrong canonical: ${canonMatch[1]}` });
+    } else {
+        const expectedRoot = `https://punycodex.com/${entry.id}/`;
+        const expectedSites = `https://punycodex.com/sites/${entry.id}/`;
+        if (canonMatch[1] !== expectedRoot && canonMatch[1] !== expectedSites) {
+            errors.push({ id: entry.id, issue: `Wrong canonical: ${canonMatch[1]}` });
+        }
     }
 
     // Check schema.org

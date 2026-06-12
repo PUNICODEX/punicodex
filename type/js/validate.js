@@ -98,7 +98,7 @@ LEXICON.forEach((entry, i) => {
     }
 
     // Variants check (optional)
-    const ALLOWED_VARIANT_TYPES = ['ideal', 'owned', 'alt-stress', 'macron-only', 'ascii'];
+    const ALLOWED_VARIANT_TYPES = ['ideal', 'owned', 'alt-stress', 'macron-only', 'ascii', 'alt'];
     if (entry.variants !== undefined) {
         assert(Array.isArray(entry.variants), `[${label}] variants must be an array`);
         const variantUnicodes = new Set();

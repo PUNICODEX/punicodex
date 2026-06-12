@@ -49801,7 +49801,7 @@ const LEXICON = [
       { unicode: 'Rta', type: 'ascii', note: 'Plain ASCII fallback' }
     ],
     breakdown: [
-      { char: 'r', to: '\u1E5B', type: 'diacritic', note: 'Vocalic r — dot below marks syllabic /r/' },
+      { char: 'r', to: '\u1E5B', type: 'special', note: 'Vocalic r — dot below marks syllabic /r/' },
       { char: 't', to: 't', type: 'same', note: 'Same' },
       { char: 'a', to: 'a', type: 'same', note: 'Same' }
     ]
@@ -49849,7 +49849,7 @@ const LEXICON = [
     ascii: 'astart',
     unicode: 'A\u0161tart',
     greek: '',
-    pantheon: 'canaanite',
+    pantheon: 'phoenician',
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Love, War, Fertility, Venus',
@@ -49862,7 +49862,7 @@ const LEXICON = [
     ],
     breakdown: [
       { char: 'a', to: 'A', type: 'same', note: 'Same, capitalized' },
-      { char: 's', to: '\u0161', type: 'diacritic', note: 'Caron marks voiceless postalveolar fricative /\u0283/' },
+      { char: 's', to: '\u0161', type: 'special', note: 'Caron marks voiceless postalveolar fricative /\u0283/' },
       { char: 't', to: 't', type: 'same', note: 'Same' },
       { char: 'a', to: 'a', type: 'same', note: 'Same' },
       { char: 'r', to: 'r', type: 'same', note: 'Same' },
