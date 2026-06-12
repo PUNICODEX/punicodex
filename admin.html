@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PUNYCODEX — Crawler Admin</title>
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --surface-2: #1a1a26;
+      --text: #e8e6f0;
+      --text-dim: #8a87a0;
+      --accent: #c9a96e;
+      --border: #2a2a3a;
+      --live: #87c9e8;
+      --error: #e88787;
+      --available: #7ec9a0;
+      --pending: #e8c97e;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    header {
+      padding: 2rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: 0.1em; color: var(--accent); }
+    .nav a { color: var(--text-dim); text-decoration: none; margin-left: 1.5rem; font-size: 0.9rem; }
+    .nav a:hover { color: var(--accent); }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      padding: 1.5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+    }
+    .stat-card .value { font-size: 1.8rem; font-weight: 700; color: var(--accent); }
+    .stat-card .label { font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; }
+
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem 2rem;
+    }
+    .section-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .crawl-box {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .crawl-box input {
+      flex: 1;
+      min-width: 250px;
+      padding: 0.75rem 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 0.95rem;
+      outline: none;
+    }
+    .crawl-box input:focus { border-color: var(--accent); }
+    .btn {
+      padding: 0.75rem 1.25rem;
+      background: var(--accent);
+      color: #0a0a0f;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn.secondary { background: var(--surface-2); color: var(--text); border: 1px solid var(--border); }
+
+    .sites-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+    .sites-table th {
+      text-align: left;
+      padding: 0.75rem;
+      color: var(--text-dim);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      border-bottom: 1px solid var(--border);
+    }
+    .sites-table td {
+      padding: 0.75rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .sites-table tr:hover { background: var(--surface-2); }
+
+    .status-badge {
+      font-size: 0.7rem;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .status-active { background: rgba(135, 201, 232, 0.12); color: var(--live); }
+    .status-pending { background: rgba(232, 201, 126, 0.12); color: var(--pending); }
+    .status-error { background: rgba(232, 135, 135, 0.12); color: var(--error); }
+    .status-spam { background: rgba(138, 135, 160, 0.12); color: var(--text-dim); }
+
+    .domain-cell { font-family: monospace; }
+    .domain-cell .unicode { color: var(--accent); }
+    .domain-cell .puny { color: var(--text-dim); font-size: 0.8rem; }
+
+    .title-cell { max-width: 250px; }
+    .title-cell .title { font-weight: 500; }
+    .title-cell .desc { color: var(--text-dim); font-size: 0.8rem; }
+
+    .filters-row {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .filters-row select {
+      padding: 0.5rem 0.75rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-size: 0.85rem;
+    }
+
+    .actions { display: flex; gap: 0.5rem; }
+    .action-btn {
+      padding: 0.25rem 0.5rem;
+      font-size: 0.75rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-dim);
+      cursor: pointer;
+    }
+    .action-btn:hover { color: var(--text); border-color: var(--accent); }
+
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      padding: 1rem 1.5rem;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 0.9rem;
+      z-index: 100;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    .toast.success { border-color: var(--available); }
+    .toast.error { border-color: var(--error); }
+
+    .loading { text-align: center; padding: 3rem; color: var(--text-dim); }
+    .empty { text-align: center; padding: 2rem; color: var(--text-dim); }
+
+    @media (max-width: 768px) {
+      .sites-table { display: block; overflow-x: auto; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">PUNYCODEX</div>
+    <nav class="nav">
+      <a href="search.html">Search</a>
+      <a href="admin.html">Crawler</a>
+    </nav>
+  </header>
+
+  <div class="stats-grid" id="statsGrid">
+    <div class="stat-card"><div class="value">—</div><div class="label">Total Indexed</div></div>
+    <div class="stat-card"><div class="value">—</div><div class="label">Active</div></div>
+    <div class="stat-card"><div class="value">—</div><div class="label">Pending</div></div>
+    <div class="stat-card"><div class="value">—</div><div class="label">Errors</div></div>
+    <div class="stat-card"><div class="value">—</div><div class="label">Flagged</div></div>
+    <div class="stat-card"><div class="value">—</div><div class="label">Available</div></div>
+  </div>
+
+  <div class="stats-grid" id="queueStatsGrid" style="margin-top:0;">
+    <div class="stat-card"><div class="value">—</div><div class="label">Queue Pending</div></div>
+    <div class="stat-card"><div class="value">—</div><div class="label">Queue Crawled</div></div>
+    <div class="stat-card"><div class="value">—</div><div class="label">Queue Errors</div></div>
+    <div class="stat-card"><div class="value">—</div><div class="label">Queue Spam</div></div>
+    <div class="stat-card"><div class="value">—</div><div class="label">Discovered</div></div>
+  </div>
+
+  <div class="stats-grid" id="punycodeStatsGrid" style="margin-top:0;">
+    <div class="stat-card"><div class="value">—</div><div class="label">Unicode (xn--)</div></div>
+    <div class="stat-card"><div class="value">—</div><div class="label">ASCII</div></div>
+    <div class="stat-card"><div class="value">—</div><div class="label">Entity Mentions</div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      Crawl Domain
+    </div>
+    <div class="crawl-box">
+      <input type="text" id="crawlInput" placeholder="Enter domain (e.g., xn--zes-9na.com or zeús.com)">
+      <button class="btn" onclick="crawlSingle()">Crawl</button>
+      <button class="btn secondary" onclick="recrawlAll()">Re-crawl All</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3m9 9a9 9 0 0 1-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 0 1 9-9"/></svg>
+      Discovery & Queue
+    </div>
+    <div class="crawl-box">
+      <input type="text" id="discoverInput" placeholder="Add domains to queue (comma-separated)">
+      <button class="btn" onclick="addToQueue()">Add to Queue</button>
+      <button class="btn secondary" onclick="processQueue()">Process Queue</button>
+    </div>
+    <div class="crawl-box" style="margin-top:0.5rem;">
+      <input type="text" id="bulkDiscoverInput" placeholder="Bulk discover (comma-separated domains)" style="flex:2">
+      <button class="btn secondary" onclick="bulkDiscover()">Bulk Discover</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+      Crawl Queue
+    </div>
+    <div class="filters-row">
+      <select id="queueStatusFilter" onchange="loadQueue()">
+        <option value="">All Status</option>
+        <option value="pending">Pending</option>
+        <option value="crawling">Crawling</option>
+        <option value="crawled">Crawled</option>
+        <option value="error">Error</option>
+        <option value="spam">Spam</option>
+        <option value="skipped">Skipped</option>
+      </select>
+    </div>
+    <div id="queueTable">
+      <div class="loading">Loading queue...</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+      Indexed Sites
+    </div>
+    <div class="filters-row">
+      <select id="statusFilter" onchange="loadSites()">
+        <option value="">All Status</option>
+        <option value="active">Active</option>
+        <option value="pending">Pending</option>
+        <option value="error">Error</option>
+        <option value="spam">Spam</option>
+      </select>
+      <select id="pantheonFilter" onchange="loadSites()">
+        <option value="">All Pantheons</option>
+      </select>
+    </div>
+    <div id="sitesTable">
+      <div class="loading">Loading sites...</div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const API_BASE = '';
+
+    function showToast(msg, type = 'success') {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.className = `toast show ${type}`;
+      setTimeout(() => t.classList.remove('show'), 3000);
+    }
+
+    async function loadStats() {
+      try {
+        const res = await fetch(`${API_BASE}/api/crawler/stats`);
+        const s = await res.json();
+        const grid = document.getElementById('statsGrid');
+        grid.innerHTML = `
+          <div class="stat-card"><div class="value">${s.total_sites}</div><div class="label">Total Indexed</div></div>
+          <div class="stat-card"><div class="value">${s.active_sites}</div><div class="label">Active</div></div>
+          <div class="stat-card"><div class="value">${s.pending_sites}</div><div class="label">Pending</div></div>
+          <div class="stat-card"><div class="value">${s.error_sites}</div><div class="label">Errors</div></div>
+          <div class="stat-card"><div class="value">${s.flagged_sites}</div><div class="label">Flagged</div></div>
+          <div class="stat-card"><div class="value">${s.available_entries}</div><div class="label">Available</div></div>
+        `;
+        const qgrid = document.getElementById('queueStatsGrid');
+        if (s.queue) {
+          qgrid.innerHTML = `
+            <div class="stat-card"><div class="value">${s.queue.pending}</div><div class="label">Queue Pending</div></div>
+            <div class="stat-card"><div class="value">${s.queue.crawled}</div><div class="label">Queue Crawled</div></div>
+            <div class="stat-card"><div class="value">${s.queue.error}</div><div class="label">Queue Errors</div></div>
+            <div class="stat-card"><div class="value">${s.queue.spam}</div><div class="label">Queue Spam</div></div>
+            <div class="stat-card"><div class="value">${s.queue.total_discovered}</div><div class="label">Discovered</div></div>
+          `;
+        }
+        const pgrid = document.getElementById('punycodeStatsGrid');
+        if (s.punycode) {
+          pgrid.innerHTML = `
+            <div class="stat-card"><div class="value">${s.punycode.unicode}</div><div class="label">Unicode (xn--)</div></div>
+            <div class="stat-card"><div class="value">${s.punycode.ascii}</div><div class="label">ASCII</div></div>
+            <div class="stat-card"><div class="value">${s.entities?.mentions || 0}</div><div class="label">Entity Mentions</div></div>
+          `;
+        }
+      } catch (e) { console.error(e); }
+    }
+
+    async function loadPantheons() {
+      try {
+        const res = await fetch(`${API_BASE}/api/pantheons`);
+        const pantheons = await res.json();
+        const select = document.getElementById('pantheonFilter');
+        pantheons.forEach(p => {
+          const opt = document.createElement('option');
+          opt.value = p;
+          opt.textContent = p.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+          select.appendChild(opt);
+        });
+      } catch (e) { console.error(e); }
+    }
+
+    async function loadSites() {
+      const status = document.getElementById('statusFilter').value;
+      const pantheon = document.getElementById('pantheonFilter').value;
+      const container = document.getElementById('sitesTable');
+      container.innerHTML = '<div class="loading">Loading sites...</div>';
+
+      try {
+        const params = new URLSearchParams();
+        params.set('limit', '100');
+        if (status) params.set('status', status);
+        if (pantheon) params.set('pantheon', pantheon);
+
+        const res = await fetch(`${API_BASE}/api/sites?${params}`);
+        const data = await res.json();
+        renderSites(data.sites, data.total);
+      } catch (e) {
+        container.innerHTML = `<div class="empty">Error: ${e.message}</div>`;
+      }
+    }
+
+    function renderSites(sites, total) {
+      const container = document.getElementById('sitesTable');
+      if (!sites.length) {
+        container.innerHTML = '<div class="empty">No sites found.</div>';
+        return;
+      }
+
+      let html = `
+        <div style="color:var(--text-dim); font-size:0.85rem; margin-bottom:0.75rem;">
+          Showing ${sites.length} of ${total} sites
+        </div>
+        <table class="sites-table">
+          <thead>
+            <tr>
+              <th>Domain</th>
+              <th>Title</th>
+              <th>Status</th>
+              <th>Pantheon</th>
+              <th>Tier</th>
+              <th>Quality</th>
+              <th>Spam</th>
+              <th>Last Crawled</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      sites.forEach(s => {
+        const statusClass = `status-${s.status}`;
+        html += `
+          <tr>
+            <td class="domain-cell">
+              <div class="unicode">${s.domain}</div>
+              <div class="puny">${s.punycode}</div>
+            </td>
+            <td class="title-cell">
+              <div class="title">${s.title || '—'}</div>
+              ${s.description ? `<div class="desc">${s.description.substring(0, 80)}${s.description.length > 80 ? '...' : ''}</div>` : ''}
+            </td>
+            <td><span class="status-badge ${statusClass}">${s.status}</span></td>
+            <td>${s.pantheon || '—'}</td>
+            <td>${s.tier_label || '—'}</td>
+            <td>${s.quality_score ? (s.quality_score * 100).toFixed(0) + '%' : '—'}</td>
+            <td>${s.spam_score ? (s.spam_score * 100).toFixed(0) + '%' : '—'}</td>
+            <td>${s.last_crawled ? new Date(s.last_crawled).toLocaleString() : '—'}</td>
+            <td>
+              <div class="actions">
+                <button class="action-btn" onclick="visitSite('${s.punycode}')">Visit</button>
+                ${s.status !== 'spam' ? `<button class="action-btn" onclick="markSpam('${s.punycode}')">Spam</button>` : ''}
+              </div>
+            </td>
+          </tr>
+        `;
+      });
+
+      html += '</tbody></table>';
+      container.innerHTML = html;
+    }
+
+    async function crawlSingle() {
+      const domain = document.getElementById('crawlInput').value.trim();
+      if (!domain) return;
+
+      showToast(`Crawling ${domain}...`, 'success');
+      try {
+        const res = await fetch(`${API_BASE}/api/crawl`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ domain })
+        });
+        const data = await res.json();
+        if (data.error) throw new Error(data.error);
+        showToast(`Crawled: ${data.title || data.domain} (${data.status})`, 'success');
+        loadStats();
+        loadSites();
+      } catch (e) {
+        showToast(`Failed: ${e.message}`, 'error');
+      }
+    }
+
+    async function recrawlAll() {
+      showToast('Re-crawling all active sites...', 'success');
+      try {
+        const res = await fetch(`${API_BASE}/api/crawl/recrawl`, { method: 'POST' });
+        const data = await res.json();
+        showToast(`Re-crawled ${data.total} sites`, 'success');
+        loadStats();
+        loadSites();
+      } catch (e) {
+        showToast(`Failed: ${e.message}`, 'error');
+      }
+    }
+
+    async function loadQueue() {
+      const status = document.getElementById('queueStatusFilter').value;
+      const container = document.getElementById('queueTable');
+      container.innerHTML = '<div class="loading">Loading queue...</div>';
+
+      try {
+        const params = new URLSearchParams();
+        params.set('limit', '50');
+        if (status) params.set('status', status);
+
+        const res = await fetch(`${API_BASE}/api/crawler/queue?${params}`);
+        const data = await res.json();
+        renderQueue(data.items, data.total);
+      } catch (e) {
+        container.innerHTML = `<div class="empty">Error: ${e.message}</div>`;
+      }
+    }
+
+    function renderQueue(items, total) {
+      const container = document.getElementById('queueTable');
+      if (!items.length) {
+        container.innerHTML = '<div class="empty">No queue items found.</div>';
+        return;
+      }
+
+      let html = `
+        <div style="color:var(--text-dim); font-size:0.85rem; margin-bottom:0.75rem;">
+          Showing ${items.length} of ${total} items
+        </div>
+        <table class="sites-table">
+          <thead>
+            <tr>
+              <th>Domain</th>
+              <th>Status</th>
+              <th>Source</th>
+              <th>Priority</th>
+              <th>Discovered</th>
+              <th>Crawled</th>
+              <th>Spam Score</th>
+              <th>Quality</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      items.forEach(q => {
+        const statusClass = `status-${q.status}`;
+        html += `
+          <tr>
+            <td class="domain-cell">
+              <div class="unicode">${q.domain}</div>
+              <div class="puny">${q.punycode || '—'}</div>
+            </td>
+            <td><span class="status-badge ${statusClass}">${q.status}</span></td>
+            <td>${q.source}</td>
+            <td>${q.priority}</td>
+            <td>${new Date(q.discovery_date).toLocaleDateString()}</td>
+            <td>${q.crawl_date ? new Date(q.crawl_date).toLocaleString() : '—'}</td>
+            <td>${q.spam_score ? (q.spam_score * 100).toFixed(0) + '%' : '—'}</td>
+            <td>${q.quality_score ? (q.quality_score * 100).toFixed(0) + '%' : '—'}</td>
+          </tr>
+        `;
+      });
+
+      html += '</tbody></table>';
+      container.innerHTML = html;
+    }
+
+    async function addToQueue() {
+      const input = document.getElementById('discoverInput').value.trim();
+      if (!input) return;
+      const domains = input.split(',').map(d => d.trim()).filter(Boolean);
+      showToast(`Adding ${domains.length} domains to queue...`, 'success');
+      try {
+        const res = await fetch(`${API_BASE}/api/crawler/queue`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ domains, source: 'manual', priority: 5 })
+        });
+        const data = await res.json();
+        showToast(`Added ${data.added} domains (${data.skipped || 0} skipped)`, 'success');
+        document.getElementById('discoverInput').value = '';
+        loadQueue();
+        loadStats();
+      } catch (e) {
+        showToast(`Failed: ${e.message}`, 'error');
+      }
+    }
+
+    async function processQueue() {
+      showToast('Processing crawl queue...', 'success');
+      try {
+        const res = await fetch(`${API_BASE}/api/crawler/queue/process`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ batchSize: 10, concurrency: 3 })
+        });
+        const data = await res.json();
+        showToast(`Processed: ${data.crawled} crawled, ${data.spam} spam, ${data.errors} errors`, 'success');
+        loadQueue();
+        loadStats();
+        loadSites();
+      } catch (e) {
+        showToast(`Failed: ${e.message}`, 'error');
+      }
+    }
+
+    async function bulkDiscover() {
+      const input = document.getElementById('bulkDiscoverInput').value.trim();
+      if (!input) return;
+      const domains = input.split(',').map(d => d.trim()).filter(Boolean);
+      showToast(`Discovering ${domains.length} domains...`, 'success');
+      try {
+        const res = await fetch(`${API_BASE}/api/crawler/discover`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ domains, source: 'bulk' })
+        });
+        const data = await res.json();
+        showToast(`Discovered ${data.added} new domains (${data.skipped || 0} skipped)`, 'success');
+        document.getElementById('bulkDiscoverInput').value = '';
+        loadQueue();
+        loadStats();
+      } catch (e) {
+        showToast(`Failed: ${e.message}`, 'error');
+      }
+    }
+
+    async function markSpam(punycode) {
+      try {
+        await fetch(`${API_BASE}/api/sites/${encodeURIComponent(punycode)}/spam`, { method: 'POST' });
+        showToast('Marked as spam', 'success');
+        loadSites();
+        loadStats();
+      } catch (e) {
+        showToast('Failed to mark spam', 'error');
+      }
+    }
+
+    function visitSite(punycode) {
+      window.open(`https://${punycode}`, '_blank');
+    }
+
+    loadStats();
+    loadPantheons();
+    loadSites();
+    loadQueue();
+  </script>
+</body>
+</html>
