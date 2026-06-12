@@ -855,17 +855,21 @@ function getKnowledgePanelData(q) {
 }
 
 /**
- * Generate "People Also Ask" questions from entity co-occurrence graph.
+ * Generate a richer "People Also Ask" list for a query.
+ * Mixes lexicon facts, etymology, variant spellings, flagship/tenant data,
+ * and semantic co-occurrence. Falls back to tenant-driven answers when the
+ * query looks commercial and no lexicon entry matches.
  */
 function generatePeopleAlsoAsk(q, limit = 4) {
   const db = getDb();
   if (!q || !q.trim()) return [];
 
-  const query = q.trim().toLowerCase();
+  const raw = q.trim();
+  const query = raw.toLowerCase();
 
-  // Find best matching entry
+  // Find best matching lexicon entry
   let entry = db.prepare(`
-    SELECT id, unicode, ascii, greek, meaning, pantheon, tier, etymology
+    SELECT id, unicode, ascii, greek, meaning, pantheon, tier, tier_label, domain, etymology, variants, has_flagship
     FROM entries
     WHERE LOWER(ascii) = ? OR LOWER(unicode) = ? OR LOWER(id) = ?
     LIMIT 1
@@ -873,55 +877,120 @@ function generatePeopleAlsoAsk(q, limit = 4) {
 
   if (!entry) {
     entry = db.prepare(`
-      SELECT id, unicode, ascii, greek, meaning, pantheon, tier, etymology
+      SELECT id, unicode, ascii, greek, meaning, pantheon, tier, tier_label, domain, etymology, variants, has_flagship
       FROM entries
-      WHERE LOWER(ascii) LIKE ? OR LOWER(unicode) LIKE ?
-      ORDER BY tier = 'dual' DESC, tier = '1' DESC
+      WHERE LOWER(ascii) LIKE ? OR LOWER(unicode) LIKE ? OR LOWER(meaning) LIKE ? OR LOWER(domain) LIKE ?
+      ORDER BY tier = 'dual' DESC, tier = '1' DESC, has_flagship DESC, ascii ASC
       LIMIT 1
-    `).get(`%${query}%`, `%${query}%`);
+    `).get(`%${query}%`, `%${query}%`, `%${query}%`, `%${query}%`);
   }
 
   const questions = [];
+  const seen = new Set();
+
+  function add(question, answer, source = 'lexicon') {
+    if (!question || !answer) return;
+    const key = question.toLowerCase().trim();
+    if (seen.has(key)) return;
+    seen.add(key);
+    questions.push({ question, answer: String(answer).trim(), source });
+  }
 
   if (entry) {
-    // Q1: Meaning
+    const name = entry.unicode || entry.ascii;
+
+    // Meaning
     if (entry.meaning) {
-      questions.push({
-        question: `What does ${entry.unicode} mean?`,
-        answer: entry.meaning,
-        source: 'lexicon'
-      });
+      add(`What does ${name} mean?`, entry.meaning);
     }
 
-    // Q2: Greek form
+    // Original script form
     if (entry.greek && entry.greek !== '-') {
-      questions.push({
-        question: `What is the Greek form of ${entry.unicode}?`,
-        answer: entry.greek,
-        source: 'lexicon'
-      });
+      add(`What is the original Greek form of ${name}?`, entry.greek);
+      add(`How do you write ${name} in Greek?`, entry.greek);
     }
 
-    // Q3: Pantheon
+    // Domain / powers
+    if (entry.domain) {
+      add(`What is ${name} the god or symbol of?`, entry.domain);
+      add(`What domain does ${name} rule?`, entry.domain);
+    }
+
+    // Pantheon
     if (entry.pantheon) {
-      questions.push({
-        question: `Which pantheon does ${entry.unicode} belong to?`,
-        answer: `${entry.unicode} belongs to the ${entry.pantheon} pantheon.`,
-        source: 'lexicon'
-      });
+      const pantheonTitle = entry.pantheon.charAt(0).toUpperCase() + entry.pantheon.slice(1);
+      add(`Which pantheon does ${name} belong to?`, `${name} belongs to the ${pantheonTitle} pantheon.`);
     }
 
-    // Q4: Tier
+    // Unicode tier
     if (entry.tier) {
-      const tierLabel = entry.tier === 'dual' ? 'Dual-Tier' : `Tier ${entry.tier}`;
-      questions.push({
-        question: `What is the Unicode tier of ${entry.unicode}?`,
-        answer: `${entry.unicode} is classified as ${tierLabel} — ${entry.tier === 'dual' ? 'it has multiple historically valid Unicode spellings.' : entry.tier === '1' ? 'it contains both stress and long vowels with a single valid restoration.' : 'it preserves one scholarly feature (stress or length).'}.`,
-        source: 'lexicon'
-      });
+      const tierLabel = entry.tier_label || (entry.tier === 'dual' ? 'Dual-Tier' : `Tier ${entry.tier}`);
+      let tierExplanation = '';
+      if (entry.tier === 'dual') tierExplanation = 'it has multiple historically valid Unicode spellings.';
+      else if (entry.tier === '1') tierExplanation = 'it contains both stress and long vowels with a single valid restoration.';
+      else tierExplanation = 'it preserves one scholarly feature (stress or length).';
+      add(`What is the Unicode tier of ${name}?`, `${name} is classified as ${tierLabel} — ${tierExplanation}`);
+      add(`Why is ${name} a Tier ${entry.tier} Unicode name?`, tierExplanation);
     }
 
-    // Q5: Co-mentioned entities (semantic graph)
+    // Variant spellings
+    if (entry.variants) {
+      try {
+        const variants = JSON.parse(entry.variants);
+        if (Array.isArray(variants) && variants.length > 0) {
+          const variantText = variants.map(v => v.unicode || v.ascii || v).filter(Boolean).join(', ');
+          if (variantText) {
+            add(`What are the alternate Unicode spellings of ${name}?`, `Attested variants include ${variantText}.`);
+          }
+        }
+      } catch (e) { /* ignore malformed JSON */ }
+    }
+
+    // Etymology (JSON or plain text)
+    if (entry.etymology) {
+      try {
+        const ety = JSON.parse(entry.etymology);
+        const parts = [];
+        if (ety.protoForm && ety.protoLanguage) parts.push(`From Proto-${ety.protoLanguage} *${ety.protoForm}*.`);
+        if (ety.derivation) parts.push(ety.derivation);
+        if (ety.cognates && ety.cognates.length) {
+          const cognates = ety.cognates.map(c => `${c.form} (${c.language})`).join(', ');
+          parts.push(`Cognates: ${cognates}.`);
+        }
+        if (parts.length) {
+          add(`What is the etymology of ${name}?`, parts.join(' '));
+        } else {
+          add(`What is the etymology of ${name}?`, entry.etymology);
+        }
+        if (ety.protoForm) {
+          add(`What is the Proto-${ety.protoLanguage || 'Indo-European'} root of ${name}?`, `*${ety.protoForm}*${ety.protoGloss ? ` — ${ety.protoGloss}` : ''}`);
+        }
+      } catch (e) {
+        add(`What is the etymology of ${name}?`, entry.etymology);
+      }
+    }
+
+    // Flagship / tenant sites on this entry
+    if (entry.has_flagship) {
+      const sites = db.prepare(`
+        SELECT domain, punycode, title, tenant_name, tenant_category
+        FROM indexed_sites
+        WHERE lexicon_entry_id = ? AND status = 'active'
+        ORDER BY is_flagship DESC, quality_score DESC
+        LIMIT 3
+      `).all(entry.id);
+      if (sites.length) {
+        const siteList = sites.map(s => s.domain || s.punycode).join(', ');
+        add(`What is the flagship domain for ${name}?`, `The PUNYCODEX flagship is ${siteList}.`, 'tenants');
+        for (const s of sites) {
+          if (s.tenant_name) {
+            add(`What business operates on ${name}?`, `${s.tenant_name}${s.tenant_category ? ` (${s.tenant_category})` : ''} — ${s.domain || s.punycode}.`, 'tenants');
+          }
+        }
+      }
+    }
+
+    // Co-mentioned entities from the semantic graph
     const coEntities = db.prepare(`
       SELECT e.id, e.unicode, e.ascii, e.meaning, COUNT(*) as co_count
       FROM entity_mentions em1
@@ -930,28 +999,48 @@ function generatePeopleAlsoAsk(q, limit = 4) {
       WHERE em1.entry_id = ? AND em2.entry_id != ?
       GROUP BY e.id
       ORDER BY co_count DESC
-      LIMIT ?
-    `).all(entry.id, entry.id, limit);
+      LIMIT 6
+    `).all(entry.id, entry.id);
 
-    for (const ce of coEntities) {
-      questions.push({
-        question: `How is ${entry.unicode} related to ${ce.unicode}?`,
-        answer: `Both ${entry.unicode} and ${ce.unicode} appear together in ${ce.co_count} indexed page${ce.co_count > 1 ? 's' : ''} across the Unicode web.${ce.meaning ? ` ${ce.unicode} means "${ce.meaning}".` : ''}`,
-        source: 'semantic_graph'
-      });
-    }
-
-    // Q6: Etymology
-    if (entry.etymology) {
-      questions.push({
-        question: `What is the etymology of ${entry.unicode}?`,
-        answer: entry.etymology,
-        source: 'lexicon'
-      });
+    for (const ce of coEntities.slice(0, 2)) {
+      add(
+        `How is ${name} related to ${ce.unicode}?`,
+        `Both ${name} and ${ce.unicode} appear together in ${ce.co_count} indexed page${ce.co_count > 1 ? 's' : ''} across the Unicode web.${ce.meaning ? ` ${ce.unicode} means "${ce.meaning}".` : ''}`,
+        'semantic_graph'
+      );
     }
   }
 
-  return questions.slice(0, limit + 2);
+  // Tenant / commercial questions for any query with matching active sites
+  const tenantSites = db.prepare(`
+    SELECT domain, punycode, title, description, first_p, tenant_name, tenant_category, tenant_front_url, meta_keywords
+    FROM indexed_sites
+    WHERE status = 'active' AND (
+      LOWER(title) LIKE ? OR
+      LOWER(description) LIKE ? OR
+      LOWER(first_p) LIKE ? OR
+      LOWER(meta_keywords) LIKE ? OR
+      LOWER(tenant_category) LIKE ?
+    )
+    ORDER BY is_flagship DESC, quality_score DESC, authority_score DESC
+    LIMIT 5
+  `).all(`%${query}%`, `%${query}%`, `%${query}%`, `%${query}%`, `%${query}%`);
+
+  if (tenantSites.length) {
+    const names = tenantSites.slice(0, 3).map(s => s.tenant_name || s.title || s.domain).join(', ');
+    add(`Who offers ${raw} on PUNYCODEX?`, `Indexed tenants include ${names}.`, 'tenants');
+    const first = tenantSites[0];
+    if (first.tenant_category) {
+      add(`What kind of business is ${first.tenant_name || first.title}?`, `${first.tenant_name || first.title} is listed under ${first.tenant_category}.`, 'tenants');
+    }
+    if (first.tenant_front_url || first.domain) {
+      add(`Where can I learn more about ${first.tenant_name || first.title}?`, `Visit ${first.tenant_front_url || first.domain}.`, 'tenants');
+    }
+  } else if (!entry) {
+    add(`What is ${raw}?`, `We don’t have a PUNYCODEX entry for “${raw}” yet, but you can search for Unicode-restored names or browse the lexicon.`, 'lexicon');
+  }
+
+  return questions.slice(0, limit);
 }
 
 /**
