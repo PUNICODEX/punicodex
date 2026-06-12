@@ -1,9 +1,7 @@
 /**
- * AI Curator MVP
+ * AI Curator Agent
  *
- * Scores every lexicon entry on completeness, Unicode correctness,
- * etymology quality, and commercial value. Flags the weakest entries
- * and stores confidence_score + ai_issues back into the database.
+ * Scores every lexicon entry and generates actionable suggestions for admin review.
  *
  * Run:
  *   node platform/scripts/ai-curator.js
@@ -16,18 +14,11 @@ const fs = require('fs');
 const path = require('path');
 const { getDbPath } = require('../db/db');
 
-const db = new Database(getDbPath());
-db.pragma('journal_mode = WAL');
-
-// Ensure curator columns exist.
-try { db.exec(`ALTER TABLE entries ADD COLUMN confidence_score REAL DEFAULT 0`); } catch (e) { /* exists */ }
-try { db.exec(`ALTER TABLE entries ADD COLUMN ai_issues TEXT`); } catch (e) { /* exists */ }
-try { db.exec(`ALTER TABLE entries ADD COLUMN ai_reviewed_at TEXT`); } catch (e) { /* exists */ }
-
-const args = process.argv.slice(2);
-const dryRun = args.includes('--dry-run');
-const reportPath = args.find(a => a.startsWith('--report='))?.split('=')[1];
-const limit = parseInt(args.find(a => a.startsWith('--limit='))?.split('=')[1], 10) || 50;
+function getDb() {
+  const db = new Database(getDbPath());
+  db.pragma('journal_mode = WAL');
+  return db;
+}
 
 // Stress / length detection.
 const STRESS_MARKS = /[\u0300\u0301\u0342\u0302\u0304\u0306\u0308\u0311\u0345]/;
@@ -101,7 +92,6 @@ function scoreUnicode(entry) {
       }
     }
   } else {
-    // For non-Greek pantheons, reward any use of native-script Unicode.
     if (hasAnyMark) {
       score = 20;
     } else {
@@ -110,7 +100,6 @@ function scoreUnicode(entry) {
     }
   }
 
-  // Validate tier_label consistency.
   const expectedLabel = entry.tier === 'dual' ? 'Dual-Tier' : `Tier ${entry.tier}`;
   if (entry.tier_label && entry.tier_label !== expectedLabel) {
     issues.push('tier_label_mismatch');
@@ -150,7 +139,7 @@ function scoreVariants(entry) {
   return { score: hasVariants ? 5 : 0, issues: hasVariants ? [] : ['missing_variants'] };
 }
 
-function scoreAssets(entry) {
+function scoreAssets(entry, db) {
   const site = db.prepare(`
     SELECT id, favicon_path, og_image_path
     FROM indexed_sites
@@ -159,7 +148,6 @@ function scoreAssets(entry) {
     LIMIT 1
   `).get(entry.id);
 
-  // If there is no active site yet, assets are not applicable.
   if (!site) {
     return { score: 5, issues: [] };
   }
@@ -173,7 +161,7 @@ function scoreAssets(entry) {
   return { score, issues };
 }
 
-function scoreCommercialValue(entry) {
+function scoreCommercialValue(entry, db) {
   const hasFlagship = entry.has_flagship === 1;
   const availability = db.prepare('SELECT * FROM availability WHERE entry_id = ?').get(entry.id);
   const score = (hasFlagship ? 7 : 0) + (availability ? 3 : 0);
@@ -182,14 +170,14 @@ function scoreCommercialValue(entry) {
   return { score, issues };
 }
 
-function scoreEntry(entry) {
+function scoreEntry(entry, db) {
   const s1 = scoreSources(entry);
   const s2 = scoreUnicode(entry);
   const s3 = scoreEtymology(entry);
   const s4 = scoreMeaningDomain(entry);
   const s5 = scoreVariants(entry);
-  const s6 = scoreAssets(entry);
-  const s7 = scoreCommercialValue(entry);
+  const s6 = scoreAssets(entry, db);
+  const s7 = scoreCommercialValue(entry, db);
 
   const total = Math.round(
     s1.score + s2.score + s3.score + s4.score + s5.score + s6.score + s7.score
@@ -208,15 +196,219 @@ function scoreEntry(entry) {
   return { score: total, issues };
 }
 
-function main() {
-  console.log('AI Curator MVP');
-  console.log('Scoring all entries...\n');
+// ─── Suggestion Generators ───
+
+function suggestTierRule(entry) {
+  const isGreek = entry.pantheon === 'greek' || entry.pantheon === 'greek-location';
+  if (!isGreek) return null;
+  const stressed = hasStress(entry.unicode);
+  const long = hasLength(entry.unicode);
+  const hasBoth = stressed && long;
+
+  const suggestedTier = hasBoth ? 'dual' : (stressed || long) ? '1' : '2';
+  if (suggestedTier === entry.tier) return null;
+
+  return {
+    entry_id: entry.id,
+    type: 'tier_rule',
+    field: 'tier',
+    current_value: entry.tier,
+    suggested_value: suggestedTier,
+    confidence: hasBoth ? 0.9 : 0.75,
+    issue: `Unicode has ${stressed ? 'stress' : 'no stress'} and ${long ? 'length' : 'no length'}; tier should be ${suggestedTier}.`
+  };
+}
+
+function suggestTierLabel(entry) {
+  const expected = entry.tier === 'dual' ? 'Dual-Tier' : `Tier ${entry.tier}`;
+  if (!entry.tier_label || entry.tier_label === expected) return null;
+  return {
+    entry_id: entry.id,
+    type: 'tier_label',
+    field: 'tier_label',
+    current_value: entry.tier_label,
+    suggested_value: expected,
+    confidence: 0.95,
+    issue: 'tier_label does not match tier.'
+  };
+}
+
+function suggestMissingVariants(entry) {
+  const parsed = safeJsonParse(entry.variants);
+  const count = Array.isArray(parsed) ? parsed.length : 0;
+  if (entry.tier === 'dual') {
+    if (count >= 2) return null;
+    return {
+      entry_id: entry.id,
+      type: 'missing_variants',
+      field: 'variants',
+      current_value: entry.variants,
+      suggested_value: null,
+      confidence: 0.8,
+      issue: `Dual-tier entry has only ${count} variant(s); at least 2 are expected.`
+    };
+  }
+  if (count > 0) return null;
+  return {
+    entry_id: entry.id,
+    type: 'missing_variants',
+    field: 'variants',
+    current_value: null,
+    suggested_value: JSON.stringify([{ unicode: entry.ascii, type: 'ascii', note: 'Modern English' }]),
+    confidence: 0.7,
+    issue: 'No variants recorded; consider adding at least an ASCII fallback.'
+  };
+}
+
+function suggestEtymology(entry) {
+  if (entry.etymology) return null;
+  return {
+    entry_id: entry.id,
+    type: 'missing_etymology',
+    field: 'etymology',
+    current_value: null,
+    suggested_value: null,
+    confidence: 0.6,
+    issue: 'No etymology recorded.'
+  };
+}
+
+function suggestSources(entry) {
+  const parsed = safeJsonParse(entry.sources);
+  if (Array.isArray(parsed) && parsed.length > 0) return null;
+  return {
+    entry_id: entry.id,
+    type: 'missing_sources',
+    field: 'sources',
+    current_value: entry.sources,
+    suggested_value: JSON.stringify(['LSJ']),
+    confidence: 0.5,
+    issue: 'No scholarly sources listed.'
+  };
+}
+
+function suggestMeaningDomain(entry) {
+  if (entry.meaning && entry.domain) return null;
+  return {
+    entry_id: entry.id,
+    type: 'missing_meaning_domain',
+    field: entry.meaning ? 'domain' : entry.domain ? 'meaning' : 'meaning,domain',
+    current_value: JSON.stringify({ meaning: entry.meaning, domain: entry.domain }),
+    suggested_value: null,
+    confidence: 0.55,
+    issue: `Missing ${!entry.meaning && !entry.domain ? 'meaning and domain' : !entry.meaning ? 'meaning' : 'domain'}.`
+  };
+}
+
+function suggestNormalization(entry) {
+  if (!entry.unicode) return null;
+  const nfc = entry.unicode.normalize('NFC');
+  const nfd = entry.unicode.normalize('NFD');
+  if (nfc === entry.unicode && nfd === entry.unicode) return null;
+  if (entry.unicode !== nfc) {
+    return {
+      entry_id: entry.id,
+      type: 'unicode_normalization',
+      field: 'unicode',
+      current_value: entry.unicode,
+      suggested_value: nfc,
+      confidence: 0.95,
+      issue: 'Unicode form is not NFC normalized.'
+    };
+  }
+  return null;
+}
+
+function detectDuplicate(entries) {
+  const seenUnicode = new Map();
+  const seenAscii = new Map();
+  const suggestions = [];
+  for (const e of entries) {
+    const u = e.unicode ? e.unicode.normalize('NFC').toLowerCase() : null;
+    const a = e.ascii ? e.ascii.toLowerCase() : null;
+    if (u && seenUnicode.has(u) && seenUnicode.get(u) !== e.id) {
+      suggestions.push({
+        entry_id: e.id,
+        type: 'duplicate',
+        field: 'unicode',
+        current_value: e.unicode,
+        suggested_value: seenUnicode.get(u),
+        confidence: 0.85,
+        issue: `Duplicate Unicode form with entry ${seenUnicode.get(u)}.`
+      });
+    }
+    if (a && seenAscii.has(a) && seenAscii.get(a) !== e.id) {
+      suggestions.push({
+        entry_id: e.id,
+        type: 'duplicate',
+        field: 'ascii',
+        current_value: e.ascii,
+        suggested_value: seenAscii.get(a),
+        confidence: 0.85,
+        issue: `Duplicate ASCII form with entry ${seenAscii.get(a)}.`
+      });
+    }
+    if (u) seenUnicode.set(u, e.id);
+    if (a) seenAscii.set(a, e.id);
+  }
+  return suggestions;
+}
+
+function generateSuggestionsForEntry(entry) {
+  const suggestions = [];
+  const fns = [
+    suggestTierRule,
+    suggestTierLabel,
+    suggestMissingVariants,
+    suggestEtymology,
+    suggestSources,
+    suggestMeaningDomain,
+    suggestNormalization
+  ];
+  for (const fn of fns) {
+    const s = fn(entry);
+    if (s) suggestions.push(s);
+  }
+  return suggestions;
+}
+
+function upsertSuggestions(db, suggestions) {
+  const insert = db.prepare(`
+    INSERT INTO curator_suggestions (entry_id, type, field, current_value, suggested_value, confidence, issue, status, created_at)
+    VALUES (?, ?, ?, ?, ?, ?, ?, 'open', datetime('now'))
+  `);
+  const check = db.prepare(`
+    SELECT id FROM curator_suggestions
+    WHERE entry_id = ? AND type = ? AND field = ? AND status = 'open'
+    LIMIT 1
+  `);
+  let added = 0;
+  const insertMany = db.transaction((rows) => {
+    for (const s of rows) {
+      const existing = check.get(s.entry_id, s.type, s.field || '');
+      if (existing) continue;
+      insert.run(s.entry_id, s.type, s.field || '', s.current_value, s.suggested_value, s.confidence, s.issue);
+      added++;
+    }
+  });
+  insertMany(suggestions);
+  return added;
+}
+
+function runCurator({ dryRun = false, reportPath = null, limit = 50 } = {}) {
+  const db = getDb();
+
+  // Ensure columns exist.
+  try { db.exec(`ALTER TABLE entries ADD COLUMN confidence_score REAL DEFAULT 0`); } catch (e) { /* exists */ }
+  try { db.exec(`ALTER TABLE entries ADD COLUMN ai_issues TEXT`); } catch (e) { /* exists */ }
+  try { db.exec(`ALTER TABLE entries ADD COLUMN ai_reviewed_at TEXT`); } catch (e) { /* exists */ }
 
   const entries = db.prepare('SELECT * FROM entries').all();
   const scored = [];
+  let allSuggestions = [];
 
   for (const entry of entries) {
-    const result = scoreEntry(entry);
+    const result = scoreEntry(entry, db);
     scored.push({ ...entry, ...result });
 
     if (!dryRun) {
@@ -226,6 +418,15 @@ function main() {
         WHERE id = ?
       `).run(result.score, JSON.stringify(result.issues), entry.id);
     }
+
+    allSuggestions = allSuggestions.concat(generateSuggestionsForEntry(entry));
+  }
+
+  allSuggestions = allSuggestions.concat(detectDuplicate(entries));
+
+  let added = 0;
+  if (!dryRun) {
+    added = upsertSuggestions(db, allSuggestions);
   }
 
   const weakest = scored
@@ -233,24 +434,13 @@ function main() {
     .sort((a, b) => a.score - b.score)
     .slice(0, limit);
 
-  console.log(`Scored ${scored.length} entries`);
-  console.log(`Average confidence: ${(scored.reduce((a, b) => a + b.score, 0) / scored.length).toFixed(1)} / 100`);
-  console.log(`Entries below 70: ${scored.filter(e => e.score < 70).length}`);
-  console.log(`\nTop ${limit} weakest entries:`);
-  console.table(weakest.map(e => ({
-    id: e.id,
-    unicode: e.unicode,
-    tier: e.tier,
-    score: e.score,
-    issues: e.issues.join(', ')
-  })));
-
   if (reportPath) {
     const report = {
       generatedAt: new Date().toISOString(),
       totalEntries: scored.length,
       averageScore: parseFloat((scored.reduce((a, b) => a + b.score, 0) / scored.length).toFixed(2)),
       below70: scored.filter(e => e.score < 70).length,
+      suggestionsAdded: added,
       weakest: weakest.map(e => ({
         id: e.id,
         ascii: e.ascii,
@@ -266,6 +456,44 @@ function main() {
   }
 
   db.close();
+
+  return {
+    scored: scored.length,
+    averageScore: parseFloat((scored.reduce((a, b) => a + b.score, 0) / scored.length).toFixed(2)),
+    below70: scored.filter(e => e.score < 70).length,
+    suggestions: allSuggestions.length,
+    added,
+    weakest
+  };
 }
 
-main();
+function main() {
+  const args = process.argv.slice(2);
+  const dryRun = args.includes('--dry-run');
+  const reportPath = args.find(a => a.startsWith('--report='))?.split('=')[1];
+  const limit = parseInt(args.find(a => a.startsWith('--limit='))?.split('=')[1], 10) || 50;
+
+  console.log('AI Curator Agent');
+  console.log('Scoring all entries and generating suggestions...\n');
+
+  const result = runCurator({ dryRun, reportPath, limit });
+
+  console.log(`Scored ${result.scored} entries`);
+  console.log(`Average confidence: ${result.averageScore} / 100`);
+  console.log(`Entries below 70: ${result.below70}`);
+  console.log(`Suggestions generated: ${result.suggestions}${dryRun ? '' : `, new: ${result.added}`}`);
+  console.log(`\nTop ${limit} weakest entries:`);
+  console.table(result.weakest.map(e => ({
+    id: e.id,
+    unicode: e.unicode,
+    tier: e.tier,
+    score: e.score,
+    issues: e.issues.join(', ')
+  })));
+}
+
+if (require.main === module) {
+  main();
+}
+
+module.exports = { runCurator, scoreEntry, generateSuggestionsForEntry, detectDuplicate };

@@ -1033,6 +1033,101 @@ app.get('/api/admin/ai-review', requireAdmin, (req, res) => {
   } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
+app.post('/api/admin/curator/run', requireAdmin, (req, res) => {
+  try {
+    const { dryRun = false, limit = 50 } = req.body;
+    const { runCurator } = require('./scripts/ai-curator');
+    const result = runCurator({ dryRun, limit });
+    res.json({ success: true, ...result });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.get('/api/admin/curator/suggestions', requireAdmin, (req, res) => {
+  try {
+    const { status = 'open', type, entryId, limit = 50, offset = 0 } = req.query;
+    const allowedStatus = ['open', 'approved', 'rejected', 'all'];
+    const where = [];
+    const params = [];
+    if (status && allowedStatus.includes(status) && status !== 'all') {
+      where.push('cs.status = ?');
+      params.push(status);
+    }
+    if (type) { where.push('cs.type = ?'); params.push(type); }
+    if (entryId) { where.push('cs.entry_id = ?'); params.push(entryId); }
+    const whereSql = where.length ? 'WHERE ' + where.join(' AND ') : '';
+
+    const suggestions = db.prepare(`
+      SELECT cs.*, e.unicode as entry_unicode, e.ascii as entry_ascii, e.pantheon
+      FROM curator_suggestions cs
+      JOIN entries e ON cs.entry_id = e.id
+      ${whereSql}
+      ORDER BY cs.confidence DESC, cs.created_at DESC
+      LIMIT ? OFFSET ?
+    `).all(...params, parseInt(limit, 10) || 50, parseInt(offset, 10) || 0);
+
+    const { total } = db.prepare(`
+      SELECT COUNT(*) as total FROM curator_suggestions cs
+      JOIN entries e ON cs.entry_id = e.id
+      ${whereSql}
+    `).get(...params);
+
+    const stats = db.prepare(`
+      SELECT
+        COUNT(*) as total,
+        SUM(CASE WHEN status = 'open' THEN 1 ELSE 0 END) as open,
+        SUM(CASE WHEN status = 'approved' THEN 1 ELSE 0 END) as approved,
+        SUM(CASE WHEN status = 'rejected' THEN 1 ELSE 0 END) as rejected
+      FROM curator_suggestions
+    `).get();
+
+    res.json({ suggestions, total, stats });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.post('/api/admin/curator/suggestions/:id/approve', requireAdmin, (req, res) => {
+  try {
+    const suggestion = db.prepare('SELECT * FROM curator_suggestions WHERE id = ?').get(req.params.id);
+    if (!suggestion) return res.status(404).json({ error: 'Suggestion not found' });
+
+    // Apply the suggestion based on type/field.
+    if (suggestion.field && suggestion.suggested_value) {
+      const fieldMap = {
+        tier: 'tier',
+        tier_label: 'tier_label',
+        variants: 'variants',
+        sources: 'sources',
+        etymology: 'etymology',
+        unicode: 'unicode'
+      };
+      const column = fieldMap[suggestion.field];
+      if (column) {
+        db.prepare(`UPDATE entries SET ${column} = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?`).run(suggestion.suggested_value, suggestion.entry_id);
+      }
+    }
+
+    db.prepare(`
+      UPDATE curator_suggestions
+      SET status = 'approved', reviewed_at = datetime('now')
+      WHERE id = ?
+    `).run(req.params.id);
+
+    res.json({ success: true, status: 'approved' });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+app.post('/api/admin/curator/suggestions/:id/reject', requireAdmin, (req, res) => {
+  try {
+    const suggestion = db.prepare('SELECT * FROM curator_suggestions WHERE id = ?').get(req.params.id);
+    if (!suggestion) return res.status(404).json({ error: 'Suggestion not found' });
+    db.prepare(`
+      UPDATE curator_suggestions
+      SET status = 'rejected', reviewed_at = datetime('now')
+      WHERE id = ?
+    `).run(req.params.id);
+    res.json({ success: true, status: 'rejected' });
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
 app.post('/api/admin/ai-review/:id', requireAdmin, (req, res) => {
   try {
     const { status, summary, symbols, pronunciation, etymologyNarrative, relevanceToday } = req.body;

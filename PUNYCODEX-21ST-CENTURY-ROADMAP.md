@@ -238,7 +238,7 @@ This roadmap is split into six phases. Each phase has concrete deliverables, fil
 - Four A/B variants (default, authority, discovery, commercial) selectable from the UI.
 - Ranker passes regression tests.
 
-### 2.4 AI Curator Agent
+### 2.4 AI Curator Agent ✅
 
 **Deliverables:**
 - Nightly agent that:
@@ -251,13 +251,14 @@ This roadmap is split into six phases. Each phase has concrete deliverables, fil
 - One-click approve/reject for suggestions.
 
 **File targets:**
+- `platform/db/migrate-curator-suggestions.js`
 - `platform/scripts/ai-curator.js`
-- `platform/public/admin-curator.html` (new)
-- `platform/api/admin.js`
+- `platform/public/admin-curator.html`
+- `platform/server.js`
 
 **Acceptance criteria:**
-- Agent runs without errors.
-- Dashboard shows open suggestions and confidence.
+- Agent runs without errors and stores suggestions in `curator_suggestions`.
+- Dashboard shows open suggestions, confidence, and type filters.
 - Approved suggestions are applied to `entries`.
 
 ---
