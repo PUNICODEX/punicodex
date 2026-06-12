@@ -6,12 +6,14 @@ module.exports = (req, res) => {
   if (req.method === 'OPTIONS') return res.status(200).end();
 
   try {
-    const { q, pantheon, tier, hasSite, limit, offset } = req.query;
+    const { q, pantheon, tier, hasSite, type, sort, limit, offset } = req.query;
     const result = search({
       q,
       pantheon,
       tier,
       hasSite,
+      type: type || 'all',
+      sort: sort || 'relevance',
       limit: limit ? parseInt(limit, 10) : 20,
       offset: offset ? parseInt(offset, 10) : 0
     });

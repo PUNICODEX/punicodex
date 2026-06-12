@@ -14,10 +14,26 @@ function getDb() {
   return db;
 }
 
+// Realm/location entry ids approximate the Realms page lists.
+const REALM_KEYWORDS = ['heimr','heim','world','realm','land','kingdom','underworld','sky','sea','earth'];
+
+function isRealmEntry(entry) {
+  if (entry.pantheon === 'greek-location') return true;
+  if (entry.pantheon === 'norse') {
+    const text = `${entry.id} ${entry.unicode} ${entry.domain || ''} ${entry.meaning || ''}`.toLowerCase();
+    return REALM_KEYWORDS.some(k => text.includes(k));
+  }
+  return false;
+}
+
+function isGodEntry(entry) {
+  return entry.pantheon !== 'greek-location';
+}
+
 /**
  * Rich search: returns entries with live site data (business card) + availability
  */
-function search({ q, pantheon, tier, hasSite, limit = 20, offset = 0 }) {
+function search({ q, pantheon, tier, hasSite, type = 'all', sort = 'relevance', limit = 20, offset = 0 }) {
   const db = getDb();
   
   let sql = `
@@ -32,6 +48,7 @@ function search({ q, pantheon, tier, hasSite, limit = 20, offset = 0 }) {
       s.status as site_status,
       s.tier_label as site_tier_label,
       s.is_flagship as site_is_flagship,
+      s.last_crawled as site_last_crawled,
       a.status as avail_status
     FROM entries e
     LEFT JOIN indexed_sites s ON e.id = s.lexicon_entry_id AND s.status = 'active'
@@ -41,6 +58,7 @@ function search({ q, pantheon, tier, hasSite, limit = 20, offset = 0 }) {
   let countSql = `
     SELECT COUNT(*) as total FROM entries e
     LEFT JOIN indexed_sites s ON e.id = s.lexicon_entry_id AND s.status = 'active'
+    LEFT JOIN availability a ON e.id = a.entry_id
     WHERE 1=1
   `;
   const params = [];
@@ -59,6 +77,7 @@ function search({ q, pantheon, tier, hasSite, limit = 20, offset = 0 }) {
         s.status as site_status,
         s.tier_label as site_tier_label,
         s.is_flagship as site_is_flagship,
+        s.last_crawled as site_last_crawled,
         a.status as avail_status
       FROM entries e
       JOIN entries_fts fts ON e.rowid = fts.rowid
@@ -69,6 +88,8 @@ function search({ q, pantheon, tier, hasSite, limit = 20, offset = 0 }) {
     countSql = `
       SELECT COUNT(*) as total FROM entries e
       JOIN entries_fts fts ON e.rowid = fts.rowid
+      LEFT JOIN indexed_sites s ON e.id = s.lexicon_entry_id AND s.status = 'active'
+      LEFT JOIN availability a ON e.id = a.entry_id
       WHERE entries_fts MATCH ?
     `;
     params.push(ftsQuery);
@@ -94,10 +115,43 @@ function search({ q, pantheon, tier, hasSite, limit = 20, offset = 0 }) {
     countSql += ' AND s.id IS NULL';
   }
 
-  sql += ' ORDER BY s.is_flagship DESC, e.tier = \'dual\' DESC, e.tier = \'1\' DESC, e.unicode ASC';
+  // Type filters
+  if (type === 'gods') {
+    sql += " AND e.pantheon != 'greek-location'";
+    countSql += " AND e.pantheon != 'greek-location'";
+  } else if (type === 'locations') {
+    sql += " AND e.pantheon = 'greek-location'";
+    countSql += " AND e.pantheon = 'greek-location'";
+  } else if (type === 'available') {
+    sql += " AND a.status = 'available'";
+    countSql += " AND a.status = 'available'";
+  } else if (type === 'businesses') {
+    sql += ' AND s.id IS NOT NULL';
+    countSql += ' AND s.id IS NOT NULL';
+  }
+  // 'realms' and 'all' need post-query filtering because realm detection is heuristic.
+
+  // Ordering (whitelisted to prevent SQL injection)
+  const allowedSorts = {
+    relevance: 's.is_flagship DESC, e.tier = \'dual\' DESC, e.tier = \'1\' DESC, e.unicode ASC',
+    alphabetical: 'e.unicode ASC',
+    tier: "e.tier = 'dual' DESC, e.tier = '1' DESC, e.tier = '2' DESC, e.unicode ASC",
+    recently_crawled: 's.last_crawled DESC, e.unicode ASC',
+    confidence: 'e.confidence_score DESC, e.unicode ASC'
+  };
+  const orderBy = allowedSorts[sort] || allowedSorts.relevance;
+
+  sql += ` ORDER BY ${orderBy}`;
   sql += ' LIMIT ? OFFSET ?';
 
-  const entries = db.prepare(sql).all(...params, limit, offset);
+  let entries = db.prepare(sql).all(...params, limit, offset);
+
+  if (type === 'realms') {
+    entries = entries.filter(isRealmEntry);
+  } else if (type === 'gods') {
+    entries = entries.filter(isGodEntry);
+  }
+
   const { total } = db.prepare(countSql).get(...params);
 
   return { 

@@ -131,7 +131,8 @@ function searchSites(q, limit = 20) {
  * 
  * Returns SERP-style results with highlighted snippets.
  */
-async function searchWeb(q, limit = 20, mode = 'all') {
+async function searchWeb(q, options = {}) {
+  const { limit = 20, mode = 'all', type = 'all', pantheon, tier, sort = 'relevance' } = options;
   const db = getDb();
   if (!q || !q.trim()) {
     return { results: [], total: 0, query: q, timing: 0 };
@@ -139,6 +140,36 @@ async function searchWeb(q, limit = 20, mode = 'all') {
 
   const startTime = Date.now();
   const ftsQuery = q.trim().split(/\s+/).filter(w => w.length > 0).join(' ');
+
+  const filters = [];
+  const params = [ftsQuery];
+
+  if (mode === 'network') {
+    filters.push("AND (s.is_flagship = 1 OR s.tenant_name IS NOT NULL)");
+  }
+
+  if (type === 'businesses') {
+    filters.push("AND (s.is_flagship = 1 OR s.tenant_name IS NOT NULL OR s.tenant_front_url IS NOT NULL)");
+  }
+
+  if (pantheon) {
+    filters.push("AND s.pantheon = ?");
+    params.push(pantheon);
+  }
+
+  if (tier) {
+    filters.push("AND s.tier = ?");
+    params.push(tier);
+  }
+
+  const allowedSorts = {
+    relevance: 'composite_score ASC',
+    alphabetical: 's.title ASC',
+    tier: "s.tier = 'dual' DESC, s.tier = '1' DESC, s.tier = '2' DESC",
+    recently_crawled: 's.last_crawled DESC',
+    quality: 's.quality_score DESC'
+  };
+  const orderBy = allowedSorts[sort] || allowedSorts.relevance;
 
   // Primary: FTS5 with BM25 scoring + ranking boosts
   let results = [];
@@ -191,10 +222,10 @@ async function searchWeb(q, limit = 20, mode = 'all') {
       WHERE indexed_sites_fts MATCH ?
         AND s.status != 'spam'
         AND (s.is_flagship = 1 OR s.quality_score >= 0.3 OR s.tenant_name IS NOT NULL)
-        ${mode === 'network' ? "AND (s.is_flagship = 1 OR s.tenant_name IS NOT NULL)" : ''}
-      ORDER BY composite_score ASC
+        ${filters.join(' ')}
+      ORDER BY ${orderBy}
       LIMIT ?
-    `).all(ftsQuery, limit);
+    `).all(...params, limit);
 
     results = rows.map(row => {
       // Best snippet hierarchy: OG desc > Twitter desc > meta desc > FTS snippet > h1 > first_p > content_snippet

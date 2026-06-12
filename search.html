@@ -311,6 +311,59 @@
       border-bottom-color: var(--link-blue);
     }
 
+    /* ====== FILTER BAR ====== */
+    .filter-bar {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.6rem;
+    }
+    .filter-row:last-child { margin-bottom: 0; }
+    .filter-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-right: 0.3rem;
+    }
+    .filter-pill {
+      font-size: 0.8rem;
+      padding: 0.35rem 0.8rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--text-dim);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-pill:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+    .filter-pill.active {
+      background: var(--accent-glow);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .filter-select {
+      font-size: 0.8rem;
+      padding: 0.35rem 0.6rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      outline: none;
+    }
+    .filter-select:focus { border-color: var(--accent); }
+
     /* ====== RESULTS AREA ====== */
     .results {
       max-width: 700px;
@@ -1359,6 +1412,37 @@
     </label>
   </div>
 
+  <div class="filter-bar">
+    <div class="filter-row">
+      <span class="filter-label">Type</span>
+      <button class="filter-pill active" data-filter="type" data-value="all">All</button>
+      <button class="filter-pill" data-filter="type" data-value="gods">Gods</button>
+      <button class="filter-pill" data-filter="type" data-value="realms">Realms</button>
+      <button class="filter-pill" data-filter="type" data-value="locations">Locations</button>
+      <button class="filter-pill" data-filter="type" data-value="businesses">Businesses</button>
+      <button class="filter-pill" data-filter="type" data-value="available">Available</button>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">Tier</span>
+      <button class="filter-pill active" data-filter="tier" data-value="">Any</button>
+      <button class="filter-pill" data-filter="tier" data-value="dual">Dual</button>
+      <button class="filter-pill" data-filter="tier" data-value="1">Tier 1</button>
+      <button class="filter-pill" data-filter="tier" data-value="2">Tier 2</button>
+      <span class="filter-label" style="margin-left: auto;">Pantheon</span>
+      <select class="filter-select" id="pantheonFilter" onchange="setPantheon(this.value)">
+        <option value="">All pantheons</option>
+      </select>
+      <span class="filter-label">Sort</span>
+      <select class="filter-select" id="sortFilter" onchange="setSort(this.value)">
+        <option value="relevance">Relevance</option>
+        <option value="alphabetical">A–Z</option>
+        <option value="tier">Tier</option>
+        <option value="recently_crawled">Recently crawled</option>
+        <option value="confidence">Confidence</option>
+      </select>
+    </div>
+  </div>
+
   <section class="oracle-panel" id="oraclePanel">
     <div class="oracle-header" onclick="toggleOracle()">
       <span class="oracle-icon">🔮</span>
@@ -1382,8 +1466,58 @@
     const API_BASE = '';
     let debounceTimer;
     let currentMode = 'web';
+    let currentType = 'all';
+    let currentTier = '';
+    let currentPantheon = '';
+    let currentSort = 'relevance';
     let focusedIndex = -1;
     let currentResults = [];
+
+    // ====== FILTERS ======
+    async function loadPantheons() {
+      try {
+        const res = await fetch(`${API_BASE}/api/pantheons/`);
+        const pantheons = await res.json();
+        const select = document.getElementById('pantheonFilter');
+        pantheons.forEach(p => {
+          const opt = document.createElement('option');
+          opt.value = p;
+          opt.textContent = p.charAt(0).toUpperCase() + p.slice(1);
+          select.appendChild(opt);
+        });
+      } catch (e) {
+        console.error('Failed to load pantheons', e);
+      }
+    }
+    loadPantheons();
+
+    document.querySelectorAll('.filter-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        const filter = pill.dataset.filter;
+        const value = pill.dataset.value;
+        document.querySelectorAll(`.filter-pill[data-filter="${filter}"]`).forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        if (filter === 'type') currentType = value;
+        if (filter === 'tier') currentTier = value;
+        triggerSearch();
+      });
+    });
+
+    function setPantheon(value) {
+      currentPantheon = value;
+      triggerSearch();
+    }
+
+    function setSort(value) {
+      currentSort = value;
+      triggerSearch();
+    }
+
+    function triggerSearch() {
+      if (!searchInput.value.trim()) return;
+      if (currentMode === 'domains') searchDomains();
+      else searchWeb();
+    }
 
     // ====== MODE SWITCHING ======
     const modeTabs = document.querySelectorAll('.mode-tab');
@@ -1630,9 +1764,19 @@
       // Update the Oracle in parallel with search results.
       updateOracle(q);
 
+      const params = new URLSearchParams();
+      params.set('q', q);
+      params.set('limit', '20');
+      params.set('mode', apiMode);
+      if (currentType !== 'all') params.set('type', currentType);
+      if (currentTier) params.set('tier', currentTier);
+      if (currentPantheon) params.set('pantheon', currentPantheon);
+      const sort = currentMode === 'web' && currentSort === 'confidence' ? 'relevance' : currentSort;
+      if (sort) params.set('sort', sort);
+
       try {
         const [searchRes, dymRes, relatedRes, knowledgeRes, paaRes] = await Promise.all([
-          fetch(`${API_BASE}/api/search/web?q=${encodeURIComponent(q)}&limit=20&mode=${apiMode}`),
+          fetch(`${API_BASE}/api/search/web?${params}`),
           fetch(`${API_BASE}/api/search/didyoumean?q=${encodeURIComponent(q)}&limit=3`),
           fetch(`${API_BASE}/api/search/related?q=${encodeURIComponent(q)}&limit=6`),
           fetch(`${API_BASE}/api/search/knowledge?q=${encodeURIComponent(q)}`).catch(() => ({ ok: false })),
@@ -1945,6 +2089,10 @@
       try {
         const params = new URLSearchParams();
         if (q) params.set('q', q);
+        if (currentType !== 'all') params.set('type', currentType);
+        if (currentTier) params.set('tier', currentTier);
+        if (currentPantheon) params.set('pantheon', currentPantheon);
+        if (currentSort) params.set('sort', currentSort);
         const res = await fetch(`${API_BASE}/api/search?${params}`);
         const data = await res.json();
         renderDomainResults(data);
