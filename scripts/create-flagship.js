@@ -15,6 +15,7 @@ const fs = require('fs');
 const path = require('path');
 const cheerio = require('cheerio');
 const url = require('url');
+const { unicodeName } = require('unicode-name');
 
 const ROOT = path.join(__dirname, '..');
 const TEMPLATE_DIR = path.join(ROOT, 'templates', 'flagship');
@@ -297,8 +298,7 @@ function buildHeroVisual(templeId, unicode, domain) {
 }
 
 function buildExtendedTab(page, templeId) {
-  if (!hasHeroVideo(templeId)) return '';
-  const paths = { index: 'lore/extended/index.html', lore: '../lore/extended/index.html', gallery: '../lore/extended/index.html', extended: './index.html' };
+  const paths = { index: 'lore/extended/', lore: 'extended/', gallery: '../lore/extended/', extended: './' };
   const href = paths[page] || paths.index;
   const activeClass = page === 'extended' ? 'nav-link active' : 'nav-link';
   return `<a href="${href}" class="${activeClass}">Extended</a>`;
@@ -632,7 +632,6 @@ function buildRelatedNamesSection(entry, sectionNumber) {
 }
 
 function buildExtendedLoreCTA(entry, catalogEntry) {
-  if (!hasHeroVideo(entry.id)) return '';
   let body = '';
   if (catalogEntry && catalogEntry.extendedMeditation) {
     const firstP = catalogEntry.extendedMeditation.match(/<p[\s\S]*?<\/p>/);
@@ -658,6 +657,349 @@ function buildExtendedLoreCTA(entry, catalogEntry) {
             </div>
             <div class="pantheon-mascot">
                 <picture><source srcset="../assets/${entry.id}_mascot.webp" type="image/webp"><img src="../assets/${entry.id}_mascot.png" alt="${entry.unicode} mascot" class="pantheon-mascot-img"></picture>
+            </div>
+        </div>
+    </div>
+</section>`;
+}
+
+// Extended page builder helpers for create-flagship.js
+
+function buildZeusFooter(entry, assetPrefix) {
+  const logomarkPath = `${assetPrefix}assets/${entry.id}_logomark`;
+  const greek = originalScript(entry);
+  return `<footer class="main-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <span class="footer-logo">PUNYCODEX</span>
+                <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+            </div>
+            <div class="footer-info">
+                <div class="footer-block">
+                    <span class="footer-label">Domains</span>
+                    <span class="footer-value">${getDomainsText(entry)}</span>
+                </div>
+                <div class="footer-block">
+                    <span class="footer-label">Classification</span>
+                    <span class="footer-value">${entry.tierLabel || `Tier ${entry.tier}`}</span>
+                </div>
+                <div class="footer-block">
+                    <span class="footer-label">Original Script</span>
+                    <span class="footer-value">${greek}</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-seal">
+            <picture><source srcset="${logomarkPath}.webp" type="image/webp"><img src="${logomarkPath}.png" alt="${entry.unicode} logomark" class="footer-logomark"></picture>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+        </div>
+    </div>
+</footer>`;
+}
+
+function buildHeroVisualExtended(entry, assetPrefix) {
+  const videoBase = `${assetPrefix}assets/${entry.id}_hero_video`;
+  const poster = `${assetPrefix}assets/${entry.id}_hero_poster.jpg`;
+  const mascot = `${assetPrefix}assets/${entry.id}_mascot`;
+  if (hasHeroVideo(entry.id)) {
+    return `<figure class="endorsement-mascot endorsement-mascot--video" style="margin:0;">
+      <video autoplay muted loop playsinline poster="${poster}" aria-label="Animated portrait of ${entry.unicode}, ${entry.domain}">
+        <source src="${videoBase}.webm" type="video/webm">
+        <source src="${videoBase}.mp4" type="video/mp4">
+        <img src="${mascot}.png" alt="${entry.unicode} — ${entry.domain}">
+      </video>
+      <button class="video-pause" aria-label="Pause animation">❚❚</button>
+    </figure>`;
+  }
+  return `<picture><source srcset="${mascot}.webp" type="image/webp"><img src="${mascot}.png" alt="${entry.unicode} — ${entry.domain}" class="mascot-img"></picture>`;
+}
+
+function getUnicodeInfo(char) {
+  const cp = char.codePointAt(0);
+  const hex = 'U+' + cp.toString(16).toUpperCase().padStart(4, '0');
+  let name;
+  try { name = unicodeName(char); } catch (e) { name = `Character ${hex}`; }
+  if (name) {
+    name = name.toLowerCase().replace(/\b\w/g, c => c.toUpperCase()).replace(/\bOf\b/g, 'of').replace(/\bAnd\b/g, 'and').replace(/\bWith\b/g, 'with');
+  } else {
+    name = `Character ${hex}`;
+  }
+  let block = 'Unknown';
+  if (cp <= 0x007F) block = 'Basic Latin';
+  else if (cp <= 0x00FF) block = 'Latin-1 Supplement';
+  else if (cp <= 0x017F) block = 'Latin Extended-A';
+  else if (cp <= 0x024F) block = 'Latin Extended-B';
+  else if (cp >= 0x0250 && cp <= 0x02AF) block = 'IPA Extensions';
+  else if (cp >= 0x02B0 && cp <= 0x02FF) block = 'Spacing Modifier Letters';
+  else if (cp >= 0x0300 && cp <= 0x036F) block = 'Combining Diacritical Marks';
+  else if (cp >= 0x0370 && cp <= 0x03FF) block = 'Greek and Coptic';
+  else if (cp >= 0x1F00 && cp <= 0x1FFF) block = 'Greek Extended';
+  else if (cp >= 0x0400 && cp <= 0x04FF) block = 'Cyrillic';
+  else if (cp >= 0x0530 && cp <= 0x058F) block = 'Armenian';
+  else if (cp >= 0x0590 && cp <= 0x05FF) block = 'Hebrew';
+  else if (cp >= 0x0600 && cp <= 0x06FF) block = 'Arabic';
+  else if (cp >= 0x0900 && cp <= 0x097F) block = 'Devanagari';
+  else if (cp >= 0x10A0 && cp <= 0x10FF) block = 'Georgian';
+  else if (cp >= 0xA720 && cp <= 0xA7FF) block = 'Latin Extended-D';
+  return { hex, name, block };
+}
+
+function buildQuickFactsSection(entry, catalogEntry) {
+  const greek = originalScript(entry);
+  const symbols = (catalogEntry && catalogEntry.symbols) || [];
+  const ipa = catalogEntry && catalogEntry.pronunciation && catalogEntry.pronunciation.ipa ? catalogEntry.pronunciation.ipa : '';
+  const facts = [
+    { dt: 'Original Script', dd: greek },
+    { dt: 'Unicode Restoration', dd: entry.unicode },
+    { dt: 'Pantheon', dd: (entry.pantheon || '').replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) },
+    { dt: 'Domain', dd: entry.domain },
+    { dt: 'Meaning', dd: entry.meaning || entry.domain },
+    { dt: 'Classification', dd: entry.tierLabel || `Tier ${entry.tier}` },
+    { dt: 'Primary Domain', dd: getDomainsText(entry).split(' \u00b7 ')[0] || `${entry.unicode}.com` }
+  ];
+  if (ipa) facts.splice(2, 0, { dt: 'Reconstructed Pronunciation', dd: ipa });
+  if (symbols.length) facts.push({ dt: 'Sacred Symbols', dd: symbols.slice(0, 5).map(s => s.name).join(', ') });
+  const rows = facts.map(f => `<div class="fact-item reveal-up"><dt>${f.dt}</dt><dd>${f.dd}</dd></div>`).join('');
+  return `<section class="section section-name" id="quick-facts">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">01</span>
+            <h2 class="section-title">Quick Facts</h2>
+            <p class="section-subtitle">Essential information about ${entry.unicode}, ${entry.domain}</p>
+        </div>
+        <div class="facts-grid reveal-up">
+            <dl class="facts-list">${rows}</dl>
+        </div>
+    </div>
+</section>`;
+}
+
+function buildEtymologySection(entry, catalogEntry) {
+  const greek = originalScript(entry);
+  const etym = entry.etymology || {};
+  const steps = [];
+  if (etym.protoForm) {
+    steps.push({ lang: etym.protoLanguage ? (etym.protoLanguage.charAt(0).toUpperCase() + etym.protoLanguage.slice(1)) : 'Proto-Form', form: etym.protoForm, gloss: etym.protoGloss || 'reconstructed ancestor' });
+  }
+  steps.push({ lang: 'Original Script', form: greek, gloss: entry.meaning ? `${entry.unicode} — "${entry.meaning}"` : entry.domain });
+  steps.push({ lang: 'Unicode Restoration', form: entry.unicode, gloss: 'Restored stress, length, and script' });
+  steps.push({ lang: 'Modern ASCII', form: entry.ascii, gloss: 'Plain-ASCII fallback' });
+  const chain = steps.map((s, i) => {
+    const step = `<div class="etymology-step reveal-up" ${i > 0 ? `data-delay="${i * 100}"` : ''}>
+      <span class="etym-lang">${s.lang}</span>
+      <span class="etym-form">${s.form}</span>
+      <span class="etym-gloss">${s.gloss}</span>
+    </div>`;
+    const arrow = i < steps.length - 1 ? '<div class="etym-arrow">↓</div>' : '';
+    return step + arrow;
+  }).join('');
+  const note = etym.derivation ? `<p class="etymology-note">${etym.derivation}</p>` : `<p class="etymology-note">The name <strong>${entry.unicode}</strong> carries the orthographic signature of the ${entry.pantheon} tradition: ${greek}. Unicode restoration recovers what ASCII flattens.</p>`;
+  const kin = catalogEntry && catalogEntry.pronunciation && catalogEntry.pronunciation.kin ? catalogEntry.pronunciation.kin : [];
+  const derivativeGroups = [];
+  if (kin.length) {
+    derivativeGroups.push({ title: 'Etymological Kin', items: kin.map(k => `<li><strong>${k.label}</strong> — ${k.form}</li>`).join('') });
+  }
+  if (entry.variants && entry.variants.length) {
+    derivativeGroups.push({ title: 'Unicode Variants', items: entry.variants.map(v => `<li><strong>${v.unicode}</strong> — ${v.type}${v.note ? ` (${v.note})` : ''}</li>`).join('') });
+  }
+  if (!derivativeGroups.length) {
+    derivativeGroups.push({ title: 'Modern Descendants', items: `<li><strong>${entry.ascii}</strong> — Modern English / international usage</li>` });
+  }
+  const derivatives = derivativeGroups.map(g => `<div class="derivative-group"><h4>${g.title}</h4><ul>${g.items}</ul></div>`).join('');
+  return `<section class="section section-victory" id="etymology">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">02</span>
+            <h2 class="section-title">Etymology & Word Family</h2>
+            <p class="section-subtitle">From original script to Unicode restoration</p>
+        </div>
+        <div class="etymology-content">
+            <div class="etymology-main reveal-up">
+                <div class="etymology-chain">${chain}</div>
+                ${note}
+            </div>
+            <aside class="derivatives-sidebar reveal-up" data-delay="150">
+                <h3 class="derivatives-title">Derivatives & Descendants</h3>
+                <div class="derivatives-grid">${derivatives}</div>
+            </aside>
+        </div>
+    </div>
+</section>`;
+}
+
+function buildUnicodeBreakdownSection(entry) {
+  const breakdown = entry.breakdown || [];
+  let rows = '';
+  if (breakdown.length) {
+    rows = breakdown.map((b, i) => {
+      if (!b.to) {
+        return `<tr class="reveal-up" ${i > 0 ? `data-delay="${i * 80}"` : ''}><td class="char-cell">—</td><td><code>N/A</code></td><td>Dropped character</td><td>${(entry.pantheon || 'Original').replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())} orthography</td><td>${b.note || 'Not represented in the original script'}</td></tr>`;
+      }
+      const info = getUnicodeInfo(b.to);
+      let role = b.note || '';
+      if (!role) {
+        if (b.type === 'stress') role = 'Stress marker (acute/circumflex): pitch or emphasis';
+        else if (b.type === 'length') role = 'Length marker (macron): long vowel';
+        else if (b.type === 'breathing') role = 'Breathing mark: rough or smooth aspiration';
+        else role = 'Preserves the base letter';
+      }
+      return `<tr class="reveal-up" ${i > 0 ? `data-delay="${i * 80}"` : ''}><td class="char-cell">${b.to}</td><td><code>${info.hex}</code></td><td>${info.name}</td><td>${info.block}</td><td>${role}</td></tr>`;
+    }).join('');
+  } else {
+    rows = entry.unicode.split('').map((ch, i) => {
+      const info = getUnicodeInfo(ch);
+      return `<tr class="reveal-up" ${i > 0 ? `data-delay="${i * 80}"` : ''}><td class="char-cell">${ch}</td><td><code>${info.hex}</code></td><td>${info.name}</td><td>${info.block}</td><td>Restored character</td></tr>`;
+    }).join('');
+  }
+  const tierNote = entry.tier === 'dual' ? `The <strong>dual-tier</strong> nature of ${entry.unicode} arises because the original contains multiple independent scholarly restorations.` : `The <strong>${entry.tierLabel || `Tier ${entry.tier}`}</strong> classification reflects which ancient features stress, length, or script are preserved in this restoration.`;
+  return `<section class="section section-pronunciation" id="unicode-breakdown">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">03</span>
+            <h2 class="section-title">Unicode Character Breakdown</h2>
+            <p class="section-subtitle">Character-by-character philological analysis</p>
+        </div>
+        <div class="breakdown-table reveal-up">
+            <table class="char-table">
+                <thead>
+                    <tr><th>Character</th><th>Unicode</th><th>Name</th><th>Block</th><th>Phonetic Role</th></tr>
+                </thead>
+                <tbody>${rows}</tbody>
+            </table>
+            <p class="breakdown-note">${tierNote}</p>
+        </div>
+    </div>
+</section>`;
+}
+
+function buildCulturalSignificanceSection(entry, catalogEntry) {
+  const cards = [];
+  if (catalogEntry && catalogEntry.syncretism) {
+    cards.push({ title: `${entry.unicode} in Later Traditions`, body: stripOuterPTag(catalogEntry.syncretism) });
+  }
+  if (catalogEntry && catalogEntry.culturalLegacy) {
+    cards.push({ title: 'Modern Legacy', body: stripOuterPTag(catalogEntry.culturalLegacy) });
+  }
+  cards.push({ title: 'Unicode Restoration as Cultural Act', body: `Restoring <strong>${entry.unicode}</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.` });
+  if (catalogEntry && catalogEntry.domains && catalogEntry.domains.title) {
+    cards.unshift({ title: 'Ancient Domain', body: stripOuterPTag(catalogEntry.domains.lead) || `In the ${entry.pantheon} tradition, ${entry.unicode} governed ${entry.domain.toLowerCase()}.` });
+  }
+  const grid = cards.map((c, i) => `<article class="cultural-card reveal-up" ${i > 0 ? `data-delay="${i * 100}"` : ''}><h3 class="cultural-card-title">${c.title}</h3><p class="cultural-card-body">${c.body}</p></article>`).join('');
+  return `<section class="section section-name" id="cultural-significance">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">Cultural Significance</h2>
+            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+        </div>
+        <div class="cultural-grid">${grid}</div>
+    </div>
+</section>`;
+}
+
+function stripOuterPTag(html) {
+  if (!html) return '';
+  const trimmed = html.trim();
+  if (trimmed.toLowerCase().startsWith('<p') && trimmed.toLowerCase().endsWith('</p>')) {
+    const inner = trimmed.replace(/^<p[^>]*>/i, '').replace(/<\/p>$/i, '');
+    return inner.trim();
+  }
+  return trimmed;
+}
+
+function buildFaqSection(entry, catalogEntry) {
+  const greek = originalScript(entry);
+  const ipa = catalogEntry && catalogEntry.pronunciation && catalogEntry.pronunciation.ipa ? catalogEntry.pronunciation.ipa : '';
+  const approximation = catalogEntry && catalogEntry.pronunciation && catalogEntry.pronunciation.approximation ? catalogEntry.pronunciation.approximation : '';
+  const symbols = (catalogEntry && catalogEntry.symbols) || [];
+  const variants = (entry.variants || []).filter(v => v.type !== 'ascii');
+  const items = [];
+  items.push({ q: `How do you pronounce ${entry.unicode}?`, a: ipa ? `In reconstructed pronunciation, <strong>${entry.unicode}</strong> is ${ipa}${approximation ? ` — approximately ${approximation}` : ''}.` : `The original form <strong>${greek}</strong> preserves phonetic distinctions that plain <strong>${entry.ascii}</strong> cannot show.` });
+  items.push({ q: `What does ${entry.unicode} mean?`, a: `<strong>${entry.unicode}</strong> means <strong>${entry.meaning || entry.domain}</strong> in the ${entry.pantheon} tradition.` });
+  if (symbols.length) {
+    items.push({ q: `What are the symbols of ${entry.unicode}?`, a: `${entry.unicode} is associated with ${symbols.slice(0, 5).map(s => `<strong>${s.name}</strong> (${s.meaning})`).join(', ')}.` });
+  }
+  if (variants.length) {
+    items.push({ q: `What is the difference between ${getDomainsText(entry).split(' \u00b7 ').join(' and ')}?`, a: `Each is a historically defensible restoration. ${variants.map(v => `<strong>${v.unicode}.com</strong> is the ${v.type} form${v.note ? `: ${v.note}` : ''}`).join('; ')}.` });
+  }
+  items.push({ q: `Why restore ${entry.unicode} in Unicode?`, a: `Plain ASCII <strong>${entry.ascii}</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.` });
+  if (catalogEntry && catalogEntry.mythology && catalogEntry.mythology.myths && catalogEntry.mythology.myths.length) {
+    const m = catalogEntry.mythology.myths[0];
+    items.push({ q: `What is the most important myth about ${entry.unicode}?`, a: stripOuterPTag(m.text).replace(/<p[^>]*>/g, '').replace(/<\/p>/g, '') });
+  }
+  const faqs = items.map((it, i) => `<details class="faq-item reveal-up" ${i === 0 ? 'open' : ''}><summary class="faq-question">${it.q}</summary><div class="faq-answer"><p>${it.a}</p></div></details>`).join('');
+  return `<section class="section section-victory" id="faq">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Common questions about ${entry.unicode}, ${entry.domain}, and Unicode restoration</p>
+        </div>
+        <div class="faq-list">${faqs}</div>
+    </div>
+</section>`;
+}
+
+function buildSourcesSection(entry, catalogEntry) {
+  const sourceCitations = {
+    'LSJ': '<cite>Liddell, H. G., Scott, R., &amp; Jones, H. S. <em>A Greek-English Lexicon.</em> Oxford: Clarendon Press, 9th ed. 1996.</cite>',
+    'Pape-Benseler': '<cite>Pape, W., &amp; Benseler, G. E. <em>Wörterbuch der griechischen Eigennamen.</em> Braunschweig: Vieweg, 1884.</cite>',
+    'Beekes': '<cite>Beekes, R. S. P. <em>Etymological Dictionary of Greek.</em> Leiden: Brill, 2010.</cite>',
+    'Chantraine': '<cite>Chantraine, P. <em>Dictionnaire étymologique de la langue grecque.</em> Paris: Klincksieck, 1968–1980.</cite>',
+    'Faulkner': '<cite>Faulkner, R. O. <em>A Concise Dictionary of Middle Egyptian.</em> Oxford: Griffith Institute, 1962.</cite>',
+    'Budge': '<cite>Budge, E. A. W. <em>An Egyptian Hieroglyphic Dictionary.</em> London: John Murray, 1920.</cite>',
+    'Burkert': '<cite>Burkert, W. <em>Greek Religion.</em> Cambridge, MA: Harvard University Press, 1985.</cite>',
+    'Nilsson': '<cite>Nilsson, M. P. <em>Geschichte der griechischen Religion.</em> Munich: Beck, 1967.</cite>',
+    'Watkins': '<cite>Watkins, C. <em>The American Heritage Dictionary of Indo-European Roots.</em> Boston: Houghton Mifflin, 2000.</cite>',
+    'West': '<cite>West, M. L. <em>Indo-European Poetry and Myth.</em> Oxford: Oxford University Press, 2007.</cite>'
+  };
+  const primaryByPantheon = {
+    greek: 'Homer. <em>Iliad</em> and <em>Odyssey</em>; Hesiod. <em>Theogony</em> and <em>Works and Days</em>.',
+    egyptian: 'The Pyramid Texts; The Coffin Texts; The Book of the Dead.',
+    norse: 'The <em>Poetic Edda</em>; The <em>Prose Edda</em> of Snorri Sturluson.',
+    mesopotamian: 'The Epic of Gilgamesh; Sumerian temple hymns and Akkadian ritual texts.',
+    canaanite: 'The Ugaritic Baal Cycle; ritual texts from Ugarit and Phoenician inscriptions.',
+    hindu: 'The <em>Ṛgveda</em>; the <em>Brāhmaṇas</em>; early Upaniṣadic literature.',
+    japanese: 'The <em>Kojiki</em>; the <em>Nihon Shoki</em>; shrine ritual records.'
+  };
+  const lexItems = (entry.sources || []).map(s => sourceCitations[s] || `<cite>${s}</cite>`);
+  if (!lexItems.length) lexItems.push(`<cite>Lexical and philological sources for ${entry.unicode}.</cite>`);
+  const primaryText = primaryByPantheon[entry.pantheon] || `Primary sources in the ${entry.pantheon} tradition for ${entry.unicode}.`;
+  const extraSources = catalogEntry && catalogEntry.sources ? catalogEntry.sources.map(s => `<cite>${s}</cite>`) : [];
+  return `<section class="section section-name" id="sources">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Scholarly Sources</h2>
+            <p class="section-subtitle">The philological foundations of this restoration</p>
+        </div>
+        <div class="sources-content reveal-up">
+            <div class="sources-intro">
+                <p>Every claim on this page is grounded in established scholarship. The orthographic restorations follow disciplinary convention. The etymological chain follows the best available reference works. This is not invention — it is <strong>resurrection through scholarship.</strong></p>
+            </div>
+            <div class="sources-grid">
+                <div class="source-category">
+                    <h3>Lexicography &amp; Philology</h3>
+                    <ul class="source-list">${lexItems.map(li => `<li>${li}</li>`).join('')}</ul>
+                </div>
+                <div class="source-category">
+                    <h3>Primary Texts</h3>
+                    <ul class="source-list"><li><cite>${primaryText}</cite></li></ul>
+                </div>
+                <div class="source-category">
+                    <h3>Archaeology &amp; Art History</h3>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for ${entry.unicode} and related cults.</cite></li></ul>
+                </div>
+                <div class="source-category">
+                    <h3>Religious Studies</h3>
+                    <ul class="source-list">${extraSources.length ? extraSources.map(li => `<li>${li}</li>`).join('') : `<li><cite>Comparative studies of ${entry.pantheon} religion and the place of ${entry.unicode} within it.</cite></li>`}</ul>
+                </div>
             </div>
         </div>
     </div>
@@ -710,7 +1052,8 @@ function generateHomePage(entry, palette, slotNames, templateDir) {
     EFFECT: getCanvasEffect(entry),
     PRIMARY: palette.primary,
     SECONDARY: palette.secondary,
-    HERO_VIDEO_OR_MASCOT: buildHeroVisual(templeId, entry.unicode, entry.domain)
+    HERO_VIDEO_OR_MASCOT: buildHeroVisual(templeId, entry.unicode, entry.domain),
+    FOOTER: buildZeusFooter(entry, '')
   };
   for (let i = 0; i < SLOT_TYPES.length; i++) {
     vars[`SLOT_${String(i+1).padStart(2,'0')}_NAME`] = slotNames[i];
@@ -900,6 +1243,8 @@ function generateLorePage(entry, palette, loreSections, templateDir, catalog) {
   vars.MYTHOLOGY = wrapSection('mythology','Mythology',`Stories of ${entry.unicode}`,mythology,4);
   vars.RELATED_NAMES = buildRelatedNamesSection(entry, 5);
   vars.EXTENDED_LORE_CTA = buildExtendedLoreCTA(entry, catalogEntry);
+  vars.FOOTER = buildZeusFooter(entry, '../');
+  vars.EXTENDED_TAB = buildExtendedTab('lore', entry.id);
 
   html = replacePlaceholders(html, vars);
   if (!hasRealGreek(entry)) html = stripPlaceholderGreek(html, entry.unicode);
@@ -952,7 +1297,9 @@ function generateGalleryPage(entry, palette, templateDir) {
     EFFECT: getCanvasEffect(entry),
     PRIMARY: palette.primary,
     SECONDARY: palette.secondary,
-    GALLERY_GRID: buildGalleryGrid(entry)
+    GALLERY_GRID: buildGalleryGrid(entry),
+    FOOTER: buildZeusFooter(entry, '../'),
+    EXTENDED_TAB: buildExtendedTab('gallery', entry.id)
   };
   html = replacePlaceholders(html, vars);
   if (!hasRealGreek(entry)) html = stripPlaceholderGreek(html, entry.unicode);
@@ -960,12 +1307,9 @@ function generateGalleryPage(entry, palette, templateDir) {
 }
 
 function generateExtendedPage(entry, palette, templateDir, catalog) {
-  if (!hasHeroVideo(entry.id)) return '';
   let html = fs.readFileSync(path.join(templateDir, 'lore', 'extended', 'index.html'), 'utf8');
   const templeId = entry.id;
   const catalogEntry = catalog && catalog[entry.id];
-  const defaultMeditation = `<p class="lead-text">The rite above is a visual invocation of <strong>${entry.unicode}</strong>, ${entry.domain}. It carries the same orthographic signature as the domain — the stress, length, and script that ASCII strips away.</p>
-<p class="lead-text">Return to the <a href="../index.html" style="color:var(--primary);">main lore page</a> for pronunciation, mythology, and scholarly sources.</p>`;
   const vars = {
     UNICODE: entry.unicode,
     ASCII: entry.ascii,
@@ -978,7 +1322,14 @@ function generateExtendedPage(entry, palette, templateDir, catalog) {
     EFFECT: getCanvasEffect(entry),
     PRIMARY: palette.primary,
     SECONDARY: palette.secondary,
-    EXTENDED_MEDITATION: (catalogEntry && catalogEntry.extendedMeditation) ? catalogEntry.extendedMeditation : defaultMeditation
+    HERO_VISUAL: buildHeroVisualExtended(entry, '../../'),
+    QUICK_FACTS: buildQuickFactsSection(entry, catalogEntry),
+    ETYMOLOGY: buildEtymologySection(entry, catalogEntry),
+    UNICODE_BREAKDOWN: buildUnicodeBreakdownSection(entry),
+    CULTURAL_SIGNIFICANCE: buildCulturalSignificanceSection(entry, catalogEntry),
+    FAQ: buildFaqSection(entry, catalogEntry),
+    SOURCES: buildSourcesSection(entry, catalogEntry),
+    FOOTER: buildZeusFooter(entry, '../../')
   };
   html = replacePlaceholders(html, vars);
   if (!hasRealGreek(entry)) html = stripPlaceholderGreek(html, entry.unicode);

@@ -5,23 +5,23 @@
     <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{UNICODE}} — Extended Lore | {{DOMAIN}} | PUNYCODEX</title>
-    <meta name="description" content="Extended visual lore of {{UNICODE}}, {{DOMAIN}}.">
+    <meta name="description" content="The definitive scholarly guide to {{UNICODE}}, {{DOMAIN}}. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../styles.css?v=perf2">
 
     <link rel="canonical" href="https://punycodex.com/sites/{{TEMPLE_ID}}/lore/extended/">
 
     <meta property="og:title" content="{{UNICODE}} — Extended Lore | {{DOMAIN}} | PUNYCODEX">
-    <meta property="og:description" content="Extended visual lore of {{UNICODE}}, {{DOMAIN}}.">
+    <meta property="og:description" content="The definitive scholarly guide to {{UNICODE}}, {{DOMAIN}}. Etymology, pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <meta property="og:url" content="https://punycodex.com/sites/{{TEMPLE_ID}}/lore/extended/">
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="article">
     <meta property="og:site_name" content="PUNYCODEX">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{UNICODE}} — Extended Lore | {{DOMAIN}} | PUNYCODEX">
-    <meta name="twitter:description" content="Extended visual lore of {{UNICODE}}, {{DOMAIN}}.">
+    <meta name="twitter:description" content="The definitive scholarly guide to {{UNICODE}}, {{DOMAIN}}. Etymology, pronunciation, Unicode orthography, cultural significance, and primary sources.">
 </head>
 <body>
     <!-- Global Nav -->
@@ -41,17 +41,19 @@
     <!-- Ambient Canvas -->
     <canvas id="{{TEMPLE_ID}}-canvas" data-effect="{{EFFECT}}" data-primary="{{PRIMARY}}" data-secondary="{{SECONDARY}}"></canvas>
 
-    <!-- Tab Navigation -->
-    <nav class="main-nav tab-nav" id="main-nav">
+    <!-- Extended Lore Navigation -->
+    <nav class="main-nav extended-nav" id="main-nav">
         <div class="nav-inner">
             <a href="../../" class="nav-logo">
                 <picture><source srcset="../../assets/{{TEMPLE_ID}}_logolockup.webp" type="image/webp"><img src="../../assets/{{TEMPLE_ID}}_logolockup.png" alt="{{UNICODE}}" class="nav-logo-img"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../index.html" class="nav-link">Home</a>
-                <a href="../index.html" class="nav-link">Lore</a>
-                <a href="../../gallery/index.html" class="nav-link">Gallery</a>
-                <a href="./index.html" class="nav-link active">Extended</a>
+                <a href="../../" class="nav-link">Home</a>
+                <a href="#quick-facts" class="nav-link">Quick Facts</a>
+                <a href="#etymology" class="nav-link">Etymology</a>
+                <a href="#cultural-significance" class="nav-link">Culture</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="#sources" class="nav-link">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
@@ -59,36 +61,32 @@
         </div>
     </nav>
 
-    <!-- Hero Video Section -->
+    <!-- Hero Section -->
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Moving Rite</p>
+                <p class="hero-eyebrow reveal-up">Extended Lore</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">{{GREEK}}</span>
                     <span class="title-divider"></span>
                     <span class="title-trans">{{UNICODE}}</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Extended visual lore · {{DOMAIN}}</p>
+                <p class="hero-subtitle reveal-up">Etymology &middot; Phonology &middot; Orthography &middot; Cultural Legacy &middot; Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">{{TIER_LABEL}}</span>
                     <span class="meta-domain">{{DOMAINS_TEXT}}</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="../index.html" class="btn-primary btn-ghost">
-                        <span>Return to Lore</span>
+                    <a href="#quick-facts" class="btn-primary">
+                        <span>Begin Study</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
                     </a>
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <figure class="endorsement-mascot endorsement-mascot--video" style="margin:0;">
-                    <video autoplay muted loop playsinline poster="../../assets/{{TEMPLE_ID}}_hero_poster.jpg" aria-label="Animated portrait of {{UNICODE}}, {{DOMAIN}}">
-                        <source src="../../assets/{{TEMPLE_ID}}_hero_video.webm" type="video/webm">
-                        <source src="../../assets/{{TEMPLE_ID}}_hero_video.mp4" type="video/mp4">
-                        <img src="../../assets/{{TEMPLE_ID}}_mascot.png" alt="{{UNICODE}} — {{DOMAIN}}">
-                    </video>
-                    <button class="video-pause" aria-label="Pause animation">❚❚</button>
-                </figure>
+                {{HERO_VISUAL}}
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -97,70 +95,50 @@
         </div>
     </section>
 
-    <!-- Extended Lore Content -->
-    <section class="section section-name" id="extended">
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">Extended Lore</h2>
-                <p class="section-subtitle">Visual meditation on <em>{{UNICODE}}</em></p>
-            </div>
-            <div class="tier-explanation reveal-up">
-                {{EXTENDED_MEDITATION}}
-            </div>
-        </div>
-    </section>
+    <!-- Quick Facts -->
+    {{QUICK_FACTS}}
 
-    <!-- Type Tool CTA -->
-    <section class="section section-cta" id="type-tool">
+    <!-- Etymology -->
+    {{ETYMOLOGY}}
+
+    <!-- Unicode Character Breakdown -->
+    {{UNICODE_BREAKDOWN}}
+
+    <!-- Cultural Significance -->
+    {{CULTURAL_SIGNIFICANCE}}
+
+    <!-- FAQ -->
+    {{FAQ}}
+
+    <!-- Scholarly Sources -->
+    {{SOURCES}}
+
+    <!-- Back to Lore -->
+    <section class="section section-pantheon" id="back-to-lore">
         <div class="container">
-            <div class="cta-card reveal-up">
-                <h2 class="cta-title">Restore the Name</h2>
-                <p class="cta-body">See how <em>{{ASCII}}</em> becomes <strong>{{UNICODE}}</strong> character by character.</p>
-                <a href="https://punycodex.com/type/#{{TEMPLE_ID}}" class="btn-primary">
-                    <span>Try the Type Tool</span>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                    </svg>
-                </a>
+            <div class="pantheon-content reveal-up">
+                <div class="pantheon-text">
+                    <span class="pantheon-eyebrow">Return</span>
+                    <h2 class="pantheon-title">The Surface Awaits</h2>
+                    <p class="pantheon-body">You have traced the name from its earliest attestation to its Unicode restoration. <strong>Now return to the myth.</strong> The story is where the name lives.</p>
+                    <a href="../" class="btn-primary btn-ghost">
+                        <span>Back to Lore</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="pantheon-mascot">
+                    <picture><source srcset="../../assets/{{TEMPLE_ID}}_mascot.webp" type="image/webp"><img src="../../assets/{{TEMPLE_ID}}_mascot.png" alt="{{UNICODE}} mascot" class="pantheon-mascot-img"></picture>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="main-footer">
-        <div class="container">
-            <div class="footer-brand">
-                <span class="footer-label">Platform</span>
-                <span class="footer-value">PUNYCODEX</span>
-            </div>
-            <div class="footer-meta">
-                <div class="footer-block">
-                    <span class="footer-label">Domain</span>
-                    <span class="footer-value">{{DOMAINS_TEXT}}</span>
-                </div>
-                <div class="footer-block">
-                    <span class="footer-label">Classification</span>
-                    <span class="footer-value">{{TIER_LABEL}}</span>
-                </div>
-                <div class="footer-block">
-                    <span class="footer-label">Original Script</span>
-                    <span class="footer-value">{{GREEK}}</span>
-                </div>
-            </div>
-            <div class="footer-seal">
-                <picture><source srcset="../../assets/{{TEMPLE_ID}}_logomark.webp" type="image/webp"><img src="../../assets/{{TEMPLE_ID}}_logomark.png" alt="{{UNICODE}} logomark" class="footer-logomark"></picture>
-            </div>
-            <div class="footer-bottom">
-                <p class="footer-credit">A temple of the Unicode web.</p>
-            </div>
-        </div>
-    </footer>
+    {{FOOTER}}
 
     <script src="/js/flagship-canvas.js"></script>
-    
-
-<script>window.PUNYCODEX_API_BASE = "";</script>
     <script src="/js/temple-base.js?v=perf2"></script>
     <script src="../../script.js?v=perf2"></script>
 </body>
