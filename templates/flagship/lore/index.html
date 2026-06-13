@@ -12,15 +12,6 @@
     <link rel="stylesheet" href="../styles.css?v=perf2">
 
     <style>
-        .tier-grid { display: grid; gap: 2rem; max-width: 900px; margin: 0 auto; }
-        .tier-grid-single { grid-template-columns: 1fr; }
-        .tier-card { background: rgba(0,0,0,0.3); border: 1px solid rgba(212,175,55,0.2); padding: 3rem; position: relative; overflow: hidden; }
-        .tier-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--primary), transparent); }
-        .tier-label { display: inline-block; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: #0A0A0A; background: var(--primary); padding: 0.35rem 0.8rem; margin-bottom: 1rem; }
-        .tier-domain { font-family: var(--font-display); font-size: 1.5rem; color: var(--white); margin-bottom: 1.5rem; letter-spacing: 0.05em; }
-        .tier-body { font-size: 1rem; color: var(--white-dim); line-height: 1.8; }
-        .tier-body strong { color: var(--white); }
-
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
         .pantheon-text { display: flex; flex-direction: column; gap: 1.25rem; }
         .pantheon-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); }
@@ -96,9 +87,9 @@
                 <picture><source srcset="../assets/{{TEMPLE_ID}}_logolockup.webp" type="image/webp"><img src="../assets/{{TEMPLE_ID}}_logolockup.png" alt="{{UNICODE}}" class="nav-logo-img"></picture>
             </a>
             <div class="nav-links">
-                <a href="../index.html" class="nav-link">Home</a>
-                <a href="./index.html" class="nav-link active">Lore</a>
-                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../" class="nav-link">Home</a>
+                <a href="./" class="nav-link active">Lore</a>
+                <a href="../gallery/" class="nav-link">Gallery</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
@@ -198,9 +189,6 @@
         </div>
     </section>
 
-    <!-- Tier Classification -->
-    {{TIER_SECTION}}
-
     <!-- Pronunciation -->
     {{PRONUNCIATION}}
 
@@ -213,29 +201,8 @@
     <!-- Related Names -->
     {{RELATED_NAMES}}
 
-    <!-- Pantheon Connection -->
-    {{PANTHEON_CONNECTION}}
-
-    <!-- Type Tool CTA -->
-    <section class="section section-type-cta" id="type-cta">
-        <div class="container">
-            <div class="type-cta-content reveal-up">
-                <h2 class="type-cta-title">Experience the Name</h2>
-                <p class="type-cta-body">See how {{UNICODE}} behaves in the PUNYCODEX Type Tool — with predictive autocomplete, character-by-character breakdown, and scholarly constraint validation.</p>
-                <div class="type-cta-input">
-                    <code>{{ASCII}}</code>
-                    <span style="color:var(--white-dim);">→</span>
-                    <code>{{UNICODE}}</code>
-                </div>
-                <a href="https://punycodex.com/type/#{{TEMPLE_ID}}" class="btn-primary">
-                    <span>Open in Type Tool</span>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                    </svg>
-                </a>
-            </div>
-        </div>
-    </section>
+    <!-- Extended Lore CTA -->
+    {{EXTENDED_LORE_CTA}}
 
     <!-- Footer -->
     <footer class="main-footer">
@@ -247,7 +214,7 @@
                 </div>
                 <div class="footer-info">
                     <div class="footer-block">
-                        <span class="footer-label">Domains</span>
+                        <span class="footer-label">Domain</span>
                         <span class="footer-value">{{DOMAINS_TEXT}}</span>
                     </div>
                     <div class="footer-block">

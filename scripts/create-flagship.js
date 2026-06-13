@@ -631,24 +631,26 @@ function buildRelatedNamesSection(entry, sectionNumber) {
 </section>`;
 }
 
-function buildPantheonConnectionSection(entry, sectionNumber) {
-  const { LEXICON } = require(path.join(ROOT, 'type', 'js', 'lexicon.js'));
-  const related = LEXICON.filter(e => e.id !== entry.id && e.pantheon === entry.pantheon).slice(0, 4);
-  const count = related.length;
-  const pantheonLabel = entry.pantheon.charAt(0).toUpperCase() + entry.pantheon.slice(1);
-  const bodyOne = count
-    ? `<strong>${entry.unicode}</strong> is ${entry.domain.toLowerCase()} in the ${pantheonLabel} tradition — one voice in a chorus that includes ${related.slice(0, 3).map(e => `<strong>${e.unicode}</strong>`).join(', ')}${count > 3 ? ' and others' : ''}. Each name carries its own domain, its own lore, and its own truth.`
-    : `<strong>${entry.unicode}</strong> is ${entry.domain.toLowerCase()} in the ${pantheonLabel} tradition — a restored name in a vast network of authentic orthographies.`;
-  return `<section class="section section-pantheon" id="pantheon" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
+function buildExtendedLoreCTA(entry, catalogEntry) {
+  if (!hasHeroVideo(entry.id)) return '';
+  let body = '';
+  if (catalogEntry && catalogEntry.extendedMeditation) {
+    const firstP = catalogEntry.extendedMeditation.match(/<p[\s\S]*?<\/p>/);
+    body = firstP ? firstP[0] : catalogEntry.extendedMeditation;
+  }
+  if (!body) {
+    body = `<p>The lore you have read is the surface — the living myth. Beneath it lies the scholarship: etymology, reconstructed pronunciation, Unicode character breakdown, and the cultural legacy of <strong>${entry.unicode}</strong>.</p>`;
+  }
+  const bodyHtml = body.replace(/<p>/g, '<p class="pantheon-body">');
+  return `<section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
     <div class="container">
         <div class="pantheon-content reveal-up">
             <div class="pantheon-text">
-                <span class="pantheon-eyebrow">The PUNYCODEX</span>
-                <h2 class="pantheon-title">One of the Restored</h2>
-                <p class="pantheon-body">${bodyOne}</p>
-                <p class="pantheon-body">This is not a directory. This is a <strong>resurrection</strong>.</p>
-                <a href="https://punycodex.com/lexicon/" class="btn-primary btn-ghost">
-                    <span>Enter the Codex</span>
+                <span class="pantheon-eyebrow">Go Deeper</span>
+                <h2 class="pantheon-title">Extended Lore</h2>
+                ${bodyHtml}
+                <a href="extended/" class="btn-primary btn-ghost">
+                    <span>Enter Extended Lore</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M7 17L17 7M17 7H7M17 7V17"/>
                     </svg>
@@ -893,12 +895,11 @@ function generateLorePage(entry, palette, loreSections, templateDir, catalog) {
         ? entry.domain
         : `Attributes of ${entry.unicode}`);
 
-  vars.TIER_SECTION = buildTierSection(entry, 2);
-  vars.PRONUNCIATION = wrapSection('pronunciation','Pronunciation',`How ${entry.unicode} was spoken`,pronunciation,3);
-  vars.SYMBOLS = wrapSection('symbols', symbolsTitle, symbolsSubtitle, symbols, 4);
-  vars.MYTHOLOGY = wrapSection('mythology','Mythology',`Stories of ${entry.unicode}`,mythology,5);
-  vars.RELATED_NAMES = buildRelatedNamesSection(entry, 6);
-  vars.PANTHEON_CONNECTION = buildPantheonConnectionSection(entry, 7);
+  vars.PRONUNCIATION = wrapSection('pronunciation','Pronunciation',`How ${entry.unicode} was spoken`,pronunciation,2);
+  vars.SYMBOLS = wrapSection('symbols', symbolsTitle, symbolsSubtitle, symbols, 3);
+  vars.MYTHOLOGY = wrapSection('mythology','Mythology',`Stories of ${entry.unicode}`,mythology,4);
+  vars.RELATED_NAMES = buildRelatedNamesSection(entry, 5);
+  vars.EXTENDED_LORE_CTA = buildExtendedLoreCTA(entry, catalogEntry);
 
   html = replacePlaceholders(html, vars);
   if (!hasRealGreek(entry)) html = stripPlaceholderGreek(html, entry.unicode);

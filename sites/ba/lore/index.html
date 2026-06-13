@@ -12,15 +12,6 @@
     <link rel="stylesheet" href="../styles.css?v=perf2">
 
     <style>
-        .tier-grid { display: grid; gap: 2rem; max-width: 900px; margin: 0 auto; }
-        .tier-grid-single { grid-template-columns: 1fr; }
-        .tier-card { background: rgba(0,0,0,0.3); border: 1px solid rgba(212,175,55,0.2); padding: 3rem; position: relative; overflow: hidden; }
-        .tier-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--primary), transparent); }
-        .tier-label { display: inline-block; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: #0A0A0A; background: var(--primary); padding: 0.35rem 0.8rem; margin-bottom: 1rem; }
-        .tier-domain { font-family: var(--font-display); font-size: 1.5rem; color: var(--white); margin-bottom: 1.5rem; letter-spacing: 0.05em; }
-        .tier-body { font-size: 1rem; color: var(--white-dim); line-height: 1.8; }
-        .tier-body strong { color: var(--white); }
-
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
         .pantheon-text { display: flex; flex-direction: column; gap: 1.25rem; }
         .pantheon-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); }
@@ -96,9 +87,9 @@
                 <picture><source srcset="../assets/ba_logolockup.webp" type="image/webp"><img src="../assets/ba_logolockup.png" alt="Bꜣ" class="nav-logo-img"></picture>
             </a>
             <div class="nav-links">
-                <a href="../index.html" class="nav-link">Home</a>
-                <a href="./index.html" class="nav-link active">Lore</a>
-                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../" class="nav-link">Home</a>
+                <a href="./" class="nav-link active">Lore</a>
+                <a href="../gallery/" class="nav-link">Gallery</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
@@ -198,28 +189,11 @@
         </div>
     </section>
 
-    <!-- Tier Classification -->
-    <section class="section section-tier" id="tier">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <h2 class="section-title">Tier Classification</h2>
-            <p class="section-subtitle">Where Bꜣ stands in the PUNYCODEX tier system</p>
-        </div>
-        <div class="tier-grid tier-grid-single">
-            <div class="tier-card reveal-up">
-                <div class="tier-label">Tier 2</div>
-                <div class="tier-domain">Bꜣ.com</div>
-                <p class="tier-body">The original form <strong>Bꜣ</strong> preserves a recognizable written identity in its Unicode restoration. Classified as <strong>Tier 2</strong> in the PUNYCODEX tier system.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
     <!-- Pronunciation -->
     <section class="section section-pronunciation" id="pronunciation">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">Pronunciation</h2>
             <p class="section-subtitle">How Bꜣ was spoken</p>
         </div>
@@ -260,7 +234,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">04</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">The Mobile Soul</h2>
             <p class="section-subtitle">Personality · Manifestation · Presence</p>
         </div>
@@ -315,7 +289,7 @@
     <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">04</span>
             <h2 class="section-title">Mythology</h2>
             <p class="section-subtitle">Stories of Bꜣ</p>
         </div>
@@ -353,7 +327,7 @@
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">05</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the egyptian pantheon</p>
         </div>
@@ -417,49 +391,8 @@
     </div>
 </section>
 
-    <!-- Pantheon Connection -->
-    <section class="section section-pantheon" id="pantheon" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
-    <div class="container">
-        <div class="pantheon-content reveal-up">
-            <div class="pantheon-text">
-                <span class="pantheon-eyebrow">The PUNYCODEX</span>
-                <h2 class="pantheon-title">One of the Restored</h2>
-                <p class="pantheon-body"><strong>Bꜣ</strong> is soul, personality, manifestation in the Egyptian tradition — one voice in a chorus that includes <strong>Rꜥ</strong>, <strong>Wsjr</strong>, <strong>Jnpw</strong> and others. Each name carries its own domain, its own lore, and its own truth.</p>
-                <p class="pantheon-body">This is not a directory. This is a <strong>resurrection</strong>.</p>
-                <a href="https://punycodex.com/lexicon/" class="btn-primary btn-ghost">
-                    <span>Enter the Codex</span>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                    </svg>
-                </a>
-            </div>
-            <div class="pantheon-mascot">
-                <picture><source srcset="../assets/ba_mascot.webp" type="image/webp"><img src="../assets/ba_mascot.png" alt="Bꜣ mascot" class="pantheon-mascot-img"></picture>
-            </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Type Tool CTA -->
-    <section class="section section-type-cta" id="type-cta">
-        <div class="container">
-            <div class="type-cta-content reveal-up">
-                <h2 class="type-cta-title">Experience the Name</h2>
-                <p class="type-cta-body">See how Bꜣ behaves in the PUNYCODEX Type Tool — with predictive autocomplete, character-by-character breakdown, and scholarly constraint validation.</p>
-                <div class="type-cta-input">
-                    <code>ba</code>
-                    <span style="color:var(--white-dim);">→</span>
-                    <code>Bꜣ</code>
-                </div>
-                <a href="https://punycodex.com/type/#ba" class="btn-primary">
-                    <span>Open in Type Tool</span>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                    </svg>
-                </a>
-            </div>
-        </div>
-    </section>
+    <!-- Extended Lore CTA -->
+    
 
     <!-- Footer -->
     <footer class="main-footer">
@@ -471,7 +404,7 @@
                 </div>
                 <div class="footer-info">
                     <div class="footer-block">
-                        <span class="footer-label">Domains</span>
+                        <span class="footer-label">Domain</span>
                         <span class="footer-value">Bꜣ.com · Ba.com</span>
                     </div>
                     <div class="footer-block">
