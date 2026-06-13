@@ -423,6 +423,77 @@ function tierGridValues(entry) {
   };
 }
 
+function scriptLabel(entry) {
+  if (isGreekEntry(entry)) return 'Greek';
+  const map = {
+    egyptian: 'Egyptian', sanskrit: 'Sanskrit', mesopotamian: 'Mesopotamian',
+    canaanite: 'Canaanite', norse: 'Norse', celtic: 'Celtic', slavic: 'Slavic',
+    japanese: 'Japanese', nahuatl: 'Nahuatl', yoruba: 'Yoruba', polynesian: 'Polynesian',
+    zoroastrian: 'Zoroastrian', incan: 'Incan', phoenician: 'Phoenician', hittite: 'Hittite'
+  };
+  return map[entry.pantheon] || (entry.pantheon ? entry.pantheon.charAt(0).toUpperCase() + entry.pantheon.slice(1) : 'Ancient');
+}
+
+function analyzeFeatures(entry) {
+  const greekRaw = entry.greek || '';
+  const greek = greekRaw.normalize('NFD');
+  const unicode = entry.unicode || '';
+  const features = [];
+  if (isGreekEntry(entry)) {
+    if (/[θφχ]/.test(greek)) features.push('aspirated consonants');
+    if (/αι|ει|οι|αυ|ευ|ου/.test(greek)) features.push('diphthongs');
+    if (/[ηωᾱῑῡ]/.test(greek)) features.push('long vowels');
+    if (/[άέήίόύώ]/.test(greekRaw) || /[\u0301\u0302\u0342]/.test(greek)) features.push('acute accents');
+    if (/[ἁἅἃἇὁὅὃὕὑὓὗἱἵἳἷ]/.test(greekRaw)) features.push('rough breathing');
+  } else {
+    if (/[ʿʾ]/.test(unicode)) features.push('Semitic pharyngeal letters');
+    if (/[ḥṣṭḍẓ]/.test(unicode.toLowerCase())) features.push('emphatic consonants');
+    if (/[āīūēō]/.test(unicode)) features.push('macron-length vowels');
+    if (/[áéíóú]/.test(unicode)) features.push('acute stress marks');
+    if (/[ṃṇñṅ]/.test(unicode.toLowerCase())) features.push('nasal retroflexes');
+    if (/[śṣ]/.test(unicode)) features.push('palatal/retroflex sibilants');
+  }
+  return features;
+}
+
+function joinFeatures(arr) {
+  if (!arr || arr.length === 0) return 'the original diacritics and script distinctions';
+  if (arr.length === 1) return arr[0];
+  if (arr.length === 2) return arr.join(' and ');
+  return arr.slice(0, -1).join(', ') + ', and ' + arr[arr.length - 1];
+}
+
+function buildNameProse(entry) {
+  const label = scriptLabel(entry);
+  const source = originalScript(entry);
+  const features = analyzeFeatures(entry);
+  const featureList = joinFeatures(features);
+  const meaningClause = entry.meaning ? ` — “${entry.meaning}”` : '';
+  const original = `The name in its original ${label} form. <strong>${entry.unicode}</strong> (${source}) is attested as ${entry.domain.toLowerCase()}${meaningClause}. Its ${featureList} carry the full phonetic and orthographic weight of the source tradition.`;
+  const ascii = `Reduced to plain <strong>${entry.ascii}</strong>, the name loses everything that made it specific: ${featureList}. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.`;
+  const unicode = `The Unicode restoration recovers what ASCII flattened. <strong>${entry.unicode}</strong> restores ${featureList}, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.`;
+  return { original, ascii, unicode };
+}
+
+function buildTierSection(entry, sectionNumber) {
+  const tierLabel = entry.tierLabel || `Tier ${entry.tier}`;
+  return `<section class="section section-tier" id="tier">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <h2 class="section-title">Tier Classification</h2>
+            <p class="section-subtitle">Where ${entry.unicode} stands in the PUNYCODEX tier system</p>
+        </div>
+        <div class="tier-grid tier-grid-single">
+            <div class="tier-card reveal-up">
+                <div class="tier-label">${tierLabel}</div>
+                <div class="tier-domain">${entry.unicode}.com</div>
+                <p class="tier-body">${generateTierExplanation(entry)}</p>
+            </div>
+        </div>
+    </div>
+</section>`;
+}
+
 function getCanvasEffect(entry) {
   const id = entry.id;
   const pantheon = entry.pantheon || '';
@@ -449,16 +520,14 @@ function getCanvasEffect(entry) {
 
 function wrapSection(id, title, subtitle, content, sectionNumber) {
   if (!content || !content.trim()) return '';
-  return `<section class="section section-tier" id="${id}">
+  return `<section class="section section-${id}" id="${id}">
     <div class="container">
         <div class="section-header reveal-up">
             <span class="section-number">${String(sectionNumber).padStart(2,'0')}</span>
             <h2 class="section-title">${title}</h2>
             <p class="section-subtitle">${subtitle}</p>
         </div>
-        <div class="tier-explanation reveal-up">
-            ${content}
-        </div>
+        ${content}
     </div>
 </section>`;
 }
@@ -532,12 +601,21 @@ function buildRelatedNamesSection(entry, sectionNumber) {
   const { LEXICON } = require(path.join(ROOT, 'type', 'js', 'lexicon.js'));
   const related = LEXICON.filter(e => e.id !== entry.id && e.pantheon === entry.pantheon).slice(0, 6);
   if (!related.length) return '';
-  const cards = related.map(e => `
-    <a href="https://punycodex.com/sites/${e.id}/" class="related-card reveal-up">
+  const pantheonLabel = entry.pantheon.charAt(0).toUpperCase() + entry.pantheon.slice(1);
+  const cards = related.map(e => {
+    const greek = (e.greek && e.greek !== '—') ? e.greek : '';
+    const tier = e.tierLabel || `Tier ${e.tier}`;
+    return `
+    <a href="../../${e.id}/" class="related-card reveal-up">
       <span class="related-name">${e.unicode}</span>
+      ${greek ? `<span class="related-greek">${greek}</span>` : ''}
       <span class="related-domain">${e.domain}</span>
-    </a>
-  `).join('');
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">${tier}</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">${pantheonLabel}</span>
+      </div>
+    </a>`;
+  }).join('');
   return `<section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
@@ -555,22 +633,30 @@ function buildRelatedNamesSection(entry, sectionNumber) {
 function buildPantheonConnectionSection(entry, sectionNumber) {
   const { LEXICON } = require(path.join(ROOT, 'type', 'js', 'lexicon.js'));
   const related = LEXICON.filter(e => e.id !== entry.id && e.pantheon === entry.pantheon).slice(0, 4);
-  const list = related.length
-    ? `<div class="related-grid reveal-up">${related.map(e => `
-        <a href="https://punycodex.com/sites/${e.id}/" class="related-card reveal-up">
-          <span class="related-name">${e.unicode}</span>
-          <span class="related-domain">${e.domain}</span>
-        </a>
-      `).join('')}</div>`
-    : `<p class="lead-text reveal-up"><strong>${entry.unicode}</strong> stands within the ${entry.pantheon} tradition.</p>`;
-  return `<section class="section section-pantheon" id="pantheon">
+  const count = related.length;
+  const pantheonLabel = entry.pantheon.charAt(0).toUpperCase() + entry.pantheon.slice(1);
+  const bodyOne = count
+    ? `<strong>${entry.unicode}</strong> is ${entry.domain.toLowerCase()} in the ${pantheonLabel} tradition — one voice in a chorus that includes ${related.slice(0, 3).map(e => `<strong>${e.unicode}</strong>`).join(', ')}${count > 3 ? ' and others' : ''}. Each name carries its own domain, its own lore, and its own truth.`
+    : `<strong>${entry.unicode}</strong> is ${entry.domain.toLowerCase()} in the ${pantheonLabel} tradition — a restored name in a vast network of authentic orthographies.`;
+  return `<section class="section section-pantheon" id="pantheon" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
     <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">${String(sectionNumber).padStart(2,'0')}</span>
-            <h2 class="section-title">Pantheon Connection</h2>
-            <p class="section-subtitle">${entry.unicode} in the ${entry.pantheon} tradition</p>
+        <div class="pantheon-content reveal-up">
+            <div class="pantheon-text">
+                <span class="pantheon-eyebrow">The PUNYCODEX</span>
+                <h2 class="pantheon-title">One of the Restored</h2>
+                <p class="pantheon-body">${bodyOne}</p>
+                <p class="pantheon-body">This is not a directory. This is a <strong>resurrection</strong>.</p>
+                <a href="https://punycodex.com/lexicon/" class="btn-primary btn-ghost">
+                    <span>Enter the Codex</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="pantheon-mascot">
+                <picture><source srcset="../assets/${entry.id}_mascot.webp" type="image/webp"><img src="../assets/${entry.id}_mascot.png" alt="${entry.unicode} mascot" class="pantheon-mascot-img"></picture>
+            </div>
         </div>
-        ${list}
     </div>
 </section>`;
 }
@@ -621,8 +707,7 @@ function generateHomePage(entry, palette, slotNames, templateDir) {
     EFFECT: getCanvasEffect(entry),
     PRIMARY: palette.primary,
     SECONDARY: palette.secondary,
-    HERO_VIDEO_OR_MASCOT: buildHeroVisual(templeId, entry.unicode, entry.domain),
-    EXTENDED_TAB: buildExtendedTab('index', templeId)
+    HERO_VIDEO_OR_MASCOT: buildHeroVisual(templeId, entry.unicode, entry.domain)
   };
   for (let i = 0; i < SLOT_TYPES.length; i++) {
     vars[`SLOT_${String(i+1).padStart(2,'0')}_NAME`] = slotNames[i];
@@ -766,7 +851,7 @@ function generateLorePage(entry, palette, loreSections, templateDir, catalog) {
   const catalogEntry = catalog && catalog[entry.id];
   let html = fs.readFileSync(path.join(templateDir, 'lore', 'index.html'), 'utf8');
   const templeId = entry.id;
-  const grid = tierGridValues(entry);
+  const nameProse = buildNameProse(entry);
   const vars = {
     UNICODE: entry.unicode,
     ASCII: entry.ascii,
@@ -780,21 +865,14 @@ function generateLorePage(entry, palette, loreSections, templateDir, catalog) {
     PRIMARY: palette.primary,
     SECONDARY: palette.secondary,
     PUNYCODE: getPunycodeExplainer(entry),
-    TIER_EXPLANATION: generateTierExplanation(entry),
-    STRESS_ACTIVE: grid.stressActive,
-    STRESS_VALUE: grid.stressValue,
-    LENGTH_ACTIVE: grid.lengthActive,
-    LENGTH_VALUE: grid.lengthValue,
-    DUAL_ACTIVE: grid.dualActive,
-    DUAL_VALUE: grid.dualValue,
-    EXTENDED_TAB: buildExtendedTab('lore', templeId)
+    NAME_ORIGINAL: nameProse.original,
+    NAME_ASCII: nameProse.ascii,
+    NAME_UNICODE: nameProse.unicode
   };
 
   const hasCatalogMyth = catalogEntry && catalogEntry.mythology;
   const hasCatalogPron = catalogEntry && catalogEntry.pronunciation;
   const hasCatalogSymbols = catalogEntry && catalogEntry.domains;
-  const hasCatalogSync = catalogEntry && catalogEntry.syncretism;
-  const hasCatalogLegacy = catalogEntry && catalogEntry.culturalLegacy;
 
   const mythology = hasCatalogMyth
     ? buildMythologyContent(entry, catalogEntry)
@@ -805,12 +883,6 @@ function generateLorePage(entry, palette, loreSections, templateDir, catalog) {
   const symbols = hasCatalogSymbols
     ? buildSymbolsContent(entry, catalogEntry)
     : (isStubContent(cleanSectionContent(loreSections.symbols)) ? buildSymbolsContent(entry, null) : cleanSectionContent(loreSections.symbols));
-  const syncretism = hasCatalogSync
-    ? buildSyncretismContent(entry, catalogEntry)
-    : (cleanSectionContent(loreSections.syncretism) || '');
-  const culturalLegacy = hasCatalogLegacy
-    ? buildCulturalLegacyContent(entry, catalogEntry)
-    : (isStubContent(cleanSectionContent(loreSections['cultural-legacy'])) ? buildCulturalLegacyContent(entry, null) : cleanSectionContent(loreSections['cultural-legacy']));
 
   const symbolsTitle = catalogEntry && catalogEntry.domains && catalogEntry.domains.title
     ? catalogEntry.domains.title : 'Domains & Sacred Symbols';
@@ -820,19 +892,14 @@ function generateLorePage(entry, palette, loreSections, templateDir, catalog) {
         ? entry.domain
         : `Attributes of ${entry.unicode}`);
 
+  vars.TIER_SECTION = buildTierSection(entry, 2);
   vars.PRONUNCIATION = wrapSection('pronunciation','Pronunciation',`How ${entry.unicode} was spoken`,pronunciation,3);
   vars.SYMBOLS = wrapSection('symbols', symbolsTitle, symbolsSubtitle, symbols, 4);
   vars.MYTHOLOGY = wrapSection('mythology','Mythology',`Stories of ${entry.unicode}`,mythology,5);
-  vars.SYNCretism = syncretism ? wrapSection('syncretism','Syncretism',`${entry.unicode} across cultures`,syncretism,6) : '';
-  vars.SYNCRETISM = vars.SYNCretism;
-  vars.CULTURAL_LEGACY = culturalLegacy ? wrapSection('cultural-legacy','Cultural Legacy',`From ancient world to modern imagination`,culturalLegacy,7) : '';
-  vars.SOURCES = buildSourcesSection(entry, 8, catalogEntry);
-  vars.RELATED_NAMES = buildRelatedNamesSection(entry, 9);
-  vars.PANTHEON_CONNECTION = buildPantheonConnectionSection(entry, 10);
+  vars.RELATED_NAMES = buildRelatedNamesSection(entry, 6);
+  vars.PANTHEON_CONNECTION = buildPantheonConnectionSection(entry, 7);
 
   html = replacePlaceholders(html, vars);
-  html = html.replace(/\s*<!-- Syncretism -->\s*\n\s*\{\{SYNCRETISM\}\}\s*\n/g, '\n');
-  html = html.replace(/\s*<!-- Cultural Legacy -->\s*\n\s*\{\{CULTURAL_LEGACY\}\}\s*\n/g, '\n');
   if (!hasRealGreek(entry)) html = stripPlaceholderGreek(html, entry.unicode);
   return html;
 }
@@ -883,7 +950,6 @@ function generateGalleryPage(entry, palette, templateDir) {
     EFFECT: getCanvasEffect(entry),
     PRIMARY: palette.primary,
     SECONDARY: palette.secondary,
-    EXTENDED_TAB: buildExtendedTab('gallery', templeId),
     GALLERY_GRID: buildGalleryGrid(entry)
   };
   html = replacePlaceholders(html, vars);

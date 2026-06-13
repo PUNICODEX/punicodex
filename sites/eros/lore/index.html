@@ -8,8 +8,28 @@
     <meta name="description" content="The authentic digital shrine to Erōs, Love, Desire, Attraction. Explore the correct orthography, reconstructed pronunciation, and timeless mythology of Ἔρως.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css?v=perf2">
+
+    <style>
+        .tier-grid { display: grid; gap: 2rem; max-width: 900px; margin: 0 auto; }
+        .tier-grid-single { grid-template-columns: 1fr; }
+        .tier-card { background: rgba(0,0,0,0.3); border: 1px solid rgba(212,175,55,0.2); padding: 3rem; position: relative; overflow: hidden; }
+        .tier-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--primary), transparent); }
+        .tier-label { display: inline-block; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: #0A0A0A; background: var(--primary); padding: 0.35rem 0.8rem; margin-bottom: 1rem; }
+        .tier-domain { font-family: var(--font-display); font-size: 1.5rem; color: var(--white); margin-bottom: 1.5rem; letter-spacing: 0.05em; }
+        .tier-body { font-size: 1rem; color: var(--white-dim); line-height: 1.8; }
+        .tier-body strong { color: var(--white); }
+
+        .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
+        .pantheon-text { display: flex; flex-direction: column; gap: 1.25rem; }
+        .pantheon-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); }
+        .pantheon-title { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); color: var(--white); letter-spacing: 0.05em; }
+        .pantheon-body { font-size: 1.05rem; color: var(--white-dim); line-height: 1.8; }
+        .pantheon-mascot { display: flex; justify-content: center; align-items: center; }
+        .pantheon-mascot-img { max-width: 300px; width: 100%; filter: brightness(1.5) contrast(1.1) saturate(1.05); }
+        @media (max-width: 900px) { .pantheon-content { grid-template-columns: 1fr; text-align: center; } .pantheon-mascot { order: -1; } }
+    </style>
 
     <!-- Schema.org -->
     <script type="application/ld+json">
@@ -79,7 +99,6 @@
                 <a href="../index.html" class="nav-link">Home</a>
                 <a href="./index.html" class="nav-link active">Lore</a>
                 <a href="../gallery/index.html" class="nav-link">Gallery</a>
-                
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
@@ -103,14 +122,11 @@
                     <span class="meta-domain">Erōs.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="https://punycodex.com/type/#eros" class="btn-primary">
-                        <span>Try the Type Tool</span>
+                    <a href="#the-name" class="btn-primary">
+                        <span>Enter the Temple</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"/>
                         </svg>
-                    </a>
-                    <a href="#the-name" class="btn-primary btn-ghost">
-                        <span>Explore the Name</span>
                     </a>
                 </div>
             </div>
@@ -145,7 +161,7 @@
                     </div>
                     <h3 class="card-title">Original Script</h3>
                     <p class="card-greek">Ἔρως</p>
-                    <p class="card-body">The name in its original script. A name that carries the full phonetic weight of its source tradition.</p>
+                    <p class="card-body">The name in its original Greek form. <strong>Erōs</strong> (Ἔρως) is attested as love, desire, attraction — “Love, desire (from ἔραμαι)”. Its long vowels and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
                 </div>
 
                 <div class="name-card reveal-up" data-delay="100">
@@ -156,7 +172,7 @@
                     </div>
                     <h3 class="card-title">ASCII Constraint</h3>
                     <p class="card-ascii">eros</p>
-                    <p class="card-body">Stripped of its identity, the name was reduced to plain Latin letters. The original orthography — stress, length, breathing — was erased by systems that only understand A-Z.</p>
+                    <p class="card-body">Reduced to plain <strong>eros</strong>, the name loses everything that made it specific: long vowels and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
                 </div>
 
                 <div class="name-card reveal-up" data-delay="200">
@@ -168,7 +184,7 @@
                     </div>
                     <h3 class="card-title">Unicode Restoration</h3>
                     <p class="card-unicode">Erōs</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII destroyed. This is <strong>philological accuracy</strong> — not decoration. The domain encodes to Punycode, but the browser displays the truth.</p>
+                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Erōs</strong> restores long vowels and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
                 </div>
             </div>
 
@@ -184,47 +200,30 @@
 
     <!-- Tier Classification -->
     <section class="section section-tier" id="tier">
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">02</span>
-                <h2 class="section-title">Tier Classification</h2>
-                <p class="section-subtitle">Why Erōs is classified as Tier 1</p>
-            </div>
-
-            <div class="tier-explanation reveal-up">
-                <p class="lead-text">The Greek original <strong>Ἔρως</strong> contains <strong>both stress and vowel length</strong>, but only one historically valid Unicode restoration exists. This makes it a <strong>single-tier Tier-1</strong> name.</p>
-            </div>
-
-            <div class="tier-feature-grid">
-                <div class="tier-feature-card inactive reveal-up">
-                    <div class="tier-feature-label">Stress</div>
-                    <div class="tier-feature-value">—</div>
-                    <div class="tier-feature-desc">Acute or circumflex accent marks the pitch stress of the original.</div>
-                </div>
-                <div class="tier-feature-card active reveal-up" data-delay="100">
-                    <div class="tier-feature-label">Length</div>
-                    <div class="tier-feature-value">Preserved</div>
-                    <div class="tier-feature-desc">Macron or long vowel preserves the quantitative length of the original.</div>
-                </div>
-                <div class="tier-feature-card inactive reveal-up" data-delay="200">
-                    <div class="tier-feature-label">Dual Variant</div>
-                    <div class="tier-feature-value">—</div>
-                    <div class="tier-feature-desc">Multiple historically valid Unicode restorations exist for this name.</div>
-                </div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <h2 class="section-title">Tier Classification</h2>
+            <p class="section-subtitle">Where Erōs stands in the PUNYCODEX tier system</p>
+        </div>
+        <div class="tier-grid tier-grid-single">
+            <div class="tier-card reveal-up">
+                <div class="tier-label">Tier 1</div>
+                <div class="tier-domain">Erōs.com</div>
+                <p class="tier-body">The Greek original <strong>Ἔρως</strong> contains <strong>both stress and vowel length</strong>, but only one historically valid Unicode restoration exists. This makes it a <strong>single-tier Tier-1</strong> name.</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Pronunciation -->
-    <section class="section section-tier" id="pronunciation">
+    <section class="section section-pronunciation" id="pronunciation">
     <div class="container">
         <div class="section-header reveal-up">
             <span class="section-number">03</span>
             <h2 class="section-title">Pronunciation</h2>
             <p class="section-subtitle">How Erōs was spoken</p>
         </div>
-        <div class="tier-explanation reveal-up">
-            
+        
       <div class="pronunciation-grid">
         <div class="pronunciation-main reveal-up">
           <div class="ipa-display">
@@ -254,20 +253,18 @@
           <div class="sidebar-card accent-card"><h4 class="sidebar-title">The Accent / Script Rule</h4><p class="sidebar-text">Erōs is Tier 1 because the Greek Ἔρως contains both stress (acute on the initial epsilon) and length (the long omega). The macron on the final ō preserves the long vowel, while the accent position is implied by the Greek original. The name is the full scholarly form of the force that moves the cosmos.</p></div>
         </div>
       </div>
-        </div>
     </div>
 </section>
 
     <!-- Domains & Sacred Symbols -->
-    <section class="section section-tier" id="symbols">
+    <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Desire</h2>
             <p class="section-subtitle">Attraction, Union, Cosmic Motion</p>
         </div>
-        <div class="tier-explanation reveal-up">
-            
+        
       <div class="domains-intro reveal-up"><p class='lead-text'>Erōs is not merely romance. He is the <strong>attraction that makes things move toward each other</strong>: fire upward, water downward, god toward mortal, atom toward atom. In the earliest Greek cosmogonies, Erōs is a primordial power; only later does he become the mischievous child of Aphrodite.</p></div>
       <div class="domains-grid">
       <div class="domain-card reveal-up" >
@@ -311,20 +308,18 @@
         <span class="symbol-name">Heart</span>
         <span class="symbol-meaning">The seat of emotion and the target of the god</span>
       </div></div></div>
-        </div>
     </div>
 </section>
 
     <!-- Mythology -->
-    <section class="section section-tier" id="mythology">
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
             <span class="section-number">05</span>
             <h2 class="section-title">Mythology</h2>
             <p class="section-subtitle">Stories of Erōs</p>
         </div>
-        <div class="tier-explanation reveal-up">
-            
+        
       <p class='lead-text'>Erōs stands at the beginning in Hesiod and at the margins in Homer. He is one of the oldest gods, yet his stories are few — because his power is everywhere.</p>
       <div class="myths-timeline">
       <div class="myth-card reveal-up" >
@@ -359,51 +354,6 @@
           <p class='myth-text'>In Apuleius' Latin novel <em>The Golden Ass</em>, Erōs becomes Cupid, the lover of Psyche ("Soul"). The tale — of forbidden love, betrayal, and divine reconciliation — became the template for countless later stories, though it belongs to Roman, not archaic Greek, tradition.</p>
         </div>
       </div></div>
-        </div>
-    </div>
-</section>
-
-    <!-- Syncretism -->
-    <section class="section section-tier" id="syncretism">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Syncretism</h2>
-            <p class="section-subtitle">Erōs across cultures</p>
-        </div>
-        <div class="tier-explanation reveal-up">
-            <p>The Roman <em>Cupido</em> inherited Erōs's arrows and wings but gradually shrank from a handsome youth into a plump, blindfolded infant — the Renaissance putto. In Plato's <em>Symposium</em>, Erōs is redefined as the longing for beauty and the ladder from physical desire to the Form of the Good. For the Stoics, Erōs was a natural affinity (<em>oikeiōsis</em>) that binds the cosmos. Freud divided the psyche into <em>Eros</em> and <em>Thanatos</em>, life-drive and death-drive, making the Greek god the name of everything in us that seeks connection, pleasure, and life.</p>
-        </div>
-    </div>
-</section>
-
-    <!-- Cultural Legacy -->
-    <section class="section section-tier" id="cultural-legacy">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">07</span>
-            <h2 class="section-title">Cultural Legacy</h2>
-            <p class="section-subtitle">From ancient world to modern imagination</p>
-        </div>
-        <div class="tier-explanation reveal-up">
-            <p>Erōs is one of the most productive words in European languages: "erotic," "erogenous," "erosion" (via the wearing-away of desire). He appears on Valentine's cards, in pop songs, in perfume advertisements, and in psychoanalytic theory. The image of the winged child with a bow — Cupid — is one of the most recognizable figures in Western art. Yet the archaic Erōs was more formidable: a beautiful young man who could unmake kings and gods. To restore the name <em>Erōs</em> with its long omega is to remember that desire is not trivial; it is one of the forces that turns the world.</p>
-        </div>
-    </div>
-</section>
-
-    <!-- Sources -->
-    <section class="section section-related" id="sources">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">08</span>
-            <h2 class="section-title">Scholarly Sources</h2>
-            <p class="section-subtitle">Attested in accredited reference works</p>
-        </div>
-        <div class="sources-section reveal-up">
-            <div class="sources-list">
-                <a href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&redirect=true&lang=greek" target="_blank" rel="noopener" class="source-badge" title="LSJ">LSJ</a><a href="https://brill.com/view/title/17858" target="_blank" rel="noopener" class="source-badge" title="Beekes">Beekes</a><a href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0130" target="_blank" rel="noopener" class="source-badge" title="Hesiod, Theogony">Hesiod, Theogony</a><span class="source-badge">Aristophanes, Birds</span><a href="https://www.perseus.tufts.edu/hopper/searchresults?q=plato" target="_blank" rel="noopener" class="source-badge" title="Plato, Symposium">Plato, Symposium</a><span class="source-badge">Apuleius, The Golden Ass</span><a href="https://www.orphic-hymns.com/" target="_blank" rel="noopener" class="source-badge" title="Orphic Hymns">Orphic Hymns</a>
-            </div>
-        </div>
     </div>
 </section>
 
@@ -411,75 +361,90 @@
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">09</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the greek pantheon</p>
         </div>
         <div class="related-grid reveal-up">
             
-    <a href="https://punycodex.com/sites/apollon/" class="related-card reveal-up">
+    <a href="../../apollon/" class="related-card reveal-up">
       <span class="related-name">Apóllōn</span>
+      <span class="related-greek">Ἀπόλλων</span>
       <span class="related-domain">Light, Music, Prophecy</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Dual-Tier</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek</span>
+      </div>
     </a>
-  
-    <a href="https://punycodex.com/sites/hades/" class="related-card reveal-up">
+    <a href="../../hades/" class="related-card reveal-up">
       <span class="related-name">Hádēs</span>
+      <span class="related-greek">Ἅιδης</span>
       <span class="related-domain">Underworld, Wealth</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Dual-Tier</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek</span>
+      </div>
     </a>
-  
-    <a href="https://punycodex.com/sites/hekate/" class="related-card reveal-up">
+    <a href="../../hekate/" class="related-card reveal-up">
       <span class="related-name">Hekátē</span>
+      <span class="related-greek">Ἑκάτη</span>
       <span class="related-domain">Magic, Crossroads, Moon</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Dual-Tier</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek</span>
+      </div>
     </a>
-  
-    <a href="https://punycodex.com/sites/nike/" class="related-card reveal-up">
+    <a href="../../nike/" class="related-card reveal-up">
       <span class="related-name">Níkē</span>
+      <span class="related-greek">Νίκη</span>
       <span class="related-domain">Victory</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Dual-Tier</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek</span>
+      </div>
     </a>
-  
-    <a href="https://punycodex.com/sites/zeus/" class="related-card reveal-up">
+    <a href="../../zeus/" class="related-card reveal-up">
       <span class="related-name">Zeús</span>
+      <span class="related-greek">Ζεύς</span>
       <span class="related-domain">Sky, Thunder, King of Gods</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek</span>
+      </div>
     </a>
-  
-    <a href="https://punycodex.com/sites/ares/" class="related-card reveal-up">
+    <a href="../../ares/" class="related-card reveal-up">
       <span class="related-name">Árēs</span>
+      <span class="related-greek">Ἄρης</span>
       <span class="related-domain">War, Courage, Battle Fury</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek</span>
+      </div>
     </a>
-  
         </div>
     </div>
 </section>
 
     <!-- Pantheon Connection -->
-    <section class="section section-pantheon" id="pantheon">
+    <section class="section section-pantheon" id="pantheon" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
     <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">10</span>
-            <h2 class="section-title">Pantheon Connection</h2>
-            <p class="section-subtitle">Erōs in the greek tradition</p>
+        <div class="pantheon-content reveal-up">
+            <div class="pantheon-text">
+                <span class="pantheon-eyebrow">The PUNYCODEX</span>
+                <h2 class="pantheon-title">One of the Restored</h2>
+                <p class="pantheon-body"><strong>Erōs</strong> is love, desire, attraction in the Greek tradition — one voice in a chorus that includes <strong>Apóllōn</strong>, <strong>Hádēs</strong>, <strong>Hekátē</strong> and others. Each name carries its own domain, its own lore, and its own truth.</p>
+                <p class="pantheon-body">This is not a directory. This is a <strong>resurrection</strong>.</p>
+                <a href="https://punycodex.com/lexicon/" class="btn-primary btn-ghost">
+                    <span>Enter the Codex</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="pantheon-mascot">
+                <picture><source srcset="../assets/eros_mascot.webp" type="image/webp"><img src="../assets/eros_mascot.png" alt="Erōs mascot" class="pantheon-mascot-img"></picture>
+            </div>
         </div>
-        <div class="related-grid reveal-up">
-        <a href="https://punycodex.com/sites/apollon/" class="related-card reveal-up">
-          <span class="related-name">Apóllōn</span>
-          <span class="related-domain">Light, Music, Prophecy</span>
-        </a>
-      
-        <a href="https://punycodex.com/sites/hades/" class="related-card reveal-up">
-          <span class="related-name">Hádēs</span>
-          <span class="related-domain">Underworld, Wealth</span>
-        </a>
-      
-        <a href="https://punycodex.com/sites/hekate/" class="related-card reveal-up">
-          <span class="related-name">Hekátē</span>
-          <span class="related-domain">Magic, Crossroads, Moon</span>
-        </a>
-      
-        <a href="https://punycodex.com/sites/nike/" class="related-card reveal-up">
-          <span class="related-name">Níkē</span>
-          <span class="related-domain">Victory</span>
-        </a>
-      </div>
     </div>
 </section>
 
@@ -509,7 +474,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="https://punycodex.com/" class="footer-logo">PUNYCODEX</a>
+                    <span class="footer-logo">PUNYCODEX</span>
                     <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
                 </div>
                 <div class="footer-info">
@@ -537,9 +502,6 @@
     </footer>
 
     <script src="/js/flagship-canvas.js"></script>
-    
-
-<script>window.PUNYCODEX_API_BASE = "";</script>
     <script src="/js/temple-base.js?v=perf2"></script>
     <script src="../script.js?v=perf2"></script>
 </body>

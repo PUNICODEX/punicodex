@@ -8,8 +8,28 @@
     <meta name="description" content="The authentic digital shrine to {{UNICODE}}, {{DOMAIN}}. Explore the correct orthography, reconstructed pronunciation, and timeless mythology of {{GREEK}}.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css?v=perf2">
+
+    <style>
+        .tier-grid { display: grid; gap: 2rem; max-width: 900px; margin: 0 auto; }
+        .tier-grid-single { grid-template-columns: 1fr; }
+        .tier-card { background: rgba(0,0,0,0.3); border: 1px solid rgba(212,175,55,0.2); padding: 3rem; position: relative; overflow: hidden; }
+        .tier-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--primary), transparent); }
+        .tier-label { display: inline-block; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: #0A0A0A; background: var(--primary); padding: 0.35rem 0.8rem; margin-bottom: 1rem; }
+        .tier-domain { font-family: var(--font-display); font-size: 1.5rem; color: var(--white); margin-bottom: 1.5rem; letter-spacing: 0.05em; }
+        .tier-body { font-size: 1rem; color: var(--white-dim); line-height: 1.8; }
+        .tier-body strong { color: var(--white); }
+
+        .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
+        .pantheon-text { display: flex; flex-direction: column; gap: 1.25rem; }
+        .pantheon-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); }
+        .pantheon-title { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); color: var(--white); letter-spacing: 0.05em; }
+        .pantheon-body { font-size: 1.05rem; color: var(--white-dim); line-height: 1.8; }
+        .pantheon-mascot { display: flex; justify-content: center; align-items: center; }
+        .pantheon-mascot-img { max-width: 300px; width: 100%; filter: brightness(1.5) contrast(1.1) saturate(1.05); }
+        @media (max-width: 900px) { .pantheon-content { grid-template-columns: 1fr; text-align: center; } .pantheon-mascot { order: -1; } }
+    </style>
 
     <!-- Schema.org -->
     <script type="application/ld+json">
@@ -79,7 +99,6 @@
                 <a href="../index.html" class="nav-link">Home</a>
                 <a href="./index.html" class="nav-link active">Lore</a>
                 <a href="../gallery/index.html" class="nav-link">Gallery</a>
-                {{EXTENDED_TAB}}
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
@@ -103,14 +122,11 @@
                     <span class="meta-domain">{{DOMAINS_TEXT}}</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="https://punycodex.com/type/#{{TEMPLE_ID}}" class="btn-primary">
-                        <span>Try the Type Tool</span>
+                    <a href="#the-name" class="btn-primary">
+                        <span>Enter the Temple</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"/>
                         </svg>
-                    </a>
-                    <a href="#the-name" class="btn-primary btn-ghost">
-                        <span>Explore the Name</span>
                     </a>
                 </div>
             </div>
@@ -145,7 +161,7 @@
                     </div>
                     <h3 class="card-title">Original Script</h3>
                     <p class="card-greek">{{GREEK}}</p>
-                    <p class="card-body">The name in its original script. A name that carries the full phonetic weight of its source tradition.</p>
+                    <p class="card-body">{{NAME_ORIGINAL}}</p>
                 </div>
 
                 <div class="name-card reveal-up" data-delay="100">
@@ -156,7 +172,7 @@
                     </div>
                     <h3 class="card-title">ASCII Constraint</h3>
                     <p class="card-ascii">{{ASCII}}</p>
-                    <p class="card-body">Stripped of its identity, the name was reduced to plain Latin letters. The original orthography — stress, length, breathing — was erased by systems that only understand A-Z.</p>
+                    <p class="card-body">{{NAME_ASCII}}</p>
                 </div>
 
                 <div class="name-card reveal-up" data-delay="200">
@@ -168,7 +184,7 @@
                     </div>
                     <h3 class="card-title">Unicode Restoration</h3>
                     <p class="card-unicode">{{UNICODE}}</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII destroyed. This is <strong>philological accuracy</strong> — not decoration. The domain encodes to Punycode, but the browser displays the truth.</p>
+                    <p class="card-body">{{NAME_UNICODE}}</p>
                 </div>
             </div>
 
@@ -183,37 +199,7 @@
     </section>
 
     <!-- Tier Classification -->
-    <section class="section section-tier" id="tier">
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">02</span>
-                <h2 class="section-title">Tier Classification</h2>
-                <p class="section-subtitle">Why {{UNICODE}} is classified as {{TIER_LABEL}}</p>
-            </div>
-
-            <div class="tier-explanation reveal-up">
-                <p class="lead-text">{{TIER_EXPLANATION}}</p>
-            </div>
-
-            <div class="tier-feature-grid">
-                <div class="tier-feature-card {{STRESS_ACTIVE}} reveal-up">
-                    <div class="tier-feature-label">Stress</div>
-                    <div class="tier-feature-value">{{STRESS_VALUE}}</div>
-                    <div class="tier-feature-desc">Acute or circumflex accent marks the pitch stress of the original.</div>
-                </div>
-                <div class="tier-feature-card {{LENGTH_ACTIVE}} reveal-up" data-delay="100">
-                    <div class="tier-feature-label">Length</div>
-                    <div class="tier-feature-value">{{LENGTH_VALUE}}</div>
-                    <div class="tier-feature-desc">Macron or long vowel preserves the quantitative length of the original.</div>
-                </div>
-                <div class="tier-feature-card {{DUAL_ACTIVE}} reveal-up" data-delay="200">
-                    <div class="tier-feature-label">Dual Variant</div>
-                    <div class="tier-feature-value">{{DUAL_VALUE}}</div>
-                    <div class="tier-feature-desc">Multiple historically valid Unicode restorations exist for this name.</div>
-                </div>
-            </div>
-        </div>
-    </section>
+    {{TIER_SECTION}}
 
     <!-- Pronunciation -->
     {{PRONUNCIATION}}
@@ -223,15 +209,6 @@
 
     <!-- Mythology -->
     {{MYTHOLOGY}}
-
-    <!-- Syncretism -->
-    {{SYNCRETISM}}
-
-    <!-- Cultural Legacy -->
-    {{CULTURAL_LEGACY}}
-
-    <!-- Sources -->
-    {{SOURCES}}
 
     <!-- Related Names -->
     {{RELATED_NAMES}}
@@ -265,7 +242,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="https://punycodex.com/" class="footer-logo">PUNYCODEX</a>
+                    <span class="footer-logo">PUNYCODEX</span>
                     <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
                 </div>
                 <div class="footer-info">
@@ -293,9 +270,6 @@
     </footer>
 
     <script src="/js/flagship-canvas.js"></script>
-    
-
-<script>window.PUNYCODEX_API_BASE = "";</script>
     <script src="/js/temple-base.js?v=perf2"></script>
     <script src="../script.js?v=perf2"></script>
 </body>

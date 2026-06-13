@@ -8,8 +8,28 @@
     <meta name="description" content="The authentic digital shrine to Ṛta, Cosmic Order, Truth, Law. Explore the correct orthography, reconstructed pronunciation, and timeless mythology of Ṛta.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css?v=perf2">
+
+    <style>
+        .tier-grid { display: grid; gap: 2rem; max-width: 900px; margin: 0 auto; }
+        .tier-grid-single { grid-template-columns: 1fr; }
+        .tier-card { background: rgba(0,0,0,0.3); border: 1px solid rgba(212,175,55,0.2); padding: 3rem; position: relative; overflow: hidden; }
+        .tier-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--primary), transparent); }
+        .tier-label { display: inline-block; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: #0A0A0A; background: var(--primary); padding: 0.35rem 0.8rem; margin-bottom: 1rem; }
+        .tier-domain { font-family: var(--font-display); font-size: 1.5rem; color: var(--white); margin-bottom: 1.5rem; letter-spacing: 0.05em; }
+        .tier-body { font-size: 1rem; color: var(--white-dim); line-height: 1.8; }
+        .tier-body strong { color: var(--white); }
+
+        .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
+        .pantheon-text { display: flex; flex-direction: column; gap: 1.25rem; }
+        .pantheon-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); }
+        .pantheon-title { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); color: var(--white); letter-spacing: 0.05em; }
+        .pantheon-body { font-size: 1.05rem; color: var(--white-dim); line-height: 1.8; }
+        .pantheon-mascot { display: flex; justify-content: center; align-items: center; }
+        .pantheon-mascot-img { max-width: 300px; width: 100%; filter: brightness(1.5) contrast(1.1) saturate(1.05); }
+        @media (max-width: 900px) { .pantheon-content { grid-template-columns: 1fr; text-align: center; } .pantheon-mascot { order: -1; } }
+    </style>
 
     <!-- Schema.org -->
     <script type="application/ld+json">
@@ -79,7 +99,6 @@
                 <a href="../index.html" class="nav-link">Home</a>
                 <a href="./index.html" class="nav-link active">Lore</a>
                 <a href="../gallery/index.html" class="nav-link">Gallery</a>
-                
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
@@ -103,14 +122,11 @@
                     <span class="meta-domain">Rta.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="https://punycodex.com/type/#rta" class="btn-primary">
-                        <span>Try the Type Tool</span>
+                    <a href="#the-name" class="btn-primary">
+                        <span>Enter the Temple</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"/>
                         </svg>
-                    </a>
-                    <a href="#the-name" class="btn-primary btn-ghost">
-                        <span>Explore the Name</span>
                     </a>
                 </div>
             </div>
@@ -145,7 +161,7 @@
                     </div>
                     <h3 class="card-title">Original Script</h3>
                     <p class="card-greek">Ṛta</p>
-                    <p class="card-body">The name in its original script. A name that carries the full phonetic weight of its source tradition.</p>
+                    <p class="card-body">The name in its original Sanskrit form. <strong>Ṛta</strong> (Ṛta) is attested as cosmic order, truth, law — “Truth, cosmic order, natural law. The Vedic principle of righteousness and universal harmony.”. Its the original diacritics and script distinctions carry the full phonetic and orthographic weight of the source tradition.</p>
                 </div>
 
                 <div class="name-card reveal-up" data-delay="100">
@@ -156,7 +172,7 @@
                     </div>
                     <h3 class="card-title">ASCII Constraint</h3>
                     <p class="card-ascii">rta</p>
-                    <p class="card-body">Stripped of its identity, the name was reduced to plain Latin letters. The original orthography — stress, length, breathing — was erased by systems that only understand A-Z.</p>
+                    <p class="card-body">Reduced to plain <strong>rta</strong>, the name loses everything that made it specific: the original diacritics and script distinctions. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
                 </div>
 
                 <div class="name-card reveal-up" data-delay="200">
@@ -168,7 +184,7 @@
                     </div>
                     <h3 class="card-title">Unicode Restoration</h3>
                     <p class="card-unicode">Ṛta</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII destroyed. This is <strong>philological accuracy</strong> — not decoration. The domain encodes to Punycode, but the browser displays the truth.</p>
+                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Ṛta</strong> restores the original diacritics and script distinctions, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
                 </div>
             </div>
 
@@ -184,47 +200,30 @@
 
     <!-- Tier Classification -->
     <section class="section section-tier" id="tier">
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">02</span>
-                <h2 class="section-title">Tier Classification</h2>
-                <p class="section-subtitle">Why Ṛta is classified as Tier 2</p>
-            </div>
-
-            <div class="tier-explanation reveal-up">
-                <p class="lead-text">The original form <strong>Ṛta</strong> preserves a recognizable written identity in its Unicode restoration. Classified as <strong>Tier 2</strong> in the PUNYCODEX tier system.</p>
-            </div>
-
-            <div class="tier-feature-grid">
-                <div class="tier-feature-card inactive reveal-up">
-                    <div class="tier-feature-label">Stress</div>
-                    <div class="tier-feature-value">N/A</div>
-                    <div class="tier-feature-desc">Acute or circumflex accent marks the pitch stress of the original.</div>
-                </div>
-                <div class="tier-feature-card inactive reveal-up" data-delay="100">
-                    <div class="tier-feature-label">Length</div>
-                    <div class="tier-feature-value">N/A</div>
-                    <div class="tier-feature-desc">Macron or long vowel preserves the quantitative length of the original.</div>
-                </div>
-                <div class="tier-feature-card inactive reveal-up" data-delay="200">
-                    <div class="tier-feature-label">Dual Variant</div>
-                    <div class="tier-feature-value">—</div>
-                    <div class="tier-feature-desc">Multiple historically valid Unicode restorations exist for this name.</div>
-                </div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <h2 class="section-title">Tier Classification</h2>
+            <p class="section-subtitle">Where Ṛta stands in the PUNYCODEX tier system</p>
+        </div>
+        <div class="tier-grid tier-grid-single">
+            <div class="tier-card reveal-up">
+                <div class="tier-label">Tier 2</div>
+                <div class="tier-domain">Ṛta.com</div>
+                <p class="tier-body">The original form <strong>Ṛta</strong> preserves a recognizable written identity in its Unicode restoration. Classified as <strong>Tier 2</strong> in the PUNYCODEX tier system.</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Pronunciation -->
-    <section class="section section-tier" id="pronunciation">
+    <section class="section section-pronunciation" id="pronunciation">
     <div class="container">
         <div class="section-header reveal-up">
             <span class="section-number">03</span>
             <h2 class="section-title">Pronunciation</h2>
             <p class="section-subtitle">How Ṛta was spoken</p>
         </div>
-        <div class="tier-explanation reveal-up">
-            
+        
       <div class="pronunciation-grid">
         <div class="pronunciation-main reveal-up">
           <div class="ipa-display">
@@ -250,20 +249,18 @@
           <div class="sidebar-card accent-card"><h4 class="sidebar-title">The Accent / Script Rule</h4><p class="sidebar-text">IAST Ṛta uses the underdotted ṛ for the syllabic r vowel. It is never personified in the Vedic corpus; it is the impersonal principle by which sun, moon, sacrifice, and morality all hold together. Devanagari ऋत is one of the most philosophically charged short words in Sanskrit.</p></div>
         </div>
       </div>
-        </div>
     </div>
 </section>
 
     <!-- Domains & Sacred Symbols -->
-    <section class="section section-tier" id="symbols">
+    <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">The Vedic Order of Truth</h2>
             <p class="section-subtitle">Cosmic Order, Truth, Law</p>
         </div>
-        <div class="tier-explanation reveal-up">
-            
+        
       <div class="domains-intro reveal-up"><p class='lead-text'>Ṛta is the hidden spine of the Vedic universe. It is not a god to be petitioned but the law that makes petition possible — the right fit of stars, seasons, words, and actions. Where later Hinduism speaks of Dharma and Karma, the earliest poets spoke of Ṛta.</p></div>
       <div class="domains-grid">
       <div class="domain-card reveal-up" >
@@ -303,20 +300,18 @@
         <span class="symbol-name">Varuṇa's noose</span>
         <span class="symbol-meaning">The god Varuṇa is the guardian of Ṛta, binding wrongdoers who disturb the order.</span>
       </div></div></div>
-        </div>
     </div>
 </section>
 
     <!-- Mythology -->
-    <section class="section section-tier" id="mythology">
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
             <span class="section-number">05</span>
             <h2 class="section-title">Mythology</h2>
             <p class="section-subtitle">Stories of Ṛta</p>
         </div>
-        <div class="tier-explanation reveal-up">
-            
+        
       <p class='lead-text'>Ṛta has no personal mythology — no birth, no love affairs, no wars. Its 'stories' are the regular events of the cosmos: dawn after night, rain after drought, the fire rising when the priest kindles it.</p>
       <div class="myths-timeline">
       <div class="myth-card reveal-up" >
@@ -343,51 +338,6 @@
           <p class='myth-text'>Unlike the sovereign gods of Near Eastern mythologies, the Vedic gods are not above cosmic law. Indra, Agni, and Varuṇa act within Ṛta and are praised for upholding it. Varuṇa, lord of the waters and the night sky, is especially its guardian, watching over oaths and punishing those who break them. Ṛta is therefore closer to a natural law than to a divine decree.</p>
         </div>
       </div></div>
-        </div>
-    </div>
-</section>
-
-    <!-- Syncretism -->
-    <section class="section section-tier" id="syncretism">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Syncretism</h2>
-            <p class="section-subtitle">Ṛta across cultures</p>
-        </div>
-        <div class="tier-explanation reveal-up">
-            <p>Ṛta is the Vedic ancestor of Dharma. Where Ṛta emphasizes cosmic fitting-together, Dharma adds the social, ethical, and vocational dimensions of human life. Karma, in turn, becomes the mechanism by which alignment with Dharma produces results. The Avestan cognate Aša develops in a different direction: in Zoroastrianism it becomes a divinized principle, one of the Amesha Spentas, whereas Vedic Ṛta remains stubbornly impersonal. Greek <em>artios</em> ('fitted, suitable') and Latin <em>rītus</em> ('rite') may echo the same root, suggesting an ancient Indo-European intuition that order, truth, and ritual are one thing.</p>
-        </div>
-    </div>
-</section>
-
-    <!-- Cultural Legacy -->
-    <section class="section section-tier" id="cultural-legacy">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">07</span>
-            <h2 class="section-title">Cultural Legacy</h2>
-            <p class="section-subtitle">From ancient world to modern imagination</p>
-        </div>
-        <div class="tier-explanation reveal-up">
-            <p>Though the word Ṛta faded from everyday Hindu vocabulary, it never disappeared. It survives in ritual invocations, in the names of Ṛṣis and Ṛgvedic schools, and in the very idea that the universe is lawful rather than arbitrary. Modern Indian philosophy and law often appeal to Dharma, but Dharma's deepest root is Ṛta — the insight that truth, nature, and morality are not separate domains but a single order. Environmental thinkers in India have returned to Ṛta as a name for ecological balance: the sun, the rain, and the seed all move by a law older than human legislation.</p>
-        </div>
-    </div>
-</section>
-
-    <!-- Sources -->
-    <section class="section section-related" id="sources">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">08</span>
-            <h2 class="section-title">Scholarly Sources</h2>
-            <p class="section-subtitle">Attested in accredited reference works</p>
-        </div>
-        <div class="sources-section reveal-up">
-            <div class="sources-list">
-                <a href="https://www.sanskrit-lexicon.uni-koeln.de/" target="_blank" rel="noopener" class="source-badge" title="Monier-Williams Sanskrit Dictionary">Monier-Williams Sanskrit Dictionary</a><span class="source-badge">Mayrhofer, EWAia</span><a href="https://vedaweb.uni-koeln.de/" target="_blank" rel="noopener" class="source-badge" title="Ṛgveda, passim">Ṛgveda, passim</a><span class="source-badge">Avesta, Yašnas</span><span class="source-badge">Lubin, 'The Transmission, Patronage, and Prestige of Brahmanical Piety'</span>
-            </div>
-        </div>
     </div>
 </section>
 
@@ -395,75 +345,90 @@
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">09</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the sanskrit pantheon</p>
         </div>
         <div class="related-grid reveal-up">
             
-    <a href="https://punycodex.com/sites/rama/" class="related-card reveal-up">
+    <a href="../../rama/" class="related-card reveal-up">
       <span class="related-name">Rāma</span>
+      
       <span class="related-domain">Virtue, Kingship, Avatar of Vishnu</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Sanskrit</span>
+      </div>
     </a>
-  
-    <a href="https://punycodex.com/sites/durga/" class="related-card reveal-up">
+    <a href="../../durga/" class="related-card reveal-up">
       <span class="related-name">Durgā</span>
+      
       <span class="related-domain">Protection, Strength, War</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Sanskrit</span>
+      </div>
     </a>
-  
-    <a href="https://punycodex.com/sites/shiva/" class="related-card reveal-up">
+    <a href="../../shiva/" class="related-card reveal-up">
       <span class="related-name">Śiva</span>
+      
       <span class="related-domain">Destruction, Transformation, Dance</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 2</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Sanskrit</span>
+      </div>
     </a>
-  
-    <a href="https://punycodex.com/sites/vishnu/" class="related-card reveal-up">
+    <a href="../../vishnu/" class="related-card reveal-up">
       <span class="related-name">Viṣṇu</span>
+      
       <span class="related-domain">Preservation, Protection, Universe</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 2</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Sanskrit</span>
+      </div>
     </a>
-  
-    <a href="https://punycodex.com/sites/krishna/" class="related-card reveal-up">
+    <a href="../../krishna/" class="related-card reveal-up">
       <span class="related-name">Kṛṣṇa</span>
+      
       <span class="related-domain">Love, Compassion, Avatar of Vishnu</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 2</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Sanskrit</span>
+      </div>
     </a>
-  
-    <a href="https://punycodex.com/sites/ganesha/" class="related-card reveal-up">
+    <a href="../../ganesha/" class="related-card reveal-up">
       <span class="related-name">Gaṇeśa</span>
+      
       <span class="related-domain">Wisdom, Beginnings, Obstacle-Removal</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 2</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Sanskrit</span>
+      </div>
     </a>
-  
         </div>
     </div>
 </section>
 
     <!-- Pantheon Connection -->
-    <section class="section section-pantheon" id="pantheon">
+    <section class="section section-pantheon" id="pantheon" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
     <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">10</span>
-            <h2 class="section-title">Pantheon Connection</h2>
-            <p class="section-subtitle">Ṛta in the sanskrit tradition</p>
+        <div class="pantheon-content reveal-up">
+            <div class="pantheon-text">
+                <span class="pantheon-eyebrow">The PUNYCODEX</span>
+                <h2 class="pantheon-title">One of the Restored</h2>
+                <p class="pantheon-body"><strong>Ṛta</strong> is cosmic order, truth, law in the Sanskrit tradition — one voice in a chorus that includes <strong>Rāma</strong>, <strong>Durgā</strong>, <strong>Śiva</strong> and others. Each name carries its own domain, its own lore, and its own truth.</p>
+                <p class="pantheon-body">This is not a directory. This is a <strong>resurrection</strong>.</p>
+                <a href="https://punycodex.com/lexicon/" class="btn-primary btn-ghost">
+                    <span>Enter the Codex</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="pantheon-mascot">
+                <picture><source srcset="../assets/rta_mascot.webp" type="image/webp"><img src="../assets/rta_mascot.png" alt="Ṛta mascot" class="pantheon-mascot-img"></picture>
+            </div>
         </div>
-        <div class="related-grid reveal-up">
-        <a href="https://punycodex.com/sites/rama/" class="related-card reveal-up">
-          <span class="related-name">Rāma</span>
-          <span class="related-domain">Virtue, Kingship, Avatar of Vishnu</span>
-        </a>
-      
-        <a href="https://punycodex.com/sites/durga/" class="related-card reveal-up">
-          <span class="related-name">Durgā</span>
-          <span class="related-domain">Protection, Strength, War</span>
-        </a>
-      
-        <a href="https://punycodex.com/sites/shiva/" class="related-card reveal-up">
-          <span class="related-name">Śiva</span>
-          <span class="related-domain">Destruction, Transformation, Dance</span>
-        </a>
-      
-        <a href="https://punycodex.com/sites/vishnu/" class="related-card reveal-up">
-          <span class="related-name">Viṣṇu</span>
-          <span class="related-domain">Preservation, Protection, Universe</span>
-        </a>
-      </div>
     </div>
 </section>
 
@@ -493,7 +458,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="https://punycodex.com/" class="footer-logo">PUNYCODEX</a>
+                    <span class="footer-logo">PUNYCODEX</span>
                     <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
                 </div>
                 <div class="footer-info">
@@ -521,9 +486,6 @@
     </footer>
 
     <script src="/js/flagship-canvas.js"></script>
-    
-
-<script>window.PUNYCODEX_API_BASE = "";</script>
     <script src="/js/temple-base.js?v=perf2"></script>
     <script src="../script.js?v=perf2"></script>
 </body>
