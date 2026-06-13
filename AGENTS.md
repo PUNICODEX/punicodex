@@ -142,7 +142,10 @@ The Realms page uses filter buttons (All / Norse / Greek / Japanese) and links e
 **Shared infrastructure:**
 - `css/temple-base.css` — Common temple styles (nav, hero, sections, cards, footer, responsive)
 - `js/temple-base.js` — Common interactions (scroll reveal, nav, mobile toggle, particle canvas)
+- `js/flagship-canvas.js` — Shared ambient canvas effects for flagship pages (storm, void, time, light, water, stars, tree, mountain, sun, flame)
+- `templates/flagship/` — Generic flagship templates for ad homepage, lore, and gallery
 - `scripts/generate-temples.js` — Node.js build script that generates base temples from `type/js/lexicon.js`
+- `scripts/create-flagship.js` — Promotes a lexicon entry to a full flagship using the generic templates in `templates/flagship/`; assigns a per-deity canvas effect, emits lore/gallery pages with mascot hero, global nav, and footer logomark seal. Validates output before writing.
 
 **Base temple sections (per page):**
 1. Hero — Greek name, Unicode restoration, domain badge, tier badge, Type Tool CTA

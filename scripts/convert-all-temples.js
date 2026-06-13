@@ -75,7 +75,7 @@ function main() {
     process.stdout.write(`${progress} Converting ${id}... `);
 
     try {
-      execSync(`node scripts/convert-temple-to-ad.js ${id} --skip-backup`, {
+      execSync(`node scripts/create-flagship.js ${id}`, {
         cwd: path.join(__dirname, '..'),
         stdio: 'pipe',
         encoding: 'utf8',

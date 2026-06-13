@@ -1,0 +1,61 @@
+PUNYCODEX — DNS records to add for the 20 GoDaddy domains that are not yet resolving
+======================================================================================
+
+For each domain below, add these records in your GoDaddy DNS manager.
+(Use the PUNYCODE / xn-- form when GoDaddy's input field does not accept Unicode.)
+
+Apex record (required):
+  Type: A
+  Host: @
+  Value: 76.76.21.21
+  TTL: 600
+
+WWW record (optional, only if you want www.<domain> to work too):
+  Type: CNAME
+  Host: www
+  Value: cname.vercel-dns.com
+  TTL: 600
+
+Domains to update
+-----------------
+
+1.  ēa.com            (punycode: xn--a-oia.com)
+2.  aithḗr.com        (punycode: xn--aithr-yd1b.com)
+3.  ꜥanat.com         (punycode: xn--anat-pe8o.com)
+4.  ꜥasherah.com      (punycode: xn--asherah-dv2z.com)
+5.  aštart.com        (punycode: xn--atart-vdb.com)
+6.  bꜣ.com            (punycode: xn--b-yw3e.com)
+7.  baꜥal.com         (punycode: xn--baal-re8o.com)
+8.  enlīl.com         (punycode: xn--enll-sya.com)
+9.  gaṇeśa.com        (punycode: xn--gaea-n5a6355b.com)
+10. ḥkꜣ.com           (punycode: xn--k-xnm1886d.com)
+11. kꜣ.com            (punycode: xn--k-yw3e.com)
+12. kālī.com          (punycode: xn--kl-dla3o.com)
+13. krónos.com        (punycode: xn--krnos-1ta.com)
+14. ēl.com            (punycode: xn--l-oia.com)
+15. prajāpati.com     (punycode: xn--prajpati-k7a.com)
+16. ḥr.com            (punycode: xn--r-xnm.com)
+17. érōs.com          (punycode: xn--rs-9ia51b.com)
+18. ṛta.com           (punycode: xn--ta-ezs.com)
+19. typhōn.com        (punycode: xn--typhn-j9a.com)
+20. viṣṇu.com         (punycode: xn--viu-j5ytg.com)
+
+Special case
+------------
+21. athēnā.com        (punycode: xn--athn-tsa0i.com)
+    This domain currently returns no DNS records at all. You will need to either:
+    - Re-add / reset the domain in your registrar, OR
+    - Set its nameservers and then add the A record above.
+
+Expected behavior after propagation
+-----------------------------------
+Once the A record is live, visiting any of these domains will hit Vercel and the
+site middleware will redirect (301) to:
+
+  https://punycodex.com/{id}/
+
+For example:
+  typhōn.com  ->  https://punycodex.com/typhon/
+  ēa.com      ->  https://punycodex.com/enki/
+
+If you prefer a 302 redirect instead of 301, let me know and I'll update middleware.js.

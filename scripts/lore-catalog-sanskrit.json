@@ -1,0 +1,615 @@
+{
+  "_schema": {
+    "description": "Authoritative lore content for Sanskrit/Vedic extended flagships. Each entry maps to a lexicon id. Fields are HTML/structured content used by scripts/create-flagship.js and the future API.",
+    "fields": {
+      "pronunciation": {
+        "ipa": "reconstructed IPA string",
+        "ipaLabel": "label for IPA",
+        "phonemes": [{ "symbol": "phoneme", "desc": "description" }],
+        "approximation": "modern pronunciation hint",
+        "kin": [{ "label": "Language/Source", "form": "cognate form with explanation" }],
+        "note": "script/accent note"
+      },
+      "domains": {
+        "title": "custom section title",
+        "lead": "lead paragraph HTML",
+        "cards": [{ "iconPath": "SVG path d", "name": "domain name", "desc": "domain description" }]
+      },
+      "symbols": [{ "name": "symbol", "meaning": "meaning" }],
+      "mythology": {
+        "lead": "lead paragraph HTML",
+        "myths": [{ "tag": "category", "title": "myth title", "text": "myth paragraph HTML" }]
+      },
+      "syncretism": "HTML string",
+      "culturalLegacy": "HTML string",
+      "extendedMeditation": "HTML string for /lore/extended/",
+      "originalScriptNote": "HTML note on original script",
+      "sources": [{ "name": "source badge", "url": "optional URL" }]
+    }
+  },
+  "ganesha": {
+    "pronunciation": {
+      "ipa": "/ɡɐ.ɳeː.ʂɐ/",
+      "ipaLabel": "Sanskrit/Vedic Reconstruction",
+      "phonemes": [
+        {
+          "symbol": "Ga-",
+          "desc": "Initial velar [ɡ] followed by short, open [ɐ] — the soft ground from which the name rises."
+        },
+        {
+          "symbol": "-ṇe-",
+          "desc": "Retroflex nasal [ɳ] plus long [eː], a resonant, elevated syllable that distinguishes Gaṇeśa from common gana."
+        },
+        {
+          "symbol": "-śa",
+          "desc": "Palatal sibilant [ʂ] (or [ɕ] in some traditions) plus short [ɐ] — the śakti of sound and auspiciousness."
+        }
+      ],
+      "approximation": "'guh-NAH-shuh' — say the second syllable with a bright, held 'ay' sound and a soft, tongue-tip n.",
+      "kin": [
+        {
+          "label": "Sanskrit",
+          "form": "गणेश (Gaṇeśa), from gaṇa ('troop, host, category') + īśa ('lord, master')"
+        },
+        {
+          "label": "Vedic root",
+          "form": "gaṇ- appears already in the Ṛgveda for divine hosts; īśa is the sovereign power behind a thing"
+        },
+        {
+          "label": "Tamil/Marathi kin",
+          "form": "Pillaiyar / Gaṇapati — the same figure refracted through regional phonology and devotion"
+        }
+      ],
+      "note": "The IAST form Gaṇeśa marks the retroflex ṇ and the palatal ś. The acute-looking mark above the e is a macron in scholarly usage, indicating the long vowel ē that Sanskrit inherits from the diphthong ai. Devanagari गणेश is the everyday script of worship."
+    },
+    "domains": {
+      "title": "Lord of Beginnings and Obstacles",
+      "lead": "<p class='lead-text'>Gaṇeśa is the doorway-god of the Hindu pantheon. No ritual, wedding, venture, or text is properly begun until he has been honored, for he holds the keys to <strong>vighna</strong> — the obstacles that cluster at every threshold. Yet he is more than a divine doorman: he is the patron of learning, the scribe of epic poetry, and the sovereign of the gaṇas, the unruly hosts who serve Śiva.</p>",
+      "cards": [
+        {
+          "iconPath": "M20 48C20 32 26 20 32 16C38 20 44 32 44 48H20ZM32 12C34 12 36 10 36 8C36 6 34 4 32 4C30 4 28 6 28 8C28 10 30 12 32 12ZM32 52V60M24 56H40",
+          "name": "Wisdom & Learning",
+          "desc": "Gaṇeśa is buddhi-siddhi, the lord of discernment; students invoke him before examinations and scholars before writing."
+        },
+        {
+          "iconPath": "M16 56C16 40 22 28 32 24C42 28 48 40 48 56H16ZM32 20C34 16 38 14 42 14C46 14 50 18 50 22C50 28 44 32 38 30M32 20C30 16 26 14 22 14C18 14 14 18 14 22C14 28 20 32 26 30",
+          "name": "Beginnings & Thresholds",
+          "desc": "Every new undertaking — a house, a book, a marriage — begins with Gaṇapati pūjā, sealing the threshold against ill fortune."
+        },
+        {
+          "iconPath": "M24 56L28 32L32 40L36 32L40 56M18 56H46",
+          "name": "Obstacle-Removal",
+          "desc": "As Vighneśvara he both places and removes obstacles; his axe cuts through the inner and outer impediments to dharma."
+        },
+        {
+          "iconPath": "M32 48C26 48 20 44 18 38C16 44 20 52 26 56C30 58 34 58 38 56C44 52 48 44 46 38C44 44 38 48 32 48ZM32 48V56M28 52H36",
+          "name": "Lord of the Gaṇas",
+          "desc": "He commands the divine hosts, transforming chaos into ordered retinue; his sovereignty is over categories themselves."
+        }
+      ]
+    },
+    "symbols": [
+      {
+        "name": "Elephant head",
+        "meaning": "Wisdom, memory, and the ability to uproot obstacles; the head was given by Śiva after Gaṇeśa's first birth."
+      },
+      {
+        "name": "Broken tusk",
+        "meaning": "Sacrifice for the sake of scripture; Gaṇeśa is said to have used it as a stylus to write the Mahābhārata."
+      },
+      {
+        "name": "Mouse vāhana",
+        "meaning": "Desire and ego brought under control; the tiny mount shows that wisdom governs even the most restless impulses."
+      },
+      {
+        "name": "Modaka sweet",
+        "meaning": "The rewards of spiritual practice — sweet, but earned through discipline."
+      },
+      {
+        "name": "Axe (paraśu)",
+        "meaning": "The power to sever attachment and cut away the roots of obstacle."
+      }
+    ],
+    "mythology": {
+      "lead": "<p class='lead-text'>Gaṇeśa's myths are among the most beloved in South Asia, weaving together domestic drama, divine error, and comic redemption. He is the son of Pārvatī — and, by adoption or blood, of Śiva — and his stories revolve around the tensions of belonging, authority, and transformation.</p>",
+      "myths": [
+        {
+          "tag": "Birth",
+          "title": "Born of Turmeric and Devotion",
+          "text": "<p class='myth-text'>In the best-known account, Pārvatī fashions a boy from turmeric paste (<em>haridrā</em>) to guard her door while she bathes. When Śiva returns and is refused entry, he strikes off the boy's head in rage. Pārvatī's grief is so terrible that Śiva promises to restore him. His servants (<em>gaṇas</em>) are sent to fetch the head of the first creature they find sleeping with its head to the north; they return with an elephant's head, which Śiva affixes to the boy's body. Thus Gaṇeśa is reborn as the elephant-faced lord, his new head signifying wisdom, memory, and royal dignity.</p>"
+        },
+        {
+          "tag": "Head",
+          "title": "The Elephant Head",
+          "text": "<p class='myth-text'>The elephant head is never treated as deformity. It is a gift: elephants in South Asia symbolize strength without malice, the power to clear forests, and the memory that never forgets. The head also makes Gaṇeśa immediately recognizable across languages and regions, a god whose very face is a teaching.</p>"
+        },
+        {
+          "tag": "Vāhana",
+          "title": "The Mouse as Mount",
+          "text": "<p class='myth-text'>The mouse, called Muṣika or Muṣikavāhana, begins as a demon, Muṣikasura, who is subdued by Gaṇeśa. Rather than destroy him, Gaṇeśa makes him his vehicle. The symbolism is precise: the mouse represents desire, ego, and the gnawing restlessness of the mind. Gaṇeśa rides it to show that wisdom does not kill instinct but directs it. The immense god on the tiny mount is one of Hinduism's most vivid images of mastery.</p>"
+        },
+        {
+          "tag": "Scribe",
+          "title": "The Scribe of the Mahābhārata",
+          "text": "<p class='myth-text'>The sage Vyāsa asks Gaṇeśa to transcribe the vast epic as he dictates it without pause. Gaṇeśa agrees on the condition that Vyāsa never falter. To keep writing, Gaṇeśa breaks off one of his own tusks to use as a stylus when his pen fails. The broken tusk thus becomes a symbol of total dedication to sacred knowledge.</p>"
+        }
+      ]
+    },
+    "syncretism": "<p>Gaṇeśa has absorbed and been absorbed by countless regional deities. In Jainism, he appears as a yakṣa and remover of obstacles; in Buddhism, especially in Tibet and Nepal, he is adopted as a protector and wealth-bestower under names such as Vināyaka. Southeast Asian kingdoms — Champa, Khmer, Javanese — carried his cult across the Indian Ocean, where he merged with local guardian spirits. In Maharashtra, he becomes the people's god during Gaṇeśa Caturthī; in Tamil country, he is Pillaiyar, the noble child. Even his mother-centric origin story balances the fierce, world-renouncing Śiva with the domestic, creative power of Pārvatī, making Gaṇeśa a bridge between ascetic and household religion.</p>",
+    "culturalLegacy": "<p>Gaṇeśa is arguably the most universally recognized Hindu deity in the world. His image opens businesses, books, films, and computer screens; his mantra, <em>Oṃ Gaṃ Gaṇapataye Namaḥ</em>, is chanted at inaugurations from Mumbai to Silicon Valley. The annual Gaṇeśa Caturthī transforms cities into rivers of song and procession, culminating in the immersion of clay images. In modern India, he has become a symbol of cultural unity and environmental awareness, with devotees increasingly returning his idols to biodegradable forms. From comic books to corporate logos, Gaṇeśa endures as the friendly face of the divine — the god who removes obstacles because he has already overcome the greatest one: being different.</p>",
+    "extendedMeditation": "<p>To meditate on Gaṇeśa is to meditate on thresholds. Every doorway is a decision: to enter or to turn back, to speak or to remain silent, to begin or to postpone. Gaṇeśa sits at that edge, his large ears listening to the unspoken fear, his small eyes focused on the single task ahead. The obstacle is rarely what it appears. More often it is the tremor of the mind before action — the mouse of doubt scratching at the foundations.</p><p>His elephant head teaches memory: remember what you have already survived. His broken tusk teaches sacrifice: every great work costs something. His mouse teaches discipline: the smallest impulse, once governed, becomes a vehicle. Beginnings are sacred because they are rehearsals of freedom. Gaṇeśa does not promise that the path will be easy; he promises that the path can be taken.</p>",
+    "originalScriptNote": "<p>The Devanagari form is <strong>गणेश</strong>. In IAST transliteration, dots beneath consonants (<em>ṇ</em>, <em>ṣ</em>) indicate retroflex articulation; the macron over <em>ē</em> marks a historically long vowel. The name is often spelled Gaṇapati (गणपति) in older texts, with the same root <em>gaṇa</em> ('host, troop').</p>",
+    "sources": [
+      { "name": "Monier-Williams Sanskrit Dictionary", "url": "https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html" },
+      { "name": "Śiva Purāṇa" },
+      { "name": "Gaṇeśa Purāṇa" },
+      { "name": "Mahābhārata, Ādi Parvan" },
+      { "name": "Padma Purāṇa" }
+    ]
+  },
+  "kali": {
+    "pronunciation": {
+      "ipa": "/kaː.liː/",
+      "ipaLabel": "Sanskrit/Vedic Reconstruction",
+      "phonemes": [
+        {
+          "symbol": "Kā-",
+          "desc": "Velar [k] followed by long, open [aː] — a dark, resonant syllable that can mean 'black' or 'time'."
+        },
+        {
+          "symbol": "-lī",
+          "desc": "Lateral [l] plus long [iː], a feminine ending that transforms the root into a goddess."
+        }
+      ],
+      "approximation": "'KAH-lee' — both vowels are long and clear, the first like the 'a' in 'father' held out, the second like 'lee'.",
+      "kin": [
+        {
+          "label": "Sanskrit",
+          "form": "काली (Kālī), feminine of kāla ('black, dark, time') and kālā ('the black one')"
+        },
+        {
+          "label": "Vedic root",
+          "form": "kāla- derives from the verb kal- ('to count, calculate'), linking Kālī to time's reckoning"
+        },
+        {
+          "label": "Bengali/Tantric",
+          "form": "Kālikā, Kālarātri — epithets that stress her blackness and her role as the night of time"
+        }
+      ],
+      "note": "IAST Kālī uses a macron over both vowels to indicate length. The name is a feminine adjective: she is the Black One, the Time-One, the dark beyond gender. Devanagari काली is identical in form to the word for 'the feminine of time'."
+    },
+    "domains": {
+      "title": "Goddess of Time, Destruction, and Empowerment",
+      "lead": "<p class='lead-text'>Kālī is the most terrifying and most tender of Hindu goddesses. She appears when the boundary between life and death, order and chaos, becomes thin enough to see through. With black skin, a garland of skulls, and a tongue that laps blood, she is the raw form of <strong>śakti</strong> — the feminine power that creates by destroying and destroys by creating.</p>",
+      "cards": [
+        {
+          "iconPath": "M32 8C24 16 20 28 24 36C26 40 30 42 32 48C34 42 38 40 40 36C44 28 40 16 32 8ZM32 48V56M28 52H36",
+          "name": "Time & Death",
+          "desc": "As the feminine of kāla, she is time itself — the devourer of minutes, years, and egos."
+        },
+        {
+          "iconPath": "M32 12C26 12 20 18 20 26C20 34 28 42 32 50C36 42 44 34 44 26C44 18 38 12 32 12ZM32 22V30M32 34V38",
+          "name": "Destruction of Ego",
+          "desc": "Her sword severs the head of ignorance; her dance grinds the demon of ego beneath her feet."
+        },
+        {
+          "iconPath": "M20 32C20 24 26 18 32 18C38 18 44 24 44 32C44 42 38 50 32 56C26 50 20 42 20 32ZM32 28V36M28 32H36",
+          "name": "Empowerment",
+          "desc": "Especially for the marginalized, Kālī is the mother who grants ferocious courage against oppression."
+        },
+        {
+          "iconPath": "M32 8L38 24H54L42 34L46 50L32 40L18 50L22 34L10 24H26L32 8Z",
+          "name": "Tantric Transgression",
+          "desc": "She stands outside conventional purity, teaching that the sacred includes what society rejects."
+        }
+      ]
+    },
+    "symbols": [
+      {
+        "name": "Black skin",
+        "meaning": "The color of the void before creation and after destruction; the unmanifest beyond all forms."
+      },
+      {
+        "name": "Garland of fifty skulls",
+        "meaning": "The fifty letters of the Sanskrit alphabet, showing that she wears language itself as ornament."
+      },
+      {
+        "name": "Severed head",
+        "meaning": "The ego of the demon Raktavīja, or the ego of the practitioner; what must be sacrificed to see truly."
+      },
+      {
+        "name": "Sword (khaḍga)",
+        "meaning": "Discrimination that cuts through illusion."
+      },
+      {
+        "name": "Tongue extended",
+        "meaning": "The moment of shame and awakening; in Bengali tradition, she bites her tongue after stepping on Śiva."
+      },
+      {
+        "name": "Standing on Śiva",
+        "meaning": "Śakti active above Śiva passive; without her energy, the transcendent god is a corpse (śava)."
+      }
+    ],
+    "mythology": {
+      "lead": "<p class='lead-text'>Kālī emerges most famously from the brow of the goddess Durgā during her battle with the buffalo-demon Mahiṣāsura. But her deepest myths are Tantric, centered on the Dakṣa sacrifice and the dismemberment of Satī, the first wife of Śiva.</p>",
+      "myths": [
+        {
+          "tag": "Birth",
+          "title": "From the Brow of Durgā",
+          "text": "<p class='myth-text'>In the Devī Māhātmya, when the demon Raktavīja proves impossible to kill because each drop of his blood spawns a new warrior, Durgā manifests Kālī from her forehead. Kālī drinks the demon's blood and devours his clones, her tongue lapping every drop before it touches the earth. This is her first cosmic act: not rage for its own sake, but surgical ferocity against entropy.</p>"
+        },
+        {
+          "tag": "Dakṣa",
+          "title": "The Dakṣa Yajña and Satī",
+          "text": "<p class='myth-text'>Satī, daughter of the proud king Dakṣa, immolates herself in protest after her father insults her husband Śiva. Śiva, mad with grief, dances the Tāṇḍava with her corpse upon his shoulder, threatening to unmake the cosmos. Viṣṇu intervenes, slicing Satī's body into fifty-one pieces that fall across the subcontinent and become the Śakti Pīṭhas, pilgrimage seats of the goddess. Kālī is the dark form of Śiva's grief and Śakti's unquenchable power.</p>"
+        },
+        {
+          "tag": "Tantra",
+          "title": "Tantric Symbolism",
+          "text": "<p class='myth-text'>In Tantra, Kālī is the supreme reality beyond good and evil, purity and impurity. She is worshipped at cremation grounds, at midnight, and with offerings that break brahminical taboo. Her nakedness signifies transparency; her garland of skulls signifies the letters of sacred sound; her stance upon Śiva signifies that dynamic energy (śakti) is the motor of consciousness. To know Kālī is to stop fleeing death and to recognize it as the other face of birth.</p>"
+        },
+        {
+          "tag": "Colonial",
+          "title": "Colonial Reinterpretations",
+          "text": "<p class='myth-text'>British missionaries and administrators of the nineteenth century frequently singled out Kālī worship as the most degraded and violent aspect of Hinduism, using her image to justify imperial 'civilizing' missions. At the same time, Bengali nationalists and devotees such as Ramakrishna reclaimed her as the loving Mother — Kālī Mā — and revolutionary groups adopted her as the symbol of a wrathful motherland rising against foreign rule. She thus became a screen onto which both domination and resistance were projected.</p>"
+        }
+      ]
+    },
+    "syncretism": "<p>Kālī is inseparable from Durgā, Pārvatī, Satī, and the ten Mahāvidyās of Tantra; she is the fierce face of the same goddess who appears as the gentle Gaurī. In Buddhist Tantra, especially in Tibet, she echoes in fierce ḍākinīs and protectors such as Tārā in her wrathful forms. Southeast Asian goddess cults, from Cham Po Nagar to Javanese Durga, carry her shadow. The colonial and postcolonial West has appropriated her as a feminist and punk icon, often stripping away ritual context. Whether feared, loved, or misunderstood, Kālī remains the boundary where the sacred becomes unbearably real.</p>",
+    "culturalLegacy": "<p>Kālī's image has traveled far beyond her temples. In Bengal, she is the household mother, worshipped at Kālīghāṭ and Dakṣiṇeśwar; in Kerala, she appears as Bhadrakālī in blood-offering rituals; in the diaspora, she is a symbol of South Asian identity and feminine power. Western occultists, from the Theosophists to modern Wiccans, have drawn on her iconography, sometimes with scholarly care and sometimes without. Film, comics, and protest art return to her again and again: the black-skinned woman with the sword, the tongue, the unblinking stare. Kālī endures because she refuses to be domesticated. She is the god who looks back.</p>",
+    "extendedMeditation": "<p>Most of us spend our lives trying to keep Kālī out. We lock the door against death, shame, rage, and the parts of ourselves that do not fit the daylight world. Kālī is the one who kicks the door down. She is not cruel; she is honest. Time was always devouring us. The ego was always a borrowed costume. The blood she drinks is the blood of our pretending.</p><p>And yet she is also the mother. Ramakrishna wept before her image with the love of a child. To approach Kālī is to discover that destruction and tenderness are not opposites. The skulls she wears are the syllables of every prayer ever spoken. The sword she carries is the clarity we avoid because it hurts. When she stands on Śiva, she is not dominating him; she is waking him. Without her dance, the lord of yoga is only sleep. With it, he is alive.</p>",
+    "originalScriptNote": "<p>The Devanagari form is <strong>काली</strong>. IAST macrons mark both long vowels (ā, ī). The same root produces <em>kāla</em> ('time, black') and <em>Kālā</em> ('the black one'); the feminine ending <em>-ī</em> gives the goddess her name. In Tantric texts she is also called <em>Kālikā</em> (कालिका).</p>",
+    "sources": [
+      { "name": "Monier-Williams Sanskrit Dictionary", "url": "https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html" },
+      { "name": "Devī Māhātmya" },
+      { "name": "Śiva Purāṇa, Vāyu Purāṇa" },
+      { "name": "Kālī Tantra" },
+      { "name": "Rachel Fell McDermott, Encountering Kālī" }
+    ]
+  },
+  "prajapati": {
+    "pronunciation": {
+      "ipa": "/prɐ.dʑaː.pɐ.ti/",
+      "ipaLabel": "Sanskrit/Vedic Reconstruction",
+      "phonemes": [
+        {
+          "symbol": "Pra-",
+          "desc": "Initial [p] with r-colored short [ɐ], the forward-thrusting prefix meaning 'forth, forward'."
+        },
+        {
+          "symbol": "-jā-",
+          "desc": "Voiced affricate [dʑ] plus long [aː], from jan- ('to be born, to procreate') — the generative core of the name."
+        },
+        {
+          "symbol": "-pati",
+          "desc": "Unaspirated [p] plus short [ɐ] and [ti], the lord or master of what precedes."
+        }
+      ],
+      "approximation": "'pruh-JAH-puh-tee' — the second syllable is long and bright; the j is soft, like the 'j' in 'judge' but lighter.",
+      "kin": [
+        {
+          "label": "Sanskrit",
+          "form": "प्रजापति (Prajāpati), from pra-ja- ('progeny') + pati ('lord')"
+        },
+        {
+          "label": "Vedic usage",
+          "form": "In the Ṛgveda, 'Prajāpati' is rare; the title becomes central in the Brāhmaṇas"
+        },
+        {
+          "label": "Later Hinduism",
+          "form": "Merged with Brahmā as 'Prajāpati Brahmā,' the creator of the Purāṇic triad"
+        }
+      ],
+      "note": "The IAST form Prajāpati marks the long ā in the second syllable and the unaspirated p. The compound literally means 'Lord of Offspring' or 'Lord of Creatures.' Devanagari प्रजापति is the form used in Vedic recitation and later theistic texts."
+    },
+    "domains": {
+      "title": "The Vedic Lord of Creatures",
+      "lead": "<p class='lead-text'>Prajāpati is not a god of thunder or war. He is the slow, patient power of generation itself — the one who broods over the waters, performs tapas (ascetic heat), and brings forth creatures by sacrifice. In the Brāhmaṇas he becomes the supreme creator; in the Purāṇas, he passes his crown to Brahmā.</p>",
+      "cards": [
+        {
+          "iconPath": "M32 8C24 16 20 28 24 36C26 40 30 42 32 48C34 42 38 40 40 36C44 28 40 16 32 8ZM32 48V56M28 52H36",
+          "name": "Creation by Tapas",
+          "desc": "He heats himself by ascetic ardor until the cosmos condenses from his sweat and seminal emission."
+        },
+        {
+          "iconPath": "M16 56V24L32 16L48 24V56H16ZM32 24V48M24 36H40",
+          "name": "Lord of Sacrifice",
+          "desc": "The ritual fire altar is his body; every sacrifice reconstructs the world from his dismembered form."
+        },
+        {
+          "iconPath": "M32 12C22 12 14 20 14 32C14 44 22 52 32 56C42 52 50 44 50 32C50 20 42 12 32 12ZM32 20V28M32 32V44",
+          "name": "Father of the Veda",
+          "desc": "He produces the triple Veda from himself so that gods and humans may speak the language of order."
+        },
+        {
+          "iconPath": "M20 48C20 32 26 20 32 16C38 20 44 32 44 48H20ZM32 12C34 12 36 10 36 8C36 6 34 4 32 4C30 4 28 6 28 8C28 10 30 12 32 12Z",
+          "name": "Cosmic Egg",
+          "desc": "From the waters an egg develops; its shell becomes earth, its inner fire becomes sun and life."
+        }
+      ]
+    },
+    "symbols": [
+      {
+        "name": "Egg (aṇḍa)",
+        "meaning": "The golden egg from which Prajāpati hatches; the universe in embryonic form."
+      },
+      {
+        "name": "Fire altar",
+        "meaning": "The Vedic ritual ground laid out as his body; sacrifice as cosmic engineering."
+      },
+      {
+        "name": "Year",
+        "meaning": "Prajāpati is identified with the year; his joints are the seasons."
+      },
+      {
+        "name": "Puruṣa",
+        "meaning": "The Cosmic Man whose sacrifice generates the varṇas, heavens, and earth."
+      },
+      {
+        "name": "Swan or goose (haṃsa)",
+        "meaning": "In Purāṇic iconography, his mount; the bird that separates milk from water, essence from accretion."
+      }
+    ],
+    "mythology": {
+      "lead": "<p class='lead-text'>Prajāpati's mythology is cosmogonic speculation cast as narrative. He is the One who becomes many, the undifferentiated whole who divides himself so that time, space, and species can exist.</p>",
+      "myths": [
+        {
+          "tag": "Creation",
+          "title": "From Tapas to Cosmic Egg",
+          "text": "<p class='myth-text'>In the Śatapatha Brāhmaṇa, Prajāpati exists first as the nonmanifest unity-totality. Desire (<em>kāma</em>) moves him to reproduce, so he heats himself by ascetic ardor (<em>tapas</em>) until he creates the triple Veda, then the Waters, and finally enters them. An egg develops; from it he is born as the year, the sacrifice, and the ordered cosmos. Exhausted by creation, he must be restored through ritual — which is why every sacrifice is said to be Prajāpati.</p>"
+        },
+        {
+          "tag": "Puruṣa",
+          "title": "The Puruṣa Sūkta",
+          "text": "<p class='myth-text'>Ṛgveda 10.90 hymns the Puruṣa, the Cosmic Man whose body is the whole universe. The gods sacrifice him, and from his parts arise the four varṇas, the sun, moon, and earth, and all creatures. In the Brāhmaṇas this Puruṣa is identified with Prajāpati: 'Puruṣa is Prajāpati; Puruṣa is the Year.' Creation is therefore not manufacture but self-sacrifice — the deity giving himself to become the world.</p>"
+        },
+        {
+          "tag": "Brahmanization",
+          "title": "From Prajāpati to Brahmā",
+          "text": "<p class='myth-text'>As Vedic speculation gives way to theistic Purāṇic narrative, the abstract creator becomes the four-faced god Brahmā. Prajāpati's functions — creation, Vedic knowledge, and sovereignty over creatures — are inherited by Brahmā, who is often called Prajāpati Brahmā. The older name survives as a title rather than a separate deity, though it is still used in mantras and rituals of conception, pregnancy, and childbirth.</p>"
+        }
+      ]
+    },
+    "syncretism": "<p>Prajāpati is the bridge between Vedic impersonality and Purāṇic theism. His identification with Puruṣa links him to cosmic-sacrifice theology; his absorption into Brahmā links him to the later Trimūrti. The Atharvaveda already calls him the first physician, connecting creation with healing. In some strands of Vedānta, Prajāpati becomes a name for the personal god who presides over the lower Brahman, while the higher Brahman remains unnamed. His absence of cultic statues in the Vedic period makes him a pure concept: the generative ground before the gods take shape.</p>",
+    "culturalLegacy": "<p>Prajāpati never became a popular devotional deity with mass temples, but his influence is foundational. The Puruṣa Sūkta remains one of the most recited hymns in Hindu ritual, used in weddings, housewarmings, and temple consecrations. The varṇa imagery derived from the cosmic body has shaped Indian social theory for millennia — debated, resisted, and reinterpreted, but never ignored. In modern India, 'Prajāpati' is a common surname and a title of honor. The idea that creation is a sacrifice rather than a manufacture continues to inform Hindu ecological and ritual thinking: the world is not raw material but a living body.</p>",
+    "extendedMeditation": "<p>Before there was a world, there was only the will to become. That is Prajāpati. Not a craftsman standing outside his work, but the work itself in the moment before it knows it is a work. His tapas is the concentrated energy that precedes all making — the silence so full that it must become sound, the darkness so dense that it must become light. Every creative act repeats his gesture: the painter before the canvas, the writer before the blank page, the parent before the child. To create is to risk dismemberment, to give pieces of oneself so that something else can live.</p><p>Prajāpati teaches that creation is not a one-time event. It is continuous, renewed at every sacrifice, every dawn, every breath. The cosmos is not a machine set running; it is a fire that must be fed. To remember his name is to remember that we too are made of sacrifice — the generations before us, the beings that feed us, the sun that burns for us. We are the children of Prajāpati, and one day we too must become his body.</p>",
+    "originalScriptNote": "<p>The Devanagari form is <strong>प्रजापति</strong>. IAST marks the long <em>ā</em> in the second syllable. The compound is transparent: <em>prajā</em> ('offspring, creatures') + <em>pati</em> ('lord, master'). In Vedic sandhi the initial <em>pra-</em> often carries a sense of forward motion or emergence.</p>",
+    "sources": [
+      { "name": "Monier-Williams Sanskrit Dictionary", "url": "https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html" },
+      { "name": "Mayrhofer, EWAia" },
+      { "name": "Ṛgveda 10.90, Puruṣa Sūkta" },
+      { "name": "Śatapatha Brāhmaṇa" },
+      { "name": "Taittirīya Brāhmaṇa, Jaiminīya Brāhmaṇa" },
+      { "name": "Brahmāṇḍa Purāṇa" }
+    ]
+  },
+  "rta": {
+    "pronunciation": {
+      "ipa": "/r̩.tɐ/",
+      "ipaLabel": "Sanskrit/Vedic Reconstruction",
+      "phonemes": [
+        {
+          "symbol": "Ṛ-",
+          "desc": "Syllabic retroflex r [r̩] — a vibrant, humming vowel unique to Sanskrit and its Indo-Iranian kin."
+        },
+        {
+          "symbol": "-ta",
+          "desc": "Unaspirated [t] plus short [ɐ], a neutral ending that makes the abstract concrete: 'that which is'."
+        }
+      ],
+      "approximation": "'RIH-tuh' — the first syllable is a voiced r that carries the vowel, almost like 'rurr' clipped short; the t is crisp.",
+      "kin": [
+        {
+          "label": "Sanskrit",
+          "form": "ऋत (Ṛta), from the root ṛ- ('to rise, move, fit together')"
+        },
+        {
+          "label": "Avestan",
+          "form": "Aša — the Zoroastrian principle of truth, order, and righteousness, cognate with Ṛta"
+        },
+        {
+          "label": "PIE",
+          "form": "*h₂r-tós ('properly joined, fitting') — the root of cosmic fitting-together"
+        }
+      ],
+      "note": "IAST Ṛta uses the underdotted ṛ for the syllabic r vowel. It is never personified in the Vedic corpus; it is the impersonal principle by which sun, moon, sacrifice, and morality all hold together. Devanagari ऋत is one of the most philosophically charged short words in Sanskrit."
+    },
+    "domains": {
+      "title": "The Vedic Order of Truth",
+      "lead": "<p class='lead-text'>Ṛta is the hidden spine of the Vedic universe. It is not a god to be petitioned but the law that makes petition possible — the right fit of stars, seasons, words, and actions. Where later Hinduism speaks of Dharma and Karma, the earliest poets spoke of Ṛta.</p>",
+      "cards": [
+        {
+          "iconPath": "M32 8C24 16 20 28 24 36C26 40 30 42 32 48C34 42 38 40 40 36C44 28 40 16 32 8ZM32 48V56M28 52H36",
+          "name": "Cosmic Order",
+          "desc": "The regular rising of sun and stars, the turning of seasons, and the flow of rivers all move by Ṛta."
+        },
+        {
+          "iconPath": "M16 32H48M32 16V48M20 20L44 44M44 20L20 44",
+          "name": "Truth & Fittingness",
+          "desc": "Speech that is true is speech that fits reality; Ṛta is the standard against which words are measured."
+        },
+        {
+          "iconPath": "M32 12C22 12 14 20 14 32C14 44 22 52 32 56C42 52 50 44 50 32C50 20 42 12 32 12ZM32 20V44M20 32H44",
+          "name": "Ritual Order",
+          "desc": "The sacrifice works only when every gesture, mantra, and offering is aligned with Ṛta."
+        },
+        {
+          "iconPath": "M8 32C8 32 18 16 32 16C46 16 56 32 56 32C56 32 46 48 32 48C18 48 8 32 8 32Z",
+          "name": "Moral Law",
+          "desc": "The gods themselves are subject to Ṛta; it is older and higher than any personal will."
+        }
+      ]
+    },
+    "symbols": [
+      {
+        "name": "The chariot wheel",
+        "meaning": "Ṛta is the axle and track that keep sun and cosmos turning; without it, the wheel flies apart."
+      },
+      {
+        "name": "The straight path",
+        "meaning": "The way of truth and right action, contrasted with the crookedness of deceit."
+      },
+      {
+        "name": "The sacrifice",
+        "meaning": "Ritual as the human participation in cosmic order; what is offered below maintains what turns above."
+      },
+      {
+        "name": "Varuṇa's noose",
+        "meaning": "The god Varuṇa is the guardian of Ṛta, binding wrongdoers who disturb the order."
+      }
+    ],
+    "mythology": {
+      "lead": "<p class='lead-text'>Ṛta has no personal mythology — no birth, no love affairs, no wars. Its 'stories' are the regular events of the cosmos: dawn after night, rain after drought, the fire rising when the priest kindles it.</p>",
+      "myths": [
+        {
+          "tag": "Cosmos",
+          "title": "The Chariot of the Sun",
+          "text": "<p class='myth-text'>In Ṛgvedic hymns, the sun's chariot is said to roll by Ṛta. The seven horses, the wheel, and the path are all fitted together by this principle. If the sun rises each morning, it is not merely because the sun is powerful but because Ṛta compels it. The cosmos is therefore not arbitrary; it is a machine of meaning, maintained by an invisible law.</p>"
+        },
+        {
+          "tag": "Speech",
+          "title": "True Speech",
+          "text": "<p class='myth-text'>Ṛta is closely linked to <em>satya</em>, truth. A true statement is one that is <em>ṛta</em> — rightly joined to reality. The poet-seers (<em>ṛṣis</em>) do not invent hymns; they see them, because their words are aligned with the cosmic order. Speech that violates Ṛta is not merely false; it is destructive, loosening the bonds that hold the world together.</p>"
+        },
+        {
+          "tag": "Gods",
+          "title": "Even the Gods Obey",
+          "text": "<p class='myth-text'>Unlike the sovereign gods of Near Eastern mythologies, the Vedic gods are not above cosmic law. Indra, Agni, and Varuṇa act within Ṛta and are praised for upholding it. Varuṇa, lord of the waters and the night sky, is especially its guardian, watching over oaths and punishing those who break them. Ṛta is therefore closer to a natural law than to a divine decree.</p>"
+        }
+      ]
+    },
+    "syncretism": "<p>Ṛta is the Vedic ancestor of Dharma. Where Ṛta emphasizes cosmic fitting-together, Dharma adds the social, ethical, and vocational dimensions of human life. Karma, in turn, becomes the mechanism by which alignment with Dharma produces results. The Avestan cognate Aša develops in a different direction: in Zoroastrianism it becomes a divinized principle, one of the Amesha Spentas, whereas Vedic Ṛta remains stubbornly impersonal. Greek <em>artios</em> ('fitted, suitable') and Latin <em>rītus</em> ('rite') may echo the same root, suggesting an ancient Indo-European intuition that order, truth, and ritual are one thing.</p>",
+    "culturalLegacy": "<p>Though the word Ṛta faded from everyday Hindu vocabulary, it never disappeared. It survives in ritual invocations, in the names of Ṛṣis and Ṛgvedic schools, and in the very idea that the universe is lawful rather than arbitrary. Modern Indian philosophy and law often appeal to Dharma, but Dharma's deepest root is Ṛta — the insight that truth, nature, and morality are not separate domains but a single order. Environmental thinkers in India have returned to Ṛta as a name for ecological balance: the sun, the rain, and the seed all move by a law older than human legislation.</p>",
+    "extendedMeditation": "<p>There is a law older than any commandment. It is not written in a book; it is written in the fact that the sun returns, that the seed becomes the tree, that a true word fits the world it names. This law is Ṛta. It does not threaten; it simply is. To live against it is to live against the grain of existence, and the splinters show up as disease, drought, and the corrosion of trust.</p><p>But Ṛta is not a prison. It is the condition of freedom. A wheel can only roll because it has an axle. Music is only possible because notes fit a scale. The poet's freedom comes from meter, not from chaos. In an age that often mistakes rebellion for authenticity, Ṛta reminds us that the deepest freedom is alignment — with the body, with the seasons, with the truth of what we say. To honor Ṛta is to stop fighting the structure of things and to begin dancing within it.</p>",
+    "originalScriptNote": "<p>The Devanagari form is <strong>ऋत</strong>. The vowel <em>ṛ</em> (ऋ) is syllabic: the tongue is in the position for <em>r</em> but functions as a vowel. In later Sanskrit this sound merges toward <em>ri</em> in some pronunciations, but Vedic recitation preserves the syllabic quality. The underdot in IAST <em>Ṛta</em> marks this unique vowel.</p>",
+    "sources": [
+      { "name": "Monier-Williams Sanskrit Dictionary", "url": "https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html" },
+      { "name": "Mayrhofer, EWAia" },
+      { "name": "Ṛgveda, passim" },
+      { "name": "Avesta, Yašnas" },
+      { "name": "Lubin, 'The Transmission, Patronage, and Prestige of Brahmanical Piety'" }
+    ]
+  },
+  "vishnu": {
+    "pronunciation": {
+      "ipa": "/ʋɪʂ.ɳʊ/",
+      "ipaLabel": "Sanskrit/Vedic Reconstruction",
+      "phonemes": [
+        {
+          "symbol": "Vi-",
+          "desc": "Labiodental or dental approximant [ʋ] plus short [ɪ] — the prefix of pervasion, the sound that spreads."
+        },
+        {
+          "symbol": "-ṣṇu",
+          "desc": "Retroflex sibilant [ʂ] plus retroflex nasal cluster [ɳʊ], from the root viṣ- ('to pervade, to work') — the name's active core."
+        }
+      ],
+      "approximation": "'VISH-noo' — the first syllable has a crisp, tongue-tip sh; the second is short and resonant.",
+      "kin": [
+        {
+          "label": "Sanskrit",
+          "form": "विष्णु (Viṣṇu), from viṣ- / viś- ('to pervade, enter, settle')"
+        },
+        {
+          "label": "Vedic",
+          "form": "In the Ṛgveda a relatively minor solar deity; his three strides make him 'the wide-strider'"
+        },
+        {
+          "label": "Later epithets",
+          "form": "Trivikrama ('three strides'), Nārāyaṇa ('son of the primal waters'), Hari"
+        }
+      ],
+      "note": "The IAST form Viṣṇu marks the retroflex ṣ and the retroflex nasal ṇ. Etymologically the name means 'All-Pervading.' Devanagari विष्णु is the most common theistic spelling; in Vedic mantras the accent may fall differently depending on grammatical case."
+    },
+    "domains": {
+      "title": "The Preserver Who Pervades",
+      "lead": "<p class='lead-text'>Viṣṇu is the second great power of the Hindu triad, the one who sustains what Brahmā creates and what Śiva will one day dissolve. But preservation is not passivity. It requires constant intervention, which is why Viṣṇu descends again and again as an <strong>avatāra</strong> — a deliberate crossing-down into history.</p>",
+      "cards": [
+        {
+          "iconPath": "M32 8L44 32H56L40 44L46 60L32 50L18 60L24 44L8 32H20L32 8Z",
+          "name": "Preservation",
+          "desc": "He maintains cosmic order (dharma) across the ages, keeping the universe from collapsing into chaos."
+        },
+        {
+          "iconPath": "M16 56C16 40 22 28 32 24C42 28 48 40 48 56M32 24V12M20 16L32 24L44 16",
+          "name": "The Three Strides",
+          "desc": "As Trivikrama he measures earth, sky, and heaven in three steps; as Vāmana he does it as a dwarf."
+        },
+        {
+          "iconPath": "M32 12C22 12 14 20 14 32C14 44 22 52 32 56C42 52 50 44 50 32C50 20 42 12 32 12ZM32 20V44M20 32H44",
+          "name": "Avatāras",
+          "desc": "From fish to future horseman, he enters the world whenever dharma declines and adharma rises."
+        },
+        {
+          "iconPath": "M32 8C26 14 22 24 24 34C26 42 30 46 32 54C34 46 38 42 40 34C42 24 38 14 32 8ZM32 54V60M28 56H36",
+          "name": "Cosmic Sleep",
+          "desc": "Between cosmic cycles he sleeps on Śeṣa, the thousand-hooded serpent, floating on the ocean of milk."
+        }
+      ]
+    },
+    "symbols": [
+      {
+        "name": "Discus (cakra)",
+        "meaning": "Sudarśana, the wheel of divine will that cuts through illusion and evil."
+      },
+      {
+        "name": "Conch (śaṅkha)",
+        "meaning": "The primeval sound Oṃ, announcing divine presence and the dissolution of boundaries."
+      },
+      {
+        "name": "Mace (gadā)",
+        "meaning": "The power of knowledge; often identified with Kāmadeva or the force of cosmic law."
+      },
+      {
+        "name": "Lotus (padma)",
+        "meaning": "Purity and the unfolding of creation; Brahmā is born from the lotus rising from Viṣṇu's navel."
+      },
+      {
+        "name": "Garuda",
+        "meaning": "The eagle-king, his mount, symbolizing the Vedas and the swiftness of divine knowledge."
+      },
+      {
+        "name": "Śeṣa",
+        "meaning": "The cosmic serpent upon whom Viṣṇu reclines between universes."
+      }
+    ],
+    "mythology": {
+      "lead": "<p class='lead-text'>Viṣṇu's mythology grows from a minor Vedic solar figure into the preserver of the cosmos. Its center is movement: the three strides, the ten descents, the sleep between worlds.</p>",
+      "myths": [
+        {
+          "tag": "Vedic",
+          "title": "The Three Strides",
+          "text": "<p class='myth-text'>In Ṛgveda 1.154, Viṣṇu strides out three times. With each step he measures a realm — earth, atmosphere, and heaven — until the gods themselves find his third step unreachable. This is the seed of his later title Trivikrama, 'he who makes three strides.' The myth imagines the sun's daily arc as the god's footfall across the cosmos.</p>"
+        },
+        {
+          "tag": "Avatāra",
+          "title": "The Daśāvatāra",
+          "text": "<p class='myth-text'>The Purāṇas systematize Viṣṇu's descents into ten principal incarnations: Matsya the fish, Kūrma the tortoise, Varāha the boar, Narasiṃha the man-lion, Vāmana the dwarf, Paraśurāma the axe-bearer, Rāma the prince, Kṛṣṇa the cowherd, the Buddha, and the future Kalkī. Each appears in a different cosmic age to counter a specific threat. The list itself is a theology of history: divine response to evolving evil.</p>"
+        },
+        {
+          "tag": "Epic",
+          "title": "Rāma and Kṛṣṇa",
+          "text": "<p class='myth-text'>The Rāmāyaṇa tells of Rāma, the ideal king whose exile, fidelity, and war against Rāvaṇa define dharmic rule. The Mahābhārata tells of Kṛṣṇa, the divine charioteer whose Bhagavad Gītā transforms a battlefield into a discourse on duty, devotion, and knowledge. These two avatāras are the most widely worshipped forms of Viṣṇu in India and the diaspora.</p>"
+        },
+        {
+          "tag": "Cosmology",
+          "title": "The Cosmic Sleep",
+          "text": "<p class='myth-text'>At the end of each cosmic cycle, Viṣṇu withdraws the universe into himself and sleeps on the serpent Śeṣa, floating on the causal ocean of milk. From his navel sprouts a lotus, and from the lotus emerges Brahmā to begin creation anew. This image is one of Hinduism's most sublime visions: preservation as rest, creation as dream, and the universe as the breathing of one divine body.</p>"
+        }
+      ]
+    },
+    "syncretism": "<p>Viṣṇu absorbed countless regional deities: Kṛṣṇa of the Yādava cowherds, Rāma of the Ikṣvāku line, Nārāyaṇa of the Vedic waters, and the cosmic Puruṣa of speculative Brahmanism. In South India he merges with Śrī (Lakṣmī) and Bhū (earth) in temple theology; in Bengal, he is the serene Nārāyaṇa beside the fierce Kālī. Buddhism knows him as a guardian and as Upagupta; Jainism honors him as a yakṣa. Vaishnavism became one of the largest religious communities on earth, spanning philosophical schools from the non-dualist Śaṅkara to the dualist Madhva and the devotional Gaudīya tradition of Bengal.</p>",
+    "culturalLegacy": "<p>Viṣṇu's presence is woven into the texture of South Asian civilization. The Rāmāyaṇa and Mahābhārata are national epics, performed in village plays, televised during festivals, and cited in political speech. The Hare Kṛṣṇa movement carried Gaudīya Vaishnavism to the West; ISKCON temples now stand on every continent. Viṣṇu's symbols — the conch, the discus, the tilaka mark — identify millions of devotees. The ideal of the avatāra, a divine descent to restore justice, has influenced Indian political thought, literature, and popular cinema. In an unstable world, Viṣṇu remains the god who promises to come again.</p>",
+    "extendedMeditation": "<p>Viṣṇu teaches that the highest power is not the power that destroys but the power that keeps things going. Maintenance is harder than creation; it requires patience, repetition, and the willingness to return to the same task age after age. Every parent who wakes in the night, every farmer who plants again after a flood, every healer who stays with a patient long after the drama has faded — they are images of Viṣṇu.</p><p>His three strides remind us that the cosmos is measured, not random. His avatāras remind us that when order collapses, the sacred does not abandon the world but enters it. His sleep on the serpent reminds us that endings are also wombs. To call on Viṣṇu is to choose the long work of preservation over the short thrill of annihilation. It is to believe that the world, for all its wounds, is worth saving.</p>",
+    "originalScriptNote": "<p>The Devanagari form is <strong>विष्णु</strong>. IAST <em>Viṣṇu</em> marks the retroflex sibilant <em>ṣ</em> and the retroflex nasal <em>ṇ</em>. The name is traditionally derived from the root <em>viś</em> ('to enter, pervade'), though Monier-Williams also notes the root <em>viṣ</em> ('to work, be active'). The semantic core is pervasion: the god who is everywhere.</p>",
+    "sources": [
+      { "name": "Monier-Williams Sanskrit Dictionary", "url": "https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html" },
+      { "name": "Mayrhofer, EWAia" },
+      { "name": "Ṛgveda 1.154, 7.99" },
+      { "name": "Śatapatha Brāhmaṇa" },
+      { "name": "Rāmāyaṇa, Mahābhārata" },
+      { "name": "Bhagavad Gītā" },
+      { "name": "Viṣṇu Purāṇa, Bhāgavata Purāṇa" }
+    ]
+  }
+}

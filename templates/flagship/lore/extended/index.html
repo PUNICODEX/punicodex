@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{UNICODE}} — Extended Lore | {{DOMAIN}} | PUNYCODEX</title>
+    <meta name="description" content="Extended visual lore of {{UNICODE}}, {{DOMAIN}}.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css?v=perf2">
+
+    <link rel="canonical" href="https://punycodex.com/sites/{{TEMPLE_ID}}/lore/extended/">
+
+    <meta property="og:title" content="{{UNICODE}} — Extended Lore | {{DOMAIN}} | PUNYCODEX">
+    <meta property="og:description" content="Extended visual lore of {{UNICODE}}, {{DOMAIN}}.">
+    <meta property="og:url" content="https://punycodex.com/sites/{{TEMPLE_ID}}/lore/extended/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PUNYCODEX">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{UNICODE}} — Extended Lore | {{DOMAIN}} | PUNYCODEX">
+    <meta name="twitter:description" content="Extended visual lore of {{UNICODE}}, {{DOMAIN}}.">
+</head>
+<body>
+    <!-- Global Nav -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punycodex.com/" class="global-brand">PUNYCODEX</a>
+            <div class="global-links">
+                <a href="https://punycodex.com/pantheon/">Pantheon</a>
+                <a href="https://punycodex.com/lexicon/">Lexicon</a>
+                <a href="https://punycodex.com/type/">Type</a>
+                <a href="https://punycodex.com/search.html">Search</a>
+                <a href="https://punycodex.com/tiers/">Tiers</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="{{TEMPLE_ID}}-canvas" data-effect="{{EFFECT}}" data-primary="{{PRIMARY}}" data-secondary="{{SECONDARY}}"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="main-nav">
+        <div class="nav-inner">
+            <a href="../../" class="nav-logo">
+                <picture><source srcset="../../assets/{{TEMPLE_ID}}_logolockup.webp" type="image/webp"><img src="../../assets/{{TEMPLE_ID}}_logolockup.png" alt="{{UNICODE}}" class="nav-logo-img"></picture>
+            </a>
+            <div class="nav-links">
+                <a href="../../index.html" class="nav-link">Home</a>
+                <a href="../index.html" class="nav-link">Lore</a>
+                <a href="../../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="./index.html" class="nav-link active">Extended</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Video Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow reveal-up">The Moving Rite</p>
+                <h1 class="hero-title reveal-up">
+                    <span class="title-greek">{{GREEK}}</span>
+                    <span class="title-divider"></span>
+                    <span class="title-trans">{{UNICODE}}</span>
+                </h1>
+                <p class="hero-subtitle reveal-up">Extended visual lore · {{DOMAIN}}</p>
+                <div class="hero-meta reveal-up">
+                    <span class="meta-badge">{{TIER_LABEL}}</span>
+                    <span class="meta-domain">{{DOMAINS_TEXT}}</span>
+                </div>
+                <div class="hero-cta reveal-up">
+                    <a href="../index.html" class="btn-primary btn-ghost">
+                        <span>Return to Lore</span>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <figure class="endorsement-mascot endorsement-mascot--video" style="margin:0;">
+                    <video autoplay muted loop playsinline poster="../../assets/{{TEMPLE_ID}}_hero_poster.jpg" aria-label="Animated portrait of {{UNICODE}}, {{DOMAIN}}">
+                        <source src="../../assets/{{TEMPLE_ID}}_hero_video.webm" type="video/webm">
+                        <source src="../../assets/{{TEMPLE_ID}}_hero_video.mp4" type="video/mp4">
+                        <img src="../../assets/{{TEMPLE_ID}}_mascot.png" alt="{{UNICODE}} — {{DOMAIN}}">
+                    </video>
+                    <button class="video-pause" aria-label="Pause animation">❚❚</button>
+                </figure>
+                <div class="mascot-glow"></div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Extended Lore Content -->
+    <section class="section section-name" id="extended">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">01</span>
+                <h2 class="section-title">Extended Lore</h2>
+                <p class="section-subtitle">Visual meditation on <em>{{UNICODE}}</em></p>
+            </div>
+            <div class="tier-explanation reveal-up">
+                {{EXTENDED_MEDITATION}}
+            </div>
+        </div>
+    </section>
+
+    <!-- Type Tool CTA -->
+    <section class="section section-cta" id="type-tool">
+        <div class="container">
+            <div class="cta-card reveal-up">
+                <h2 class="cta-title">Restore the Name</h2>
+                <p class="cta-body">See how <em>{{ASCII}}</em> becomes <strong>{{UNICODE}}</strong> character by character.</p>
+                <a href="https://punycodex.com/type/#{{TEMPLE_ID}}" class="btn-primary">
+                    <span>Try the Type Tool</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-brand">
+                <span class="footer-label">Platform</span>
+                <span class="footer-value">PUNYCODEX</span>
+            </div>
+            <div class="footer-meta">
+                <div class="footer-block">
+                    <span class="footer-label">Domain</span>
+                    <span class="footer-value">{{DOMAINS_TEXT}}</span>
+                </div>
+                <div class="footer-block">
+                    <span class="footer-label">Classification</span>
+                    <span class="footer-value">{{TIER_LABEL}}</span>
+                </div>
+                <div class="footer-block">
+                    <span class="footer-label">Original Script</span>
+                    <span class="footer-value">{{GREEK}}</span>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <picture><source srcset="../../assets/{{TEMPLE_ID}}_logomark.webp" type="image/webp"><img src="../../assets/{{TEMPLE_ID}}_logomark.png" alt="{{UNICODE}} logomark" class="footer-logomark"></picture>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">A temple of the Unicode web.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    
+
+<script>window.PUNYCODEX_API_BASE = "";</script>
+    <script src="/js/temple-base.js?v=perf2"></script>
+    <script src="../../script.js?v=perf2"></script>
+</body>
+</html>

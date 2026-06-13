@@ -8,7 +8,7 @@
 
 ```bash
 # Convert a single temple
-node scripts/convert-temple-to-ad.js zeus
+node scripts/create-flagship.js zeus
 
 # Convert 5 temples (test batch)
 node scripts/convert-all-temples.js --limit=5
@@ -82,7 +82,7 @@ Example for Zeus:
 
 ```bash
 # Custom slot names via file
-node scripts/convert-temple-to-ad.js zeus --slots=zeus-slots.json
+node scripts/create-flagship.js zeus --dry-run
 ```
 
 `zeus-slots.json`:
@@ -99,7 +99,7 @@ node scripts/convert-temple-to-ad.js zeus --slots=zeus-slots.json
 
 ```
 scripts/
-├── convert-temple-to-ad.js     # Master script (single temple)
+├── create-flagship.js          # Master script (single temple, validated)
 ├── convert-all-temples.js      # Batch script (all temples)
 └── ad-conversion/
     └── extractors/
