@@ -446,6 +446,7 @@ function analyzeFeatures(entry) {
     if (/[άέήίόύώ]/.test(greekRaw) || /[\u0301\u0302\u0342]/.test(greek)) features.push('acute accents');
     if (/[ἁἅἃἇὁὅὃὕὑὓὗἱἵἳἷ]/.test(greekRaw)) features.push('rough breathing');
   } else {
+    if (/[ꜥꜣ]/.test(unicode)) features.push('Egyptological ain and alef letters');
     if (/[ʿʾ]/.test(unicode)) features.push('Semitic pharyngeal letters');
     if (/[ḥṣṭḍẓ]/.test(unicode.toLowerCase())) features.push('emphatic consonants');
     if (/[āīūēō]/.test(unicode)) features.push('macron-length vowels');
@@ -457,7 +458,7 @@ function analyzeFeatures(entry) {
 }
 
 function joinFeatures(arr) {
-  if (!arr || arr.length === 0) return 'the original diacritics and script distinctions';
+  if (!arr || arr.length === 0) return 'original diacritics and script distinctions';
   if (arr.length === 1) return arr[0];
   if (arr.length === 2) return arr.join(' and ');
   return arr.slice(0, -1).join(', ') + ', and ' + arr[arr.length - 1];
