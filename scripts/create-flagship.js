@@ -668,36 +668,40 @@ function buildExtendedLoreCTA(entry, catalogEntry) {
 function buildZeusFooter(entry, assetPrefix) {
   const logomarkPath = `${assetPrefix}assets/${entry.id}_logomark`;
   const greek = originalScript(entry);
-  return `<footer class="main-footer">
-    <div class="container">
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <span class="footer-logo">PUNYCODEX</span>
-                <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+  const domains = getDomainsText(entry).toLowerCase();
+  const classification = entry.tier === 'dual'
+    ? 'Dual‑Tier Pair (Tier‑1 & Tier‑2)'
+    : (entry.tierLabel || `Tier ${entry.tier}`);
+  return `    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="footer-logo">PUNYCODEX</span>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Domains</span>
+                        <span class="footer-value">${domains}</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">${classification}</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Original Script</span>
+                        <span class="footer-value">${greek}</span>
+                    </div>
+                </div>
             </div>
-            <div class="footer-info">
-                <div class="footer-block">
-                    <span class="footer-label">Domains</span>
-                    <span class="footer-value">${getDomainsText(entry)}</span>
-                </div>
-                <div class="footer-block">
-                    <span class="footer-label">Classification</span>
-                    <span class="footer-value">${entry.tierLabel || `Tier ${entry.tier}`}</span>
-                </div>
-                <div class="footer-block">
-                    <span class="footer-label">Original Script</span>
-                    <span class="footer-value">${greek}</span>
-                </div>
+            <div class="footer-seal">
+                <picture><source srcset="${logomarkPath}.webp" type="image/webp"><img src="${logomarkPath}.png" alt="${entry.unicode} logomark" class="footer-logomark"></picture>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
             </div>
         </div>
-        <div class="footer-seal">
-            <picture><source srcset="${logomarkPath}.webp" type="image/webp"><img src="${logomarkPath}.png" alt="${entry.unicode} logomark" class="footer-logomark"></picture>
-        </div>
-        <div class="footer-bottom">
-            <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
-        </div>
-    </div>
-</footer>`;
+    </footer>`;
 }
 
 function buildHeroVisualExtended(entry, assetPrefix) {
