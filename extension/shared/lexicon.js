@@ -7788,10 +7788,10 @@ const LEXICON = [
     ]
   },
   {
-    id: 'enki',
+    id: 'ea',
     hasAdSite: true,
-    ascii: 'enki',
-    unicode: 'Enki',
+    ascii: 'ea',
+    unicode: 'Ēa',
     greek: '—',
     pantheon: 'mesopotamian',
     tier: '2',
@@ -7805,25 +7805,13 @@ const LEXICON = [
     breakdown: [
       {
         char: 'e',
-        to: 'E',
-        type: 'same',
-        note: 'Same'
+        to: 'Ē',
+        type: 'length',
+        note: 'Macron: length preserved'
       },
       {
-        char: 'n',
-        to: 'n',
-        type: 'same',
-        note: 'Same'
-      },
-      {
-        char: 'k',
-        to: 'k',
-        type: 'same',
-        note: 'Same'
-      },
-      {
-        char: 'i',
-        to: 'i',
+        char: 'a',
+        to: 'a',
         type: 'same',
         note: 'Same'
       }
@@ -12465,6 +12453,7 @@ const LEXICON = [
   },
   {
     id: 'varuna',
+    hasAdSite: true,
     ascii: 'varuna',
     unicode: 'Varuṇa',
     greek: '—',
@@ -14508,66 +14497,7 @@ const LEXICON = [
       }
     ]
   },
-  {
-    id: 'oceanus',
-    ascii: 'oceanus',
-    unicode: 'Ōkeanós',
-    greek: 'Ὠκεανός',
-    pantheon: 'greek',
-    tier: '1',
-    tierLabel: 'Tier 1',
-    domain: 'Titan, World Ocean, Father of Rivers',
-    meaning: 'Great stream, ocean',
-    sources: [
-      'LSJ',
-      'Pape-Benseler',
-      'Beekes'
-    ],
-    breakdown: [
-      {
-        char: 'o',
-        to: 'Ō',
-        type: 'length',
-        note: 'Macron: long omega'
-      },
-      {
-        char: 'c',
-        to: 'k',
-        type: 'same',
-        note: 'Kappa'
-      },
-      {
-        char: 'e',
-        to: 'e',
-        type: 'same',
-        note: 'Same'
-      },
-      {
-        char: 'a',
-        to: 'a',
-        type: 'same',
-        note: 'Same'
-      },
-      {
-        char: 'n',
-        to: 'n',
-        type: 'same',
-        note: 'Same'
-      },
-      {
-        char: 'u',
-        to: 'ó',
-        type: 'stress',
-        note: 'Acute on omicron'
-      },
-      {
-        char: 's',
-        to: 's',
-        type: 'same',
-        note: 'Same'
-      }
-    ]
-  },
+
   {
     id: 'calypso',
     ascii: 'calypso',
@@ -16320,9 +16250,9 @@ const LEXICON = [
     ]
   },
   {
-    id: 'aether',
+    id: 'aither',
     hasAdSite: true,
-    ascii: 'aether',
+    ascii: 'aither',
     unicode: 'Aithḗr',
     greek: 'Αἰθήρ',
     pantheon: 'greek',
@@ -16342,10 +16272,10 @@ const LEXICON = [
         note: 'A uppercase'
       },
       {
-        char: 'e',
+        char: 'i',
         to: 'i',
-        type: 'special',
-        note: 'Special character'
+        type: 'same',
+        note: 'Same'
       },
       {
         char: 't',
@@ -22699,8 +22629,9 @@ const LEXICON = [
   },
   {
     id: 'apsu',
+    hasAdSite: true,
     ascii: 'apsu',
-    unicode: 'Abzu',
+    unicode: 'Apsû',
     greek: '—',
     pantheon: 'mesopotamian',
     tier: '2',
@@ -22711,6 +22642,13 @@ const LEXICON = [
       'Enuma Elish',
       'Black-Green'
     ],
+    variants: [
+      {
+        unicode: 'Abzu',
+        type: 'alt',
+        note: 'Sumerian form of the primordial freshwater abyss'
+      }
+    ],
     breakdown: [
       {
         char: 'a',
@@ -22720,21 +22658,21 @@ const LEXICON = [
       },
       {
         char: 'p',
-        to: 'b',
-        type: 'special',
-        note: 'Special character'
+        to: 'p',
+        type: 'same',
+        note: 'Same'
       },
       {
         char: 's',
-        to: 'z',
-        type: 'special',
-        note: 'Special character'
+        to: 's',
+        type: 'same',
+        note: 'Same'
       },
       {
         char: 'u',
-        to: 'u',
-        type: 'same',
-        note: 'Same'
+        to: 'û',
+        type: 'dual',
+        note: 'Circumflex: stress + length'
       }
     ]
   },
@@ -50031,6 +49969,7 @@ const LEXICON = [
   },
   {
     id: 'ka',
+    hasAdSite: true,
     ascii: 'ka',
     unicode: 'K\uA723',
     greek: '',
@@ -50111,6 +50050,58 @@ const LEXICON = [
       { char: 'r', to: 'r', type: 'same', note: 'Same' },
       { char: 'a', to: 'a', type: 'same', note: 'Same' },
       { char: 'h', to: 'h', type: 'same', note: 'Same' }
+    ]
+  },
+  {
+    id: 'okeanos',
+    hasAdSite: true,
+    ascii: 'okeanos',
+    unicode: 'Ōkeanós',
+    greek: 'Ὠκεανός',
+    pantheon: 'greek',
+    tier: '1',
+    tierLabel: 'Tier 1',
+    domain: 'Ocean, Fresh Water',
+    meaning: 'The great river encircling the world',
+    sources: [
+      'Hesiod',
+      'LSJ'
+    ],
+    breakdown: [
+      { char: 'o', to: 'Ō', type: 'length', note: 'Macron: long omega' },
+      { char: 'k', to: 'k', type: 'same', note: 'Same' },
+      { char: 'e', to: 'e', type: 'same', note: 'Same' },
+      { char: 'a', to: 'a', type: 'same', note: 'Same' },
+      { char: 'n', to: 'n', type: 'same', note: 'Same' },
+      { char: 'o', to: 'ó', type: 'stress', note: 'Acute accent' },
+      { char: 's', to: 's', type: 'same', note: 'Same' }
+    ]
+  },
+  {
+    id: 'trengtreng',
+    hasAdSite: true,
+    ascii: 'trengtreng',
+    unicode: 'Trengtreng',
+    greek: '—',
+    pantheon: 'incan',
+    tier: '2',
+    tierLabel: 'Tier 2',
+    domain: 'Thunder, War',
+    meaning: 'Mapuche thunder and war god',
+    sources: [
+      'Mapuche oral tradition'
+    ],
+    breakdown: [
+      { char: 't', to: 'T', type: 'same', note: 'Same' },
+      { char: 'r', to: 'r', type: 'same', note: 'Same' },
+      { char: 'e', to: 'e', type: 'same', note: 'Same' },
+      { char: 'n', to: 'n', type: 'same', note: 'Same' },
+      { char: 'g', to: 'g', type: 'same', note: 'Same' },
+      { char: 't', to: 't', type: 'same', note: 'Same' },
+      { char: 'r', to: 'r', type: 'same', note: 'Same' },
+      { char: 'e', to: 'e', type: 'same', note: 'Same' },
+      { char: 'n', to: 'n', type: 'same', note: 'Same' },
+      { char: 'g', to: 'g', type: 'same', note: 'Same' }
     ]
   }
 ];

@@ -75,13 +75,8 @@ while ((m = lineRegex.exec(currentMapSrc)) !== null) {
   currentMap[m[1]] = m[2];
 }
 
-// Merge: current map takes precedence, then fill in missing desired domains
-const merged = new Map(Object.entries(currentMap));
-for (const [d, target] of desired) {
-  if (!merged.has(d)) {
-    merged.set(d, target);
-  }
-}
+// Replace map entirely from archetypes (current map is backed up)
+const merged = new Map(desired);
 
 // Sort domains alphabetically (case-insensitive) for stable output
 const sorted = Array.from(merged.entries()).sort((a, b) => a[0].localeCompare(b[0], 'en'));

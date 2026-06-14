@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Varuṇa — Gallery | Cosmic Order, Oceans, Law | PUNYCODEX</title>
+    <meta name="description" content="A curated gallery of Varuṇa, Cosmic Order, Oceans, Law, through history.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css?v=perf2">
+
+    <link rel="canonical" href="https://punycodex.com/sites/varuna/gallery/">
+
+    <meta property="og:title" content="Varuṇa — Gallery | Cosmic Order, Oceans, Law | PUNYCODEX">
+    <meta property="og:description" content="A curated gallery of Varuṇa, Cosmic Order, Oceans, Law, through history.">
+    <meta property="og:url" content="https://punycodex.com/sites/varuna/gallery/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PUNYCODEX">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Varuṇa — Gallery | Cosmic Order, Oceans, Law | PUNYCODEX">
+    <meta name="twitter:description" content="A curated gallery of Varuṇa, Cosmic Order, Oceans, Law, through history.">
+
+  <style>
+/* Gallery lightbox */
+.gallery-item {
+    cursor: zoom-in;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+}
+.gallery-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: rgba(5,5,8,0.92);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.gallery-lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+.gallery-lightbox-content {
+    position: relative;
+    max-width: min(1200px, 95vw);
+    max-height: min(900px, 90vh);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.gallery-lightbox-img {
+    max-width: 100%;
+    max-height: min(820px, 82vh);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+}
+.gallery-lightbox-caption {
+    font-size: 0.95rem;
+    color: #E0E0E0;
+    text-align: center;
+    max-width: 80ch;
+    line-height: 1.6;
+    padding: 0 1rem;
+}
+.gallery-lightbox-close {
+    position: absolute;
+    top: -3rem;
+    right: 0;
+    background: none;
+    border: none;
+    color: #D4AF37;
+    font-size: 2.5rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+.gallery-lightbox-close:hover,
+.gallery-lightbox-close:focus {
+    color: #F5F5F5;
+    transform: scale(1.1);
+}
+@media (max-width: 640px) {
+    .gallery-lightbox {
+        padding: 1rem;
+    }
+    .gallery-lightbox-close {
+        top: -2.5rem;
+        font-size: 2rem;
+    }
+}
+  </style>
+</head>
+<body>
+    <!-- Global Nav -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punycodex.com/" class="global-brand">PUNYCODEX</a>
+            <div class="global-links">
+                <a href="https://punycodex.com/pantheon/">Pantheon</a>
+                <a href="https://punycodex.com/lexicon/">Lexicon</a>
+                <a href="https://punycodex.com/type/">Type</a>
+                <a href="https://punycodex.com/search.html">Search</a>
+                <a href="https://punycodex.com/tiers/">Tiers</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="varuna-canvas" data-effect="water" data-primary="#FF9933" data-secondary="#8B0000"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="main-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/varuna_logolockup.webp" type="image/webp"><img src="../assets/varuna_logolockup.png" alt="Varuṇa" class="nav-logo-img"></picture>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="./index.html" class="nav-link active">Gallery</a>
+                <a href="../lore/extended/" class="nav-link">Extended</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow reveal-up">Visual Legacy</p>
+                <h1 class="hero-title reveal-up">
+                    <span class="title-greek">Varuṇa</span>
+                    <span class="title-divider"></span>
+                    <span class="title-trans">Gallery</span>
+                </h1>
+                <p class="hero-subtitle reveal-up">Cosmic Order, Oceans, Law</p>
+                <div class="hero-cta reveal-up">
+                    <a href="#gallery-grid" class="btn-primary">
+                        <span>Explore the Collection</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <picture><source srcset="../assets/varuna_mascot.webp" type="image/webp"><img src="../assets/varuna_mascot.png" alt="Varuṇa — Cosmic Order, Oceans, Law" class="mascot-img"></picture>
+                <div class="mascot-glow"></div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="section section-name" id="gallery-grid">
+        <div class="section-bg-glow"></div>
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">01</span>
+                <h2 class="section-title">The Collection</h2>
+                <p class="section-subtitle">Varuṇa through the eyes of sculptors, painters, and craftsmen across the ages</p>
+            </div>
+
+            <div class="gallery-grid">
+                
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="../assets/varuna_mascot.png">
+                        <picture><source srcset="../assets/varuna_mascot.webp" type="image/webp"><img src="../assets/varuna_mascot.png" alt="The Varuṇa mascot — Cosmic Order, Oceans, Law" loading="lazy"></picture>
+                    </figure>
+                    <p class="gallery-caption">The Varuṇa mascot — Cosmic Order, Oceans, Law</p>
+                </div>
+
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="../assets/varuna_logolockup.png">
+                        <picture><source srcset="../assets/varuna_logolockup.webp" type="image/webp"><img src="../assets/varuna_logolockup.png" alt="Varuṇa logolockup" loading="lazy"></picture>
+                    </figure>
+                    <p class="gallery-caption">Varuṇa logolockup</p>
+                </div>
+
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="../assets/varuna_logomark.png">
+                        <picture><source srcset="../assets/varuna_logomark.webp" type="image/webp"><img src="../assets/varuna_logomark.png" alt="Varuṇa logomark seal" loading="lazy"></picture>
+                    </figure>
+                    <p class="gallery-caption">Varuṇa logomark seal</p>
+                </div>
+
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="../assets/varuna_hero_poster.jpg">
+                        <picture><source srcset="../assets/varuna_hero_poster.jpg" type="image/webp"><img src="../assets/varuna_hero_poster.jpg" alt="Varuṇa cinematic poster" loading="lazy"></picture>
+                    </figure>
+                    <p class="gallery-caption">Varuṇa cinematic poster</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="footer-logo">PUNYCODEX</span>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Domains</span>
+                        <span class="footer-value">varuṇa.com</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier 2</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Original Script</span>
+                        <span class="footer-value">Varuṇa</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <picture><source srcset="../assets/varuna_logomark.webp" type="image/webp"><img src="../assets/varuna_logomark.png" alt="Varuṇa logomark" class="footer-logomark"></picture>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    
+
+<script>window.PUNYCODEX_API_BASE = "";</script>
+    <script src="/js/temple-base.js?v=perf2"></script>
+    <script src="../script.js?v=perf2"></script>
+
+<div class="gallery-lightbox" id="gallery-lightbox" aria-modal="true" role="dialog" aria-label="Image preview">
+  <div class="gallery-lightbox-content">
+    <button class="gallery-lightbox-close" id="gallery-lightbox-close" aria-label="Close" type="button">&times;</button>
+    <img class="gallery-lightbox-img" id="gallery-lightbox-img" src="" alt="">
+    <p class="gallery-lightbox-caption" id="gallery-lightbox-caption"></p>
+  </div>
+</div>
+<script>
+(function(){
+  const lb = document.getElementById('gallery-lightbox');
+  const img = document.getElementById('gallery-lightbox-img');
+  const cap = document.getElementById('gallery-lightbox-caption');
+  const close = document.getElementById('gallery-lightbox-close');
+  if (!lb || !img || !close) return;
+  function open(src, caption) {
+    img.src = src;
+    img.alt = caption || '';
+    cap.textContent = caption || '';
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    close.focus();
+  }
+  function closeLb() {
+    lb.classList.remove('active');
+    img.src = '';
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('.gallery-item[data-full-src]').forEach(item => {
+    item.addEventListener('click', () => open(item.dataset.fullSrc, item.dataset.caption));
+    item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(item.dataset.fullSrc, item.dataset.caption); } });
+  });
+  close.addEventListener('click', closeLb);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && lb.classList.contains('active')) closeLb(); });
+})();
+</script>
+</body>
+</html>
