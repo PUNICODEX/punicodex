@@ -6,6 +6,7 @@
 const LEXICON = [
   {
     id: 'apollon',
+    hasAdSite: true,
     ascii: 'apollon',
     unicode: 'Apóllōn',
     greek: 'Ἀπόλλων',
@@ -104,12 +105,13 @@ const LEXICON = [
   },
   {
     id: 'hades',
+    hasAdSite: true,
     ascii: 'hades',
     unicode: 'Hádēs',
     greek: 'Ἅιδης',
     pantheon: 'greek',
-    tier: 'dual',
-    tierLabel: 'Dual-Tier',
+    tier: '1',
+    tierLabel: 'Tier 1',
     domain: 'Underworld, Wealth',
     meaning: 'The Unseen One (from ἀ- + εἶδον)',
     sources: [
@@ -180,6 +182,7 @@ const LEXICON = [
   },
   {
     id: 'hekate',
+    hasAdSite: true,
     ascii: 'hekate',
     unicode: 'Hekátē',
     greek: 'Ἑκάτη',
@@ -256,6 +259,7 @@ const LEXICON = [
     id: 'nike',
     ascii: 'nike',
     unicode: 'Níkē',
+    hasAdSite: true,
     greek: 'Νίκη',
     pantheon: 'greek',
     tier: 'dual',
@@ -329,6 +333,7 @@ const LEXICON = [
   },
   {
     id: 'zeus',
+    hasAdSite: true,
     ascii: 'zeus',
     unicode: 'Zeús',
     greek: 'Ζεύς',
@@ -406,6 +411,7 @@ const LEXICON = [
   },
   {
     id: 'ares',
+    hasAdSite: true,
     ascii: 'ares',
     unicode: 'Árēs',
     greek: 'Ἄρης',
@@ -476,6 +482,7 @@ const LEXICON = [
   },
   {
     id: 'aphrodite',
+    hasAdSite: true,
     ascii: 'aphrodite',
     unicode: 'Aphrodítē',
     greek: 'Ἀφροδίτη',
@@ -576,6 +583,7 @@ const LEXICON = [
   },
   {
     id: 'athena',
+    hasAdSite: true,
     ascii: 'athena',
     unicode: 'Athénā',
     greek: 'Ἀθήνᾶ',
@@ -658,6 +666,7 @@ const LEXICON = [
   },
   {
     id: 'demeter',
+    hasAdSite: true,
     ascii: 'demeter',
     unicode: 'Dēmētēr',
     greek: 'Δημήτηρ',
@@ -733,6 +742,7 @@ const LEXICON = [
   },
   {
     id: 'hera',
+    hasAdSite: true,
     ascii: 'hera',
     unicode: 'Hēra',
     greek: 'Ἥρα',
@@ -799,6 +809,7 @@ const LEXICON = [
     id: 'hermes',
     ascii: 'hermes',
     unicode: 'Hermês',
+    hasAdSite: true,
     greek: 'Ἑρμῆς',
     pantheon: 'greek',
     tier: '1',
@@ -872,6 +883,7 @@ const LEXICON = [
   },
   {
     id: 'hephaistos',
+    hasAdSite: true,
     ascii: 'hephaistos',
     unicode: 'Hēphaistos',
     greek: 'Ἥφαιστος',
@@ -965,6 +977,7 @@ const LEXICON = [
   },
   {
     id: 'hestia',
+    hasAdSite: true,
     ascii: 'hestia',
     unicode: 'Hestía',
     greek: 'Ἑστία',
@@ -1041,6 +1054,7 @@ const LEXICON = [
   },
   {
     id: 'poseidon',
+    hasAdSite: true,
     ascii: 'poseidon',
     unicode: 'Poseidôn',
     greek: 'Ποσειδῶν',
@@ -1128,6 +1142,7 @@ const LEXICON = [
   },
   {
     id: 'persephone',
+    hasAdSite: true,
     ascii: 'persephone',
     unicode: 'Persephonē',
     greek: 'Περσεφόνη',
@@ -1221,6 +1236,7 @@ const LEXICON = [
   },
   {
     id: 'prometheus',
+    hasAdSite: true,
     ascii: 'prometheus',
     unicode: 'Promētheus',
     greek: 'Προμηθεύς',
@@ -1314,6 +1330,7 @@ const LEXICON = [
   },
   {
     id: 'gaia',
+    hasAdSite: true,
     ascii: 'gaia',
     unicode: 'Gaîa',
     greek: 'Γαῖα',
@@ -1362,6 +1379,7 @@ const LEXICON = [
   },
   {
     id: 'chaos',
+    hasAdSite: true,
     ascii: 'chaos',
     unicode: 'Cháos',
     greek: 'Χάος',
@@ -1416,6 +1434,7 @@ const LEXICON = [
   },
   {
     id: 'tartaros',
+    hasAdSite: true,
     ascii: 'tartaros',
     unicode: 'Tártaros',
     greek: 'Τάρταρος',
@@ -1488,6 +1507,7 @@ const LEXICON = [
   },
   {
     id: 'pontos',
+    hasAdSite: true,
     ascii: 'pontos',
     unicode: 'Póntos',
     greek: 'Πόντος',
@@ -1869,6 +1889,7 @@ const LEXICON = [
   },
   {
     id: 'eros',
+    hasAdSite: true,
     ascii: 'eros',
     unicode: 'Erōs',
     greek: 'Ἔρως',
@@ -1911,6 +1932,7 @@ const LEXICON = [
   },
   {
     id: 'helios',
+    hasAdSite: true,
     ascii: 'helios',
     unicode: 'Hēlios',
     greek: 'Ἥλιος',
@@ -1986,6 +2008,7 @@ const LEXICON = [
   },
   {
     id: 'selene',
+    hasAdSite: true,
     ascii: 'selene',
     unicode: 'Selēnē',
     greek: 'Σελήνη',
@@ -2312,6 +2335,7 @@ const LEXICON = [
   },
   {
     id: 'artemis',
+    hasAdSite: true,
     ascii: 'artemis',
     unicode: 'Ártemis',
     greek: 'Ἄρτεμις',
@@ -2387,6 +2411,7 @@ const LEXICON = [
   },
   {
     id: 'atlas',
+    hasAdSite: true,
     ascii: 'atlas',
     unicode: 'Átlas',
     greek: 'Ἄτλας',
@@ -2448,6 +2473,7 @@ const LEXICON = [
   },
   {
     id: 'dionysos',
+    hasAdSite: true,
     ascii: 'dionysos',
     unicode: 'Diónysos',
     greek: 'Διόνυσος',
@@ -2521,6 +2547,7 @@ const LEXICON = [
   },
   {
     id: 'medousa',
+    hasAdSite: true,
     ascii: 'medousa',
     unicode: 'Médousa',
     greek: 'Μέδουσα',
@@ -2594,43 +2621,61 @@ const LEXICON = [
   },
   {
     id: 'kronos',
+    hasAdSite: true,
     ascii: 'kronos',
-    unicode: 'Kronos',
+    unicode: 'Krónos',
     greek: 'Κρόνος',
     pantheon: 'greek',
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Time, Harvest, Titans',
-    meaning: 'Time (from χρόνος)',
+    meaning: 'Youngest Titan, personification of time, who castrated and deposed his father Uranus before being overthrown by his son Zeus',
     sources: [
       'LSJ',
       'Pape-Benseler',
-      'Beekes'
+      'Beekes',
+      'Hesiod, Theogony'
     ],
+    variants: [
+      { unicode: 'Kronos', type: 'ascii', note: 'Plain ASCII fallback; loses the acute stress on the first omicron' },
+      { unicode: 'krónos', type: 'owned', note: 'Lowercase owned domain form' },
+      { unicode: 'Cronus', type: 'alt', note: 'Latinized spelling common in English' }
+    ],
+    etymology: {
+      protoForm: '*kers-',
+      protoLanguage: 'proto-indo-european',
+      protoGloss: 'to cut',
+      derivation: 'Traditionally linked to χρόνος (time), but the etymology is disputed; some connect the Titan’s name to a root meaning "to cut" (referring to the castration of Uranus)',
+      certainty: 'disputed',
+      cognates: [
+        { language: 'Latin', form: 'hornum', relationship: 'uncertain' },
+        { language: 'Sanskrit', form: 'śṛṇāti', relationship: 'uncertain' }
+      ]
+    },
     breakdown: [
       {
         char: 'k',
         to: 'K',
         type: 'same',
-        note: 'Kappa'
+        note: 'Same, capitalized'
       },
       {
         char: 'r',
         to: 'r',
         type: 'same',
-        note: 'Rho'
+        note: 'Same'
       },
       {
         char: 'o',
-        to: 'o',
-        type: 'same',
-        note: 'Short omicron'
+        to: 'ó',
+        type: 'stress',
+        note: 'Acute stress on the first omicron'
       },
       {
         char: 'n',
         to: 'n',
         type: 'same',
-        note: 'Nu'
+        note: 'Same'
       },
       {
         char: 'o',
@@ -2642,15 +2687,9 @@ const LEXICON = [
         char: 's',
         to: 's',
         type: 'same',
-        note: 'Sigma'
+        note: 'Same'
       }
-    ],
-    etymology: {
-      protoLanguage: 'proto-indo-european',
-      protoGloss: 'Time',
-      derivation: 'Time (from χρόνος)',
-      certainty: 'attested'
-    }
+    ]
   },
   {
     id: 'rhea',
@@ -2799,44 +2838,54 @@ const LEXICON = [
   {
     id: 'pan',
     ascii: 'pan',
-    unicode: 'Pan',
+    unicode: 'Pān',
     greek: 'Πάν',
     pantheon: 'greek',
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Wilderness, Shepherds, Flocks',
-    meaning: 'All (from πᾶν)',
+    meaning: 'God of shepherds, flocks, mountain wilds, and the panic that strikes lonely places; his name was popularly derived from Greek πᾶν ("all") but likely originated in Arcadian Πάων ("shepherd")',
     sources: [
       'LSJ',
       'Pape-Benseler',
-      'Beekes'
+      'Beekes',
+      'Homeric Hymn to Pan'
     ],
+    variants: [
+      { unicode: 'Pán', type: 'ideal', note: 'Stress-preserved ideal form; currently registered/unavailable' },
+      { unicode: 'Pan', type: 'ascii', note: 'Plain ASCII fallback; loses both stress and length' }
+    ],
+    etymology: {
+      protoForm: '*peh₂-',
+      protoLanguage: 'proto-indo-european',
+      protoGloss: 'to guard, to shepherd',
+      derivation: 'The gods name was popularly explained as πᾶν ("all"), but its true root is probably Arcadian Πάων ("shepherd"), from a PIE root meaning "to guard" or "protect"',
+      certainty: 'disputed',
+      cognates: [
+        { language: 'Greek', form: 'ποιμήν (poimēn)', relationship: 'derivative' },
+        { language: 'Latin', form: 'pāscō', relationship: 'cognate' }
+      ]
+    },
     breakdown: [
       {
         char: 'p',
         to: 'P',
         type: 'same',
-        note: 'Pi'
+        note: 'Same, capitalized'
       },
       {
         char: 'a',
-        to: 'a',
-        type: 'same',
-        note: 'Short alpha'
+        to: 'ā',
+        type: 'length',
+        note: 'Macron marks the long alpha'
       },
       {
         char: 'n',
         to: 'n',
         type: 'same',
-        note: 'Nu'
+        note: 'Same'
       }
-    ],
-    etymology: {
-      protoLanguage: 'proto-indo-european',
-      protoGloss: 'All',
-      derivation: 'All (from πᾶν)',
-      certainty: 'attested'
-    }
+    ]
   },
   {
     id: 'moirai',
@@ -2900,6 +2949,7 @@ const LEXICON = [
   },
   {
     id: 'olympos',
+    hasAdSite: true,
     ascii: 'olympos',
     unicode: 'Ólympos',
     greek: 'Ὄλυμπος',
@@ -2967,6 +3017,7 @@ const LEXICON = [
   },
   {
     id: 'athenai',
+    hasAdSite: true,
     ascii: 'athenai',
     unicode: 'Athēnai',
     greek: 'Ἀθῆναι',
@@ -3034,6 +3085,7 @@ const LEXICON = [
   },
   {
     id: 'sparte',
+    hasAdSite: true,
     ascii: 'sparte',
     unicode: 'Spártē',
     greek: 'Σπάρτη',
@@ -3095,6 +3147,7 @@ const LEXICON = [
   },
   {
     id: 'delphoi',
+    hasAdSite: true,
     ascii: 'delphoi',
     unicode: 'Delphoí',
     greek: 'Δελφοί',
@@ -3985,6 +4038,7 @@ const LEXICON = [
   },
   {
     id: 'ragnarok',
+    hasAdSite: true,
     ascii: 'ragnarok',
     unicode: 'Ragnarǫk',
     greek: '—',
@@ -4058,6 +4112,7 @@ const LEXICON = [
   },
   {
     id: 'midgardr',
+    hasAdSite: true,
     ascii: 'midgardr',
     unicode: 'Miðgarðr',
     greek: '—',
@@ -4138,6 +4193,7 @@ const LEXICON = [
   },
   {
     id: 'alfheimr',
+    hasAdSite: true,
     ascii: 'alfheimr',
     unicode: 'Álfheimr',
     greek: '—',
@@ -4211,6 +4267,7 @@ const LEXICON = [
   },
   {
     id: 'jotunheimr',
+    hasAdSite: true,
     ascii: 'jotunheimr',
     unicode: 'Jötunheimr',
     greek: '—',
@@ -4296,6 +4353,7 @@ const LEXICON = [
   },
   {
     id: 'helheimr',
+    hasAdSite: true,
     ascii: 'helheimr',
     unicode: 'Helheimr',
     greek: '—',
@@ -4512,6 +4570,7 @@ const LEXICON = [
   },
   {
     id: 'thor',
+    hasAdSite: true,
     ascii: 'thor',
     unicode: 'Þórr',
     greek: '—',
@@ -4581,6 +4640,7 @@ const LEXICON = [
   },
   {
     id: 'odinn',
+    hasAdSite: true,
     ascii: 'odinn',
     unicode: 'Óðinn',
     greek: '—',
@@ -5410,6 +5470,7 @@ const LEXICON = [
   {
     id: 'ra',
     ascii: 'ra',
+    hasAdSite: true,
     unicode: 'Rꜥ',
     greek: '—',
     pantheon: 'egyptian',
@@ -5578,6 +5639,7 @@ const LEXICON = [
   },
   {
     id: 'horus',
+    hasAdSite: true,
     ascii: 'horus',
     unicode: 'Ḥr',
     greek: '—',
@@ -6070,6 +6132,7 @@ const LEXICON = [
   },
   {
     id: 'maat',
+    hasAdSite: true,
     ascii: 'maat',
     unicode: 'Mꜣꜥt',
     greek: '—',
@@ -6348,6 +6411,7 @@ const LEXICON = [
   },
   {
     id: 'shiva',
+    hasAdSite: true,
     ascii: 'shiva',
     unicode: 'Śiva',
     greek: '—',
@@ -6415,6 +6479,7 @@ const LEXICON = [
   },
   {
     id: 'vishnu',
+    hasAdSite: true,
     ascii: 'vishnu',
     unicode: 'Viṣṇu',
     greek: '—',
@@ -6541,6 +6606,7 @@ const LEXICON = [
   },
   {
     id: 'ganesha',
+    hasAdSite: true,
     ascii: 'ganesha',
     unicode: 'Gaṇeśa',
     greek: '—',
@@ -7428,6 +7494,7 @@ const LEXICON = [
   },
   {
     id: 'ishtar',
+    hasAdSite: true,
     ascii: 'ishtar',
     unicode: 'Ištar',
     greek: '—',
@@ -7440,6 +7507,22 @@ const LEXICON = [
       'CAD',
       'AHw'
     ],
+    variants: [
+      { unicode: 'ištar', type: 'owned', note: 'Owned lowercase Unicode domain label' },
+      { unicode: 'Ishtar', type: 'ascii', note: 'Plain ASCII fallback; replaces š with sh digraph' },
+      { unicode: 'Inanna', type: 'alt', note: 'Sumerian counterpart' }
+    ],
+    etymology: {
+      protoForm: 'unknown',
+      protoLanguage: 'unknown',
+      protoGloss: 'Lady of Heaven',
+      derivation: 'The divine name Ištar is not Semitic in origin and likely derives from a Sumerian divine title associated with the planet Venus; it became the Akkadian goddess of love, war, and the morning/evening star',
+      certainty: 'unknown',
+      cognates: [
+        { language: 'Sumerian', form: 'Inanna', relationship: 'variant' },
+        { language: 'Phoenician', form: 'Astarte', relationship: 'cognate' }
+      ]
+    },
     breakdown: [
       {
         char: 'i',
@@ -7640,24 +7723,43 @@ const LEXICON = [
   },
   {
     id: 'enlil',
+    hasAdSite: true,
     ascii: 'enlil',
-    unicode: 'Enlil',
+    unicode: 'Enlīl',
     greek: '—',
     pantheon: 'mesopotamian',
     tier: '2',
     tierLabel: 'Tier 2',
-    domain: 'Wind, Air, Storms',
-    meaning: 'Lord of the Wind (Sumerian Enlil)',
+    domain: 'Wind, Air, Storms, Kingship',
+    meaning: 'Lord of the Wind; the supreme Sumerian and Akkadian god of air, storms, and sovereign command, later known as Ellil',
     sources: [
       'CAD',
-      'AHw'
+      'AHw',
+      'Kramer',
+      'Jacobsen'
     ],
+    variants: [
+      { unicode: 'Enlil', type: 'ascii', note: 'Plain ASCII spelling; loses the macron marking the long vowel' },
+      { unicode: 'enlīl', type: 'owned', note: 'Lowercase owned domain form' },
+      { unicode: 'Ellil', type: 'alt', note: 'Akkadian variant reflecting late pronunciation' }
+    ],
+    etymology: {
+      protoForm: 'EN.LIL',
+      protoLanguage: 'isolate',
+      protoGloss: 'lord of the wind / air',
+      derivation: 'From Sumerian 𒂗𒇸 (EN.LIL), "lord wind"; in Akkadian the name was pronounced as Ellil and became the chief deity of the Mesopotamian pantheon',
+      certainty: 'attested',
+      cognates: [
+        { language: 'Sumerian', form: 'EN.LIL', relationship: 'variant' },
+        { language: 'Akkadian', form: 'Ellil', relationship: 'variant' }
+      ]
+    },
     breakdown: [
       {
         char: 'e',
         to: 'E',
         type: 'same',
-        note: 'Same'
+        note: 'Same, capitalized'
       },
       {
         char: 'n',
@@ -7673,9 +7775,9 @@ const LEXICON = [
       },
       {
         char: 'i',
-        to: 'i',
-        type: 'same',
-        note: 'Same'
+        to: 'ī',
+        type: 'length',
+        note: 'Macron marks the long /ī/ vowel'
       },
       {
         char: 'l',
@@ -7687,6 +7789,7 @@ const LEXICON = [
   },
   {
     id: 'enki',
+    hasAdSite: true,
     ascii: 'enki',
     unicode: 'Enki',
     greek: '—',
@@ -8068,6 +8171,7 @@ const LEXICON = [
   },
   {
     id: 'osaka',
+    hasAdSite: true,
     ascii: 'osaka',
     unicode: 'Ōsaka',
     greek: '大阪',
@@ -8123,6 +8227,7 @@ const LEXICON = [
   },
   {
     id: 'kyoto',
+    hasAdSite: true,
     ascii: 'kyoto',
     unicode: 'Kyōto',
     greek: '京都',
@@ -8178,6 +8283,7 @@ const LEXICON = [
   },
   {
     id: 'kobe',
+    hasAdSite: true,
     ascii: 'kobe',
     unicode: 'Kōbe',
     greek: '神戸',
@@ -11629,7 +11735,44 @@ const LEXICON = [
     ]
   },
   {
+    id: 'sia',
+    hasAdSite: true,
+    ascii: 'sia',
+    unicode: 'sꜥ',
+    greek: '—',
+    pantheon: 'egyptian',
+    tier: '2',
+    tierLabel: 'Tier 2',
+    domain: 'Perception, Intellect, Divine Understanding',
+    meaning: 'Perception, intellect, divine understanding',
+    sources: [
+      'Faulkner',
+      'Wb'
+    ],
+    breakdown: [
+      {
+        char: 's',
+        to: 's',
+        type: 'same',
+        note: 'Same'
+      },
+      {
+        char: 'i',
+        to: 'ꜥ',
+        type: 'special',
+        note: 'Ayin: voiced pharyngeal fricative'
+      },
+      {
+        char: 'a',
+        to: '',
+        type: 'drop',
+        note: 'Not written'
+      }
+    ]
+  },
+  {
     id: 'shu',
+    hasAdSite: true,
     ascii: 'shu',
     unicode: 'Šw',
     greek: '—',
@@ -12481,6 +12624,7 @@ const LEXICON = [
   },
   {
     id: 'kali',
+    hasAdSite: true,
     ascii: 'kali',
     unicode: 'Kālī',
     greek: '—',
@@ -14241,6 +14385,7 @@ const LEXICON = [
   },
   {
     id: 'typhon',
+    hasAdSite: true,
     ascii: 'typhon',
     unicode: 'Typhōn',
     greek: 'Τυφῶν',
@@ -14254,6 +14399,22 @@ const LEXICON = [
       'Pape-Benseler',
       'Beekes'
     ],
+    variants: [
+      { unicode: 'typhōn', type: 'owned', note: 'Owned lowercase Unicode domain label' },
+      { unicode: 'Typhon', type: 'ascii', note: 'Plain ASCII fallback; loses the long omega' }
+    ],
+    etymology: {
+      protoForm: 'τῦφος',
+      protoLanguage: 'unknown',
+      protoGloss: 'smoke, vapor, whirlwind',
+      derivation: 'From Greek τῦφος ("smoke, vapor") or τυφώς ("whirlwind"), fitting the smoke-and-flame monster born from Tartaros',
+      certainty: 'attested',
+      cognates: [
+        { language: 'Greek', form: 'τῦφος', relationship: 'cognate' },
+        { language: 'Greek', form: 'τυφώς', relationship: 'cognate' },
+        { language: 'English', form: 'typhoon', relationship: 'derivative' }
+      ]
+    },
     breakdown: [
       {
         char: 't',
@@ -15717,6 +15878,7 @@ const LEXICON = [
   },
   {
     id: 'ker',
+    hasAdSite: true,
     ascii: 'ker',
     unicode: 'Kēr',
     greek: 'Κήρ',
@@ -16159,6 +16321,7 @@ const LEXICON = [
   },
   {
     id: 'aether',
+    hasAdSite: true,
     ascii: 'aether',
     unicode: 'Aithḗr',
     greek: 'Αἰθήρ',
@@ -20855,6 +21018,7 @@ const LEXICON = [
   },
   {
     id: 'muspellheimr',
+    hasAdSite: true,
     ascii: 'muspellheimr',
     unicode: 'Muspellheimr',
     greek: '—',
@@ -21408,6 +21572,7 @@ const LEXICON = [
   },
   {
     id: 'heka',
+    hasAdSite: true,
     ascii: 'heka',
     unicode: 'Ḥkꜣ',
     greek: '—',
@@ -36915,6 +37080,7 @@ const LEXICON = [
   },
   {
     id: 'prajapati',
+    hasAdSite: true,
     ascii: 'prajapati',
     unicode: 'Prajāpati',
     greek: '—',
@@ -44251,24 +44417,47 @@ const LEXICON = [
   },
   {
     id: 'baal',
+    hasAdSite: true,
     ascii: 'baal',
-    unicode: 'Baál',
-    greek: '—',
-    pantheon: 'phoenician',
+    unicode: 'Baꜥal',
+    greek: 'Βαάλ',
+    pantheon: 'canaanite',
     tier: '2',
     tierLabel: 'Tier 2',
-    domain: 'Storm, Fertility, King',
-    meaning: 'Lord, master',
+    domain: 'Storm God, Lord of the Heavens',
+    meaning: 'Canaanite storm and fertility god; the title "Lord" (baʿlu) was also applied to local deities',
     sources: [
       'Ugaritic texts',
-      'CIS'
+      'CIS',
+      'KTU',
+      'Coogan',
+      'Smith',
+      'De Moor'
     ],
+    variants: [
+      { unicode: 'Baal', type: 'ascii', note: 'Plain ASCII fallback; loses the voiced pharyngeal fricative' },
+      { unicode: 'Baʿal', type: 'ideal', note: 'Ugaritic/Phoenician ʿayin (ʿ) is the ideal consonant, but is rejected by the DNS root zone' },
+      { unicode: 'baꜥal', type: 'owned', note: 'Lowercase owned form' },
+      { unicode: 'Baál', type: 'alt', note: 'Stress-only alternate transliteration (previous Phoenician entry)' }
+    ],
+    etymology: {
+      protoForm: '*baʿl-',
+      protoLanguage: 'proto-afro-asiatic',
+      protoGloss: 'lord, owner, husband',
+      derivation: 'From Common Semitic baʿlu, "lord"; the pharyngeal is written with Egyptian Ain (ꜥ) as the only registrable Unicode workaround',
+      certainty: 'attested',
+      cognates: [
+        { language: 'Hebrew', form: 'בַּעַל (Baʿal)', relationship: 'cognate' },
+        { language: 'Phoenician', form: '𐤁𐤏𐤋 (Bʿl)', relationship: 'cognate' },
+        { language: 'Arabic', form: 'بَعْل (Baʿl)', relationship: 'cognate' }
+      ]
+    },
     breakdown: [
       {
         char: 'b',
         to: 'B',
         type: 'same',
-        note: 'Same, capitalized'
+        note: 'Capital beta'
       },
       {
         char: 'a',
@@ -44278,9 +44467,9 @@ const LEXICON = [
       },
       {
         char: 'a',
-        to: 'á',
-        type: 'stress',
-        note: 'Stress on a'
+        to: 'ꜥa',
+        type: 'special',
+        note: 'Egyptian Ain (ꜥ) used as the only DNS-registrable stand-in for Semitic ʿayin, followed by the vowel present in the Unicode restoration'
       },
       {
         char: 'l',
@@ -44292,24 +44481,45 @@ const LEXICON = [
   },
   {
     id: 'el',
+    hasAdSite: true,
     ascii: 'el',
     unicode: 'Ēl',
-    greek: '—',
-    pantheon: 'phoenician',
+    greek: 'Ἠλ',
+    pantheon: 'canaanite',
     tier: '2',
     tierLabel: 'Tier 2',
-    domain: 'Supreme God, Creator',
-    meaning: 'God, mighty one',
+    domain: 'Supreme God, Father of Gods',
+    meaning: 'The high god of the Canaanite pantheon; the common Semitic word for "god" and a divine name',
     sources: [
       'Ugaritic texts',
-      'CIS'
+      'CIS',
+      'KTU',
+      'Coogan',
+      'Smith',
+      'Cross'
     ],
+    variants: [
+      { unicode: 'El', type: 'ascii', note: 'Plain ASCII fallback; loses the macron that marks long /ē/' },
+      { unicode: 'ēl', type: 'owned', note: 'Lowercase display form of the owned domain' }
+    ],
+    etymology: {
+      protoForm: '*ʾil-',
+      protoLanguage: 'proto-afro-asiatic',
+      protoGloss: 'god, divine power',
+      derivation: 'From Common Semitic ʾil-/ʾēl, with long /ē/ preserved by the macron',
+      certainty: 'attested',
+      cognates: [
+        { language: 'Hebrew', form: 'אֵל (ʾĒl)', relationship: 'cognate' },
+        { language: 'Arabic', form: 'إِلٰه (ʾilāh)', relationship: 'cognate' },
+        { language: 'Akkadian', form: 'ilu', relationship: 'cognate' }
+      ]
+    },
     breakdown: [
       {
         char: 'e',
         to: 'Ē',
         type: 'length',
-        note: 'Long vowel'
+        note: 'Macron marks long /ē/; capitalized in the restoration'
       },
       {
         char: 'l',
@@ -44321,24 +44531,47 @@ const LEXICON = [
   },
   {
     id: 'anat',
+    hasAdSite: true,
     ascii: 'anat',
-    unicode: 'Anát',
-    greek: '—',
-    pantheon: 'phoenician',
+    unicode: 'ꜥAnat',
+    greek: 'Ἀνάθ',
+    pantheon: 'canaanite',
     tier: '2',
     tierLabel: 'Tier 2',
-    domain: 'War, Hunt, Virgin',
-    meaning: 'Strength, vigor',
+    domain: 'Goddess of War and the Hunt',
+    meaning: 'Canaanite warrior goddess, sister and ally of Baꜥal',
     sources: [
       'Ugaritic texts',
-      'CIS'
+      'CIS',
+      'KTU',
+      'Coogan',
+      'Smith',
+      'Day'
     ],
+    variants: [
+      { unicode: 'Anat', type: 'ascii', note: 'Plain ASCII fallback; loses the initial pharyngeal' },
+      { unicode: 'ʿAnat', type: 'ideal', note: 'Ugaritic/Phoenician ʿayin (ʿ) is ideal but not registrable at the DNS root' },
+      { unicode: 'ꜥanat', type: 'owned', note: 'Lowercase owned form' },
+      { unicode: 'Anát', type: 'alt', note: 'Stress-only alternate transliteration (previous Phoenician entry)' }
+    ],
+    etymology: {
+      protoForm: '*ʿanatu',
+      protoLanguage: 'proto-afro-asiatic',
+      protoGloss: 'warrior goddess',
+      derivation: 'From Ugaritic ʿnṯ/ʿnt; the initial pharyngeal is rendered with Egyptian Ain (ꜥ) as the registrable workaround',
+      certainty: 'attested',
+      cognates: [
+        { language: 'Hebrew', form: 'עֲנָת (ʿĂnāt)', relationship: 'cognate' },
+        { language: 'Phoenician', form: '𐤏𐤍𐤕 (ʿnt)', relationship: 'cognate' },
+        { language: 'Arabic', form: 'عَنَت (ʿanat)', relationship: 'cognate' }
+      ]
+    },
     breakdown: [
       {
         char: 'a',
-        to: 'A',
-        type: 'same',
-        note: 'Same, capitalized'
+        to: 'ꜥA',
+        type: 'special',
+        note: 'Egyptian Ain (ꜥ) represents the Semitic ʿayin, followed by the capital alpha present in the Unicode restoration'
       },
       {
         char: 'n',
@@ -44348,9 +44581,9 @@ const LEXICON = [
       },
       {
         char: 'a',
-        to: 'á',
-        type: 'stress',
-        note: 'Stress on a'
+        to: 'a',
+        type: 'same',
+        note: 'Same'
       },
       {
         char: 't',
@@ -49248,6 +49481,7 @@ const LEXICON = [
   },
   {
     id: 'maa',
+    hasAdSite: true,
     ascii: 'maa',
     unicode: 'Mꜥ',
     greek: '—',
@@ -49291,6 +49525,7 @@ const LEXICON = [
   },
   {
     id: 'akh',
+    hasAdSite: true,
     ascii: 'akh',
     unicode: 'Ꜣḫ',
     greek: '—',
@@ -49334,6 +49569,7 @@ const LEXICON = [
   },
   {
     id: 'ab',
+    hasAdSite: true,
     ascii: 'ab',
     unicode: 'Ꜣb',
     greek: '—',
@@ -49511,6 +49747,7 @@ const LEXICON = [
   },
   {
     id: 'libye',
+    hasAdSite: true,
     ascii: 'libye',
     unicode: 'Libyē',
     greek: 'Λιβύη',
@@ -49566,6 +49803,7 @@ const LEXICON = [
   },
   {
     id: 'aigyptos',
+    hasAdSite: true,
     ascii: 'aigyptos',
     unicode: 'Aígyptos',
     greek: 'Αἴγυπτος',
@@ -49639,6 +49877,7 @@ const LEXICON = [
   },
   {
     id: 'asia',
+    hasAdSite: true,
     ascii: 'asia',
     unicode: 'Asía',
     greek: 'Ἀσία',
@@ -49672,9 +49911,9 @@ const LEXICON = [
       },
       {
         char: 'a',
-        to: 'ā',
-        type: 'length',
-        note: 'Macron: long alpha'
+        to: 'a',
+        type: 'same',
+        note: 'Final alpha'
       }
     ],
     etymology: {
@@ -49688,6 +49927,7 @@ const LEXICON = [
   },
   {
     id: 'europe',
+    hasAdSite: true,
     ascii: 'europe',
     unicode: 'Eurṓpē',
     greek: 'Εὐρώπη',
@@ -49746,6 +49986,132 @@ const LEXICON = [
       certainty: 'attested',
       cognates: []
     }
+  },
+  {
+    id: 'rta',
+    hasAdSite: true,
+    ascii: 'rta',
+    unicode: '\u1E5Ata',
+    greek: '',
+    pantheon: 'sanskrit',
+    tier: '2',
+    tierLabel: 'Tier 2',
+    domain: 'Cosmic Order, Truth, Law',
+    meaning: 'Truth, cosmic order, natural law. The Vedic principle of righteousness and universal harmony.',
+    sources: ['\u1E5Cgveda', 'Br\u0101hma\u1E47as', 'Upani\u1E63ads'],
+    variants: [
+      { unicode: 'Rita', type: 'alt', note: 'Older European convention (German philology)' },
+      { unicode: 'Rta', type: 'ascii', note: 'Plain ASCII fallback' }
+    ],
+    breakdown: [
+      { char: 'r', to: '\u1E5A', type: 'special', note: 'Vocalic r — dot below marks syllabic /r/; capitalized in the restoration' },
+      { char: 't', to: 't', type: 'same', note: 'Same' },
+      { char: 'a', to: 'a', type: 'same', note: 'Same' }
+    ]
+  },
+  {
+    id: 'ba',
+    hasAdSite: true,
+    ascii: 'ba',
+    unicode: 'B\uA723',
+    greek: '',
+    pantheon: 'egyptian',
+    tier: '2',
+    tierLabel: 'Tier 2',
+    domain: 'Soul, Personality, Manifestation',
+    meaning: 'The soul, personality, or manifestation of a person. One of the five components of the Egyptian soul.',
+    sources: ['Faulkner', 'Gardiner', 'Allen'],
+    variants: [
+      { unicode: 'Ba', type: 'ascii', note: 'Modern English' }
+    ],
+    breakdown: [
+      { char: 'b', to: 'B', type: 'same', note: 'Same, capitalized' },
+      { char: 'a', to: '\uA723', type: 'special', note: 'Egyptological aleph — glottal stop or specific vocalic quality' }
+    ]
+  },
+  {
+    id: 'ka',
+    ascii: 'ka',
+    unicode: 'K\uA723',
+    greek: '',
+    pantheon: 'egyptian',
+    tier: '2',
+    tierLabel: 'Tier 2',
+    domain: 'Vital Essence, Life Force',
+    meaning: 'The vital essence, life force, or double of a person. Created at birth and surviving death.',
+    sources: ['Faulkner', 'Gardiner', 'Allen'],
+    variants: [
+      { unicode: 'Ka', type: 'ascii', note: 'Modern English' }
+    ],
+    breakdown: [
+      { char: 'k', to: 'K', type: 'same', note: 'Same, capitalized' },
+      { char: 'a', to: '\uA723', type: 'special', note: 'Egyptological aleph — glottal stop or specific vocalic quality' }
+    ]
+  },
+  {
+    id: 'astart',
+    hasAdSite: true,
+    ascii: 'astart',
+    unicode: 'A\u0161tart',
+    greek: '',
+    pantheon: 'phoenician',
+    tier: '2',
+    tierLabel: 'Tier 2',
+    domain: 'Love, War, Fertility, Venus',
+    meaning: 'She of the womb. The planet Venus as deity. Queen of heaven.',
+    sources: ['Ugaritic texts', 'CIS', 'KAI'],
+    variants: [
+      { unicode: 'Ashtart', type: 'alt', note: 'Hebraic/Biblical form' },
+      { unicode: 'Astarte', type: 'alt', note: 'Greek-influenced form (Astarte)' },
+      { unicode: 'Astart', type: 'ascii', note: 'Plain ASCII' }
+    ],
+    breakdown: [
+      { char: 'a', to: 'A', type: 'same', note: 'Same, capitalized' },
+      { char: 's', to: '\u0161', type: 'special', note: 'Caron marks voiceless postalveolar fricative /\u0283/' },
+      { char: 't', to: 't', type: 'same', note: 'Same' },
+      { char: 'a', to: 'a', type: 'same', note: 'Same' },
+      { char: 'r', to: 'r', type: 'same', note: 'Same' },
+      { char: 't', to: 't', type: 'same', note: 'Same' }
+    ]
+  },
+  {
+    id: 'asherah',
+    hasAdSite: true,
+    ascii: 'asherah',
+    unicode: 'ꜥAsherah',
+    greek: 'Ἀσερά',
+    pantheon: 'canaanite',
+    tier: '2',
+    tierLabel: 'Tier 2',
+    domain: 'Mother Goddess, Lady of the Sea',
+    meaning: 'Canaanite mother goddess, consort of Ēl and patroness of childbirth',
+    sources: ['KTU','Coogan','Smith','Day'],
+    variants: [
+      { unicode: 'Asherah', type: 'ascii', note: 'Plain ASCII fallback; loses the initial pharyngeal' },
+      { unicode: 'ʿAsherah', type: 'ideal', note: 'Semitic ʿayin (ʿ) is ideal but not registrable at the DNS root' },
+      { unicode: 'ꜥasherah', type: 'owned', note: 'Lowercase owned form' }
+    ],
+    etymology: {
+      protoForm: '*ʾaṯiratu / *ʿaṯiratu',
+      protoLanguage: 'proto-afro-asiatic',
+      protoGloss: 'she who treads/crosses, Lady of the Sea',
+      derivation: 'From Ugaritic ʾaṯrt; the initial consonant is rendered with Egyptian Ain (ꜥ) as the only registrable Unicode substitute',
+      certainty: 'disputed',
+      cognates: [
+        { language: 'Hebrew', form: 'אֲשֵׁרָה (ʾĂšērāh)', relationship: 'cognate' },
+        { language: 'Phoenician', form: '𐤀𐤔𐤓𐤕 (ʾšrt)', relationship: 'cognate' },
+        { language: 'Arabic', form: 'أَثِيرَة (ʾaṯīrah)', relationship: 'uncertain' }
+      ]
+    },
+    breakdown: [
+      { char: 'a', to: 'ꜥA', type: 'special', note: 'Egyptian Ain (ꜥ) stands in for Semitic ʿayin at the start of the name, followed by the capital alpha present in the Unicode restoration' },
+      { char: 's', to: 's', type: 'same', note: 'Same' },
+      { char: 'h', to: 'h', type: 'same', note: 'Same' },
+      { char: 'e', to: 'e', type: 'same', note: 'Same' },
+      { char: 'r', to: 'r', type: 'same', note: 'Same' },
+      { char: 'a', to: 'a', type: 'same', note: 'Same' },
+      { char: 'h', to: 'h', type: 'same', note: 'Same' }
+    ]
   }
 ];
 

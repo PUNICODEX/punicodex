@@ -7,13 +7,15 @@ module.exports = (req, res) => {
 
   try {
     const { status, pantheon, entryId, limit, offset } = req.query;
-    res.json(getSites({
-      status,
-      pantheon,
-      entryId,
-      limit: limit ? parseInt(limit, 10) : 50,
-      offset: offset ? parseInt(offset, 10) : 0
-    }));
+    res.json(
+      getSites({
+        status,
+        pantheon,
+        entryId,
+        limit: limit ? parseInt(limit, 10) : 50,
+        offset: offset ? parseInt(offset, 10) : 0,
+      })
+    );
   } catch (err) {
     handleError(res, err);
   }

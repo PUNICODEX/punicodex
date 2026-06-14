@@ -16,11 +16,13 @@ const db = new Database(getDbPath());
 db.pragma('journal_mode = WAL');
 
 async function main() {
-  const sites = db.prepare(`
+  const sites = db
+    .prepare(`
     SELECT * FROM indexed_sites
     WHERE status = 'active' AND tenant_front_url IS NOT NULL AND tenant_front_url != ''
     ORDER BY id
-  `).all();
+  `)
+    .all();
 
   console.log(`Refreshing keywords for ${sites.length} tenant sites...\n`);
 
@@ -42,7 +44,7 @@ async function main() {
   db.close();
 }
 
-main().catch(err => {
+main().catch((err) => {
   console.error(err);
   process.exit(1);
 });

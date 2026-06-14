@@ -3,8 +3,8 @@
  * Queries crt.sh for recent certificates and extracts xn-- (punycode) domains.
  */
 const Database = require('better-sqlite3');
-const path = require('path');
-const { URL } = require('url');
+const path = require('node:path');
+const { URL } = require('node:url');
 
 const DB_PATH = path.join(__dirname, '..', 'db', 'punycodex.db');
 const db = new Database(DB_PATH);
@@ -30,11 +30,7 @@ const isIndexed = db.prepare('SELECT 1 FROM indexed_sites WHERE punycode = ? LIM
 const isQueued = db.prepare('SELECT 1 FROM crawl_queue WHERE punycode = ? LIMIT 1');
 
 async function discoverFromCtLogs(options = {}) {
-  const {
-    days = 1,
-    concurrency = 5,
-    maxDomains = 1000
-  } = options;
+  const { days = 1, concurrency: _concurrency = 5, maxDomains = 1000 } = options;
 
   console.log(`🔍 Discovering Unicode domains from CT logs (last ${days} days)...\n`);
 
@@ -45,7 +41,7 @@ async function discoverFromCtLogs(options = {}) {
   // We use a broad query and filter for xn-- domains
   const afterDate = new Date();
   afterDate.setDate(afterDate.getDate() - days);
-  const afterStr = afterDate.toISOString().split('T')[0].replace(/-/g, '');
+  const _afterStr = afterDate.toISOString().split('T')[0].replace(/-/g, '');
 
   const urls = [
     `https://crt.sh/?q=%25.com&exclude=expired&deduplicate=Y&output=json`,
@@ -68,8 +64,8 @@ async function discoverFromCtLogs(options = {}) {
         const timeout = setTimeout(() => controller.abort(), 120000);
 
         const resp = await fetch(url, {
-          headers: { 'Accept': 'application/json', 'User-Agent': 'PUNYCODEX-Discovery/1.0' },
-          signal: controller.signal
+          headers: { Accept: 'application/json', 'User-Agent': 'PUNYCODEX-Discovery/1.0' },
+          signal: controller.signal,
         });
 
         clearTimeout(timeout);
@@ -79,7 +75,7 @@ async function discoverFromCtLogs(options = {}) {
             retries--;
             if (retries > 0) {
               const delay = (4 - retries) * 5000;
-              console.log(`    ⚠️ HTTP ${resp.status}, retrying in ${delay/1000}s...`);
+              console.log(`    ⚠️ HTTP ${resp.status}, retrying in ${delay / 1000}s...`);
               await sleep(delay);
               continue;
             }
@@ -92,76 +88,87 @@ async function discoverFromCtLogs(options = {}) {
         console.log(`    📄 ${entries.length} certificate entries`);
         success = true;
 
-      for (const entry of entries) {
-        // Extract domain names from certificate
-        const names = [];
-        if (entry.name_value) {
-          names.push(...entry.name_value.split('\n').map(n => n.trim()).filter(Boolean));
-        }
-        if (entry.common_name && !names.includes(entry.common_name)) {
-          names.push(entry.common_name);
-        }
-
-        for (const name of names) {
-          // Filter for Unicode/punycode domains
-          const cleanName = name.toLowerCase().replace(/^\*\./, '').replace(/^www\./, '');
-          
-          // Skip if already seen
-          if (seen.has(cleanName)) continue;
-          seen.add(cleanName);
-
-          // Check if it's a punycode domain
-          let punycode = null;
-          let unicode = null;
-
-          if (cleanName.startsWith('xn--')) {
-            punycode = cleanName;
-            try { unicode = new URL(`http://${cleanName}`).hostname; } catch { unicode = cleanName; }
-          } else {
-            // Check if ASCII version is different (Unicode domain)
-            try {
-              const ascii = new URL(`http://${cleanName}`).hostname;
-              if (ascii !== cleanName) {
-                punycode = ascii;
-                unicode = cleanName;
-              }
-            } catch {
-              // Invalid URL, skip
-              continue;
-            }
+        for (const entry of entries) {
+          // Extract domain names from certificate
+          const names = [];
+          if (entry.name_value) {
+            names.push(
+              ...entry.name_value
+                .split('\n')
+                .map((n) => n.trim())
+                .filter(Boolean)
+            );
+          }
+          if (entry.common_name && !names.includes(entry.common_name)) {
+            names.push(entry.common_name);
           }
 
-          if (!punycode || !punycode.startsWith('xn--')) continue;
+          for (const name of names) {
+            // Filter for Unicode/punycode domains
+            const cleanName = name
+              .toLowerCase()
+              .replace(/^\*\./, '')
+              .replace(/^www\./, '');
 
-          // Skip if already indexed or queued
-          if (isIndexed.get(punycode)) continue;
-          if (isQueued.get(punycode)) continue;
+            // Skip if already seen
+            if (seen.has(cleanName)) continue;
+            seen.add(cleanName);
 
-          // Skip subdomains (keep only apex)
-          const apex = punycode.split('.').slice(-2).join('.');
-          if (apex !== punycode) continue;
+            // Check if it's a punycode domain
+            let punycode = null;
+            let unicode = null;
 
-          discovered.push({
-            domain: unicode || punycode,
-            punycode,
-            ctLogId: String(entry.id || ''),
-            issuer: entry.issuer_name || ''
-          });
+            if (cleanName.startsWith('xn--')) {
+              punycode = cleanName;
+              try {
+                unicode = new URL(`http://${cleanName}`).hostname;
+              } catch {
+                unicode = cleanName;
+              }
+            } else {
+              // Check if ASCII version is different (Unicode domain)
+              try {
+                const ascii = new URL(`http://${cleanName}`).hostname;
+                if (ascii !== cleanName) {
+                  punycode = ascii;
+                  unicode = cleanName;
+                }
+              } catch {
+                // Invalid URL, skip
+                continue;
+              }
+            }
+
+            if (!punycode?.startsWith('xn--')) continue;
+
+            // Skip if already indexed or queued
+            if (isIndexed.get(punycode)) continue;
+            if (isQueued.get(punycode)) continue;
+
+            // Skip subdomains (keep only apex)
+            const apex = punycode.split('.').slice(-2).join('.');
+            if (apex !== punycode) continue;
+
+            discovered.push({
+              domain: unicode || punycode,
+              punycode,
+              ctLogId: String(entry.id || ''),
+              issuer: entry.issuer_name || '',
+            });
+
+            if (discovered.length >= maxDomains) break;
+          }
 
           if (discovered.length >= maxDomains) break;
         }
 
-        if (discovered.length >= maxDomains) break;
-      }
-
-      // Rate limit between requests
-      await sleep(5000);
-
+        // Rate limit between requests
+        await sleep(5000);
       } catch (e) {
         retries--;
         if (retries > 0) {
           const delay = (4 - retries) * 5000;
-          console.log(`    ⚠️ Error: ${e.message}, retrying in ${delay/1000}s...`);
+          console.log(`    ⚠️ Error: ${e.message}, retrying in ${delay / 1000}s...`);
           await sleep(delay);
         } else {
           console.log(`    ⚠️ Error: ${e.message}, skipping`);
@@ -184,7 +191,7 @@ async function discoverFromCtLogs(options = {}) {
 
         const result = insertQueue.run(d.domain, d.punycode, 0);
         if (result.changes > 0) addedQueue++;
-      } catch (e) {
+      } catch (_e) {
         // Duplicate or error, skip
       }
     }
@@ -193,14 +200,16 @@ async function discoverFromCtLogs(options = {}) {
   txn(discovered);
 
   console.log(`📥 Stored: ${addedDiscovered} discovered, ${addedQueue} queued for crawling`);
-  console.log(`📊 Queue status: ${db.prepare("SELECT COUNT(*) as c FROM crawl_queue WHERE status = 'pending'").get().c} pending`);
+  console.log(
+    `📊 Queue status: ${db.prepare("SELECT COUNT(*) as c FROM crawl_queue WHERE status = 'pending'").get().c} pending`
+  );
 
   db.close();
   return { discovered: discovered.length, addedDiscovered, addedQueue };
 }
 
 function sleep(ms) {
-  return new Promise(r => setTimeout(r, ms));
+  return new Promise((r) => setTimeout(r, ms));
 }
 
 // Run if called directly
@@ -209,11 +218,11 @@ if (require.main === module) {
   const maxDomains = parseInt(process.argv[3], 10) || 1000;
 
   discoverFromCtLogs({ days, maxDomains })
-    .then(stats => {
+    .then((_stats) => {
       console.log('\nDone.');
       process.exit(0);
     })
-    .catch(err => {
+    .catch((err) => {
       console.error('Discovery failed:', err);
       process.exit(1);
     });

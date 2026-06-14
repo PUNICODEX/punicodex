@@ -11,10 +11,13 @@ const columns = [
   { name: 'ai_etymology_narrative', def: 'TEXT' },
   { name: 'ai_relevance_today', def: 'TEXT' },
   { name: 'ai_enriched_at', def: 'TEXT' },
-  { name: 'ai_review_status', def: 'TEXT DEFAULT \'pending\'' },
+  { name: 'ai_review_status', def: "TEXT DEFAULT 'pending'" },
 ];
 
-const existing = db.prepare('PRAGMA table_info(entries)').all().map(c => c.name);
+const existing = db
+  .prepare('PRAGMA table_info(entries)')
+  .all()
+  .map((c) => c.name);
 
 for (const col of columns) {
   if (!existing.includes(col.name)) {

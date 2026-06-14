@@ -3,7 +3,7 @@
  * The illuminated manuscript panel. Reveals philology from the Canon.
  */
 
-const Sidebar = (function() {
+const _Sidebar = (function () {
   const sidebar = document.getElementById('domainSidebar');
   const content = document.getElementById('sidebarContent');
   const btnSidebar = document.getElementById('btnSidebar');
@@ -48,7 +48,8 @@ const Sidebar = (function() {
   }
 
   function clear() {
-    content.innerHTML = '<div class="sidebar-empty">Navigate to a sanctified Unicode domain to reveal its record.</div>';
+    content.innerHTML =
+      '<div class="sidebar-empty">Navigate to a sanctified Unicode domain to reveal its record.</div>';
     showPanel('oracle');
     close();
   }
@@ -64,18 +65,29 @@ const Sidebar = (function() {
       try {
         const local = await window.punycodex.lexiconEntry(entry.id);
         if (local) fullEntry = { ...entry, ...local };
-      } catch (e) { /* use passed entry */ }
+      } catch (_e) {
+        /* use passed entry */
+      }
     }
 
     // Try to enrich with server data (site info, availability)
     try {
-      const apiRes = await window.punycodex.apiGet(`/api/entry/${encodeURIComponent(fullEntry.id)}`);
+      const apiRes = await window.punycodex.apiGet(
+        `/api/entry/${encodeURIComponent(fullEntry.id)}`
+      );
       if (apiRes.ok && apiRes.data) {
-        fullEntry = { ...fullEntry, site: apiRes.data.site, availability: apiRes.data.availability };
+        fullEntry = {
+          ...fullEntry,
+          site: apiRes.data.site,
+          availability: apiRes.data.availability,
+        };
       }
-    } catch (e) { /* server silent — local data is enough */ }
+    } catch (_e) {
+      /* server silent — local data is enough */
+    }
 
-    const tierClass = fullEntry.tier === 'dual' ? 'dual' : fullEntry.tier === '1' ? 'tier-1' : 'tier-2';
+    const tierClass =
+      fullEntry.tier === 'dual' ? 'dual' : fullEntry.tier === '1' ? 'tier-1' : 'tier-2';
     const hasSite = !!fullEntry.site;
     const isAvailable = !hasSite && !!fullEntry.availability;
 
@@ -129,13 +141,17 @@ const Sidebar = (function() {
           <table class="sb-breakdown">
             <thead><tr><th>Source</th><th>Restored</th><th>Feature</th></tr></thead>
             <tbody>
-              ${fullEntry.breakdown.map(b => `
+              ${fullEntry.breakdown
+                .map(
+                  (b) => `
                 <tr>
                   <td class="sb-bd-from">${escapeHtml(b.char)}</td>
                   <td class="sb-bd-to">${escapeHtml(b.to || '—')}</td>
                   <td><span class="sb-bd-type ${escapeHtml(b.type)}">${escapeHtml(b.type)}</span></td>
                 </tr>
-              `).join('')}
+              `
+                )
+                .join('')}
             </tbody>
           </table>
         </div>
@@ -148,7 +164,7 @@ const Sidebar = (function() {
         <div class="sb-section">
           <div class="sb-section-title">Sources</div>
           <div class="sb-sources">
-            ${fullEntry.sources.map(s => `<span class="sb-source">${escapeHtml(s)}</span>`).join('')}
+            ${fullEntry.sources.map((s) => `<span class="sb-source">${escapeHtml(s)}</span>`).join('')}
           </div>
         </div>
       `;
@@ -156,7 +172,7 @@ const Sidebar = (function() {
 
     // Mortal Translation (punycode)
     if (fullEntry.punycode || fullEntry.ascii) {
-      const domain = fullEntry.punycode || fullEntry.ascii + '.com';
+      const domain = fullEntry.punycode || `${fullEntry.ascii}.com`;
       html += `
         <div class="sb-section">
           <div class="sb-section-title">Mortal Translation</div>
@@ -167,7 +183,7 @@ const Sidebar = (function() {
 
     // Availability / Registrar links
     if (isAvailable && fullEntry.availability) {
-      const puny = fullEntry.punycode || fullEntry.ascii + '.com';
+      const _puny = fullEntry.punycode || `${fullEntry.ascii}.com`;
       const links = fullEntry.availability.registrar_links || {};
 
       html += `
@@ -206,7 +222,9 @@ const Sidebar = (function() {
     try {
       const d = new Date(iso);
       return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-    } catch { return iso; }
+    } catch {
+      return iso;
+    }
   }
 
   return { load, clear, open, close, showPanel };

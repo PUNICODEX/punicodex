@@ -5,7 +5,7 @@
  * Stores Float32Array embeddings as BLOB in SQLite.
  */
 const Database = require('better-sqlite3');
-const path = require('path');
+const path = require('node:path');
 
 const DB_PATH = path.join(__dirname, '..', 'db', 'punycodex.db');
 const MODEL = 'Xenova/all-MiniLM-L6-v2';
@@ -20,7 +20,9 @@ function deserializeEmbedding(buf) {
 }
 
 function cosineSimilarity(a, b) {
-  let dot = 0, normA = 0, normB = 0;
+  let dot = 0,
+    normA = 0,
+    normB = 0;
   for (let i = 0; i < a.length; i++) {
     dot += a[i] * b[i];
     normA += a[i] * a[i];
@@ -36,15 +38,17 @@ async function embedSites() {
   console.log(`🧠 Loading embedding model: ${MODEL}...`);
   const { pipeline } = require('@xenova/transformers');
   const embedder = await pipeline('feature-extraction', MODEL, {
-    quantized: true // Use quantized model for faster inference
+    quantized: true, // Use quantized model for faster inference
   });
   console.log('   Model loaded.\n');
 
-  const sites = db.prepare(`
+  const sites = db
+    .prepare(`
     SELECT s.id, s.domain, s.punycode, s.title, s.description, s.h1, s.first_p, s.content_snippet, s.content_hash
     FROM indexed_sites s
     WHERE s.status = 'active'
-  `).all();
+  `)
+    .all();
 
   console.log(`Embedding ${sites.length} sites...\n`);
 
@@ -66,13 +70,13 @@ async function embedSites() {
     const batch = sites.slice(i, i + BATCH_SIZE);
 
     // Build text for each site from all available fields
-    const texts = batch.map(site => {
+    const texts = batch.map((site) => {
       const parts = [
         site.title,
         site.description,
         site.h1,
         site.first_p,
-        site.content_snippet
+        site.content_snippet,
       ].filter(Boolean);
       const text = parts.join('. ').trim();
       // If still very short, include the domain name as context
@@ -103,26 +107,30 @@ async function embedSites() {
   console.log(`\n✅ Embedding complete: ${embedded} sites in ${totalTime.toFixed(1)}s`);
 
   // Quick sanity check: test similarity on a sample pair
-  const sample = db.prepare(`
+  const sample = db
+    .prepare(`
     SELECT e.site_id, s.punycode, e.embedding
     FROM embeddings e
     JOIN indexed_sites s ON e.site_id = s.id
     WHERE s.pantheon = 'greek'
     LIMIT 2
-  `).all();
+  `)
+    .all();
 
   if (sample.length === 2) {
     const a = deserializeEmbedding(sample[0].embedding);
     const b = deserializeEmbedding(sample[1].embedding);
     const sim = cosineSimilarity(a, b);
-    console.log(`   Sample similarity (${sample[0].punycode} ↔ ${sample[1].punycode}): ${sim.toFixed(3)}`);
+    console.log(
+      `   Sample similarity (${sample[0].punycode} ↔ ${sample[1].punycode}): ${sim.toFixed(3)}`
+    );
   }
 
   db.close();
 }
 
 if (require.main === module) {
-  embedSites().catch(err => {
+  embedSites().catch((err) => {
     console.error('Embedding failed:', err);
     process.exit(1);
   });

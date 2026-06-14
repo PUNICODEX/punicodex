@@ -1,6 +1,6 @@
 const Database = require('better-sqlite3');
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
 
 const DB_PATH = path.join(__dirname, 'punycodex.db');
 
@@ -62,7 +62,7 @@ db.exec(`
 // Read lexicon
 const lexiconPath = path.join(__dirname, '..', '..', 'type', 'js', 'lexicon.js');
 const content = fs.readFileSync(lexiconPath, 'utf8');
-const wrapped = content + '\nmodule.exports = LEXICON;';
+const wrapped = `${content}\nmodule.exports = LEXICON;`;
 const tmpPath = path.join(__dirname, '_temp_lexicon.js');
 fs.writeFileSync(tmpPath, wrapped);
 const lexicon = require(tmpPath);
@@ -86,17 +86,80 @@ const insertFts = db.prepare(`
 
 // Flagship IDs
 const flagshipIds = new Set([
-  'ab','aigyptos','akh','alfheimr','aphrodite','apollon','ares','artemis',
-  'asia','athena','athenai','atlas','delphoi','demeter','europe','gaia',
-  'hades','hekate','helheimr','helios','hephaistos','hera','hermes',
-  'hestia','jotunheimr','ker','kobe','kyoto','libye','maa','medousa',
-  'midgardr','muspellheimr','nike','odinn','olympos','osaka','persephone',
-  'pontos','poseidon','prometheus','ra','ragnarok','selene','shiva',
-  'sparte','thor','zeus',
-  'el','baal','anat','asherah','kronos','enlil','ishtar','typhon',
-  'chaos','dionysos','maat','sia','shu','tartaros',
-  'aether','astart','ba','enki','eros','ganesha','heka','horus','kali',
-  'prajapati','rta','vishnu'
+  'ab',
+  'aigyptos',
+  'akh',
+  'alfheimr',
+  'aphrodite',
+  'apollon',
+  'ares',
+  'artemis',
+  'asia',
+  'athena',
+  'athenai',
+  'atlas',
+  'delphoi',
+  'demeter',
+  'europe',
+  'gaia',
+  'hades',
+  'hekate',
+  'helheimr',
+  'helios',
+  'hephaistos',
+  'hera',
+  'hermes',
+  'hestia',
+  'jotunheimr',
+  'ker',
+  'kobe',
+  'kyoto',
+  'libye',
+  'maa',
+  'medousa',
+  'midgardr',
+  'muspellheimr',
+  'nike',
+  'odinn',
+  'olympos',
+  'osaka',
+  'persephone',
+  'pontos',
+  'poseidon',
+  'prometheus',
+  'ra',
+  'ragnarok',
+  'selene',
+  'shiva',
+  'sparte',
+  'thor',
+  'zeus',
+  'el',
+  'baal',
+  'anat',
+  'asherah',
+  'kronos',
+  'enlil',
+  'ishtar',
+  'typhon',
+  'chaos',
+  'dionysos',
+  'maat',
+  'sia',
+  'shu',
+  'tartaros',
+  'aether',
+  'astart',
+  'ba',
+  'enki',
+  'eros',
+  'ganesha',
+  'heka',
+  'horus',
+  'kali',
+  'prajapati',
+  'rta',
+  'vishnu',
 ]);
 
 const insertEntryTxn = db.transaction((entries) => {
@@ -128,13 +191,7 @@ const insertEntryTxn = db.transaction((entries) => {
 
     if (entry.breakdown) {
       for (const b of entry.breakdown) {
-        insertBreakdown.run(
-          entry.id,
-          b.char || null,
-          b.to || null,
-          b.type || null,
-          b.note || null
-        );
+        insertBreakdown.run(entry.id, b.char || null, b.to || null, b.type || null, b.note || null);
       }
     }
   }
@@ -160,7 +217,9 @@ db.exec(`
 console.log(`Database initialized at ${DB_PATH}`);
 console.log(`Entries: ${db.prepare('SELECT COUNT(*) as c FROM entries').get().c}`);
 console.log(`Breakdowns: ${db.prepare('SELECT COUNT(*) as c FROM breakdowns').get().c}`);
-console.log(`Pantheons: ${db.prepare('SELECT COUNT(DISTINCT pantheon) as c FROM entries').get().c}`);
+console.log(
+  `Pantheons: ${db.prepare('SELECT COUNT(DISTINCT pantheon) as c FROM entries').get().c}`
+);
 
 const stats = db.prepare('SELECT * FROM stats').all();
 console.log('\nPantheon breakdown:');

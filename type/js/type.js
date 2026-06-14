@@ -21,35 +21,10 @@
     };
 
     // ═══════════════════════════════════════════════════════════
-    // TRIE BUILDER (variant-aware)
+    // ENGINE
     // ═══════════════════════════════════════════════════════════
 
-    class TrieNode {
-        constructor() {
-            this.children = {};
-            this.isEnd = false;
-            this.entries = []; // All variant entries at this terminal
-        }
-    }
-
-    function buildTrie(lexicon) {
-        const root = new TrieNode();
-        lexicon.forEach(entry => {
-            const ascii = entry.ascii.toLowerCase();
-            let node = root;
-            for (const char of ascii) {
-                if (!node.children[char]) {
-                    node.children[char] = new TrieNode();
-                }
-                node = node.children[char];
-            }
-            node.isEnd = true;
-            node.entries.push(entry);
-        });
-        return root;
-    }
-
-    const trie = buildTrie(LEXICON);
+    const trie = PUNYCODEX_ENGINE.buildTrie(LEXICON);
 
     // ═══════════════════════════════════════════════════════════
     // DOM REFERENCES
@@ -142,84 +117,27 @@
     }
 
     // ═══════════════════════════════════════════════════════════
-    // NFC NORMALIZATION
+    // CORE LOGIC (delegates to PUNYCODEX_ENGINE)
     // ═══════════════════════════════════════════════════════════
 
     function nfc(str) {
-        return typeof str === 'string' ? str.normalize('NFC') : str;
-    }
-
-    // ═══════════════════════════════════════════════════════════
-    // CORE LOGIC
-    // ═══════════════════════════════════════════════════════════
-
-    function getNodeForPrefix(prefix) {
-        let node = trie;
-        for (const char of prefix.toLowerCase()) {
-            if (!node.children[char]) return null;
-            node = node.children[char];
-        }
-        return node;
-    }
-
-    function filterByPantheon(entries) {
-        if (activePantheon === 'all') return entries;
-        return entries.filter(e =>
-            e.pantheon === activePantheon ||
-            (activePantheon === 'greek-all' &&
-                (e.pantheon === 'greek' || e.pantheon === 'greek-location'))
-        );
+        return PUNYCODEX_ENGINE.nfc(str);
     }
 
     function getCompletions(prefix, limit = CONFIG.maxCompletions) {
-        const node = getNodeForPrefix(prefix);
-        if (!node) return [];
-
-        const entries = new Set();
-        function collect(n) {
-            for (const e of n.entries) entries.add(e);
-            for (const child of Object.values(n.children)) {
-                collect(child);
-            }
-        }
-        collect(node);
-
-        let results = Array.from(entries);
-        results = filterByPantheon(results);
-
-        // Rank: shorter names first, then alphabetical
-        results.sort((a, b) => {
-            const lenDiff = a.ascii.length - b.ascii.length;
-            if (lenDiff !== 0) return lenDiff;
-            return a.ascii.localeCompare(b.ascii);
-        });
-
-        return results.slice(0, limit);
+        return PUNYCODEX_ENGINE.getCompletions(trie, prefix, { limit, pantheonFilter: activePantheon });
     }
 
     function getValidNextChars(prefix) {
-        const completions = getCompletions(prefix, Infinity);
-        const nextChars = new Set();
-        completions.forEach(entry => {
-            const nextIndex = prefix.length;
-            if (nextIndex < entry.ascii.length) {
-                nextChars.add(entry.ascii[nextIndex].toLowerCase());
-            }
-        });
-        return Array.from(nextChars).sort();
+        return PUNYCODEX_ENGINE.getValidNextChars(trie, prefix, { pantheonFilter: activePantheon });
     }
 
     function findExactMatches(input) {
-        const node = getNodeForPrefix(input);
-        if (node && node.isEnd) {
-            return filterByPantheon(node.entries);
-        }
-        return [];
+        return PUNYCODEX_ENGINE.findExactMatches(trie, input, { pantheonFilter: activePantheon });
     }
 
     function findExactMatch(input) {
-        const matches = findExactMatches(input);
-        return matches.length > 0 ? matches[0] : null;
+        return PUNYCODEX_ENGINE.findExactMatch(trie, input, { pantheonFilter: activePantheon });
     }
 
     // ═══════════════════════════════════════════════════════════

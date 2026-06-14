@@ -3,16 +3,18 @@
  * Shows accepted scholarly spelling variants for the current domain.
  */
 
-const VariantBanner = (function() {
+const _VariantBanner = (function () {
   const banner = document.getElementById('variantBanner');
 
   function show(entry, variants) {
     const all = [entry, ...variants];
-    const pills = all.map(v => {
-      const isCurrent = v.id === entry.id;
-      const domain = (v.unicode || v.ascii).toLowerCase() + '.com';
-      return `<button class="vb-pill" data-domain="${escapeHtml(domain)}" ${isCurrent ? 'style="border-color:var(--gold);color:var(--gold);"' : ''}>${escapeHtml(v.unicode)}</button>`;
-    }).join(' · ');
+    const pills = all
+      .map((v) => {
+        const isCurrent = v.id === entry.id;
+        const domain = `${(v.unicode || v.ascii).toLowerCase()}.com`;
+        return `<button class="vb-pill" data-domain="${escapeHtml(domain)}" ${isCurrent ? 'style="border-color:var(--gold);color:var(--gold);"' : ''}>${escapeHtml(v.unicode)}</button>`;
+      })
+      .join(' · ');
 
     banner.innerHTML = `
       <span>This name has ${all.length} accepted scholarly spellings:</span>
@@ -20,9 +22,9 @@ const VariantBanner = (function() {
     `;
     banner.classList.remove('hidden');
 
-    banner.querySelectorAll('.vb-pill').forEach(btn => {
+    banner.querySelectorAll('.vb-pill').forEach((btn) => {
       btn.addEventListener('click', () => {
-        WebviewManager.navigate('https://' + btn.dataset.domain);
+        WebviewManager.navigate(`https://${btn.dataset.domain}`);
       });
     });
   }

@@ -11,20 +11,18 @@ const db = new Database(getDbPath());
 db.pragma('journal_mode = WAL');
 
 async function processQueue(options = {}) {
-  const {
-    batchSize = 10,
-    concurrency = 3,
-    maxErrors = 5
-  } = options;
+  const { batchSize = 10, concurrency = 3 } = options;
 
   console.log(`🕷️ Bulk Crawl Queue Processor\n`);
 
-  const pending = db.prepare(`
+  const pending = db
+    .prepare(`
     SELECT * FROM crawl_queue 
     WHERE status = 'pending' 
     ORDER BY priority DESC, discovery_date ASC
     LIMIT ?
-  `).all(batchSize);
+  `)
+    .all(batchSize);
 
   if (pending.length === 0) {
     console.log('Queue is empty. Nothing to crawl.');
@@ -58,7 +56,7 @@ async function processQueue(options = {}) {
   const worker = async () => {
     while (queue.length > 0) {
       const item = queue.shift();
-      
+
       try {
         // Skip invalid entries
         if (!item.punycode) {
@@ -89,16 +87,22 @@ async function processQueue(options = {}) {
         }
 
         // Quality scoring
-        const site = db.prepare('SELECT * FROM indexed_sites WHERE punycode = ?').get(item.punycode);
+        const site = db
+          .prepare('SELECT * FROM indexed_sites WHERE punycode = ?')
+          .get(item.punycode);
         if (site) {
           const scores = scoreQuality(site);
-          
+
           // Update site with scores
           const cq = scores.contentQuality;
           updateSiteSpam.run(
-            scores.spamScore, scores.qualityScore,
-            cq.flesch_reading_ease, cq.flesch_kincaid_grade,
-            cq.freshness_score, cq.readability_score, cq.simhash,
+            scores.spamScore,
+            scores.qualityScore,
+            cq.flesch_reading_ease,
+            cq.flesch_kincaid_grade,
+            cq.freshness_score,
+            cq.readability_score,
+            cq.simhash,
             item.punycode
           );
 
@@ -106,12 +110,18 @@ async function processQueue(options = {}) {
           updateQueue.run('crawled', null, scores.spamScore, scores.qualityScore, item.id);
 
           if (scores.spamScore >= 0.7) {
-            console.log(`    🚫 Spam (${(scores.spamScore * 100).toFixed(0)}%) — ${scores.reasons.join(', ')}`);
+            console.log(
+              `    🚫 Spam (${(scores.spamScore * 100).toFixed(0)}%) — ${scores.reasons.join(', ')}`
+            );
             spamCount++;
             // Mark site as spam
-            db.prepare("UPDATE indexed_sites SET status = 'spam' WHERE punycode = ?").run(item.punycode);
+            db.prepare("UPDATE indexed_sites SET status = 'spam' WHERE punycode = ?").run(
+              item.punycode
+            );
           } else if (scores.qualityScore < 0.2) {
-            console.log(`    ⚠️ Low quality (${(scores.qualityScore * 100).toFixed(0)}%) — ${scores.reasons.join(', ')}`);
+            console.log(
+              `    ⚠️ Low quality (${(scores.qualityScore * 100).toFixed(0)}%) — ${scores.reasons.join(', ')}`
+            );
             skipped++;
           } else {
             console.log(`    ✅ Crawled — Quality: ${(scores.qualityScore * 100).toFixed(0)}%`);
@@ -121,7 +131,6 @@ async function processQueue(options = {}) {
           updateQueue.run('crawled', null, 0, 0, item.id);
           crawled++;
         }
-
       } catch (e) {
         console.log(`    💥 Exception: ${e.message}`);
         updateQueue.run('error', e.message, 0, 0, item.id);
@@ -137,8 +146,12 @@ async function processQueue(options = {}) {
   console.log(`   Spam: ${spamCount}`);
   console.log(`   Low quality: ${skipped}`);
   console.log(`   Errors: ${errors}`);
-  console.log(`   Queue remaining: ${db.prepare("SELECT COUNT(*) as c FROM crawl_queue WHERE status = 'pending'").get().c} pending`);
-  console.log(`   Total indexed: ${db.prepare("SELECT COUNT(*) as c FROM indexed_sites WHERE status = 'active'").get().c} active`);
+  console.log(
+    `   Queue remaining: ${db.prepare("SELECT COUNT(*) as c FROM crawl_queue WHERE status = 'pending'").get().c} pending`
+  );
+  console.log(
+    `   Total indexed: ${db.prepare("SELECT COUNT(*) as c FROM indexed_sites WHERE status = 'active'").get().c} active`
+  );
 
   // Only close db when called directly (not from server)
   if (require.main === module) {
@@ -157,7 +170,7 @@ if (require.main === module) {
       console.log('\nDone.');
       process.exit(0);
     })
-    .catch(err => {
+    .catch((err) => {
       console.error('Bulk crawl failed:', err);
       process.exit(1);
     });

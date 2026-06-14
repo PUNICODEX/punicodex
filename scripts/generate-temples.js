@@ -6,9 +6,9 @@
  * Usage: node scripts/generate-temples.js
  */
 
-const fs = require('fs');
-const path = require('path');
-const { domainToASCII } = require('url');
+const fs = require('node:fs');
+const path = require('node:path');
+const { domainToASCII } = require('node:url');
 
 const { LEXICON } = require('../type/js/lexicon.js');
 const { SOURCE_CATALOG } = require('../type/js/source-catalog.js');
@@ -20,211 +20,317 @@ const { SOURCE_CATALOG } = require('../type/js/source-catalog.js');
 // overwritten by base-temple generation, even if a previous run left them
 // with a base-temple HTML comment/CSS link.
 function loadBuiltArchetypeIds() {
-    try {
-        const archetypePath = path.join(__dirname, '..', 'js', 'archetypes-v2.js');
-        const content = fs.readFileSync(archetypePath, 'utf8');
-        const ids = new Set();
-        const regex = /id:\s*"([^"]+)"/g;
-        let match;
-        while ((match = regex.exec(content)) !== null) {
-            // The built flag always follows the id within the same archetype object.
-            const idx = content.indexOf('built:', match.index);
-            if (idx !== -1) {
-                const builtLine = content.substring(idx, idx + 20);
-                if (builtLine.includes('true')) {
-                    ids.add(match[1]);
-                }
-            }
+  try {
+    const archetypePath = path.join(__dirname, '..', 'js', 'archetypes-v2.js');
+    const content = fs.readFileSync(archetypePath, 'utf8');
+    const ids = new Set();
+    const regex = /id:\s*"([^"]+)"/g;
+    let match;
+    while ((match = regex.exec(content)) !== null) {
+      // The built flag always follows the id within the same archetype object.
+      const idx = content.indexOf('built:', match.index);
+      if (idx !== -1) {
+        const builtLine = content.substring(idx, idx + 20);
+        if (builtLine.includes('true')) {
+          ids.add(match[1]);
         }
-        return ids;
-    } catch {
-        return new Set();
+      }
     }
+    return ids;
+  } catch {
+    return new Set();
+  }
 }
 const BUILT_ARCHETYPE_IDS = loadBuiltArchetypeIds();
 
 // ─── Pantheon Theming ───
 const PANTHEON_COLORS = {
-    greek:            { primary: '#D4AF37', primaryDim: '#8B7355', primaryBright: '#F0D878', secondary: '#4169E1' },
-    'greek-location': { primary: '#D4AF37', primaryDim: '#8B7355', primaryBright: '#F0D878', secondary: '#4169E1' },
-    norse:            { primary: '#C0C0C0', primaryDim: '#808080', primaryBright: '#E8E8E8', secondary: '#5C9BD1' },
-    egyptian:         { primary: '#D4AF37', primaryDim: '#8B7355', primaryBright: '#F0D878', secondary: '#1E3A5F' },
-    sanskrit:         { primary: '#FF9933', primaryDim: '#CC7A29', primaryBright: '#FFB366', secondary: '#8B0000' },
-    celtic:           { primary: '#228B22', primaryDim: '#1A6B1A', primaryBright: '#32CD32', secondary: '#B8D4E3' },
-    mesopotamian:     { primary: '#CD7F32', primaryDim: '#A06020', primaryBright: '#E09040', secondary: '#C2B280' },
-    polynesian:       { primary: '#1E90FF', primaryDim: '#1670CC', primaryBright: '#4DA6FF', secondary: '#FF7F50' },
-    japanese:         { primary: '#DC143C', primaryDim: '#A01030', primaryBright: '#FF3355', secondary: '#1A1A1A' },
-    nahuatl:          { primary: '#50C878', primaryDim: '#3A9E5A', primaryBright: '#6EE89A', secondary: '#2F2F2F' },
-    yoruba:           { primary: '#D4AF37', primaryDim: '#8B7355', primaryBright: '#F0D878', secondary: '#4B0082' },
-    slavic:           { primary: '#C0C0C0', primaryDim: '#808080', primaryBright: '#E8E8E8', secondary: '#228B22' },
-    zoroastrian:      { primary: '#FF4500', primaryDim: '#CC3700', primaryBright: '#FF6633', secondary: '#F5F5F5' },
-    incan:            { primary: '#D4AF37', primaryDim: '#8B7355', primaryBright: '#F0D878', secondary: '#DC143C' },
-    canaanite:        { primary: '#8B4513', primaryDim: '#5D2E0C', primaryBright: '#B87333', secondary: '#D4AF37' },
+  greek: {
+    primary: '#D4AF37',
+    primaryDim: '#8B7355',
+    primaryBright: '#F0D878',
+    secondary: '#4169E1',
+  },
+  'greek-location': {
+    primary: '#D4AF37',
+    primaryDim: '#8B7355',
+    primaryBright: '#F0D878',
+    secondary: '#4169E1',
+  },
+  norse: {
+    primary: '#C0C0C0',
+    primaryDim: '#808080',
+    primaryBright: '#E8E8E8',
+    secondary: '#5C9BD1',
+  },
+  egyptian: {
+    primary: '#D4AF37',
+    primaryDim: '#8B7355',
+    primaryBright: '#F0D878',
+    secondary: '#1E3A5F',
+  },
+  sanskrit: {
+    primary: '#FF9933',
+    primaryDim: '#CC7A29',
+    primaryBright: '#FFB366',
+    secondary: '#8B0000',
+  },
+  celtic: {
+    primary: '#228B22',
+    primaryDim: '#1A6B1A',
+    primaryBright: '#32CD32',
+    secondary: '#B8D4E3',
+  },
+  mesopotamian: {
+    primary: '#CD7F32',
+    primaryDim: '#A06020',
+    primaryBright: '#E09040',
+    secondary: '#C2B280',
+  },
+  polynesian: {
+    primary: '#1E90FF',
+    primaryDim: '#1670CC',
+    primaryBright: '#4DA6FF',
+    secondary: '#FF7F50',
+  },
+  japanese: {
+    primary: '#DC143C',
+    primaryDim: '#A01030',
+    primaryBright: '#FF3355',
+    secondary: '#1A1A1A',
+  },
+  nahuatl: {
+    primary: '#50C878',
+    primaryDim: '#3A9E5A',
+    primaryBright: '#6EE89A',
+    secondary: '#2F2F2F',
+  },
+  yoruba: {
+    primary: '#D4AF37',
+    primaryDim: '#8B7355',
+    primaryBright: '#F0D878',
+    secondary: '#4B0082',
+  },
+  slavic: {
+    primary: '#C0C0C0',
+    primaryDim: '#808080',
+    primaryBright: '#E8E8E8',
+    secondary: '#228B22',
+  },
+  zoroastrian: {
+    primary: '#FF4500',
+    primaryDim: '#CC3700',
+    primaryBright: '#FF6633',
+    secondary: '#F5F5F5',
+  },
+  incan: {
+    primary: '#D4AF37',
+    primaryDim: '#8B7355',
+    primaryBright: '#F0D878',
+    secondary: '#DC143C',
+  },
+  canaanite: {
+    primary: '#8B4513',
+    primaryDim: '#5D2E0C',
+    primaryBright: '#B87333',
+    secondary: '#D4AF37',
+  },
 };
 
 const PANTHEON_LABELS = {
-    greek: 'Greek',
-    'greek-location': 'Greek',
-    norse: 'Old Norse',
-    egyptian: 'Egyptian',
-    sanskrit: 'Sanskrit',
-    celtic: 'Celtic',
-    mesopotamian: 'Mesopotamian',
-    polynesian: 'Polynesian',
-    japanese: 'Japanese',
-    nahuatl: 'Nahuatl',
-    yoruba: 'Yoruba',
-    slavic: 'Slavic',
-    zoroastrian: 'Zoroastrian',
-    incan: 'Incan',
-    canaanite: 'Canaanite',
+  greek: 'Greek',
+  'greek-location': 'Greek',
+  norse: 'Old Norse',
+  egyptian: 'Egyptian',
+  sanskrit: 'Sanskrit',
+  celtic: 'Celtic',
+  mesopotamian: 'Mesopotamian',
+  polynesian: 'Polynesian',
+  japanese: 'Japanese',
+  nahuatl: 'Nahuatl',
+  yoruba: 'Yoruba',
+  slavic: 'Slavic',
+  zoroastrian: 'Zoroastrian',
+  incan: 'Incan',
+  canaanite: 'Canaanite',
 };
 
 // ─── Helpers ───
 
 function getColors(pantheon) {
-    return PANTHEON_COLORS[pantheon] || PANTHEON_COLORS.greek;
+  return PANTHEON_COLORS[pantheon] || PANTHEON_COLORS.greek;
 }
 
 function getPunycode(unicode) {
-    try {
-        const domain = `${unicode.toLowerCase()}.com`;
-        const encoded = domainToASCII(domain);
-        return encoded === domain ? null : encoded;
-    } catch {
-        return null;
-    }
+  try {
+    const domain = `${unicode.toLowerCase()}.com`;
+    const encoded = domainToASCII(domain);
+    return encoded === domain ? null : encoded;
+  } catch {
+    return null;
+  }
 }
 
 function getTierSubtype(entry) {
-    const hasStress = /[áéíóúÁÉÍÓÚàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛ]/.test(entry.unicode);
-    const hasLength = /[āēīōūĀĒĪŌŪ]/.test(entry.unicode);
+  const hasStress = /[áéíóúÁÉÍÓÚàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛ]/.test(entry.unicode);
+  const hasLength = /[āēīōūĀĒĪŌŪ]/.test(entry.unicode);
 
-    if (entry.tier === 'dual') return 'Dual-Tier';
-    if (entry.tier === '1') {
-        if (hasStress && hasLength) return 'Tier-1 Full';
-        if (hasStress) return 'Tier-1 Accent-Preserving';
-        if (hasLength) return 'Tier-1 Macron-Preserving';
-        return 'Tier-1';
-    }
-    if (entry.tier === '2') {
-        if (hasStress) return 'Tier-2 Accent-Preserving';
-        if (hasLength) return 'Tier-2 Macron-Preserving';
-        return 'Tier-2 Basic';
-    }
-    return entry.tierLabel;
+  if (entry.tier === 'dual') return 'Dual-Tier';
+  if (entry.tier === '1') {
+    if (hasStress && hasLength) return 'Tier-1 Full';
+    if (hasStress) return 'Tier-1 Accent-Preserving';
+    if (hasLength) return 'Tier-1 Macron-Preserving';
+    return 'Tier-1';
+  }
+  if (entry.tier === '2') {
+    if (hasStress) return 'Tier-2 Accent-Preserving';
+    if (hasLength) return 'Tier-2 Macron-Preserving';
+    return 'Tier-2 Basic';
+  }
+  return entry.tierLabel;
 }
 
 function getTierExplanation(entry, subtype) {
-    const original = entry.greek && entry.greek !== '—' ? entry.greek : entry.unicode;
-    const pantheonLabel = PANTHEON_LABELS[entry.pantheon] || 'Ancient';
+  const original = entry.greek && entry.greek !== '—' ? entry.greek : entry.unicode;
+  const pantheonLabel = PANTHEON_LABELS[entry.pantheon] || 'Ancient';
 
-    if (entry.tier === 'dual') {
-        return `The ${pantheonLabel} original <strong>${original}</strong> contains both stress (acute/circumflex) and at least one long vowel. Multiple historically valid Unicode spellings exist — each corresponds to a real, attested alternate restoration. The PUNYCODEX owns the canonical variants, making this a <strong>Dual-Tier</strong> pair.`;
+  if (entry.tier === 'dual') {
+    return `The ${pantheonLabel} original <strong>${original}</strong> contains both stress (acute/circumflex) and at least one long vowel. Multiple historically valid Unicode spellings exist — each corresponds to a real, attested alternate restoration. The PUNYCODEX owns the canonical variants, making this a <strong>Dual-Tier</strong> pair.`;
+  }
+  if (entry.tier === '1') {
+    const isGreek = entry.pantheon === 'greek' || entry.pantheon === 'greek-location';
+    const hasStress = /[áéíóúÁÉÍÓÚàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛ]/.test(entry.unicode);
+    const hasLength = /[āēīōūĀĒĪŌŪ]/.test(entry.unicode);
+
+    if (!isGreek) {
+      return `The ${pantheonLabel} name <strong>${original}</strong> is represented by its most canonical scholarly spelling. For non-Greek names, Tier-1 status reflects the definitive attested restoration rather than Greek-style stress/length features. This is the authoritative Unicode form — a <strong>single-tier Tier-1</strong> name.`;
     }
-    if (entry.tier === '1') {
-        return `The ${pantheonLabel} original <strong>${original}</strong> contains both stress AND at least one long vowel. However, there is only <strong>one</strong> historically valid Unicode restoration. The ASCII fallback is modern English, not ancient canonical. This is the full scholarly orthography — a <strong>single-tier Tier-1</strong> name.`;
+    if (hasStress && hasLength) {
+      return `The ${pantheonLabel} original <strong>${original}</strong> contains both stress AND at least one long vowel. However, there is only <strong>one</strong> historically valid Unicode restoration. The ASCII fallback is modern English, not ancient canonical. This is the full scholarly orthography — a <strong>single-tier Tier-1 Full</strong> name.`;
     }
-    if (entry.tier === '2') {
-        const feature = subtype.includes('Accent') ? 'stress (acute accent)' :
-                       subtype.includes('Macron') ? 'length (macron vowel)' :
-                       'no distinctive phonetic features';
-        return `The ${pantheonLabel} original <strong>${original}</strong> contains only <strong>${feature}</strong>. This makes it a <strong>single-tier Tier-2</strong> name. The Unicode restoration preserves what can be preserved — honoring the single feature that distinguishes it from plain ASCII.`;
+    if (hasStress) {
+      return `The ${pantheonLabel} original <strong>${original}</strong> preserves stress (acute/circumflex) in its Unicode restoration. There is only <strong>one</strong> historically valid spelling with this feature preserved. This is classified as a <strong>single-tier Tier-1 Accent-Preserving</strong> name.`;
     }
-    return '';
+    if (hasLength) {
+      return `The ${pantheonLabel} original <strong>${original}</strong> preserves vowel length (macron) in its Unicode restoration. There is only <strong>one</strong> historically valid spelling with this feature preserved. This is classified as a <strong>single-tier Tier-1 Macron-Preserving</strong> name.`;
+    }
+    return `The ${pantheonLabel} form <strong>${original}</strong> is classified as <strong>single-tier Tier-1</strong> in the PUNYCODEX collection. The Unicode restoration represents the scholarly convention for this name.`;
+  }
+  if (entry.tier === '2') {
+    if (subtype === 'Tier-2 Basic') {
+      return `The ${pantheonLabel} form <strong>${original}</strong> preserves neither stress nor length in this Unicode restoration. This makes it a <strong>single-tier Tier-2 Basic</strong> name — still a scholarly step above plain ASCII, but without the distinctive phonetic features that define higher tiers.`;
+    }
+    const feature = subtype.includes('Accent')
+      ? 'stress (acute accent)'
+      : subtype.includes('Macron')
+        ? 'length (macron vowel)'
+        : 'no distinctive phonetic features';
+    return `The ${pantheonLabel} original <strong>${original}</strong> contains only <strong>${feature}</strong>. This makes it a <strong>single-tier Tier-2</strong> name. The Unicode restoration preserves what can be preserved — honoring the single feature that distinguishes it from plain ASCII.`;
+  }
+  return '';
 }
 
 function getBreakdownTypeClass(type) {
-    const map = {
-        stress: 'breakdown-type--stress',
-        length: 'breakdown-type--length',
-        dual: 'breakdown-type--dual',
-        same: 'breakdown-type--same',
-        special: 'breakdown-type--special',
-        drop: 'breakdown-type--drop',
-    };
-    return map[type] || 'breakdown-type--same';
+  const map = {
+    stress: 'breakdown-type--stress',
+    length: 'breakdown-type--length',
+    dual: 'breakdown-type--dual',
+    same: 'breakdown-type--same',
+    special: 'breakdown-type--special',
+    drop: 'breakdown-type--drop',
+  };
+  return map[type] || 'breakdown-type--same';
 }
 
 function getBreakdownTypeLabel(type) {
-    const map = {
-        stress: 'Stress',
-        length: 'Length',
-        dual: 'Dual',
-        same: 'Same',
-        special: 'Special',
-        drop: 'Drop',
-    };
-    return map[type] || type;
+  const map = {
+    stress: 'Stress',
+    length: 'Length',
+    dual: 'Dual',
+    same: 'Same',
+    special: 'Special',
+    drop: 'Drop',
+  };
+  return map[type] || type;
 }
 
 function getRelatedEntries(entry, allEntries, limit = 6) {
-    return allEntries
-        .filter(e => e.id !== entry.id && e.pantheon === entry.pantheon)
-        .slice(0, limit);
+  return allEntries
+    .filter((e) => e.id !== entry.id && e.pantheon === entry.pantheon)
+    .slice(0, limit);
 }
 
 function escapeHtml(str) {
-    return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 }
 
 // ─── HTML Template ───
 
 function generateTempleHTML(entry, related) {
-    const colors = getColors(entry.pantheon);
-    const subtype = getTierSubtype(entry);
-    const punycode = getPunycode(entry.unicode);
-    const pantheonLabel = PANTHEON_LABELS[entry.pantheon] || 'Ancient';
-    const hasOriginal = entry.greek && entry.greek !== '—';
-    const isDual = entry.tier === 'dual';
+  const colors = getColors(entry.pantheon);
+  const subtype = getTierSubtype(entry);
+  const punycode = getPunycode(entry.unicode);
+  const pantheonLabel = PANTHEON_LABELS[entry.pantheon] || 'Ancient';
+  const hasOriginal = entry.greek && entry.greek !== '—';
+  const isDual = entry.tier === 'dual';
 
-    // Variants from lexicon
-    const hasVariants = entry.variants && entry.variants.length > 0;
-    const variantHtml = hasVariants
-        ? entry.variants.map(v => `<span class="variant-chip variant-${v.type}">${escapeHtml(v.unicode)}</span>`).join(' ')
-        : '';
+  // Variants from lexicon
+  const hasVariants = entry.variants && entry.variants.length > 0;
+  const variantHtml = hasVariants
+    ? entry.variants
+        .map((v) => `<span class="variant-chip variant-${v.type}">${escapeHtml(v.unicode)}</span>`)
+        .join(' ')
+    : '';
 
-    // Etymology section
-    const hasEtymology = entry.etymology && typeof entry.etymology === 'object';
-    const protoLabel = hasEtymology ? ({
+  // Etymology section
+  const hasEtymology = entry.etymology && typeof entry.etymology === 'object';
+  const protoLabel = hasEtymology
+    ? {
         'proto-indo-european': 'PIE',
         'proto-afro-asiatic': 'Afro-Asiatic',
         'proto-polynesian': 'Proto-Polynesian',
         'proto-uto-aztecan': 'Proto-Uto-Aztecan',
         'proto-sino-tibetan': 'Proto-Sino-Tibetan',
         'proto-mayan': 'Proto-Mayan',
-        'isolate': 'Language Isolate',
-        'unknown': 'Unknown'
-    }[entry.etymology.protoLanguage] || entry.etymology.protoLanguage) : '';
-    const cognateHtml = hasEtymology && entry.etymology.cognates && entry.etymology.cognates.length > 0
-        ? entry.etymology.cognates.slice(0, 3).map(c => {
-            const isInternal = LEXICON.some(e => e.id === c.id);
+        isolate: 'Language Isolate',
+        unknown: 'Unknown',
+      }[entry.etymology.protoLanguage] || entry.etymology.protoLanguage
+    : '';
+  const cognateHtml =
+    hasEtymology && entry.etymology.cognates && entry.etymology.cognates.length > 0
+      ? entry.etymology.cognates
+          .slice(0, 3)
+          .map((c) => {
+            const isInternal = LEXICON.some((e) => e.id === c.id);
             const tag = isInternal ? 'a' : 'span';
-            const href = isInternal ? ` href="https://punycodex.com/sites/${c.id}${c.hasAdSite ? '/lore/' : '/'}"` : '';
+            const href = isInternal
+              ? ` href="https://punycodex.com/sites/${c.id}${BUILT_ARCHETYPE_IDS.has(c.id) ? '/lore/' : '/'}"`
+              : '';
             return `<${tag}${href} class="cognate-card reveal-up">
                 <span class="cognate-lang">${escapeHtml(c.language)}</span>
                 <span class="cognate-form">${escapeHtml(c.form)}</span>
                 <span class="cognate-rel">${escapeHtml(c.relationship)}</span>
                 ${c.note ? `<span class="cognate-note">${escapeHtml(c.note)}</span>` : ''}
             </${tag}>`;
-        }).join('')
-        : '';
+          })
+          .join('')
+      : '';
 
-    // Meta
-    const pageTitle = `${entry.greek && hasOriginal ? entry.greek + ' — ' : ''}${entry.unicode} | ${entry.domain} | PUNYCODEX`;
-    const pageDesc = `Discover ${entry.unicode}.com — the authentic Unicode domain for ${hasOriginal ? entry.greek + ', ' : ''}${entry.domain}. Scholarly orthography, Punycode encoding, and sources: ${entry.sources.join(', ')}.`;
-    const canonicalUrl = `https://punycodex.com/sites/${entry.id}/`;
+  // Meta
+  const pageTitle = `${entry.greek && hasOriginal ? `${entry.greek} — ` : ''}${entry.unicode} | ${entry.domain} | PUNYCODEX`;
+  const pageDesc = `Discover ${entry.unicode}.com — the authentic Unicode domain for ${hasOriginal ? `${entry.greek}, ` : ''}${entry.domain}. Scholarly orthography, Punycode encoding, and sources: ${entry.sources.join(', ')}.`;
+  const canonicalUrl = `https://punycodex.com/sites/${entry.id}/`;
 
-    // Tier feature cards
-    const hasStress = entry.breakdown.some(b => b.type === 'stress');
-    const hasLength = entry.breakdown.some(b => b.type === 'length');
-    const hasBoth = hasStress && hasLength;
+  // Tier feature cards
+  const hasStress = entry.breakdown.some((b) => b.type === 'stress');
+  const hasLength = entry.breakdown.some((b) => b.type === 'length');
+  const hasBoth = hasStress && hasLength;
 
-    return `<!-- PUNYCODEX Base Temple — Auto-Generated by scripts/generate-temples.js -->
+  return `<!-- PUNYCODEX Base Temple — Auto-Generated by scripts/generate-temples.js -->
 <!-- Do not edit by hand. Regenerate with: node scripts/generate-temples.js -->
 <!DOCTYPE html>
 <html lang="en">
@@ -250,28 +356,32 @@ function generateTempleHTML(entry, related) {
     
     <!-- Schema.org -->
     <script type="application/ld+json">
-${JSON.stringify({
+${JSON.stringify(
+  {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
     name: `${entry.unicode} — ${entry.domain}`,
     description: pageDesc,
     url: canonicalUrl,
     about: {
-        '@type': 'Thing',
-        name: hasOriginal ? entry.greek : entry.unicode,
-        alternateName: [entry.ascii, entry.unicode],
-        description: entry.meaning,
+      '@type': 'Thing',
+      name: hasOriginal ? entry.greek : entry.unicode,
+      alternateName: [entry.ascii, entry.unicode],
+      description: entry.meaning,
     },
     isPartOf: {
-        '@type': 'WebSite',
-        name: 'PUNYCODEX',
-        url: 'https://punycodex.com',
+      '@type': 'WebSite',
+      name: 'PUNYCODEX',
+      url: 'https://punycodex.com',
     },
     primaryImageOfPage: {
-        '@type': 'ImageObject',
-        url: 'https://punycodex.com/assets/images/og-default.svg',
+      '@type': 'ImageObject',
+      url: 'https://punycodex.com/assets/images/og-default.svg',
     },
-}, null, 4)}
+  },
+  null,
+  4
+)}
     </script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -317,9 +427,11 @@ ${JSON.stringify({
                     <span class="title-divider"></span>
                     <span class="title-trans">${escapeHtml(entry.unicode)}</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">${escapeHtml(entry.domain)}${entry.meaning ? ' · ' + escapeHtml(entry.meaning) : ''}</p>
+                <p class="hero-subtitle reveal-up">${escapeHtml(entry.domain)}${entry.meaning ? ` · ${escapeHtml(entry.meaning)}` : ''}</p>
                 <div class="hero-meta reveal-up">
-                    ${isDual && entry.variants ? `
+                    ${
+                      isDual && entry.variants
+                        ? `
                     <div class="tier-bridge">
                         <span class="meta-badge tier-1">Tier-1 ${subtype.includes('Accent') ? 'Accent-Preserving' : 'Full'}</span>
                         <span class="tier-connector"></span>
@@ -328,11 +440,13 @@ ${JSON.stringify({
                     <div class="domain-bridge">
                         <span class="meta-domain">${entry.unicode.toLowerCase()}.com</span>
                         <span class="domain-connector">·</span>
-                        <span class="meta-domain-alt">${(entry.variants.find(v => v.type === 'owned' || v.type === 'alt-stress') || entry.variants[0]).unicode.toLowerCase()}.com</span>
-                    </div>` : `
+                        <span class="meta-domain-alt">${(entry.variants.find((v) => v.type === 'owned' || v.type === 'alt-stress') || entry.variants[0]).unicode.toLowerCase()}.com</span>
+                    </div>`
+                        : `
                     <span class="meta-badge">${escapeHtml(subtype)}</span>
                     <span class="meta-domain">${entry.unicode.toLowerCase()}.com</span>
-                    `}
+                    `
+                    }
                 </div>
                 <div class="hero-cta reveal-up">
                     <a href="https://punycodex.com/type/#${entry.id}" class="btn-primary">
@@ -408,25 +522,31 @@ ${JSON.stringify({
                 </div>
             </div>
 
-            ${hasVariants ? `
+            ${
+              hasVariants
+                ? `
             <div class="variants-panel reveal-up">
                 <div class="variants-panel-label">Valid Scholarly Variations</div>
                 <div class="variants-panel-list">${variantHtml}</div>
                 <p class="variants-panel-note">Each variant is an attested scholarly orthography. The <strong>owned</strong> form is the active domain; others are historically valid alternatives.</p>
             </div>
-            ` : ''}
+            `
+                : ''
+            }
 
             <div class="punycode-explainer reveal-up">
                 <div class="explainer-label">Punycode Encoding</div>
                 <div class="explainer-box">
-                    <code class="explainer-code">${entry.unicode.toLowerCase()}.com &rarr; ${punycode || entry.unicode.toLowerCase() + '.com'}</code>
+                    <code class="explainer-code">${entry.unicode.toLowerCase()}.com &rarr; ${punycode || `${entry.unicode.toLowerCase()}.com`}</code>
                     <p class="explainer-note">The non-ASCII characters in <strong>${escapeHtml(entry.unicode)}</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>${escapeHtml(entry.unicode)}</em>.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    ${hasEtymology ? `
+    ${
+      hasEtymology
+        ? `
     <!-- Etymology Section -->
     <section class="section section-etymology" id="etymology">
         <div class="container">
@@ -442,26 +562,40 @@ ${JSON.stringify({
                 ${entry.etymology.protoGloss ? `<span class="proto-gloss">"${escapeHtml(entry.etymology.protoGloss)}"</span>` : ''}
             </div>
 
-            ${entry.etymology.derivation ? `
+            ${
+              entry.etymology.derivation
+                ? `
             <div class="etymology-derivation reveal-up">
                 <p class="lead-text">${escapeHtml(entry.etymology.derivation)}</p>
             </div>
-            ` : ''}
+            `
+                : ''
+            }
 
-            ${cognateHtml ? `
+            ${
+              cognateHtml
+                ? `
             <div class="cognate-grid">
                 ${cognateHtml}
             </div>
-            ` : ''}
+            `
+                : ''
+            }
 
-            ${entry.etymology.certainty ? `
+            ${
+              entry.etymology.certainty
+                ? `
             <div class="etymology-certainty reveal-up">
                 <span class="certainty-badge certainty-${entry.etymology.certainty}">${escapeHtml(entry.etymology.certainty)}</span>
             </div>
-            ` : ''}
+            `
+                : ''
+            }
         </div>
     </section>
-    ` : ''}
+    `
+        : ''
+    }
 
     <!-- Breakdown Section -->
     <section class="section section-breakdown" id="breakdown">
@@ -485,7 +619,9 @@ ${JSON.stringify({
                         </tr>
                     </thead>
                     <tbody>
-                        ${entry.breakdown.map((step, i) => `
+                        ${entry.breakdown
+                          .map(
+                            (step, i) => `
                         <tr>
                             <td><span style="color:var(--primary-dim);font-family:var(--font-mono);">${String(i + 1).padStart(2, '0')}</span></td>
                             <td><span class="breakdown-char">${escapeHtml(step.char)}</span></td>
@@ -494,7 +630,9 @@ ${JSON.stringify({
                             <td><span class="breakdown-type ${getBreakdownTypeClass(step.type)}">${getBreakdownTypeLabel(step.type)}</span></td>
                             <td><span class="breakdown-note">${escapeHtml(step.note)}</span></td>
                         </tr>
-                        `).join('')}
+                        `
+                          )
+                          .join('')}
                     </tbody>
                 </table>
             </div>
@@ -545,13 +683,15 @@ ${JSON.stringify({
 
             <div class="sources-section reveal-up">
                 <div class="sources-list">
-                    ${entry.sources.map(src => {
+                    ${entry.sources
+                      .map((src) => {
                         const cat = SOURCE_CATALOG[src];
-                        if (cat && cat.url) {
-                            return `<a href="${cat.url}" target="_blank" rel="noopener" class="source-badge" title="${escapeHtml(cat.full)} (${cat.year})">${escapeHtml(src)}</a>`;
+                        if (cat?.url) {
+                          return `<a href="${cat.url}" target="_blank" rel="noopener" class="source-badge" title="${escapeHtml(cat.full)} (${cat.year})">${escapeHtml(src)}</a>`;
                         }
                         return `<span class="source-badge">${escapeHtml(src)}</span>`;
-                    }).join('')}
+                      })
+                      .join('')}
                 </div>
             </div>
         </div>
@@ -566,17 +706,20 @@ ${JSON.stringify({
                 <p class="section-subtitle">More from the ${pantheonLabel} pantheon</p>
             </div>
 
-            ${hasEtymology && entry.etymology.cognates && entry.etymology.cognates.length > 0 ? `
+            ${
+              hasEtymology && entry.etymology.cognates && entry.etymology.cognates.length > 0
+                ? `
             <div class="related-cognates-header reveal-up">
                 <h3 class="related-subtitle">Cognates & Related Forms</h3>
                 <p class="related-subtitle-desc">Names sharing etymological ancestry with <em>${escapeHtml(entry.unicode)}</em></p>
             </div>
             <div class="related-grid">
-                ${entry.etymology.cognates.map(c => {
-                    const cognateEntry = LEXICON.find(e => e.id === c.id);
+                ${entry.etymology.cognates
+                  .map((c) => {
+                    const cognateEntry = LEXICON.find((e) => e.id === c.id);
                     if (cognateEntry) {
-                        const cSubtype = getTierSubtype(cognateEntry);
-                        return `
+                      const cSubtype = getTierSubtype(cognateEntry);
+                      return `
                 <a href="https://punycodex.com/sites/${cognateEntry.id}${cognateEntry.hasAdSite ? '/lore/' : '/'}" class="related-card reveal-up">
                     <span class="related-name">${escapeHtml(cognateEntry.unicode)}</span>
                     <span class="related-greek">${cognateEntry.greek && cognateEntry.greek !== '—' ? escapeHtml(cognateEntry.greek) : ''}</span>
@@ -592,17 +735,23 @@ ${JSON.stringify({
                     <span class="related-domain">${escapeHtml(c.language)}</span>
                     <span class="related-tier">${escapeHtml(c.relationship)}</span>
                 </span>`;
-                }).join('')}
+                  })
+                  .join('')}
             </div>
-            ` : ''}
+            `
+                : ''
+            }
 
-            ${related.length > 0 ? `
+            ${
+              related.length > 0
+                ? `
             <div class="related-same-header reveal-up">
                 <h3 class="related-subtitle">Same Pantheon</h3>
                 <p class="related-subtitle-desc">More names from the ${pantheonLabel} tradition</p>
             </div>
             <div class="related-grid">
-                ${related.map(r => {
+                ${related
+                  .map((r) => {
                     const rSubtype = getTierSubtype(r);
                     return `
                 <a href="https://punycodex.com/sites/${r.id}${r.hasAdSite ? '/lore/' : '/'}" class="related-card reveal-up">
@@ -611,13 +760,16 @@ ${JSON.stringify({
                     <span class="related-domain">${escapeHtml(r.domain)}</span>
                     <span class="related-tier">${escapeHtml(rSubtype)}</span>
                 </a>`;
-                }).join('')}
+                  })
+                  .join('')}
             </div>
-            ` : `
+            `
+                : `
             <div class="tier-explanation reveal-up">
                 <p class="lead-text">Explore the full <a href="https://punycodex.com/lexicon/" style="color:var(--primary);">Lexicon</a> to discover more names from the ${pantheonLabel} tradition.</p>
             </div>
-            `}
+            `
+            }
         </div>
     </section>
 
@@ -679,78 +831,79 @@ ${JSON.stringify({
 // ─── Main ───
 
 function main() {
-    const rootDir = path.join(__dirname, '..');
-    const sitesDir = path.join(rootDir, 'sites');
+  const rootDir = path.join(__dirname, '..');
+  const sitesDir = path.join(rootDir, 'sites');
 
-    let generated = 0;
-    let skipped = 0;
-    const errors = [];
+  let generated = 0;
+  let skipped = 0;
+  const errors = [];
 
-    console.log('🏛️  PUNYCODEX Temple Generator');
-    console.log(`   Lexicon entries: ${LEXICON.length}`);
-    console.log('');
+  console.log('🏛️  PUNYCODEX Temple Generator');
+  console.log(`   Lexicon entries: ${LEXICON.length}`);
+  console.log('');
 
-    for (const entry of LEXICON) {
-        const dir = path.join(sitesDir, entry.id);
-        const indexPath = path.join(dir, 'index.html');
+  for (const entry of LEXICON) {
+    const dir = path.join(sitesDir, entry.id);
+    const indexPath = path.join(dir, 'index.html');
 
-        // Skip flagships (hand-crafted temples that don't reference shared assets)
-        if (BUILT_ARCHETYPE_IDS.has(entry.id)) {
-            skipped++;
-            continue;
-        }
-        if (fs.existsSync(indexPath)) {
-            const existing = fs.readFileSync(indexPath, 'utf8');
-            const isBaseTemple = existing.includes('temple-base.css') ||
-                                 existing.includes('PUNYCODEX Base Temple — Auto-Generated');
-            if (!isBaseTemple) {
-                skipped++;
-                continue;
-            }
-            // Overwrite existing base temples
-        }
-
-        try {
-            const related = getRelatedEntries(entry, LEXICON);
-            const html = generateTempleHTML(entry, related);
-
-            fs.mkdirSync(dir, { recursive: true });
-            fs.writeFileSync(indexPath, html, 'utf8');
-            generated++;
-
-            if (generated % 50 === 0) {
-                console.log(`   ✓ Generated ${generated} temples...`);
-            }
-        } catch (err) {
-            errors.push({ id: entry.id, error: err.message });
-            console.error(`   ✗ Error generating ${entry.id}:`, err.message);
-        }
+    // Skip flagships (hand-crafted temples that don't reference shared assets)
+    if (BUILT_ARCHETYPE_IDS.has(entry.id)) {
+      skipped++;
+      continue;
+    }
+    if (fs.existsSync(indexPath)) {
+      const existing = fs.readFileSync(indexPath, 'utf8');
+      const isBaseTemple =
+        existing.includes('temple-base.css') ||
+        existing.includes('PUNYCODEX Base Temple — Auto-Generated');
+      if (!isBaseTemple) {
+        skipped++;
+        continue;
+      }
+      // Overwrite existing base temples
     }
 
-    console.log('');
-    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-    console.log(`   Generated:  ${generated}`);
-    console.log(`   Skipped:    ${skipped} (flagships)`);
-    console.log(`   Errors:     ${errors.length}`);
-    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    try {
+      const related = getRelatedEntries(entry, LEXICON);
+      const html = generateTempleHTML(entry, related);
 
-    if (errors.length > 0) {
-        console.log('\nErrors:');
-        errors.forEach(e => console.log(`   - ${e.id}: ${e.error}`));
-        process.exit(1);
+      fs.mkdirSync(dir, { recursive: true });
+      fs.writeFileSync(indexPath, html, 'utf8');
+      generated++;
+
+      if (generated % 50 === 0) {
+        console.log(`   ✓ Generated ${generated} temples...`);
+      }
+    } catch (err) {
+      errors.push({ id: entry.id, error: err.message });
+      console.error(`   ✗ Error generating ${entry.id}:`, err.message);
     }
+  }
+
+  console.log('');
+  console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  console.log(`   Generated:  ${generated}`);
+  console.log(`   Skipped:    ${skipped} (flagships)`);
+  console.log(`   Errors:     ${errors.length}`);
+  console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+
+  if (errors.length > 0) {
+    console.log('\nErrors:');
+    errors.forEach((e) => console.log(`   - ${e.id}: ${e.error}`));
+    process.exit(1);
+  }
 }
 
 if (require.main === module) {
-    main();
+  main();
 }
 
 module.exports = {
-    generateTempleHTML,
-    getTierSubtype,
-    getRelatedEntries,
-    getPunycode,
-    PANTHEON_LABELS,
-    LEXICON,
-    SOURCE_CATALOG
+  generateTempleHTML,
+  getTierSubtype,
+  getRelatedEntries,
+  getPunycode,
+  PANTHEON_LABELS,
+  LEXICON,
+  SOURCE_CATALOG,
 };

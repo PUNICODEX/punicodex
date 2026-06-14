@@ -1,4 +1,8 @@
-const { getTrialsNeedingReminder, recordTrialReminder, setBillingStatus } = require('../api/bookings');
+const {
+  getTrialsNeedingReminder,
+  recordTrialReminder,
+  setBillingStatus,
+} = require('../api/bookings');
 const { notifyTrialEnding } = require('../api/email');
 
 function daysBetween(from, to) {
@@ -59,11 +63,11 @@ async function runTrialReminders() {
 
 if (require.main === module) {
   runTrialReminders()
-    .then(result => {
+    .then((result) => {
       console.log('Trial reminders:', result);
       process.exit(0);
     })
-    .catch(err => {
+    .catch((err) => {
       console.error('Trial reminder runner failed:', err);
       process.exit(1);
     });

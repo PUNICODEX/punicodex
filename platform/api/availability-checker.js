@@ -3,7 +3,7 @@
  * Fast, honest DNS + HTTP probes.
  */
 
-const dns = require('dns');
+const dns = require('node:dns');
 
 const DNS_TIMEOUT = 3000;
 const HTTP_TIMEOUT = 4000;
@@ -11,9 +11,7 @@ const HTTP_TIMEOUT = 4000;
 function withTimeout(promise, ms) {
   return Promise.race([
     promise,
-    new Promise((_, reject) =>
-      setTimeout(() => reject(new Error('TIMEOUT')), ms)
-    )
+    new Promise((_, reject) => setTimeout(() => reject(new Error('TIMEOUT')), ms)),
   ]);
 }
 
@@ -59,12 +57,24 @@ async function checkDomain(domain) {
       resolves = true;
       ip = lookup;
     } catch {
-      return { status: 'available', details: 'No DNS records', ip: null, httpStatus: null, checkedAt };
+      return {
+        status: 'available',
+        details: 'No DNS records',
+        ip: null,
+        httpStatus: null,
+        checkedAt,
+      };
     }
   }
 
   if (!resolves) {
-    return { status: 'available', details: 'No DNS records', ip: null, httpStatus: null, checkedAt };
+    return {
+      status: 'available',
+      details: 'No DNS records',
+      ip: null,
+      httpStatus: null,
+      checkedAt,
+    };
   }
 
   // Step 2: HTTP probe (https first, then http)
@@ -78,8 +88,8 @@ async function checkDomain(domain) {
         redirect: 'follow',
         headers: {
           'User-Agent': 'PUNYCODEX-AvailabilityChecker/1.0',
-          'Accept': 'text/html'
-        }
+          Accept: 'text/html',
+        },
       });
 
       clearTimeout(timer);
@@ -88,19 +98,40 @@ async function checkDomain(domain) {
       const isHtml = contentType.includes('text/html');
 
       if (response.status >= 200 && response.status < 400 && isHtml) {
-        return { status: 'live', details: `HTTP ${response.status}`, ip, httpStatus: response.status, protocol, checkedAt };
+        return {
+          status: 'live',
+          details: `HTTP ${response.status}`,
+          ip,
+          httpStatus: response.status,
+          protocol,
+          checkedAt,
+        };
       }
 
-      return { status: 'registered', details: `HTTP ${response.status} (${isHtml ? 'HTML' : 'non-HTML'})`, ip, httpStatus: response.status, protocol, checkedAt };
+      return {
+        status: 'registered',
+        details: `HTTP ${response.status} (${isHtml ? 'HTML' : 'non-HTML'})`,
+        ip,
+        httpStatus: response.status,
+        protocol,
+        checkedAt,
+      };
     } catch (fetchErr) {
       if (fetchErr.name === 'AbortError') continue;
-      if (fetchErr.message && fetchErr.message.includes('TIMEOUT')) continue;
+      if (fetchErr.message?.includes('TIMEOUT')) continue;
       // Try next protocol
       continue;
     }
   }
 
-  return { status: 'registered', details: 'DNS resolves, no HTTP', ip, httpStatus: null, protocol: null, checkedAt };
+  return {
+    status: 'registered',
+    details: 'DNS resolves, no HTTP',
+    ip,
+    httpStatus: null,
+    protocol: null,
+    checkedAt,
+  };
 }
 
 async function checkBulk(domains, concurrency = 10, onProgress = null) {

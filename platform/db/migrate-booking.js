@@ -1,6 +1,6 @@
 const Database = require('better-sqlite3');
-const path = require('path');
-const crypto = require('crypto');
+const path = require('node:path');
+const _crypto = require('node:crypto');
 
 const DB_PATH = path.join(__dirname, 'punycodex.db');
 const db = new Database(DB_PATH);
@@ -59,11 +59,17 @@ db.exec(`
 `);
 
 // Add meta customization columns (idempotent)
-try { db.exec(`ALTER TABLE bookings ADD COLUMN custom_heading TEXT`); } catch (e) {}
-try { db.exec(`ALTER TABLE bookings ADD COLUMN custom_subtitle TEXT`); } catch (e) {}
+try {
+  db.exec(`ALTER TABLE bookings ADD COLUMN custom_heading TEXT`);
+} catch (_e) {}
+try {
+  db.exec(`ALTER TABLE bookings ADD COLUMN custom_subtitle TEXT`);
+} catch (_e) {}
 
 // Add lease duration column (idempotent)
-try { db.exec(`ALTER TABLE bookings ADD COLUMN lease_months INTEGER DEFAULT 1`); } catch (e) {}
+try {
+  db.exec(`ALTER TABLE bookings ADD COLUMN lease_months INTEGER DEFAULT 1`);
+} catch (_e) {}
 
 // Create analytics_events table
 db.exec(`
@@ -129,9 +135,13 @@ db.exec(`
 `);
 
 // Seed bundle_members for Total Conquest (slot 13 → slots 1-12) if not present
-const bundleCount = db.prepare('SELECT COUNT(*) as c FROM bundle_members WHERE bundle_slot_id = 13').get().c;
+const bundleCount = db
+  .prepare('SELECT COUNT(*) as c FROM bundle_members WHERE bundle_slot_id = 13')
+  .get().c;
 if (bundleCount === 0) {
-  const insertBundle = db.prepare('INSERT INTO bundle_members (bundle_slot_id, member_slot_id) VALUES (?, ?)');
+  const insertBundle = db.prepare(
+    'INSERT INTO bundle_members (bundle_slot_id, member_slot_id) VALUES (?, ?)'
+  );
   for (let i = 1; i <= 12; i++) {
     insertBundle.run(13, i);
   }

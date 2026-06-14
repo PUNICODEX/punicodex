@@ -10,8 +10,8 @@
  */
 
 const Database = require('better-sqlite3');
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const _path = require('node:path');
 const { getDbPath } = require('../db/db');
 
 function getDb() {
@@ -38,12 +38,17 @@ function hasLength(str) {
 
 function safeJsonParse(str) {
   if (!str) return null;
-  try { return JSON.parse(str); } catch (e) { return null; }
+  try {
+    return JSON.parse(str);
+  } catch (_e) {
+    return null;
+  }
 }
 
 function scoreSources(entry) {
   const parsed = safeJsonParse(entry.sources);
-  if (!Array.isArray(parsed) || parsed.length === 0) return { score: 0, issues: ['missing_sources'] };
+  if (!Array.isArray(parsed) || parsed.length === 0)
+    return { score: 0, issues: ['missing_sources'] };
   let score = 10;
   if (parsed.length >= 2) score += 5;
   if (parsed.length >= 3) score += 5;
@@ -140,13 +145,15 @@ function scoreVariants(entry) {
 }
 
 function scoreAssets(entry, db) {
-  const site = db.prepare(`
+  const site = db
+    .prepare(`
     SELECT id, favicon_path, og_image_path
     FROM indexed_sites
     WHERE lexicon_entry_id = ? AND status = 'active'
     ORDER BY is_flagship DESC
     LIMIT 1
-  `).get(entry.id);
+  `)
+    .get(entry.id);
 
   if (!site) {
     return { score: 5, issues: [] };
@@ -190,7 +197,7 @@ function scoreEntry(entry, db) {
     ...s4.issues,
     ...s5.issues,
     ...s6.issues,
-    ...s7.issues
+    ...s7.issues,
   ];
 
   return { score: total, issues };
@@ -205,7 +212,7 @@ function suggestTierRule(entry) {
   const long = hasLength(entry.unicode);
   const hasBoth = stressed && long;
 
-  const suggestedTier = hasBoth ? 'dual' : (stressed || long) ? '1' : '2';
+  const suggestedTier = hasBoth ? 'dual' : stressed || long ? '1' : '2';
   if (suggestedTier === entry.tier) return null;
 
   return {
@@ -215,7 +222,7 @@ function suggestTierRule(entry) {
     current_value: entry.tier,
     suggested_value: suggestedTier,
     confidence: hasBoth ? 0.9 : 0.75,
-    issue: `Unicode has ${stressed ? 'stress' : 'no stress'} and ${long ? 'length' : 'no length'}; tier should be ${suggestedTier}.`
+    issue: `Unicode has ${stressed ? 'stress' : 'no stress'} and ${long ? 'length' : 'no length'}; tier should be ${suggestedTier}.`,
   };
 }
 
@@ -229,7 +236,7 @@ function suggestTierLabel(entry) {
     current_value: entry.tier_label,
     suggested_value: expected,
     confidence: 0.95,
-    issue: 'tier_label does not match tier.'
+    issue: 'tier_label does not match tier.',
   };
 }
 
@@ -245,7 +252,7 @@ function suggestMissingVariants(entry) {
       current_value: entry.variants,
       suggested_value: null,
       confidence: 0.8,
-      issue: `Dual-tier entry has only ${count} variant(s); at least 2 are expected.`
+      issue: `Dual-tier entry has only ${count} variant(s); at least 2 are expected.`,
     };
   }
   if (count > 0) return null;
@@ -254,9 +261,11 @@ function suggestMissingVariants(entry) {
     type: 'missing_variants',
     field: 'variants',
     current_value: null,
-    suggested_value: JSON.stringify([{ unicode: entry.ascii, type: 'ascii', note: 'Modern English' }]),
+    suggested_value: JSON.stringify([
+      { unicode: entry.ascii, type: 'ascii', note: 'Modern English' },
+    ]),
     confidence: 0.7,
-    issue: 'No variants recorded; consider adding at least an ASCII fallback.'
+    issue: 'No variants recorded; consider adding at least an ASCII fallback.',
   };
 }
 
@@ -269,7 +278,7 @@ function suggestEtymology(entry) {
     current_value: null,
     suggested_value: null,
     confidence: 0.6,
-    issue: 'No etymology recorded.'
+    issue: 'No etymology recorded.',
   };
 }
 
@@ -283,7 +292,7 @@ function suggestSources(entry) {
     current_value: entry.sources,
     suggested_value: JSON.stringify(['LSJ']),
     confidence: 0.5,
-    issue: 'No scholarly sources listed.'
+    issue: 'No scholarly sources listed.',
   };
 }
 
@@ -296,7 +305,7 @@ function suggestMeaningDomain(entry) {
     current_value: JSON.stringify({ meaning: entry.meaning, domain: entry.domain }),
     suggested_value: null,
     confidence: 0.55,
-    issue: `Missing ${!entry.meaning && !entry.domain ? 'meaning and domain' : !entry.meaning ? 'meaning' : 'domain'}.`
+    issue: `Missing ${!entry.meaning && !entry.domain ? 'meaning and domain' : !entry.meaning ? 'meaning' : 'domain'}.`,
   };
 }
 
@@ -313,7 +322,7 @@ function suggestNormalization(entry) {
       current_value: entry.unicode,
       suggested_value: nfc,
       confidence: 0.95,
-      issue: 'Unicode form is not NFC normalized.'
+      issue: 'Unicode form is not NFC normalized.',
     };
   }
   return null;
@@ -334,7 +343,7 @@ function detectDuplicate(entries) {
         current_value: e.unicode,
         suggested_value: seenUnicode.get(u),
         confidence: 0.85,
-        issue: `Duplicate Unicode form with entry ${seenUnicode.get(u)}.`
+        issue: `Duplicate Unicode form with entry ${seenUnicode.get(u)}.`,
       });
     }
     if (a && seenAscii.has(a) && seenAscii.get(a) !== e.id) {
@@ -345,7 +354,7 @@ function detectDuplicate(entries) {
         current_value: e.ascii,
         suggested_value: seenAscii.get(a),
         confidence: 0.85,
-        issue: `Duplicate ASCII form with entry ${seenAscii.get(a)}.`
+        issue: `Duplicate ASCII form with entry ${seenAscii.get(a)}.`,
       });
     }
     if (u) seenUnicode.set(u, e.id);
@@ -363,7 +372,7 @@ function generateSuggestionsForEntry(entry) {
     suggestEtymology,
     suggestSources,
     suggestMeaningDomain,
-    suggestNormalization
+    suggestNormalization,
   ];
   for (const fn of fns) {
     const s = fn(entry);
@@ -387,7 +396,15 @@ function upsertSuggestions(db, suggestions) {
     for (const s of rows) {
       const existing = check.get(s.entry_id, s.type, s.field || '');
       if (existing) continue;
-      insert.run(s.entry_id, s.type, s.field || '', s.current_value, s.suggested_value, s.confidence, s.issue);
+      insert.run(
+        s.entry_id,
+        s.type,
+        s.field || '',
+        s.current_value,
+        s.suggested_value,
+        s.confidence,
+        s.issue
+      );
       added++;
     }
   });
@@ -399,9 +416,21 @@ function runCurator({ dryRun = false, reportPath = null, limit = 50 } = {}) {
   const db = getDb();
 
   // Ensure columns exist.
-  try { db.exec(`ALTER TABLE entries ADD COLUMN confidence_score REAL DEFAULT 0`); } catch (e) { /* exists */ }
-  try { db.exec(`ALTER TABLE entries ADD COLUMN ai_issues TEXT`); } catch (e) { /* exists */ }
-  try { db.exec(`ALTER TABLE entries ADD COLUMN ai_reviewed_at TEXT`); } catch (e) { /* exists */ }
+  try {
+    db.exec(`ALTER TABLE entries ADD COLUMN confidence_score REAL DEFAULT 0`);
+  } catch (_e) {
+    /* exists */
+  }
+  try {
+    db.exec(`ALTER TABLE entries ADD COLUMN ai_issues TEXT`);
+  } catch (_e) {
+    /* exists */
+  }
+  try {
+    db.exec(`ALTER TABLE entries ADD COLUMN ai_reviewed_at TEXT`);
+  } catch (_e) {
+    /* exists */
+  }
 
   const entries = db.prepare('SELECT * FROM entries').all();
   const scored = [];
@@ -430,7 +459,7 @@ function runCurator({ dryRun = false, reportPath = null, limit = 50 } = {}) {
   }
 
   const weakest = scored
-    .filter(e => e.score < 70)
+    .filter((e) => e.score < 70)
     .sort((a, b) => a.score - b.score)
     .slice(0, limit);
 
@@ -438,18 +467,20 @@ function runCurator({ dryRun = false, reportPath = null, limit = 50 } = {}) {
     const report = {
       generatedAt: new Date().toISOString(),
       totalEntries: scored.length,
-      averageScore: parseFloat((scored.reduce((a, b) => a + b.score, 0) / scored.length).toFixed(2)),
-      below70: scored.filter(e => e.score < 70).length,
+      averageScore: parseFloat(
+        (scored.reduce((a, b) => a + b.score, 0) / scored.length).toFixed(2)
+      ),
+      below70: scored.filter((e) => e.score < 70).length,
       suggestionsAdded: added,
-      weakest: weakest.map(e => ({
+      weakest: weakest.map((e) => ({
         id: e.id,
         ascii: e.ascii,
         unicode: e.unicode,
         pantheon: e.pantheon,
         tier: e.tier,
         score: e.score,
-        issues: e.issues
-      }))
+        issues: e.issues,
+      })),
     };
     fs.writeFileSync(reportPath, JSON.stringify(report, null, 2));
     console.log(`\nReport written to ${reportPath}`);
@@ -460,18 +491,18 @@ function runCurator({ dryRun = false, reportPath = null, limit = 50 } = {}) {
   return {
     scored: scored.length,
     averageScore: parseFloat((scored.reduce((a, b) => a + b.score, 0) / scored.length).toFixed(2)),
-    below70: scored.filter(e => e.score < 70).length,
+    below70: scored.filter((e) => e.score < 70).length,
     suggestions: allSuggestions.length,
     added,
-    weakest
+    weakest,
   };
 }
 
 function main() {
   const args = process.argv.slice(2);
   const dryRun = args.includes('--dry-run');
-  const reportPath = args.find(a => a.startsWith('--report='))?.split('=')[1];
-  const limit = parseInt(args.find(a => a.startsWith('--limit='))?.split('=')[1], 10) || 50;
+  const reportPath = args.find((a) => a.startsWith('--report='))?.split('=')[1];
+  const limit = parseInt(args.find((a) => a.startsWith('--limit='))?.split('=')[1], 10) || 50;
 
   console.log('AI Curator Agent');
   console.log('Scoring all entries and generating suggestions...\n');
@@ -481,15 +512,19 @@ function main() {
   console.log(`Scored ${result.scored} entries`);
   console.log(`Average confidence: ${result.averageScore} / 100`);
   console.log(`Entries below 70: ${result.below70}`);
-  console.log(`Suggestions generated: ${result.suggestions}${dryRun ? '' : `, new: ${result.added}`}`);
+  console.log(
+    `Suggestions generated: ${result.suggestions}${dryRun ? '' : `, new: ${result.added}`}`
+  );
   console.log(`\nTop ${limit} weakest entries:`);
-  console.table(result.weakest.map(e => ({
-    id: e.id,
-    unicode: e.unicode,
-    tier: e.tier,
-    score: e.score,
-    issues: e.issues.join(', ')
-  })));
+  console.table(
+    result.weakest.map((e) => ({
+      id: e.id,
+      unicode: e.unicode,
+      tier: e.tier,
+      score: e.score,
+      issues: e.issues.join(', '),
+    }))
+  );
 }
 
 if (require.main === module) {

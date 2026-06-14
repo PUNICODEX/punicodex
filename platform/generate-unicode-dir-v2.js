@@ -2,26 +2,35 @@
  * PÚNYCODEX Unicode Directory Generator v2
  * Builds ~4,500 curated Unicode characters.
  */
-const fs = require('fs');
+const fs = require('node:fs');
 
 function individual(cplist, category, categoryLabel, keywords = '') {
-    return cplist.map(([cp, name]) => {
-        const char = typeof cp === 'string' ? cp : String.fromCodePoint(cp);
-        const hex = 'U+' + (typeof cp === 'string' ? cp.codePointAt(0) : cp).toString(16).toUpperCase().padStart(4, '0');
-        return { char, code: hex, name, category, categoryLabel, keywords };
-    });
+  return cplist.map(([cp, name]) => {
+    const char = typeof cp === 'string' ? cp : String.fromCodePoint(cp);
+    const hex =
+      'U+' +
+      (typeof cp === 'string' ? cp.codePointAt(0) : cp).toString(16).toUpperCase().padStart(4, '0');
+    return { char, code: hex, name, category, categoryLabel, keywords };
+  });
 }
 
 function range(start, end, category, categoryLabel, namePrefix, keywords = '') {
-    const chars = [];
-    for (let cp = start; cp <= end; cp++) {
-        try {
-            const char = String.fromCodePoint(cp);
-            const hex = 'U+' + cp.toString(16).toUpperCase().padStart(4, '0');
-            chars.push({ char, code: hex, name: `${namePrefix} ${hex}`, category, categoryLabel, keywords });
-        } catch {}
-    }
-    return chars;
+  const chars = [];
+  for (let cp = start; cp <= end; cp++) {
+    try {
+      const char = String.fromCodePoint(cp);
+      const hex = `U+${cp.toString(16).toUpperCase().padStart(4, '0')}`;
+      chars.push({
+        char,
+        code: hex,
+        name: `${namePrefix} ${hex}`,
+        category,
+        categoryLabel,
+        keywords,
+      });
+    } catch {}
+  }
+  return chars;
 }
 
 const ALL = [];
@@ -29,286 +38,3697 @@ const ALL = [];
 // === EXISTING 16 CATEGORIES ===
 
 // Latin
-ALL.push(...individual([
-[0x00C0,'Latin A-grave'],[0x00C1,'Latin A-acute'],[0x00C2,'Latin A-circumflex'],[0x00C3,'Latin A-tilde'],[0x00C4,'Latin A-umlaut'],[0x00C5,'Latin A-ring'],[0x00C6,'Latin AE'],[0x00C7,'Latin C-cedilla'],[0x00C8,'Latin E-grave'],[0x00C9,'Latin E-acute'],[0x00CA,'Latin E-circumflex'],[0x00CB,'Latin E-umlaut'],[0x00CC,'Latin I-grave'],[0x00CD,'Latin I-acute'],[0x00CE,'Latin I-circumflex'],[0x00CF,'Latin I-umlaut'],[0x00D1,'Latin N-tilde'],[0x00D2,'Latin O-grave'],[0x00D3,'Latin O-acute'],[0x00D4,'Latin O-circumflex'],[0x00D5,'Latin O-tilde'],[0x00D6,'Latin O-umlaut'],[0x00D8,'Latin O-slash'],[0x00D9,'Latin U-grave'],[0x00DA,'Latin U-acute'],[0x00DB,'Latin U-circumflex'],[0x00DC,'Latin U-umlaut'],[0x00DD,'Latin Y-acute'],[0x00DF,'Latin sharp S'],[0x00E0,'Latin a-grave'],[0x00E1,'Latin a-acute'],[0x00E2,'Latin a-circumflex'],[0x00E3,'Latin a-tilde'],[0x00E4,'Latin a-umlaut'],[0x00E5,'Latin a-ring'],[0x00E6,'Latin ae'],[0x00E7,'Latin c-cedilla'],[0x00E8,'Latin e-grave'],[0x00E9,'Latin e-acute'],[0x00EA,'Latin e-circumflex'],[0x00EB,'Latin e-umlaut'],[0x00EC,'Latin i-grave'],[0x00ED,'Latin i-acute'],[0x00EE,'Latin i-circumflex'],[0x00EF,'Latin i-umlaut'],[0x00F1,'Latin n-tilde'],[0x00F2,'Latin o-grave'],[0x00F3,'Latin o-acute'],[0x00F4,'Latin o-circumflex'],[0x00F5,'Latin o-tilde'],[0x00F6,'Latin o-umlaut'],[0x00F8,'Latin o-slash'],[0x00F9,'Latin u-grave'],[0x00FA,'Latin u-acute'],[0x00FB,'Latin u-circumflex'],[0x00FC,'Latin u-umlaut'],[0x00FD,'Latin y-acute'],[0x00FF,'Latin y-umlaut'],[0x0100,'Latin A-macron'],[0x0101,'Latin a-macron'],[0x0112,'Latin E-macron'],[0x0113,'Latin e-macron'],[0x012A,'Latin I-macron'],[0x012B,'Latin i-macron'],[0x014C,'Latin O-macron'],[0x014D,'Latin o-macron'],[0x016A,'Latin U-macron'],[0x016B,'Latin u-macron'],[0x0102,'Latin A-breve'],[0x0103,'Latin a-breve'],[0x0114,'Latin E-breve'],[0x0115,'Latin e-breve'],[0x0106,'Latin C-acute'],[0x0107,'Latin c-acute'],[0x010C,'Latin C-caron'],[0x010D,'Latin c-caron'],[0x011A,'Latin E-caron'],[0x011B,'Latin e-caron'],[0x0139,'Latin L-acute'],[0x013A,'Latin l-acute'],[0x0141,'Latin L-stroke'],[0x0142,'Latin l-stroke'],[0x0143,'Latin N-acute'],[0x0144,'Latin n-acute'],[0x0150,'Latin O-double-acute'],[0x0151,'Latin o-double-acute'],[0x0154,'Latin R-acute'],[0x0155,'Latin r-acute'],[0x0158,'Latin R-caron'],[0x0159,'Latin r-caron'],[0x015A,'Latin S-acute'],[0x015B,'Latin s-acute'],[0x0160,'Latin S-caron'],[0x0161,'Latin s-caron'],[0x0164,'Latin T-caron'],[0x0165,'Latin t-caron'],[0x0170,'Latin U-double-acute'],[0x0171,'Latin u-double-acute'],[0x0179,'Latin Z-acute'],[0x017A,'Latin z-acute'],[0x017B,'Latin Z-dot'],[0x017C,'Latin z-dot'],[0x017D,'Latin Z-caron'],[0x017E,'Latin z-caron'],[0x0152,'Latin OE'],[0x0153,'Latin oe'],[0x0132,'Latin IJ'],[0x0133,'Latin ij'],[0x03B8,'Greek theta (IPA th)'],[0x00F0,'Latin eth (IPA dh)'],[0x0283,'Latin esh (IPA sh)'],[0x0292,'Latin ezh (IPA zh)'],[0x014B,'Latin eng (IPA ng)'],[0x0278,'Latin phi (IPA f)'],[0x03B2,'Greek beta (IPA v)'],[0x03C7,'Greek chi (IPA kh)'],[0x026B,'Latin l-mid-tilde'],[0x027E,'Latin r-flap'],
-], 'latin', 'Latin & Accents', 'accent diacritic macron breve caron acute grave circumflex umlaut tilde cedilla stroke ligature phonetic ipa'));
+ALL.push(
+  ...individual(
+    [
+      [0x00c0, 'Latin A-grave'],
+      [0x00c1, 'Latin A-acute'],
+      [0x00c2, 'Latin A-circumflex'],
+      [0x00c3, 'Latin A-tilde'],
+      [0x00c4, 'Latin A-umlaut'],
+      [0x00c5, 'Latin A-ring'],
+      [0x00c6, 'Latin AE'],
+      [0x00c7, 'Latin C-cedilla'],
+      [0x00c8, 'Latin E-grave'],
+      [0x00c9, 'Latin E-acute'],
+      [0x00ca, 'Latin E-circumflex'],
+      [0x00cb, 'Latin E-umlaut'],
+      [0x00cc, 'Latin I-grave'],
+      [0x00cd, 'Latin I-acute'],
+      [0x00ce, 'Latin I-circumflex'],
+      [0x00cf, 'Latin I-umlaut'],
+      [0x00d1, 'Latin N-tilde'],
+      [0x00d2, 'Latin O-grave'],
+      [0x00d3, 'Latin O-acute'],
+      [0x00d4, 'Latin O-circumflex'],
+      [0x00d5, 'Latin O-tilde'],
+      [0x00d6, 'Latin O-umlaut'],
+      [0x00d8, 'Latin O-slash'],
+      [0x00d9, 'Latin U-grave'],
+      [0x00da, 'Latin U-acute'],
+      [0x00db, 'Latin U-circumflex'],
+      [0x00dc, 'Latin U-umlaut'],
+      [0x00dd, 'Latin Y-acute'],
+      [0x00df, 'Latin sharp S'],
+      [0x00e0, 'Latin a-grave'],
+      [0x00e1, 'Latin a-acute'],
+      [0x00e2, 'Latin a-circumflex'],
+      [0x00e3, 'Latin a-tilde'],
+      [0x00e4, 'Latin a-umlaut'],
+      [0x00e5, 'Latin a-ring'],
+      [0x00e6, 'Latin ae'],
+      [0x00e7, 'Latin c-cedilla'],
+      [0x00e8, 'Latin e-grave'],
+      [0x00e9, 'Latin e-acute'],
+      [0x00ea, 'Latin e-circumflex'],
+      [0x00eb, 'Latin e-umlaut'],
+      [0x00ec, 'Latin i-grave'],
+      [0x00ed, 'Latin i-acute'],
+      [0x00ee, 'Latin i-circumflex'],
+      [0x00ef, 'Latin i-umlaut'],
+      [0x00f1, 'Latin n-tilde'],
+      [0x00f2, 'Latin o-grave'],
+      [0x00f3, 'Latin o-acute'],
+      [0x00f4, 'Latin o-circumflex'],
+      [0x00f5, 'Latin o-tilde'],
+      [0x00f6, 'Latin o-umlaut'],
+      [0x00f8, 'Latin o-slash'],
+      [0x00f9, 'Latin u-grave'],
+      [0x00fa, 'Latin u-acute'],
+      [0x00fb, 'Latin u-circumflex'],
+      [0x00fc, 'Latin u-umlaut'],
+      [0x00fd, 'Latin y-acute'],
+      [0x00ff, 'Latin y-umlaut'],
+      [0x0100, 'Latin A-macron'],
+      [0x0101, 'Latin a-macron'],
+      [0x0112, 'Latin E-macron'],
+      [0x0113, 'Latin e-macron'],
+      [0x012a, 'Latin I-macron'],
+      [0x012b, 'Latin i-macron'],
+      [0x014c, 'Latin O-macron'],
+      [0x014d, 'Latin o-macron'],
+      [0x016a, 'Latin U-macron'],
+      [0x016b, 'Latin u-macron'],
+      [0x0102, 'Latin A-breve'],
+      [0x0103, 'Latin a-breve'],
+      [0x0114, 'Latin E-breve'],
+      [0x0115, 'Latin e-breve'],
+      [0x0106, 'Latin C-acute'],
+      [0x0107, 'Latin c-acute'],
+      [0x010c, 'Latin C-caron'],
+      [0x010d, 'Latin c-caron'],
+      [0x011a, 'Latin E-caron'],
+      [0x011b, 'Latin e-caron'],
+      [0x0139, 'Latin L-acute'],
+      [0x013a, 'Latin l-acute'],
+      [0x0141, 'Latin L-stroke'],
+      [0x0142, 'Latin l-stroke'],
+      [0x0143, 'Latin N-acute'],
+      [0x0144, 'Latin n-acute'],
+      [0x0150, 'Latin O-double-acute'],
+      [0x0151, 'Latin o-double-acute'],
+      [0x0154, 'Latin R-acute'],
+      [0x0155, 'Latin r-acute'],
+      [0x0158, 'Latin R-caron'],
+      [0x0159, 'Latin r-caron'],
+      [0x015a, 'Latin S-acute'],
+      [0x015b, 'Latin s-acute'],
+      [0x0160, 'Latin S-caron'],
+      [0x0161, 'Latin s-caron'],
+      [0x0164, 'Latin T-caron'],
+      [0x0165, 'Latin t-caron'],
+      [0x0170, 'Latin U-double-acute'],
+      [0x0171, 'Latin u-double-acute'],
+      [0x0179, 'Latin Z-acute'],
+      [0x017a, 'Latin z-acute'],
+      [0x017b, 'Latin Z-dot'],
+      [0x017c, 'Latin z-dot'],
+      [0x017d, 'Latin Z-caron'],
+      [0x017e, 'Latin z-caron'],
+      [0x0152, 'Latin OE'],
+      [0x0153, 'Latin oe'],
+      [0x0132, 'Latin IJ'],
+      [0x0133, 'Latin ij'],
+      [0x03b8, 'Greek theta (IPA th)'],
+      [0x00f0, 'Latin eth (IPA dh)'],
+      [0x0283, 'Latin esh (IPA sh)'],
+      [0x0292, 'Latin ezh (IPA zh)'],
+      [0x014b, 'Latin eng (IPA ng)'],
+      [0x0278, 'Latin phi (IPA f)'],
+      [0x03b2, 'Greek beta (IPA v)'],
+      [0x03c7, 'Greek chi (IPA kh)'],
+      [0x026b, 'Latin l-mid-tilde'],
+      [0x027e, 'Latin r-flap'],
+    ],
+    'latin',
+    'Latin & Accents',
+    'accent diacritic macron breve caron acute grave circumflex umlaut tilde cedilla stroke ligature phonetic ipa'
+  )
+);
 
-ALL.push(...individual([
-[0x0391,'Greek Alpha'],[0x0392,'Greek Beta'],[0x0393,'Greek Gamma'],[0x0394,'Greek Delta'],[0x0395,'Greek Epsilon'],[0x0396,'Greek Zeta'],[0x0397,'Greek Eta'],[0x0398,'Greek Theta'],[0x0399,'Greek Iota'],[0x039A,'Greek Kappa'],[0x039B,'Greek Lambda'],[0x039C,'Greek Mu'],[0x039D,'Greek Nu'],[0x039E,'Greek Xi'],[0x039F,'Greek Omicron'],[0x03A0,'Greek Pi'],[0x03A1,'Greek Rho'],[0x03A3,'Greek Sigma'],[0x03A4,'Greek Tau'],[0x03A5,'Greek Upsilon'],[0x03A6,'Greek Phi'],[0x03A7,'Greek Chi'],[0x03A8,'Greek Psi'],[0x03A9,'Greek Omega'],[0x03B1,'Greek alpha'],[0x03B2,'Greek beta'],[0x03B3,'Greek gamma'],[0x03B4,'Greek delta'],[0x03B5,'Greek epsilon'],[0x03B6,'Greek zeta'],[0x03B7,'Greek eta'],[0x03B8,'Greek theta'],[0x03B9,'Greek iota'],[0x03BA,'Greek kappa'],[0x03BB,'Greek lambda'],[0x03BC,'Greek mu'],[0x03BD,'Greek nu'],[0x03BE,'Greek xi'],[0x03BF,'Greek omicron'],[0x03C0,'Greek pi'],[0x03C1,'Greek rho'],[0x03C2,'Greek final sigma'],[0x03C3,'Greek sigma'],[0x03C4,'Greek tau'],[0x03C5,'Greek upsilon'],[0x03C6,'Greek phi'],[0x03C7,'Greek chi'],[0x03C8,'Greek psi'],[0x03C9,'Greek omega'],[0x03AC,'Greek alpha-acute'],[0x03AD,'Greek epsilon-acute'],[0x03AE,'Greek eta-acute'],[0x03AF,'Greek iota-acute'],[0x03CC,'Greek omicron-acute'],[0x03CD,'Greek upsilon-acute'],[0x03CE,'Greek omega-acute'],[0x03CA,'Greek iota-diaeresis'],[0x03CB,'Greek upsilon-diaeresis'],[0x0386,'Greek Alpha-acute'],[0x0388,'Greek Epsilon-acute'],[0x0389,'Greek Eta-acute'],[0x038A,'Greek Iota-acute'],[0x038C,'Greek Omicron-acute'],[0x038E,'Greek Upsilon-acute'],[0x038F,'Greek Omega-acute'],[0x03D0,'Greek beta symbol'],[0x03D1,'Greek theta symbol'],[0x03D5,'Greek phi symbol'],[0x03D6,'Greek pi symbol'],[0x03F0,'Greek kappa symbol'],[0x03F1,'Greek rho symbol'],[0x03F4,'Greek Theta symbol'],[0x03F5,'Greek lunate epsilon'],[0x03E2,'Coptic Shei'],[0x03E3,'Coptic shei'],[0x03E4,'Coptic Fei'],[0x03E5,'Coptic fei'],[0x03E6,'Coptic Khei'],[0x03E7,'Coptic khei'],[0x03E8,'Coptic Hori'],[0x03E9,'Coptic hori'],
-], 'greek', 'Greek & Coptic', 'greek alphabet alpha beta gamma delta epsilon zeta eta theta iota kappa lambda mu nu xi omicron pi rho sigma tau upsilon phi chi psi omega accent acute'));
+ALL.push(
+  ...individual(
+    [
+      [0x0391, 'Greek Alpha'],
+      [0x0392, 'Greek Beta'],
+      [0x0393, 'Greek Gamma'],
+      [0x0394, 'Greek Delta'],
+      [0x0395, 'Greek Epsilon'],
+      [0x0396, 'Greek Zeta'],
+      [0x0397, 'Greek Eta'],
+      [0x0398, 'Greek Theta'],
+      [0x0399, 'Greek Iota'],
+      [0x039a, 'Greek Kappa'],
+      [0x039b, 'Greek Lambda'],
+      [0x039c, 'Greek Mu'],
+      [0x039d, 'Greek Nu'],
+      [0x039e, 'Greek Xi'],
+      [0x039f, 'Greek Omicron'],
+      [0x03a0, 'Greek Pi'],
+      [0x03a1, 'Greek Rho'],
+      [0x03a3, 'Greek Sigma'],
+      [0x03a4, 'Greek Tau'],
+      [0x03a5, 'Greek Upsilon'],
+      [0x03a6, 'Greek Phi'],
+      [0x03a7, 'Greek Chi'],
+      [0x03a8, 'Greek Psi'],
+      [0x03a9, 'Greek Omega'],
+      [0x03b1, 'Greek alpha'],
+      [0x03b2, 'Greek beta'],
+      [0x03b3, 'Greek gamma'],
+      [0x03b4, 'Greek delta'],
+      [0x03b5, 'Greek epsilon'],
+      [0x03b6, 'Greek zeta'],
+      [0x03b7, 'Greek eta'],
+      [0x03b8, 'Greek theta'],
+      [0x03b9, 'Greek iota'],
+      [0x03ba, 'Greek kappa'],
+      [0x03bb, 'Greek lambda'],
+      [0x03bc, 'Greek mu'],
+      [0x03bd, 'Greek nu'],
+      [0x03be, 'Greek xi'],
+      [0x03bf, 'Greek omicron'],
+      [0x03c0, 'Greek pi'],
+      [0x03c1, 'Greek rho'],
+      [0x03c2, 'Greek final sigma'],
+      [0x03c3, 'Greek sigma'],
+      [0x03c4, 'Greek tau'],
+      [0x03c5, 'Greek upsilon'],
+      [0x03c6, 'Greek phi'],
+      [0x03c7, 'Greek chi'],
+      [0x03c8, 'Greek psi'],
+      [0x03c9, 'Greek omega'],
+      [0x03ac, 'Greek alpha-acute'],
+      [0x03ad, 'Greek epsilon-acute'],
+      [0x03ae, 'Greek eta-acute'],
+      [0x03af, 'Greek iota-acute'],
+      [0x03cc, 'Greek omicron-acute'],
+      [0x03cd, 'Greek upsilon-acute'],
+      [0x03ce, 'Greek omega-acute'],
+      [0x03ca, 'Greek iota-diaeresis'],
+      [0x03cb, 'Greek upsilon-diaeresis'],
+      [0x0386, 'Greek Alpha-acute'],
+      [0x0388, 'Greek Epsilon-acute'],
+      [0x0389, 'Greek Eta-acute'],
+      [0x038a, 'Greek Iota-acute'],
+      [0x038c, 'Greek Omicron-acute'],
+      [0x038e, 'Greek Upsilon-acute'],
+      [0x038f, 'Greek Omega-acute'],
+      [0x03d0, 'Greek beta symbol'],
+      [0x03d1, 'Greek theta symbol'],
+      [0x03d5, 'Greek phi symbol'],
+      [0x03d6, 'Greek pi symbol'],
+      [0x03f0, 'Greek kappa symbol'],
+      [0x03f1, 'Greek rho symbol'],
+      [0x03f4, 'Greek Theta symbol'],
+      [0x03f5, 'Greek lunate epsilon'],
+      [0x03e2, 'Coptic Shei'],
+      [0x03e3, 'Coptic shei'],
+      [0x03e4, 'Coptic Fei'],
+      [0x03e5, 'Coptic fei'],
+      [0x03e6, 'Coptic Khei'],
+      [0x03e7, 'Coptic khei'],
+      [0x03e8, 'Coptic Hori'],
+      [0x03e9, 'Coptic hori'],
+    ],
+    'greek',
+    'Greek & Coptic',
+    'greek alphabet alpha beta gamma delta epsilon zeta eta theta iota kappa lambda mu nu xi omicron pi rho sigma tau upsilon phi chi psi omega accent acute'
+  )
+);
 
-ALL.push(...individual([
-[0x0410,'Cyrillic A'],[0x0411,'Cyrillic Be'],[0x0412,'Cyrillic Ve'],[0x0413,'Cyrillic Ghe'],[0x0414,'Cyrillic De'],[0x0415,'Cyrillic Ie'],[0x0401,'Cyrillic Yo'],[0x0416,'Cyrillic Zhe'],[0x0417,'Cyrillic Ze'],[0x0418,'Cyrillic I'],[0x0419,'Cyrillic Short I'],[0x041A,'Cyrillic Ka'],[0x041B,'Cyrillic El'],[0x041C,'Cyrillic Em'],[0x041D,'Cyrillic En'],[0x041E,'Cyrillic O'],[0x041F,'Cyrillic Pe'],[0x0420,'Cyrillic Er'],[0x0421,'Cyrillic Es'],[0x0422,'Cyrillic Te'],[0x0423,'Cyrillic U'],[0x0424,'Cyrillic Ef'],[0x0425,'Cyrillic Ha'],[0x0426,'Cyrillic Tse'],[0x0427,'Cyrillic Che'],[0x0428,'Cyrillic Sha'],[0x0429,'Cyrillic Shcha'],[0x042A,'Cyrillic Hard Sign'],[0x042B,'Cyrillic Yeru'],[0x042C,'Cyrillic Soft Sign'],[0x042D,'Cyrillic E'],[0x042E,'Cyrillic Yu'],[0x042F,'Cyrillic Ya'],[0x0430,'Cyrillic a'],[0x0431,'Cyrillic be'],[0x0432,'Cyrillic ve'],[0x0433,'Cyrillic ghe'],[0x0434,'Cyrillic de'],[0x0435,'Cyrillic ie'],[0x0451,'Cyrillic yo'],[0x0436,'Cyrillic zhe'],[0x0437,'Cyrillic ze'],[0x0438,'Cyrillic i'],[0x0439,'Cyrillic short i'],[0x043A,'Cyrillic ka'],[0x043B,'Cyrillic el'],[0x043C,'Cyrillic em'],[0x043D,'Cyrillic en'],[0x043E,'Cyrillic o'],[0x043F,'Cyrillic pe'],[0x0440,'Cyrillic er'],[0x0441,'Cyrillic es'],[0x0442,'Cyrillic te'],[0x0443,'Cyrillic u'],[0x0444,'Cyrillic ef'],[0x0445,'Cyrillic ha'],[0x0446,'Cyrillic tse'],[0x0447,'Cyrillic che'],[0x0448,'Cyrillic sha'],[0x0449,'Cyrillic shcha'],[0x044A,'Cyrillic hard sign'],[0x044B,'Cyrillic yeru'],[0x044C,'Cyrillic soft sign'],[0x044D,'Cyrillic e'],[0x044E,'Cyrillic yu'],[0x044F,'Cyrillic ya'],[0x0404,'Cyrillic Ukrainian Ie'],[0x0407,'Cyrillic Ukrainian Yi'],[0x0454,'Cyrillic ukrainian ie'],[0x0457,'Cyrillic ukrainian yi'],[0x0490,'Cyrillic Ghe with upturn'],[0x0491,'Cyrillic ghe with upturn'],[0x0460,'Cyrillic Omega'],[0x0461,'Cyrillic omega'],[0x0472,'Cyrillic Fita'],[0x0473,'Cyrillic fita'],[0x0474,'Cyrillic Izhitsa'],[0x0475,'Cyrillic izhitsa'],[0x0480,'Cyrillic Koppa'],[0x0481,'Cyrillic koppa'],[0x0488,'Cyrillic combining hundred thousands'],[0x0489,'Cyrillic combining millions'],
-], 'cyrillic', 'Cyrillic', 'cyrillic russian ukrainian alphabet a be ve ghe de ie yo zhe i ka el em en o pe er es te u ef ha tse che sha ya'));
+ALL.push(
+  ...individual(
+    [
+      [0x0410, 'Cyrillic A'],
+      [0x0411, 'Cyrillic Be'],
+      [0x0412, 'Cyrillic Ve'],
+      [0x0413, 'Cyrillic Ghe'],
+      [0x0414, 'Cyrillic De'],
+      [0x0415, 'Cyrillic Ie'],
+      [0x0401, 'Cyrillic Yo'],
+      [0x0416, 'Cyrillic Zhe'],
+      [0x0417, 'Cyrillic Ze'],
+      [0x0418, 'Cyrillic I'],
+      [0x0419, 'Cyrillic Short I'],
+      [0x041a, 'Cyrillic Ka'],
+      [0x041b, 'Cyrillic El'],
+      [0x041c, 'Cyrillic Em'],
+      [0x041d, 'Cyrillic En'],
+      [0x041e, 'Cyrillic O'],
+      [0x041f, 'Cyrillic Pe'],
+      [0x0420, 'Cyrillic Er'],
+      [0x0421, 'Cyrillic Es'],
+      [0x0422, 'Cyrillic Te'],
+      [0x0423, 'Cyrillic U'],
+      [0x0424, 'Cyrillic Ef'],
+      [0x0425, 'Cyrillic Ha'],
+      [0x0426, 'Cyrillic Tse'],
+      [0x0427, 'Cyrillic Che'],
+      [0x0428, 'Cyrillic Sha'],
+      [0x0429, 'Cyrillic Shcha'],
+      [0x042a, 'Cyrillic Hard Sign'],
+      [0x042b, 'Cyrillic Yeru'],
+      [0x042c, 'Cyrillic Soft Sign'],
+      [0x042d, 'Cyrillic E'],
+      [0x042e, 'Cyrillic Yu'],
+      [0x042f, 'Cyrillic Ya'],
+      [0x0430, 'Cyrillic a'],
+      [0x0431, 'Cyrillic be'],
+      [0x0432, 'Cyrillic ve'],
+      [0x0433, 'Cyrillic ghe'],
+      [0x0434, 'Cyrillic de'],
+      [0x0435, 'Cyrillic ie'],
+      [0x0451, 'Cyrillic yo'],
+      [0x0436, 'Cyrillic zhe'],
+      [0x0437, 'Cyrillic ze'],
+      [0x0438, 'Cyrillic i'],
+      [0x0439, 'Cyrillic short i'],
+      [0x043a, 'Cyrillic ka'],
+      [0x043b, 'Cyrillic el'],
+      [0x043c, 'Cyrillic em'],
+      [0x043d, 'Cyrillic en'],
+      [0x043e, 'Cyrillic o'],
+      [0x043f, 'Cyrillic pe'],
+      [0x0440, 'Cyrillic er'],
+      [0x0441, 'Cyrillic es'],
+      [0x0442, 'Cyrillic te'],
+      [0x0443, 'Cyrillic u'],
+      [0x0444, 'Cyrillic ef'],
+      [0x0445, 'Cyrillic ha'],
+      [0x0446, 'Cyrillic tse'],
+      [0x0447, 'Cyrillic che'],
+      [0x0448, 'Cyrillic sha'],
+      [0x0449, 'Cyrillic shcha'],
+      [0x044a, 'Cyrillic hard sign'],
+      [0x044b, 'Cyrillic yeru'],
+      [0x044c, 'Cyrillic soft sign'],
+      [0x044d, 'Cyrillic e'],
+      [0x044e, 'Cyrillic yu'],
+      [0x044f, 'Cyrillic ya'],
+      [0x0404, 'Cyrillic Ukrainian Ie'],
+      [0x0407, 'Cyrillic Ukrainian Yi'],
+      [0x0454, 'Cyrillic ukrainian ie'],
+      [0x0457, 'Cyrillic ukrainian yi'],
+      [0x0490, 'Cyrillic Ghe with upturn'],
+      [0x0491, 'Cyrillic ghe with upturn'],
+      [0x0460, 'Cyrillic Omega'],
+      [0x0461, 'Cyrillic omega'],
+      [0x0472, 'Cyrillic Fita'],
+      [0x0473, 'Cyrillic fita'],
+      [0x0474, 'Cyrillic Izhitsa'],
+      [0x0475, 'Cyrillic izhitsa'],
+      [0x0480, 'Cyrillic Koppa'],
+      [0x0481, 'Cyrillic koppa'],
+      [0x0488, 'Cyrillic combining hundred thousands'],
+      [0x0489, 'Cyrillic combining millions'],
+    ],
+    'cyrillic',
+    'Cyrillic',
+    'cyrillic russian ukrainian alphabet a be ve ghe de ie yo zhe i ka el em en o pe er es te u ef ha tse che sha ya'
+  )
+);
 
-ALL.push(...individual([
-[0x2200,'For all'],[0x2201,'Complement'],[0x2202,'Partial differential'],[0x2203,'There exists'],[0x2204,'There does not exist'],[0x2205,'Empty set'],[0x2206,'Increment'],[0x2207,'Nabla'],[0x2208,'Element of'],[0x2209,'Not element of'],[0x220A,'Small element of'],[0x220B,'Contains'],[0x220F,'N-ary product'],[0x2210,'N-ary coproduct'],[0x2211,'N-ary summation'],[0x2212,'Minus sign'],[0x2213,'Minus-or-plus'],[0x2214,'Dot plus'],[0x2215,'Division slash'],[0x2217,'Asterisk operator'],[0x2218,'Ring operator'],[0x2219,'Bullet operator'],[0x221A,'Square root'],[0x221B,'Cube root'],[0x221C,'Fourth root'],[0x221D,'Proportional to'],[0x221E,'Infinity'],[0x221F,'Right angle'],[0x2220,'Angle'],[0x2221,'Measured angle'],[0x2222,'Spherical angle'],[0x2223,'Divides'],[0x2224,'Does not divide'],[0x2225,'Parallel to'],[0x2226,'Not parallel to'],[0x2227,'Logical and'],[0x2228,'Logical or'],[0x2229,'Intersection'],[0x222A,'Union'],[0x222B,'Integral'],[0x222C,'Double integral'],[0x222D,'Triple integral'],[0x222E,'Contour integral'],[0x2234,'Therefore'],[0x2235,'Because'],[0x2236,'Ratio'],[0x2237,'Proportion'],[0x223C,'Tilde operator'],[0x2240,'Wreath product'],[0x2241,'Not tilde'],[0x2243,'Asymptotically equal'],[0x2245,'Approximately equal'],[0x2248,'Almost equal'],[0x2249,'Not almost equal'],[0x2260,'Not equal'],[0x2261,'Identical to'],[0x2264,'Less than or equal'],[0x2265,'Greater than or equal'],[0x226A,'Much less than'],[0x226B,'Much greater than'],[0x227A,'Precedes'],[0x227B,'Succeeds'],[0x2282,'Subset of'],[0x2283,'Superset of'],[0x2286,'Subset or equal'],[0x2287,'Superset or equal'],[0x2295,'Circled plus'],[0x2296,'Circled minus'],[0x2297,'Circled times'],[0x2299,'Circled dot'],[0x22A0,'Circled times (box)'],[0x22A4,'Down tack'],[0x22A5,'Up tack'],[0x22C0,'N-ary logical and'],[0x22C1,'N-ary logical or'],[0x22C2,'N-ary intersection'],[0x22C3,'N-ary union'],[0x22C4,'Diamond operator'],[0x22C5,'Dot operator'],[0x22C6,'Star operator'],[0x22C8,'Bowtie'],[0x2102,'Double-struck C'],[0x210D,'Double-struck H'],[0x2115,'Double-struck N'],[0x2119,'Double-struck P'],[0x211A,'Double-struck Q'],[0x211D,'Double-struck R'],[0x2124,'Double-struck Z'],[0x1D49C,'Script A'],[0x1D49E,'Script C'],[0x1D49F,'Script D'],[0x1D4A2,'Script G'],[0x1D4A5,'Script J'],[0x1D4A6,'Script K'],[0x1D4A9,'Script N'],[0x1D4AA,'Script O'],[0x1D4AB,'Script P'],[0x1D4AC,'Script Q'],[0x1D4AE,'Script S'],[0x1D4AF,'Script T'],[0x1D4B0,'Script U'],[0x1D4B1,'Script V'],[0x1D4B2,'Script W'],[0x1D4B3,'Script X'],[0x1D4B4,'Script Y'],[0x1D4B5,'Script Z'],[0x1D504,'Fraktur A'],[0x1D505,'Fraktur B'],[0x1D507,'Fraktur D'],[0x1D508,'Fraktur E'],[0x1D509,'Fraktur F'],[0x1D50A,'Fraktur G'],[0x1D50D,'Fraktur J'],[0x1D50E,'Fraktur K'],[0x1D50F,'Fraktur L'],[0x1D510,'Fraktur M'],[0x1D511,'Fraktur N'],[0x1D512,'Fraktur O'],[0x1D513,'Fraktur P'],[0x1D514,'Fraktur Q'],[0x1D516,'Fraktur S'],[0x1D517,'Fraktur T'],[0x1D518,'Fraktur U'],[0x1D519,'Fraktur V'],[0x1D51A,'Fraktur W'],[0x1D51B,'Fraktur X'],[0x1D51C,'Fraktur Y'],
-], 'math', 'Mathematical', 'math mathematics symbol operator integral infinity subset superset union intersection therefore because proportional angle nabla forall exists empty set square root cube root script fraktur double-struck'));
+ALL.push(
+  ...individual(
+    [
+      [0x2200, 'For all'],
+      [0x2201, 'Complement'],
+      [0x2202, 'Partial differential'],
+      [0x2203, 'There exists'],
+      [0x2204, 'There does not exist'],
+      [0x2205, 'Empty set'],
+      [0x2206, 'Increment'],
+      [0x2207, 'Nabla'],
+      [0x2208, 'Element of'],
+      [0x2209, 'Not element of'],
+      [0x220a, 'Small element of'],
+      [0x220b, 'Contains'],
+      [0x220f, 'N-ary product'],
+      [0x2210, 'N-ary coproduct'],
+      [0x2211, 'N-ary summation'],
+      [0x2212, 'Minus sign'],
+      [0x2213, 'Minus-or-plus'],
+      [0x2214, 'Dot plus'],
+      [0x2215, 'Division slash'],
+      [0x2217, 'Asterisk operator'],
+      [0x2218, 'Ring operator'],
+      [0x2219, 'Bullet operator'],
+      [0x221a, 'Square root'],
+      [0x221b, 'Cube root'],
+      [0x221c, 'Fourth root'],
+      [0x221d, 'Proportional to'],
+      [0x221e, 'Infinity'],
+      [0x221f, 'Right angle'],
+      [0x2220, 'Angle'],
+      [0x2221, 'Measured angle'],
+      [0x2222, 'Spherical angle'],
+      [0x2223, 'Divides'],
+      [0x2224, 'Does not divide'],
+      [0x2225, 'Parallel to'],
+      [0x2226, 'Not parallel to'],
+      [0x2227, 'Logical and'],
+      [0x2228, 'Logical or'],
+      [0x2229, 'Intersection'],
+      [0x222a, 'Union'],
+      [0x222b, 'Integral'],
+      [0x222c, 'Double integral'],
+      [0x222d, 'Triple integral'],
+      [0x222e, 'Contour integral'],
+      [0x2234, 'Therefore'],
+      [0x2235, 'Because'],
+      [0x2236, 'Ratio'],
+      [0x2237, 'Proportion'],
+      [0x223c, 'Tilde operator'],
+      [0x2240, 'Wreath product'],
+      [0x2241, 'Not tilde'],
+      [0x2243, 'Asymptotically equal'],
+      [0x2245, 'Approximately equal'],
+      [0x2248, 'Almost equal'],
+      [0x2249, 'Not almost equal'],
+      [0x2260, 'Not equal'],
+      [0x2261, 'Identical to'],
+      [0x2264, 'Less than or equal'],
+      [0x2265, 'Greater than or equal'],
+      [0x226a, 'Much less than'],
+      [0x226b, 'Much greater than'],
+      [0x227a, 'Precedes'],
+      [0x227b, 'Succeeds'],
+      [0x2282, 'Subset of'],
+      [0x2283, 'Superset of'],
+      [0x2286, 'Subset or equal'],
+      [0x2287, 'Superset or equal'],
+      [0x2295, 'Circled plus'],
+      [0x2296, 'Circled minus'],
+      [0x2297, 'Circled times'],
+      [0x2299, 'Circled dot'],
+      [0x22a0, 'Circled times (box)'],
+      [0x22a4, 'Down tack'],
+      [0x22a5, 'Up tack'],
+      [0x22c0, 'N-ary logical and'],
+      [0x22c1, 'N-ary logical or'],
+      [0x22c2, 'N-ary intersection'],
+      [0x22c3, 'N-ary union'],
+      [0x22c4, 'Diamond operator'],
+      [0x22c5, 'Dot operator'],
+      [0x22c6, 'Star operator'],
+      [0x22c8, 'Bowtie'],
+      [0x2102, 'Double-struck C'],
+      [0x210d, 'Double-struck H'],
+      [0x2115, 'Double-struck N'],
+      [0x2119, 'Double-struck P'],
+      [0x211a, 'Double-struck Q'],
+      [0x211d, 'Double-struck R'],
+      [0x2124, 'Double-struck Z'],
+      [0x1d49c, 'Script A'],
+      [0x1d49e, 'Script C'],
+      [0x1d49f, 'Script D'],
+      [0x1d4a2, 'Script G'],
+      [0x1d4a5, 'Script J'],
+      [0x1d4a6, 'Script K'],
+      [0x1d4a9, 'Script N'],
+      [0x1d4aa, 'Script O'],
+      [0x1d4ab, 'Script P'],
+      [0x1d4ac, 'Script Q'],
+      [0x1d4ae, 'Script S'],
+      [0x1d4af, 'Script T'],
+      [0x1d4b0, 'Script U'],
+      [0x1d4b1, 'Script V'],
+      [0x1d4b2, 'Script W'],
+      [0x1d4b3, 'Script X'],
+      [0x1d4b4, 'Script Y'],
+      [0x1d4b5, 'Script Z'],
+      [0x1d504, 'Fraktur A'],
+      [0x1d505, 'Fraktur B'],
+      [0x1d507, 'Fraktur D'],
+      [0x1d508, 'Fraktur E'],
+      [0x1d509, 'Fraktur F'],
+      [0x1d50a, 'Fraktur G'],
+      [0x1d50d, 'Fraktur J'],
+      [0x1d50e, 'Fraktur K'],
+      [0x1d50f, 'Fraktur L'],
+      [0x1d510, 'Fraktur M'],
+      [0x1d511, 'Fraktur N'],
+      [0x1d512, 'Fraktur O'],
+      [0x1d513, 'Fraktur P'],
+      [0x1d514, 'Fraktur Q'],
+      [0x1d516, 'Fraktur S'],
+      [0x1d517, 'Fraktur T'],
+      [0x1d518, 'Fraktur U'],
+      [0x1d519, 'Fraktur V'],
+      [0x1d51a, 'Fraktur W'],
+      [0x1d51b, 'Fraktur X'],
+      [0x1d51c, 'Fraktur Y'],
+    ],
+    'math',
+    'Mathematical',
+    'math mathematics symbol operator integral infinity subset superset union intersection therefore because proportional angle nabla forall exists empty set square root cube root script fraktur double-struck'
+  )
+);
 
-ALL.push(...individual([
-[0x2190,'Left arrow'],[0x2191,'Up arrow'],[0x2192,'Right arrow'],[0x2193,'Down arrow'],[0x2194,'Left-right arrow'],[0x2195,'Up-down arrow'],[0x2196,'North-west arrow'],[0x2197,'North-east arrow'],[0x2198,'South-east arrow'],[0x2199,'South-west arrow'],[0x219A,'Left arrow with stroke'],[0x219B,'Right arrow with stroke'],[0x219C,'Left wave arrow'],[0x219D,'Right wave arrow'],[0x21A0,'Right two-headed arrow'],[0x21A2,'Left arrow with tail'],[0x21A3,'Right arrow with tail'],[0x21A4,'Left arrow from bar'],[0x21A5,'Up arrow from bar'],[0x21A6,'Right arrow from bar'],[0x21A9,'Left arrow with hook'],[0x21AA,'Right arrow with hook'],[0x21AB,'Left arrow with loop'],[0x21AC,'Right arrow with loop'],[0x21B0,'Up arrow with tip left'],[0x21B1,'Up arrow with tip right'],[0x21B6,'Anticlockwise arrow'],[0x21B7,'Clockwise arrow'],[0x21BA,'Anticlockwise open circle'],[0x21BB,'Clockwise open circle'],[0x21C4,'Right arrow over left'],[0x21C5,'Up arrow left of down'],[0x21C6,'Left arrow over right'],[0x21C7,'Left paired arrows'],[0x21C8,'Up paired arrows'],[0x21C9,'Right paired arrows'],[0x21CA,'Down paired arrows'],[0x21CB,'Left harpoon over right'],[0x21CC,'Right harpoon over left'],[0x21D0,'Left double arrow'],[0x21D1,'Up double arrow'],[0x21D2,'Right double arrow'],[0x21D3,'Down double arrow'],[0x21D4,'Left-right double arrow'],[0x21D5,'Up-down double arrow'],[0x21E6,'Left white arrow'],[0x21E7,'Up white arrow'],[0x21E8,'Right white arrow'],[0x21E9,'Down white arrow'],[0x21EA,'Up white arrow from bar'],[0x27F5,'Long left arrow'],[0x27F6,'Long right arrow'],[0x27F7,'Long left-right arrow'],[0x27F8,'Long left double arrow'],[0x27F9,'Long right double arrow'],[0x27FA,'Long left-right double arrow'],[0x27FF,'Long right squiggle arrow'],
-], 'arrows', 'Arrows', 'arrow direction left right up down north east south west clockwise anticlockwise hook loop double long'));
+ALL.push(
+  ...individual(
+    [
+      [0x2190, 'Left arrow'],
+      [0x2191, 'Up arrow'],
+      [0x2192, 'Right arrow'],
+      [0x2193, 'Down arrow'],
+      [0x2194, 'Left-right arrow'],
+      [0x2195, 'Up-down arrow'],
+      [0x2196, 'North-west arrow'],
+      [0x2197, 'North-east arrow'],
+      [0x2198, 'South-east arrow'],
+      [0x2199, 'South-west arrow'],
+      [0x219a, 'Left arrow with stroke'],
+      [0x219b, 'Right arrow with stroke'],
+      [0x219c, 'Left wave arrow'],
+      [0x219d, 'Right wave arrow'],
+      [0x21a0, 'Right two-headed arrow'],
+      [0x21a2, 'Left arrow with tail'],
+      [0x21a3, 'Right arrow with tail'],
+      [0x21a4, 'Left arrow from bar'],
+      [0x21a5, 'Up arrow from bar'],
+      [0x21a6, 'Right arrow from bar'],
+      [0x21a9, 'Left arrow with hook'],
+      [0x21aa, 'Right arrow with hook'],
+      [0x21ab, 'Left arrow with loop'],
+      [0x21ac, 'Right arrow with loop'],
+      [0x21b0, 'Up arrow with tip left'],
+      [0x21b1, 'Up arrow with tip right'],
+      [0x21b6, 'Anticlockwise arrow'],
+      [0x21b7, 'Clockwise arrow'],
+      [0x21ba, 'Anticlockwise open circle'],
+      [0x21bb, 'Clockwise open circle'],
+      [0x21c4, 'Right arrow over left'],
+      [0x21c5, 'Up arrow left of down'],
+      [0x21c6, 'Left arrow over right'],
+      [0x21c7, 'Left paired arrows'],
+      [0x21c8, 'Up paired arrows'],
+      [0x21c9, 'Right paired arrows'],
+      [0x21ca, 'Down paired arrows'],
+      [0x21cb, 'Left harpoon over right'],
+      [0x21cc, 'Right harpoon over left'],
+      [0x21d0, 'Left double arrow'],
+      [0x21d1, 'Up double arrow'],
+      [0x21d2, 'Right double arrow'],
+      [0x21d3, 'Down double arrow'],
+      [0x21d4, 'Left-right double arrow'],
+      [0x21d5, 'Up-down double arrow'],
+      [0x21e6, 'Left white arrow'],
+      [0x21e7, 'Up white arrow'],
+      [0x21e8, 'Right white arrow'],
+      [0x21e9, 'Down white arrow'],
+      [0x21ea, 'Up white arrow from bar'],
+      [0x27f5, 'Long left arrow'],
+      [0x27f6, 'Long right arrow'],
+      [0x27f7, 'Long left-right arrow'],
+      [0x27f8, 'Long left double arrow'],
+      [0x27f9, 'Long right double arrow'],
+      [0x27fa, 'Long left-right double arrow'],
+      [0x27ff, 'Long right squiggle arrow'],
+    ],
+    'arrows',
+    'Arrows',
+    'arrow direction left right up down north east south west clockwise anticlockwise hook loop double long'
+  )
+);
 
-ALL.push(...individual([
-[0x2500,'Box light horizontal'],[0x2501,'Box heavy horizontal'],[0x2502,'Box light vertical'],[0x2503,'Box heavy vertical'],[0x250C,'Box light down-right'],[0x250D,'Box down light right heavy'],[0x250E,'Box down heavy right light'],[0x250F,'Box heavy down-right'],[0x2510,'Box light down-left'],[0x2514,'Box light up-right'],[0x2518,'Box light up-left'],[0x251C,'Box light vertical-right'],[0x2524,'Box light vertical-left'],[0x252C,'Box light down-horizontal'],[0x2534,'Box light up-horizontal'],[0x253C,'Box light vertical-horizontal'],[0x2550,'Box double horizontal'],[0x2551,'Box double vertical'],[0x2554,'Box double down-right'],[0x2557,'Box double down-left'],[0x255A,'Box double up-right'],[0x255D,'Box double up-left'],[0x2560,'Box double vertical-right'],[0x2563,'Box double vertical-left'],[0x2566,'Box double down-horizontal'],[0x2569,'Box double up-horizontal'],[0x256C,'Box double vertical-horizontal'],[0x2571,'Box light diagonal upper right'],[0x2572,'Box light diagonal upper left'],[0x2573,'Box light diagonal cross'],
-], 'box', 'Box Drawing', 'box drawing border line frame corner edge ascii art'));
+ALL.push(
+  ...individual(
+    [
+      [0x2500, 'Box light horizontal'],
+      [0x2501, 'Box heavy horizontal'],
+      [0x2502, 'Box light vertical'],
+      [0x2503, 'Box heavy vertical'],
+      [0x250c, 'Box light down-right'],
+      [0x250d, 'Box down light right heavy'],
+      [0x250e, 'Box down heavy right light'],
+      [0x250f, 'Box heavy down-right'],
+      [0x2510, 'Box light down-left'],
+      [0x2514, 'Box light up-right'],
+      [0x2518, 'Box light up-left'],
+      [0x251c, 'Box light vertical-right'],
+      [0x2524, 'Box light vertical-left'],
+      [0x252c, 'Box light down-horizontal'],
+      [0x2534, 'Box light up-horizontal'],
+      [0x253c, 'Box light vertical-horizontal'],
+      [0x2550, 'Box double horizontal'],
+      [0x2551, 'Box double vertical'],
+      [0x2554, 'Box double down-right'],
+      [0x2557, 'Box double down-left'],
+      [0x255a, 'Box double up-right'],
+      [0x255d, 'Box double up-left'],
+      [0x2560, 'Box double vertical-right'],
+      [0x2563, 'Box double vertical-left'],
+      [0x2566, 'Box double down-horizontal'],
+      [0x2569, 'Box double up-horizontal'],
+      [0x256c, 'Box double vertical-horizontal'],
+      [0x2571, 'Box light diagonal upper right'],
+      [0x2572, 'Box light diagonal upper left'],
+      [0x2573, 'Box light diagonal cross'],
+    ],
+    'box',
+    'Box Drawing',
+    'box drawing border line frame corner edge ascii art'
+  )
+);
 
-ALL.push(...individual([
-[0x2580,'Upper half block'],[0x2581,'Lower one eighth block'],[0x2584,'Lower half block'],[0x2588,'Full block'],[0x2589,'Left seven eighths block'],[0x258A,'Left three quarters block'],[0x258B,'Left five eighths block'],[0x258C,'Left half block'],[0x258D,'Left three eighths block'],[0x258E,'Left quarter block'],[0x258F,'Left one eighth block'],[0x2591,'Light shade'],[0x2592,'Medium shade'],[0x2593,'Dark shade'],[0x25A0,'Black square'],[0x25A1,'White square'],[0x25AA,'Small black square'],[0x25AB,'Small white square'],[0x25AC,'Black rectangle'],[0x25AD,'White rectangle'],[0x25AE,'Black vertical rectangle'],[0x25AF,'White vertical rectangle'],
-], 'blocks', 'Blocks & Shades', 'block shade square rectangle fill pixel half full'));
+ALL.push(
+  ...individual(
+    [
+      [0x2580, 'Upper half block'],
+      [0x2581, 'Lower one eighth block'],
+      [0x2584, 'Lower half block'],
+      [0x2588, 'Full block'],
+      [0x2589, 'Left seven eighths block'],
+      [0x258a, 'Left three quarters block'],
+      [0x258b, 'Left five eighths block'],
+      [0x258c, 'Left half block'],
+      [0x258d, 'Left three eighths block'],
+      [0x258e, 'Left quarter block'],
+      [0x258f, 'Left one eighth block'],
+      [0x2591, 'Light shade'],
+      [0x2592, 'Medium shade'],
+      [0x2593, 'Dark shade'],
+      [0x25a0, 'Black square'],
+      [0x25a1, 'White square'],
+      [0x25aa, 'Small black square'],
+      [0x25ab, 'Small white square'],
+      [0x25ac, 'Black rectangle'],
+      [0x25ad, 'White rectangle'],
+      [0x25ae, 'Black vertical rectangle'],
+      [0x25af, 'White vertical rectangle'],
+    ],
+    'blocks',
+    'Blocks & Shades',
+    'block shade square rectangle fill pixel half full'
+  )
+);
 
-ALL.push(...individual([
-[0x25B2,'Black up triangle'],[0x25B3,'White up triangle'],[0x25B4,'Small black up triangle'],[0x25B5,'Small white up triangle'],[0x25BC,'Black down triangle'],[0x25BD,'White down triangle'],[0x25BE,'Small black down triangle'],[0x25BF,'Small white down triangle'],[0x25C0,'Black left triangle'],[0x25C1,'White left triangle'],[0x25C2,'Small black left triangle'],[0x25C3,'Small white left triangle'],[0x25C4,'Black left pointer'],[0x25C5,'White left pointer'],[0x25C6,'Black diamond'],[0x25C7,'White diamond'],[0x25C8,'White diamond containing black'],[0x25C9,'Fisheye'],[0x25CA,'Lozenge'],[0x25CB,'White circle'],[0x25CF,'Black circle'],[0x25D0,'Circle left half black'],[0x25D1,'Circle right half black'],[0x25D2,'Circle lower half black'],[0x25D3,'Circle upper half black'],[0x25D4,'Circle upper right black'],[0x25D5,'Circle all but upper left black'],[0x25D6,'Left half circle black'],[0x25D7,'Right half circle black'],[0x25D8,'Inverse bullet'],[0x25D9,'Inverse white circle'],[0x25DA,'Upper half inverse white circle'],[0x25DB,'Lower half inverse white circle'],[0x25DC,'Upper left quadrant circular arc'],[0x25DD,'Upper right quadrant circular arc'],[0x25DE,'Lower right quadrant circular arc'],[0x25DF,'Lower left quadrant circular arc'],[0x25E0,'Upper half circle'],[0x25E1,'Lower half circle'],[0x25E2,'Black lower right triangle'],[0x25E3,'Black lower left triangle'],[0x25E4,'Black upper left triangle'],[0x25E5,'Black upper right triangle'],[0x25E6,'White bullet'],[0x25EF,'Large circle'],[0x2B1B,'Black large square'],[0x2B1C,'White large square'],[0x2B50,'White medium star'],[0x2B51,'Black small star'],[0x2B52,'White small star'],[0x26AA,'Medium white circle'],[0x26AB,'Medium black circle'],[0x26AC,'Medium small white circle'],[0x26AD,'Marriage symbol'],[0x26AE,'Divorce symbol'],[0x26AF,'Unmarried partnership'],
-], 'shapes', 'Geometric Shapes', 'shape triangle circle diamond square lozenge pointer bullet half quarter arc star geometric'));
+ALL.push(
+  ...individual(
+    [
+      [0x25b2, 'Black up triangle'],
+      [0x25b3, 'White up triangle'],
+      [0x25b4, 'Small black up triangle'],
+      [0x25b5, 'Small white up triangle'],
+      [0x25bc, 'Black down triangle'],
+      [0x25bd, 'White down triangle'],
+      [0x25be, 'Small black down triangle'],
+      [0x25bf, 'Small white down triangle'],
+      [0x25c0, 'Black left triangle'],
+      [0x25c1, 'White left triangle'],
+      [0x25c2, 'Small black left triangle'],
+      [0x25c3, 'Small white left triangle'],
+      [0x25c4, 'Black left pointer'],
+      [0x25c5, 'White left pointer'],
+      [0x25c6, 'Black diamond'],
+      [0x25c7, 'White diamond'],
+      [0x25c8, 'White diamond containing black'],
+      [0x25c9, 'Fisheye'],
+      [0x25ca, 'Lozenge'],
+      [0x25cb, 'White circle'],
+      [0x25cf, 'Black circle'],
+      [0x25d0, 'Circle left half black'],
+      [0x25d1, 'Circle right half black'],
+      [0x25d2, 'Circle lower half black'],
+      [0x25d3, 'Circle upper half black'],
+      [0x25d4, 'Circle upper right black'],
+      [0x25d5, 'Circle all but upper left black'],
+      [0x25d6, 'Left half circle black'],
+      [0x25d7, 'Right half circle black'],
+      [0x25d8, 'Inverse bullet'],
+      [0x25d9, 'Inverse white circle'],
+      [0x25da, 'Upper half inverse white circle'],
+      [0x25db, 'Lower half inverse white circle'],
+      [0x25dc, 'Upper left quadrant circular arc'],
+      [0x25dd, 'Upper right quadrant circular arc'],
+      [0x25de, 'Lower right quadrant circular arc'],
+      [0x25df, 'Lower left quadrant circular arc'],
+      [0x25e0, 'Upper half circle'],
+      [0x25e1, 'Lower half circle'],
+      [0x25e2, 'Black lower right triangle'],
+      [0x25e3, 'Black lower left triangle'],
+      [0x25e4, 'Black upper left triangle'],
+      [0x25e5, 'Black upper right triangle'],
+      [0x25e6, 'White bullet'],
+      [0x25ef, 'Large circle'],
+      [0x2b1b, 'Black large square'],
+      [0x2b1c, 'White large square'],
+      [0x2b50, 'White medium star'],
+      [0x2b51, 'Black small star'],
+      [0x2b52, 'White small star'],
+      [0x26aa, 'Medium white circle'],
+      [0x26ab, 'Medium black circle'],
+      [0x26ac, 'Medium small white circle'],
+      [0x26ad, 'Marriage symbol'],
+      [0x26ae, 'Divorce symbol'],
+      [0x26af, 'Unmarried partnership'],
+    ],
+    'shapes',
+    'Geometric Shapes',
+    'shape triangle circle diamond square lozenge pointer bullet half quarter arc star geometric'
+  )
+);
 
-ALL.push(...individual([
-[0x2600,'Black sun'],[0x2601,'Cloud'],[0x2602,'Umbrella'],[0x2603,'Snowman'],[0x2604,'Comet'],[0x2605,'Black star'],[0x2606,'White star'],[0x2609,'Sun'],[0x260A,'Ascending node'],[0x260B,'Descending node'],[0x260D,'Opposition'],[0x260E,'Black telephone'],[0x260F,'White telephone'],[0x2610,'Ballot box'],[0x2611,'Ballot box with check'],[0x2612,'Ballot box with X'],[0x2618,'Shamrock'],[0x261A,'Black left hand'],[0x261B,'Black right hand'],[0x261C,'White left hand'],[0x261D,'White up hand'],[0x261E,'White right hand'],[0x261F,'White down hand'],[0x2620,'Skull and crossbones'],[0x2621,'Caution sign'],[0x2622,'Radioactive'],[0x2623,'Biohazard'],[0x2624,'Caduceus'],[0x2625,'Ankh'],[0x2626,'Orthodox cross'],[0x2627,'Chi Rho'],[0x262A,'Star and crescent'],[0x262B,'Farsi symbol'],[0x262C,'Adi Shakti'],[0x262D,'Hammer and sickle'],[0x262E,'Peace'],[0x262F,'Yin yang'],[0x2638,'Wheel of Dharma'],[0x2639,'White frowning face'],[0x263A,'White smiling face'],[0x263B,'Black smiling face'],[0x263C,'White sun with rays'],[0x263D,'First quarter moon'],[0x263E,'Last quarter moon'],[0x263F,'Mercury'],[0x2640,'Female sign'],[0x2641,'Earth'],[0x2642,'Male sign'],[0x2643,'Jupiter'],[0x2644,'Saturn'],[0x2645,'Uranus'],[0x2646,'Neptune'],[0x2647,'Pluto'],[0x2648,'Aries'],[0x2649,'Taurus'],[0x264A,'Gemini'],[0x264B,'Cancer'],[0x264C,'Leo'],[0x264D,'Virgo'],[0x264E,'Libra'],[0x264F,'Scorpio'],[0x2650,'Sagittarius'],[0x2651,'Capricorn'],[0x2652,'Aquarius'],[0x2653,'Pisces'],[0x2654,'White chess king'],[0x2655,'White chess queen'],[0x2656,'White chess rook'],[0x2657,'White chess bishop'],[0x2658,'White chess knight'],[0x2659,'White chess pawn'],[0x265A,'Black chess king'],[0x265B,'Black chess queen'],[0x265C,'Black chess rook'],[0x265D,'Black chess bishop'],[0x265E,'Black chess knight'],[0x265F,'Black chess pawn'],[0x2660,'Black spade suit'],[0x2661,'White heart suit'],[0x2662,'White diamond suit'],[0x2663,'Black club suit'],[0x2664,'White spade suit'],[0x2665,'Black heart suit'],[0x2666,'Black diamond suit'],[0x2667,'White club suit'],[0x2668,'Hot springs'],[0x2669,'Quarter note'],[0x266A,'Eighth note'],[0x266B,'Beamed eighth notes'],[0x266C,'Beamed sixteenth notes'],[0x266D,'Music flat'],[0x266E,'Music natural'],[0x266F,'Music sharp'],[0x267E,'Permanent paper sign'],[0x267F,'Wheelchair symbol'],[0x2690,'White flag'],[0x2691,'Black flag'],[0x2692,'Hammer and pick'],[0x2693,'Anchor'],[0x2694,'Crossed swords'],[0x2695,'Staff of Aesculapius'],[0x2696,'Scales'],[0x2697,'Alembic'],[0x2698,'Flower'],[0x2699,'Gear'],[0x269A,'Staff of Hermes'],[0x269B,'Atom'],[0x269C,'Fleur-de-lis'],[0x269D,'Outlined white star'],[0x269E,'Three lines converging right'],[0x269F,'Three lines converging left'],[0x26A0,'Warning sign'],[0x26A1,'High voltage'],[0x26A2,'Doubled female'],[0x26A3,'Doubled male'],[0x26A4,'Interlocked female and male'],[0x26A5,'Male and female'],[0x26A6,'Male with stroke'],[0x26A7,'Male with female stroke'],
-], 'symbols', 'Stars & Symbols', 'symbol star sun cloud snowman umbrella comet telephone ballot shamrock hand skull crossbones caution radioactive biohazard caduceus ankh cross crescent peace yin yang dharma moon mercury venus earth mars jupiter saturn uranus neptune pluto zodiac aries taurus gemini cancer leo virgo libra scorpio sagittarius capricorn aquarius pisces chess card suit note music flag anchor sword scale gear atom flower fleur de lis warning'));
+ALL.push(
+  ...individual(
+    [
+      [0x2600, 'Black sun'],
+      [0x2601, 'Cloud'],
+      [0x2602, 'Umbrella'],
+      [0x2603, 'Snowman'],
+      [0x2604, 'Comet'],
+      [0x2605, 'Black star'],
+      [0x2606, 'White star'],
+      [0x2609, 'Sun'],
+      [0x260a, 'Ascending node'],
+      [0x260b, 'Descending node'],
+      [0x260d, 'Opposition'],
+      [0x260e, 'Black telephone'],
+      [0x260f, 'White telephone'],
+      [0x2610, 'Ballot box'],
+      [0x2611, 'Ballot box with check'],
+      [0x2612, 'Ballot box with X'],
+      [0x2618, 'Shamrock'],
+      [0x261a, 'Black left hand'],
+      [0x261b, 'Black right hand'],
+      [0x261c, 'White left hand'],
+      [0x261d, 'White up hand'],
+      [0x261e, 'White right hand'],
+      [0x261f, 'White down hand'],
+      [0x2620, 'Skull and crossbones'],
+      [0x2621, 'Caution sign'],
+      [0x2622, 'Radioactive'],
+      [0x2623, 'Biohazard'],
+      [0x2624, 'Caduceus'],
+      [0x2625, 'Ankh'],
+      [0x2626, 'Orthodox cross'],
+      [0x2627, 'Chi Rho'],
+      [0x262a, 'Star and crescent'],
+      [0x262b, 'Farsi symbol'],
+      [0x262c, 'Adi Shakti'],
+      [0x262d, 'Hammer and sickle'],
+      [0x262e, 'Peace'],
+      [0x262f, 'Yin yang'],
+      [0x2638, 'Wheel of Dharma'],
+      [0x2639, 'White frowning face'],
+      [0x263a, 'White smiling face'],
+      [0x263b, 'Black smiling face'],
+      [0x263c, 'White sun with rays'],
+      [0x263d, 'First quarter moon'],
+      [0x263e, 'Last quarter moon'],
+      [0x263f, 'Mercury'],
+      [0x2640, 'Female sign'],
+      [0x2641, 'Earth'],
+      [0x2642, 'Male sign'],
+      [0x2643, 'Jupiter'],
+      [0x2644, 'Saturn'],
+      [0x2645, 'Uranus'],
+      [0x2646, 'Neptune'],
+      [0x2647, 'Pluto'],
+      [0x2648, 'Aries'],
+      [0x2649, 'Taurus'],
+      [0x264a, 'Gemini'],
+      [0x264b, 'Cancer'],
+      [0x264c, 'Leo'],
+      [0x264d, 'Virgo'],
+      [0x264e, 'Libra'],
+      [0x264f, 'Scorpio'],
+      [0x2650, 'Sagittarius'],
+      [0x2651, 'Capricorn'],
+      [0x2652, 'Aquarius'],
+      [0x2653, 'Pisces'],
+      [0x2654, 'White chess king'],
+      [0x2655, 'White chess queen'],
+      [0x2656, 'White chess rook'],
+      [0x2657, 'White chess bishop'],
+      [0x2658, 'White chess knight'],
+      [0x2659, 'White chess pawn'],
+      [0x265a, 'Black chess king'],
+      [0x265b, 'Black chess queen'],
+      [0x265c, 'Black chess rook'],
+      [0x265d, 'Black chess bishop'],
+      [0x265e, 'Black chess knight'],
+      [0x265f, 'Black chess pawn'],
+      [0x2660, 'Black spade suit'],
+      [0x2661, 'White heart suit'],
+      [0x2662, 'White diamond suit'],
+      [0x2663, 'Black club suit'],
+      [0x2664, 'White spade suit'],
+      [0x2665, 'Black heart suit'],
+      [0x2666, 'Black diamond suit'],
+      [0x2667, 'White club suit'],
+      [0x2668, 'Hot springs'],
+      [0x2669, 'Quarter note'],
+      [0x266a, 'Eighth note'],
+      [0x266b, 'Beamed eighth notes'],
+      [0x266c, 'Beamed sixteenth notes'],
+      [0x266d, 'Music flat'],
+      [0x266e, 'Music natural'],
+      [0x266f, 'Music sharp'],
+      [0x267e, 'Permanent paper sign'],
+      [0x267f, 'Wheelchair symbol'],
+      [0x2690, 'White flag'],
+      [0x2691, 'Black flag'],
+      [0x2692, 'Hammer and pick'],
+      [0x2693, 'Anchor'],
+      [0x2694, 'Crossed swords'],
+      [0x2695, 'Staff of Aesculapius'],
+      [0x2696, 'Scales'],
+      [0x2697, 'Alembic'],
+      [0x2698, 'Flower'],
+      [0x2699, 'Gear'],
+      [0x269a, 'Staff of Hermes'],
+      [0x269b, 'Atom'],
+      [0x269c, 'Fleur-de-lis'],
+      [0x269d, 'Outlined white star'],
+      [0x269e, 'Three lines converging right'],
+      [0x269f, 'Three lines converging left'],
+      [0x26a0, 'Warning sign'],
+      [0x26a1, 'High voltage'],
+      [0x26a2, 'Doubled female'],
+      [0x26a3, 'Doubled male'],
+      [0x26a4, 'Interlocked female and male'],
+      [0x26a5, 'Male and female'],
+      [0x26a6, 'Male with stroke'],
+      [0x26a7, 'Male with female stroke'],
+    ],
+    'symbols',
+    'Stars & Symbols',
+    'symbol star sun cloud snowman umbrella comet telephone ballot shamrock hand skull crossbones caution radioactive biohazard caduceus ankh cross crescent peace yin yang dharma moon mercury venus earth mars jupiter saturn uranus neptune pluto zodiac aries taurus gemini cancer leo virgo libra scorpio sagittarius capricorn aquarius pisces chess card suit note music flag anchor sword scale gear atom flower fleur de lis warning'
+  )
+);
 
-ALL.push(...individual([
-[0x00A2,'Cent sign'],[0x00A3,'Pound sign'],[0x00A4,'Currency sign'],[0x00A5,'Yen sign'],[0x058F,'Armenian dram'],[0x060B,'Afghani sign'],[0x09F2,'Bengali rupee mark'],[0x09F3,'Bengali rupee sign'],[0x0AF1,'Gujarati rupee'],[0x0BF9,'Tamil rupee sign'],[0x0E3F,'Thai baht'],[0x17DB,'Khmer riel'],[0x20A0,'Euro-currency sign'],[0x20A1,'Colon sign'],[0x20A2,'Cruzeiro sign'],[0x20A3,'French franc'],[0x20A4,'Lira sign'],[0x20A5,'Mill sign'],[0x20A6,'Naira sign'],[0x20A7,'Peseta sign'],[0x20A8,'Rupee sign'],[0x20A9,'Won sign'],[0x20AA,'New sheqel'],[0x20AB,'Dong sign'],[0x20AC,'Euro sign'],[0x20AD,'Kip sign'],[0x20AE,'Tugrik sign'],[0x20AF,'Drachma sign'],[0x20B0,'German penny sign'],[0x20B1,'Peso sign'],[0x20B2,'Guarani sign'],[0x20B3,'Austral sign'],[0x20B4,'Hryvnia sign'],[0x20B5,'Cedi sign'],[0x20B6,'Livre tournois'],[0x20B7,'Spesmilo'],[0x20B8,'Tenge sign'],[0x20B9,'Indian rupee'],[0x20BA,'Turkish lira'],[0x20BB,'Nordic mark'],[0x20BC,'Manat sign'],[0x20BD,'Ruble sign'],[0x20BE,'Lari sign'],[0x20BF,'Bitcoin sign'],
-], 'currency', 'Currency', 'currency money dollar euro pound yen rupee bitcoin won franc lira peso colon baht dram afgani riel hryvnia cedi tenge ruble lari manat tugrik kip dong sheqel naira peseta mill penny austral guarani spesmilo'));
+ALL.push(
+  ...individual(
+    [
+      [0x00a2, 'Cent sign'],
+      [0x00a3, 'Pound sign'],
+      [0x00a4, 'Currency sign'],
+      [0x00a5, 'Yen sign'],
+      [0x058f, 'Armenian dram'],
+      [0x060b, 'Afghani sign'],
+      [0x09f2, 'Bengali rupee mark'],
+      [0x09f3, 'Bengali rupee sign'],
+      [0x0af1, 'Gujarati rupee'],
+      [0x0bf9, 'Tamil rupee sign'],
+      [0x0e3f, 'Thai baht'],
+      [0x17db, 'Khmer riel'],
+      [0x20a0, 'Euro-currency sign'],
+      [0x20a1, 'Colon sign'],
+      [0x20a2, 'Cruzeiro sign'],
+      [0x20a3, 'French franc'],
+      [0x20a4, 'Lira sign'],
+      [0x20a5, 'Mill sign'],
+      [0x20a6, 'Naira sign'],
+      [0x20a7, 'Peseta sign'],
+      [0x20a8, 'Rupee sign'],
+      [0x20a9, 'Won sign'],
+      [0x20aa, 'New sheqel'],
+      [0x20ab, 'Dong sign'],
+      [0x20ac, 'Euro sign'],
+      [0x20ad, 'Kip sign'],
+      [0x20ae, 'Tugrik sign'],
+      [0x20af, 'Drachma sign'],
+      [0x20b0, 'German penny sign'],
+      [0x20b1, 'Peso sign'],
+      [0x20b2, 'Guarani sign'],
+      [0x20b3, 'Austral sign'],
+      [0x20b4, 'Hryvnia sign'],
+      [0x20b5, 'Cedi sign'],
+      [0x20b6, 'Livre tournois'],
+      [0x20b7, 'Spesmilo'],
+      [0x20b8, 'Tenge sign'],
+      [0x20b9, 'Indian rupee'],
+      [0x20ba, 'Turkish lira'],
+      [0x20bb, 'Nordic mark'],
+      [0x20bc, 'Manat sign'],
+      [0x20bd, 'Ruble sign'],
+      [0x20be, 'Lari sign'],
+      [0x20bf, 'Bitcoin sign'],
+    ],
+    'currency',
+    'Currency',
+    'currency money dollar euro pound yen rupee bitcoin won franc lira peso colon baht dram afgani riel hryvnia cedi tenge ruble lari manat tugrik kip dong sheqel naira peseta mill penny austral guarani spesmilo'
+  )
+);
 
-ALL.push(...individual([
-[0x2070,'Superscript 0'],[0x00B9,'Superscript 1'],[0x00B2,'Superscript 2'],[0x00B3,'Superscript 3'],[0x2074,'Superscript 4'],[0x2075,'Superscript 5'],[0x2076,'Superscript 6'],[0x2077,'Superscript 7'],[0x2078,'Superscript 8'],[0x2079,'Superscript 9'],[0x207A,'Superscript plus'],[0x207B,'Superscript minus'],[0x207C,'Superscript equals'],[0x207D,'Superscript left paren'],[0x207E,'Superscript right paren'],[0x2071,'Superscript i'],[0x207F,'Superscript n'],[0x00AA,'Feminine ordinal'],[0x00BA,'Masculine ordinal'],[0x2080,'Subscript 0'],[0x2081,'Subscript 1'],[0x2082,'Subscript 2'],[0x2083,'Subscript 3'],[0x2084,'Subscript 4'],[0x2085,'Subscript 5'],[0x2086,'Subscript 6'],[0x2087,'Subscript 7'],[0x2088,'Subscript 8'],[0x2089,'Subscript 9'],[0x208A,'Subscript plus'],[0x208B,'Subscript minus'],[0x208C,'Subscript equals'],[0x208D,'Subscript left paren'],[0x208E,'Subscript right paren'],[0x2090,'Subscript a'],[0x2091,'Subscript e'],[0x2092,'Subscript o'],[0x2093,'Subscript x'],[0x2094,'Subscript schwa'],[0x2095,'Subscript h'],[0x2096,'Subscript k'],[0x2097,'Subscript l'],[0x2098,'Subscript m'],[0x2099,'Subscript n'],[0x209A,'Subscript p'],[0x209B,'Subscript s'],[0x209C,'Subscript t'],[0x00BC,'One quarter'],[0x00BD,'One half'],[0x00BE,'Three quarters'],[0x2150,'One seventh'],[0x2151,'One ninth'],[0x2152,'One tenth'],[0x2153,'One third'],[0x2154,'Two thirds'],[0x2155,'One fifth'],[0x2156,'Two fifths'],[0x2157,'Three fifths'],[0x2158,'Four fifths'],[0x2159,'One sixth'],[0x215A,'Five sixths'],[0x215B,'One eighth'],[0x215C,'Three eighths'],[0x215D,'Five eighths'],[0x215E,'Seven eighths'],
-], 'supsub', 'Super/Sub & Fractions', 'superscript subscript fraction one half quarter third fifth sixth seventh eighth ninth tenth power exponent ordinal'));
+ALL.push(
+  ...individual(
+    [
+      [0x2070, 'Superscript 0'],
+      [0x00b9, 'Superscript 1'],
+      [0x00b2, 'Superscript 2'],
+      [0x00b3, 'Superscript 3'],
+      [0x2074, 'Superscript 4'],
+      [0x2075, 'Superscript 5'],
+      [0x2076, 'Superscript 6'],
+      [0x2077, 'Superscript 7'],
+      [0x2078, 'Superscript 8'],
+      [0x2079, 'Superscript 9'],
+      [0x207a, 'Superscript plus'],
+      [0x207b, 'Superscript minus'],
+      [0x207c, 'Superscript equals'],
+      [0x207d, 'Superscript left paren'],
+      [0x207e, 'Superscript right paren'],
+      [0x2071, 'Superscript i'],
+      [0x207f, 'Superscript n'],
+      [0x00aa, 'Feminine ordinal'],
+      [0x00ba, 'Masculine ordinal'],
+      [0x2080, 'Subscript 0'],
+      [0x2081, 'Subscript 1'],
+      [0x2082, 'Subscript 2'],
+      [0x2083, 'Subscript 3'],
+      [0x2084, 'Subscript 4'],
+      [0x2085, 'Subscript 5'],
+      [0x2086, 'Subscript 6'],
+      [0x2087, 'Subscript 7'],
+      [0x2088, 'Subscript 8'],
+      [0x2089, 'Subscript 9'],
+      [0x208a, 'Subscript plus'],
+      [0x208b, 'Subscript minus'],
+      [0x208c, 'Subscript equals'],
+      [0x208d, 'Subscript left paren'],
+      [0x208e, 'Subscript right paren'],
+      [0x2090, 'Subscript a'],
+      [0x2091, 'Subscript e'],
+      [0x2092, 'Subscript o'],
+      [0x2093, 'Subscript x'],
+      [0x2094, 'Subscript schwa'],
+      [0x2095, 'Subscript h'],
+      [0x2096, 'Subscript k'],
+      [0x2097, 'Subscript l'],
+      [0x2098, 'Subscript m'],
+      [0x2099, 'Subscript n'],
+      [0x209a, 'Subscript p'],
+      [0x209b, 'Subscript s'],
+      [0x209c, 'Subscript t'],
+      [0x00bc, 'One quarter'],
+      [0x00bd, 'One half'],
+      [0x00be, 'Three quarters'],
+      [0x2150, 'One seventh'],
+      [0x2151, 'One ninth'],
+      [0x2152, 'One tenth'],
+      [0x2153, 'One third'],
+      [0x2154, 'Two thirds'],
+      [0x2155, 'One fifth'],
+      [0x2156, 'Two fifths'],
+      [0x2157, 'Three fifths'],
+      [0x2158, 'Four fifths'],
+      [0x2159, 'One sixth'],
+      [0x215a, 'Five sixths'],
+      [0x215b, 'One eighth'],
+      [0x215c, 'Three eighths'],
+      [0x215d, 'Five eighths'],
+      [0x215e, 'Seven eighths'],
+    ],
+    'supsub',
+    'Super/Sub & Fractions',
+    'superscript subscript fraction one half quarter third fifth sixth seventh eighth ninth tenth power exponent ordinal'
+  )
+);
 
-ALL.push(...individual([
-[0x2160,'Roman I'],[0x2161,'Roman II'],[0x2162,'Roman III'],[0x2163,'Roman IV'],[0x2164,'Roman V'],[0x2165,'Roman VI'],[0x2166,'Roman VII'],[0x2167,'Roman VIII'],[0x2168,'Roman IX'],[0x2169,'Roman X'],[0x216A,'Roman XI'],[0x216B,'Roman XII'],[0x216C,'Roman L'],[0x216D,'Roman C'],[0x216E,'Roman D'],[0x216F,'Roman M'],[0x2170,'Roman i'],[0x2171,'Roman ii'],[0x2172,'Roman iii'],[0x2173,'Roman iv'],[0x2174,'Roman v'],[0x2175,'Roman vi'],[0x2176,'Roman vii'],[0x2177,'Roman viii'],[0x2178,'Roman ix'],[0x2179,'Roman x'],[0x217A,'Roman xi'],[0x217B,'Roman xii'],[0x217C,'Roman l'],[0x217D,'Roman c'],[0x217E,'Roman d'],[0x217F,'Roman m'],
-], 'roman', 'Roman Numerals', 'roman numeral number I II III IV V VI VII VIII IX X XI XII L C D M'));
+ALL.push(
+  ...individual(
+    [
+      [0x2160, 'Roman I'],
+      [0x2161, 'Roman II'],
+      [0x2162, 'Roman III'],
+      [0x2163, 'Roman IV'],
+      [0x2164, 'Roman V'],
+      [0x2165, 'Roman VI'],
+      [0x2166, 'Roman VII'],
+      [0x2167, 'Roman VIII'],
+      [0x2168, 'Roman IX'],
+      [0x2169, 'Roman X'],
+      [0x216a, 'Roman XI'],
+      [0x216b, 'Roman XII'],
+      [0x216c, 'Roman L'],
+      [0x216d, 'Roman C'],
+      [0x216e, 'Roman D'],
+      [0x216f, 'Roman M'],
+      [0x2170, 'Roman i'],
+      [0x2171, 'Roman ii'],
+      [0x2172, 'Roman iii'],
+      [0x2173, 'Roman iv'],
+      [0x2174, 'Roman v'],
+      [0x2175, 'Roman vi'],
+      [0x2176, 'Roman vii'],
+      [0x2177, 'Roman viii'],
+      [0x2178, 'Roman ix'],
+      [0x2179, 'Roman x'],
+      [0x217a, 'Roman xi'],
+      [0x217b, 'Roman xii'],
+      [0x217c, 'Roman l'],
+      [0x217d, 'Roman c'],
+      [0x217e, 'Roman d'],
+      [0x217f, 'Roman m'],
+    ],
+    'roman',
+    'Roman Numerals',
+    'roman numeral number I II III IV V VI VII VIII IX X XI XII L C D M'
+  )
+);
 
-ALL.push(...individual([
-[0x2460,'Circled 1'],[0x2461,'Circled 2'],[0x2462,'Circled 3'],[0x2463,'Circled 4'],[0x2464,'Circled 5'],[0x2465,'Circled 6'],[0x2466,'Circled 7'],[0x2467,'Circled 8'],[0x2468,'Circled 9'],[0x2469,'Circled 10'],[0x246A,'Circled 11'],[0x246B,'Circled 12'],[0x246C,'Circled 13'],[0x246D,'Circled 14'],[0x246E,'Circled 15'],[0x246F,'Circled 16'],[0x2470,'Circled 17'],[0x2471,'Circled 18'],[0x2472,'Circled 19'],[0x2473,'Circled 20'],[0x24B6,'Circled A'],[0x24B7,'Circled B'],[0x24B8,'Circled C'],[0x24B9,'Circled D'],[0x24BA,'Circled E'],[0x24BB,'Circled F'],[0x24BC,'Circled G'],[0x24BD,'Circled H'],[0x24BE,'Circled I'],[0x24BF,'Circled J'],[0x24C0,'Circled K'],[0x24C1,'Circled L'],[0x24C2,'Circled M'],[0x24C3,'Circled N'],[0x24C4,'Circled O'],[0x24C5,'Circled P'],[0x24C6,'Circled Q'],[0x24C7,'Circled R'],[0x24C8,'Circled S'],[0x24C9,'Circled T'],[0x24CA,'Circled U'],[0x24CB,'Circled V'],[0x24CC,'Circled W'],[0x24CD,'Circled X'],[0x24CE,'Circled Y'],[0x24CF,'Circled Z'],[0x24D0,'Circled a'],[0x24D1,'Circled b'],[0x24D2,'Circled c'],[0x24D3,'Circled d'],[0x24D4,'Circled e'],[0x24D5,'Circled f'],[0x24D6,'Circled g'],[0x24D7,'Circled h'],[0x24D8,'Circled i'],[0x24D9,'Circled j'],[0x24DA,'Circled k'],[0x24DB,'Circled l'],[0x24DC,'Circled m'],[0x24DD,'Circled n'],[0x24DE,'Circled o'],[0x24DF,'Circled p'],[0x24E0,'Circled q'],[0x24E1,'Circled r'],[0x24E2,'Circled s'],[0x24E3,'Circled t'],[0x24E4,'Circled u'],[0x24E5,'Circled v'],[0x24E6,'Circled w'],[0x24E7,'Circled x'],[0x24E8,'Circled y'],[0x24E9,'Circled z'],[0x24EA,'Circled 0'],[0x24FF,'Negative circled 0'],[0x2776,'Negative circled 1'],[0x2777,'Negative circled 2'],[0x2778,'Negative circled 3'],[0x2779,'Negative circled 4'],[0x277A,'Negative circled 5'],[0x277B,'Negative circled 6'],[0x277C,'Negative circled 7'],[0x277D,'Negative circled 8'],[0x277E,'Negative circled 9'],[0x277F,'Negative circled 10'],[0x3251,'Circled 21'],[0x3252,'Circled 22'],[0x3253,'Circled 23'],[0x3254,'Circled 24'],[0x3255,'Circled 25'],[0x3256,'Circled 26'],[0x3257,'Circled 27'],[0x3258,'Circled 28'],[0x3259,'Circled 29'],[0x325A,'Circled 30'],[0x325B,'Circled 31'],[0x325C,'Circled 32'],[0x325D,'Circled 33'],[0x325E,'Circled 34'],[0x325F,'Circled 35'],[0x32B1,'Circled 36'],[0x32B2,'Circled 37'],[0x32B3,'Circled 38'],[0x32B4,'Circled 39'],[0x32B5,'Circled 40'],[0x32B6,'Circled 41'],[0x32B7,'Circled 42'],[0x32B8,'Circled 43'],[0x32B9,'Circled 44'],[0x32BA,'Circled 45'],[0x32BB,'Circled 46'],[0x32BC,'Circled 47'],[0x32BD,'Circled 48'],[0x32BE,'Circled 49'],[0x32BF,'Circled 50'],
-], 'enclosed', 'Enclosed', 'enclosed circled number letter bubble round negative'));
+ALL.push(
+  ...individual(
+    [
+      [0x2460, 'Circled 1'],
+      [0x2461, 'Circled 2'],
+      [0x2462, 'Circled 3'],
+      [0x2463, 'Circled 4'],
+      [0x2464, 'Circled 5'],
+      [0x2465, 'Circled 6'],
+      [0x2466, 'Circled 7'],
+      [0x2467, 'Circled 8'],
+      [0x2468, 'Circled 9'],
+      [0x2469, 'Circled 10'],
+      [0x246a, 'Circled 11'],
+      [0x246b, 'Circled 12'],
+      [0x246c, 'Circled 13'],
+      [0x246d, 'Circled 14'],
+      [0x246e, 'Circled 15'],
+      [0x246f, 'Circled 16'],
+      [0x2470, 'Circled 17'],
+      [0x2471, 'Circled 18'],
+      [0x2472, 'Circled 19'],
+      [0x2473, 'Circled 20'],
+      [0x24b6, 'Circled A'],
+      [0x24b7, 'Circled B'],
+      [0x24b8, 'Circled C'],
+      [0x24b9, 'Circled D'],
+      [0x24ba, 'Circled E'],
+      [0x24bb, 'Circled F'],
+      [0x24bc, 'Circled G'],
+      [0x24bd, 'Circled H'],
+      [0x24be, 'Circled I'],
+      [0x24bf, 'Circled J'],
+      [0x24c0, 'Circled K'],
+      [0x24c1, 'Circled L'],
+      [0x24c2, 'Circled M'],
+      [0x24c3, 'Circled N'],
+      [0x24c4, 'Circled O'],
+      [0x24c5, 'Circled P'],
+      [0x24c6, 'Circled Q'],
+      [0x24c7, 'Circled R'],
+      [0x24c8, 'Circled S'],
+      [0x24c9, 'Circled T'],
+      [0x24ca, 'Circled U'],
+      [0x24cb, 'Circled V'],
+      [0x24cc, 'Circled W'],
+      [0x24cd, 'Circled X'],
+      [0x24ce, 'Circled Y'],
+      [0x24cf, 'Circled Z'],
+      [0x24d0, 'Circled a'],
+      [0x24d1, 'Circled b'],
+      [0x24d2, 'Circled c'],
+      [0x24d3, 'Circled d'],
+      [0x24d4, 'Circled e'],
+      [0x24d5, 'Circled f'],
+      [0x24d6, 'Circled g'],
+      [0x24d7, 'Circled h'],
+      [0x24d8, 'Circled i'],
+      [0x24d9, 'Circled j'],
+      [0x24da, 'Circled k'],
+      [0x24db, 'Circled l'],
+      [0x24dc, 'Circled m'],
+      [0x24dd, 'Circled n'],
+      [0x24de, 'Circled o'],
+      [0x24df, 'Circled p'],
+      [0x24e0, 'Circled q'],
+      [0x24e1, 'Circled r'],
+      [0x24e2, 'Circled s'],
+      [0x24e3, 'Circled t'],
+      [0x24e4, 'Circled u'],
+      [0x24e5, 'Circled v'],
+      [0x24e6, 'Circled w'],
+      [0x24e7, 'Circled x'],
+      [0x24e8, 'Circled y'],
+      [0x24e9, 'Circled z'],
+      [0x24ea, 'Circled 0'],
+      [0x24ff, 'Negative circled 0'],
+      [0x2776, 'Negative circled 1'],
+      [0x2777, 'Negative circled 2'],
+      [0x2778, 'Negative circled 3'],
+      [0x2779, 'Negative circled 4'],
+      [0x277a, 'Negative circled 5'],
+      [0x277b, 'Negative circled 6'],
+      [0x277c, 'Negative circled 7'],
+      [0x277d, 'Negative circled 8'],
+      [0x277e, 'Negative circled 9'],
+      [0x277f, 'Negative circled 10'],
+      [0x3251, 'Circled 21'],
+      [0x3252, 'Circled 22'],
+      [0x3253, 'Circled 23'],
+      [0x3254, 'Circled 24'],
+      [0x3255, 'Circled 25'],
+      [0x3256, 'Circled 26'],
+      [0x3257, 'Circled 27'],
+      [0x3258, 'Circled 28'],
+      [0x3259, 'Circled 29'],
+      [0x325a, 'Circled 30'],
+      [0x325b, 'Circled 31'],
+      [0x325c, 'Circled 32'],
+      [0x325d, 'Circled 33'],
+      [0x325e, 'Circled 34'],
+      [0x325f, 'Circled 35'],
+      [0x32b1, 'Circled 36'],
+      [0x32b2, 'Circled 37'],
+      [0x32b3, 'Circled 38'],
+      [0x32b4, 'Circled 39'],
+      [0x32b5, 'Circled 40'],
+      [0x32b6, 'Circled 41'],
+      [0x32b7, 'Circled 42'],
+      [0x32b8, 'Circled 43'],
+      [0x32b9, 'Circled 44'],
+      [0x32ba, 'Circled 45'],
+      [0x32bb, 'Circled 46'],
+      [0x32bc, 'Circled 47'],
+      [0x32bd, 'Circled 48'],
+      [0x32be, 'Circled 49'],
+      [0x32bf, 'Circled 50'],
+    ],
+    'enclosed',
+    'Enclosed',
+    'enclosed circled number letter bubble round negative'
+  )
+);
 
-ALL.push(...individual([
-[0x2701,'Upper blade scissors'],[0x2702,'Black scissors'],[0x2703,'Lower blade scissors'],[0x2704,'White scissors'],[0x2706,'Telephone location sign'],[0x2707,'Tape drive'],[0x2708,'Airplane'],[0x2709,'Envelope'],[0x270A,'Raised fist'],[0x270B,'Raised hand'],[0x270C,'Victory hand'],[0x270D,'Writing hand'],[0x270E,'Lower right pencil'],[0x270F,'Pencil'],[0x2710,'Upper right pencil'],[0x2711,'White nib'],[0x2712,'Black nib'],[0x2713,'Check mark'],[0x2714,'Heavy check mark'],[0x2715,'Multiplication X'],[0x2716,'Heavy multiplication X'],[0x2717,'Ballot X'],[0x2718,'Heavy ballot X'],[0x2719,'Outlined Greek cross'],[0x271A,'Heavy Greek cross'],[0x271B,'Open centre cross'],[0x271C,'Heavy open centre cross'],[0x271D,'Latin cross'],[0x271E,'Shadowed white Latin cross'],[0x271F,'Outlined Latin cross'],[0x2720,'Maltese cross'],[0x2721,'Star of David'],[0x2722,'Four teardrop-spoked asterisk'],[0x2723,'Four balloon-spoked asterisk'],[0x2724,'Heavy four balloon-spoked asterisk'],[0x2725,'Four club-spoked asterisk'],[0x2726,'Black four-pointed star'],[0x2727,'White four-pointed star'],[0x2729,'Stress outlined white star'],[0x272A,'Circled white star'],[0x272B,'Open centre black star'],[0x272C,'Black centre white star'],[0x272D,'Outlined black star'],[0x272E,'Heavy outlined black star'],[0x272F,'Pinwheel star'],[0x2730,'Shadowed white star'],[0x2731,'Heavy asterisk'],[0x2732,'Open centre asterisk'],[0x2733,'Eight-spoked asterisk'],[0x2734,'Eight-pointed black star'],[0x2735,'Eight-pointed pinwheel star'],[0x2736,'Six-pointed black star'],[0x2737,'Eight-pointed rectilinear black star'],[0x2738,'Heavy eight-pointed rectilinear black star'],[0x2739,'Twelve-pointed black star'],[0x273A,'Sixteen-pointed asterisk'],[0x273B,'Teardrop-spoked asterisk'],[0x273C,'Open centre teardrop-spoked asterisk'],[0x273D,'Heavy teardrop-spoked asterisk'],[0x273E,'Six-petalled black and white florette'],[0x273F,'Black florette'],[0x2740,'White florette'],[0x2741,'Eight-petalled outlined black florette'],[0x2742,'Circled open centre eight-pointed star'],[0x2743,'Heavy teardrop-spoked pinwheel asterisk'],[0x2744,'Snowflake'],[0x2745,'Tight trifoliate snowflake'],[0x2746,'Heavy chevron snowflake'],[0x2747,'Sparkle'],[0x2748,'Heavy sparkle'],[0x2749,'Balloon-spoked asterisk'],[0x274A,'Eight teardrop-spoked propeller asterisk'],[0x274B,'Heavy eight teardrop-spoked propeller asterisk'],[0x274D,'Shadowed white circle'],[0x274E,'Negative squared cross mark'],[0x2753,'Black question mark'],[0x2754,'White question mark'],[0x2755,'White exclamation mark'],[0x2756,'Black diamond minus white X'],[0x2757,'Heavy exclamation mark'],[0x275B,'Heavy single turned comma'],[0x275C,'Heavy single comma'],[0x275D,'Heavy double turned comma'],[0x275E,'Heavy double comma'],[0x2761,'Curved stem paragraph sign'],[0x2762,'Heavy exclamation mark ornament'],[0x2763,'Heavy heart exclamation mark'],[0x2764,'Heavy black heart'],[0x2765,'Rotated heavy black heart bullet'],[0x2766,'Floral heart'],[0x2767,'Rotated floral heart bullet'],
-], 'dingbats', 'Dingbats', 'dingbat scissors telephone airplane envelope pencil hand check mark cross star asterisk florette snowflake sparkle heart paragraph ornament symbol'));
+ALL.push(
+  ...individual(
+    [
+      [0x2701, 'Upper blade scissors'],
+      [0x2702, 'Black scissors'],
+      [0x2703, 'Lower blade scissors'],
+      [0x2704, 'White scissors'],
+      [0x2706, 'Telephone location sign'],
+      [0x2707, 'Tape drive'],
+      [0x2708, 'Airplane'],
+      [0x2709, 'Envelope'],
+      [0x270a, 'Raised fist'],
+      [0x270b, 'Raised hand'],
+      [0x270c, 'Victory hand'],
+      [0x270d, 'Writing hand'],
+      [0x270e, 'Lower right pencil'],
+      [0x270f, 'Pencil'],
+      [0x2710, 'Upper right pencil'],
+      [0x2711, 'White nib'],
+      [0x2712, 'Black nib'],
+      [0x2713, 'Check mark'],
+      [0x2714, 'Heavy check mark'],
+      [0x2715, 'Multiplication X'],
+      [0x2716, 'Heavy multiplication X'],
+      [0x2717, 'Ballot X'],
+      [0x2718, 'Heavy ballot X'],
+      [0x2719, 'Outlined Greek cross'],
+      [0x271a, 'Heavy Greek cross'],
+      [0x271b, 'Open centre cross'],
+      [0x271c, 'Heavy open centre cross'],
+      [0x271d, 'Latin cross'],
+      [0x271e, 'Shadowed white Latin cross'],
+      [0x271f, 'Outlined Latin cross'],
+      [0x2720, 'Maltese cross'],
+      [0x2721, 'Star of David'],
+      [0x2722, 'Four teardrop-spoked asterisk'],
+      [0x2723, 'Four balloon-spoked asterisk'],
+      [0x2724, 'Heavy four balloon-spoked asterisk'],
+      [0x2725, 'Four club-spoked asterisk'],
+      [0x2726, 'Black four-pointed star'],
+      [0x2727, 'White four-pointed star'],
+      [0x2729, 'Stress outlined white star'],
+      [0x272a, 'Circled white star'],
+      [0x272b, 'Open centre black star'],
+      [0x272c, 'Black centre white star'],
+      [0x272d, 'Outlined black star'],
+      [0x272e, 'Heavy outlined black star'],
+      [0x272f, 'Pinwheel star'],
+      [0x2730, 'Shadowed white star'],
+      [0x2731, 'Heavy asterisk'],
+      [0x2732, 'Open centre asterisk'],
+      [0x2733, 'Eight-spoked asterisk'],
+      [0x2734, 'Eight-pointed black star'],
+      [0x2735, 'Eight-pointed pinwheel star'],
+      [0x2736, 'Six-pointed black star'],
+      [0x2737, 'Eight-pointed rectilinear black star'],
+      [0x2738, 'Heavy eight-pointed rectilinear black star'],
+      [0x2739, 'Twelve-pointed black star'],
+      [0x273a, 'Sixteen-pointed asterisk'],
+      [0x273b, 'Teardrop-spoked asterisk'],
+      [0x273c, 'Open centre teardrop-spoked asterisk'],
+      [0x273d, 'Heavy teardrop-spoked asterisk'],
+      [0x273e, 'Six-petalled black and white florette'],
+      [0x273f, 'Black florette'],
+      [0x2740, 'White florette'],
+      [0x2741, 'Eight-petalled outlined black florette'],
+      [0x2742, 'Circled open centre eight-pointed star'],
+      [0x2743, 'Heavy teardrop-spoked pinwheel asterisk'],
+      [0x2744, 'Snowflake'],
+      [0x2745, 'Tight trifoliate snowflake'],
+      [0x2746, 'Heavy chevron snowflake'],
+      [0x2747, 'Sparkle'],
+      [0x2748, 'Heavy sparkle'],
+      [0x2749, 'Balloon-spoked asterisk'],
+      [0x274a, 'Eight teardrop-spoked propeller asterisk'],
+      [0x274b, 'Heavy eight teardrop-spoked propeller asterisk'],
+      [0x274d, 'Shadowed white circle'],
+      [0x274e, 'Negative squared cross mark'],
+      [0x2753, 'Black question mark'],
+      [0x2754, 'White question mark'],
+      [0x2755, 'White exclamation mark'],
+      [0x2756, 'Black diamond minus white X'],
+      [0x2757, 'Heavy exclamation mark'],
+      [0x275b, 'Heavy single turned comma'],
+      [0x275c, 'Heavy single comma'],
+      [0x275d, 'Heavy double turned comma'],
+      [0x275e, 'Heavy double comma'],
+      [0x2761, 'Curved stem paragraph sign'],
+      [0x2762, 'Heavy exclamation mark ornament'],
+      [0x2763, 'Heavy heart exclamation mark'],
+      [0x2764, 'Heavy black heart'],
+      [0x2765, 'Rotated heavy black heart bullet'],
+      [0x2766, 'Floral heart'],
+      [0x2767, 'Rotated floral heart bullet'],
+    ],
+    'dingbats',
+    'Dingbats',
+    'dingbat scissors telephone airplane envelope pencil hand check mark cross star asterisk florette snowflake sparkle heart paragraph ornament symbol'
+  )
+);
 
-ALL.push(...individual([
-[0x16A0,'Runic fehu'],[0x16A1,'Runic v'],[0x16A2,'Runic uruz'],[0x16A3,'Runic yr'],[0x16A4,'Runic y'],[0x16A5,'Runic w'],[0x16A6,'Runic thurisaz'],[0x16A7,'Runic eth'],[0x16A8,'Runic ansuz'],[0x16A9,'Runic os'],[0x16AA,'Runic ac'],[0x16AB,'Runic aesc'],[0x16AC,'Runic long-branch oss'],[0x16AD,'Runic short-twig oss'],[0x16AE,'Runic o'],[0x16AF,'Runic oe'],[0x16B0,'Runic on'],[0x16B1,'Runic raido'],[0x16B2,'Runic kauna'],[0x16B3,'Runic cen'],[0x16B4,'Runic kaun'],[0x16B5,'Runic g'],[0x16B6,'Runic eng'],[0x16B7,'Runic gebo'],[0x16B8,'Runic gar'],[0x16B9,'Runic wunjo'],[0x16BA,'Runic haglaz'],[0x16BB,'Runic haegl'],[0x16BC,'Runic long-branch hagall'],[0x16BD,'Runic short-twig hagall'],[0x16BE,'Runic naudiz'],[0x16BF,'Runic nyd'],[0x16C0,'Runic short-twig naud'],[0x16C1,'Runic isaz'],[0x16C2,'Runic e'],[0x16C3,'Runic jeran'],[0x16C4,'Runic ger'],[0x16C5,'Runic long-branch ar'],[0x16C6,'Runic short-twig ar'],[0x16C7,'Runic iwaz'],[0x16C8,'Runic pertho'],[0x16C9,'Runic algiz'],[0x16CA,'Runic sowilo'],[0x16CB,'Runic sigel'],[0x16CC,'Runic short-twig sol'],[0x16CD,'Runic c'],[0x16CE,'Runic z'],[0x16CF,'Runic tiwaz'],[0x16D0,'Runic tir'],[0x16D1,'Runic short-twig tyr'],[0x16D2,'Runic d'],[0x16D3,'Runic berkanan'],[0x16D4,'Runic short-twig bjarkan'],[0x16D5,'Runic dotted p'],[0x16D6,'Runic open p'],[0x16D7,'Runic ehwaz'],[0x16D8,'Runic mannaz'],[0x16D9,'Runic long-branch madr'],[0x16DA,'Runic short-twig madr'],[0x16DB,'Runic laukaz'],[0x16DC,'Runic dotted l'],[0x16DD,'Runic ingwaz'],[0x16DE,'Runic dagaz'],[0x16DF,'Runic othalan'],[0x16E0,'Runic ear'],[0x16E1,'Runic ior'],[0x16E2,'Runic cweorth'],[0x16E3,'Runic calc'],[0x16E4,'Runic cealc'],[0x16E5,'Runic stan'],[0x16E6,'Runic long-branch yr'],[0x16E7,'Runic short-twig yr'],[0x16E8,'Runic icelandic yr'],[0x16E9,'Runic q'],[0x16EA,'Runic x'],[0x16EB,'Runic single punctuation'],[0x16EC,'Runic multiple punctuation'],[0x16ED,'Runic cross punctuation'],[0x16EE,'Runic arlaug symbol'],[0x16EF,'Runic tvimadur symbol'],[0x16F0,'Runic belgthor symbol'],
-], 'runic', 'Runic', 'runic rune futhark fehu uruz thurisaz ansuz raido kaunan gebo wunjo hagalaz naudiz isaz jeran pertho algiz sowilo tiwaz berkanan ehwaz mannaz laukaz ingwaz dagaz othalan elder'));
+ALL.push(
+  ...individual(
+    [
+      [0x16a0, 'Runic fehu'],
+      [0x16a1, 'Runic v'],
+      [0x16a2, 'Runic uruz'],
+      [0x16a3, 'Runic yr'],
+      [0x16a4, 'Runic y'],
+      [0x16a5, 'Runic w'],
+      [0x16a6, 'Runic thurisaz'],
+      [0x16a7, 'Runic eth'],
+      [0x16a8, 'Runic ansuz'],
+      [0x16a9, 'Runic os'],
+      [0x16aa, 'Runic ac'],
+      [0x16ab, 'Runic aesc'],
+      [0x16ac, 'Runic long-branch oss'],
+      [0x16ad, 'Runic short-twig oss'],
+      [0x16ae, 'Runic o'],
+      [0x16af, 'Runic oe'],
+      [0x16b0, 'Runic on'],
+      [0x16b1, 'Runic raido'],
+      [0x16b2, 'Runic kauna'],
+      [0x16b3, 'Runic cen'],
+      [0x16b4, 'Runic kaun'],
+      [0x16b5, 'Runic g'],
+      [0x16b6, 'Runic eng'],
+      [0x16b7, 'Runic gebo'],
+      [0x16b8, 'Runic gar'],
+      [0x16b9, 'Runic wunjo'],
+      [0x16ba, 'Runic haglaz'],
+      [0x16bb, 'Runic haegl'],
+      [0x16bc, 'Runic long-branch hagall'],
+      [0x16bd, 'Runic short-twig hagall'],
+      [0x16be, 'Runic naudiz'],
+      [0x16bf, 'Runic nyd'],
+      [0x16c0, 'Runic short-twig naud'],
+      [0x16c1, 'Runic isaz'],
+      [0x16c2, 'Runic e'],
+      [0x16c3, 'Runic jeran'],
+      [0x16c4, 'Runic ger'],
+      [0x16c5, 'Runic long-branch ar'],
+      [0x16c6, 'Runic short-twig ar'],
+      [0x16c7, 'Runic iwaz'],
+      [0x16c8, 'Runic pertho'],
+      [0x16c9, 'Runic algiz'],
+      [0x16ca, 'Runic sowilo'],
+      [0x16cb, 'Runic sigel'],
+      [0x16cc, 'Runic short-twig sol'],
+      [0x16cd, 'Runic c'],
+      [0x16ce, 'Runic z'],
+      [0x16cf, 'Runic tiwaz'],
+      [0x16d0, 'Runic tir'],
+      [0x16d1, 'Runic short-twig tyr'],
+      [0x16d2, 'Runic d'],
+      [0x16d3, 'Runic berkanan'],
+      [0x16d4, 'Runic short-twig bjarkan'],
+      [0x16d5, 'Runic dotted p'],
+      [0x16d6, 'Runic open p'],
+      [0x16d7, 'Runic ehwaz'],
+      [0x16d8, 'Runic mannaz'],
+      [0x16d9, 'Runic long-branch madr'],
+      [0x16da, 'Runic short-twig madr'],
+      [0x16db, 'Runic laukaz'],
+      [0x16dc, 'Runic dotted l'],
+      [0x16dd, 'Runic ingwaz'],
+      [0x16de, 'Runic dagaz'],
+      [0x16df, 'Runic othalan'],
+      [0x16e0, 'Runic ear'],
+      [0x16e1, 'Runic ior'],
+      [0x16e2, 'Runic cweorth'],
+      [0x16e3, 'Runic calc'],
+      [0x16e4, 'Runic cealc'],
+      [0x16e5, 'Runic stan'],
+      [0x16e6, 'Runic long-branch yr'],
+      [0x16e7, 'Runic short-twig yr'],
+      [0x16e8, 'Runic icelandic yr'],
+      [0x16e9, 'Runic q'],
+      [0x16ea, 'Runic x'],
+      [0x16eb, 'Runic single punctuation'],
+      [0x16ec, 'Runic multiple punctuation'],
+      [0x16ed, 'Runic cross punctuation'],
+      [0x16ee, 'Runic arlaug symbol'],
+      [0x16ef, 'Runic tvimadur symbol'],
+      [0x16f0, 'Runic belgthor symbol'],
+    ],
+    'runic',
+    'Runic',
+    'runic rune futhark fehu uruz thurisaz ansuz raido kaunan gebo wunjo hagalaz naudiz isaz jeran pertho algiz sowilo tiwaz berkanan ehwaz mannaz laukaz ingwaz dagaz othalan elder'
+  )
+);
 
-ALL.push(...individual([
-[0x2010,'Hyphen'],[0x2011,'Non-breaking hyphen'],[0x2012,'Figure dash'],[0x2013,'En dash'],[0x2014,'Em dash'],[0x2015,'Horizontal bar'],[0x2016,'Double vertical line'],[0x2017,'Double low line'],[0x2018,'Left single quote'],[0x2019,'Right single quote'],[0x201A,'Single low quote'],[0x201B,'Single high-reversed quote'],[0x201C,'Left double quote'],[0x201D,'Right double quote'],[0x201E,'Double low quote'],[0x201F,'Double high-reversed quote'],[0x2020,'Dagger'],[0x2021,'Double dagger'],[0x2022,'Bullet'],[0x2023,'Triangular bullet'],[0x2024,'One dot leader'],[0x2025,'Two dot leader'],[0x2026,'Horizontal ellipsis'],[0x2027,'Hyphenation point'],[0x2030,'Per mille sign'],[0x2031,'Per ten thousand sign'],[0x2032,'Prime'],[0x2033,'Double prime'],[0x2034,'Triple prime'],[0x2035,'Reversed prime'],[0x2036,'Reversed double prime'],[0x2037,'Reversed triple prime'],[0x2038,'Caret'],[0x2039,'Single left-pointing angle'],[0x203A,'Single right-pointing angle'],[0x203B,'Reference mark'],[0x203C,'Double exclamation mark'],[0x203D,'Interrobang'],[0x203E,'Overline'],[0x203F,'Undertie'],[0x2040,'Character tie'],[0x2041,'Caret insertion point'],[0x2042,'Asterism'],[0x2043,'Hyphen bullet'],[0x2044,'Fraction slash'],[0x2045,'Left square bracket with quill'],[0x2046,'Right square bracket with quill'],[0x2047,'Double question mark'],[0x2048,'Question exclamation mark'],[0x2049,'Exclamation question mark'],[0x204A,'Tironian sign et'],[0x204B,'Reversed pilcrow'],[0x204C,'Black leftwards bullet'],[0x204D,'Black rightwards bullet'],[0x204E,'Low asterisk'],[0x204F,'Reversed semicolon'],[0x2050,'Close up'],[0x2051,'Two asterisks aligned vertically'],[0x2052,'Commercial minus sign'],[0x2053,'Swung dash'],[0x2055,'Flower punctuation mark'],[0x2056,'Three dot punctuation'],[0x2057,'Quadruple prime'],[0x2058,'Four dot punctuation'],[0x2059,'Five dot punctuation'],[0x205A,'Two dot punctuation'],[0x205B,'Four dot mark'],[0x205C,'Dotted cross'],[0x205D,'Tricolon'],[0x205E,'Vertical four dots'],[0x2000,'En quad'],[0x2001,'Em quad'],[0x2002,'En space'],[0x2003,'Em space'],[0x2004,'Three-per-em space'],[0x2005,'Four-per-em space'],[0x2006,'Six-per-em space'],[0x2007,'Figure space'],[0x2008,'Punctuation space'],[0x2009,'Thin space'],[0x200A,'Hair space'],[0x200B,'Zero width space'],[0x200C,'Zero width non-joiner'],[0x200D,'Zero width joiner'],[0x200E,'Left-to-right mark'],[0x200F,'Right-to-left mark'],[0x2060,'Word joiner'],[0xFEFF,'Zero width no-break space'],
-], 'punctuation', 'Punctuation & Spaces', 'punctuation dash hyphen quote prime bullet ellipsis dagger interrobang overline space thin hair em en zero width joiner non-joiner ltr rtl word joiner caret asterism tricolon'));
+ALL.push(
+  ...individual(
+    [
+      [0x2010, 'Hyphen'],
+      [0x2011, 'Non-breaking hyphen'],
+      [0x2012, 'Figure dash'],
+      [0x2013, 'En dash'],
+      [0x2014, 'Em dash'],
+      [0x2015, 'Horizontal bar'],
+      [0x2016, 'Double vertical line'],
+      [0x2017, 'Double low line'],
+      [0x2018, 'Left single quote'],
+      [0x2019, 'Right single quote'],
+      [0x201a, 'Single low quote'],
+      [0x201b, 'Single high-reversed quote'],
+      [0x201c, 'Left double quote'],
+      [0x201d, 'Right double quote'],
+      [0x201e, 'Double low quote'],
+      [0x201f, 'Double high-reversed quote'],
+      [0x2020, 'Dagger'],
+      [0x2021, 'Double dagger'],
+      [0x2022, 'Bullet'],
+      [0x2023, 'Triangular bullet'],
+      [0x2024, 'One dot leader'],
+      [0x2025, 'Two dot leader'],
+      [0x2026, 'Horizontal ellipsis'],
+      [0x2027, 'Hyphenation point'],
+      [0x2030, 'Per mille sign'],
+      [0x2031, 'Per ten thousand sign'],
+      [0x2032, 'Prime'],
+      [0x2033, 'Double prime'],
+      [0x2034, 'Triple prime'],
+      [0x2035, 'Reversed prime'],
+      [0x2036, 'Reversed double prime'],
+      [0x2037, 'Reversed triple prime'],
+      [0x2038, 'Caret'],
+      [0x2039, 'Single left-pointing angle'],
+      [0x203a, 'Single right-pointing angle'],
+      [0x203b, 'Reference mark'],
+      [0x203c, 'Double exclamation mark'],
+      [0x203d, 'Interrobang'],
+      [0x203e, 'Overline'],
+      [0x203f, 'Undertie'],
+      [0x2040, 'Character tie'],
+      [0x2041, 'Caret insertion point'],
+      [0x2042, 'Asterism'],
+      [0x2043, 'Hyphen bullet'],
+      [0x2044, 'Fraction slash'],
+      [0x2045, 'Left square bracket with quill'],
+      [0x2046, 'Right square bracket with quill'],
+      [0x2047, 'Double question mark'],
+      [0x2048, 'Question exclamation mark'],
+      [0x2049, 'Exclamation question mark'],
+      [0x204a, 'Tironian sign et'],
+      [0x204b, 'Reversed pilcrow'],
+      [0x204c, 'Black leftwards bullet'],
+      [0x204d, 'Black rightwards bullet'],
+      [0x204e, 'Low asterisk'],
+      [0x204f, 'Reversed semicolon'],
+      [0x2050, 'Close up'],
+      [0x2051, 'Two asterisks aligned vertically'],
+      [0x2052, 'Commercial minus sign'],
+      [0x2053, 'Swung dash'],
+      [0x2055, 'Flower punctuation mark'],
+      [0x2056, 'Three dot punctuation'],
+      [0x2057, 'Quadruple prime'],
+      [0x2058, 'Four dot punctuation'],
+      [0x2059, 'Five dot punctuation'],
+      [0x205a, 'Two dot punctuation'],
+      [0x205b, 'Four dot mark'],
+      [0x205c, 'Dotted cross'],
+      [0x205d, 'Tricolon'],
+      [0x205e, 'Vertical four dots'],
+      [0x2000, 'En quad'],
+      [0x2001, 'Em quad'],
+      [0x2002, 'En space'],
+      [0x2003, 'Em space'],
+      [0x2004, 'Three-per-em space'],
+      [0x2005, 'Four-per-em space'],
+      [0x2006, 'Six-per-em space'],
+      [0x2007, 'Figure space'],
+      [0x2008, 'Punctuation space'],
+      [0x2009, 'Thin space'],
+      [0x200a, 'Hair space'],
+      [0x200b, 'Zero width space'],
+      [0x200c, 'Zero width non-joiner'],
+      [0x200d, 'Zero width joiner'],
+      [0x200e, 'Left-to-right mark'],
+      [0x200f, 'Right-to-left mark'],
+      [0x2060, 'Word joiner'],
+      [0xfeff, 'Zero width no-break space'],
+    ],
+    'punctuation',
+    'Punctuation & Spaces',
+    'punctuation dash hyphen quote prime bullet ellipsis dagger interrobang overline space thin hair em en zero width joiner non-joiner ltr rtl word joiner caret asterism tricolon'
+  )
+);
 
 // === NEW EPIC CATEGORIES ===
 
 // 17. Egyptian Hieroglyphs (~256 most recognizable)
-ALL.push(...individual([
-[0x13000,'Egyptian man'],[0x13001,'Egyptian man with hand to mouth'],[0x13002,'Egyptian man sitting'],[0x13003,'Egyptian man with raised arms'],[0x13004,'Egyptian man with stick'],[0x13005,'Egyptian man with weapon'],[0x13006,'Egyptian man hitting'],[0x13007,'Egyptian man falling'],[0x13008,'Egyptian man with basket'],[0x13009,'Egyptian man with jar'],[0x1300A,'Egyptian man with staff'],[0x1300B,'Egyptian man with scepter'],[0x1300C,'Egyptian child'],[0x1300D,'Egyptian old man'],[0x1300E,'Egyptian woman'],[0x1300F,'Egyptian woman with child'],[0x13010,'Egyptian pregnant woman'],[0x13011,'Egyptian queen'],[0x13012,'Egyptian goddess'],[0x13013,'Egyptian god'],[0x13014,'Egyptian king'],[0x13015,'Egyptian pharaoh'],[0x13016,'Egyptian noble'],[0x13017,'Egyptian priest'],[0x13018,'Egyptian soldier'],[0x13019,'Egyptian foreigner'],[0x1301A,'Egyptian captive'],[0x1301B,'Egyptian slave'],[0x1301C,'Egyptian dwarf'],[0x1301D,'Egyptian giant'],[0x1301E,'Egyptian head'],[0x1301F,'Egyptian face'],[0x13020,'Egyptian eye'],[0x13021,'Egyptian eye with paint'],[0x13022,'Egyptian eyebrow'],[0x13023,'Egyptian nose'],[0x13024,'Egyptian ear'],[0x13025,'Egyptian mouth'],[0x13026,'Egyptian lips'],[0x13027,'Egyptian tooth'],[0x13028,'Egyptian tongue'],[0x13029,'Egyptian hand'],[0x1302A,'Egyptian arm'],[0x1302B,'Egyptian forearm'],[0x1302C,'Egyptian leg'],[0x1302D,'Egyptian foot'],[0x1302E,'Egyptian toe'],[0x1302F,'Egyptian finger'],[0x13030,'Egyptian heart'],[0x13031,'Egyptian lungs'],[0x13032,'Egyptian liver'],[0x13033,'Egyptian stomach'],[0x13034,'Egyptian intestines'],[0x13035,'Egyptian backbone'],[0x13036,'Egyptian skull'],[0x13037,'Egyptian bone'],[0x13038,'Egyptian flesh'],[0x13039,'Egyptian skin'],[0x1303A,'Egyptian hair'],[0x1303B,'Egyptian beard'],[0x1303C,'Egyptian headcloth'],[0x1303D,'Egyptian crown'],[0x1303E,'Egyptian white crown'],[0x1303F,'Egyptian red crown'],[0x13040,'Egyptian double crown'],[0x13041,'Egyptian blue crown'],[0x13042,'Egyptian atef crown'],[0x13043,'Egyptian hedjet'],[0x13044,'Egyptian deshret'],[0x13045,'Egyptian pschent'],[0x13046,'Egyptian khepresh'],[0x13047,'Egyptian nemes'],[0x13048,'Egyptian false beard'],[0x13049,'Egyptian scepter'],[0x1304A,'Egyptian flail'],[0x1304B,'Egyptian crook'],[0x1304C,'Egyptian was scepter'],[0x1304D,'Egyptian ankh'],[0x1304E,'Egyptian djed pillar'],[0x1304F,'Egyptian tyet'],[0x13050,'Egyptian lotus'],[0x13051,'Egyptian papyrus'],[0x13052,'Egyptian reed'],[0x13053,'Egyptian lily'],[0x13054,'Egyptian mandrake'],[0x13055,'Egyptian onion'],[0x13056,'Egyptian bean'],[0x13057,'Egyptian chickpea'],[0x13058,'Egyptian barley'],[0x13059,'Egyptian emmer'],[0x1305A,'Egyptian wheat'],[0x1305B,'Egyptian spelt'],[0x1305C,'Egyptian fruit'],[0x1305D,'Egyptian date'],[0x1305E,'Egyptian fig'],[0x1305F,'Egyptian grape'],[0x13060,'Egyptian olive'],[0x13061,'Egyptian carob'],[0x13062,'Egyptian nut'],[0x13063,'Egyptian honey'],[0x13064,'Egyptian water pot'],[0x13065,'Egyptian jar'],[0x13066,'Egyptian bowl'],[0x13067,'Egyptian cup'],[0x13068,'Egyptian plate'],[0x13069,'Egyptian dish'],[0x1306A,'Egyptian basket'],[0x1306B,'Egyptian box'],[0x1306C,'Egyptian chest'],[0x1306D,'Egyptian coffin'],[0x1306E,'Egyptian shrine'],[0x1306F,'Egyptian naos'],[0x13070,'Egyptian temple'],[0x13071,'Egyptian pyramid'],[0x13072,'Egyptian obelisk'],[0x13073,'Egyptian column'],[0x13074,'Egyptian gateway'],[0x13075,'Egyptian door'],[0x13076,'Egyptian wall'],[0x13077,'Egyptian fence'],[0x13078,'Egyptian corner'],[0x13079,'Egyptian corner block'],[0x1307A,'Egyptian foundation'],[0x1307B,'Egyptian brick'],[0x1307C,'Egyptian stone'],[0x1307D,'Egyptian boulder'],[0x1307E,'Egyptian hill'],[0x1307F,'Egyptian mountain'],[0x13080,'Egyptian sun'],[0x13081,'Egyptian moon'],[0x13082,'Egyptian star'],[0x13083,'Egyptian venus'],[0x13084,'Egyptian constellation'],[0x13085,'Egyptian decan'],[0x13086,'Egyptian year'],[0x13087,'Egyptian month'],[0x13088,'Egyptian season'],[0x13089,'Egyptian day'],[0x1308A,'Egyptian night'],[0x1308B,'Egyptian hour'],[0x1308C,'Egyptian morning'],[0x1308D,'Egyptian evening'],[0x1308E,'Egyptian dawn'],[0x1308F,'Egyptian dusk'],[0x13090,'Egyptian water'],[0x13091,'Egyptian flood'],[0x13092,'Egyptian rain'],[0x13093,'Egyptian dew'],[0x13094,'Egyptian cloud'],[0x13095,'Egyptian mist'],[0x13096,'Egyptian fog'],[0x13097,'Egyptian wind'],[0x13098,'Egyptian storm'],[0x13099,'Egyptian thunder'],[0x1309A,'Egyptian lightning'],[0x1309B,'Egyptian rainbow'],[0x1309C,'Egyptian fire'],[0x1309D,'Egyptian flame'],[0x1309E,'Egyptian ash'],[0x1309F,'Egyptian smoke'],[0x130A0,'Egyptian earth'],[0x130A1,'Egyptian sand'],[0x130A2,'Egyptian dust'],[0x130A3,'Egyptian mud'],[0x130A4,'Egyptian clay'],[0x130A5,'Egyptian silt'],[0x130A6,'Egyptian field'],[0x130A7,'Egyptian garden'],[0x130A8,'Egyptian orchard'],[0x130A9,'Egyptian vineyard'],[0x130AA,'Egyptian meadow'],[0x130AB,'Egyptian pasture'],[0x130AC,'Egyptian desert'],[0x130AD,'Egyptian oasis'],[0x130AE,'Egyptian island'],[0x130AF,'Egyptian shore'],[0x130B0,'Egyptian river'],[0x130B1,'Egyptian canal'],[0x130B2,'Egyptian lake'],[0x130B3,'Egyptian pond'],[0x130B4,'Egyptian well'],[0x130B5,'Egyptian spring'],[0x130B6,'Egyptian pool'],[0x130B7,'Egyptian basin'],[0x130B8,'Egyptian sea'],[0x130B9,'Egyptian ocean'],[0x130BA,'Egyptian wave'],[0x130BB,'Egyptian tide'],[0x130BC,'Egyptian current'],[0x130BD,'Egyptian whirlpool'],[0x130BE,'Egyptian waterfall'],[0x130BF,'Egyptian rapids'],[0x130C0,'Egyptian fish'],[0x130C1,'Egyptian catfish'],[0x130C2,'Egyptian eel'],[0x130C3,'Egyptian mullet'],[0x130C4,'Egyptian tilapia'],[0x130C5,'Egyptian perch'],[0x130C6,'Egyptian carp'],[0x130C7,'Egyptian dolphin'],[0x130C8,'Egyptian whale'],[0x130C9,'Egyptian shark'],[0x130CA,'Egyptian crocodile'],[0x130CB,'Egyptian turtle'],[0x130CC,'Egyptian frog'],[0x130CD,'Egyptian lizard'],[0x130CE,'Egyptian snake'],[0x130CF,'Egyptian cobra'],[0x130D0,'Egyptian viper'],[0x130D1,'Egyptian horned viper'],[0x130D2,'Egyptian serpent'],[0x130D3,'Egyptian worm'],[0x130D4,'Egyptian scorpion'],[0x130D5,'Egyptian spider'],[0x130D6,'Egyptian beetle'],[0x130D7,'Egyptian scarab'],[0x130D8,'Egyptian fly'],[0x130D9,'Egyptian mosquito'],[0x130DA,'Egyptian bee'],[0x130DB,'Egyptian wasp'],[0x130DC,'Egyptian ant'],[0x130DD,'Egyptian locust'],[0x130DE,'Egyptian butterfly'],[0x130DF,'Egyptian moth'],[0x130E0,'Egyptian vulture'],[0x130E1,'Egyptian eagle'],[0x130E2,'Egyptian falcon'],[0x130E3,'Egyptian hawk'],[0x130E4,'Egyptian owl'],[0x130E5,'Egyptian ibis'],[0x130E6,'Egyptian flamingo'],[0x130E7,'Egyptian ostrich'],[0x130E8,'Egyptian goose'],[0x130E9,'Egyptian duck'],[0x130EA,'Egyptian swan'],[0x130EB,'Egyptian pelican'],[0x130EC,'Egyptian heron'],[0x130ED,'Egyptian stork'],[0x130EE,'Egyptian crane'],[0x130EF,'Egyptian swallow'],[0x130F0,'Egyptian sparrow'],[0x130F1,'Egyptian swallow tail'],[0x130F2,'Egyptian swallow wing'],[0x130F3,'Egyptian feather'],[0x130F4,'Egyptian wing'],[0x130F5,'Egyptian egg'],[0x130F6,'Egyptian nest'],[0x130F7,'Egyptian chick'],[0x130F8,'Egyptian bird'],[0x130F9,'Egyptian fowl'],[0x130FA,'Egyptian poultry'],[0x130FB,'Egyptian game bird'],[0x130FC,'Egyptian water bird'],[0x130FD,'Egyptian migratory bird'],[0x130FE,'Egyptian exotic bird'],[0x130FF,'Egyptian sacred bird'],
-], 'hieroglyphs', 'Egyptian Hieroglyphs', 'hieroglyph egyptian pharaoh pyramid ankh scarab eye horus osiris ra isis seth thoth maat amun nut geb shu tefnut hathor sekhmet bastet anubis serapis sobek khnum ptah ancient nile'));
+ALL.push(
+  ...individual(
+    [
+      [0x13000, 'Egyptian man'],
+      [0x13001, 'Egyptian man with hand to mouth'],
+      [0x13002, 'Egyptian man sitting'],
+      [0x13003, 'Egyptian man with raised arms'],
+      [0x13004, 'Egyptian man with stick'],
+      [0x13005, 'Egyptian man with weapon'],
+      [0x13006, 'Egyptian man hitting'],
+      [0x13007, 'Egyptian man falling'],
+      [0x13008, 'Egyptian man with basket'],
+      [0x13009, 'Egyptian man with jar'],
+      [0x1300a, 'Egyptian man with staff'],
+      [0x1300b, 'Egyptian man with scepter'],
+      [0x1300c, 'Egyptian child'],
+      [0x1300d, 'Egyptian old man'],
+      [0x1300e, 'Egyptian woman'],
+      [0x1300f, 'Egyptian woman with child'],
+      [0x13010, 'Egyptian pregnant woman'],
+      [0x13011, 'Egyptian queen'],
+      [0x13012, 'Egyptian goddess'],
+      [0x13013, 'Egyptian god'],
+      [0x13014, 'Egyptian king'],
+      [0x13015, 'Egyptian pharaoh'],
+      [0x13016, 'Egyptian noble'],
+      [0x13017, 'Egyptian priest'],
+      [0x13018, 'Egyptian soldier'],
+      [0x13019, 'Egyptian foreigner'],
+      [0x1301a, 'Egyptian captive'],
+      [0x1301b, 'Egyptian slave'],
+      [0x1301c, 'Egyptian dwarf'],
+      [0x1301d, 'Egyptian giant'],
+      [0x1301e, 'Egyptian head'],
+      [0x1301f, 'Egyptian face'],
+      [0x13020, 'Egyptian eye'],
+      [0x13021, 'Egyptian eye with paint'],
+      [0x13022, 'Egyptian eyebrow'],
+      [0x13023, 'Egyptian nose'],
+      [0x13024, 'Egyptian ear'],
+      [0x13025, 'Egyptian mouth'],
+      [0x13026, 'Egyptian lips'],
+      [0x13027, 'Egyptian tooth'],
+      [0x13028, 'Egyptian tongue'],
+      [0x13029, 'Egyptian hand'],
+      [0x1302a, 'Egyptian arm'],
+      [0x1302b, 'Egyptian forearm'],
+      [0x1302c, 'Egyptian leg'],
+      [0x1302d, 'Egyptian foot'],
+      [0x1302e, 'Egyptian toe'],
+      [0x1302f, 'Egyptian finger'],
+      [0x13030, 'Egyptian heart'],
+      [0x13031, 'Egyptian lungs'],
+      [0x13032, 'Egyptian liver'],
+      [0x13033, 'Egyptian stomach'],
+      [0x13034, 'Egyptian intestines'],
+      [0x13035, 'Egyptian backbone'],
+      [0x13036, 'Egyptian skull'],
+      [0x13037, 'Egyptian bone'],
+      [0x13038, 'Egyptian flesh'],
+      [0x13039, 'Egyptian skin'],
+      [0x1303a, 'Egyptian hair'],
+      [0x1303b, 'Egyptian beard'],
+      [0x1303c, 'Egyptian headcloth'],
+      [0x1303d, 'Egyptian crown'],
+      [0x1303e, 'Egyptian white crown'],
+      [0x1303f, 'Egyptian red crown'],
+      [0x13040, 'Egyptian double crown'],
+      [0x13041, 'Egyptian blue crown'],
+      [0x13042, 'Egyptian atef crown'],
+      [0x13043, 'Egyptian hedjet'],
+      [0x13044, 'Egyptian deshret'],
+      [0x13045, 'Egyptian pschent'],
+      [0x13046, 'Egyptian khepresh'],
+      [0x13047, 'Egyptian nemes'],
+      [0x13048, 'Egyptian false beard'],
+      [0x13049, 'Egyptian scepter'],
+      [0x1304a, 'Egyptian flail'],
+      [0x1304b, 'Egyptian crook'],
+      [0x1304c, 'Egyptian was scepter'],
+      [0x1304d, 'Egyptian ankh'],
+      [0x1304e, 'Egyptian djed pillar'],
+      [0x1304f, 'Egyptian tyet'],
+      [0x13050, 'Egyptian lotus'],
+      [0x13051, 'Egyptian papyrus'],
+      [0x13052, 'Egyptian reed'],
+      [0x13053, 'Egyptian lily'],
+      [0x13054, 'Egyptian mandrake'],
+      [0x13055, 'Egyptian onion'],
+      [0x13056, 'Egyptian bean'],
+      [0x13057, 'Egyptian chickpea'],
+      [0x13058, 'Egyptian barley'],
+      [0x13059, 'Egyptian emmer'],
+      [0x1305a, 'Egyptian wheat'],
+      [0x1305b, 'Egyptian spelt'],
+      [0x1305c, 'Egyptian fruit'],
+      [0x1305d, 'Egyptian date'],
+      [0x1305e, 'Egyptian fig'],
+      [0x1305f, 'Egyptian grape'],
+      [0x13060, 'Egyptian olive'],
+      [0x13061, 'Egyptian carob'],
+      [0x13062, 'Egyptian nut'],
+      [0x13063, 'Egyptian honey'],
+      [0x13064, 'Egyptian water pot'],
+      [0x13065, 'Egyptian jar'],
+      [0x13066, 'Egyptian bowl'],
+      [0x13067, 'Egyptian cup'],
+      [0x13068, 'Egyptian plate'],
+      [0x13069, 'Egyptian dish'],
+      [0x1306a, 'Egyptian basket'],
+      [0x1306b, 'Egyptian box'],
+      [0x1306c, 'Egyptian chest'],
+      [0x1306d, 'Egyptian coffin'],
+      [0x1306e, 'Egyptian shrine'],
+      [0x1306f, 'Egyptian naos'],
+      [0x13070, 'Egyptian temple'],
+      [0x13071, 'Egyptian pyramid'],
+      [0x13072, 'Egyptian obelisk'],
+      [0x13073, 'Egyptian column'],
+      [0x13074, 'Egyptian gateway'],
+      [0x13075, 'Egyptian door'],
+      [0x13076, 'Egyptian wall'],
+      [0x13077, 'Egyptian fence'],
+      [0x13078, 'Egyptian corner'],
+      [0x13079, 'Egyptian corner block'],
+      [0x1307a, 'Egyptian foundation'],
+      [0x1307b, 'Egyptian brick'],
+      [0x1307c, 'Egyptian stone'],
+      [0x1307d, 'Egyptian boulder'],
+      [0x1307e, 'Egyptian hill'],
+      [0x1307f, 'Egyptian mountain'],
+      [0x13080, 'Egyptian sun'],
+      [0x13081, 'Egyptian moon'],
+      [0x13082, 'Egyptian star'],
+      [0x13083, 'Egyptian venus'],
+      [0x13084, 'Egyptian constellation'],
+      [0x13085, 'Egyptian decan'],
+      [0x13086, 'Egyptian year'],
+      [0x13087, 'Egyptian month'],
+      [0x13088, 'Egyptian season'],
+      [0x13089, 'Egyptian day'],
+      [0x1308a, 'Egyptian night'],
+      [0x1308b, 'Egyptian hour'],
+      [0x1308c, 'Egyptian morning'],
+      [0x1308d, 'Egyptian evening'],
+      [0x1308e, 'Egyptian dawn'],
+      [0x1308f, 'Egyptian dusk'],
+      [0x13090, 'Egyptian water'],
+      [0x13091, 'Egyptian flood'],
+      [0x13092, 'Egyptian rain'],
+      [0x13093, 'Egyptian dew'],
+      [0x13094, 'Egyptian cloud'],
+      [0x13095, 'Egyptian mist'],
+      [0x13096, 'Egyptian fog'],
+      [0x13097, 'Egyptian wind'],
+      [0x13098, 'Egyptian storm'],
+      [0x13099, 'Egyptian thunder'],
+      [0x1309a, 'Egyptian lightning'],
+      [0x1309b, 'Egyptian rainbow'],
+      [0x1309c, 'Egyptian fire'],
+      [0x1309d, 'Egyptian flame'],
+      [0x1309e, 'Egyptian ash'],
+      [0x1309f, 'Egyptian smoke'],
+      [0x130a0, 'Egyptian earth'],
+      [0x130a1, 'Egyptian sand'],
+      [0x130a2, 'Egyptian dust'],
+      [0x130a3, 'Egyptian mud'],
+      [0x130a4, 'Egyptian clay'],
+      [0x130a5, 'Egyptian silt'],
+      [0x130a6, 'Egyptian field'],
+      [0x130a7, 'Egyptian garden'],
+      [0x130a8, 'Egyptian orchard'],
+      [0x130a9, 'Egyptian vineyard'],
+      [0x130aa, 'Egyptian meadow'],
+      [0x130ab, 'Egyptian pasture'],
+      [0x130ac, 'Egyptian desert'],
+      [0x130ad, 'Egyptian oasis'],
+      [0x130ae, 'Egyptian island'],
+      [0x130af, 'Egyptian shore'],
+      [0x130b0, 'Egyptian river'],
+      [0x130b1, 'Egyptian canal'],
+      [0x130b2, 'Egyptian lake'],
+      [0x130b3, 'Egyptian pond'],
+      [0x130b4, 'Egyptian well'],
+      [0x130b5, 'Egyptian spring'],
+      [0x130b6, 'Egyptian pool'],
+      [0x130b7, 'Egyptian basin'],
+      [0x130b8, 'Egyptian sea'],
+      [0x130b9, 'Egyptian ocean'],
+      [0x130ba, 'Egyptian wave'],
+      [0x130bb, 'Egyptian tide'],
+      [0x130bc, 'Egyptian current'],
+      [0x130bd, 'Egyptian whirlpool'],
+      [0x130be, 'Egyptian waterfall'],
+      [0x130bf, 'Egyptian rapids'],
+      [0x130c0, 'Egyptian fish'],
+      [0x130c1, 'Egyptian catfish'],
+      [0x130c2, 'Egyptian eel'],
+      [0x130c3, 'Egyptian mullet'],
+      [0x130c4, 'Egyptian tilapia'],
+      [0x130c5, 'Egyptian perch'],
+      [0x130c6, 'Egyptian carp'],
+      [0x130c7, 'Egyptian dolphin'],
+      [0x130c8, 'Egyptian whale'],
+      [0x130c9, 'Egyptian shark'],
+      [0x130ca, 'Egyptian crocodile'],
+      [0x130cb, 'Egyptian turtle'],
+      [0x130cc, 'Egyptian frog'],
+      [0x130cd, 'Egyptian lizard'],
+      [0x130ce, 'Egyptian snake'],
+      [0x130cf, 'Egyptian cobra'],
+      [0x130d0, 'Egyptian viper'],
+      [0x130d1, 'Egyptian horned viper'],
+      [0x130d2, 'Egyptian serpent'],
+      [0x130d3, 'Egyptian worm'],
+      [0x130d4, 'Egyptian scorpion'],
+      [0x130d5, 'Egyptian spider'],
+      [0x130d6, 'Egyptian beetle'],
+      [0x130d7, 'Egyptian scarab'],
+      [0x130d8, 'Egyptian fly'],
+      [0x130d9, 'Egyptian mosquito'],
+      [0x130da, 'Egyptian bee'],
+      [0x130db, 'Egyptian wasp'],
+      [0x130dc, 'Egyptian ant'],
+      [0x130dd, 'Egyptian locust'],
+      [0x130de, 'Egyptian butterfly'],
+      [0x130df, 'Egyptian moth'],
+      [0x130e0, 'Egyptian vulture'],
+      [0x130e1, 'Egyptian eagle'],
+      [0x130e2, 'Egyptian falcon'],
+      [0x130e3, 'Egyptian hawk'],
+      [0x130e4, 'Egyptian owl'],
+      [0x130e5, 'Egyptian ibis'],
+      [0x130e6, 'Egyptian flamingo'],
+      [0x130e7, 'Egyptian ostrich'],
+      [0x130e8, 'Egyptian goose'],
+      [0x130e9, 'Egyptian duck'],
+      [0x130ea, 'Egyptian swan'],
+      [0x130eb, 'Egyptian pelican'],
+      [0x130ec, 'Egyptian heron'],
+      [0x130ed, 'Egyptian stork'],
+      [0x130ee, 'Egyptian crane'],
+      [0x130ef, 'Egyptian swallow'],
+      [0x130f0, 'Egyptian sparrow'],
+      [0x130f1, 'Egyptian swallow tail'],
+      [0x130f2, 'Egyptian swallow wing'],
+      [0x130f3, 'Egyptian feather'],
+      [0x130f4, 'Egyptian wing'],
+      [0x130f5, 'Egyptian egg'],
+      [0x130f6, 'Egyptian nest'],
+      [0x130f7, 'Egyptian chick'],
+      [0x130f8, 'Egyptian bird'],
+      [0x130f9, 'Egyptian fowl'],
+      [0x130fa, 'Egyptian poultry'],
+      [0x130fb, 'Egyptian game bird'],
+      [0x130fc, 'Egyptian water bird'],
+      [0x130fd, 'Egyptian migratory bird'],
+      [0x130fe, 'Egyptian exotic bird'],
+      [0x130ff, 'Egyptian sacred bird'],
+    ],
+    'hieroglyphs',
+    'Egyptian Hieroglyphs',
+    'hieroglyph egyptian pharaoh pyramid ankh scarab eye horus osiris ra isis seth thoth maat amun nut geb shu tefnut hathor sekhmet bastet anubis serapis sobek khnum ptah ancient nile'
+  )
+);
 
 // 18. Gothic
-ALL.push(...range(0x10330, 0x1034A, 'gothic', 'Gothic', 'Gothic letter', 'gothic alphabet letter rune'));
+ALL.push(
+  ...range(0x10330, 0x1034a, 'gothic', 'Gothic', 'Gothic letter', 'gothic alphabet letter rune')
+);
 
 // 19. Linear B
-ALL.push(...individual([
-[0x10000,'Linear B syllable A'],[0x10001,'Linear B syllable E'],[0x10002,'Linear B syllable I'],[0x10003,'Linear B syllable O'],[0x10004,'Linear B syllable U'],[0x10005,'Linear B syllable JA'],[0x10006,'Linear B syllable JE'],[0x10007,'Linear B syllable JO'],[0x10008,'Linear B syllable JU'],[0x1000A,'Linear B syllable KA'],[0x1000B,'Linear B syllable KE'],[0x1000C,'Linear B syllable KI'],[0x1000D,'Linear B syllable KO'],[0x1000E,'Linear B syllable KU'],[0x10010,'Linear B syllable MA'],[0x10011,'Linear B syllable ME'],[0x10012,'Linear B syllable MI'],[0x10013,'Linear B syllable MO'],[0x10014,'Linear B syllable MU'],[0x10015,'Linear B syllable NA'],[0x10016,'Linear B syllable NE'],[0x10017,'Linear B syllable NI'],[0x10018,'Linear B syllable NO'],[0x10019,'Linear B syllable NU'],[0x1001A,'Linear B syllable PA'],[0x1001B,'Linear B syllable PE'],[0x1001C,'Linear B syllable PI'],[0x1001D,'Linear B syllable PO'],[0x1001E,'Linear B syllable PU'],[0x10020,'Linear B syllable QA'],[0x10021,'Linear B syllable QE'],[0x10022,'Linear B syllable QI'],[0x10023,'Linear B syllable QO'],[0x10025,'Linear B syllable RA'],[0x10026,'Linear B syllable RE'],[0x10027,'Linear B syllable RI'],[0x10028,'Linear B syllable RO'],[0x10029,'Linear B syllable RU'],[0x1002A,'Linear B syllable SA'],[0x1002B,'Linear B syllable SE'],[0x1002C,'Linear B syllable SI'],[0x1002D,'Linear B syllable SO'],[0x1002E,'Linear B syllable SU'],[0x1002F,'Linear B syllable TA'],[0x10030,'Linear B syllable TE'],[0x10031,'Linear B syllable TI'],[0x10032,'Linear B syllable TO'],[0x10033,'Linear B syllable TU'],[0x10034,'Linear B syllable WA'],[0x10035,'Linear B syllable WE'],[0x10036,'Linear B syllable WI'],[0x10037,'Linear B syllable WO'],[0x10038,'Linear B syllable ZA'],[0x10039,'Linear B syllable ZE'],[0x1003A,'Linear B syllable ZO'],[0x1003C,'Linear B syllable HA'],[0x1003D,'Linear B syllable HE'],[0x10040,'Linear B syllable DA'],[0x10041,'Linear B syllable DE'],[0x10042,'Linear B syllable DI'],[0x10043,'Linear B syllable DO'],[0x10044,'Linear B syllable DU'],[0x10050,'Linear B man'],[0x10051,'Linear B woman'],[0x10052,'Linear B helmet'],[0x10053,'Linear B footstool'],[0x10055,'Linear B horse'],[0x10056,'Linear B chariot'],[0x10057,'Linear B bow'],[0x10058,'Linear B spear'],[0x10059,'Linear B sword'],[0x1005D,'Linear B tripod'],[0x10065,'Linear B six'],[0x10066,'Linear B seven'],[0x10067,'Linear B eight'],[0x10068,'Linear B nine'],[0x10080,'Linear B one hundred'],[0x10081,'Linear B two hundred'],[0x10082,'Linear B three hundred'],[0x10083,'Linear B four hundred'],[0x10084,'Linear B five hundred'],[0x10085,'Linear B six hundred'],[0x10086,'Linear B seven hundred'],[0x10087,'Linear B eight hundred'],[0x10088,'Linear B nine hundred'],[0x10089,'Linear B one thousand'],[0x1008A,'Linear B two thousand'],[0x1008B,'Linear B three thousand'],[0x1008C,'Linear B four thousand'],[0x1008D,'Linear B five thousand'],
-], 'linearb', 'Linear B', 'linear b mycenaean greek ancient syllable bronze age script'));
+ALL.push(
+  ...individual(
+    [
+      [0x10000, 'Linear B syllable A'],
+      [0x10001, 'Linear B syllable E'],
+      [0x10002, 'Linear B syllable I'],
+      [0x10003, 'Linear B syllable O'],
+      [0x10004, 'Linear B syllable U'],
+      [0x10005, 'Linear B syllable JA'],
+      [0x10006, 'Linear B syllable JE'],
+      [0x10007, 'Linear B syllable JO'],
+      [0x10008, 'Linear B syllable JU'],
+      [0x1000a, 'Linear B syllable KA'],
+      [0x1000b, 'Linear B syllable KE'],
+      [0x1000c, 'Linear B syllable KI'],
+      [0x1000d, 'Linear B syllable KO'],
+      [0x1000e, 'Linear B syllable KU'],
+      [0x10010, 'Linear B syllable MA'],
+      [0x10011, 'Linear B syllable ME'],
+      [0x10012, 'Linear B syllable MI'],
+      [0x10013, 'Linear B syllable MO'],
+      [0x10014, 'Linear B syllable MU'],
+      [0x10015, 'Linear B syllable NA'],
+      [0x10016, 'Linear B syllable NE'],
+      [0x10017, 'Linear B syllable NI'],
+      [0x10018, 'Linear B syllable NO'],
+      [0x10019, 'Linear B syllable NU'],
+      [0x1001a, 'Linear B syllable PA'],
+      [0x1001b, 'Linear B syllable PE'],
+      [0x1001c, 'Linear B syllable PI'],
+      [0x1001d, 'Linear B syllable PO'],
+      [0x1001e, 'Linear B syllable PU'],
+      [0x10020, 'Linear B syllable QA'],
+      [0x10021, 'Linear B syllable QE'],
+      [0x10022, 'Linear B syllable QI'],
+      [0x10023, 'Linear B syllable QO'],
+      [0x10025, 'Linear B syllable RA'],
+      [0x10026, 'Linear B syllable RE'],
+      [0x10027, 'Linear B syllable RI'],
+      [0x10028, 'Linear B syllable RO'],
+      [0x10029, 'Linear B syllable RU'],
+      [0x1002a, 'Linear B syllable SA'],
+      [0x1002b, 'Linear B syllable SE'],
+      [0x1002c, 'Linear B syllable SI'],
+      [0x1002d, 'Linear B syllable SO'],
+      [0x1002e, 'Linear B syllable SU'],
+      [0x1002f, 'Linear B syllable TA'],
+      [0x10030, 'Linear B syllable TE'],
+      [0x10031, 'Linear B syllable TI'],
+      [0x10032, 'Linear B syllable TO'],
+      [0x10033, 'Linear B syllable TU'],
+      [0x10034, 'Linear B syllable WA'],
+      [0x10035, 'Linear B syllable WE'],
+      [0x10036, 'Linear B syllable WI'],
+      [0x10037, 'Linear B syllable WO'],
+      [0x10038, 'Linear B syllable ZA'],
+      [0x10039, 'Linear B syllable ZE'],
+      [0x1003a, 'Linear B syllable ZO'],
+      [0x1003c, 'Linear B syllable HA'],
+      [0x1003d, 'Linear B syllable HE'],
+      [0x10040, 'Linear B syllable DA'],
+      [0x10041, 'Linear B syllable DE'],
+      [0x10042, 'Linear B syllable DI'],
+      [0x10043, 'Linear B syllable DO'],
+      [0x10044, 'Linear B syllable DU'],
+      [0x10050, 'Linear B man'],
+      [0x10051, 'Linear B woman'],
+      [0x10052, 'Linear B helmet'],
+      [0x10053, 'Linear B footstool'],
+      [0x10055, 'Linear B horse'],
+      [0x10056, 'Linear B chariot'],
+      [0x10057, 'Linear B bow'],
+      [0x10058, 'Linear B spear'],
+      [0x10059, 'Linear B sword'],
+      [0x1005d, 'Linear B tripod'],
+      [0x10065, 'Linear B six'],
+      [0x10066, 'Linear B seven'],
+      [0x10067, 'Linear B eight'],
+      [0x10068, 'Linear B nine'],
+      [0x10080, 'Linear B one hundred'],
+      [0x10081, 'Linear B two hundred'],
+      [0x10082, 'Linear B three hundred'],
+      [0x10083, 'Linear B four hundred'],
+      [0x10084, 'Linear B five hundred'],
+      [0x10085, 'Linear B six hundred'],
+      [0x10086, 'Linear B seven hundred'],
+      [0x10087, 'Linear B eight hundred'],
+      [0x10088, 'Linear B nine hundred'],
+      [0x10089, 'Linear B one thousand'],
+      [0x1008a, 'Linear B two thousand'],
+      [0x1008b, 'Linear B three thousand'],
+      [0x1008c, 'Linear B four thousand'],
+      [0x1008d, 'Linear B five thousand'],
+    ],
+    'linearb',
+    'Linear B',
+    'linear b mycenaean greek ancient syllable bronze age script'
+  )
+);
 
 // 20. Cuneiform (~160)
-ALL.push(...individual([
-[0x12000,'Cuneiform A'],[0x12001,'Cuneiform A2'],[0x12002,'Cuneiform A3'],[0x12007,'Cuneiform AB2'],[0x12008,'Cuneiform AD'],[0x12009,'Cuneiform AK'],[0x1200A,'Cuneiform AK3'],[0x1200B,'Cuneiform AL'],[0x1200F,'Cuneiform AMAR'],[0x12010,'Cuneiform AN'],[0x12013,'Cuneiform APIN'],[0x12014,'Cuneiform ARAD'],[0x12015,'Cuneiform ARAD2'],[0x12016,'Cuneiform ASH'],[0x12018,'Cuneiform ASH2'],[0x1201B,'Cuneiform BA'],[0x1201D,'Cuneiform BAD'],[0x1201E,'Cuneiform BAG3'],[0x1201F,'Cuneiform BAHAR2'],[0x12020,'Cuneiform BAL'],[0x12021,'Cuneiform BALAG'],[0x12022,'Cuneiform BAR'],[0x12023,'Cuneiform BARA2'],[0x12024,'Cuneiform BI'],[0x12025,'Cuneiform BI2'],[0x12028,'Cuneiform BIR2'],[0x12029,'Cuneiform BIZ'],[0x1202A,'Cuneiform BU'],[0x1202B,'Cuneiform BU7'],[0x1202C,'Cuneiform BULUG'],[0x1202D,'Cuneiform BULUG3'],[0x1202E,'Cuneiform BUR'],[0x1202F,'Cuneiform BUR2'],[0x12032,'Cuneiform DA'],[0x12033,'Cuneiform DA3'],[0x12034,'Cuneiform DAG'],[0x12035,'Cuneiform DAH'],[0x12036,'Cuneiform DAR'],[0x12038,'Cuneiform DARA3'],[0x12039,'Cuneiform DARA4'],[0x1203A,'Cuneiform DI'],[0x1203B,'Cuneiform DIB'],[0x1203C,'Cuneiform DIN'],[0x1203E,'Cuneiform DU'],[0x1203F,'Cuneiform DU3'],[0x12040,'Cuneiform DUG'],[0x12041,'Cuneiform DUGUD'],[0x12042,'Cuneiform DUH'],[0x12043,'Cuneiform DUN'],[0x12044,'Cuneiform DUN3'],[0x12045,'Cuneiform DUN4'],[0x12046,'Cuneiform DUR2'],[0x12047,'Cuneiform E'],[0x12048,'Cuneiform E2'],[0x12049,'Cuneiform EB'],[0x1204A,'Cuneiform EGIR'],[0x1204B,'Cuneiform EL'],[0x1204C,'Cuneiform EN'],[0x1204D,'Cuneiform EREN'],[0x1204E,'Cuneiform ESH2'],[0x1204F,'Cuneiform EZEN'],[0x12050,'Cuneiform EZEN4'],[0x12051,'Cuneiform EZEN5'],[0x12052,'Cuneiform GA'],[0x12053,'Cuneiform GA2'],[0x12054,'Cuneiform GABA'],[0x12055,'Cuneiform GAD'],[0x12056,'Cuneiform GAL'],[0x12057,'Cuneiform GALAM'],[0x12058,'Cuneiform GAM'],[0x12059,'Cuneiform GAN'],[0x1205A,'Cuneiform GAN2'],[0x1205B,'Cuneiform GAR'],[0x1205C,'Cuneiform GAR3'],[0x1205E,'Cuneiform GESHTIN'],[0x1205F,'Cuneiform GI'],[0x12060,'Cuneiform GI4'],[0x12061,'Cuneiform GIDIM'],[0x12062,'Cuneiform GIR2'],[0x12063,'Cuneiform GIR3'],[0x12064,'Cuneiform GISAL'],[0x12065,'Cuneiform GISH'],[0x12068,'Cuneiform GU'],[0x12069,'Cuneiform GU2'],[0x1206A,'Cuneiform GUD'],[0x1206B,'Cuneiform GUL'],[0x1206C,'Cuneiform GUM'],[0x1206D,'Cuneiform GUM2'],[0x1206E,'Cuneiform GUR'],[0x1206F,'Cuneiform GUR7'],[0x12070,'Cuneiform HA'],[0x12071,'Cuneiform HA3'],[0x12072,'Cuneiform HA4'],[0x12073,'Cuneiform HA5'],[0x12074,'Cuneiform HA6'],[0x12077,'Cuneiform HI'],[0x12078,'Cuneiform HI3'],[0x12079,'Cuneiform HU'],[0x1207A,'Cuneiform HUB2'],[0x1207B,'Cuneiform HUL2'],[0x1207C,'Cuneiform I'],[0x1207D,'Cuneiform I3'],[0x1207E,'Cuneiform IB'],[0x1207F,'Cuneiform IDIM'],[0x12080,'Cuneiform IDIM2'],[0x12081,'Cuneiform IG'],[0x12082,'Cuneiform IGI'],[0x12083,'Cuneiform IL'],[0x12084,'Cuneiform IL2'],[0x12085,'Cuneiform IM'],[0x12086,'Cuneiform IM3'],[0x12087,'Cuneiform IN'],[0x12088,'Cuneiform IR'],[0x1208B,'Cuneiform KA'],[0x1208C,'Cuneiform KA2'],[0x1208D,'Cuneiform KAB'],[0x1208E,'Cuneiform KAD2'],[0x1208F,'Cuneiform KAD3'],[0x12090,'Cuneiform KAD4'],[0x12091,'Cuneiform KAD5'],[0x12092,'Cuneiform KAK'],[0x12093,'Cuneiform KAL'],[0x12094,'Cuneiform KALAM'],[0x12095,'Cuneiform KAM4'],[0x12096,'Cuneiform KASKAL'],[0x12099,'Cuneiform KI'],[0x1209A,'Cuneiform KID'],[0x1209B,'Cuneiform KIN'],[0x1209C,'Cuneiform KISAL'],[0x1209D,'Cuneiform KISH'],[0x1209E,'Cuneiform KU'],[0x1209F,'Cuneiform KU3'],[0x120A0,'Cuneiform KU4'],[0x120A1,'Cuneiform KU7'],[0x120A2,'Cuneiform KUL'],[0x120A3,'Cuneiform KUR'],[0x120A4,'Cuneiform KUR2'],[0x120A5,'Cuneiform KUSHU2'],[0x120A7,'Cuneiform LA'],[0x120A8,'Cuneiform LAGAB'],[0x120A9,'Cuneiform LAGAR'],[0x120AA,'Cuneiform LAHSHU'],[0x120AB,'Cuneiform LAL'],[0x120AC,'Cuneiform LAM'],[0x120AD,'Cuneiform LI'],[0x120AE,'Cuneiform LIL'],[0x120AF,'Cuneiform LIMMU2'],[0x120B0,'Cuneiform LISH'],[0x120B1,'Cuneiform LU'],[0x120B2,'Cuneiform LU2'],[0x120B3,'Cuneiform LU3'],[0x120B4,'Cuneiform LU5'],[0x120B5,'Cuneiform LUGAL'],[0x120B6,'Cuneiform LUH'],[0x120B7,'Cuneiform LUL'],[0x120B8,'Cuneiform MA'],[0x120B9,'Cuneiform MA2'],[0x120BA,'Cuneiform MA3'],[0x120BB,'Cuneiform MA4'],[0x120BC,'Cuneiform MA5'],[0x120BD,'Cuneiform MAH'],[0x120BE,'Cuneiform MAR'],[0x120BF,'Cuneiform MASH'],[0x120C0,'Cuneiform MASH2'],[0x120C1,'Cuneiform ME'],[0x120C2,'Cuneiform MES'],[0x120C3,'Cuneiform MI'],[0x120C5,'Cuneiform MU'],[0x120C6,'Cuneiform MUG'],[0x120C7,'Cuneiform MUNSUB'],[0x120C8,'Cuneiform MURGU2'],[0x120C9,'Cuneiform MUSH'],[0x120CA,'Cuneiform MUSH3'],[0x120CB,'Cuneiform NA'],[0x120CC,'Cuneiform NA2'],[0x120CD,'Cuneiform NAGA'],[0x120CE,'Cuneiform NAM'],[0x120CF,'Cuneiform NAM2'],[0x120D0,'Cuneiform NE'],[0x120D1,'Cuneiform NE3'],[0x120D2,'Cuneiform NI'],[0x120D3,'Cuneiform NI2'],[0x120D4,'Cuneiform NIM'],[0x120D5,'Cuneiform NINDA2'],[0x120D6,'Cuneiform NISAG'],[0x120D7,'Cuneiform NU'],[0x120D8,'Cuneiform NU11'],[0x120D9,'Cuneiform NUN'],[0x120DA,'Cuneiform NUNUZ'],[0x120E5,'Cuneiform PA'],[0x120E6,'Cuneiform PAD'],[0x120E7,'Cuneiform PAN'],[0x120E8,'Cuneiform PAP'],[0x120E9,'Cuneiform PESH2'],[0x120EA,'Cuneiform PI'],[0x120EB,'Cuneiform PI2'],[0x120EC,'Cuneiform PIRIG'],[0x120ED,'Cuneiform RAB'],[0x120EE,'Cuneiform RI'],[0x120EF,'Cuneiform RU'],[0x120F0,'Cuneiform SA'],[0x120F1,'Cuneiform SAG'],[0x120F6,'Cuneiform SAL'],[0x120F7,'Cuneiform SANGA2'],[0x120F8,'Cuneiform SAR'],[0x120F9,'Cuneiform SHA'],[0x120FA,'Cuneiform SHA3'],[0x120FB,'Cuneiform SHAB6'],[0x120FC,'Cuneiform SHANABI'],[0x120FD,'Cuneiform SHE'],[0x120FE,'Cuneiform SHEG'],[0x120FF,'Cuneiform SHESH'],
-], 'cuneiform', 'Cuneiform', 'cuneiform sumerian akkadian babylonian assyrian ancient mesopotamia clay tablet wedge'));
+ALL.push(
+  ...individual(
+    [
+      [0x12000, 'Cuneiform A'],
+      [0x12001, 'Cuneiform A2'],
+      [0x12002, 'Cuneiform A3'],
+      [0x12007, 'Cuneiform AB2'],
+      [0x12008, 'Cuneiform AD'],
+      [0x12009, 'Cuneiform AK'],
+      [0x1200a, 'Cuneiform AK3'],
+      [0x1200b, 'Cuneiform AL'],
+      [0x1200f, 'Cuneiform AMAR'],
+      [0x12010, 'Cuneiform AN'],
+      [0x12013, 'Cuneiform APIN'],
+      [0x12014, 'Cuneiform ARAD'],
+      [0x12015, 'Cuneiform ARAD2'],
+      [0x12016, 'Cuneiform ASH'],
+      [0x12018, 'Cuneiform ASH2'],
+      [0x1201b, 'Cuneiform BA'],
+      [0x1201d, 'Cuneiform BAD'],
+      [0x1201e, 'Cuneiform BAG3'],
+      [0x1201f, 'Cuneiform BAHAR2'],
+      [0x12020, 'Cuneiform BAL'],
+      [0x12021, 'Cuneiform BALAG'],
+      [0x12022, 'Cuneiform BAR'],
+      [0x12023, 'Cuneiform BARA2'],
+      [0x12024, 'Cuneiform BI'],
+      [0x12025, 'Cuneiform BI2'],
+      [0x12028, 'Cuneiform BIR2'],
+      [0x12029, 'Cuneiform BIZ'],
+      [0x1202a, 'Cuneiform BU'],
+      [0x1202b, 'Cuneiform BU7'],
+      [0x1202c, 'Cuneiform BULUG'],
+      [0x1202d, 'Cuneiform BULUG3'],
+      [0x1202e, 'Cuneiform BUR'],
+      [0x1202f, 'Cuneiform BUR2'],
+      [0x12032, 'Cuneiform DA'],
+      [0x12033, 'Cuneiform DA3'],
+      [0x12034, 'Cuneiform DAG'],
+      [0x12035, 'Cuneiform DAH'],
+      [0x12036, 'Cuneiform DAR'],
+      [0x12038, 'Cuneiform DARA3'],
+      [0x12039, 'Cuneiform DARA4'],
+      [0x1203a, 'Cuneiform DI'],
+      [0x1203b, 'Cuneiform DIB'],
+      [0x1203c, 'Cuneiform DIN'],
+      [0x1203e, 'Cuneiform DU'],
+      [0x1203f, 'Cuneiform DU3'],
+      [0x12040, 'Cuneiform DUG'],
+      [0x12041, 'Cuneiform DUGUD'],
+      [0x12042, 'Cuneiform DUH'],
+      [0x12043, 'Cuneiform DUN'],
+      [0x12044, 'Cuneiform DUN3'],
+      [0x12045, 'Cuneiform DUN4'],
+      [0x12046, 'Cuneiform DUR2'],
+      [0x12047, 'Cuneiform E'],
+      [0x12048, 'Cuneiform E2'],
+      [0x12049, 'Cuneiform EB'],
+      [0x1204a, 'Cuneiform EGIR'],
+      [0x1204b, 'Cuneiform EL'],
+      [0x1204c, 'Cuneiform EN'],
+      [0x1204d, 'Cuneiform EREN'],
+      [0x1204e, 'Cuneiform ESH2'],
+      [0x1204f, 'Cuneiform EZEN'],
+      [0x12050, 'Cuneiform EZEN4'],
+      [0x12051, 'Cuneiform EZEN5'],
+      [0x12052, 'Cuneiform GA'],
+      [0x12053, 'Cuneiform GA2'],
+      [0x12054, 'Cuneiform GABA'],
+      [0x12055, 'Cuneiform GAD'],
+      [0x12056, 'Cuneiform GAL'],
+      [0x12057, 'Cuneiform GALAM'],
+      [0x12058, 'Cuneiform GAM'],
+      [0x12059, 'Cuneiform GAN'],
+      [0x1205a, 'Cuneiform GAN2'],
+      [0x1205b, 'Cuneiform GAR'],
+      [0x1205c, 'Cuneiform GAR3'],
+      [0x1205e, 'Cuneiform GESHTIN'],
+      [0x1205f, 'Cuneiform GI'],
+      [0x12060, 'Cuneiform GI4'],
+      [0x12061, 'Cuneiform GIDIM'],
+      [0x12062, 'Cuneiform GIR2'],
+      [0x12063, 'Cuneiform GIR3'],
+      [0x12064, 'Cuneiform GISAL'],
+      [0x12065, 'Cuneiform GISH'],
+      [0x12068, 'Cuneiform GU'],
+      [0x12069, 'Cuneiform GU2'],
+      [0x1206a, 'Cuneiform GUD'],
+      [0x1206b, 'Cuneiform GUL'],
+      [0x1206c, 'Cuneiform GUM'],
+      [0x1206d, 'Cuneiform GUM2'],
+      [0x1206e, 'Cuneiform GUR'],
+      [0x1206f, 'Cuneiform GUR7'],
+      [0x12070, 'Cuneiform HA'],
+      [0x12071, 'Cuneiform HA3'],
+      [0x12072, 'Cuneiform HA4'],
+      [0x12073, 'Cuneiform HA5'],
+      [0x12074, 'Cuneiform HA6'],
+      [0x12077, 'Cuneiform HI'],
+      [0x12078, 'Cuneiform HI3'],
+      [0x12079, 'Cuneiform HU'],
+      [0x1207a, 'Cuneiform HUB2'],
+      [0x1207b, 'Cuneiform HUL2'],
+      [0x1207c, 'Cuneiform I'],
+      [0x1207d, 'Cuneiform I3'],
+      [0x1207e, 'Cuneiform IB'],
+      [0x1207f, 'Cuneiform IDIM'],
+      [0x12080, 'Cuneiform IDIM2'],
+      [0x12081, 'Cuneiform IG'],
+      [0x12082, 'Cuneiform IGI'],
+      [0x12083, 'Cuneiform IL'],
+      [0x12084, 'Cuneiform IL2'],
+      [0x12085, 'Cuneiform IM'],
+      [0x12086, 'Cuneiform IM3'],
+      [0x12087, 'Cuneiform IN'],
+      [0x12088, 'Cuneiform IR'],
+      [0x1208b, 'Cuneiform KA'],
+      [0x1208c, 'Cuneiform KA2'],
+      [0x1208d, 'Cuneiform KAB'],
+      [0x1208e, 'Cuneiform KAD2'],
+      [0x1208f, 'Cuneiform KAD3'],
+      [0x12090, 'Cuneiform KAD4'],
+      [0x12091, 'Cuneiform KAD5'],
+      [0x12092, 'Cuneiform KAK'],
+      [0x12093, 'Cuneiform KAL'],
+      [0x12094, 'Cuneiform KALAM'],
+      [0x12095, 'Cuneiform KAM4'],
+      [0x12096, 'Cuneiform KASKAL'],
+      [0x12099, 'Cuneiform KI'],
+      [0x1209a, 'Cuneiform KID'],
+      [0x1209b, 'Cuneiform KIN'],
+      [0x1209c, 'Cuneiform KISAL'],
+      [0x1209d, 'Cuneiform KISH'],
+      [0x1209e, 'Cuneiform KU'],
+      [0x1209f, 'Cuneiform KU3'],
+      [0x120a0, 'Cuneiform KU4'],
+      [0x120a1, 'Cuneiform KU7'],
+      [0x120a2, 'Cuneiform KUL'],
+      [0x120a3, 'Cuneiform KUR'],
+      [0x120a4, 'Cuneiform KUR2'],
+      [0x120a5, 'Cuneiform KUSHU2'],
+      [0x120a7, 'Cuneiform LA'],
+      [0x120a8, 'Cuneiform LAGAB'],
+      [0x120a9, 'Cuneiform LAGAR'],
+      [0x120aa, 'Cuneiform LAHSHU'],
+      [0x120ab, 'Cuneiform LAL'],
+      [0x120ac, 'Cuneiform LAM'],
+      [0x120ad, 'Cuneiform LI'],
+      [0x120ae, 'Cuneiform LIL'],
+      [0x120af, 'Cuneiform LIMMU2'],
+      [0x120b0, 'Cuneiform LISH'],
+      [0x120b1, 'Cuneiform LU'],
+      [0x120b2, 'Cuneiform LU2'],
+      [0x120b3, 'Cuneiform LU3'],
+      [0x120b4, 'Cuneiform LU5'],
+      [0x120b5, 'Cuneiform LUGAL'],
+      [0x120b6, 'Cuneiform LUH'],
+      [0x120b7, 'Cuneiform LUL'],
+      [0x120b8, 'Cuneiform MA'],
+      [0x120b9, 'Cuneiform MA2'],
+      [0x120ba, 'Cuneiform MA3'],
+      [0x120bb, 'Cuneiform MA4'],
+      [0x120bc, 'Cuneiform MA5'],
+      [0x120bd, 'Cuneiform MAH'],
+      [0x120be, 'Cuneiform MAR'],
+      [0x120bf, 'Cuneiform MASH'],
+      [0x120c0, 'Cuneiform MASH2'],
+      [0x120c1, 'Cuneiform ME'],
+      [0x120c2, 'Cuneiform MES'],
+      [0x120c3, 'Cuneiform MI'],
+      [0x120c5, 'Cuneiform MU'],
+      [0x120c6, 'Cuneiform MUG'],
+      [0x120c7, 'Cuneiform MUNSUB'],
+      [0x120c8, 'Cuneiform MURGU2'],
+      [0x120c9, 'Cuneiform MUSH'],
+      [0x120ca, 'Cuneiform MUSH3'],
+      [0x120cb, 'Cuneiform NA'],
+      [0x120cc, 'Cuneiform NA2'],
+      [0x120cd, 'Cuneiform NAGA'],
+      [0x120ce, 'Cuneiform NAM'],
+      [0x120cf, 'Cuneiform NAM2'],
+      [0x120d0, 'Cuneiform NE'],
+      [0x120d1, 'Cuneiform NE3'],
+      [0x120d2, 'Cuneiform NI'],
+      [0x120d3, 'Cuneiform NI2'],
+      [0x120d4, 'Cuneiform NIM'],
+      [0x120d5, 'Cuneiform NINDA2'],
+      [0x120d6, 'Cuneiform NISAG'],
+      [0x120d7, 'Cuneiform NU'],
+      [0x120d8, 'Cuneiform NU11'],
+      [0x120d9, 'Cuneiform NUN'],
+      [0x120da, 'Cuneiform NUNUZ'],
+      [0x120e5, 'Cuneiform PA'],
+      [0x120e6, 'Cuneiform PAD'],
+      [0x120e7, 'Cuneiform PAN'],
+      [0x120e8, 'Cuneiform PAP'],
+      [0x120e9, 'Cuneiform PESH2'],
+      [0x120ea, 'Cuneiform PI'],
+      [0x120eb, 'Cuneiform PI2'],
+      [0x120ec, 'Cuneiform PIRIG'],
+      [0x120ed, 'Cuneiform RAB'],
+      [0x120ee, 'Cuneiform RI'],
+      [0x120ef, 'Cuneiform RU'],
+      [0x120f0, 'Cuneiform SA'],
+      [0x120f1, 'Cuneiform SAG'],
+      [0x120f6, 'Cuneiform SAL'],
+      [0x120f7, 'Cuneiform SANGA2'],
+      [0x120f8, 'Cuneiform SAR'],
+      [0x120f9, 'Cuneiform SHA'],
+      [0x120fa, 'Cuneiform SHA3'],
+      [0x120fb, 'Cuneiform SHAB6'],
+      [0x120fc, 'Cuneiform SHANABI'],
+      [0x120fd, 'Cuneiform SHE'],
+      [0x120fe, 'Cuneiform SHEG'],
+      [0x120ff, 'Cuneiform SHESH'],
+    ],
+    'cuneiform',
+    'Cuneiform',
+    'cuneiform sumerian akkadian babylonian assyrian ancient mesopotamia clay tablet wedge'
+  )
+);
 
 // 21. Baybayin
-ALL.push(...individual([
-[0x1700,'Baybayin A'],[0x1701,'Baybayin I'],[0x1702,'Baybayin U'],[0x1703,'Baybayin Ka'],[0x1704,'Baybayin Ga'],[0x1705,'Baybayin Nga'],[0x1706,'Baybayin Ta'],[0x1707,'Baybayin Da'],[0x1708,'Baybayin Na'],[0x1709,'Baybayin Pa'],[0x170A,'Baybayin Ba'],[0x170B,'Baybayin Ma'],[0x170C,'Baybayin Ya'],[0x170E,'Baybayin La'],[0x170F,'Baybayin Wa'],[0x1710,'Baybayin Sa'],[0x1711,'Baybayin Ha'],[0x1712,'Baybayin vowel I'],[0x1713,'Baybayin vowel U'],[0x1714,'Baybayin virama'],[0x1715,'Baybayin pamudpod'],
-], 'baybayin', 'Baybayin', 'baybayin tagalog filipino philippine script alibata'));
+ALL.push(
+  ...individual(
+    [
+      [0x1700, 'Baybayin A'],
+      [0x1701, 'Baybayin I'],
+      [0x1702, 'Baybayin U'],
+      [0x1703, 'Baybayin Ka'],
+      [0x1704, 'Baybayin Ga'],
+      [0x1705, 'Baybayin Nga'],
+      [0x1706, 'Baybayin Ta'],
+      [0x1707, 'Baybayin Da'],
+      [0x1708, 'Baybayin Na'],
+      [0x1709, 'Baybayin Pa'],
+      [0x170a, 'Baybayin Ba'],
+      [0x170b, 'Baybayin Ma'],
+      [0x170c, 'Baybayin Ya'],
+      [0x170e, 'Baybayin La'],
+      [0x170f, 'Baybayin Wa'],
+      [0x1710, 'Baybayin Sa'],
+      [0x1711, 'Baybayin Ha'],
+      [0x1712, 'Baybayin vowel I'],
+      [0x1713, 'Baybayin vowel U'],
+      [0x1714, 'Baybayin virama'],
+      [0x1715, 'Baybayin pamudpod'],
+    ],
+    'baybayin',
+    'Baybayin',
+    'baybayin tagalog filipino philippine script alibata'
+  )
+);
 
 // 22. Alchemical Symbols
-ALL.push(...individual([
-[0x1F700,'Quintessence'],[0x1F701,'Air'],[0x1F702,'Fire'],[0x1F703,'Earth'],[0x1F704,'Water'],[0x1F705,'Aqua vitae'],[0x1F706,'Aqua vitae 2'],[0x1F707,'Aqua regia'],[0x1F708,'Aqua regia 2'],[0x1F709,'Aqua fortis'],[0x1F70A,'Aqua fortis 2'],[0x1F70B,'Vitriol'],[0x1F70C,'Vitriol 2'],[0x1F70D,'Salt'],[0x1F70E,'Nitre'],[0x1F70F,'Vitriol 3'],[0x1F710,'Rock salt'],[0x1F711,'Rock salt 2'],[0x1F712,'Gold'],[0x1F713,'Silver'],[0x1F714,'Iron'],[0x1F715,'Copper'],[0x1F716,'Lead'],[0x1F717,'Tin'],[0x1F718,'Antimony'],[0x1F719,'Antimony 2'],[0x1F71A,'Bismuth'],[0x1F71B,'Mercury'],[0x1F71C,'Mercury 2'],[0x1F71D,'Mercury 3'],[0x1F71E,'Cinnabar'],[0x1F71F,'Cinnabar 2'],[0x1F720,'Salt 2'],[0x1F721,'Salt 3'],[0x1F722,'Arsenic'],[0x1F723,'Sulfur'],[0x1F724,'Regulus'],[0x1F725,'Regulus 2'],[0x1F726,'Regulus 3'],[0x1F727,'Regulus 4'],[0x1F728,'Alkali'],[0x1F729,'Alkali 2'],[0x1F72A,'Marcasite'],[0x1F72B,'Soap'],[0x1F72C,'Urine'],[0x1F72D,'Horse dung'],[0x1F72E,'Ash'],[0x1F72F,'Pot ashes'],[0x1F730,'Brick'],[0x1F731,'Powder'],[0x1F732,'Calx'],[0x1F733,'Tartar'],[0x1F734,'Tartar 2'],[0x1F735,'Quick lime'],[0x1F736,'Borax'],[0x1F737,'Borax 2'],[0x1F738,'Borax 3'],[0x1F739,'Alum'],[0x1F73A,'Oil'],[0x1F73B,'Oil 2'],[0x1F73C,'Amalgam'],[0x1F73D,'Cinnabar 3'],[0x1F73E,'Cinnabar 4'],[0x1F73F,'Antimony 3'],[0x1F740,'Sublimate'],[0x1F741,'Sublimate 2'],[0x1F742,'Sublimate 3'],[0x1F743,'Philosophers sulfur'],[0x1F744,'Philosophers sulfur 2'],[0x1F745,'Philosophers sulfur 3'],[0x1F746,'Black sulfur'],[0x1F747,'Mercury sublimate'],[0x1F748,'Mercury sublimate 2'],[0x1F749,'Mercury sublimate 3'],[0x1F74A,'Caduceus'],[0x1F74B,'Trident'],[0x1F74C,'Trident 2'],[0x1F74D,'Ouroboros'],[0x1F74E,'Ouroboros 2'],[0x1F74F,'Ouroboros 3'],[0x1F750,'Hourglass'],[0x1F751,'Hourglass 2'],[0x1F752,'Crucible'],[0x1F753,'Crucible 2'],[0x1F754,'Crucible 3'],[0x1F755,'Crucible 4'],[0x1F756,'Crucible 5'],[0x1F757,'Alembic'],[0x1F758,'Bath of Mary'],[0x1F759,'Bath of vapors'],[0x1F75A,'Retort'],[0x1F75B,'Retort 2'],[0x1F75C,'Furnace'],[0x1F75D,'Furnace 2'],[0x1F75E,'Furnace 3'],[0x1F75F,'Furnace 4'],[0x1F760,'Furnace 5'],[0x1F761,'Alembic 2'],[0x1F762,'Alembic 3'],[0x1F763,'Alembic 4'],[0x1F764,'Cement'],[0x1F765,'Cement 2'],[0x1F766,'Cement 3'],[0x1F767,'Cement 4'],[0x1F768,'Vinegar'],[0x1F769,'Vinegar 2'],[0x1F76A,'Vinegar 3'],[0x1F76B,'Vinegar of antimony'],[0x1F76C,'Vinegar of antimony 2'],[0x1F76D,'Vinegar of antimony 3'],[0x1F76E,'Regulus of antimony'],[0x1F76F,'Regulus of antimony 2'],[0x1F770,'Regulus'],[0x1F771,'Regulus 2'],[0x1F772,'Regulus 3'],[0x1F773,'Regulus 4'],[0x1F774,'Star'],[0x1F775,'Star 2'],
-], 'alchemical', 'Alchemical', 'alchemical alchemy quintessence air fire earth water gold silver mercury sulfur salt cinnabar antimony ouroboros crucible alembic furnace vinegar regulus'));
+ALL.push(
+  ...individual(
+    [
+      [0x1f700, 'Quintessence'],
+      [0x1f701, 'Air'],
+      [0x1f702, 'Fire'],
+      [0x1f703, 'Earth'],
+      [0x1f704, 'Water'],
+      [0x1f705, 'Aqua vitae'],
+      [0x1f706, 'Aqua vitae 2'],
+      [0x1f707, 'Aqua regia'],
+      [0x1f708, 'Aqua regia 2'],
+      [0x1f709, 'Aqua fortis'],
+      [0x1f70a, 'Aqua fortis 2'],
+      [0x1f70b, 'Vitriol'],
+      [0x1f70c, 'Vitriol 2'],
+      [0x1f70d, 'Salt'],
+      [0x1f70e, 'Nitre'],
+      [0x1f70f, 'Vitriol 3'],
+      [0x1f710, 'Rock salt'],
+      [0x1f711, 'Rock salt 2'],
+      [0x1f712, 'Gold'],
+      [0x1f713, 'Silver'],
+      [0x1f714, 'Iron'],
+      [0x1f715, 'Copper'],
+      [0x1f716, 'Lead'],
+      [0x1f717, 'Tin'],
+      [0x1f718, 'Antimony'],
+      [0x1f719, 'Antimony 2'],
+      [0x1f71a, 'Bismuth'],
+      [0x1f71b, 'Mercury'],
+      [0x1f71c, 'Mercury 2'],
+      [0x1f71d, 'Mercury 3'],
+      [0x1f71e, 'Cinnabar'],
+      [0x1f71f, 'Cinnabar 2'],
+      [0x1f720, 'Salt 2'],
+      [0x1f721, 'Salt 3'],
+      [0x1f722, 'Arsenic'],
+      [0x1f723, 'Sulfur'],
+      [0x1f724, 'Regulus'],
+      [0x1f725, 'Regulus 2'],
+      [0x1f726, 'Regulus 3'],
+      [0x1f727, 'Regulus 4'],
+      [0x1f728, 'Alkali'],
+      [0x1f729, 'Alkali 2'],
+      [0x1f72a, 'Marcasite'],
+      [0x1f72b, 'Soap'],
+      [0x1f72c, 'Urine'],
+      [0x1f72d, 'Horse dung'],
+      [0x1f72e, 'Ash'],
+      [0x1f72f, 'Pot ashes'],
+      [0x1f730, 'Brick'],
+      [0x1f731, 'Powder'],
+      [0x1f732, 'Calx'],
+      [0x1f733, 'Tartar'],
+      [0x1f734, 'Tartar 2'],
+      [0x1f735, 'Quick lime'],
+      [0x1f736, 'Borax'],
+      [0x1f737, 'Borax 2'],
+      [0x1f738, 'Borax 3'],
+      [0x1f739, 'Alum'],
+      [0x1f73a, 'Oil'],
+      [0x1f73b, 'Oil 2'],
+      [0x1f73c, 'Amalgam'],
+      [0x1f73d, 'Cinnabar 3'],
+      [0x1f73e, 'Cinnabar 4'],
+      [0x1f73f, 'Antimony 3'],
+      [0x1f740, 'Sublimate'],
+      [0x1f741, 'Sublimate 2'],
+      [0x1f742, 'Sublimate 3'],
+      [0x1f743, 'Philosophers sulfur'],
+      [0x1f744, 'Philosophers sulfur 2'],
+      [0x1f745, 'Philosophers sulfur 3'],
+      [0x1f746, 'Black sulfur'],
+      [0x1f747, 'Mercury sublimate'],
+      [0x1f748, 'Mercury sublimate 2'],
+      [0x1f749, 'Mercury sublimate 3'],
+      [0x1f74a, 'Caduceus'],
+      [0x1f74b, 'Trident'],
+      [0x1f74c, 'Trident 2'],
+      [0x1f74d, 'Ouroboros'],
+      [0x1f74e, 'Ouroboros 2'],
+      [0x1f74f, 'Ouroboros 3'],
+      [0x1f750, 'Hourglass'],
+      [0x1f751, 'Hourglass 2'],
+      [0x1f752, 'Crucible'],
+      [0x1f753, 'Crucible 2'],
+      [0x1f754, 'Crucible 3'],
+      [0x1f755, 'Crucible 4'],
+      [0x1f756, 'Crucible 5'],
+      [0x1f757, 'Alembic'],
+      [0x1f758, 'Bath of Mary'],
+      [0x1f759, 'Bath of vapors'],
+      [0x1f75a, 'Retort'],
+      [0x1f75b, 'Retort 2'],
+      [0x1f75c, 'Furnace'],
+      [0x1f75d, 'Furnace 2'],
+      [0x1f75e, 'Furnace 3'],
+      [0x1f75f, 'Furnace 4'],
+      [0x1f760, 'Furnace 5'],
+      [0x1f761, 'Alembic 2'],
+      [0x1f762, 'Alembic 3'],
+      [0x1f763, 'Alembic 4'],
+      [0x1f764, 'Cement'],
+      [0x1f765, 'Cement 2'],
+      [0x1f766, 'Cement 3'],
+      [0x1f767, 'Cement 4'],
+      [0x1f768, 'Vinegar'],
+      [0x1f769, 'Vinegar 2'],
+      [0x1f76a, 'Vinegar 3'],
+      [0x1f76b, 'Vinegar of antimony'],
+      [0x1f76c, 'Vinegar of antimony 2'],
+      [0x1f76d, 'Vinegar of antimony 3'],
+      [0x1f76e, 'Regulus of antimony'],
+      [0x1f76f, 'Regulus of antimony 2'],
+      [0x1f770, 'Regulus'],
+      [0x1f771, 'Regulus 2'],
+      [0x1f772, 'Regulus 3'],
+      [0x1f773, 'Regulus 4'],
+      [0x1f774, 'Star'],
+      [0x1f775, 'Star 2'],
+    ],
+    'alchemical',
+    'Alchemical',
+    'alchemical alchemy quintessence air fire earth water gold silver mercury sulfur salt cinnabar antimony ouroboros crucible alembic furnace vinegar regulus'
+  )
+);
 
 // 23. Braille Patterns (all 256)
-ALL.push(...range(0x2800, 0x28FF, 'braille', 'Braille', 'Braille pattern', 'braille blind tactile dots secret hidden'));
+ALL.push(
+  ...range(
+    0x2800,
+    0x28ff,
+    'braille',
+    'Braille',
+    'Braille pattern',
+    'braille blind tactile dots secret hidden'
+  )
+);
 
 // 24. Domino, Mahjong, Playing Cards
-ALL.push(...individual([
-[0x1F030,'Domino horizontal back'],[0x1F031,'Domino horizontal 00'],[0x1F032,'Domino horizontal 01'],[0x1F033,'Domino horizontal 02'],[0x1F034,'Domino horizontal 03'],[0x1F035,'Domino horizontal 04'],[0x1F036,'Domino horizontal 05'],[0x1F037,'Domino horizontal 06'],[0x1F038,'Domino horizontal 11'],[0x1F039,'Domino horizontal 12'],[0x1F03A,'Domino horizontal 13'],[0x1F03B,'Domino horizontal 14'],[0x1F03C,'Domino horizontal 15'],[0x1F03D,'Domino horizontal 16'],[0x1F03E,'Domino horizontal 22'],[0x1F03F,'Domino horizontal 23'],[0x1F040,'Domino horizontal 24'],[0x1F041,'Domino horizontal 25'],[0x1F042,'Domino horizontal 26'],[0x1F043,'Domino horizontal 33'],[0x1F044,'Domino horizontal 34'],[0x1F045,'Domino horizontal 35'],[0x1F046,'Domino horizontal 36'],[0x1F047,'Domino horizontal 44'],[0x1F048,'Domino horizontal 45'],[0x1F049,'Domino horizontal 46'],[0x1F04A,'Domino horizontal 55'],[0x1F04B,'Domino horizontal 56'],[0x1F04C,'Domino horizontal 66'],[0x1F04D,'Domino vertical back'],[0x1F04E,'Domino vertical 00'],[0x1F04F,'Domino vertical 01'],[0x1F050,'Domino vertical 02'],[0x1F051,'Domino vertical 03'],[0x1F052,'Domino vertical 04'],[0x1F053,'Domino vertical 05'],[0x1F054,'Domino vertical 06'],[0x1F055,'Domino vertical 11'],[0x1F056,'Domino vertical 12'],[0x1F057,'Domino vertical 13'],[0x1F058,'Domino vertical 14'],[0x1F059,'Domino vertical 15'],[0x1F05A,'Domino vertical 16'],[0x1F05B,'Domino vertical 22'],[0x1F05C,'Domino vertical 23'],[0x1F05D,'Domino vertical 24'],[0x1F05E,'Domino vertical 25'],[0x1F05F,'Domino vertical 26'],[0x1F060,'Domino vertical 33'],[0x1F061,'Domino vertical 34'],[0x1F062,'Domino vertical 35'],[0x1F063,'Domino vertical 36'],[0x1F064,'Domino vertical 44'],[0x1F065,'Domino vertical 45'],[0x1F066,'Domino vertical 46'],[0x1F067,'Domino vertical 55'],[0x1F068,'Domino vertical 56'],[0x1F069,'Domino vertical 66'],
-[0x1F004,'Mahjong red dragon'],[0x1F005,'Mahjong wind east'],[0x1F006,'Mahjong wind south'],[0x1F007,'Mahjong wind west'],[0x1F008,'Mahjong wind north'],[0x1F009,'Mahjong bamboo 1'],[0x1F00A,'Mahjong bamboo 2'],[0x1F00B,'Mahjong bamboo 3'],[0x1F00C,'Mahjong bamboo 4'],[0x1F00D,'Mahjong bamboo 5'],[0x1F00E,'Mahjong bamboo 6'],[0x1F00F,'Mahjong bamboo 7'],[0x1F010,'Mahjong bamboo 8'],[0x1F011,'Mahjong bamboo 9'],[0x1F012,'Mahjong character 1'],[0x1F013,'Mahjong character 2'],[0x1F014,'Mahjong character 3'],[0x1F015,'Mahjong character 4'],[0x1F016,'Mahjong character 5'],[0x1F017,'Mahjong character 6'],[0x1F018,'Mahjong character 7'],[0x1F019,'Mahjong character 8'],[0x1F01A,'Mahjong character 9'],[0x1F01B,'Mahjong dot 1'],[0x1F01C,'Mahjong dot 2'],[0x1F01D,'Mahjong dot 3'],[0x1F01E,'Mahjong dot 4'],[0x1F01F,'Mahjong dot 5'],[0x1F020,'Mahjong dot 6'],[0x1F021,'Mahjong dot 7'],[0x1F022,'Mahjong dot 8'],[0x1F023,'Mahjong dot 9'],[0x1F024,'Mahjong plum'],[0x1F025,'Mahjong orchid'],[0x1F026,'Mahjong bamboo'],[0x1F027,'Mahjong chrysanthemum'],[0x1F028,'Mahjong spring'],[0x1F029,'Mahjong summer'],[0x1F02A,'Mahjong autumn'],[0x1F02B,'Mahjong winter'],[0x1F02C,'Mahjong joker'],[0x1F02D,'Mahjong back'],
-[0x1F0A1,'Ace of spades'],[0x1F0A2,'2 of spades'],[0x1F0A3,'3 of spades'],[0x1F0A4,'4 of spades'],[0x1F0A5,'5 of spades'],[0x1F0A6,'6 of spades'],[0x1F0A7,'7 of spades'],[0x1F0A8,'8 of spades'],[0x1F0A9,'9 of spades'],[0x1F0AA,'10 of spades'],[0x1F0AB,'Jack of spades'],[0x1F0AC,'Knight of spades'],[0x1F0AD,'Queen of spades'],[0x1F0AE,'King of spades'],[0x1F0B1,'Ace of hearts'],[0x1F0B2,'2 of hearts'],[0x1F0B3,'3 of hearts'],[0x1F0B4,'4 of hearts'],[0x1F0B5,'5 of hearts'],[0x1F0B6,'6 of hearts'],[0x1F0B7,'7 of hearts'],[0x1F0B8,'8 of hearts'],[0x1F0B9,'9 of hearts'],[0x1F0BA,'10 of hearts'],[0x1F0BB,'Jack of hearts'],[0x1F0BC,'Knight of hearts'],[0x1F0BD,'Queen of hearts'],[0x1F0BE,'King of hearts'],[0x1F0C1,'Ace of diamonds'],[0x1F0C2,'2 of diamonds'],[0x1F0C3,'3 of diamonds'],[0x1F0C4,'4 of diamonds'],[0x1F0C5,'5 of diamonds'],[0x1F0C6,'6 of diamonds'],[0x1F0C7,'7 of diamonds'],[0x1F0C8,'8 of diamonds'],[0x1F0C9,'9 of diamonds'],[0x1F0CA,'10 of diamonds'],[0x1F0CB,'Jack of diamonds'],[0x1F0CC,'Knight of diamonds'],[0x1F0CD,'Queen of diamonds'],[0x1F0CE,'King of diamonds'],[0x1F0D1,'Ace of clubs'],[0x1F0D2,'2 of clubs'],[0x1F0D3,'3 of clubs'],[0x1F0D4,'4 of clubs'],[0x1F0D5,'5 of clubs'],[0x1F0D6,'6 of clubs'],[0x1F0D7,'7 of clubs'],[0x1F0D8,'8 of clubs'],[0x1F0D9,'9 of clubs'],[0x1F0DA,'10 of clubs'],[0x1F0DB,'Jack of clubs'],[0x1F0DC,'Knight of clubs'],[0x1F0DD,'Queen of clubs'],[0x1F0DE,'King of clubs'],[0x1F0BF,'Red joker'],[0x1F0CF,'Black joker'],[0x1F0DF,'White joker'],[0x1F0A0,'Card back'],
-], 'domino', 'Domino & Games', 'domino mahjong game tile playing card deck spade heart diamond club ace jack queen king joker'));
+ALL.push(
+  ...individual(
+    [
+      [0x1f030, 'Domino horizontal back'],
+      [0x1f031, 'Domino horizontal 00'],
+      [0x1f032, 'Domino horizontal 01'],
+      [0x1f033, 'Domino horizontal 02'],
+      [0x1f034, 'Domino horizontal 03'],
+      [0x1f035, 'Domino horizontal 04'],
+      [0x1f036, 'Domino horizontal 05'],
+      [0x1f037, 'Domino horizontal 06'],
+      [0x1f038, 'Domino horizontal 11'],
+      [0x1f039, 'Domino horizontal 12'],
+      [0x1f03a, 'Domino horizontal 13'],
+      [0x1f03b, 'Domino horizontal 14'],
+      [0x1f03c, 'Domino horizontal 15'],
+      [0x1f03d, 'Domino horizontal 16'],
+      [0x1f03e, 'Domino horizontal 22'],
+      [0x1f03f, 'Domino horizontal 23'],
+      [0x1f040, 'Domino horizontal 24'],
+      [0x1f041, 'Domino horizontal 25'],
+      [0x1f042, 'Domino horizontal 26'],
+      [0x1f043, 'Domino horizontal 33'],
+      [0x1f044, 'Domino horizontal 34'],
+      [0x1f045, 'Domino horizontal 35'],
+      [0x1f046, 'Domino horizontal 36'],
+      [0x1f047, 'Domino horizontal 44'],
+      [0x1f048, 'Domino horizontal 45'],
+      [0x1f049, 'Domino horizontal 46'],
+      [0x1f04a, 'Domino horizontal 55'],
+      [0x1f04b, 'Domino horizontal 56'],
+      [0x1f04c, 'Domino horizontal 66'],
+      [0x1f04d, 'Domino vertical back'],
+      [0x1f04e, 'Domino vertical 00'],
+      [0x1f04f, 'Domino vertical 01'],
+      [0x1f050, 'Domino vertical 02'],
+      [0x1f051, 'Domino vertical 03'],
+      [0x1f052, 'Domino vertical 04'],
+      [0x1f053, 'Domino vertical 05'],
+      [0x1f054, 'Domino vertical 06'],
+      [0x1f055, 'Domino vertical 11'],
+      [0x1f056, 'Domino vertical 12'],
+      [0x1f057, 'Domino vertical 13'],
+      [0x1f058, 'Domino vertical 14'],
+      [0x1f059, 'Domino vertical 15'],
+      [0x1f05a, 'Domino vertical 16'],
+      [0x1f05b, 'Domino vertical 22'],
+      [0x1f05c, 'Domino vertical 23'],
+      [0x1f05d, 'Domino vertical 24'],
+      [0x1f05e, 'Domino vertical 25'],
+      [0x1f05f, 'Domino vertical 26'],
+      [0x1f060, 'Domino vertical 33'],
+      [0x1f061, 'Domino vertical 34'],
+      [0x1f062, 'Domino vertical 35'],
+      [0x1f063, 'Domino vertical 36'],
+      [0x1f064, 'Domino vertical 44'],
+      [0x1f065, 'Domino vertical 45'],
+      [0x1f066, 'Domino vertical 46'],
+      [0x1f067, 'Domino vertical 55'],
+      [0x1f068, 'Domino vertical 56'],
+      [0x1f069, 'Domino vertical 66'],
+      [0x1f004, 'Mahjong red dragon'],
+      [0x1f005, 'Mahjong wind east'],
+      [0x1f006, 'Mahjong wind south'],
+      [0x1f007, 'Mahjong wind west'],
+      [0x1f008, 'Mahjong wind north'],
+      [0x1f009, 'Mahjong bamboo 1'],
+      [0x1f00a, 'Mahjong bamboo 2'],
+      [0x1f00b, 'Mahjong bamboo 3'],
+      [0x1f00c, 'Mahjong bamboo 4'],
+      [0x1f00d, 'Mahjong bamboo 5'],
+      [0x1f00e, 'Mahjong bamboo 6'],
+      [0x1f00f, 'Mahjong bamboo 7'],
+      [0x1f010, 'Mahjong bamboo 8'],
+      [0x1f011, 'Mahjong bamboo 9'],
+      [0x1f012, 'Mahjong character 1'],
+      [0x1f013, 'Mahjong character 2'],
+      [0x1f014, 'Mahjong character 3'],
+      [0x1f015, 'Mahjong character 4'],
+      [0x1f016, 'Mahjong character 5'],
+      [0x1f017, 'Mahjong character 6'],
+      [0x1f018, 'Mahjong character 7'],
+      [0x1f019, 'Mahjong character 8'],
+      [0x1f01a, 'Mahjong character 9'],
+      [0x1f01b, 'Mahjong dot 1'],
+      [0x1f01c, 'Mahjong dot 2'],
+      [0x1f01d, 'Mahjong dot 3'],
+      [0x1f01e, 'Mahjong dot 4'],
+      [0x1f01f, 'Mahjong dot 5'],
+      [0x1f020, 'Mahjong dot 6'],
+      [0x1f021, 'Mahjong dot 7'],
+      [0x1f022, 'Mahjong dot 8'],
+      [0x1f023, 'Mahjong dot 9'],
+      [0x1f024, 'Mahjong plum'],
+      [0x1f025, 'Mahjong orchid'],
+      [0x1f026, 'Mahjong bamboo'],
+      [0x1f027, 'Mahjong chrysanthemum'],
+      [0x1f028, 'Mahjong spring'],
+      [0x1f029, 'Mahjong summer'],
+      [0x1f02a, 'Mahjong autumn'],
+      [0x1f02b, 'Mahjong winter'],
+      [0x1f02c, 'Mahjong joker'],
+      [0x1f02d, 'Mahjong back'],
+      [0x1f0a1, 'Ace of spades'],
+      [0x1f0a2, '2 of spades'],
+      [0x1f0a3, '3 of spades'],
+      [0x1f0a4, '4 of spades'],
+      [0x1f0a5, '5 of spades'],
+      [0x1f0a6, '6 of spades'],
+      [0x1f0a7, '7 of spades'],
+      [0x1f0a8, '8 of spades'],
+      [0x1f0a9, '9 of spades'],
+      [0x1f0aa, '10 of spades'],
+      [0x1f0ab, 'Jack of spades'],
+      [0x1f0ac, 'Knight of spades'],
+      [0x1f0ad, 'Queen of spades'],
+      [0x1f0ae, 'King of spades'],
+      [0x1f0b1, 'Ace of hearts'],
+      [0x1f0b2, '2 of hearts'],
+      [0x1f0b3, '3 of hearts'],
+      [0x1f0b4, '4 of hearts'],
+      [0x1f0b5, '5 of hearts'],
+      [0x1f0b6, '6 of hearts'],
+      [0x1f0b7, '7 of hearts'],
+      [0x1f0b8, '8 of hearts'],
+      [0x1f0b9, '9 of hearts'],
+      [0x1f0ba, '10 of hearts'],
+      [0x1f0bb, 'Jack of hearts'],
+      [0x1f0bc, 'Knight of hearts'],
+      [0x1f0bd, 'Queen of hearts'],
+      [0x1f0be, 'King of hearts'],
+      [0x1f0c1, 'Ace of diamonds'],
+      [0x1f0c2, '2 of diamonds'],
+      [0x1f0c3, '3 of diamonds'],
+      [0x1f0c4, '4 of diamonds'],
+      [0x1f0c5, '5 of diamonds'],
+      [0x1f0c6, '6 of diamonds'],
+      [0x1f0c7, '7 of diamonds'],
+      [0x1f0c8, '8 of diamonds'],
+      [0x1f0c9, '9 of diamonds'],
+      [0x1f0ca, '10 of diamonds'],
+      [0x1f0cb, 'Jack of diamonds'],
+      [0x1f0cc, 'Knight of diamonds'],
+      [0x1f0cd, 'Queen of diamonds'],
+      [0x1f0ce, 'King of diamonds'],
+      [0x1f0d1, 'Ace of clubs'],
+      [0x1f0d2, '2 of clubs'],
+      [0x1f0d3, '3 of clubs'],
+      [0x1f0d4, '4 of clubs'],
+      [0x1f0d5, '5 of clubs'],
+      [0x1f0d6, '6 of clubs'],
+      [0x1f0d7, '7 of clubs'],
+      [0x1f0d8, '8 of clubs'],
+      [0x1f0d9, '9 of clubs'],
+      [0x1f0da, '10 of clubs'],
+      [0x1f0db, 'Jack of clubs'],
+      [0x1f0dc, 'Knight of clubs'],
+      [0x1f0dd, 'Queen of clubs'],
+      [0x1f0de, 'King of clubs'],
+      [0x1f0bf, 'Red joker'],
+      [0x1f0cf, 'Black joker'],
+      [0x1f0df, 'White joker'],
+      [0x1f0a0, 'Card back'],
+    ],
+    'domino',
+    'Domino & Games',
+    'domino mahjong game tile playing card deck spade heart diamond club ace jack queen king joker'
+  )
+);
 
 // 25. Supplement B arrows
-ALL.push(...individual([
-[0x2900,'Right two-headed arrow with vertical stroke'],[0x2901,'Right two-headed arrow with double vertical stroke'],[0x2902,'Left double arrow with vertical stroke'],[0x2903,'Right double arrow with vertical stroke'],[0x2904,'Left right double arrow with vertical stroke'],[0x2905,'Right two-headed arrow from bar'],[0x2906,'Left arrow to bar with vertical stroke'],[0x2907,'Right arrow to bar with vertical stroke'],[0x2908,'Down arrow with horizontal stroke'],[0x2909,'Up arrow with horizontal stroke'],[0x290A,'Up triple arrow'],[0x290B,'Down triple arrow'],[0x290C,'Left double dash arrow'],[0x290D,'Right double dash arrow'],[0x290E,'Left triple dash arrow'],[0x290F,'Right triple dash arrow'],[0x2910,'Right two-headed triple dash arrow'],[0x2911,'Right arrow with dotted stem'],[0x2912,'Up arrow to bar'],[0x2913,'Down arrow to bar'],[0x2914,'Right arrow with tail with vertical stroke'],[0x2915,'Right arrow with tail with double vertical stroke'],[0x2916,'Right two-headed arrow with tail'],[0x2917,'Right two-headed arrow with tail with vertical stroke'],[0x2918,'Right two-headed arrow with tail with double vertical stroke'],[0x2919,'Left arrow through X'],[0x291A,'Right arrow through X'],[0x291B,'Left arrow through circle'],[0x291C,'Right arrow through circle'],[0x291D,'Left arrow through almost equal'],[0x291E,'Right arrow through almost equal'],[0x291F,'Left arrow through less-than'],[0x2920,'Right arrow through greater-than'],[0x2921,'Up arrow through less-than'],[0x2922,'Down arrow through greater-than'],[0x2923,'North west arrow to corner'],[0x2924,'South east arrow to corner'],[0x2925,'South west arrow to corner'],[0x2926,'North east arrow to corner'],[0x2927,'North west and north east arrows'],[0x2928,'North east and south east arrows'],[0x2929,'South east and south west arrows'],[0x292A,'South west and north west arrows'],[0x292B,'Rising diagonal crossing falling diagonal'],[0x292C,'Falling diagonal crossing rising diagonal'],[0x292D,'South east crossing north east arrow'],[0x292E,'North east crossing south east arrow'],[0x292F,'Falling diagonal crossing north east arrow'],[0x2930,'Rising diagonal crossing south east arrow'],[0x2931,'North east crossing rising diagonal'],[0x2932,'Falling diagonal crossing north west arrow'],[0x2933,'Curved right arrow'],[0x2934,'Arrow right then curving up'],[0x2935,'Arrow right then curving down'],[0x2936,'Arrow down then curving left'],[0x2937,'Arrow down then curving right'],[0x2938,'Right-side arc clockwise'],[0x2939,'Left-side arc anticlockwise'],[0x293A,'Top arc anticlockwise'],[0x293B,'Bottom arc anticlockwise'],[0x293C,'Top arc clockwise with minus'],[0x293D,'Top arc anticlockwise with plus'],[0x293E,'Lower right semicircular clockwise'],[0x293F,'Lower left semicircular anticlockwise'],[0x2940,'Anticlockwise closed circle'],[0x2941,'Clockwise closed circle'],[0x2942,'Right arrow above short left arrow'],[0x2943,'Left arrow above short right arrow'],[0x2944,'Short right arrow above left arrow'],[0x2945,'Right arrow with plus below'],[0x2946,'Left arrow with plus below'],[0x2947,'Right arrow through X'],[0x2948,'Left right arrow through small circle'],[0x2949,'Up two-headed arrow from small circle'],[0x294A,'Left barb up right barb down harpoon'],[0x294B,'Left barb down right barb up harpoon'],[0x294C,'Up barb right down barb left harpoon'],[0x294D,'Up barb left down barb right harpoon'],[0x294E,'Left barb up right barb up harpoon'],[0x294F,'Up barb right down barb right harpoon'],[0x2950,'Left barb down right barb down harpoon'],[0x2951,'Up barb left down barb left harpoon'],[0x2952,'Left harpoon barb up to bar'],[0x2953,'Right harpoon barb up to bar'],[0x2954,'Up harpoon barb right to bar'],[0x2955,'Down harpoon barb right to bar'],[0x2956,'Left harpoon barb down to bar'],[0x2957,'Right harpoon barb down to bar'],[0x2958,'Up harpoon barb left to bar'],[0x2959,'Down harpoon barb left to bar'],[0x295A,'Left harpoon barb up from bar'],[0x295B,'Right harpoon barb up from bar'],[0x295C,'Up harpoon barb right from bar'],[0x295D,'Down harpoon barb right from bar'],[0x295E,'Left harpoon barb down from bar'],[0x295F,'Right harpoon barb down from bar'],[0x2960,'Up harpoon barb left from bar'],[0x2961,'Down harpoon barb left from bar'],[0x2962,'Left harpoon up above left harpoon down'],[0x2963,'Up harpoon left beside up harpoon right'],[0x2964,'Right harpoon up above right harpoon down'],[0x2965,'Down harpoon left beside down harpoon right'],[0x2966,'Left harpoon up above right harpoon up'],[0x2967,'Left harpoon down above right harpoon down'],[0x2968,'Right harpoon up above left harpoon up'],[0x2969,'Right harpoon down above left harpoon down'],[0x296A,'Left harpoon up above long dash'],[0x296B,'Left harpoon down above long dash'],[0x296C,'Right harpoon up above long dash'],[0x296D,'Right harpoon down above long dash'],[0x296E,'Up harpoon left beside down harpoon right'],[0x296F,'Down harpoon left beside up harpoon right'],[0x2970,'Right double arrow with rounded head'],[0x2971,'Equals sign above right arrow'],[0x2972,'Tilde operator above right arrow'],[0x2973,'Left arrow above tilde operator'],[0x2974,'Right arrow above tilde operator'],[0x2975,'Right arrow above almost equal'],[0x2976,'Less-than above left arrow'],[0x2977,'Left arrow through less-than'],[0x2978,'Greater-than above right arrow'],[0x2979,'Subset above right arrow'],[0x297A,'Left arrow through subset'],[0x297B,'Superset above left arrow'],[0x297C,'Left fish tail'],[0x297D,'Right fish tail'],[0x297E,'Up fish tail'],[0x297F,'Down fish tail'],
-], 'arrows', 'Arrows', 'arrow exotic harpoon fish tail barb curved arc'));
+ALL.push(
+  ...individual(
+    [
+      [0x2900, 'Right two-headed arrow with vertical stroke'],
+      [0x2901, 'Right two-headed arrow with double vertical stroke'],
+      [0x2902, 'Left double arrow with vertical stroke'],
+      [0x2903, 'Right double arrow with vertical stroke'],
+      [0x2904, 'Left right double arrow with vertical stroke'],
+      [0x2905, 'Right two-headed arrow from bar'],
+      [0x2906, 'Left arrow to bar with vertical stroke'],
+      [0x2907, 'Right arrow to bar with vertical stroke'],
+      [0x2908, 'Down arrow with horizontal stroke'],
+      [0x2909, 'Up arrow with horizontal stroke'],
+      [0x290a, 'Up triple arrow'],
+      [0x290b, 'Down triple arrow'],
+      [0x290c, 'Left double dash arrow'],
+      [0x290d, 'Right double dash arrow'],
+      [0x290e, 'Left triple dash arrow'],
+      [0x290f, 'Right triple dash arrow'],
+      [0x2910, 'Right two-headed triple dash arrow'],
+      [0x2911, 'Right arrow with dotted stem'],
+      [0x2912, 'Up arrow to bar'],
+      [0x2913, 'Down arrow to bar'],
+      [0x2914, 'Right arrow with tail with vertical stroke'],
+      [0x2915, 'Right arrow with tail with double vertical stroke'],
+      [0x2916, 'Right two-headed arrow with tail'],
+      [0x2917, 'Right two-headed arrow with tail with vertical stroke'],
+      [0x2918, 'Right two-headed arrow with tail with double vertical stroke'],
+      [0x2919, 'Left arrow through X'],
+      [0x291a, 'Right arrow through X'],
+      [0x291b, 'Left arrow through circle'],
+      [0x291c, 'Right arrow through circle'],
+      [0x291d, 'Left arrow through almost equal'],
+      [0x291e, 'Right arrow through almost equal'],
+      [0x291f, 'Left arrow through less-than'],
+      [0x2920, 'Right arrow through greater-than'],
+      [0x2921, 'Up arrow through less-than'],
+      [0x2922, 'Down arrow through greater-than'],
+      [0x2923, 'North west arrow to corner'],
+      [0x2924, 'South east arrow to corner'],
+      [0x2925, 'South west arrow to corner'],
+      [0x2926, 'North east arrow to corner'],
+      [0x2927, 'North west and north east arrows'],
+      [0x2928, 'North east and south east arrows'],
+      [0x2929, 'South east and south west arrows'],
+      [0x292a, 'South west and north west arrows'],
+      [0x292b, 'Rising diagonal crossing falling diagonal'],
+      [0x292c, 'Falling diagonal crossing rising diagonal'],
+      [0x292d, 'South east crossing north east arrow'],
+      [0x292e, 'North east crossing south east arrow'],
+      [0x292f, 'Falling diagonal crossing north east arrow'],
+      [0x2930, 'Rising diagonal crossing south east arrow'],
+      [0x2931, 'North east crossing rising diagonal'],
+      [0x2932, 'Falling diagonal crossing north west arrow'],
+      [0x2933, 'Curved right arrow'],
+      [0x2934, 'Arrow right then curving up'],
+      [0x2935, 'Arrow right then curving down'],
+      [0x2936, 'Arrow down then curving left'],
+      [0x2937, 'Arrow down then curving right'],
+      [0x2938, 'Right-side arc clockwise'],
+      [0x2939, 'Left-side arc anticlockwise'],
+      [0x293a, 'Top arc anticlockwise'],
+      [0x293b, 'Bottom arc anticlockwise'],
+      [0x293c, 'Top arc clockwise with minus'],
+      [0x293d, 'Top arc anticlockwise with plus'],
+      [0x293e, 'Lower right semicircular clockwise'],
+      [0x293f, 'Lower left semicircular anticlockwise'],
+      [0x2940, 'Anticlockwise closed circle'],
+      [0x2941, 'Clockwise closed circle'],
+      [0x2942, 'Right arrow above short left arrow'],
+      [0x2943, 'Left arrow above short right arrow'],
+      [0x2944, 'Short right arrow above left arrow'],
+      [0x2945, 'Right arrow with plus below'],
+      [0x2946, 'Left arrow with plus below'],
+      [0x2947, 'Right arrow through X'],
+      [0x2948, 'Left right arrow through small circle'],
+      [0x2949, 'Up two-headed arrow from small circle'],
+      [0x294a, 'Left barb up right barb down harpoon'],
+      [0x294b, 'Left barb down right barb up harpoon'],
+      [0x294c, 'Up barb right down barb left harpoon'],
+      [0x294d, 'Up barb left down barb right harpoon'],
+      [0x294e, 'Left barb up right barb up harpoon'],
+      [0x294f, 'Up barb right down barb right harpoon'],
+      [0x2950, 'Left barb down right barb down harpoon'],
+      [0x2951, 'Up barb left down barb left harpoon'],
+      [0x2952, 'Left harpoon barb up to bar'],
+      [0x2953, 'Right harpoon barb up to bar'],
+      [0x2954, 'Up harpoon barb right to bar'],
+      [0x2955, 'Down harpoon barb right to bar'],
+      [0x2956, 'Left harpoon barb down to bar'],
+      [0x2957, 'Right harpoon barb down to bar'],
+      [0x2958, 'Up harpoon barb left to bar'],
+      [0x2959, 'Down harpoon barb left to bar'],
+      [0x295a, 'Left harpoon barb up from bar'],
+      [0x295b, 'Right harpoon barb up from bar'],
+      [0x295c, 'Up harpoon barb right from bar'],
+      [0x295d, 'Down harpoon barb right from bar'],
+      [0x295e, 'Left harpoon barb down from bar'],
+      [0x295f, 'Right harpoon barb down from bar'],
+      [0x2960, 'Up harpoon barb left from bar'],
+      [0x2961, 'Down harpoon barb left from bar'],
+      [0x2962, 'Left harpoon up above left harpoon down'],
+      [0x2963, 'Up harpoon left beside up harpoon right'],
+      [0x2964, 'Right harpoon up above right harpoon down'],
+      [0x2965, 'Down harpoon left beside down harpoon right'],
+      [0x2966, 'Left harpoon up above right harpoon up'],
+      [0x2967, 'Left harpoon down above right harpoon down'],
+      [0x2968, 'Right harpoon up above left harpoon up'],
+      [0x2969, 'Right harpoon down above left harpoon down'],
+      [0x296a, 'Left harpoon up above long dash'],
+      [0x296b, 'Left harpoon down above long dash'],
+      [0x296c, 'Right harpoon up above long dash'],
+      [0x296d, 'Right harpoon down above long dash'],
+      [0x296e, 'Up harpoon left beside down harpoon right'],
+      [0x296f, 'Down harpoon left beside up harpoon right'],
+      [0x2970, 'Right double arrow with rounded head'],
+      [0x2971, 'Equals sign above right arrow'],
+      [0x2972, 'Tilde operator above right arrow'],
+      [0x2973, 'Left arrow above tilde operator'],
+      [0x2974, 'Right arrow above tilde operator'],
+      [0x2975, 'Right arrow above almost equal'],
+      [0x2976, 'Less-than above left arrow'],
+      [0x2977, 'Left arrow through less-than'],
+      [0x2978, 'Greater-than above right arrow'],
+      [0x2979, 'Subset above right arrow'],
+      [0x297a, 'Left arrow through subset'],
+      [0x297b, 'Superset above left arrow'],
+      [0x297c, 'Left fish tail'],
+      [0x297d, 'Right fish tail'],
+      [0x297e, 'Up fish tail'],
+      [0x297f, 'Down fish tail'],
+    ],
+    'arrows',
+    'Arrows',
+    'arrow exotic harpoon fish tail barb curved arc'
+  )
+);
 
 // 25b. Supplement C/D arrows & shapes
-ALL.push(...individual([
-[0x2B00,'North east white arrow'],[0x2B01,'North west white arrow'],[0x2B02,'South east white arrow'],[0x2B03,'South west white arrow'],[0x2B04,'Left right white arrow'],[0x2B05,'Left black arrow'],[0x2B06,'Up black arrow'],[0x2B07,'Down black arrow'],[0x2B08,'North east black arrow'],[0x2B09,'North west black arrow'],[0x2B0A,'South east black arrow'],[0x2B0B,'South west black arrow'],[0x2B0C,'Left right black arrow'],[0x2B0D,'Up down black arrow'],[0x2B0E,'Right arrow with tip down'],[0x2B0F,'Right arrow with tip up'],[0x2B10,'Left arrow with tip down'],[0x2B11,'Left arrow with tip up'],[0x2B12,'Square top half black'],[0x2B13,'Square bottom half black'],[0x2B14,'Square upper right diagonal half black'],[0x2B15,'Square lower left diagonal half black'],[0x2B16,'Diamond left half black'],[0x2B17,'Diamond right half black'],[0x2B18,'Diamond top half black'],[0x2B19,'Diamond bottom half black'],[0x2B1A,'Dotted square'],[0x2B1D,'Black very small square'],[0x2B1E,'White very small square'],[0x2B1F,'Black pentagon'],[0x2B20,'White pentagon'],[0x2B21,'White hexagon'],[0x2B22,'Black hexagon'],[0x2B23,'Horizontal black hexagon'],[0x2B24,'Black large circle'],[0x2B25,'Black medium diamond'],[0x2B26,'White medium diamond'],[0x2B27,'Black medium lozenge'],[0x2B28,'White medium lozenge'],[0x2B29,'Black small diamond'],[0x2B2A,'Black small lozenge'],[0x2B2B,'White small lozenge'],[0x2B2C,'Black horizontal ellipse'],[0x2B2D,'White horizontal ellipse'],[0x2B2E,'Black vertical ellipse'],[0x2B2F,'White vertical ellipse'],[0x2B30,'Left arrow with small circle'],[0x2B31,'Three leftwards arrows'],[0x2B32,'Left arrow with circled plus'],[0x2B33,'Long left squiggle arrow'],[0x2B34,'Left two-headed arrow with vertical stroke'],[0x2B35,'Left two-headed arrow with double vertical stroke'],[0x2B36,'Left two-headed arrow from bar'],[0x2B37,'Left two-headed triple dash arrow'],[0x2B38,'Left arrow with dotted stem'],[0x2B39,'Left arrow with tail with vertical stroke'],[0x2B3A,'Left arrow with tail with double vertical stroke'],[0x2B3B,'Left two-headed arrow with tail'],[0x2B3C,'Left two-headed arrow with tail with vertical stroke'],[0x2B3D,'Left two-headed arrow with tail with double vertical stroke'],[0x2B3E,'Left arrow through X'],[0x2B3F,'Wave arrow pointing directly right'],[0x2B40,'Equals sign above left arrow'],[0x2B41,'Reverse tilde above left arrow'],[0x2B42,'Left arrow above reverse almost equal'],[0x2B43,'Right arrow through greater-than'],[0x2B44,'Right arrow through superset'],[0x2B45,'Leftwards quadruple arrow'],[0x2B46,'Rightwards quadruple arrow'],[0x2B47,'Reverse tilde above right arrow'],[0x2B48,'Right arrow above reverse almost equal'],[0x2B49,'Tilde above left arrow'],[0x2B4A,'Left arrow above almost equal'],[0x2B4B,'Left arrow above reverse tilde'],[0x2B4C,'Right arrow above reverse tilde'],[0x2B4D,'Down triangle-headed zigzag arrow'],[0x2B4E,'Short slanted left arrow'],[0x2B4F,'Short slanted right arrow'],[0x2B55,'Heavy large circle'],[0x2B56,'Heavy oval with oval inside'],[0x2B57,'Heavy circle with circle inside'],[0x2B58,'Heavy circle'],[0x2B59,'Heavy circled saltire'],
-], 'arrows', 'Arrows', 'arrow zigzag pentagon hexagon ellipse lozenge diamond'));
+ALL.push(
+  ...individual(
+    [
+      [0x2b00, 'North east white arrow'],
+      [0x2b01, 'North west white arrow'],
+      [0x2b02, 'South east white arrow'],
+      [0x2b03, 'South west white arrow'],
+      [0x2b04, 'Left right white arrow'],
+      [0x2b05, 'Left black arrow'],
+      [0x2b06, 'Up black arrow'],
+      [0x2b07, 'Down black arrow'],
+      [0x2b08, 'North east black arrow'],
+      [0x2b09, 'North west black arrow'],
+      [0x2b0a, 'South east black arrow'],
+      [0x2b0b, 'South west black arrow'],
+      [0x2b0c, 'Left right black arrow'],
+      [0x2b0d, 'Up down black arrow'],
+      [0x2b0e, 'Right arrow with tip down'],
+      [0x2b0f, 'Right arrow with tip up'],
+      [0x2b10, 'Left arrow with tip down'],
+      [0x2b11, 'Left arrow with tip up'],
+      [0x2b12, 'Square top half black'],
+      [0x2b13, 'Square bottom half black'],
+      [0x2b14, 'Square upper right diagonal half black'],
+      [0x2b15, 'Square lower left diagonal half black'],
+      [0x2b16, 'Diamond left half black'],
+      [0x2b17, 'Diamond right half black'],
+      [0x2b18, 'Diamond top half black'],
+      [0x2b19, 'Diamond bottom half black'],
+      [0x2b1a, 'Dotted square'],
+      [0x2b1d, 'Black very small square'],
+      [0x2b1e, 'White very small square'],
+      [0x2b1f, 'Black pentagon'],
+      [0x2b20, 'White pentagon'],
+      [0x2b21, 'White hexagon'],
+      [0x2b22, 'Black hexagon'],
+      [0x2b23, 'Horizontal black hexagon'],
+      [0x2b24, 'Black large circle'],
+      [0x2b25, 'Black medium diamond'],
+      [0x2b26, 'White medium diamond'],
+      [0x2b27, 'Black medium lozenge'],
+      [0x2b28, 'White medium lozenge'],
+      [0x2b29, 'Black small diamond'],
+      [0x2b2a, 'Black small lozenge'],
+      [0x2b2b, 'White small lozenge'],
+      [0x2b2c, 'Black horizontal ellipse'],
+      [0x2b2d, 'White horizontal ellipse'],
+      [0x2b2e, 'Black vertical ellipse'],
+      [0x2b2f, 'White vertical ellipse'],
+      [0x2b30, 'Left arrow with small circle'],
+      [0x2b31, 'Three leftwards arrows'],
+      [0x2b32, 'Left arrow with circled plus'],
+      [0x2b33, 'Long left squiggle arrow'],
+      [0x2b34, 'Left two-headed arrow with vertical stroke'],
+      [0x2b35, 'Left two-headed arrow with double vertical stroke'],
+      [0x2b36, 'Left two-headed arrow from bar'],
+      [0x2b37, 'Left two-headed triple dash arrow'],
+      [0x2b38, 'Left arrow with dotted stem'],
+      [0x2b39, 'Left arrow with tail with vertical stroke'],
+      [0x2b3a, 'Left arrow with tail with double vertical stroke'],
+      [0x2b3b, 'Left two-headed arrow with tail'],
+      [0x2b3c, 'Left two-headed arrow with tail with vertical stroke'],
+      [0x2b3d, 'Left two-headed arrow with tail with double vertical stroke'],
+      [0x2b3e, 'Left arrow through X'],
+      [0x2b3f, 'Wave arrow pointing directly right'],
+      [0x2b40, 'Equals sign above left arrow'],
+      [0x2b41, 'Reverse tilde above left arrow'],
+      [0x2b42, 'Left arrow above reverse almost equal'],
+      [0x2b43, 'Right arrow through greater-than'],
+      [0x2b44, 'Right arrow through superset'],
+      [0x2b45, 'Leftwards quadruple arrow'],
+      [0x2b46, 'Rightwards quadruple arrow'],
+      [0x2b47, 'Reverse tilde above right arrow'],
+      [0x2b48, 'Right arrow above reverse almost equal'],
+      [0x2b49, 'Tilde above left arrow'],
+      [0x2b4a, 'Left arrow above almost equal'],
+      [0x2b4b, 'Left arrow above reverse tilde'],
+      [0x2b4c, 'Right arrow above reverse tilde'],
+      [0x2b4d, 'Down triangle-headed zigzag arrow'],
+      [0x2b4e, 'Short slanted left arrow'],
+      [0x2b4f, 'Short slanted right arrow'],
+      [0x2b55, 'Heavy large circle'],
+      [0x2b56, 'Heavy oval with oval inside'],
+      [0x2b57, 'Heavy circle with circle inside'],
+      [0x2b58, 'Heavy circle'],
+      [0x2b59, 'Heavy circled saltire'],
+    ],
+    'arrows',
+    'Arrows',
+    'arrow zigzag pentagon hexagon ellipse lozenge diamond'
+  )
+);
 
 // 26. Greek Extended
-ALL.push(...range(0x1F00, 0x1F15, 'greek', 'Greek Extended', 'Greek with breathing', 'greek extended breathing rough smooth accent'));
-ALL.push(...range(0x1F18, 0x1F1D, 'greek', 'Greek Extended', 'Greek with breathing', 'greek extended breathing rough smooth accent'));
-ALL.push(...range(0x1F20, 0x1F45, 'greek', 'Greek Extended', 'Greek with breathing', 'greek extended breathing rough smooth accent'));
-ALL.push(...range(0x1F48, 0x1F4D, 'greek', 'Greek Extended', 'Greek with breathing', 'greek extended breathing rough smooth accent'));
-ALL.push(...range(0x1F50, 0x1F57, 'greek', 'Greek Extended', 'Greek with breathing', 'greek extended breathing rough smooth accent'));
-ALL.push(...range(0x1F59, 0x1F5B, 'greek', 'Greek Extended', 'Greek with breathing', 'greek extended breathing rough smooth accent'));
-ALL.push(...range(0x1F5D, 0x1F5F, 'greek', 'Greek Extended', 'Greek with breathing', 'greek extended breathing rough smooth accent'));
-ALL.push(...range(0x1F60, 0x1F7D, 'greek', 'Greek Extended', 'Greek with breathing', 'greek extended breathing rough smooth accent'));
-ALL.push(...range(0x1F80, 0x1FB4, 'greek', 'Greek Extended', 'Greek with breathing and ypogegrammeni', 'greek extended breathing iota subscript'));
-ALL.push(...range(0x1FB6, 0x1FBC, 'greek', 'Greek Extended', 'Greek with breathing and ypogegrammeni', 'greek extended breathing iota subscript'));
-ALL.push(...range(0x1FC2, 0x1FC4, 'greek', 'Greek Extended', 'Greek with breathing and ypogegrammeni', 'greek extended breathing iota subscript'));
-ALL.push(...range(0x1FC6, 0x1FCC, 'greek', 'Greek Extended', 'Greek with breathing and ypogegrammeni', 'greek extended breathing iota subscript'));
-ALL.push(...range(0x1FD0, 0x1FD3, 'greek', 'Greek Extended', 'Greek with breathing and ypogegrammeni', 'greek extended breathing iota subscript'));
-ALL.push(...range(0x1FD6, 0x1FDB, 'greek', 'Greek Extended', 'Greek with breathing and ypogegrammeni', 'greek extended breathing iota subscript'));
-ALL.push(...range(0x1FE0, 0x1FEC, 'greek', 'Greek Extended', 'Greek with breathing and ypogegrammeni', 'greek extended breathing iota subscript'));
-ALL.push(...range(0x1FF2, 0x1FF4, 'greek', 'Greek Extended', 'Greek with breathing and ypogegrammeni', 'greek extended breathing iota subscript'));
-ALL.push(...range(0x1FF6, 0x1FFC, 'greek', 'Greek Extended', 'Greek with breathing and ypogegrammeni', 'greek extended breathing iota subscript'));
+ALL.push(
+  ...range(
+    0x1f00,
+    0x1f15,
+    'greek',
+    'Greek Extended',
+    'Greek with breathing',
+    'greek extended breathing rough smooth accent'
+  )
+);
+ALL.push(
+  ...range(
+    0x1f18,
+    0x1f1d,
+    'greek',
+    'Greek Extended',
+    'Greek with breathing',
+    'greek extended breathing rough smooth accent'
+  )
+);
+ALL.push(
+  ...range(
+    0x1f20,
+    0x1f45,
+    'greek',
+    'Greek Extended',
+    'Greek with breathing',
+    'greek extended breathing rough smooth accent'
+  )
+);
+ALL.push(
+  ...range(
+    0x1f48,
+    0x1f4d,
+    'greek',
+    'Greek Extended',
+    'Greek with breathing',
+    'greek extended breathing rough smooth accent'
+  )
+);
+ALL.push(
+  ...range(
+    0x1f50,
+    0x1f57,
+    'greek',
+    'Greek Extended',
+    'Greek with breathing',
+    'greek extended breathing rough smooth accent'
+  )
+);
+ALL.push(
+  ...range(
+    0x1f59,
+    0x1f5b,
+    'greek',
+    'Greek Extended',
+    'Greek with breathing',
+    'greek extended breathing rough smooth accent'
+  )
+);
+ALL.push(
+  ...range(
+    0x1f5d,
+    0x1f5f,
+    'greek',
+    'Greek Extended',
+    'Greek with breathing',
+    'greek extended breathing rough smooth accent'
+  )
+);
+ALL.push(
+  ...range(
+    0x1f60,
+    0x1f7d,
+    'greek',
+    'Greek Extended',
+    'Greek with breathing',
+    'greek extended breathing rough smooth accent'
+  )
+);
+ALL.push(
+  ...range(
+    0x1f80,
+    0x1fb4,
+    'greek',
+    'Greek Extended',
+    'Greek with breathing and ypogegrammeni',
+    'greek extended breathing iota subscript'
+  )
+);
+ALL.push(
+  ...range(
+    0x1fb6,
+    0x1fbc,
+    'greek',
+    'Greek Extended',
+    'Greek with breathing and ypogegrammeni',
+    'greek extended breathing iota subscript'
+  )
+);
+ALL.push(
+  ...range(
+    0x1fc2,
+    0x1fc4,
+    'greek',
+    'Greek Extended',
+    'Greek with breathing and ypogegrammeni',
+    'greek extended breathing iota subscript'
+  )
+);
+ALL.push(
+  ...range(
+    0x1fc6,
+    0x1fcc,
+    'greek',
+    'Greek Extended',
+    'Greek with breathing and ypogegrammeni',
+    'greek extended breathing iota subscript'
+  )
+);
+ALL.push(
+  ...range(
+    0x1fd0,
+    0x1fd3,
+    'greek',
+    'Greek Extended',
+    'Greek with breathing and ypogegrammeni',
+    'greek extended breathing iota subscript'
+  )
+);
+ALL.push(
+  ...range(
+    0x1fd6,
+    0x1fdb,
+    'greek',
+    'Greek Extended',
+    'Greek with breathing and ypogegrammeni',
+    'greek extended breathing iota subscript'
+  )
+);
+ALL.push(
+  ...range(
+    0x1fe0,
+    0x1fec,
+    'greek',
+    'Greek Extended',
+    'Greek with breathing and ypogegrammeni',
+    'greek extended breathing iota subscript'
+  )
+);
+ALL.push(
+  ...range(
+    0x1ff2,
+    0x1ff4,
+    'greek',
+    'Greek Extended',
+    'Greek with breathing and ypogegrammeni',
+    'greek extended breathing iota subscript'
+  )
+);
+ALL.push(
+  ...range(
+    0x1ff6,
+    0x1ffc,
+    'greek',
+    'Greek Extended',
+    'Greek with breathing and ypogegrammeni',
+    'greek extended breathing iota subscript'
+  )
+);
 
 // 27. Letter-like Symbols
-ALL.push(...individual([
-[0x2100,'Account of'],[0x2101,'Addressed to the subject'],[0x2103,'Degree Celsius'],[0x2104,'Centre line symbol'],[0x2105,'Care of'],[0x2106,'Cada una'],[0x2107,'Euler constant'],[0x2108,'Scruple'],[0x2109,'Degree Fahrenheit'],[0x210A,'Script small g'],[0x210B,'Script capital H'],[0x210C,'Black-letter capital H'],[0x210D,'Double-struck capital H'],[0x210E,'Planck constant'],[0x210F,'Planck constant over two pi'],[0x2110,'Script capital I'],[0x2111,'Black-letter capital I'],[0x2112,'Script capital L'],[0x2113,'Script small l'],[0x2114,'L b bar symbol'],[0x2116,'Numero sign'],[0x2117,'Sound recording copyright'],[0x2118,'Weierstrass elliptic function'],[0x2119,'Double-struck capital P'],[0x211A,'Double-struck capital Q'],[0x211B,'Script capital R'],[0x211C,'Black-letter capital R'],[0x211D,'Double-struck capital R'],[0x211E,'Prescription take'],[0x211F,'Response'],[0x2120,'Service mark'],[0x2121,'Telephone sign'],[0x2122,'Trade mark sign'],[0x2123,'Versicle'],[0x2124,'Double-struck capital Z'],[0x2125,'Ounce sign'],[0x2126,'Ohm sign'],[0x2127,'Inverted ohm sign'],[0x2128,'Black-letter capital Z'],[0x2129,'Turned Greek small letter iota'],[0x212A,'Kelvin sign'],[0x212B,'Angstrom sign'],[0x212C,'Script capital B'],[0x212D,'Black-letter capital C'],[0x212E,'Estimated symbol'],[0x212F,'Script small e'],[0x2130,'Script capital E'],[0x2131,'Script capital F'],[0x2132,'Turned capital F'],[0x2133,'Script capital M'],[0x2134,'Script small o'],[0x2135,'Alef symbol'],[0x2136,'Bet symbol'],[0x2137,'Gimel symbol'],[0x2138,'Dalet symbol'],[0x2139,'Information source'],[0x213A,'Rotated capital Q'],[0x213B,'Fax sign'],[0x213C,'Double-struck small pi'],[0x213D,'Double-struck small gamma'],[0x213E,'Double-struck capital Gamma'],[0x213F,'Double-struck capital Pi'],[0x2140,'Double-struck n-ary summation'],[0x2141,'Turned sans-serif capital G'],[0x2142,'Turned sans-serif capital L'],[0x2143,'Reversed sans-serif capital L'],[0x2144,'Turned sans-serif capital Y'],[0x2145,'Double-struck italic capital D'],[0x2146,'Double-struck italic small d'],[0x2147,'Double-struck italic small e'],[0x2148,'Double-struck italic small i'],[0x2149,'Double-struck italic small j'],[0x214A,'Property line'],[0x214B,'Turned ampersand'],[0x214C,'Per sign'],[0x214D,'Aktieselskab'],[0x214E,'Turned small f'],[0x214F,'Symbol for Samaritan source'],
-], 'letterlike', 'Letter-like Symbols', 'letterlike script double-struck black-letter planck weierstrass alef prescription trademark service mark kelvin angstrom ohm fax information source'));
+ALL.push(
+  ...individual(
+    [
+      [0x2100, 'Account of'],
+      [0x2101, 'Addressed to the subject'],
+      [0x2103, 'Degree Celsius'],
+      [0x2104, 'Centre line symbol'],
+      [0x2105, 'Care of'],
+      [0x2106, 'Cada una'],
+      [0x2107, 'Euler constant'],
+      [0x2108, 'Scruple'],
+      [0x2109, 'Degree Fahrenheit'],
+      [0x210a, 'Script small g'],
+      [0x210b, 'Script capital H'],
+      [0x210c, 'Black-letter capital H'],
+      [0x210d, 'Double-struck capital H'],
+      [0x210e, 'Planck constant'],
+      [0x210f, 'Planck constant over two pi'],
+      [0x2110, 'Script capital I'],
+      [0x2111, 'Black-letter capital I'],
+      [0x2112, 'Script capital L'],
+      [0x2113, 'Script small l'],
+      [0x2114, 'L b bar symbol'],
+      [0x2116, 'Numero sign'],
+      [0x2117, 'Sound recording copyright'],
+      [0x2118, 'Weierstrass elliptic function'],
+      [0x2119, 'Double-struck capital P'],
+      [0x211a, 'Double-struck capital Q'],
+      [0x211b, 'Script capital R'],
+      [0x211c, 'Black-letter capital R'],
+      [0x211d, 'Double-struck capital R'],
+      [0x211e, 'Prescription take'],
+      [0x211f, 'Response'],
+      [0x2120, 'Service mark'],
+      [0x2121, 'Telephone sign'],
+      [0x2122, 'Trade mark sign'],
+      [0x2123, 'Versicle'],
+      [0x2124, 'Double-struck capital Z'],
+      [0x2125, 'Ounce sign'],
+      [0x2126, 'Ohm sign'],
+      [0x2127, 'Inverted ohm sign'],
+      [0x2128, 'Black-letter capital Z'],
+      [0x2129, 'Turned Greek small letter iota'],
+      [0x212a, 'Kelvin sign'],
+      [0x212b, 'Angstrom sign'],
+      [0x212c, 'Script capital B'],
+      [0x212d, 'Black-letter capital C'],
+      [0x212e, 'Estimated symbol'],
+      [0x212f, 'Script small e'],
+      [0x2130, 'Script capital E'],
+      [0x2131, 'Script capital F'],
+      [0x2132, 'Turned capital F'],
+      [0x2133, 'Script capital M'],
+      [0x2134, 'Script small o'],
+      [0x2135, 'Alef symbol'],
+      [0x2136, 'Bet symbol'],
+      [0x2137, 'Gimel symbol'],
+      [0x2138, 'Dalet symbol'],
+      [0x2139, 'Information source'],
+      [0x213a, 'Rotated capital Q'],
+      [0x213b, 'Fax sign'],
+      [0x213c, 'Double-struck small pi'],
+      [0x213d, 'Double-struck small gamma'],
+      [0x213e, 'Double-struck capital Gamma'],
+      [0x213f, 'Double-struck capital Pi'],
+      [0x2140, 'Double-struck n-ary summation'],
+      [0x2141, 'Turned sans-serif capital G'],
+      [0x2142, 'Turned sans-serif capital L'],
+      [0x2143, 'Reversed sans-serif capital L'],
+      [0x2144, 'Turned sans-serif capital Y'],
+      [0x2145, 'Double-struck italic capital D'],
+      [0x2146, 'Double-struck italic small d'],
+      [0x2147, 'Double-struck italic small e'],
+      [0x2148, 'Double-struck italic small i'],
+      [0x2149, 'Double-struck italic small j'],
+      [0x214a, 'Property line'],
+      [0x214b, 'Turned ampersand'],
+      [0x214c, 'Per sign'],
+      [0x214d, 'Aktieselskab'],
+      [0x214e, 'Turned small f'],
+      [0x214f, 'Symbol for Samaritan source'],
+    ],
+    'letterlike',
+    'Letter-like Symbols',
+    'letterlike script double-struck black-letter planck weierstrass alef prescription trademark service mark kelvin angstrom ohm fax information source'
+  )
+);
 
 // 28. Mathematical Alphanumeric Symbols
-ALL.push(...range(0x1D400, 0x1D419, 'math', 'Math Alphanumeric', 'Bold', 'mathematical alphanumeric bold'));
-ALL.push(...range(0x1D41A, 0x1D433, 'math', 'Math Alphanumeric', 'Bold italic', 'mathematical alphanumeric bold italic'));
-ALL.push(...range(0x1D434, 0x1D44D, 'math', 'Math Alphanumeric', 'Italic', 'mathematical alphanumeric italic'));
-ALL.push(...range(0x1D44E, 0x1D454, 'math', 'Math Alphanumeric', 'Bold script', 'mathematical alphanumeric bold script'));
-ALL.push(...range(0x1D456, 0x1D467, 'math', 'Math Alphanumeric', 'Bold script', 'mathematical alphanumeric bold script'));
-ALL.push(...range(0x1D468, 0x1D481, 'math', 'Math Alphanumeric', 'Bold Fraktur', 'mathematical alphanumeric bold fraktur'));
-ALL.push(...range(0x1D49C, 0x1D4B5, 'math', 'Math Alphanumeric', 'Script', 'mathematical alphanumeric script'));
-ALL.push(...range(0x1D4D0, 0x1D4E9, 'math', 'Math Alphanumeric', 'Fraktur', 'mathematical alphanumeric fraktur'));
-ALL.push(...range(0x1D504, 0x1D51C, 'math', 'Math Alphanumeric', 'Double-struck', 'mathematical alphanumeric double-struck'));
-ALL.push(...range(0x1D538, 0x1D550, 'math', 'Math Alphanumeric', 'Sans-serif bold', 'mathematical alphanumeric sans-serif bold'));
-ALL.push(...range(0x1D552, 0x1D56B, 'math', 'Math Alphanumeric', 'Sans-serif bold italic', 'mathematical alphanumeric sans-serif bold italic'));
-ALL.push(...range(0x1D56C, 0x1D585, 'math', 'Math Alphanumeric', 'Sans-serif italic', 'mathematical alphanumeric sans-serif italic'));
-ALL.push(...range(0x1D586, 0x1D59F, 'math', 'Math Alphanumeric', 'Monospace', 'mathematical alphanumeric monospace'));
-ALL.push(...range(0x1D5A0, 0x1D5B9, 'math', 'Math Alphanumeric', 'Bold sans-serif', 'mathematical alphanumeric bold sans-serif'));
-ALL.push(...range(0x1D5BA, 0x1D5D3, 'math', 'Math Alphanumeric', 'Bold sans-serif italic', 'mathematical alphanumeric bold sans-serif italic'));
-ALL.push(...range(0x1D5D4, 0x1D5ED, 'math', 'Math Alphanumeric', 'Italic sans-serif', 'mathematical alphanumeric italic sans-serif'));
-ALL.push(...range(0x1D5EE, 0x1D607, 'math', 'Math Alphanumeric', 'Bold monospace', 'mathematical alphanumeric bold monospace'));
-ALL.push(...range(0x1D608, 0x1D621, 'math', 'Math Alphanumeric', 'Italic monospace', 'mathematical alphanumeric italic monospace'));
-ALL.push(...range(0x1D622, 0x1D63B, 'math', 'Math Alphanumeric', 'Bold italic monospace', 'mathematical alphanumeric bold italic monospace'));
-ALL.push(...range(0x1D63C, 0x1D655, 'math', 'Math Alphanumeric', 'Sans-serif bold monospace', 'mathematical alphanumeric sans-serif bold monospace'));
-ALL.push(...range(0x1D656, 0x1D66F, 'math', 'Math Alphanumeric', 'Sans-serif bold italic monospace', 'mathematical alphanumeric sans-serif bold italic monospace'));
-ALL.push(...range(0x1D670, 0x1D689, 'math', 'Math Alphanumeric', 'Dotless', 'mathematical alphanumeric dotless'));
-ALL.push(...range(0x1D6A8, 0x1D6C0, 'math', 'Math Alphanumeric', 'Bold Greek', 'mathematical alphanumeric bold greek'));
-ALL.push(...range(0x1D6C2, 0x1D6DA, 'math', 'Math Alphanumeric', 'Bold italic Greek', 'mathematical alphanumeric bold italic greek'));
-ALL.push(...range(0x1D6DB, 0x1D6E1, 'math', 'Math Alphanumeric', 'Bold Greek symbol', 'mathematical alphanumeric bold greek symbol'));
-ALL.push(...range(0x1D6E2, 0x1D6FA, 'math', 'Math Alphanumeric', 'Italic Greek', 'mathematical alphanumeric italic greek'));
-ALL.push(...range(0x1D6FC, 0x1D714, 'math', 'Math Alphanumeric', 'Bold sans-serif Greek', 'mathematical alphanumeric bold sans-serif greek'));
-ALL.push(...range(0x1D715, 0x1D71B, 'math', 'Math Alphanumeric', 'Bold sans-serif Greek symbol', 'mathematical alphanumeric bold sans-serif greek symbol'));
-ALL.push(...range(0x1D71C, 0x1D734, 'math', 'Math Alphanumeric', 'Sans-serif bold italic Greek', 'mathematical alphanumeric sans-serif bold italic greek'));
-ALL.push(...range(0x1D736, 0x1D74E, 'math', 'Math Alphanumeric', 'Sans-serif italic Greek', 'mathematical alphanumeric sans-serif italic greek'));
-ALL.push(...range(0x1D74F, 0x1D755, 'math', 'Math Alphanumeric', 'Sans-serif bold Greek symbol', 'mathematical alphanumeric sans-serif bold greek symbol'));
-ALL.push(...range(0x1D756, 0x1D76E, 'math', 'Math Alphanumeric', 'Bold sans-serif Greek', 'mathematical alphanumeric bold sans-serif greek'));
-ALL.push(...range(0x1D770, 0x1D788, 'math', 'Math Alphanumeric', 'Bold italic sans-serif Greek', 'mathematical alphanumeric bold italic sans-serif greek'));
-ALL.push(...range(0x1D789, 0x1D78F, 'math', 'Math Alphanumeric', 'Bold italic sans-serif Greek symbol', 'mathematical alphanumeric bold italic sans-serif greek symbol'));
-ALL.push(...range(0x1D790, 0x1D7A8, 'math', 'Math Alphanumeric', 'Bold monospace Greek', 'mathematical alphanumeric bold monospace greek'));
-ALL.push(...range(0x1D7AA, 0x1D7C2, 'math', 'Math Alphanumeric', 'Italic monospace Greek', 'mathematical alphanumeric italic monospace greek'));
-ALL.push(...range(0x1D7C4, 0x1D7CB, 'math', 'Math Alphanumeric', 'Bold italic monospace Greek', 'mathematical alphanumeric bold italic monospace greek'));
-ALL.push(...range(0x1D7CE, 0x1D7FF, 'math', 'Math Alphanumeric', 'Bold digit', 'mathematical alphanumeric bold digit'));
+ALL.push(
+  ...range(0x1d400, 0x1d419, 'math', 'Math Alphanumeric', 'Bold', 'mathematical alphanumeric bold')
+);
+ALL.push(
+  ...range(
+    0x1d41a,
+    0x1d433,
+    'math',
+    'Math Alphanumeric',
+    'Bold italic',
+    'mathematical alphanumeric bold italic'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d434,
+    0x1d44d,
+    'math',
+    'Math Alphanumeric',
+    'Italic',
+    'mathematical alphanumeric italic'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d44e,
+    0x1d454,
+    'math',
+    'Math Alphanumeric',
+    'Bold script',
+    'mathematical alphanumeric bold script'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d456,
+    0x1d467,
+    'math',
+    'Math Alphanumeric',
+    'Bold script',
+    'mathematical alphanumeric bold script'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d468,
+    0x1d481,
+    'math',
+    'Math Alphanumeric',
+    'Bold Fraktur',
+    'mathematical alphanumeric bold fraktur'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d49c,
+    0x1d4b5,
+    'math',
+    'Math Alphanumeric',
+    'Script',
+    'mathematical alphanumeric script'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d4d0,
+    0x1d4e9,
+    'math',
+    'Math Alphanumeric',
+    'Fraktur',
+    'mathematical alphanumeric fraktur'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d504,
+    0x1d51c,
+    'math',
+    'Math Alphanumeric',
+    'Double-struck',
+    'mathematical alphanumeric double-struck'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d538,
+    0x1d550,
+    'math',
+    'Math Alphanumeric',
+    'Sans-serif bold',
+    'mathematical alphanumeric sans-serif bold'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d552,
+    0x1d56b,
+    'math',
+    'Math Alphanumeric',
+    'Sans-serif bold italic',
+    'mathematical alphanumeric sans-serif bold italic'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d56c,
+    0x1d585,
+    'math',
+    'Math Alphanumeric',
+    'Sans-serif italic',
+    'mathematical alphanumeric sans-serif italic'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d586,
+    0x1d59f,
+    'math',
+    'Math Alphanumeric',
+    'Monospace',
+    'mathematical alphanumeric monospace'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d5a0,
+    0x1d5b9,
+    'math',
+    'Math Alphanumeric',
+    'Bold sans-serif',
+    'mathematical alphanumeric bold sans-serif'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d5ba,
+    0x1d5d3,
+    'math',
+    'Math Alphanumeric',
+    'Bold sans-serif italic',
+    'mathematical alphanumeric bold sans-serif italic'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d5d4,
+    0x1d5ed,
+    'math',
+    'Math Alphanumeric',
+    'Italic sans-serif',
+    'mathematical alphanumeric italic sans-serif'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d5ee,
+    0x1d607,
+    'math',
+    'Math Alphanumeric',
+    'Bold monospace',
+    'mathematical alphanumeric bold monospace'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d608,
+    0x1d621,
+    'math',
+    'Math Alphanumeric',
+    'Italic monospace',
+    'mathematical alphanumeric italic monospace'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d622,
+    0x1d63b,
+    'math',
+    'Math Alphanumeric',
+    'Bold italic monospace',
+    'mathematical alphanumeric bold italic monospace'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d63c,
+    0x1d655,
+    'math',
+    'Math Alphanumeric',
+    'Sans-serif bold monospace',
+    'mathematical alphanumeric sans-serif bold monospace'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d656,
+    0x1d66f,
+    'math',
+    'Math Alphanumeric',
+    'Sans-serif bold italic monospace',
+    'mathematical alphanumeric sans-serif bold italic monospace'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d670,
+    0x1d689,
+    'math',
+    'Math Alphanumeric',
+    'Dotless',
+    'mathematical alphanumeric dotless'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d6a8,
+    0x1d6c0,
+    'math',
+    'Math Alphanumeric',
+    'Bold Greek',
+    'mathematical alphanumeric bold greek'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d6c2,
+    0x1d6da,
+    'math',
+    'Math Alphanumeric',
+    'Bold italic Greek',
+    'mathematical alphanumeric bold italic greek'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d6db,
+    0x1d6e1,
+    'math',
+    'Math Alphanumeric',
+    'Bold Greek symbol',
+    'mathematical alphanumeric bold greek symbol'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d6e2,
+    0x1d6fa,
+    'math',
+    'Math Alphanumeric',
+    'Italic Greek',
+    'mathematical alphanumeric italic greek'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d6fc,
+    0x1d714,
+    'math',
+    'Math Alphanumeric',
+    'Bold sans-serif Greek',
+    'mathematical alphanumeric bold sans-serif greek'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d715,
+    0x1d71b,
+    'math',
+    'Math Alphanumeric',
+    'Bold sans-serif Greek symbol',
+    'mathematical alphanumeric bold sans-serif greek symbol'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d71c,
+    0x1d734,
+    'math',
+    'Math Alphanumeric',
+    'Sans-serif bold italic Greek',
+    'mathematical alphanumeric sans-serif bold italic greek'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d736,
+    0x1d74e,
+    'math',
+    'Math Alphanumeric',
+    'Sans-serif italic Greek',
+    'mathematical alphanumeric sans-serif italic greek'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d74f,
+    0x1d755,
+    'math',
+    'Math Alphanumeric',
+    'Sans-serif bold Greek symbol',
+    'mathematical alphanumeric sans-serif bold greek symbol'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d756,
+    0x1d76e,
+    'math',
+    'Math Alphanumeric',
+    'Bold sans-serif Greek',
+    'mathematical alphanumeric bold sans-serif greek'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d770,
+    0x1d788,
+    'math',
+    'Math Alphanumeric',
+    'Bold italic sans-serif Greek',
+    'mathematical alphanumeric bold italic sans-serif greek'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d789,
+    0x1d78f,
+    'math',
+    'Math Alphanumeric',
+    'Bold italic sans-serif Greek symbol',
+    'mathematical alphanumeric bold italic sans-serif greek symbol'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d790,
+    0x1d7a8,
+    'math',
+    'Math Alphanumeric',
+    'Bold monospace Greek',
+    'mathematical alphanumeric bold monospace greek'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d7aa,
+    0x1d7c2,
+    'math',
+    'Math Alphanumeric',
+    'Italic monospace Greek',
+    'mathematical alphanumeric italic monospace greek'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d7c4,
+    0x1d7cb,
+    'math',
+    'Math Alphanumeric',
+    'Bold italic monospace Greek',
+    'mathematical alphanumeric bold italic monospace greek'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d7ce,
+    0x1d7ff,
+    'math',
+    'Math Alphanumeric',
+    'Bold digit',
+    'mathematical alphanumeric bold digit'
+  )
+);
 
 // 29. Phonetic Extensions
-ALL.push(...range(0x1D00, 0x1D2B, 'latin', 'Phonetic Extensions', 'Phonetic', 'phonetic extension ipa speech sound'));
-ALL.push(...range(0x1D6B, 0x1D77, 'latin', 'Phonetic Extensions', 'Phonetic', 'phonetic extension ipa speech sound'));
-ALL.push(...range(0x1D79, 0x1D9A, 'latin', 'Phonetic Extensions', 'Phonetic', 'phonetic extension ipa speech sound'));
+ALL.push(
+  ...range(
+    0x1d00,
+    0x1d2b,
+    'latin',
+    'Phonetic Extensions',
+    'Phonetic',
+    'phonetic extension ipa speech sound'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d6b,
+    0x1d77,
+    'latin',
+    'Phonetic Extensions',
+    'Phonetic',
+    'phonetic extension ipa speech sound'
+  )
+);
+ALL.push(
+  ...range(
+    0x1d79,
+    0x1d9a,
+    'latin',
+    'Phonetic Extensions',
+    'Phonetic',
+    'phonetic extension ipa speech sound'
+  )
+);
 
 // 30. Enclosed Alphanumeric Supplement
-ALL.push(...range(0x1F100, 0x1F10A, 'enclosed', 'Enclosed Alphanumeric', 'Parenthesized digit', 'enclosed parenthesized number'));
-ALL.push(...range(0x1F110, 0x1F129, 'enclosed', 'Enclosed Alphanumeric', 'Parenthesized Latin', 'enclosed parenthesized letter'));
-ALL.push(...range(0x1F130, 0x1F149, 'enclosed', 'Enclosed Alphanumeric', 'Squared Latin', 'enclosed squared letter'));
-ALL.push(...range(0x1F150, 0x1F169, 'enclosed', 'Enclosed Alphanumeric', 'Negative circled Latin', 'enclosed negative circled letter'));
-ALL.push(...range(0x1F170, 0x1F189, 'enclosed', 'Enclosed Alphanumeric', 'Negative squared Latin', 'enclosed negative squared letter'));
-ALL.push(...range(0x1F190, 0x1F1AC, 'enclosed', 'Enclosed Alphanumeric', 'Miscellaneous enclosed', 'enclosed miscellaneous'));
+ALL.push(
+  ...range(
+    0x1f100,
+    0x1f10a,
+    'enclosed',
+    'Enclosed Alphanumeric',
+    'Parenthesized digit',
+    'enclosed parenthesized number'
+  )
+);
+ALL.push(
+  ...range(
+    0x1f110,
+    0x1f129,
+    'enclosed',
+    'Enclosed Alphanumeric',
+    'Parenthesized Latin',
+    'enclosed parenthesized letter'
+  )
+);
+ALL.push(
+  ...range(
+    0x1f130,
+    0x1f149,
+    'enclosed',
+    'Enclosed Alphanumeric',
+    'Squared Latin',
+    'enclosed squared letter'
+  )
+);
+ALL.push(
+  ...range(
+    0x1f150,
+    0x1f169,
+    'enclosed',
+    'Enclosed Alphanumeric',
+    'Negative circled Latin',
+    'enclosed negative circled letter'
+  )
+);
+ALL.push(
+  ...range(
+    0x1f170,
+    0x1f189,
+    'enclosed',
+    'Enclosed Alphanumeric',
+    'Negative squared Latin',
+    'enclosed negative squared letter'
+  )
+);
+ALL.push(
+  ...range(
+    0x1f190,
+    0x1f1ac,
+    'enclosed',
+    'Enclosed Alphanumeric',
+    'Miscellaneous enclosed',
+    'enclosed miscellaneous'
+  )
+);
 
 // 31. Misc Symbols & Pictographs (selected)
-ALL.push(...individual([
-[0x1F300,'Cyclone'],[0x1F301,'Foggy'],[0x1F302,'Closed umbrella'],[0x1F303,'Night with stars'],[0x1F304,'Sunrise over mountains'],[0x1F305,'Sunrise'],[0x1F306,'Cityscape at dusk'],[0x1F307,'Sunset over buildings'],[0x1F308,'Rainbow'],[0x1F309,'Bridge at night'],[0x1F30A,'Water wave'],[0x1F30B,'Volcano'],[0x1F30C,'Milky way'],[0x1F30D,'Earth globe Europe-Africa'],[0x1F30E,'Earth globe Americas'],[0x1F30F,'Earth globe Asia-Australia'],[0x1F310,'Globe with meridians'],[0x1F311,'New moon'],[0x1F312,'Waxing crescent moon'],[0x1F313,'First quarter moon'],[0x1F314,'Waxing gibbous moon'],[0x1F315,'Full moon'],[0x1F316,'Waning gibbous moon'],[0x1F317,'Last quarter moon'],[0x1F318,'Waning crescent moon'],[0x1F319,'Crescent moon'],[0x1F31A,'New moon face'],[0x1F31B,'First quarter moon face'],[0x1F31C,'Last quarter moon face'],[0x1F31D,'Full moon face'],[0x1F31E,'Sun with face'],[0x1F31F,'Glowing star'],[0x1F320,'Shooting star'],[0x1F321,'Thermometer'],[0x1F324,'White sun with small cloud'],[0x1F325,'White sun behind cloud'],[0x1F326,'White sun behind cloud with rain'],[0x1F327,'Cloud with rain'],[0x1F328,'Cloud with snow'],[0x1F329,'Cloud with lightning'],[0x1F32A,'Tornado'],[0x1F32B,'Fog'],[0x1F32C,'Wind face'],
-], 'symbols', 'Stars & Symbols', 'weather cyclone foggy sunrise sunset rainbow volcano milky way earth globe moon sun star thermometer cloud rain snow lightning tornado wind'));
+ALL.push(
+  ...individual(
+    [
+      [0x1f300, 'Cyclone'],
+      [0x1f301, 'Foggy'],
+      [0x1f302, 'Closed umbrella'],
+      [0x1f303, 'Night with stars'],
+      [0x1f304, 'Sunrise over mountains'],
+      [0x1f305, 'Sunrise'],
+      [0x1f306, 'Cityscape at dusk'],
+      [0x1f307, 'Sunset over buildings'],
+      [0x1f308, 'Rainbow'],
+      [0x1f309, 'Bridge at night'],
+      [0x1f30a, 'Water wave'],
+      [0x1f30b, 'Volcano'],
+      [0x1f30c, 'Milky way'],
+      [0x1f30d, 'Earth globe Europe-Africa'],
+      [0x1f30e, 'Earth globe Americas'],
+      [0x1f30f, 'Earth globe Asia-Australia'],
+      [0x1f310, 'Globe with meridians'],
+      [0x1f311, 'New moon'],
+      [0x1f312, 'Waxing crescent moon'],
+      [0x1f313, 'First quarter moon'],
+      [0x1f314, 'Waxing gibbous moon'],
+      [0x1f315, 'Full moon'],
+      [0x1f316, 'Waning gibbous moon'],
+      [0x1f317, 'Last quarter moon'],
+      [0x1f318, 'Waning crescent moon'],
+      [0x1f319, 'Crescent moon'],
+      [0x1f31a, 'New moon face'],
+      [0x1f31b, 'First quarter moon face'],
+      [0x1f31c, 'Last quarter moon face'],
+      [0x1f31d, 'Full moon face'],
+      [0x1f31e, 'Sun with face'],
+      [0x1f31f, 'Glowing star'],
+      [0x1f320, 'Shooting star'],
+      [0x1f321, 'Thermometer'],
+      [0x1f324, 'White sun with small cloud'],
+      [0x1f325, 'White sun behind cloud'],
+      [0x1f326, 'White sun behind cloud with rain'],
+      [0x1f327, 'Cloud with rain'],
+      [0x1f328, 'Cloud with snow'],
+      [0x1f329, 'Cloud with lightning'],
+      [0x1f32a, 'Tornado'],
+      [0x1f32b, 'Fog'],
+      [0x1f32c, 'Wind face'],
+    ],
+    'symbols',
+    'Stars & Symbols',
+    'weather cyclone foggy sunrise sunset rainbow volcano milky way earth globe moon sun star thermometer cloud rain snow lightning tornado wind'
+  )
+);
 
 // 32. Transport & Map
-ALL.push(...individual([
-[0x1F680,'Rocket'],[0x1F681,'Helicopter'],[0x1F682,'Locomotive'],[0x1F683,'Railway car'],[0x1F684,'High-speed train'],[0x1F685,'Bullet train'],[0x1F686,'Train'],[0x1F687,'Metro'],[0x1F688,'Light rail'],[0x1F689,'Station'],[0x1F68A,'Tram'],[0x1F68B,'Tram car'],[0x1F68C,'Bus'],[0x1F68D,'Oncoming bus'],[0x1F68E,'Trolleybus'],[0x1F68F,'Bus stop'],[0x1F690,'Minibus'],[0x1F691,'Ambulance'],[0x1F692,'Fire engine'],[0x1F693,'Police car'],[0x1F694,'Oncoming police car'],[0x1F695,'Taxi'],[0x1F696,'Oncoming taxi'],[0x1F697,'Automobile'],[0x1F698,'Oncoming automobile'],[0x1F699,'Recreational vehicle'],[0x1F69A,'Delivery truck'],[0x1F69B,'Articulated lorry'],[0x1F69C,'Tractor'],[0x1F69D,'Monorail'],[0x1F69E,'Mountain railway'],[0x1F69F,'Suspension railway'],[0x1F6A0,'Mountain cableway'],[0x1F6A1,'Aerial tramway'],[0x1F6A2,'Ship'],[0x1F6A3,'Rowboat'],[0x1F6A4,'Speedboat'],[0x1F6A5,'Horizontal traffic light'],[0x1F6A6,'Vertical traffic light'],[0x1F6A7,'Construction'],[0x1F6A8,'Police cars revolving light'],[0x1F6A9,'Triangular flag on post'],[0x1F6AA,'Door'],[0x1F6AB,'No entry sign'],[0x1F6AC,'Smoking symbol'],[0x1F6AD,'No smoking symbol'],[0x1F6AE,'Put litter in its place symbol'],[0x1F6AF,'Do not litter symbol'],[0x1F6B0,'Potable water symbol'],[0x1F6B1,'Non-potable water symbol'],[0x1F6B2,'Bicycle'],[0x1F6B3,'No bicycles'],[0x1F6B4,'Bicyclist'],[0x1F6B5,'Mountain bicyclist'],[0x1F6B6,'Pedestrian'],[0x1F6B7,'No pedestrians'],[0x1F6B8,'Children crossing'],[0x1F6B9,'Mens symbol'],[0x1F6BA,'Womens symbol'],[0x1F6BB,'Restroom'],[0x1F6BC,'Baby symbol'],[0x1F6BD,'Toilet'],[0x1F6BE,'Water closet'],[0x1F6BF,'Shower'],[0x1F6C0,'Bath'],
-], 'symbols', 'Transport', 'transport rocket helicopter train metro bus taxi car truck ship boat bicycle traffic light construction door restroom toilet shower bath'));
+ALL.push(
+  ...individual(
+    [
+      [0x1f680, 'Rocket'],
+      [0x1f681, 'Helicopter'],
+      [0x1f682, 'Locomotive'],
+      [0x1f683, 'Railway car'],
+      [0x1f684, 'High-speed train'],
+      [0x1f685, 'Bullet train'],
+      [0x1f686, 'Train'],
+      [0x1f687, 'Metro'],
+      [0x1f688, 'Light rail'],
+      [0x1f689, 'Station'],
+      [0x1f68a, 'Tram'],
+      [0x1f68b, 'Tram car'],
+      [0x1f68c, 'Bus'],
+      [0x1f68d, 'Oncoming bus'],
+      [0x1f68e, 'Trolleybus'],
+      [0x1f68f, 'Bus stop'],
+      [0x1f690, 'Minibus'],
+      [0x1f691, 'Ambulance'],
+      [0x1f692, 'Fire engine'],
+      [0x1f693, 'Police car'],
+      [0x1f694, 'Oncoming police car'],
+      [0x1f695, 'Taxi'],
+      [0x1f696, 'Oncoming taxi'],
+      [0x1f697, 'Automobile'],
+      [0x1f698, 'Oncoming automobile'],
+      [0x1f699, 'Recreational vehicle'],
+      [0x1f69a, 'Delivery truck'],
+      [0x1f69b, 'Articulated lorry'],
+      [0x1f69c, 'Tractor'],
+      [0x1f69d, 'Monorail'],
+      [0x1f69e, 'Mountain railway'],
+      [0x1f69f, 'Suspension railway'],
+      [0x1f6a0, 'Mountain cableway'],
+      [0x1f6a1, 'Aerial tramway'],
+      [0x1f6a2, 'Ship'],
+      [0x1f6a3, 'Rowboat'],
+      [0x1f6a4, 'Speedboat'],
+      [0x1f6a5, 'Horizontal traffic light'],
+      [0x1f6a6, 'Vertical traffic light'],
+      [0x1f6a7, 'Construction'],
+      [0x1f6a8, 'Police cars revolving light'],
+      [0x1f6a9, 'Triangular flag on post'],
+      [0x1f6aa, 'Door'],
+      [0x1f6ab, 'No entry sign'],
+      [0x1f6ac, 'Smoking symbol'],
+      [0x1f6ad, 'No smoking symbol'],
+      [0x1f6ae, 'Put litter in its place symbol'],
+      [0x1f6af, 'Do not litter symbol'],
+      [0x1f6b0, 'Potable water symbol'],
+      [0x1f6b1, 'Non-potable water symbol'],
+      [0x1f6b2, 'Bicycle'],
+      [0x1f6b3, 'No bicycles'],
+      [0x1f6b4, 'Bicyclist'],
+      [0x1f6b5, 'Mountain bicyclist'],
+      [0x1f6b6, 'Pedestrian'],
+      [0x1f6b7, 'No pedestrians'],
+      [0x1f6b8, 'Children crossing'],
+      [0x1f6b9, 'Mens symbol'],
+      [0x1f6ba, 'Womens symbol'],
+      [0x1f6bb, 'Restroom'],
+      [0x1f6bc, 'Baby symbol'],
+      [0x1f6bd, 'Toilet'],
+      [0x1f6be, 'Water closet'],
+      [0x1f6bf, 'Shower'],
+      [0x1f6c0, 'Bath'],
+    ],
+    'symbols',
+    'Transport',
+    'transport rocket helicopter train metro bus taxi car truck ship boat bicycle traffic light construction door restroom toilet shower bath'
+  )
+);
 
 // 33. Chess variants
-ALL.push(...individual([
-[0x1FA00,'Neutral chess king'],[0x1FA01,'Neutral chess queen'],[0x1FA02,'Neutral chess rook'],[0x1FA03,'Neutral chess bishop'],[0x1FA04,'Neutral chess knight'],[0x1FA05,'Neutral chess pawn'],[0x1FA06,'White chess knight rotated'],[0x1FA07,'Black chess knight rotated'],[0x1FA08,'Neutral chess knight rotated'],[0x1FA09,'White chess king rotated'],[0x1FA0A,'Black chess king rotated'],[0x1FA0B,'Neutral chess king rotated'],[0x1FA0C,'White chess queen rotated'],[0x1FA0D,'Black chess queen rotated'],[0x1FA0E,'White chess bishop rotated'],[0x1FA0F,'Black chess bishop rotated'],[0x1FA10,'White chess rook rotated'],[0x1FA11,'Black chess rook rotated'],[0x1FA12,'White chess pawn rotated'],[0x1FA13,'Black chess pawn rotated'],[0x1FA14,'Neutral chess pawn rotated'],[0x1FA15,'White chess knight rotated 225'],[0x1FA16,'Black chess knight rotated 225'],[0x1FA17,'Neutral chess knight rotated 225'],[0x1FA18,'White chess king rotated 225'],[0x1FA19,'Black chess king rotated 225'],[0x1FA1A,'White chess queen rotated 225'],[0x1FA1B,'Black chess queen rotated 225'],[0x1FA1C,'White chess rook rotated 225'],[0x1FA1D,'Black chess rook rotated 225'],[0x1FA1E,'White chess bishop rotated 225'],[0x1FA1F,'Black chess bishop rotated 225'],[0x1FA20,'White chess pawn rotated 225'],[0x1FA21,'Black chess pawn rotated 225'],
-], 'symbols', 'Chess Variants', 'chess variant neutral rotated'));
+ALL.push(
+  ...individual(
+    [
+      [0x1fa00, 'Neutral chess king'],
+      [0x1fa01, 'Neutral chess queen'],
+      [0x1fa02, 'Neutral chess rook'],
+      [0x1fa03, 'Neutral chess bishop'],
+      [0x1fa04, 'Neutral chess knight'],
+      [0x1fa05, 'Neutral chess pawn'],
+      [0x1fa06, 'White chess knight rotated'],
+      [0x1fa07, 'Black chess knight rotated'],
+      [0x1fa08, 'Neutral chess knight rotated'],
+      [0x1fa09, 'White chess king rotated'],
+      [0x1fa0a, 'Black chess king rotated'],
+      [0x1fa0b, 'Neutral chess king rotated'],
+      [0x1fa0c, 'White chess queen rotated'],
+      [0x1fa0d, 'Black chess queen rotated'],
+      [0x1fa0e, 'White chess bishop rotated'],
+      [0x1fa0f, 'Black chess bishop rotated'],
+      [0x1fa10, 'White chess rook rotated'],
+      [0x1fa11, 'Black chess rook rotated'],
+      [0x1fa12, 'White chess pawn rotated'],
+      [0x1fa13, 'Black chess pawn rotated'],
+      [0x1fa14, 'Neutral chess pawn rotated'],
+      [0x1fa15, 'White chess knight rotated 225'],
+      [0x1fa16, 'Black chess knight rotated 225'],
+      [0x1fa17, 'Neutral chess knight rotated 225'],
+      [0x1fa18, 'White chess king rotated 225'],
+      [0x1fa19, 'Black chess king rotated 225'],
+      [0x1fa1a, 'White chess queen rotated 225'],
+      [0x1fa1b, 'Black chess queen rotated 225'],
+      [0x1fa1c, 'White chess rook rotated 225'],
+      [0x1fa1d, 'Black chess rook rotated 225'],
+      [0x1fa1e, 'White chess bishop rotated 225'],
+      [0x1fa1f, 'Black chess bishop rotated 225'],
+      [0x1fa20, 'White chess pawn rotated 225'],
+      [0x1fa21, 'Black chess pawn rotated 225'],
+    ],
+    'symbols',
+    'Chess Variants',
+    'chess variant neutral rotated'
+  )
+);
 
 // 34. Combining Diacritical Marks
-ALL.push(...individual([
-[0x0300,'Combining grave accent'],[0x0301,'Combining acute accent'],[0x0302,'Combining circumflex accent'],[0x0303,'Combining tilde'],[0x0304,'Combining macron'],[0x0305,'Combining overline'],[0x0306,'Combining breve'],[0x0307,'Combining dot above'],[0x0308,'Combining diaeresis'],[0x0309,'Combining hook above'],[0x030A,'Combining ring above'],[0x030B,'Combining double acute accent'],[0x030C,'Combining caron'],[0x030D,'Combining vertical line above'],[0x030E,'Combining double vertical line above'],[0x030F,'Combining double grave accent'],[0x0310,'Combining candrabindu'],[0x0311,'Combining inverted breve'],[0x0312,'Combining turned comma above'],[0x0313,'Combining comma above'],[0x0314,'Combining reversed comma above'],[0x0315,'Combining comma above right'],[0x0316,'Combining grave accent below'],[0x0317,'Combining acute accent below'],[0x0318,'Combining left tack below'],[0x0319,'Combining right tack below'],[0x031A,'Combining left angle above'],[0x031B,'Combining horn'],[0x031C,'Combining left half ring below'],[0x031D,'Combining up tack below'],[0x031E,'Combining down tack below'],[0x031F,'Combining plus sign below'],[0x0320,'Combining minus sign below'],[0x0321,'Combining palatalized hook below'],[0x0322,'Combining retroflex hook below'],[0x0323,'Combining dot below'],[0x0324,'Combining diaeresis below'],[0x0325,'Combining ring below'],[0x0326,'Combining comma below'],[0x0327,'Combining cedilla'],[0x0328,'Combining ogonek'],[0x0329,'Combining vertical line below'],[0x032A,'Combining bridge below'],[0x032B,'Combining inverted double arch below'],[0x032C,'Combining caron below'],[0x032D,'Combining circumflex accent below'],[0x032E,'Combining breve below'],[0x032F,'Combining inverted breve below'],[0x0330,'Combining tilde below'],[0x0331,'Combining macron below'],[0x0332,'Combining low line'],[0x0333,'Combining double low line'],[0x0334,'Combining tilde overlay'],[0x0335,'Combining short stroke overlay'],[0x0336,'Combining long stroke overlay'],[0x0337,'Combining short solidus overlay'],[0x0338,'Combining long solidus overlay'],[0x0339,'Combining right half ring below'],[0x033A,'Combining inverted bridge below'],[0x033B,'Combining square below'],[0x033C,'Combining seagull below'],[0x033D,'Combining X above'],[0x033E,'Combining vertical tilde'],[0x033F,'Combining double overline'],[0x0340,'Combining grave tone mark'],[0x0341,'Combining acute tone mark'],[0x0342,'Combining Greek perispomeni'],[0x0343,'Combining Greek koronis'],[0x0344,'Combining Greek dialytika tonos'],[0x0345,'Combining Greek ypogegrammeni'],[0x0346,'Combining bridge above'],[0x0347,'Combining equals sign below'],[0x0348,'Combining double vertical line below'],[0x0349,'Combining left angle below'],[0x034A,'Combining not tilde above'],[0x034B,'Combining homothetic above'],[0x034C,'Combining almost equal to above'],[0x034D,'Combining left right arrow below'],[0x034E,'Combining upwards arrow below'],[0x0350,'Combining right arrowhead above'],[0x0351,'Combining left half ring above'],[0x0352,'Combining fermata'],[0x0353,'Combining X below'],[0x0354,'Combining left arrowhead below'],[0x0355,'Combining right arrowhead below'],[0x0356,'Combining right arrowhead and up arrowhead below'],[0x0357,'Combining right half ring above'],[0x0358,'Combining dot above right'],[0x0359,'Combining asterisk below'],[0x035A,'Combining double ring below'],[0x035B,'Combining zigzag above'],[0x035C,'Combining double breve below'],[0x035D,'Combining double breve'],[0x035E,'Combining double macron'],[0x035F,'Combining double macron below'],[0x0360,'Combining double tilde'],[0x0361,'Combining double inverted breve'],[0x0362,'Combining double rightwards arrow below'],
-], 'combining', 'Combining Marks', 'combining diacritic accent grave acute circumflex tilde macron breve dot diaeresis ring caron cedilla ogonek tone mark stroke overlay'));
+ALL.push(
+  ...individual(
+    [
+      [0x0300, 'Combining grave accent'],
+      [0x0301, 'Combining acute accent'],
+      [0x0302, 'Combining circumflex accent'],
+      [0x0303, 'Combining tilde'],
+      [0x0304, 'Combining macron'],
+      [0x0305, 'Combining overline'],
+      [0x0306, 'Combining breve'],
+      [0x0307, 'Combining dot above'],
+      [0x0308, 'Combining diaeresis'],
+      [0x0309, 'Combining hook above'],
+      [0x030a, 'Combining ring above'],
+      [0x030b, 'Combining double acute accent'],
+      [0x030c, 'Combining caron'],
+      [0x030d, 'Combining vertical line above'],
+      [0x030e, 'Combining double vertical line above'],
+      [0x030f, 'Combining double grave accent'],
+      [0x0310, 'Combining candrabindu'],
+      [0x0311, 'Combining inverted breve'],
+      [0x0312, 'Combining turned comma above'],
+      [0x0313, 'Combining comma above'],
+      [0x0314, 'Combining reversed comma above'],
+      [0x0315, 'Combining comma above right'],
+      [0x0316, 'Combining grave accent below'],
+      [0x0317, 'Combining acute accent below'],
+      [0x0318, 'Combining left tack below'],
+      [0x0319, 'Combining right tack below'],
+      [0x031a, 'Combining left angle above'],
+      [0x031b, 'Combining horn'],
+      [0x031c, 'Combining left half ring below'],
+      [0x031d, 'Combining up tack below'],
+      [0x031e, 'Combining down tack below'],
+      [0x031f, 'Combining plus sign below'],
+      [0x0320, 'Combining minus sign below'],
+      [0x0321, 'Combining palatalized hook below'],
+      [0x0322, 'Combining retroflex hook below'],
+      [0x0323, 'Combining dot below'],
+      [0x0324, 'Combining diaeresis below'],
+      [0x0325, 'Combining ring below'],
+      [0x0326, 'Combining comma below'],
+      [0x0327, 'Combining cedilla'],
+      [0x0328, 'Combining ogonek'],
+      [0x0329, 'Combining vertical line below'],
+      [0x032a, 'Combining bridge below'],
+      [0x032b, 'Combining inverted double arch below'],
+      [0x032c, 'Combining caron below'],
+      [0x032d, 'Combining circumflex accent below'],
+      [0x032e, 'Combining breve below'],
+      [0x032f, 'Combining inverted breve below'],
+      [0x0330, 'Combining tilde below'],
+      [0x0331, 'Combining macron below'],
+      [0x0332, 'Combining low line'],
+      [0x0333, 'Combining double low line'],
+      [0x0334, 'Combining tilde overlay'],
+      [0x0335, 'Combining short stroke overlay'],
+      [0x0336, 'Combining long stroke overlay'],
+      [0x0337, 'Combining short solidus overlay'],
+      [0x0338, 'Combining long solidus overlay'],
+      [0x0339, 'Combining right half ring below'],
+      [0x033a, 'Combining inverted bridge below'],
+      [0x033b, 'Combining square below'],
+      [0x033c, 'Combining seagull below'],
+      [0x033d, 'Combining X above'],
+      [0x033e, 'Combining vertical tilde'],
+      [0x033f, 'Combining double overline'],
+      [0x0340, 'Combining grave tone mark'],
+      [0x0341, 'Combining acute tone mark'],
+      [0x0342, 'Combining Greek perispomeni'],
+      [0x0343, 'Combining Greek koronis'],
+      [0x0344, 'Combining Greek dialytika tonos'],
+      [0x0345, 'Combining Greek ypogegrammeni'],
+      [0x0346, 'Combining bridge above'],
+      [0x0347, 'Combining equals sign below'],
+      [0x0348, 'Combining double vertical line below'],
+      [0x0349, 'Combining left angle below'],
+      [0x034a, 'Combining not tilde above'],
+      [0x034b, 'Combining homothetic above'],
+      [0x034c, 'Combining almost equal to above'],
+      [0x034d, 'Combining left right arrow below'],
+      [0x034e, 'Combining upwards arrow below'],
+      [0x0350, 'Combining right arrowhead above'],
+      [0x0351, 'Combining left half ring above'],
+      [0x0352, 'Combining fermata'],
+      [0x0353, 'Combining X below'],
+      [0x0354, 'Combining left arrowhead below'],
+      [0x0355, 'Combining right arrowhead below'],
+      [0x0356, 'Combining right arrowhead and up arrowhead below'],
+      [0x0357, 'Combining right half ring above'],
+      [0x0358, 'Combining dot above right'],
+      [0x0359, 'Combining asterisk below'],
+      [0x035a, 'Combining double ring below'],
+      [0x035b, 'Combining zigzag above'],
+      [0x035c, 'Combining double breve below'],
+      [0x035d, 'Combining double breve'],
+      [0x035e, 'Combining double macron'],
+      [0x035f, 'Combining double macron below'],
+      [0x0360, 'Combining double tilde'],
+      [0x0361, 'Combining double inverted breve'],
+      [0x0362, 'Combining double rightwards arrow below'],
+    ],
+    'combining',
+    'Combining Marks',
+    'combining diacritic accent grave acute circumflex tilde macron breve dot diaeresis ring caron cedilla ogonek tone mark stroke overlay'
+  )
+);
 
 // 35. Musical Symbols (selected)
-ALL.push(...individual([
-[0x1D100,'Musical single barline'],[0x1D101,'Musical double barline'],[0x1D102,'Musical final barline'],[0x1D103,'Musical reverse final barline'],[0x1D104,'Musical dashed barline'],[0x1D105,'Musical short barline'],[0x1D106,'Musical left repeat sign'],[0x1D107,'Musical right repeat sign'],[0x1D108,'Musical repeat dots'],[0x1D109,'Musical dal segno'],[0x1D10A,'Musical da capo'],[0x1D10B,'Musical segno'],[0x1D10C,'Musical coda'],[0x1D10D,'Musical repeated figure-1'],[0x1D10E,'Musical repeated figure-2'],[0x1D10F,'Musical repeated figure-3'],[0x1D110,'Musical fermata'],[0x1D111,'Musical caesura'],[0x1D112,'Musical breath mark'],[0x1D113,'Musical brace'],[0x1D114,'Musical bracket'],[0x1D115,'Musical one-line staff'],[0x1D116,'Musical two-line staff'],[0x1D117,'Musical three-line staff'],[0x1D118,'Musical four-line staff'],[0x1D119,'Musical five-line staff'],[0x1D11A,'Musical six-line staff'],[0x1D11B,'Musical percussion clef-1'],[0x1D11C,'Musical percussion clef-2'],[0x1D11D,'Musical square C clef'],[0x1D11E,'Musical C clef'],[0x1D11F,'Musical C clef ottava bassa'],[0x1D120,'Musical C clef treble'],[0x1D121,'Musical F clef'],[0x1D122,'Musical F clef ottava alta'],[0x1D123,'Musical F clef ottava bassa'],[0x1D124,'Musical F clef quindicesima alta'],[0x1D125,'Musical G clef'],[0x1D126,'Musical G clef ottava alta'],[0x1D129,'Musical G clef ottava bassa'],[0x1D12A,'Musical F clef quindicesima bassa'],[0x1D12B,'Musical C clef quindicesima bassa'],[0x1D12C,'Musical whole note'],[0x1D12D,'Musical half note'],[0x1D12E,'Musical quarter note'],[0x1D12F,'Musical eighth note'],[0x1D130,'Musical sixteenth note'],[0x1D131,'Musical thirty-second note'],[0x1D132,'Musical sixty-fourth note'],[0x1D133,'Musical one hundred twenty-eighth note'],[0x1D134,'Musical whole rest'],[0x1D135,'Musical half rest'],[0x1D136,'Musical quarter rest'],[0x1D137,'Musical eighth rest'],[0x1D138,'Musical sixteenth rest'],[0x1D139,'Musical thirty-second rest'],[0x1D13A,'Musical sixty-fourth rest'],[0x1D13B,'Musical one hundred twenty-eighth rest'],
-], 'symbols', 'Musical', 'music note clef barline fermata staff rest sharp flat natural segno coda dal segno'));
+ALL.push(
+  ...individual(
+    [
+      [0x1d100, 'Musical single barline'],
+      [0x1d101, 'Musical double barline'],
+      [0x1d102, 'Musical final barline'],
+      [0x1d103, 'Musical reverse final barline'],
+      [0x1d104, 'Musical dashed barline'],
+      [0x1d105, 'Musical short barline'],
+      [0x1d106, 'Musical left repeat sign'],
+      [0x1d107, 'Musical right repeat sign'],
+      [0x1d108, 'Musical repeat dots'],
+      [0x1d109, 'Musical dal segno'],
+      [0x1d10a, 'Musical da capo'],
+      [0x1d10b, 'Musical segno'],
+      [0x1d10c, 'Musical coda'],
+      [0x1d10d, 'Musical repeated figure-1'],
+      [0x1d10e, 'Musical repeated figure-2'],
+      [0x1d10f, 'Musical repeated figure-3'],
+      [0x1d110, 'Musical fermata'],
+      [0x1d111, 'Musical caesura'],
+      [0x1d112, 'Musical breath mark'],
+      [0x1d113, 'Musical brace'],
+      [0x1d114, 'Musical bracket'],
+      [0x1d115, 'Musical one-line staff'],
+      [0x1d116, 'Musical two-line staff'],
+      [0x1d117, 'Musical three-line staff'],
+      [0x1d118, 'Musical four-line staff'],
+      [0x1d119, 'Musical five-line staff'],
+      [0x1d11a, 'Musical six-line staff'],
+      [0x1d11b, 'Musical percussion clef-1'],
+      [0x1d11c, 'Musical percussion clef-2'],
+      [0x1d11d, 'Musical square C clef'],
+      [0x1d11e, 'Musical C clef'],
+      [0x1d11f, 'Musical C clef ottava bassa'],
+      [0x1d120, 'Musical C clef treble'],
+      [0x1d121, 'Musical F clef'],
+      [0x1d122, 'Musical F clef ottava alta'],
+      [0x1d123, 'Musical F clef ottava bassa'],
+      [0x1d124, 'Musical F clef quindicesima alta'],
+      [0x1d125, 'Musical G clef'],
+      [0x1d126, 'Musical G clef ottava alta'],
+      [0x1d129, 'Musical G clef ottava bassa'],
+      [0x1d12a, 'Musical F clef quindicesima bassa'],
+      [0x1d12b, 'Musical C clef quindicesima bassa'],
+      [0x1d12c, 'Musical whole note'],
+      [0x1d12d, 'Musical half note'],
+      [0x1d12e, 'Musical quarter note'],
+      [0x1d12f, 'Musical eighth note'],
+      [0x1d130, 'Musical sixteenth note'],
+      [0x1d131, 'Musical thirty-second note'],
+      [0x1d132, 'Musical sixty-fourth note'],
+      [0x1d133, 'Musical one hundred twenty-eighth note'],
+      [0x1d134, 'Musical whole rest'],
+      [0x1d135, 'Musical half rest'],
+      [0x1d136, 'Musical quarter rest'],
+      [0x1d137, 'Musical eighth rest'],
+      [0x1d138, 'Musical sixteenth rest'],
+      [0x1d139, 'Musical thirty-second rest'],
+      [0x1d13a, 'Musical sixty-fourth rest'],
+      [0x1d13b, 'Musical one hundred twenty-eighth rest'],
+    ],
+    'symbols',
+    'Musical',
+    'music note clef barline fermata staff rest sharp flat natural segno coda dal segno'
+  )
+);
 
 // 36. Latin Extended Additional
-ALL.push(...range(0x1E00, 0x1E06, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
-ALL.push(...range(0x1E0A, 0x1E12, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
-ALL.push(...range(0x1E14, 0x1E1C, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
-ALL.push(...range(0x1E1E, 0x1E22, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
-ALL.push(...range(0x1E24, 0x1E2C, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
-ALL.push(...range(0x1E2E, 0x1E32, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
-ALL.push(...range(0x1E36, 0x1E3E, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
-ALL.push(...range(0x1E40, 0x1E46, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
-ALL.push(...range(0x1E48, 0x1E4C, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
-ALL.push(...range(0x1E4E, 0x1E54, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
-ALL.push(...range(0x1E56, 0x1E5C, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
-ALL.push(...range(0x1E5E, 0x1E62, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
-ALL.push(...range(0x1E64, 0x1E6A, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
-ALL.push(...range(0x1E6C, 0x1E72, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
-ALL.push(...range(0x1E74, 0x1E7C, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
-ALL.push(...range(0x1E7E, 0x1E84, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
-ALL.push(...range(0x1E86, 0x1E8C, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
-ALL.push(...range(0x1E90, 0x1E96, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
-ALL.push(...range(0x1E9E, 0x1EA0, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
-ALL.push(...range(0x1EA2, 0x1EAE, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
-ALL.push(...range(0x1EB0, 0x1EB8, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
-ALL.push(...range(0x1EBA, 0x1EC0, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
-ALL.push(...range(0x1EC2, 0x1EC6, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
-ALL.push(...range(0x1EC8, 0x1ECE, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
-ALL.push(...range(0x1ED0, 0x1ED6, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
-ALL.push(...range(0x1ED8, 0x1EDC, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
-ALL.push(...range(0x1EDE, 0x1EE2, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
-ALL.push(...range(0x1EE4, 0x1EEE, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
-ALL.push(...range(0x1EF0, 0x1EF2, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
-ALL.push(...range(0x1EF4, 0x1EF8, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x1e00, 0x1e06, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x1e0a, 0x1e12, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x1e14, 0x1e1c, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x1e1e, 0x1e22, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x1e24, 0x1e2c, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x1e2e, 0x1e32, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x1e36, 0x1e3e, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x1e40, 0x1e46, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x1e48, 0x1e4c, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x1e4e, 0x1e54, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x1e56, 0x1e5c, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x1e5e, 0x1e62, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x1e64, 0x1e6a, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x1e6c, 0x1e72, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x1e74, 0x1e7c, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x1e7e, 0x1e84, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x1e86, 0x1e8c, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x1e90, 0x1e96, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x1e9e, 0x1ea0, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x1ea2, 0x1eae, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x1eb0, 0x1eb8, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x1eba, 0x1ec0, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x1ec2, 0x1ec6, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x1ec8, 0x1ece, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x1ed0, 0x1ed6, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x1ed8, 0x1edc, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x1ede, 0x1ee2, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x1ee4, 0x1eee, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x1ef0, 0x1ef2, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x1ef4, 0x1ef8, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
 
 // Add index ID to each entry for fast lookup
-ALL.forEach((e, i) => { e.id = i; });
+ALL.forEach((e, i) => {
+  e.id = i;
+});
 
 // === BUILD OUTPUT ===
 const index = new Map();
 for (const entry of ALL) {
-    const terms = [
-        entry.name.toLowerCase(),
-        entry.category.toLowerCase(),
-        entry.categoryLabel.toLowerCase(),
-        entry.keywords.toLowerCase(),
-        entry.code.toLowerCase().replace('u+', ''),
-    ];
-    for (const term of terms) {
-        if (!index.has(term)) index.set(term, []);
-        index.get(term).push(entry);
-    }
-    for (const word of entry.name.toLowerCase().split(/\s+/)) {
-        if (word.length < 2) continue;
-        if (!index.has(word)) index.set(word, []);
-        if (!index.get(word).includes(entry)) index.get(word).push(entry);
-    }
-    for (const word of entry.keywords.toLowerCase().split(/\s+/)) {
-        if (word.length < 2) continue;
-        if (!index.has(word)) index.set(word, []);
-        if (!index.get(word).includes(entry)) index.get(word).push(entry);
-    }
+  const terms = [
+    entry.name.toLowerCase(),
+    entry.category.toLowerCase(),
+    entry.categoryLabel.toLowerCase(),
+    entry.keywords.toLowerCase(),
+    entry.code.toLowerCase().replace('u+', ''),
+  ];
+  for (const term of terms) {
+    if (!index.has(term)) index.set(term, []);
+    index.get(term).push(entry);
+  }
+  for (const word of entry.name.toLowerCase().split(/\s+/)) {
+    if (word.length < 2) continue;
+    if (!index.has(word)) index.set(word, []);
+    if (!index.get(word).includes(entry)) index.get(word).push(entry);
+  }
+  for (const word of entry.keywords.toLowerCase().split(/\s+/)) {
+    if (word.length < 2) continue;
+    if (!index.has(word)) index.set(word, []);
+    if (!index.get(word).includes(entry)) index.get(word).push(entry);
+  }
 }
 
 const catCounts = {};
 for (const e of ALL) {
-    catCounts[e.category] = (catCounts[e.category] || 0) + 1;
+  catCounts[e.category] = (catCounts[e.category] || 0) + 1;
 }
 
 const output = `/**
@@ -327,4 +3747,6 @@ if (typeof module !== 'undefined') {
 `;
 
 fs.writeFileSync('../mobile/shared/unicode-dir.js', output, 'utf8');
-console.log(`Generated mobile/shared/unicode-dir.js with ${ALL.length.toLocaleString()} characters across ${Object.keys(catCounts).length} categories.`);
+console.log(
+  `Generated mobile/shared/unicode-dir.js with ${ALL.length.toLocaleString()} characters across ${Object.keys(catCounts).length} categories.`
+);

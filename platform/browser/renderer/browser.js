@@ -4,7 +4,7 @@
  * and the vessel's controls.
  */
 
-(function() {
+(function () {
   'use strict';
 
   // ═══════════════════════════════════════════════════════════
@@ -58,7 +58,7 @@
       const all = Tabs.tabs;
       const active = Tabs.getActiveTab();
       if (!active || all.length <= 1) return;
-      const idx = all.findIndex(t => t.id === active.id);
+      const idx = all.findIndex((t) => t.id === active.id);
       const next = all[(idx + 1) % all.length];
       Tabs.switchTab(next.id);
       return;
@@ -70,7 +70,7 @@
       const all = Tabs.tabs;
       const active = Tabs.getActiveTab();
       if (!active || all.length <= 1) return;
-      const idx = all.findIndex(t => t.id === active.id);
+      const idx = all.findIndex((t) => t.id === active.id);
       const prev = all[(idx - 1 + all.length) % all.length];
       Tabs.switchTab(prev.id);
       return;
@@ -80,7 +80,7 @@
     if (ctrl && e.key === 'f') {
       e.preventDefault();
       const wv = WebviewManager.getActiveWebview ? WebviewManager.getActiveWebview() : null;
-      if (wv && wv.findInPage) {
+      if (wv?.findInPage) {
         const term = prompt('Inscribe a word to find within the scroll:');
         if (term) wv.findInPage(term);
       }
@@ -90,7 +90,7 @@
     // Escape → stop find in page
     if (e.key === 'Escape') {
       const wv = WebviewManager.getActiveWebview ? WebviewManager.getActiveWebview() : null;
-      if (wv && wv.stopFindInPage) {
+      if (wv?.stopFindInPage) {
         wv.stopFindInPage('clearSelection');
       }
     }
@@ -156,12 +156,11 @@
       } else {
         Tabs.createTab('http://localhost:3456/search.html', true);
       }
-    } catch (e) {
+    } catch (_e) {
       Tabs.createTab('http://localhost:3456/search.html', true);
     }
     console.log('PUNYCODEX vessel initialized');
   }
 
   init();
-
 })();

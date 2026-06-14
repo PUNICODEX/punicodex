@@ -18,10 +18,13 @@ const columns = [
   { name: 'reminder_7d_sent', def: 'INTEGER DEFAULT 0' },
   { name: 'reminder_1d_sent', def: 'INTEGER DEFAULT 0' },
   { name: 'stripe_subscription_id', def: 'TEXT' },
-  { name: 'billing_status', def: 'TEXT DEFAULT \'none\'' },
+  { name: 'billing_status', def: "TEXT DEFAULT 'none'" },
 ];
 
-const existing = db.prepare('PRAGMA table_info(bookings)').all().map(c => c.name);
+const existing = db
+  .prepare('PRAGMA table_info(bookings)')
+  .all()
+  .map((c) => c.name);
 
 for (const col of columns) {
   if (!existing.includes(col.name)) {

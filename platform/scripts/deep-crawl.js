@@ -2,7 +2,7 @@
  * Deep Crawl — Follow internal links and extract sub-pages + outbound Unicode domains.
  */
 const Database = require('better-sqlite3');
-const path = require('path');
+const path = require('node:path');
 const { UnicodeCrawler } = require('../crawler');
 
 const DB_PATH = path.join(__dirname, '..', 'db', 'punycodex.db');
@@ -15,14 +15,16 @@ async function deepCrawlAll(options = {}) {
   console.log('🔍 Deep Crawl — Following internal links + discovering outbound Unicode domains\n');
 
   // Get high-quality survivor sites
-  const sites = db.prepare(`
+  const sites = db
+    .prepare(`
     SELECT id, domain, punycode, title
     FROM indexed_sites
     WHERE status = 'active'
       AND (quality_score >= 0.5 OR is_flagship = 1)
       AND (word_count >= 100 OR is_flagship = 1)
     ORDER BY is_flagship DESC, quality_score DESC
-  `).all();
+  `)
+    .all();
 
   console.log(`  ${sites.length} high-quality sites to deep crawl\n`);
 
@@ -54,7 +56,9 @@ async function deepCrawlAll(options = {}) {
           continue;
         }
 
-        console.log(`    ✅ ${result.pagesCrawled} sub-pages, ${result.outboundLinks} outbound links`);
+        console.log(
+          `    ✅ ${result.pagesCrawled} sub-pages, ${result.outboundLinks} outbound links`
+        );
 
         if (result.discovered && result.discovered.length > 0) {
           console.log(`    🌐 Discovered ${result.discovered.length} new Unicode domains:`);
@@ -81,7 +85,9 @@ async function deepCrawlAll(options = {}) {
   console.log(`   Sub-pages crawled: ${totalPages}`);
   console.log(`   Outbound links scanned: ${totalOutbound}`);
   console.log(`   New Unicode domains discovered: ${totalDiscovered}`);
-  console.log(`   Queue pending: ${db.prepare("SELECT COUNT(*) as c FROM crawl_queue WHERE status = 'pending'").get().c}`);
+  console.log(
+    `   Queue pending: ${db.prepare("SELECT COUNT(*) as c FROM crawl_queue WHERE status = 'pending'").get().c}`
+  );
 
   db.close();
   return { sitesProcessed: sites.length, totalPages, totalOutbound, totalDiscovered };
@@ -93,7 +99,7 @@ if (require.main === module) {
       console.log('\nDone.');
       process.exit(0);
     })
-    .catch(err => {
+    .catch((err) => {
       console.error('Deep crawl failed:', err);
       process.exit(1);
     });

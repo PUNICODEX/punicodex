@@ -12,22 +12,152 @@ const { getDbPath } = require('../db/db');
 
 // Common English stop words. Expand later with pantheon-specific lists.
 const STOP_WORDS = new Set([
-  'a','an','the','and','or','but','of','in','on','at','to','for','with','by',
-  'from','as','is','was','are','were','be','been','being','have','has','had',
-  'do','does','did','will','would','could','should','may','might','can','shall',
-  'this','that','these','those','it','its','he','she','we','they','you','i',
-  'me','him','her','us','them','my','your','our','their','his','her','its',
-  'am','so','if','out','up','down','over','under','again','further','then','once',
-  'here','there','when','where','why','how','all','each','every','both','few',
-  'more','most','other','some','such','no','nor','not','only','own','same','than',
-  'too','very','just','now','also','get','got','go','going','goes','went','come',
-  'came','coming','about','into','through','during','before','after','above','below',
-  'between','among','until','while','because','about','against','off','on','onto',
-  'upon','within','without','per','via','like','regarding','concerning','including',
+  'a',
+  'an',
+  'the',
+  'and',
+  'or',
+  'but',
+  'of',
+  'in',
+  'on',
+  'at',
+  'to',
+  'for',
+  'with',
+  'by',
+  'from',
+  'as',
+  'is',
+  'was',
+  'are',
+  'were',
+  'be',
+  'been',
+  'being',
+  'have',
+  'has',
+  'had',
+  'do',
+  'does',
+  'did',
+  'will',
+  'would',
+  'could',
+  'should',
+  'may',
+  'might',
+  'can',
+  'shall',
+  'this',
+  'that',
+  'these',
+  'those',
+  'it',
+  'its',
+  'he',
+  'she',
+  'we',
+  'they',
+  'you',
+  'i',
+  'me',
+  'him',
+  'her',
+  'us',
+  'them',
+  'my',
+  'your',
+  'our',
+  'their',
+  'his',
+  'her',
+  'its',
+  'am',
+  'so',
+  'if',
+  'out',
+  'up',
+  'down',
+  'over',
+  'under',
+  'again',
+  'further',
+  'then',
+  'once',
+  'here',
+  'there',
+  'when',
+  'where',
+  'why',
+  'how',
+  'all',
+  'each',
+  'every',
+  'both',
+  'few',
+  'more',
+  'most',
+  'other',
+  'some',
+  'such',
+  'no',
+  'nor',
+  'not',
+  'only',
+  'own',
+  'same',
+  'than',
+  'too',
+  'very',
+  'just',
+  'now',
+  'also',
+  'get',
+  'got',
+  'go',
+  'going',
+  'goes',
+  'went',
+  'come',
+  'came',
+  'coming',
+  'about',
+  'into',
+  'through',
+  'during',
+  'before',
+  'after',
+  'above',
+  'below',
+  'between',
+  'among',
+  'until',
+  'while',
+  'because',
+  'about',
+  'against',
+  'off',
+  'on',
+  'onto',
+  'upon',
+  'within',
+  'without',
+  'per',
+  'via',
+  'like',
+  'regarding',
+  'concerning',
+  'including',
   // PUNYCODEX template noise
-  'punycodex','temple',
+  'punycodex',
+  'temple',
   // Domain / protocol noise
-  'com','www','http','https','html'
+  'com',
+  'www',
+  'http',
+  'https',
+  'html',
 ]);
 
 // Weight given to each source when building keyword scores.
@@ -40,7 +170,7 @@ const SOURCE_WEIGHTS = {
   h2: 3,
   first_p: 3,
   content: 2,
-  anchor_text: 1
+  anchor_text: 1,
 };
 
 let db;
@@ -77,8 +207,8 @@ function tokenize(text) {
     .toLowerCase()
     .replace(/[^a-z0-9\s\-_]/g, ' ') // keep spaces, hyphens, underscores
     .split(/[\s\-_]+/)
-    .map(t => t.trim())
-    .filter(t => t.length >= 3 && !STOP_WORDS.has(t) && !/^\d+$/.test(t));
+    .map((t) => t.trim())
+    .filter((t) => t.length >= 3 && !STOP_WORDS.has(t) && !/^\d+$/.test(t));
 }
 
 function tokenizePhrases(text, maxWords = 3) {
@@ -108,7 +238,7 @@ function extractFromText(text, source) {
     keyword,
     source,
     frequency,
-    weight: parseFloat((baseWeight * (1 + Math.log1p(frequency))).toFixed(4))
+    weight: parseFloat((baseWeight * (1 + Math.log1p(frequency))).toFixed(4)),
   }));
 }
 
@@ -123,15 +253,20 @@ function extractFromSiteRow(site) {
     try {
       const h2s = JSON.parse(site.headings_h2);
       if (Array.isArray(h2s)) sources.push(...extractFromText(h2s.join(' '), 'h2'));
-    } catch (e) { /* ignore */ }
+    } catch (_e) {
+      /* ignore */
+    }
   }
   if (site.first_p) sources.push(...extractFromText(site.first_p, 'first_p'));
   if (site.content_snippet) sources.push(...extractFromText(site.content_snippet, 'content'));
   if (site.anchor_texts) {
     try {
       const anchors = JSON.parse(site.anchor_texts);
-      if (Array.isArray(anchors)) sources.push(...extractFromText(anchors.join(' '), 'anchor_text'));
-    } catch (e) { /* ignore */ }
+      if (Array.isArray(anchors))
+        sources.push(...extractFromText(anchors.join(' '), 'anchor_text'));
+    } catch (_e) {
+      /* ignore */
+    }
   }
   return sources;
 }
@@ -143,12 +278,12 @@ async function fetchText(url, timeoutMs = 8000) {
     const resp = await fetch(url, {
       headers: { 'User-Agent': 'PUNYCODEX-Bot/1.0 (https://punycodex.com/bot)' },
       signal: controller.signal,
-      redirect: 'follow'
+      redirect: 'follow',
     });
     clearTimeout(timeout);
     if (!resp.ok) return null;
     return await resp.text();
-  } catch (err) {
+  } catch (_err) {
     clearTimeout(timeout);
     return null;
   }
@@ -156,17 +291,23 @@ async function fetchText(url, timeoutMs = 8000) {
 
 function quickMeta(html) {
   const title = (html.match(/<title[^>]*>([\s\S]*?)<\/title>/i) || [])[1] || '';
-  const desc = (html.match(/<meta[^>]*name=["']description["'][^>]*content=["']([^"']*)/i) || [])[1] || '';
-  const ogDesc = (html.match(/<meta[^>]*property=["']og:description["'][^>]*content=["']([^"']*)/i) || [])[1] || '';
+  const desc =
+    (html.match(/<meta[^>]*name=["']description["'][^>]*content=["']([^"']*)/i) || [])[1] || '';
+  const ogDesc =
+    (html.match(/<meta[^>]*property=["']og:description["'][^>]*content=["']([^"']*)/i) || [])[1] ||
+    '';
   const h1 = (html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i) || [])[1] || '';
   const firstP = (html.match(/<p[^>]*>([\s\S]*?)<\/p>/i) || [])[1] || '';
-  const text = html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  const text = html
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
   return {
     title: sanitize(title),
     description: sanitize(desc || ogDesc),
     h1: sanitize(h1),
     first_p: sanitize(firstP),
-    content_snippet: sanitize(text).slice(0, 500)
+    content_snippet: sanitize(text).slice(0, 500),
   };
 }
 
@@ -187,7 +328,7 @@ async function extractFromUrl(url) {
     ...extractFromText(meta.description, 'meta_description'),
     ...extractFromText(meta.h1, 'h1'),
     ...extractFromText(meta.first_p, 'first_p'),
-    ...extractFromText(meta.content_snippet, 'content')
+    ...extractFromText(meta.content_snippet, 'content'),
   ];
 }
 
@@ -231,26 +372,28 @@ function saveKeywords(siteId, keywords) {
 function getKeywords(siteId, limit = 50) {
   const database = getDb();
   ensureTable(database);
-  return database.prepare(`
+  return database
+    .prepare(`
     SELECT keyword, source, frequency, weight
     FROM site_keywords
     WHERE site_id = ?
     ORDER BY weight DESC, frequency DESC
     LIMIT ?
-  `).all(siteId, limit);
+  `)
+    .all(siteId, limit);
 }
 
 async function extractAndSave(site) {
   const fromSite = extractFromSiteRow(site);
-  const fromUrl = site.tenant_front_url
-    ? await extractFromUrl(site.tenant_front_url)
-    : [];
+  const fromUrl = site.tenant_front_url ? await extractFromUrl(site.tenant_front_url) : [];
 
   // Re-label URL-extracted keywords so we know they came from the tenant's site.
-  const urlKeywords = fromUrl.map(k => ({ ...k, source: `tenant_site:${k.source}` }));
+  const urlKeywords = fromUrl.map((k) => ({ ...k, source: `tenant_site:${k.source}` }));
 
   // Merge duplicates, keeping the highest-weight source per keyword.
-  const merged = mergeKeywords([...fromSite, ...urlKeywords].map(k => ({ ...k, site_id: site.id })));
+  const merged = mergeKeywords(
+    [...fromSite, ...urlKeywords].map((k) => ({ ...k, site_id: site.id }))
+  );
 
   saveKeywords(site.id, merged);
   return merged;
@@ -259,15 +402,16 @@ async function extractAndSave(site) {
 function searchKeywords(query, limit = 20) {
   const database = getDb();
   ensureTable(database);
-  if (!query || !query.trim()) return [];
+  if (!query?.trim()) return [];
 
   const words = tokenize(query);
   if (words.length === 0) return [];
 
   const conditions = words.map(() => `keyword LIKE ?`).join(' OR ');
-  const params = words.map(w => `%${w}%`);
+  const params = words.map((w) => `%${w}%`);
 
-  return database.prepare(`
+  return database
+    .prepare(`
     SELECT s.*, sk.keyword, sk.weight, sk.source as keyword_source
     FROM site_keywords sk
     JOIN indexed_sites s ON sk.site_id = s.id
@@ -275,7 +419,8 @@ function searchKeywords(query, limit = 20) {
       AND (${conditions})
     ORDER BY sk.weight DESC, s.quality_score DESC
     LIMIT ?
-  `).all(...params, limit);
+  `)
+    .all(...params, limit);
 }
 
 module.exports = {
@@ -285,5 +430,5 @@ module.exports = {
   saveKeywords,
   getKeywords,
   searchKeywords,
-  tokenize
+  tokenize,
 };

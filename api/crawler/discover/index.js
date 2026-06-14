@@ -1,14 +1,15 @@
-const { domainToASCII } = require('url');
+const { domainToASCII } = require('node:url');
 const Database = require('better-sqlite3');
 const { getDbPath } = require('../../../platform/db/db');
-const { handleError, setCors } = require('../../_utils');
+const { handleError, setCors, requireAdmin } = require('../../_utils');
 
 const db = new Database(getDbPath());
 
-module.exports = (req, res) => {
+module.exports = async (req, res) => {
   setCors(req, res);
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+  if (!(await requireAdmin(req, res))) return;
 
   try {
     const { domains, source } = req.body || {};
@@ -28,7 +29,10 @@ module.exports = (req, res) => {
     let skipped = 0;
     for (const domain of list) {
       const punycode = domainToASCII(domain);
-      if (!punycode) { skipped++; continue; }
+      if (!punycode) {
+        skipped++;
+        continue;
+      }
       const info = stmt.run(domain, punycode, source || 'ct-log');
       if (info.changes > 0) {
         added++;

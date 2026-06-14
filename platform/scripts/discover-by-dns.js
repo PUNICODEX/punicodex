@@ -4,9 +4,9 @@
  * queues the resolvable ones for crawling.
  */
 const Database = require('better-sqlite3');
-const path = require('path');
-const dns = require('dns');
-const { promisify } = require('util');
+const path = require('node:path');
+const dns = require('node:dns');
+const { promisify } = require('node:util');
 
 const dnsLookup = promisify(dns.lookup);
 
@@ -28,17 +28,19 @@ const isIndexed = db.prepare('SELECT 1 FROM indexed_sites WHERE punycode = ? LIM
 const isQueued = db.prepare('SELECT 1 FROM crawl_queue WHERE punycode = ? LIMIT 1');
 
 async function discoverByDns(options = {}) {
-  const { batchSize = 50, concurrency = 10 } = options;
+  const { batchSize = 50, concurrency: _concurrency = 10 } = options;
 
   console.log('🔍 Bulk DNS Discovery for Lexicon Entries\n');
 
   // Get all entries with their Unicode .com domain
-  const entries = db.prepare(`
+  const entries = db
+    .prepare(`
     SELECT id, ascii, unicode, pantheon, tier
     FROM entries
     WHERE ascii IS NOT NULL AND unicode IS NOT NULL
     ORDER BY tier = 'dual' DESC, tier = '1' DESC, ascii ASC
-  `).all();
+  `)
+    .all();
 
   console.log(`  Checking ${entries.length} entries...`);
 
@@ -46,7 +48,7 @@ async function discoverByDns(options = {}) {
   for (const e of entries) {
     const domain = `${e.unicode}.com`;
     try {
-      const punycode = require('url').domainToASCII(domain);
+      const punycode = require('node:url').domainToASCII(domain);
       if (!punycode) continue;
       if (isIndexed.get(punycode)) continue;
       if (isQueued.get(punycode)) continue;
@@ -64,7 +66,9 @@ async function discoverByDns(options = {}) {
   // Process in batches
   for (let i = 0; i < candidates.length; i += batchSize) {
     const batch = candidates.slice(i, i + batchSize);
-    console.log(`  Batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(candidates.length / batchSize)} (${batch.length} domains)...`);
+    console.log(
+      `  Batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(candidates.length / batchSize)} (${batch.length} domains)...`
+    );
 
     const batchPromises = batch.map(async (c) => {
       try {
@@ -100,15 +104,23 @@ async function discoverByDns(options = {}) {
   console.log(`\n✅ DNS Discovery Complete:`);
   console.log(`   Resolved: ${resolved.length}`);
   console.log(`   Unresolved: ${errors.length}`);
-  console.log(`   Queue pending: ${db.prepare("SELECT COUNT(*) as c FROM crawl_queue WHERE status = 'pending'").get().c}`);
-  console.log(`   Total discovered: ${db.prepare('SELECT COUNT(*) as c FROM discovered_domains').get().c}`);
+  console.log(
+    `   Queue pending: ${db.prepare("SELECT COUNT(*) as c FROM crawl_queue WHERE status = 'pending'").get().c}`
+  );
+  console.log(
+    `   Total discovered: ${db.prepare('SELECT COUNT(*) as c FROM discovered_domains').get().c}`
+  );
 
   db.close();
-  return { resolved: resolved.length, unresolved: errors.length, domains: resolved.map(r => r.punycode) };
+  return {
+    resolved: resolved.length,
+    unresolved: errors.length,
+    domains: resolved.map((r) => r.punycode),
+  };
 }
 
 function sleep(ms) {
-  return new Promise(r => setTimeout(r, ms));
+  return new Promise((r) => setTimeout(r, ms));
 }
 
 if (require.main === module) {
@@ -117,7 +129,7 @@ if (require.main === module) {
       console.log('\nDone.');
       process.exit(0);
     })
-    .catch(err => {
+    .catch((err) => {
       console.error('DNS discovery failed:', err);
       process.exit(1);
     });

@@ -14,7 +14,7 @@ async function sendEmail({ to, subject, html, text }) {
     const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${RESEND_API_KEY}`,
+        Authorization: `Bearer ${RESEND_API_KEY}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -145,7 +145,9 @@ async function notifyLive({ email, slotName, companyName, bookingToken, leaseMon
 }
 
 async function sendDashboardLinks({ email, bookings }) {
-  const rows = bookings.map(b => `
+  const rows = bookings
+    .map(
+      (b) => `
     <tr>
       <td style="padding:12px;border-bottom:1px solid #eee;font-weight:600;">${b.slot_name}</td>
       <td style="padding:12px;border-bottom:1px solid #eee;text-transform:uppercase;font-size:0.8rem;">${b.status.replace(/_/g, ' ')}</td>
@@ -153,7 +155,9 @@ async function sendDashboardLinks({ email, bookings }) {
         <a href="${getDashboardUrl(b.analytics_token)}" style="color:#d4af37;font-weight:600;text-decoration:none;">Dashboard &rarr;</a>
       </td>
     </tr>
-  `).join('');
+  `
+    )
+    .join('');
 
   return sendEmail({
     to: email,
@@ -195,15 +199,29 @@ async function sendVerificationCode({ email, code }) {
   });
 }
 
-async function sendBookingConfirmation({ email, slotName, companyName, amountCents, token, customHeading, customSubtitle, leaseMonths = 1, trialMonths = 0 }) {
+async function sendBookingConfirmation({
+  email,
+  slotName,
+  companyName,
+  amountCents,
+  token,
+  customHeading,
+  customSubtitle,
+  leaseMonths = 1,
+  trialMonths = 0,
+}) {
   const dashboardUrl = getDashboardUrl(token);
   const panelUrl = `${PLATFORM_URL}/advertiser-panel.html?token=${token}`;
   const durationLabel = leaseMonths === 12 ? '12 months' : '1 month';
   const trialLabel = trialMonths > 0 ? `${trialMonths}-month free trial, then ` : '';
-  const priceLabel = leaseMonths === 12 ? `$${(amountCents / 100).toFixed(2)}` : `$${(amountCents / 100).toFixed(2)}/mo`;
-  const trialBadge = trialMonths > 0
-    ? `<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:1rem;margin:1rem 0;"><strong>Free trial:</strong> Your first ${trialMonths} month${trialMonths > 1 ? 's' : ''} are free. Billing begins after the trial ends.</div>`
-    : '';
+  const priceLabel =
+    leaseMonths === 12
+      ? `$${(amountCents / 100).toFixed(2)}`
+      : `$${(amountCents / 100).toFixed(2)}/mo`;
+  const trialBadge =
+    trialMonths > 0
+      ? `<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:1rem;margin:1rem 0;"><strong>Free trial:</strong> Your first ${trialMonths} month${trialMonths > 1 ? 's' : ''} are free. Billing begins after the trial ends.</div>`
+      : '';
   return sendEmail({
     to: email,
     subject: `Your reservation for ${slotName} — Complete your setup`,
@@ -226,9 +244,22 @@ async function sendBookingConfirmation({ email, slotName, companyName, amountCen
   });
 }
 
-async function notifyTrialStarted({ email, slotName, companyName, trialMonths, trialEndsAt, bookingToken }) {
+async function notifyTrialStarted({
+  email,
+  slotName,
+  companyName,
+  trialMonths,
+  trialEndsAt,
+  bookingToken,
+}) {
   const dashboardUrl = getDashboardUrl(bookingToken);
-  const endDate = trialEndsAt ? new Date(trialEndsAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'the end of your trial';
+  const endDate = trialEndsAt
+    ? new Date(trialEndsAt).toLocaleDateString('en-US', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+      })
+    : 'the end of your trial';
   return sendEmail({
     to: email,
     subject: `Your ${trialMonths}-month free trial for ${slotName} has started`,
@@ -244,9 +275,22 @@ async function notifyTrialStarted({ email, slotName, companyName, trialMonths, t
   });
 }
 
-async function notifyTrialEnding({ email, slotName, companyName, daysLeft, trialEndsAt, bookingToken }) {
+async function notifyTrialEnding({
+  email,
+  slotName,
+  companyName,
+  daysLeft,
+  trialEndsAt,
+  bookingToken,
+}) {
   const dashboardUrl = getDashboardUrl(bookingToken);
-  const endDate = trialEndsAt ? new Date(trialEndsAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'soon';
+  const endDate = trialEndsAt
+    ? new Date(trialEndsAt).toLocaleDateString('en-US', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+      })
+    : 'soon';
   return sendEmail({
     to: email,
     subject: `Your ${slotName} free trial ends in ${daysLeft} day${daysLeft === 1 ? '' : 's'}`,
@@ -264,13 +308,18 @@ async function notifyTrialEnding({ email, slotName, companyName, daysLeft, trial
 
 async function sendAnalyticsReport({ email, booking, metrics }) {
   const dashboardUrl = getDashboardUrl(booking.analytics_token);
-  const days = metrics.daily.slice(-7).map(d => `
+  const days = metrics.daily
+    .slice(-7)
+    .map(
+      (d) => `
     <tr>
       <td style="padding:8px;border-bottom:1px solid #eee;">${d.day}</td>
       <td style="padding:8px;border-bottom:1px solid #eee;text-align:right;">${d.count}</td>
       <td style="padding:8px;border-bottom:1px solid #eee;text-align:right;">${d.event_type === 'impression' ? 'Views' : 'Clicks'}</td>
     </tr>
-  `).join('');
+  `
+    )
+    .join('');
 
   return sendEmail({
     to: email,

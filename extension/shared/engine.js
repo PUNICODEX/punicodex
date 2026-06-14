@@ -1,6 +1,6 @@
 /**
  * PÚNYCODEX Engine — Pure Scholarly Transliteration Core
- * Shared between website and browser extension.
+ * Shared between website, browser extension, and mobile app.
  * No DOM dependencies. No side effects.
  * Variant-aware: multiple entries can share the same ASCII root.
  */
@@ -20,13 +20,13 @@ const PUNYCODEX_ENGINE = {
     },
 
     buildTrie(lexicon) {
-        const root = new this.TrieNode();
+        const root = new PUNYCODEX_ENGINE.TrieNode();
         lexicon.forEach(entry => {
             const ascii = entry.ascii.toLowerCase();
             let node = root;
             for (const char of ascii) {
                 if (!node.children[char]) {
-                    node.children[char] = new this.TrieNode();
+                    node.children[char] = new PUNYCODEX_ENGINE.TrieNode();
                 }
                 node = node.children[char];
             }
@@ -63,8 +63,8 @@ const PUNYCODEX_ENGINE = {
     },
 
     getCompletions(trie, prefix, options = {}) {
-        const { limit = this.CONFIG.maxCompletions, pantheonFilter = 'all' } = options;
-        const node = this.getNodeForPrefix(trie, prefix);
+        const { limit = PUNYCODEX_ENGINE.CONFIG.maxCompletions, pantheonFilter = 'all' } = options;
+        const node = PUNYCODEX_ENGINE.getNodeForPrefix(trie, prefix);
         if (!node) return [];
 
         const entries = new Set();
@@ -75,13 +75,13 @@ const PUNYCODEX_ENGINE = {
         collect(node);
 
         let results = Array.from(entries);
-        results = this.filterByPantheon(results, pantheonFilter);
-        results = this.rankEntries(results);
+        results = PUNYCODEX_ENGINE.filterByPantheon(results, pantheonFilter);
+        results = PUNYCODEX_ENGINE.rankEntries(results);
         return results.slice(0, limit);
     },
 
     getValidNextChars(trie, prefix, options = {}) {
-        const completions = this.getCompletions(trie, prefix, { ...options, limit: Infinity });
+        const completions = PUNYCODEX_ENGINE.getCompletions(trie, prefix, { ...options, limit: Infinity });
         const nextChars = new Set();
         completions.forEach(entry => {
             const nextIndex = prefix.length;
@@ -97,7 +97,7 @@ const PUNYCODEX_ENGINE = {
      * If pantheon filter is active, returns the first variant matching the filter.
      */
     findExactMatch(trie, input, options = {}) {
-        const matches = this.findExactMatches(trie, input, options);
+        const matches = PUNYCODEX_ENGINE.findExactMatches(trie, input, options);
         return matches.length > 0 ? matches[0] : null;
     },
 
@@ -107,11 +107,11 @@ const PUNYCODEX_ENGINE = {
      */
     findExactMatches(trie, input, options = {}) {
         const { pantheonFilter = 'all' } = options;
-        const node = this.getNodeForPrefix(trie, input);
+        const node = PUNYCODEX_ENGINE.getNodeForPrefix(trie, input);
         if (!node || !node.isEnd) return [];
         let results = node.entries.slice();
         if (pantheonFilter !== 'all') {
-            results = this.filterByPantheon(results, pantheonFilter);
+            results = PUNYCODEX_ENGINE.filterByPantheon(results, pantheonFilter);
         }
         return results;
     },
@@ -123,7 +123,7 @@ const PUNYCODEX_ENGINE = {
     findVariants(trie, entryId, lexicon) {
         const entry = lexicon.find(e => e.id === entryId);
         if (!entry) return [];
-        const node = this.getNodeForPrefix(trie, entry.ascii);
+        const node = PUNYCODEX_ENGINE.getNodeForPrefix(trie, entry.ascii);
         if (!node || !node.isEnd) return [];
         return node.entries.filter(e => e.id !== entryId);
     },

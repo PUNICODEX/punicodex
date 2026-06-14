@@ -1,5 +1,5 @@
 const Database = require('better-sqlite3');
-const path = require('path');
+const path = require('node:path');
 
 const DB_PATH = path.join(__dirname, '..', 'db', 'punycodex.db');
 
@@ -20,15 +20,19 @@ function createClaim({ entryId, email, unicodeVariant, amount }) {
 
 function updateClaimStripeSession(claimId, sessionId) {
   const db = getDb();
-  db.prepare('UPDATE claims SET stripe_session_id = ?, status = ? WHERE id = ?')
-    .run(sessionId, 'pending', claimId);
+  db.prepare('UPDATE claims SET stripe_session_id = ?, status = ? WHERE id = ?').run(
+    sessionId,
+    'pending',
+    claimId
+  );
   db.close();
 }
 
 function markClaimPaid(sessionId, paymentIntent) {
   const db = getDb();
-  db.prepare('UPDATE claims SET stripe_payment_intent = ?, status = ? WHERE stripe_session_id = ?')
-    .run(paymentIntent, 'paid', sessionId);
+  db.prepare(
+    'UPDATE claims SET stripe_payment_intent = ?, status = ? WHERE stripe_session_id = ?'
+  ).run(paymentIntent, 'paid', sessionId);
   const claim = db.prepare('SELECT * FROM claims WHERE stripe_session_id = ?').get(sessionId);
   db.close();
   return claim;
@@ -36,52 +40,64 @@ function markClaimPaid(sessionId, paymentIntent) {
 
 function markClaimBuilding(claimId, githubRepo) {
   const db = getDb();
-  db.prepare('UPDATE claims SET status = ?, github_repo = ? WHERE id = ?')
-    .run('building', githubRepo, claimId);
+  db.prepare('UPDATE claims SET status = ?, github_repo = ? WHERE id = ?').run(
+    'building',
+    githubRepo,
+    claimId
+  );
   db.close();
 }
 
 function markClaimActive(claimId, deployUrl) {
   const db = getDb();
-  db.prepare('UPDATE claims SET status = ?, deploy_url = ? WHERE id = ?')
-    .run('active', deployUrl, claimId);
+  db.prepare('UPDATE claims SET status = ?, deploy_url = ? WHERE id = ?').run(
+    'active',
+    deployUrl,
+    claimId
+  );
   db.close();
 }
 
 function getClaim(id) {
   const db = getDb();
-  const claim = db.prepare(`
+  const claim = db
+    .prepare(`
     SELECT c.*, e.ascii, e.unicode as entry_unicode, e.greek, e.pantheon, e.tier, e.tier_label, e.meaning, e.domain as god_domain
     FROM claims c
     JOIN entries e ON c.entry_id = e.id
     WHERE c.id = ?
-  `).get(id);
+  `)
+    .get(id);
   db.close();
   return claim;
 }
 
 function getClaimsByEmail(email) {
   const db = getDb();
-  const claims = db.prepare(`
+  const claims = db
+    .prepare(`
     SELECT c.*, e.ascii, e.unicode as entry_unicode, e.pantheon, e.tier
     FROM claims c
     JOIN entries e ON c.entry_id = e.id
     WHERE c.email = ?
     ORDER BY c.created_at DESC
-  `).all(email);
+  `)
+    .all(email);
   db.close();
   return claims;
 }
 
 function getPendingBuilds() {
   const db = getDb();
-  const claims = db.prepare(`
+  const claims = db
+    .prepare(`
     SELECT c.*, e.ascii, e.unicode as entry_unicode, e.greek, e.pantheon, e.tier, e.meaning, e.domain as god_domain
     FROM claims c
     JOIN entries e ON c.entry_id = e.id
     WHERE c.status = 'paid'
     ORDER BY c.created_at ASC
-  `).all();
+  `)
+    .all();
   db.close();
   return claims;
 }
@@ -94,5 +110,5 @@ module.exports = {
   markClaimActive,
   getClaim,
   getClaimsByEmail,
-  getPendingBuilds
+  getPendingBuilds,
 };

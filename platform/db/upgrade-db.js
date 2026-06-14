@@ -3,7 +3,7 @@
  * Safe to run multiple times (idempotent).
  */
 const Database = require('better-sqlite3');
-const path = require('path');
+const path = require('node:path');
 
 const DB_PATH = path.join(__dirname, 'punycodex.db');
 const db = new Database(DB_PATH);
@@ -54,13 +54,13 @@ const upgradeCols = [
   ['response_time_ms', 'INTEGER'],
   ['content_length', 'INTEGER'],
   ['redirect_count', 'INTEGER DEFAULT 0'],
-  ['published_date', 'TEXT']
+  ['published_date', 'TEXT'],
 ];
 for (const [col, type] of upgradeCols) {
   try {
     db.exec(`ALTER TABLE indexed_sites ADD COLUMN ${col} ${type}`);
     console.log(`  + Added ${col} column`);
-  } catch (e) {
+  } catch (_e) {
     console.log(`  ✓ ${col} column already exists`);
   }
 }
@@ -125,6 +125,8 @@ if (count > 0) {
 
 console.log('\nUpgrade complete.');
 console.log(`  indexed_sites: ${count}`);
-console.log(`  indexed_sites_fts: ${db.prepare('SELECT COUNT(*) as c FROM indexed_sites_fts').get().c}`);
+console.log(
+  `  indexed_sites_fts: ${db.prepare('SELECT COUNT(*) as c FROM indexed_sites_fts').get().c}`
+);
 
 db.close();

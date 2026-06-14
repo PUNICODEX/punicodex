@@ -3,7 +3,7 @@
  * Consult the Canon of 891 names. Works even when the Oracle is silent.
  */
 
-const Oracle = (function() {
+const _Oracle = (function () {
   const input = document.getElementById('oracleInput');
   const resultsEl = document.getElementById('oracleResults');
   const panel = document.getElementById('oraclePanel');
@@ -38,7 +38,8 @@ const Oracle = (function() {
       return;
     }
 
-    resultsEl.innerHTML = '<div class="sidebar-empty" style="padding:2rem 1rem;font-size:0.85rem;">Consulting the Oracle...</div>';
+    resultsEl.innerHTML =
+      '<div class="sidebar-empty" style="padding:2rem 1rem;font-size:0.85rem;">Consulting the Oracle...</div>';
 
     try {
       // Always search the local Canon first (works offline)
@@ -47,36 +48,40 @@ const Oracle = (function() {
       // Attempt to enrich with server data (availability, sites)
       let enriched = local;
       try {
-        const apiRes = await window.punycodex.apiGet(`/api/search?q=${encodeURIComponent(query)}&limit=20`);
+        const apiRes = await window.punycodex.apiGet(
+          `/api/search?q=${encodeURIComponent(query)}&limit=20`
+        );
         if (apiRes.ok && apiRes.data.entries) {
           // Merge server data into local results
-          const serverMap = new Map(apiRes.data.entries.map(e => [e.id, e]));
-          enriched = local.map(e => {
+          const serverMap = new Map(apiRes.data.entries.map((e) => [e.id, e]));
+          enriched = local.map((e) => {
             const s = serverMap.get(e.id);
             return s ? { ...e, site: s.site, availability: s.availability } : e;
           });
         }
-      } catch (apiErr) {
+      } catch (_apiErr) {
         // Server silent — local data is still valid
       }
 
       lastResults = enriched;
       renderResults(enriched);
-    } catch (e) {
-      resultsEl.innerHTML = '<div class="sidebar-empty" style="padding:2rem 1rem;font-size:0.85rem;">The Oracle cannot be reached.</div>';
+    } catch (_e) {
+      resultsEl.innerHTML =
+        '<div class="sidebar-empty" style="padding:2rem 1rem;font-size:0.85rem;">The Oracle cannot be reached.</div>';
     }
   }
 
   function renderResults(entries) {
     if (entries.length === 0) {
-      resultsEl.innerHTML = '<div class="sidebar-empty" style="padding:2rem 1rem;font-size:0.85rem;">No names found in the Canon.</div>';
+      resultsEl.innerHTML =
+        '<div class="sidebar-empty" style="padding:2rem 1rem;font-size:0.85rem;">No names found in the Canon.</div>';
       return;
     }
 
     let html = '';
     let currentPantheon = '';
 
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
       if (entry.pantheon !== currentPantheon) {
         currentPantheon = entry.pantheon;
         html += `<div class="oracle-pantheon">${escapeHtml(capitalize(currentPantheon.replace(/-/g, ' ')))}</div>`;
@@ -104,10 +109,10 @@ const Oracle = (function() {
 
     resultsEl.innerHTML = html;
 
-    resultsEl.querySelectorAll('.oracle-row').forEach(row => {
+    resultsEl.querySelectorAll('.oracle-row').forEach((row) => {
       row.addEventListener('click', () => {
         const id = row.dataset.id;
-        const entry = lastResults.find(e => e.id === id);
+        const entry = lastResults.find((e) => e.id === id);
         if (entry) onOracleSelect(entry);
       });
     });
@@ -129,7 +134,9 @@ const Oracle = (function() {
         Sidebar.showPanel('record');
         return;
       }
-    } catch (e) { /* fall through */ }
+    } catch (_e) {
+      /* fall through */
+    }
 
     // Fallback: use the search result entry directly
     Sidebar.load(entry);
@@ -165,7 +172,7 @@ const Oracle = (function() {
   }
 
   function capitalize(str) {
-    return str.replace(/\b\w/g, c => c.toUpperCase());
+    return str.replace(/\b\w/g, (c) => c.toUpperCase());
   }
 
   return { show, hide, clear, consult };

@@ -7,7 +7,7 @@ function safeParseHistory(raw) {
     const parsed = typeof raw === 'string' ? JSON.parse(raw) : raw;
     if (Array.isArray(parsed)) return parsed;
     return [];
-  } catch (e) {
+  } catch (_e) {
     return [];
   }
 }
@@ -28,10 +28,29 @@ module.exports = (req, res) => {
       primaryId: result.primaryId,
       intent: result.context.intent,
       sources: {
-        entries: result.context.entries?.map(e => ({ id: e.id, unicode: e.unicode, ascii: e.ascii, meaning: e.meaning })) || [],
-        sites: result.context.sites?.map(s => ({ id: s.id, domain: s.domain, punycode: s.punycode, title: s.title, tenant_name: s.tenant_name })) || [],
-        related: result.context.related?.map(r => ({ id: r.id, unicode: r.unicode, ascii: r.ascii, meaning: r.meaning })) || []
-      }
+        entries:
+          result.context.entries?.map((e) => ({
+            id: e.id,
+            unicode: e.unicode,
+            ascii: e.ascii,
+            meaning: e.meaning,
+          })) || [],
+        sites:
+          result.context.sites?.map((s) => ({
+            id: s.id,
+            domain: s.domain,
+            punycode: s.punycode,
+            title: s.title,
+            tenant_name: s.tenant_name,
+          })) || [],
+        related:
+          result.context.related?.map((r) => ({
+            id: r.id,
+            unicode: r.unicode,
+            ascii: r.ascii,
+            meaning: r.meaning,
+          })) || [],
+      },
     });
   } catch (err) {
     handleError(res, err);

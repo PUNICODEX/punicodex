@@ -190,6 +190,23 @@ Four test suites run via `node test/run-all.js`:
 
 Browser test page: `type/test.html`
 
+### Code Quality
+
+The project uses **Biome** for formatting and linting. Configuration lives in `biome.json`.
+
+- `npm run format` — Format included files
+- `npm run format:check` — Check formatting in CI
+- `npm run lint` — Run linter
+- `npm run lint:fix` — Auto-fix lint issues
+
+Files covered: `api/**/*.js`, `type/js/*.js`, `platform/**/*.js`, `scripts/validate*.js`, `scripts/generate-temples.js`, `scripts/create-flagship.js`, `test/**/*.js`, `package.json`, and `biome.json`.
+
+Generated `sites/`, vendored code, `extension/`, `mobile/`, and the Vercel `middleware.js` are excluded from formatting.
+
+### Continuous Integration
+
+`.github/workflows/ci.yml` runs formatting checks, linting, and the full test suite on pushes and pull requests to `main`/`master`.
+
 ---
 
 ## Browser Extension

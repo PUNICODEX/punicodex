@@ -4,8 +4,8 @@
  * Run: node build-lexicon.js
  */
 
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
 
 // Use the root project's better-sqlite3
 const rootNodeModules = path.join(__dirname, '..', '..', 'node_modules');
@@ -17,16 +17,20 @@ const OUTPUT_PATH = path.join(__dirname, 'renderer', 'lexicon.json');
 function parseSources(sources) {
   if (!sources) return [];
   if (Array.isArray(sources)) return sources;
-  try { return JSON.parse(sources); } catch { return []; }
+  try {
+    return JSON.parse(sources);
+  } catch {
+    return [];
+  }
 }
 
 function computePunycode(unicode) {
   if (!unicode) return null;
   try {
-    const { domainToASCII } = require('url');
+    const { domainToASCII } = require('node:url');
     const ascii = domainToASCII(unicode.toLowerCase());
     return ascii !== unicode.toLowerCase() ? ascii : null;
-  } catch (e) {
+  } catch (_e) {
     return null;
   }
 }
@@ -37,7 +41,7 @@ const db = new Database(DB_PATH);
 const entries = db.prepare('SELECT * FROM entries').all();
 const breakdowns = db.prepare('SELECT * FROM breakdowns').all();
 
-const enrichedEntries = entries.map(e => ({
+const enrichedEntries = entries.map((e) => ({
   id: e.id,
   ascii: e.ascii,
   unicode: e.unicode,
@@ -49,21 +53,21 @@ const enrichedEntries = entries.map(e => ({
   sources: parseSources(e.sources),
   domain: e.domain,
   hasFlagship: e.has_flagship,
-  punycode: computePunycode(e.unicode)
+  punycode: computePunycode(e.unicode),
 }));
 
 const data = {
   exportedAt: new Date().toISOString(),
   totalEntries: enrichedEntries.length,
   totalBreakdowns: breakdowns.length,
-  pantheons: [...new Set(enrichedEntries.map(e => e.pantheon))].sort(),
+  pantheons: [...new Set(enrichedEntries.map((e) => e.pantheon))].sort(),
   entries: enrichedEntries,
-  breakdowns: breakdowns.map(b => ({
+  breakdowns: breakdowns.map((b) => ({
     entryId: b.entry_id,
     char: b.char,
     to: b.to,
-    type: b.type
-  }))
+    type: b.type,
+  })),
 };
 
 fs.writeFileSync(OUTPUT_PATH, JSON.stringify(data, null, 2));

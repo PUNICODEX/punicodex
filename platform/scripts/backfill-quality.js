@@ -3,7 +3,7 @@
  * Re-runs the quality scorer on every active indexed site.
  */
 const Database = require('better-sqlite3');
-const path = require('path');
+const path = require('node:path');
 const { scoreQuality } = require('./quality-scorer');
 
 const DB_PATH = path.join(__dirname, '..', 'db', 'punycodex.db');
@@ -25,9 +25,11 @@ const updateSite = db.prepare(`
 function backfill(batchSize = 50) {
   console.log('🔧 Backfilling quality scores on all active sites\n');
 
-  const sites = db.prepare(`
+  const sites = db
+    .prepare(`
     SELECT * FROM indexed_sites WHERE status = 'active' ORDER BY id
-  `).all();
+  `)
+    .all();
 
   console.log(`  ${sites.length} active sites to process\n`);
 
@@ -37,7 +39,9 @@ function backfill(batchSize = 50) {
 
   for (let i = 0; i < sites.length; i += batchSize) {
     const batch = sites.slice(i, i + batchSize);
-    console.log(`  Batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(sites.length / batchSize)} (${batch.length} sites)`);
+    console.log(
+      `  Batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(sites.length / batchSize)} (${batch.length} sites)`
+    );
 
     for (const site of batch) {
       try {

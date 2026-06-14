@@ -2,7 +2,7 @@
  * Backfill Links — Extract link graph from already-crawled sites.
  */
 const Database = require('better-sqlite3');
-const path = require('path');
+const path = require('node:path');
 const { UnicodeCrawler } = require('../crawler');
 
 const DB_PATH = path.join(__dirname, '..', 'db', 'punycodex.db');
@@ -13,7 +13,11 @@ async function backfillLinks(options = {}) {
   db.pragma('journal_mode = WAL');
   const crawler = new UnicodeCrawler(db);
 
-  const sites = db.prepare("SELECT id, domain, punycode FROM indexed_sites WHERE status = 'active' ORDER BY is_flagship DESC, quality_score DESC").all();
+  const sites = db
+    .prepare(
+      "SELECT id, domain, punycode FROM indexed_sites WHERE status = 'active' ORDER BY is_flagship DESC, quality_score DESC"
+    )
+    .all();
   console.log(`🔗 Backfilling links for ${sites.length} active sites\n`);
 
   const insertLink = db.prepare(`
@@ -50,7 +54,9 @@ async function backfillLinks(options = {}) {
           if (seenTargets.has(link.hostname)) continue;
           seenTargets.add(link.hostname);
 
-          const target = db.prepare('SELECT id FROM indexed_sites WHERE punycode = ? OR domain = ?').get(link.hostname, link.hostname);
+          const target = db
+            .prepare('SELECT id FROM indexed_sites WHERE punycode = ? OR domain = ?')
+            .get(link.hostname, link.hostname);
           if (!target) continue;
 
           insertLink.run(site.id, target.id, homeFetch.url, link.url, link.text || '', 0);
@@ -87,7 +93,7 @@ async function backfillLinks(options = {}) {
 if (require.main === module) {
   backfillLinks({ concurrency: 5 })
     .then(() => process.exit(0))
-    .catch(err => {
+    .catch((err) => {
       console.error('Backfill failed:', err);
       process.exit(1);
     });

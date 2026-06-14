@@ -27,7 +27,7 @@ function tokenize(q) {
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-z0-9\s]/g, ' ')
     .split(/\s+/)
-    .filter(w => w.length >= 2);
+    .filter((w) => w.length >= 2);
 }
 
 function normalizeBm25(bm25) {
@@ -40,9 +40,19 @@ function normalizeBm25(bm25) {
 function keywordMatchScore(row, tokens) {
   if (!tokens.length) return 0;
   const haystack = [
-    row.title, row.description, row.snippet, row.domain, row.punycode,
-    row.lexiconEntryId, row.pantheon, row.tenant?.name, row.tenant?.category
-  ].filter(Boolean).join(' ').toLowerCase();
+    row.title,
+    row.description,
+    row.snippet,
+    row.domain,
+    row.punycode,
+    row.lexiconEntryId,
+    row.pantheon,
+    row.tenant?.name,
+    row.tenant?.category,
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .toLowerCase();
   const normalizedHaystack = haystack.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   let matches = 0;
   for (const t of tokens) {
@@ -56,8 +66,8 @@ function tenantQualityScore(row) {
   if (row.tenant?.name) score += 0.4;
   if (row.tenant?.frontUrl) score += 0.3;
   if (row.tenant?.category) score += 0.2;
-  score += (row.qualityScore || row.quality_score || 0) / 100 * 0.5;
-  score += (row.authorityScore || row.authority_score || 0) / 100 * 0.3;
+  score += ((row.qualityScore || row.quality_score || 0) / 100) * 0.5;
+  score += ((row.authorityScore || row.authority_score || 0) / 100) * 0.3;
   return Math.min(score, 1.5);
 }
 
@@ -74,7 +84,7 @@ const VARIANTS = {
     quality: 0.15,
     freshness: 0.1,
     punycodeBonus: 0.15,
-    semantic: 0.5
+    semantic: 0.5,
   },
   authority: {
     bm25: 0.7,
@@ -88,7 +98,7 @@ const VARIANTS = {
     quality: 0.4,
     freshness: 0.05,
     punycodeBonus: 0.1,
-    semantic: 0.3
+    semantic: 0.3,
   },
   discovery: {
     bm25: 0.6,
@@ -102,7 +112,7 @@ const VARIANTS = {
     quality: 0.1,
     freshness: 0.3,
     punycodeBonus: 0.2,
-    semantic: 0.6
+    semantic: 0.6,
   },
   commercial: {
     bm25: 0.8,
@@ -116,8 +126,8 @@ const VARIANTS = {
     quality: 0.2,
     freshness: 0.1,
     punycodeBonus: 0.1,
-    semantic: 0.3
-  }
+    semantic: 0.3,
+  },
 };
 
 function getVariant(name) {
@@ -132,15 +142,16 @@ function computeScore(row, query, options = {}) {
   // Raw signal values
   breakdown.bm25 = normalizeBm25(row.bm25Score || row.bm25_score || row.rankScore);
   breakdown.keywordMatch = keywordMatchScore(row, tokens);
-  breakdown.entityGraph = Math.min((row.entityBonus || 0), 0.25);
-  breakdown.clickBoost = Math.min((row.clickBoost || 0), 0.5);
+  breakdown.entityGraph = Math.min(row.entityBonus || 0, 0.25);
+  breakdown.clickBoost = Math.min(row.clickBoost || 0, 0.5);
   breakdown.tenantQuality = tenantQualityScore(row);
-  breakdown.tierBonus = row.tier === 'dual' ? 0.5 : row.tier === '1' ? 0.3 : row.tier === '2' ? 0.1 : 0;
+  breakdown.tierBonus =
+    row.tier === 'dual' ? 0.5 : row.tier === '1' ? 0.3 : row.tier === '2' ? 0.1 : 0;
   breakdown.flagshipBonus = row.isFlagship || row.is_flagship ? 0.5 : 0;
   breakdown.authority = (row.authorityScore || row.authority_score || 0) / 100;
   breakdown.quality = (row.qualityScore || row.quality_score || 0) / 100;
   breakdown.freshness = (row.freshnessScore || row.freshness_score || 0.5) / 2; // normalize ~0-0.5
-  breakdown.punycodeBonus = row.isPunycode || (row.punycode && row.punycode.startsWith('xn--')) ? 0.5 : 0;
+  breakdown.punycodeBonus = row.isPunycode || row.punycode?.startsWith('xn--') ? 0.5 : 0;
   breakdown.semantic = row.semanticScore || row.semantic_score || 0;
 
   // Weighted sum
@@ -157,20 +168,20 @@ function computeScore(row, query, options = {}) {
   return {
     score: parseFloat(score.toFixed(4)),
     breakdown,
-    variant: options.variant || 'default'
+    variant: options.variant || 'default',
   };
 }
 
 function rankResults(results, query, options = {}) {
   if (!Array.isArray(results) || results.length === 0) return results;
 
-  const ranked = results.map(r => {
+  const ranked = results.map((r) => {
     const { score, breakdown, variant } = computeScore(r, query, options);
     return {
       ...r,
       rankScore: score,
       scoreBreakdown: breakdown,
-      rankVariant: variant
+      rankVariant: variant,
     };
   });
 
@@ -189,5 +200,5 @@ module.exports = {
   VARIANTS,
   normalizeBm25,
   keywordMatchScore,
-  tenantQualityScore
+  tenantQualityScore,
 };

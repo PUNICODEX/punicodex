@@ -3,7 +3,7 @@
  * Spell correction, "Did you mean?", related searches, autocomplete.
  */
 const Database = require('better-sqlite3');
-const path = require('path');
+const _path = require('node:path');
 const { getDbPath } = require('../db/db');
 
 const DB_PATH = getDbPath();
@@ -26,9 +26,10 @@ function levenshtein(a, b) {
   for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
   for (let i = 1; i <= b.length; i++) {
     for (let j = 1; j <= a.length; j++) {
-      matrix[i][j] = b[i - 1] === a[j - 1]
-        ? matrix[i - 1][j - 1]
-        : Math.min(matrix[i - 1][j - 1] + 1, matrix[i][j - 1] + 1, matrix[i - 1][j] + 1);
+      matrix[i][j] =
+        b[i - 1] === a[j - 1]
+          ? matrix[i - 1][j - 1]
+          : Math.min(matrix[i - 1][j - 1] + 1, matrix[i][j - 1] + 1, matrix[i - 1][j] + 1);
     }
   }
   return matrix[b.length][a.length];
@@ -54,18 +55,22 @@ function didYouMean(q, limit = 3) {
   if (!query || query.length < 2) return [];
 
   // Get candidates from lexicon
-  const entries = db.prepare(`
+  const entries = db
+    .prepare(`
     SELECT id, ascii, unicode, meaning, pantheon, tier
     FROM entries
     WHERE ascii IS NOT NULL
-  `).all();
+  `)
+    .all();
 
   // Get candidates from indexed sites
-  const sites = db.prepare(`
+  const sites = db
+    .prepare(`
     SELECT domain, punycode, title
     FROM indexed_sites
     WHERE status = 'active'
-  `).all();
+  `)
+    .all();
 
   const candidates = [];
 
@@ -116,7 +121,7 @@ function didYouMean(q, limit = 3) {
         pantheon: e.pantheon,
         tier: e.tier,
         score,
-        matchedField
+        matchedField,
       });
     }
   }
@@ -153,7 +158,7 @@ function didYouMean(q, limit = 3) {
         punycode: s.punycode,
         title: s.title,
         score,
-        matchedField: 'domain'
+        matchedField: 'domain',
       });
     }
   }
@@ -186,11 +191,13 @@ function relatedSearches(q, limit = 6) {
   if (!query) return [];
 
   // Find the best matching entry
-  const entries = db.prepare(`
+  const entries = db
+    .prepare(`
     SELECT id, ascii, unicode, pantheon, tier, meaning
     FROM entries
     WHERE ascii IS NOT NULL
-  `).all();
+  `)
+    .all();
 
   let bestEntry = null;
   let bestScore = 0;
@@ -209,50 +216,58 @@ function relatedSearches(q, limit = 6) {
 
   if (!bestEntry) {
     // Fallback: return random diverse entries
-    return db.prepare(`
+    return db
+      .prepare(`
       SELECT id, ascii, unicode, pantheon, meaning
       FROM entries
       WHERE ascii IS NOT NULL
       ORDER BY RANDOM()
       LIMIT ?
-    `).all(limit);
+    `)
+      .all(limit);
   }
 
   const related = [];
 
   // Same pantheon
-  const samePantheon = db.prepare(`
+  const samePantheon = db
+    .prepare(`
     SELECT id, ascii, unicode, pantheon, meaning
     FROM entries
     WHERE pantheon = ? AND id != ?
     ORDER BY RANDOM()
     LIMIT ?
-  `).all(bestEntry.pantheon, bestEntry.id, Math.ceil(limit / 2));
+  `)
+    .all(bestEntry.pantheon, bestEntry.id, Math.ceil(limit / 2));
   related.push(...samePantheon);
 
   // Same tier, different pantheon
   if (related.length < limit) {
-    const sameTier = db.prepare(`
+    const sameTier = db
+      .prepare(`
       SELECT id, ascii, unicode, pantheon, meaning
       FROM entries
       WHERE tier = ? AND pantheon != ? AND id != ?
       ORDER BY RANDOM()
       LIMIT ?
-    `).all(bestEntry.tier, bestEntry.pantheon, bestEntry.id, limit - related.length);
+    `)
+      .all(bestEntry.tier, bestEntry.pantheon, bestEntry.id, limit - related.length);
     related.push(...sameTier);
   }
 
   // Fill with random if still short
   if (related.length < limit) {
-    const existingIds = related.map(r => r.id).concat([bestEntry.id]);
+    const existingIds = related.map((r) => r.id).concat([bestEntry.id]);
     const placeholders = existingIds.map(() => '?').join(',');
-    const random = db.prepare(`
+    const random = db
+      .prepare(`
       SELECT id, ascii, unicode, pantheon, meaning
       FROM entries
       WHERE id NOT IN (${placeholders})
       ORDER BY RANDOM()
       LIMIT ?
-    `).all(...existingIds, limit - related.length);
+    `)
+      .all(...existingIds, limit - related.length);
     related.push(...random);
   }
 
@@ -271,41 +286,46 @@ function autocomplete(q, limit = 10) {
   const like = `${prefix}%`;
 
   // Lexicon matches
-  const entries = db.prepare(`
+  const entries = db
+    .prepare(`
     SELECT id, ascii, unicode, pantheon, tier
     FROM entries
     WHERE ascii LIKE ? OR unicode LIKE ?
     ORDER BY tier = 'dual' DESC, tier = '1' DESC, ascii ASC
     LIMIT ?
-  `).all(like, like, limit);
+  `)
+    .all(like, like, limit);
 
   // Site matches (if we have room)
-  const sites = entries.length < limit
-    ? db.prepare(`
+  const sites =
+    entries.length < limit
+      ? db
+          .prepare(`
         SELECT domain, punycode, title
         FROM indexed_sites
         WHERE status = 'active' AND (domain LIKE ? OR punycode LIKE ? OR title LIKE ?)
         ORDER BY is_flagship DESC, word_count DESC
         LIMIT ?
-      `).all(like, like, like, limit - entries.length)
-    : [];
+      `)
+          .all(like, like, like, limit - entries.length)
+      : [];
 
   const results = [
-    ...entries.map(e => ({
+    ...entries.map((e) => ({
       type: 'entry',
       text: e.unicode,
       ascii: e.ascii,
       pantheon: e.pantheon,
       tier: e.tier,
-      url: `/type/#${e.id}`
+      url: `/type/#${e.id}`,
     })),
-    ...sites.map(s => ({
+    ...sites.map((s) => ({
       type: 'site',
       text: s.domain,
       punycode: s.punycode,
       title: s.title,
-      url: `https://${s.punycode}`
-    }))
+      url: `https://${s.punycode}`,
+    })),
   ];
 
   return results.slice(0, limit);
@@ -316,5 +336,5 @@ module.exports = {
   relatedSearches,
   autocomplete,
   levenshtein,
-  similarity
+  similarity,
 };

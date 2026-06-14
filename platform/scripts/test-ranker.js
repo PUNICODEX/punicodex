@@ -1,5 +1,11 @@
-const assert = require('assert');
-const { computeScore, rankResults, normalizeBm25, keywordMatchScore, tenantQualityScore, VARIANTS } = require('../api/ranker');
+const assert = require('node:assert');
+const {
+  computeScore,
+  rankResults,
+  normalizeBm25,
+  keywordMatchScore,
+  tenantQualityScore,
+} = require('../api/ranker');
 
 let passed = 0;
 let failed = 0;
@@ -27,16 +33,27 @@ test('keywordMatchScore detects query tokens', () => {
 });
 
 test('tenantQualityScore rewards tenant + quality', () => {
-  const withTenant = { tenant: { name: 'Acme', frontUrl: 'https://acme.com' }, quality_score: 80, authority_score: 60 };
+  const withTenant = {
+    tenant: { name: 'Acme', frontUrl: 'https://acme.com' },
+    quality_score: 80,
+    authority_score: 60,
+  };
   const without = { tenant: null, quality_score: 10, authority_score: 0 };
   assert.ok(tenantQualityScore(withTenant) > tenantQualityScore(without));
 });
 
 test('computeScore returns score and breakdown', () => {
   const row = {
-    title: 'Zeús.com', tier: '1', is_flagship: true, isFlagship: true,
-    bm25_score: -2.5, quality_score: 80, authority_score: 60,
-    punycode: 'xn--zes-9na.com', isPunycode: true, tenant: { name: 'Temple', frontUrl: 'https://zeus.com' }
+    title: 'Zeús.com',
+    tier: '1',
+    is_flagship: true,
+    isFlagship: true,
+    bm25_score: -2.5,
+    quality_score: 80,
+    authority_score: 60,
+    punycode: 'xn--zes-9na.com',
+    isPunycode: true,
+    tenant: { name: 'Temple', frontUrl: 'https://zeus.com' },
   };
   const result = computeScore(row, 'zeus', { variant: 'default' });
   assert.ok(typeof result.score === 'number');
@@ -50,7 +67,7 @@ test('rankResults sorts descending by score', () => {
   const rows = [
     { title: 'Low', tier: '2', is_flagship: false, bm25_score: -10 },
     { title: 'High', tier: 'dual', is_flagship: true, bm25_score: -1 },
-    { title: 'Mid', tier: '1', is_flagship: false, bm25_score: -5 }
+    { title: 'Mid', tier: '1', is_flagship: false, bm25_score: -5 },
   ];
   const ranked = rankResults(rows, 'zeus');
   assert.strictEqual(ranked[0].title, 'High');
@@ -59,7 +76,15 @@ test('rankResults sorts descending by score', () => {
 });
 
 test('variants produce different scores', () => {
-  const row = { title: 'Zeús', tier: '1', is_flagship: true, bm25_score: -2, quality_score: 90, authority_score: 80, tenant: { name: 'X' } };
+  const row = {
+    title: 'Zeús',
+    tier: '1',
+    is_flagship: true,
+    bm25_score: -2,
+    quality_score: 90,
+    authority_score: 80,
+    tenant: { name: 'X' },
+  };
   const a = computeScore(row, 'zeus', { variant: 'authority' }).score;
   const b = computeScore(row, 'zeus', { variant: 'commercial' }).score;
   // Not guaranteed, but extremely likely with this fixture.

@@ -1,8 +1,54 @@
-const { URL } = require('url');
-const fs = require('fs');
-const path = require('path');
-const crypto = require('crypto');
+const { URL } = require('node:url');
+const fs = require('node:fs');
+const path = require('node:path');
+const crypto = require('node:crypto');
+const dns = require('node:dns');
+const { promisify } = require('node:util');
 const { extractAndSave } = require('../api/keyword-extractor');
+
+const dnsLookup = promisify(dns.lookup);
+
+// Hostnames / patterns that are never safe to crawl
+const BLOCKED_HOST_PATTERNS = [
+  /^localhost$/i,
+  /^127\.\d+\.\d+\.\d+$/,
+  /^10\.\d+\.\d+\.\d+$/,
+  /^172\.(1[6-9]|2\d|3[0-1])\.\d+\.\d+$/,
+  /^192\.168\.\d+\.\d+$/,
+  /^169\.254\.\d+\.\d+$/,
+  /^::1$/,
+  /^fc00:/i,
+  /^fe80:/i,
+  /\.local$/i,
+  /metadata\.google\.internal$/i,
+  /metadata\.internal$/i,
+];
+
+function isBlockedHost(hostname) {
+  if (!hostname) return true;
+  return BLOCKED_HOST_PATTERNS.some((re) => re.test(hostname));
+}
+
+async function resolveAndValidateHost(hostname) {
+  if (isBlockedHost(hostname)) return false;
+  try {
+    const { address } = await dnsLookup(hostname);
+    return !isBlockedHost(address);
+  } catch {
+    // If DNS fails, allow the crawl to proceed; the fetch will fail naturally.
+    return true;
+  }
+}
+
+function isSafeUrl(urlString) {
+  try {
+    const u = new URL(urlString);
+    if (u.protocol !== 'http:' && u.protocol !== 'https:') return false;
+    return !isBlockedHost(u.hostname);
+  } catch {
+    return false;
+  }
+}
 
 const FAVICON_DIR = path.join(__dirname, '..', 'public', 'favicons');
 const THUMBNAIL_DIR = path.join(__dirname, '..', 'public', 'thumbnails');
@@ -15,89 +61,90 @@ class UnicodeCrawler {
   constructor(db) {
     this.db = db;
     this.headers = {
-      'User-Agent': 'PUNYCODEX-Bot/1.0 (https://punycodex.com/bot) Unicode Domain Crawler'
+      'User-Agent': 'PUNYCODEX-Bot/1.0 (https://punycodex.com/bot) Unicode Domain Crawler',
     };
   }
 
   normalizeDomain(input) {
     const trimmed = input.trim().toLowerCase();
-    const domain = trimmed.startsWith('http') 
-      ? new URL(trimmed).hostname 
+    const domain = trimmed.startsWith('http')
+      ? new URL(trimmed).hostname
       : trimmed.replace(/^www\./, '');
-    
-    const punycode = domain.startsWith('xn--') 
-      ? domain 
-      : require('url').domainToASCII(domain);
-    
-    const unicode = domain.startsWith('xn--') 
-      ? require('url').domainToUnicode(domain) 
+
+    const punycode = domain.startsWith('xn--') ? domain : require('node:url').domainToASCII(domain);
+
+    const unicode = domain.startsWith('xn--')
+      ? require('node:url').domainToUnicode(domain)
       : domain;
 
     return { domain: unicode, punycode };
   }
 
   matchLexicon(punycode) {
-    const existing = this.db.prepare(
-      'SELECT lexicon_entry_id FROM indexed_sites WHERE punycode = ?'
-    ).get(punycode);
+    const existing = this.db
+      .prepare('SELECT lexicon_entry_id FROM indexed_sites WHERE punycode = ?')
+      .get(punycode);
 
-    if (existing && existing.lexicon_entry_id) {
-      return this.db.prepare(
-        'SELECT id, pantheon, tier, tier_label as tierLabel FROM entries WHERE id = ?'
-      ).get(existing.lexicon_entry_id);
+    if (existing?.lexicon_entry_id) {
+      return this.db
+        .prepare('SELECT id, pantheon, tier, tier_label as tierLabel FROM entries WHERE id = ?')
+        .get(existing.lexicon_entry_id);
     }
 
-    const unicode = require('url').domainToUnicode(punycode);
-    let entry = this.db.prepare(
-      `SELECT id, pantheon, tier, tier_label as tierLabel FROM entries 
+    const unicode = require('node:url').domainToUnicode(punycode);
+    let entry = this.db
+      .prepare(
+        `SELECT id, pantheon, tier, tier_label as tierLabel FROM entries 
        WHERE unicode || '.com' = ? OR unicode = ?`
-    ).get(unicode, unicode);
+      )
+      .get(unicode, unicode);
 
     if (!entry) {
-      const core = punycode.replace(/^xn--/, '').replace(/\.com$/, '').replace(/-/g, '');
-      entry = this.db.prepare(
-        `SELECT id, pantheon, tier, tier_label as tierLabel FROM entries 
+      const core = punycode
+        .replace(/^xn--/, '')
+        .replace(/\.com$/, '')
+        .replace(/-/g, '');
+      entry = this.db
+        .prepare(
+          `SELECT id, pantheon, tier, tier_label as tierLabel FROM entries 
          WHERE ascii = ? OR LOWER(ascii) = LOWER(?)`
-      ).get(core, core);
+        )
+        .get(core, core);
     }
 
     return entry || null;
   }
 
   async fetchSite(domain) {
+    const validated = await resolveAndValidateHost(domain);
+    if (!validated) {
+      return { success: false, error: 'Domain blocked for security reasons' };
+    }
+
     const urls = [`https://${domain}`, `http://${domain}`];
     let lastError = null;
 
     for (const url of urls) {
       const startTime = Date.now();
       try {
-        const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 10000);
-
-        const resp = await fetch(url, {
-          headers: this.headers,
-          signal: controller.signal,
-          redirect: 'follow'
-        });
-
-        clearTimeout(timeout);
-
-        if (!resp.ok) {
-          lastError = `HTTP ${resp.status}`;
+        if (!isSafeUrl(url)) {
+          lastError = 'URL blocked for security reasons';
           continue;
         }
 
-        const html = await resp.text();
-        const responseTimeMs = Date.now() - startTime;
-        const meta = await this.extractMetadata(html, resp.url, responseTimeMs, html.length);
-        
+        const result = await this.fetchWithRedirects(url, startTime);
+        if (!result) {
+          lastError = 'HTTP error or blocked redirect';
+          continue;
+        }
+
         return {
           success: true,
-          url: resp.url,
-          ...meta,
-          content_hash: this.hash(html)
+          url: result.finalUrl,
+          ...result.meta,
+          redirect_count: result.redirectCount,
+          content_hash: this.hash(result.html),
         };
-
       } catch (err) {
         lastError = err.message;
         continue;
@@ -105,6 +152,47 @@ class UnicodeCrawler {
     }
 
     return { success: false, error: lastError };
+  }
+
+  async fetchWithRedirects(startUrl, startTime, maxRedirects = 5) {
+    let currentUrl = startUrl;
+    let redirectCount = 0;
+
+    while (redirectCount <= maxRedirects) {
+      if (!isSafeUrl(currentUrl)) {
+        return null;
+      }
+
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 10000);
+
+      const resp = await fetch(currentUrl, {
+        headers: this.headers,
+        signal: controller.signal,
+        redirect: 'manual',
+      });
+
+      clearTimeout(timeout);
+
+      if (resp.status >= 300 && resp.status < 400) {
+        const location = resp.headers.get('location');
+        if (!location) return null;
+        currentUrl = new URL(location, currentUrl).href;
+        redirectCount++;
+        continue;
+      }
+
+      if (!resp.ok) {
+        return null;
+      }
+
+      const html = await resp.text();
+      const responseTimeMs = Date.now() - startTime;
+      const meta = await this.extractMetadata(html, resp.url, responseTimeMs, html.length);
+      return { finalUrl: currentUrl, html, meta, redirectCount };
+    }
+
+    return null;
   }
 
   // ==================== MAIN EXTRACTION ====================
@@ -117,7 +205,7 @@ class UnicodeCrawler {
     const descFromMeta = this.extractMetaContent(html, 'description');
     const ogDesc = this.extractOgContent(html, 'og:description');
     const description = descFromMeta || ogDesc || '';
-    
+
     const h1 = this.extractTag(html, /<h1[^>]*>([\s\S]*?)<\/h1>/i);
     const firstP = this.extractTag(html, /<p[^>]*>([\s\S]*?)<\/p>/i);
     const snippet = h1 || firstP || description;
@@ -153,8 +241,11 @@ class UnicodeCrawler {
     const sitemap = await this.fetchSitemap(base);
 
     // Content quality
-    const textContent = html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
-    const wordCount = textContent.split(/\s+/).filter(w => w.length > 0).length;
+    const textContent = html
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+    const wordCount = textContent.split(/\s+/).filter((w) => w.length > 0).length;
     const contentRatio = contentLength > 0 ? textContent.length / contentLength : 0;
 
     // SEO Meta
@@ -235,10 +326,10 @@ class UnicodeCrawler {
       // Technical
       response_time_ms: responseTimeMs,
       content_length: contentLength,
-      redirect_count: 0,
+      redirect_count: 0, // overwritten by caller with actual count
 
       // Date
-      published_date: publishedDate
+      published_date: publishedDate,
     };
   }
 
@@ -274,7 +365,7 @@ class UnicodeCrawler {
         } else {
           blocks.push(json);
         }
-      } catch (e) {
+      } catch (_e) {
         // Invalid JSON, skip
       }
     }
@@ -286,13 +377,21 @@ class UnicodeCrawler {
     let url = this.extractLinkHref(html, /<link[^>]*rel=["']icon["'][^>]*>/i);
     if (!url) url = this.extractLinkHref(html, /<link[^>]*rel=["']shortcut icon["'][^>]*>/i);
     if (!url) url = this.extractLinkHref(html, /<link[^>]*rel=["']apple-touch-icon["'][^>]*>/i);
-    
+
     if (url) {
-      try { return new URL(url, base).href; } catch { return url; }
+      try {
+        return new URL(url, base).href;
+      } catch {
+        return url;
+      }
     }
-    
+
     // Fallback to /favicon.ico
-    try { return new URL('/favicon.ico', base).href; } catch { return null; }
+    try {
+      return new URL('/favicon.ico', base).href;
+    } catch {
+      return null;
+    }
   }
 
   extractLang(html) {
@@ -318,7 +417,8 @@ class UnicodeCrawler {
 
   extractLinks(html, base) {
     const hostname = base.hostname;
-    let internal = 0, external = 0;
+    let internal = 0,
+      external = 0;
     const anchorTexts = [];
     const internalUrls = [];
     const externalUrls = [];
@@ -338,18 +438,37 @@ class UnicodeCrawler {
           if (text && text.length > 2 && text.length < 100 && anchorTexts.length < 20) {
             anchorTexts.push(text);
           }
-          linkObjects.push({ url: urlStr, text, isExternal: false, nofollow: isNofollow, hostname: url.hostname });
+          linkObjects.push({
+            url: urlStr,
+            text,
+            isExternal: false,
+            nofollow: isNofollow,
+            hostname: url.hostname,
+          });
         } else {
           external++;
           const urlStr = url.href;
           if (!externalUrls.includes(urlStr)) externalUrls.push(urlStr);
-          linkObjects.push({ url: urlStr, text, isExternal: true, nofollow: isNofollow, hostname: url.hostname });
+          linkObjects.push({
+            url: urlStr,
+            text,
+            isExternal: true,
+            nofollow: isNofollow,
+            hostname: url.hostname,
+          });
         }
       } catch {
         // Invalid URL, skip
       }
     }
-    return { internal, external, anchor_texts: anchorTexts, internalUrls, externalUrls, linkObjects };
+    return {
+      internal,
+      external,
+      anchor_texts: anchorTexts,
+      internalUrls,
+      externalUrls,
+      linkObjects,
+    };
   }
 
   async fetchSitemap(baseUrl) {
@@ -360,9 +479,14 @@ class UnicodeCrawler {
 
     for (const url of sitemapUrls) {
       try {
+        if (!isSafeUrl(url)) continue;
         const controller = new AbortController();
         const timeout = setTimeout(() => controller.abort(), 5000);
-        const resp = await fetch(url, { headers: this.headers, signal: controller.signal });
+        const resp = await fetch(url, {
+          headers: this.headers,
+          signal: controller.signal,
+          redirect: 'follow',
+        });
         clearTimeout(timeout);
 
         if (!resp.ok) continue;
@@ -389,7 +513,7 @@ class UnicodeCrawler {
       robots: this.extractMetaNameContent(html, 'robots'),
       canonical: this.extractLinkHref(html, /<link[^>]*rel=["']canonical["'][^>]*>/i),
       keywords: this.extractMetaNameContent(html, 'keywords'),
-      author: this.extractMetaNameContent(html, 'author')
+      author: this.extractMetaNameContent(html, 'author'),
     };
   }
 
@@ -454,7 +578,18 @@ class UnicodeCrawler {
   extractVideo(html, base) {
     const url = this.extractMetaPropertyContent(html, 'og:video');
     const type = this.extractMetaPropertyContent(html, 'og:video:type');
-    return { url: url ? (() => { try { return new URL(url, base).href; } catch { return url; } })() : null, type };
+    return {
+      url: url
+        ? (() => {
+            try {
+              return new URL(url, base).href;
+            } catch {
+              return url;
+            }
+          })()
+        : null,
+      type,
+    };
   }
 
   extractRating(jsonLd, html) {
@@ -463,7 +598,7 @@ class UnicodeCrawler {
       if (block.aggregateRating) {
         return {
           value: block.aggregateRating.ratingValue || null,
-          count: block.aggregateRating.ratingCount || block.aggregateRating.reviewCount || null
+          count: block.aggregateRating.ratingCount || block.aggregateRating.reviewCount || null,
         };
       }
     }
@@ -508,18 +643,18 @@ class UnicodeCrawler {
   // ==================== DOWNLOAD HELPERS ====================
 
   async downloadAsset(url, punycode, destDir, maxSize = 65536) {
-    if (!url) return null;
-    
+    if (!url || !isSafeUrl(url)) return null;
+
     const hash = this.hashPunycode(punycode);
-    
+
     // Detect extension from URL or default to .ico
     let ext = path.extname(new URL(url).pathname).toLowerCase();
     if (!ext || ext.length > 5) ext = '.ico';
     if (ext === '.jpeg') ext = '.jpg';
-    
+
     const filename = `${hash}${ext}`;
     const filepath = path.join(destDir, filename);
-    const webPath = `/favicons/${filename}`;
+    const _webPath = `/favicons/${filename}`;
 
     // Skip if already cached
     if (fs.existsSync(filepath)) {
@@ -530,29 +665,29 @@ class UnicodeCrawler {
     try {
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), 8000);
-      
+
       const resp = await fetch(url, {
-        headers: { ...this.headers, 'Accept': 'image/*' },
-        signal: controller.signal
+        headers: { ...this.headers, Accept: 'image/*' },
+        signal: controller.signal,
       });
-      
+
       clearTimeout(timeout);
-      
+
       if (!resp.ok) return null;
-      
+
       const contentType = resp.headers.get('content-type') || '';
       if (!contentType.includes('image') && !url.endsWith('.ico')) {
         return null; // Not an image
       }
-      
+
       const buffer = await resp.arrayBuffer();
       if (buffer.byteLength > maxSize) return null; // Too large
-      
+
       fs.writeFileSync(filepath, Buffer.from(buffer));
-      
+
       const webPathDir = path.basename(destDir);
       return `/${webPathDir}/${filename}`;
-    } catch (e) {
+    } catch (_e) {
       return null;
     }
   }
@@ -571,9 +706,9 @@ class UnicodeCrawler {
     const { domain, punycode } = this.normalizeDomain(input);
     const entry = this.matchLexicon(punycode);
 
-    const existing = this.db.prepare(
-      'SELECT id, content_hash FROM indexed_sites WHERE domain = ?'
-    ).get(domain);
+    const existing = this.db
+      .prepare('SELECT id, content_hash FROM indexed_sites WHERE domain = ?')
+      .get(domain);
 
     const result = await this.fetchSite(punycode.startsWith('xn--') ? punycode : domain);
 
@@ -589,15 +724,19 @@ class UnicodeCrawler {
     }
 
     if (existing && existing.content_hash === result.content_hash) {
-      this.db.prepare(`
+      this.db
+        .prepare(`
         UPDATE indexed_sites SET last_crawled = datetime('now') WHERE id = ?
-      `).run(existing.id);
+      `)
+        .run(existing.id);
       return { domain, status: 'unchanged', cached: true };
     }
 
     // Download favicon and OG image
     const faviconPath = await this.downloadFavicon(result.favicon_url, punycode);
-    const ogImagePath = result.og_image ? await this.downloadOgImage(result.og_image, punycode) : null;
+    const ogImagePath = result.og_image
+      ? await this.downloadOgImage(result.og_image, punycode)
+      : null;
 
     const stmt = this.db.prepare(`
       INSERT INTO indexed_sites 
@@ -673,17 +812,56 @@ class UnicodeCrawler {
     `);
 
     stmt.run(
-      domain, punycode,
-      result.title, result.description, result.h1, result.first_p, result.content_snippet,
-      result.og_title, result.og_description, result.og_image, result.og_type, result.og_site_name, result.og_url, result.og_locale,
-      result.twitter_title, result.twitter_description, result.twitter_image, result.twitter_card, result.twitter_site,
-      result.json_ld, result.favicon_url, faviconPath, ogImagePath,
-      result.lang, result.h1_count, result.h2_count, result.h3_count, result.h4_count, result.h5_count, result.h6_count, result.headings_h2,
-      result.internal_links, result.external_links, result.anchor_texts, result.word_count, result.content_ratio,
-      result.meta_robots, result.canonical_url, result.meta_keywords, result.meta_author,
-      result.sitemap_url, result.sitemap_entries,
-      result.og_video, result.og_video_type, result.rating_value, result.rating_count,
-      result.response_time_ms, result.content_length, result.redirect_count, result.published_date,
+      domain,
+      punycode,
+      result.title,
+      result.description,
+      result.h1,
+      result.first_p,
+      result.content_snippet,
+      result.og_title,
+      result.og_description,
+      result.og_image,
+      result.og_type,
+      result.og_site_name,
+      result.og_url,
+      result.og_locale,
+      result.twitter_title,
+      result.twitter_description,
+      result.twitter_image,
+      result.twitter_card,
+      result.twitter_site,
+      result.json_ld,
+      result.favicon_url,
+      faviconPath,
+      ogImagePath,
+      result.lang,
+      result.h1_count,
+      result.h2_count,
+      result.h3_count,
+      result.h4_count,
+      result.h5_count,
+      result.h6_count,
+      result.headings_h2,
+      result.internal_links,
+      result.external_links,
+      result.anchor_texts,
+      result.word_count,
+      result.content_ratio,
+      result.meta_robots,
+      result.canonical_url,
+      result.meta_keywords,
+      result.meta_author,
+      result.sitemap_url,
+      result.sitemap_entries,
+      result.og_video,
+      result.og_video_type,
+      result.rating_value,
+      result.rating_count,
+      result.response_time_ms,
+      result.content_length,
+      result.redirect_count,
+      result.published_date,
       entry ? entry.id : null,
       entry ? entry.pantheon : null,
       entry ? entry.tier : null,
@@ -701,19 +879,20 @@ class UnicodeCrawler {
     }
 
     return {
-      domain, status: 'active',
+      domain,
+      status: 'active',
       title: result.title,
       description: result.description,
       matchedEntry: entry ? entry.id : null,
       faviconPath,
-      ogImagePath
+      ogImagePath,
     };
   }
 
   async crawlBulk(domains, concurrency = 3) {
     const results = [];
     const queue = [...domains];
-    
+
     const worker = async () => {
       while (queue.length) {
         const domain = queue.shift();
@@ -731,42 +910,41 @@ class UnicodeCrawler {
   }
 
   async recrawlAll() {
-    const sites = this.db.prepare(
-      'SELECT punycode FROM indexed_sites WHERE status = "active" OR status = "pending"'
-    ).all();
-    return this.crawlBulk(sites.map(s => s.punycode));
+    const sites = this.db
+      .prepare('SELECT punycode FROM indexed_sites WHERE status = "active" OR status = "pending"')
+      .all();
+    return this.crawlBulk(sites.map((s) => s.punycode));
   }
 
   // ==================== DEEP CRAWL ====================
 
-  async fetchPage(url, timeoutMs = 8000) {
+  async fetchPage(url, _timeoutMs = 8000) {
+    if (!isSafeUrl(url)) return null;
     try {
-      const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), timeoutMs);
-      const resp = await fetch(url, { headers: this.headers, signal: controller.signal, redirect: 'follow' });
-      clearTimeout(timeout);
-
-      if (!resp.ok) return null;
-      const html = await resp.text();
-      return { url: resp.url, html };
+      const result = await this.fetchWithRedirects(url, Date.now(), 3);
+      if (!result) return null;
+      return { url: result.finalUrl, html: result.html };
     } catch {
       return null;
     }
   }
 
-  extractPageMeta(html, baseUrl) {
+  extractPageMeta(html, _baseUrl) {
     const title = this.extractTag(html, /<title[^>]*>([^<]*)<\/title>/i);
     const description = this.extractMetaNameContent(html, 'description');
     const h1 = this.extractTag(html, /<h1[^>]*>([^<]*)<\/h1>/i);
-    const text = html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
-    const words = text.split(/\s+/).filter(w => w.length > 0);
+    const text = html
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+    const words = text.split(/\s+/).filter((w) => w.length > 0);
     const contentSnippet = text.substring(0, 500);
     return {
       title: this.sanitizeText(title) || '',
       description: this.sanitizeText(description) || '',
       h1: this.sanitizeText(h1) || '',
       content_snippet: contentSnippet,
-      word_count: words.length
+      word_count: words.length,
     };
   }
 
@@ -789,7 +967,12 @@ class UnicodeCrawler {
     // Fetch home page HTML to extract links
     const homeFetch = await this.fetchPage(`https://${punycode}`);
     if (!homeFetch) {
-      return { domain, status: 'error', error: 'Could not fetch home page for link extraction', discovered: [] };
+      return {
+        domain,
+        status: 'error',
+        error: 'Could not fetch home page for link extraction',
+        discovered: [],
+      };
     }
 
     const base = new URL(homeFetch.url);
@@ -819,8 +1002,16 @@ class UnicodeCrawler {
       const meta = this.extractPageMeta(page.html, page.url);
       const hash = this.hash(page.html);
 
-      insertPage.run(siteId, page.url, meta.title, meta.description, meta.h1,
-        meta.content_snippet, meta.word_count, hash);
+      insertPage.run(
+        siteId,
+        page.url,
+        meta.title,
+        meta.description,
+        meta.h1,
+        meta.content_snippet,
+        meta.word_count,
+        hash
+      );
       pagesCrawled++;
 
       // Also extract links from this page for outbound discovery and link graph
@@ -829,7 +1020,7 @@ class UnicodeCrawler {
         if (!allOutboundUrls.includes(outUrl)) allOutboundUrls.push(outUrl);
       }
       for (const linkObj of pageLinks.linkObjects) {
-        if (!allLinkObjects.some(l => l.url === linkObj.url && l.hostname === linkObj.hostname)) {
+        if (!allLinkObjects.some((l) => l.url === linkObj.url && l.hostname === linkObj.hostname)) {
           allLinkObjects.push(linkObj);
         }
       }
@@ -846,9 +1037,18 @@ class UnicodeCrawler {
       if (!link.isExternal) continue; // Only cross-site links matter for PageRank
 
       try {
-        const target = this.db.prepare('SELECT id FROM indexed_sites WHERE punycode = ? OR domain = ?').get(link.hostname, link.hostname);
+        const target = this.db
+          .prepare('SELECT id FROM indexed_sites WHERE punycode = ? OR domain = ?')
+          .get(link.hostname, link.hostname);
         if (!target) continue;
-        insertLink.run(siteId, target.id, homeFetch.url, link.url, link.text || '', link.nofollow ? 1 : 0);
+        insertLink.run(
+          siteId,
+          target.id,
+          homeFetch.url,
+          link.url,
+          link.text || '',
+          link.nofollow ? 1 : 0
+        );
         linksStored++;
       } catch {
         // Skip errors
@@ -856,11 +1056,13 @@ class UnicodeCrawler {
     }
 
     // Update incoming_links counts for all targets of this site
-    this.db.prepare(`
+    this.db
+      .prepare(`
       UPDATE indexed_sites SET incoming_links = (
         SELECT COUNT(*) FROM links WHERE to_site_id = indexed_sites.id AND nofollow = 0
       )
-    `).run();
+    `)
+      .run();
 
     // Discover new Unicode domains from outbound links
     const discovered = [];
@@ -879,13 +1081,21 @@ class UnicodeCrawler {
         if (seen.has(hostname)) continue;
         seen.add(hostname);
 
-        const existing = this.db.prepare('SELECT 1 FROM indexed_sites WHERE punycode = ?').get(hostname);
+        const existing = this.db
+          .prepare('SELECT 1 FROM indexed_sites WHERE punycode = ?')
+          .get(hostname);
         if (existing) continue;
 
-        const queued = this.db.prepare('SELECT 1 FROM crawl_queue WHERE punycode = ?').get(hostname);
+        const queued = this.db
+          .prepare('SELECT 1 FROM crawl_queue WHERE punycode = ?')
+          .get(hostname);
         if (queued) continue;
 
-        discovered.push({ domain: require('url').domainToUnicode(hostname), punycode: hostname, source: 'outbound-link' });
+        discovered.push({
+          domain: require('node:url').domainToUnicode(hostname),
+          punycode: hostname,
+          source: 'outbound-link',
+        });
       } catch {
         // Invalid URL
       }
@@ -899,7 +1109,7 @@ class UnicodeCrawler {
       outboundLinks: allOutboundUrls.length,
       linksStored,
       discoveredDomains: discovered.length,
-      discovered
+      discovered,
     };
   }
 }

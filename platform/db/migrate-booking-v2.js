@@ -1,5 +1,5 @@
 const Database = require('better-sqlite3');
-const path = require('path');
+const path = require('node:path');
 
 const DB_PATH = path.join(__dirname, 'punycodex.db');
 const db = new Database(DB_PATH);
@@ -29,15 +29,21 @@ try {
 }
 
 // ─── Update existing slots to nike ───
-const updatedNike = db.prepare(`UPDATE ad_slots SET site_slug = 'nike' WHERE site_slug IS NULL OR site_slug = ''`).run();
+const updatedNike = db
+  .prepare(`UPDATE ad_slots SET site_slug = 'nike' WHERE site_slug IS NULL OR site_slug = ''`)
+  .run();
 console.log(`Updated ${updatedNike.changes} existing slots to site_slug='nike'`);
 
 // ─── Update existing bookings to nike ───
-const updatedBookings = db.prepare(`UPDATE bookings SET site_slug = 'nike' WHERE site_slug IS NULL OR site_slug = ''`).run();
+const updatedBookings = db
+  .prepare(`UPDATE bookings SET site_slug = 'nike' WHERE site_slug IS NULL OR site_slug = ''`)
+  .run();
 console.log(`Updated ${updatedBookings.changes} existing bookings to site_slug='nike'`);
 
 // ─── Seed Hermes slots if none exist ───
-const hermesCount = db.prepare(`SELECT COUNT(*) as c FROM ad_slots WHERE site_slug = 'hermes'`).get().c;
+const hermesCount = db
+  .prepare(`SELECT COUNT(*) as c FROM ad_slots WHERE site_slug = 'hermes'`)
+  .get().c;
 if (hermesCount === 0) {
   const insert = db.prepare(`
     INSERT INTO ad_slots (id, name, slug, width, height, price_cents, aspect_ratio, sort_order, is_bundle, site_slug)
@@ -67,9 +73,13 @@ if (hermesCount === 0) {
 }
 
 // ─── Seed bundle_members for Hermes (slot 26 → slots 14-25) ───
-const hermesBundleCount = db.prepare('SELECT COUNT(*) as c FROM bundle_members WHERE bundle_slot_id = 26').get().c;
+const hermesBundleCount = db
+  .prepare('SELECT COUNT(*) as c FROM bundle_members WHERE bundle_slot_id = 26')
+  .get().c;
 if (hermesBundleCount === 0) {
-  const insertBundle = db.prepare('INSERT INTO bundle_members (bundle_slot_id, member_slot_id) VALUES (?, ?)');
+  const insertBundle = db.prepare(
+    'INSERT INTO bundle_members (bundle_slot_id, member_slot_id) VALUES (?, ?)'
+  );
   for (let i = 14; i <= 25; i++) {
     insertBundle.run(26, i);
   }
@@ -80,7 +90,13 @@ if (hermesBundleCount === 0) {
 
 console.log('Booking v2 migration complete');
 console.log('Total slots:', db.prepare('SELECT COUNT(*) as c FROM ad_slots').get().c);
-console.log('Nike slots:', db.prepare("SELECT COUNT(*) as c FROM ad_slots WHERE site_slug = 'nike'").get().c);
-console.log('Hermes slots:', db.prepare("SELECT COUNT(*) as c FROM ad_slots WHERE site_slug = 'hermes'").get().c);
+console.log(
+  'Nike slots:',
+  db.prepare("SELECT COUNT(*) as c FROM ad_slots WHERE site_slug = 'nike'").get().c
+);
+console.log(
+  'Hermes slots:',
+  db.prepare("SELECT COUNT(*) as c FROM ad_slots WHERE site_slug = 'hermes'").get().c
+);
 
 db.close();

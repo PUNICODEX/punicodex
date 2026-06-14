@@ -1,7 +1,7 @@
 const { app, BrowserWindow, ipcMain, shell } = require('electron');
-const path = require('path');
-const fs = require('fs');
-const { spawn } = require('child_process');
+const path = require('node:path');
+const fs = require('node:fs');
+const { spawn } = require('node:child_process');
 
 const SERVER_PORT = 3456;
 const SERVER_URL = `http://localhost:${SERVER_PORT}`;
@@ -22,9 +22,11 @@ let lexicon = null;
 
 function loadLexicon() {
   try {
-    const raw = require('fs').readFileSync(LEXICON_PATH, 'utf8');
+    const raw = require('node:fs').readFileSync(LEXICON_PATH, 'utf8');
     lexicon = JSON.parse(raw);
-    console.log(`[Main] Canon loaded: ${lexicon.totalEntries} entries, ${lexicon.totalBreakdowns} breakdowns`);
+    console.log(
+      `[Main] Canon loaded: ${lexicon.totalEntries} entries, ${lexicon.totalBreakdowns} breakdowns`
+    );
   } catch (err) {
     console.error('[Main] Canon could not be loaded:', err.message);
     lexicon = { entries: [], breakdowns: [], pantheons: [] };
@@ -32,31 +34,32 @@ function loadLexicon() {
 }
 
 function searchLexicon(query) {
-  if (!lexicon || !lexicon.entries) return [];
+  if (!lexicon?.entries) return [];
   const q = query.toLowerCase();
-  return lexicon.entries.filter(e =>
-    (e.ascii && e.ascii.toLowerCase().includes(q)) ||
-    (e.unicode && e.unicode.toLowerCase().includes(q)) ||
-    (e.greek && e.greek.toLowerCase().includes(q)) ||
-    (e.meaning && e.meaning.toLowerCase().includes(q))
+  return lexicon.entries.filter(
+    (e) =>
+      e.ascii?.toLowerCase().includes(q) ||
+      e.unicode?.toLowerCase().includes(q) ||
+      e.greek?.toLowerCase().includes(q) ||
+      e.meaning?.toLowerCase().includes(q)
   );
 }
 
 function getLexiconEntry(id) {
-  if (!lexicon || !lexicon.entries) return null;
-  const entry = lexicon.entries.find(e => e.id === id);
+  if (!lexicon?.entries) return null;
+  const entry = lexicon.entries.find((e) => e.id === id);
   if (!entry) return null;
   return {
     ...entry,
-    breakdown: (lexicon.breakdowns || []).filter(b => b.entryId === id)
+    breakdown: (lexicon.breakdowns || []).filter((b) => b.entryId === id),
   };
 }
 
 function getLexiconVariants(id) {
-  if (!lexicon || !lexicon.entries) return [];
-  const entry = lexicon.entries.find(e => e.id === id);
+  if (!lexicon?.entries) return [];
+  const entry = lexicon.entries.find((e) => e.id === id);
   if (!entry) return [];
-  return lexicon.entries.filter(e => e.ascii === entry.ascii && e.id !== id);
+  return lexicon.entries.filter((e) => e.ascii === entry.ascii && e.id !== id);
 }
 
 loadLexicon();
@@ -72,7 +75,7 @@ function startServer() {
     serverProcess = spawn('node', [SERVER_SCRIPT], {
       cwd: PLATFORM_DIR,
       stdio: ['ignore', 'pipe', 'pipe'],
-      env: { ...process.env, PORT: String(SERVER_PORT) }
+      env: { ...process.env, PORT: String(SERVER_PORT) },
     });
 
     let stdoutBuffer = '';
@@ -83,11 +86,12 @@ function startServer() {
       stdoutBuffer += text;
       console.log(`[Oracle] ${text.trim()}`);
 
-      if (!hasResolved && (
-        stdoutBuffer.includes(`localhost:${SERVER_PORT}`) ||
-        stdoutBuffer.includes('running on') ||
-        stdoutBuffer.includes('Server running')
-      )) {
+      if (
+        !hasResolved &&
+        (stdoutBuffer.includes(`localhost:${SERVER_PORT}`) ||
+          stdoutBuffer.includes('running on') ||
+          stdoutBuffer.includes('Server running'))
+      ) {
         hasResolved = true;
         serverReady = true;
         console.log('[Main] Oracle flame detected');
@@ -137,7 +141,7 @@ function stopServer() {
 
 async function restartServer() {
   stopServer();
-  await new Promise(r => setTimeout(r, 500));
+  await new Promise((r) => setTimeout(r, 500));
   return startServer();
 }
 
@@ -158,8 +162,8 @@ async function createWindow() {
       nodeIntegration: false,
       contextIsolation: true,
       preload: path.join(__dirname, 'preload.js'),
-      webviewTag: true
-    }
+      webviewTag: true,
+    },
   });
 
   mainWindow.loadFile(path.join(__dirname, 'renderer', 'index.html'));
@@ -219,15 +223,15 @@ ipcMain.handle('window-close', () => {
   if (mainWindow) mainWindow.close();
 });
 
-ipcMain.handle('open-external', (event, url) => {
+ipcMain.handle('open-external', (_event, url) => {
   shell.openExternal(url);
 });
 
 // Platform API proxy
-ipcMain.handle('api-get', async (event, endpoint) => {
+ipcMain.handle('api-get', async (_event, endpoint) => {
   try {
     const url = `${SERVER_URL}${endpoint}`;
-    const response = await fetch(url, { headers: { 'Accept': 'application/json' } });
+    const response = await fetch(url, { headers: { Accept: 'application/json' } });
     if (!response.ok) return { ok: false, status: response.status, error: response.statusText };
     const data = await response.json();
     return { ok: true, data };
@@ -260,19 +264,19 @@ ipcMain.handle('server-restart', async () => {
 });
 
 // URL validation & punycode conversion
-ipcMain.handle('normalize-url', (event, input) => normalizeInput(input));
+ipcMain.handle('normalize-url', (_event, input) => normalizeInput(input));
 
 // Offline Lexicon — The Canon (always available)
-ipcMain.handle('lexicon-search', (event, query) => searchLexicon(query));
-ipcMain.handle('lexicon-entry', (event, id) => getLexiconEntry(id));
-ipcMain.handle('lexicon-variants', (event, id) => getLexiconVariants(id));
+ipcMain.handle('lexicon-search', (_event, query) => searchLexicon(query));
+ipcMain.handle('lexicon-entry', (_event, id) => getLexiconEntry(id));
+ipcMain.handle('lexicon-variants', (_event, id) => getLexiconVariants(id));
 ipcMain.handle('lexicon-stats', () => ({
   total: lexicon?.totalEntries || 0,
-  pantheons: lexicon?.pantheons || []
+  pantheons: lexicon?.pantheons || [],
 }));
 
 // Session persistence — sacred chronicle
-ipcMain.handle('save-session', (event, urls) => {
+ipcMain.handle('save-session', (_event, urls) => {
   try {
     fs.writeFileSync(SESSION_PATH, JSON.stringify({ urls, savedAt: new Date().toISOString() }));
   } catch (err) {
@@ -298,9 +302,9 @@ function normalizeInput(input) {
 
   if (trimmed.startsWith('xn--')) {
     try {
-      const unicode = require('url').domainToUnicode(trimmed);
+      const unicode = require('node:url').domainToUnicode(trimmed);
       return { type: 'punycode', punycode: trimmed, unicode, url: `https://${trimmed}` };
-    } catch (e) {
+    } catch (_e) {
       return { type: 'search', query: trimmed };
     }
   }
@@ -309,9 +313,9 @@ function normalizeInput(input) {
     const hasNonAscii = /[^\x00-\x7F]/.test(trimmed);
     if (hasNonAscii) {
       try {
-        const punycode = require('url').domainToASCII(trimmed);
+        const punycode = require('node:url').domainToASCII(trimmed);
         return { type: 'unicode-domain', domain: trimmed, punycode, url: `https://${punycode}` };
-      } catch (e) {
+      } catch (_e) {
         return { type: 'search', query: trimmed };
       }
     }

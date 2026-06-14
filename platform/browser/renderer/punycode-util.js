@@ -3,7 +3,7 @@
  * Mortal translations of divine names.
  */
 
-const PunyUtil = {
+const _PunyUtil = {
   isPunycode(str) {
     return str.startsWith('xn--');
   },
@@ -11,16 +11,16 @@ const PunyUtil = {
   toUnicode(punycodeDomain) {
     try {
       // URL API handles IDN conversion in modern browsers
-      return new URL('https://' + punycodeDomain).hostname;
-    } catch (e) {
+      return new URL(`https://${punycodeDomain}`).hostname;
+    } catch (_e) {
       return punycodeDomain;
     }
   },
 
   toPunycode(unicodeDomain) {
     try {
-      return new URL('https://' + unicodeDomain).hostname;
-    } catch (e) {
+      return new URL(`https://${unicodeDomain}`).hostname;
+    } catch (_e) {
       return unicodeDomain;
     }
   },
@@ -28,14 +28,14 @@ const PunyUtil = {
   extractDomain(url) {
     try {
       return new URL(url).hostname;
-    } catch (e) {
+    } catch (_e) {
       // Fallback: extract domain-like part
-      const match = url.match(/^(?:https?:\/\/)?([^\/]+)/);
+      const match = url.match(/^(?:https?:\/\/)?([^/]+)/);
       return match ? match[1] : url;
     }
   },
 
   hasUnicode(str) {
     return /[^\x00-\x7F]/.test(str);
-  }
+  },
 };

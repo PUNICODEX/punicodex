@@ -3,7 +3,7 @@
  * Each votive tablet has its own webview. Switching reveals. Never reloads.
  */
 
-const WebviewManager = (function() {
+const _WebviewManager = (function () {
   const container = document.getElementById('webviewContainer');
   const btnBack = document.getElementById('btnBack');
   const btnForward = document.getElementById('btnForward');
@@ -14,8 +14,8 @@ const WebviewManager = (function() {
   const btnErrorProceed = document.getElementById('btnErrorProceed');
   const progressBar = document.getElementById('progressBar');
 
-  const webviews = new Map();   // tabId -> webview element
-  const tabErrors = new Map();  // tabId -> { url, description }
+  const webviews = new Map(); // tabId -> webview element
+  const tabErrors = new Map(); // tabId -> { url, description }
   const tabSecurity = new Map(); // tabId -> 'secure' | 'insecure' | 'unknown'
   let activeTabId = null;
 
@@ -112,12 +112,12 @@ const WebviewManager = (function() {
 
   function goBack() {
     const wv = getActiveWebview();
-    if (wv && wv.canGoBack()) wv.goBack();
+    if (wv?.canGoBack()) wv.goBack();
   }
 
   function goForward() {
     const wv = getActiveWebview();
-    if (wv && wv.canGoForward()) wv.goForward();
+    if (wv?.canGoForward()) wv.goForward();
   }
 
   function reload() {
@@ -130,7 +130,11 @@ const WebviewManager = (function() {
   function getCurrentUrl() {
     const wv = getActiveWebview();
     if (!wv) return '';
-    try { return wv.getURL(); } catch (e) { return wv.src || ''; }
+    try {
+      return wv.getURL();
+    } catch (_e) {
+      return wv.src || '';
+    }
   }
 
   // ═══════════════════════════════════════════════════════════
@@ -160,7 +164,7 @@ const WebviewManager = (function() {
       Tabs.updateTab(tabId, {
         loading: false,
         canGoBack: wv.canGoBack(),
-        canGoForward: wv.canGoForward()
+        canGoForward: wv.canGoForward(),
       });
     }
   }
@@ -230,14 +234,18 @@ const WebviewManager = (function() {
           return;
         }
       }
-    } catch (e) { /* continue */ }
+    } catch (_e) {
+      /* continue */
+    }
 
     // Strategy 2: Search by unicode domain name (strip TLD)
     try {
       const nameWithoutTld = domain.replace(/\.[^.]+$/, '');
-      const searchRes = await window.punycodex.apiGet(`/api/search?q=${encodeURIComponent(nameWithoutTld)}&limit=5`);
+      const searchRes = await window.punycodex.apiGet(
+        `/api/search?q=${encodeURIComponent(nameWithoutTld)}&limit=5`
+      );
       if (searchRes.ok && searchRes.data.entries && searchRes.data.entries.length > 0) {
-        const match = searchRes.data.entries.find(e => {
+        const match = searchRes.data.entries.find((e) => {
           const entryDomain = (e.unicode || e.ascii).toLowerCase();
           return entryDomain === nameWithoutTld.toLowerCase();
         });
@@ -246,13 +254,17 @@ const WebviewManager = (function() {
           return;
         }
       }
-    } catch (e) { /* continue */ }
+    } catch (_e) {
+      /* continue */
+    }
 
     // Strategy 3: ASCII core fallback
     if (!isUnicode) {
       try {
         const asciiCore = domain.replace(/\.[^.]+$/, '');
-        const asciiRes = await window.punycodex.apiGet(`/api/search?q=${encodeURIComponent(asciiCore)}&limit=1`);
+        const asciiRes = await window.punycodex.apiGet(
+          `/api/search?q=${encodeURIComponent(asciiCore)}&limit=1`
+        );
         if (asciiRes.ok && asciiRes.data.entries && asciiRes.data.entries.length > 0) {
           const entry = asciiRes.data.entries[0];
           if (entry.ascii.toLowerCase() === asciiCore.toLowerCase()) {
@@ -260,7 +272,9 @@ const WebviewManager = (function() {
             return;
           }
         }
-      } catch (e) { /* continue */ }
+      } catch (_e) {
+        /* continue */
+      }
     }
 
     // No Canon match
@@ -291,7 +305,7 @@ const WebviewManager = (function() {
         punycode: siteData.punycode,
         last_crawled: siteData.last_crawled,
         isFlagship: siteData.is_flagship,
-        status: siteData.status
+        status: siteData.status,
       };
     }
 
@@ -302,7 +316,9 @@ const WebviewManager = (function() {
         entry.site = apiRes.data.site || entry.site;
         entry.availability = apiRes.data.availability || entry.availability;
       }
-    } catch (e) { /* server silent */ }
+    } catch (_e) {
+      /* server silent */
+    }
 
     Omnibox.updateDisplay(url, entry, entry.site || null);
     Sidebar.load(entry);
@@ -315,7 +331,7 @@ const WebviewManager = (function() {
       } else {
         VariantBanner.hide();
       }
-    } catch (e) {
+    } catch (_e) {
       VariantBanner.hide();
     }
   }
@@ -344,8 +360,8 @@ const WebviewManager = (function() {
 
   function updateNavState() {
     const wv = getActiveWebview();
-    btnBack.disabled = !wv || !wv.canGoBack();
-    btnForward.disabled = !wv || !wv.canGoForward();
+    btnBack.disabled = !wv?.canGoBack();
+    btnForward.disabled = !wv?.canGoForward();
   }
 
   btnBack.addEventListener('click', goBack);
@@ -389,6 +405,6 @@ const WebviewManager = (function() {
     goForward,
     reload,
     getCurrentUrl,
-    getActiveWebview
+    getActiveWebview,
   };
 })();

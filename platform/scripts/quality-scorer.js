@@ -6,13 +6,43 @@
 const { computeContentQuality } = require('./content-quality');
 
 const SPAM_KEYWORDS = [
-  'casino', 'poker', 'betting', 'gambling', 'lottery', 'jackpot',
-  'viagra', 'cialis', 'pharmacy', 'pills', 'meds', 'drugs',
-  'porn', 'xxx', 'adult', 'escort', 'sex', 'nude',
-  'loan', 'payday', 'credit', 'debt', 'mortgage',
-  'weight loss', 'diet pill', 'fat burner', 'muscle',
-  'free money', 'earn $', 'make $', 'work from home', 'mlm',
-  'click here', 'limited time', 'act now', 'urgent', 'congratulations you won'
+  'casino',
+  'poker',
+  'betting',
+  'gambling',
+  'lottery',
+  'jackpot',
+  'viagra',
+  'cialis',
+  'pharmacy',
+  'pills',
+  'meds',
+  'drugs',
+  'porn',
+  'xxx',
+  'adult',
+  'escort',
+  'sex',
+  'nude',
+  'loan',
+  'payday',
+  'credit',
+  'debt',
+  'mortgage',
+  'weight loss',
+  'diet pill',
+  'fat burner',
+  'muscle',
+  'free money',
+  'earn $',
+  'make $',
+  'work from home',
+  'mlm',
+  'click here',
+  'limited time',
+  'act now',
+  'urgent',
+  'congratulations you won',
 ];
 
 const PARKED_PATTERNS = [
@@ -24,7 +54,7 @@ const PARKED_PATTERNS = [
   /buy this domain/i,
   /parked free/i,
   /coming soon/i,
-  /under construction/i
+  /under construction/i,
 ];
 
 function scoreQuality(site) {
@@ -37,8 +67,10 @@ function scoreQuality(site) {
     site.description || '',
     site.h1 || '',
     site.first_p || '',
-    site.content_snippet || ''
-  ].join(' ').toLowerCase();
+    site.content_snippet || '',
+  ]
+    .join(' ')
+    .toLowerCase();
 
   // ====== SPAM SIGNALS ======
 
@@ -156,7 +188,7 @@ function scoreQuality(site) {
     spamScore: parseFloat(spamScore.toFixed(3)),
     qualityScore: parseFloat(qualityScore.toFixed(3)),
     reasons: reasons.length > 0 ? reasons : ['passed all checks'],
-    contentQuality
+    contentQuality,
   };
 }
 

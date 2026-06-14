@@ -9,7 +9,7 @@ module.exports = (req, res) => {
   try {
     const { domain, email } = req.body || {};
     if (!domain) return res.status(400).json({ error: 'domain required' });
-    const result = submitDomain(domain, email ? 'webmaster:' + email : 'webmaster');
+    const result = submitDomain(domain, email ? `webmaster:${email}` : 'webmaster');
     res.json(result);
   } catch (err) {
     handleError(res, err);

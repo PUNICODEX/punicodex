@@ -6,6 +6,7 @@
 const LEXICON = [
   {
     id: 'apollon',
+    hasAdSite: true,
     ascii: 'apollon',
     unicode: 'Apóllōn',
     greek: 'Ἀπόλλων',
@@ -104,12 +105,13 @@ const LEXICON = [
   },
   {
     id: 'hades',
+    hasAdSite: true,
     ascii: 'hades',
     unicode: 'Hádēs',
     greek: 'Ἅιδης',
     pantheon: 'greek',
-    tier: 'dual',
-    tierLabel: 'Dual-Tier',
+    tier: '1',
+    tierLabel: 'Tier 1',
     domain: 'Underworld, Wealth',
     meaning: 'The Unseen One (from ἀ- + εἶδον)',
     sources: [
@@ -180,6 +182,7 @@ const LEXICON = [
   },
   {
     id: 'hekate',
+    hasAdSite: true,
     ascii: 'hekate',
     unicode: 'Hekátē',
     greek: 'Ἑκάτη',
@@ -330,6 +333,7 @@ const LEXICON = [
   },
   {
     id: 'zeus',
+    hasAdSite: true,
     ascii: 'zeus',
     unicode: 'Zeús',
     greek: 'Ζεύς',
@@ -407,6 +411,7 @@ const LEXICON = [
   },
   {
     id: 'ares',
+    hasAdSite: true,
     ascii: 'ares',
     unicode: 'Árēs',
     greek: 'Ἄρης',
@@ -477,6 +482,7 @@ const LEXICON = [
   },
   {
     id: 'aphrodite',
+    hasAdSite: true,
     ascii: 'aphrodite',
     unicode: 'Aphrodítē',
     greek: 'Ἀφροδίτη',
@@ -577,6 +583,7 @@ const LEXICON = [
   },
   {
     id: 'athena',
+    hasAdSite: true,
     ascii: 'athena',
     unicode: 'Athénā',
     greek: 'Ἀθήνᾶ',
@@ -659,6 +666,7 @@ const LEXICON = [
   },
   {
     id: 'demeter',
+    hasAdSite: true,
     ascii: 'demeter',
     unicode: 'Dēmētēr',
     greek: 'Δημήτηρ',
@@ -734,6 +742,7 @@ const LEXICON = [
   },
   {
     id: 'hera',
+    hasAdSite: true,
     ascii: 'hera',
     unicode: 'Hēra',
     greek: 'Ἥρα',
@@ -874,6 +883,7 @@ const LEXICON = [
   },
   {
     id: 'hephaistos',
+    hasAdSite: true,
     ascii: 'hephaistos',
     unicode: 'Hēphaistos',
     greek: 'Ἥφαιστος',
@@ -967,6 +977,7 @@ const LEXICON = [
   },
   {
     id: 'hestia',
+    hasAdSite: true,
     ascii: 'hestia',
     unicode: 'Hestía',
     greek: 'Ἑστία',
@@ -1043,6 +1054,7 @@ const LEXICON = [
   },
   {
     id: 'poseidon',
+    hasAdSite: true,
     ascii: 'poseidon',
     unicode: 'Poseidôn',
     greek: 'Ποσειδῶν',
@@ -1130,6 +1142,7 @@ const LEXICON = [
   },
   {
     id: 'persephone',
+    hasAdSite: true,
     ascii: 'persephone',
     unicode: 'Persephonē',
     greek: 'Περσεφόνη',
@@ -1223,6 +1236,7 @@ const LEXICON = [
   },
   {
     id: 'prometheus',
+    hasAdSite: true,
     ascii: 'prometheus',
     unicode: 'Promētheus',
     greek: 'Προμηθεύς',
@@ -1316,6 +1330,7 @@ const LEXICON = [
   },
   {
     id: 'gaia',
+    hasAdSite: true,
     ascii: 'gaia',
     unicode: 'Gaîa',
     greek: 'Γαῖα',
@@ -1364,6 +1379,7 @@ const LEXICON = [
   },
   {
     id: 'chaos',
+    hasAdSite: true,
     ascii: 'chaos',
     unicode: 'Cháos',
     greek: 'Χάος',
@@ -1418,6 +1434,7 @@ const LEXICON = [
   },
   {
     id: 'tartaros',
+    hasAdSite: true,
     ascii: 'tartaros',
     unicode: 'Tártaros',
     greek: 'Τάρταρος',
@@ -1490,6 +1507,7 @@ const LEXICON = [
   },
   {
     id: 'pontos',
+    hasAdSite: true,
     ascii: 'pontos',
     unicode: 'Póntos',
     greek: 'Πόντος',
@@ -1871,6 +1889,7 @@ const LEXICON = [
   },
   {
     id: 'eros',
+    hasAdSite: true,
     ascii: 'eros',
     unicode: 'Erōs',
     greek: 'Ἔρως',
@@ -1913,6 +1932,7 @@ const LEXICON = [
   },
   {
     id: 'helios',
+    hasAdSite: true,
     ascii: 'helios',
     unicode: 'Hēlios',
     greek: 'Ἥλιος',
@@ -1988,6 +2008,7 @@ const LEXICON = [
   },
   {
     id: 'selene',
+    hasAdSite: true,
     ascii: 'selene',
     unicode: 'Selēnē',
     greek: 'Σελήνη',
@@ -2314,6 +2335,7 @@ const LEXICON = [
   },
   {
     id: 'artemis',
+    hasAdSite: true,
     ascii: 'artemis',
     unicode: 'Ártemis',
     greek: 'Ἄρτεμις',
@@ -2389,6 +2411,7 @@ const LEXICON = [
   },
   {
     id: 'atlas',
+    hasAdSite: true,
     ascii: 'atlas',
     unicode: 'Átlas',
     greek: 'Ἄτλας',
@@ -2450,6 +2473,7 @@ const LEXICON = [
   },
   {
     id: 'dionysos',
+    hasAdSite: true,
     ascii: 'dionysos',
     unicode: 'Diónysos',
     greek: 'Διόνυσος',
@@ -2523,6 +2547,7 @@ const LEXICON = [
   },
   {
     id: 'medousa',
+    hasAdSite: true,
     ascii: 'medousa',
     unicode: 'Médousa',
     greek: 'Μέδουσα',
@@ -2596,6 +2621,7 @@ const LEXICON = [
   },
   {
     id: 'kronos',
+    hasAdSite: true,
     ascii: 'kronos',
     unicode: 'Krónos',
     greek: 'Κρόνος',
@@ -2923,6 +2949,7 @@ const LEXICON = [
   },
   {
     id: 'olympos',
+    hasAdSite: true,
     ascii: 'olympos',
     unicode: 'Ólympos',
     greek: 'Ὄλυμπος',
@@ -2990,6 +3017,7 @@ const LEXICON = [
   },
   {
     id: 'athenai',
+    hasAdSite: true,
     ascii: 'athenai',
     unicode: 'Athēnai',
     greek: 'Ἀθῆναι',
@@ -3057,6 +3085,7 @@ const LEXICON = [
   },
   {
     id: 'sparte',
+    hasAdSite: true,
     ascii: 'sparte',
     unicode: 'Spártē',
     greek: 'Σπάρτη',
@@ -3118,6 +3147,7 @@ const LEXICON = [
   },
   {
     id: 'delphoi',
+    hasAdSite: true,
     ascii: 'delphoi',
     unicode: 'Delphoí',
     greek: 'Δελφοί',
@@ -4008,6 +4038,7 @@ const LEXICON = [
   },
   {
     id: 'ragnarok',
+    hasAdSite: true,
     ascii: 'ragnarok',
     unicode: 'Ragnarǫk',
     greek: '—',
@@ -4081,6 +4112,7 @@ const LEXICON = [
   },
   {
     id: 'midgardr',
+    hasAdSite: true,
     ascii: 'midgardr',
     unicode: 'Miðgarðr',
     greek: '—',
@@ -4161,6 +4193,7 @@ const LEXICON = [
   },
   {
     id: 'alfheimr',
+    hasAdSite: true,
     ascii: 'alfheimr',
     unicode: 'Álfheimr',
     greek: '—',
@@ -4234,6 +4267,7 @@ const LEXICON = [
   },
   {
     id: 'jotunheimr',
+    hasAdSite: true,
     ascii: 'jotunheimr',
     unicode: 'Jötunheimr',
     greek: '—',
@@ -4319,6 +4353,7 @@ const LEXICON = [
   },
   {
     id: 'helheimr',
+    hasAdSite: true,
     ascii: 'helheimr',
     unicode: 'Helheimr',
     greek: '—',
@@ -4535,6 +4570,7 @@ const LEXICON = [
   },
   {
     id: 'thor',
+    hasAdSite: true,
     ascii: 'thor',
     unicode: 'Þórr',
     greek: '—',
@@ -4604,6 +4640,7 @@ const LEXICON = [
   },
   {
     id: 'odinn',
+    hasAdSite: true,
     ascii: 'odinn',
     unicode: 'Óðinn',
     greek: '—',
@@ -5602,6 +5639,7 @@ const LEXICON = [
   },
   {
     id: 'horus',
+    hasAdSite: true,
     ascii: 'horus',
     unicode: 'Ḥr',
     greek: '—',
@@ -6094,6 +6132,7 @@ const LEXICON = [
   },
   {
     id: 'maat',
+    hasAdSite: true,
     ascii: 'maat',
     unicode: 'Mꜣꜥt',
     greek: '—',
@@ -6372,6 +6411,7 @@ const LEXICON = [
   },
   {
     id: 'shiva',
+    hasAdSite: true,
     ascii: 'shiva',
     unicode: 'Śiva',
     greek: '—',
@@ -6439,6 +6479,7 @@ const LEXICON = [
   },
   {
     id: 'vishnu',
+    hasAdSite: true,
     ascii: 'vishnu',
     unicode: 'Viṣṇu',
     greek: '—',
@@ -6565,6 +6606,7 @@ const LEXICON = [
   },
   {
     id: 'ganesha',
+    hasAdSite: true,
     ascii: 'ganesha',
     unicode: 'Gaṇeśa',
     greek: '—',
@@ -7452,6 +7494,7 @@ const LEXICON = [
   },
   {
     id: 'ishtar',
+    hasAdSite: true,
     ascii: 'ishtar',
     unicode: 'Ištar',
     greek: '—',
@@ -7680,6 +7723,7 @@ const LEXICON = [
   },
   {
     id: 'enlil',
+    hasAdSite: true,
     ascii: 'enlil',
     unicode: 'Enlīl',
     greek: '—',
@@ -7745,6 +7789,7 @@ const LEXICON = [
   },
   {
     id: 'enki',
+    hasAdSite: true,
     ascii: 'enki',
     unicode: 'Enki',
     greek: '—',
@@ -8126,6 +8171,7 @@ const LEXICON = [
   },
   {
     id: 'osaka',
+    hasAdSite: true,
     ascii: 'osaka',
     unicode: 'Ōsaka',
     greek: '大阪',
@@ -8181,6 +8227,7 @@ const LEXICON = [
   },
   {
     id: 'kyoto',
+    hasAdSite: true,
     ascii: 'kyoto',
     unicode: 'Kyōto',
     greek: '京都',
@@ -8236,6 +8283,7 @@ const LEXICON = [
   },
   {
     id: 'kobe',
+    hasAdSite: true,
     ascii: 'kobe',
     unicode: 'Kōbe',
     greek: '神戸',
@@ -11688,6 +11736,7 @@ const LEXICON = [
   },
   {
     id: 'sia',
+    hasAdSite: true,
     ascii: 'sia',
     unicode: 'sꜥ',
     greek: '—',
@@ -11723,6 +11772,7 @@ const LEXICON = [
   },
   {
     id: 'shu',
+    hasAdSite: true,
     ascii: 'shu',
     unicode: 'Šw',
     greek: '—',
@@ -12574,6 +12624,7 @@ const LEXICON = [
   },
   {
     id: 'kali',
+    hasAdSite: true,
     ascii: 'kali',
     unicode: 'Kālī',
     greek: '—',
@@ -14334,6 +14385,7 @@ const LEXICON = [
   },
   {
     id: 'typhon',
+    hasAdSite: true,
     ascii: 'typhon',
     unicode: 'Typhōn',
     greek: 'Τυφῶν',
@@ -15826,6 +15878,7 @@ const LEXICON = [
   },
   {
     id: 'ker',
+    hasAdSite: true,
     ascii: 'ker',
     unicode: 'Kēr',
     greek: 'Κήρ',
@@ -16268,6 +16321,7 @@ const LEXICON = [
   },
   {
     id: 'aether',
+    hasAdSite: true,
     ascii: 'aether',
     unicode: 'Aithḗr',
     greek: 'Αἰθήρ',
@@ -20964,6 +21018,7 @@ const LEXICON = [
   },
   {
     id: 'muspellheimr',
+    hasAdSite: true,
     ascii: 'muspellheimr',
     unicode: 'Muspellheimr',
     greek: '—',
@@ -21517,6 +21572,7 @@ const LEXICON = [
   },
   {
     id: 'heka',
+    hasAdSite: true,
     ascii: 'heka',
     unicode: 'Ḥkꜣ',
     greek: '—',
@@ -37024,6 +37080,7 @@ const LEXICON = [
   },
   {
     id: 'prajapati',
+    hasAdSite: true,
     ascii: 'prajapati',
     unicode: 'Prajāpati',
     greek: '—',
@@ -44360,6 +44417,7 @@ const LEXICON = [
   },
   {
     id: 'baal',
+    hasAdSite: true,
     ascii: 'baal',
     unicode: 'Baꜥal',
     greek: 'Βαάλ',
@@ -44397,9 +44455,9 @@ const LEXICON = [
     breakdown: [
       {
         char: 'b',
-        to: 'b',
+        to: 'B',
         type: 'same',
-        note: 'Same'
+        note: 'Capital beta'
       },
       {
         char: 'a',
@@ -44409,9 +44467,9 @@ const LEXICON = [
       },
       {
         char: 'a',
-        to: 'ꜥ',
+        to: 'ꜥa',
         type: 'special',
-        note: 'Egyptian Ain (ꜥ) used as the only DNS-registrable stand-in for Semitic ʿayin'
+        note: 'Egyptian Ain (ꜥ) used as the only DNS-registrable stand-in for Semitic ʿayin, followed by the vowel present in the Unicode restoration'
       },
       {
         char: 'l',
@@ -44423,6 +44481,7 @@ const LEXICON = [
   },
   {
     id: 'el',
+    hasAdSite: true,
     ascii: 'el',
     unicode: 'Ēl',
     greek: 'Ἠλ',
@@ -44458,9 +44517,9 @@ const LEXICON = [
     breakdown: [
       {
         char: 'e',
-        to: 'ē',
+        to: 'Ē',
         type: 'length',
-        note: 'Macron marks long /ē/'
+        note: 'Macron marks long /ē/; capitalized in the restoration'
       },
       {
         char: 'l',
@@ -44472,6 +44531,7 @@ const LEXICON = [
   },
   {
     id: 'anat',
+    hasAdSite: true,
     ascii: 'anat',
     unicode: 'ꜥAnat',
     greek: 'Ἀνάθ',
@@ -44509,9 +44569,9 @@ const LEXICON = [
     breakdown: [
       {
         char: 'a',
-        to: 'ꜥ',
+        to: 'ꜥA',
         type: 'special',
-        note: 'Egyptian Ain (ꜥ) represents the Semitic ʿayin in this position'
+        note: 'Egyptian Ain (ꜥ) represents the Semitic ʿayin, followed by the capital alpha present in the Unicode restoration'
       },
       {
         char: 'n',
@@ -49421,6 +49481,7 @@ const LEXICON = [
   },
   {
     id: 'maa',
+    hasAdSite: true,
     ascii: 'maa',
     unicode: 'Mꜥ',
     greek: '—',
@@ -49464,6 +49525,7 @@ const LEXICON = [
   },
   {
     id: 'akh',
+    hasAdSite: true,
     ascii: 'akh',
     unicode: 'Ꜣḫ',
     greek: '—',
@@ -49507,6 +49569,7 @@ const LEXICON = [
   },
   {
     id: 'ab',
+    hasAdSite: true,
     ascii: 'ab',
     unicode: 'Ꜣb',
     greek: '—',
@@ -49684,6 +49747,7 @@ const LEXICON = [
   },
   {
     id: 'libye',
+    hasAdSite: true,
     ascii: 'libye',
     unicode: 'Libyē',
     greek: 'Λιβύη',
@@ -49739,6 +49803,7 @@ const LEXICON = [
   },
   {
     id: 'aigyptos',
+    hasAdSite: true,
     ascii: 'aigyptos',
     unicode: 'Aígyptos',
     greek: 'Αἴγυπτος',
@@ -49812,6 +49877,7 @@ const LEXICON = [
   },
   {
     id: 'asia',
+    hasAdSite: true,
     ascii: 'asia',
     unicode: 'Asía',
     greek: 'Ἀσία',
@@ -49845,9 +49911,9 @@ const LEXICON = [
       },
       {
         char: 'a',
-        to: 'ā',
-        type: 'length',
-        note: 'Macron: long alpha'
+        to: 'a',
+        type: 'same',
+        note: 'Final alpha'
       }
     ],
     etymology: {
@@ -49861,6 +49927,7 @@ const LEXICON = [
   },
   {
     id: 'europe',
+    hasAdSite: true,
     ascii: 'europe',
     unicode: 'Eurṓpē',
     greek: 'Εὐρώπη',
@@ -49922,6 +49989,7 @@ const LEXICON = [
   },
   {
     id: 'rta',
+    hasAdSite: true,
     ascii: 'rta',
     unicode: '\u1E5Ata',
     greek: '',
@@ -49936,13 +50004,14 @@ const LEXICON = [
       { unicode: 'Rta', type: 'ascii', note: 'Plain ASCII fallback' }
     ],
     breakdown: [
-      { char: 'r', to: '\u1E5B', type: 'special', note: 'Vocalic r — dot below marks syllabic /r/' },
+      { char: 'r', to: '\u1E5A', type: 'special', note: 'Vocalic r — dot below marks syllabic /r/; capitalized in the restoration' },
       { char: 't', to: 't', type: 'same', note: 'Same' },
       { char: 'a', to: 'a', type: 'same', note: 'Same' }
     ]
   },
   {
     id: 'ba',
+    hasAdSite: true,
     ascii: 'ba',
     unicode: 'B\uA723',
     greek: '',
@@ -49981,6 +50050,7 @@ const LEXICON = [
   },
   {
     id: 'astart',
+    hasAdSite: true,
     ascii: 'astart',
     unicode: 'A\u0161tart',
     greek: '',
@@ -50006,6 +50076,7 @@ const LEXICON = [
   },
   {
     id: 'asherah',
+    hasAdSite: true,
     ascii: 'asherah',
     unicode: 'ꜥAsherah',
     greek: 'Ἀσερά',
@@ -50033,7 +50104,7 @@ const LEXICON = [
       ]
     },
     breakdown: [
-      { char: 'a', to: 'ꜥ', type: 'special', note: 'Egyptian Ain (ꜥ) stands in for Semitic ʿayin at the start of the name' },
+      { char: 'a', to: 'ꜥA', type: 'special', note: 'Egyptian Ain (ꜥ) stands in for Semitic ʿayin at the start of the name, followed by the capital alpha present in the Unicode restoration' },
       { char: 's', to: 's', type: 'same', note: 'Same' },
       { char: 'h', to: 'h', type: 'same', note: 'Same' },
       { char: 'e', to: 'e', type: 'same', note: 'Same' },

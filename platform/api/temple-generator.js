@@ -1,6 +1,6 @@
 function generateTemple(entry) {
   const breakdownRows = (entry.breakdown || [])
-    .map(b => `<tr><td>${b.char}</td><td>${b.to}</td><td>${b.type}</td><td>${b.note}</td></tr>`)
+    .map((b) => `<tr><td>${b.char}</td><td>${b.to}</td><td>${b.type}</td><td>${b.note}</td></tr>`)
     .join('');
 
   const tierClass = entry.tier === 'dual' ? 'tier-dual' : entry.tier === '1' ? 'tier-1' : 'tier-2';

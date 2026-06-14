@@ -1,9 +1,14 @@
 const Database = require('better-sqlite3');
 const db = new Database('db/punycodex.db');
 
-const punycode = db.prepare("SELECT COUNT(*) as c FROM indexed_sites WHERE punycode LIKE 'xn--%' AND status='active'").get();
+const punycode = db
+  .prepare(
+    "SELECT COUNT(*) as c FROM indexed_sites WHERE punycode LIKE 'xn--%' AND status='active'"
+  )
+  .get();
 const total = db.prepare("SELECT COUNT(*) as c FROM indexed_sites WHERE status='active'").get();
-const byTld = db.prepare(`
+const byTld = db
+  .prepare(`
   SELECT 
     CASE 
       WHEN punycode LIKE '%.com' THEN '.com'
@@ -24,9 +29,10 @@ const byTld = db.prepare(`
   WHERE status = 'active' AND punycode LIKE 'xn--%'
   GROUP BY tld
   ORDER BY c DESC
-`).all();
+`)
+  .all();
 
 console.log('Actual punycode (xn--) sites:', punycode.c, 'of', total.c, 'active');
-console.log('Percentage:', (punycode.c / total.c * 100).toFixed(1) + '%');
+console.log('Percentage:', `${((punycode.c / total.c) * 100).toFixed(1)}%`);
 console.log('\nBy TLD (punycode only):');
-byTld.forEach(r => console.log(' ', r.tld, r.c));
+byTld.forEach((r) => console.log(' ', r.tld, r.c));

@@ -1,4 +1,8 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY || 'sk_test_placeholder');
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+if (!stripeSecretKey) {
+  throw new Error('STRIPE_SECRET_KEY environment variable is required');
+}
+const stripe = require('stripe')(stripeSecretKey);
 const { updateClaimStripeSession, markClaimPaid } = require('./claims');
 
 const PRICE_BASE = 1500; // $15.00 in cents
@@ -9,17 +13,19 @@ async function createCheckoutSession({ claimId, email, unicodeVariant, templateT
 
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
-    line_items: [{
-      price_data: {
-        currency: 'usd',
-        product_data: {
-          name: `PUNYCODEX Domain Claim: ${unicodeVariant}`,
-          description: `Unicode domain restoration + temple deployment`,
+    line_items: [
+      {
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: `PUNYCODEX Domain Claim: ${unicodeVariant}`,
+            description: `Unicode domain restoration + temple deployment`,
+          },
+          unit_amount: amount,
         },
-        unit_amount: amount,
+        quantity: 1,
       },
-      quantity: 1,
-    }],
+    ],
     mode: 'payment',
     success_url: `${process.env.PLATFORM_URL || 'http://localhost:3456'}/claim-success?id=${claimId}&session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${process.env.PLATFORM_URL || 'http://localhost:3456'}/claim?id=${claimId}&canceled=true`,
@@ -35,7 +41,17 @@ async function createCheckoutSession({ claimId, email, unicodeVariant, templateT
   return { sessionUrl: session.url, sessionId: session.id };
 }
 
-async function createBookingCheckoutSession({ bookingId, email, slotName, amountCents, token, leaseMonths = 1, trialMonths = 0, siteSlug = 'nike', siteName = 'Níkē' }) {
+async function createBookingCheckoutSession({
+  bookingId,
+  email,
+  slotName,
+  amountCents,
+  token,
+  leaseMonths = 1,
+  trialMonths = 0,
+  siteSlug = 'nike',
+  siteName = 'Níkē',
+}) {
   const isTrial = trialMonths > 0;
   const durationLabel = leaseMonths === 12 ? '12-month' : '30-day';
   const trialLabel = isTrial ? `${trialMonths}-month free trial, then ` : '';
@@ -88,8 +104,7 @@ async function createBookingCheckoutSession({ bookingId, email, slotName, amount
 async function handleWebhook(payload, signature) {
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
   if (!webhookSecret) {
-    console.log('No webhook secret configured, skipping verification');
-    return null;
+    throw new Error('STRIPE_WEBHOOK_SECRET environment variable is required');
   }
 
   let event;
@@ -102,13 +117,13 @@ async function handleWebhook(payload, signature) {
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object;
     const metadata = session.metadata || {};
-    
+
     if (metadata.type === 'booking') {
       const { markBookingPaid } = require('./bookings');
       const isSubscription = session.mode === 'subscription';
-      const paymentIntent = isSubscription ? (session.subscription || null) : session.payment_intent;
+      const paymentIntent = isSubscription ? session.subscription || null : session.payment_intent;
       const amountTotal = isSubscription ? 0 : session.amount_total;
-      const subscriptionId = isSubscription ? (session.subscription || null) : null;
+      const subscriptionId = isSubscription ? session.subscription || null : null;
       const booking = markBookingPaid(session.id, paymentIntent, amountTotal, subscriptionId);
       return { event: 'payment.success', type: 'booking', booking, mode: session.mode };
     } else {
@@ -125,5 +140,5 @@ module.exports = {
   createBookingCheckoutSession,
   handleWebhook,
   PRICE_BASE,
-  PRICE_PREMIUM
+  PRICE_PREMIUM,
 };

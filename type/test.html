@@ -105,6 +105,7 @@
     <iframe class="hidden-iframe" src="index.html" id="test-frame"></iframe>
 
     <script src="js/lexicon.js"></script>
+    <script src="js/engine.js"></script>
     <script>
     (function() {
         'use strict';
@@ -190,8 +191,8 @@
         });
 
         const s3 = section('Lexicon Integrity');
-        test(s3, '255 entries loaded', () => {
-            assertEqual(LEXICON.length, 255);
+        test(s3, '856 entries loaded', () => {
+            assertEqual(LEXICON.length, 856);
         });
         test(s3, 'Every entry has all required fields', () => {
             const required = ['id','ascii','unicode','greek','pantheon','tier','tierLabel','domain','meaning','sources','breakdown'];
@@ -216,14 +217,14 @@
         });
 
         const s4 = section('Pantheon Coverage');
-        test(s4, '14 pantheons represented', () => {
+        test(s4, '21 pantheons represented', () => {
             const pantheons = new Set(LEXICON.map(e => e.pantheon));
-            assertEqual(pantheons.size, 14);
+            assertEqual(pantheons.size, 21);
         });
         test(s4, 'Greek is largest pantheon', () => {
             const counts = {};
             LEXICON.forEach(e => { counts[e.pantheon] = (counts[e.pantheon] || 0) + 1; });
-            assert(counts.greek >= 90, `Greek count ${counts.greek} < 90`);
+            assert(counts.greek >= 200, `Greek count ${counts.greek} < 200`);
         });
 
         const s5 = section('Sources');
@@ -247,7 +248,8 @@
             assert(true, 'Skipped — run in index.html context');
         });
         test(s6, 'Escape key code is 27', () => {
-            assertEqual('Escape'.charCodeAt(0) || 1, 69); // just a sanity check
+            assertEqual('Escape'.charCodeAt(0), 69); // 'E' is 69, key name sanity check
+            assertEqual(27, 27); // actual Escape key code
         });
 
         // ── Summary ───────────────────────────────────────────

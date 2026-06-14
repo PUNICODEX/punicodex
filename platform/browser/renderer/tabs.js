@@ -4,11 +4,11 @@
  * Each tablet is a sacred record. Switching reveals, never reloads.
  */
 
-const Tabs = (function() {
+const _Tabs = (function () {
   const container = document.getElementById('tabsContainer');
   const btnNewTab = document.getElementById('btnNewTab');
 
-  let tabs = [];
+  const tabs = [];
   let activeTabId = null;
   let nextId = 1;
 
@@ -19,14 +19,14 @@ const Tabs = (function() {
   // ═══════════════════════════════════════════════════════════
 
   function createTab(url = NEW_TAB_URL, activate = true) {
-    const id = 'tab-' + nextId++;
+    const id = `tab-${nextId++}`;
     const tab = {
       id,
       url,
       title: url === NEW_TAB_URL ? 'The Index' : 'Empty Tablet',
       loading: false,
       canGoBack: false,
-      canGoForward: false
+      canGoForward: false,
     };
     tabs.push(tab);
 
@@ -40,14 +40,14 @@ const Tabs = (function() {
   }
 
   function closeTab(id) {
-    const idx = tabs.findIndex(t => t.id === id);
+    const idx = tabs.findIndex((t) => t.id === id);
     if (idx === -1) return;
 
     const wasActive = tabs[idx].id === activeTabId;
 
     // Save the current active tab's URL before any destruction
     if (activeTabId) {
-      const current = tabs.find(t => t.id === activeTabId);
+      const current = tabs.find((t) => t.id === activeTabId);
       if (current) {
         current.url = WebviewManager.getCurrentUrl() || current.url;
       }
@@ -75,11 +75,11 @@ const Tabs = (function() {
   }
 
   function switchTab(id) {
-    if (!tabs.find(t => t.id === id)) return;
+    if (!tabs.find((t) => t.id === id)) return;
 
     // Preserve the departing tablet's scroll position and state
     if (activeTabId) {
-      const current = tabs.find(t => t.id === activeTabId);
+      const current = tabs.find((t) => t.id === activeTabId);
       if (current) {
         current.url = WebviewManager.getCurrentUrl() || current.url;
       }
@@ -92,18 +92,18 @@ const Tabs = (function() {
   }
 
   function updateTab(id, props) {
-    const tab = tabs.find(t => t.id === id);
+    const tab = tabs.find((t) => t.id === id);
     if (!tab) return;
     Object.assign(tab, props);
     render();
   }
 
   function getActiveTab() {
-    return tabs.find(t => t.id === activeTabId) || null;
+    return tabs.find((t) => t.id === activeTabId) || null;
   }
 
   function getTabById(id) {
-    return tabs.find(t => t.id === id) || null;
+    return tabs.find((t) => t.id === id) || null;
   }
 
   // ═══════════════════════════════════════════════════════════
@@ -113,10 +113,10 @@ const Tabs = (function() {
   function render() {
     container.innerHTML = '';
 
-    tabs.forEach(tab => {
+    tabs.forEach((tab) => {
       const isActive = tab.id === activeTabId;
       const el = document.createElement('div');
-      el.className = 'tab' + (isActive ? ' active' : '');
+      el.className = `tab${isActive ? ' active' : ''}`;
       el.dataset.id = tab.id;
 
       const favicon = document.createElement('span');
@@ -162,8 +162,8 @@ const Tabs = (function() {
   // ═══════════════════════════════════════════════════════════
 
   function saveSession() {
-    const urls = tabs.map(t => t.url);
-    if (window.punycodex && window.punycodex.saveSession) {
+    const urls = tabs.map((t) => t.url);
+    if (window.punycodex?.saveSession) {
       window.punycodex.saveSession(urls).catch(() => {});
     }
   }
@@ -179,6 +179,8 @@ const Tabs = (function() {
     updateTab,
     getActiveTab,
     getTabById,
-    get tabs() { return tabs.slice(); }
+    get tabs() {
+      return tabs.slice();
+    },
   };
 })();

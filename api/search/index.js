@@ -15,7 +15,7 @@ module.exports = (req, res) => {
       type: type || 'all',
       sort: sort || 'relevance',
       limit: limit ? parseInt(limit, 10) : 20,
-      offset: offset ? parseInt(offset, 10) : 0
+      offset: offset ? parseInt(offset, 10) : 0,
     });
     res.json(result);
   } catch (err) {

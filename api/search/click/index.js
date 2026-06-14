@@ -15,12 +15,14 @@ module.exports = (req, res) => {
       return res.status(400).json({ error: 'query and siteId required' });
     }
 
-    const queryRow = db.prepare(`
+    const queryRow = db
+      .prepare(`
       SELECT id FROM search_queries
       WHERE query = ?
       ORDER BY timestamp DESC
       LIMIT 1
-    `).get(query.trim());
+    `)
+      .get(query.trim());
 
     const queryId = queryRow ? queryRow.id : null;
 

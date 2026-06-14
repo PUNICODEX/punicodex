@@ -4,7 +4,7 @@
  * Creates a graph of entity co-occurrences across the indexed web.
  */
 const Database = require('better-sqlite3');
-const path = require('path');
+const path = require('node:path');
 
 const DB_PATH = path.join(__dirname, '..', 'db', 'punycodex.db');
 const db = new Database(DB_PATH);
@@ -15,11 +15,13 @@ db.pragma('journal_mode = WAL');
  * Each entry gets: id, ascii (lowercase), unicode (lowercase), greek (lowercase), pantheon
  */
 function buildEntityMap() {
-  const entries = db.prepare(`
+  const entries = db
+    .prepare(`
     SELECT id, ascii, unicode, greek, pantheon, tier
     FROM entries
     WHERE ascii IS NOT NULL
-  `).all();
+  `)
+    .all();
 
   const map = new Map(); // normalized text -> { id, pantheon, tier, forms: [] }
 
@@ -31,7 +33,7 @@ function buildEntityMap() {
 
     // Also add plural/common variants for major gods
     if (e.ascii) {
-      forms.push(e.ascii.toLowerCase() + 's'); // Zeus -> Zeuss (rare but catches some)
+      forms.push(`${e.ascii.toLowerCase()}s`); // Zeus -> Zeuss (rare but catches some)
     }
 
     for (const form of forms) {
@@ -58,8 +60,7 @@ function extractEntities(text, entityMap, maxContexts = 3) {
   const mentions = new Map(); // entryId -> { count, contexts: Set }
 
   // Sort entity forms by length descending (match longest first to avoid partial matches)
-  const sortedForms = Array.from(entityMap.entries())
-    .sort((a, b) => b[0].length - a[0].length);
+  const sortedForms = Array.from(entityMap.entries()).sort((a, b) => b[0].length - a[0].length);
 
   for (const [form, meta] of sortedForms) {
     // Use word boundary regex to avoid matching inside other words
@@ -68,7 +69,12 @@ function extractEntities(text, entityMap, maxContexts = 3) {
     while ((match = regex.exec(normalized)) !== null) {
       const entryId = meta.id;
       if (!mentions.has(entryId)) {
-        mentions.set(entryId, { count: 0, contexts: new Set(), pantheon: meta.pantheon, tier: meta.tier });
+        mentions.set(entryId, {
+          count: 0,
+          contexts: new Set(),
+          pantheon: meta.pantheon,
+          tier: meta.tier,
+        });
       }
       const m = mentions.get(entryId);
       m.count++;
@@ -88,7 +94,7 @@ function extractEntities(text, entityMap, maxContexts = 3) {
     pantheon: data.pantheon,
     tier: data.tier,
     count: data.count,
-    contexts: Array.from(data.contexts)
+    contexts: Array.from(data.contexts),
   }));
 }
 
@@ -100,21 +106,19 @@ function escapeRegex(str) {
  * Process a single site and store its entity mentions.
  */
 function processSite(siteId) {
-  const site = db.prepare(`
+  const site = db
+    .prepare(`
     SELECT id, title, description, h1, first_p, content_snippet, domain, punycode
     FROM indexed_sites
     WHERE id = ?
-  `).get(siteId);
+  `)
+    .get(siteId);
 
   if (!site) return 0;
 
-  const text = [
-    site.title,
-    site.description,
-    site.h1,
-    site.first_p,
-    site.content_snippet
-  ].filter(Boolean).join('. ');
+  const text = [site.title, site.description, site.h1, site.first_p, site.content_snippet]
+    .filter(Boolean)
+    .join('. ');
 
   const entityMap = buildEntityMap();
   const mentions = extractEntities(text, entityMap);
@@ -147,9 +151,11 @@ function processAllSites(batchSize = 50) {
   const entityMap = buildEntityMap();
   console.log(`   ${entityMap.size} entity forms loaded`);
 
-  const sites = db.prepare(`
+  const sites = db
+    .prepare(`
     SELECT id FROM indexed_sites WHERE status = 'active' ORDER BY id
-  `).all();
+  `)
+    .all();
 
   console.log(`   ${sites.length} active sites to scan`);
 
@@ -165,18 +171,23 @@ function processAllSites(batchSize = 50) {
 
   for (let i = 0; i < sites.length; i += batchSize) {
     const batch = sites.slice(i, i + batchSize);
-    console.log(`  Batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(sites.length / batchSize)} (${batch.length} sites)`);
+    console.log(
+      `  Batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(sites.length / batchSize)} (${batch.length} sites)`
+    );
 
     for (const site of batch) {
-      const s = db.prepare(`
+      const s = db
+        .prepare(`
         SELECT id, title, description, h1, first_p, content_snippet
         FROM indexed_sites WHERE id = ?
-      `).get(site.id);
+      `)
+        .get(site.id);
 
       if (!s) continue;
 
       const text = [s.title, s.description, s.h1, s.first_p, s.content_snippet]
-        .filter(Boolean).join('. ');
+        .filter(Boolean)
+        .join('. ');
 
       const mentions = extractEntities(text, entityMap);
 
@@ -196,8 +207,12 @@ function processAllSites(batchSize = 50) {
   console.log(`\n✅ Entity extraction complete:`);
   console.log(`   Sites scanned: ${processed}`);
   console.log(`   Total mentions: ${totalMentions}`);
-  console.log(`   Unique entity-site pairs: ${db.prepare('SELECT COUNT(*) as c FROM entity_mentions').get().c}`);
-  console.log(`   Coverage: ${db.prepare('SELECT COUNT(DISTINCT site_id) as c FROM entity_mentions').get().c} sites have entities`);
+  console.log(
+    `   Unique entity-site pairs: ${db.prepare('SELECT COUNT(*) as c FROM entity_mentions').get().c}`
+  );
+  console.log(
+    `   Coverage: ${db.prepare('SELECT COUNT(DISTINCT site_id) as c FROM entity_mentions').get().c} sites have entities`
+  );
 
   return { processed, totalMentions };
 }
@@ -206,7 +221,7 @@ module.exports = {
   buildEntityMap,
   extractEntities,
   processSite,
-  processAllSites
+  processAllSites,
 };
 
 if (require.main === module) {

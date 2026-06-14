@@ -23,6 +23,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/aigyptos/assets/aigyptos_mascot.webp",
         logomarkPath: "/sites/aigyptos/assets/aigyptos_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -43,6 +44,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/aphrodite/assets/aphrodite_mascot.webp",
         logomarkPath: "/sites/aphrodite/assets/aphrodite_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -62,6 +64,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/ares/assets/ares_mascot.webp",
         logomarkPath: "/sites/ares/assets/ares_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -82,6 +85,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/asia/assets/asia_mascot.webp",
         logomarkPath: "/sites/asia/assets/asia_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -102,6 +106,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/athena/assets/athena_mascot.webp",
         logomarkPath: "/sites/athena/assets/athena_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -122,6 +127,7 @@ const ARCHETYPES = [
         mascotPath: "/sites/athenai/assets/athenai_logomark.webp",
         mascotFallback: "/sites/athenai/assets/athenai_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -141,6 +147,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/demeter/assets/demeter_mascot.webp",
         logomarkPath: "/sites/demeter/assets/demeter_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -161,6 +168,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/europe/assets/europe_mascot.webp",
         logomarkPath: "/sites/europe/assets/europe_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -181,6 +189,7 @@ const ARCHETYPES = [
         mascotPath: "/sites/gaia/assets/gaia_logomark.webp",
         mascotFallback: "/sites/gaia/assets/gaia_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -201,6 +210,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/helios/assets/helios_mascot.webp",
         logomarkPath: "/sites/helios/assets/helios_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -220,6 +230,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/hephaistos/assets/hephaistos_mascot.webp",
         logomarkPath: "/sites/hephaistos/assets/hephaistos_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -239,6 +250,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/hera/assets/hera_mascot.webp",
         logomarkPath: "/sites/hera/assets/hera_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -279,6 +291,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/hestia/assets/hestia_mascot.webp",
         logomarkPath: "/sites/hestia/assets/hestia_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -299,6 +312,7 @@ const ARCHETYPES = [
         mascotPath: "/sites/kobe/assets/kobe_logomark.webp",
         mascotFallback: "/sites/kobe/assets/kobe_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -319,6 +333,7 @@ const ARCHETYPES = [
         mascotPath: "/sites/kyoto/assets/kyoto_logomark.webp",
         mascotFallback: "/sites/kyoto/assets/kyoto_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -339,6 +354,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/libye/assets/libye_mascot.webp",
         logomarkPath: "/sites/libye/assets/libye_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -359,6 +375,7 @@ const ARCHETYPES = [
         mascotPath: "/sites/osaka/assets/osaka_logomark.webp",
         mascotFallback: "/sites/osaka/assets/osaka_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -378,6 +395,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/persephone/assets/persephone_mascot.webp",
         logomarkPath: "/sites/persephone/assets/persephone_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: true
     },
     {
@@ -398,6 +416,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/poseidon/assets/poseidon_mascot.webp",
         logomarkPath: "/sites/poseidon/assets/poseidon_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -417,6 +436,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/prometheus/assets/prometheus_mascot.webp",
         logomarkPath: "/sites/prometheus/assets/prometheus_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -436,6 +456,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/selene/assets/selene_mascot.webp",
         logomarkPath: "/sites/selene/assets/selene_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -456,6 +477,7 @@ const ARCHETYPES = [
         mascotPath: "/sites/sparte/assets/sparte_logomark.webp",
         mascotFallback: "/sites/sparte/assets/sparte_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -475,6 +497,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/zeus/assets/zeus_mascot.webp",
         logomarkPath: "/sites/zeus/assets/zeus_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -495,6 +518,7 @@ const ARCHETYPES = [
         mascotPath: "/sites/alfheimr/assets/alfheimr_logomark.webp",
         mascotFallback: "/sites/alfheimr/assets/alfheimr_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -514,6 +538,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/artemis/assets/artemis_mascot.webp",
         logomarkPath: "/sites/artemis/assets/artemis_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: true
     },
     {
@@ -533,6 +558,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/atlas/assets/atlas_mascot.webp",
         logomarkPath: "/sites/atlas/assets/atlas_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -553,6 +579,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/chaos/assets/chaos_mascot.png",
         logomarkPath: "/sites/chaos/assets/chaos_logomark.png",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -573,6 +600,7 @@ const ARCHETYPES = [
         mascotPath: "/sites/delphoi/assets/delphoi_logomark.webp",
         mascotFallback: "/sites/delphoi/assets/delphoi_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -592,6 +620,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/dionysos/assets/dionysos_mascot.png",
         logomarkPath: "/sites/dionysos/assets/dionysos_logomark.png",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -611,6 +640,7 @@ const ARCHETYPES = [
         mascotPath: "/sites/helheimr/assets/helheimr_logomark.webp",
         mascotFallback: "/sites/helheimr/assets/helheimr_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -631,6 +661,7 @@ const ARCHETYPES = [
         mascotPath: "/sites/jotunheimr/assets/jotunheimr_logomark.webp",
         mascotFallback: "/sites/jotunheimr/assets/jotunheimr_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -650,6 +681,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/ker/assets/ker_mascot.webp",
         logomarkPath: "/sites/ker/assets/ker_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: true
     },
     {
@@ -669,6 +701,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/medousa/assets/medusa_mascot.webp",
         logomarkPath: "/sites/medousa/assets/medusa_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -689,6 +722,7 @@ const ARCHETYPES = [
         mascotPath: "/sites/midgardr/assets/midgardr_logomark.webp",
         mascotFallback: "/sites/midgardr/assets/midgardr_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -709,6 +743,7 @@ const ARCHETYPES = [
         mascotPath: "/sites/muspellheimr/assets/muspellheimr_logomark.webp",
         mascotFallback: "/sites/muspellheimr/assets/muspellheimr_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
         {
@@ -729,6 +764,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/maat/assets/maat_mascot.png",
         logomarkPath: "/sites/maat/assets/maat_logomark.png",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -749,6 +785,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/maa/assets/maa_mascot.webp",
         logomarkPath: "/sites/maa/assets/maa_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -768,6 +805,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/odinn/assets/odinn_mascot.webp",
         logomarkPath: "/sites/odinn/assets/odinn_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: true
     },
     {
@@ -788,6 +826,7 @@ const ARCHETYPES = [
         mascotPath: "/sites/olympos/assets/olympos_logomark.webp",
         mascotFallback: "/sites/olympos/assets/olympos_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -808,6 +847,7 @@ const ARCHETYPES = [
         mascotPath: "/sites/pontos/assets/pontos_logomark.webp",
         mascotFallback: "/sites/pontos/assets/pontos_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -828,6 +868,7 @@ const ARCHETYPES = [
         mascotPath: "/sites/ragnarok/assets/ragnarok_logomark.webp",
         mascotFallback: "/sites/ragnarok/assets/ragnarok_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -868,6 +909,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/sia/assets/sia_mascot.webp",
         logomarkPath: "/sites/sia/assets/sia_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -888,6 +930,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/shiva/assets/siva_mascot.webp",
         logomarkPath: "/sites/shiva/assets/siva_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -908,6 +951,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/shu/assets/shu_mascot.webp",
         logomarkPath: "/sites/shu/assets/shu_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -928,6 +972,7 @@ const ARCHETYPES = [
         mascotPath: "/sites/tartaros/assets/tartaros_mascot.png",
         mascotFallback: "/sites/tartaros/assets/tartaros_mascot.png",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -948,6 +993,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/thor/assets/thor_mascot.webp",
         logomarkPath: "/sites/thor/assets/thor_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -968,6 +1014,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/ab/assets/ab_mascot.webp",
         logomarkPath: "/sites/ab/assets/ab_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -988,6 +1035,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/akh/assets/akh_mascot.webp",
         logomarkPath: "/sites/akh/assets/akh_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -1008,6 +1056,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/apollon/assets/apollon_mascot.webp",
         logomarkPath: "/sites/apollon/assets/apollon_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -1028,6 +1077,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/hades/assets/hades_mascot.webp",
         logomarkPath: "/sites/hades/assets/hades_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: true
     },
     {
@@ -1048,6 +1098,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/hekate/assets/hekate_mascot.webp",
         logomarkPath: "/sites/hekate/assets/hekate_logomark.webp",
         built: true,
+        hasAdSite: true,
         darkPunchline: true
     },
     {
@@ -1089,6 +1140,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/el/assets/el_mascot.png",
         logomarkPath: "/sites/el/assets/el_logomark.png",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -1109,6 +1161,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/baal/assets/baal_mascot.png",
         logomarkPath: "/sites/baal/assets/baal_logomark.png",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -1129,6 +1182,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/anat/assets/anat_mascot.png",
         logomarkPath: "/sites/anat/assets/anat_logomark.png",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -1149,6 +1203,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/asherah/assets/asherah_mascot.png",
         logomarkPath: "/sites/asherah/assets/asherah_logomark.png",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -1169,6 +1224,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/kronos/assets/kronos_mascot.png",
         logomarkPath: "/sites/kronos/assets/kronos_logomark.png",
         built: true,
+        hasAdSite: true,
         darkPunchline: true
     },
     {
@@ -1189,6 +1245,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/enlil/assets/enlil_mascot.png",
         logomarkPath: "/sites/enlil/assets/enlil_logomark.png",
         built: true,
+        hasAdSite: true,
         darkPunchline: true
     },
     {
@@ -1209,6 +1266,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/typhon/assets/typhon_mascot.png",
         logomarkPath: "/sites/typhon/assets/typhon_logomark.png",
         built: true,
+        hasAdSite: true,
         darkPunchline: true
     },
     {
@@ -1229,6 +1287,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/ishtar/assets/ishtar_mascot.png",
         logomarkPath: "/sites/ishtar/assets/ishtar_logomark.png",
         built: true,
+        hasAdSite: true,
         darkPunchline: true
     },
     {
@@ -1249,6 +1308,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/aether/assets/aether_mascot.png",
         logomarkPath: "/sites/aether/assets/aether_logomark.png",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -1269,6 +1329,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/astart/assets/astart_mascot.png",
         logomarkPath: "/sites/astart/assets/astart_logomark.png",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -1289,6 +1350,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/ba/assets/ba_mascot.png",
         logomarkPath: "/sites/ba/assets/ba_logomark.png",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -1309,6 +1371,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/enki/assets/enki_mascot.png",
         logomarkPath: "/sites/enki/assets/enki_logomark.png",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -1329,6 +1392,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/eros/assets/eros_mascot.png",
         logomarkPath: "/sites/eros/assets/eros_logomark.png",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -1349,6 +1413,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/ganesha/assets/ganesha_mascot.png",
         logomarkPath: "/sites/ganesha/assets/ganesha_logomark.png",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -1369,6 +1434,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/heka/assets/heka_mascot.png",
         logomarkPath: "/sites/heka/assets/heka_logomark.png",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -1389,6 +1455,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/horus/assets/horus_mascot.png",
         logomarkPath: "/sites/horus/assets/horus_logomark.png",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -1409,6 +1476,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/kali/assets/kali_mascot.png",
         logomarkPath: "/sites/kali/assets/kali_logomark.png",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -1429,6 +1497,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/prajapati/assets/prajapati_mascot.png",
         logomarkPath: "/sites/prajapati/assets/prajapati_logomark.png",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -1449,6 +1518,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/rta/assets/rta_mascot.png",
         logomarkPath: "/sites/rta/assets/rta_logomark.png",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
     {
@@ -1469,6 +1539,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/vishnu/assets/vishnu_mascot.png",
         logomarkPath: "/sites/vishnu/assets/vishnu_logomark.png",
         built: true,
+        hasAdSite: true,
         darkPunchline: false
     },
 ];

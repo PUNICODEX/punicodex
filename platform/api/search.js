@@ -1,6 +1,6 @@
 const Database = require('better-sqlite3');
-const path = require('path');
-const { domainToASCII } = require('url');
+const _path = require('node:path');
+const { domainToASCII } = require('node:url');
 const { getDbPath } = require('../db/db');
 
 const DB_PATH = getDbPath();
@@ -15,13 +15,25 @@ function getDb() {
 }
 
 // Realm/location entry ids approximate the Realms page lists.
-const REALM_KEYWORDS = ['heimr','heim','world','realm','land','kingdom','underworld','sky','sea','earth'];
+const REALM_KEYWORDS = [
+  'heimr',
+  'heim',
+  'world',
+  'realm',
+  'land',
+  'kingdom',
+  'underworld',
+  'sky',
+  'sea',
+  'earth',
+];
 
 function isRealmEntry(entry) {
   if (entry.pantheon === 'greek-location') return true;
   if (entry.pantheon === 'norse') {
-    const text = `${entry.id} ${entry.unicode} ${entry.domain || ''} ${entry.meaning || ''}`.toLowerCase();
-    return REALM_KEYWORDS.some(k => text.includes(k));
+    const text =
+      `${entry.id} ${entry.unicode} ${entry.domain || ''} ${entry.meaning || ''}`.toLowerCase();
+    return REALM_KEYWORDS.some((k) => text.includes(k));
   }
   return false;
 }
@@ -33,9 +45,18 @@ function isGodEntry(entry) {
 /**
  * Rich search: returns entries with live site data (business card) + availability
  */
-function search({ q, pantheon, tier, hasSite, type = 'all', sort = 'relevance', limit = 20, offset = 0 }) {
+function search({
+  q,
+  pantheon,
+  tier,
+  hasSite,
+  type = 'all',
+  sort = 'relevance',
+  limit = 20,
+  offset = 0,
+}) {
   const db = getDb();
-  
+
   let sql = `
     SELECT 
       e.*,
@@ -63,8 +84,12 @@ function search({ q, pantheon, tier, hasSite, type = 'all', sort = 'relevance', 
   `;
   const params = [];
 
-  if (q && q.trim()) {
-    const ftsQuery = q.trim().split(/\s+/).map(t => `${t}*`).join(' ');
+  if (q?.trim()) {
+    const ftsQuery = q
+      .trim()
+      .split(/\s+/)
+      .map((t) => `${t}*`)
+      .join(' ');
     sql = `
       SELECT 
         e.*,
@@ -133,11 +158,11 @@ function search({ q, pantheon, tier, hasSite, type = 'all', sort = 'relevance', 
 
   // Ordering (whitelisted to prevent SQL injection)
   const allowedSorts = {
-    relevance: 's.is_flagship DESC, e.tier = \'dual\' DESC, e.tier = \'1\' DESC, e.unicode ASC',
+    relevance: "s.is_flagship DESC, e.tier = 'dual' DESC, e.tier = '1' DESC, e.unicode ASC",
     alphabetical: 'e.unicode ASC',
     tier: "e.tier = 'dual' DESC, e.tier = '1' DESC, e.tier = '2' DESC, e.unicode ASC",
     recently_crawled: 's.last_crawled DESC, e.unicode ASC',
-    confidence: 'e.confidence_score DESC, e.unicode ASC'
+    confidence: 'e.confidence_score DESC, e.unicode ASC',
   };
   const orderBy = allowedSorts[sort] || allowedSorts.relevance;
 
@@ -154,18 +179,22 @@ function search({ q, pantheon, tier, hasSite, type = 'all', sort = 'relevance', 
 
   const { total } = db.prepare(countSql).get(...params);
 
-  return { 
+  return {
     entries: entries.map(enrichEntry),
-    total, 
-    limit, 
-    offset 
+    total,
+    limit,
+    offset,
   };
 }
 
 function parseSources(sources) {
   if (!sources) return [];
   if (Array.isArray(sources)) return sources;
-  try { return JSON.parse(sources); } catch { return []; }
+  try {
+    return JSON.parse(sources);
+  } catch {
+    return [];
+  }
 }
 
 function computePunycode(unicode) {
@@ -173,27 +202,31 @@ function computePunycode(unicode) {
   try {
     const ascii = domainToASCII(unicode.toLowerCase());
     return ascii !== unicode.toLowerCase() ? ascii : null;
-  } catch (e) {
+  } catch (_e) {
     return null;
   }
 }
 
 function enrichEntry(row) {
-  const site = row.site_id ? {
-    id: row.site_id,
-    domain: row.site_domain,
-    punycode: row.site_punycode,
-    title: row.site_title,
-    description: row.site_description,
-    snippet: row.site_snippet,
-    status: row.site_status,
-    tierLabel: row.site_tier_label,
-    isFlagship: row.site_is_flagship
-  } : null;
+  const site = row.site_id
+    ? {
+        id: row.site_id,
+        domain: row.site_domain,
+        punycode: row.site_punycode,
+        title: row.site_title,
+        description: row.site_description,
+        snippet: row.site_snippet,
+        status: row.site_status,
+        tierLabel: row.site_tier_label,
+        isFlagship: row.site_is_flagship,
+      }
+    : null;
 
-  const availability = row.avail_status ? {
-    status: row.avail_status
-  } : null;
+  const availability = row.avail_status
+    ? {
+        status: row.avail_status,
+      }
+    : null;
 
   const punycode = computePunycode(row.unicode);
   return {
@@ -210,7 +243,7 @@ function enrichEntry(row) {
     punycode,
     hasFlagship: row.has_flagship,
     site,
-    availability
+    availability,
   };
 }
 
@@ -220,18 +253,22 @@ function getEntry(id) {
   if (!entry) return null;
 
   const breakdown = db.prepare('SELECT * FROM breakdowns WHERE entry_id = ?').all(id);
-  const site = db.prepare("SELECT * FROM indexed_sites WHERE lexicon_entry_id = ? AND status = 'active'").get(id);
+  const site = db
+    .prepare("SELECT * FROM indexed_sites WHERE lexicon_entry_id = ? AND status = 'active'")
+    .get(id);
   const avail = db.prepare('SELECT * FROM availability WHERE entry_id = ?').get(id);
 
   const punycode = computePunycode(entry.unicode);
-  return { 
+  return {
     ...entry,
     tierLabel: entry.tier_label,
     sources: parseSources(entry.sources),
     punycode,
     breakdown,
     site: site || null,
-    availability: avail ? { ...avail, registrar_links: JSON.parse(avail.registrar_links || '{}') } : null
+    availability: avail
+      ? { ...avail, registrar_links: JSON.parse(avail.registrar_links || '{}') }
+      : null,
   };
 }
 
@@ -242,43 +279,52 @@ function getStats() {
     flagships: db.prepare('SELECT COUNT(*) as c FROM entries WHERE has_flagship = 1').get().c,
     pantheons: db.prepare('SELECT COUNT(DISTINCT pantheon) as c FROM entries').get().c,
     breakdown: [], // stats table removed in crawler migration
-    tiers: db.prepare(`
+    tiers: db
+      .prepare(`
       SELECT tier, COUNT(*) as count FROM entries GROUP BY tier ORDER BY
       CASE tier WHEN 'dual' THEN 1 WHEN '1' THEN 2 WHEN '2' THEN 3 ELSE 4 END
-    `).all(),
+    `)
+      .all(),
     sites: {
       indexed: db.prepare('SELECT COUNT(*) as c FROM indexed_sites').get().c,
       active: db.prepare("SELECT COUNT(*) as c FROM indexed_sites WHERE status = 'active'").get().c,
-      available: db.prepare('SELECT COUNT(*) as c FROM availability').get().c
-    }
+      available: db.prepare('SELECT COUNT(*) as c FROM availability').get().c,
+    },
   };
 }
 
 function getPantheons() {
   const db = getDb();
-  return db.prepare('SELECT DISTINCT pantheon FROM entries ORDER BY pantheon').all().map(r => r.pantheon);
+  return db
+    .prepare('SELECT DISTINCT pantheon FROM entries ORDER BY pantheon')
+    .all()
+    .map((r) => r.pantheon);
 }
 
 function getFlagships() {
   const db = getDb();
-  return db.prepare(`
+  return db
+    .prepare(`
     SELECT e.*, s.title as site_title, s.description as site_description
     FROM entries e
     LEFT JOIN indexed_sites s ON e.id = s.lexicon_entry_id AND s.status = 'active'
     WHERE e.has_flagship = 1
     ORDER BY e.pantheon, e.unicode
-  `).all();
+  `)
+    .all();
 }
 
 function getByPantheon(pantheon) {
   const db = getDb();
-  return db.prepare(`
+  return db
+    .prepare(`
     SELECT e.*, s.title as site_title, s.status as site_status
     FROM entries e
     LEFT JOIN indexed_sites s ON e.id = s.lexicon_entry_id AND s.status = 'active'
     WHERE e.pantheon = ?
     ORDER BY e.has_flagship DESC, e.unicode
-  `).all(pantheon);
+  `)
+    .all(pantheon);
 }
 
 function getVariants(id) {
@@ -288,16 +334,18 @@ function getVariants(id) {
   if (!entry) return null;
 
   // Find all entries sharing the same ASCII, excluding the original
-  const variants = db.prepare(`
+  const variants = db
+    .prepare(`
     SELECT e.*, s.title as site_title, s.description as site_description,
            s.status as site_status, s.punycode as site_punycode
     FROM entries e
     LEFT JOIN indexed_sites s ON e.id = s.lexicon_entry_id AND s.status = 'active'
     WHERE e.ascii = ? AND e.id != ?
     ORDER BY e.has_flagship DESC, e.unicode
-  `).all(entry.ascii, id);
+  `)
+    .all(entry.ascii, id);
 
-  return variants.map(row => {
+  return variants.map((row) => {
     const punycode = computePunycode(row.unicode);
     return {
       id: row.id,
@@ -312,28 +360,32 @@ function getVariants(id) {
       domain: row.domain,
       punycode,
       hasFlagship: row.has_flagship,
-      site: row.site_title ? {
-        title: row.site_title,
-        description: row.site_description,
-        status: row.site_status,
-        punycode: row.site_punycode
-      } : null
+      site: row.site_title
+        ? {
+            title: row.site_title,
+            description: row.site_description,
+            status: row.site_status,
+            punycode: row.site_punycode,
+          }
+        : null,
     };
   });
 }
 
 function getVariantsByAscii(ascii) {
   const db = getDb();
-  const variants = db.prepare(`
+  const variants = db
+    .prepare(`
     SELECT e.*, s.title as site_title, s.description as site_description,
            s.status as site_status, s.punycode as site_punycode
     FROM entries e
     LEFT JOIN indexed_sites s ON e.id = s.lexicon_entry_id AND s.status = 'active'
     WHERE e.ascii = ?
     ORDER BY e.has_flagship DESC, e.unicode
-  `).all(ascii);
+  `)
+    .all(ascii);
 
-  return variants.map(row => ({
+  return variants.map((row) => ({
     id: row.id,
     ascii: row.ascii,
     unicode: row.unicode,
@@ -345,12 +397,14 @@ function getVariantsByAscii(ascii) {
     sources: parseSources(row.sources),
     domain: row.domain,
     hasFlagship: row.has_flagship,
-    site: row.site_title ? {
-      title: row.site_title,
-      description: row.site_description,
-      status: row.site_status,
-      punycode: row.site_punycode
-    } : null
+    site: row.site_title
+      ? {
+          title: row.site_title,
+          description: row.site_description,
+          status: row.site_status,
+          punycode: row.site_punycode,
+        }
+      : null,
   }));
 }
 
@@ -362,5 +416,5 @@ module.exports = {
   getFlagships,
   getByPantheon,
   getVariants,
-  getVariantsByAscii
+  getVariantsByAscii,
 };

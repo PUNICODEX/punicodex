@@ -120,7 +120,7 @@ const lexMap = {};
 lexEntries.forEach(e => lexMap[e.id] = e);
 
 // Parse existing archetypes (flagships with rich data)
-const archCode = fs.readFileSync(path.join(ROOT, 'js/archetypes.js'), 'utf8');
+const archCode = fs.readFileSync(path.join(ROOT, 'js/archetypes-v2.js'), 'utf8');
 const existingEntries = [];
 const entryRe = /\{\s*\n\s+id:\s*"([^"]+)"[\s\S]*?\n\s+\},/g;
 while ((m = entryRe.exec(archCode))) {
@@ -155,7 +155,7 @@ while ((m = entryRe.exec(archCode))) {
         domainUnicode: getStr('domainUnicode'), domainPunycode: getStr('domainPunycode'),
         domainAlt: getArr('domainAlt'), colors,
         mascotPath: getStr('mascotPath'), mascotFallback: getStr('mascotFallback'),
-        logomarkPath: getStr('logomarkPath'), built: getBool('built'), darkPunchline: getBool('darkPunchline'),
+        logomarkPath: getStr('logomarkPath'), built: getBool('built'), darkPunchline: getBool('darkPunchline'), hasAdSite: getBool('hasAdSite'),
     });
 }
 const existingMap = {};
@@ -192,7 +192,7 @@ for (const id of handcrafted) {
             folder: lex.id, domainUnicode, domainPunycode,
             domainAlt: [lex.ascii + '.com'], colors,
             mascotPath: mascotPath || '', mascotFallback: mascotPath || '', logomarkPath: logomarkPath || '',
-            built: true, darkPunchline: false,
+            built: true, hasAdSite: true, darkPunchline: false,
         });
     } else {
         allEntries.push({
@@ -201,7 +201,7 @@ for (const id of handcrafted) {
             pantheon: 'greek', folder: id, domainUnicode: id + '.com', domainPunycode: id + '.com',
             domainAlt: [id + '.com'], colors: PANTHEON_COLORS.greek,
             mascotPath: mascotPath || '', mascotFallback: mascotPath || '', logomarkPath: logomarkPath || '',
-            built: true, darkPunchline: false,
+            built: true, hasAdSite: true, darkPunchline: false,
         });
     }
 }
@@ -242,6 +242,7 @@ for (const a of allEntries) {
     if (a.mascotFallback) props.push(`mascotFallback: "${a.mascotFallback}"`);
     if (a.logomarkPath) props.push(`logomarkPath: "${a.logomarkPath}"`);
     props.push(`built: ${a.built}`);
+    if (a.hasAdSite) props.push(`hasAdSite: true`);
     props.push(`darkPunchline: ${a.darkPunchline}`);
     lines.push('    {');
     lines.push('        ' + props.join(',\n        '));
@@ -249,8 +250,8 @@ for (const a of allEntries) {
 }
 lines.push('];');
 lines.push('');
-fs.writeFileSync(path.join(ROOT, 'js/archetypes.js'), lines.join('\n'));
-console.log('Generated archetypes.js with ' + allEntries.length + ' handcrafted temples');
+fs.writeFileSync(path.join(ROOT, 'js/archetypes-v2.js'), lines.join('\n'));
+console.log('Generated archetypes-v2.js with ' + allEntries.length + ' handcrafted temples');
 console.log('  With mascots: ' + allEntries.filter(e => e.mascotPath).length);
 console.log('  Dual-tier: ' + allEntries.filter(e => e.tier === 'dual-tier').length);
 console.log('  Tier-1: ' + allEntries.filter(e => e.tier === 'tier-1').length);

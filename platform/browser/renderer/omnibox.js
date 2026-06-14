@@ -4,7 +4,7 @@
  * Only the Index is consulted. No foreign oracles.
  */
 
-const Omnibox = (function() {
+const _Omnibox = (function () {
   const input = document.getElementById('omnibox');
   const dropdown = document.getElementById('omniboxDropdown');
   const trustIcon = document.getElementById('trustIcon');
@@ -100,21 +100,27 @@ const Omnibox = (function() {
 
     // Check if it's a direct URL/punycode/unicode-domain
     const normalized = await window.punycodex.normalizeUrl(query);
-    if (normalized.type === 'url' || normalized.type === 'punycode' || normalized.type === 'unicode-domain') {
+    if (
+      normalized.type === 'url' ||
+      normalized.type === 'punycode' ||
+      normalized.type === 'unicode-domain'
+    ) {
       results.push({
         type: 'navigate',
         label: normalized.unicode || normalized.domain || normalized.url,
         url: normalized.url,
         punycode: normalized.punycode,
-        isDirect: true
+        isDirect: true,
       });
     }
 
     // Query the sacred Index (indexed sites only)
     try {
-      const apiRes = await window.punycodex.apiGet(`/api/sites/search?q=${encodeURIComponent(query)}&limit=6`);
+      const apiRes = await window.punycodex.apiGet(
+        `/api/sites/search?q=${encodeURIComponent(query)}&limit=6`
+      );
       if (apiRes.ok && Array.isArray(apiRes.data)) {
-        apiRes.data.forEach(site => {
+        apiRes.data.forEach((site) => {
           results.push({ type: 'site', site });
         });
       }
@@ -130,7 +136,11 @@ const Omnibox = (function() {
     hideDropdown();
 
     const normalized = await window.punycodex.normalizeUrl(value);
-    if (normalized.type === 'url' || normalized.type === 'punycode' || normalized.type === 'unicode-domain') {
+    if (
+      normalized.type === 'url' ||
+      normalized.type === 'punycode' ||
+      normalized.type === 'unicode-domain'
+    ) {
       WebviewManager.navigate(normalized.url);
       return;
     }
@@ -144,10 +154,12 @@ const Omnibox = (function() {
     }
 
     // No results — show empty state in dropdown briefly
-    results = [{
-      type: 'none',
-      message: 'No temples inscribed under this name.'
-    }];
+    results = [
+      {
+        type: 'none',
+        message: 'No temples inscribed under this name.',
+      },
+    ];
     renderDropdown();
     setTimeout(hideDropdown, 2000);
   }
@@ -155,7 +167,9 @@ const Omnibox = (function() {
   function navigateResult(result) {
     hideDropdown();
     if (result.type === 'navigate' || result.type === 'site') {
-      const url = result.url || (result.site ? `https://${result.site.punycode || result.site.domain}` : null);
+      const url =
+        result.url ||
+        (result.site ? `https://${result.site.punycode || result.site.domain}` : null);
       if (url) WebviewManager.navigate(url);
     }
   }
@@ -173,7 +187,7 @@ const Omnibox = (function() {
     let html = '';
 
     // Direct navigation / URL section
-    const navResults = results.filter(r => r.type === 'navigate');
+    const navResults = results.filter((r) => r.type === 'navigate');
     if (navResults.length > 0) {
       html += `<div class="dropdown-section"><div class="dropdown-section-title">Direct Inscription</div>`;
       navResults.forEach((r, i) => {
@@ -193,10 +207,10 @@ const Omnibox = (function() {
     }
 
     // The Index — ranked site results
-    const siteResults = results.filter(r => r.type === 'site');
+    const siteResults = results.filter((r) => r.type === 'site');
     if (siteResults.length > 0) {
       html += `<div class="dropdown-section"><div class="dropdown-section-title">The Index</div>`;
-      siteResults.forEach((r, i) => {
+      siteResults.forEach((r, _i) => {
         const globalIdx = results.indexOf(r);
         const isActive = globalIdx === activeIndex;
         const s = r.site;
@@ -230,7 +244,7 @@ const Omnibox = (function() {
     }
 
     // No results
-    const noneResults = results.filter(r => r.type === 'none');
+    const noneResults = results.filter((r) => r.type === 'none');
     if (noneResults.length > 0) {
       html += `
         <div class="dropdown-section">
@@ -247,7 +261,7 @@ const Omnibox = (function() {
     dropdown.classList.remove('hidden');
     isDropdownOpen = true;
 
-    dropdown.querySelectorAll('.dropdown-item[data-index]').forEach(el => {
+    dropdown.querySelectorAll('.dropdown-item[data-index]').forEach((el) => {
       el.addEventListener('click', () => {
         const idx = parseInt(el.dataset.index, 10);
         if (results[idx]) navigateResult(results[idx]);
@@ -315,11 +329,11 @@ const Omnibox = (function() {
     let punycodeValue = '';
 
     if (entry) {
-      displayValue = entry.unicode + '.com';
+      displayValue = `${entry.unicode}.com`;
       punycodeValue = entry.punycode || '';
       setTrustState('verified');
-    } else if (site && site.entry_unicode) {
-      displayValue = site.entry_unicode + '.com';
+    } else if (site?.entry_unicode) {
+      displayValue = `${site.entry_unicode}.com`;
       punycodeValue = site.punycode || '';
       setTrustState('verified');
     } else {
@@ -339,14 +353,14 @@ const Omnibox = (function() {
   }
 
   function renderUrlDisplay(url, displayDomain, punycode) {
-    if (!url || !url.startsWith('http')) {
+    if (!url?.startsWith('http')) {
       urlDisplay.innerHTML = '';
       return;
     }
 
     try {
       const u = new URL(url);
-      const protocol = u.protocol + '//';
+      const protocol = `${u.protocol}//`;
       const path = u.pathname + u.search + u.hash;
 
       let html = '';
@@ -360,7 +374,7 @@ const Omnibox = (function() {
       }
 
       urlDisplay.innerHTML = html;
-    } catch (e) {
+    } catch (_e) {
       urlDisplay.innerHTML = '';
     }
   }
@@ -384,7 +398,7 @@ const Omnibox = (function() {
 
     const unicode = data.unicode || data.entry_unicode || '';
     const puny = data.punycode || '';
-    const tier = data.tier || '';
+    const _tier = data.tier || '';
     const tierLabel = data.tier_label || '';
     const pantheon = data.pantheon || '';
     const title = data.title || '';
@@ -394,7 +408,8 @@ const Omnibox = (function() {
 
     html += `<div class="sp-title">${escapeHtml(unicode)}</div>`;
     if (puny) html += `<div class="sp-domain">${escapeHtml(puny)}</div>`;
-    if (title) html += `<div style="margin:0.5rem 0;color:var(--ink-dim);font-size:0.82rem;">${escapeHtml(title)}</div>`;
+    if (title)
+      html += `<div style="margin:0.5rem 0;color:var(--ink-dim);font-size:0.82rem;">${escapeHtml(title)}</div>`;
 
     html += `<div style="margin-top:0.75rem;">`;
     if (tierLabel) html += renderPopupRow('Tier', tierLabel);
@@ -439,7 +454,9 @@ const Omnibox = (function() {
     try {
       const d = new Date(iso);
       return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-    } catch { return iso; }
+    } catch {
+      return iso;
+    }
   }
 
   // Public API
@@ -447,8 +464,14 @@ const Omnibox = (function() {
     updateDisplay,
     setTrustState,
     setSealState,
-    focus() { input.focus(); },
-    get value() { return input.value; },
-    set value(v) { input.value = v; }
+    focus() {
+      input.focus();
+    },
+    get value() {
+      return input.value;
+    },
+    set value(v) {
+      input.value = v;
+    },
   };
 })();
