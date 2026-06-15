@@ -34,3 +34,8 @@ jobs:
 
       - name: Run test suite
         run: npm test
+
+      - name: Ensure generated files are in sync
+        run: |
+          npm run generate
+          git diff --exit-code

@@ -1,5 +1,10 @@
 /**
- * Export lexicon to platform/browser/renderer/lexicon.json
+ * PUNYCODEX — Export lexicon to platform/browser/renderer/lexicon.json
+ *
+ * Source of truth: type/js/lexicon.js
+ *
+ * GENERATED FILE — DO NOT EDIT BY HAND.
+ * Run `npm run generate` to regenerate.
  */
 const fs = require('fs');
 const path = require('path');
@@ -65,6 +70,11 @@ for (const e of LEXICON) {
 }
 
 const output = {
+    _meta: {
+        generatedBy: 'scripts/export-platform-lexicon.js',
+        source: 'type/js/lexicon.js',
+        generatedAt: new Date().toISOString(),
+    },
     exportedAt: new Date().toISOString(),
     totalEntries: entries.length,
     totalBreakdowns: breakdowns.length,

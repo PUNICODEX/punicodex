@@ -1,7 +1,12 @@
 {
-  "exportedAt": "2026-06-12T19:29:12.017Z",
-  "totalEntries": 856,
-  "totalBreakdowns": 5715,
+  "_meta": {
+    "generatedBy": "scripts/export-platform-lexicon.js",
+    "source": "type/js/lexicon.js",
+    "generatedAt": "2026-06-15T08:54:29.354Z"
+  },
+  "exportedAt": "2026-06-15T08:54:29.355Z",
+  "totalEntries": 857,
+  "totalBreakdowns": 5723,
   "pantheons": [
     "buddhist",
     "canaanite",
@@ -73,8 +78,8 @@
       "unicode": "Hádēs",
       "greek": "Ἅιδης",
       "pantheon": "greek",
-      "tier": "dual",
-      "tierLabel": "Dual-Tier",
+      "tier": "1",
+      "tierLabel": "Tier 1",
       "meaning": "The Unseen One (from ἀ- + εἶδον)",
       "sources": [
         "LSJ",
@@ -1905,29 +1910,35 @@
     {
       "id": "amun",
       "ascii": "amun",
-      "unicode": "Jmn",
+      "unicode": "Ꜣmun",
       "greek": "—",
       "pantheon": "egyptian",
       "tier": "2",
       "tierLabel": "Tier 2",
-      "meaning": "Hidden One (Egyptian jmn)",
+      "meaning": "Hidden One (Egyptian jmn; vocalized Ꜣmun)",
       "sources": [
         "Faulkner",
-        "Wb"
+        "Wb, jmn",
+        "Allen, Middle Egyptian"
       ],
       "domain": "Wind, Kingship, Thebes",
       "hasFlagship": 0,
-      "punycode": null,
+      "punycode": "xn--mun-lk3l.com",
       "variants": [
         {
+          "unicode": "Jmn",
+          "type": "alt",
+          "note": "Egyptological consonantal skeleton (reed-leaf j-m-n)"
+        },
+        {
           "unicode": "Amon",
-          "type": "alt-stress",
-          "note": "Alternate transliteration: Amon"
+          "type": "alt",
+          "note": "Vocalized transliteration: Amon"
         },
         {
           "unicode": "Amen",
-          "type": "alt-stress",
-          "note": "Alternate transliteration: Amen"
+          "type": "alt",
+          "note": "Vocalized transliteration: Amen"
         }
       ]
     },
@@ -2649,9 +2660,9 @@
       ]
     },
     {
-      "id": "enki",
-      "ascii": "enki",
-      "unicode": "Enki",
+      "id": "ea",
+      "ascii": "ea",
+      "unicode": "Ēa",
       "greek": "—",
       "pantheon": "mesopotamian",
       "tier": "2",
@@ -2662,8 +2673,8 @@
         "AHw"
       ],
       "domain": "Water, Wisdom, Crafts, Creation",
-      "hasFlagship": 1,
-      "punycode": null
+      "hasFlagship": 0,
+      "punycode": "xn--a-oia.com"
     },
     {
       "id": "tane",
@@ -3758,7 +3769,7 @@
     {
       "id": "tefnut",
       "ascii": "tefnut",
-      "unicode": "Tfnwt",
+      "unicode": "Tfnt",
       "greek": "—",
       "pantheon": "egyptian",
       "tier": "2",
@@ -4637,24 +4648,6 @@
       "punycode": "xn--pythn-j9a.com"
     },
     {
-      "id": "oceanus",
-      "ascii": "oceanus",
-      "unicode": "Ōkeanós",
-      "greek": "Ὠκεανός",
-      "pantheon": "greek",
-      "tier": "1",
-      "tierLabel": "Tier 1",
-      "meaning": "Great stream, ocean",
-      "sources": [
-        "LSJ",
-        "Pape-Benseler",
-        "Beekes"
-      ],
-      "domain": "Titan, World Ocean, Father of Rivers",
-      "hasFlagship": 0,
-      "punycode": "xn--keans-3ta93d.com"
-    },
-    {
       "id": "calypso",
       "ascii": "calypso",
       "unicode": "Kalypsō",
@@ -5187,8 +5180,8 @@
       "punycode": "xn--hmra-cpa4w.com"
     },
     {
-      "id": "aether",
-      "ascii": "aether",
+      "id": "aither",
+      "ascii": "aither",
       "unicode": "Aithḗr",
       "greek": "Αἰθήρ",
       "pantheon": "greek",
@@ -5200,7 +5193,7 @@
         "LSJ"
       ],
       "domain": "Upper Air, Light",
-      "hasFlagship": 1,
+      "hasFlagship": 0,
       "punycode": "xn--aithr-yd1b.com"
     },
     {
@@ -7127,7 +7120,7 @@
     {
       "id": "apsu",
       "ascii": "apsu",
-      "unicode": "Abzu",
+      "unicode": "Apsû",
       "greek": "—",
       "pantheon": "mesopotamian",
       "tier": "2",
@@ -7139,7 +7132,14 @@
       ],
       "domain": "Fresh Water, Abyss",
       "hasFlagship": 0,
-      "punycode": null
+      "punycode": "xn--aps-foa.com",
+      "variants": [
+        {
+          "unicode": "Abzu",
+          "type": "alt",
+          "note": "Sumerian form of the primordial freshwater abyss"
+        }
+      ]
     },
     {
       "id": "dumuzid",
@@ -15183,8 +15183,8 @@
       "unicode": "Aštart",
       "greek": "",
       "pantheon": "phoenician",
-      "tier": "2",
-      "tierLabel": "Tier 2",
+      "tier": "1",
+      "tierLabel": "Tier 1",
       "meaning": "She of the womb. The planet Venus as deity. Queen of heaven.",
       "sources": [
         "Ugaritic texts",
@@ -15247,6 +15247,39 @@
           "note": "Lowercase owned form"
         }
       ]
+    },
+    {
+      "id": "okeanos",
+      "ascii": "okeanos",
+      "unicode": "Ōkeanós",
+      "greek": "Ὠκεανός",
+      "pantheon": "greek",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "meaning": "The great river encircling the world",
+      "sources": [
+        "Hesiod",
+        "LSJ"
+      ],
+      "domain": "Ocean, Fresh Water",
+      "hasFlagship": 0,
+      "punycode": "xn--keans-3ta93d.com"
+    },
+    {
+      "id": "trengtreng",
+      "ascii": "trengtreng",
+      "unicode": "Trengtreng",
+      "greek": "—",
+      "pantheon": "incan",
+      "tier": "2",
+      "tierLabel": "Tier 2",
+      "meaning": "Mapuche thunder and war god",
+      "sources": [
+        "Mapuche oral tradition"
+      ],
+      "domain": "Thunder, War",
+      "hasFlagship": 0,
+      "punycode": null
     }
   ],
   "breakdowns": [
@@ -16408,9 +16441,9 @@
     {
       "entryId": "eros",
       "char": "e",
-      "to": "E",
-      "type": "same",
-      "note": "Epsilon"
+      "to": "É",
+      "type": "stress",
+      "note": "Epsilon with acute"
     },
     {
       "entryId": "eros",
@@ -19152,9 +19185,9 @@
     {
       "entryId": "amun",
       "char": "a",
-      "to": "J",
+      "to": "Ꜣ",
       "type": "special",
-      "note": "Alef: weak consonant"
+      "note": "Egyptological alef (Ꜣ): the initial reed-leaf consonant, read as alef in Demotic/vocalized tradition and supplied with the vowel a from Coptic Ⲁⲙⲟⲩⲛ / Greek Ἄμμων"
     },
     {
       "entryId": "amun",
@@ -19166,9 +19199,9 @@
     {
       "entryId": "amun",
       "char": "u",
-      "to": "",
-      "type": "drop",
-      "note": "Dropped: vowel not written"
+      "to": "u",
+      "type": "same",
+      "note": "Vowel supplied from Coptic Ⲁⲙⲟⲩⲛ / Greek Ἄμμων; Egyptian writing does not record vowels"
     },
     {
       "entryId": "amun",
@@ -20599,30 +20632,16 @@
       "note": "Same"
     },
     {
-      "entryId": "enki",
+      "entryId": "ea",
       "char": "e",
-      "to": "E",
-      "type": "same",
-      "note": "Same"
+      "to": "Ē",
+      "type": "length",
+      "note": "Macron: length preserved"
     },
     {
-      "entryId": "enki",
-      "char": "n",
-      "to": "n",
-      "type": "same",
-      "note": "Same"
-    },
-    {
-      "entryId": "enki",
-      "char": "k",
-      "to": "k",
-      "type": "same",
-      "note": "Same"
-    },
-    {
-      "entryId": "enki",
-      "char": "i",
-      "to": "i",
+      "entryId": "ea",
+      "char": "a",
+      "to": "a",
       "type": "same",
       "note": "Same"
     },
@@ -23807,9 +23826,9 @@
     {
       "entryId": "tefnut",
       "char": "u",
-      "to": "w",
-      "type": "same",
-      "note": "W"
+      "to": "",
+      "type": "drop",
+      "note": "Vowel not written"
     },
     {
       "entryId": "tefnut",
@@ -26038,55 +26057,6 @@
       "note": "Same"
     },
     {
-      "entryId": "oceanus",
-      "char": "o",
-      "to": "Ō",
-      "type": "length",
-      "note": "Macron: long omega"
-    },
-    {
-      "entryId": "oceanus",
-      "char": "c",
-      "to": "k",
-      "type": "same",
-      "note": "Kappa"
-    },
-    {
-      "entryId": "oceanus",
-      "char": "e",
-      "to": "e",
-      "type": "same",
-      "note": "Same"
-    },
-    {
-      "entryId": "oceanus",
-      "char": "a",
-      "to": "a",
-      "type": "same",
-      "note": "Same"
-    },
-    {
-      "entryId": "oceanus",
-      "char": "n",
-      "to": "n",
-      "type": "same",
-      "note": "Same"
-    },
-    {
-      "entryId": "oceanus",
-      "char": "u",
-      "to": "ó",
-      "type": "stress",
-      "note": "Acute on omicron"
-    },
-    {
-      "entryId": "oceanus",
-      "char": "s",
-      "to": "s",
-      "type": "same",
-      "note": "Same"
-    },
-    {
       "entryId": "calypso",
       "char": "c",
       "to": "K",
@@ -27501,42 +27471,42 @@
       "note": "a same"
     },
     {
-      "entryId": "aether",
+      "entryId": "aither",
       "char": "a",
       "to": "A",
       "type": "same",
       "note": "A uppercase"
     },
     {
-      "entryId": "aether",
-      "char": "e",
+      "entryId": "aither",
+      "char": "i",
       "to": "i",
-      "type": "special",
-      "note": "Special character"
+      "type": "same",
+      "note": "Same"
     },
     {
-      "entryId": "aether",
+      "entryId": "aither",
       "char": "t",
       "to": "t",
       "type": "same",
       "note": "t same"
     },
     {
-      "entryId": "aether",
+      "entryId": "aither",
       "char": "h",
       "to": "h",
       "type": "same",
       "note": "h same"
     },
     {
-      "entryId": "aether",
+      "entryId": "aither",
       "char": "e",
       "to": "ḗ",
       "type": "dual",
       "note": "Stress + length"
     },
     {
-      "entryId": "aether",
+      "entryId": "aither",
       "char": "r",
       "to": "r",
       "type": "same",
@@ -32662,23 +32632,23 @@
     {
       "entryId": "apsu",
       "char": "p",
-      "to": "b",
-      "type": "special",
-      "note": "Special character"
+      "to": "p",
+      "type": "same",
+      "note": "Same"
     },
     {
       "entryId": "apsu",
       "char": "s",
-      "to": "z",
-      "type": "special",
-      "note": "Special character"
+      "to": "s",
+      "type": "same",
+      "note": "Same"
     },
     {
       "entryId": "apsu",
       "char": "u",
-      "to": "u",
-      "type": "same",
-      "note": "Same"
+      "to": "û",
+      "type": "length",
+      "note": "Circumflex marks Akkadian long /û/ (vowel-contraction length), not Greek-style stress"
     },
     {
       "entryId": "dumuzid",
@@ -50792,9 +50762,9 @@
     {
       "entryId": "baal",
       "char": "b",
-      "to": "b",
+      "to": "B",
       "type": "same",
-      "note": "Same"
+      "note": "Capital beta"
     },
     {
       "entryId": "baal",
@@ -50806,9 +50776,9 @@
     {
       "entryId": "baal",
       "char": "a",
-      "to": "ꜥ",
+      "to": "ꜥa",
       "type": "special",
-      "note": "Egyptian Ain (ꜥ) used as the only DNS-registrable stand-in for Semitic ʿayin"
+      "note": "Egyptian Ain (ꜥ) used as the only DNS-registrable stand-in for Semitic ʿayin, followed by the vowel present in the Unicode restoration"
     },
     {
       "entryId": "baal",
@@ -50820,9 +50790,9 @@
     {
       "entryId": "el",
       "char": "e",
-      "to": "ē",
+      "to": "Ē",
       "type": "length",
-      "note": "Macron marks long /ē/"
+      "note": "Macron marks long /ē/; capitalized in the restoration"
     },
     {
       "entryId": "el",
@@ -50834,9 +50804,9 @@
     {
       "entryId": "anat",
       "char": "a",
-      "to": "ꜥ",
+      "to": "ꜥA",
       "type": "special",
-      "note": "Egyptian Ain (ꜥ) represents the Semitic ʿayin in this position"
+      "note": "Egyptian Ain (ꜥ) represents the Semitic ʿayin, followed by the capital alpha present in the Unicode restoration"
     },
     {
       "entryId": "anat",
@@ -55069,9 +55039,9 @@
     {
       "entryId": "asia",
       "char": "a",
-      "to": "ā",
-      "type": "length",
-      "note": "Macron: long alpha"
+      "to": "a",
+      "type": "same",
+      "note": "Final alpha"
     },
     {
       "entryId": "europe",
@@ -55118,9 +55088,9 @@
     {
       "entryId": "rta",
       "char": "r",
-      "to": "ṛ",
+      "to": "Ṛ",
       "type": "special",
-      "note": "Vocalic r — dot below marks syllabic /r/"
+      "note": "Vocalic r — dot below marks syllabic /r/; capitalized in the restoration"
     },
     {
       "entryId": "rta",
@@ -55209,9 +55179,9 @@
     {
       "entryId": "asherah",
       "char": "a",
-      "to": "ꜥ",
+      "to": "ꜥA",
       "type": "special",
-      "note": "Egyptian Ain (ꜥ) stands in for Semitic ʿayin at the start of the name"
+      "note": "Egyptian Ain (ꜥ) stands in for Semitic ʿayin at the start of the name, followed by the capital alpha present in the Unicode restoration"
     },
     {
       "entryId": "asherah",
@@ -55252,6 +55222,125 @@
       "entryId": "asherah",
       "char": "h",
       "to": "h",
+      "type": "same",
+      "note": "Same"
+    },
+    {
+      "entryId": "okeanos",
+      "char": "o",
+      "to": "Ō",
+      "type": "length",
+      "note": "Macron: long omega"
+    },
+    {
+      "entryId": "okeanos",
+      "char": "k",
+      "to": "k",
+      "type": "same",
+      "note": "Same"
+    },
+    {
+      "entryId": "okeanos",
+      "char": "e",
+      "to": "e",
+      "type": "same",
+      "note": "Same"
+    },
+    {
+      "entryId": "okeanos",
+      "char": "a",
+      "to": "a",
+      "type": "same",
+      "note": "Same"
+    },
+    {
+      "entryId": "okeanos",
+      "char": "n",
+      "to": "n",
+      "type": "same",
+      "note": "Same"
+    },
+    {
+      "entryId": "okeanos",
+      "char": "o",
+      "to": "ó",
+      "type": "stress",
+      "note": "Acute accent"
+    },
+    {
+      "entryId": "okeanos",
+      "char": "s",
+      "to": "s",
+      "type": "same",
+      "note": "Same"
+    },
+    {
+      "entryId": "trengtreng",
+      "char": "t",
+      "to": "T",
+      "type": "same",
+      "note": "Same"
+    },
+    {
+      "entryId": "trengtreng",
+      "char": "r",
+      "to": "r",
+      "type": "same",
+      "note": "Same"
+    },
+    {
+      "entryId": "trengtreng",
+      "char": "e",
+      "to": "e",
+      "type": "same",
+      "note": "Same"
+    },
+    {
+      "entryId": "trengtreng",
+      "char": "n",
+      "to": "n",
+      "type": "same",
+      "note": "Same"
+    },
+    {
+      "entryId": "trengtreng",
+      "char": "g",
+      "to": "g",
+      "type": "same",
+      "note": "Same"
+    },
+    {
+      "entryId": "trengtreng",
+      "char": "t",
+      "to": "t",
+      "type": "same",
+      "note": "Same"
+    },
+    {
+      "entryId": "trengtreng",
+      "char": "r",
+      "to": "r",
+      "type": "same",
+      "note": "Same"
+    },
+    {
+      "entryId": "trengtreng",
+      "char": "e",
+      "to": "e",
+      "type": "same",
+      "note": "Same"
+    },
+    {
+      "entryId": "trengtreng",
+      "char": "n",
+      "to": "n",
+      "type": "same",
+      "note": "Same"
+    },
+    {
+      "entryId": "trengtreng",
+      "char": "g",
+      "to": "g",
       "type": "same",
       "note": "Same"
     }
