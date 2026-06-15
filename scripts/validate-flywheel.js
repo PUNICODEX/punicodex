@@ -377,6 +377,117 @@ for (const entry of lexicon) {
 }
 if (missingTemples === 0) pass(`All ${lexicon.length} lexicon entries have temple pages`);
 
+// ── 7. Flagship HTML content consistency (warnings) ──────────────────────────
+console.log('\n▸ Flagship HTML Content');
+let flagshipWarnings = 0;
+
+function normalizeText(str) {
+  return str
+    .normalize('NFC')
+    .replace(/[\u00A0]/g, ' ')
+    .replace(/[\u2010\u2011\u2012\u2013\u2014\u2015]/g, '-')
+    .toLowerCase();
+}
+
+function textContent(html) {
+  return normalizeText(html.replace(/<[^>]+>/g, ' ').replace(/&nbsp;/gi, ' '));
+}
+
+function hasHtmlText(html, text) {
+  return textContent(html).includes(normalizeText(text));
+}
+
+function assetExistsFromHtml(html, assetName) {
+  const re = new RegExp(`assets/${assetName}\\.(png|webp)`, 'i');
+  return re.test(html);
+}
+
+for (const a of archetypes) {
+  if (!a.built) continue;
+  const entry = lexiconById.get(a.id);
+  if (!entry) continue;
+
+  const htmlPath = path.join(ROOT, 'sites', a.id, 'index.html');
+  if (!fs.existsSync(htmlPath)) {
+    warn(`Flagship ${a.id} is missing sites/${a.id}/index.html`);
+    flagshipWarnings++;
+    continue;
+  }
+
+  const html = fs.readFileSync(htmlPath, 'utf8');
+  const text = textContent(html);
+
+  const placeholders = ['todo', 'fixme', 'lorem ipsum', 'placeholder'];
+  for (const ph of placeholders) {
+    if (text.includes(ph)) {
+      warn(`Flagship ${a.id} contains placeholder text: "${ph}"`);
+      flagshipWarnings++;
+    }
+  }
+
+  if (!html.match(/<title>[^<]*<\/title>/i)) {
+    warn(`Flagship ${a.id} is missing <title>`);
+    flagshipWarnings++;
+  }
+  if (!html.match(/<meta[^>]+name=["']description["']/i)) {
+    warn(`Flagship ${a.id} is missing meta description`);
+    flagshipWarnings++;
+  }
+  if (!html.match(/<meta[^>]+property=["']og:title["']/i)) {
+    warn(`Flagship ${a.id} is missing og:title`);
+    flagshipWarnings++;
+  }
+  if (!html.match(/<link[^>]+rel=["']canonical["']/i)) {
+    warn(`Flagship ${a.id} is missing canonical link`);
+    flagshipWarnings++;
+  }
+
+  if (!hasHtmlText(html, entry.unicode)) {
+    const variantMatch = (entry.variants || []).some(v => hasHtmlText(html, v.unicode));
+    if (!variantMatch) {
+      warn(`Flagship ${a.id} page does not display lexicon Unicode "${entry.unicode}" or a variant`);
+      flagshipWarnings++;
+    }
+  }
+
+  const isGreekEntry = entry.pantheon === 'greek' || entry.pantheon === 'greek-location';
+  const realGreek = isGreekEntry && entry.greek && entry.greek !== '—';
+  if (realGreek && !hasHtmlText(html, entry.greek)) {
+    warn(`Flagship ${a.id} page does not display Greek original "${entry.greek}"`);
+    flagshipWarnings++;
+  }
+
+  const domainText = a.domainUnicode || a.domainPunycode;
+  if (domainText) {
+    const base = domainText.replace(/\.com$/, '');
+    if (!hasHtmlText(html, base) && !hasHtmlText(html, domainText)) {
+      warn(`Flagship ${a.id} page does not display primary domain "${domainText}"`);
+      flagshipWarnings++;
+    }
+  }
+
+  const tierLabel = entry.tierLabel || (entry.tier === 'dual' ? 'Dual-Tier' : `Tier-${entry.tier}`);
+  if (!hasHtmlText(html, tierLabel)) {
+    warn(`Flagship ${a.id} page does not display tier badge "${tierLabel}"`);
+    flagshipWarnings++;
+  }
+
+  if (!assetExistsFromHtml(html, `${a.id}_mascot`)) {
+    warn(`Flagship ${a.id} page does not reference mascot asset`);
+    flagshipWarnings++;
+  }
+  if (!assetExistsFromHtml(html, `${a.id}_logomark`)) {
+    warn(`Flagship ${a.id} page does not reference logomark asset`);
+    flagshipWarnings++;
+  }
+}
+
+if (flagshipWarnings === 0) {
+  pass('All flagship pages pass content consistency checks');
+} else {
+  pass(`Flagship content checks completed with ${flagshipWarnings} warning(s)`);
+}
+
 // ═════════════════════════════════════════════════════════════════════════════
 console.log('\n────────────────────────────────────────────────────────');
 if (failures === 0) {

@@ -27,6 +27,7 @@ const root = path.join(__dirname, '..');
 
 const scripts = [
   'scripts/sync-shared-lexicon.js',
+  'scripts/sync-shared-engine.js',
   'scripts/build-android-assets.js',
   'scripts/export-platform-lexicon.js',
   'scripts/sync-middleware-domains.js',

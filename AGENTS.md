@@ -75,6 +75,10 @@ sources and all generated consumers are internally consistent:
   and `hasFlagship` set derive exactly from the canonical lexicon and archetype
   list.
 - Every lexicon entry has a temple page at `sites/{id}/index.html`.
+- Flagship HTML pages (`sites/{id}/index.html`) are checked for placeholder
+  text, required meta/OG tags, canonical links, displayed Unicode name, Greek
+  original (Greek entries), primary domain, tier badge, and mascot/logomark
+  asset references. Current inconsistencies are reported as warnings.
 
 If this validator fails, run `npm run generate` and fix any remaining source
 mismatches it reports.
@@ -84,13 +88,26 @@ mismatches it reports.
 `scripts/generate.js` orchestrates all generation scripts in dependency order:
 
 1. `scripts/sync-shared-lexicon.js`
-2. `scripts/build-android-assets.js`
-3. `scripts/export-platform-lexicon.js`
-4. `scripts/sync-middleware-domains.js`
-5. `scripts/generate-temples.js`
+2. `scripts/sync-shared-engine.js`
+3. `scripts/build-android-assets.js`
+4. `scripts/export-platform-lexicon.js`
+5. `scripts/sync-middleware-domains.js`
+6. `scripts/generate-temples.js`
 
-Future phases will move more hand-edited files into canonical data files and
-expand this generator.
+### Safe-edit scripts (Phase 3)
+
+Use these instead of hand-editing multiple canonical files:
+
+- `node scripts/add-owned-domain.js <id> <domain>` — appends an owned domain to
+  `platform/db/owned-domains.json`, injects it into the matching archetype's
+  domain set, regenerates derived artifacts, and validates.
+- `node scripts/promote-to-flagship.js <id> [--domain <domain>]` — marks a
+  lexicon entry as a flagship, creates/updates its archetype entry, optionally
+  wires an owned domain, runs `create-flagship.js`, regenerates derived
+  artifacts, and validates.
+
+`scripts/sync-mobile-lexicon.js` is **deprecated** and will exit with an error;
+`mobile/shared/lexicon.js` is now a full copy of the canonical lexicon.
 
 ---
 

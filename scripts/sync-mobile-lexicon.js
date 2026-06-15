@@ -11,6 +11,11 @@
 const fs = require('fs');
 const path = require('path');
 
+console.error(`\nDEPRECATED: scripts/sync-mobile-lexicon.js is no longer used.`);
+console.error(`The mobile lexicon is now a full copy of the canonical lexicon via scripts/sync-shared-lexicon.js.`);
+console.error(`Run \`npm run generate\` instead. Exiting without changes.\n`);
+process.exit(1);
+
 const MAIN_LEXICON = path.join(__dirname, '..', 'type', 'js', 'lexicon.js');
 const MOBILE_LEXICON = path.join(__dirname, '..', 'mobile', 'shared', 'lexicon.js');
 
