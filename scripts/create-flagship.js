@@ -948,11 +948,10 @@ function isStubContent(content) {
 
 function getDomainsText(entry) {
   const unicode = entry.unicode;
+  // Only list domains the project actually owns or presents as owned.
+  // Plain ASCII fallbacks (type: 'ascii') must NOT be shown as owned domains.
   const useful = (entry.variants || [])
-    .filter(
-      (v) =>
-        v?.unicode && (!v.type || v.type === 'owned' || v.type === 'ascii' || v.type === 'primary')
-    )
+    .filter((v) => v?.unicode && (!v.type || v.type === 'owned' || v.type === 'primary'))
     .map((v) => v.unicode);
   const allForms = [unicode, ...useful];
   const seen = new Set();
