@@ -5790,23 +5790,25 @@ const LEXICON = [
   {
     id: 'amun',
     ascii: 'amun',
-    unicode: 'Jmn',
+    unicode: 'Ꜣmun',
     greek: '—',
+    originalScript: '𓇋𓏠𓈖',
     pantheon: 'egyptian',
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Wind, Kingship, Thebes',
-    meaning: 'Hidden One (Egyptian jmn)',
+    meaning: 'Hidden One (Egyptian jmn; vocalized Ꜣmun)',
     sources: [
       'Faulkner',
-      'Wb'
+      'Wb, jmn',
+      'Allen, Middle Egyptian'
     ],
     breakdown: [
       {
         char: 'a',
-        to: 'J',
+        to: 'Ꜣ',
         type: 'special',
-        note: 'Alef: weak consonant'
+        note: 'Egyptological alef (Ꜣ): the initial reed-leaf consonant, read as alef in Demotic/vocalized tradition and supplied with the vowel a from Coptic Ⲁⲙⲟⲩⲛ / Greek Ἄμμων'
       },
       {
         char: 'm',
@@ -5816,9 +5818,9 @@ const LEXICON = [
       },
       {
         char: 'u',
-        to: '',
-        type: 'drop',
-        note: 'Dropped: vowel not written'
+        to: 'u',
+        type: 'same',
+        note: 'Vowel supplied from Coptic Ⲁⲙⲟⲩⲛ / Greek Ἄμμων; Egyptian writing does not record vowels'
       },
       {
         char: 'n',
@@ -5829,14 +5831,19 @@ const LEXICON = [
     ],
     variants: [
       {
+        unicode: 'Jmn',
+        type: 'alt',
+        note: 'Egyptological consonantal skeleton (reed-leaf j-m-n)'
+      },
+      {
         unicode: 'Amon',
-        type: 'alt-stress',
-        note: 'Alternate transliteration: Amon'
+        type: 'alt',
+        note: 'Vocalized transliteration: Amon'
       },
       {
         unicode: 'Amen',
-        type: 'alt-stress',
-        note: 'Alternate transliteration: Amen'
+        type: 'alt',
+        note: 'Vocalized transliteration: Amen'
       }
     ]
   },
