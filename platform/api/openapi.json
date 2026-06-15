@@ -1,0 +1,404 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "PÚNYCODEX Unicode Names API",
+    "description": "Authoritative Unicode restorations for mythological, cultural, and historical names. \n\nAuthentication: pass your API key in the `Authorization: Bearer <key>` header. Read endpoints also work without a key at the free tier.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "PÚNYCODEX",
+      "url": "https://punycodex.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://punycodex.com/api/v1",
+      "description": "Production"
+    },
+    {
+      "url": "http://localhost:3456/api/v1",
+      "description": "Local development"
+    }
+  ],
+  "paths": {
+    "/names": {
+      "get": {
+        "summary": "List and search Unicode names",
+        "operationId": "listNames",
+        "parameters": [
+          { "$ref": "#/components/parameters/QueryQ" },
+          { "$ref": "#/components/parameters/QueryPantheon" },
+          { "$ref": "#/components/parameters/QueryTier" },
+          { "$ref": "#/components/parameters/QueryHasSite" },
+          { "$ref": "#/components/parameters/QuerySort" },
+          { "$ref": "#/components/parameters/QueryLimit" },
+          { "$ref": "#/components/parameters/QueryOffset" }
+        ],
+        "responses": {
+          "200": { "$ref": "#/components/responses/NameListResponse" },
+          "400": { "$ref": "#/components/responses/ValidationError" },
+          "429": { "$ref": "#/components/responses/RateLimitError" }
+        }
+      }
+    },
+    "/names/{id}": {
+      "get": {
+        "summary": "Get a single Unicode name record",
+        "operationId": "getName",
+        "parameters": [{ "$ref": "#/components/parameters/PathId" }],
+        "responses": {
+          "200": { "$ref": "#/components/responses/NameDetailResponse" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/names/{id}/variants": {
+      "get": {
+        "summary": "Get variant Unicode forms",
+        "operationId": "getVariants",
+        "parameters": [{ "$ref": "#/components/parameters/PathId" }],
+        "responses": {
+          "200": { "$ref": "#/components/responses/VariantsResponse" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/names/{id}/breakdown": {
+      "get": {
+        "summary": "Get character-by-character ASCII → Unicode breakdown",
+        "operationId": "getBreakdown",
+        "parameters": [{ "$ref": "#/components/parameters/PathId" }],
+        "responses": {
+          "200": { "$ref": "#/components/responses/BreakdownResponse" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/names/{id}/original-script": {
+      "get": {
+        "summary": "Get original script and provenance",
+        "operationId": "getOriginalScript",
+        "parameters": [{ "$ref": "#/components/parameters/PathId" }],
+        "responses": {
+          "200": { "$ref": "#/components/responses/OriginalScriptResponse" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/names/{id}/etymology": {
+      "get": {
+        "summary": "Get etymology data",
+        "operationId": "getEtymology",
+        "parameters": [{ "$ref": "#/components/parameters/PathId" }],
+        "responses": {
+          "200": { "$ref": "#/components/responses/EtymologyResponse" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/names/{id}/availability": {
+      "get": {
+        "summary": "Get domain availability and registrar links",
+        "operationId": "getAvailability",
+        "parameters": [{ "$ref": "#/components/parameters/PathId" }],
+        "responses": {
+          "200": { "$ref": "#/components/responses/AvailabilityResponse" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/names/{id}/site": {
+      "get": {
+        "summary": "Get live indexed site metadata",
+        "operationId": "getSite",
+        "parameters": [{ "$ref": "#/components/parameters/PathId" }],
+        "responses": {
+          "200": { "$ref": "#/components/responses/SiteResponse" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/names/{id}/slots": {
+      "get": {
+        "summary": "Get ad-slot inventory and pricing",
+        "operationId": "getSlots",
+        "parameters": [{ "$ref": "#/components/parameters/PathId" }],
+        "responses": {
+          "200": { "$ref": "#/components/responses/SlotsResponse" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/pantheons": {
+      "get": {
+        "summary": "List pantheons",
+        "operationId": "listPantheons",
+        "responses": {
+          "200": { "$ref": "#/components/responses/PantheonsResponse" }
+        }
+      }
+    },
+    "/pantheons/{name}": {
+      "get": {
+        "summary": "Get entries in a pantheon",
+        "operationId": "getPantheon",
+        "parameters": [{ "$ref": "#/components/parameters/PathName" }],
+        "responses": {
+          "200": { "$ref": "#/components/responses/PantheonDetailResponse" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/tiers": {
+      "get": {
+        "summary": "Get tier system documentation",
+        "operationId": "listTiers",
+        "responses": {
+          "200": { "$ref": "#/components/responses/TiersResponse" }
+        }
+      }
+    },
+    "/autocomplete": {
+      "get": {
+        "summary": "Autocomplete names by prefix",
+        "operationId": "autocompleteNames",
+        "parameters": [
+          { "name": "q", "in": "query", "required": true, "schema": { "type": "string" } },
+          { "name": "limit", "in": "query", "schema": { "type": "integer", "default": 8 } },
+          { "$ref": "#/components/parameters/QueryPantheon" }
+        ],
+        "responses": {
+          "200": { "$ref": "#/components/responses/AutocompleteResponse" },
+          "400": { "$ref": "#/components/responses/ValidationError" }
+        }
+      }
+    },
+    "/convert": {
+      "get": {
+        "summary": "Convert ASCII/Unicode to punycode and lexicon match",
+        "operationId": "convertName",
+        "parameters": [
+          { "name": "q", "in": "query", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "$ref": "#/components/responses/ConvertResponse" },
+          "400": { "$ref": "#/components/responses/ValidationError" }
+        }
+      }
+    },
+    "/convert/batch": {
+      "post": {
+        "summary": "Batch convert names",
+        "operationId": "convertBatch",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "queries": { "type": "array", "items": { "type": "string" }, "maxItems": 100 }
+                },
+                "required": ["queries"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "$ref": "#/components/responses/BatchConvertResponse" },
+          "400": { "$ref": "#/components/responses/ValidationError" }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "PathId": {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": { "type": "string", "example": "zeus" }
+      },
+      "PathName": {
+        "name": "name",
+        "in": "path",
+        "required": true,
+        "schema": { "type": "string", "example": "greek" }
+      },
+      "QueryQ": {
+        "name": "q",
+        "in": "query",
+        "schema": { "type": "string" },
+        "description": "Search query (ASCII, Unicode, or Greek)"
+      },
+      "QueryPantheon": {
+        "name": "pantheon",
+        "in": "query",
+        "schema": { "type": "string" },
+        "description": "Filter by pantheon"
+      },
+      "QueryTier": {
+        "name": "tier",
+        "in": "query",
+        "schema": { "type": "string", "enum": ["dual", "1", "2"] },
+        "description": "Filter by tier"
+      },
+      "QueryHasSite": {
+        "name": "hasSite",
+        "in": "query",
+        "schema": { "type": "boolean" },
+        "description": "Filter to entries with/without an indexed site"
+      },
+      "QuerySort": {
+        "name": "sort",
+        "in": "query",
+        "schema": { "type": "string", "enum": ["relevance", "alphabetical", "tier"], "default": "relevance" }
+      },
+      "QueryLimit": {
+        "name": "limit",
+        "in": "query",
+        "schema": { "type": "integer", "default": 20, "maximum": 100 }
+      },
+      "QueryOffset": {
+        "name": "offset",
+        "in": "query",
+        "schema": { "type": "integer", "default": 0 }
+      }
+    },
+    "schemas": {
+      "Name": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "ascii": { "type": "string" },
+          "unicode": { "type": "string" },
+          "punycode": { "type": "string", "nullable": true },
+          "pantheon": { "type": "string" },
+          "pantheonLabel": { "type": "string" },
+          "pantheonEmoji": { "type": "string" },
+          "tier": { "type": "string" },
+          "tierLabel": { "type": "string" },
+          "domain": { "type": "string", "nullable": true },
+          "meaning": { "type": "string", "nullable": true },
+          "hasFlagship": { "type": "boolean" },
+          "links": {
+            "type": "object",
+            "properties": {
+              "self": { "type": "string" },
+              "temple": { "type": "string" },
+              "type": { "type": "string" }
+            }
+          }
+        }
+      },
+      "Envelope": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean" },
+          "data": {},
+          "meta": {
+            "type": "object",
+            "properties": {
+              "requestId": { "type": "string" },
+              "version": { "type": "string" },
+              "timestamp": { "type": "string", "format": "date-time" }
+            }
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "code": { "type": "string" },
+          "message": { "type": "string" },
+          "details": { "type": "object" }
+        }
+      }
+    },
+    "responses": {
+      "NameListResponse": {
+        "description": "Paginated list of names",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [{ "$ref": "#/components/schemas/Envelope" }],
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Name" }
+                }
+              }
+            }
+          }
+        }
+      },
+      "NameDetailResponse": {
+        "description": "Full scholarly record",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+      },
+      "VariantsResponse": {
+        "description": "Variant forms",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+      },
+      "BreakdownResponse": {
+        "description": "Character breakdown",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+      },
+      "OriginalScriptResponse": {
+        "description": "Original script data",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+      },
+      "EtymologyResponse": {
+        "description": "Etymology data",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+      },
+      "AvailabilityResponse": {
+        "description": "Availability data",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+      },
+      "SiteResponse": {
+        "description": "Site data",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+      },
+      "SlotsResponse": {
+        "description": "Ad slot inventory",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+      },
+      "PantheonsResponse": {
+        "description": "List of pantheons",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+      },
+      "PantheonDetailResponse": {
+        "description": "Pantheon entries",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+      },
+      "TiersResponse": {
+        "description": "Tier documentation",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+      },
+      "AutocompleteResponse": {
+        "description": "Autocomplete results",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+      },
+      "ConvertResponse": {
+        "description": "Conversion results",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+      },
+      "BatchConvertResponse": {
+        "description": "Batch conversion results",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+      },
+      "ValidationError": {
+        "description": "Validation error",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+      },
+      "NotFound": {
+        "description": "Not found",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+      },
+      "RateLimitError": {
+        "description": "Rate limit exceeded",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+      }
+    }
+  }
+}

@@ -83,8 +83,18 @@ function resolveLink(fromFile, href) {
     target = path.join(target, 'index.html');
   }
 
-  const exists = fs.existsSync(target);
+  // API routes are serverless functions, not static HTML files
+  const isApiRoute = cleanHref.startsWith('/api/') && isKnownApiRoute(cleanHref);
+
+  const exists = isApiRoute || fs.existsSync(target);
   return { internal: true, exists, target };
+}
+
+function isKnownApiRoute(cleanHref) {
+  const routePath = path.join(ROOT, cleanHref.slice(1));
+  const exactJs = `${routePath}.js`;
+  const indexJs = path.join(routePath, 'index.js');
+  return fs.existsSync(exactJs) || fs.existsSync(indexJs);
 }
 
 HTML_FILES.forEach((file) => {

@@ -235,4 +235,13 @@ for (const s of stats) {
   console.log(`  ${s.pantheon}: ${s.total} entries (${s.flagships} flagships)`);
 }
 
+// Run API key migration after DB is initialized
+try {
+  const { execSync } = require('node:child_process');
+  execSync(`node "${path.join(__dirname, 'migrate-api-keys.js')}"`, { stdio: 'inherit' });
+} catch (err) {
+  console.error('API key migration failed:', err.message);
+  process.exit(1);
+}
+
 db.close();

@@ -49,6 +49,14 @@
             padding: 1.25rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
         }
         .admin-header h1 { font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--gold); }
+        .admin-nav { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+        .admin-nav a {
+            color: var(--text-muted); text-decoration: none; font-size: 0.75rem;
+            text-transform: uppercase; letter-spacing: 0.06em;
+            padding: 0.35rem 0.75rem; border: 1px solid var(--gold-dim); border-radius: 100px;
+            transition: all 0.2s;
+        }
+        .admin-nav a:hover, .admin-nav a.active { color: var(--gold); border-color: var(--gold); }
         .admin-stats { display: flex; gap: 1.5rem; flex-wrap: wrap; }
         .stat { text-align: center; }
         .stat-value { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 700; color: var(--gold); }
@@ -168,6 +176,12 @@
             document.getElementById('app').innerHTML = `
                 <div class="admin-header">
                     <h1>AI Content Review</h1>
+                    <nav class="admin-nav">
+                        <a href="admin-bookings.html">Bookings</a>
+                        <a href="admin-curator.html">Curator</a>
+                        <a href="admin-ai-review.html" class="active">AI Review</a>
+                        <a href="admin-api-keys.html">API Keys</a>
+                    </nav>
                     <div class="admin-stats">
                         <div class="stat"><div class="stat-value">${stats.pending}</div><div class="stat-label">Pending</div></div>
                         <div class="stat"><div class="stat-value">${stats.approved}</div><div class="stat-label">Approved</div></div>

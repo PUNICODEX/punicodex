@@ -62,6 +62,15 @@ const {
   getAllBookings,
   getBookingStats,
 } = require('./api/admin');
+const {
+  listKeys,
+  createKey,
+  updateKey,
+  revokeKey,
+  unrevokeKey,
+  getKeyUsage,
+  getKeyStats,
+} = require('./api/api-key-admin');
 const { createBookingCheckoutSession, handleWebhook } = require('./api/stripe');
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 if (!stripeSecretKey) {
@@ -227,6 +236,44 @@ app.get('/api/flagships', (_req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+// ============ API v1: ENTERPRISE UNICODE NAMES API ============
+
+const v1NamesList = require('../api/v1/names');
+const v1NameDetail = require('../api/v1/names/[id]');
+const v1NameVariants = require('../api/v1/names/[id]/variants');
+const v1NameBreakdown = require('../api/v1/names/[id]/breakdown');
+const v1NameOriginalScript = require('../api/v1/names/[id]/original-script');
+const v1NameEtymology = require('../api/v1/names/[id]/etymology');
+const v1NameAvailability = require('../api/v1/names/[id]/availability');
+const v1NameSite = require('../api/v1/names/[id]/site');
+const v1NameSlots = require('../api/v1/names/[id]/slots');
+const v1Pantheons = require('../api/v1/pantheons');
+const v1Pantheon = require('../api/v1/pantheons/[name]');
+const v1Tiers = require('../api/v1/tiers');
+const v1Autocomplete = require('../api/v1/autocomplete');
+const v1Convert = require('../api/v1/convert');
+const v1ConvertBatch = require('../api/v1/convert/batch');
+const v1Docs = require('../api/v1/docs');
+const v1Openapi = require('../api/v1/openapi');
+
+app.use('/api/v1/names', v1NamesList);
+app.use('/api/v1/names/:id/variants', v1NameVariants);
+app.use('/api/v1/names/:id/breakdown', v1NameBreakdown);
+app.use('/api/v1/names/:id/original-script', v1NameOriginalScript);
+app.use('/api/v1/names/:id/etymology', v1NameEtymology);
+app.use('/api/v1/names/:id/availability', v1NameAvailability);
+app.use('/api/v1/names/:id/site', v1NameSite);
+app.use('/api/v1/names/:id/slots', v1NameSlots);
+app.use('/api/v1/names/:id', v1NameDetail);
+app.use('/api/v1/pantheons/:name', v1Pantheon);
+app.use('/api/v1/pantheons', v1Pantheons);
+app.use('/api/v1/tiers', v1Tiers);
+app.use('/api/v1/autocomplete', v1Autocomplete);
+app.use('/api/v1/convert/batch', v1ConvertBatch);
+app.use('/api/v1/convert', v1Convert);
+app.use('/api/v1/openapi.json', v1Openapi);
+app.use('/api/v1/docs', v1Docs);
 
 app.get('/api/domain-status/:domain', async (req, res) => {
   try {
@@ -1613,6 +1660,75 @@ app.post('/api/webhook', express.raw({ type: 'application/json' }), async (req, 
 app.use('/uploads', express.static(UPLOADS_DIR));
 app.use('/sites/nike', express.static(path.join(__dirname, '..', 'sites', 'nike')));
 app.use('/sites/hermes', express.static(path.join(__dirname, '..', 'sites', 'hermes')));
+
+// ============ API KEY MANAGEMENT ============
+
+app.get('/api/admin/api-keys', requireAdmin, (_req, res) => {
+  try {
+    res.json({ keys: listKeys(), stats: getKeyStats() });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/api/admin/api-keys', requireAdmin, (req, res) => {
+  try {
+    const { name, tier, scopes, rateLimit } = req.body;
+    const key = createKey({ name, tier, scopes, rateLimit });
+    res.status(201).json({ success: true, key });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+app.patch('/api/admin/api-keys/:id', requireAdmin, (req, res) => {
+  try {
+    const id = parseInt(req.params.id, 10);
+    if (Number.isNaN(id)) return res.status(400).json({ error: 'Invalid key id' });
+    const { name, tier, scopes, rateLimit } = req.body;
+    const key = updateKey(id, { name, tier, scopes, rateLimit });
+    if (!key) return res.status(404).json({ error: 'Key not found' });
+    res.json({ success: true, key });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+app.post('/api/admin/api-keys/:id/revoke', requireAdmin, (req, res) => {
+  try {
+    const id = parseInt(req.params.id, 10);
+    if (Number.isNaN(id)) return res.status(400).json({ error: 'Invalid key id' });
+    const key = revokeKey(id);
+    if (!key) return res.status(404).json({ error: 'Key not found' });
+    res.json({ success: true, key });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/api/admin/api-keys/:id/unrevoke', requireAdmin, (req, res) => {
+  try {
+    const id = parseInt(req.params.id, 10);
+    if (Number.isNaN(id)) return res.status(400).json({ error: 'Invalid key id' });
+    const key = unrevokeKey(id);
+    if (!key) return res.status(404).json({ error: 'Key not found' });
+    res.json({ success: true, key });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/api/admin/api-keys/:id/usage', requireAdmin, (req, res) => {
+  try {
+    const id = parseInt(req.params.id, 10);
+    if (Number.isNaN(id)) return res.status(400).json({ error: 'Invalid key id' });
+    const days = parseInt(req.query.days, 10) || 7;
+    const limit = parseInt(req.query.limit, 10) || 100;
+    res.json(getKeyUsage(id, { days, limit }));
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`PUNYCODEX Platform running on http://0.0.0.0:${PORT}`);

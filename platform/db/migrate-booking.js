@@ -134,20 +134,6 @@ db.exec(`
   CREATE INDEX IF NOT EXISTS idx_slot_creatives_booking ON slot_creatives(booking_id);
 `);
 
-// Seed bundle_members for Total Conquest (slot 13 → slots 1-12) if not present
-const bundleCount = db
-  .prepare('SELECT COUNT(*) as c FROM bundle_members WHERE bundle_slot_id = 13')
-  .get().c;
-if (bundleCount === 0) {
-  const insertBundle = db.prepare(
-    'INSERT INTO bundle_members (bundle_slot_id, member_slot_id) VALUES (?, ?)'
-  );
-  for (let i = 1; i <= 12; i++) {
-    insertBundle.run(13, i);
-  }
-  console.log('Seeded bundle_members for Total Conquest');
-}
-
 // Seed ad_slots if empty
 const count = db.prepare('SELECT COUNT(*) as c FROM ad_slots').get().c;
 if (count === 0) {
@@ -176,6 +162,20 @@ if (count === 0) {
   console.log('Seeded 13 ad_slots');
 } else {
   console.log(`Ad slots already seeded: ${count}`);
+}
+
+// Seed bundle_members for Total Conquest (slot 13 → slots 1-12) if not present
+const bundleCount = db
+  .prepare('SELECT COUNT(*) as c FROM bundle_members WHERE bundle_slot_id = 13')
+  .get().c;
+if (bundleCount === 0) {
+  const insertBundle = db.prepare(
+    'INSERT INTO bundle_members (bundle_slot_id, member_slot_id) VALUES (?, ?)'
+  );
+  for (let i = 1; i <= 12; i++) {
+    insertBundle.run(13, i);
+  }
+  console.log('Seeded bundle_members for Total Conquest');
 }
 
 console.log('Booking migration complete');

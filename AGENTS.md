@@ -8,6 +8,12 @@
 ### `middleware.js` — Routing source of truth
 All domain redirects and path rewrites are handled by `middleware.js`. `vercel.json` should only contain `headers` (security + cache control). Do NOT add `redirects` or `rewrites` to `vercel.json` unless explicitly migrating routing out of the middleware.
 
+### `ACCURACY.md` — Authoritative accuracy standard
+All changes to lexicon entries, original scripts, character breakdowns, and
+generated temples must follow `ACCURACY.md`. It defines the source hierarchy,
+original-script verification procedure, punycode validation rules, and the
+deployment checklist. Consult it before adding or editing any entry.
+
 ---
 
 ## The Definitive Tier System (CANONICAL)
@@ -277,10 +283,13 @@ User Query → Lexicon Filter → Results Engine
 
 | Table | Purpose |
 |-------|---------|
-| `entries` | 263 lexicon items with tier, pantheon, meaning |
+| `entries` | 857 lexicon items with tier, pantheon, meaning |
 | `indexed_sites` | Crawled xn-- domains with metadata |
 | `availability` | Lexicon entries with no live site → registrar links |
 | `breakdowns` | Character-by-character Unicode analysis |
+| `api_keys` | API keys for `/api/v1` access (SHA256 hashes only) |
+| `api_request_log` | Per-request usage log for rate limiting and dashboards |
+| `admin_sessions` | Admin session tokens for operator dashboards |
 
 ### Crawler Flow
 
@@ -310,6 +319,64 @@ User Query → Lexicon Filter → Results Engine
 **Phase 2 — Availability**
 - `GET /api/availability/:entryId` — Check if domain is available
 - `POST /api/availability/:entryId` — Update availability status
+
+### Phase 3 — Enterprise Unicode Names API (`/api/v1`)
+
+A versioned, authenticated REST API exposing the full scholarly lexicon to developers, localization teams, and search engines.
+
+**Read endpoints**
+- `GET /api/v1/names` — List/search names (filters: `q`, `pantheon`, `tier`, `hasSite`, `sort`, `limit`, `offset`)
+- `GET /api/v1/names/:id` — Full scholarly record
+- `GET /api/v1/names/:id/variants` — Alternate Unicode forms
+- `GET /api/v1/names/:id/breakdown` — ASCII → Unicode transformation table
+- `GET /api/v1/names/:id/original-script` — Original script + provenance
+- `GET /api/v1/names/:id/etymology` — Etymology data
+- `GET /api/v1/names/:id/availability` — Domain availability + registrar links
+- `GET /api/v1/names/:id/site` — Live indexed site metadata
+- `GET /api/v1/names/:id/slots` — Ad-slot inventory and pricing
+- `GET /api/v1/pantheons`, `/api/v1/pantheons/:name`
+- `GET /api/v1/tiers`
+- `GET /api/v1/autocomplete?q=...`
+- `GET /api/v1/convert?q=...`, `POST /api/v1/convert/batch`
+
+**Admin endpoints (require `x-admin-token`)**
+- `GET /api/admin/api-keys` — List keys + stats
+- `POST /api/admin/api-keys` — Create key (plaintext shown once)
+- `PATCH /api/admin/api-keys/:id` — Update name/tier/scopes/rate limit
+- `POST /api/admin/api-keys/:id/revoke` — Soft-revoke
+- `POST /api/admin/api-keys/:id/unrevoke` — Restore
+- `GET /api/admin/api-keys/:id/usage` — Usage log + daily chart
+
+**Authentication**
+- API consumers: `Authorization: Bearer <key>`; read endpoints also work keyless at the free tier.
+- Operators: existing admin password flow → `x-admin-token` header.
+
+**Rate limits (per key, fixed window)**
+- Free: 100/day
+- Hobby: 1,000/day
+- Pro: 10,000/day
+- Enterprise: 100,000/day
+
+**Rate limiter backend**
+- Configure `REDIS_URL` (e.g. `rediss://default:pwd@host:6379`) to enable global Redis-backed fixed-window counters across Vercel serverless invocations.
+- Without `REDIS_URL`, or if Redis becomes unreachable, the limiter falls back to per-process in-memory counters.
+- Redis key pattern: `punycodex:rl:v1:{tier}:{key}:{windowStart}`.
+
+**Docs**
+- Interactive Swagger UI: `/api/v1/docs`
+- OpenAPI spec: `/api/v1/openapi.json`
+- Public links: footer `Resources` column and a `For Developers` section on the home page both link to `/api/v1/docs`.
+
+### Key Management Dashboard
+
+`platform/public/admin-api-keys.html` is the operator UI for the API key system. It reuses the existing admin login pattern (`nike_admin_token` in `localStorage`) and is linked from the other admin dashboards.
+
+Features:
+- Stats cards: total / active / revoked keys, requests today
+- Table with tier badges, scope chips, request counts, status
+- Create-key modal with scopes and optional custom rate limit
+- Edit, revoke, unrevoke, and copy-key actions
+- Per-key usage panel with 7-day bar chart and recent request log
 
 ### Frontend
 

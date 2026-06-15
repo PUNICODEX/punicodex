@@ -11679,7 +11679,7 @@ const LEXICON = [
   {
     id: 'tefnut',
     ascii: 'tefnut',
-    unicode: 'Tfnwt',
+    unicode: 'Tfnt',
     greek: '—',
     pantheon: 'egyptian',
     tier: '2',
@@ -11717,9 +11717,9 @@ const LEXICON = [
       },
       {
         char: 'u',
-        to: 'w',
-        type: 'same',
-        note: 'W'
+        to: '',
+        type: 'drop',
+        note: 'Vowel not written'
       },
       {
         char: 't',
