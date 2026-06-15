@@ -1,30 +1,40 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Poseidôn — Sea, Earthquakes, Horses | Lore | PUNYCODEX</title>
     <meta name="description" content="The authentic digital shrine to Poseidôn, Sea, Earthquakes, Horses. Explore the correct orthography, reconstructed pronunciation, and timeless mythology of Ποσειδῶν.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Poiret+One&amp;family=Nunito+Sans:wght@300;400;600;700&amp;family=Cinzel:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../styles.css?v=perf7">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css?v=perf2">
+
+    <style>
+        .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
+        .pantheon-text { display: flex; flex-direction: column; gap: 1.25rem; }
+        .pantheon-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); }
+        .pantheon-title { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); color: var(--white); letter-spacing: 0.05em; }
+        .pantheon-body { font-size: 1.05rem; color: var(--white-dim); line-height: 1.8; }
+        .pantheon-mascot { display: flex; justify-content: center; align-items: center; }
+        .pantheon-mascot-img { max-width: 300px; width: 100%; filter: brightness(1.5) contrast(1.1) saturate(1.05); }
+        @media (max-width: 900px) { .pantheon-content { grid-template-columns: 1fr; text-align: center; } .pantheon-mascot { order: -1; } }
+    </style>
 
     <!-- Schema.org -->
     <script type="application/ld+json">
 {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Poseidon — Sea, Earthquakes, Horses",
-    "description": "The authentic digital shrine to Poseidon. Explore the correct Greek orthography, Unicode restoration, and scholarly sources for Poseidôn.com.",
-    "url": "https://punycodex.com/sites/poseidon/",
+    "name": "Poseidôn — Sea, Earthquakes, Horses | Lore",
+    "description": "The authentic digital shrine to Poseidôn. Explore the correct orthography, Unicode restoration, and timeless mythology of Ποσειδῶν.",
+    "url": "https://punycodex.com/sites/poseidon/lore/",
     "about": {
         "@type": "Thing",
         "name": "Ποσειδῶν",
-        "alternateName": [
-            "poseidon",
-            "Poseidon"
-        ],
-        "description": "Lord of the Earth (from πόσις + δαίμων)"
+        "alternateName": ["poseidon", "Poseidôn"],
+        "description": "Sea, Earthquakes, Horses"
     },
     "isPartOf": {
         "@type": "WebSite",
@@ -33,20 +43,20 @@
     },
     "primaryImageOfPage": {
         "@type": "ImageObject",
-        "url": "https://punycodex.com/assets/images/og-default.svg"
+        "url": "https://punycodex.com/sites/poseidon/assets/poseidon_mascot.png"
     }
 }
     </script>
 
     <link rel="canonical" href="https://punycodex.com/sites/poseidon/lore/">
-    
+
     <!-- Open Graph -->
     <meta property="og:title" content="Poseidôn — Sea, Earthquakes, Horses | Lore | PUNYCODEX">
     <meta property="og:description" content="The authentic digital shrine to Poseidôn. Explore the correct orthography, reconstructed pronunciation, and timeless mythology of Ποσειδῶν.">
     <meta property="og:url" content="https://punycodex.com/sites/poseidon/lore/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="PUNYCODEX">
-    
+
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Poseidôn — Sea, Earthquakes, Horses | Lore | PUNYCODEX">
@@ -54,30 +64,33 @@
 </head>
 <body>
     <!-- Global Nav -->
-    <div style="position:fixed;top:0;left:0;width:100%;z-index:1001;background:rgba(10,10,10,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);">
-        <div style="max-width:1200px;margin:0 auto;padding:0.4rem clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;">
-            <a href="https://punycodex.com/" style="font-family:'Cinzel',serif;font-size:0.8rem;font-weight:700;letter-spacing:0.15em;color:#D4AF37;text-decoration:none;">PUNYCODEX</a>
-            <div style="display:flex;gap:1.5rem;">
-                <a href="https://punycodex.com/pantheon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Pantheon</a>
-                <a href="https://punycodex.com/lexicon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Lexicon</a>
-                <a href="https://punycodex.com/type/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Type</a>
-                <a href="https://punycodex.com/tiers/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Tiers</a>
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punycodex.com/" class="global-brand">PUNYCODEX</a>
+            <div class="global-links">
+                <a href="https://punycodex.com/pantheon/">Pantheon</a>
+                <a href="https://punycodex.com/lexicon/">Lexicon</a>
+                <a href="https://punycodex.com/type/">Type</a>
+                <a href="https://punycodex.com/search.html">Search</a>
+                <a href="https://punycodex.com/tiers/">Tiers</a>
             </div>
         </div>
     </div>
-    <!-- Ocean Canvas -->
-    <canvas id="ocean-canvas"></canvas>
 
-    <!-- Navigation -->
-    <nav class="main-nav tab-nav" style="top:40px;" id="main-nav">
+    <!-- Ambient Canvas -->
+    <canvas id="poseidon-canvas" data-effect="water" data-primary="#D4AF37" data-secondary="#4169E1"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="main-nav">
         <div class="nav-inner">
-            <a href="#hero" class="nav-logo">
+            <a href="../" class="nav-logo">
                 <picture><source srcset="../assets/poseidon_logolockup.webp" type="image/webp"><img src="../assets/poseidon_logolockup.png" alt="Poseidôn" class="nav-logo-img"></picture>
             </a>
             <div class="nav-links">
-                <a href="../index.html" class="nav-link">Home</a>
-                <a href="./index.html" class="nav-link active">Lore</a>
-                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../" class="nav-link">Home</a>
+                <a href="./" class="nav-link active">Lore</a>
+                <a href="../gallery/" class="nav-link">Gallery</a>
+                <a href="extended/" class="nav-link">Extended</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
@@ -93,26 +106,24 @@
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">Ποσειδῶν</span>
                     <span class="title-divider"></span>
-                    <span class="title-trans">Poseidon</span>
+                    <span class="title-trans">Poseidôn</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Lord of the Sea · Earth-Shaker · Tamer of Horses</p>
+                <p class="hero-subtitle reveal-up">Sea, Earthquakes, Horses · Lord of the Earth (from πόσις + δᾶ)</p>
                 <div class="hero-meta reveal-up">
-                    <span class="meta-badge">Dual-Tier</span>
-                    <span class="meta-domain">poseidōn.com</span>
-                    <span class="meta-badge-alt">Variant</span>
-                    <span class="meta-domain-alt">poseidôn.com</span>
+                    <span class="meta-badge">Tier 1</span>
+                    <span class="meta-domain">Poseidôn.com · Poseidon.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
                     <a href="#the-name" class="btn-primary">
-                        <span>Descend into the Deep</span>
+                        <span>Enter the Temple</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M7 17L17 7M17 7H7M17 7V17"></path>
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
                         </svg>
                     </a>
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../assets/poseidon_mascot.webp" type="image/webp"><picture><source srcset="../assets/poseidon_mascot.webp" type="image/webp"><img src="../assets/poseidon_mascot.png" alt="Poseidon — Lord of the Sea, wielding the trident" class="mascot-img"></picture></picture>
+                <picture><source srcset="../assets/poseidon_mascot.webp" type="image/webp"><img src="../assets/poseidon_mascot.png" alt="Poseidôn — Sea, Earthquakes, Horses" class="mascot-img"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -130,84 +141,70 @@
                 <h2 class="section-title">The Authentic Name</h2>
                 <p class="section-subtitle">Why <em>Poseidôn.com</em> is the correct form</p>
             </div>
-            
+
             <div class="name-grid">
                 <div class="name-card reveal-up">
                     <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
                         </svg>
                     </div>
                     <h3 class="card-title">Original Script</h3>
                     <p class="card-greek">Ποσειδῶν</p>
-                    <p class="card-body">The name in its original Greek form. The long vowel <em>ω</em> (omega) dominates the final syllable — a deep, resonant sound like the tolling of a submerged bell. The name itself predates Greek, carrying Mycenaean roots that echo across three millennia.</p>
+                    <p class="card-body">The name in its original Greek form. <strong>Poseidôn</strong> (Ποσειδῶν) is attested as sea, earthquakes, horses — “Lord of the Earth (from πόσις + δᾶ)”. Its diphthongs, long vowels, and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                    
                 </div>
 
                 <div class="name-card reveal-up" data-delay="100">
                     <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"/>
                         </svg>
                     </div>
                     <h3 class="card-title">ASCII Constraint</h3>
                     <p class="card-ascii">poseidon</p>
-                    <p class="card-body">Stripped of its depth. A seafood chain, a cruise ship, a fishing reel. The Earth-Shaker reduced to a brand mascot. The macron that marked his oceanic depth was erased, and with it, the understanding that this god does not merely <em>sail</em> — he <em>unmakes coastlines</em>.</p>
+                    <p class="card-body">Reduced to plain <strong>poseidon</strong>, the name loses everything that made it specific: diphthongs, long vowels, and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
                 </div>
 
                 <div class="name-card reveal-up" data-delay="200">
                     <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
                         </svg>
                     </div>
                     <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Poseidōn</p>
-                    <p class="card-body">The macron on <em>ō</em> restores the long vowel that gives the name its weight. The Greek Ποσειδῶν carries a circumflex on the <em>ῶ</em> — a mark of both stress and length in one sign. Because the original has both features, <strong>Poseidōn</strong> is Tier-1: the full scholarly orthography. This is structural inevitability: some names are so ancient, their length <em>is</em> their identity.</p>
+                    <p class="card-unicode">Poseidôn</p>
+                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Poseidôn</strong> restores diphthongs, long vowels, and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
                 </div>
             </div>
 
             <div class="punycode-explainer reveal-up">
                 <div class="explainer-label">Punycode Encoding</div>
                 <div class="explainer-box">
-                    <code class="explainer-code">poseidōn.com → xn--poseidn-bmb.com</code>
-                    <code class="explainer-code">poseidôn.com → xn--poseidn-y0a.com</code>
-                    <p class="explainer-note">The non-ASCII characters <strong>ō</strong> (U+014D, macron) and <strong>ô</strong> (U+00F4, circumflex) are encoded while the ASCII remains visible. Two different Punycode strings, one divine name. The DNS sees code. We see <em>Poseidon.</em></p>
+                    <code class="explainer-code">Poseidôn.com → xn--poseidn-y0a.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Poseidôn</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Poseidôn</em>.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    
-    <!-- Tier Classification Section -->
-        <!-- Tier Classification Section -->
-    <section class="section section-tier" id="tier">
-        <div class="container">
-            <div class="section-header reveal-up">
-                <h2 class="section-title">Tier Classification</h2>
-                <p class="section-subtitle">Where Poseidôn stands in the PUNYCODEX elegant tier system</p>
-            </div>
-            <div class="tier-grid tier-grid-single">
-                <div class="tier-card reveal-up">
-                    <div class="tier-label">Tier-1 · Single-Tier</div>
-                    <div class="tier-domain">poseidōn.com</div>
-                    <p class="tier-body"><strong>Poseidōn</strong> is Tier-1 because the Greek original <em>Ποσειδῶν</em> contains both stress and length, and there is only one historically valid Unicode restoration.<br><br>
-      The circumflex on the vowel <em>ῶ</em> encodes <strong>both features in a single character</strong> — the rising-falling pitch accent (stress) and the quantitative length merged into one mark. This is the most compact scholarly orthography possible. There is no alternate spelling attested. The ASCII fallback <em>poseidon</em> is a modern transliteration, not an ancient canonical form. Under the PUNYCODEX system, a name with both stress and length, and only one valid restoration, is <strong>unambiguously Tier-1</strong>.<br><br>
-      The variant <strong>Poseidôn</strong> (circumflex on <em>ô</em>) is also owned and redirects to the canonical <em>poseidōn.com</em>. It represents the same phonological reality through a different Latin convention.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-<!-- Pronunciation Section -->
+    <!-- Pronunciation -->
     <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">02</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Poseidôn was spoken</p>
+        </div>
         <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">02</span>
-                <h2 class="section-title">Pronunciation</h2>
-                <p class="section-subtitle">How the Earth-Shaker was truly spoken</p>
-            </div>
+        
+        <div class="container">
+        
+        <div class="container">
+            
 
             <div class="pronunciation-grid">
                 <div class="pronunciation-main reveal-up">
@@ -251,298 +248,132 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+    </div>
+    </div>
+</section>
 
-    <!-- The Lord Section -->
-    <section class="section section-lord" id="the-lord">
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">03</span>
-                <h2 class="section-title">The Lord</h2>
-                <p class="section-subtitle">Domains, symbols, and abyssal authority</p>
-            </div>
-
-            <div class="lord-content">
-                <div class="lord-intro reveal-up">
-                    <p class="lead-text">Poseidon is not a sea god. He is <strong>the sea itself</strong> — the pressure at the bottom of the Mariana Trench, the tectonic force that raises mountains, the salt that preserves and destroys. When the Olympians divided the cosmos, Zeús drew the sky by lot. Poseidon drew the <em>water</em>. He did not complain. He simply became more dangerous.</p>
-                </div>
-
-                <div class="domains-grid">
-                    <div class="domain-card reveal-up">
-                        <div class="domain-icon">
-                            <svg viewBox="0 0 64 64" fill="none" stroke="#D4AF37" stroke-width="1.5">
-                                <path d="M4 32C12 20 20 28 32 20C44 12 52 20 60 32"></path>
-                                <path d="M4 44C12 32 20 40 32 32C44 24 52 32 60 44"></path>
-                                <path d="M4 56C12 44 20 52 32 44C44 36 52 44 60 56"></path>
-                            </svg>
-                        </div>
-                        <h4 class="domain-name">The Sea</h4>
-                        <p class="domain-desc">All waters — oceans, rivers, springs, storms. The Mediterranean was his personal domain. Sailors did not pray to him for safe passage. They prayed to not <em>anger</em> him.</p>
-                    </div>
-                    <div class="domain-card reveal-up" data-delay="100">
-                        <div class="domain-icon">
-                            <svg viewBox="0 0 64 64" fill="none" stroke="#D4AF37" stroke-width="1.5">
-                                <path d="M32 8L38 28H58L42 40L48 60L32 48L16 60L22 40L6 28H26L32 8Z" transform="rotate(180 32 32)"></path>
-                                <path d="M32 4V16M32 48V60"></path>
-                            </svg>
-                        </div>
-                        <h4 class="domain-name">Earthquakes</h4>
-                        <p class="domain-desc">The Earth-Shaker (<em>Ennosigaios</em>). His trident struck the ground and cities fell. He did not merely control the earth — he <em>reminded</em> it who made it.</p>
-                    </div>
-                    <div class="domain-card reveal-up" data-delay="200">
-                        <div class="domain-icon">
-                            <svg viewBox="0 0 64 64" fill="none" stroke="#D4AF37" stroke-width="1.5">
-                                <path d="M16 48C16 32 24 16 32 8C40 16 48 32 48 48"></path>
-                                <path d="M12 48H52"></path>
-                                <path d="M20 48V36M28 48V28M36 48V28M44 48V36"></path>
-                            </svg>
-                        </div>
-                        <h4 class="domain-name">Horses</h4>
-                        <p class="domain-desc">Creator of the horse. Some myths say he made the first horse from sea foam to win a city. Others say horses <em>are</em> waves made flesh — wild, powerful, and untamable except by him.</p>
-                    </div>
-                    <div class="domain-card reveal-up" data-delay="300">
-                        <div class="domain-icon">
-                            <svg viewBox="0 0 64 64" fill="none" stroke="#D4AF37" stroke-width="1.5">
-                                <path d="M32 4L38 24H58L42 36L48 56L32 44L16 56L22 36L6 24H26L32 4Z"></path>
-                                <path d="M32 24V36"></path>
-                                <circle cx="32" cy="40" r="4"></circle>
-                            </svg>
-                        </div>
-                        <h4 class="domain-name">Storms</h4>
-                        <p class="domain-desc">The hurricane, the waterspout, the tidal wave. When Poseidon was angry, the sky and sea became indistinguishable — a wall of water and wind that erased fleets and coastlines alike.</p>
-                    </div>
-                </div>
-
-                <div class="symbols-section reveal-up">
-                    <h3 class="symbols-title">Sacred Symbols</h3>
-                    <div class="symbols-list">
-                        <div class="symbol-item">
-                            <span class="symbol-name">Trident</span>
-                            <span class="symbol-meaning">Dominion over all waters; the weapon that cracks earth and summons tsunamis</span>
-                        </div>
-                        <div class="symbol-item">
-                            <span class="symbol-name">Horse</span>
-                            <span class="symbol-meaning">His first creation; the wave made flesh, wild and sovereign</span>
-                        </div>
-                        <div class="symbol-item">
-                            <span class="symbol-name">Bull</span>
-                            <span class="symbol-meaning">Sacrificial animal; the Minotaur's lineage traces to his gift to Minos</span>
-                        </div>
-                        <div class="symbol-item">
-                            <span class="symbol-name">Dolphin</span>
-                            <span class="symbol-meaning">Messenger and companion; the only creature that moves freely in his realm</span>
-                        </div>
-                        <div class="symbol-item">
-                            <span class="symbol-name">Pine Tree</span>
-                            <span class="symbol-meaning">Sacred at his festivals; resin used in shipbuilding, connecting land and sea</span>
-                        </div>
-                        <div class="symbol-item">
-                            <span class="symbol-name">Coral Crown</span>
-                            <span class="symbol-meaning">Natural royalty of the abyss; grown, not forged</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Domains & Sacred Symbols -->
+    <section class="section section-symbols" id="symbols">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">03</span>
+            <h2 class="section-title">Domains & Sacred Symbols</h2>
+            <p class="section-subtitle">Attributes of Poseidôn</p>
         </div>
-    </section>
+        <div class="symbols-list"><span class="symbol-item">wave</span><span class="symbol-item">trident</span><span class="symbol-item">fish</span><span class="symbol-item">grain</span></div>
+    </div>
+</section>
 
-    <!-- Myths Section -->
-    <section class="section section-myths" id="myths">
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">04</span>
-                <h2 class="section-title">The Myths</h2>
-                <p class="section-subtitle">Stories that shaped the waters and the earth</p>
-            </div>
-
-            <div class="myths-timeline">
-                <div class="myth-card reveal-up">
-                    <div class="myth-marker"></div>
-                    <div class="myth-content">
-                        <span class="myth-tag">The Division</span>
-                        <h3 class="myth-title">The Drawing of Lots</h3>
-                        <p class="myth-text">After the Titanomachy, the three brothers — Zeús, Poseidon, and Hádes — cast lots for dominion of the cosmos. Zeús received the sky. Hádes received the underworld. Poseidon received the sea. But Poseidon's realm was not merely water — it was <em>the boundary between all things</em>. The sea touches the sky at the horizon, the earth at the shore, and the underworld in its deepest trenches. He is the god of <strong>liminality</strong> made absolute.</p>
-                    </div>
-                </div>
-
-                <div class="myth-card reveal-up" data-delay="100">
-                    <div class="myth-marker"></div>
-                    <div class="myth-content">
-                        <span class="myth-tag">The Contest</span>
-                        <h3 class="myth-title">Athena and the Olive Tree</h3>
-                        <p class="myth-text">When Poseidon and Athena competed for patronage of Athens, he struck the Acropolis with his trident and a salt spring burst forth — a magnificent, useless display of force. Athena planted an olive tree. The people chose the tree. Poseidon did not forgive them. He flooded the Attic plain. This is the essential nature of the sea god: he offers grandeur, and when rejected, he offers <em>destruction</em>.</p>
-                    </div>
-                </div>
-
-                <div class="myth-card reveal-up" data-delay="200">
-                    <div class="myth-marker"></div>
-                    <div class="myth-content">
-                        <span class="myth-tag">The Monster</span>
-                        <h3 class="myth-title">Polyphemus and the Cyclopes</h3>
-                        <p class="myth-text">Poseidon fathered Polyphemus, the cyclops who trapped Odysseus in his cave. When Odysseus blinded the giant, Poseidon pursued the hero across the entire Mediterranean for ten years. He did not forgive. The sea does not forget a slight. Every shipwreck, every storm, every drowning was a calculated installment of vengeance — the original god of <em>grudges</em>.</p>
-                    </div>
-                </div>
-
-                <div class="myth-card reveal-up" data-delay="300">
-                    <div class="myth-marker"></div>
-                    <div class="myth-content">
-                        <span class="myth-tag">The War</span>
-                        <h3 class="myth-title">The Trojan War</h3>
-                        <p class="myth-text">Poseidon sided with the Greeks against Troy — not out of love for Agamemnon, but because Troy had once cheated him of payment for building their walls. During the war, he personally intervened: crushing Greeks with a tidal wave when they displeased him, then building their walls when they pleased him. He built the very fortifications that fell to his own horse. Even in victory, he was <em>unpredictable</em>.</p>
-                    </div>
-                </div>
-            </div>
+    <!-- Mythology -->
+    <section class="section section-mythology" id="mythology">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Poseidôn</p>
         </div>
-    </section>
+        <div class="container">
+        
+        <div class="container">
+        
+        <p class="lead-text"><strong>Poseidôn</strong> belongs to the greek tradition as sea, earthquakes, horses.</p><p>Lord of the Earth (from πόσις + δᾶ)</p><p>Etymologically, it derives from *potsi-dhāǵʰ- (“lord of the earth/waters”), a root that shaped cult titles, hymns, and ritual addresses across centuries.</p><p>The myths surrounding this figure established its authority in ritual, art, and literature — and continue to surface in later religious and literary traditions.</p>
+    </div>
+    </div>
+    </div>
+</section>
 
-    
     <!-- Related Names -->
-    <section class="section" id="related" style="background:#0A0A0A;padding:6rem 0;">
-        <div class="container" style="max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);">
-            <div style="text-align:center;margin-bottom:4rem;">
-                <span style="display:block;font-family:'Cinzel',serif;font-size:0.85rem;color:#D4AF37;letter-spacing:0.4em;margin-bottom:1rem;">05</span>
-                <h2 style="font-family:'Cinzel',serif;font-size:clamp(2rem,4vw,3.5rem);color:#F5F5F5;letter-spacing:0.05em;margin-bottom:1rem;">Related Names</h2>
-                <p style="font-size:clamp(1rem,1.5vw,1.25rem);color:#A0A0A0;font-style:italic;">More from the Greek pantheon</p>
-            </div>
-            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;">
-                
-                <a href="../../apollon/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
-                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Ápollon</span>
-                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἀπόλλων</span>
-                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Light, Music, Prophecy</span>
-                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Tier-1</span>
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
-                    </div>
-                </a>
-                <a href="../../hades/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
-                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Hádes</span>
-                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἅιδης</span>
-                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Underworld, Wealth</span>
-                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Tier-1</span>
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
-                    </div>
-                </a>
-                <a href="../../hekate/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
-                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Hekáte</span>
-                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἑκάτη</span>
-                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Magic, Crossroads, Moon</span>
-                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Tier-1</span>
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
-                    </div>
-                </a>
-                <a href="../../nike/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
-                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Níke</span>
-                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Νίκη</span>
-                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Victory</span>
-                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Dual-Tier</span>
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
-                    </div>
-                </a>
-                <a href="../../zeus/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
-                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Zeus</span>
-                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ζεύς</span>
-                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Sky, Thunder, King of Gods</span>
-                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Tier-1</span>
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
-                    </div>
-                </a>
-                <a href="../../ares/" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
-                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Árēs</span>
-                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἄρης</span>
-                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">War, Courage, Battle Fury</span>
-                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Tier-1</span>
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
-                    </div>
-                </a>
-            </div>
+    <section class="section section-related" id="related">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Related Names</h2>
+            <p class="section-subtitle">Other figures in the greek pantheon</p>
         </div>
-    </section>
-<!-- Pantheon Connection -->
-    <section class="section section-pantheon" id="pantheon">
-        <div class="container">
-            <div class="pantheon-content reveal-up">
-                <div class="pantheon-text">
-                    <span class="pantheon-eyebrow">The PUNYCODEX</span>
-                    <h2 class="pantheon-title">The Abyss Beneath the Sky</h2>
-                    <p class="pantheon-body">Zeús rules above. Poseidon rules <em>around</em>. His realm is not a place — it is the <strong>medium</strong> between all places. The sea does not recognize borders, trademarks, or corporate claims. It simply <em>is</em>. And now, in its true name, it has a temple again.</p>
-                    <p class="pantheon-body">This is not a directory. This is a <strong>resurrection</strong>.</p>
-                    <a href="https://punycodex.com/lexicon/" class="btn-primary btn-ghost">
-                        <span>Enter the Codex</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M7 17L17 7M17 7H7M17 7V17"></path>
-                        </svg>
-                    </a>
-                </div>
-                <div class="pantheon-mascot">
-                    <picture><source srcset="../assets/poseidon_mascot.webp" type="image/webp"><picture><source srcset="../assets/poseidon_mascot.webp" type="image/webp"><img src="../assets/poseidon_mascot.png" alt="Poseidon mascot" class="pantheon-mascot-img"></picture></picture>
-                </div>
-            </div>
+        <div class="related-grid reveal-up">
+            
+    <a href="../../apollon/" class="related-card reveal-up">
+      <span class="related-name">Apóllōn</span>
+      <span class="related-greek">Ἀπόλλων</span>
+      <span class="related-domain">Light, Music, Prophecy</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Dual-Tier</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek</span>
+      </div>
+    </a>
+    <a href="../../hades/" class="related-card reveal-up">
+      <span class="related-name">Hádēs</span>
+      <span class="related-greek">Ἅιδης</span>
+      <span class="related-domain">Underworld, Wealth</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek</span>
+      </div>
+    </a>
+    <a href="../../hekate/" class="related-card reveal-up">
+      <span class="related-name">Hekátē</span>
+      <span class="related-greek">Ἑκάτη</span>
+      <span class="related-domain">Magic, Crossroads, Moon</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Dual-Tier</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek</span>
+      </div>
+    </a>
+    <a href="../../nike/" class="related-card reveal-up">
+      <span class="related-name">Níkē</span>
+      <span class="related-greek">Νίκη</span>
+      <span class="related-domain">Victory</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Dual-Tier</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek</span>
+      </div>
+    </a>
+    <a href="../../zeus/" class="related-card reveal-up">
+      <span class="related-name">Zeús</span>
+      <span class="related-greek">Ζεύς</span>
+      <span class="related-domain">Sky, Thunder, King of Gods</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek</span>
+      </div>
+    </a>
+    <a href="../../ares/" class="related-card reveal-up">
+      <span class="related-name">Árēs</span>
+      <span class="related-greek">Ἄρης</span>
+      <span class="related-domain">War, Courage, Battle Fury</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek</span>
+      </div>
+    </a>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Footer -->
-    
-    <!-- Type Tool CTA -->
-    <section style="padding:6rem 0;background:linear-gradient(180deg,#0A0A0A 0%,rgba(65,105,225,0.08) 100%);text-align:center;">
-        <div class="container" style="max-width:700px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);">
-            <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.75rem,3vw,2.5rem);color:#F5F5F5;margin-bottom:1.5rem;letter-spacing:0.05em;">Experience the Name</h2>
-            <p style="font-size:1.05rem;color:#A0A0A0;line-height:1.8;margin-bottom:2.5rem;">See how Poseidon behaves in the PUNYCODEX Type Tool — with predictive autocomplete, character-by-character breakdown, and scholarly constraint validation.</p>
-            <div style="display:inline-flex;align-items:center;gap:1rem;padding:1rem 2rem;background:rgba(0,0,0,0.3);border:1px solid rgba(212,175,55,0.25);border-radius:2px;font-family:'Fira Code','Courier New',monospace;font-size:1.1rem;color:#D4AF37;margin-bottom:1.5rem;">
-                <code>poseidon</code>
-                <span style="color:#A0A0A0;">→</span>
-                <code>Poseidōn</code>
-            </div>
-            <div>
-                <a href="/type/#poseidon" style="display:inline-flex;align-items:center;gap:0.75rem;padding:1rem 2rem;background:linear-gradient(135deg,#D4AF37,#8B7355);color:#0A0A0A;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;transition:all 0.4s ease;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 40px rgba(212,175,55,0.3)';" onmouseout="this.style.transform='none';this.style.boxShadow='none';">
-                    <span>Open in Type Tool</span>
+    <!-- Extended Lore CTA -->
+    <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
+    <div class="container">
+        <div class="pantheon-content reveal-up">
+            <div class="pantheon-text">
+                <span class="pantheon-eyebrow">Go Deeper</span>
+                <h2 class="pantheon-title">Extended Lore</h2>
+                <p class="pantheon-body">The lore you have read is the surface — the living myth. Beneath it lies the scholarship: etymology, reconstructed pronunciation, Unicode character breakdown, and the cultural legacy of <strong>Poseidôn</strong>.</p>
+                <a href="extended/" class="btn-primary btn-ghost">
+                    <span>Enter Extended Lore</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M7 17L17 7M17 7H7M17 7V17"></path>
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
                     </svg>
                 </a>
             </div>
-        </div>
-    </section>
-
-    <!-- Name Variations Section -->
-    <section class="section section-variations" id="variations">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Name Variations</h2>
-                <p class="section-subtitle">The many faces of Poseidôn across scripts and conventions.</p>
-            </div>
-            <div class="variations-grid">
-                <div class="variation-card primary">
-                    <span class="var-badge owned">Primary — Owned</span>
-                    <div class="var-name">Poseidōn</div>
-                    <div class="var-form">Macron form</div>
-                    <p class="var-note">Our canonical domain. The macron ō preserves the quantitative length of Greek Ποσειδῶν. Typeable on phones, defensible in any academic context.</p>
-                    <span class="var-domain">poseidōn.com</span>
-                </div>
-                <div class="variation-card">
-                    <span class="var-badge owned">Variant — Owned</span>
-                    <div class="var-name">Poseidôn</div>
-                    <div class="var-form">Circumflex form</div>
-                    <p class="var-note">The circumflex ô captures both stress and length in a single character — the most compact representation of the Greek ῶ. Redirects to the canonical poseidōn.com.</p>
-                    <span class="var-domain">poseidôn.com</span>
-                </div>
-                <div class="variation-card">
-                    <span class="var-badge ascii">ASCII</span>
-                    <div class="var-name">Poseidon</div>
-                    <div class="var-form">Modern English form</div>
-                    <p class="var-note">The plain modern spelling. No marks, no philology — just the name as English speakers know it. The fallback that the world settled for.</p>
-                    <span class="var-domain">poseidon.com (taken)</span>
-                </div>
+            <div class="pantheon-mascot">
+                <picture><source srcset="../assets/poseidon_mascot.webp" type="image/webp"><img src="../assets/poseidon_mascot.png" alt="Poseidôn mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-<footer class="main-footer">
+        <footer class="main-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
@@ -551,8 +382,8 @@
                 </div>
                 <div class="footer-info">
                     <div class="footer-block">
-                        <span class="footer-label">Domain</span>
-                        <span class="footer-value">poseidōn.com · poseidôn.com</span>
+                        <span class="footer-label">Domains</span>
+                        <span class="footer-value">poseidôn.com · poseidon.com</span>
                     </div>
                     <div class="footer-block">
                         <span class="footer-label">Classification</span>
@@ -565,15 +396,16 @@
                 </div>
             </div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/poseidon_logomark.webp" type="image/webp"><picture><source srcset="../assets/poseidon_logomark.webp" type="image/webp"><img src="../assets/poseidon_logomark.png" alt="Poseidon logomark" class="footer-logomark"></picture></picture>
+                <picture><source srcset="../assets/poseidon_logomark.webp" type="image/webp"><img src="../assets/poseidon_logomark.png" alt="Poseidôn logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
-                <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
             </div>
         </div>
     </footer>
 
-    <script src="../script.js?v=perf7"></script>
-
-
-</body></html>
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/temple-base.js?v=perf2"></script>
+    <script src="../script.js?v=perf2"></script>
+</body>
+</html>

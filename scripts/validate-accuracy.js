@@ -107,13 +107,17 @@ LEXICON.forEach((entry) => {
     }
     if (step.type === 'length') {
       const valid =
-        isPrecomposedLength || hasMacron || /[öüÿÖÜŸøØ]/.test(step.to) || /(.+)\1$/.test(step.to); // geminate consonant
+        isPrecomposedLength ||
+        hasMacron ||
+        hasCircumflex ||
+        /[öüÿÖÜŸøØ]/.test(step.to) ||
+        /(.+)\1$/.test(step.to); // geminate consonant
       warnIf(
         !valid,
         `[${entry.id}] breakdown[${i}] marked "length" but "${step.to}" has no length mark`
       );
       warnIf(
-        hasAcute || hasGrave || hasCircumflex,
+        (hasAcute || hasGrave) && !(hasMacron || hasCircumflex),
         `[${entry.id}] breakdown[${i}] marked "length" but "${step.to}" has stress too — should be "dual"`
       );
     }

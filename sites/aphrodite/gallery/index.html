@@ -1,13 +1,15 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aphrodítē — Gallery | Love, Beauty, Pleasure | PUNYCODEX</title>
     <meta name="description" content="A curated gallery of Aphrodítē, Love, Beauty, Pleasure, through history.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&amp;family=Montserrat:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../styles.css?v=perf1">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css?v=perf2">
 
     <link rel="canonical" href="https://punycodex.com/sites/aphrodite/gallery/">
 
@@ -20,6 +22,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Aphrodítē — Gallery | Love, Beauty, Pleasure | PUNYCODEX">
     <meta name="twitter:description" content="A curated gallery of Aphrodítē, Love, Beauty, Pleasure, through history.">
+
   <style>
 /* Gallery lightbox */
 .gallery-item {
@@ -106,23 +109,24 @@
 </head>
 <body>
     <!-- Global Nav -->
-    <div style="position:fixed;top:0;left:0;width:100%;z-index:1001;background:rgba(10,10,10,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);">
-        <div style="max-width:1200px;margin:0 auto;padding:0.4rem clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;">
-            <a href="https://punycodex.com/" style="font-family:'Cinzel',serif;font-size:0.8rem;font-weight:700;letter-spacing:0.15em;color:#D4AF37;text-decoration:none;">PUNYCODEX</a>
-            <div style="display:flex;gap:1.5rem;">
-                <a href="https://punycodex.com/pantheon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Pantheon</a>
-                <a href="https://punycodex.com/lexicon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Lexicon</a>
-                <a href="https://punycodex.com/type/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Type</a>
-                <a href="https://punycodex.com/tiers/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Tiers</a>
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punycodex.com/" class="global-brand">PUNYCODEX</a>
+            <div class="global-links">
+                <a href="https://punycodex.com/pantheon/">Pantheon</a>
+                <a href="https://punycodex.com/lexicon/">Lexicon</a>
+                <a href="https://punycodex.com/type/">Type</a>
+                <a href="https://punycodex.com/search.html">Search</a>
+                <a href="https://punycodex.com/tiers/">Tiers</a>
             </div>
         </div>
     </div>
 
-    <!-- Aphrodite Canvas -->
-    <canvas id="beauty-canvas"></canvas>
+    <!-- Ambient Canvas -->
+    <canvas id="aphrodite-canvas" data-effect="light" data-primary="#D4AF37" data-secondary="#4169E1"></canvas>
 
     <!-- Tab Navigation -->
-    <nav class="main-nav tab-nav" style="top:40px;" id="main-nav">
+    <nav class="main-nav tab-nav" id="main-nav">
         <div class="nav-inner">
             <a href="../" class="nav-logo">
                 <picture><source srcset="../assets/aphrodite_logolockup.webp" type="image/webp"><img src="../assets/aphrodite_logolockup.png" alt="Aphrodítē" class="nav-logo-img"></picture>
@@ -131,6 +135,7 @@
                 <a href="../index.html" class="nav-link">Home</a>
                 <a href="../lore/index.html" class="nav-link">Lore</a>
                 <a href="./index.html" class="nav-link active">Gallery</a>
+                <a href="../lore/extended/" class="nav-link">Extended</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
@@ -153,7 +158,7 @@
                     <a href="#gallery-grid" class="btn-primary">
                         <span>Explore the Collection</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M7 17L17 7M17 7H7M17 7V17"></path>
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
                         </svg>
                     </a>
                 </div>
@@ -175,79 +180,36 @@
             <div class="section-header reveal-up">
                 <span class="section-number">01</span>
                 <h2 class="section-title">The Collection</h2>
-                <p class="section-subtitle">Aphrodítē through the eyes of sculptors, painters, and craftsmen across three millennia</p>
+                <p class="section-subtitle">Aphrodítē through the eyes of sculptors, painters, and craftsmen across the ages</p>
             </div>
 
-                        <div class="gallery-grid">
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg/960px-Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg" data-caption="The Birth of Venus by Sandro Botticelli, c. 1485. Uffizi Gallery, Florence." aria-label="View full image: The Birth of Venus by Sandro Botticelli, c. 1485. Uffizi Gallery, Florence.">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg/960px-Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg/960px-Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg" alt="The Birth of Venus by Sandro Botticelli, c. 1485. Uffizi Gallery, Florence." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>The Birth of Venus</strong> — Sandro Botticelli, c. 1485. The goddess emerges from the sea on a scallop shell.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Venus_de_Milo_Louvre_Ma399_n4.jpg/960px-Venus_de_Milo_Louvre_Ma399_n4.jpg" data-caption="Venus de Milo, c. 130–100 BCE. Louvre Museum, Paris." aria-label="View full image: Venus de Milo, c. 130–100 BCE. Louvre Museum, Paris." data-delay="100">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Venus_de_Milo_Louvre_Ma399_n4.jpg/960px-Venus_de_Milo_Louvre_Ma399_n4.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Venus_de_Milo_Louvre_Ma399_n4.jpg/960px-Venus_de_Milo_Louvre_Ma399_n4.jpg" alt="Venus de Milo, c. 130–100 BCE. Louvre Museum, Paris." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Venus de Milo</strong> — Alexandros of Antioch, c. 130–100 BCE. The most famous Aphrodite in the world.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Capitoline_Venus_Musei_Capitolini_MC0409.jpg/960px-Capitoline_Venus_Musei_Capitolini_MC0409.jpg" data-caption="Capitoline Venus. Capitoline Museums, Rome." aria-label="View full image: Capitoline Venus. Capitoline Museums, Rome." data-delay="200">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Capitoline_Venus_Musei_Capitolini_MC0409.jpg/960px-Capitoline_Venus_Musei_Capitolini_MC0409.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Capitoline_Venus_Musei_Capitolini_MC0409.jpg/960px-Capitoline_Venus_Musei_Capitolini_MC0409.jpg" alt="Capitoline Venus. Capitoline Museums, Rome." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Capitoline Venus</strong> — Roman copy of a Hellenistic original. The goddess modestly covers herself, establishing the type for Western beauty.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Aphrodite_Braschi_Glyptothek_Munich_258.jpg/960px-Aphrodite_Braschi_Glyptothek_Munich_258.jpg" data-caption="Aphrodite of Knidos by Praxiteles, Roman copy. Glyptothek, Munich." aria-label="View full image: Aphrodite of Knidos by Praxiteles, Roman copy. Glyptothek, Munich." data-delay="300">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Aphrodite_Braschi_Glyptothek_Munich_258.jpg/960px-Aphrodite_Braschi_Glyptothek_Munich_258.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Aphrodite_Braschi_Glyptothek_Munich_258.jpg/960px-Aphrodite_Braschi_Glyptothek_Munich_258.jpg" alt="Aphrodite of Knidos by Praxiteles, Roman copy. Glyptothek, Munich." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Aphrodite of Knidos</strong> — Praxiteles, 4th century BCE. The first life-sized nude statue of a goddess in Greek art.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Titian_%28Tiziano_Vecellio%29_-_Venus_Rising_from_the_Sea_%28%27Venus_Anadyomene%27%29_-_Google_Art_Project.jpg/960px-Titian_%28Tiziano_Vecellio%29_-_Venus_Rising_from_the_Sea_%28%27Venus_Anadyomene%27%29_-_Google_Art_Project.jpg" data-caption="Venus Anadyomene by Titian, c. 1520. Scottish National Gallery, Edinburgh." aria-label="View full image: Venus Anadyomene by Titian, c. 1520. Scottish National Gallery, Edinburgh." data-delay="0">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Titian_%28Tiziano_Vecellio%29_-_Venus_Rising_from_the_Sea_%28%27Venus_Anadyomene%27%29_-_Google_Art_Project.jpg/960px-Titian_%28Tiziano_Vecellio%29_-_Venus_Rising_from_the_Sea_%28%27Venus_Anadyomene%27%29_-_Google_Art_Project.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Titian_%28Tiziano_Vecellio%29_-_Venus_Rising_from_the_Sea_%28%27Venus_Anadyomene%27%29_-_Google_Art_Project.jpg/960px-Titian_%28Tiziano_Vecellio%29_-_Venus_Rising_from_the_Sea_%28%27Venus_Anadyomene%27%29_-_Google_Art_Project.jpg" alt="Venus Anadyomene by Titian, c. 1520. Scottish National Gallery, Edinburgh." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Venus Anadyomene</strong> — Titian, c. 1520. The goddess wrings sea foam from her hair.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Rubens_-_Judgement_of_Paris.jpg/960px-Rubens_-_Judgement_of_Paris.jpg" data-caption="The Judgement of Paris by Peter Paul Rubens, c. 1636. National Gallery, London." aria-label="View full image: The Judgement of Paris by Peter Paul Rubens, c. 1636. National Gallery, London." data-delay="100">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Rubens_-_Judgement_of_Paris.jpg/960px-Rubens_-_Judgement_of_Paris.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Rubens_-_Judgement_of_Paris.jpg/960px-Rubens_-_Judgement_of_Paris.jpg" alt="The Judgement of Paris by Peter Paul Rubens, c. 1636. National Gallery, London." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>The Judgement of Paris</strong> — Peter Paul Rubens, c. 1636. The moment Aphrodite won the golden apple and doomed Troy.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Botticelli-Venus%20and%20Mars.jpg/960px-Botticelli-Venus%20and%20Mars.jpg" data-caption="Venus and Mars by Sandro Botticelli, c. 1485. National Gallery, London." aria-label="View full image: Venus and Mars by Sandro Botticelli, c. 1485. National Gallery, London." data-delay="200">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Botticelli-Venus%20and%20Mars.jpg/960px-Botticelli-Venus%20and%20Mars.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Botticelli-Venus%20and%20Mars.jpg/960px-Botticelli-Venus%20and%20Mars.jpg" alt="Venus and Mars by Sandro Botticelli, c. 1485. National Gallery, London." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Venus and Mars</strong> — Sandro Botticelli, c. 1485. Love defeats war in this dreamlike allegory of desire and conflict.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Medici_Venus_%28Uffizi%29.jpg/960px-Medici_Venus_%28Uffizi%29.jpg" data-caption="Venus de' Medici. Uffizi Gallery, Florence." aria-label="View full image: Venus de' Medici. Uffizi Gallery, Florence." data-delay="300">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Medici_Venus_%28Uffizi%29.jpg/960px-Medici_Venus_%28Uffizi%29.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Medici_Venus_%28Uffizi%29.jpg/960px-Medici_Venus_%28Uffizi%29.jpg" alt="Venus de' Medici. Uffizi Gallery, Florence." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Venus de' Medici</strong> — Roman copy. Once the most copied statue in Europe, defining feminine beauty for centuries.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Aphrodite%20Anadyomene%20Louvre%20CA2288.jpg/960px-Aphrodite%20Anadyomene%20Louvre%20CA2288.jpg" data-caption="Aphrodite Anadyomene, marble statue. Louvre Museum." aria-label="View full image: Aphrodite Anadyomene, marble statue. Louvre Museum." data-delay="0">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Aphrodite%20Anadyomene%20Louvre%20CA2288.jpg/960px-Aphrodite%20Anadyomene%20Louvre%20CA2288.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Aphrodite%20Anadyomene%20Louvre%20CA2288.jpg/960px-Aphrodite%20Anadyomene%20Louvre%20CA2288.jpg" alt="Aphrodite Anadyomene, marble statue. Louvre Museum." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Aphrodite Anadyomene</strong> — Marble statue, Louvre. The goddess wrings sea-foam from her hair in the type that celebrated her birth from the waves.</p>
-    </button>
-    </div>
+            <div class="gallery-grid">
+                
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="../assets/aphrodite_mascot.png">
+                        <picture><source srcset="../assets/aphrodite_mascot.webp" type="image/webp"><img src="../assets/aphrodite_mascot.png" alt="The Aphrodítē mascot — Love, Beauty, Pleasure" loading="lazy"></picture>
+                    </figure>
+                    <p class="gallery-caption">The Aphrodítē mascot — Love, Beauty, Pleasure</p>
+                </div>
+
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="../assets/aphrodite_logolockup.png">
+                        <picture><source srcset="../assets/aphrodite_logolockup.webp" type="image/webp"><img src="../assets/aphrodite_logolockup.png" alt="Aphrodítē logolockup" loading="lazy"></picture>
+                    </figure>
+                    <p class="gallery-caption">Aphrodítē logolockup</p>
+                </div>
+
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="../assets/aphrodite_logomark.png">
+                        <picture><source srcset="../assets/aphrodite_logomark.webp" type="image/webp"><img src="../assets/aphrodite_logomark.png" alt="Aphrodítē logomark seal" loading="lazy"></picture>
+                    </figure>
+                    <p class="gallery-caption">Aphrodítē logomark seal</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="main-footer">
+        <footer class="main-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
@@ -257,11 +219,11 @@
                 <div class="footer-info">
                     <div class="footer-block">
                         <span class="footer-label">Domains</span>
-                        <span class="footer-value">aphrodíte.com · Aphrodítē.com</span>
+                        <span class="footer-value">aphrodítē.com · aphrodite.com</span>
                     </div>
                     <div class="footer-block">
                         <span class="footer-label">Classification</span>
-                        <span class="footer-value">Tier 1 · Tier 2</span>
+                        <span class="footer-value">Tier 1</span>
                     </div>
                     <div class="footer-block">
                         <span class="footer-label">Original Script</span>
@@ -273,13 +235,17 @@
                 <picture><source srcset="../assets/aphrodite_logomark.webp" type="image/webp"><img src="../assets/aphrodite_logomark.png" alt="Aphrodítē logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
-                <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
             </div>
         </div>
     </footer>
 
-    <script src="../script.js?v=perf1"></script>
+    <script src="/js/flagship-canvas.js"></script>
+    
 
+<script>window.PUNYCODEX_API_BASE = "";</script>
+    <script src="/js/temple-base.js?v=perf2"></script>
+    <script src="../script.js?v=perf2"></script>
 
 <div class="gallery-lightbox" id="gallery-lightbox" aria-modal="true" role="dialog" aria-label="Image preview">
   <div class="gallery-lightbox-content">
@@ -317,4 +283,5 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && lb.classList.contains('active')) closeLb(); });
 })();
 </script>
-</body></html>
+</body>
+</html>

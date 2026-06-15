@@ -1088,7 +1088,7 @@ function generatePeopleAlsoAsk(q, limit = 4) {
   // Find best matching lexicon entry
   let entry = db
     .prepare(`
-    SELECT id, unicode, ascii, greek, meaning, pantheon, tier, tier_label, domain, etymology, variants, has_flagship
+    SELECT id, unicode, ascii, greek, original_script, meaning, pantheon, tier, tier_label, domain, etymology, variants, has_flagship
     FROM entries
     WHERE LOWER(ascii) = ? OR LOWER(unicode) = ? OR LOWER(id) = ?
     LIMIT 1
@@ -1098,7 +1098,7 @@ function generatePeopleAlsoAsk(q, limit = 4) {
   if (!entry) {
     entry = db
       .prepare(`
-      SELECT id, unicode, ascii, greek, meaning, pantheon, tier, tier_label, domain, etymology, variants, has_flagship
+      SELECT id, unicode, ascii, greek, original_script, meaning, pantheon, tier, tier_label, domain, etymology, variants, has_flagship
       FROM entries
       WHERE LOWER(ascii) LIKE ? OR LOWER(unicode) LIKE ? OR LOWER(meaning) LIKE ? OR LOWER(domain) LIKE ?
       ORDER BY tier = 'dual' DESC, tier = '1' DESC, has_flagship DESC, ascii ASC
@@ -1127,9 +1127,10 @@ function generatePeopleAlsoAsk(q, limit = 4) {
     }
 
     // Original script form
-    if (entry.greek && entry.greek !== '-') {
-      add(`What is the original Greek form of ${name}?`, entry.greek);
-      add(`How do you write ${name} in Greek?`, entry.greek);
+    const original = entry.original_script || entry.greek;
+    if (original && original !== '-' && original !== '—') {
+      add(`What is the original script of ${name}?`, original);
+      add(`How do you write ${name} in its original script?`, original);
     }
 
     // Domain / powers

@@ -1,27 +1,28 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rꜥ — Gallery | Art, Tomb Painting &amp; Depictions | PUNYCODEX</title>
-    <meta name="description" content="A curated gallery of Rꜥ, the Egyptian Sun God, through history — from pyramid texts to tomb paintings.">
+    <title>Rꜥ — Gallery | Sun, Creation, Kingship | PUNYCODEX</title>
+    <meta name="description" content="A curated gallery of Rꜥ, Sun, Creation, Kingship, through history.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../styles.css?v=perf19">
+    <link rel="stylesheet" href="../styles.css?v=perf2">
 
-    <link rel="canonical" href="https://punycodex.com/ra/gallery/">
+    <link rel="canonical" href="https://punycodex.com/sites/ra/gallery/">
 
-    <meta property="og:title" content="Rꜥ — Gallery | Art &amp; Tomb Painting | PUNYCODEX">
-    <meta property="og:description" content="A curated gallery of Rꜥ, the Egyptian Sun God, through history.">
-    <meta property="og:url" content="https://punycodex.com/ra/gallery/">
+    <meta property="og:title" content="Rꜥ — Gallery | Sun, Creation, Kingship | PUNYCODEX">
+    <meta property="og:description" content="A curated gallery of Rꜥ, Sun, Creation, Kingship, through history.">
+    <meta property="og:url" content="https://punycodex.com/sites/ra/gallery/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="PUNYCODEX">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Rꜥ — Gallery | Art &amp; Tomb Painting | PUNYCODEX">
-    <meta name="twitter:description" content="A curated gallery of Rꜥ, the Egyptian Sun God, through history.">
+    <meta name="twitter:title" content="Rꜥ — Gallery | Sun, Creation, Kingship | PUNYCODEX">
+    <meta name="twitter:description" content="A curated gallery of Rꜥ, Sun, Creation, Kingship, through history.">
+
   <style>
 /* Gallery lightbox */
 .gallery-item {
@@ -108,31 +109,33 @@
 </head>
 <body>
     <!-- Global Nav -->
-    <div style="position:fixed;top:0;left:0;width:100%;z-index:1001;background:rgba(10,10,10,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);">
-        <div style="max-width:1200px;margin:0 auto;padding:0.4rem clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;">
-            <a href="https://punycodex.com/" style="font-family:'Cinzel',serif;font-size:0.8rem;font-weight:700;letter-spacing:0.15em;color:#D4AF37;text-decoration:none;">PUNYCODEX</a>
-            <div style="display:flex;gap:1.5rem;">
-                <a href="https://punycodex.com/pantheon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Pantheon</a>
-                <a href="https://punycodex.com/lexicon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Lexicon</a>
-                <a href="https://punycodex.com/type/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Type</a>
-                <a href="https://punycodex.com/tiers/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Tiers</a>
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punycodex.com/" class="global-brand">PUNYCODEX</a>
+            <div class="global-links">
+                <a href="https://punycodex.com/pantheon/">Pantheon</a>
+                <a href="https://punycodex.com/lexicon/">Lexicon</a>
+                <a href="https://punycodex.com/type/">Type</a>
+                <a href="https://punycodex.com/search.html">Search</a>
+                <a href="https://punycodex.com/tiers/">Tiers</a>
             </div>
         </div>
     </div>
 
-    <!-- Messenger Canvas -->
-    <canvas id="solar-canvas"></canvas>
+    <!-- Ambient Canvas -->
+    <canvas id="ra-canvas" data-effect="sun" data-primary="#D4AF37" data-secondary="#1E3A5F"></canvas>
 
     <!-- Tab Navigation -->
-    <nav class="main-nav tab-nav" style="top:40px;" id="main-nav">
+    <nav class="main-nav tab-nav" id="main-nav">
         <div class="nav-inner">
             <a href="../" class="nav-logo">
                 <picture><source srcset="../assets/ra_logolockup.webp" type="image/webp"><img src="../assets/ra_logolockup.png" alt="Rꜥ" class="nav-logo-img"></picture>
             </a>
             <div class="nav-links">
-                <a href="../" class="nav-link">Home</a>
-                <a href="../lore/" class="nav-link">Lore</a>
-                <a href="./" class="nav-link active">Gallery</a>
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="./index.html" class="nav-link active">Gallery</a>
+                <a href="../lore/extended/" class="nav-link">Extended</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
@@ -146,14 +149,22 @@
             <div class="hero-text">
                 <p class="hero-eyebrow reveal-up">Visual Legacy</p>
                 <h1 class="hero-title reveal-up">
-                    <span class="title-greek">Rꜥ</span>
+                    <span class="title-greek">𓂋𓏤</span>
                     <span class="title-divider"></span>
                     <span class="title-trans">Gallery</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Art &middot; Sculpture &middot; Tomb Painting &middot; Coinage &middot; Architecture</p>
+                <p class="hero-subtitle reveal-up">Sun, Creation, Kingship</p>
+                <div class="hero-cta reveal-up">
+                    <a href="#gallery-grid" class="btn-primary">
+                        <span>Explore the Collection</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../assets/ra_mascot.webp" type="image/webp"><img src="../assets/ra_mascot.png" alt="Rꜥ — Sun God, Creator" class="mascot-img"></picture>
+                <picture><source srcset="../assets/ra_mascot.webp" type="image/webp"><img src="../assets/ra_mascot.png" alt="Rꜥ — Sun, Creation, Kingship" class="mascot-img"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -163,50 +174,42 @@
     </section>
 
     <!-- Gallery Grid -->
-    <section class="section" id="gallery" style="padding:6rem 0;">
+    <section class="section section-name" id="gallery-grid">
+        <div class="section-bg-glow"></div>
         <div class="container">
-                                    <div class="gallery-grid">
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Ra_as_falcon.svg/960px-Ra_as_falcon.png" data-caption="Ra-Horakhty depicted as a falcon wearing the solar disk." aria-label="View full image: Ra-Horakhty depicted as a falcon wearing the solar disk.">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Ra_as_falcon.svg/960px-Ra_as_falcon.svg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Ra_as_falcon.svg/960px-Ra_as_falcon.png" alt="Ra-Horakhty depicted as a falcon wearing the solar disk." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Ra-Horakhty</strong> — Depicted as a falcon wearing the solar disk, the supreme sun god voyages across the sky.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Ra-Horakhty_(RC_2063)_Rosicrucian_Egyptian_Museum.jpg/960px-Ra-Horakhty_(RC_2063)_Rosicrucian_Egyptian_Museum.jpg" data-caption="Ra-Horakhty statue, Rosicrucian Egyptian Museum." aria-label="View full image: Ra-Horakhty statue, Rosicrucian Egyptian Museum." data-delay="100">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Ra-Horakhty_(RC_2063)_Rosicrucian_Egyptian_Museum.jpg/960px-Ra-Horakhty_(RC_2063)_Rosicrucian_Egyptian_Museum.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Ra-Horakhty_(RC_2063)_Rosicrucian_Egyptian_Museum.jpg/960px-Ra-Horakhty_(RC_2063)_Rosicrucian_Egyptian_Museum.jpg" alt="Ra-Horakhty statue, Rosicrucian Egyptian Museum." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Ra-Horakhty</strong> — Rosicrucian Egyptian Museum. The falcon-headed sun god, protector of kings.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Theban_region%2C_Deir_el-Medina%2C_TT1%2C_tomb_of_Sennedjem%2C_1905-1914%2C_photo_7_of_9_-_Archivio_fotografico_Museo_Egizio%2C_Turin_C00077.jpg/960px-Theban_region%2C_Deir_el-Medina%2C_TT1%2C_tomb_of_Sennedjem%2C_1905-1914%2C_photo_7_of_9_-_Archivio_fotografico_Museo_Egizio%2C_Turin_C00077.jpg" data-caption="Solar barque with Ra-Horakhty, tomb of Sennedjem." aria-label="View full image: Solar barque with Ra-Horakhty, tomb of Sennedjem." data-delay="200">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Theban_region%2C_Deir_el-Medina%2C_TT1%2C_tomb_of_Sennedjem%2C_1905-1914%2C_photo_7_of_9_-_Archivio_fotografico_Museo_Egizio%2C_Turin_C00077.jpg/960px-Theban_region%2C_Deir_el-Medina%2C_TT1%2C_tomb_of_Sennedjem%2C_1905-1914%2C_photo_7_of_9_-_Archivio_fotografico_Museo_Egizio%2C_Turin_C00077.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Theban_region%2C_Deir_el-Medina%2C_TT1%2C_tomb_of_Sennedjem%2C_1905-1914%2C_photo_7_of_9_-_Archivio_fotografico_Museo_Egizio%2C_Turin_C00077.jpg/960px-Theban_region%2C_Deir_el-Medina%2C_TT1%2C_tomb_of_Sennedjem%2C_1905-1914%2C_photo_7_of_9_-_Archivio_fotografico_Museo_Egizio%2C_Turin_C00077.jpg" alt="Solar barque with Ra-Horakhty, tomb of Sennedjem." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Ra in the Book of the Dead</strong> — Tomb of Sennedjem, c. 1275 BCE. The sun god in his barque travels through the underworld.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/ReliefFragmentOfAkhenatenWithSunDiskOfAten.png/960px-ReliefFragmentOfAkhenatenWithSunDiskOfAten.png" data-caption="Relief fragment of Akhenaten with the sun disk of the Aten." aria-label="View full image: Relief fragment of Akhenaten with the sun disk of the Aten." data-delay="300">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/ReliefFragmentOfAkhenatenWithSunDiskOfAten.png/960px-ReliefFragmentOfAkhenatenWithSunDiskOfAten.png.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/ReliefFragmentOfAkhenatenWithSunDiskOfAten.png/960px-ReliefFragmentOfAkhenatenWithSunDiskOfAten.png" alt="Relief fragment of Akhenaten with the sun disk of the Aten." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>The Aten</strong> — Amarna period, c. 1350 BCE. Akhenaten's radiant sun disk, source of all life.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Nun_Raises_the_Sun.jpg/960px-Nun_Raises_the_Sun.jpg" data-caption="Nun lifts the solar barque of Ra." aria-label="View full image: Nun lifts the solar barque of Ra." data-delay="0">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Nun_Raises_the_Sun.jpg/960px-Nun_Raises_the_Sun.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Nun_Raises_the_Sun.jpg/960px-Nun_Raises_the_Sun.jpg" alt="Nun lifts the solar barque of Ra." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>The Solar Barque</strong> — Nun, god of chaos, lifts the barque of Ra into the sky at the dawn of time.</p>
-    </button>
-    </div>
+            <div class="section-header reveal-up">
+                <span class="section-number">01</span>
+                <h2 class="section-title">The Collection</h2>
+                <p class="section-subtitle">Rꜥ through the eyes of sculptors, painters, and craftsmen across the ages</p>
+            </div>
+
+            <div class="gallery-grid">
+                
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="../assets/ra_mascot.png">
+                        <picture><source srcset="../assets/ra_mascot.webp" type="image/webp"><img src="../assets/ra_mascot.png" alt="The Rꜥ mascot — Sun, Creation, Kingship" loading="lazy"></picture>
+                    </figure>
+                    <p class="gallery-caption">The Rꜥ mascot — Sun, Creation, Kingship</p>
+                </div>
+
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="../assets/ra_logolockup.png">
+                        <picture><source srcset="../assets/ra_logolockup.webp" type="image/webp"><img src="../assets/ra_logolockup.png" alt="Rꜥ logolockup" loading="lazy"></picture>
+                    </figure>
+                    <p class="gallery-caption">Rꜥ logolockup</p>
+                </div>
+
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="../assets/ra_logomark.png">
+                        <picture><source srcset="../assets/ra_logomark.webp" type="image/webp"><img src="../assets/ra_logomark.png" alt="Rꜥ logomark seal" loading="lazy"></picture>
+                    </figure>
+                    <p class="gallery-caption">Rꜥ logomark seal</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="main-footer">
+        <footer class="main-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
@@ -215,16 +218,16 @@
                 </div>
                 <div class="footer-info">
                     <div class="footer-block">
-                        <span class="footer-label">Domain</span>
+                        <span class="footer-label">Domains</span>
                         <span class="footer-value">rꜥ.com</span>
                     </div>
                     <div class="footer-block">
                         <span class="footer-label">Classification</span>
-                        <span class="footer-value">Tier‑1</span>
+                        <span class="footer-value">Tier 2</span>
                     </div>
                     <div class="footer-block">
-                        <span class="footer-label">Egyptian Original</span>
-                        <span class="footer-value">Rꜥ</span>
+                        <span class="footer-label">Original Script</span>
+                        <span class="footer-value">𓂋𓏤</span>
                     </div>
                 </div>
             </div>
@@ -237,7 +240,13 @@
         </div>
     </footer>
 
-    <script src="../script.js?v=perf19"></script>
+    <script src="/js/flagship-canvas.js"></script>
+    
+
+<script>window.PUNYCODEX_API_BASE = "";</script>
+    <script src="/js/temple-base.js?v=perf2"></script>
+    <script src="../script.js?v=perf2"></script>
+
 <div class="gallery-lightbox" id="gallery-lightbox" aria-modal="true" role="dialog" aria-label="Image preview">
   <div class="gallery-lightbox-content">
     <button class="gallery-lightbox-close" id="gallery-lightbox-close" aria-label="Close" type="button">&times;</button>

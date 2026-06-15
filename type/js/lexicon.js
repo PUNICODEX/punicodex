@@ -22633,6 +22633,7 @@ const LEXICON = [
     ascii: 'apsu',
     unicode: 'Apsû',
     greek: '—',
+    originalScript: '𒀊𒍪',
     pantheon: 'mesopotamian',
     tier: '2',
     tierLabel: 'Tier 2',
@@ -22671,8 +22672,8 @@ const LEXICON = [
       {
         char: 'u',
         to: 'û',
-        type: 'dual',
-        note: 'Circumflex: stress + length'
+        type: 'length',
+        note: 'Circumflex marks Akkadian long /û/ (vowel-contraction length), not Greek-style stress'
       }
     ]
   },

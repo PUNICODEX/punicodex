@@ -1,27 +1,28 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ἑρμῆς — Gallery | Art, Sculpture &amp; Depictions | PUNYCODEX</title>
-    <meta name="description" content="A curated gallery of Ἑρμῆς, Greek Messenger of the Gods, through history — from ancient vase paintings to Praxiteles' masterpiece.">
+    <title>Hermês — Gallery | Messengers, Commerce, Thieves | PUNYCODEX</title>
+    <meta name="description" content="A curated gallery of Hermês, Messengers, Commerce, Thieves, through history.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../styles.css?v=perf14">
+    <link rel="stylesheet" href="../styles.css?v=perf2">
 
-    <link rel="canonical" href="https://punycodex.com/hermes/gallery/">
+    <link rel="canonical" href="https://punycodex.com/sites/hermes/gallery/">
 
-    <meta property="og:title" content="Ἑρμῆς — Gallery | Art &amp; Sculpture | PUNYCODEX">
-    <meta property="og:description" content="A curated gallery of Ἑρμῆς, Greek Messenger of the Gods, through history.">
-    <meta property="og:url" content="https://punycodex.com/hermes/gallery/">
+    <meta property="og:title" content="Hermês — Gallery | Messengers, Commerce, Thieves | PUNYCODEX">
+    <meta property="og:description" content="A curated gallery of Hermês, Messengers, Commerce, Thieves, through history.">
+    <meta property="og:url" content="https://punycodex.com/sites/hermes/gallery/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="PUNYCODEX">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Ἑρμῆς — Gallery | Art &amp; Sculpture | PUNYCODEX">
-    <meta name="twitter:description" content="A curated gallery of Ἑρμῆς, Greek Messenger of the Gods, through history.">
+    <meta name="twitter:title" content="Hermês — Gallery | Messengers, Commerce, Thieves | PUNYCODEX">
+    <meta name="twitter:description" content="A curated gallery of Hermês, Messengers, Commerce, Thieves, through history.">
+
   <style>
 /* Gallery lightbox */
 .gallery-item {
@@ -108,31 +109,33 @@
 </head>
 <body>
     <!-- Global Nav -->
-    <div style="position:fixed;top:0;left:0;width:100%;z-index:1001;background:rgba(10,10,10,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);">
-        <div style="max-width:1200px;margin:0 auto;padding:0.4rem clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;">
-            <a href="https://punycodex.com/" style="font-family:'Cinzel',serif;font-size:0.8rem;font-weight:700;letter-spacing:0.15em;color:#D4941E;text-decoration:none;">PUNYCODEX</a>
-            <div style="display:flex;gap:1.5rem;">
-                <a href="https://punycodex.com/pantheon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4941E'" onmouseout="this.style.color='#A0A0A0'">Pantheon</a>
-                <a href="https://punycodex.com/lexicon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4941E'" onmouseout="this.style.color='#A0A0A0'">Lexicon</a>
-                <a href="https://punycodex.com/type/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4941E'" onmouseout="this.style.color='#A0A0A0'">Type</a>
-                <a href="https://punycodex.com/tiers/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4941E'" onmouseout="this.style.color='#A0A0A0'">Tiers</a>
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punycodex.com/" class="global-brand">PUNYCODEX</a>
+            <div class="global-links">
+                <a href="https://punycodex.com/pantheon/">Pantheon</a>
+                <a href="https://punycodex.com/lexicon/">Lexicon</a>
+                <a href="https://punycodex.com/type/">Type</a>
+                <a href="https://punycodex.com/search.html">Search</a>
+                <a href="https://punycodex.com/tiers/">Tiers</a>
             </div>
         </div>
     </div>
 
-    <!-- Messenger Canvas -->
-    <canvas id="messenger-canvas"></canvas>
+    <!-- Ambient Canvas -->
+    <canvas id="hermes-canvas" data-effect="light" data-primary="#D4AF37" data-secondary="#4169E1"></canvas>
 
     <!-- Tab Navigation -->
-    <nav class="main-nav tab-nav" style="top:40px;" id="main-nav">
+    <nav class="main-nav tab-nav" id="main-nav">
         <div class="nav-inner">
             <a href="../" class="nav-logo">
-                <picture><source srcset="../assets/hermes_logolockup.webp" type="image/webp"><img src="../assets/hermes_logolockup.png" alt="Ἑρμῆς" class="nav-logo-img"></picture>
+                <picture><source srcset="../assets/hermes_logolockup.webp" type="image/webp"><img src="../assets/hermes_logolockup.png" alt="Hermês" class="nav-logo-img"></picture>
             </a>
             <div class="nav-links">
-                <a href="../" class="nav-link">Home</a>
-                <a href="../lore/" class="nav-link">Lore</a>
-                <a href="./" class="nav-link active">Gallery</a>
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="./index.html" class="nav-link active">Gallery</a>
+                <a href="../lore/extended/" class="nav-link">Extended</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
@@ -150,10 +153,18 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Gallery</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Art &middot; Sculpture &middot; Vase Painting &middot; Coinage &middot; Architecture</p>
+                <p class="hero-subtitle reveal-up">Messengers, Commerce, Thieves</p>
+                <div class="hero-cta reveal-up">
+                    <a href="#gallery-grid" class="btn-primary">
+                        <span>Explore the Collection</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../assets/hermes_mascot.webp" type="image/webp"><img src="../assets/hermes_mascot.png" alt="Ἑρμῆς — Messenger of the Gods" class="mascot-img"></picture>
+                <picture><source srcset="../assets/hermes_mascot.webp" type="image/webp"><img src="../assets/hermes_mascot.png" alt="Hermês — Messengers, Commerce, Thieves" class="mascot-img"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -163,57 +174,42 @@
     </section>
 
     <!-- Gallery Grid -->
-    <section class="section" id="gallery" style="padding:6rem 0;">
+    <section class="section section-name" id="gallery-grid">
+        <div class="section-bg-glow"></div>
         <div class="container">
-                                    <div class="gallery-grid">
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Hermes_and_the_infant_Dionysus_by_Praxiteles.jpg/960px-Hermes_and_the_infant_Dionysus_by_Praxiteles.jpg" data-caption="Hermes and the Infant Dionysus by Praxiteles, c. 340 BCE. Archaeological Museum of Olympia." aria-label="View full image: Hermes and the Infant Dionysus by Praxiteles, c. 340 BCE. Archaeological Museum of Olympia.">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Hermes_and_the_infant_Dionysus_by_Praxiteles.jpg/960px-Hermes_and_the_infant_Dionysus_by_Praxiteles.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Hermes_and_the_infant_Dionysus_by_Praxiteles.jpg/960px-Hermes_and_the_infant_Dionysus_by_Praxiteles.jpg" alt="Hermes and the Infant Dionysus by Praxiteles, c. 340 BCE. Archaeological Museum of Olympia." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Hermes and the Infant Dionysus</strong> — Praxiteles, c. 340 BCE. The messenger god carries the divine child, one of the most tender images in Greek art.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Hermes_Ludovisi_03.JPG/960px-Hermes_Ludovisi_03.JPG" data-caption="Hermes Ludovisi, Roman copy. Palazzo Altemps, Rome." aria-label="View full image: Hermes Ludovisi, Roman copy. Palazzo Altemps, Rome." data-delay="100">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Hermes_Ludovisi_03.JPG/960px-Hermes_Ludovisi_03.JPG.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Hermes_Ludovisi_03.JPG/960px-Hermes_Ludovisi_03.JPG" alt="Hermes Ludovisi, Roman copy. Palazzo Altemps, Rome." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Hermes Ludovisi</strong> — Roman copy. The god rests, his caduceus beside him, winged sandals unstrapped.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Hermes_%C3%A0_la_sandale_%28Louvre%2C_Ma_83%29.jpg/960px-Hermes_%C3%A0_la_sandale_%28Louvre%2C_Ma_83%29.jpg" data-caption="Hermes Ingenui, Roman copy. Louvre Museum." aria-label="View full image: Hermes Ingenui, Roman copy. Louvre Museum." data-delay="200">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Hermes_%C3%A0_la_sandale_%28Louvre%2C_Ma_83%29.jpg/960px-Hermes_%C3%A0_la_sandale_%28Louvre%2C_Ma_83%29.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Hermes_%C3%A0_la_sandale_%28Louvre%2C_Ma_83%29.jpg/960px-Hermes_%C3%A0_la_sandale_%28Louvre%2C_Ma_83%29.jpg" alt="Hermes Ingenui, Roman copy. Louvre Museum." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Hermes Ingenui</strong> — Louvre Museum. The youthful messenger, eternally between worlds.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Baltimore_Painter_-_Volute_Krater_-_Walters_4886_-_Side_A.jpg/960px-Baltimore_Painter_-_Volute_Krater_-_Walters_4886_-_Side_A.jpg" data-caption="Hermes Psychopompos, Attic red-figure krater, c. 430 BCE. Louvre Museum." aria-label="View full image: Hermes Psychopompos, Attic red-figure krater, c. 430 BCE. Louvre Museum." data-delay="300">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Baltimore_Painter_-_Volute_Krater_-_Walters_4886_-_Side_A.jpg/960px-Baltimore_Painter_-_Volute_Krater_-_Walters_4886_-_Side_A.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Baltimore_Painter_-_Volute_Krater_-_Walters_4886_-_Side_A.jpg/960px-Baltimore_Painter_-_Volute_Krater_-_Walters_4886_-_Side_A.jpg" alt="Hermes Psychopompos, Attic red-figure krater, c. 430 BCE. Louvre Museum." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Hermes Psychopompos</strong> — Attic red-figure, c. 430 BCE. The guide of souls leads the dead to the underworld.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Herm%C3%A8s_%28Mercure%29-Statues_in_the_Vatican_Museums.jpg/960px-Herm%C3%A8s_%28Mercure%29-Statues_in_the_Vatican_Museums.jpg" data-caption="Hermes, Roman copy. Villa Paolina, Rome." aria-label="View full image: Hermes, Roman copy. Villa Paolina, Rome." data-delay="0">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Herm%C3%A8s_%28Mercure%29-Statues_in_the_Vatican_Museums.jpg/960px-Herm%C3%A8s_%28Mercure%29-Statues_in_the_Vatican_Museums.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Herm%C3%A8s_%28Mercure%29-Statues_in_the_Vatican_Museums.jpg/960px-Herm%C3%A8s_%28Mercure%29-Statues_in_the_Vatican_Museums.jpg" alt="Hermes, Roman copy. Villa Paolina, Rome." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Hermes</strong> — Villa Paolina. The divine herald, protector of travelers, thieves, and merchants.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Diego_Vel%C3%A1zquez_-_Mercury_and_Argus_-_WGA24471.jpg/960px-Diego_Vel%C3%A1zquez_-_Mercury_and_Argus_-_WGA24471.jpg" data-caption="Hermes, Roman copy. Prado Museum, Madrid." aria-label="View full image: Hermes, Roman copy. Prado Museum, Madrid." data-delay="100">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Diego_Vel%C3%A1zquez_-_Mercury_and_Argus_-_WGA24471.jpg/960px-Diego_Vel%C3%A1zquez_-_Mercury_and_Argus_-_WGA24471.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Diego_Vel%C3%A1zquez_-_Mercury_and_Argus_-_WGA24471.jpg/960px-Diego_Vel%C3%A1zquez_-_Mercury_and_Argus_-_WGA24471.jpg" alt="Hermes, Roman copy. Prado Museum, Madrid." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Hermes</strong> — Prado Museum. The god of boundaries, standing at the threshold between Olympus and Earth.</p>
-    </button>
-    </div>
+            <div class="section-header reveal-up">
+                <span class="section-number">01</span>
+                <h2 class="section-title">The Collection</h2>
+                <p class="section-subtitle">Hermês through the eyes of sculptors, painters, and craftsmen across the ages</p>
+            </div>
+
+            <div class="gallery-grid">
+                
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="../assets/hermes_mascot.png">
+                        <picture><source srcset="../assets/hermes_mascot.webp" type="image/webp"><img src="../assets/hermes_mascot.png" alt="The Hermês mascot — Messengers, Commerce, Thieves" loading="lazy"></picture>
+                    </figure>
+                    <p class="gallery-caption">The Hermês mascot — Messengers, Commerce, Thieves</p>
+                </div>
+
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="../assets/hermes_logolockup.png">
+                        <picture><source srcset="../assets/hermes_logolockup.webp" type="image/webp"><img src="../assets/hermes_logolockup.png" alt="Hermês logolockup" loading="lazy"></picture>
+                    </figure>
+                    <p class="gallery-caption">Hermês logolockup</p>
+                </div>
+
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="../assets/hermes_logomark.png">
+                        <picture><source srcset="../assets/hermes_logomark.webp" type="image/webp"><img src="../assets/hermes_logomark.png" alt="Hermês logomark seal" loading="lazy"></picture>
+                    </figure>
+                    <p class="gallery-caption">Hermês logomark seal</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="main-footer">
+        <footer class="main-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
@@ -222,15 +218,15 @@
                 </div>
                 <div class="footer-info">
                     <div class="footer-block">
-                        <span class="footer-label">Domain</span>
-                        <span class="footer-value">hermês.com · hermēs.com</span>
+                        <span class="footer-label">Domains</span>
+                        <span class="footer-value">hermês.com · hermes.com</span>
                     </div>
                     <div class="footer-block">
                         <span class="footer-label">Classification</span>
-                        <span class="footer-value">Tier‑1</span>
+                        <span class="footer-value">Tier 1</span>
                     </div>
                     <div class="footer-block">
-                        <span class="footer-label">Greek Original</span>
+                        <span class="footer-label">Original Script</span>
                         <span class="footer-value">Ἑρμῆς</span>
                     </div>
                 </div>
@@ -244,7 +240,13 @@
         </div>
     </footer>
 
-    <script src="../script.js?v=perf14"></script>
+    <script src="/js/flagship-canvas.js"></script>
+    
+
+<script>window.PUNYCODEX_API_BASE = "";</script>
+    <script src="/js/temple-base.js?v=perf2"></script>
+    <script src="../script.js?v=perf2"></script>
+
 <div class="gallery-lightbox" id="gallery-lightbox" aria-modal="true" role="dialog" aria-label="Image preview">
   <div class="gallery-lightbox-content">
     <button class="gallery-lightbox-close" id="gallery-lightbox-close" aria-label="Close" type="button">&times;</button>

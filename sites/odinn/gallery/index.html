@@ -1,13 +1,15 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Óðinn — Gallery | Wisdom, War, Death, Poetry | PUNYCODEX</title>
     <meta name="description" content="A curated gallery of Óðinn, Wisdom, War, Death, Poetry, through history.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&amp;family=Montserrat:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../styles.css?v=perf1">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css?v=perf2">
 
     <link rel="canonical" href="https://punycodex.com/sites/odinn/gallery/">
 
@@ -20,6 +22,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Óðinn — Gallery | Wisdom, War, Death, Poetry | PUNYCODEX">
     <meta name="twitter:description" content="A curated gallery of Óðinn, Wisdom, War, Death, Poetry, through history.">
+
   <style>
 /* Gallery lightbox */
 .gallery-item {
@@ -106,23 +109,24 @@
 </head>
 <body>
     <!-- Global Nav -->
-    <div style="position:fixed;top:0;left:0;width:100%;z-index:1001;background:rgba(10,10,10,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);">
-        <div style="max-width:1200px;margin:0 auto;padding:0.4rem clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;">
-            <a href="https://punycodex.com/" style="font-family:'Cinzel',serif;font-size:0.8rem;font-weight:700;letter-spacing:0.15em;color:#D4AF37;text-decoration:none;">PUNYCODEX</a>
-            <div style="display:flex;gap:1.5rem;">
-                <a href="https://punycodex.com/pantheon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Pantheon</a>
-                <a href="https://punycodex.com/lexicon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Lexicon</a>
-                <a href="https://punycodex.com/type/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Type</a>
-                <a href="https://punycodex.com/tiers/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Tiers</a>
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punycodex.com/" class="global-brand">PUNYCODEX</a>
+            <div class="global-links">
+                <a href="https://punycodex.com/pantheon/">Pantheon</a>
+                <a href="https://punycodex.com/lexicon/">Lexicon</a>
+                <a href="https://punycodex.com/type/">Type</a>
+                <a href="https://punycodex.com/search.html">Search</a>
+                <a href="https://punycodex.com/tiers/">Tiers</a>
             </div>
         </div>
     </div>
 
-    <!-- Odinn Canvas -->
-    <canvas id="mist-canvas"></canvas>
+    <!-- Ambient Canvas -->
+    <canvas id="odinn-canvas" data-effect="void" data-primary="#C0C0C0" data-secondary="#5C9BD1"></canvas>
 
     <!-- Tab Navigation -->
-    <nav class="main-nav tab-nav" style="top:40px;" id="main-nav">
+    <nav class="main-nav tab-nav" id="main-nav">
         <div class="nav-inner">
             <a href="../" class="nav-logo">
                 <picture><source srcset="../assets/odinn_logolockup.webp" type="image/webp"><img src="../assets/odinn_logolockup.png" alt="Óðinn" class="nav-logo-img"></picture>
@@ -131,6 +135,7 @@
                 <a href="../index.html" class="nav-link">Home</a>
                 <a href="../lore/index.html" class="nav-link">Lore</a>
                 <a href="./index.html" class="nav-link active">Gallery</a>
+                <a href="../lore/extended/" class="nav-link">Extended</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
@@ -144,8 +149,7 @@
             <div class="hero-text">
                 <p class="hero-eyebrow reveal-up">Visual Legacy</p>
                 <h1 class="hero-title reveal-up">
-                    <span class="title-greek">—</span>
-                    <span class="title-divider"></span>
+                    
                     <span class="title-trans">Gallery</span>
                 </h1>
                 <p class="hero-subtitle reveal-up">Wisdom, War, Death, Poetry</p>
@@ -153,7 +157,7 @@
                     <a href="#gallery-grid" class="btn-primary">
                         <span>Explore the Collection</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M7 17L17 7M17 7H7M17 7V17"></path>
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
                         </svg>
                     </a>
                 </div>
@@ -175,58 +179,36 @@
             <div class="section-header reveal-up">
                 <span class="section-number">01</span>
                 <h2 class="section-title">The Collection</h2>
-                <p class="section-subtitle">Óðinn through the eyes of sculptors, painters, and craftsmen across three millennia</p>
+                <p class="section-subtitle">Óðinn through the eyes of sculptors, painters, and craftsmen across the ages</p>
             </div>
 
-                        <div class="gallery-grid">
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Odin_%281825-1827%29_by_H._E._Freund.jpg/960px-Odin_%281825-1827%29_by_H._E._Freund.jpg" data-caption="Odin by H. E. Freund, 1825–1827. Thorvaldsens Museum, Copenhagen." aria-label="View full image: Odin by H. E. Freund, 1825–1827. Thorvaldsens Museum, Copenhagen.">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Odin_%281825-1827%29_by_H._E._Freund.jpg/960px-Odin_%281825-1827%29_by_H._E._Freund.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Odin_%281825-1827%29_by_H._E._Freund.jpg/960px-Odin_%281825-1827%29_by_H._E._Freund.jpg" alt="Odin by H. E. Freund, 1825–1827. Thorvaldsens Museum, Copenhagen." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Odin</strong> — H. E. Freund, 1825–27. The All-Father stands in solemn power, spear Gungnir in hand, the source of Norse kingship.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Detalj_av_statyn_Odin_av_Bengt_Erland_Fogelberg%2C_Nationalmuseum.jpg/960px-Detalj_av_statyn_Odin_av_Bengt_Erland_Fogelberg%2C_Nationalmuseum.jpg" data-caption="Detail of the statue Odin by Bengt Erland Fogelberg, Nationalmuseum, Stockholm." aria-label="View full image: Detail of the statue Odin by Bengt Erland Fogelberg, Nationalmuseum, Stockholm." data-delay="100">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Detalj_av_statyn_Odin_av_Bengt_Erland_Fogelberg%2C_Nationalmuseum.jpg/960px-Detalj_av_statyn_Odin_av_Bengt_Erland_Fogelberg%2C_Nationalmuseum.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Detalj_av_statyn_Odin_av_Bengt_Erland_Fogelberg%2C_Nationalmuseum.jpg/960px-Detalj_av_statyn_Odin_av_Bengt_Erland_Fogelberg%2C_Nationalmuseum.jpg" alt="Detail of the statue Odin by Bengt Erland Fogelberg, Nationalmuseum, Stockholm." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Odin of Fogelberg</strong> — Bengt Erland Fogelberg, 1830. Carrara marble capturing the lord of the gods with Huginn and Muninn on his helmet.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Odin_yggdrasil.jpg/960px-Odin_yggdrasil.jpg" data-caption="Odin sacrificing himself upon Yggdrasil, modern illustration." aria-label="View full image: Odin sacrificing himself upon Yggdrasil, modern illustration." data-delay="200">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Odin_yggdrasil.jpg/960px-Odin_yggdrasil.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Odin_yggdrasil.jpg/960px-Odin_yggdrasil.jpg" alt="Odin sacrificing himself upon Yggdrasil, modern illustration." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Odin upon Yggdrasil</strong> — The god hangs from the World Tree for nine nights, spear-wounded, to seize the secret of the runes.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Lorenz_Fr%C3%B8lich%2C_Odin%2C_1844%2C_KKSgb5293%2C_Statens_Museum_for_Kunst.jpg/960px-Lorenz_Fr%C3%B8lich%2C_Odin%2C_1844%2C_KKSgb5293%2C_Statens_Museum_for_Kunst.jpg" data-caption="Odin by Lorenz Frølich, 1844. Statens Museum for Kunst, Copenhagen." aria-label="View full image: Odin by Lorenz Frølich, 1844. Statens Museum for Kunst, Copenhagen." data-delay="300">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Lorenz_Fr%C3%B8lich%2C_Odin%2C_1844%2C_KKSgb5293%2C_Statens_Museum_for_Kunst.jpg/960px-Lorenz_Fr%C3%B8lich%2C_Odin%2C_1844%2C_KKSgb5293%2C_Statens_Museum_for_Kunst.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Lorenz_Fr%C3%B8lich%2C_Odin%2C_1844%2C_KKSgb5293%2C_Statens_Museum_for_Kunst.jpg/960px-Lorenz_Fr%C3%B8lich%2C_Odin%2C_1844%2C_KKSgb5293%2C_Statens_Museum_for_Kunst.jpg" alt="Odin by Lorenz Frølich, 1844. Statens Museum for Kunst, Copenhagen." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Odin</strong> — Lorenz Frølich, 1844. The Danish master's vision of the one-eyed god in watercolor and ink.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Wodan_heilt_Balders_Pferd_by_Emil_Doepler.jpg/960px-Wodan_heilt_Balders_Pferd_by_Emil_Doepler.jpg" data-caption="Wodan heals Baldr's horse by Emil Doepler, c. 1905." aria-label="View full image: Wodan heals Baldr's horse by Emil Doepler, c. 1905." data-delay="0">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Wodan_heilt_Balders_Pferd_by_Emil_Doepler.jpg/960px-Wodan_heilt_Balders_Pferd_by_Emil_Doepler.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Wodan_heilt_Balders_Pferd_by_Emil_Doepler.jpg/960px-Wodan_heilt_Balders_Pferd_by_Emil_Doepler.jpg" alt="Wodan heals Baldr's horse by Emil Doepler, c. 1905." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Wodan Heals Baldr's Horse</strong> — Emil Doepler, c. 1905. The All-Father as shaman and healer, wielding ancient Germanic magic.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Valkyrie_by_Arbo.jpg/960px-Valkyrie_by_Arbo.jpg" data-caption="Valkyrie by Peter Nicolai Arbo, 1864. Nationalmuseum, Stockholm." aria-label="View full image: Valkyrie by Peter Nicolai Arbo, 1864. Nationalmuseum, Stockholm." data-delay="100">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Valkyrie_by_Arbo.jpg/960px-Valkyrie_by_Arbo.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Valkyrie_by_Arbo.jpg/960px-Valkyrie_by_Arbo.jpg" alt="Valkyrie by Peter Nicolai Arbo, 1864. Nationalmuseum, Stockholm." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Valkyrie</strong> — Peter Nicolai Arbo, 1864. One of Odin's choosers of the slain, riding through battlefields with spear and shield.</p>
-    </button>
-    </div>
+            <div class="gallery-grid">
+                
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="../assets/odinn_mascot.png">
+                        <picture><source srcset="../assets/odinn_mascot.webp" type="image/webp"><img src="../assets/odinn_mascot.png" alt="The Óðinn mascot — Wisdom, War, Death, Poetry" loading="lazy"></picture>
+                    </figure>
+                    <p class="gallery-caption">The Óðinn mascot — Wisdom, War, Death, Poetry</p>
+                </div>
+
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="../assets/odinn_logolockup.png">
+                        <picture><source srcset="../assets/odinn_logolockup.webp" type="image/webp"><img src="../assets/odinn_logolockup.png" alt="Óðinn logolockup" loading="lazy"></picture>
+                    </figure>
+                    <p class="gallery-caption">Óðinn logolockup</p>
+                </div>
+
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="../assets/odinn_logomark.png">
+                        <picture><source srcset="../assets/odinn_logomark.webp" type="image/webp"><img src="../assets/odinn_logomark.png" alt="Óðinn logomark seal" loading="lazy"></picture>
+                    </figure>
+                    <p class="gallery-caption">Óðinn logomark seal</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="main-footer">
+        <footer class="main-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
@@ -236,15 +218,15 @@
                 <div class="footer-info">
                     <div class="footer-block">
                         <span class="footer-label">Domains</span>
-                        <span class="footer-value">óðinn.com</span>
+                        <span class="footer-value">odinn.com</span>
                     </div>
                     <div class="footer-block">
                         <span class="footer-label">Classification</span>
                         <span class="footer-value">Tier 2</span>
                     </div>
                     <div class="footer-block">
-                        <span class="footer-label">Original Script</span>
-                        <span class="footer-value">—</span>
+                        <span class="footer-label">Scholarly Transliteration</span>
+                        <span class="footer-value">Óðinn</span>
                     </div>
                 </div>
             </div>
@@ -252,13 +234,17 @@
                 <picture><source srcset="../assets/odinn_logomark.webp" type="image/webp"><img src="../assets/odinn_logomark.png" alt="Óðinn logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
-                <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
             </div>
         </div>
     </footer>
 
-    <script src="../script.js?v=perf1"></script>
+    <script src="/js/flagship-canvas.js"></script>
+    
 
+<script>window.PUNYCODEX_API_BASE = "";</script>
+    <script src="/js/temple-base.js?v=perf2"></script>
+    <script src="../script.js?v=perf2"></script>
 
 <div class="gallery-lightbox" id="gallery-lightbox" aria-modal="true" role="dialog" aria-label="Image preview">
   <div class="gallery-lightbox-content">
@@ -296,4 +282,5 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && lb.classList.contains('active')) closeLb(); });
 })();
 </script>
-</body></html>
+</body>
+</html>

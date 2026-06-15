@@ -12,6 +12,14 @@ const { domainToASCII } = require('node:url');
 
 const { LEXICON } = require('../type/js/lexicon.js');
 const { SOURCE_CATALOG } = require('../type/js/source-catalog.js');
+const {
+  getOriginalScript,
+  getScriptName,
+  hasOriginalScript,
+  getOriginalScriptLabel,
+  getProvenance,
+  getNoScriptNote,
+} = require('../type/js/original-scripts.js');
 // Stacked diacritics are no longer rendered inline in base temples;
 // they remain available via the Type Tool and flagship temples.
 
@@ -190,8 +198,22 @@ function getTierSubtype(entry) {
   return entry.tierLabel;
 }
 
+function buildOriginalScriptBody(entry, originalScript, hasOriginal) {
+  if (hasOriginal) {
+    const provenance = getProvenance(entry);
+    if (provenance && Array.isArray(provenance.steps) && provenance.steps.length > 0) {
+      const steps = provenance.steps
+        .map((s) => `<span class="provenance-step">${escapeHtml(s)}</span>`)
+        .join(' · ');
+      return `The name in its original ${getScriptName(entry)} form. <strong>${escapeHtml(originalScript)}</strong> → ${escapeHtml(entry.unicode)}. ${steps}`;
+    }
+    return `The name in its original ${getScriptName(entry)} form. <strong>${escapeHtml(originalScript)}</strong> carries the full phonetic and orthographic weight of the source tradition.`;
+  }
+  return getNoScriptNote(entry);
+}
+
 function getTierExplanation(entry, subtype) {
-  const original = entry.greek && entry.greek !== '—' ? entry.greek : entry.unicode;
+  const original = getOriginalScript(entry) || entry.unicode;
   const pantheonLabel = PANTHEON_LABELS[entry.pantheon] || 'Ancient';
 
   if (entry.tier === 'dual') {
@@ -275,7 +297,8 @@ function generateTempleHTML(entry, related) {
   const subtype = getTierSubtype(entry);
   const punycode = getPunycode(entry.unicode);
   const pantheonLabel = PANTHEON_LABELS[entry.pantheon] || 'Ancient';
-  const hasOriginal = entry.greek && entry.greek !== '—';
+  const originalScript = getOriginalScript(entry);
+  const hasOriginal = hasOriginalScript(entry);
   const isDual = entry.tier === 'dual';
 
   // Variants from lexicon
@@ -321,8 +344,8 @@ function generateTempleHTML(entry, related) {
       : '';
 
   // Meta
-  const pageTitle = `${entry.greek && hasOriginal ? `${entry.greek} — ` : ''}${entry.unicode} | ${entry.domain} | PUNYCODEX`;
-  const pageDesc = `Discover ${entry.unicode}.com — the authentic Unicode domain for ${hasOriginal ? `${entry.greek}, ` : ''}${entry.domain}. Scholarly orthography, Punycode encoding, and sources: ${entry.sources.join(', ')}.`;
+  const pageTitle = `${hasOriginal ? `${originalScript} — ` : ''}${entry.unicode} | ${entry.domain} | PUNYCODEX`;
+  const pageDesc = `Discover ${entry.unicode}.com — the authentic Unicode domain for ${hasOriginal ? `${originalScript}, ` : ''}${entry.domain}. Scholarly orthography, Punycode encoding, and sources: ${entry.sources.join(', ')}.`;
   const canonicalUrl = `https://punycodex.com/sites/${entry.id}/`;
 
   // Tier feature cards
@@ -365,7 +388,7 @@ ${JSON.stringify(
     url: canonicalUrl,
     about: {
       '@type': 'Thing',
-      name: hasOriginal ? entry.greek : entry.unicode,
+      name: hasOriginal ? originalScript : entry.unicode,
       alternateName: [entry.ascii, entry.unicode],
       description: entry.meaning,
     },
@@ -423,7 +446,7 @@ ${JSON.stringify(
             <div class="hero-text">
                 <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
                 <h1 class="hero-title reveal-up">
-                    <span class="title-greek">${hasOriginal ? escapeHtml(entry.greek) : escapeHtml(entry.unicode)}</span>
+                    <span class="title-greek">${hasOriginal ? escapeHtml(originalScript) : escapeHtml(entry.unicode)}</span>
                     <span class="title-divider"></span>
                     <span class="title-trans">${escapeHtml(entry.unicode)}</span>
                 </h1>
@@ -493,9 +516,9 @@ ${JSON.stringify(
                             <path d="M2 12l10 5 10-5"/>
                         </svg>
                     </div>
-                    <h3 class="card-title">${pantheonLabel} Original</h3>
-                    <p class="card-greek">${hasOriginal ? escapeHtml(entry.greek) : escapeHtml(entry.unicode)}</p>
-                    <p class="card-body">The name in its original ${pantheonLabel} form.${hasOriginal ? ` A name that carries the full phonetic weight of its source tradition.` : ` The original script is preserved in scholarly transliteration systems.`}</p>
+                    <h3 class="card-title">${hasOriginal ? getScriptName(entry) : 'Scholarly Transliteration'}</h3>
+                    <p class="card-greek">${hasOriginal ? escapeHtml(originalScript) : escapeHtml(entry.unicode)}</p>
+                    <p class="card-body">${buildOriginalScriptBody(entry, originalScript, hasOriginal)}</p>
                 </div>
 
                 <div class="name-card reveal-up" data-delay="100">
@@ -812,8 +835,8 @@ ${JSON.stringify(
                         <span class="footer-value">${escapeHtml(subtype)}</span>
                     </div>
                     <div class="footer-block">
-                        <span class="footer-label">Original</span>
-                        <span class="footer-value">${hasOriginal ? escapeHtml(entry.greek) : escapeHtml(entry.unicode)}</span>
+                        <span class="footer-label">${getOriginalScriptLabel(entry)}</span>
+                        <span class="footer-value">${hasOriginal ? escapeHtml(originalScript) : escapeHtml(entry.unicode)}</span>
                     </div>
                 </div>
             </div>

@@ -1,30 +1,40 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Athēnai — City of Wisdom | Lore | PUNYCODEX</title>
     <meta name="description" content="The authentic digital shrine to Athēnai, City of Wisdom. Explore the correct orthography, reconstructed pronunciation, and timeless mythology of Ἀθῆναι.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&amp;family=Lato:wght@300;400;700&amp;family=Cinzel+Decorative:wght@400;700;900&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../styles.css?v=perf7">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css?v=perf2">
+
+    <style>
+        .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
+        .pantheon-text { display: flex; flex-direction: column; gap: 1.25rem; }
+        .pantheon-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); }
+        .pantheon-title { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); color: var(--white); letter-spacing: 0.05em; }
+        .pantheon-body { font-size: 1.05rem; color: var(--white-dim); line-height: 1.8; }
+        .pantheon-mascot { display: flex; justify-content: center; align-items: center; }
+        .pantheon-mascot-img { max-width: 300px; width: 100%; filter: brightness(1.5) contrast(1.1) saturate(1.05); }
+        @media (max-width: 900px) { .pantheon-content { grid-template-columns: 1fr; text-align: center; } .pantheon-mascot { order: -1; } }
+    </style>
 
     <!-- Schema.org -->
     <script type="application/ld+json">
 {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Athenai — City of Athena | Cradle of Democracy",
-    "description": "The authentic digital shrine to Athenai, the city of Athena and cradle of democracy. Explore correct Greek orthography and history.",
-    "url": "https://punycodex.com/sites/athenai/",
+    "name": "Athēnai — City of Wisdom | Lore",
+    "description": "The authentic digital shrine to Athēnai. Explore the correct orthography, Unicode restoration, and timeless mythology of Ἀθῆναι.",
+    "url": "https://punycodex.com/sites/athenai/lore/",
     "about": {
         "@type": "Thing",
         "name": "Ἀθῆναι",
-        "alternateName": [
-            "athenai",
-            "Athenai"
-        ],
-        "description": "City of Athena (plural of Ἀθῆναι)"
+        "alternateName": ["athenai", "Athēnai"],
+        "description": "City of Wisdom"
     },
     "isPartOf": {
         "@type": "WebSite",
@@ -33,7 +43,7 @@
     },
     "primaryImageOfPage": {
         "@type": "ImageObject",
-        "url": "https://punycodex.com/assets/images/og-default.svg"
+        "url": "https://punycodex.com/sites/athenai/assets/athenai_mascot.png"
     }
 }
     </script>
@@ -54,10 +64,10 @@
 </head>
 <body>
     <!-- Global Nav -->
-    <div class="global-nav">
-        <div class="global-nav-inner">
-            <a href="https://punycodex.com/" class="global-nav-logo">PUNYCODEX</a>
-            <div class="global-nav-links">
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punycodex.com/" class="global-brand">PUNYCODEX</a>
+            <div class="global-links">
                 <a href="https://punycodex.com/pantheon/">Pantheon</a>
                 <a href="https://punycodex.com/lexicon/">Lexicon</a>
                 <a href="https://punycodex.com/type/">Type</a>
@@ -67,19 +77,20 @@
         </div>
     </div>
 
-    <!-- Mediterranean Canvas -->
-    <canvas id="mediterranean-canvas"></canvas>
+    <!-- Ambient Canvas -->
+    <canvas id="athenai-canvas" data-effect="light" data-primary="#D4AF37" data-secondary="#4169E1"></canvas>
 
-    <!-- Navigation -->
-    <nav class="main-nav tab-nav" style="top:40px;" id="main-nav">
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="main-nav">
         <div class="nav-inner">
-            <a href="#hero" class="nav-logo">
+            <a href="../" class="nav-logo">
                 <picture><source srcset="../assets/athenai_logolockup.webp" type="image/webp"><img src="../assets/athenai_logolockup.png" alt="Athēnai" class="nav-logo-img"></picture>
             </a>
             <div class="nav-links">
-                <a href="../index.html" class="nav-link">Home</a>
-                <a href="./index.html" class="nav-link active">Lore</a>
-                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../" class="nav-link">Home</a>
+                <a href="./" class="nav-link active">Lore</a>
+                <a href="../gallery/" class="nav-link">Gallery</a>
+                <a href="extended/" class="nav-link">Extended</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
@@ -95,9 +106,9 @@
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">Ἀθῆναι</span>
                     <span class="title-divider"></span>
-                    <span class="title-trans">Athenai</span>
+                    <span class="title-trans">Athēnai</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">City of Athena · Cradle of Democracy · The Glorious City</p>
+                <p class="hero-subtitle reveal-up">City of Wisdom · Of Athena</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Athēnai.com</span>
@@ -106,13 +117,13 @@
                     <a href="#the-name" class="btn-primary">
                         <span>Enter the Temple</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M7 17L17 7M17 7H7M17 7V17"></path>
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
                         </svg>
                     </a>
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../assets/athenai_landscape.webp" type="image/webp"><picture><source srcset="../assets/athenai_landscape.webp" type="image/webp"><img src="../assets/athenai_landscape.png" alt="Athenai — The city of Athena and cradle of democracy, crowned by the Acropolis" class="mascot-img"></picture></picture>
+                <picture><source srcset="../assets/athenai_mascot.webp" type="image/webp"><img src="../assets/athenai_mascot.png" alt="Athēnai — City of Wisdom" class="mascot-img"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -134,38 +145,39 @@
             <div class="name-grid">
                 <div class="name-card reveal-up">
                     <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
                         </svg>
                     </div>
                     <h3 class="card-title">Original Script</h3>
                     <p class="card-greek">Ἀθῆναι</p>
-                    <p class="card-body">The name in its original Attic Greek form. A plural toponym meaning "the city of Athena." The macron on the eta (η) marks the long vowel that distinguishes the name from its shorter counterpart. In the mouths of the ancients, the word resonated with the full weight of civic identity.</p>
+                    <p class="card-body">The name in its original Greek form. <strong>Athēnai</strong> (Ἀθῆναι) is attested as city of wisdom — “Of Athena”. Its aspirated consonants, diphthongs, long vowels, and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                    
                 </div>
 
                 <div class="name-card reveal-up" data-delay="100">
                     <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"/>
                         </svg>
                     </div>
                     <h3 class="card-title">ASCII Constraint</h3>
                     <p class="card-ascii">athenai</p>
-                    <p class="card-body">Stripped of its Greek identity, the name was reduced to seven Latin letters. Tour guides and travel agencies claimed it. The long vowel — the very length that distinguished the goddess's city in verse and oath — was erased by systems that only understand A–Z.</p>
+                    <p class="card-body">Reduced to plain <strong>athenai</strong>, the name loses everything that made it specific: aspirated consonants, diphthongs, long vowels, and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
                 </div>
 
                 <div class="name-card reveal-up" data-delay="200">
                     <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
                         </svg>
                     </div>
                     <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Athenai</p>
-                    <p class="card-body">The macron on the <em>e</em> restores the quantitative length of the original Greek eta. This is not decoration — it is <strong>philological accuracy</strong>. The domain encodes to Punycode, but the browser displays the truth: this is not the English "Athens." This is the Greek <em>Athenai</em>.</p>
+                    <p class="card-unicode">Athēnai</p>
+                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Athēnai</strong> restores aspirated consonants, diphthongs, long vowels, and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
                 </div>
             </div>
 
@@ -173,40 +185,26 @@
                 <div class="explainer-label">Punycode Encoding</div>
                 <div class="explainer-box">
                     <code class="explainer-code">Athēnai.com → xn--athnai-r3a.com</code>
-                    <p class="explainer-note">The non-ASCII character <strong>e</strong> (U+0113) is encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Athenai</em>.</p>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Athēnai</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Athēnai</em>.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    
-    <!-- Tier Classification Section -->
-        <!-- Tier Classification Section -->
-    <section class="section section-tier" id="tier">
-        <div class="container">
-            <div class="section-header reveal-up">
-                <h2 class="section-title">Tier Classification</h2>
-                <p class="section-subtitle">Where athenai stands in the PUNYCODEX elegant tier system</p>
-            </div>
-            <div class="tier-grid tier-grid-single">
-                <div class="tier-card reveal-up">
-                    <div class="tier-label">Tier 1</div>
-                    <div class="tier-domain">Athēnai.com</div>
-                    <p class="tier-body"><strong>Athēnai</strong> is Tier 1 because the Greek original <em>Ἀθῆναι</em> contains both stress and length, and there is only one historically valid Unicode restoration.<br><br>
-      The Greek name carries the full prosodic signature: pitch accent and quantitative length together. The restoration uses the <strong>macron-only convention</strong> — the standard of Liddell-Scott-Jones, Cambridge, and Oxford — which preserves length as the primary scholarly feature. While the acute stress is not separately marked in this form, the Greek original unambiguously carries both features, and there is no alternate accent position or vowel quantity attested in the manuscript record.<br><br>
-      The ASCII fallback <em>athenai</em> is a modern transliteration, not an ancient canonical form. Under the PUNYCODEX system, a name whose Greek original has both stress and length, and whose restoration follows the standard macron convention, is <strong>unambiguously Tier 1</strong>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-<!-- Pronunciation Section -->
+    <!-- Pronunciation -->
     <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">02</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Athēnai was spoken</p>
+        </div>
         <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">02</span>
-                <h2 class="section-title">Pronunciation</h2>
-                <p class="section-subtitle">How the city was truly spoken</p>
-            </div>
+        
+        <div class="container">
+        
+        <div class="container">
+            
 
             <div class="pronunciation-grid">
                 <div class="pronunciation-main reveal-up">
@@ -254,320 +252,132 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+    </div>
+    </div>
+</section>
 
-    <!-- The City Section -->
-    <section class="section section-city" id="the-city">
+    <!-- Domains & Sacred Symbols -->
+    <section class="section section-symbols" id="symbols">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">03</span>
+            <h2 class="section-title">Domains & Sacred Symbols</h2>
+            <p class="section-subtitle">Attributes of Athēnai</p>
+        </div>
+        <div class="symbols-list"><span class="symbol-item">book</span><span class="symbol-item">owl</span><span class="symbol-item">scroll</span></div>
+    </div>
+</section>
+
+    <!-- Mythology -->
+    <section class="section section-mythology" id="mythology">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Athēnai</p>
+        </div>
         <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">03</span>
-                <h2 class="section-title">The City</h2>
-                <p class="section-subtitle">Where democracy, philosophy, and art were born</p>
-            </div>
-
-            <div class="city-content">
-                <div class="city-intro reveal-up">
-                    <p class="lead-text">Athenai was not merely a city. It was the <strong>cradle of democracy</strong>, the beating heart of classical civilization, and the architectural wonder of the ancient Mediterranean. From the rock of the Acropolis to the harbor of Piraeus, every stone bore the imprint of civic ambition and divine favor.</p>
-                </div>
-
-                <div class="domains-grid">
-                    <div class="domain-card reveal-up">
-                        <div class="domain-icon">
-                            <svg viewBox="0 0 64 64" fill="none" stroke="#d4af37" stroke-width="1.5">
-                                <path d="M32 4L38 24H58L42 36L48 56L32 44L16 56L22 36L6 24H26L32 4Z"></path>
-                            </svg>
-                        </div>
-                        <h4 class="domain-name">The Acropolis &amp; Parthenon</h4>
-                        <p class="domain-desc">The sacred rock rises above the city, crowned by the Parthenon — temple of Athena Parthenos. Built under Pericles, it remains the supreme symbol of classical Greece and architectural harmony.</p>
-                    </div>
-                    <div class="domain-card reveal-up" data-delay="100">
-                        <div class="domain-icon">
-                            <svg viewBox="0 0 64 64" fill="none" stroke="#d4af37" stroke-width="1.5">
-                                <circle cx="32" cy="24" r="12"></circle>
-                                <path d="M32 36V52M24 52H40"></path>
-                                <path d="M28 44H36"></path>
-                            </svg>
-                        </div>
-                        <h4 class="domain-name">The Agora</h4>
-                        <p class="domain-desc">The civic heart where citizens gathered, merchants traded, and philosophers debated. The Stoa of Attalos and the Temple of Hephaestus still stand among the ruins of public life.</p>
-                    </div>
-                    <div class="domain-card reveal-up" data-delay="200">
-                        <div class="domain-icon">
-                            <svg viewBox="0 0 64 64" fill="none" stroke="#d4af37" stroke-width="1.5">
-                                <path d="M32 8C20 8 12 16 12 28C12 44 32 56 32 56C32 56 52 44 52 28C52 16 44 8 32 8Z"></path>
-                                <path d="M32 20V36M24 28H40"></path>
-                            </svg>
-                        </div>
-                        <h4 class="domain-name">The Pnyx</h4>
-                        <p class="domain-desc">The hill where the Assembly of the People met. Here, any citizen could stand and speak. This was the birthplace of democracy — the <em>demos</em> in action.</p>
-                    </div>
-                    <div class="domain-card reveal-up" data-delay="300">
-                        <div class="domain-icon">
-                            <svg viewBox="0 0 64 64" fill="none" stroke="#d4af37" stroke-width="1.5">
-                                <path d="M16 48c0-16 16-24 16-24s16 8 16 24"></path>
-                                <circle cx="32" cy="16" r="6"></circle>
-                                <path d="M32 22v8"></path>
-                            </svg>
-                        </div>
-                        <h4 class="domain-name">The Theatre of Dionysus</h4>
-                        <p class="domain-desc">The world's first theatre, carved into the southern slope of the Acropolis. Here Aeschylus, Sophocles, and Euripides premiered the tragedies that defined Western drama.</p>
-                    </div>
-                </div>
-
-                <div class="symbols-section reveal-up">
-                    <h3 class="symbols-title">Sacred Landmarks</h3>
-                    <div class="symbols-list">
-                        <div class="symbol-item">
-                            <span class="symbol-name">The Parthenon</span>
-                            <span class="symbol-meaning">Temple of Athena, eternal symbol of classical harmony</span>
-                        </div>
-                        <div class="symbol-item">
-                            <span class="symbol-name">The Propylaia</span>
-                            <span class="symbol-meaning">Monumental gateway to the Acropolis</span>
-                        </div>
-                        <div class="symbol-item">
-                            <span class="symbol-name">The Erechtheion</span>
-                            <span class="symbol-meaning">Sacred temple with the Caryatid porch</span>
-                        </div>
-                        <div class="symbol-item">
-                            <span class="symbol-name">The Panathenaic Way</span>
-                            <span class="symbol-meaning">Sacred procession route through the city</span>
-                        </div>
-                        <div class="symbol-item">
-                            <span class="symbol-name">The Odeon of Herodes Atticus</span>
-                            <span class="symbol-meaning">Roman-era stone theatre still in use today</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- History Section -->
-    <section class="section section-history" id="history">
+        
         <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">04</span>
-                <h2 class="section-title">History</h2>
-                <p class="section-subtitle">From Bronze Age citadel to modern capital</p>
-            </div>
+        
+        <p class="lead-text"><strong>Athēnai</strong> belongs to the greek-location tradition as city of wisdom.</p><p>Of Athena</p><p>Etymologically, it derives from *h₂erǵ- (“to shine, white”), a root that shaped cult titles, hymns, and ritual addresses across centuries.</p><p>The myths surrounding this figure established its authority in ritual, art, and literature — and continue to surface in later religious and literary traditions.</p>
+    </div>
+    </div>
+    </div>
+</section>
 
-            <div class="history-timeline">
-                <div class="myth-card reveal-up">
-                    <div class="myth-marker"></div>
-                    <div class="myth-content">
-                        <span class="myth-tag">Origins</span>
-                        <h3 class="myth-title">Mycenaean Beginnings</h3>
-                        <p class="myth-text">Before the classical age, a Mycenaean palace stood upon the Acropolis. The name Athenai appears in Linear B tablets as <em>a-ta-na</em>, linking the Bronze Age settlement to its later glory. The rock was sacred long before the Parthenon rose.</p>
-                    </div>
-                </div>
-
-                <div class="myth-card reveal-up" data-delay="100">
-                    <div class="myth-marker"></div>
-                    <div class="myth-content">
-                        <span class="myth-tag">Reforms</span>
-                        <h3 class="myth-title">Solon's Constitution</h3>
-                        <p class="myth-text">In 594 BCE, the lawgiver Solon abolished debt slavery, reformed the constitution, and laid the groundwork for citizen rule. His poems survive as the earliest Athenian political literature — the voice of a city learning to govern itself.</p>
-                    </div>
-                </div>
-
-                <div class="myth-card reveal-up" data-delay="200">
-                    <div class="myth-marker"></div>
-                    <div class="myth-content">
-                        <span class="myth-tag">Zenith</span>
-                        <h3 class="myth-title">The Golden Age of Pericles</h3>
-                        <p class="myth-text">From 461 to 429 BCE, Pericles guided Athenai to its zenith. The Parthenon rose. The fleet ruled the Aegean. Socrates questioned citizens in the Agora. This was the moment that would define "classical" for all time — a burst of creativity never matched.</p>
-                    </div>
-                </div>
-
-                <div class="myth-card reveal-up" data-delay="300">
-                    <div class="myth-marker"></div>
-                    <div class="myth-content">
-                        <span class="myth-tag">Conflict</span>
-                        <h3 class="myth-title">The Peloponnesian War</h3>
-                        <p class="myth-text">The long struggle against Sparta (431–404 BCE) ended in defeat, plague, and the temporary fall of the democracy. Yet even in loss, Athenai produced Thucydides — the father of scientific history — whose work remains a study of power and human nature.</p>
-                    </div>
-                </div>
-
-                <div class="myth-card reveal-up" data-delay="400">
-                    <div class="myth-marker"></div>
-                    <div class="myth-content">
-                        <span class="myth-tag">Legacy</span>
-                        <h3 class="myth-title">From Rome to Modernity</h3>
-                        <p class="myth-text">Roman Athens respected its heritage; emperors like Nero and Hadrian built here. The Byzantine era saw the Parthenon become a church, the Ottoman era a mosque. In 1834, the newly independent Greek state made Athenai its capital once more — the city reborn.</p>
-                    </div>
-                </div>
-            </div>
+    <!-- Related Names -->
+    <section class="section section-related" id="related">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Related Names</h2>
+            <p class="section-subtitle">Other figures in the greek-location pantheon</p>
         </div>
-    </section>
-
-    <!-- Pantheon / Related Names -->
-    <section class="section" id="pantheon" style="background:#e8e4e1;padding:6rem 0;">
-        <div class="container" style="max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);">
-            <div style="text-align:center;margin-bottom:4rem;">
-                <span style="display:block;font-family:'Cinzel',serif;font-size:0.85rem;color:#d4af37;letter-spacing:0.4em;margin-bottom:1rem;">05</span>
-                <h2 style="font-family:'Cinzel',serif;font-size:clamp(2rem,4vw,3.5rem);color:#2d2d2d;letter-spacing:0.05em;margin-bottom:1rem;">Related Names</h2>
-                <p style="font-size:clamp(1rem,1.5vw,1.25rem);color:#5a5a5a;font-style:italic;">More from the Greek world</p>
-            </div>
-            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;">
-
-                <a href="../../athena/"" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.4);border:1px solid rgba(0,0,0,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.6)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.08)';" onmouseout="this.style.borderColor='rgba(0,0,0,0.06)';this.style.background='rgba(255,255,255,0.4)';this.style.transform='none';this.style.boxShadow='none';">
-                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#d4af37;letter-spacing:0.05em;">Athene</span>
-                    <span style="font-size:0.9rem;color:#5a5a5a;font-style:italic;">Ἀθήνᾶ</span>
-                    <span style="font-size:0.8rem;color:#5a5a5a;line-height:1.5;">Wisdom, War Strategy, Crafts</span>
-                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#d4af37;">Tier-1</span>
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(0,0,0,0.06);color:#5a5a5a;">Greek</span>
-                    </div>
-                </a>
-
-                <a href="../../poseidon/"" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.4);border:1px solid rgba(0,0,0,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.6)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.08)';" onmouseout="this.style.borderColor='rgba(0,0,0,0.06)';this.style.background='rgba(255,255,255,0.4)';this.style.transform='none';this.style.boxShadow='none';">
-                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#d4af37;letter-spacing:0.05em;">Poseidôn</span>
-                    <span style="font-size:0.9rem;color:#5a5a5a;font-style:italic;">Ποσειδῶν</span>
-                    <span style="font-size:0.8rem;color:#5a5a5a;line-height:1.5;">Sea, Earthquakes, Horses</span>
-                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#d4af37;">Tier-1</span>
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(0,0,0,0.06);color:#5a5a5a;">Greek</span>
-                    </div>
-                </a>
-
-                <a href="../../zeus/"" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.4);border:1px solid rgba(0,0,0,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.6)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.08)';" onmouseout="this.style.borderColor='rgba(0,0,0,0.06)';this.style.background='rgba(255,255,255,0.4)';this.style.transform='none';this.style.boxShadow='none';">
-                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#d4af37;letter-spacing:0.05em;">Zeús</span>
-                    <span style="font-size:0.9rem;color:#5a5a5a;font-style:italic;">Ζεύς</span>
-                    <span style="font-size:0.8rem;color:#5a5a5a;line-height:1.5;">Sky, Thunder, King of Gods</span>
-                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#d4af37;">Tier-1</span>
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(0,0,0,0.06);color:#5a5a5a;">Greek</span>
-                    </div>
-                </a>
-
-                <a href="../../apollon/"" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.4);border:1px solid rgba(0,0,0,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.6)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.08)';" onmouseout="this.style.borderColor='rgba(0,0,0,0.06)';this.style.background='rgba(255,255,255,0.4)';this.style.transform='none';this.style.boxShadow='none';">
-                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#d4af37;letter-spacing:0.05em;">Apóllon</span>
-                    <span style="font-size:0.9rem;color:#5a5a5a;font-style:italic;">Ἀπόλλων</span>
-                    <span style="font-size:0.8rem;color:#5a5a5a;line-height:1.5;">Light, Music, Prophecy</span>
-                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#d4af37;">Dual-Tier</span>
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(0,0,0,0.06);color:#5a5a5a;">Greek</span>
-                    </div>
-                </a>
-
-                <a href="../../dionysos/"" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.4);border:1px solid rgba(0,0,0,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.6)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.08)';" onmouseout="this.style.borderColor='rgba(0,0,0,0.06)';this.style.background='rgba(255,255,255,0.4)';this.style.transform='none';this.style.boxShadow='none';">
-                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#d4af37;letter-spacing:0.05em;">Diónysos</span>
-                    <span style="font-size:0.9rem;color:#5a5a5a;font-style:italic;">Διόνυσος</span>
-                    <span style="font-size:0.8rem;color:#5a5a5a;line-height:1.5;">Wine, Ecstasy, Theatre</span>
-                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#d4af37;">Tier-2</span>
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(0,0,0,0.06);color:#5a5a5a;">Greek</span>
-                    </div>
-                </a>
-
-                <div style="cursor:default;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.6)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.08)';" onmouseout="this.style.borderColor='rgba(0,0,0,0.06)';this.style.background='rgba(255,255,255,0.4)';this.style.transform='none';this.style.boxShadow='none';">
-                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#d4af37;letter-spacing:0.05em;">Perikles</span>
-                    <span style="font-size:0.9rem;color:#5a5a5a;font-style:italic;">Λεωνίδας</span>
-                    <span style="font-size:0.8rem;color:#5a5a5a;line-height:1.5;">Statesman of the Golden Age</span>
-                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#d4af37;">Greek</span>
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(0,0,0,0.06);color:#5a5a5a;">Figure</span>
-                    </div>
-                </div>
-
-                <div style="cursor:default;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.6)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.08)';" onmouseout="this.style.borderColor='rgba(0,0,0,0.06)';this.style.background='rgba(255,255,255,0.4)';this.style.transform='none';this.style.boxShadow='none';">
-                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#d4af37;letter-spacing:0.05em;">Sokrates</span>
-                    <span style="font-size:0.9rem;color:#5a5a5a;font-style:italic;">Σπαρτιᾶτις</span>
-                    <span style="font-size:0.8rem;color:#5a5a5a;line-height:1.5;">Philosopher, Questioner, Martyr</span>
-                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#d4af37;">Greek</span>
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(0,0,0,0.06);color:#5a5a5a;">Figure</span>
-                    </div>
-                </div>
-
-                <div style="cursor:default;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.6)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.08)';" onmouseout="this.style.borderColor='rgba(0,0,0,0.06)';this.style.background='rgba(255,255,255,0.4)';this.style.transform='none';this.style.boxShadow='none';">
-                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#d4af37;letter-spacing:0.05em;">Pláton</span>
-                    <span style="font-size:0.9rem;color:#5a5a5a;font-style:italic;">Θηβαῖος</span>
-                    <span style="font-size:0.8rem;color:#5a5a5a;line-height:1.5;">Philosopher, Academy Founder</span>
-                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#d4af37;">Greek</span>
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(0,0,0,0.06);color:#5a5a5a;">Figure</span>
-                    </div>
-                </div>
-            </div>
+        <div class="related-grid reveal-up">
+            
+    <a href="../../olympos/" class="related-card reveal-up">
+      <span class="related-name">Ólympos</span>
+      <span class="related-greek">Ὄλυμπος</span>
+      <span class="related-domain">Mountain of the Gods</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 2</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek-location</span>
+      </div>
+    </a>
+    <a href="../../sparte/" class="related-card reveal-up">
+      <span class="related-name">Spártē</span>
+      <span class="related-greek">Σπάρτη</span>
+      <span class="related-domain">Warrior City</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek-location</span>
+      </div>
+    </a>
+    <a href="../../delphoi/" class="related-card reveal-up">
+      <span class="related-name">Delphoí</span>
+      <span class="related-greek">Δελφοί</span>
+      <span class="related-domain">Oracle of Apollo</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 2</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek-location</span>
+      </div>
+    </a>
+    <a href="../../korinthos/" class="related-card reveal-up">
+      <span class="related-name">Kórinthos</span>
+      <span class="related-greek">Κόρινθος</span>
+      <span class="related-domain">Wealthy Port City</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 2</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek-location</span>
+      </div>
+    </a>
+    <a href="../../troia/" class="related-card reveal-up">
+      <span class="related-name">Troía</span>
+      <span class="related-greek">Τροία</span>
+      <span class="related-domain">City of Priam</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 2</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek-location</span>
+      </div>
+    </a>
+    <a href="../../thebai/" class="related-card reveal-up">
+      <span class="related-name">Thēbaí</span>
+      <span class="related-greek">Θῆβαι</span>
+      <span class="related-domain">City of Seven Gates</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek-location</span>
+      </div>
+    </a>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Name Variations -->
-    <section class="section section-variations" id="variations">
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">06</span>
-                <h2 class="section-title">Name Variations</h2>
-                <p class="section-subtitle">All attested forms of the city's name</p>
-            </div>
-            <div class="variations-grid reveal-up">
-                <div class="variation-card primary">
-                    <span class="variation-label">Primary Restoration</span>
-                    <span class="variation-name">Athenai</span>
-                    <span class="variation-script">Ἀθῆναι</span>
-                    <p class="variation-note">The Unicode restoration with macron on the eta, preserving the ancient Greek quantitative length. This is the canonical form.</p>
-                </div>
-                <div class="variation-card">
-                    <span class="variation-label">ASCII Fallback</span>
-                    <span class="variation-name">Athenai</span>
-                    <span class="variation-script">athenai</span>
-                    <p class="variation-note">The stripped ASCII form, usable where Unicode is unavailable. Historically attested but orthographically incomplete — the length is lost.</p>
-                </div>
-            </div>
-            <div class="reveal-up" style="max-width:700px;margin:3rem auto 0;text-align:center;">
-                <p style="font-size:0.95rem;color:#5a5a5a;line-height:1.8;font-style:italic;">English "Athens" is the Latinized form derived via Roman <em>Athenae</em>. <strong>Athenai</strong> preserves the Greek plural with macron — a direct claim on the city's authentic voice.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Type Tool CTA -->
-    <section style="padding:6rem 0;background:linear-gradient(180deg,#e8e4e1 0%,rgba(212,175,55,0.06) 100%);text-align:center;">
-        <div class="container" style="max-width:700px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);">
-            <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.75rem,3vw,2.5rem);color:#2d2d2d;margin-bottom:1.5rem;letter-spacing:0.05em;">Experience the Name</h2>
-            <p style="font-size:1.05rem;color:#5a5a5a;line-height:1.8;margin-bottom:2.5rem;">See how Athenai behaves in the PUNYCODEX Type Tool — with predictive autocomplete, character-by-character breakdown, and scholarly constraint validation.</p>
-            <div style="display:inline-flex;align-items:center;gap:1rem;padding:1rem 2rem;background:rgba(255,255,255,0.5);border:1px solid rgba(212,175,55,0.25);border-radius:2px;font-family:'Fira Code','Courier New',monospace;font-size:1.1rem;color:#d4af37;margin-bottom:1.5rem;">
-                <code>athenai</code>
-                <span style="color:#5a5a5a;">→</span>
-                <code>Athenai</code>
-            </div>
-            <div>
-                <a href="/type/#athenai" style="display:inline-flex;align-items:center;gap:0.75rem;padding:1rem 2rem;background:linear-gradient(135deg,#d4af37,#b8962e);color:#1a1a1a;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;transition:all 0.4s ease;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 40px rgba(212,175,55,0.3)';" onmouseout="this.style.transform='none';this.style.boxShadow='none';">
-                    <span>Open in Type Tool</span>
+    <!-- Extended Lore CTA -->
+    <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
+    <div class="container">
+        <div class="pantheon-content reveal-up">
+            <div class="pantheon-text">
+                <span class="pantheon-eyebrow">Go Deeper</span>
+                <h2 class="pantheon-title">Extended Lore</h2>
+                <p class="pantheon-body">The lore you have read is the surface — the living myth. Beneath it lies the scholarship: etymology, reconstructed pronunciation, Unicode character breakdown, and the cultural legacy of <strong>Athēnai</strong>.</p>
+                <a href="extended/" class="btn-primary btn-ghost">
+                    <span>Enter Extended Lore</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M7 17L17 7M17 7H7M17 7V17"></path>
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
                     </svg>
                 </a>
             </div>
-        </div>
-    </section>
-
-    <!-- Pantheon Connection -->
-    <section class="section section-pantheon-connect" id="pantheon-connect">
-        <div class="container">
-            <div class="pantheon-content reveal-up">
-                <div class="pantheon-text">
-                    <span class="pantheon-eyebrow">The PUNYCODEX</span>
-                    <h2 class="pantheon-title">One of Two Hundred Fifty-Five</h2>
-                    <p class="pantheon-body">Athenai is the city. The place where democracy was first spoken, where philosophy walked in the Agora, where the Parthenon still catches the morning sun. But it is not alone. Across the encoded web, the authentic names of the Greek world have been restored — each with its own domain, its own lore, its own truth.</p>
-                    <p class="pantheon-body">This is not a directory. This is a <strong>resurrection</strong>.</p>
-                    <a href="https://punycodex.com/lexicon/" class="btn-primary btn-ghost">
-                        <span>Enter the Codex</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M7 17L17 7M17 7H7M17 7V17"></path>
-                        </svg>
-                    </a>
-                </div>
-                <div class="pantheon-mascot">
-                    <picture><source srcset="../assets/athenai_landscape.webp" type="image/webp"><picture><source srcset="../assets/athenai_landscape.webp" type="image/webp"><img src="../assets/athenai_landscape.png" alt="Athenai landscape" class="pantheon-mascot-img"></picture></picture>
-                </div>
+            <div class="pantheon-mascot">
+                <picture><source srcset="../assets/athenai_mascot.webp" type="image/webp"><img src="../assets/athenai_mascot.png" alt="Athēnai mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="main-footer">
+        <footer class="main-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
@@ -576,7 +386,7 @@
                 </div>
                 <div class="footer-info">
                     <div class="footer-block">
-                        <span class="footer-label">Domain</span>
+                        <span class="footer-label">Domains</span>
                         <span class="footer-value">athēnai.com</span>
                     </div>
                     <div class="footer-block">
@@ -590,15 +400,16 @@
                 </div>
             </div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/athenai_logomark.webp" type="image/webp"><picture><source srcset="../assets/athenai_logomark.webp" type="image/webp"><img src="../assets/athenai_logomark.png" alt="Athenai logomark" class="footer-logomark"></picture></picture>
+                <picture><source srcset="../assets/athenai_logomark.webp" type="image/webp"><img src="../assets/athenai_logomark.png" alt="Athēnai logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
-                <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
             </div>
         </div>
     </footer>
 
-    <script src="../script.js?v=perf7"></script>
-
-
-</body></html>
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/temple-base.js?v=perf2"></script>
+    <script src="../script.js?v=perf2"></script>
+</body>
+</html>

@@ -6,6 +6,12 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const {
+  getOriginalScript,
+  getProvenance,
+  containsGreekOrCjk,
+  isPlaceholder,
+} = require('./original-scripts.js');
 
 // ── Load lexicon ──────────────────────────────────────────
 const lexiconPath = path.join(__dirname, 'lexicon.js');
@@ -137,6 +143,50 @@ LEXICON.forEach((entry, i) => {
         /[\u4E00-\u9FFF\u3040-\u309F\u30A0-\u30FF]/.test(entry.greek),
       `[${label}] greek/original script "${entry.greek}" doesn't contain Greek, Devanagari, or CJK blocks`
     );
+  }
+
+  // originalScript field check
+  if (entry.originalScript !== undefined) {
+    assert(typeof entry.originalScript === 'string', `[${label}] originalScript must be a string`);
+  }
+
+  const resolvedOriginal = getOriginalScript(entry);
+  if (resolvedOriginal && !isPlaceholder(resolvedOriginal)) {
+    const ORIGINAL_SCRIPT_REGEX = new RegExp(
+      '[' +
+        '\\u{0370}-\\u{03FF}' + // Greek
+        '\\u{1F00}-\\u{1FFF}' + // Greek Extended
+        '\\u{0900}-\\u{097F}' + // Devanagari
+        '\\u{4E00}-\\u{9FFF}\\u{3040}-\\u{309F}\\u{30A0}-\\u{30FF}' + // CJK
+        '\\u{12000}-\\u{123FF}\\u{12400}-\\u{1247F}' + // Cuneiform
+        '\\u{13000}-\\u{1342F}' + // Egyptian hieroglyphs
+        '\\u{10380}-\\u{1039F}' + // Ugaritic
+        '\\u{10900}-\\u{1091F}' + // Phoenician
+        '\\u{103A0}-\\u{103DF}' + // Old Persian
+        '\\u{16A0}-\\u{16FF}' + // Runic
+        '\\u{10B00}-\\u{10B3F}' + // Avestan
+        '\\u{14400}-\\u{1467F}' + // Anatolian hieroglyphs
+        ']',
+      'u'
+    );
+    assert(
+      ORIGINAL_SCRIPT_REGEX.test(resolvedOriginal),
+      `[${label}] resolved original script "${resolvedOriginal}" is not in a recognized script block`
+    );
+
+    // Non-Greek/CJK original scripts that differ from the Unicode restoration
+    // must carry provenance explaining the transition from original to transliteration.
+    if (!containsGreekOrCjk(resolvedOriginal) && resolvedOriginal !== entry.unicode) {
+      const provenance = getProvenance(entry);
+      assert(
+        provenance &&
+          Array.isArray(provenance.steps) &&
+          provenance.steps.length > 0 &&
+          Array.isArray(provenance.sources) &&
+          provenance.sources.length > 0,
+        `[${label}] original script "${resolvedOriginal}" differs from unicode and must have provenance.steps + provenance.sources`
+      );
+    }
   }
 
   // Variants check (optional)

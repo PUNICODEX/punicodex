@@ -1,13 +1,15 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Poseidôn — Gallery | Sea, Earthquakes, Horses | PUNYCODEX</title>
     <meta name="description" content="A curated gallery of Poseidôn, Sea, Earthquakes, Horses, through history.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&amp;family=Montserrat:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../styles.css?v=perf1">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css?v=perf2">
 
     <link rel="canonical" href="https://punycodex.com/sites/poseidon/gallery/">
 
@@ -20,6 +22,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Poseidôn — Gallery | Sea, Earthquakes, Horses | PUNYCODEX">
     <meta name="twitter:description" content="A curated gallery of Poseidôn, Sea, Earthquakes, Horses, through history.">
+
   <style>
 /* Gallery lightbox */
 .gallery-item {
@@ -106,23 +109,24 @@
 </head>
 <body>
     <!-- Global Nav -->
-    <div style="position:fixed;top:0;left:0;width:100%;z-index:1001;background:rgba(10,10,10,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);">
-        <div style="max-width:1200px;margin:0 auto;padding:0.4rem clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;">
-            <a href="https://punycodex.com/" style="font-family:'Cinzel',serif;font-size:0.8rem;font-weight:700;letter-spacing:0.15em;color:#D4AF37;text-decoration:none;">PUNYCODEX</a>
-            <div style="display:flex;gap:1.5rem;">
-                <a href="https://punycodex.com/pantheon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Pantheon</a>
-                <a href="https://punycodex.com/lexicon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Lexicon</a>
-                <a href="https://punycodex.com/type/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Type</a>
-                <a href="https://punycodex.com/tiers/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Tiers</a>
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punycodex.com/" class="global-brand">PUNYCODEX</a>
+            <div class="global-links">
+                <a href="https://punycodex.com/pantheon/">Pantheon</a>
+                <a href="https://punycodex.com/lexicon/">Lexicon</a>
+                <a href="https://punycodex.com/type/">Type</a>
+                <a href="https://punycodex.com/search.html">Search</a>
+                <a href="https://punycodex.com/tiers/">Tiers</a>
             </div>
         </div>
     </div>
 
-    <!-- Poseidon Canvas -->
-    <canvas id="ocean-canvas"></canvas>
+    <!-- Ambient Canvas -->
+    <canvas id="poseidon-canvas" data-effect="water" data-primary="#D4AF37" data-secondary="#4169E1"></canvas>
 
     <!-- Tab Navigation -->
-    <nav class="main-nav tab-nav" style="top:40px;" id="main-nav">
+    <nav class="main-nav tab-nav" id="main-nav">
         <div class="nav-inner">
             <a href="../" class="nav-logo">
                 <picture><source srcset="../assets/poseidon_logolockup.webp" type="image/webp"><img src="../assets/poseidon_logolockup.png" alt="Poseidôn" class="nav-logo-img"></picture>
@@ -131,6 +135,7 @@
                 <a href="../index.html" class="nav-link">Home</a>
                 <a href="../lore/index.html" class="nav-link">Lore</a>
                 <a href="./index.html" class="nav-link active">Gallery</a>
+                <a href="../lore/extended/" class="nav-link">Extended</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
@@ -153,7 +158,7 @@
                     <a href="#gallery-grid" class="btn-primary">
                         <span>Explore the Collection</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M7 17L17 7M17 7H7M17 7V17"></path>
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
                         </svg>
                     </a>
                 </div>
@@ -175,58 +180,36 @@
             <div class="section-header reveal-up">
                 <span class="section-number">01</span>
                 <h2 class="section-title">The Collection</h2>
-                <p class="section-subtitle">Poseidôn through the eyes of sculptors, painters, and craftsmen across three millennia</p>
+                <p class="section-subtitle">Poseidôn through the eyes of sculptors, painters, and craftsmen across the ages</p>
             </div>
 
-                        <div class="gallery-grid">
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Bronze_Zeus_or_Poseidon_NAMA_X_15161_Athens_Greece.jpg/960px-Bronze_Zeus_or_Poseidon_NAMA_X_15161_Athens_Greece.jpg" data-caption="Artemision Bronze, c. 460 BCE. National Archaeological Museum, Athens." aria-label="View full image: Artemision Bronze, c. 460 BCE. National Archaeological Museum, Athens.">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Bronze_Zeus_or_Poseidon_NAMA_X_15161_Athens_Greece.jpg/960px-Bronze_Zeus_or_Poseidon_NAMA_X_15161_Athens_Greece.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Bronze_Zeus_or_Poseidon_NAMA_X_15161_Athens_Greece.jpg/960px-Bronze_Zeus_or_Poseidon_NAMA_X_15161_Athens_Greece.jpg" alt="Artemision Bronze, c. 460 BCE. National Archaeological Museum, Athens." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Artemision Bronze</strong> — c. 460 BCE. Poseidon or Zeus? The god of the sea in his most famous bronze form.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Poseidon%20statue.jpg/960px-Poseidon%20statue.jpg" data-caption="Poseidon statue, sea god with trident." aria-label="View full image: Poseidon statue, sea god with trident." data-delay="100">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Poseidon%20statue.jpg/960px-Poseidon%20statue.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Poseidon%20statue.jpg/960px-Poseidon%20statue.jpg" alt="Poseidon statue, sea god with trident." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Poseidon</strong> — Roman copy, Ny Carlsberg Glyptotek. The earth-shaker, beard tangled like seaweed, eyes like storm waves.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Attica_06-13_Sounion_20_Temple_of_Poseidon.jpg/960px-Attica_06-13_Sounion_20_Temple_of_Poseidon.jpg" data-caption="Temple of Poseidon at Sounion, Greece." aria-label="View full image: Temple of Poseidon at Sounion, Greece." data-delay="200">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Attica_06-13_Sounion_20_Temple_of_Poseidon.jpg/960px-Attica_06-13_Sounion_20_Temple_of_Poseidon.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Attica_06-13_Sounion_20_Temple_of_Poseidon.jpg/960px-Attica_06-13_Sounion_20_Temple_of_Poseidon.jpg" alt="Temple of Poseidon at Sounion, Greece." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Temple of Poseidon at Sounion</strong> — Perched on the cliff edge where the Aegean meets the sky. Sailors saw this first on their return to Athens.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Louvre_neptune_RF3006.jpg/960px-Louvre_neptune_RF3006.jpg" data-caption="Poseidon, Roman copy. British Museum." aria-label="View full image: Poseidon, Roman copy. British Museum." data-delay="300">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Louvre_neptune_RF3006.jpg/960px-Louvre_neptune_RF3006.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Louvre_neptune_RF3006.jpg/960px-Louvre_neptune_RF3006.jpg" alt="Poseidon, Roman copy. British Museum." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Poseidon</strong> — British Museum. The sea god stands with his trident, master of earthquakes and tides.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Bronze_Zeus_or_Poseidon_NAMA_X_15161_Athens_Greece.jpg/960px-Bronze_Zeus_or_Poseidon_NAMA_X_15161_Athens_Greece.jpg" data-caption="Poseidon of Melos, Roman copy. Louvre Museum." aria-label="View full image: Poseidon of Melos, Roman copy. Louvre Museum." data-delay="0">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Bronze_Zeus_or_Poseidon_NAMA_X_15161_Athens_Greece.jpg/960px-Bronze_Zeus_or_Poseidon_NAMA_X_15161_Athens_Greece.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Bronze_Zeus_or_Poseidon_NAMA_X_15161_Athens_Greece.jpg/960px-Bronze_Zeus_or_Poseidon_NAMA_X_15161_Athens_Greece.jpg" alt="Poseidon of Melos, Roman copy. Louvre Museum." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Poseidon of Melos</strong> — Louvre Museum. The calm before the storm, the sea at rest but never tame.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Amphitrite_Painter_-_ARV_833_46_-_Poseidon_pursuing_Amphitrite_-_Athens_NAM_1708.jpg/960px-Amphitrite_Painter_-_ARV_833_46_-_Poseidon_pursuing_Amphitrite_-_Athens_NAM_1708.jpg" data-caption="Poseidon and Amphitrite, Attic red-figure krater, c. 470 BCE. British Museum." aria-label="View full image: Poseidon and Amphitrite, Attic red-figure krater, c. 470 BCE. British Museum." data-delay="100">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Amphitrite_Painter_-_ARV_833_46_-_Poseidon_pursuing_Amphitrite_-_Athens_NAM_1708.jpg/960px-Amphitrite_Painter_-_ARV_833_46_-_Poseidon_pursuing_Amphitrite_-_Athens_NAM_1708.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Amphitrite_Painter_-_ARV_833_46_-_Poseidon_pursuing_Amphitrite_-_Athens_NAM_1708.jpg/960px-Amphitrite_Painter_-_ARV_833_46_-_Poseidon_pursuing_Amphitrite_-_Athens_NAM_1708.jpg" alt="Poseidon and Amphitrite, Attic red-figure krater, c. 470 BCE. British Museum." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Poseidon and Amphitrite</strong> — Attic red-figure, c. 470 BCE. The sea king and his queen in their chariot drawn by sea creatures.</p>
-    </button>
-    </div>
+            <div class="gallery-grid">
+                
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="../assets/poseidon_mascot.png">
+                        <picture><source srcset="../assets/poseidon_mascot.webp" type="image/webp"><img src="../assets/poseidon_mascot.png" alt="The Poseidôn mascot — Sea, Earthquakes, Horses" loading="lazy"></picture>
+                    </figure>
+                    <p class="gallery-caption">The Poseidôn mascot — Sea, Earthquakes, Horses</p>
+                </div>
+
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="../assets/poseidon_logolockup.png">
+                        <picture><source srcset="../assets/poseidon_logolockup.webp" type="image/webp"><img src="../assets/poseidon_logolockup.png" alt="Poseidôn logolockup" loading="lazy"></picture>
+                    </figure>
+                    <p class="gallery-caption">Poseidôn logolockup</p>
+                </div>
+
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="../assets/poseidon_logomark.png">
+                        <picture><source srcset="../assets/poseidon_logomark.webp" type="image/webp"><img src="../assets/poseidon_logomark.png" alt="Poseidôn logomark seal" loading="lazy"></picture>
+                    </figure>
+                    <p class="gallery-caption">Poseidôn logomark seal</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="main-footer">
+        <footer class="main-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
@@ -236,7 +219,7 @@
                 <div class="footer-info">
                     <div class="footer-block">
                         <span class="footer-label">Domains</span>
-                        <span class="footer-value">poseidôn.com · poseidōn.com</span>
+                        <span class="footer-value">poseidôn.com · poseidon.com</span>
                     </div>
                     <div class="footer-block">
                         <span class="footer-label">Classification</span>
@@ -252,13 +235,17 @@
                 <picture><source srcset="../assets/poseidon_logomark.webp" type="image/webp"><img src="../assets/poseidon_logomark.png" alt="Poseidôn logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
-                <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
             </div>
         </div>
     </footer>
 
-    <script src="../script.js?v=perf1"></script>
+    <script src="/js/flagship-canvas.js"></script>
+    
 
+<script>window.PUNYCODEX_API_BASE = "";</script>
+    <script src="/js/temple-base.js?v=perf2"></script>
+    <script src="../script.js?v=perf2"></script>
 
 <div class="gallery-lightbox" id="gallery-lightbox" aria-modal="true" role="dialog" aria-label="Image preview">
   <div class="gallery-lightbox-content">
@@ -296,4 +283,5 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && lb.classList.contains('active')) closeLb(); });
 })();
 </script>
-</body></html>
+</body>
+</html>

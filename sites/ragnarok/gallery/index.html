@@ -1,13 +1,15 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ragnarǫk — Gallery | Doom of the Gods | PUNYCODEX</title>
     <meta name="description" content="A curated gallery of Ragnarǫk, Doom of the Gods, through history.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&amp;family=Montserrat:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../styles.css?v=perf1">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css?v=perf2">
 
     <link rel="canonical" href="https://punycodex.com/sites/ragnarok/gallery/">
 
@@ -20,6 +22,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Ragnarǫk — Gallery | Doom of the Gods | PUNYCODEX">
     <meta name="twitter:description" content="A curated gallery of Ragnarǫk, Doom of the Gods, through history.">
+
   <style>
 /* Gallery lightbox */
 .gallery-item {
@@ -106,23 +109,24 @@
 </head>
 <body>
     <!-- Global Nav -->
-    <div style="position:fixed;top:0;left:0;width:100%;z-index:1001;background:rgba(10,10,10,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);">
-        <div style="max-width:1200px;margin:0 auto;padding:0.4rem clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;">
-            <a href="https://punycodex.com/" style="font-family:'Cinzel',serif;font-size:0.8rem;font-weight:700;letter-spacing:0.15em;color:#D4AF37;text-decoration:none;">PUNYCODEX</a>
-            <div style="display:flex;gap:1.5rem;">
-                <a href="https://punycodex.com/pantheon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Pantheon</a>
-                <a href="https://punycodex.com/lexicon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Lexicon</a>
-                <a href="https://punycodex.com/type/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Type</a>
-                <a href="https://punycodex.com/tiers/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Tiers</a>
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punycodex.com/" class="global-brand">PUNYCODEX</a>
+            <div class="global-links">
+                <a href="https://punycodex.com/pantheon/">Pantheon</a>
+                <a href="https://punycodex.com/lexicon/">Lexicon</a>
+                <a href="https://punycodex.com/type/">Type</a>
+                <a href="https://punycodex.com/search.html">Search</a>
+                <a href="https://punycodex.com/tiers/">Tiers</a>
             </div>
         </div>
     </div>
 
-    <!-- Ragnarok Canvas -->
-    <canvas id="fire-canvas"></canvas>
+    <!-- Ambient Canvas -->
+    <canvas id="ragnarok-canvas" data-effect="sun" data-primary="#C0C0C0" data-secondary="#5C9BD1"></canvas>
 
     <!-- Tab Navigation -->
-    <nav class="main-nav tab-nav" style="top:40px;" id="main-nav">
+    <nav class="main-nav tab-nav" id="main-nav">
         <div class="nav-inner">
             <a href="../" class="nav-logo">
                 <picture><source srcset="../assets/ragnarok_logolockup.webp" type="image/webp"><img src="../assets/ragnarok_logolockup.png" alt="Ragnarǫk" class="nav-logo-img"></picture>
@@ -131,6 +135,7 @@
                 <a href="../index.html" class="nav-link">Home</a>
                 <a href="../lore/index.html" class="nav-link">Lore</a>
                 <a href="./index.html" class="nav-link active">Gallery</a>
+                <a href="../lore/extended/" class="nav-link">Extended</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
@@ -144,8 +149,7 @@
             <div class="hero-text">
                 <p class="hero-eyebrow reveal-up">Visual Legacy</p>
                 <h1 class="hero-title reveal-up">
-                    <span class="title-greek">—</span>
-                    <span class="title-divider"></span>
+                    
                     <span class="title-trans">Gallery</span>
                 </h1>
                 <p class="hero-subtitle reveal-up">Doom of the Gods</p>
@@ -153,7 +157,7 @@
                     <a href="#gallery-grid" class="btn-primary">
                         <span>Explore the Collection</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M7 17L17 7M17 7H7M17 7V17"></path>
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
                         </svg>
                     </a>
                 </div>
@@ -175,51 +179,36 @@
             <div class="section-header reveal-up">
                 <span class="section-number">01</span>
                 <h2 class="section-title">The Collection</h2>
-                <p class="section-subtitle">Ragnarǫk through the eyes of sculptors, painters, and craftsmen across three millennia</p>
+                <p class="section-subtitle">Ragnarǫk through the eyes of sculptors, painters, and craftsmen across the ages</p>
             </div>
 
-                        <div class="gallery-grid">
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Johannes_gehrts_ragnarok_mindre.JPG/960px-Johannes_gehrts_ragnarok_mindre.JPG" data-caption="Ragnarök by Johannes Gehrts." aria-label="View full image: Ragnarök by Johannes Gehrts.">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Johannes_gehrts_ragnarok_mindre.JPG/960px-Johannes_gehrts_ragnarok_mindre.JPG.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Johannes_gehrts_ragnarok_mindre.JPG/960px-Johannes_gehrts_ragnarok_mindre.JPG" alt="Ragnarök by Johannes Gehrts." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Ragnarök</strong> — Johannes Gehrts. The final battle between the gods of Asgard and Loki's offspring: fire, flood, and the end of worlds.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/After_Ragnar%C3%B6k_by_Doepler.jpg/960px-After_Ragnar%C3%B6k_by_Doepler.jpg" data-caption="After Ragnarök by Emil Doepler, c. 1905." aria-label="View full image: After Ragnarök by Emil Doepler, c. 1905." data-delay="100">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/After_Ragnar%C3%B6k_by_Doepler.jpg/960px-After_Ragnar%C3%B6k_by_Doepler.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/After_Ragnar%C3%B6k_by_Doepler.jpg/960px-After_Ragnar%C3%B6k_by_Doepler.jpg" alt="After Ragnarök by Emil Doepler, c. 1905." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>After Ragnarök</strong> — Emil Doepler, c. 1905. The world reborn from the ashes, green shoots rising over the sea.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/The_giant_with_the_flaming_sword_by_Dollman.jpg/960px-The_giant_with_the_flaming_sword_by_Dollman.jpg" data-caption="Surtr with the flaming sword by John Charles Dollman, 1909." aria-label="View full image: Surtr with the flaming sword by John Charles Dollman, 1909." data-delay="200">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/The_giant_with_the_flaming_sword_by_Dollman.jpg/960px-The_giant_with_the_flaming_sword_by_Dollman.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/The_giant_with_the_flaming_sword_by_Dollman.jpg/960px-The_giant_with_the_flaming_sword_by_Dollman.jpg" alt="Surtr with the flaming sword by John Charles Dollman, 1909." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Surtr</strong> — John Charles Dollman, 1909. The fire giant of Muspellheim raises his blazing sword to set the world aflame.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Odin_und_Fenriswolf_Freyr_und_Surt.jpg/960px-Odin_und_Fenriswolf_Freyr_und_Surt.jpg" data-caption="Odin and Fenrir, Freyr and Surtr, illustration by Emil Doepler." aria-label="View full image: Odin and Fenrir, Freyr and Surtr, illustration by Emil Doepler." data-delay="300">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Odin_und_Fenriswolf_Freyr_und_Surt.jpg/960px-Odin_und_Fenriswolf_Freyr_und_Surt.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Odin_und_Fenriswolf_Freyr_und_Surt.jpg/960px-Odin_und_Fenriswolf_Freyr_und_Surt.jpg" alt="Odin and Fenrir, Freyr and Surtr, illustration by Emil Doepler." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>The Death of Odin and Freyr</strong> — Emil Doepler. Odin falls to Fenrir's jaws; Freyr meets Surtr's flame. Two gods, two deaths, one doom.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/The_binding_of_Fenrir_by_George_Wright.jpg/960px-The_binding_of_Fenrir_by_George_Wright.jpg" data-caption="The binding of Fenrir by George Wright." aria-label="View full image: The binding of Fenrir by George Wright." data-delay="0">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/The_binding_of_Fenrir_by_George_Wright.jpg/960px-The_binding_of_Fenrir_by_George_Wright.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/The_binding_of_Fenrir_by_George_Wright.jpg/960px-The_binding_of_Fenrir_by_George_Wright.jpg" alt="The binding of Fenrir by George Wright." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>The Binding of Fenrir</strong> — George Wright. The wolf who will one day break free and swallow the All-Father is chained by craft and courage.</p>
-    </button>
-    </div>
+            <div class="gallery-grid">
+                
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="../assets/ragnarok_mascot.png">
+                        <picture><source srcset="../assets/ragnarok_mascot.webp" type="image/webp"><img src="../assets/ragnarok_mascot.png" alt="The Ragnarǫk mascot — Doom of the Gods" loading="lazy"></picture>
+                    </figure>
+                    <p class="gallery-caption">The Ragnarǫk mascot — Doom of the Gods</p>
+                </div>
+
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="../assets/ragnarok_logolockup.png">
+                        <picture><source srcset="../assets/ragnarok_logolockup.webp" type="image/webp"><img src="../assets/ragnarok_logolockup.png" alt="Ragnarǫk logolockup" loading="lazy"></picture>
+                    </figure>
+                    <p class="gallery-caption">Ragnarǫk logolockup</p>
+                </div>
+
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="../assets/ragnarok_logomark.png">
+                        <picture><source srcset="../assets/ragnarok_logomark.webp" type="image/webp"><img src="../assets/ragnarok_logomark.png" alt="Ragnarǫk logomark seal" loading="lazy"></picture>
+                    </figure>
+                    <p class="gallery-caption">Ragnarǫk logomark seal</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="main-footer">
+        <footer class="main-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
@@ -236,8 +225,8 @@
                         <span class="footer-value">Tier 2</span>
                     </div>
                     <div class="footer-block">
-                        <span class="footer-label">Original Script</span>
-                        <span class="footer-value">—</span>
+                        <span class="footer-label">Scholarly Transliteration</span>
+                        <span class="footer-value">Ragnarǫk</span>
                     </div>
                 </div>
             </div>
@@ -245,13 +234,17 @@
                 <picture><source srcset="../assets/ragnarok_logomark.webp" type="image/webp"><img src="../assets/ragnarok_logomark.png" alt="Ragnarǫk logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
-                <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
             </div>
         </div>
     </footer>
 
-    <script src="../script.js?v=perf1"></script>
+    <script src="/js/flagship-canvas.js"></script>
+    
 
+<script>window.PUNYCODEX_API_BASE = "";</script>
+    <script src="/js/temple-base.js?v=perf2"></script>
+    <script src="../script.js?v=perf2"></script>
 
 <div class="gallery-lightbox" id="gallery-lightbox" aria-modal="true" role="dialog" aria-label="Image preview">
   <div class="gallery-lightbox-content">
@@ -289,4 +282,5 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && lb.classList.contains('active')) closeLb(); });
 })();
 </script>
-</body></html>
+</body>
+</html>

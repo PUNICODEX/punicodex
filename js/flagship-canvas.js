@@ -463,6 +463,265 @@
         draw();
     }
 
+    // ─── EFFECT: AURORA ──────────────────────────────────────────────────────
+    function aurora(canvas, ctx, width, height, primary, secondary) {
+        const bands = [];
+        const count = Math.min(5, Math.floor(width / 250) + 2);
+        for (let i = 0; i < count; i++) {
+            bands.push({
+                y: height * (0.15 + i * 0.15),
+                amplitude: randomRange(40, 90),
+                wavelength: randomRange(200, 500),
+                speed: randomRange(0.002, 0.006),
+                offset: Math.random() * Math.PI * 2,
+                opacity: randomRange(0.08, 0.18),
+                color: Math.random() > 0.5 ? primary : secondary
+            });
+        }
+        let t = 0;
+        function draw() {
+            ctx.clearRect(0, 0, width, height);
+            bands.forEach(b => {
+                const grad = ctx.createLinearGradient(0, b.y - b.amplitude, 0, b.y + b.amplitude);
+                grad.addColorStop(0, 'rgba(0,0,0,0)');
+                grad.addColorStop(0.5, `rgba(${b.color.r}, ${b.color.g}, ${b.color.b}, ${b.opacity})`);
+                grad.addColorStop(1, 'rgba(0,0,0,0)');
+                ctx.fillStyle = grad;
+                ctx.beginPath();
+                for (let x = 0; x <= width; x += 20) {
+                    const y = b.y + Math.sin(x / b.wavelength + t * b.speed + b.offset) * b.amplitude * Math.sin(t * 0.005 + b.offset);
+                    if (x === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.lineTo(width, height);
+                ctx.lineTo(0, height);
+                ctx.closePath();
+                ctx.fill();
+            });
+            t++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: COSMIC NET ──────────────────────────────────────────────────
+    function cosmicNet(canvas, ctx, width, height, primary, secondary) {
+        const nodes = [];
+        const count = Math.min(45, Math.floor((width * height) / 28000));
+        for (let i = 0; i < count; i++) {
+            nodes.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                vx: (Math.random() - 0.5) * 0.2,
+                vy: (Math.random() - 0.5) * 0.2,
+                size: Math.random() * 1.5 + 0.5,
+                pulse: Math.random() * Math.PI * 2,
+                color: Math.random() > 0.6 ? secondary : primary
+            });
+        }
+        let t = 0;
+        function draw() {
+            ctx.clearRect(0, 0, width, height);
+            nodes.forEach(n => {
+                n.x += n.vx;
+                n.y += n.vy;
+                if (n.x < 0) n.x = width;
+                if (n.x > width) n.x = 0;
+                if (n.y < 0) n.y = height;
+                if (n.y > height) n.y = 0;
+                const pulse = 0.5 + 0.5 * Math.sin(t * 0.03 + n.pulse);
+                ctx.beginPath();
+                ctx.arc(n.x, n.y, n.size * (0.7 + 0.5 * pulse), 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${n.color.r}, ${n.color.g}, ${n.color.b}, ${0.3 + 0.4 * pulse})`;
+                ctx.fill();
+            });
+            ctx.strokeStyle = `rgba(${primary.r}, ${primary.g}, ${primary.b}, 0.06)`;
+            ctx.lineWidth = 0.5;
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const dx = nodes[i].x - nodes[j].x;
+                    const dy = nodes[i].y - nodes[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 160) {
+                        ctx.beginPath();
+                        ctx.moveTo(nodes[i].x, nodes[i].y);
+                        ctx.lineTo(nodes[j].x, nodes[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            t++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: SANDSTORM ───────────────────────────────────────────────────
+    function sandstorm(canvas, ctx, width, height, primary, secondary) {
+        const grains = [];
+        const count = Math.min(160, Math.floor((width * height) / 11000));
+        for (let i = 0; i < count; i++) {
+            grains.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                size: Math.random() * 1.5 + 0.3,
+                speedX: randomRange(3, 9),
+                speedY: randomRange(-0.5, 0.5),
+                opacity: Math.random() * 0.35 + 0.1,
+                color: Math.random() > 0.7 ? secondary : primary
+            });
+        }
+        function draw() {
+            ctx.fillStyle = 'rgba(5, 5, 8, 0.12)';
+            ctx.fillRect(0, 0, width, height);
+            grains.forEach(g => {
+                g.x += g.speedX;
+                g.y += g.speedY;
+                if (g.x > width) {
+                    g.x = -10;
+                    g.y = Math.random() * height;
+                }
+                ctx.beginPath();
+                ctx.arc(g.x, g.y, g.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${g.color.r}, ${g.color.g}, ${g.color.b}, ${g.opacity})`;
+                ctx.fill();
+            });
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: ABYSSAL ─────────────────────────────────────────────────────
+    function abyssal(canvas, ctx, width, height, primary, secondary) {
+        const motes = [];
+        const count = Math.min(90, Math.floor((width * height) / 16000));
+        for (let i = 0; i < count; i++) {
+            motes.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                size: Math.random() * 2 + 0.5,
+                speedY: randomRange(-0.4, -1.6),
+                drift: (Math.random() - 0.5) * 0.3,
+                opacity: Math.random() * 0.4 + 0.1,
+                color: Math.random() > 0.65 ? secondary : primary
+            });
+        }
+        let current = 0;
+        function draw() {
+            ctx.fillStyle = 'rgba(5, 5, 8, 0.18)';
+            ctx.fillRect(0, 0, width, height);
+            motes.forEach(m => {
+                m.y += m.speedY;
+                m.x += m.drift + Math.sin(current * 0.01 + m.y * 0.01) * 0.2;
+                if (m.y < -10) {
+                    m.y = height + 10;
+                    m.x = Math.random() * width;
+                }
+                ctx.beginPath();
+                ctx.arc(m.x, m.y, m.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${m.color.r}, ${m.color.g}, ${m.color.b}, ${m.opacity})`;
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = `rgba(${m.color.r}, ${m.color.g}, ${m.color.b}, 0.4)`;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            });
+            current++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: SOUL ────────────────────────────────────────────────────────
+    function soul(canvas, ctx, width, height, primary, secondary) {
+        const souls = [];
+        const count = Math.min(30, Math.floor((width * height) / 35000));
+        for (let i = 0; i < count; i++) {
+            souls.push({
+                x: Math.random() * width,
+                y: height + Math.random() * 100,
+                size: randomRange(6, 14),
+                speedY: randomRange(0.6, 1.8),
+                drift: randomRange(-0.4, 0.4),
+                wingPhase: Math.random() * Math.PI * 2,
+                opacity: Math.random() * 0.4 + 0.2,
+                color: Math.random() > 0.7 ? secondary : primary
+            });
+        }
+        let t = 0;
+        function draw() {
+            ctx.clearRect(0, 0, width, height);
+            souls.forEach(s => {
+                s.y -= s.speedY;
+                s.x += s.drift + Math.sin(t * 0.02 + s.wingPhase) * 0.3;
+                if (s.y < -30) {
+                    s.y = height + 30;
+                    s.x = Math.random() * width;
+                }
+                const wing = Math.sin(t * 0.08 + s.wingPhase) * s.size * 0.6;
+                ctx.beginPath();
+                ctx.ellipse(s.x - wing * 0.6, s.y, Math.abs(wing), s.size * 0.35, -0.3, 0, Math.PI * 2);
+                ctx.ellipse(s.x + wing * 0.6, s.y, Math.abs(wing), s.size * 0.35, 0.3, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${s.color.r}, ${s.color.g}, ${s.color.b}, ${s.opacity})`;
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.size * 0.25, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${s.color.r}, ${s.color.g}, ${s.color.b}, ${s.opacity * 1.3})`;
+                ctx.fill();
+            });
+            t++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: VOLCANIC ────────────────────────────────────────────────────
+    function volcanic(canvas, ctx, width, height, primary, secondary) {
+        const embers = [];
+        const count = Math.min(120, Math.floor((width * height) / 14000));
+        for (let i = 0; i < count; i++) {
+            embers.push({
+                x: Math.random() * width,
+                y: height + Math.random() * 60,
+                size: Math.random() * 2.5 + 0.5,
+                speedY: randomRange(1.5, 4),
+                drift: randomRange(-0.8, 0.8),
+                opacity: Math.random() * 0.6 + 0.2,
+                life: Math.random(),
+                color: Math.random() > 0.6 ? secondary : primary
+            });
+        }
+        let flash = 0;
+        function draw() {
+            ctx.fillStyle = 'rgba(8, 4, 4, 0.2)';
+            ctx.fillRect(0, 0, width, height);
+            if (Math.random() < 0.008) flash = randomRange(0.25, 0.55);
+            if (flash > 0) {
+                ctx.fillStyle = `rgba(${secondary.r}, ${secondary.g}, ${secondary.b}, ${flash})`;
+                ctx.fillRect(0, 0, width, height);
+                flash *= 0.88;
+            }
+            embers.forEach(e => {
+                e.y -= e.speedY;
+                e.x += e.drift;
+                e.life -= 0.003;
+                if (e.y < 0 || e.life <= 0) {
+                    e.y = height + Math.random() * 30;
+                    e.x = Math.random() * width;
+                    e.life = 1;
+                }
+                ctx.beginPath();
+                ctx.arc(e.x, e.y, e.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${e.color.r}, ${e.color.g}, ${e.color.b}, ${e.opacity * e.life})`;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = `rgba(${e.color.r}, ${e.color.g}, ${e.color.b}, 0.5)`;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            });
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
     const effects = {
         particles,
         stars,
@@ -474,7 +733,13 @@
         tree,
         mountain,
         sun,
-        flame
+        flame,
+        aurora,
+        cosmicNet,
+        sandstorm,
+        abyssal,
+        soul,
+        volcanic
     };
 
     function runEffect(canvas) {

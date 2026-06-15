@@ -4,24 +4,25 @@
     <meta charset="UTF-8">
     <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ꜣḫ — Gallery | Art, Tomb Painting &amp; Depictions | PUNYCODEX</title>
-    <meta name="description" content="A curated gallery of Ꜣḫ, the Egyptian transfigured spirit, through history — from pyramid texts to the Book of the Dead.">
+    <title>Ꜣḫ — Gallery | Soul, Afterlife, Transfiguration | PUNYCODEX</title>
+    <meta name="description" content="A curated gallery of Ꜣḫ, Soul, Afterlife, Transfiguration, through history.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../styles.css?v=perf23">
+    <link rel="stylesheet" href="../styles.css?v=perf2">
 
-    <link rel="canonical" href="https://punycodex.com/akh/gallery/">
+    <link rel="canonical" href="https://punycodex.com/sites/akh/gallery/">
 
-    <meta property="og:title" content="Ꜣḫ — Gallery | Art &amp; Tomb Painting | PUNYCODEX">
-    <meta property="og:description" content="A curated gallery of Ꜣḫ, the Egyptian transfigured spirit, through history.">
-    <meta property="og:url" content="https://punycodex.com/akh/gallery/">
+    <meta property="og:title" content="Ꜣḫ — Gallery | Soul, Afterlife, Transfiguration | PUNYCODEX">
+    <meta property="og:description" content="A curated gallery of Ꜣḫ, Soul, Afterlife, Transfiguration, through history.">
+    <meta property="og:url" content="https://punycodex.com/sites/akh/gallery/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="PUNYCODEX">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Ꜣḫ — Gallery | Art &amp; Tomb Painting | PUNYCODEX">
-    <meta name="twitter:description" content="A curated gallery of Ꜣḫ, the Egyptian transfigured spirit, through history.">
+    <meta name="twitter:title" content="Ꜣḫ — Gallery | Soul, Afterlife, Transfiguration | PUNYCODEX">
+    <meta name="twitter:description" content="A curated gallery of Ꜣḫ, Soul, Afterlife, Transfiguration, through history.">
+
   <style>
 /* Gallery lightbox */
 .gallery-item {
@@ -108,31 +109,33 @@
 </head>
 <body>
     <!-- Global Nav -->
-    <div style="position:fixed;top:0;left:0;width:100%;z-index:1001;background:rgba(10,5,18,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(155,126,222,0.1);">
-        <div style="max-width:1200px;margin:0 auto;padding:0.4rem clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;">
-            <a href="https://punycodex.com/" style="font-family:'Cinzel',serif;font-size:0.8rem;font-weight:700;letter-spacing:0.15em;color:#C4A8FF;text-decoration:none;">PUNYCODEX</a>
-            <div style="display:flex;gap:1.5rem;">
-                <a href="https://punycodex.com/pantheon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#C4A8FF'" onmouseout="this.style.color='#A0A0A0'">Pantheon</a>
-                <a href="https://punycodex.com/lexicon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#C4A8FF'" onmouseout="this.style.color='#A0A0A0'">Lexicon</a>
-                <a href="https://punycodex.com/type/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#C4A8FF'" onmouseout="this.style.color='#A0A0A0'">Type</a>
-                <a href="https://punycodex.com/tiers/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#C4A8FF'" onmouseout="this.style.color='#A0A0A0'">Tiers</a>
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punycodex.com/" class="global-brand">PUNYCODEX</a>
+            <div class="global-links">
+                <a href="https://punycodex.com/pantheon/">Pantheon</a>
+                <a href="https://punycodex.com/lexicon/">Lexicon</a>
+                <a href="https://punycodex.com/type/">Type</a>
+                <a href="https://punycodex.com/search.html">Search</a>
+                <a href="https://punycodex.com/tiers/">Tiers</a>
             </div>
         </div>
     </div>
 
-    <!-- Star Canvas -->
-    <canvas id="star-canvas"></canvas>
+    <!-- Ambient Canvas -->
+    <canvas id="akh-canvas" data-effect="soul" data-primary="#D4AF37" data-secondary="#1E3A5F"></canvas>
 
     <!-- Tab Navigation -->
-    <nav class="main-nav tab-nav" style="top:40px;" id="main-nav">
+    <nav class="main-nav tab-nav" id="main-nav">
         <div class="nav-inner">
             <a href="../" class="nav-logo">
                 <picture><source srcset="../assets/akh_logolockup.webp" type="image/webp"><img src="../assets/akh_logolockup.png" alt="Ꜣḫ" class="nav-logo-img"></picture>
             </a>
             <div class="nav-links">
-                <a href="../" class="nav-link">Home</a>
-                <a href="../lore/" class="nav-link">Lore</a>
-                <a href="./" class="nav-link active">Gallery</a>
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="./index.html" class="nav-link active">Gallery</a>
+                <a href="../lore/extended/" class="nav-link">Extended</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
@@ -146,14 +149,21 @@
             <div class="hero-text">
                 <p class="hero-eyebrow reveal-up">Visual Legacy</p>
                 <h1 class="hero-title reveal-up">
-                    <span class="title-greek">Ꜣḫ</span>
-                    <span class="title-divider"></span>
+                    
                     <span class="title-trans">Gallery</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Art &middot; Tomb Painting &middot; Papyrus &middot; Sculpture &middot; Architecture</p>
+                <p class="hero-subtitle reveal-up">Soul, Afterlife, Transfiguration</p>
+                <div class="hero-cta reveal-up">
+                    <a href="#gallery-grid" class="btn-primary">
+                        <span>Explore the Collection</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../assets/akh_mascot.webp" type="image/webp"><img src="../assets/akh_mascot.png" alt="Ꜣḫ — The Transfigured Spirit, ascending to the imperishable stars" class="mascot-img"></picture>
+                <picture><source srcset="../assets/akh_mascot.webp" type="image/webp"><img src="../assets/akh_mascot.png" alt="Ꜣḫ — Soul, Afterlife, Transfiguration" class="mascot-img"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -163,29 +173,42 @@
     </section>
 
     <!-- Gallery Grid -->
-    <section class="section" id="gallery" style="padding:6rem 0;">
+    <section class="section section-name" id="gallery-grid">
+        <div class="section-bg-glow"></div>
         <div class="container">
-                                    <div class="gallery-grid">
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Akh_iker_en_Re_stela_of_Pahatia%2C_limestone_-_Museo_Egizio_Turin_C_1566_p01.jpg/960px-Akh_iker_en_Re_stela_of_Pahatia%2C_limestone_-_Museo_Egizio_Turin_C_1566_p01.jpg" data-caption="Akh iker en Re stela of Pahatia." aria-label="View full image: Akh iker en Re stela of Pahatia.">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Akh_iker_en_Re_stela_of_Pahatia%2C_limestone_-_Museo_Egizio_Turin_C_1566_p01.jpg/960px-Akh_iker_en_Re_stela_of_Pahatia%2C_limestone_-_Museo_Egizio_Turin_C_1566_p01.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Akh_iker_en_Re_stela_of_Pahatia%2C_limestone_-_Museo_Egizio_Turin_C_1566_p01.jpg/960px-Akh_iker_en_Re_stela_of_Pahatia%2C_limestone_-_Museo_Egizio_Turin_C_1566_p01.jpg" alt="Akh iker en Re stela of Pahatia." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>The Akh</strong> — Stela of Pahatia, Museo Egizio, Turin. The transfigured spirit of the deceased, radiant in the afterlife.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Akh_iker_en_Re_stela_of_Pahatia%2C_limestone_-_Museo_Egizio_Turin_C_1566_p02.jpg/960px-Akh_iker_en_Re_stela_of_Pahatia%2C_limestone_-_Museo_Egizio_Turin_C_1566_p02.jpg" data-caption="Akh iker en Re stela of Pahatia, detail." aria-label="View full image: Akh iker en Re stela of Pahatia, detail." data-delay="100">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Akh_iker_en_Re_stela_of_Pahatia%2C_limestone_-_Museo_Egizio_Turin_C_1566_p02.jpg/960px-Akh_iker_en_Re_stela_of_Pahatia%2C_limestone_-_Museo_Egizio_Turin_C_1566_p02.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Akh_iker_en_Re_stela_of_Pahatia%2C_limestone_-_Museo_Egizio_Turin_C_1566_p02.jpg/960px-Akh_iker_en_Re_stela_of_Pahatia%2C_limestone_-_Museo_Egizio_Turin_C_1566_p02.jpg" alt="Akh iker en Re stela of Pahatia, detail." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>The Akh in the Presence of Ra</strong> — The blessed dead as an effective spirit, akh iker en Re.</p>
-    </button>
-    </div>
+            <div class="section-header reveal-up">
+                <span class="section-number">01</span>
+                <h2 class="section-title">The Collection</h2>
+                <p class="section-subtitle">Ꜣḫ through the eyes of sculptors, painters, and craftsmen across the ages</p>
+            </div>
+
+            <div class="gallery-grid">
+                
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="../assets/akh_mascot.png">
+                        <picture><source srcset="../assets/akh_mascot.webp" type="image/webp"><img src="../assets/akh_mascot.png" alt="The Ꜣḫ mascot — Soul, Afterlife, Transfiguration" loading="lazy"></picture>
+                    </figure>
+                    <p class="gallery-caption">The Ꜣḫ mascot — Soul, Afterlife, Transfiguration</p>
+                </div>
+
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="../assets/akh_logolockup.png">
+                        <picture><source srcset="../assets/akh_logolockup.webp" type="image/webp"><img src="../assets/akh_logolockup.png" alt="Ꜣḫ logolockup" loading="lazy"></picture>
+                    </figure>
+                    <p class="gallery-caption">Ꜣḫ logolockup</p>
+                </div>
+
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="../assets/akh_logomark.png">
+                        <picture><source srcset="../assets/akh_logomark.webp" type="image/webp"><img src="../assets/akh_logomark.png" alt="Ꜣḫ logomark seal" loading="lazy"></picture>
+                    </figure>
+                    <p class="gallery-caption">Ꜣḫ logomark seal</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="main-footer">
+        <footer class="main-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
@@ -194,15 +217,15 @@
                 </div>
                 <div class="footer-info">
                     <div class="footer-block">
-                        <span class="footer-label">Domain</span>
+                        <span class="footer-label">Domains</span>
                         <span class="footer-value">ꜣḫ.com</span>
                     </div>
                     <div class="footer-block">
                         <span class="footer-label">Classification</span>
-                        <span class="footer-value">Tier 1</span>
+                        <span class="footer-value">Tier 2</span>
                     </div>
                     <div class="footer-block">
-                        <span class="footer-label">Egyptian Original</span>
+                        <span class="footer-label">Scholarly Transliteration</span>
                         <span class="footer-value">Ꜣḫ</span>
                     </div>
                 </div>
@@ -216,7 +239,13 @@
         </div>
     </footer>
 
-    <script src="../script.js?v=perf23"></script>
+    <script src="/js/flagship-canvas.js"></script>
+    
+
+<script>window.PUNYCODEX_API_BASE = "";</script>
+    <script src="/js/temple-base.js?v=perf2"></script>
+    <script src="../script.js?v=perf2"></script>
+
 <div class="gallery-lightbox" id="gallery-lightbox" aria-modal="true" role="dialog" aria-label="Image preview">
   <div class="gallery-lightbox-content">
     <button class="gallery-lightbox-close" id="gallery-lightbox-close" aria-label="Close" type="button">&times;</button>

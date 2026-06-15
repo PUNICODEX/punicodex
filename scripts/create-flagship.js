@@ -21,6 +21,13 @@ const ROOT = path.join(__dirname, '..');
 const TEMPLATE_DIR = path.join(ROOT, 'templates', 'flagship');
 const SITES_DIR = path.join(ROOT, 'sites');
 const FLAGSHIP_DATA = require(path.join(__dirname, 'flagship-data.json'));
+const {
+  getOriginalScript,
+  hasOriginalScript,
+  getOriginalScriptLabel,
+  getProvenance,
+  getNoScriptNote,
+} = require(path.join(ROOT, 'type', 'js', 'original-scripts.js'));
 
 const SLOT_TYPES = [
   'Crown',
@@ -892,8 +899,7 @@ function buildExtendedTab(page, _templeId) {
 }
 
 function hasRealGreek(entry) {
-  const greek = entry.greek || '';
-  return greek && greek !== '—' && greek.trim() !== '';
+  return hasOriginalScript(entry);
 }
 
 function isGreekEntry(entry) {
@@ -901,8 +907,7 @@ function isGreekEntry(entry) {
 }
 
 function originalScript(entry) {
-  if (isGreekEntry(entry) && hasRealGreek(entry)) return entry.greek;
-  return entry.unicode;
+  return getOriginalScript(entry) || entry.unicode;
 }
 
 function stripPlaceholderGreek(html, unicode) {
@@ -1088,14 +1093,39 @@ function joinFeatures(arr) {
 
 function buildNameProse(entry) {
   const label = scriptLabel(entry);
-  const source = originalScript(entry);
+  const source = getOriginalScript(entry);
+  const hasOriginal = hasOriginalScript(entry);
   const features = analyzeFeatures(entry);
   const featureList = joinFeatures(features);
   const meaningClause = entry.meaning ? ` — “${entry.meaning}”` : '';
-  const original = `The name in its original ${label} form. <strong>${entry.unicode}</strong> (${source}) is attested as ${entry.domain.toLowerCase()}${meaningClause}. Its ${featureList} carry the full phonetic and orthographic weight of the source tradition.`;
+  const original = hasOriginal
+    ? `The name in its original ${label} form. <strong>${entry.unicode}</strong> (${source}) is attested as ${entry.domain.toLowerCase()}${meaningClause}. Its ${featureList} carry the full phonetic and orthographic weight of the source tradition.`
+    : `The name survives only in scholarly transliteration. <strong>${entry.unicode}</strong> is the standard ${label} romanisation, attested as ${entry.domain.toLowerCase()}${meaningClause}. Its ${featureList} preserve distinctions lost in plain ASCII.`;
   const ascii = `Reduced to plain <strong>${entry.ascii}</strong>, the name loses everything that made it specific: ${featureList}. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.`;
   const unicode = `The Unicode restoration recovers what ASCII flattened. <strong>${entry.unicode}</strong> restores ${featureList}, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.`;
   return { original, ascii, unicode };
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function buildOriginalScriptProvenanceHtml(entry) {
+  const provenance = getProvenance(entry);
+  if (provenance && Array.isArray(provenance.steps) && provenance.steps.length > 0) {
+    const steps = provenance.steps.map((s) => `<li>${escapeHtml(s)}</li>`).join('');
+    const sources = (provenance.sources || []).map((s) => `<li>${escapeHtml(s)}</li>`).join('');
+    return `<div class="provenance-box"><h4>From original to transliteration</h4><ol class="provenance-steps">${steps}</ol>${sources ? `<h5>Sources</h5><ul class="provenance-sources">${sources}</ul>` : ''}</div>`;
+  }
+  if (!hasOriginalScript(entry)) {
+    return `<p class="card-note">${escapeHtml(getNoScriptNote(entry))}</p>`;
+  }
+  return '';
 }
 
 function _buildTierSection(entry, _sectionNumber) {
@@ -1124,8 +1154,55 @@ function getCanvasEffect(entry) {
   const meaning = (entry.meaning || '').toLowerCase();
   const combined = `${domain} ${meaning}`;
   const has = (words) => words.some((w) => combined.includes(w));
+
+  // ── Bespoke legendary effects for recently expanded / non-generic flagships
   if (
-    ['zeus', 'thor', 'jupiter', 'perun', 'adad', 'baal', 'shu'].includes(id) ||
+    id === 'aither' ||
+    id === 'ouranos' ||
+    id === 'uranus' ||
+    has(['aether', 'upper air', 'bright upper'])
+  )
+    return 'aurora';
+  if (
+    id === 'varuna' ||
+    id === 'praajapati' ||
+    id === 'prajapati' ||
+    id === 'rta' ||
+    id === 'maat' ||
+    id === 'vishnu'
+  )
+    return 'cosmicNet';
+  if (id === 'anat' || id === 'baal' || id === 'enlil' || has(['desert storm', 'sumerian wind']))
+    return 'sandstorm';
+  if (
+    id === 'apsu' ||
+    id === 'ea' ||
+    id === 'okeanos' ||
+    id === 'pontos' ||
+    has(['abyss', 'freshwater abyss', 'fresh water', 'primordial water'])
+  )
+    return 'abyssal';
+  if (
+    id === 'ka' ||
+    id === 'ba' ||
+    id === 'akh' ||
+    has(['soul', 'life force', 'vital essence', 'double'])
+  )
+    return 'soul';
+  if (
+    id === 'trengtreng' ||
+    id === 'typhon' ||
+    id === 'ishtar' ||
+    id === 'astart' ||
+    has(['volcanic', 'thunder war'])
+  )
+    return 'volcanic';
+  if (id === 'eros' || has(['desire', 'love', 'passion'])) return 'light';
+  if (id === 'asherah' || id === 'inanna') return 'tree';
+
+  // ── Existing shared effect mappings
+  if (
+    ['zeus', 'thor', 'jupiter', 'perun', 'adad', 'shu'].includes(id) ||
     has(['thunder', 'storm', 'lightning'])
   )
     return 'storm';
@@ -1135,7 +1212,7 @@ function getCanvasEffect(entry) {
   )
     return 'time';
   if (
-    ['hades', 'nott', 'hekate', 'kali', 'typhon', 'tartaros', 'chaos'].includes(id) ||
+    ['hades', 'nott', 'hekate', 'kali', 'tartaros', 'chaos'].includes(id) ||
     has(['dark', 'void', 'night', 'death', 'underworld'])
   )
     return 'void';
@@ -1145,23 +1222,12 @@ function getCanvasEffect(entry) {
   )
     return 'sun';
   if (
-    ['poseidon', 'varuna', 'aphrodite', 'loki', 'njor'].includes(id) ||
+    ['poseidon', 'aphrodite', 'loki', 'njor'].includes(id) ||
     has(['water', 'sea', 'ocean', 'wave', 'river'])
   )
     return 'water';
   if (
-    [
-      'gaia',
-      'rhea',
-      'demeter',
-      'cybele',
-      'ishtar',
-      'inanna',
-      'asherah',
-      'anu',
-      'nut',
-      'geb',
-    ].includes(id) ||
+    ['gaia', 'rhea', 'demeter', 'cybele', 'inanna', 'asherah', 'anu', 'nut', 'geb'].includes(id) ||
     has(['earth', 'mountain', 'fertility', 'mother'])
   )
     return 'mountain';
@@ -1175,14 +1241,16 @@ function getCanvasEffect(entry) {
     has(['wisdom', 'knowledge', 'word', 'poetry', 'messenger'])
   )
     return 'light';
-  if (['prometheus', 'hephaistos', 'logi', 'aguni'].includes(id) || has(['fire', 'flame', 'forge']))
+  if (
+    ['prometheus', 'hephaistos', 'logi', 'aguni', 'kali'].includes(id) ||
+    has(['fire', 'flame', 'forge'])
+  )
     return 'flame';
   if (['yggdrasil', 'silvanus', 'dionysos'].includes(id) || has(['tree', 'vine', 'forest']))
     return 'tree';
-  if (['ouranos', 'aether', 'uranus'].includes(id) || has(['sky', 'air', 'aether'])) return 'stars';
   if (pantheon === 'norse' || pantheon === 'celtic' || pantheon === 'slavic') return 'stars';
   if (pantheon === 'egyptian') return 'sun';
-  if (pantheon === 'mesopotamian') return 'water';
+  if (pantheon === 'mesopotamian') return 'sandstorm';
   return 'particles';
 }
 
@@ -1352,7 +1420,8 @@ function buildExtendedLoreCTA(entry, catalogEntry) {
 
 function buildZeusFooter(entry, assetPrefix) {
   const logomarkPath = `${assetPrefix}assets/${entry.id}_logomark`;
-  const greek = originalScript(entry);
+  const greek = getOriginalScript(entry);
+  const hasOriginal = hasOriginalScript(entry);
   const domains = getDomainsText(entry).toLowerCase();
   const classification =
     entry.tier === 'dual'
@@ -1375,8 +1444,8 @@ function buildZeusFooter(entry, assetPrefix) {
                         <span class="footer-value">${classification}</span>
                     </div>
                     <div class="footer-block">
-                        <span class="footer-label">Original Script</span>
-                        <span class="footer-value">${greek}</span>
+                        <span class="footer-label">${getOriginalScriptLabel(entry)}</span>
+                        <span class="footer-value">${hasOriginal ? greek : entry.unicode}</span>
                     </div>
                 </div>
             </div>
@@ -1447,11 +1516,12 @@ function getUnicodeInfo(char) {
 }
 
 function buildQuickFactsSection(entry, catalogEntry) {
-  const greek = originalScript(entry);
+  const greek = getOriginalScript(entry);
+  const hasOriginal = hasOriginalScript(entry);
   const symbols = catalogEntry?.symbols || [];
   const ipa = catalogEntry?.pronunciation?.ipa ? catalogEntry.pronunciation.ipa : '';
   const facts = [
-    { dt: 'Original Script', dd: greek },
+    { dt: getOriginalScriptLabel(entry), dd: hasOriginal ? greek : entry.unicode },
     { dt: 'Unicode Restoration', dd: entry.unicode },
     {
       dt: 'Pantheon',
@@ -1493,7 +1563,8 @@ function buildQuickFactsSection(entry, catalogEntry) {
 }
 
 function buildEtymologySection(entry, catalogEntry) {
-  const greek = originalScript(entry);
+  const greek = getOriginalScript(entry);
+  const hasOriginal = hasOriginalScript(entry);
   const etym = entry.etymology || {};
   const steps = [];
   if (etym.protoForm) {
@@ -1506,8 +1577,8 @@ function buildEtymologySection(entry, catalogEntry) {
     });
   }
   steps.push({
-    lang: 'Original Script',
-    form: greek,
+    lang: getOriginalScriptLabel(entry),
+    form: hasOriginal ? greek : entry.unicode,
     gloss: entry.meaning ? `${entry.unicode} — "${entry.meaning}"` : entry.domain,
   });
   steps.push({
@@ -1684,7 +1755,7 @@ function stripOuterPTag(html) {
 }
 
 function buildFaqSection(entry, catalogEntry) {
-  const greek = originalScript(entry);
+  const greek = getOriginalScript(entry) || entry.unicode;
   const ipa = catalogEntry?.pronunciation?.ipa ? catalogEntry.pronunciation.ipa : '';
   const approximation = catalogEntry?.pronunciation?.approximation
     ? catalogEntry.pronunciation.approximation
@@ -1875,7 +1946,7 @@ function generateHomePage(entry, palette, slotNames, templateDir) {
   const vars = {
     UNICODE: entry.unicode,
     ASCII: entry.ascii,
-    GREEK: originalScript(entry),
+    GREEK: getOriginalScript(entry) || '—',
     DOMAIN: entry.domain,
     MEANING: entry.meaning || '',
     TIER_LABEL: entry.tierLabel || `Tier ${entry.tier}`,
@@ -2067,7 +2138,10 @@ function generateLorePage(entry, palette, loreSections, templateDir, catalog) {
   const vars = {
     UNICODE: entry.unicode,
     ASCII: entry.ascii,
-    GREEK: originalScript(entry),
+    GREEK: getOriginalScript(entry) || '—',
+    ORIGINAL_SCRIPT: getOriginalScript(entry) || entry.unicode,
+    ORIGINAL_SCRIPT_LABEL: getOriginalScriptLabel(entry),
+    ORIGINAL_SCRIPT_PROVENANCE: buildOriginalScriptProvenanceHtml(entry),
     DOMAIN: entry.domain,
     MEANING: entry.meaning || '',
     TIER_LABEL: entry.tierLabel || `Tier ${entry.tier}`,
@@ -2178,7 +2252,7 @@ function generateGalleryPage(entry, palette, templateDir) {
   const vars = {
     UNICODE: entry.unicode,
     ASCII: entry.ascii,
-    GREEK: originalScript(entry),
+    GREEK: getOriginalScript(entry) || '—',
     DOMAIN: entry.domain,
     TIER_LABEL: entry.tierLabel || `Tier ${entry.tier}`,
     DOMAINS_TEXT: getDomainsText(entry),
@@ -2202,7 +2276,7 @@ function generateExtendedPage(entry, palette, templateDir, catalog) {
   const vars = {
     UNICODE: entry.unicode,
     ASCII: entry.ascii,
-    GREEK: originalScript(entry),
+    GREEK: getOriginalScript(entry) || '—',
     DOMAIN: entry.domain,
     MEANING: entry.meaning || '',
     TIER_LABEL: entry.tierLabel || `Tier ${entry.tier}`,

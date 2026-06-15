@@ -1,13 +1,15 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Śiva — Gallery | Destruction, Transformation, Dance | PUNYCODEX</title>
     <meta name="description" content="A curated gallery of Śiva, Destruction, Transformation, Dance, through history.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&amp;family=Montserrat:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../styles.css?v=perf1">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css?v=perf2">
 
     <link rel="canonical" href="https://punycodex.com/sites/shiva/gallery/">
 
@@ -20,6 +22,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Śiva — Gallery | Destruction, Transformation, Dance | PUNYCODEX">
     <meta name="twitter:description" content="A curated gallery of Śiva, Destruction, Transformation, Dance, through history.">
+
   <style>
 /* Gallery lightbox */
 .gallery-item {
@@ -106,23 +109,24 @@
 </head>
 <body>
     <!-- Global Nav -->
-    <div style="position:fixed;top:0;left:0;width:100%;z-index:1001;background:rgba(10,10,10,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);">
-        <div style="max-width:1200px;margin:0 auto;padding:0.4rem clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;">
-            <a href="https://punycodex.com/" style="font-family:'Cinzel',serif;font-size:0.8rem;font-weight:700;letter-spacing:0.15em;color:#D4AF37;text-decoration:none;">PUNYCODEX</a>
-            <div style="display:flex;gap:1.5rem;">
-                <a href="https://punycodex.com/pantheon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Pantheon</a>
-                <a href="https://punycodex.com/lexicon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Lexicon</a>
-                <a href="https://punycodex.com/type/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Type</a>
-                <a href="https://punycodex.com/tiers/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Tiers</a>
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punycodex.com/" class="global-brand">PUNYCODEX</a>
+            <div class="global-links">
+                <a href="https://punycodex.com/pantheon/">Pantheon</a>
+                <a href="https://punycodex.com/lexicon/">Lexicon</a>
+                <a href="https://punycodex.com/type/">Type</a>
+                <a href="https://punycodex.com/search.html">Search</a>
+                <a href="https://punycodex.com/tiers/">Tiers</a>
             </div>
         </div>
     </div>
 
-    <!-- Shiva Canvas -->
-    <canvas id="cosmic-canvas"></canvas>
+    <!-- Ambient Canvas -->
+    <canvas id="shiva-canvas" data-effect="particles" data-primary="#FF9933" data-secondary="#8B0000"></canvas>
 
     <!-- Tab Navigation -->
-    <nav class="main-nav tab-nav" style="top:40px;" id="main-nav">
+    <nav class="main-nav tab-nav" id="main-nav">
         <div class="nav-inner">
             <a href="../" class="nav-logo">
                 <picture><source srcset="../assets/shiva_logolockup.webp" type="image/webp"><img src="../assets/shiva_logolockup.png" alt="Śiva" class="nav-logo-img"></picture>
@@ -131,6 +135,7 @@
                 <a href="../index.html" class="nav-link">Home</a>
                 <a href="../lore/index.html" class="nav-link">Lore</a>
                 <a href="./index.html" class="nav-link active">Gallery</a>
+                <a href="../lore/extended/" class="nav-link">Extended</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
@@ -144,7 +149,7 @@
             <div class="hero-text">
                 <p class="hero-eyebrow reveal-up">Visual Legacy</p>
                 <h1 class="hero-title reveal-up">
-                    <span class="title-greek">—</span>
+                    <span class="title-greek">शिव</span>
                     <span class="title-divider"></span>
                     <span class="title-trans">Gallery</span>
                 </h1>
@@ -153,7 +158,7 @@
                     <a href="#gallery-grid" class="btn-primary">
                         <span>Explore the Collection</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M7 17L17 7M17 7H7M17 7V17"></path>
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
                         </svg>
                     </a>
                 </div>
@@ -175,58 +180,36 @@
             <div class="section-header reveal-up">
                 <span class="section-number">01</span>
                 <h2 class="section-title">The Collection</h2>
-                <p class="section-subtitle">Śiva through the eyes of sculptors, painters, and craftsmen across three millennia</p>
+                <p class="section-subtitle">Śiva through the eyes of sculptors, painters, and craftsmen across the ages</p>
             </div>
 
-                        <div class="gallery-grid">
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Shiva%20Nataraja%20in%20BM.jpg/960px-Shiva%20Nataraja%20in%20BM.jpg" data-caption="Shiva Nataraja, Chola bronze, c. 1100 CE. British Museum." aria-label="View full image: Shiva Nataraja, Chola bronze, c. 1100 CE. British Museum.">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Shiva%20Nataraja%20in%20BM.jpg/960px-Shiva%20Nataraja%20in%20BM.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Shiva%20Nataraja%20in%20BM.jpg/960px-Shiva%20Nataraja%20in%20BM.jpg" alt="Shiva Nataraja, Chola bronze, c. 1100 CE. British Museum." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Shiva Nataraja</strong> — Chola bronze, c. 1100 CE. The cosmic dancer: creation and destruction in a single gesture.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Gudimallam%20Lingam%20in-situ%20photograph.jpg/960px-Gudimallam%20Lingam%20in-situ%20photograph.jpg" data-caption="Gudimallam Lingam, 2nd century BCE–1st century CE. Andhra Pradesh, India." aria-label="View full image: Gudimallam Lingam, 2nd century BCE–1st century CE. Andhra Pradesh, India." data-delay="100">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Gudimallam%20Lingam%20in-situ%20photograph.jpg/960px-Gudimallam%20Lingam%20in-situ%20photograph.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Gudimallam%20Lingam%20in-situ%20photograph.jpg/960px-Gudimallam%20Lingam%20in-situ%20photograph.jpg" alt="Gudimallam Lingam, 2nd century BCE–1st century CE. Andhra Pradesh, India." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Gudimallam Lingam</strong> — 2nd century BCE–1st century CE, Andhra Pradesh. The aniconic form of Shiva: raw generative power, without face or form.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Gomeg%20Ambika%20Vidisha.jpg/960px-Gomeg%20Ambika%20Vidisha.jpg" data-caption="Shiva and Parvati as Uma-Maheshvara, red sandstone, Central India." aria-label="View full image: Shiva and Parvati as Uma-Maheshvara, red sandstone, Central India." data-delay="200">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Gomeg%20Ambika%20Vidisha.jpg/960px-Gomeg%20Ambika%20Vidisha.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Gomeg%20Ambika%20Vidisha.jpg/960px-Gomeg%20Ambika%20Vidisha.jpg" alt="Shiva and Parvati as Uma-Maheshvara, red sandstone, Central India." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Shiva and Parvati</strong> — Red sandstone Uma-Maheshvara from Central India. The divine couple united in eternal meditation.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Ardhanarishvara%2C%20Chola%20period%2C%2011th%20century%2C%20Government%20Museum%2C%20Chennai.jpg/960px-Ardhanarishvara%2C%20Chola%20period%2C%2011th%20century%2C%20Government%20Museum%2C%20Chennai.jpg" data-caption="Ardhanarishvara, Chola period, 11th century CE. Government Museum, Chennai." aria-label="View full image: Ardhanarishvara, Chola period, 11th century CE. Government Museum, Chennai." data-delay="300">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Ardhanarishvara%2C%20Chola%20period%2C%2011th%20century%2C%20Government%20Museum%2C%20Chennai.jpg/960px-Ardhanarishvara%2C%20Chola%20period%2C%2011th%20century%2C%20Government%20Museum%2C%20Chennai.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Ardhanarishvara%2C%20Chola%20period%2C%2011th%20century%2C%20Government%20Museum%2C%20Chennai.jpg/960px-Ardhanarishvara%2C%20Chola%20period%2C%2011th%20century%2C%20Government%20Museum%2C%20Chennai.jpg" alt="Ardhanarishvara, Chola period, 11th century CE. Government Museum, Chennai." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Ardhanarishvara</strong> — Chola period, 11th century CE, Government Museum, Chennai. Half Shiva, half Parvati: the divine androgyny made stone.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Shiva%20Bhairava%20ellora.jpg/960px-Shiva%20Bhairava%20ellora.jpg" data-caption="Shiva as Bhairava, Ellora Caves, Maharashtra." aria-label="View full image: Shiva as Bhairava, Ellora Caves, Maharashtra." data-delay="0">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Shiva%20Bhairava%20ellora.jpg/960px-Shiva%20Bhairava%20ellora.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Shiva%20Bhairava%20ellora.jpg/960px-Shiva%20Bhairava%20ellora.jpg" alt="Shiva as Bhairava, Ellora Caves, Maharashtra." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Bhairava</strong> — Ellora Caves, Maharashtra. The terrible form of Shiva: fangs, skulls, and the fire of annihilation.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/8th%20century%20Standing%20Shiva%20Mahadeva%2C%20Kashmir%2C%20India%2C%20Clevelandart%201989.369.jpg/960px-8th%20century%20Standing%20Shiva%20Mahadeva%2C%20Kashmir%2C%20India%2C%20Clevelandart%201989.369.jpg" data-caption="Standing Shiva Mahadeva, 8th century CE, Kashmir. Cleveland Museum of Art." aria-label="View full image: Standing Shiva Mahadeva, 8th century CE, Kashmir. Cleveland Museum of Art." data-delay="100">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/8th%20century%20Standing%20Shiva%20Mahadeva%2C%20Kashmir%2C%20India%2C%20Clevelandart%201989.369.jpg/960px-8th%20century%20Standing%20Shiva%20Mahadeva%2C%20Kashmir%2C%20India%2C%20Clevelandart%201989.369.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/8th%20century%20Standing%20Shiva%20Mahadeva%2C%20Kashmir%2C%20India%2C%20Clevelandart%201989.369.jpg/960px-8th%20century%20Standing%20Shiva%20Mahadeva%2C%20Kashmir%2C%20India%2C%20Clevelandart%201989.369.jpg" alt="Standing Shiva Mahadeva, 8th century CE, Kashmir. Cleveland Museum of Art." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Standing Shiva Mahadeva</strong> — 8th century CE, Kashmir. Cleveland Museum of Art. The ascetic god in calm, monumental power.</p>
-    </button>
-    </div>
+            <div class="gallery-grid">
+                
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="../assets/shiva_mascot.png">
+                        <picture><source srcset="../assets/shiva_mascot.webp" type="image/webp"><img src="../assets/shiva_mascot.png" alt="The Śiva mascot — Destruction, Transformation, Dance" loading="lazy"></picture>
+                    </figure>
+                    <p class="gallery-caption">The Śiva mascot — Destruction, Transformation, Dance</p>
+                </div>
+
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="../assets/shiva_logolockup.png">
+                        <picture><source srcset="../assets/shiva_logolockup.webp" type="image/webp"><img src="../assets/shiva_logolockup.png" alt="Śiva logolockup" loading="lazy"></picture>
+                    </figure>
+                    <p class="gallery-caption">Śiva logolockup</p>
+                </div>
+
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="../assets/shiva_logomark.png">
+                        <picture><source srcset="../assets/shiva_logomark.webp" type="image/webp"><img src="../assets/shiva_logomark.png" alt="Śiva logomark seal" loading="lazy"></picture>
+                    </figure>
+                    <p class="gallery-caption">Śiva logomark seal</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="main-footer">
+        <footer class="main-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
@@ -236,7 +219,7 @@
                 <div class="footer-info">
                     <div class="footer-block">
                         <span class="footer-label">Domains</span>
-                        <span class="footer-value">śiva.com</span>
+                        <span class="footer-value">shiva.com</span>
                     </div>
                     <div class="footer-block">
                         <span class="footer-label">Classification</span>
@@ -244,7 +227,7 @@
                     </div>
                     <div class="footer-block">
                         <span class="footer-label">Original Script</span>
-                        <span class="footer-value">—</span>
+                        <span class="footer-value">शिव</span>
                     </div>
                 </div>
             </div>
@@ -252,13 +235,17 @@
                 <picture><source srcset="../assets/shiva_logomark.webp" type="image/webp"><img src="../assets/shiva_logomark.png" alt="Śiva logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
-                <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
             </div>
         </div>
     </footer>
 
-    <script src="../script.js?v=perf1"></script>
+    <script src="/js/flagship-canvas.js"></script>
+    
 
+<script>window.PUNYCODEX_API_BASE = "";</script>
+    <script src="/js/temple-base.js?v=perf2"></script>
+    <script src="../script.js?v=perf2"></script>
 
 <div class="gallery-lightbox" id="gallery-lightbox" aria-modal="true" role="dialog" aria-label="Image preview">
   <div class="gallery-lightbox-content">
@@ -296,4 +283,5 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && lb.classList.contains('active')) closeLb(); });
 })();
 </script>
-</body></html>
+</body>
+</html>

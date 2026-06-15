@@ -21,6 +21,7 @@ db.exec(`
     ascii TEXT NOT NULL,
     unicode TEXT NOT NULL,
     greek TEXT,
+    original_script TEXT,
     pantheon TEXT NOT NULL,
     tier TEXT NOT NULL,
     tier_label TEXT,
@@ -48,6 +49,7 @@ db.exec(`
     ascii,
     unicode,
     greek,
+    original_script,
     pantheon,
     meaning,
     content='entries',
@@ -68,10 +70,14 @@ fs.writeFileSync(tmpPath, wrapped);
 const lexicon = require(tmpPath);
 fs.unlinkSync(tmpPath);
 
+const { getOriginalScript } = require(
+  path.join(__dirname, '..', '..', 'type', 'js', 'original-scripts.js')
+);
+
 // Insert entries
 const insertEntry = db.prepare(`
-  INSERT INTO entries (id, ascii, unicode, greek, pantheon, tier, tier_label, domain, meaning, sources, etymology, variants, has_flagship)
-  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  INSERT INTO entries (id, ascii, unicode, greek, original_script, pantheon, tier, tier_label, domain, meaning, sources, etymology, variants, has_flagship)
+  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 `);
 
 const insertBreakdown = db.prepare(`
@@ -80,8 +86,8 @@ const insertBreakdown = db.prepare(`
 `);
 
 const insertFts = db.prepare(`
-  INSERT INTO entries_fts (id, ascii, unicode, greek, pantheon, meaning)
-  VALUES (?, ?, ?, ?, ?, ?)
+  INSERT INTO entries_fts (id, ascii, unicode, greek, original_script, pantheon, meaning)
+  VALUES (?, ?, ?, ?, ?, ?, ?)
 `);
 
 // Flagship IDs
@@ -169,6 +175,7 @@ const insertEntryTxn = db.transaction((entries) => {
       entry.ascii,
       entry.unicode,
       entry.greek || null,
+      getOriginalScript(entry) || null,
       entry.pantheon,
       entry.tier,
       entry.tierLabel || null,
@@ -185,6 +192,7 @@ const insertEntryTxn = db.transaction((entries) => {
       entry.ascii,
       entry.unicode,
       entry.greek || '',
+      getOriginalScript(entry) || '',
       entry.pantheon,
       entry.meaning || ''
     );

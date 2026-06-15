@@ -1,30 +1,40 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gaîa — Earth, Mother of All | Lore | PUNYCODEX</title>
     <meta name="description" content="The authentic digital shrine to Gaîa, Earth, Mother of All. Explore the correct orthography, reconstructed pronunciation, and timeless mythology of Γαῖα.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&amp;family=Lato:wght@300;400;700&amp;family=Cinzel+Decorative:wght@400;700;900&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../styles.css?v=perf7">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css?v=perf2">
+
+    <style>
+        .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
+        .pantheon-text { display: flex; flex-direction: column; gap: 1.25rem; }
+        .pantheon-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); }
+        .pantheon-title { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); color: var(--white); letter-spacing: 0.05em; }
+        .pantheon-body { font-size: 1.05rem; color: var(--white-dim); line-height: 1.8; }
+        .pantheon-mascot { display: flex; justify-content: center; align-items: center; }
+        .pantheon-mascot-img { max-width: 300px; width: 100%; filter: brightness(1.5) contrast(1.1) saturate(1.05); }
+        @media (max-width: 900px) { .pantheon-content { grid-template-columns: 1fr; text-align: center; } .pantheon-mascot { order: -1; } }
+    </style>
 
     <!-- Schema.org -->
     <script type="application/ld+json">
 {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Gaîa — Earth, Mother of All",
-    "description": "The authentic digital shrine to Gaîa. Explore the correct Greek orthography, Unicode restoration, and scholarly sources for Gaîa.",
-    "url": "https://punycodex.com/sites/gaia/",
+    "name": "Gaîa — Earth, Mother of All | Lore",
+    "description": "The authentic digital shrine to Gaîa. Explore the correct orthography, Unicode restoration, and timeless mythology of Γαῖα.",
+    "url": "https://punycodex.com/sites/gaia/lore/",
     "about": {
         "@type": "Thing",
         "name": "Γαῖα",
-        "alternateName": [
-            "gaia",
-            "Gaia"
-        ],
-        "description": "Earth (from γαῖα)"
+        "alternateName": ["gaia", "Gaîa"],
+        "description": "Earth, Mother of All"
     },
     "isPartOf": {
         "@type": "WebSite",
@@ -33,7 +43,7 @@
     },
     "primaryImageOfPage": {
         "@type": "ImageObject",
-        "url": "https://punycodex.com/sites/gaia/assets/gaia_landscape.png"
+        "url": "https://punycodex.com/sites/gaia/assets/gaia_mascot.png"
     }
 }
     </script>
@@ -46,41 +56,41 @@
     <meta property="og:url" content="https://punycodex.com/sites/gaia/lore/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="PUNYCODEX">
-    <meta property="og:image" content="https://punycodex.com/sites/gaia/assets/gaia_landscape.png">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Gaîa — Earth, Mother of All | Lore | PUNYCODEX">
     <meta name="twitter:description" content="The authentic digital shrine to Gaîa. Explore the correct orthography, reconstructed pronunciation, and timeless mythology of Γαῖα.">
-    <meta name="twitter:image" content="https://punycodex.com/sites/gaia/assets/gaia_landscape.png">
 </head>
 <body>
     <!-- Global Nav -->
-    <div style="position:fixed;top:0;left:0;width:100%;z-index:1001;background:rgba(15,31,15,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);">
-        <div style="max-width:1200px;margin:0 auto;padding:0.4rem clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;">
-            <a href="https://punycodex.com/" style="font-family:'Cinzel',serif;font-size:0.8rem;font-weight:700;letter-spacing:0.15em;color:#D4AF37;text-decoration:none;">PUNYCODEX</a>
-            <div style="display:flex;gap:1.5rem;">
-                <a href="https://punycodex.com/pantheon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Pantheon</a>
-                <a href="https://punycodex.com/lexicon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Lexicon</a>
-                <a href="https://punycodex.com/type/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Type</a>
-                <a href="https://punycodex.com/tiers/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Tiers</a>
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punycodex.com/" class="global-brand">PUNYCODEX</a>
+            <div class="global-links">
+                <a href="https://punycodex.com/pantheon/">Pantheon</a>
+                <a href="https://punycodex.com/lexicon/">Lexicon</a>
+                <a href="https://punycodex.com/type/">Type</a>
+                <a href="https://punycodex.com/search.html">Search</a>
+                <a href="https://punycodex.com/tiers/">Tiers</a>
             </div>
         </div>
     </div>
 
-    <!-- Organic Canvas -->
-    <canvas id="roots-canvas"></canvas>
+    <!-- Ambient Canvas -->
+    <canvas id="gaia-canvas" data-effect="mountain" data-primary="#D4AF37" data-secondary="#4169E1"></canvas>
 
-    <!-- Local Navigation -->
-    <nav class="main-nav tab-nav" style="top:40px;" id="main-nav">
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="main-nav">
         <div class="nav-inner">
-            <a href="#hero" class="nav-logo">
+            <a href="../" class="nav-logo">
                 <picture><source srcset="../assets/gaia_logolockup.webp" type="image/webp"><img src="../assets/gaia_logolockup.png" alt="Gaîa" class="nav-logo-img"></picture>
             </a>
             <div class="nav-links">
-                <a href="../index.html" class="nav-link">Home</a>
-                <a href="./index.html" class="nav-link active">Lore</a>
-                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../" class="nav-link">Home</a>
+                <a href="./" class="nav-link active">Lore</a>
+                <a href="../gallery/" class="nav-link">Gallery</a>
+                <a href="extended/" class="nav-link">Extended</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
@@ -90,7 +100,6 @@
 
     <!-- Hero Section -->
     <section class="hero" id="hero">
-        <div class="hero-bg" style="background-image:url('assets/gaia_landscape.png');"></div>
         <div class="hero-content">
             <div class="hero-text">
                 <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
@@ -99,19 +108,23 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Gaîa</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Earth, Mother of All · Primordial Goddess of the Living World</p>
+                <p class="hero-subtitle reveal-up">Earth, Mother of All · Earth (from γαῖα)</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
-                    <span class="meta-domain">gaîa.com</span>
+                    <span class="meta-domain">Gaîa.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
                     <a href="#the-name" class="btn-primary">
                         <span>Enter the Temple</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M7 17L17 7M17 7H7M17 7V17"></path>
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
                         </svg>
                     </a>
                 </div>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <picture><source srcset="../assets/gaia_mascot.webp" type="image/webp"><img src="../assets/gaia_mascot.png" alt="Gaîa — Earth, Mother of All" class="mascot-img"></picture>
+                <div class="mascot-glow"></div>
             </div>
         </div>
         <div class="hero-scroll-indicator">
@@ -126,84 +139,72 @@
             <div class="section-header reveal-up">
                 <span class="section-number">01</span>
                 <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Why <em>Gaîa</em> is the correct form</p>
+                <p class="section-subtitle">Why <em>Gaîa.com</em> is the correct form</p>
             </div>
 
             <div class="name-grid">
                 <div class="name-card reveal-up">
                     <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
                         </svg>
                     </div>
                     <h3 class="card-title">Original Script</h3>
                     <p class="card-greek">Γαῖα</p>
-                    <p class="card-body">The name in its original Attic Greek form. The circumflex on the iota marks a long vowel, a feature essential to the correct metrical and phonological reading of the name. In epic poetry, the length of the <em>α</em> determines the scansion of entire hexameter lines. This is not a modern embellishment — it is the <strong>authentic orthography</strong> as transmitted through the manuscript tradition of Hesiod and the Homeric hymns.</p>
+                    <p class="card-body">The name in its original Greek form. <strong>Gaîa</strong> (Γαῖα) is attested as earth, mother of all — “Earth (from γαῖα)”. Its diphthongs and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                    
                 </div>
 
                 <div class="name-card reveal-up" data-delay="100">
                     <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"/>
                         </svg>
                     </div>
                     <h3 class="card-title">ASCII Constraint</h3>
                     <p class="card-ascii">gaia</p>
-                    <p class="card-body">Stripped of its Greek identity, the name was reduced to four Latin letters. Corporations claimed it. Space agencies borrowed it. The primordial goddess was buried beneath satellite missions, health food brands, and software frameworks. The circumflex — the mark of her authentic length — was erased. What remains is a hollow shell, unpronounceable to the muses.</p>
+                    <p class="card-body">Reduced to plain <strong>gaia</strong>, the name loses everything that made it specific: diphthongs and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
                 </div>
 
                 <div class="name-card reveal-up" data-delay="200">
                     <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
                         </svg>
                     </div>
                     <h3 class="card-title">Unicode Restoration</h3>
                     <p class="card-unicode">Gaîa</p>
-                    <p class="card-body">The circumflex on the iota restores the long vowel and the dignity of the name. This is not decoration — it is <strong>philological accuracy</strong>. The Greek original contains both stress and length, making this the full scholarly orthography. The domain encodes to Punycode, but the browser displays the truth.</p>
+                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Gaîa</strong> restores diphthongs and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
                 </div>
             </div>
 
             <div class="punycode-explainer reveal-up">
                 <div class="explainer-label">Punycode Encoding</div>
                 <div class="explainer-box">
-                    <code class="explainer-code">gaîa.com → xn--gaa-wma.com</code>
-                    <p class="explainer-note">The non-ASCII character <strong>î</strong> (U+00EE) is encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Gaîa</em>.</p>
+                    <code class="explainer-code">Gaîa.com → xn--gaa-wma.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Gaîa</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Gaîa</em>.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    
-    <!-- Tier Classification Section -->
-        <!-- Tier Classification Section -->
-    <section class="section section-tier" id="tier">
-        <div class="container">
-            <div class="section-header reveal-up">
-                <h2 class="section-title">Tier Classification</h2>
-                <p class="section-subtitle">Where gaîa stands in the PUNYCODEX elegant tier system</p>
-            </div>
-            <div class="tier-grid tier-grid-single">
-                <div class="tier-card reveal-up">
-                    <div class="tier-label">Tier 1</div>
-                    <div class="tier-domain">gaîa.com</div>
-                    <p class="tier-body"><strong>Gaîa</strong> is Tier 1 because the Greek original <em>Γαῖα</em> contains both stress and length, and there is only one historically valid Unicode restoration.<br><br>
-      The circumflex on the vowel <em>î</em> encodes <strong>both features in a single character</strong> — the rising-falling pitch accent (stress) and the quantitative length merged into one mark. This is the most compact scholarly orthography possible. There is no alternate spelling attested. The ASCII fallback <em>gaia</em> is a modern transliteration, not an ancient canonical form. Under the PUNYCODEX system, a name with both stress and length, and only one valid restoration, is <strong>unambiguously Tier 1</strong>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-<!-- Pronunciation Section -->
+    <!-- Pronunciation -->
     <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">02</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Gaîa was spoken</p>
+        </div>
         <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">02</span>
-                <h2 class="section-title">Pronunciation</h2>
-                <p class="section-subtitle">How the Earth Mother was truly spoken</p>
-            </div>
+        
+        <div class="container">
+        
+        <div class="container">
+            
 
             <div class="pronunciation-grid">
                 <div class="pronunciation-main reveal-up">
@@ -252,314 +253,132 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+    </div>
+    </div>
+</section>
 
-    <!-- The Primordial Section -->
-    <section class="section section-primordial" id="the-primordial">
+    <!-- Domains & Sacred Symbols -->
+    <section class="section section-symbols" id="symbols">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">03</span>
+            <h2 class="section-title">Domains & Sacred Symbols</h2>
+            <p class="section-subtitle">Attributes of Gaîa</p>
+        </div>
+        <div class="symbols-list"><span class="symbol-item">grain</span><span class="symbol-item">cornucopia</span><span class="symbol-item">serpent</span></div>
+    </div>
+</section>
+
+    <!-- Mythology -->
+    <section class="section section-mythology" id="mythology">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Gaîa</p>
+        </div>
         <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">03</span>
-                <h2 class="section-title">The Primordial</h2>
-                <p class="section-subtitle">Domains, symbols, and divine authority</p>
-            </div>
-
-            <div class="primordial-content">
-                <div class="primordial-intro reveal-up">
-                    <p class="lead-text">Gaîa is not merely a goddess. She is <strong>the earth itself</strong> — the first thing that emerged from Chaos, the solid foundation upon which all subsequent creation rests. She is the mother of the Titans, the Olympians, the Giants, and every creature that walks, crawls, or takes root in the soil. Before there were gods, there was Gaîa. Before there was sky, there was Gaîa. She is the oldest of the old, the ground beneath all myth.</p>
-                </div>
-
-                <div class="domains-grid">
-                    <div class="domain-card reveal-up">
-                        <div class="domain-icon">
-                            <svg viewBox="0 0 64 64" fill="none" stroke="#4A9A4A" stroke-width="1.5">
-                                <circle cx="32" cy="32" r="24"></circle>
-                                <path d="M32 8v48M8 32h48"></path>
-                                <circle cx="32" cy="32" r="8"></circle>
-                            </svg>
-                        </div>
-                        <h4 class="domain-name">The Earth</h4>
-                        <p class="domain-desc">Not merely soil or stone — the entire terrestrial sphere, the ground that holds the seas, the mountains, the cities, and the graves. Gaîa <em>is</em> the world.</p>
-                    </div>
-                    <div class="domain-card reveal-up" data-delay="100">
-                        <div class="domain-icon">
-                            <svg viewBox="0 0 64 64" fill="none" stroke="#4A9A4A" stroke-width="1.5">
-                                <path d="M32 8c-8 0-14 10-14 20 0 12 10 20 14 24 4-4 14-12 14-24 0-10-6-20-14-20z"></path>
-                                <path d="M32 20v24"></path>
-                                <path d="M24 28c0-4 4-8 8-8s8 4 8 8"></path>
-                            </svg>
-                        </div>
-                        <h4 class="domain-name">Motherhood</h4>
-                        <p class="domain-desc">The archetypal mother — not through marriage but through spontaneous generation. She bears children from herself, from her union with Ouranos, and from her rage.</p>
-                    </div>
-                    <div class="domain-card reveal-up" data-delay="200">
-                        <div class="domain-icon">
-                            <svg viewBox="0 0 64 64" fill="none" stroke="#4A9A4A" stroke-width="1.5">
-                                <path d="M20 56L32 16L44 56"></path>
-                                <path d="M16 40h32"></path>
-                                <path d="M12 48h40"></path>
-                            </svg>
-                        </div>
-                        <h4 class="domain-name">Mountains</h4>
-                        <p class="domain-desc">The Ourea — the mountains — were born directly from Gaîa, without father. They are her bones pushed through her skin, eternal and unmoving.</p>
-                    </div>
-                    <div class="domain-card reveal-up" data-delay="300">
-                        <div class="domain-icon">
-                            <svg viewBox="0 0 64 64" fill="none" stroke="#4A9A4A" stroke-width="1.5">
-                                <path d="M32 8L38 28H58L42 40L48 60L32 48L16 60L22 40L6 28H26L32 8Z"></path>
-                                <circle cx="32" cy="32" r="4"></circle>
-                            </svg>
-                        </div>
-                        <h4 class="domain-name">Oracles</h4>
-                        <p class="domain-desc">Before Apollo, the oracle at Delphi belonged to Gaîa. The Pythia sat above the chasm and spoke the Earth's own prophecies — primal, truthful, and terrible.</p>
-                    </div>
-                </div>
-
-                <div class="symbols-section reveal-up">
-                    <h3 class="symbols-title">Sacred Symbols</h3>
-                    <div class="symbols-list">
-                        <div class="symbol-item">
-                            <span class="symbol-name">The Cornucopia</span>
-                            <span class="symbol-meaning">Abundance, the endless giving of the earth</span>
-                        </div>
-                        <div class="symbol-item">
-                            <span class="symbol-name">Wheat Sheaf</span>
-                            <span class="symbol-meaning">Agriculture, the first covenant between human and soil</span>
-                        </div>
-                        <div class="symbol-item">
-                            <span class="symbol-name">Serpent</span>
-                            <span class="symbol-meaning">The earth-dragon, guardian of Delphi, child of Gaîa</span>
-                        </div>
-                        <div class="symbol-item">
-                            <span class="symbol-name">Omphalos Stone</span>
-                            <span class="symbol-meaning">The navel of the world, marking the center of Gaîa's body</span>
-                        </div>
-                        <div class="symbol-item">
-                            <span class="symbol-name">Megalith</span>
-                            <span class="symbol-meaning">The standing stones, her fingers reaching toward the sky</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Myths Section -->
-    <section class="section section-myths" id="myths">
+        
         <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">04</span>
-                <h2 class="section-title">The Myths</h2>
-                <p class="section-subtitle">Stories that shaped the cosmos</p>
-            </div>
+        
+        <p class="lead-text"><strong>Gaîa</strong> belongs to the greek tradition as earth, mother of all.</p><p>Earth (from γαῖα)</p><p>The myths surrounding this figure established its authority in ritual, art, and literature — and continue to surface in later religious and literary traditions.</p>
+    </div>
+    </div>
+    </div>
+</section>
 
-            <div class="myths-timeline">
-                <div class="myth-card reveal-up">
-                    <div class="myth-marker"></div>
-                    <div class="myth-content">
-                        <span class="myth-tag">The Beginning</span>
-                        <h3 class="myth-title">Birth from Chaos</h3>
-                        <p class="myth-text">In the beginning, Hesiod tells us, there was Chaos — the yawning void. And then, somehow, impossibly, <strong>Gaîa arose</strong> — broad-bosomed Earth, the ever-sure foundation of all. She was the first solid thing, the first boundary, the first home. From her came the starry Ouranos — the sky — who covered her on every side. And she bore the long mountains and the sea — Pontos — all without coupling, simply by being herself. The earth generates. That is her nature.</p>
-                    </div>
-                </div>
-
-                <div class="myth-card reveal-up" data-delay="100">
-                    <div class="myth-marker"></div>
-                    <div class="myth-content">
-                        <span class="myth-tag">The Union</span>
-                        <h3 class="myth-title">Gaîa and Ouranos</h3>
-                        <p class="myth-text">Gaîa lay with Ouranos, her son and her equal, and bore the Twelve Titans — Kronos, Rhea, Koios, Phoibê, and their siblings. She bore the Cyclopes — Brontês, Steropês, Argês — each with a single eye in the center of their foreheads. And she bore the Hecatoncheires — Kottos, Briareos, Gyes — each with a hundred arms and fifty heads. But Ouranos hated his children. He pushed them back into Gaîa's womb, refusing them the light. Gaîa groaned within, crushed by her lover, her children imprisoned in her own body. She made a great sickle of grey adamant and called her children to avenge her. Only Kronos, the youngest and the boldest, had the courage.</p>
-                    </div>
-                </div>
-
-                <div class="myth-card reveal-up" data-delay="200">
-                    <div class="myth-marker"></div>
-                    <div class="myth-content">
-                        <span class="myth-tag">The Castration</span>
-                        <h3 class="myth-title">The Fall of Ouranos</h3>
-                        <p class="myth-text">Kronos lay in wait while Ouranos descended to cover Gaîa. When the sky pressed close, Kronos struck — <strong>he severed his father's genitals with the adamantine sickle</strong> and cast them into the sea. From the blood that fell on Gaîa, she bore the Erinyes — the Furies — and the Gigantes — the Giants. From the foam that gathered around the severed flesh in the sea, Aphrodítē was born. Ouranos withdrew, wounded and shamed, and the Titans ruled in his place. But Gaîa had merely traded one tyrant for another.</p>
-                    </div>
-                </div>
-
-                <div class="myth-card reveal-up" data-delay="300">
-                    <div class="myth-marker"></div>
-                    <div class="myth-content">
-                        <span class="myth-tag">The Second Revolt</span>
-                        <h3 class="myth-title">The Titanomachy</h3>
-                        <p class="myth-text">Kronos swallowed his own children, just as Ouranos had swallowed his. But Rhea, with Gaîa's counsel, saved Zeús by hiding him in a Cretan cave. When Zeús grew, he freed his siblings and waged war against the Titans. Gaîa, now against her own children, prophesied that the Olympians could only win if they freed the Hecatoncheires — the hundred-handers she had borne long ago. Zeús did so. With the Hecatoncheires hurling three hundred rocks at once, the Titans were overwhelmed and cast into Tartaros. <strong>Gaîa bore the victors and then armed the losers.</strong> She is mother to both sides of every war.</p>
-                    </div>
-                </div>
-
-                <div class="myth-card reveal-up" data-delay="400">
-                    <div class="myth-marker"></div>
-                    <div class="myth-content">
-                        <span class="myth-tag">The Final War</span>
-                        <h3 class="myth-title">The Gigantomachy</h3>
-                        <p class="myth-text">When the Olympians were secure, Gaîa turned against them. She coupled with Tartaros and bore the Giants — great beings armored in stone and mountain, born to destroy the new gods. The Gigantomachy shook the world. The gods needed a mortal hero to tip the balance: Herakles. With his arrows and the gods' thunderbolts, the Giants were struck down and buried under volcanoes — Etna, Vesuvius, every mountain that smokes is a Giant imprisoned beneath. Gaîa, undefeated, simply waited. She has always been patient. She is the earth. She has nowhere else to go.</p>
-                    </div>
-                </div>
-
-                <div class="myth-card reveal-up" data-delay="500">
-                    <div class="myth-marker"></div>
-                    <div class="myth-content">
-                        <span class="myth-tag">The Monster</span>
-                        <h3 class="myth-title">Typhon, Son of Gaîa</h3>
-                        <p class="myth-text">Her last great child with Tartaros was Typhon — a being of such monstrous size that his head brushed the stars, his arms were coils of serpents, and fire flashed from his eyes. He challenged Zeús directly. The battle shattered mountains and boiled seas. Zeús finally prevailed, hurling Typhon into Tartaros or, in some accounts, beneath Mount Etna, where his struggles cause earthquakes and volcanic eruptions. <strong>Even in defeat, Gaîa's children reshape the world.</strong></p>
-                    </div>
-                </div>
-            </div>
+    <!-- Related Names -->
+    <section class="section section-related" id="related">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Related Names</h2>
+            <p class="section-subtitle">Other figures in the greek pantheon</p>
         </div>
-    </section>
-
-    <!-- Pantheon / Related Names Section -->
-    <section class="section" id="pantheon" style="background:#0f1f0f;padding:6rem 0;">
-        <div class="container" style="max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);">
-            <div style="text-align:center;margin-bottom:4rem;">
-                <span style="display:block;font-family:'Cinzel',serif;font-size:0.85rem;color:#D4AF37;letter-spacing:0.4em;margin-bottom:1rem;">05</span>
-                <h2 style="font-family:'Cinzel',serif;font-size:clamp(2rem,4vw,3.5rem);color:#F5F5F5;letter-spacing:0.05em;margin-bottom:1rem;">Pantheon</h2>
-                <p style="font-size:clamp(1rem,1.5vw,1.25rem);color:#A0A0A0;font-style:italic;">Related entries from the Greek primordial order</p>
-            </div>
-            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;">
-                <a href="../../chaos/"" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
-                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Chaos</span>
-                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Νίκη</span>
-                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">The primordial void, the yawning gap</span>
-                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Primordial</span>
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
-                    </div>
-                </a>
-                <a href="../../tartaros/"" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
-                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Tartaros</span>
-                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Μήτηρ</span>
-                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">The abyss below the underworld</span>
-                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Primordial</span>
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
-                    </div>
-                </a>
-                <a href="../../eros/"" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
-                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Eros</span>
-                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἄρης</span>
-                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Desire, the force of attraction</span>
-                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Primordial</span>
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
-                    </div>
-                </a>
-                <div style="cursor:default;padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
-                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Ouranos</span>
-                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Γαῖα</span>
-                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">The sky, first consort of Gaîa</span>
-                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Primordial</span>
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
-                    </div>
-                </div>
-                <a href="../../kronos/"" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
-                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Kronos</span>
-                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Οὐρανός</span>
-                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Time, youngest Titan, king of the golden age</span>
-                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Tier-1</span>
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
-                    </div>
-                </a>
-                <a href="../../rhea/"" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
-                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Rhea</span>
-                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ἥρα</span>
-                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Flow, mother of the Olympian gods</span>
-                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Tier-1</span>
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
-                    </div>
-                </a>
-                <a href="../../zeus/"" style="padding:2rem 1.5rem;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:inherit;transition:all 0.4s ease;display:flex;flex-direction:column;gap:0.75rem;" onmouseover="this.style.borderColor='rgba(212,175,55,0.25)';this.style.background='rgba(255,255,255,0.03)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)';this.style.background='rgba(255,255,255,0.015)';this.style.transform='none';this.style.boxShadow='none';">
-                    <span style="font-family:'Cinzel',serif;font-size:1.25rem;color:#D4AF37;letter-spacing:0.05em;">Zeús</span>
-                    <span style="font-size:0.9rem;color:#A0A0A0;font-style:italic;">Ζεύς</span>
-                    <span style="font-size:0.8rem;color:#A0A0A0;line-height:1.5;">Sky, thunder, king of the Olympian gods</span>
-                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;">Tier-1</span>
-                        <span style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border:1px solid rgba(255,255,255,0.06);color:#A0A0A0;">Greek</span>
-                    </div>
-                </a>
-            </div>
+        <div class="related-grid reveal-up">
+            
+    <a href="../../apollon/" class="related-card reveal-up">
+      <span class="related-name">Apóllōn</span>
+      <span class="related-greek">Ἀπόλλων</span>
+      <span class="related-domain">Light, Music, Prophecy</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Dual-Tier</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek</span>
+      </div>
+    </a>
+    <a href="../../hades/" class="related-card reveal-up">
+      <span class="related-name">Hádēs</span>
+      <span class="related-greek">Ἅιδης</span>
+      <span class="related-domain">Underworld, Wealth</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek</span>
+      </div>
+    </a>
+    <a href="../../hekate/" class="related-card reveal-up">
+      <span class="related-name">Hekátē</span>
+      <span class="related-greek">Ἑκάτη</span>
+      <span class="related-domain">Magic, Crossroads, Moon</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Dual-Tier</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek</span>
+      </div>
+    </a>
+    <a href="../../nike/" class="related-card reveal-up">
+      <span class="related-name">Níkē</span>
+      <span class="related-greek">Νίκη</span>
+      <span class="related-domain">Victory</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Dual-Tier</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek</span>
+      </div>
+    </a>
+    <a href="../../zeus/" class="related-card reveal-up">
+      <span class="related-name">Zeús</span>
+      <span class="related-greek">Ζεύς</span>
+      <span class="related-domain">Sky, Thunder, King of Gods</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek</span>
+      </div>
+    </a>
+    <a href="../../ares/" class="related-card reveal-up">
+      <span class="related-name">Árēs</span>
+      <span class="related-greek">Ἄρης</span>
+      <span class="related-domain">War, Courage, Battle Fury</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek</span>
+      </div>
+    </a>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Name Variations Section -->
-    <section class="section section-variations" id="variations">
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">06</span>
-                <h2 class="section-title">Name Variations</h2>
-                <p class="section-subtitle">The single valid form of the Earth Mother</p>
-            </div>
-
-            <div class="variations-grid reveal-up">
-                <div class="variation-card primary">
-                    <span class="variation-tag">Primary / Owned</span>
-                    <p class="variation-name">Gaîa</p>
-                    <p class="variation-body">The full scholarly orthography with circumflex on the iota, marking a long vowel. This is the form attested in Hesiod's <em>Theogony</em> and the Homeric hymns. It is the only historically valid Unicode restoration.</p>
-                </div>
-                <div class="variation-card fallback">
-                    <span class="variation-tag">ASCII Fallback</span>
-                    <p class="variation-name">Gaia</p>
-                    <p class="variation-body">The stripped ASCII form, lacking the circumflex that marks vowel length. While phonetically recognizable, it sacrifices the metrical and tonal information encoded in the original Greek. This is the modern English approximation, not the ancient canonical form.</p>
-                </div>
-            </div>
-
-            <div class="variation-note reveal-up">
-                <p>Gaîa is classified as <strong>Tier-1</strong> because the Greek original contains both stress (the acute/circumflex) and length (the long iota), but there is only one historically valid Unicode restoration. Unlike the dual-tier names — Ápollon, Hádes, Hekáte, Níke — Gaîa has no alternate stress positions or dialectal variants that would produce a distinct, equally valid spelling. The circumflex on the iota is the sole marker of the name's authentic phonological structure.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pantheon Connection -->
-    <section class="section section-pantheon" id="pantheon-connect">
-        <div class="container">
-            <div class="pantheon-content reveal-up">
-                <div class="pantheon-text">
-                    <span class="pantheon-eyebrow">The PUNYCODEX</span>
-                    <h2 class="pantheon-title">One of Two Hundred Fifty-Five</h2>
-                    <p class="pantheon-body">Gaîa is the first. The earth that anchors the entire network. Before gods, before titans, before monsters — there was the broad-bosomed Earth. But she is not alone. Across the encoded web, the authentic names of the Greek and Norse pantheons have been restored — each with its own domain, its own lore, its own truth.</p>
-                    <p class="pantheon-body">This is not a directory. This is a <strong>resurrection</strong>.</p>
-                    <a href="https://punycodex.com/lexicon/" class="btn-primary btn-ghost">
-                        <span>Enter the Codex</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M7 17L17 7M17 7H7M17 7V17"></path>
-                        </svg>
-                    </a>
-                </div>
-                <div class="pantheon-mascot">
-                    <picture><source srcset="../assets/gaia_landscape.webp" type="image/webp"><picture><source srcset="../assets/gaia_landscape.webp" type="image/webp"><img src="../assets/gaia_landscape.png" alt="Gaîa — primordial earth landscape" class="pantheon-mascot-img"></picture></picture>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Type Tool CTA -->
-    <section style="padding:6rem 0;background:linear-gradient(180deg,#0f1f0f 0%,rgba(74,154,74,0.08) 100%);text-align:center;">
-        <div class="container" style="max-width:700px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);">
-            <h2 style="font-family:'Cinzel',serif;font-size:clamp(1.75rem,3vw,2.5rem);color:#F5F5F5;margin-bottom:1.5rem;letter-spacing:0.05em;">Experience the Name</h2>
-            <p style="font-size:1.05rem;color:#A0A0A0;line-height:1.8;margin-bottom:2.5rem;">See how Gaia behaves in the PUNYCODEX Type Tool — with predictive autocomplete, character-by-character breakdown, and scholarly constraint validation.</p>
-            <div style="display:inline-flex;align-items:center;gap:1rem;padding:1rem 2rem;background:rgba(0,0,0,0.3);border:1px solid rgba(212,175,55,0.25);border-radius:2px;font-family:'Fira Code','Courier New',monospace;font-size:1.1rem;color:#D4AF37;margin-bottom:1.5rem;">
-                <code>gaia</code>
-                <span style="color:#A0A0A0;">→</span>
-                <code>Gaîa</code>
-            </div>
-            <div>
-                <a href="/type/#gaia" style="display:inline-flex;align-items:center;gap:0.75rem;padding:1rem 2rem;background:linear-gradient(135deg,#D4AF37,#8B7355);color:#0f1f0f;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;transition:all 0.4s ease;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 40px rgba(212,175,55,0.3)';" onmouseout="this.style.transform='none';this.style.boxShadow='none';">
-                    <span>Open in Type Tool</span>
+    <!-- Extended Lore CTA -->
+    <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
+    <div class="container">
+        <div class="pantheon-content reveal-up">
+            <div class="pantheon-text">
+                <span class="pantheon-eyebrow">Go Deeper</span>
+                <h2 class="pantheon-title">Extended Lore</h2>
+                <p class="pantheon-body">The lore you have read is the surface — the living myth. Beneath it lies the scholarship: etymology, reconstructed pronunciation, Unicode character breakdown, and the cultural legacy of <strong>Gaîa</strong>.</p>
+                <a href="extended/" class="btn-primary btn-ghost">
+                    <span>Enter Extended Lore</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M7 17L17 7M17 7H7M17 7V17"></path>
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
                     </svg>
                 </a>
             </div>
+            <div class="pantheon-mascot">
+                <picture><source srcset="../assets/gaia_mascot.webp" type="image/webp"><img src="../assets/gaia_mascot.png" alt="Gaîa mascot" class="pantheon-mascot-img"></picture>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="main-footer">
+        <footer class="main-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
@@ -568,7 +387,7 @@
                 </div>
                 <div class="footer-info">
                     <div class="footer-block">
-                        <span class="footer-label">Domain</span>
+                        <span class="footer-label">Domains</span>
                         <span class="footer-value">gaîa.com</span>
                     </div>
                     <div class="footer-block">
@@ -582,15 +401,16 @@
                 </div>
             </div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/gaia_logomark.webp" type="image/webp"><picture><source srcset="../assets/gaia_logomark.webp" type="image/webp"><img src="../assets/gaia_logomark.png" alt="Gaîa logomark" class="footer-logomark"></picture></picture>
+                <picture><source srcset="../assets/gaia_logomark.webp" type="image/webp"><img src="../assets/gaia_logomark.png" alt="Gaîa logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
-                <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
             </div>
         </div>
     </footer>
 
-    <script src="../script.js?v=perf7"></script>
-
-
-</body></html>
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/temple-base.js?v=perf2"></script>
+    <script src="../script.js?v=perf2"></script>
+</body>
+</html>

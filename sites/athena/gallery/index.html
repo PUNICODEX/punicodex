@@ -1,13 +1,15 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Athénā — Gallery | Wisdom, War Strategy, Crafts | PUNYCODEX</title>
     <meta name="description" content="A curated gallery of Athénā, Wisdom, War Strategy, Crafts, through history.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&amp;family=Montserrat:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../styles.css?v=perf1">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css?v=perf2">
 
     <link rel="canonical" href="https://punycodex.com/sites/athena/gallery/">
 
@@ -20,6 +22,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Athénā — Gallery | Wisdom, War Strategy, Crafts | PUNYCODEX">
     <meta name="twitter:description" content="A curated gallery of Athénā, Wisdom, War Strategy, Crafts, through history.">
+
   <style>
 /* Gallery lightbox */
 .gallery-item {
@@ -106,23 +109,24 @@
 </head>
 <body>
     <!-- Global Nav -->
-    <div style="position:fixed;top:0;left:0;width:100%;z-index:1001;background:rgba(10,10,10,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);">
-        <div style="max-width:1200px;margin:0 auto;padding:0.4rem clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;">
-            <a href="https://punycodex.com/" style="font-family:'Cinzel',serif;font-size:0.8rem;font-weight:700;letter-spacing:0.15em;color:#D4AF37;text-decoration:none;">PUNYCODEX</a>
-            <div style="display:flex;gap:1.5rem;">
-                <a href="https://punycodex.com/pantheon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Pantheon</a>
-                <a href="https://punycodex.com/lexicon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Lexicon</a>
-                <a href="https://punycodex.com/type/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Type</a>
-                <a href="https://punycodex.com/tiers/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Tiers</a>
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punycodex.com/" class="global-brand">PUNYCODEX</a>
+            <div class="global-links">
+                <a href="https://punycodex.com/pantheon/">Pantheon</a>
+                <a href="https://punycodex.com/lexicon/">Lexicon</a>
+                <a href="https://punycodex.com/type/">Type</a>
+                <a href="https://punycodex.com/search.html">Search</a>
+                <a href="https://punycodex.com/tiers/">Tiers</a>
             </div>
         </div>
     </div>
 
-    <!-- Athena Canvas -->
-    <canvas id="strategy-canvas"></canvas>
+    <!-- Ambient Canvas -->
+    <canvas id="athena-canvas" data-effect="light" data-primary="#D4AF37" data-secondary="#4169E1"></canvas>
 
     <!-- Tab Navigation -->
-    <nav class="main-nav tab-nav" style="top:40px;" id="main-nav">
+    <nav class="main-nav tab-nav" id="main-nav">
         <div class="nav-inner">
             <a href="../" class="nav-logo">
                 <picture><source srcset="../assets/athena_logolockup.webp" type="image/webp"><img src="../assets/athena_logolockup.png" alt="Athénā" class="nav-logo-img"></picture>
@@ -131,6 +135,7 @@
                 <a href="../index.html" class="nav-link">Home</a>
                 <a href="../lore/index.html" class="nav-link">Lore</a>
                 <a href="./index.html" class="nav-link active">Gallery</a>
+                <a href="../lore/extended/" class="nav-link">Extended</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
@@ -153,7 +158,7 @@
                     <a href="#gallery-grid" class="btn-primary">
                         <span>Explore the Collection</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M7 17L17 7M17 7H7M17 7V17"></path>
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
                         </svg>
                     </a>
                 </div>
@@ -175,79 +180,36 @@
             <div class="section-header reveal-up">
                 <span class="section-number">01</span>
                 <h2 class="section-title">The Collection</h2>
-                <p class="section-subtitle">Athénā through the eyes of sculptors, painters, and craftsmen across three millennia</p>
+                <p class="section-subtitle">Athénā through the eyes of sculptors, painters, and craftsmen across the ages</p>
             </div>
 
-                        <div class="gallery-grid">
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Athena_Parthenos_LeQuire.jpg/960px-Athena_Parthenos_LeQuire.jpg" data-caption="Athena Parthenos replica by Alan LeQuire. Nashville Parthenon." aria-label="View full image: Athena Parthenos replica by Alan LeQuire. Nashville Parthenon.">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Athena_Parthenos_LeQuire.jpg/960px-Athena_Parthenos_LeQuire.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Athena_Parthenos_LeQuire.jpg/960px-Athena_Parthenos_LeQuire.jpg" alt="Athena Parthenos replica by Alan LeQuire. Nashville Parthenon." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Athena Parthenos</strong> — Alan LeQuire replica, Nashville Parthenon. The colossal gold-and-ivory original by Phidias stood 12 meters tall.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Athena_of_Velletri_-_Louvre.jpg/960px-Athena_of_Velletri_-_Louvre.jpg" data-caption="Athena of Velletri, Roman copy. Louvre Museum, Paris." aria-label="View full image: Athena of Velletri, Roman copy. Louvre Museum, Paris." data-delay="100">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Athena_of_Velletri_-_Louvre.jpg/960px-Athena_of_Velletri_-_Louvre.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Athena_of_Velletri_-_Louvre.jpg/960px-Athena_of_Velletri_-_Louvre.jpg" alt="Athena of Velletri, Roman copy. Louvre Museum, Paris." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Athena of Velletri</strong> — Roman copy of a Greek original. The aegis raised, the Gorgoneion at her breast, eyes that see everything.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Bust%20Athena%20Velletri%20Glyptothek%20Munich%20213.jpg/960px-Bust%20Athena%20Velletri%20Glyptothek%20Munich%20213.jpg" data-caption="Bust of Athena Velletri type, Glyptothek, Munich." aria-label="View full image: Bust of Athena Velletri type, Glyptothek, Munich." data-delay="200">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Bust%20Athena%20Velletri%20Glyptothek%20Munich%20213.jpg/960px-Bust%20Athena%20Velletri%20Glyptothek%20Munich%20213.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Bust%20Athena%20Velletri%20Glyptothek%20Munich%20213.jpg/960px-Bust%20Athena%20Velletri%20Glyptothek%20Munich%20213.jpg" alt="Bust of Athena Velletri type, Glyptothek, Munich." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Pallas Athena</strong> — Velletri type, Glyptothek, Munich. The spear rests against her shoulder. She does not need to raise it.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Athena_Giustiniani%2C_Vatican_Museums.jpg/960px-Athena_Giustiniani%2C_Vatican_Museums.jpg" data-caption="Athena Giustiniani, Roman copy. Vatican Museums." aria-label="View full image: Athena Giustiniani, Roman copy. Vatican Museums." data-delay="300">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Athena_Giustiniani%2C_Vatican_Museums.jpg/960px-Athena_Giustiniani%2C_Vatican_Museums.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Athena_Giustiniani%2C_Vatican_Museums.jpg/960px-Athena_Giustiniani%2C_Vatican_Museums.jpg" alt="Athena Giustiniani, Roman copy. Vatican Museums." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Athena Giustiniani</strong> — Vatican Museums. The aegis draped over her shoulders, the owl at her feet. Wisdom made stone.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Burgon_Group_-_ABV_89_1_-_Athena_Promachos_-_charioteer_in_biga_-_London_BM_1842-0728-834_-_01.jpg/960px-Burgon_Group_-_ABV_89_1_-_Athena_Promachos_-_charioteer_in_biga_-_London_BM_1842-0728-834_-_01.jpg" data-caption="Athena Promachos, Roman copy. British Museum." aria-label="View full image: Athena Promachos, Roman copy. British Museum." data-delay="0">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Burgon_Group_-_ABV_89_1_-_Athena_Promachos_-_charioteer_in_biga_-_London_BM_1842-0728-834_-_01.jpg/960px-Burgon_Group_-_ABV_89_1_-_Athena_Promachos_-_charioteer_in_biga_-_London_BM_1842-0728-834_-_01.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Burgon_Group_-_ABV_89_1_-_Athena_Promachos_-_charioteer_in_biga_-_London_BM_1842-0728-834_-_01.jpg/960px-Burgon_Group_-_ABV_89_1_-_Athena_Promachos_-_charioteer_in_biga_-_London_BM_1842-0728-834_-_01.jpg" alt="Athena Promachos, Roman copy. British Museum." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Athena Promachos</strong> — "She who fights in the front line." The protector of Athens.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Athena_Lemnia_%28SK_Dresden_49%29_01.jpg/960px-Athena_Lemnia_%28SK_Dresden_49%29_01.jpg" data-caption="Athena Lemnia, reconstruction. Dresden." aria-label="View full image: Athena Lemnia, reconstruction. Dresden." data-delay="100">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Athena_Lemnia_%28SK_Dresden_49%29_01.jpg/960px-Athena_Lemnia_%28SK_Dresden_49%29_01.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Athena_Lemnia_%28SK_Dresden_49%29_01.jpg/960px-Athena_Lemnia_%28SK_Dresden_49%29_01.jpg" alt="Athena Lemnia, reconstruction. Dresden." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Athena Lemnia</strong> — Phidias's lost masterpiece, reconstructed. The most beautiful Athena ever made.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Athena_Marsyas.jpg/960px-Athena_Marsyas.jpg" data-caption="Athena and Marsyas, Mykonos vase, c. 440 BCE." aria-label="View full image: Athena and Marsyas, Mykonos vase, c. 440 BCE." data-delay="200">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Athena_Marsyas.jpg/960px-Athena_Marsyas.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Athena_Marsyas.jpg/960px-Athena_Marsyas.jpg" alt="Athena and Marsyas, Mykonos vase, c. 440 BCE." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Athena and Marsyas</strong> — Mykonos vase, c. 440 BCE. The moment before the satyr is flayed for challenging the gods.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Amphora_birth_Athena_Louvre_F32.jpg/960px-Amphora_birth_Athena_Louvre_F32.jpg" data-caption="The Birth of Athena from the head of Zeus, black-figure amphora, c. 550 BCE. British Museum." aria-label="View full image: The Birth of Athena from the head of Zeus, black-figure amphora, c. 550 BCE. British Museum." data-delay="300">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Amphora_birth_Athena_Louvre_F32.jpg/960px-Amphora_birth_Athena_Louvre_F32.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Amphora_birth_Athena_Louvre_F32.jpg/960px-Amphora_birth_Athena_Louvre_F32.jpg" alt="The Birth of Athena from the head of Zeus, black-figure amphora, c. 550 BCE. British Museum." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>The Birth of Athena</strong> — Black-figure amphora, c. 550 BCE. She springs fully armed from Zeus's skull.</p>
-    </button>
-    <button class="gallery-item reveal-up" type="button" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Head_of_Athena_-_NAMA_inv_1763.jpg/960px-Head_of_Athena_-_NAMA_inv_1763.jpg" data-caption="Helmeted bust of Athena, Roman copy. British Museum." aria-label="View full image: Helmeted bust of Athena, Roman copy. British Museum." data-delay="0">
-      <picture>
-        <source srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Head_of_Athena_-_NAMA_inv_1763.jpg/960px-Head_of_Athena_-_NAMA_inv_1763.jpg.webp" type="image/webp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Head_of_Athena_-_NAMA_inv_1763.jpg/960px-Head_of_Athena_-_NAMA_inv_1763.jpg" alt="Helmeted bust of Athena, Roman copy. British Museum." loading="lazy" class="gallery-img" decoding="async">
-      </picture>
-      <p class="gallery-caption"><strong>Helmeted Athena</strong> — British Museum. The face beneath the Corinthian helmet: calm, knowing, already three moves ahead.</p>
-    </button>
-    </div>
+            <div class="gallery-grid">
+                
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="../assets/athena_mascot.png">
+                        <picture><source srcset="../assets/athena_mascot.webp" type="image/webp"><img src="../assets/athena_mascot.png" alt="The Athénā mascot — Wisdom, War Strategy, Crafts" loading="lazy"></picture>
+                    </figure>
+                    <p class="gallery-caption">The Athénā mascot — Wisdom, War Strategy, Crafts</p>
+                </div>
+
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="../assets/athena_logolockup.png">
+                        <picture><source srcset="../assets/athena_logolockup.webp" type="image/webp"><img src="../assets/athena_logolockup.png" alt="Athénā logolockup" loading="lazy"></picture>
+                    </figure>
+                    <p class="gallery-caption">Athénā logolockup</p>
+                </div>
+
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="../assets/athena_logomark.png">
+                        <picture><source srcset="../assets/athena_logomark.webp" type="image/webp"><img src="../assets/athena_logomark.png" alt="Athénā logomark seal" loading="lazy"></picture>
+                    </figure>
+                    <p class="gallery-caption">Athénā logomark seal</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="main-footer">
+        <footer class="main-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
@@ -257,7 +219,7 @@
                 <div class="footer-info">
                     <div class="footer-block">
                         <span class="footer-label">Domains</span>
-                        <span class="footer-value">athénā.com · athēnā.com</span>
+                        <span class="footer-value">athénā.com · athena.com</span>
                     </div>
                     <div class="footer-block">
                         <span class="footer-label">Classification</span>
@@ -273,13 +235,17 @@
                 <picture><source srcset="../assets/athena_logomark.webp" type="image/webp"><img src="../assets/athena_logomark.png" alt="Athénā logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
-                <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
             </div>
         </div>
     </footer>
 
-    <script src="../script.js?v=perf1"></script>
+    <script src="/js/flagship-canvas.js"></script>
+    
 
+<script>window.PUNYCODEX_API_BASE = "";</script>
+    <script src="/js/temple-base.js?v=perf2"></script>
+    <script src="../script.js?v=perf2"></script>
 
 <div class="gallery-lightbox" id="gallery-lightbox" aria-modal="true" role="dialog" aria-label="Image preview">
   <div class="gallery-lightbox-content">
@@ -317,4 +283,5 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && lb.classList.contains('active')) closeLb(); });
 })();
 </script>
-</body></html>
+</body>
+</html>
