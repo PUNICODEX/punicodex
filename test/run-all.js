@@ -23,6 +23,7 @@ const SUITES = [
   { name: 'Link Checker', cmd: 'node test/links.js' },
   { name: 'SEO Validator', cmd: 'node scripts/validate-seo.js' },
   { name: 'Philological Accuracy', cmd: 'node scripts/validate-accuracy.js' },
+  { name: 'Flywheel Integrity', cmd: 'node scripts/validate-flywheel.js' },
 ];
 
 const results = [];

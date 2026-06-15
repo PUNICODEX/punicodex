@@ -28,6 +28,9 @@ these in sync, the project uses **canonical sources** and **generated outputs**.
   truth for all lexicon data.
 - `js/archetypes-v2.js` — Hand-built flagship archetypes, including domain
   ownership and canvas assignments.
+- `platform/db/owned-domains.json` — The complete list of owned Unicode domain
+  strings. Every entry here must be covered by an archetype domain set and
+  routed in `middleware.js`.
 
 ### Generated outputs (DO NOT edit by hand)
 
@@ -53,6 +56,28 @@ CI enforces this with a **divergence gate**: after tests pass, it runs
 `npm run generate` and fails if any generated file differs from what is
 committed (`git diff --exit-code`). If the gate fails, you forgot to run
 `npm run generate` after changing a canonical source.
+
+### Flywheel Integrity Validator (Phase 2)
+
+`scripts/validate-flywheel.js` is part of `npm test`. It proves the canonical
+sources and all generated consumers are internally consistent:
+
+- Archetype ids, names, and Greek originals match the lexicon.
+- `middleware.js` `DOMAIN_MAP` routes every archetype domain (Unicode, Punycode,
+  and `www.` variants) to `/sites/{id}`.
+- `middleware.js` `ARCHETYPE_IDS` derives exactly from the archetype list.
+- Every owned domain in `platform/db/owned-domains.json` is covered by an
+  archetype domain set and routed in middleware.
+- Generated lexicon copies (`extension/shared/lexicon.js`,
+  `mobile/shared/lexicon.js`, `android/app/src/main/assets/shared/lexicon.json`)
+  derive byte-identically from the canonical lexicon.
+- `platform/browser/renderer/lexicon.json` entries, breakdowns, pantheon list,
+  and `hasFlagship` set derive exactly from the canonical lexicon and archetype
+  list.
+- Every lexicon entry has a temple page at `sites/{id}/index.html`.
+
+If this validator fails, run `npm run generate` and fix any remaining source
+mismatches it reports.
 
 ### Master generator
 

@@ -8,23 +8,16 @@
  */
 const fs = require('fs');
 const path = require('path');
+const vm = require('vm');
 const { domainToASCII } = require('url');
 
 const { LEXICON } = require('../type/js/lexicon.js');
 
-const hasFlagship = new Set([
-    'ab','aigyptos','akh','alfheimr','aphrodite','apollon','ares','artemis',
-    'asia','athena','athenai','atlas','delphoi','demeter','europe','gaia',
-    'hades','hekate','helheimr','helios','hephaistos','hera','hermes',
-    'hestia','jotunheimr','ker','kobe','kyoto','libye','maa','medousa',
-    'midgardr','muspellheimr','nike','odinn','olympos','osaka','persephone',
-    'pontos','poseidon','prometheus','ra','ragnarok','selene','shiva',
-    'sparte','thor','zeus',
-    'el','baal','anat','asherah','kronos','enlil','ishtar','typhon',
-    'chaos','dionysos','maat','sia','shu','tartaros',
-    'aether','astart','ba','enki','eros','ganesha','heka','horus','kali',
-    'prajapati','rta','vishnu'
-]);
+// Derive the flagship set directly from the handcrafted archetype database
+// so the renderer can never drift from the site routing source of truth.
+const archetypesSrc = fs.readFileSync(path.join(__dirname, '..', 'js', 'archetypes-v2.js'), 'utf8');
+const ARCHETYPES = vm.runInNewContext(`(function(){\n${archetypesSrc}\nreturn ARCHETYPES;\n})()`);
+const hasFlagship = new Set(ARCHETYPES.map(a => a.id));
 
 function getPunycode(unicode) {
     try {
