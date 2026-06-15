@@ -260,6 +260,7 @@ function getVariants(id) {
     punycode: computePunycode(v.unicode),
     type: v.type,
     note: v.note,
+    sources: v.sources || null,
     links: v.id ? buildLinks(v.id) : null,
   }));
 

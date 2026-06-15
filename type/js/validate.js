@@ -31,6 +31,7 @@ const C = {
 
 let pass = 0;
 let fail = 0;
+let warnCount = 0;
 
 function assert(condition, message) {
   if (condition) {
@@ -39,6 +40,11 @@ function assert(condition, message) {
     fail++;
     console.log(`  ${C.red}✗${C.reset} ${message}`);
   }
+}
+
+function warn(message) {
+  warnCount++;
+  console.log(`  ${C.yellow}⚠${C.reset} ${message}`);
 }
 
 function section(name) {
@@ -210,6 +216,21 @@ LEXICON.forEach((entry, i) => {
         `[${label}] variants[${k}] type "${v.type}" not in allowed set: ${ALLOWED_VARIANT_TYPES.join(', ')}`
       );
       assert(typeof v.note === 'string', `[${label}] variants[${k}] missing note`);
+      if (v.sources !== undefined) {
+        assert(
+          Array.isArray(v.sources) &&
+            v.sources.length > 0 &&
+            v.sources.every((s) => typeof s === 'string' && s.length > 0),
+          `[${label}] variants[${k}] sources must be a non-empty array of non-empty strings`
+        );
+      }
+      if (v.type === 'alt-stress' || v.type === 'alt') {
+        if (!v.sources || v.sources.length === 0) {
+          warn(
+            `[${label}] variants[${k}] type "${v.type}" should cite sources to appear in the type tool`
+          );
+        }
+      }
       assert(
         v.unicode !== entry.unicode,
         `[${label}] variants[${k}] unicode "${v.unicode}" duplicates parent unicode`
@@ -496,7 +517,8 @@ Object.entries(counts).forEach(([p, c]) => {
 // ═══════════════════════════════════════════════════════════
 console.log(`\n${'='.repeat(50)}`);
 if (fail === 0) {
-  console.log(`${C.green}✓ All ${pass} assertions passed${C.reset}`);
+  const warnMsg = warnCount > 0 ? ` (${warnCount} warning${warnCount === 1 ? '' : 's'})` : '';
+  console.log(`${C.green}✓ All ${pass} assertions passed${C.reset}${warnMsg}`);
   process.exit(0);
 } else {
   console.log(`${C.red}✗ ${fail} failed, ${pass} passed${C.reset}`);

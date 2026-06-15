@@ -213,6 +213,15 @@ Every flagship temple **must** include a "Name Variations" section showing:
 
 This makes the collection transparent about its compromises and celebrates the philology rather than hiding it.
 
+### Variant Sources and Type Tool Display
+
+Variant objects in the lexicon may carry an optional `sources` array. The type tool separates variants into two groups:
+
+1. **Derived Forms** — `owned`, `ideal`, `macron-only`, and `ascii`. These are always shown as copyable chips because they derive directly from the primary restoration.
+2. **Scholarly Variants** — `alt-stress` and `alt`. These are **only shown when the variant carries a `sources` array**. This prevents questionable accent shifts or transliterations from being promoted as canonical.
+
+The lexicon validator warns (but does not fail) when an `alt-stress` or `alt` variant lacks sources, producing a ready-made audit list. When adding a new scholarly variant, always cite the source(s) that support it; otherwise it remains hidden from the type tool.
+
 ---
 
 ## Realms Page

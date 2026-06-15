@@ -50115,6 +50115,93 @@ const LEXICON = [
       { char: 'n', to: 'n', type: 'same', note: 'Same' },
       { char: 'g', to: 'g', type: 'same', note: 'Same' }
     ]
+  },
+  {
+    id: 'asa',
+    hasAdSite: true,
+    ascii: 'asa',
+    unicode: 'Aša',
+    greek: '—',
+    pantheon: 'zoroastrian',
+    tier: '2',
+    tierLabel: 'Tier 2',
+    domain: 'Truth, Righteousness, Cosmic Order',
+    meaning: 'Truth, righteousness, and the cosmic order. The central ethical and metaphysical principle of Zoroastrianism.',
+    sources: [
+      'AirWb',
+      'Bartholomae'
+    ],
+    variants: [
+      {
+        unicode: 'Asha',
+        type: 'ascii',
+        note: 'Modern English spelling'
+      }
+    ],
+    breakdown: [
+      {
+        char: 'a',
+        to: 'A',
+        type: 'same',
+        note: 'Same'
+      },
+      {
+        char: 's',
+        to: 'š',
+        type: 'special',
+        note: 'Caron marks /ʃ/ (Avestan š)'
+      },
+      {
+        char: 'a',
+        to: 'a',
+        type: 'same',
+        note: 'Same'
+      }
+    ]
+  },
+  {
+    id: 'vac',
+    hasAdSite: true,
+    ascii: 'vac',
+    unicode: 'Vāc',
+    greek: '—',
+    pantheon: 'sanskrit',
+    tier: '2',
+    tierLabel: 'Tier 2',
+    domain: 'Speech, Voice, Sacred Word',
+    meaning: 'Speech personified; the Vedic goddess of speech and sound, precursor to Sarasvatī.',
+    sources: [
+      'Ṛgveda',
+      'Monier-Williams',
+      'Macdonell'
+    ],
+    variants: [
+      {
+        unicode: 'Vac',
+        type: 'ascii',
+        note: 'Plain ASCII fallback'
+      }
+    ],
+    breakdown: [
+      {
+        char: 'v',
+        to: 'V',
+        type: 'same',
+        note: 'Same'
+      },
+      {
+        char: 'a',
+        to: 'ā',
+        type: 'length',
+        note: 'Macron: long a'
+      },
+      {
+        char: 'c',
+        to: 'c',
+        type: 'same',
+        note: 'Same'
+      }
+    ]
   }
 ];
 

@@ -495,9 +495,9 @@
 .result-variations {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 16px;
     margin-bottom: 20px;
-    padding: 10px 12px;
+    padding: 12px 14px;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--white-faint);
     border-radius: 8px;
@@ -505,6 +505,12 @@
 
 .result-variations.hidden {
     display: none;
+}
+
+.result-variations-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .result-variations-label {
@@ -515,63 +521,111 @@
     color: var(--stone-dim);
 }
 
+.result-variations-hint {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: var(--stone-dim);
+    margin: 0;
+    line-height: 1.4;
+}
+
 .variations-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 10px;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.variation-item {
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    gap: 4px;
+    max-width: 100%;
 }
 
 .variation-chip {
     display: inline-flex;
     align-items: center;
-    padding: 4px 10px;
+    gap: 6px;
+    padding: 5px 10px;
     border-radius: 4px;
     font-size: 0.9rem;
     font-family: var(--font-mono);
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--white-faint);
     color: var(--white-dim);
-    cursor: default;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-.variation-owned {
-    border-color: var(--gold);
-    color: var(--gold);
-    background: rgba(212, 175, 55, 0.08);
+.variation-chip:hover,
+.variation-chip:focus {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: var(--gold-dim);
+    color: var(--ivory);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.15);
 }
 
-.variation-ideal {
-    border-color: var(--secondary);
-    color: var(--secondary);
-    background: rgba(65, 105, 225, 0.08);
+.variation-chip:active {
+    transform: translateY(1px);
 }
 
-.variation-alt-stress {
-    border-color: var(--ember);
-    color: var(--ember);
-    background: rgba(192, 108, 84, 0.08);
+.variation-chip .variation-type {
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 2px 5px;
+    border-radius: 3px;
+    background: rgba(0, 0, 0, 0.25);
+    color: inherit;
+    opacity: 0.8;
 }
 
-.variation-macron-only {
-    border-color: var(--stone);
-    color: var(--stone);
-    background: rgba(150, 150, 150, 0.08);
+.variation-sources {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    justify-content: center;
+    max-width: 100%;
 }
 
-.variation-ascii {
-    border-color: var(--white-faint);
-    color: var(--white-dim);
-    font-style: italic;
+.variation-source {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--stone-dim);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--white-faint);
+    border-radius: 3px;
+    padding: 2px 5px;
+    line-height: 1;
 }
 
-.variation-decomposed {
-    border-color: var(--primary);
-    color: var(--primary);
-    background: rgba(212, 175, 55, 0.08);
-    font-size: 0.8rem;
-}
-}
+.variation-owned { border-color: var(--gold); color: var(--gold); background: rgba(212, 175, 55, 0.08); }
+.variation-owned:hover, .variation-owned:focus { background: rgba(212, 175, 55, 0.18); }
+
+.variation-ideal { border-color: var(--secondary); color: var(--secondary); background: rgba(65, 105, 225, 0.08); }
+.variation-ideal:hover, .variation-ideal:focus { background: rgba(65, 105, 225, 0.18); }
+
+.variation-alt-stress { border-color: var(--ember); color: var(--ember); background: rgba(192, 108, 84, 0.08); }
+.variation-alt-stress:hover, .variation-alt-stress:focus { background: rgba(192, 108, 84, 0.18); }
+
+.variation-alt { border-color: #a080c0; color: #a080c0; background: rgba(160, 128, 192, 0.08); }
+.variation-alt:hover, .variation-alt:focus { background: rgba(160, 128, 192, 0.18); }
+
+.variation-macron-only { border-color: var(--stone); color: var(--stone); background: rgba(150, 150, 150, 0.08); }
+.variation-macron-only:hover, .variation-macron-only:focus { background: rgba(150, 150, 150, 0.18); }
+
+.variation-ascii { border-color: var(--white-faint); color: var(--white-dim); font-style: italic; }
+.variation-ascii:hover, .variation-ascii:focus { background: rgba(255, 255, 255, 0.12); }
+
+.variation-decomposed { border-color: var(--primary); color: var(--primary); background: rgba(212, 175, 55, 0.08); font-size: 0.8rem; }
+.variation-decomposed:hover, .variation-decomposed:focus { background: rgba(212, 175, 55, 0.18); }
 
 .result-meta {
     display: flex;

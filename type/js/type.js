@@ -386,18 +386,51 @@
         }
 
         if (resultVariations && (entry.variants || (typeof StackedDiacritics !== 'undefined' && StackedDiacritics.hasStackedDiacritics(entry.unicode)))) {
-            let html = '<span class="result-variations-label">Valid Variations</span><div class="variations-list">';
-            if (entry.variants && entry.variants.length > 0) {
-                entry.variants.forEach(v => {
-                    html += `<span class="variation-chip variation-${v.type}">${escapeHtml(v.unicode)}</span>`;
-                });
+            const derivedTypes = ['owned', 'ideal', 'macron-only', 'ascii'];
+            const scholarlyTypes = ['alt-stress', 'alt'];
+            const derived = (entry.variants || []).filter(v => derivedTypes.includes(v.type));
+            const scholarly = (entry.variants || []).filter(v => scholarlyTypes.includes(v.type) && Array.isArray(v.sources) && v.sources.length > 0);
+
+            derived.sort((a, b) => derivedTypes.indexOf(a.type) - derivedTypes.indexOf(b.type));
+            scholarly.sort((a, b) => scholarlyTypes.indexOf(a.type) - scholarlyTypes.indexOf(b.type));
+
+            let html = '';
+            if (derived.length > 0 || (typeof StackedDiacritics !== 'undefined' && StackedDiacritics.hasStackedDiacritics(entry.unicode))) {
+                html += '<div class="result-variations-section">';
+                html += '<span class="result-variations-label">Derived Forms</span>';
+                html += '<div class="variations-list">';
+                for (const v of derived) {
+                    html += renderVariationItem(v, false);
+                }
+                if (typeof StackedDiacritics !== 'undefined' && StackedDiacritics.hasStackedDiacritics(entry.unicode)) {
+                    html += `<button type="button" class="variation-chip variation-decomposed" data-unicode="${escapeHtml(StackedDiacritics.render(entry.unicode))}" title="Decomposed view of stacked diacritics">${StackedDiacritics.render(entry.unicode)}</button>`;
+                }
+                html += '</div>';
+                html += '<p class="result-variations-hint">Forms derived from the primary restoration: owned domain, ideal stacked marks, standard macron convention, and modern ASCII.</p>';
+                html += '</div>';
             }
-            if (typeof StackedDiacritics !== 'undefined' && StackedDiacritics.hasStackedDiacritics(entry.unicode)) {
-                html += `<span class="variation-chip variation-decomposed" title="Decomposed view">${StackedDiacritics.render(entry.unicode)}</span>`;
+            if (scholarly.length > 0) {
+                html += '<div class="result-variations-section">';
+                html += '<span class="result-variations-label">Scholarly Variants</span>';
+                html += '<div class="variations-list">';
+                for (const v of scholarly) {
+                    html += renderVariationItem(v, true);
+                }
+                html += '</div>';
+                html += '<p class="result-variations-hint">Attested alternate spellings. Each chip is backed by the cited source(s).</p>';
+                html += '</div>';
             }
-            html += '</div>';
+
             resultVariations.innerHTML = html;
-            resultVariations.classList.remove('hidden');
+            resultVariations.classList.toggle('hidden', html === '');
+
+            resultVariations.querySelectorAll('.variation-chip').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const text = btn.dataset.unicode;
+                    const label = btn.querySelector('.variation-unicode')?.textContent || text;
+                    copyText(text, label);
+                });
+            });
         } else if (resultVariations) {
             resultVariations.classList.add('hidden');
         }
@@ -578,16 +611,13 @@
         scheduleUpdate();
     }
 
-    async function copyUnicode() {
-        const entry = selectedEntry || findExactMatch(currentInput);
-        if (!entry) return;
-
-        const text = nfc(entry.unicode);
-
+    async function copyText(text, label = text) {
         if (window.PX && window.PX.copyToClipboard) {
             window.PX.copyToClipboard(text);
-            window.PX.showToast(`Copied: ${text}`);
-            return;
+            if (window.PX.showToast) {
+                window.PX.showToast(`Copied: ${label}`);
+            }
+            return true;
         }
 
         let copied = false;
@@ -614,6 +644,16 @@
             document.body.removeChild(ta);
         }
 
+        return copied;
+    }
+
+    async function copyUnicode() {
+        const entry = selectedEntry || findExactMatch(currentInput);
+        if (!entry) return;
+
+        const text = nfc(entry.unicode);
+        const copied = await copyText(text, text);
+
         if (copied) {
             copyBtn.textContent = 'Copied!';
             setTimeout(() => copyBtn.textContent = 'Copy Unicode', 1500);
@@ -639,6 +679,20 @@
     // ═══════════════════════════════════════════════════════════
     // UTILS
     // ═══════════════════════════════════════════════════════════
+
+    function renderVariationItem(v, showSources) {
+        const title = `${v.note}${v.sources && v.sources.length ? ' — Sources: ' + v.sources.join(', ') : ''}`;
+        let html = `<div class="variation-item">`;
+        html += `<button type="button" class="variation-chip variation-${v.type}" data-unicode="${escapeHtml(v.unicode)}" title="${escapeHtml(title)}">`;
+        html += `<span class="variation-unicode">${escapeHtml(nfc(v.unicode))}</span>`;
+        html += `<span class="variation-type">${escapeHtml(v.type)}</span>`;
+        html += `</button>`;
+        if (showSources && v.sources && v.sources.length) {
+            html += `<span class="variation-sources">${v.sources.map(s => `<span class="variation-source">${escapeHtml(s)}</span>`).join('')}</span>`;
+        }
+        html += `</div>`;
+        return html;
+    }
 
     function escapeHtml(text) {
         const div = document.createElement('div');
