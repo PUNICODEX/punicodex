@@ -243,11 +243,14 @@ LEXICON.forEach((entry, i) => {
     });
   }
 
-  // Dual-tier entries must have variants
+  // Dual-tier entries must have at least two distinct valid forms
+  // (canonical unicode + at least one variant, or multiple variants).
   if (entry.tier === 'dual') {
+    const canonicalCount = entry.unicode ? 1 : 0;
+    const variantCount = entry.variants ? entry.variants.length : 0;
     assert(
-      entry.variants && entry.variants.length >= 2,
-      `[${label}] dual-tier entry must have at least 2 variants, got ${entry.variants ? entry.variants.length : 0}`
+      canonicalCount + variantCount >= 2,
+      `[${label}] dual-tier entry must have at least 2 distinct forms, got ${canonicalCount + variantCount}`
     );
   }
 

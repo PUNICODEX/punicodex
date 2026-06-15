@@ -1698,10 +1698,11 @@ function buildEtymologySection(entry, catalogEntry) {
       items: kin.map((k) => `<li><strong>${k.label}</strong> — ${k.form}</li>`).join(''),
     });
   }
-  if (entry.variants?.length) {
+  const scholarlyVariants = (entry.variants || []).filter((v) => v.type !== 'ascii');
+  if (scholarlyVariants.length) {
     derivativeGroups.push({
       title: 'Unicode Variants',
-      items: entry.variants
+      items: scholarlyVariants
         .map(
           (v) => `<li><strong>${v.unicode}</strong> — ${v.type}${v.note ? ` (${v.note})` : ''}</li>`
         )

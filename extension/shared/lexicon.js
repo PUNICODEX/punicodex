@@ -34,11 +34,6 @@ const LEXICON = [
         unicode: 'Apollōn',
         type: 'macron-only',
         note: 'LSJ convention: length only, no stress mark'
-      },
-      {
-        unicode: 'Apollo',
-        type: 'ascii',
-        note: 'Modern English'
       }
     ],
     accuracyNote: 'The form Ápollōn is not listed because the Greek accent in Ἀπόλλων always falls on the second syllable (πό), as given in LSJ, the Oxford Classical Dictionary, and all standard editions. An initial acute on the alpha is structurally impossible in Greek and does not correspond to any manuscript, inscription, or dialectal variant.',
@@ -124,11 +119,6 @@ const LEXICON = [
         unicode: 'Hādēs',
         type: 'alt-stress',
         note: 'Macron on alpha: length-preserved variant without acute'
-      },
-      {
-        unicode: 'Hades',
-        type: 'ascii',
-        note: 'Modern English'
       }
     ],
     breakdown: [
@@ -200,11 +190,6 @@ const LEXICON = [
         unicode: 'Hekatē',
         type: 'macron-only',
         note: 'LSJ convention: length only, no acute'
-      },
-      {
-        unicode: 'Hekate',
-        type: 'ascii',
-        note: 'Modern English'
       }
     ],
     breakdown: [
@@ -275,11 +260,6 @@ const LEXICON = [
         unicode: 'Nikē',
         type: 'macron-only',
         note: 'LSJ convention: length only, no acute'
-      },
-      {
-        unicode: 'Nike',
-        type: 'ascii',
-        note: 'Modern English'
       }
     ],
     breakdown: [
@@ -347,12 +327,7 @@ const LEXICON = [
       'Beekes'
     ],
     variants: [
-      {
-        id: 'zeusv1',
-        unicode: 'Zeus',
-        type: 'ascii',
-        note: 'Modern English'
-      }
+      
     ],
     breakdown: [
       {
@@ -430,11 +405,6 @@ const LEXICON = [
         unicode: 'Arēs',
         type: 'macron-only',
         note: 'LSJ convention: length only, no acute'
-      },
-      {
-        unicode: 'Ares',
-        type: 'ascii',
-        note: 'Modern English'
       }
     ],
     breakdown: [
@@ -501,11 +471,6 @@ const LEXICON = [
         unicode: 'Aphroditē',
         type: 'macron-only',
         note: 'LSJ convention: length only, no acute'
-      },
-      {
-        unicode: 'Aphrodite',
-        type: 'ascii',
-        note: 'Modern English'
       }
     ],
     breakdown: [
@@ -598,12 +563,6 @@ const LEXICON = [
     ],
     variants: [
       {
-        id: 'athenav1',
-        unicode: 'Athena',
-        type: 'ascii',
-        note: 'Modern English'
-      },
-      {
         unicode: 'Athēnā',
         type: 'macron-only',
         note: 'LSJ convention: length only, no acute on epsilon'
@@ -680,11 +639,7 @@ const LEXICON = [
       'Beekes'
     ],
     variants: [
-      {
-        unicode: 'Demeter',
-        type: 'ascii',
-        note: 'Modern English'
-      }
+      
     ],
     breakdown: [
       {
@@ -756,11 +711,7 @@ const LEXICON = [
       'Beekes'
     ],
     variants: [
-      {
-        unicode: 'Hera',
-        type: 'ascii',
-        note: 'Modern English'
-      }
+      
     ],
     breakdown: [
       {
@@ -826,11 +777,6 @@ const LEXICON = [
         unicode: 'Hermēs',
         type: 'macron-only',
         note: 'LSJ convention: length only, no circumflex'
-      },
-      {
-        unicode: 'Hermes',
-        type: 'ascii',
-        note: 'Modern English'
       }
     ],
     breakdown: [
@@ -897,11 +843,7 @@ const LEXICON = [
       'Beekes'
     ],
     variants: [
-      {
-        unicode: 'Hephaistos',
-        type: 'ascii',
-        note: 'Modern English'
-      }
+      
     ],
     breakdown: [
       {
@@ -991,11 +933,7 @@ const LEXICON = [
       'Beekes'
     ],
     variants: [
-      {
-        unicode: 'Hestia',
-        type: 'ascii',
-        note: 'Modern English'
-      }
+      
     ],
     breakdown: [
       {
@@ -1073,11 +1011,6 @@ const LEXICON = [
         unicode: 'Poseidōn',
         type: 'macron-only',
         note: 'LSJ convention: length only, no circumflex'
-      },
-      {
-        unicode: 'Poseidon',
-        type: 'ascii',
-        note: 'Modern English'
       }
     ],
     breakdown: [
@@ -1156,11 +1089,7 @@ const LEXICON = [
       'Beekes'
     ],
     variants: [
-      {
-        unicode: 'Persephone',
-        type: 'ascii',
-        note: 'Modern English'
-      }
+      
     ],
     breakdown: [
       {
@@ -1250,11 +1179,7 @@ const LEXICON = [
       'Beekes'
     ],
     variants: [
-      {
-        unicode: 'Prometheus',
-        type: 'ascii',
-        note: 'Modern English'
-      }
+      
     ],
     breakdown: [
       {
@@ -2349,11 +2274,7 @@ const LEXICON = [
       'Beekes'
     ],
     variants: [
-      {
-        unicode: 'Artemis',
-        type: 'ascii',
-        note: 'Modern English'
-      }
+      
     ],
     breakdown: [
       {
@@ -2425,11 +2346,7 @@ const LEXICON = [
       'Beekes'
     ],
     variants: [
-      {
-        unicode: 'Atlas',
-        type: 'ascii',
-        note: 'Modern English'
-      }
+      
     ],
     breakdown: [
       {
@@ -2487,11 +2404,7 @@ const LEXICON = [
       'Beekes'
     ],
     variants: [
-      {
-        unicode: 'Dionysos',
-        type: 'ascii',
-        note: 'Modern English'
-      }
+      
     ],
     breakdown: [
       {
@@ -2561,11 +2474,7 @@ const LEXICON = [
       'Beekes'
     ],
     variants: [
-      {
-        unicode: 'Medousa',
-        type: 'ascii',
-        note: 'Modern English'
-      }
+      
     ],
     breakdown: [
       {
@@ -2636,7 +2545,6 @@ const LEXICON = [
       'Hesiod, Theogony'
     ],
     variants: [
-      { unicode: 'Kronos', type: 'ascii', note: 'Plain ASCII fallback; loses the acute stress on the first omicron' },
       { unicode: 'krónos', type: 'owned', note: 'Lowercase owned domain form' },
       { unicode: 'Cronus', type: 'alt', note: 'Latinized spelling common in English' }
     ],
@@ -2851,8 +2759,7 @@ const LEXICON = [
       'Homeric Hymn to Pan'
     ],
     variants: [
-      { unicode: 'Pán', type: 'ideal', note: 'Stress-preserved ideal form; currently registered/unavailable' },
-      { unicode: 'Pan', type: 'ascii', note: 'Plain ASCII fallback; loses both stress and length' }
+      { unicode: 'Pán', type: 'ideal', note: 'Stress-preserved ideal form; currently registered/unavailable' }
     ],
     etymology: {
       protoForm: '*peh₂-',
@@ -4542,11 +4449,7 @@ const LEXICON = [
       }
     ],
     variants: [
-      {
-        unicode: 'Tyr',
-        type: 'ascii',
-        note: 'Modern English: Tyr'
-      }
+      
     ],
     etymology: {
       protoLanguage: 'proto-indo-european',
@@ -4689,11 +4592,6 @@ const LEXICON = [
         unicode: 'Oðinn',
         type: 'ideal',
         note: 'Eth variant: Oðinn (strict orthography)'
-      },
-      {
-        unicode: 'Odinn',
-        type: 'ascii',
-        note: 'Modern English: Odinn'
       }
     ],
     etymology: {
@@ -4771,11 +4669,7 @@ const LEXICON = [
       }
     ],
     variants: [
-      {
-        unicode: 'Baldur',
-        type: 'ascii',
-        note: 'Modern English: Baldur'
-      }
+      
     ],
     etymology: {
       protoForm: '*balþraz',
@@ -4892,11 +4786,7 @@ const LEXICON = [
       }
     ],
     variants: [
-      {
-        unicode: 'Freya',
-        type: 'ascii',
-        note: 'Modern English: Freya'
-      }
+      
     ],
     etymology: {
       protoForm: '*frawjōn',
@@ -5145,11 +5035,7 @@ const LEXICON = [
       }
     ],
     variants: [
-      {
-        unicode: 'Heimdall',
-        type: 'ascii',
-        note: 'Modern English: Heimdall'
-      }
+      
     ]
   },
   {
@@ -5883,11 +5769,7 @@ const LEXICON = [
       }
     ],
     variants: [
-      {
-        unicode: 'Ptah',
-        type: 'ascii',
-        note: 'Modern English'
-      }
+      
     ]
   },
   {
@@ -6002,11 +5884,7 @@ const LEXICON = [
       }
     ],
     variants: [
-      {
-        unicode: 'Bastet',
-        type: 'ascii',
-        note: 'Modern English'
-      }
+      
     ]
   },
   {
@@ -6274,11 +6152,7 @@ const LEXICON = [
       }
     ],
     variants: [
-      {
-        unicode: 'Sobek',
-        type: 'ascii',
-        note: 'Modern English'
-      }
+      
     ]
   },
   {
@@ -6316,11 +6190,7 @@ const LEXICON = [
       }
     ],
     variants: [
-      {
-        unicode: 'Seth',
-        type: 'ascii',
-        note: 'Modern English alternate: Seth'
-      }
+      
     ]
   },
   {
@@ -6460,11 +6330,6 @@ const LEXICON = [
     ],
     variants: [
       {
-        unicode: 'Shiva',
-        type: 'ascii',
-        note: 'Modern English: Shiva'
-      },
-      {
         unicode: 'Siva',
         type: 'alt-stress',
         note: 'Alternate transliteration: Siva'
@@ -6533,11 +6398,7 @@ const LEXICON = [
       }
     ],
     variants: [
-      {
-        unicode: 'Vishnu',
-        type: 'ascii',
-        note: 'Modern English: Vishnu'
-      }
+      
     ]
   },
   {
@@ -6599,11 +6460,7 @@ const LEXICON = [
       }
     ],
     variants: [
-      {
-        unicode: 'Krishna',
-        type: 'ascii',
-        note: 'Modern English: Krishna'
-      }
+      
     ]
   },
   {
@@ -6666,11 +6523,7 @@ const LEXICON = [
       }
     ],
     variants: [
-      {
-        unicode: 'Ganesha',
-        type: 'ascii',
-        note: 'Modern English: Ganesha'
-      }
+      
     ]
   },
   {
@@ -6856,11 +6709,7 @@ const LEXICON = [
       }
     ],
     variants: [
-      {
-        unicode: 'Brahma',
-        type: 'ascii',
-        note: 'Modern English: Brahma'
-      }
+      
     ]
   },
   {
@@ -6910,11 +6759,7 @@ const LEXICON = [
       }
     ],
     variants: [
-      {
-        unicode: 'Surya',
-        type: 'ascii',
-        note: 'Modern English: Surya'
-      }
+      
     ]
   },
   {
@@ -7511,7 +7356,6 @@ const LEXICON = [
     ],
     variants: [
       { unicode: 'ištar', type: 'owned', note: 'Owned lowercase Unicode domain label' },
-      { unicode: 'Ishtar', type: 'ascii', note: 'Plain ASCII fallback; replaces š with sh digraph' },
       { unicode: 'Inanna', type: 'alt', note: 'Sumerian counterpart' }
     ],
     etymology: {
@@ -7741,7 +7585,6 @@ const LEXICON = [
       'Jacobsen'
     ],
     variants: [
-      { unicode: 'Enlil', type: 'ascii', note: 'Plain ASCII spelling; loses the macron marking the long vowel' },
       { unicode: 'enlīl', type: 'owned', note: 'Lowercase owned domain form' },
       { unicode: 'Ellil', type: 'alt', note: 'Akkadian variant reflecting late pronunciation' }
     ],
@@ -11843,11 +11686,7 @@ const LEXICON = [
       }
     ],
     variants: [
-      {
-        unicode: 'Khnum',
-        type: 'ascii',
-        note: 'Modern English'
-      }
+      
     ]
   },
   {
@@ -12446,11 +12285,7 @@ const LEXICON = [
       }
     ],
     variants: [
-      {
-        unicode: 'Chandra',
-        type: 'ascii',
-        note: 'Modern English: Chandra'
-      }
+      
     ]
   },
   {
@@ -14391,8 +14226,7 @@ const LEXICON = [
       'Beekes'
     ],
     variants: [
-      { unicode: 'typhōn', type: 'owned', note: 'Owned lowercase Unicode domain label' },
-      { unicode: 'Typhon', type: 'ascii', note: 'Plain ASCII fallback; loses the long omega' }
+      { unicode: 'typhōn', type: 'owned', note: 'Owned lowercase Unicode domain label' }
     ],
     etymology: {
       protoForm: 'τῦφος',
@@ -44376,7 +44210,6 @@ const LEXICON = [
       'De Moor'
     ],
     variants: [
-      { unicode: 'Baal', type: 'ascii', note: 'Plain ASCII fallback; loses the voiced pharyngeal fricative' },
       { unicode: 'Baʿal', type: 'ideal', note: 'Ugaritic/Phoenician ʿayin (ʿ) is the ideal consonant, but is rejected by the DNS root zone' },
       { unicode: 'baꜥal', type: 'owned', note: 'Lowercase owned form' },
       { unicode: 'Baál', type: 'alt', note: 'Stress-only alternate transliteration (previous Phoenician entry)' }
@@ -44440,7 +44273,6 @@ const LEXICON = [
       'Cross'
     ],
     variants: [
-      { unicode: 'El', type: 'ascii', note: 'Plain ASCII fallback; loses the macron that marks long /ē/' },
       { unicode: 'ēl', type: 'owned', note: 'Lowercase display form of the owned domain' }
     ],
     etymology: {
@@ -44490,7 +44322,6 @@ const LEXICON = [
       'Day'
     ],
     variants: [
-      { unicode: 'Anat', type: 'ascii', note: 'Plain ASCII fallback; loses the initial pharyngeal' },
       { unicode: 'ʿAnat', type: 'ideal', note: 'Ugaritic/Phoenician ʿayin (ʿ) is ideal but not registrable at the DNS root' },
       { unicode: 'ꜥanat', type: 'owned', note: 'Lowercase owned form' },
       { unicode: 'Anát', type: 'alt', note: 'Stress-only alternate transliteration (previous Phoenician entry)' }
@@ -49941,8 +49772,7 @@ const LEXICON = [
     meaning: 'Truth, cosmic order, natural law. The Vedic principle of righteousness and universal harmony.',
     sources: ['\u1E5Cgveda', 'Br\u0101hma\u1E47as', 'Upani\u1E63ads'],
     variants: [
-      { unicode: 'Rita', type: 'alt', note: 'Older European convention (German philology)' },
-      { unicode: 'Rta', type: 'ascii', note: 'Plain ASCII fallback' }
+      { unicode: 'Rita', type: 'alt', note: 'Older European convention (German philology)' }
     ],
     breakdown: [
       { char: 'r', to: '\u1E5A', type: 'special', note: 'Vocalic r — dot below marks syllabic /r/; capitalized in the restoration' },
@@ -49963,7 +49793,7 @@ const LEXICON = [
     meaning: 'The soul, personality, or manifestation of a person. One of the five components of the Egyptian soul.',
     sources: ['Faulkner', 'Gardiner', 'Allen'],
     variants: [
-      { unicode: 'Ba', type: 'ascii', note: 'Modern English' }
+      
     ],
     breakdown: [
       { char: 'b', to: 'B', type: 'same', note: 'Same, capitalized' },
@@ -49983,7 +49813,7 @@ const LEXICON = [
     meaning: 'The vital essence, life force, or double of a person. Created at birth and surviving death.',
     sources: ['Faulkner', 'Gardiner', 'Allen'],
     variants: [
-      { unicode: 'Ka', type: 'ascii', note: 'Modern English' }
+      
     ],
     breakdown: [
       { char: 'k', to: 'K', type: 'same', note: 'Same, capitalized' },
@@ -50004,8 +49834,7 @@ const LEXICON = [
     sources: ['Ugaritic texts', 'CIS', 'KAI'],
     variants: [
       { unicode: 'Ashtart', type: 'alt', note: 'Hebraic/Biblical form' },
-      { unicode: 'Astarte', type: 'alt', note: 'Greek-influenced form (Astarte)' },
-      { unicode: 'Astart', type: 'ascii', note: 'Plain ASCII' }
+      { unicode: 'Astarte', type: 'alt', note: 'Greek-influenced form (Astarte)' }
     ],
     breakdown: [
       { char: 'a', to: 'A', type: 'same', note: 'Same, capitalized' },
@@ -50029,7 +49858,6 @@ const LEXICON = [
     meaning: 'Canaanite mother goddess, consort of Ēl and patroness of childbirth',
     sources: ['KTU','Coogan','Smith','Day'],
     variants: [
-      { unicode: 'Asherah', type: 'ascii', note: 'Plain ASCII fallback; loses the initial pharyngeal' },
       { unicode: 'ʿAsherah', type: 'ideal', note: 'Semitic ʿayin (ʿ) is ideal but not registrable at the DNS root' },
       { unicode: 'ꜥasherah', type: 'owned', note: 'Lowercase owned form' }
     ],
@@ -50123,11 +49951,7 @@ const LEXICON = [
       'Bartholomae'
     ],
     variants: [
-      {
-        unicode: 'Asha',
-        type: 'ascii',
-        note: 'Modern English spelling'
-      }
+      
     ],
     breakdown: [
       {
@@ -50167,11 +49991,7 @@ const LEXICON = [
       'Macdonell'
     ],
     variants: [
-      {
-        unicode: 'Vac',
-        type: 'ascii',
-        note: 'Plain ASCII fallback'
-      }
+      
     ],
     breakdown: [
       {

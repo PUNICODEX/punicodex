@@ -386,7 +386,7 @@
         }
 
         if (resultVariations && (entry.variants || (typeof StackedDiacritics !== 'undefined' && StackedDiacritics.hasStackedDiacritics(entry.unicode)))) {
-            const derivedTypes = ['owned', 'ideal', 'macron-only', 'ascii'];
+            const derivedTypes = ['owned', 'ideal', 'macron-only'];
             const scholarlyTypes = ['alt-stress', 'alt'];
             const derived = (entry.variants || []).filter(v => derivedTypes.includes(v.type));
             const scholarly = (entry.variants || []).filter(v => scholarlyTypes.includes(v.type) && Array.isArray(v.sources) && v.sources.length > 0);
@@ -406,7 +406,7 @@
                     html += `<button type="button" class="variation-chip variation-decomposed" data-unicode="${escapeHtml(StackedDiacritics.render(entry.unicode))}" title="Decomposed view of stacked diacritics">${StackedDiacritics.render(entry.unicode)}</button>`;
                 }
                 html += '</div>';
-                html += '<p class="result-variations-hint">Forms derived from the primary restoration: owned domain, ideal stacked marks, standard macron convention, and modern ASCII.</p>';
+                html += '<p class="result-variations-hint">Forms derived from the primary restoration: owned domain, ideal stacked marks, and standard macron convention.</p>';
                 html += '</div>';
             }
             if (scholarly.length > 0) {

@@ -169,8 +169,8 @@ test('Primary entries carry variants array', () => {
   const primary = matches.find((m) => m.id === 'apollon');
   assert.ok(primary, 'Primary apollon missing');
   assert.ok(
-    primary.variants && primary.variants.length >= 2,
-    'Expected >=2 variants on primary entry'
+    primary.variants && primary.variants.length >= 1,
+    'Expected >=1 scholarly variant on primary entry'
   );
 });
 
@@ -185,8 +185,8 @@ test('Hades primary entry has variants', () => {
   const primary = matches.find((m) => m.id === 'hades');
   assert.ok(primary, 'Primary hades missing');
   assert.ok(
-    primary.variants && primary.variants.length >= 2,
-    'Expected >=2 variants on primary entry'
+    primary.variants && primary.variants.length >= 1,
+    'Expected >=1 scholarly variant on primary entry'
   );
 });
 
