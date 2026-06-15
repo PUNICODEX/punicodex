@@ -295,12 +295,11 @@ async function runTests() {
     );
   });
 
-  await test('GET /api/v1/openapi.json returns OpenAPI spec', async () => {
+  await test('GET /api/v1/openapi.json returns raw OpenAPI spec', async () => {
     const { status, body } = await invoke(openapi, 'GET', '/api/v1/openapi.json');
     assert.strictEqual(status, 200);
-    assertEnvelope(body);
-    assert.strictEqual(body.data.openapi, '3.1.0');
-    assert.ok(body.data.paths['/names'], 'spec must include /names');
+    assert.strictEqual(body.openapi, '3.1.0');
+    assert.ok(body.paths['/names'], 'spec must include /names');
   });
 
   await test('GET /api/v1/docs returns HTML', async () => {
