@@ -283,6 +283,7 @@ The Realms page uses filter buttons (All / Norse / Greek / Japanese) and links e
 - The canonical source for original scripts is `type/js/original-scripts.js` (helpers + curated mapping) and `type/js/original-scripts-extra.json` (curated non-Greek/CJK scripts).
 - Generators resolve the displayed original script via `getOriginalScript(entry)`. The card is labelled **"Original Script"** when a real script exists; otherwise it is labelled **"Scholarly Transliteration"** so the Latin-with-diacritics form is never misrepresented as the original writing system.
 - Every non-Greek/CJK original script that differs from the site's Unicode restoration must carry a `provenance` object with `original`, `transliteration`, `steps`, and `sources`. The validator enforces this.
+- On flagship lore pages, provenance content is rendered as a standalone, expandable **Original Script Provenance** section (section `02`) rather than being nested inside the Original Script card.
 - Do not fall back to `entry.unicode` under an "Original Script" label.
 
 ### Lexicon Browse Page

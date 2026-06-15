@@ -1129,17 +1129,71 @@ function escapeHtml(str) {
     .replace(/'/g, '&#39;');
 }
 
-function buildOriginalScriptProvenanceHtml(entry) {
-  const provenance = getProvenance(entry);
-  if (provenance && Array.isArray(provenance.steps) && provenance.steps.length > 0) {
-    const steps = provenance.steps.map((s) => `<li>${escapeHtml(s)}</li>`).join('');
-    const sources = (provenance.sources || []).map((s) => `<li>${escapeHtml(s)}</li>`).join('');
-    return `<div class="provenance-box"><h4>From original to transliteration</h4><ol class="provenance-steps">${steps}</ol>${sources ? `<h5>Sources</h5><ul class="provenance-sources">${sources}</ul>` : ''}</div>`;
-  }
+function buildOriginalScriptCardNote(entry) {
   if (!hasOriginalScript(entry)) {
     return `<p class="card-note">${escapeHtml(getNoScriptNote(entry))}</p>`;
   }
   return '';
+}
+
+function buildOriginalScriptProvenanceSection(entry) {
+  const provenance = getProvenance(entry);
+  if (!provenance || !Array.isArray(provenance.steps) || provenance.steps.length === 0) {
+    return '';
+  }
+
+  const steps = provenance.steps.map((s) => `<li>${escapeHtml(s)}</li>`).join('');
+  const sources = (provenance.sources || []).map((s) => `<li>${escapeHtml(s)}</li>`).join('');
+  const stepCount = provenance.steps.length;
+  const sourceCount = (provenance.sources || []).length;
+  const hintParts = [
+    `${stepCount} ${stepCount === 1 ? 'step' : 'steps'}`,
+    sourceCount > 0 ? `${sourceCount} ${sourceCount === 1 ? 'source' : 'sources'}` : '',
+  ]
+    .filter(Boolean)
+    .join(' · ');
+
+  const sourcesColumn = sources
+    ? `                    <div class="provenance-column provenance-sources-column">
+                        <h3 class="provenance-column-title">Sources</h3>
+                        <ul class="provenance-sources">${sources}</ul>
+                    </div>`
+    : '';
+
+  return `<section class="section section-provenance" id="provenance">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">02</span>
+            <h2 class="section-title">Original Script Provenance</h2>
+            <p class="section-subtitle">How ${entry.unicode} travels from ancient script to scholarly transliteration</p>
+        </div>
+        <div class="provenance-panel reveal-up">
+            <button class="provenance-toggle" id="provenance-toggle" aria-expanded="false" aria-controls="provenance-content" type="button">
+                <span class="provenance-toggle-text">
+                    <span class="provenance-toggle-label">Show scholarly provenance</span>
+                    <span class="provenance-toggle-hint">${hintParts}</span>
+                </span>
+                <span class="provenance-toggle-icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </span>
+            </button>
+            <div class="provenance-content" id="provenance-content" role="region" aria-labelledby="provenance-toggle" hidden>
+                <div class="provenance-content-inner">
+                    <div class="provenance-columns">
+                        <div class="provenance-column provenance-steps-column${sources ? '' : ' provenance-column-full'}">
+                            <h3 class="provenance-column-title">From original to transliteration</h3>
+                            <ol class="provenance-steps">${steps}</ol>
+                        </div>
+                        ${sourcesColumn}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>`;
 }
 
 function _buildTierSection(entry, _sectionNumber) {
@@ -1986,6 +2040,28 @@ function generateHomePage(entry, palette, slotNames, templateDir) {
   }
   html = replacePlaceholders(html, vars);
   if (!hasRealGreek(entry)) html = stripPlaceholderGreek(html, entry.unicode);
+
+  // Optional full-bleed phenomenon background behind the mascot (e.g. Aša)
+  const phenomenonPng = path.join(
+    SITES_DIR,
+    templeId,
+    'assets',
+    `${templeId}_mascot_phenomenon.png`
+  );
+  if (fs.existsSync(phenomenonPng)) {
+    const phenomenonHtml = `
+        <div class="endorsement-hero-phenomenon" aria-hidden="true">
+            <picture>
+                <source srcset="assets/${templeId}_mascot_phenomenon.webp" type="image/webp">
+                <img src="assets/${templeId}_mascot_phenomenon.png" alt="" class="endorsement-hero-phenomenon-img">
+            </picture>
+        </div>`;
+    html = html.replace(
+      /<header class="endorsement-hero" id="hero">\n\s*<div class="container">/,
+      `<header class="endorsement-hero" id="hero">${phenomenonHtml}\n        <div class="container">`
+    );
+  }
+
   return html;
 }
 
@@ -2157,13 +2233,18 @@ function generateLorePage(entry, palette, loreSections, templateDir, catalog) {
   let html = fs.readFileSync(path.join(templateDir, 'lore', 'index.html'), 'utf8');
   const templeId = entry.id;
   const nameProse = buildNameProse(entry);
+  const provenance = getProvenance(entry);
+  const hasProvenance =
+    provenance && Array.isArray(provenance.steps) && provenance.steps.length > 0;
+  const sectionOffset = hasProvenance ? 1 : 0;
   const vars = {
     UNICODE: entry.unicode,
     ASCII: entry.ascii,
     GREEK: getOriginalScript(entry) || '—',
     ORIGINAL_SCRIPT: getOriginalScript(entry) || entry.unicode,
     ORIGINAL_SCRIPT_LABEL: getOriginalScriptLabel(entry),
-    ORIGINAL_SCRIPT_PROVENANCE: buildOriginalScriptProvenanceHtml(entry),
+    ORIGINAL_SCRIPT_CARD_NOTE: buildOriginalScriptCardNote(entry),
+    ORIGINAL_SCRIPT_PROVENANCE_SECTION: buildOriginalScriptProvenanceSection(entry),
     DOMAIN: entry.domain,
     MEANING: entry.meaning || '',
     TIER_LABEL: entry.tierLabel || `Tier ${entry.tier}`,
@@ -2212,17 +2293,17 @@ function generateLorePage(entry, palette, loreSections, templateDir, catalog) {
     'Pronunciation',
     `How ${entry.unicode} was spoken`,
     pronunciation,
-    2
+    2 + sectionOffset
   );
-  vars.SYMBOLS = wrapSection('symbols', symbolsTitle, symbolsSubtitle, symbols, 3);
+  vars.SYMBOLS = wrapSection('symbols', symbolsTitle, symbolsSubtitle, symbols, 3 + sectionOffset);
   vars.MYTHOLOGY = wrapSection(
     'mythology',
     'Mythology',
     `Stories of ${entry.unicode}`,
     mythology,
-    4
+    4 + sectionOffset
   );
-  vars.RELATED_NAMES = buildRelatedNamesSection(entry, 5);
+  vars.RELATED_NAMES = buildRelatedNamesSection(entry, 5 + sectionOffset);
   vars.EXTENDED_LORE_CTA = buildExtendedLoreCTA(entry, catalogEntry);
   vars.FOOTER = buildZeusFooter(entry, '../');
   vars.EXTENDED_TAB = buildExtendedTab('lore', entry.id);

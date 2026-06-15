@@ -629,3 +629,48 @@ loadSlots();
 handleReturnFromStripe();
 
 } // end else (booking modal exists)
+
+// ─── Original Script Provenance Toggle (lore pages) ───
+(function initProvenanceToggle() {
+  const toggle = document.getElementById('provenance-toggle');
+  const panel = document.getElementById('provenance-content');
+  if (!toggle || !panel) return;
+
+  const label = toggle.querySelector('.provenance-toggle-label');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function setOpen(isOpen) {
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    if (label) label.textContent = isOpen ? 'Hide scholarly provenance' : 'Show scholarly provenance';
+
+    if (isOpen) {
+      panel.hidden = false;
+      // Force a reflow so the transition fires when the class is added.
+      void panel.offsetWidth;
+      panel.classList.add('is-open');
+    } else {
+      panel.classList.remove('is-open');
+      if (prefersReducedMotion) {
+        panel.hidden = true;
+      } else {
+        const onTransitionEnd = () => {
+          panel.removeEventListener('transitionend', onTransitionEnd);
+          if (toggle.getAttribute('aria-expanded') !== 'true') panel.hidden = true;
+        };
+        panel.addEventListener('transitionend', onTransitionEnd);
+      }
+    }
+  }
+
+  toggle.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    setOpen(!expanded);
+  });
+
+  toggle.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      toggle.click();
+    }
+  });
+})();
