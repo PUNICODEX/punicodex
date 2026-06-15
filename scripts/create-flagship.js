@@ -1708,6 +1708,12 @@ function buildEtymologySection(entry, catalogEntry) {
         .join(''),
     });
   }
+  if (entry.accuracyNote) {
+    derivativeGroups.push({
+      title: 'Editorial Note',
+      items: `<li>${entry.accuracyNote}</li>`,
+    });
+  }
   if (!derivativeGroups.length) {
     derivativeGroups.push({
       title: 'Modern Descendants',

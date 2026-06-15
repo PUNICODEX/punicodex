@@ -5,7 +5,6 @@
  * CSS and HTML templates can render it elegantly.
  */
 
-
 function iconSvg(pathData, stroke = 'var(--primary)') {
   return `<svg viewBox="0 0 64 64" fill="none" stroke="${stroke}" stroke-width="1.5"><path d="${pathData}"/></svg>`;
 }

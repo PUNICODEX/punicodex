@@ -884,7 +884,7 @@ const ARCHETYPES = [
         folder: "ra",
         domainUnicode: "rꜥ.com",
         domainPunycode: "xn--r-2w3e.com",
-        domainAlt: [],
+        domainAlt: ["rá.com"],
         colors: { primary: "#D4AF37", secondary: "#228B22", glow: "rgba(212,175,55,0.3)" },
         mascotPath: "/sites/ra/assets/ra_mascot.webp",
         mascotFallback: "/sites/ra/assets/ra_mascot.webp",
@@ -1646,7 +1646,8 @@ const ARCHETYPES = [
         built: true,
         hasAdSite: true,
         darkPunchline: false
-    },    {
+    },
+    {
         id: "asa",
         name: "Aša",
         greek: "—",

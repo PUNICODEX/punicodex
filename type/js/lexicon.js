@@ -5498,16 +5498,12 @@ const LEXICON = [
     ],
     variants: [
       {
-        unicode: 'Rā',
-        type: 'macron-only',
-        note: 'Length mark only'
-      },
-      {
         unicode: 'Rá',
         type: 'alt-stress',
-        note: 'Acute on alpha: alternate stress'
+        note: 'Modern stress form: the acute marks the stressed vowel in the conventional vocalization "Ra". The Egyptological spelling records only the consonants rꜥ.'
       }
     ],
+    accuracyNote: 'Egyptian rꜥ is written without vowels. The macron form Rā is sometimes seen as a phonological convenience, but Ra has no long vowel in Egyptological terms, so Rā is not a scholarly form and is not listed here. The domain Rā.com is registered by a third party.',
     etymology: {
       protoForm: '*rꜥ',
       protoLanguage: 'proto-afro-asiatic',
