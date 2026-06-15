@@ -433,6 +433,7 @@ ${JSON.stringify(
                 <a href="https://punycodex.com/lexicon/" class="nav-link">Lexicon</a>
                 <a href="https://punycodex.com/type/#${entry.id}" class="nav-link">Type</a>
                 <a href="https://punycodex.com/tiers/" class="nav-link">Tiers</a>
+                <a href="https://punycodex.com/api/v1/docs/" class="nav-link">API</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>

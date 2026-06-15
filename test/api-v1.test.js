@@ -106,7 +106,7 @@ async function runTests() {
   const autocomplete = require('../api/v1/autocomplete/index.js');
   const convert = require('../api/v1/convert/index.js');
   const convertBatch = require('../api/v1/convert/batch.js');
-  const openapi = require('../api/v1/openapi/index.js');
+  const openapi = require('../api/v1/openapi.json.js');
   const docs = require('../api/v1/docs/index.js');
   const adminListKeys = require('../api/admin/api-keys/index.js');
   const adminCreateKey = adminListKeys;

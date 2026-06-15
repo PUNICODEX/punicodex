@@ -255,7 +255,7 @@ const v1Autocomplete = require('../api/v1/autocomplete');
 const v1Convert = require('../api/v1/convert');
 const v1ConvertBatch = require('../api/v1/convert/batch');
 const v1Docs = require('../api/v1/docs');
-const v1Openapi = require('../api/v1/openapi');
+const v1Openapi = require('../api/v1/openapi.json.js');
 
 app.use('/api/v1/names', v1NamesList);
 app.use('/api/v1/names/:id/variants', v1NameVariants);

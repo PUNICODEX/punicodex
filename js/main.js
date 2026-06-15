@@ -57,6 +57,40 @@
         });
     }
 
+    // Ensure global nav includes API link on legacy pages
+    function ensureApiNavLink() {
+        const apiHref = '/api/v1/docs/';
+        const apiLabel = 'API';
+
+        const desktopNav = document.querySelector('.main-nav .nav-links');
+        if (desktopNav && !desktopNav.querySelector(`a[href="${apiHref}"]`)) {
+            const storeLink = desktopNav.querySelector('a[href="/store/"]');
+            const apiLink = document.createElement('a');
+            apiLink.href = apiHref;
+            apiLink.className = 'nav-link';
+            apiLink.textContent = apiLabel;
+            if (storeLink) {
+                desktopNav.insertBefore(apiLink, storeLink);
+            } else {
+                desktopNav.appendChild(apiLink);
+            }
+        }
+
+        const mobileMenu = document.querySelector('.mobile-menu');
+        if (mobileMenu && !mobileMenu.querySelector(`a[href="${apiHref}"]`)) {
+            const storeLink = mobileMenu.querySelector('a[href="/store/"]');
+            const apiLink = document.createElement('a');
+            apiLink.href = apiHref;
+            apiLink.textContent = apiLabel;
+            if (storeLink) {
+                mobileMenu.insertBefore(apiLink, storeLink);
+            } else {
+                mobileMenu.appendChild(apiLink);
+            }
+        }
+    }
+    ensureApiNavLink();
+
     // ═══════════════════════════════════════════════════════════
     // NATIVE INTERSECTION OBSERVER SCROLL REVEALS
     // ═══════════════════════════════════════════════════════════
