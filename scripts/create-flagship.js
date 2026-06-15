@@ -946,26 +946,41 @@ function isStubContent(content) {
   return stubPhrases.some((p) => lower.includes(p));
 }
 
-function getDomainsText(entry) {
-  const unicode = entry.unicode;
-  // Only list domains the project actually owns or presents as owned.
-  // Plain ASCII fallbacks (type: 'ascii') must NOT be shown as owned domains.
-  const useful = (entry.variants || [])
-    .filter((v) => v?.unicode && (!v.type || v.type === 'owned' || v.type === 'primary'))
-    .map((v) => v.unicode);
-  const allForms = [unicode, ...useful];
+const OWNED_DOMAINS = (() => {
+  try {
+    return require(path.join(ROOT, 'platform', 'db', 'owned-domains.json'));
+  } catch {
+    return [];
+  }
+})();
+const OWNED_DOMAINS_SET = new Set(OWNED_DOMAINS.map((d) => d.toLowerCase().normalize('NFC')));
+
+function getOwnedForms(entry) {
+  const candidates = [entry.unicode];
+  for (const v of entry.variants || []) {
+    if (v?.unicode) candidates.push(v.unicode);
+  }
   const seen = new Set();
   const forms = [];
-  for (const f of allForms) {
-    if (!f || !/[\x00-\x7F]/.test(f[0]) || /\s/.test(f)) continue;
+  for (const f of candidates) {
+    if (!f) continue;
+    const domain = `${f}.com`.toLowerCase().normalize('NFC');
     const key = f.toLowerCase().normalize('NFC');
-    if (!seen.has(key)) {
+    if (OWNED_DOMAINS_SET.has(domain) && !seen.has(key)) {
       seen.add(key);
       forms.push(f);
     }
   }
-  if (forms.length === 0) forms.push(unicode);
-  return forms.map((f) => `${f}.com`).join(' \u00b7 ');
+  return forms;
+}
+
+function getDomainsText(entry) {
+  const ownedForms = getOwnedForms(entry);
+  if (ownedForms.length === 0) {
+    // No owned domain: show the scholarly restoration only.
+    return entry.unicode;
+  }
+  return ownedForms.map((f) => `${f}.com`).join(' \u00b7 ');
 }
 
 function getPunycodeExplainer(entry) {
@@ -1421,7 +1436,15 @@ function buildZeusFooter(entry, assetPrefix) {
   const logomarkPath = `${assetPrefix}assets/${entry.id}_logomark`;
   const greek = getOriginalScript(entry);
   const hasOriginal = hasOriginalScript(entry);
-  const domains = getDomainsText(entry).toLowerCase();
+  const ownedForms = getOwnedForms(entry);
+  const isOwned = ownedForms.length > 0;
+  const domainsLabel = isOwned ? 'Domains' : 'Restoration';
+  const domains = isOwned
+    ? ownedForms
+        .map((f) => `${f}.com`)
+        .join(' \u00b7 ')
+        .toLowerCase()
+    : entry.unicode;
   const classification =
     entry.tier === 'dual'
       ? 'Dual‑Tier Pair (Tier‑1 & Tier‑2)'
@@ -1435,7 +1458,7 @@ function buildZeusFooter(entry, assetPrefix) {
                 </div>
                 <div class="footer-info">
                     <div class="footer-block">
-                        <span class="footer-label">Domains</span>
+                        <span class="footer-label">${domainsLabel}</span>
                         <span class="footer-value">${domains}</span>
                     </div>
                     <div class="footer-block">
