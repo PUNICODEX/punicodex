@@ -73,9 +73,7 @@ const output = {
     _meta: {
         generatedBy: 'scripts/export-platform-lexicon.js',
         source: 'type/js/lexicon.js',
-        generatedAt: new Date().toISOString(),
     },
-    exportedAt: new Date().toISOString(),
     totalEntries: entries.length,
     totalBreakdowns: breakdowns.length,
     pantheons,

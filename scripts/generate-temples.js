@@ -892,7 +892,11 @@ function main() {
       const html = generateTempleHTML(entry, related);
 
       fs.mkdirSync(dir, { recursive: true });
-      fs.writeFileSync(indexPath, html, 'utf8');
+      // Atomic write: avoid Windows file-lock issues by writing to a temp
+      // file and renaming it into place.
+      const tmpPath = `${indexPath}.tmp`;
+      fs.writeFileSync(tmpPath, html, 'utf8');
+      fs.renameSync(tmpPath, indexPath);
       generated++;
 
       if (generated % 50 === 0) {
