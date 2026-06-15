@@ -1891,7 +1891,7 @@ const LEXICON = [
     id: 'eros',
     hasAdSite: true,
     ascii: 'eros',
-    unicode: 'Erōs',
+    unicode: 'Érōs',
     greek: 'Ἔρως',
     pantheon: 'greek',
     tier: '1',
@@ -1906,9 +1906,9 @@ const LEXICON = [
     breakdown: [
       {
         char: 'e',
-        to: 'E',
-        type: 'same',
-        note: 'Epsilon'
+        to: 'É',
+        type: 'stress',
+        note: 'Epsilon with acute'
       },
       {
         char: 'r',
