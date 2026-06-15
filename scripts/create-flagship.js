@@ -29,6 +29,8 @@ const {
   getNoScriptNote,
 } = require(path.join(ROOT, 'type', 'js', 'original-scripts.js'));
 
+const LORE_STUBS = require(path.join(__dirname, 'lore-stubs.js'));
+
 const SLOT_TYPES = [
   'Crown',
   'Column',
@@ -942,6 +944,17 @@ function isStubContent(content) {
     'is time, destruction, empowerment',
     'is love, fertility, war',
     'is the sky, thunder, king of gods',
+    'these attributes appear across seals, coins, vase paintings, and temple reliefs',
+    'the myths surrounding this figure established its authority in ritual, art, and literature',
+    'etymologically, it derives from',
+    'a root that shaped cult titles, hymns, and ritual addresses across centuries',
+    'belongs to the greek tradition as',
+    'belongs to the norse tradition as',
+    'belongs to the egyptian tradition as',
+    'belongs to the sanskrit tradition as',
+    'belongs to the mesopotamian tradition as',
+    'belongs to the zoroastrian tradition as',
+    'belongs to the japanese tradition as',
   ];
   return stubPhrases.some((p) => lower.includes(p));
 }
@@ -1980,6 +1993,7 @@ function cleanSectionContent(html) {
   const bodySelectors = [
     '.tier-feature-grid',
     '.victory-content',
+    '.pronunciation-grid',
     '.domains-grid',
     '.symbols-list',
     '.myths-timeline',
@@ -2004,7 +2018,13 @@ function cleanSectionContent(html) {
       }
       break;
     }
-    const wrapperClasses = ['tier-feature-grid', 'domains-grid', 'symbols-list', 'myths-timeline'];
+    const wrapperClasses = [
+      'tier-feature-grid',
+      'pronunciation-grid',
+      'domains-grid',
+      'symbols-list',
+      'myths-timeline',
+    ];
     const cls = el.attr('class') || '';
     if (wrapperClasses.some((c) => cls.includes(c))) return $.html(el).trim();
     return el.html().trim();
@@ -2102,10 +2122,7 @@ function buildPronunciationContent(entry, catalogEntry) {
       </div>`;
   }
   // fallback stub
-  const source = originalScript(entry);
-  const label = isGreekEntry(entry) ? 'Greek' : entry.pantheon;
-  return `<p class="lead-text">The name <strong>${entry.unicode}</strong> carries the phonetic values of the ${label} tradition.</p>
-<p>The original form <strong>${source}</strong> preserves distinctions that plain ASCII <strong>${entry.ascii}</strong> erases: vowel length, stress, breathing, or other script-specific features. A full reconstructed pronunciation guide is being prepared.</p>`;
+  return LORE_STUBS.buildPronunciationContent(entry);
 }
 
 function buildSymbolsContent(entry, catalogEntry) {
@@ -2141,39 +2158,7 @@ function buildSymbolsContent(entry, catalogEntry) {
       ${symbols ? `<div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">${symbols}</div></div>` : ''}`;
   }
   // fallback stub
-  const themeWords = [entry.domain, entry.meaning].filter(Boolean).join(', ').toLowerCase();
-  const symbols = [];
-  if (
-    themeWords.includes('storm') ||
-    themeWords.includes('thunder') ||
-    themeWords.includes('lightning')
-  )
-    symbols.push('thunderbolt', 'storm cloud', 'bull');
-  if (themeWords.includes('sun') || themeWords.includes('light'))
-    symbols.push('solar disc', 'ray', 'gold');
-  if (themeWords.includes('sea') || themeWords.includes('water'))
-    symbols.push('wave', 'trident', 'fish');
-  if (
-    themeWords.includes('earth') ||
-    themeWords.includes('fertility') ||
-    themeWords.includes('harvest')
-  )
-    symbols.push('grain', 'cornucopia', 'serpent');
-  if (themeWords.includes('war') || themeWords.includes('warrior'))
-    symbols.push('spear', 'shield', 'lion');
-  if (themeWords.includes('love') || themeWords.includes('desire'))
-    symbols.push('dove', 'rose', 'mirror');
-  if (themeWords.includes('death') || themeWords.includes('underworld'))
-    symbols.push('key', 'torch', 'cypress');
-  if (themeWords.includes('wisdom') || themeWords.includes('knowledge'))
-    symbols.push('book', 'owl', 'scroll');
-  if (themeWords.includes('time')) symbols.push('sickle', 'hourglass', 'wheel');
-  if (symbols.length === 0) symbols.push('sacred flame', 'laurel', 'altar');
-  const unique = [...new Set(symbols)].slice(0, 4);
-  let text = `<p class="lead-text">The iconography of <strong>${entry.unicode}</strong> clusters around ${entry.domain.toLowerCase()}.</p>`;
-  text += `<div class="symbols-list">${unique.map((s) => `<span class="symbol-item">${s}</span>`).join('')}</div>`;
-  text += `<p>These attributes appear across seals, coins, vase paintings, and temple reliefs — a visual shorthand for the powers this name invokes.</p>`;
-  return text;
+  return LORE_STUBS.buildSymbolsContent(entry);
 }
 
 function buildMythologyContent(entry, catalogEntry) {
@@ -2205,16 +2190,7 @@ function buildMythologyContent(entry, catalogEntry) {
       <div class="myths-timeline">${myths}</div>`;
   }
   // fallback stub
-  const etymology = entry.etymology || {};
-  const proto = etymology.protoForm || '';
-  const protoGloss = etymology.protoGloss || '';
-  let text = `<p class="lead-text"><strong>${entry.unicode}</strong> belongs to the ${entry.pantheon} tradition as ${entry.domain.toLowerCase()}.</p>`;
-  text += `<p>${entry.meaning || `The name is understood as "${entry.domain}".`}</p>`;
-  if (proto && protoGloss) {
-    text += `<p>Etymologically, it derives from ${proto} (“${protoGloss}”), a root that shaped cult titles, hymns, and ritual addresses across centuries.</p>`;
-  }
-  text += `<p>The myths surrounding this figure established its authority in ritual, art, and literature — and continue to surface in later religious and literary traditions.</p>`;
-  return text;
+  return LORE_STUBS.buildMythologyContent(entry);
 }
 
 function _buildSyncretismContent(entry, catalogEntry) {
@@ -2268,16 +2244,24 @@ function generateLorePage(entry, palette, loreSections, templateDir, catalog) {
     : isStubContent(cleanSectionContent(loreSections.mythology))
       ? buildMythologyContent(entry, null)
       : cleanSectionContent(loreSections.mythology);
+  const pronunciationRaw = cleanSectionContent(loreSections.pronunciation);
+  const pronunciationStub =
+    isStubContent(pronunciationRaw) ||
+    (pronunciationRaw.includes('lead-text') && !pronunciationRaw.includes('ipa-display'));
   const pronunciation = hasCatalogPron
     ? buildPronunciationContent(entry, catalogEntry)
-    : isStubContent(cleanSectionContent(loreSections.pronunciation))
+    : pronunciationStub
       ? buildPronunciationContent(entry, null)
-      : cleanSectionContent(loreSections.pronunciation);
+      : pronunciationRaw;
+  const symbolsRaw = cleanSectionContent(loreSections.symbols);
+  const symbolsStub =
+    isStubContent(symbolsRaw) ||
+    (symbolsRaw.includes('class="symbols-list"') && !symbolsRaw.includes('symbol-meaning'));
   const symbols = hasCatalogSymbols
     ? buildSymbolsContent(entry, catalogEntry)
-    : isStubContent(cleanSectionContent(loreSections.symbols))
+    : symbolsStub
       ? buildSymbolsContent(entry, null)
-      : cleanSectionContent(loreSections.symbols);
+      : symbolsRaw;
 
   const symbolsTitle = catalogEntry?.domains?.title
     ? catalogEntry.domains.title
