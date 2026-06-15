@@ -156,8 +156,8 @@
         test(s1, 'String normalize NFC exists', () => {
             assert(typeof ''.normalize === 'function');
         });
-        test(s1, 'Ápollōn normalizes to itself', () => {
-            const s = 'Ápollōn';
+        test(s1, 'Apóllōn normalizes to itself', () => {
+            const s = 'Apóllōn';
             assertEqual(s.normalize('NFC'), s);
         });
         test(s1, 'Tōkyō normalizes to itself', () => {

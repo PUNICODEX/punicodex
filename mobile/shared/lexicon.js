@@ -26,12 +26,6 @@ const LEXICON = [
     ],
     variants: [
       {
-        id: 'apollonv1',
-        unicode: 'Ápollōn',
-        type: 'alt-stress',
-        note: 'Acute on alpha: Doric/attested alternate stress position'
-      },
-      {
         unicode: 'Apṓllōn',
         type: 'ideal',
         note: 'Stacked acute+macron on omicron: philologically ideal, untypeable on phones'
@@ -47,6 +41,7 @@ const LEXICON = [
         note: 'Modern English'
       }
     ],
+    accuracyNote: 'The form Ápollōn is not listed because the Greek accent in Ἀπόλλων always falls on the second syllable (πό), as given in LSJ, the Oxford Classical Dictionary, and all standard editions. An initial acute on the alpha is structurally impossible in Greek and does not correspond to any manuscript, inscription, or dialectal variant.',
     breakdown: [
       {
         char: 'a',

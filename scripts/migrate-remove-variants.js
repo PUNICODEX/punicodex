@@ -14,7 +14,6 @@ const { LEXICON } = require('../type/js/lexicon.js');
 // ─── Mapping: variant ID -> { parentId, type, note } ───
 const VARIANT_MAP = {
     // Greek — parents already have variants, just remove dupes
-    apollonv1: { parent: 'apollon', skipVariant: true },
     hadesv1:   { parent: 'hades',   skipVariant: true },
     zeusv1:    { parent: 'zeus',    skipVariant: true },
     aresv1:    { parent: 'ares',    skipVariant: true },

@@ -1,6 +1,6 @@
 # PÚNYCODEX Type — Browser Extension
 
-Scholarly transliteration for classical names. Type `apollo` → Ápollōn.
+Scholarly transliteration for classical names. Type `apollo` → Apóllōn.
 
 ## Features
 

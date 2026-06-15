@@ -144,7 +144,7 @@ Collapsible right panel (300px wide, toggle button in toolbar) that activates wh
 │  n → n     same                 │
 │                                 │
 │  Variants (2)                   │
-│  • Ápollōn.com                  │
+│  • Apollōn.com                  │
 │  • apollon.com                  │
 │                                 │
 │  Sources: LSJ, Beekes           │
@@ -159,7 +159,7 @@ Collapsible right panel (300px wide, toggle button in toolbar) that activates wh
 
 When visiting a Unicode domain that has accepted spelling variants in the lexicon, show a subtle banner:
 
-> "This name has 3 accepted scholarly spellings: **Apóllōn** · Ápollōn · Apollo"
+> "This name has 3 accepted scholarly spellings: **Apóllōn** · Apollōn · Apollo"
 
 Clicking a variant navigates to that domain. This educates users that Unicode domains are not singular — there are valid alternatives.
 

@@ -9,7 +9,6 @@ const BATCH_DATA = [
   // ==========================================
   // GREEK DUAL-TIER VARIANTS (per AGENTS.md)
   // ==========================================
-  { id: 'apollonv1', ascii: 'apollon', unicode: 'Ápollōn', greek: 'Ἀπόλλων', pantheon: 'greek', tier: 'dual', tierLabel: 'Dual-Tier', domain: 'Light, Music, Prophecy', meaning: 'Variant: acute on first alpha (alternate accent position)', sources: ['LSJ', 'Pape-Benseler'] },
   { id: 'hadesv1', ascii: 'hades', unicode: 'Hādēs', greek: 'Ἅιδης', pantheon: 'greek', tier: 'dual', tierLabel: 'Dual-Tier', domain: 'Underworld, Wealth', meaning: 'Variant: macron on alpha (length only, alternate restoration)', sources: ['LSJ', 'Pape-Benseler'] },
 
   // ==========================================
