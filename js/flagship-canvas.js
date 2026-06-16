@@ -722,6 +722,365 @@
         draw();
     }
 
+    // ─── EFFECT: CANAANITE WAR (Anat) ────────────────────────────────────────
+    function canaaniteWar(canvas, ctx, width, height, primary, secondary) {
+        const grains = [];
+        const spears = [];
+        const count = Math.min(140, Math.floor((width * height) / 15000));
+        for (let i = 0; i < count; i++) {
+            grains.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                size: Math.random() * 2 + 0.5,
+                speedX: Math.random() * 1.2 + 0.3,
+                speedY: (Math.random() - 0.5) * 0.4,
+                opacity: Math.random() * 0.5 + 0.1,
+                color: Math.random() > 0.7 ? secondary : primary
+            });
+        }
+        let flash = 0;
+        function draw() {
+            ctx.fillStyle = `rgba(${primary.r * 0.08 | 0}, ${primary.g * 0.08 | 0}, ${primary.b * 0.08 | 0}, 0.25)`;
+            ctx.fillRect(0, 0, width, height);
+
+            grains.forEach(g => {
+                g.x += g.speedX;
+                g.y += g.speedY;
+                if (g.x > width) g.x = -2;
+                ctx.beginPath();
+                ctx.arc(g.x, g.y, g.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${g.color.r}, ${g.color.g}, ${g.color.b}, ${g.opacity})`;
+                ctx.fill();
+            });
+
+            if (Math.random() < 0.006) flash = randomRange(0.15, 0.35);
+            if (flash > 0.01) {
+                ctx.fillStyle = `rgba(255, 245, 220, ${flash})`;
+                ctx.fillRect(0, 0, width, height);
+                flash *= 0.85;
+            }
+
+            if (Math.random() < 0.015) {
+                spears.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    length: randomRange(40, 120),
+                    angle: randomRange(-Math.PI / 4, Math.PI / 4),
+                    life: 1,
+                    speed: randomRange(8, 16)
+                });
+            }
+            for (let i = spears.length - 1; i >= 0; i--) {
+                const s = spears[i];
+                s.x += Math.cos(s.angle) * s.speed;
+                s.y += Math.sin(s.angle) * s.speed;
+                s.life -= 0.04;
+                if (s.life <= 0) {
+                    spears.splice(i, 1);
+                    continue;
+                }
+                ctx.save();
+                ctx.translate(s.x, s.y);
+                ctx.rotate(s.angle);
+                ctx.strokeStyle = `rgba(${secondary.r}, ${secondary.g}, ${secondary.b}, ${s.life * 0.6})`;
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                ctx.moveTo(-s.length / 2, 0);
+                ctx.lineTo(s.length / 2, 0);
+                ctx.stroke();
+                ctx.restore();
+            }
+
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: STORM ON ZAPHON (Baal) ──────────────────────────────────────
+    function stormOnZaphon(canvas, ctx, width, height, primary, secondary) {
+        const rain = [];
+        const rainCount = Math.min(200, Math.floor(width / 4));
+        for (let i = 0; i < rainCount; i++) {
+            rain.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                length: randomRange(10, 25),
+                speed: randomRange(12, 20)
+            });
+        }
+        let lightning = 0;
+        function draw() {
+            ctx.fillStyle = `rgba(10, 14, 26, 0.35)`;
+            ctx.fillRect(0, 0, width, height);
+
+            const cloudGrad = ctx.createLinearGradient(0, 0, 0, height * 0.45);
+            cloudGrad.addColorStop(0, `rgba(${secondary.r}, ${secondary.g}, ${secondary.b}, 0.35)`);
+            cloudGrad.addColorStop(1, 'rgba(10, 14, 26, 0)');
+            ctx.fillStyle = cloudGrad;
+            ctx.fillRect(0, 0, width, height * 0.45);
+
+            ctx.strokeStyle = `rgba(180, 200, 220, 0.25)`;
+            ctx.lineWidth = 1;
+            rain.forEach(r => {
+                r.y += r.speed;
+                r.x -= 0.5;
+                if (r.y > height) {
+                    r.y = -r.length;
+                    r.x = Math.random() * width;
+                }
+                ctx.beginPath();
+                ctx.moveTo(r.x, r.y);
+                ctx.lineTo(r.x - 2, r.y + r.length);
+                ctx.stroke();
+            });
+
+            if (Math.random() < 0.008) lightning = randomRange(0.3, 0.7);
+            if (lightning > 0.01) {
+                ctx.strokeStyle = `rgba(255, 250, 220, ${lightning})`;
+                ctx.lineWidth = 2;
+                ctx.shadowBlur = 20;
+                ctx.shadowColor = `rgba(255, 250, 220, ${lightning})`;
+                ctx.beginPath();
+                let lx = randomRange(width * 0.3, width * 0.7);
+                let ly = 0;
+                ctx.moveTo(lx, ly);
+                while (ly < height * 0.6) {
+                    lx += randomRange(-40, 40);
+                    ly += randomRange(20, 50);
+                    ctx.lineTo(lx, ly);
+                }
+                ctx.stroke();
+                ctx.shadowBlur = 0;
+                lightning *= 0.82;
+            }
+
+            const mountainGrad = ctx.createLinearGradient(0, height * 0.55, 0, height);
+            mountainGrad.addColorStop(0, `rgba(${primary.r}, ${primary.g}, ${primary.b}, 0.15)`);
+            mountainGrad.addColorStop(1, `rgba(${primary.r}, ${primary.g}, ${primary.b}, 0.35)`);
+            ctx.fillStyle = mountainGrad;
+            ctx.beginPath();
+            ctx.moveTo(0, height);
+            ctx.lineTo(width * 0.2, height * 0.62);
+            ctx.lineTo(width * 0.5, height * 0.52);
+            ctx.lineTo(width * 0.8, height * 0.62);
+            ctx.lineTo(width, height);
+            ctx.closePath();
+            ctx.fill();
+
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: VINE REVEL (Dionysos) ───────────────────────────────────────
+    function vineRevel(canvas, ctx, width, height, primary, secondary) {
+        const vines = [];
+        const leaves = [];
+        const vineCount = Math.min(12, Math.floor(width / 120));
+        for (let i = 0; i < vineCount; i++) {
+            vines.push({
+                x: (i + 0.5) * (width / vineCount) + randomRange(-30, 30),
+                y: height + randomRange(20, 80),
+                amp: randomRange(20, 50),
+                freq: randomRange(0.005, 0.012),
+                phase: Math.random() * Math.PI * 2,
+                speed: randomRange(0.3, 0.8),
+                height: randomRange(height * 0.5, height * 0.85)
+            });
+        }
+        for (let i = 0; i < 60; i++) {
+            leaves.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                size: randomRange(3, 7),
+                rotation: Math.random() * Math.PI * 2,
+                rotSpeed: randomRange(-0.02, 0.02),
+                color: Math.random() > 0.6 ? secondary : primary
+            });
+        }
+        let t = 0;
+        function draw() {
+            ctx.fillStyle = 'rgba(8, 6, 10, 0.25)';
+            ctx.fillRect(0, 0, width, height);
+
+            vines.forEach(v => {
+                ctx.strokeStyle = `rgba(${primary.r}, ${primary.g}, ${primary.b}, 0.4)`;
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                for (let y = 0; y < v.height; y += 5) {
+                    const x = v.x + Math.sin(y * v.freq + v.phase + t * 0.02) * (v.amp * (y / v.height));
+                    if (y === 0) ctx.moveTo(x, height - y);
+                    else ctx.lineTo(x, height - y);
+                }
+                ctx.stroke();
+            });
+
+            leaves.forEach(l => {
+                l.y -= 0.3;
+                l.rotation += l.rotSpeed;
+                l.x += Math.sin(t * 0.01 + l.y * 0.01) * 0.3;
+                if (l.y < -10) l.y = height + 10;
+                ctx.save();
+                ctx.translate(l.x, l.y);
+                ctx.rotate(l.rotation);
+                ctx.fillStyle = `rgba(${l.color.r}, ${l.color.g}, ${l.color.b}, 0.45)`;
+                ctx.beginPath();
+                ctx.ellipse(0, 0, l.size, l.size * 0.6, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            });
+
+            t++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: DESCENT GATE (Ishtar) ───────────────────────────────────────
+    function descentGate(canvas, ctx, width, height, primary, secondary) {
+        const stars = [];
+        const lions = [];
+        const starCount = Math.min(120, Math.floor((width * height) / 18000));
+        for (let i = 0; i < starCount; i++) {
+            stars.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                size: Math.random() * 1.5 + 0.3,
+                opacity: Math.random(),
+                twinkle: Math.random() * 0.03 + 0.005
+            });
+        }
+        const gateCount = 7;
+        const gateWidth = width / (gateCount + 1);
+        function draw() {
+            ctx.fillStyle = 'rgba(18, 6, 10, 0.3)';
+            ctx.fillRect(0, 0, width, height);
+
+            stars.forEach(s => {
+                s.opacity += s.twinkle;
+                if (s.opacity > 1 || s.opacity < 0.2) s.twinkle *= -1;
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${secondary.r}, ${secondary.g}, ${secondary.b}, ${s.opacity * 0.7})`;
+                ctx.fill();
+            });
+
+            for (let i = 1; i <= gateCount; i++) {
+                const x = i * gateWidth;
+                const h = height * (0.4 + i * 0.06);
+                ctx.strokeStyle = `rgba(${primary.r}, ${primary.g}, ${primary.b}, ${0.15 + i * 0.04})`;
+                ctx.lineWidth = 4;
+                ctx.beginPath();
+                ctx.moveTo(x, height);
+                ctx.lineTo(x, height - h);
+                ctx.arc(x, height - h, gateWidth * 0.45, Math.PI, 0, true);
+                ctx.lineTo(x + gateWidth * 0.9, height);
+                ctx.stroke();
+            }
+
+            if (Math.random() < 0.01) {
+                lions.push({
+                    x: -60,
+                    y: height - randomRange(40, 120),
+                    size: randomRange(30, 50),
+                    life: 1
+                });
+            }
+            for (let i = lions.length - 1; i >= 0; i--) {
+                const l = lions[i];
+                l.x += 1.2;
+                l.life -= 0.003;
+                if (l.life <= 0 || l.x > width + 60) {
+                    lions.splice(i, 1);
+                    continue;
+                }
+                ctx.save();
+                ctx.translate(l.x, l.y);
+                ctx.fillStyle = `rgba(${primary.r}, ${primary.g}, ${primary.b}, ${l.life * 0.35})`;
+                ctx.beginPath();
+                ctx.arc(0, 0, l.size * 0.5, 0, Math.PI * 2);
+                ctx.arc(-l.size * 0.45, -l.size * 0.25, l.size * 0.25, 0, Math.PI * 2);
+                ctx.arc(l.size * 0.45, -l.size * 0.25, l.size * 0.25, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: COSMIC WATERS (Varuna) ──────────────────────────────────────
+    function cosmicWaters(canvas, ctx, width, height, primary, secondary) {
+        const waves = [];
+        const serpents = [];
+        for (let i = 0; i < 5; i++) {
+            waves.push({
+                y: height * (0.45 + i * 0.12),
+                amp: randomRange(15, 35),
+                freq: randomRange(0.003, 0.007),
+                phase: Math.random() * Math.PI * 2,
+                speed: randomRange(0.005, 0.015),
+                colorMix: i / 4
+            });
+        }
+        let t = 0;
+        function draw() {
+            ctx.fillStyle = 'rgba(6, 8, 22, 0.25)';
+            ctx.fillRect(0, 0, width, height);
+
+            waves.forEach((w, idx) => {
+                const r = Math.round(primary.r * (1 - w.colorMix) + secondary.r * w.colorMix);
+                const g = Math.round(primary.g * (1 - w.colorMix) + secondary.g * w.colorMix);
+                const b = Math.round(primary.b * (1 - w.colorMix) + secondary.b * w.colorMix);
+                ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${0.1 + idx * 0.04})`;
+                ctx.lineWidth = 2 + idx;
+                ctx.beginPath();
+                for (let x = 0; x <= width; x += 8) {
+                    const y = w.y + Math.sin(x * w.freq + w.phase + t * w.speed) * w.amp;
+                    if (x === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+            });
+
+            if (Math.random() < 0.02) {
+                serpents.push({
+                    x: Math.random() * width,
+                    y: height * 0.55 + Math.random() * height * 0.3,
+                    amp: randomRange(20, 40),
+                    freq: randomRange(0.01, 0.02),
+                    phase: Math.random() * Math.PI * 2,
+                    life: 1,
+                    length: randomRange(80, 180)
+                });
+            }
+            for (let i = serpents.length - 1; i >= 0; i--) {
+                const s = serpents[i];
+                s.x += 0.8;
+                s.life -= 0.005;
+                if (s.life <= 0 || s.x > width + s.length) {
+                    serpents.splice(i, 1);
+                    continue;
+                }
+                ctx.strokeStyle = `rgba(${secondary.r}, ${secondary.g}, ${secondary.b}, ${s.life * 0.35})`;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                for (let lx = 0; lx < s.length; lx += 5) {
+                    const x = s.x - lx;
+                    const y = s.y + Math.sin(lx * s.freq + s.phase) * s.amp;
+                    if (lx === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+            }
+
+            t++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
     const effects = {
         particles,
         stars,
@@ -739,7 +1098,12 @@
         sandstorm,
         abyssal,
         soul,
-        volcanic
+        volcanic,
+        canaaniteWar,
+        stormOnZaphon,
+        vineRevel,
+        descentGate,
+        cosmicWaters
     };
 
     function runEffect(canvas) {

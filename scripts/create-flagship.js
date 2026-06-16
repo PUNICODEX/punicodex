@@ -1230,6 +1230,12 @@ function _buildTierSection(entry, _sectionNumber) {
 
 function getCanvasEffect(entry) {
   const id = entry.id;
+
+  // Authoritative per-id effect map (overrides all heuristics).
+  if (FLAGSHIP_DATA.effectMap?.[id]) {
+    return FLAGSHIP_DATA.effectMap[id];
+  }
+
   const pantheon = entry.pantheon || '';
   const domain = (entry.domain || '').toLowerCase();
   const meaning = (entry.meaning || '').toLowerCase();
