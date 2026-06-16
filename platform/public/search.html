@@ -4,93 +4,156 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PUNYCODEX — Curated Unicode Real Estate</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0d0d12;
-      --surface: #14141c;
-      --surface-2: #1c1c28;
-      --surface-hover: #222230;
-      --text: #e8e6f0;
-      --text-dim: #8a87a0;
-      --text-muted: #5a5870;
-      --accent: #c9a96e;
-      --accent-glow: rgba(201, 169, 110, 0.12);
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --surface-2: #1a1a25;
+      --surface-hover: #232330;
+      --text: #f0eef5;
+      --text-dim: #9b98b0;
+      --text-muted: #6b6880;
+      --accent: #d4af37;
+      --accent-glow: rgba(212, 175, 55, 0.14);
       --border: #2a2a3a;
-      --link-blue: #8ab4f8;
+      --link-blue: #9dc3ff;
       --link-green: #a5d6a7;
-      --gold: #c9a96e;
-      --tier-dual: #c9a96e;
+      --gold: #d4af37;
+      --tier-dual: #d4af37;
       --tier-1: #7ec9a0;
       --tier-2: #87aee8;
       --available: #7ec9a0;
       --live: #87c9e8;
+      --font-display: 'Cinzel', Georgia, serif;
+      --font-body: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-      background: var(--bg);
+      font-family: var(--font-body);
+      background:
+        radial-gradient(ellipse at 10% 0%, rgba(212,175,55,0.04) 0%, transparent 35%),
+        radial-gradient(ellipse at 90% 100%, rgba(96,165,250,0.04) 0%, transparent 30%),
+        var(--bg);
       color: var(--text);
       min-height: 100vh;
-      line-height: 1.5;
+      line-height: 1.55;
       -webkit-font-smoothing: antialiased;
     }
 
     /* ====== HEADER ====== */
     header {
-      padding: 1.5rem 1rem 0.75rem;
+      padding: 1rem 1rem 0.75rem;
       border-bottom: 1px solid var(--border);
-      background: var(--surface);
+      background: rgba(18, 18, 26, 0.85);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
     }
 
     .header-inner {
-      max-width: 700px;
+      max-width: 780px;
       margin: 0 auto;
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
     }
 
     .logo-row {
       display: flex;
       align-items: center;
-      gap: 1rem;
-      margin-bottom: 1rem;
+      gap: 0.75rem;
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), #b8941d);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: #0a0a0f;
+      font-weight: 700;
+      box-shadow: 0 4px 16px rgba(212,175,55,0.18);
     }
 
     .logo {
-      font-size: 1.4rem;
-      font-weight: 800;
-      letter-spacing: 0.12em;
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
       color: var(--accent);
+      text-decoration: none;
     }
 
     .logo-sub {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: var(--text-muted);
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
+      margin-top: 0.05rem;
+    }
+
+    .global-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .global-nav a {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-dim);
+      text-decoration: none;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .global-nav a:hover {
+      color: var(--accent);
+      border-color: var(--border);
+      background: rgba(212,175,55,0.05);
     }
 
     /* ====== SEARCH BOX ====== */
     .search-box {
       position: relative;
-      margin-bottom: 0.75rem;
     }
 
     .search-box input {
       width: 100%;
-      padding: 0.85rem 1rem 0.85rem 2.75rem;
-      font-size: 1rem;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 24px;
+      padding: 1rem 3rem 1rem 3rem;
+      font-size: 1.05rem;
+      font-family: var(--font-body);
+      background: rgba(10, 10, 15, 0.7);
+      border: 1.5px solid var(--border);
+      border-radius: 999px;
       color: var(--text);
       outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
     }
 
     .search-box input:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-glow);
+      background: rgba(10, 10, 15, 0.9);
+      box-shadow: 0 0 0 4px var(--accent-glow), inset 0 1px 0 rgba(255,255,255,0.03);
     }
 
     .search-box input::placeholder {
@@ -99,45 +162,58 @@
 
     .search-box .search-icon {
       position: absolute;
-      left: 1rem;
+      left: 1.1rem;
       top: 50%;
       transform: translateY(-50%);
-      color: var(--text-muted);
+      color: var(--accent);
       pointer-events: none;
     }
 
     .search-box .search-clear {
       position: absolute;
-      right: 0.75rem;
+      right: 0.9rem;
       top: 50%;
       transform: translateY(-50%);
-      background: none;
-      border: none;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
       color: var(--text-muted);
       cursor: pointer;
-      padding: 0.25rem;
       display: none;
-      font-size: 1.1rem;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      line-height: 1;
+      transition: all 0.2s;
+    }
+
+    .search-box .search-clear:hover {
+      background: var(--surface-hover);
+      color: var(--text);
+      border-color: var(--accent);
     }
 
     .search-box .search-clear.visible {
-      display: block;
+      display: flex;
     }
 
     /* ====== AUTOCOMPLETE ====== */
     .autocomplete-dropdown {
       position: absolute;
-      top: calc(100% + 4px);
+      top: calc(100% + 8px);
       left: 0;
       right: 0;
-      background: var(--surface);
+      background: rgba(26, 26, 37, 0.98);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      border-radius: 14px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.55);
       z-index: 100;
-      max-height: 320px;
+      max-height: 340px;
       overflow-y: auto;
       display: none;
+      backdrop-filter: blur(12px);
     }
 
     .autocomplete-dropdown.visible {
@@ -215,17 +291,17 @@
       margin-top: 1.5rem;
       padding: 1rem;
       background: var(--surface);
-      border-radius: 12px;
+      border-radius: 14px;
       border: 1px solid var(--border);
     }
 
     .related-title {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text-dim);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted);
       margin-bottom: 0.75rem;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
     }
 
     .related-grid {
@@ -235,20 +311,21 @@
     }
 
     .related-chip {
-      padding: 0.4rem 0.8rem;
+      padding: 0.4rem 0.85rem;
       background: var(--surface-2);
       border: 1px solid var(--border);
-      border-radius: 20px;
+      border-radius: 999px;
       font-size: 0.85rem;
       color: var(--text);
-      text-decoration: none;
       cursor: pointer;
       transition: all 0.15s;
+      font-family: inherit;
     }
 
     .related-chip:hover {
       border-color: var(--accent);
       color: var(--accent);
+      background: rgba(212,175,55,0.05);
     }
 
     /* ====== MODE TABS ====== */
@@ -258,41 +335,55 @@
       border-bottom: 1px solid var(--border);
       background: var(--surface);
       padding: 0 1rem;
+      overflow-x: auto;
+      scrollbar-width: none;
     }
 
+    .mode-tabs::-webkit-scrollbar { display: none; }
+
     .mode-tab {
-      padding: 0.6rem 1.25rem;
+      padding: 0.75rem 1.1rem;
       background: transparent;
       border: none;
       border-bottom: 2px solid transparent;
       color: var(--text-dim);
-      font-size: 0.88rem;
-      font-weight: 500;
+      font-size: 0.85rem;
+      font-weight: 600;
+      font-family: var(--font-body);
       cursor: pointer;
-      transition: all 0.15s;
-      letter-spacing: 0.01em;
+      transition: all 0.2s;
+      letter-spacing: 0.02em;
       margin-bottom: -1px;
+      white-space: nowrap;
     }
 
     .mode-tab:hover {
       color: var(--text);
     }
 
+    .mode-tab.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
     .unicode-toggle {
       margin-left: auto;
       display: flex;
       align-items: center;
-      gap: 0.4rem;
-      font-size: 0.8rem;
+      gap: 0.45rem;
+      font-size: 0.78rem;
       color: var(--text-dim);
       cursor: pointer;
       user-select: none;
-      padding: 0 0.5rem;
+      padding: 0 0.25rem 0 0.75rem;
+      white-space: nowrap;
     }
 
     .unicode-toggle input {
       accent-color: var(--accent);
       cursor: pointer;
+      width: 16px;
+      height: 16px;
     }
 
     .unicode-badge {
@@ -313,36 +404,64 @@
 
     /* ====== FILTER BAR ====== */
     .filter-bar {
-      max-width: 700px;
+      max-width: 780px;
       margin: 0 auto;
       padding: 0.75rem 1rem;
       border-bottom: 1px solid var(--border);
       background: var(--surface);
     }
+    .filter-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.6rem;
+    }
+    .filter-toggle {
+      display: none;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.4rem 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-toggle:hover { border-color: var(--accent); color: var(--accent); }
+    .filter-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .filter-panel.collapsed { display: flex; }
     .filter-row {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 0.6rem;
+      gap: 0.5rem;
     }
-    .filter-row:last-child { margin-bottom: 0; }
     .filter-label {
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.09em;
       color: var(--text-muted);
-      margin-right: 0.3rem;
+      margin-right: 0.2rem;
+      font-weight: 600;
     }
     .filter-pill {
-      font-size: 0.8rem;
-      padding: 0.35rem 0.8rem;
+      font-size: 0.78rem;
+      padding: 0.32rem 0.75rem;
       background: var(--bg);
       border: 1px solid var(--border);
       border-radius: 999px;
       color: var(--text-dim);
       cursor: pointer;
       transition: all 0.2s;
+      font-family: var(--font-body);
     }
     .filter-pill:hover {
       border-color: var(--accent);
@@ -354,43 +473,88 @@
       color: var(--accent);
     }
     .filter-select {
-      font-size: 0.8rem;
-      padding: 0.35rem 0.6rem;
+      font-size: 0.78rem;
+      padding: 0.32rem 0.55rem;
       background: var(--bg);
       border: 1px solid var(--border);
       border-radius: 8px;
       color: var(--text);
       outline: none;
+      font-family: var(--font-body);
     }
     .filter-select:focus { border-color: var(--accent); }
 
+    .active-filters {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+      min-height: 1.5rem;
+    }
+    .active-filter-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.72rem;
+      padding: 0.2rem 0.55rem;
+      background: rgba(212,175,55,0.1);
+      border: 1px solid rgba(212,175,55,0.25);
+      border-radius: 999px;
+      color: var(--accent);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .active-filter-chip:hover {
+      background: rgba(212,175,55,0.18);
+    }
+    .active-filter-chip .remove {
+      font-weight: 700;
+      opacity: 0.7;
+    }
+    .clear-filters {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0.15rem;
+    }
+    .clear-filters:hover { color: var(--text); }
+
     /* ====== RESULTS AREA ====== */
     .results {
-      max-width: 700px;
+      max-width: 780px;
       margin: 0 auto;
-      padding: 0.75rem 1rem 2rem;
+      padding: 1rem 1rem 2rem;
       min-height: 300px;
     }
 
     .result-count {
       color: var(--text-muted);
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       margin-bottom: 0.75rem;
-      padding: 0.5rem 0;
+      padding: 0.25rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     /* ====== SERP RESULT ====== */
     .serp-result {
-      padding: 0.85rem 0.5rem;
-      border-radius: 8px;
-      margin: 0 -0.5rem;
-      transition: background 0.15s;
+      padding: 1rem 0.75rem;
+      border-radius: 12px;
+      margin: 0 -0.75rem 0.25rem;
+      transition: background 0.15s, transform 0.15s;
       outline: none;
+      border: 1px solid transparent;
     }
 
     .serp-result:hover,
     .serp-result:focus {
-      background: var(--surface-2);
+      background: rgba(26, 26, 37, 0.6);
+      border-color: var(--border);
     }
 
     .serp-result:focus-visible {
@@ -400,33 +564,33 @@
 
     .serp-header {
       display: flex;
-      gap: 0.75rem;
+      gap: 0.9rem;
       align-items: flex-start;
     }
 
     .serp-favicon {
-      width: 28px;
-      height: 28px;
-      min-width: 28px;
-      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      min-width: 32px;
+      border-radius: 8px;
       object-fit: cover;
-      margin-top: 1px;
+      margin-top: 2px;
       background: var(--surface);
       border: 1px solid var(--border);
     }
 
     .serp-favicon-fallback {
-      width: 28px;
-      height: 28px;
-      min-width: 28px;
-      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      min-width: 32px;
+      border-radius: 8px;
       background: var(--surface);
       border: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
       color: var(--text-muted);
-      font-size: 0.7rem;
+      font-size: 0.85rem;
     }
 
     .serp-body {
@@ -437,16 +601,29 @@
     .serp-url-line {
       font-size: 0.78rem;
       line-height: 1.4;
-      margin-bottom: 0.15rem;
+      margin-bottom: 0.2rem;
       display: flex;
       align-items: center;
-      gap: 0.3rem;
+      gap: 0.4rem;
       flex-wrap: wrap;
     }
 
     .serp-domain {
-      color: var(--link-green);
-      font-weight: 400;
+      color: var(--accent);
+      font-weight: 600;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      letter-spacing: 0.02em;
+    }
+
+    .serp-punycode {
+      color: var(--text-muted);
+      font-family: 'SF Mono', monospace;
+      font-size: 0.7rem;
+      background: var(--surface);
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
     }
 
     .serp-sep {
@@ -459,12 +636,12 @@
     }
 
     .serp-title {
-      font-size: 1.15rem;
-      font-weight: 400;
+      font-size: 1.18rem;
+      font-weight: 500;
       color: var(--link-blue);
       text-decoration: none;
       display: block;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.3rem;
       line-height: 1.35;
       word-break: break-word;
     }
@@ -476,23 +653,23 @@
     .serp-title mark {
       background: transparent;
       color: inherit;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .serp-snippet {
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       color: var(--text-dim);
-      line-height: 1.55;
+      line-height: 1.6;
       max-width: 100%;
       word-break: break-word;
     }
 
     .serp-snippet mark {
-      background: rgba(201, 169, 110, 0.2);
+      background: rgba(212, 175, 55, 0.18);
       color: var(--accent);
       padding: 0 2px;
       border-radius: 2px;
-      font-weight: 500;
+      font-weight: 600;
     }
 
     .serp-date {
@@ -506,9 +683,9 @@
     }
 
     .serp-thumbnail {
-      width: 92px;
-      height: 92px;
-      border-radius: 8px;
+      width: 100px;
+      height: 100px;
+      border-radius: 10px;
       object-fit: cover;
       background: var(--surface);
       border: 1px solid var(--border);
@@ -517,30 +694,30 @@
     .serp-meta {
       display: flex;
       gap: 0.4rem;
-      margin-top: 0.4rem;
+      margin-top: 0.5rem;
       flex-wrap: wrap;
       align-items: center;
     }
 
     .serp-badge {
-      font-size: 0.68rem;
-      padding: 0.12rem 0.45rem;
-      border-radius: 3px;
-      font-weight: 600;
+      font-size: 0.65rem;
+      padding: 0.14rem 0.5rem;
+      border-radius: 999px;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.04em;
       white-space: nowrap;
     }
 
     .serp-badge.flagship {
-      background: rgba(201, 169, 110, 0.1);
+      background: linear-gradient(135deg, rgba(212,175,55,0.14), rgba(212,175,55,0.06));
       color: var(--accent);
-      border: 1px solid rgba(201, 169, 110, 0.15);
+      border: 1px solid rgba(212,175,55,0.2);
     }
 
-    .serp-badge.tier-dual { background: rgba(201, 169, 110, 0.08); color: var(--tier-dual); }
-    .serp-badge.tier-1 { background: rgba(126, 201, 160, 0.08); color: var(--tier-1); }
-    .serp-badge.tier-2 { background: rgba(135, 174, 232, 0.08); color: var(--tier-2); }
+    .serp-badge.tier-dual { background: rgba(212, 175, 55, 0.1); color: var(--tier-dual); }
+    .serp-badge.tier-1 { background: rgba(126, 201, 160, 0.1); color: var(--tier-1); }
+    .serp-badge.tier-2 { background: rgba(135, 174, 232, 0.1); color: var(--tier-2); }
 
     .serp-badge.pantheon {
       background: var(--surface);
@@ -552,15 +729,22 @@
     .serp-utilities {
       display: flex;
       gap: 0.85rem;
-      margin-top: 0.35rem;
+      margin-top: 0.45rem;
       padding-left: 0;
+      align-items: center;
+      flex-wrap: wrap;
     }
 
     .serp-utility {
       font-size: 0.78rem;
+      font-weight: 500;
       color: var(--text-muted);
       text-decoration: none;
       cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      font-family: inherit;
     }
 
     .serp-utility:hover {
@@ -634,32 +818,36 @@
     .empty {
       text-align: center;
       color: var(--text-dim);
-      padding: 3rem 1rem;
+      padding: 3.5rem 1rem;
     }
 
     .empty-icon {
-      font-size: 3rem;
+      font-size: 3.5rem;
       margin-bottom: 1rem;
-      opacity: 0.4;
+      opacity: 0.35;
     }
 
     .empty-title {
-      font-size: 1.1rem;
+      font-family: var(--font-display);
+      font-size: 1.35rem;
       color: var(--text);
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.4rem;
     }
 
     .empty-sub {
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       color: var(--text-muted);
+      max-width: 420px;
+      margin: 0 auto;
+      line-height: 1.6;
     }
 
     .build-cta {
-      margin-top: 1.5rem;
+      margin-top: 1.75rem;
       padding: 1.25rem;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 10px;
+      border-radius: 12px;
       text-align: center;
     }
 
@@ -677,13 +865,14 @@
 
     /* ====== KNOWLEDGE PANEL ====== */
     .knowledge-panel {
-      background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+      background: linear-gradient(135deg, rgba(20,20,30,0.95) 0%, rgba(26,26,37,0.95) 100%);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.25rem;
+      border-radius: 16px;
+      padding: 1.35rem;
       margin-bottom: 1.25rem;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.35);
     }
 
     .knowledge-panel::before {
@@ -694,7 +883,7 @@
       right: 0;
       height: 3px;
       background: linear-gradient(90deg, var(--tier-dual), var(--tier-1), var(--tier-2));
-      opacity: 0.6;
+      opacity: 0.8;
     }
 
     .kp-header {
@@ -705,64 +894,100 @@
     }
 
     .kp-name {
-      font-size: 1.6rem;
+      font-family: var(--font-display);
+      font-size: 1.9rem;
       font-weight: 700;
       color: var(--text);
-      line-height: 1.2;
+      line-height: 1.15;
     }
 
     .kp-greek {
-      font-size: 1rem;
+      font-size: 1.05rem;
       color: var(--accent);
       font-family: 'Georgia', 'Times New Roman', serif;
-      margin-top: 0.2rem;
+      margin-top: 0.25rem;
     }
 
     .kp-meaning {
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       color: var(--text-dim);
-      margin-top: 0.3rem;
+      margin-top: 0.4rem;
+      line-height: 1.5;
     }
 
     .kp-badges {
       display: flex;
       gap: 0.4rem;
       flex-wrap: wrap;
-      margin-top: 0.5rem;
+      margin-top: 0.6rem;
     }
 
     .kp-badge {
-      font-size: 0.7rem;
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-      font-weight: 600;
+      font-size: 0.65rem;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
 
-    .kp-badge.tier-dual { background: rgba(201, 169, 110, 0.12); color: var(--tier-dual); }
+    .kp-badge.tier-dual { background: rgba(212, 175, 55, 0.12); color: var(--tier-dual); }
     .kp-badge.tier-1 { background: rgba(126, 201, 160, 0.12); color: var(--tier-1); }
     .kp-badge.tier-2 { background: rgba(135, 174, 232, 0.12); color: var(--tier-2); }
     .kp-badge.pantheon { background: var(--surface-hover); color: var(--text-dim); border: 1px solid var(--border); text-transform: capitalize; }
 
+    .kp-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.9rem;
+    }
+
+    .kp-action {
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.45rem 0.9rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .kp-action.primary {
+      background: var(--accent);
+      color: #0a0a0f;
+    }
+
+    .kp-action.primary:hover { background: #e0bd4d; }
+
+    .kp-action.secondary {
+      background: var(--surface-2);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .kp-action.secondary:hover { border-color: var(--accent); color: var(--accent); }
+
     .kp-lore {
-      margin-top: 1rem;
-      padding-top: 0.75rem;
+      margin-top: 1.1rem;
+      padding-top: 0.9rem;
       border-top: 1px solid var(--border);
     }
 
     .kp-lore-title {
-      font-size: 0.75rem;
-      font-weight: 600;
+      font-size: 0.72rem;
+      font-weight: 700;
       color: var(--text-muted);
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.07em;
       margin-bottom: 0.5rem;
     }
 
     .kp-lore-text {
       font-size: 0.9rem;
-      line-height: 1.55;
+      line-height: 1.6;
       color: var(--text);
     }
 
@@ -789,45 +1014,48 @@
     }
 
     .kp-sites {
-      margin-top: 1rem;
-      padding-top: 0.75rem;
+      margin-top: 1.1rem;
+      padding-top: 0.9rem;
       border-top: 1px solid var(--border);
     }
 
     .kp-sites-title {
-      font-size: 0.75rem;
-      font-weight: 600;
+      font-size: 0.72rem;
+      font-weight: 700;
       color: var(--text-muted);
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.07em;
       margin-bottom: 0.5rem;
     }
 
     .kp-site-list {
       display: flex;
       flex-direction: column;
-      gap: 0.4rem;
+      gap: 0.45rem;
     }
 
     .kp-site-item {
       display: flex;
       align-items: center;
       gap: 0.6rem;
-      padding: 0.4rem 0.5rem;
-      border-radius: 6px;
+      padding: 0.5rem 0.6rem;
+      border-radius: 8px;
       transition: background 0.15s;
       text-decoration: none;
       color: inherit;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid transparent;
     }
 
     .kp-site-item:hover {
       background: var(--surface-hover);
+      border-color: var(--border);
     }
 
     .kp-site-favicon {
-      width: 18px;
-      height: 18px;
-      border-radius: 3px;
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
       object-fit: cover;
       background: var(--surface);
     }
@@ -835,7 +1063,7 @@
     .kp-site-domain {
       font-size: 0.85rem;
       color: var(--link-green);
-      font-weight: 500;
+      font-weight: 600;
     }
 
     .kp-site-title {
@@ -848,28 +1076,29 @@
     }
 
     .kp-related {
-      margin-top: 0.75rem;
-      padding-top: 0.75rem;
+      margin-top: 0.9rem;
+      padding-top: 0.9rem;
       border-top: 1px solid var(--border);
     }
 
     .kp-related-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.4rem;
+      gap: 0.45rem;
       margin-top: 0.4rem;
     }
 
     .kp-related-chip {
-      padding: 0.25rem 0.6rem;
+      padding: 0.3rem 0.7rem;
       background: var(--surface-2);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      font-size: 0.8rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
       color: var(--text);
       text-decoration: none;
       cursor: pointer;
       transition: all 0.15s;
+      font-family: inherit;
     }
 
     .kp-related-chip:hover {
@@ -892,17 +1121,17 @@
       margin: 1rem 0 1.5rem;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 14px;
       overflow: hidden;
     }
 
     .paa-title {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text-dim);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted);
       padding: 0.9rem 1rem;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
       border-bottom: 1px solid var(--border);
     }
 
@@ -920,9 +1149,10 @@
       justify-content: space-between;
       align-items: center;
       padding: 0.85rem 1rem;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       color: var(--text);
       transition: background 0.15s;
+      gap: 0.75rem;
     }
 
     .paa-question:hover {
@@ -930,9 +1160,10 @@
     }
 
     .paa-chevron {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       color: var(--text-muted);
       transition: transform 0.2s;
+      flex-shrink: 0;
     }
 
     .paa-item.expanded .paa-chevron {
@@ -946,7 +1177,7 @@
       padding: 0 1rem;
       font-size: 0.88rem;
       color: var(--text-dim);
-      line-height: 1.5;
+      line-height: 1.55;
     }
 
     .paa-item.expanded .paa-answer {
@@ -1003,25 +1234,24 @@
     .lease-badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.25rem;
-      font-size: 0.68rem;
-      font-weight: 600;
-      padding: 0.15rem 0.5rem;
+      gap: 0.3rem;
+      font-size: 0.62rem;
+      font-weight: 700;
+      padding: 0.16rem 0.55rem;
       border-radius: 999px;
       text-transform: uppercase;
-      letter-spacing: 0.03em;
-      margin-left: 0.4rem;
+      letter-spacing: 0.04em;
     }
     .lease-badge.flagship {
-      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      background: linear-gradient(135deg, rgba(251,191,36,0.9), rgba(245,158,11,0.9));
       color: #451a03;
     }
     .lease-badge.leased {
-      background: linear-gradient(135deg, #34d399, #10b981);
+      background: linear-gradient(135deg, rgba(52,211,153,0.9), rgba(16,185,129,0.9));
       color: #064e3b;
     }
     .lease-badge.available {
-      background: linear-gradient(135deg, #60a5fa, #3b82f6);
+      background: linear-gradient(135deg, rgba(96,165,250,0.9), rgba(59,130,246,0.9));
       color: #1e3a8a;
     }
 
@@ -1029,26 +1259,43 @@
     .tenant-card {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      margin-top: 0.4rem;
-      padding: 0.4rem 0.6rem;
+      gap: 0.6rem;
+      margin-top: 0.55rem;
+      padding: 0.55rem 0.75rem;
       background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(16,185,129,0.03));
       border: 1px solid rgba(16,185,129,0.2);
-      border-radius: 8px;
-      font-size: 0.8rem;
+      border-radius: 10px;
+      font-size: 0.85rem;
     }
     .tenant-card .tenant-label {
-      color: var(--text-dim);
-      font-size: 0.72rem;
+      color: #10b981;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
     .tenant-card .tenant-name {
-      color: #10b981;
+      color: #34d399;
       font-weight: 600;
     }
     .tenant-card .tenant-category {
       color: var(--text-muted);
-      font-size: 0.72rem;
+      font-size: 0.75rem;
       margin-left: auto;
+    }
+    .tenant-card .tenant-cta {
+      margin-left: auto;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #0a0a0f;
+      background: #10b981;
+      padding: 0.25rem 0.7rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .tenant-card .tenant-cta:hover {
+      background: #34d399;
     }
 
     /* ====== AVAILABILITY CARDS ====== */
@@ -1103,15 +1350,16 @@
     .entry-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 14px;
       margin-bottom: 0.75rem;
       overflow: hidden;
-      transition: border-color 0.2s, transform 0.2s;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
     }
 
     .entry-card:hover {
       border-color: var(--accent);
-      transform: translateY(-1px);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
     }
 
     .entry-card.has-site {
@@ -1126,12 +1374,13 @@
       display: flex;
       align-items: center;
       gap: 0.6rem;
-      padding: 0.85rem 1rem 0.4rem;
+      padding: 0.9rem 1rem 0.45rem;
       flex-wrap: wrap;
     }
 
     .entry-unicode {
-      font-size: 1.3rem;
+      font-family: var(--font-display);
+      font-size: 1.35rem;
       font-weight: 700;
     }
 
@@ -1141,15 +1390,15 @@
     }
 
     .tier-badge {
-      font-size: 0.6rem;
-      padding: 0.15rem 0.4rem;
-      border-radius: 3px;
+      font-size: 0.58rem;
+      padding: 0.14rem 0.4rem;
+      border-radius: 999px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
 
-    .tier-dual { background: rgba(201, 169, 110, 0.12); color: var(--tier-dual); }
+    .tier-dual { background: rgba(212, 175, 55, 0.12); color: var(--tier-dual); }
     .tier-1 { background: rgba(126, 201, 160, 0.12); color: var(--tier-1); }
     .tier-2 { background: rgba(135, 174, 232, 0.12); color: var(--tier-2); }
 
@@ -1160,15 +1409,16 @@
     }
 
     .entry-meta {
-      padding: 0 1rem 0.6rem;
+      padding: 0 1rem 0.7rem;
       color: var(--text-dim);
-      font-size: 0.85rem;
+      font-size: 0.86rem;
+      line-height: 1.5;
     }
 
     .business-card, .availability-card {
       background: var(--surface-2);
       border-top: 1px solid var(--border);
-      padding: 0.85rem 1rem;
+      padding: 0.9rem 1rem;
     }
 
     .business-card-header {
@@ -1332,24 +1582,210 @@
     /* ====== UTILITIES ====== */
     .hidden { display: none !important; }
 
-    @media (max-width: 600px) {
+    /* ====== SCORE BREAKDOWN TOOLTIP ====== */
+    .score-breakdown {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.62rem;
+      font-weight: 700;
+      padding: 0.12rem 0.45rem;
+      background: rgba(138, 180, 248, 0.08);
+      color: var(--link-blue);
+      border: 1px solid rgba(138, 180, 248, 0.14);
+      border-radius: 999px;
+      cursor: help;
+      position: relative;
+      letter-spacing: 0.02em;
+      opacity: 0.85;
+      transition: opacity 0.15s;
+    }
+    .score-breakdown:hover { opacity: 1; }
+    .score-breakdown:hover .score-tooltip,
+    .score-breakdown:focus .score-tooltip {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .score-tooltip {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      z-index: 50;
+      min-width: 220px;
+      background: rgba(26, 26, 37, 0.98);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.6rem 0.75rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-6px);
+      transition: all 0.15s ease;
+      pointer-events: none;
+      backdrop-filter: blur(12px);
+    }
+    .score-tooltip-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      font-size: 0.72rem;
+      padding: 0.2rem 0;
+      border-bottom: 1px solid rgba(42,42,58,0.5);
+    }
+    .score-tooltip-row:last-child {
+      border-bottom: none;
+      font-weight: 700;
+      color: var(--accent);
+      margin-top: 0.2rem;
+      padding-top: 0.35rem;
+    }
+    .score-tooltip-label { color: var(--text-dim); }
+    .score-tooltip-value { color: var(--text); font-family: 'SF Mono', monospace; }
+
+    /* ====== LOAD MORE ====== */
+    .load-more-wrap {
+      display: flex;
+      justify-content: center;
+      padding: 1.25rem 0 1.5rem;
+    }
+    .load-more-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.6rem 1.5rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-body);
+    }
+    .load-more-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(212,175,55,0.05);
+    }
+    .load-more-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .load-more-spinner {
+      width: 14px;
+      height: 14px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ====== AUTOCOMPLETE KEYBOARD ACTIVE ====== */
+    .autocomplete-item.keyboard-active {
+      background: var(--surface-hover);
+      outline: 1px solid var(--accent);
+    }
+
+    /* ====== TENANT KNOWLEDGE PANEL CARD ====== */
+    .kp-tenant {
+      margin-top: 1rem;
+      padding: 0.9rem;
+      background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(16,185,129,0.02));
+      border: 1px solid rgba(16,185,129,0.2);
+      border-radius: 10px;
+    }
+    .kp-tenant-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.4rem;
+    }
+    .kp-tenant-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #10b981;
+      font-weight: 700;
+    }
+    .kp-tenant-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .kp-tenant-category {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      margin-bottom: 0.5rem;
+    }
+    .kp-tenant-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .kp-tenant-btn {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.35rem 0.7rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .kp-tenant-btn.primary {
+      background: #10b981;
+      color: #052e1d;
+    }
+    .kp-tenant-btn.primary:hover { background: #34d399; }
+    .kp-tenant-btn.secondary {
+      background: var(--surface-2);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .kp-tenant-btn.secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    @media (max-width: 700px) {
+      .header-top { flex-wrap: wrap; gap: 0.5rem; }
+      .global-nav { display: none; }
+      .header-inner { padding: 0 0.25rem; }
+      .mode-tabs { padding: 0 0.75rem; }
+      .mode-tab { padding: 0.65rem 0.85rem; font-size: 0.8rem; }
+      .filter-bar { padding: 0.6rem 0.75rem; }
+      .filter-toggle { display: inline-flex; }
+      .filter-panel { display: none; }
+      .filter-panel.expanded { display: flex; }
+      .filter-row { gap: 0.45rem; }
+      .filter-pill { padding: 0.3rem 0.6rem; font-size: 0.75rem; }
+      .filter-select { font-size: 0.75rem; }
+      .results { padding: 0.5rem 0.75rem 2rem; }
       .serp-thumbnail-wrap { display: none; }
       .serp-title { font-size: 1.05rem; }
       .serp-snippet { font-size: 0.85rem; }
-      .logo { font-size: 1.2rem; }
+      .serp-meta { gap: 0.3rem; }
+      .serp-badge, .lease-badge, .unicode-badge, .score-breakdown { font-size: 0.58rem; padding: 0.1rem 0.35rem; }
+      .logo { font-size: 1.15rem; }
+      .logo-sub { font-size: 0.62rem; }
       .registrar-grid { grid-template-columns: repeat(2, 1fr); }
+      .knowledge-panel { padding: 1rem; }
+      .kp-name { font-size: 1.5rem; }
+      .tenant-card { flex-wrap: wrap; }
+      .tenant-card .tenant-category,
+      .tenant-card .tenant-cta { margin-left: 0; }
+      .avail-card { flex-direction: column; align-items: flex-start; gap: 0.6rem; }
     }
 
     /* Availability layer */
-    .availability-section { margin-top:24px; padding:20px; background: linear-gradient(135deg, rgba(201,169,110,0.08) 0%, rgba(201,169,110,0.02) 100%); border:1px solid var(--gold); border-radius:12px; }
-    .availability-title { font-family:'Cinzel',serif; font-size:15px; font-weight:600; color:var(--gold); margin-bottom:14px; display:flex; align-items:center; gap:8px; }
-    .avail-card { display:flex; justify-content:space-between; align-items:center; background:var(--surface); padding:14px 16px; border-radius:8px; border:1px solid var(--border); margin-bottom:10px; transition:all .2s; }
-    .avail-card:hover { border-color:var(--gold); background:var(--surface-2); }
-    .avail-card:last-child { margin-bottom:0; }
-    .avail-domain { font-family:'Cinzel',serif; font-size:15px; color:var(--text); }
-    .avail-meaning { font-size:12px; color:var(--text-muted); margin-top:3px; }
-    .avail-action { color:var(--gold); font-size:13px; font-weight:500; white-space:nowrap; padding:6px 14px; border:1px solid var(--gold); border-radius:6px; transition:all .2s; text-decoration:none; }
-    .avail-action:hover { background:var(--gold); color:#0a0a0a; }
+    .availability-section { margin-top: 1.5rem; padding: 1.1rem; background: linear-gradient(135deg, rgba(201,169,110,0.08) 0%, rgba(201,169,110,0.02) 100%); border:1px solid rgba(212,175,55,0.25); border-radius:14px; }
+    .availability-title { font-family: var(--font-display); font-size: 0.95rem; font-weight: 700; color: var(--gold); margin-bottom: 0.9rem; display: flex; align-items: center; gap: 0.5rem; }
+    .avail-card { display: flex; justify-content: space-between; align-items: center; background: var(--surface); padding: 0.85rem 1rem; border-radius: 10px; border: 1px solid var(--border); margin-bottom: 0.6rem; transition: all 0.2s; gap: 0.75rem; }
+    .avail-card:hover { border-color: var(--gold); background: var(--surface-2); }
+    .avail-card:last-child { margin-bottom: 0; }
+    .avail-domain { font-family: var(--font-display); font-size: 0.95rem; color: var(--text); }
+    .avail-meaning { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.15rem; }
+    .avail-actions { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+    .avail-action { color: var(--gold); font-size: 0.72rem; font-weight: 600; white-space: nowrap; padding: 0.35rem 0.6rem; border: 1px solid var(--gold); border-radius: 6px; transition: all 0.2s; text-decoration: none; }
+    .avail-action:hover { background: var(--gold); color: #0a0a0a; }
 
     /* ====== ASK THE ORACLE ====== */
     .oracle-panel {
@@ -1430,16 +1866,27 @@
 <body>
   <header>
     <div class="header-inner">
-      <div class="logo-row">
-        <div class="logo">PUNYCODEX</div>
-        <div class="logo-sub">Curated Unicode Real Estate Platform</div>
+      <div class="header-top">
+        <a href="search.html" class="logo-row" style="text-decoration:none;color:inherit">
+          <div class="logo-icon">Ω</div>
+          <div>
+            <div class="logo">PUNYCODEX</div>
+            <div class="logo-sub">Curated Unicode Real Estate</div>
+          </div>
+        </a>
+        <nav class="global-nav">
+          <a href="/lexicon/index.html">Lexicon</a>
+          <a href="/type/index.html">Type</a>
+          <a href="/pantheon/index.html">Pantheon</a>
+          <a href="/api/v1/docs">API</a>
+        </nav>
       </div>
       <div class="search-box">
         <span class="search-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         </span>
-        <input type="text" id="searchInput" placeholder="Search gods, myths, and curated domains..." autocomplete="off" autocapitalize="off" spellcheck="false">
-        <button class="search-clear" id="searchClear">×</button>
+        <input type="text" id="searchInput" placeholder="Search gods, myths, and curated domains..." autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Search">
+        <button class="search-clear" id="searchClear" aria-label="Clear search">×</button>
         <div class="autocomplete-dropdown" id="autocompleteDropdown"></div>
       </div>
     </div>
@@ -1456,34 +1903,51 @@
   </div>
 
   <div class="filter-bar">
-    <div class="filter-row">
-      <span class="filter-label">Type</span>
-      <button class="filter-pill active" data-filter="type" data-value="all">All</button>
-      <button class="filter-pill" data-filter="type" data-value="gods">Gods</button>
-      <button class="filter-pill" data-filter="type" data-value="realms">Realms</button>
-      <button class="filter-pill" data-filter="type" data-value="locations">Locations</button>
-      <button class="filter-pill" data-filter="type" data-value="businesses">Businesses</button>
-      <button class="filter-pill" data-filter="type" data-value="available">Available</button>
+    <div class="filter-header">
+      <span class="filter-label" style="margin:0">Filters</span>
+      <button class="filter-toggle" id="filterToggle" onclick="toggleFilters()">⚙️ Refine</button>
     </div>
-    <div class="filter-row">
-      <span class="filter-label">Tier</span>
-      <button class="filter-pill active" data-filter="tier" data-value="">Any</button>
-      <button class="filter-pill" data-filter="tier" data-value="dual">Dual</button>
-      <button class="filter-pill" data-filter="tier" data-value="1">Tier 1</button>
-      <button class="filter-pill" data-filter="tier" data-value="2">Tier 2</button>
-      <span class="filter-label" style="margin-left: auto;">Pantheon</span>
-      <select class="filter-select" id="pantheonFilter" onchange="setPantheon(this.value)">
-        <option value="">All pantheons</option>
-      </select>
-      <span class="filter-label">Sort</span>
-      <select class="filter-select" id="sortFilter" onchange="setSort(this.value)">
-        <option value="relevance">Relevance</option>
-        <option value="alphabetical">A–Z</option>
-        <option value="tier">Tier</option>
-        <option value="recently_crawled">Recently crawled</option>
-        <option value="confidence">Confidence</option>
-      </select>
+    <div class="filter-panel" id="filterPanel">
+      <div class="filter-row">
+        <span class="filter-label">Type</span>
+        <button class="filter-pill active" data-filter="type" data-value="all">All</button>
+        <button class="filter-pill" data-filter="type" data-value="gods">Gods</button>
+        <button class="filter-pill" data-filter="type" data-value="realms">Realms</button>
+        <button class="filter-pill" data-filter="type" data-value="locations">Locations</button>
+        <button class="filter-pill" data-filter="type" data-value="businesses">Businesses</button>
+        <button class="filter-pill" data-filter="type" data-value="available">Available</button>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Tier</span>
+        <button class="filter-pill active" data-filter="tier" data-value="">Any</button>
+        <button class="filter-pill" data-filter="tier" data-value="dual">Dual</button>
+        <button class="filter-pill" data-filter="tier" data-value="1">Tier 1</button>
+        <button class="filter-pill" data-filter="tier" data-value="2">Tier 2</button>
+        <span class="filter-label" style="margin-left: auto;">Pantheon</span>
+        <select class="filter-select" id="pantheonFilter" onchange="setPantheon(this.value)">
+          <option value="">All pantheons</option>
+        </select>
+        <span class="filter-label">Sort</span>
+        <select class="filter-select" id="sortFilter" onchange="setSort(this.value)">
+          <option value="relevance">Relevance</option>
+          <option value="alphabetical">A–Z</option>
+          <option value="tier">Tier</option>
+          <option value="recently_crawled">Recently crawled</option>
+          <option value="confidence">Confidence</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Concept</span>
+        <button class="filter-pill active" data-filter="concept" data-value="">All</button>
+        <button class="filter-pill" data-filter="concept" data-value="commerce">Commerce</button>
+        <button class="filter-pill" data-filter="concept" data-value="wisdom">Wisdom</button>
+        <button class="filter-pill" data-filter="concept" data-value="travel">Travel</button>
+        <button class="filter-pill" data-filter="concept" data-value="war">War</button>
+        <button class="filter-pill" data-filter="concept" data-value="nature">Nature</button>
+        <button class="filter-pill" data-filter="concept" data-value="underworld">Underworld</button>
+      </div>
     </div>
+    <div class="active-filters" id="activeFilters"></div>
   </div>
 
   <section class="oracle-panel" id="oraclePanel">
@@ -1507,14 +1971,20 @@
 
   <script>
     const API_BASE = '';
+    const RESULT_LIMIT = 20;
     let debounceTimer;
     let currentMode = 'web';
     let currentType = 'all';
     let currentTier = '';
     let currentPantheon = '';
+    let currentConcept = '';
     let currentSort = 'relevance';
+    let currentOffset = 0;
+    let currentHasMore = false;
+    let isLoadingMore = false;
     let focusedIndex = -1;
     let currentResults = [];
+    let activeAutocompleteIndex = -1;
 
     // ====== FILTERS ======
     async function loadPantheons() {
@@ -1542,18 +2012,79 @@
         pill.classList.add('active');
         if (filter === 'type') currentType = value;
         if (filter === 'tier') currentTier = value;
+        if (filter === 'concept') currentConcept = value;
+        renderActiveFilters();
         triggerSearch();
       });
     });
 
     function setPantheon(value) {
       currentPantheon = value;
+      renderActiveFilters();
       triggerSearch();
     }
 
     function setSort(value) {
       currentSort = value;
+      renderActiveFilters();
       triggerSearch();
+    }
+
+    function toggleFilters() {
+      const panel = document.getElementById('filterPanel');
+      panel.classList.toggle('expanded');
+    }
+
+    function clearFilters() {
+      currentType = 'all';
+      currentTier = '';
+      currentPantheon = '';
+      currentConcept = '';
+      currentSort = 'relevance';
+      document.getElementById('pantheonFilter').value = '';
+      document.getElementById('sortFilter').value = 'relevance';
+      document.querySelectorAll('.filter-pill[data-filter="type"]').forEach(p => p.classList.toggle('active', p.dataset.value === 'all'));
+      document.querySelectorAll('.filter-pill[data-filter="tier"]').forEach(p => p.classList.toggle('active', p.dataset.value === ''));
+      document.querySelectorAll('.filter-pill[data-filter="concept"]').forEach(p => p.classList.toggle('active', p.dataset.value === ''));
+      renderActiveFilters();
+      triggerSearch();
+    }
+
+    function renderActiveFilters() {
+      const container = document.getElementById('activeFilters');
+      container.innerHTML = '';
+      const chips = [];
+      if (currentType && currentType !== 'all') chips.push({ label: capitalize(currentType), clear: () => setFilterPill('type', 'all') });
+      if (currentTier) chips.push({ label: currentTier === 'dual' ? 'Dual-Tier' : `Tier ${currentTier}`, clear: () => setFilterPill('tier', '') });
+      if (currentPantheon) chips.push({ label: capitalize(currentPantheon), clear: () => { document.getElementById('pantheonFilter').value = ''; setPantheon(''); } });
+      if (currentConcept) chips.push({ label: capitalize(currentConcept), clear: () => setFilterPill('concept', '') });
+      if (currentSort && currentSort !== 'relevance') chips.push({ label: `Sort: ${currentSort.replace('_', ' ')}`, clear: () => { document.getElementById('sortFilter').value = 'relevance'; setSort('relevance'); } });
+
+      if (chips.length === 0) return;
+
+      chips.forEach(c => {
+        const btn = document.createElement('button');
+        btn.className = 'active-filter-chip';
+        btn.innerHTML = `${escapeHtml(c.label)} <span class="remove">×</span>`;
+        btn.addEventListener('click', c.clear);
+        container.appendChild(btn);
+      });
+
+      const clearBtn = document.createElement('button');
+      clearBtn.className = 'clear-filters';
+      clearBtn.textContent = 'Clear all';
+      clearBtn.addEventListener('click', clearFilters);
+      container.appendChild(clearBtn);
+    }
+
+    function setFilterPill(filter, value) {
+      const pill = document.querySelector(`.filter-pill[data-filter="${filter}"][data-value="${value}"]`);
+      if (pill) pill.click();
+    }
+
+    function capitalize(s) {
+      if (!s) return '';
+      return s.charAt(0).toUpperCase() + s.slice(1);
     }
 
     function triggerSearch() {
@@ -1637,32 +2168,75 @@
     });
 
     searchInput.addEventListener('keydown', (e) => {
+      const dropdown = document.getElementById('autocompleteDropdown');
+      const items = dropdown ? dropdown.querySelectorAll('.autocomplete-item') : [];
+
+      if (e.key === 'ArrowDown' && items.length > 0) {
+        e.preventDefault();
+        activeAutocompleteIndex = Math.min(activeAutocompleteIndex + 1, items.length - 1);
+        updateAutocompleteActive(items);
+        return;
+      }
+      if (e.key === 'ArrowUp') {
+        if (items.length > 0 && activeAutocompleteIndex >= 0) {
+          e.preventDefault();
+          activeAutocompleteIndex = Math.max(activeAutocompleteIndex - 1, -1);
+          updateAutocompleteActive(items);
+        }
+        return;
+      }
       if (e.key === 'Enter') {
         clearTimeout(debounceTimer);
+        if (activeAutocompleteIndex >= 0 && items[activeAutocompleteIndex]) {
+          searchInput.value = items[activeAutocompleteIndex].dataset.text;
+          activeAutocompleteIndex = -1;
+          hideAutocomplete();
+          if (currentMode === 'web') searchWeb();
+          else searchDomains();
+          return;
+        }
         hideAutocomplete();
         if (currentMode === 'web') searchWeb();
         else searchDomains();
       }
+      if (e.key === 'Escape') {
+        activeAutocompleteIndex = -1;
+        hideAutocomplete();
+      }
     });
+
+    function updateAutocompleteActive(items) {
+      items.forEach((item, idx) => {
+        item.classList.toggle('keyboard-active', idx === activeAutocompleteIndex);
+      });
+      if (activeAutocompleteIndex >= 0 && items[activeAutocompleteIndex]) {
+        items[activeAutocompleteIndex].scrollIntoView({ block: 'nearest' });
+      }
+    }
 
     // Hide autocomplete on click outside
     document.addEventListener('click', (e) => {
       if (!e.target.closest('.search-box')) hideAutocomplete();
     });
 
+    function isAutocompleteVisible() {
+      const dropdown = document.getElementById('autocompleteDropdown');
+      return dropdown && dropdown.classList.contains('visible');
+    }
+
     // ====== KEYBOARD NAVIGATION ======
     document.addEventListener('keydown', (e) => {
       if (e.target === searchInput) {
-        if (e.key === 'ArrowDown') {
+        if (e.key === 'ArrowDown' && !isAutocompleteVisible()) {
           e.preventDefault();
           focusResult(0);
         }
         return;
       }
-      
+
       const results = document.querySelectorAll('.serp-result');
       if (results.length === 0) return;
-      
+
       if (e.key === 'ArrowDown') {
         e.preventDefault();
         focusResult(Math.min(focusedIndex + 1, results.length - 1));
@@ -1723,6 +2297,7 @@
 
     function renderAutocomplete(suggestions) {
       const dropdown = document.getElementById('autocompleteDropdown');
+      activeAutocompleteIndex = -1;
       if (!suggestions.length) { hideAutocomplete(); return; }
 
       let html = '';
@@ -1741,7 +2316,11 @@
       dropdown.innerHTML = html;
       dropdown.classList.add('visible');
 
-      dropdown.querySelectorAll('.autocomplete-item').forEach(item => {
+      dropdown.querySelectorAll('.autocomplete-item').forEach((item, idx) => {
+        item.addEventListener('mouseenter', () => {
+          activeAutocompleteIndex = idx;
+          updateAutocompleteActive(dropdown.querySelectorAll('.autocomplete-item'));
+        });
         item.addEventListener('click', () => {
           searchInput.value = item.dataset.text;
           hideAutocomplete();
@@ -1751,6 +2330,7 @@
     }
 
     function hideAutocomplete() {
+      activeAutocompleteIndex = -1;
       document.getElementById('autocompleteDropdown').classList.remove('visible');
     }
 
@@ -1797,11 +2377,165 @@
       }
     });
 
-    async function searchWeb() {
+    function escapeHtmlKeepMarks(str) {
+      if (!str) return '';
+      const parts = String(str).split(/(<mark>|<\/mark>)/g);
+      return parts
+        .map((part, idx) => {
+          if (idx % 2 === 1) return part;
+          return part
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+        })
+        .join('');
+    }
+
+    function buildScoreTooltip(breakdown) {
+      if (!breakdown) return '';
+      const labels = {
+        bm25: 'Text match',
+        tier: 'Tier signal',
+        flagship: 'Flagship',
+        tenant: 'Tenant',
+        archetype: 'Archetype',
+        freshness: 'Freshness',
+        quality: 'Quality',
+        pagerank: 'PageRank',
+        authority: 'Authority',
+        punycode: 'Unicode',
+        entity: 'Entity',
+        click: 'Clicks',
+      };
+      let rows = '';
+      for (const [key, value] of Object.entries(breakdown)) {
+        if (key === 'total' || typeof value !== 'number' || value === 0) continue;
+        rows += `<div class="score-tooltip-row"><span class="score-tooltip-label">${labels[key] || key}</span><span class="score-tooltip-value">+${value.toFixed(2)}</span></div>`;
+      }
+      rows += `<div class="score-tooltip-row"><span class="score-tooltip-label">Total</span><span class="score-tooltip-value">${(breakdown.total || 0).toFixed(2)}</span></div>`;
+      return `<div class="score-tooltip">${rows}</div>`;
+    }
+
+    function buildResultCard(r, query, index) {
+      const tierClass = r.tier === 'dual' ? 'tier-dual' : r.tier === '1' ? 'tier-1' : 'tier-2';
+      const tierLabel = r.tier === 'dual' ? 'Dual-Tier' : `Tier ${r.tier}`;
+
+      let html = `<div class="serp-result" tabindex="0" data-index="${index}" data-site-id="${r.id}">`;
+      html += `<div class="serp-header">`;
+
+      if (r.faviconPath) {
+        html += `<img class="serp-favicon" src="${r.faviconPath}" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">`;
+        html += `<div class="serp-favicon-fallback" style="display:none">🌐</div>`;
+      } else {
+        html += `<div class="serp-favicon-fallback">🌐</div>`;
+      }
+
+      html += `<div class="serp-body">`;
+
+      const breadcrumb = r.title ? r.title.split(/[|\u2013\u2014\u2015-]/)[0].trim().substring(0, 40) : '';
+      const displayDomain = r.domain || r.punycode;
+      const showPuny = r.isPunycode && r.punycode && r.punycode !== displayDomain;
+      html += `
+        <div class="serp-url-line">
+          <span class="serp-domain">${escapeHtml(displayDomain)}</span>
+          ${showPuny ? `<span class="serp-punycode">${escapeHtml(r.punycode)}</span>` : ''}
+          ${breadcrumb && breadcrumb !== displayDomain ? `<span class="serp-sep">›</span><span class="serp-breadcrumb">${escapeHtml(breadcrumb)}</span>` : ''}
+        </div>
+      `;
+
+      html += `<a href="${r.url}" target="_blank" rel="noopener" class="serp-title" onclick="trackClick('${escapeHtml(query)}', ${r.id}, ${index})">${escapeHtml(r.title || displayDomain)}</a>`;
+
+      let snippet = r.snippet || r.description || 'No description available.';
+      const datePrefix = r.publishedDate ? formatDate(r.publishedDate) + ' — ' : '';
+      html += `<div class="serp-snippet">${datePrefix}${escapeHtmlKeepMarks(snippet)}</div>`;
+
+      if (r.publishedDate) {
+        const relDate = formatRelativeDate(r.publishedDate);
+        const freshClass = relDate.includes('h') || relDate.includes('d') ? 'recent' : '';
+        html += `<div class="serp-freshness ${freshClass}">${relDate}</div>`;
+      }
+
+      html += `<div class="serp-meta">`;
+      if (r.isFlagship) html += `<span class="serp-badge flagship">🏛️ Flagship</span>`;
+      if (r.tier && r.tierLabel) html += `<span class="serp-badge ${tierClass}">${tierLabel}</span>`;
+      if (r.pantheon) html += `<span class="serp-badge pantheon">${escapeHtml(r.pantheon)}</span>`;
+      if (r.leaseStatus === 'flagship' || r.isFlagship) {
+        html += `<span class="lease-badge flagship">👑 Crown Jewel</span>`;
+      } else if (r.tenant && r.tenant.name) {
+        html += `<span class="lease-badge leased">🔒 Leased</span>`;
+      } else if (r.leaseStatus === 'available') {
+        html += `<span class="lease-badge available">🔑 Available</span>`;
+      }
+      if (r.isPunycode) html += `<span class="unicode-badge">🌐 Unicode</span>`;
+      if (r.sitemapEntries > 0) html += `<span class="serp-sitemap-badge">📑 ${r.sitemapEntries} pages</span>`;
+      if (r.ogVideo) html += `<span class="serp-sitemap-badge">▶️ Video</span>`;
+      if (r.scoreBreakdown) {
+        html += `<span class="score-breakdown" tabindex="0" aria-label="Ranking signals">⚡ ${r.scoreBreakdown.total.toFixed(2)}${buildScoreTooltip(r.scoreBreakdown)}</span>`;
+      }
+      html += `</div>`;
+
+      if (r.tenant && r.tenant.name) {
+        html += `<div class="tenant-card">`;
+        html += `<span class="tenant-label">🏪 Tenant</span>`;
+        html += `<span class="tenant-name">${escapeHtml(r.tenant.name)}</span>`;
+        if (r.tenant.category) html += `<span class="tenant-category">${escapeHtml(r.tenant.category)}</span>`;
+        if (r.tenant.frontUrl) {
+          html += `<a href="${r.tenant.frontUrl}" target="_blank" rel="noopener" class="tenant-cta">Visit Store →</a>`;
+        }
+        html += `</div>`;
+      }
+
+      if (r.subPages && r.subPages.length > 0) {
+        html += `<div class="serp-sitelinks">`;
+        r.subPages.forEach(p => {
+          const label = p.h1 || p.title || p.url;
+          html += `<a href="${p.url}" target="_blank" rel="noopener" class="serp-sitelink">${escapeHtml(label.substring(0, 35))}</a>`;
+        });
+        html += `</div>`;
+      } else if (r.anchorTexts && r.anchorTexts.length > 0) {
+        const links = r.anchorTexts.slice(0, 4);
+        html += `<div class="serp-sitelinks">`;
+        links.forEach(a => {
+          const text = typeof a === 'string' ? a : (a.text || '');
+          const href = typeof a === 'string' ? r.url : (a.href || r.url);
+          if (text) html += `<a href="${href}" target="_blank" rel="noopener" class="serp-sitelink">${escapeHtml(text.substring(0, 30))}</a>`;
+        });
+        html += `</div>`;
+      }
+
+      html += `
+        <div class="serp-utilities">
+          <a href="${r.url}" target="_blank" rel="noopener" class="serp-utility">Visit ↗</a>
+          ${r.lexiconEntryId ? `<a href="entry.html?id=${encodeURIComponent(r.lexiconEntryId)}" class="serp-utility">Lexicon Entry</a>` : ''}
+          <button class="serp-utility" onclick="copyToClipboard('${escapeHtml(r.punycode)}')">Copy</button>
+          <button class="serp-utility" onclick="showSimilar('${escapeHtml(r.punycode)}')">Similar</button>
+        </div>
+      `;
+
+      html += `</div>`;
+      if (r.ogImagePath) {
+        html += `<div class="serp-thumbnail-wrap"><img class="serp-thumbnail" src="${r.ogImagePath}" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>`;
+      }
+      html += `</div></div>`;
+      return html;
+    }
+
+    async function searchWeb(options = {}) {
       const q = searchInput.value.trim();
       if (!q) { showEmptyState(currentMode); return; }
-
-      showSkeleton();
+      const append = options.append === true;
+      if (!append) {
+        currentOffset = 0;
+        showSkeleton();
+      } else {
+        isLoadingMore = true;
+        const btn = document.getElementById('loadMoreBtn');
+        if (btn) {
+          btn.disabled = true;
+          btn.innerHTML = '<span class="load-more-spinner"></span> Loading...';
+        }
+      }
 
       const apiMode = currentMode === 'network' ? 'network' : 'all';
       // Update the Oracle in parallel with search results.
@@ -1809,49 +2543,67 @@
 
       const params = new URLSearchParams();
       params.set('q', q);
-      params.set('limit', '20');
+      params.set('limit', String(RESULT_LIMIT));
+      params.set('offset', String(currentOffset));
       params.set('mode', apiMode);
       if (currentType !== 'all') params.set('type', currentType);
       if (currentTier) params.set('tier', currentTier);
       if (currentPantheon) params.set('pantheon', currentPantheon);
       const sort = currentMode === 'web' && currentSort === 'confidence' ? 'relevance' : currentSort;
       if (sort) params.set('sort', sort);
+      if (document.getElementById('unicodeOnly')?.checked) params.set('unicodeOnly', 'true');
+      if (currentConcept) params.set('concept', currentConcept);
 
       try {
-        const [searchRes, dymRes, relatedRes, knowledgeRes, paaRes] = await Promise.all([
+        const requests = [
           fetch(`${API_BASE}/api/search/web?${params}`),
           fetch(`${API_BASE}/api/search/didyoumean?q=${encodeURIComponent(q)}&limit=3`),
           fetch(`${API_BASE}/api/search/related?q=${encodeURIComponent(q)}&limit=6`),
-          fetch(`${API_BASE}/api/search/knowledge?q=${encodeURIComponent(q)}`).catch(() => ({ ok: false })),
-          fetch(`${API_BASE}/api/search/paa?q=${encodeURIComponent(q)}&limit=4`).catch(() => ({ ok: false }))
-        ]);
+        ];
+        if (!append) {
+          requests.push(
+            fetch(`${API_BASE}/api/search/knowledge?q=${encodeURIComponent(q)}`).catch(() => ({ ok: false })),
+            fetch(`${API_BASE}/api/search/paa?q=${encodeURIComponent(q)}&limit=4`).catch(() => ({ ok: false }))
+          );
+        }
+        const [searchRes, dymRes, relatedRes, knowledgeRes, paaRes] = await Promise.all(requests);
 
         const data = await searchRes.json();
         const dymData = await dymRes.json();
         const relatedData = await relatedRes.json();
         let knowledgeData = null;
-        if (knowledgeRes.ok) {
+        if (!append && knowledgeRes && knowledgeRes.ok) {
           try { knowledgeData = await knowledgeRes.json(); } catch { /* ignore */ }
         }
         let paaData = null;
-        if (paaRes.ok) {
+        if (!append && paaRes && paaRes.ok) {
           try { paaData = await paaRes.json(); } catch { /* ignore */ }
         }
 
-        currentResults = data.results;
-        renderWebResults(data, dymData.suggestions, relatedData.related, knowledgeData, paaData?.questions);
+        currentHasMore = data.hasMore || false;
+        if (append) {
+          currentResults = currentResults.concat(data.results);
+          appendWebResults(data, relatedData.related);
+        } else {
+          currentResults = data.results;
+          renderWebResults(data, dymData.suggestions, relatedData.related, knowledgeData, paaData?.questions);
+        }
       } catch (e) {
-        resultsEl.innerHTML = `<div class="empty"><div class="empty-title">Error</div><div class="empty-sub">${e.message}</div></div>`;
+        if (!append) {
+          resultsEl.innerHTML = `<div class="empty"><div class="empty-title">Error</div><div class="empty-sub">${e.message}</div></div>`;
+        }
+      } finally {
+        isLoadingMore = false;
       }
     }
 
-    function renderWebResults(data, didYouMean, related, knowledgePanel, paaQuestions) {
-      // Filter to Unicode-only if toggle is on
-      const unicodeOnly = document.getElementById('unicodeOnly')?.checked;
-      if (unicodeOnly && data.results) {
-        data.results = data.results.filter(r => r.isPunycode);
-      }
+    async function loadMoreResults() {
+      if (isLoadingMore || !currentHasMore) return;
+      currentOffset += RESULT_LIMIT;
+      await searchWeb({ append: true });
+    }
 
+    function renderWebResults(data, didYouMean, related, knowledgePanel, paaQuestions) {
       let html = '';
 
       // Knowledge panel (if available)
@@ -1869,7 +2621,15 @@
         html += `<div class="kp-badges">`;
         html += `<span class="kp-badge ${tierClass}">${tierLabel}</span>`;
         html += `<span class="kp-badge pantheon">${escapeHtml(e.pantheon)}</span>`;
-        html += `</div></div></div>`;
+        html += `</div>`;
+        html += `<div class="kp-actions">`;
+        if (knowledgePanel.sites && knowledgePanel.sites.length) {
+          html += `<a href="https://${knowledgePanel.sites[0].punycode}" target="_blank" rel="noopener" class="kp-action primary">Visit Site ↗</a>`;
+        }
+        html += `<a href="entry.html?id=${encodeURIComponent(e.id)}" class="kp-action secondary">Lexicon Entry</a>`;
+        html += `<a href="/type/index.html#${encodeURIComponent(e.id)}" class="kp-action secondary">Type Tool</a>`;
+        html += `</div>`;
+        html += `</div></div>`;
 
         const lore = knowledgePanel.lore;
         if (lore) {
@@ -1905,11 +2665,23 @@
           html += `</div></div>`;
         }
 
+        if (knowledgePanel.tenant) {
+          const t = knowledgePanel.tenant;
+          html += `<div class="kp-tenant">`;
+          html += `<div class="kp-tenant-header"><span class="kp-tenant-label">${t.isFlagship ? '👑 Crown Jewel' : '🏪 Tenant'}</span></div>`;
+          html += `<div class="kp-tenant-name">${escapeHtml(t.name)}${t.category ? ` — ${escapeHtml(t.category)}` : ''}</div>`;
+          if (t.punycode) html += `<div class="kp-tenant-category">${escapeHtml(t.punycode)}</div>`;
+          html += `<div class="kp-tenant-actions">`;
+          if (t.frontUrl) html += `<a href="${t.frontUrl}" target="_blank" rel="noopener" class="kp-tenant-btn primary">Visit Store →</a>`;
+          html += `<a href="entry.html?id=${knowledgePanel.entry.id}" class="kp-tenant-btn secondary">Lexicon Entry</a>`;
+          html += `</div></div>`;
+        }
+
         if (knowledgePanel.related && knowledgePanel.related.length) {
           html += `<div class="kp-related"><div class="kp-sites-title">Related</div><div class="kp-related-grid">`;
           knowledgePanel.related.forEach(r => {
             const label = r.unicode || r.ascii;
-            html += `<span class="kp-related-chip" onclick="searchFor('${escapeHtml(label)}')">${escapeHtml(label)}</span>`;
+            html += `<button class="kp-related-chip" onclick="searchFor('${escapeHtml(label)}')">${escapeHtml(label)}</button>`;
           });
           html += `</div></div>`;
         }
@@ -1925,7 +2697,7 @@
             <div class="empty-sub">We're building the Unicode web index. Try a broader search.</div>
         `;
         if (didYouMean && didYouMean.length) {
-          html += `<div class="did-you-mean">Did you mean: ${didYouMean.map(s => `<a onclick="searchFor('${escapeHtml(s.text)}')">${escapeHtml(s.text)}</a>`).join(', ')}?</div>`;
+          html += `<div class="did-you-mean">Did you mean: ${didYouMean.map(s => `<button class="serp-utility" onclick="searchFor('${escapeHtml(s.text)}')" style="color:var(--accent);font-weight:600">${escapeHtml(s.text)}</button>`).join(', ')}?</div>`;
         }
         html += `
             <div class="build-cta">
@@ -1941,7 +2713,7 @@
 
       // Did you mean banner (only if we got suggestions and they're different from query)
       if (didYouMean && didYouMean.length && didYouMean[0].text.toLowerCase() !== data.query.toLowerCase()) {
-        html += `<div class="did-you-mean">Did you mean: ${didYouMean.map(s => `<a onclick="searchFor('${escapeHtml(s.text)}')">${escapeHtml(s.text)}</a>`).join(', ')}?</div>`;
+        html += `<div class="did-you-mean">Did you mean: ${didYouMean.map(s => `<button class="serp-utility" onclick="searchFor('${escapeHtml(s.text)}')" style="color:var(--accent);font-weight:600">${escapeHtml(s.text)}</button>`).join(', ')}?</div>`;
       }
 
       // People Also Ask
@@ -1958,7 +2730,8 @@
       }
 
       const semanticBadge = data.isSemanticFallback ? `<span style="color:var(--link-blue);margin-left:0.5rem;font-size:0.75rem">🧠 semantic match</span>` : '';
-      html += `<div class="result-count">About ${data.results.length} results (${data.timing}s)${semanticBadge}</div>`;
+      html += `<div class="result-count">About ${data.total || data.results.length} results (${data.timing}s)${semanticBadge}</div>`;
+      html += `<div class="serp-results-list">`;
 
       data.results.forEach((r, i) => {
         const tierClass = r.tier === 'dual' ? 'tier-dual' : r.tier === '1' ? 'tier-1' : 'tier-2';
@@ -1980,20 +2753,23 @@
         
         // URL line
         const breadcrumb = r.title ? r.title.split(/[\|\–\-—]/)[0].trim().substring(0, 40) : '';
+        const displayDomain = r.domain || r.punycode;
+        const showPuny = r.isPunycode && r.punycode && r.punycode !== displayDomain;
         html += `
           <div class="serp-url-line">
-            <span class="serp-domain">${escapeHtml(r.punycode)}</span>
-            ${breadcrumb && breadcrumb !== r.punycode ? `<span class="serp-sep">›</span><span class="serp-breadcrumb">${escapeHtml(breadcrumb)}</span>` : ''}
+            <span class="serp-domain">${escapeHtml(displayDomain)}</span>
+            ${showPuny ? `<span class="serp-punycode">${escapeHtml(r.punycode)}</span>` : ''}
+            ${breadcrumb && breadcrumb !== displayDomain ? `<span class="serp-sep">›</span><span class="serp-breadcrumb">${escapeHtml(breadcrumb)}</span>` : ''}
           </div>
         `;
 
         // Title
-        html += `<a href="${r.url}" target="_blank" rel="noopener" class="serp-title" onclick="trackClick('${escapeHtml(data.query)}', ${r.id}, ${i})">${r.title || r.domain}</a>`;
+        html += `<a href="${r.url}" target="_blank" rel="noopener" class="serp-title" onclick="trackClick('${escapeHtml(data.query)}', ${r.id}, ${i})">${escapeHtml(r.title || displayDomain)}</a>`;
 
         // Snippet with date prefix
         let snippet = r.snippet || r.description || 'No description available.';
         const datePrefix = r.publishedDate ? formatDate(r.publishedDate) + ' — ' : '';
-        html += `<div class="serp-snippet">${datePrefix}${snippet}</div>`;
+        html += `<div class="serp-snippet">${datePrefix}${escapeHtmlKeepMarks(snippet)}</div>`;
 
         // Freshness indicator
         if (r.publishedDate) {
@@ -2004,12 +2780,9 @@
 
         // Meta badges
         html += `<div class="serp-meta">`;
-        if (r.isPunycode) html += `<span class="unicode-badge">🌐 Unicode</span>`;
         if (r.isFlagship) html += `<span class="serp-badge flagship">🏛️ Flagship</span>`;
         if (r.tier && r.tierLabel) html += `<span class="serp-badge ${tierClass}">${tierLabel}</span>`;
         if (r.pantheon) html += `<span class="serp-badge pantheon">${r.pantheon}</span>`;
-        if (r.sitemapEntries > 0) html += `<span class="serp-sitemap-badge">📑 ${r.sitemapEntries} pages</span>`;
-        if (r.ogVideo) html += `<span class="serp-sitemap-badge">▶️ Video</span>`;
         // Lease status badge
         if (r.leaseStatus === 'flagship' || r.isFlagship) {
           html += `<span class="lease-badge flagship">👑 Crown Jewel</span>`;
@@ -2018,16 +2791,22 @@
         } else if (r.leaseStatus === 'available') {
           html += `<span class="lease-badge available">🔑 Available</span>`;
         }
+        if (r.isPunycode) html += `<span class="unicode-badge">🌐 Unicode</span>`;
+        if (r.sitemapEntries > 0) html += `<span class="serp-sitemap-badge">📑 ${r.sitemapEntries} pages</span>`;
+        if (r.ogVideo) html += `<span class="serp-sitemap-badge">▶️ Video</span>`;
+        if (r.scoreBreakdown) {
+          html += `<span class="score-breakdown" tabindex="0" aria-label="Ranking signals">⚡ ${r.scoreBreakdown.total.toFixed(2)}${buildScoreTooltip(r.scoreBreakdown)}</span>`;
+        }
         html += `</div>`;
 
         // Tenant business card
         if (r.tenant && r.tenant.name) {
           html += `<div class="tenant-card">`;
-          html += `<span class="tenant-label">🏪</span>`;
+          html += `<span class="tenant-label">🏪 Tenant</span>`;
           html += `<span class="tenant-name">${escapeHtml(r.tenant.name)}</span>`;
           if (r.tenant.category) html += `<span class="tenant-category">${escapeHtml(r.tenant.category)}</span>`;
           if (r.tenant.frontUrl) {
-            html += `<a href="${r.tenant.frontUrl}" target="_blank" rel="noopener" style="margin-left:auto;font-size:0.72rem;color:var(--link-blue)">Visit Store →</a>`;
+            html += `<a href="${r.tenant.frontUrl}" target="_blank" rel="noopener" class="tenant-cta">Visit Store →</a>`;
           }
           html += `</div>`;
         }
@@ -2053,16 +2832,13 @@
           html += `</div>`;
         }
 
-        // Unicode domain display
-        if (r.domain !== r.punycode) {
-          html += `<div class="serp-unicode-domain">${escapeHtml(r.domain)}</div>`;
-        }
-
         // Utility links
         html += `
           <div class="serp-utilities">
-            <span class="serp-utility" onclick="showSimilar('${r.punycode}')">Similar</span>
             <a href="${r.url}" target="_blank" rel="noopener" class="serp-utility">Visit ↗</a>
+            ${r.lexiconEntryId ? `<a href="entry.html?id=${encodeURIComponent(r.lexiconEntryId)}" class="serp-utility">Lexicon Entry</a>` : ''}
+            <button class="serp-utility" onclick="copyToClipboard('${escapeHtml(r.punycode)}')">Copy</button>
+            <button class="serp-utility" onclick="showSimilar('${escapeHtml(r.punycode)}')">Similar</button>
           </div>
         `;
 
@@ -2076,6 +2852,13 @@
         html += `</div>`; // serp-header
         html += `</div>`; // serp-result
       });
+      html += `</div>`; // serp-results-list
+
+      html += `<div class="load-more-wrap" id="loadMoreWrap">`;
+      if (data.hasMore) {
+        html += `<button id="loadMoreBtn" class="load-more-btn" onclick="loadMoreResults()">Load more results</button>`;
+      }
+      html += `</div>`;
 
       // Related searches
       if (related && related.length) {
@@ -2083,7 +2866,7 @@
           <div class="related-searches">
             <div class="related-title">Related Searches</div>
             <div class="related-grid">
-              ${related.map(r => `<span class="related-chip" onclick="searchFor('${escapeHtml(r.unicode || r.ascii)}')">${escapeHtml(r.unicode || r.ascii)}</span>`).join('')}
+              ${related.map(r => `<button class="related-chip" onclick="searchFor('${escapeHtml(r.unicode || r.ascii)}')">${escapeHtml(r.unicode || r.ascii)}</button>`).join('')}
             </div>
           </div>
         `;
@@ -2092,16 +2875,22 @@
       // Availability layer — domains for lease matching this query
       if (data.availability && data.availability.length) {
         html += `<div class="availability-section">`;
-        html += `<div class="availability-title">🔑 Available for Lease</div>`;
+        html += `<div class="availability-title">🔑 Available for Registration</div>`;
         data.availability.forEach(avail => {
           const tierClass = avail.tier === 'dual' ? 'tier-dual' : avail.tier === '1' ? 'tier-1' : 'tier-2';
           const tierLabel = avail.tier === 'dual' ? 'Dual-Tier' : `Tier ${avail.tier}`;
+          const puny = avail.punycode || avail.unicode + '.com';
           html += `<div class="avail-card">`;
           html += `<div>`;
-          html += `<div class="avail-domain">${escapeHtml(avail.punycode)}</div>`;
-          html += `<div class="avail-meaning">${escapeHtml(avail.unicode)} — ${escapeHtml(avail.meaning || '')} <span class="serp-badge ${tierClass}">${tierLabel}</span></div>`;
+          html += `<div class="avail-domain">${escapeHtml(avail.unicode || puny)}</div>`;
+          html += `<div class="avail-meaning">${escapeHtml(puny)}${avail.meaning ? ' — ' + escapeHtml(avail.meaning) : ''} <span class="serp-badge ${tierClass}">${tierLabel}</span></div>`;
           html += `</div>`;
-          html += `<a href="https://www.namecheap.com/domains/registration/results/?domain=${encodeURIComponent(avail.punycode)}" target="_blank" rel="noopener" class="avail-action">Register →</a>`;
+          html += `<div class="avail-actions">`;
+          html += `<a href="https://www.godaddy.com/domainsearch/find?domainToCheck=${encodeURIComponent(puny)}" target="_blank" rel="noopener" class="avail-action" title="Check on GoDaddy">GoDaddy</a>`;
+          html += `<a href="https://www.namecheap.com/domains/registration/results/?domain=${encodeURIComponent(puny)}" target="_blank" rel="noopener" class="avail-action" title="Check on Namecheap">Namecheap</a>`;
+          html += `<a href="https://porkbun.com/checkout/search?q=${encodeURIComponent(puny)}" target="_blank" rel="noopener" class="avail-action" title="Check on Porkbun">Porkbun</a>`;
+          html += `<a href="entry.html?id=${encodeURIComponent(avail.id || '')}" class="avail-action" title="View lexicon entry">Entry</a>`;
+          html += `</div>`;
           html += `</div>`;
         });
         html += `</div>`;
@@ -2111,12 +2900,70 @@
       focusedIndex = -1;
     }
 
+    function appendWebResults(data, related) {
+      const list = resultsEl.querySelector('.serp-results-list');
+      const countEl = resultsEl.querySelector('.result-count');
+      const startIndex = currentResults.length - data.results.length;
+
+      if (list) {
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = data.results.map((r, i) => buildResultCard(r, data.query, startIndex + i)).join('');
+        while (wrapper.firstChild) list.appendChild(wrapper.firstChild);
+      }
+
+      if (countEl) {
+        const semanticBadge = data.isSemanticFallback ? `<span style="color:var(--link-blue);margin-left:0.5rem;font-size:0.75rem">🧠 semantic match</span>` : '';
+        countEl.innerHTML = `About ${data.total || currentResults.length} results (${data.timing}s)${semanticBadge}`;
+      }
+
+      const oldWrap = document.getElementById('loadMoreWrap');
+      if (oldWrap) oldWrap.remove();
+      const relatedEl = resultsEl.querySelector('.related-searches');
+      const availEl = resultsEl.querySelector('.availability-section');
+      const newWrap = document.createElement('div');
+      newWrap.className = 'load-more-wrap';
+      newWrap.id = 'loadMoreWrap';
+      if (data.hasMore) {
+        newWrap.innerHTML = `<button id="loadMoreBtn" class="load-more-btn" onclick="loadMoreResults()">Load more results</button>`;
+      }
+      if (relatedEl) relatedEl.before(newWrap);
+      else if (availEl) availEl.before(newWrap);
+      else resultsEl.appendChild(newWrap);
+
+      focusedIndex = -1;
+    }
+
     function searchFor(text) {
       searchInput.value = text;
       searchWeb();
     }
 
+    async function copyToClipboard(text) {
+      if (!text) return;
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast(`Copied ${text}`);
+      } catch {
+        const input = document.createElement('input');
+        input.value = text;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+        showToast(`Copied ${text}`);
+      }
+    }
+
+    function showToast(message) {
+      const t = document.createElement('div');
+      t.textContent = message;
+      t.style.cssText = 'position:fixed;bottom:1.25rem;left:50%;transform:translateX(-50%);background:var(--surface);color:var(--accent);border:1px solid var(--accent);padding:0.55rem 1.1rem;border-radius:999px;font-size:0.82rem;font-weight:600;box-shadow:0 8px 32px rgba(0,0,0,0.4);z-index:200;';
+      document.body.appendChild(t);
+      setTimeout(() => { t.style.opacity = '0'; t.style.transition = 'opacity 0.3s'; setTimeout(() => t.remove(), 300); }, 1800);
+    }
+
     function toggleUnicodeOnly() {
+      currentOffset = 0;
       searchWeb();
     }
 
@@ -2211,20 +3058,20 @@
           `;
         }
         else if (entry.availability) {
-          const puny = entry.punycode || entry.ascii + '.com';
+          const domain = entry.domain || entry.unicode + '.com';
           html += `
             <div class="availability-card">
               <div class="available-badge">Available</div>
-              <div class="site-domain">${puny}</div>
+              <div class="site-domain">${escapeHtml(domain)}</div>
               <div class="site-description">This Unicode domain name may be available for registration.</div>
               <div class="site-actions">
                 <a href="entry.html?id=${entry.id}" class="site-link">View Entry</a>
               </div>
               <div class="registrar-grid">
-                <a href="https://www.godaddy.com/domainsearch/find?domainToCheck=${encodeURIComponent(puny)}" target="_blank" rel="noopener" class="registrar-link">GoDaddy</a>
-                <a href="https://www.namecheap.com/domains/registration/results/?domain=${encodeURIComponent(puny)}" target="_blank" rel="noopener" class="registrar-link">Namecheap</a>
-                <a href="https://porkbun.com/checkout/search?q=${encodeURIComponent(puny)}" target="_blank" rel="noopener" class="registrar-link">Porkbun</a>
-                <a href="https://www.dynadot.com/domain/search.html?domain=${encodeURIComponent(puny)}" target="_blank" rel="noopener" class="registrar-link">Dynadot</a>
+                <a href="https://www.godaddy.com/domainsearch/find?domainToCheck=${encodeURIComponent(domain)}" target="_blank" rel="noopener" class="registrar-link">GoDaddy</a>
+                <a href="https://www.namecheap.com/domains/registration/results/?domain=${encodeURIComponent(domain)}" target="_blank" rel="noopener" class="registrar-link">Namecheap</a>
+                <a href="https://porkbun.com/checkout/search?q=${encodeURIComponent(domain)}" target="_blank" rel="noopener" class="registrar-link">Porkbun</a>
+                <a href="https://www.dynadot.com/domain/search.html?domain=${encodeURIComponent(domain)}" target="_blank" rel="noopener" class="registrar-link">Dynadot</a>
               </div>
             </div>
           `;
@@ -2253,7 +3100,7 @@
       }
       body.innerHTML = '<div class="oracle-loading"><span>🔮</span><span>The Oracle is consulting the archives...</span></div>';
       try {
-        const res = await fetch(`${API_BASE}/api/oracle/?q=${encodeURIComponent(q)}`);
+        const res = await fetch(`${API_BASE}/api/oracle?q=${encodeURIComponent(q)}`);
         if (!res.ok) throw new Error('Oracle unavailable');
         const data = await res.json();
         renderOracle(data);

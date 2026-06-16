@@ -31,9 +31,10 @@ const {
   generatePeopleAlsoAsk,
   submitDomain,
 } = require('./api/crawler-db');
-const { UnicodeCrawler } = require('./crawler');
+const { UnicodeCrawler, isSafeUrl } = require('./crawler');
 const { processQueue } = require('./scripts/bulk-crawl');
 const { didYouMean, relatedSearches, autocomplete } = require('./api/query-intel');
+const { askOracle } = require('./api/oracle');
 const {
   getSlots,
   getSlotBySlug,
@@ -72,6 +73,14 @@ const {
   getKeyStats,
 } = require('./api/api-key-admin');
 const { createBookingCheckoutSession, handleWebhook } = require('./api/stripe');
+const {
+  proposeTenant,
+  createTenant,
+  listTenants,
+  getTenant,
+  updateTenant,
+  deleteTenant,
+} = require('./api/tenants');
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 if (!stripeSecretKey) {
   throw new Error('STRIPE_SECRET_KEY environment variable is required');
@@ -356,16 +365,20 @@ app.get('/api/sites/search', (req, res) => {
 // Web search: FTS5-powered content search with relevance ranking + semantic re-ranking
 app.get('/api/search/web', async (req, res) => {
   try {
-    const { q, limit, mode, type, pantheon, tier, sort, variant } = req.query;
+    const { q, limit, offset, mode, type, pantheon, tier, sort, variant, unicodeOnly, concept } =
+      req.query;
     if (!q?.trim()) return res.status(400).json({ error: 'q parameter required' });
     const results = await searchWeb(q, {
       limit: limit ? parseInt(limit, 10) : 20,
+      offset: offset ? parseInt(offset, 10) : 0,
       mode: mode || 'all',
       type: type || 'all',
       pantheon,
       tier,
       sort: sort || 'relevance',
       variant: variant || 'default',
+      unicodeOnly: unicodeOnly === 'true' || unicodeOnly === '1',
+      concept,
     });
 
     // Log the query for analytics
@@ -402,6 +415,17 @@ app.post('/api/search/click', (req, res) => {
       return res.status(400).json({ error: 'query and siteId required' });
     }
 
+    const parsedSiteId = parseInt(siteId, 10);
+    if (Number.isNaN(parsedSiteId)) {
+      return res.status(400).json({ error: 'siteId must be an integer' });
+    }
+
+    // Verify the site exists before recording a click.
+    const site = db.prepare('SELECT id FROM indexed_sites WHERE id = ?').get(parsedSiteId);
+    if (!site) {
+      return res.status(404).json({ error: 'Site not found' });
+    }
+
     // Find the most recent matching query
     const queryRow = db
       .prepare(`
@@ -417,12 +441,7 @@ app.post('/api/search/click', (req, res) => {
     db.prepare(`
       INSERT INTO search_clicks (query_id, site_id, position, dwell_time_ms)
       VALUES (?, ?, ?, ?)
-    `).run(
-      queryId,
-      parseInt(siteId, 10),
-      parseInt(position || 0, 10),
-      parseInt(dwellTimeMs || 0, 10)
-    );
+    `).run(queryId, parsedSiteId, parseInt(position || 0, 10), parseInt(dwellTimeMs || 0, 10));
 
     res.json({ success: true });
   } catch (err) {
@@ -452,11 +471,13 @@ app.get('/api/sites/:punycode', (req, res) => {
   }
 });
 
-// Crawl a single domain
-app.post('/api/crawl', async (req, res) => {
+// Crawl a single domain (admin only)
+app.post('/api/crawl', requireAdmin, async (req, res) => {
   try {
     const { domain } = req.body;
     if (!domain) return res.status(400).json({ error: 'domain required' });
+    const normalized = `https://${domain.replace(/^https?:\/\//, '')}`;
+    if (!isSafeUrl(normalized)) return res.status(400).json({ error: 'invalid or unsafe domain' });
     const result = await crawler.crawlDomain(domain);
     res.json(result);
   } catch (err) {
@@ -464,20 +485,23 @@ app.post('/api/crawl', async (req, res) => {
   }
 });
 
-// Bulk crawl domains
-app.post('/api/crawl/bulk', async (req, res) => {
+// Bulk crawl domains (admin only)
+app.post('/api/crawl/bulk', requireAdmin, async (req, res) => {
   try {
     const { domains, concurrency } = req.body;
     if (!Array.isArray(domains)) return res.status(400).json({ error: 'domains array required' });
-    const results = await crawler.crawlBulk(domains, concurrency || 3);
-    res.json({ results, total: results.length });
+    const safeDomains = domains.filter((d) =>
+      isSafeUrl(`https://${String(d).replace(/^https?:\/\//, '')}`)
+    );
+    const results = await crawler.crawlBulk(safeDomains, concurrency || 3);
+    res.json({ results, total: results.length, skipped: domains.length - safeDomains.length });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-// Re-crawl all active sites
-app.post('/api/crawl/recrawl', async (_req, res) => {
+// Re-crawl all active sites (admin only)
+app.post('/api/crawl/recrawl', requireAdmin, async (_req, res) => {
   try {
     const results = await crawler.recrawlAll();
     res.json({ results, total: results.length });
@@ -486,8 +510,8 @@ app.post('/api/crawl/recrawl', async (_req, res) => {
   }
 });
 
-// Mark site as spam
-app.post('/api/sites/:punycode/spam', (req, res) => {
+// Mark site as spam (admin only)
+app.post('/api/sites/:punycode/spam', requireAdmin, (req, res) => {
   try {
     markSiteSpam(req.params.punycode);
     res.json({ success: true, punycode: req.params.punycode, status: 'spam' });
@@ -552,8 +576,8 @@ app.get('/api/crawler/queue', (req, res) => {
   }
 });
 
-// Add domains to crawl queue
-app.post('/api/crawler/queue', (req, res) => {
+// Add domains to crawl queue (admin only)
+app.post('/api/crawler/queue', requireAdmin, (req, res) => {
   try {
     const { domains, source, priority } = req.body;
     if (!domains) return res.status(400).json({ error: 'domains required (string or array)' });
@@ -580,8 +604,8 @@ app.post('/api/crawler/queue', (req, res) => {
   }
 });
 
-// Process crawl queue (bulk crawl)
-app.post('/api/crawler/queue/process', async (req, res) => {
+// Process crawl queue (bulk crawl) (admin only)
+app.post('/api/crawler/queue/process', requireAdmin, async (req, res) => {
   try {
     const { batchSize, concurrency } = req.body;
     const result = await processQueue({ batchSize, concurrency });
@@ -607,8 +631,8 @@ app.get('/api/crawler/discovered', (req, res) => {
   }
 });
 
-// Trigger CT log discovery (runs in background)
-app.post('/api/crawler/discover', (req, res) => {
+// Trigger CT log discovery (runs in background) (admin only)
+app.post('/api/crawler/discover', requireAdmin, (req, res) => {
   try {
     const { domains, source } = req.body;
     if (!domains) return res.status(400).json({ error: 'domains array required' });
@@ -687,6 +711,18 @@ app.get('/api/search/paa', (req, res) => {
     const { q, limit } = req.query;
     const questions = generatePeopleAlsoAsk(q, limit ? parseInt(limit, 10) : 4);
     res.json({ questions, query: q, count: questions.length });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Oracle — conversational RAG over the PUNYCODEX knowledge base
+app.get('/api/oracle', async (req, res) => {
+  try {
+    const { q } = req.query;
+    if (!q?.trim()) return res.status(400).json({ error: 'q parameter required' });
+    const answer = await askOracle(q);
+    res.json(answer);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -1170,6 +1206,71 @@ app.get('/api/analytics/dashboard', (req, res) => {
     const data = getDashboardMetrics(token);
     if (!data) return res.status(404).json({ error: 'Booking not found' });
     res.json(data);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// --- Tenant Onboarding ---
+app.get('/api/tenants', requireAdmin, (req, res) => {
+  try {
+    const { status, limit, offset } = req.query;
+    const tenants = listTenants({
+      status,
+      limit: limit ? parseInt(limit, 10) : 50,
+      offset: offset ? parseInt(offset, 10) : 0,
+    });
+    res.json({ tenants, count: tenants.length });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/api/tenants/:entryId', (req, res) => {
+  try {
+    const tenant = getTenant(req.params.entryId);
+    if (!tenant) return res.status(404).json({ error: 'Tenant not found' });
+    res.json({ tenant });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/api/tenants/preview', async (req, res) => {
+  try {
+    const result = await proposeTenant(req.body);
+    if (!result.success) return res.status(400).json(result);
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/api/tenants', requireAdmin, async (req, res) => {
+  try {
+    const result = await createTenant(req.body);
+    if (!result.success) return res.status(400).json(result);
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.patch('/api/tenants/:entryId', requireAdmin, async (req, res) => {
+  try {
+    const result = await updateTenant(req.params.entryId, req.body);
+    if (!result.success) return res.status(400).json(result);
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.delete('/api/tenants/:entryId', requireAdmin, async (req, res) => {
+  try {
+    const result = deleteTenant(req.params.entryId);
+    if (!result.success) return res.status(404).json(result);
+    res.json(result);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

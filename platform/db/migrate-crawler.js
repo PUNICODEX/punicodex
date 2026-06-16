@@ -31,6 +31,8 @@ db.exec(`
     tenant_category TEXT,
     tenant_front_url TEXT,
     archetype_score REAL DEFAULT 0.0,
+    archetype_signals TEXT,
+    archetype_version TEXT,
     lease_status TEXT DEFAULT 'available' CHECK (lease_status IN ('available', 'leased', 'reserved', 'flagship')),
     -- Open Graph
     og_title TEXT,
@@ -109,6 +111,8 @@ const upgradeCols = [
   ['tenant_category', 'TEXT'],
   ['tenant_front_url', 'TEXT'],
   ['archetype_score', 'REAL DEFAULT 0.0'],
+  ['archetype_signals', 'TEXT'],
+  ['archetype_version', 'TEXT'],
   ['lease_status', "TEXT DEFAULT 'available'"],
   ['og_title', 'TEXT'],
   ['og_description', 'TEXT'],

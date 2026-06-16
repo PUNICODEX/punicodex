@@ -278,7 +278,7 @@ async function goLive(bookingId) {
       SET tenant_name = COALESCE(tenant_name, ?),
           tenant_front_url = COALESCE(tenant_front_url, ?),
           tenant_category = COALESCE(tenant_category, ?),
-          lease_status = COALESCE(lease_status, 'leased')
+          lease_status = 'leased'
       WHERE lexicon_entry_id = ? AND status = 'active'
     `).run(
       bookingMeta.company_name || null,
@@ -364,6 +364,19 @@ function endBooking(bookingId) {
     for (const memberId of members) {
       cascadeStmt.run(memberId);
     }
+  }
+  // Clear tenant metadata and reset lease status on the associated indexed site.
+  if (booking?.site_slug) {
+    db.prepare(`
+      UPDATE indexed_sites
+      SET tenant_name = NULL,
+          tenant_category = NULL,
+          tenant_front_url = NULL,
+          lease_status = 'available',
+          archetype_score = 0.0,
+          archetype_signals = NULL
+      WHERE lexicon_entry_id = ? AND status = 'active'
+    `).run(booking.site_slug);
   }
   db.close();
 }

@@ -3,7 +3,7 @@ const _path = require('node:path');
 const { embedText, rerankWithVectors, searchAllVectors } = require('./semantic-search');
 const { getDbPath } = require('../db/db');
 const { searchKeywords } = require('./keyword-extractor');
-const { rankResults, listVariants } = require('./ranker');
+const { listVariants } = require('./ranker');
 
 // Load clean flagship lore catalog (generated from scripts/lore-catalog.json)
 let LORE_CATALOG = {};
@@ -15,6 +15,44 @@ try {
 
 const DB_PATH = getDbPath();
 let db;
+
+/**
+ * Escape a token for FTS5 and optionally wrap it in quotes for phrase search.
+ * FTS5 treats double quotes, asterisks, parentheses, and boolean operators specially.
+ */
+function escapeFtsToken(token) {
+  // Replace internal double quotes with two double quotes (FTS5 escaping).
+  let t = token.replace(/"/g, '""');
+  // Escape leading special chars that FTS5 interprets as operators.
+  if (/^[*\-^]/.test(t)) t = `"${t}"`;
+  return t;
+}
+
+/**
+ * Parse a user query into a safe FTS5 MATCH expression.
+ * Multi-word queries become phrase searches by default for precision.
+ * Falls back to prefix/NEAR on zero results.
+ */
+function parseFtsQuery(q) {
+  const raw = q.trim();
+  if (!raw) return '';
+
+  // Split on whitespace, keep quoted phrases intact.
+  const tokens = [];
+  const re = /"([^"]*)"|(\S+)/g;
+  let m;
+  while ((m = re.exec(raw)) !== null) {
+    tokens.push(m[1] !== undefined ? m[1] : m[2]);
+  }
+
+  const cleaned = tokens
+    .map((t) => t.trim())
+    .filter((t) => t.length > 0)
+    .map((t) => `"${escapeFtsToken(t)}"`);
+
+  if (cleaned.length === 0) return '';
+  return cleaned.join(' ');
+}
 
 function getDb() {
   if (!db) {
@@ -150,12 +188,15 @@ function searchSites(q, limit = 20) {
 async function searchWeb(q, options = {}) {
   const {
     limit = 20,
+    offset = 0,
     mode = 'all',
     type = 'all',
     pantheon,
     tier,
     sort = 'relevance',
     variant = 'default',
+    unicodeOnly = false,
+    concept,
   } = options;
   const db = getDb();
   if (!q?.trim()) {
@@ -163,11 +204,10 @@ async function searchWeb(q, options = {}) {
   }
 
   const startTime = Date.now();
-  const ftsQuery = q
-    .trim()
-    .split(/\s+/)
-    .filter((w) => w.length > 0)
-    .join(' ');
+  const ftsQuery = parseFtsQuery(q);
+  const queryNormalized = ftsQuery;
+  const limitNum = Math.min(Math.max(1, parseInt(limit, 10) || 20), 100);
+  const offsetNum = Math.max(0, parseInt(offset, 10) || 0);
 
   const filters = [];
   const params = [ftsQuery];
@@ -192,14 +232,45 @@ async function searchWeb(q, options = {}) {
     params.push(tier);
   }
 
+  if (unicodeOnly) {
+    filters.push("AND s.punycode LIKE 'xn--%'");
+  }
+
+  if (concept) {
+    const conceptLike = `%${concept.toLowerCase()}%`;
+    filters.push(
+      'AND (LOWER(s.archetype_signals) LIKE ? OR LOWER(s.tenant_category) LIKE ? OR LOWER(s.meta_keywords) LIKE ?)'
+    );
+    params.push(conceptLike, conceptLike, conceptLike);
+  }
+
   const allowedSorts = {
-    relevance: 'composite_score ASC',
+    relevance: 'rank_score DESC',
     alphabetical: 's.title ASC',
     tier: "s.tier = 'dual' DESC, s.tier = '1' DESC, s.tier = '2' DESC",
     recently_crawled: 's.last_crawled DESC',
     quality: 's.quality_score DESC',
   };
   const orderBy = allowedSorts[sort] || allowedSorts.relevance;
+
+  // Total matching count (for pagination)
+  let totalMain = 0;
+  try {
+    const countRow = db
+      .prepare(`
+      SELECT COUNT(*) AS total
+      FROM indexed_sites_fts
+      JOIN indexed_sites s ON indexed_sites_fts.rowid = s.id
+      WHERE indexed_sites_fts MATCH ?
+        AND s.status != 'spam'
+        AND (s.is_flagship = 1 OR s.quality_score >= 0.3 OR s.tenant_name IS NOT NULL)
+        ${filters.join(' ')}
+    `)
+      .get(...params);
+    totalMain = countRow?.total || 0;
+  } catch (_e) {
+    // Count failure is non-fatal
+  }
 
   // Primary: FTS5 with BM25 scoring + ranking boosts
   let results = [];
@@ -208,41 +279,33 @@ async function searchWeb(q, options = {}) {
       .prepare(`
       SELECT 
         s.*,
-        bm25(indexed_sites_fts) AS bm25_score,
-        bm25(indexed_sites_fts) * (
-          1.0 +
-          CASE 
-            WHEN s.tier = 'dual' THEN 0.5
-            WHEN s.tier = '1' THEN 0.3
-            WHEN s.tier = '2' THEN 0.1
-            ELSE 0.0
-          END +
-          CASE WHEN s.is_flagship = 1 THEN 1.5 ELSE 0.0 END +
-          CASE WHEN s.tenant_name IS NOT NULL THEN 0.5 ELSE 0.0 END +
-          COALESCE(s.archetype_score, 0.0) +
-          COALESCE(s.freshness_score, 0.5) * 0.15 +
-          COALESCE(s.quality_score, 50.0) / 100.0 * 0.15 +
-          COALESCE(s.pagerank, 0.0) / 100.0 * 0.4 +
-          COALESCE(s.authority_score, 0.0) / 100.0 * 0.3 +
-          CASE WHEN s.punycode LIKE 'xn--%' THEN 0.5 ELSE 0.0 END
-        ) AS composite_score,
+        -bm25(indexed_sites_fts) AS bm25_score,
         (
-          1.0 +
-          CASE 
-            WHEN s.tier = 'dual' THEN 0.5
-            WHEN s.tier = '1' THEN 0.3
-            WHEN s.tier = '2' THEN 0.1
-            ELSE 0.0
-          END +
-          CASE WHEN s.is_flagship = 1 THEN 1.5 ELSE 0.0 END +
-          CASE WHEN s.tenant_name IS NOT NULL THEN 0.5 ELSE 0.0 END +
-          COALESCE(s.archetype_score, 0.0) +
-          COALESCE(s.freshness_score, 0.5) * 0.15 +
-          COALESCE(s.quality_score, 50.0) / 100.0 * 0.15 +
-          COALESCE(s.pagerank, 0.0) / 100.0 * 0.4 +
-          COALESCE(s.authority_score, 0.0) / 100.0 * 0.3 +
-          CASE WHEN s.punycode LIKE 'xn--%' THEN 0.5 ELSE 0.0 END
-        ) AS multiplier,
+          /* BM25 text relevance (inverted so higher = better) */
+          -bm25(indexed_sites_fts) * 1.0
+          /* Tier signal */
+          + CASE 
+              WHEN s.tier = 'dual' THEN 0.60
+              WHEN s.tier = '1' THEN 0.35
+              WHEN s.tier = '2' THEN 0.15
+              ELSE 0.0
+            END
+          /* Flagship curated domain */
+          + CASE WHEN s.is_flagship = 1 THEN 1.50 ELSE 0.0 END
+          /* Active tenant */
+          + CASE WHEN s.tenant_name IS NOT NULL THEN 0.75 ELSE 0.0 END
+          /* Archetype alignment */
+          + COALESCE(s.archetype_score, 0.0) * 1.0
+          /* Content freshness */
+          + COALESCE(s.freshness_score, 0.5) * 0.20
+          /* Quality score (0-100 scale) */
+          + COALESCE(s.quality_score, 0.0) / 100.0 * 0.25
+          /* PageRank / authority */
+          + COALESCE(s.pagerank, 0.0) / 100.0 * 0.35
+          + COALESCE(s.authority_score, 0.0) / 100.0 * 0.25
+          /* Unicode domain bonus */
+          + CASE WHEN s.punycode LIKE 'xn--%' THEN 0.40 ELSE 0.0 END
+        ) AS rank_score,
         snippet(indexed_sites_fts, 2, '<mark>', '</mark>', '...', 25) AS title_snippet,
         snippet(indexed_sites_fts, 3, '<mark>', '</mark>', '...', 25) AS desc_snippet,
         snippet(indexed_sites_fts, 6, '<mark>', '</mark>', '...', 25) AS snippet_highlight,
@@ -255,9 +318,9 @@ async function searchWeb(q, options = {}) {
         AND (s.is_flagship = 1 OR s.quality_score >= 0.3 OR s.tenant_name IS NOT NULL)
         ${filters.join(' ')}
       ORDER BY ${orderBy}
-      LIMIT ?
+      LIMIT ? OFFSET ?
     `)
-      .all(...params, limit);
+      .all(...params, limitNum, offsetNum);
 
     results = rows.map((row) => {
       // Best snippet hierarchy: OG desc > Twitter desc > meta desc > FTS snippet > h1 > first_p > content_snippet
@@ -298,20 +361,19 @@ async function searchWeb(q, options = {}) {
         lang: row.lang,
         wordCount: row.word_count,
         responseTimeMs: row.response_time_ms,
-        rankScore: row.composite_score,
+        rankScore: row.rank_score,
         scoreBreakdown: {
-          bm25: row.bm25_score,
-          multiplier: row.multiplier,
-          tierBonus:
-            row.tier === 'dual' ? 0.5 : row.tier === '1' ? 0.3 : row.tier === '2' ? 0.1 : 0,
-          flagshipBonus: row.is_flagship === 1 ? 1.5 : 0,
-          tenantBonus: row.tenant_name ? 0.5 : 0,
-          archetypeBonus: row.archetype_score || 0,
-          freshnessBonus: (row.freshness_score || 0.5) * 0.15,
-          qualityBonus: ((row.quality_score || 50) / 100) * 0.15,
-          pagerankBonus: ((row.pagerank || 0) / 100) * 0.4,
-          authorityBonus: ((row.authority_score || 0) / 100) * 0.3,
-          punycodeBonus: row.punycode?.startsWith('xn--') ? 0.5 : 0,
+          bm25: parseFloat(row.bm25_score.toFixed(4)),
+          tier: row.tier === 'dual' ? 0.6 : row.tier === '1' ? 0.35 : row.tier === '2' ? 0.15 : 0,
+          flagship: row.is_flagship === 1 ? 1.5 : 0,
+          tenant: row.tenant_name ? 0.75 : 0,
+          archetype: parseFloat((row.archetype_score || 0).toFixed(4)),
+          freshness: parseFloat(((row.freshness_score || 0.5) * 0.2).toFixed(4)),
+          quality: parseFloat((((row.quality_score || 0) / 100) * 0.25).toFixed(4)),
+          pagerank: parseFloat((((row.pagerank || 0) / 100) * 0.35).toFixed(4)),
+          authority: parseFloat((((row.authority_score || 0) / 100) * 0.25).toFixed(4)),
+          punycode: row.punycode?.startsWith('xn--') ? 0.4 : 0,
+          total: parseFloat(row.rank_score.toFixed(4)),
         },
         leaseStatus: row.lease_status,
         isFlagship: row.is_flagship === 1,
@@ -335,45 +397,6 @@ async function searchWeb(q, options = {}) {
         matchedTerms: extractMatchedTerms(bestSnippet),
       };
     });
-
-    // Fetch sub-pages for all results in a single query
-    if (results.length > 0) {
-      const siteIds = results.map((r) => r.id);
-      const placeholders = siteIds.map(() => '?').join(',');
-      const subPages = db
-        .prepare(`
-        SELECT site_id, url, title, description, h1, word_count, content_hash
-        FROM site_pages
-        WHERE site_id IN (${placeholders})
-        ORDER BY word_count DESC
-      `)
-        .all(...siteIds);
-
-      const pagesBySite = {};
-      const seenHashes = {};
-      for (const p of subPages) {
-        if (!pagesBySite[p.site_id]) {
-          pagesBySite[p.site_id] = [];
-          seenHashes[p.site_id] = new Set();
-        }
-        // Skip root-path pages (redirects to home page, SPA hash links)
-        try {
-          const u = new URL(p.url);
-          if (u.pathname === '/' || u.pathname === '/index.html') continue;
-        } catch {
-          continue;
-        }
-        // Deduplicate by content hash
-        if (seenHashes[p.site_id].has(p.content_hash)) continue;
-        seenHashes[p.site_id].add(p.content_hash);
-        pagesBySite[p.site_id].push(p);
-      }
-
-      results = results.map((r) => ({
-        ...r,
-        subPages: (pagesBySite[r.id] || []).slice(0, 4),
-      }));
-    }
   } catch (e) {
     console.error('FTS5 error:', e.message);
   }
@@ -382,13 +405,25 @@ async function searchWeb(q, options = {}) {
   // Tenants can provide a front URL; we crawl it and extract their existing
   // SEO keywords rather than forcing them to type keywords into a dashboard.
   // Surface those sites when the query matches their extracted keyword set.
+  let keywordFallbackCount = 0;
+  let keywordFallbackUsed = false;
   try {
-    if (results.length < limit) {
-      const keywordMatches = searchKeywords(q, limit);
+    const needFallback = limitNum - results.length;
+    if (needFallback > 0 || (totalMain > 0 && offsetNum >= totalMain)) {
+      const fallbackOffset = totalMain > 0 && offsetNum >= totalMain ? offsetNum - totalMain : 0;
+      const fetchLimit = needFallback + fallbackOffset + 5;
+      const keywordMatches = searchKeywords(q, fetchLimit);
       const existingIds = new Set(results.map((r) => r.id));
+      let skipped = 0;
       for (const row of keywordMatches) {
+        if (unicodeOnly && !row.punycode?.startsWith('xn--')) continue;
         if (existingIds.has(row.id)) continue;
         existingIds.add(row.id);
+        if (skipped < fallbackOffset) {
+          skipped++;
+          continue;
+        }
+        if (results.length >= limitNum) break;
         const rawSnippet =
           row.og_description ||
           row.twitter_description ||
@@ -422,6 +457,8 @@ async function searchWeb(q, options = {}) {
           keywordSource: row.keyword_source,
         });
       }
+      keywordFallbackCount = keywordMatches.length;
+      keywordFallbackUsed = true;
     }
   } catch (e) {
     console.error('Keyword fallback error:', e.message);
@@ -429,13 +466,19 @@ async function searchWeb(q, options = {}) {
 
   // Fallback 1: Semantic vector search if FTS returned nothing
   let isSemanticFallback = false;
+  let semanticTotal = 0;
   if (results.length === 0) {
     try {
       const queryEmbedding = await embedText(q);
       if (queryEmbedding) {
-        const vectorMatches = searchAllVectors(queryEmbedding, db, limit);
-        if (vectorMatches.length > 0) {
-          const siteIds = vectorMatches.map((m) => m.siteId);
+        const vectorMatches = searchAllVectors(queryEmbedding, db, limitNum + offsetNum + 20);
+        const filteredMatches = vectorMatches.filter((_m) => {
+          if (!unicodeOnly) return true;
+          // siteId -> punycode unknown here; filter after rows loaded
+          return true;
+        });
+        if (filteredMatches.length > 0) {
+          const siteIds = filteredMatches.map((m) => m.siteId);
           const placeholders = siteIds.map(() => '?').join(',');
           const fallbackRows = db
             .prepare(`
@@ -445,10 +488,11 @@ async function searchWeb(q, options = {}) {
 
           // Preserve vector match order
           const rowMap = new Map(fallbackRows.map((r) => [r.id, r]));
-          results = vectorMatches
+          const mapped = filteredMatches
             .map((m) => {
               const row = rowMap.get(m.siteId);
               if (!row) return null;
+              if (unicodeOnly && !row.punycode?.startsWith('xn--')) return null;
               const rawSnippet =
                 row.og_description ||
                 row.twitter_description ||
@@ -486,6 +530,8 @@ async function searchWeb(q, options = {}) {
               };
             })
             .filter(Boolean);
+          semanticTotal = mapped.length;
+          results = mapped.slice(offsetNum, offsetNum + limitNum);
           isSemanticFallback = true;
         }
       }
@@ -495,8 +541,46 @@ async function searchWeb(q, options = {}) {
   }
 
   // Fallback 2: LIKE search if both FTS and vector returned nothing
+  let likeTotal = 0;
   if (results.length === 0) {
     const like = `%${q}%`;
+    const likeParams = [
+      like,
+      like,
+      like,
+      like,
+      like,
+      like,
+      like,
+      like,
+      like,
+      like,
+      like,
+      like,
+      like,
+    ];
+    const unicodeFilter = unicodeOnly ? "AND s.punycode LIKE 'xn--%'" : '';
+
+    try {
+      const countRow = db
+        .prepare(`
+        SELECT COUNT(*) AS total
+        FROM indexed_sites s
+        LEFT JOIN entries e ON s.lexicon_entry_id = e.id
+        WHERE s.status = 'active'
+          AND (s.title LIKE ? OR s.description LIKE ? OR s.content_snippet LIKE ?
+            OR s.h1 LIKE ? OR s.first_p LIKE ? OR s.domain LIKE ? OR s.punycode LIKE ?
+            OR s.og_title LIKE ? OR s.og_description LIKE ?
+            OR s.twitter_title LIKE ? OR s.twitter_description LIKE ?
+            OR e.unicode LIKE ? OR e.ascii LIKE ?)
+          ${unicodeFilter}
+      `)
+        .get(...likeParams);
+      likeTotal = countRow?.total || 0;
+    } catch (_e) {
+      // Count optional
+    }
+
     const fallbackRows = db
       .prepare(`
       SELECT s.*, e.unicode as entry_unicode
@@ -508,10 +592,11 @@ async function searchWeb(q, options = {}) {
           OR s.og_title LIKE ? OR s.og_description LIKE ?
           OR s.twitter_title LIKE ? OR s.twitter_description LIKE ?
           OR e.unicode LIKE ? OR e.ascii LIKE ?)
+        ${unicodeFilter}
       ORDER BY s.is_flagship DESC, COALESCE(s.authority_score, 0) DESC, s.tier = 'dual' DESC, s.tier = '1' DESC
-      LIMIT ?
+      LIMIT ? OFFSET ?
     `)
-      .all(like, like, like, like, like, like, like, like, like, like, like, like, like, limit);
+      .all(...likeParams, limitNum, offsetNum);
 
     results = fallbackRows.map((row) => {
       const rawSnippet =
@@ -549,45 +634,6 @@ async function searchWeb(q, options = {}) {
         isFallback: true,
       };
     });
-
-    // Fetch sub-pages for fallback results too
-    if (results.length > 0) {
-      const siteIds = results.map((r) => r.id);
-      const placeholders = siteIds.map(() => '?').join(',');
-      const subPages = db
-        .prepare(`
-        SELECT site_id, url, title, description, h1, word_count, content_hash
-        FROM site_pages
-        WHERE site_id IN (${placeholders})
-        ORDER BY word_count DESC
-      `)
-        .all(...siteIds);
-
-      const pagesBySite = {};
-      const seenHashes = {};
-      for (const p of subPages) {
-        if (!pagesBySite[p.site_id]) {
-          pagesBySite[p.site_id] = [];
-          seenHashes[p.site_id] = new Set();
-        }
-        // Skip root-path pages (redirects to home page, SPA hash links)
-        try {
-          const u = new URL(p.url);
-          if (u.pathname === '/' || u.pathname === '/index.html') continue;
-        } catch {
-          continue;
-        }
-        // Deduplicate by content hash
-        if (seenHashes[p.site_id].has(p.content_hash)) continue;
-        seenHashes[p.site_id].add(p.content_hash);
-        pagesBySite[p.site_id].push(p);
-      }
-
-      results = results.map((r) => ({
-        ...r,
-        subPages: (pagesBySite[r.id] || []).slice(0, 4),
-      }));
-    }
   }
 
   // ====== PHASE 7: ENTITY RANKING BOOST ======
@@ -651,10 +697,11 @@ async function searchWeb(q, options = {}) {
         if (entityBonus > 0) {
           return {
             ...r,
-            rankScore: (r.rankScore || 0) * (1.0 - entityBonus), // Less negative = better
+            rankScore: (r.rankScore || 0) + entityBonus,
             scoreBreakdown: {
               ...r.scoreBreakdown,
-              entityBonus: parseFloat(entityBonus.toFixed(3)),
+              entity: parseFloat(entityBonus.toFixed(4)),
+              total: parseFloat(((r.rankScore || 0) + entityBonus).toFixed(4)),
             },
           };
         }
@@ -662,7 +709,7 @@ async function searchWeb(q, options = {}) {
       });
 
       // Re-sort after entity bonus
-      results.sort((a, b) => (a.rankScore || 0) - (b.rankScore || 0));
+      results.sort((a, b) => (b.rankScore || 0) - (a.rankScore || 0));
       entityBonusApplied = true;
     }
   } catch (_e) {
@@ -682,10 +729,11 @@ async function searchWeb(q, options = {}) {
         if (boost > 0) {
           return {
             ...r,
-            rankScore: (r.rankScore || 0) * (1.0 - boost),
+            rankScore: (r.rankScore || 0) + boost,
             scoreBreakdown: {
               ...r.scoreBreakdown,
-              clickBoost: parseFloat(boost.toFixed(3)),
+              click: parseFloat(boost.toFixed(4)),
+              total: parseFloat(((r.rankScore || 0) + boost).toFixed(4)),
             },
           };
         }
@@ -693,7 +741,7 @@ async function searchWeb(q, options = {}) {
       });
 
       // Re-sort after click boost
-      results.sort((a, b) => (a.rankScore || 0) - (b.rankScore || 0));
+      results.sort((a, b) => (b.rankScore || 0) - (a.rankScore || 0));
       clickBoostApplied = true;
     }
   } catch (_e) {
@@ -717,14 +765,41 @@ async function searchWeb(q, options = {}) {
     }
   }
 
-  // ====== HYBRID RANKING ======
-  // Apply the unified ranker with A/B variant support.
-  let rankerApplied = false;
-  try {
-    results = rankResults(results, q, { variant });
-    rankerApplied = true;
-  } catch (e) {
-    console.error('[search] Ranker failed:', e.message);
+  // Attach top sub-pages to final result set
+  if (results.length > 0) {
+    const siteIds = results.map((r) => r.id);
+    const placeholders = siteIds.map(() => '?').join(',');
+    const subPages = db
+      .prepare(`
+      SELECT site_id, url, title, description, h1, word_count, content_hash
+      FROM site_pages
+      WHERE site_id IN (${placeholders})
+      ORDER BY word_count DESC
+    `)
+      .all(...siteIds);
+
+    const pagesBySite = {};
+    const seenHashes = {};
+    for (const p of subPages) {
+      if (!pagesBySite[p.site_id]) {
+        pagesBySite[p.site_id] = [];
+        seenHashes[p.site_id] = new Set();
+      }
+      try {
+        const u = new URL(p.url);
+        if (u.pathname === '/' || u.pathname === '/index.html') continue;
+      } catch {
+        continue;
+      }
+      if (seenHashes[p.site_id].has(p.content_hash)) continue;
+      seenHashes[p.site_id].add(p.content_hash);
+      pagesBySite[p.site_id].push(p);
+    }
+
+    results = results.map((r) => ({
+      ...r,
+      subPages: (pagesBySite[r.id] || []).slice(0, 4),
+    }));
   }
 
   // ====== AVAILABILITY LAYER ======
@@ -766,10 +841,25 @@ async function searchWeb(q, options = {}) {
   }
 
   const timing = ((Date.now() - startTime) / 1000).toFixed(3);
+
+  let total = totalMain;
+  if (isSemanticFallback) {
+    total = semanticTotal;
+  } else if (likeTotal > 0) {
+    total = likeTotal;
+  } else if (keywordFallbackUsed) {
+    total = totalMain + keywordFallbackCount;
+  }
+  const hasMore = total > offsetNum + results.length;
+
   return {
     results,
-    total: results.length,
+    total,
+    hasMore,
+    offset: offsetNum,
+    limit: limitNum,
     query: q,
+    queryNormalized,
     timing,
     mode,
     entityBonusApplied,
@@ -778,7 +868,6 @@ async function searchWeb(q, options = {}) {
     semanticReranked,
     isSemanticFallback,
     availability,
-    rankerApplied,
     variant: variant || 'default',
     variants: listVariants(),
   };
@@ -1044,13 +1133,26 @@ function getKnowledgePanelData(q) {
   // Get live sites for this entry
   const sites = db
     .prepare(`
-    SELECT domain, punycode, title, description, favicon_path, og_image_path, tier, pantheon
+    SELECT domain, punycode, title, description, favicon_path, og_image_path, tier, pantheon,
+           tenant_name, tenant_category, tenant_front_url, is_flagship
     FROM indexed_sites
     WHERE lexicon_entry_id = ? AND status = 'active'
     ORDER BY is_flagship DESC, tier = 'dual' DESC, tier = '1' DESC
     LIMIT 5
   `)
     .all(entry.id);
+
+  // Prominent tenant for the knowledge panel (flagship tenant first)
+  const tenantSite = sites.find((s) => s.tenant_name || s.is_flagship) || null;
+  const tenant = tenantSite
+    ? {
+        name: tenantSite.tenant_name || 'PUNYCODEX Flagship',
+        category: tenantSite.tenant_category,
+        frontUrl: tenantSite.tenant_front_url,
+        punycode: tenantSite.punycode,
+        isFlagship: tenantSite.is_flagship === 1,
+      }
+    : null;
 
   // Get related entries (same pantheon, different id)
   const related = db
@@ -1078,6 +1180,7 @@ function getKnowledgePanelData(q) {
     lore: LORE_CATALOG[entry.id] || null,
     sites,
     related,
+    tenant,
   };
 }
 

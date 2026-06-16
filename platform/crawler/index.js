@@ -5,6 +5,8 @@ const crypto = require('node:crypto');
 const dns = require('node:dns');
 const { promisify } = require('node:util');
 const { extractAndSave } = require('../api/keyword-extractor');
+const { upsertSiteEmbedding } = require('../api/embeddings');
+const { scoreArchetype } = require('../api/archetype-scorer');
 
 const dnsLookup = promisify(dns.lookup);
 
@@ -878,6 +880,36 @@ class UnicodeCrawler {
       console.error('Keyword extraction failed:', err.message);
     }
 
+    // Compute and persist semantic embedding for the crawled site.
+    try {
+      const siteRow = this.db.prepare('SELECT * FROM indexed_sites WHERE domain = ?').get(domain);
+      if (siteRow) await upsertSiteEmbedding(siteRow.id, siteRow);
+    } catch (err) {
+      console.error('Embedding extraction failed:', err.message);
+    }
+
+    // Compute archetype alignment when the site maps to a lexicon entry.
+    if (entry) {
+      try {
+        const siteRow = this.db.prepare('SELECT * FROM indexed_sites WHERE domain = ?').get(domain);
+        if (siteRow) {
+          const result = await scoreArchetype(siteRow, entry);
+          this.db
+            .prepare(
+              'UPDATE indexed_sites SET archetype_score = ?, archetype_signals = ?, archetype_version = ? WHERE id = ?'
+            )
+            .run(
+              result.archetype_score,
+              result.archetype_signals,
+              result.archetype_version,
+              siteRow.id
+            );
+        }
+      } catch (err) {
+        console.error('Archetype scoring failed:', err.message);
+      }
+    }
+
     return {
       domain,
       status: 'active',
@@ -1114,4 +1146,4 @@ class UnicodeCrawler {
   }
 }
 
-module.exports = { UnicodeCrawler };
+module.exports = { UnicodeCrawler, isSafeUrl, resolveAndValidateHost, isBlockedHost };

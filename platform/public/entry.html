@@ -4,253 +4,308 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PUNYCODEX — Entry</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0a0a0f;
-      --surface: #12121a;
-      --surface-2: #1a1a26;
-      --surface-hover: #1e1e2e;
-      --text: #e8e6f0;
-      --text-dim: #8a87a0;
-      --accent: #c9a96e;
-      --accent-glow: rgba(201, 169, 110, 0.15);
-      --border: #2a2a3a;
-      --tier-dual: #c9a96e;
-      --tier-1: #7ec9a0;
-      --tier-2: #87aee8;
-      --available: #7ec9a0;
-      --live: #87c9e8;
+      --bg: #080e19;
+      --surface: #0e1a2b;
+      --surface-2: #142238;
+      --surface-hover: #1a2d47;
+      --text: #e8e4dc;
+      --text-dim: #7a8a9e;
+      --text-muted: #4a5a6e;
+      --accent: #d4af37;
+      --accent-dim: rgba(212,175,55,0.15);
+      --border: rgba(212,175,55,0.12);
+      --tier-dual: #d4af37;
+      --tier-1: #4ade80;
+      --tier-2: #60a5fa;
+      --available: #4ade80;
+      --live: #60a5fa;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-family: 'Montserrat', sans-serif;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
       line-height: 1.6;
     }
-
     header {
-      text-align: center;
-      padding: 2rem 1rem 1rem;
+      background: var(--surface);
       border-bottom: 1px solid var(--border);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
-
     .logo {
-      font-size: 1.8rem;
-      font-weight: 800;
-      letter-spacing: 0.15em;
+      font-family: 'Cinzel', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
       color: var(--accent);
       text-decoration: none;
-      display: inline-block;
+      letter-spacing: 0.08em;
     }
-
-    .tagline {
+    .top-nav a {
       color: var(--text-dim);
-      font-size: 0.9rem;
-      margin-top: 0.3rem;
+      text-decoration: none;
+      font-size: 0.8rem;
+      margin-left: 1.25rem;
+      transition: color 0.2s;
     }
+    .top-nav a:hover { color: var(--accent); }
 
     main {
-      max-width: 800px;
+      max-width: 920px;
       margin: 0 auto;
-      padding: 2rem 1rem;
+      padding: 2rem 1rem 4rem;
     }
-
     .loading, .error {
       text-align: center;
-      padding: 4rem 1rem;
+      padding: 5rem 1rem;
       color: var(--text-dim);
     }
-
     .error { color: #e87e7e; }
 
-    /* ===== HERO ===== */
+    /* HERO */
     .hero {
       text-align: center;
-      padding: 2rem 0 1.5rem;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 1.5rem;
+      padding: 2.5rem 1rem 1.5rem;
     }
-
     .hero-unicode {
-      font-size: 3.5rem;
-      font-weight: 800;
+      font-family: 'Cinzel', serif;
+      font-size: 4rem;
+      font-weight: 700;
       color: var(--text);
-      line-height: 1.2;
+      line-height: 1.1;
     }
-
     .hero-greek {
-      font-size: 1.4rem;
-      color: var(--text-dim);
+      font-size: 1.3rem;
+      color: var(--accent);
       margin-top: 0.5rem;
       font-family: 'Georgia', 'Times New Roman', serif;
     }
-
     .hero-meta {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 0.75rem;
-      margin-top: 1rem;
+      gap: 0.6rem;
+      margin-top: 1.25rem;
       flex-wrap: wrap;
     }
-
     .tier-badge {
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       padding: 0.3rem 0.7rem;
-      border-radius: 4px;
+      border-radius: 100px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.06em;
     }
-
-    .tier-dual { background: rgba(201, 169, 110, 0.15); color: var(--tier-dual); }
-    .tier-1 { background: rgba(126, 201, 160, 0.15); color: var(--tier-1); }
-    .tier-2 { background: rgba(135, 174, 232, 0.15); color: var(--tier-2); }
-
+    .tier-dual { background: rgba(212,175,55,0.15); color: var(--tier-dual); }
+    .tier-1 { background: rgba(74,222,128,0.12); color: var(--tier-1); }
+    .tier-2 { background: rgba(96,165,250,0.12); color: var(--tier-2); }
     .pantheon-badge {
-      font-size: 0.85rem;
-      color: var(--text-dim);
-      text-transform: capitalize;
-    }
-
-    .ascii-badge {
-      font-family: 'SF Mono', monospace;
       font-size: 0.8rem;
       color: var(--text-dim);
-      background: var(--surface-2);
-      padding: 0.2rem 0.5rem;
+      text-transform: capitalize;
+      border: 1px solid var(--border);
+      padding: 0.25rem 0.7rem;
+      border-radius: 100px;
+    }
+    .ascii-badge {
+      font-family: 'SF Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      background: var(--surface);
+      padding: 0.25rem 0.6rem;
       border-radius: 4px;
     }
 
-    /* ===== SECTIONS ===== */
+    /* TABS */
+    .tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+      margin-top: 1.5rem;
+      overflow-x: auto;
+    }
+    .tab {
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--text-dim);
+      padding: 0.8rem 1.1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .tab:hover { color: var(--text); }
+    .tab.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    /* PANELS */
+    .panel {
+      display: none;
+      animation: fadeIn 0.25s ease;
+    }
+    .panel.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
     .section {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 14px;
+      border-radius: 12px;
       padding: 1.5rem;
-      margin-bottom: 1rem;
+      margin-top: 1rem;
     }
-
     .section-title {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text-dim);
-      margin-bottom: 0.75rem;
-      font-weight: 600;
-    }
-
-    .meaning {
-      font-size: 1.1rem;
-      color: var(--text);
-    }
-
-    .domain {
+      font-family: 'Cinzel', serif;
       font-size: 0.95rem;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-text {
       color: var(--text-dim);
+      font-size: 0.95rem;
+      line-height: 1.7;
     }
-
-    .etymology {
-      font-size: 0.9rem;
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .meta-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+    }
+    .meta-label {
+      font-size: 0.65rem;
       color: var(--text-dim);
-      font-style: italic;
-      margin-top: 0.5rem;
-      padding-top: 0.5rem;
-      border-top: 1px solid var(--border);
-    }
-
-    /* ===== BREAKDOWN TABLE ===== */
-    .breakdown-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    .breakdown-table th {
-      text-align: left;
-      font-size: 0.7rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: var(--text-dim);
-      padding: 0.5rem 0.75rem;
-      border-bottom: 1px solid var(--border);
-      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    .meta-value {
+      font-size: 1rem;
+      color: var(--text);
+      word-break: break-word;
     }
 
-    .breakdown-table td {
-      padding: 0.6rem 0.75rem;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.95rem;
-    }
-
-    .breakdown-table tr:last-child td {
-      border-bottom: none;
-    }
-
-    .bd-char {
-      font-family: 'SF Mono', monospace;
-      color: var(--text-dim);
-      font-size: 0.85rem;
-    }
-
-    .bd-to {
-      font-size: 1.1rem;
-      font-weight: 600;
-    }
-
-    .bd-type {
-      font-size: 0.7rem;
-      padding: 0.15rem 0.4rem;
-      border-radius: 3px;
-      font-weight: 600;
-      text-transform: uppercase;
-    }
-
-    .type-same { background: rgba(138, 135, 160, 0.15); color: #a5a2b8; }
-    .type-stress { background: rgba(135, 174, 232, 0.15); color: var(--tier-2); }
-    .type-length { background: rgba(126, 201, 160, 0.15); color: var(--tier-1); }
-    .type-dual { background: rgba(201, 169, 110, 0.15); color: var(--tier-dual); }
-    .type-special { background: rgba(232, 126, 126, 0.15); color: #e8a87e; }
-    .type-drop { background: rgba(138, 135, 160, 0.1); color: #5a5868; }
-
-    .bd-note {
-      color: var(--text-dim);
-      font-size: 0.85rem;
-    }
-
-    /* ===== SOURCES ===== */
+    /* SOURCES */
     .sources-list {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
+      margin-top: 0.75rem;
     }
-
     .source-tag {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       background: var(--surface-2);
       padding: 0.3rem 0.6rem;
       border-radius: 4px;
       color: var(--text-dim);
+      border: 1px solid var(--border);
     }
 
-    /* ===== SITE CARD ===== */
+    /* BREAKDOWN TABLE */
+    .breakdown-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .breakdown-table th {
+      text-align: left;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      padding: 0.6rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+      font-weight: 600;
+    }
+    .breakdown-table td {
+      padding: 0.7rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+    .breakdown-table tr:last-child td { border-bottom: none; }
+    .bd-char { font-family: 'SF Mono', monospace; color: var(--text-dim); font-size: 0.8rem; }
+    .bd-to { font-size: 1.05rem; font-weight: 600; }
+    .bd-type {
+      font-size: 0.65rem;
+      padding: 0.15rem 0.4rem;
+      border-radius: 3px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .type-same { background: rgba(138, 135, 160, 0.15); color: #a5a2b8; }
+    .type-stress { background: rgba(96,165,250,0.12); color: var(--tier-2); }
+    .type-length { background: rgba(74,222,128,0.12); color: var(--tier-1); }
+    .type-dual { background: rgba(212,175,55,0.12); color: var(--tier-dual); }
+    .type-special { background: rgba(232, 126, 126, 0.12); color: #e8a87e; }
+    .type-drop { background: rgba(138, 135, 160, 0.1); color: #5a5868; }
+    .bd-note { color: var(--text-dim); font-size: 0.8rem; }
+
+    /* CARDS */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+    .variant-card, .cognate-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+    }
+    .variant-unicode {
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+    .variant-type {
+      display: inline-block;
+      font-size: 0.65rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: 100px;
+      background: var(--accent-dim);
+      color: var(--accent);
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .variant-note { font-size: 0.8rem; color: var(--text-dim); }
+
+    /* SITES */
     .site-card {
       background: var(--surface-2);
+      border: 1px solid var(--border);
       border-radius: 10px;
       padding: 1.25rem;
-      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+      transition: border-color 0.2s;
     }
-
+    .site-card:hover { border-color: var(--accent); }
     .site-card-header {
       display: flex;
       align-items: center;
       gap: 0.5rem;
       margin-bottom: 0.75rem;
     }
-
     .live-indicator {
       width: 8px;
       height: 8px;
@@ -259,49 +314,38 @@
       box-shadow: 0 0 8px var(--live);
       animation: pulse 2s infinite;
     }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
     .live-label {
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--live);
-      font-weight: 600;
+      font-weight: 700;
     }
-
+    .flagship-badge {
+      font-size: 0.65rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: 100px;
+      background: var(--accent-dim);
+      color: var(--accent);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
     .site-domain {
       font-family: 'SF Mono', monospace;
-      font-size: 0.9rem;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-    }
-
-    .site-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-    }
-
-    .site-description {
-      font-size: 0.9rem;
-      color: var(--text-dim);
-    }
-
-    .site-actions {
-      margin-top: 1rem;
-      display: flex;
-      gap: 0.75rem;
-    }
-
-    .site-link {
       font-size: 0.85rem;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+      word-break: break-all;
+    }
+    .site-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .site-description { font-size: 0.85rem; color: var(--text-dim); }
+    .site-actions { display: flex; gap: 0.6rem; margin-top: 1rem; flex-wrap: wrap; }
+    .site-link {
+      font-size: 0.8rem;
       color: var(--text);
       text-decoration: none;
-      padding: 0.5rem 1rem;
+      padding: 0.45rem 0.85rem;
       border-radius: 6px;
       background: var(--surface);
       border: 1px solid var(--border);
@@ -310,24 +354,29 @@
       align-items: center;
       gap: 0.3rem;
     }
+    .site-link:hover { border-color: var(--accent); color: var(--accent); }
+    .site-link.primary { background: var(--accent); color: #0a0a0f; border-color: var(--accent); font-weight: 600; }
 
-    .site-link:hover {
-      border-color: var(--accent);
-      color: var(--accent);
+    /* TENANT */
+    .tenant-card {
+      background: linear-gradient(135deg, rgba(74,222,128,0.08), rgba(74,222,128,0.02));
+      border: 1px solid rgba(74,222,128,0.2);
+      border-radius: 10px;
+      padding: 1rem;
+      margin-top: 1rem;
     }
-
-    .site-link.primary {
-      background: var(--accent);
-      color: #0a0a0f;
-      border-color: var(--accent);
-      font-weight: 600;
+    .tenant-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--available);
+      font-weight: 700;
+      margin-bottom: 0.35rem;
     }
+    .tenant-name { font-size: 1.05rem; font-weight: 600; }
+    .tenant-category { font-size: 0.8rem; color: var(--text-dim); }
 
-    .site-link.primary:hover {
-      background: #d4b87e;
-    }
-
-    /* ===== AVAILABILITY ===== */
+    /* AVAILABILITY */
     .available-badge {
       display: inline-flex;
       align-items: center;
@@ -337,80 +386,74 @@
       text-transform: uppercase;
       letter-spacing: 0.06em;
       color: var(--available);
-      background: rgba(126, 201, 160, 0.1);
+      background: rgba(74,222,128,0.08);
       padding: 0.3rem 0.6rem;
       border-radius: 4px;
       margin-bottom: 0.75rem;
     }
-
-    .available-badge::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--available);
-    }
-
     .registrar-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
       gap: 0.5rem;
       margin-top: 0.75rem;
     }
-
     .registrar-link {
       font-size: 0.78rem;
       color: var(--text-dim);
       text-decoration: none;
-      padding: 0.4rem 0.6rem;
+      padding: 0.45rem 0.6rem;
       border-radius: 6px;
       background: var(--bg);
       border: 1px solid var(--border);
       text-align: center;
       transition: all 0.2s;
     }
+    .registrar-link:hover { border-color: var(--available); color: var(--available); }
 
-    .registrar-link:hover {
-      border-color: var(--available);
-      color: var(--available);
+    .cognates-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.75rem;
     }
-
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      color: var(--text-dim);
-      text-decoration: none;
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
-      transition: color 0.2s;
+    .cognates-table th, .cognates-table td {
+      text-align: left;
+      padding: 0.55rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
     }
-
-    .back-link:hover {
-      color: var(--accent);
-    }
+    .cognates-table th { color: var(--text-dim); font-size: 0.65rem; text-transform: uppercase; }
 
     @media (max-width: 600px) {
-      .hero-unicode { font-size: 2.5rem; }
+      .hero-unicode { font-size: 2.6rem; }
       .hero-greek { font-size: 1.1rem; }
-      .breakdown-table th, .breakdown-table td { padding: 0.4rem 0.5rem; }
+      .top-nav a { margin-left: 0.75rem; font-size: 0.75rem; }
+      .section { padding: 1rem; }
+      .breakdown-table th, .breakdown-table td { padding: 0.5rem; }
     }
   </style>
 </head>
 <body>
   <header>
-    <a href="search.html" class="logo">PUNYCODEX</a>
-    <div class="tagline">Search Engine for the Unicode Web</div>
+    <a href="search.html" class="logo">PÚNYCODEX</a>
+    <nav class="top-nav">
+      <a href="search.html">Search</a>
+      <a href="/lexicon/index.html">Lexicon</a>
+      <a href="/type/index.html">Type Tool</a>
+      <a href="/pantheon/index.html">Pantheon</a>
+    </nav>
   </header>
 
   <main id="main">
-    <div class="loading">Loading entry...</div>
+    <div class="loading">Loading entry…</div>
   </main>
 
   <script>
     const API_BASE = '';
     const params = new URLSearchParams(location.search);
     const entryId = params.get('id');
+    const tabs = ['overview', 'breakdown', 'variants', 'etymology', 'sites', 'availability'];
+    let currentTab = 'overview';
+    let entryData = null;
 
     function escapeHtml(str) {
       if (!str) return '';
@@ -419,144 +462,258 @@
       return div.innerHTML;
     }
 
+    function parseJson(str) {
+      if (!str) return null;
+      try { return JSON.parse(str); } catch { return null; }
+    }
+
     async function loadEntry() {
       const main = document.getElementById('main');
-
       if (!entryId) {
         main.innerHTML = '<div class="error">No entry ID specified.</div>';
         return;
       }
-
       try {
-        const res = await fetch(`${API_BASE}/api/entry/${encodeURIComponent(entryId)}`);
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const entry = await res.json();
-        renderEntry(entry);
+        const [entryRes, availRes] = await Promise.all([
+          fetch(`${API_BASE}/api/entry/${encodeURIComponent(entryId)}`),
+          fetch(`${API_BASE}/api/availability/${encodeURIComponent(entryId)}`).catch(() => ({ ok: false })),
+        ]);
+        if (!entryRes.ok) throw new Error(`HTTP ${entryRes.status}`);
+        entryData = await entryRes.json();
+        entryData.availability = availRes.ok ? await availRes.json() : null;
+        renderEntry();
       } catch (e) {
         main.innerHTML = `<div class="error">Failed to load entry: ${escapeHtml(e.message)}</div>`;
       }
     }
 
-    function renderEntry(entry) {
-      const main = document.getElementById('main');
+    function setTab(tab) {
+      if (!tabs.includes(tab)) tab = 'overview';
+      currentTab = tab;
+      location.hash = tab;
+      document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+      document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id === `panel-${tab}`));
+    }
+
+    function renderEntry() {
+      const entry = entryData;
       const tierClass = entry.tier === 'dual' ? 'tier-dual' : entry.tier === '1' ? 'tier-1' : 'tier-2';
       const tierLabel = entry.tier === 'dual' ? 'Dual-Tier' : `Tier ${entry.tier}`;
+      const etymology = parseJson(entry.etymology);
+      const variants = parseJson(entry.variants) || [];
 
-      let html = `<a href="search.html" class="back-link">&larr; Back to Search</a>`;
-
-      // Hero
-      html += `
+      let html = `
         <div class="hero">
           <div class="hero-unicode">${escapeHtml(entry.unicode)}</div>
           ${entry.greek && entry.greek !== '—' ? `<div class="hero-greek">${escapeHtml(entry.greek)}</div>` : ''}
           <div class="hero-meta">
             <span class="tier-badge ${tierClass}">${tierLabel}</span>
             <span class="pantheon-badge">${escapeHtml(entry.pantheon)}</span>
-            <span class="ascii-badge">ASCII: ${escapeHtml(entry.ascii)}</span>
+            <span class="ascii-badge">ASCII ${escapeHtml(entry.ascii)}</span>
           </div>
+        </div>
+
+        <div class="tabs">
+          ${tabs.map(t => `<button class="tab ${t === currentTab ? 'active' : ''}" data-tab="${t}" onclick="setTab('${t}')">${capitalize(t)}</button>`).join('')}
         </div>
       `;
 
-      // Meaning & Domain
+      // Overview
       html += `
-        <div class="section">
-          <div class="section-title">Meaning & Domain</div>
-          <div class="meaning">${escapeHtml(entry.meaning || '')}</div>
-          ${entry.domain ? `<div class="domain">${escapeHtml(entry.domain)}</div>` : ''}
+        <div id="panel-overview" class="panel ${currentTab === 'overview' ? 'active' : ''}">
+          <div class="section">
+            <div class="section-title">Meaning & Domain</div>
+            <div class="section-text">${escapeHtml(entry.meaning || '')}</div>
+            ${entry.domain ? `<div class="section-text" style="margin-top:0.75rem"><strong>Domain scope:</strong> ${escapeHtml(entry.domain)}</div>` : ''}
+            <div class="meta-grid">
+              <div class="meta-card"><div class="meta-label">ASCII</div><div class="meta-value">${escapeHtml(entry.ascii)}</div></div>
+              <div class="meta-card"><div class="meta-label">Unicode</div><div class="meta-value">${escapeHtml(entry.unicode)}</div></div>
+              <div class="meta-card"><div class="meta-label">Original Script</div><div class="meta-value">${escapeHtml(entry.original_script || entry.greek || '—')}</div></div>
+              <div class="meta-card"><div class="meta-label">Pantheon</div><div class="meta-value" style="text-transform:capitalize">${escapeHtml(entry.pantheon)}</div></div>
+            </div>
+          </div>
+          ${entry.ai_summary ? `
+            <div class="section">
+              <div class="section-title">AI Overview</div>
+              <div class="section-text">${escapeHtml(entry.ai_summary)}</div>
+            </div>
+          ` : ''}
+          ${entry.sources && entry.sources.length ? `
+            <div class="section">
+              <div class="section-title">Sources</div>
+              <div class="sources-list">
+                ${entry.sources.map(s => `<span class="source-tag">${escapeHtml(s)}</span>`).join('')}
+              </div>
+            </div>
+          ` : ''}
         </div>
       `;
 
-      // Character Breakdown
-      if (entry.breakdown && entry.breakdown.length > 0) {
-        html += `
+      // Breakdown
+      html += `
+        <div id="panel-breakdown" class="panel ${currentTab === 'breakdown' ? 'active' : ''}">
           <div class="section">
-            <div class="section-title">Character Breakdown (${entry.breakdown.length} chars)</div>
-            <table class="breakdown-table">
-              <thead>
-                <tr>
-                  <th>ASCII</th>
-                  <th>Unicode</th>
-                  <th>Type</th>
-                  <th>Note</th>
-                </tr>
-              </thead>
-              <tbody>
-        `;
-        entry.breakdown.forEach(bd => {
-          const typeClass = `type-${bd.type}`;
-          html += `
-            <tr>
-              <td class="bd-char">${escapeHtml(bd.char)}</td>
-              <td class="bd-to">${escapeHtml(bd.to || '')}</td>
-              <td><span class="bd-type ${typeClass}">${escapeHtml(bd.type)}</span></td>
-              <td class="bd-note">${escapeHtml(bd.note || '')}</td>
-            </tr>
-          `;
-        });
-        html += `</tbody></table></div>`;
-      }
-
-      // Sources
-      if (entry.sources && entry.sources.length > 0) {
-        html += `
-          <div class="section">
-            <div class="section-title">Sources</div>
-            <div class="sources-list">
-              ${entry.sources.map(s => `<span class="source-tag">${escapeHtml(s)}</span>`).join('')}
-            </div>
+            <div class="section-title">Character Breakdown</div>
+            ${entry.breakdown && entry.breakdown.length ? `
+              <table class="breakdown-table">
+                <thead><tr><th>ASCII</th><th>Unicode</th><th>Type</th><th>Note</th></tr></thead>
+                <tbody>
+                  ${entry.breakdown.map(bd => `
+                    <tr>
+                      <td class="bd-char">${escapeHtml(bd.char)}</td>
+                      <td class="bd-to">${escapeHtml(bd.to || '')}</td>
+                      <td><span class="bd-type type-${bd.type}">${escapeHtml(bd.type)}</span></td>
+                      <td class="bd-note">${escapeHtml(bd.note || '')}</td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            ` : '<div class="section-text">No breakdown available.</div>'}
           </div>
-        `;
-      }
+        </div>
+      `;
 
-      // Live Site
-      if (entry.site) {
-        const site = entry.site;
-        html += `
+      // Variants
+      html += `
+        <div id="panel-variants" class="panel ${currentTab === 'variants' ? 'active' : ''}">
           <div class="section">
-            <div class="section-title">Indexed Site</div>
-            <div class="site-card">
-              <div class="site-card-header">
-                <span class="live-indicator"></span>
-                <span class="live-label">Live</span>
+            <div class="section-title">Name Variants</div>
+            ${variants.length ? `
+              <div class="card-grid">
+                ${variants.map(v => `
+                  <div class="variant-card">
+                    <div class="variant-unicode">${escapeHtml(v.unicode || v.ascii || '')}</div>
+                    <span class="variant-type">${escapeHtml(v.type || 'variant')}</span>
+                    ${v.note ? `<div class="variant-note">${escapeHtml(v.note)}</div>` : ''}
+                  </div>
+                `).join('')}
               </div>
-              <div class="site-domain">${escapeHtml(site.punycode)} <span style="color:var(--text-dim)">(${escapeHtml(site.domain)})</span></div>
-              ${site.title ? `<div class="site-title">${escapeHtml(site.title)}</div>` : ''}
-              ${site.description ? `<div class="site-description">${escapeHtml(site.description)}</div>` : ''}
-              <div class="site-actions">
-                <a href="https://${escapeHtml(site.punycode)}" target="_blank" rel="noopener" class="site-link primary">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                  Visit Site
-                </a>
-              </div>
-            </div>
+            ` : '<div class="section-text">No variants recorded.</div>'}
           </div>
-        `;
-      }
+        </div>
+      `;
+
+      // Etymology
+      html += `
+        <div id="panel-etymology" class="panel ${currentTab === 'etymology' ? 'active' : ''}">
+          <div class="section">
+            <div class="section-title">Etymology</div>
+            ${etymology ? `
+              <div class="meta-grid">
+                <div class="meta-card"><div class="meta-label">Proto-Form</div><div class="meta-value">${escapeHtml(etymology.protoForm || '—')}</div></div>
+                <div class="meta-card"><div class="meta-label">Proto-Language</div><div class="meta-value" style="text-transform:capitalize">${escapeHtml(etymology.protoLanguage || '—')}</div></div>
+                <div class="meta-card"><div class="meta-label">Gloss</div><div class="meta-value">${escapeHtml(etymology.protoGloss || '—')}</div></div>
+                <div class="meta-card"><div class="meta-label">Certainty</div><div class="meta-value" style="text-transform:capitalize">${escapeHtml(etymology.certainty || '—')}</div></div>
+              </div>
+              ${etymology.derivation ? `<div class="section-text" style="margin-top:1rem">${escapeHtml(etymology.derivation)}</div>` : ''}
+              ${etymology.cognates && etymology.cognates.length ? `
+                <table class="cognates-table">
+                  <thead><tr><th>Language</th><th>Form</th><th>Relationship</th><th>Note</th></tr></thead>
+                  <tbody>
+                    ${etymology.cognates.map(c => `
+                      <tr>
+                        <td style="text-transform:capitalize">${escapeHtml(c.language)}</td>
+                        <td>${escapeHtml(c.form)}</td>
+                        <td style="text-transform:capitalize">${escapeHtml(c.relationship)}</td>
+                        <td>${escapeHtml(c.note || '')}</td>
+                      </tr>
+                    `).join('')}
+                  </tbody>
+                </table>
+              ` : ''}
+            ` : '<div class="section-text">No etymology available.</div>'}
+          </div>
+        </div>
+      `;
+
+      // Sites
+      html += `
+        <div id="panel-sites" class="panel ${currentTab === 'sites' ? 'active' : ''}">
+          <div class="section">
+            <div class="section-title">Live Sites</div>
+            ${entry.sites && entry.sites.length ? entry.sites.map(site => renderSiteCard(site)).join('') : '<div class="section-text">No live indexed sites for this entry.</div>'}
+          </div>
+        </div>
+      `;
 
       // Availability
-      else if (entry.availability) {
-        const puny = entry.punycode || entry.ascii + '.com';
-        const unicode = entry.unicode + '.com';
-        html += `
-          <div class="section">
-            <div class="section-title">Availability</div>
-            <div class="available-badge">Available for Registration</div>
-            <div class="site-domain">${escapeHtml(puny)} <span style="color:var(--text-dim)">(${escapeHtml(unicode)})</span></div>
-            <div class="site-description" style="margin-top:0.5rem">No indexed site found. This Unicode domain name may be available for registration.</div>
-            <div class="registrar-grid">
-              <a href="https://www.godaddy.com/domainsearch/find?domainToCheck=${encodeURIComponent(puny)}" target="_blank" rel="noopener" class="registrar-link">GoDaddy</a>
-              <a href="https://www.namecheap.com/domains/registration/results/?domain=${encodeURIComponent(puny)}" target="_blank" rel="noopener" class="registrar-link">Namecheap</a>
-              <a href="https://porkbun.com/checkout/search?q=${encodeURIComponent(puny)}" target="_blank" rel="noopener" class="registrar-link">Porkbun</a>
-              <a href="https://www.dynadot.com/domain/search.html?domain=${encodeURIComponent(puny)}" target="_blank" rel="noopener" class="registrar-link">Dynadot</a>
-            </div>
-          </div>
-        `;
-      }
+      html += renderAvailability(entry.availability, entry);
 
-      main.innerHTML = html;
-      document.title = `${entry.unicode} — PUNYCODEX`;
+      document.getElementById('main').innerHTML = html;
+      document.title = `${entry.unicode} — PÚNYCODEX`;
     }
 
+    function renderSiteCard(site) {
+      return `
+        <div class="site-card">
+          <div class="site-card-header">
+            <span class="live-indicator"></span>
+            <span class="live-label">Live</span>
+            ${site.is_flagship ? '<span class="flagship-badge">🏛️ Flagship</span>' : ''}
+            ${site.tenant_name ? '<span class="flagship-badge" style="background:rgba(74,222,128,0.12);color:var(--available)">🏪 Tenant</span>' : ''}
+          </div>
+          <div class="site-domain">${escapeHtml(site.punycode)} <span style="color:var(--text-dim)">(${escapeHtml(site.domain)})</span></div>
+          ${site.title ? `<div class="site-title">${escapeHtml(site.title)}</div>` : ''}
+          ${site.description ? `<div class="site-description">${escapeHtml(site.description)}</div>` : ''}
+          ${site.tenant_name ? `
+            <div class="tenant-card">
+              <div class="tenant-label">Tenant</div>
+              <div class="tenant-name">${escapeHtml(site.tenant_name)}${site.tenant_category ? ` — ${escapeHtml(site.tenant_category)}` : ''}</div>
+              ${site.tenant_front_url ? `<div class="tenant-category"><a href="${site.tenant_front_url}" target="_blank" rel="noopener" style="color:var(--live)">${escapeHtml(site.tenant_front_url)} ↗</a></div>` : ''}
+            </div>
+          ` : ''}
+          <div class="site-actions">
+            <a href="https://${escapeHtml(site.punycode)}" target="_blank" rel="noopener" class="site-link primary">Visit Site ↗</a>
+            <a href="search.html?q=${encodeURIComponent(entryData.unicode)}" class="site-link">Find in Search</a>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderAvailability(avail, entry) {
+      const sitePuny = entry.sites && entry.sites[0] ? entry.sites[0].punycode : null;
+      const puny = avail?.punycode || sitePuny || null;
+      const unicode = entry.domain || (entry.unicode + '.com');
+      const linkDomain = puny || unicode;
+      return `
+        <div id="panel-availability" class="panel ${currentTab === 'availability' ? 'active' : ''}">
+          <div class="section">
+            <div class="section-title">Availability</div>
+            ${avail && avail.status === 'available' ? `
+              <div class="available-badge">Available for Registration</div>
+              <div class="site-domain">${escapeHtml(puny || unicode)} <span style="color:var(--text-dim)">(${escapeHtml(unicode)})</span></div>
+              <div class="section-text" style="margin-top:0.5rem">No indexed site found. This Unicode domain name may be available for registration.</div>
+              <div class="registrar-grid">
+                <a href="https://www.godaddy.com/domainsearch/find?domainToCheck=${encodeURIComponent(linkDomain)}" target="_blank" rel="noopener" class="registrar-link">GoDaddy</a>
+                <a href="https://www.namecheap.com/domains/registration/results/?domain=${encodeURIComponent(linkDomain)}" target="_blank" rel="noopener" class="registrar-link">Namecheap</a>
+                <a href="https://porkbun.com/checkout/search?q=${encodeURIComponent(linkDomain)}" target="_blank" rel="noopener" class="registrar-link">Porkbun</a>
+                <a href="https://www.dynadot.com/domain/search.html?domain=${encodeURIComponent(linkDomain)}" target="_blank" rel="noopener" class="registrar-link">Dynadot</a>
+              </div>
+            ` : entry.sites && entry.sites.length > 0 ? `
+              <div class="available-badge" style="background:rgba(96,165,250,0.08);color:var(--live)">Currently Leased / Reserved</div>
+              <div class="section-text">This name is part of the PÚNYCODEX collection. Check the <strong>Sites</strong> tab for the live destination, or search for related names.</div>
+            ` : `
+              <div class="available-badge" style="background:rgba(212,175,55,0.08);color:var(--accent)">Availability Not Tracked</div>
+              <div class="site-domain">${escapeHtml(puny || unicode)} <span style="color:var(--text-dim)">(${escapeHtml(unicode)})</span></div>
+              <div class="section-text" style="margin-top:0.5rem">No live site is currently indexed for this name. It may be available for registration.</div>
+              <div class="registrar-grid">
+                <a href="https://www.godaddy.com/domainsearch/find?domainToCheck=${encodeURIComponent(linkDomain)}" target="_blank" rel="noopener" class="registrar-link">GoDaddy</a>
+                <a href="https://www.namecheap.com/domains/registration/results/?domain=${encodeURIComponent(linkDomain)}" target="_blank" rel="noopener" class="registrar-link">Namecheap</a>
+                <a href="https://porkbun.com/checkout/search?q=${encodeURIComponent(linkDomain)}" target="_blank" rel="noopener" class="registrar-link">Porkbun</a>
+                <a href="https://www.dynadot.com/domain/search.html?domain=${encodeURIComponent(linkDomain)}" target="_blank" rel="noopener" class="registrar-link">Dynadot</a>
+              </div>
+            `}
+          </div>
+        </div>
+      `;
+    }
+
+    function capitalize(s) {
+      return s.charAt(0).toUpperCase() + s.slice(1);
+    }
+
+    const hashTab = location.hash.replace('#', '');
+    if (tabs.includes(hashTab)) currentTab = hashTab;
     loadEntry();
   </script>
 </body>
