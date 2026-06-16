@@ -669,6 +669,12 @@ function loadLexicon() {
   return LEXICON;
 }
 
+function loadArchetypes() {
+  const archetypePath = path.join(ROOT, 'js', 'archetypes-v2.js');
+  const code = fs.readFileSync(archetypePath, 'utf8').replace('const ARCHETYPES', 'var ARCHETYPES');
+  return new Function(`${code}; return ARCHETYPES;`)();
+}
+
 function loadLoreCatalog() {
   const catalogPath = path.join(__dirname, 'lore-catalog.json');
   if (!fs.existsSync(catalogPath)) return {};
@@ -2667,57 +2673,8 @@ function main() {
   const skipValidation = args.includes('--skip-validation');
   const regenerateAll = args.includes('--regenerate-all');
 
-  const EXTENDED_IDS = [
-    'aither',
-    'anat',
-    'apollon',
-    'aphrodite',
-    'ares',
-    'artemis',
-    'asherah',
-    'astart',
-    'athena',
-    'atlas',
-    'ba',
-    'baal',
-    'chaos',
-    'demeter',
-    'dionysos',
-    'el',
-    'ea',
-    'enlil',
-    'eros',
-    'gaia',
-    'ganesha',
-    'hades',
-    'hekate',
-    'heka',
-    'helios',
-    'hephaistos',
-    'hera',
-    'hermes',
-    'hestia',
-    'horus',
-    'ishtar',
-    'kali',
-    'ker',
-    'kronos',
-    'medousa',
-    'nike',
-    'okeanos',
-    'persephone',
-    'pontos',
-    'poseidon',
-    'prajapati',
-    'prometheus',
-    'rta',
-    'selene',
-    'shu',
-    'tartaros',
-    'typhon',
-    'vishnu',
-    'zeus',
-  ];
+  const ARCHETYPES = loadArchetypes();
+  const EXTENDED_IDS = ARCHETYPES.filter((a) => a.built).map((a) => a.id);
 
   if (regenerateAll) {
     let failed = 0;

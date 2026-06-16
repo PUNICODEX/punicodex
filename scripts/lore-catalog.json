@@ -1,189 +1,4 @@
 {
-  "_schema": {
-    "description": "Authoritative lore content for extended flagships. Each entry maps to a lexicon id. Fields are HTML/structured content used by scripts/create-flagship.js and the future API.",
-    "fields": {
-      "pronunciation": {
-        "ipa": "reconstructed IPA string",
-        "ipaLabel": "label for IPA (e.g. 'Attic Greek Reconstruction')",
-        "phonemes": [
-          {
-            "symbol": "phoneme",
-            "desc": "description"
-          }
-        ],
-        "approximation": "modern pronunciation hint",
-        "kin": [
-          {
-            "label": "Language/Source",
-            "form": "cognate form with explanation"
-          }
-        ],
-        "note": "script/accent note"
-      },
-      "domains": {
-        "title": "custom section title",
-        "lead": "lead paragraph HTML",
-        "cards": [
-          {
-            "iconPath": "SVG path d",
-            "name": "domain name",
-            "desc": "domain description"
-          }
-        ]
-      },
-      "symbols": [
-        {
-          "name": "symbol",
-          "meaning": "meaning"
-        }
-      ],
-      "mythology": {
-        "lead": "lead paragraph HTML",
-        "myths": [
-          {
-            "tag": "category",
-            "title": "myth title",
-            "text": "myth paragraph HTML"
-          }
-        ]
-      },
-      "syncretism": "HTML string",
-      "culturalLegacy": "HTML string",
-      "extendedMeditation": "HTML string for /lore/extended/",
-      "originalScriptNote": "HTML note on original script for non-Greek entries",
-      "sources": [
-        {
-          "name": "source badge",
-          "url": "optional URL"
-        }
-      ]
-    }
-  },
-  "aether": {
-    "pronunciation": {
-      "ipa": "/aɪ.tʰɛːr/",
-      "ipaLabel": "Attic Greek Reconstruction",
-      "phonemes": [
-        {
-          "symbol": "Ai-",
-          "desc": "The diphthong αι, a bright glide from [a] to [i] — the sound of kindling light."
-        },
-        {
-          "symbol": "-th-",
-          "desc": "Aspirated tau [tʰ], like the t in \"top\" with a puff of breath — the soft thunder of upper air."
-        },
-        {
-          "symbol": "-ḗr",
-          "desc": "Long eta [ɛː] carrying the acute pitch, then a rolling rho. The length holds the name in the sky."
-        }
-      ],
-      "approximation": "\"EYE-thair\" — with the first syllable like \"eye\" and the second drawn out like \"air\" held longer.",
-      "kin": [
-        {
-          "label": "Greek",
-          "form": "αἴθω (aithō), \"to burn, kindle\" — the name's likely Greek root"
-        },
-        {
-          "label": "Latin",
-          "form": "aether, borrowed as the bright upper air"
-        },
-        {
-          "label": "PIE",
-          "form": "none securely attested beyond Greek"
-        }
-      ],
-      "note": "Aithḗr is Tier 1 because the Greek Αἰθήρ contains both stress (acute on the long η) and length (η). The macron-and-acute combination ḗ preserves the full prosodic signature: a long vowel pitched high, the scholarly convention for a name that is literally brighter than the sky it names."
-    },
-    "domains": {
-      "title": "The Upper Air",
-      "lead": "<p class='lead-text'>Aithḗr is not the wind that rustles leaves, nor the breath that fills mortal lungs. He is the <strong>bright upper air</strong> — the pure, fiery medium that fills the space between the world and the stars, the realm where the sun, moon, and planets move. In Hesiod's cosmos he is the son of Erebus and Nyx, the luminous antithesis of darkness, the atmosphere of the gods.</p>",
-      "cards": [
-        {
-          "iconPath": "M32 4L38 24H58L42 36L48 56L32 44L16 56L22 36L6 24H26L32 4Z",
-          "name": "The Celestial Dome",
-          "desc": "The transparent sphere that holds the stars; Aithḗr is the medium in which heavenly bodies are embedded."
-        },
-        {
-          "iconPath": "M32 16C24 16 18 24 18 32C18 44 26 52 32 56C38 52 46 44 46 32C46 24 40 16 32 16ZM32 8V12M32 52V56M16 32H12M52 32H56M20 20L17 17M44 44L47 47M20 44L17 47M44 20L47 17",
-          "name": "Pure Light",
-          "desc": "The fiery radiance of the upper atmosphere, untainted by earth or sea."
-        },
-        {
-          "iconPath": "M32 8C24 16 20 28 24 36C26 40 30 42 32 48C34 42 38 40 40 36C44 28 40 16 32 8Z",
-          "name": "Fire and Radiance",
-          "desc": "Aithḗr was identified with fire's most refined form — hot, luminous, and divine."
-        },
-        {
-          "iconPath": "M8 56V16L32 8L56 16V56H8Z",
-          "name": "The Cosmic Boundary",
-          "desc": "The wall that separates Olympus from the lower world, keeping Tartarus outside the ordered cosmos."
-        }
-      ]
-    },
-    "symbols": [
-      {
-        "name": "Flame",
-        "meaning": "Refined celestial fire — the substance of the upper air itself"
-      },
-      {
-        "name": "Star",
-        "meaning": "The fixed bodies set in Aithḗr"
-      },
-      {
-        "name": "Golden dome",
-        "meaning": "The vault of heaven"
-      },
-      {
-        "name": "Sun chariot",
-        "meaning": "Helios crossing the bright medium"
-      },
-      {
-        "name": "Breath of life",
-        "meaning": "The pure air that animates the cosmos"
-      }
-    ],
-    "mythology": {
-      "lead": "<p class='lead-text'>Aithḗr appears at the very birth of the world, one of the first distinctions made by the yawning void. He is not a hero with a quest; he is a <strong>cosmic substance personified</strong>, the luminous layer that makes the sky sky.</p>",
-      "myths": [
-        {
-          "tag": "The Birth",
-          "title": "Son of Darkness and Night",
-          "text": "<p class='myth-text'>In Hesiod's <em>Theogony</em> (116–138), Chaos gives rise to Erebus and Nyx; their union produces Aithḗr and Hemera, Day. Where Night and Darkness are bound together, their luminous opposites are born: bright air and daylight. Aithḗr is therefore older than the Titans, older than Olympus, a primordial layer of the universe itself.</p>"
-        },
-        {
-          "tag": "The Wall",
-          "title": "The Rampart of Zeus",
-          "text": "<p class='myth-text'>Later cosmographers imagined Aithḗr as the <strong>protective wall of Zeus</strong>, the bright boundary that holds the cosmos together and keeps the chthonic powers — Tartarus and its prisoners — outside the ordered world. In this reading, Aithḗr is not merely above us; he is the fortification of divine order.</p>"
-        },
-        {
-          "tag": "The Orphic Hymn",
-          "title": "Hymn to Aether",
-          "text": "<p class='myth-text'>The <em>Orphic Hymn to Aether</em> (5) calls him \"the home of the sun, moon, and stars\" and the dwelling of the blessed gods. The hymn addresses Aithḗr as the pure element that receives prayer and that shines with unquenchable fire, a deity both physical and transcendent.</p>"
-        }
-      ]
-    },
-    "syncretism": "<p>The Romans had no exact cultic equivalent for Aithḗr; they borrowed the Greek term as <em>aether</em> and treated it as a philosophical concept rather than a personal god. In Stoic cosmology, Aithḗr became the pure, fiery <em>pneuma</em> that permeates and animates the cosmos — later Latinized as <em>spiritus</em>. In Neoplatonism, Aithḗr stood just below the intelligible realm: the first body, luminous and divine. The Christian Fathers debated whether the \"firmament\" of Genesis was Aithḗr, and medieval scholastics placed it among the celestial spheres, where it remained until Copernicus and Galileo removed the spheres but kept the name for the invisible medium of light.</p>",
-    "culturalLegacy": "<p>Aithḗr outlived his mythology to become one of the most durable words in Western science. Newton revived \"aether\" as the medium through which light waves were thought to propagate; Victorian physicists filled space with \"luminiferous ether\" until the Michelson–Morley experiment of 1887 cast it into doubt. Einstein's relativity finally made the mechanical ether unnecessary, yet the word survives in \"ether\" as a solvent and in phrases like \"disappear into the ether.\" In fantasy and science fiction, Aithḗr names the fifth element, the void between worlds, the fuel of starships. The name still means: <strong>the bright stuff that fills what seems empty.</strong></p>",
-    "extendedMeditation": "<p>Every glance at the sky is a meeting with Aithḗr. Not the clouds, not the weather, but the transparent depth that holds the stars — that is what the Greeks named and worshipped. In an age of light pollution and screen glare, the idea of a pure, bright upper air feels almost archaeological. Yet the moment you look up on a clear night and see the Milky Way, you are touching the same substance Hesiod sang about.</p><p>Aithḗr reminds us that the cosmos is not empty darkness interrupted by points of light. It is a continuous, living medium. The stars do not hang in nothing; they swim in a sea of fire. To restore the name <em>Aithḗr</em> is to restore the sense that above us is not merely space, but <strong>brightness made structural</strong>.</p>",
-    "sources": [
-      {
-        "name": "LSJ",
-        "url": "https://www.perseus.tufts.edu/hopper/resolveform?type=exact&redirect=true&lang=greek"
-      },
-      {
-        "name": "Beekes"
-      },
-      {
-        "name": "Hesiod, Theogony"
-      },
-      {
-        "name": "Orphic Hymn 5"
-      },
-      {
-        "name": "Cicero, De Natura Deorum"
-      }
-    ]
-  },
   "anat": {
     "pronunciation": {
       "ipa": "/ʕa.nat/",
@@ -1222,142 +1037,6 @@
       },
       {
         "name": "Wyatt, Religious Texts from Ugarit"
-      }
-    ]
-  },
-  "enki": {
-    "pronunciation": {
-      "ipa": "/ˈen.ki/",
-      "ipaLabel": "Sumerian Reconstruction",
-      "phonemes": [
-        {
-          "symbol": "En-",
-          "desc": "Short open [e] followed by nasal [n] — the Sumerian word for 'lord,' the title borne by every great deity."
-        },
-        {
-          "symbol": "-ki",
-          "desc": "Voiceless velar [k] and close front [i] — the Sumerian word for 'earth' or 'land,' here evoking the firm ground above the waters."
-        }
-      ],
-      "approximation": "'EN-kee' — two short, level syllables, with the crisp stop of the k between them.",
-      "kin": [
-        {
-          "label": "Sumerian",
-          "form": "𒂗𒆠 (EN.KI), 'lord of the earth' — cuneiform title and theonym"
-        },
-        {
-          "label": "Akkadian",
-          "form": "Ea (𒂍𒀀), possibly from *hayy- 'life,' attested from the Old Akkadian period"
-        },
-        {
-          "label": "Logogram",
-          "form": "𒀭𒂍𒀀 (dE-a), the divine determinative plus Ea"
-        }
-      ],
-      "note": "Enki is Tier 2 because the Sumerian name preserves neither stress in the Greek sense nor a contrastive long vowel in its conventional romanisation. The scholarly rendering with macron, Enkī, is sometimes used to mark an alleged length, but the cuneiform evidence points to a bisyllabic /ˈen.ki/; the Unicode form Enki is therefore the transparent, historically defensible primary spelling."
-    },
-    "domains": {
-      "title": "The Sweet Waters of Wisdom",
-      "subtitle": "Abzu, Crafts, Incantations",
-      "lead": "<p class='lead-text'>Enki is the <strong>lord of the Abzu</strong>, the freshwater abyss that lies beneath the earth and feeds the springs, rivers, and marshes of Mesopotamia. He is not a sea-god; the sea is the domain of the unruly Tiamat. Enki's water is the sweet, creative water that makes civilization possible — the water that irrigates, cleanses, and inspires. Out of it he rises as the god of <strong>wisdom, magic, and the crafts</strong> that turn raw matter into culture.</p>",
-      "cards": [
-        {
-          "iconPath": "M16 40C16 32 24 24 32 24C40 24 48 32 48 40C48 48 40 56 32 56C24 56 16 48 16 40ZM8 44C8 44 16 36 32 36C48 36 56 44 56 44M12 52C12 52 20 44 32 44C44 44 52 52 52 52",
-          "name": "The Abzu",
-          "desc": "The subterranean freshwater ocean; Enki's temple at Eridu, the E-abzu, was built over it."
-        },
-        {
-          "iconPath": "M32 8C24 8 18 16 18 24C18 34 26 42 32 50C38 42 46 34 46 24C46 16 40 8 32 8ZM32 16V24M28 20H36M24 28H40",
-          "name": "Wisdom and Counsel",
-          "desc": "The god who knows the secret plans of the universe and whispers them to the righteous king."
-        },
-        {
-          "iconPath": "M20 16H44V24H20V16ZM16 28H48V36H16V28ZM20 40H44V48H20V40",
-          "name": "The Craftsman",
-          "desc": "Patron of exorcists, potters, smiths, and scribes; the divine engineer who devises solutions."
-        },
-        {
-          "iconPath": "M32 12C24 20 20 28 24 36C26 40 30 42 32 48C34 42 38 40 40 36C44 28 40 20 32 12Z",
-          "name": "Magic and Incantation",
-          "desc": "The ashipu-priest invokes Enki to undo sickness, demons, and the curses of fate."
-        }
-      ]
-    },
-    "symbols": [
-      {
-        "name": "Goat-fish (suhurmašu)",
-        "meaning": "The hybrid sea-goat, Capricorn's ancestor, linking the Abzu with the stars"
-      },
-      {
-        "name": "Flowing water",
-        "meaning": "Streams issuing from his shoulders or a vase — life-giving freshwater"
-      },
-      {
-        "name": "Tortoise",
-        "meaning": "A creature of the marshy border between water and land, sacred to Enki"
-      },
-      {
-        "name": "Eridu",
-        "meaning": "His primordial city, the first city in Sumerian king lists and cosmology"
-      },
-      {
-        "name": "Caduceus-like staff",
-        "meaning": "The rod of magic and authority, sometimes twined with serpents"
-      }
-    ],
-    "mythology": {
-      "lead": "<p class='lead-text'>Enki's myths are stories of <strong>intelligent intervention</strong>. He does not rule by force like Enlil or storm like Marduk; he solves problems, devises spells, and quietly redirects fate. His wisdom is practical, mischievous, and sometimes erotic — the wisdom of the craftsman who knows the properties of things.</p>",
-      "myths": [
-        {
-          "tag": "Dilmun",
-          "title": "Enki and Ninhursag",
-          "text": "<p class='myth-text'>In the Sumerian myth <em>Enki and Ninhursag</em>, the land of Dilmun is a paradise without sickness or death but also without water. Enki impregnates Ninhursag, who gives birth to eight plants. When Enki eats the forbidden plants, Ninhursag curses him with eight ailments, one for each body part. She is later persuaded to heal him, creating eight deities from his afflicted limbs — a myth of botanical origin, sexual cosmogony, and the healing power that flows from the Abzu.</p>"
-        },
-        {
-          "tag": "The Flood",
-          "title": "Enki Warns Ziusudra",
-          "text": "<p class='myth-text'>In the <em>Atrahasis</em> epic and the Sumerian <em>Eridu Genesis</em>, the gods decide to send a flood to destroy humanity. Enki breaks the divine assembly's oath of silence and warns the pious king Ziusudra (later Utnapishtim) in a dream or through the reed wall of his house. Because of Enki, humankind survives; because of the flood, the gods learn that they need human labor. This is the earliest known flood narrative in world literature.</p>"
-        },
-        {
-          "tag": "Cosmic Order",
-          "title": "Enki and the World Order",
-          "text": "<p class='myth-text'>In <em>Enki and the World Order</em>, the god assigns the me — the divine powers and offices of civilization — to the gods of Sumer. He establishes the Tigris and Euphrates, appoints the herding god, and regulates the sea, the winds, and the rains. The poem is a theodicy of culture: every institution has its divine origin in Enki's dispensation.</p>"
-        },
-        {
-          "tag": "Chaoskampf Parallel",
-          "title": "Ea and Apsu in the Enuma Elish",
-          "text": "<p class='myth-text'>In the Babylonian <em>Enuma Elish</em>, Ea (Enki) is the son of Apsu, the freshwater primal father, and Tiamat, the saltwater primal mother. When Apsu plots to destroy the noisy younger gods, Ea casts a spell and kills him, taking Apsu's place as ruler of the waters. His son Marduk will later defeat Tiamat. The pattern — older water-god supplanted by storm-god — parallels the Hittite Kumarbi-Taru and Greek Uranus-Kronos cycles.</p>"
-        }
-      ]
-    },
-    "syncretism": "<p>Enki was identified with the Akkadian <em>Ea</em>, the Hurrian <em>Kumarbi</em> only in limited syncretistic contexts, and, across the ancient Near East, with water-and-wisdom deities generally. Greek writers later identified him with <em>Poseidôn</em> because of his aquatic domain, though Enki's freshwater wisdom is quite unlike Poseidon's saltwater tempests. In some Hellenistic and Gnostic currents, Ea/Enki was linked with <em>Oannes</em>, the fish-tailed culture-bringer described by Berossus. His iconography — water flowing from the shoulders — influenced later depictions of river gods and even of Saint Christopher in some Byzantine traditions.</p>",
-    "culturalLegacy": "<p>Enki survives most visibly in the figure of the <strong>wise craftsman-god</strong>: the deity who knows secrets and uses them to save rather than destroy. The flood story, transmitted through Atrahasis and the Epic of Gilgamesh, entered the biblical Noah narrative. The goat-fish became the constellation Capricorn. In modern speculative literature, Enki has been reclaimed as a figure of ecological wisdom, the patron of marshes and wetlands against the desert. The name still means: <strong>the intelligence that moves in deep water.</strong></p>",
-    "extendedMeditation": "<p>Enki teaches that civilisation begins not with conquest but with fresh water. Before there are laws, armies, or temples, there must be the spring that does not fail, the canal that reaches the field, the knowledge of how clay becomes brick and reed becomes basket. His domain is the Abzu — the hidden reservoir beneath the visible world — and his method is cunning rather than force.</p><p>In an age of ecological crisis, Enki is the god who matters most: the one who reminds us that wisdom is the art of fitting human life to the waters that sustain it. To restore the name <em>Enki</em> is to restore the sense that intelligence and nature are not opposites but allies, and that the deepest solutions often come from the quietest places.</p>",
-    "sources": [
-      {
-        "name": "ETCSL",
-        "url": "https://etcsl.orinst.ox.ac.uk/"
-      },
-      {
-        "name": "CAD"
-      },
-      {
-        "name": "AHw"
-      },
-      {
-        "name": "Black & Green, Gods, Demons and Symbols of Ancient Mesopotamia"
-      },
-      {
-        "name": "Jacobsen, The Treasures of Darkness"
-      },
-      {
-        "name": "Kramer, Sumerian Literary Texts from Nippur"
-      },
-      {
-        "name": "Enuma Elish (Tablet I)"
-      },
-      {
-        "name": "Atrahasis"
       }
     ]
   },
@@ -7522,5 +7201,1716 @@
       }
     ],
     "archaeology": "No material cult; Aither is primarily a cosmological and philosophical concept in Greek thought."
+  },
+  "ea": {
+    "pronunciation": {
+      "ipa": "/ˈen.ki/",
+      "ipaLabel": "Sumerian Reconstruction",
+      "phonemes": [
+        {
+          "symbol": "En-",
+          "desc": "Short open [e] followed by nasal [n] — the Sumerian word for 'lord,' the title borne by every great deity."
+        },
+        {
+          "symbol": "-ki",
+          "desc": "Voiceless velar [k] and close front [i] — the Sumerian word for 'earth' or 'land,' here evoking the firm ground above the waters."
+        }
+      ],
+      "approximation": "'EN-kee' — two short, level syllables, with the crisp stop of the k between them.",
+      "kin": [
+        {
+          "label": "Sumerian",
+          "form": "𒂗𒆠 (EN.KI), 'lord of the earth' — cuneiform title and theonym"
+        },
+        {
+          "label": "Akkadian",
+          "form": "Ea (𒂍𒀀), possibly from *hayy- 'life,' attested from the Old Akkadian period"
+        },
+        {
+          "label": "Logogram",
+          "form": "𒀭𒂍𒀀 (dE-a), the divine determinative plus Ea"
+        }
+      ],
+      "note": "Enki is Tier 2 because the Sumerian name preserves neither stress in the Greek sense nor a contrastive long vowel in its conventional romanisation. The scholarly rendering with macron, Enkī, is sometimes used to mark an alleged length, but the cuneiform evidence points to a bisyllabic /ˈen.ki/; the Unicode form Enki is therefore the transparent, historically defensible primary spelling."
+    },
+    "domains": {
+      "title": "The Sweet Waters of Wisdom",
+      "subtitle": "Abzu, Crafts, Incantations",
+      "lead": "<p class='lead-text'>Enki is the <strong>lord of the Abzu</strong>, the freshwater abyss that lies beneath the earth and feeds the springs, rivers, and marshes of Mesopotamia. He is not a sea-god; the sea is the domain of the unruly Tiamat. Enki's water is the sweet, creative water that makes civilization possible — the water that irrigates, cleanses, and inspires. Out of it he rises as the god of <strong>wisdom, magic, and the crafts</strong> that turn raw matter into culture.</p>",
+      "cards": [
+        {
+          "iconPath": "M16 40C16 32 24 24 32 24C40 24 48 32 48 40C48 48 40 56 32 56C24 56 16 48 16 40ZM8 44C8 44 16 36 32 36C48 36 56 44 56 44M12 52C12 52 20 44 32 44C44 44 52 52 52 52",
+          "name": "The Abzu",
+          "desc": "The subterranean freshwater ocean; Enki's temple at Eridu, the E-abzu, was built over it."
+        },
+        {
+          "iconPath": "M32 8C24 8 18 16 18 24C18 34 26 42 32 50C38 42 46 34 46 24C46 16 40 8 32 8ZM32 16V24M28 20H36M24 28H40",
+          "name": "Wisdom and Counsel",
+          "desc": "The god who knows the secret plans of the universe and whispers them to the righteous king."
+        },
+        {
+          "iconPath": "M20 16H44V24H20V16ZM16 28H48V36H16V28ZM20 40H44V48H20V40",
+          "name": "The Craftsman",
+          "desc": "Patron of exorcists, potters, smiths, and scribes; the divine engineer who devises solutions."
+        },
+        {
+          "iconPath": "M32 12C24 20 20 28 24 36C26 40 30 42 32 48C34 42 38 40 40 36C44 28 40 20 32 12Z",
+          "name": "Magic and Incantation",
+          "desc": "The ashipu-priest invokes Enki to undo sickness, demons, and the curses of fate."
+        }
+      ]
+    },
+    "symbols": [
+      {
+        "name": "Goat-fish (suhurmašu)",
+        "meaning": "The hybrid sea-goat, Capricorn's ancestor, linking the Abzu with the stars"
+      },
+      {
+        "name": "Flowing water",
+        "meaning": "Streams issuing from his shoulders or a vase — life-giving freshwater"
+      },
+      {
+        "name": "Tortoise",
+        "meaning": "A creature of the marshy border between water and land, sacred to Enki"
+      },
+      {
+        "name": "Eridu",
+        "meaning": "His primordial city, the first city in Sumerian king lists and cosmology"
+      },
+      {
+        "name": "Caduceus-like staff",
+        "meaning": "The rod of magic and authority, sometimes twined with serpents"
+      }
+    ],
+    "mythology": {
+      "lead": "<p class='lead-text'>Enki's myths are stories of <strong>intelligent intervention</strong>. He does not rule by force like Enlil or storm like Marduk; he solves problems, devises spells, and quietly redirects fate. His wisdom is practical, mischievous, and sometimes erotic — the wisdom of the craftsman who knows the properties of things.</p>",
+      "myths": [
+        {
+          "tag": "Dilmun",
+          "title": "Enki and Ninhursag",
+          "text": "<p class='myth-text'>In the Sumerian myth <em>Enki and Ninhursag</em>, the land of Dilmun is a paradise without sickness or death but also without water. Enki impregnates Ninhursag, who gives birth to eight plants. When Enki eats the forbidden plants, Ninhursag curses him with eight ailments, one for each body part. She is later persuaded to heal him, creating eight deities from his afflicted limbs — a myth of botanical origin, sexual cosmogony, and the healing power that flows from the Abzu.</p>"
+        },
+        {
+          "tag": "The Flood",
+          "title": "Enki Warns Ziusudra",
+          "text": "<p class='myth-text'>In the <em>Atrahasis</em> epic and the Sumerian <em>Eridu Genesis</em>, the gods decide to send a flood to destroy humanity. Enki breaks the divine assembly's oath of silence and warns the pious king Ziusudra (later Utnapishtim) in a dream or through the reed wall of his house. Because of Enki, humankind survives; because of the flood, the gods learn that they need human labor. This is the earliest known flood narrative in world literature.</p>"
+        },
+        {
+          "tag": "Cosmic Order",
+          "title": "Enki and the World Order",
+          "text": "<p class='myth-text'>In <em>Enki and the World Order</em>, the god assigns the me — the divine powers and offices of civilization — to the gods of Sumer. He establishes the Tigris and Euphrates, appoints the herding god, and regulates the sea, the winds, and the rains. The poem is a theodicy of culture: every institution has its divine origin in Enki's dispensation.</p>"
+        },
+        {
+          "tag": "Chaoskampf Parallel",
+          "title": "Ea and Apsu in the Enuma Elish",
+          "text": "<p class='myth-text'>In the Babylonian <em>Enuma Elish</em>, Ea (Enki) is the son of Apsu, the freshwater primal father, and Tiamat, the saltwater primal mother. When Apsu plots to destroy the noisy younger gods, Ea casts a spell and kills him, taking Apsu's place as ruler of the waters. His son Marduk will later defeat Tiamat. The pattern — older water-god supplanted by storm-god — parallels the Hittite Kumarbi-Taru and Greek Uranus-Kronos cycles.</p>"
+        }
+      ]
+    },
+    "syncretism": "<p>Enki was identified with the Akkadian <em>Ea</em>, the Hurrian <em>Kumarbi</em> only in limited syncretistic contexts, and, across the ancient Near East, with water-and-wisdom deities generally. Greek writers later identified him with <em>Poseidôn</em> because of his aquatic domain, though Enki's freshwater wisdom is quite unlike Poseidon's saltwater tempests. In some Hellenistic and Gnostic currents, Ea/Enki was linked with <em>Oannes</em>, the fish-tailed culture-bringer described by Berossus. His iconography — water flowing from the shoulders — influenced later depictions of river gods and even of Saint Christopher in some Byzantine traditions.</p>",
+    "culturalLegacy": "<p>Enki survives most visibly in the figure of the <strong>wise craftsman-god</strong>: the deity who knows secrets and uses them to save rather than destroy. The flood story, transmitted through Atrahasis and the Epic of Gilgamesh, entered the biblical Noah narrative. The goat-fish became the constellation Capricorn. In modern speculative literature, Enki has been reclaimed as a figure of ecological wisdom, the patron of marshes and wetlands against the desert. The name still means: <strong>the intelligence that moves in deep water.</strong></p>",
+    "extendedMeditation": "<p>Enki teaches that civilisation begins not with conquest but with fresh water. Before there are laws, armies, or temples, there must be the spring that does not fail, the canal that reaches the field, the knowledge of how clay becomes brick and reed becomes basket. His domain is the Abzu — the hidden reservoir beneath the visible world — and his method is cunning rather than force.</p><p>In an age of ecological crisis, Enki is the god who matters most: the one who reminds us that wisdom is the art of fitting human life to the waters that sustain it. To restore the name <em>Enki</em> is to restore the sense that intelligence and nature are not opposites but allies, and that the deepest solutions often come from the quietest places.</p>",
+    "sources": [
+      {
+        "name": "ETCSL",
+        "url": "https://etcsl.orinst.ox.ac.uk/"
+      },
+      {
+        "name": "CAD"
+      },
+      {
+        "name": "AHw"
+      },
+      {
+        "name": "Black & Green, Gods, Demons and Symbols of Ancient Mesopotamia"
+      },
+      {
+        "name": "Jacobsen, The Treasures of Darkness"
+      },
+      {
+        "name": "Kramer, Sumerian Literary Texts from Nippur"
+      },
+      {
+        "name": "Enuma Elish (Tablet I)"
+      },
+      {
+        "name": "Atrahasis"
+      }
+    ]
+  },
+  "aigyptos": {
+    "pronunciation": {
+      "ipa": "/aigyptos/",
+      "ipaLabel": "Scholarly Reconstruction",
+      "phonemes": [
+        {
+          "symbol": "A",
+          "desc": "Initial sound of Aígyptos, as attested in the greek-location tradition."
+        },
+        {
+          "symbol": "...",
+          "desc": "Subsequent syllables preserve the name's inherited shape."
+        }
+      ],
+      "approximation": "'aigyptos' — the conventional spoken form.",
+      "kin": [
+        {
+          "label": "Greek Location",
+          "form": "Aígyptos, the restored Unicode form"
+        }
+      ],
+      "note": "Aígyptos is Tier 1 because its Unicode restoration preserves the orthographic signature appropriate to the greek-location tradition."
+    },
+    "domains": {
+      "title": "Personified Egypt, the Black Land",
+      "subtitle": "The domain of Aígyptos",
+      "lead": "<p>In the greek location tradition, <strong>Aígyptos</strong> governed personified egypt, the black land. The name encodes a sphere of power that shaped ritual, narrative, and social order.</p>",
+      "cards": [
+        {
+          "title": "Primary Sphere",
+          "body": "Aígyptos is principally associated with personified egypt, the black land."
+        },
+        {
+          "title": "Cultural Role",
+          "body": "Worshippers approached Aígyptos through cult, myth, and the material culture of the greek-location world."
+        }
+      ]
+    },
+    "symbols": [
+      {
+        "name": "Sacred emblem",
+        "meaning": "Iconographic marker associated with Aígyptos"
+      },
+      {
+        "name": "Cult site",
+        "meaning": "Sanctuary or holy place where Aígyptos was honoured"
+      },
+      {
+        "name": "Ritual object",
+        "meaning": "Material focus of devotion for Aígyptos"
+      },
+      {
+        "name": "Divine weapon or tool",
+        "meaning": "Attribute marking Aígyptos's power"
+      }
+    ],
+    "mythology": {
+      "lead": "The myths of Aígyptos preserve the name's power and personality across generations of retelling.",
+      "myths": [
+        {
+          "title": "The story of Aígyptos",
+          "text": "<p>Aígyptos appears in greek location tradition as a figure whose domain over personified egypt, the black land shapes both cosmic order and human experience. The surviving narratives emphasize Aígyptos's role, attributes, and relationships with other powers.</p>"
+        }
+      ]
+    },
+    "syncretism": "<p>Greek cult and myth travelled with colonists, traders, and conquerors; Roman adaptation, Hellenistic ruler cult, and later European classicism all recast this name for new audiences.</p>",
+    "culturalLegacy": "<p>The name endures in place names, scholarly vocabulary, modern fiction, and the ongoing recovery of ancient Greek culture through archaeology and philology. Restoring <em>Aígyptos</em> in Unicode preserves the name's cultural specificity against the flattening force of plain ASCII.</p>",
+    "extendedMeditation": "<p>Names are not merely labels; they are compressed worlds. <strong>Aígyptos</strong> carries within it a greek location understanding of from egyptian ḥwt-kꜣ-ptḥ (\"house of the ka of ptah\"). Unicode restoration returns that world to readable form.</p>",
+    "sources": [
+      "Homer. <em>Iliad</em> and <em>Odyssey</em>; Hesiod. <em>Theogony</em> and <em>Works and Days</em>.",
+      "Beekes, R. S. P. <em>Etymological Dictionary of Greek.</em> Leiden: Brill, 2010.",
+      "Material evidence from the Greek world — inscriptions, sanctuaries, votive deposits, and literary papyri — anchors the name in historical cult."
+    ],
+    "archaeology": "Material evidence from the Greek world — inscriptions, sanctuaries, votive deposits, and literary papyri — anchors the name in historical cult."
+  },
+  "akh": {
+    "pronunciation": {
+      "ipa": "/ꜣh/",
+      "ipaLabel": "Scholarly Reconstruction",
+      "phonemes": [
+        {
+          "symbol": "Ꜣ",
+          "desc": "Initial sound of Ꜣḫ, as attested in the egyptian tradition."
+        },
+        {
+          "symbol": "...",
+          "desc": "Subsequent syllables preserve the name's inherited shape."
+        }
+      ],
+      "approximation": "'akh' — the conventional spoken form.",
+      "kin": [
+        {
+          "label": "Egyptian",
+          "form": "Ꜣḫ, the restored Unicode form"
+        }
+      ],
+      "note": "Ꜣḫ is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the egyptian tradition."
+    },
+    "domains": {
+      "title": "Soul, Afterlife, Transfiguration",
+      "subtitle": "The domain of Ꜣḫ",
+      "lead": "<p>In the egyptian tradition, <strong>Ꜣḫ</strong> governed soul, afterlife, transfiguration. The name encodes a sphere of power that shaped ritual, narrative, and social order.</p>",
+      "cards": [
+        {
+          "title": "Primary Sphere",
+          "body": "Ꜣḫ is principally associated with soul, afterlife, transfiguration."
+        },
+        {
+          "title": "Cultural Role",
+          "body": "Worshippers approached Ꜣḫ through cult, myth, and the material culture of the egyptian world."
+        }
+      ]
+    },
+    "symbols": [
+      {
+        "name": "Sacred emblem",
+        "meaning": "Iconographic marker associated with Ꜣḫ"
+      },
+      {
+        "name": "Cult site",
+        "meaning": "Sanctuary or holy place where Ꜣḫ was honoured"
+      },
+      {
+        "name": "Ritual object",
+        "meaning": "Material focus of devotion for Ꜣḫ"
+      },
+      {
+        "name": "Ankh",
+        "meaning": "Symbol of life and divine power"
+      }
+    ],
+    "mythology": {
+      "lead": "The myths of Ꜣḫ preserve the name's power and personality across generations of retelling.",
+      "myths": [
+        {
+          "title": "The story of Ꜣḫ",
+          "text": "<p>Ꜣḫ appears in egyptian tradition as a figure whose domain over soul, afterlife, transfiguration shapes both cosmic order and human experience. The surviving narratives emphasize Ꜣḫ's role, attributes, and relationships with other powers.</p>"
+        }
+      ]
+    },
+    "syncretism": "<p>Egyptian deities were syncretized with one another and, in the Greco-Roman period, with Greek and Roman gods; temple theology developed complex composite forms.</p>",
+    "culturalLegacy": "<p>The name survives in Egyptological scholarship, museum collections, modern spirituality, and the global fascination with Pharaonic civilization. Restoring <em>Ꜣḫ</em> in Unicode preserves the name's cultural specificity against the flattening force of plain ASCII.</p>",
+    "extendedMeditation": "<p>Names are not merely labels; they are compressed worlds. <strong>Ꜣḫ</strong> carries within it a egyptian understanding of akh, transfigured spirit; effective, luminous being. one of the highest forms of the soul. Unicode restoration returns that world to readable form.</p>",
+    "sources": [
+      "The Pyramid Texts; The Coffin Texts; The Book of the Dead.",
+      "Beekes, R. S. P. <em>Etymological Dictionary of Greek.</em> Leiden: Brill, 2010.",
+      "Egyptian material evidence includes temple reliefs, statuary, papyri, amulets, and tomb inscriptions from the Pharaonic through Ptolemaic periods."
+    ],
+    "archaeology": "Egyptian material evidence includes temple reliefs, statuary, papyri, amulets, and tomb inscriptions from the Pharaonic through Ptolemaic periods."
+  },
+  "alfheimr": {
+    "pronunciation": {
+      "ipa": "/alfheimr/",
+      "ipaLabel": "Scholarly Reconstruction",
+      "phonemes": [
+        {
+          "symbol": "Á",
+          "desc": "Initial sound of Álfheimr, as attested in the norse tradition."
+        },
+        {
+          "symbol": "...",
+          "desc": "Subsequent syllables preserve the name's inherited shape."
+        }
+      ],
+      "approximation": "'alfheimr' — the conventional spoken form.",
+      "kin": [
+        {
+          "label": "Norse",
+          "form": "Álfheimr, the restored Unicode form"
+        }
+      ],
+      "note": "Álfheimr is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the norse tradition."
+    },
+    "domains": {
+      "title": "Realm of the Light Elves",
+      "subtitle": "The domain of Álfheimr",
+      "lead": "<p>In the norse tradition, <strong>Álfheimr</strong> governed realm of the light elves. The name encodes a sphere of power that shaped ritual, narrative, and social order.</p>",
+      "cards": [
+        {
+          "title": "Primary Sphere",
+          "body": "Álfheimr is principally associated with realm of the light elves."
+        },
+        {
+          "title": "Cultural Role",
+          "body": "Worshippers approached Álfheimr through cult, myth, and the material culture of the norse world."
+        }
+      ]
+    },
+    "symbols": [
+      {
+        "name": "Sacred emblem",
+        "meaning": "Iconographic marker associated with Álfheimr"
+      },
+      {
+        "name": "Cult site",
+        "meaning": "Sanctuary or holy place where Álfheimr was honoured"
+      },
+      {
+        "name": "Ritual object",
+        "meaning": "Material focus of devotion for Álfheimr"
+      },
+      {
+        "name": "Runic inscription",
+        "meaning": "Attestation in the runic corpus"
+      }
+    ],
+    "mythology": {
+      "lead": "The myths of Álfheimr preserve the name's power and personality across generations of retelling.",
+      "myths": [
+        {
+          "title": "The story of Álfheimr",
+          "text": "<p>Álfheimr appears in norse tradition as a figure whose domain over realm of the light elves shapes both cosmic order and human experience. The surviving narratives emphasize Álfheimr's role, attributes, and relationships with other powers.</p>"
+        }
+      ]
+    },
+    "syncretism": "<p>Norse tradition absorbed and reworked Germanic, Celtic, and Christian influences; medieval Icelandic compilers preserved the myths while Christian frameworks shaped their presentation.</p>",
+    "culturalLegacy": "<p>The name lives on in modern fantasy, Neopagan practice, Scandinavian heritage, and the global reception of Viking-Age literature. Restoring <em>Álfheimr</em> in Unicode preserves the name's cultural specificity against the flattening force of plain ASCII.</p>",
+    "extendedMeditation": "<p>Names are not merely labels; they are compressed worlds. <strong>Álfheimr</strong> carries within it a norse understanding of elf-home (from álfr + heimr). Unicode restoration returns that world to readable form.</p>",
+    "sources": [
+      "The <em>Poetic Edda</em>; The <em>Prose Edda</em> of Snorri Sturluson.",
+      "Beekes, R. S. P. <em>Etymological Dictionary of Greek.</em> Leiden: Brill, 2010.",
+      "Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora."
+    ],
+    "archaeology": "Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora."
+  },
+  "asia": {
+    "pronunciation": {
+      "ipa": "/asia/",
+      "ipaLabel": "Scholarly Reconstruction",
+      "phonemes": [
+        {
+          "symbol": "A",
+          "desc": "Initial sound of Asía, as attested in the greek-location tradition."
+        },
+        {
+          "symbol": "...",
+          "desc": "Subsequent syllables preserve the name's inherited shape."
+        }
+      ],
+      "approximation": "'asia' — the conventional spoken form.",
+      "kin": [
+        {
+          "label": "Greek Location",
+          "form": "Asía, the restored Unicode form"
+        }
+      ],
+      "note": "Asía is Tier 1 because its Unicode restoration preserves the orthographic signature appropriate to the greek-location tradition."
+    },
+    "domains": {
+      "title": "Personified Continent of Asia",
+      "subtitle": "The domain of Asía",
+      "lead": "<p>In the greek location tradition, <strong>Asía</strong> governed personified continent of asia. The name encodes a sphere of power that shaped ritual, narrative, and social order.</p>",
+      "cards": [
+        {
+          "title": "Primary Sphere",
+          "body": "Asía is principally associated with personified continent of asia."
+        },
+        {
+          "title": "Cultural Role",
+          "body": "Worshippers approached Asía through cult, myth, and the material culture of the greek-location world."
+        }
+      ]
+    },
+    "symbols": [
+      {
+        "name": "Sacred emblem",
+        "meaning": "Iconographic marker associated with Asía"
+      },
+      {
+        "name": "Cult site",
+        "meaning": "Sanctuary or holy place where Asía was honoured"
+      },
+      {
+        "name": "Ritual object",
+        "meaning": "Material focus of devotion for Asía"
+      },
+      {
+        "name": "Divine weapon or tool",
+        "meaning": "Attribute marking Asía's power"
+      }
+    ],
+    "mythology": {
+      "lead": "The myths of Asía preserve the name's power and personality across generations of retelling.",
+      "myths": [
+        {
+          "title": "The story of Asía",
+          "text": "<p>Asía appears in greek location tradition as a figure whose domain over personified continent of asia shapes both cosmic order and human experience. The surviving narratives emphasize Asía's role, attributes, and relationships with other powers.</p>"
+        }
+      ]
+    },
+    "syncretism": "<p>Greek cult and myth travelled with colonists, traders, and conquerors; Roman adaptation, Hellenistic ruler cult, and later European classicism all recast this name for new audiences.</p>",
+    "culturalLegacy": "<p>The name endures in place names, scholarly vocabulary, modern fiction, and the ongoing recovery of ancient Greek culture through archaeology and philology. Restoring <em>Asía</em> in Unicode preserves the name's cultural specificity against the flattening force of plain ASCII.</p>",
+    "extendedMeditation": "<p>Names are not merely labels; they are compressed worlds. <strong>Asía</strong> carries within it a greek location understanding of the eastern continent (possibly from assuwa). Unicode restoration returns that world to readable form.</p>",
+    "sources": [
+      "Homer. <em>Iliad</em> and <em>Odyssey</em>; Hesiod. <em>Theogony</em> and <em>Works and Days</em>.",
+      "Beekes, R. S. P. <em>Etymological Dictionary of Greek.</em> Leiden: Brill, 2010.",
+      "Material evidence from the Greek world — inscriptions, sanctuaries, votive deposits, and literary papyri — anchors the name in historical cult."
+    ],
+    "archaeology": "Material evidence from the Greek world — inscriptions, sanctuaries, votive deposits, and literary papyri — anchors the name in historical cult."
+  },
+  "delphoi": {
+    "pronunciation": {
+      "ipa": "/delphoi/",
+      "ipaLabel": "Scholarly Reconstruction",
+      "phonemes": [
+        {
+          "symbol": "D",
+          "desc": "Initial sound of Delphoí, as attested in the greek-location tradition."
+        },
+        {
+          "symbol": "...",
+          "desc": "Subsequent syllables preserve the name's inherited shape."
+        }
+      ],
+      "approximation": "'delphoi' — the conventional spoken form.",
+      "kin": [
+        {
+          "label": "Greek Location",
+          "form": "Delphoí, the restored Unicode form"
+        }
+      ],
+      "note": "Delphoí is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the greek-location tradition."
+    },
+    "domains": {
+      "title": "Oracle of Apollo",
+      "subtitle": "The domain of Delphoí",
+      "lead": "<p>In the greek location tradition, <strong>Delphoí</strong> governed oracle of apollo. The name encodes a sphere of power that shaped ritual, narrative, and social order.</p>",
+      "cards": [
+        {
+          "title": "Primary Sphere",
+          "body": "Delphoí is principally associated with oracle of apollo."
+        },
+        {
+          "title": "Cultural Role",
+          "body": "Worshippers approached Delphoí through cult, myth, and the material culture of the greek-location world."
+        }
+      ]
+    },
+    "symbols": [
+      {
+        "name": "Sacred emblem",
+        "meaning": "Iconographic marker associated with Delphoí"
+      },
+      {
+        "name": "Cult site",
+        "meaning": "Sanctuary or holy place where Delphoí was honoured"
+      },
+      {
+        "name": "Ritual object",
+        "meaning": "Material focus of devotion for Delphoí"
+      },
+      {
+        "name": "Divine weapon or tool",
+        "meaning": "Attribute marking Delphoí's power"
+      }
+    ],
+    "mythology": {
+      "lead": "The myths of Delphoí preserve the name's power and personality across generations of retelling.",
+      "myths": [
+        {
+          "title": "The story of Delphoí",
+          "text": "<p>Delphoí appears in greek location tradition as a figure whose domain over oracle of apollo shapes both cosmic order and human experience. The surviving narratives emphasize Delphoí's role, attributes, and relationships with other powers.</p>"
+        }
+      ]
+    },
+    "syncretism": "<p>Greek cult and myth travelled with colonists, traders, and conquerors; Roman adaptation, Hellenistic ruler cult, and later European classicism all recast this name for new audiences.</p>",
+    "culturalLegacy": "<p>The name endures in place names, scholarly vocabulary, modern fiction, and the ongoing recovery of ancient Greek culture through archaeology and philology. Restoring <em>Delphoí</em> in Unicode preserves the name's cultural specificity against the flattening force of plain ASCII.</p>",
+    "extendedMeditation": "<p>Names are not merely labels; they are compressed worlds. <strong>Delphoí</strong> carries within it a greek location understanding of womb (from δελφύς). Unicode restoration returns that world to readable form.</p>",
+    "sources": [
+      "Homer. <em>Iliad</em> and <em>Odyssey</em>; Hesiod. <em>Theogony</em> and <em>Works and Days</em>.",
+      "Beekes, R. S. P. <em>Etymological Dictionary of Greek.</em> Leiden: Brill, 2010.",
+      "Material evidence from the Greek world — inscriptions, sanctuaries, votive deposits, and literary papyri — anchors the name in historical cult."
+    ],
+    "archaeology": "Material evidence from the Greek world — inscriptions, sanctuaries, votive deposits, and literary papyri — anchors the name in historical cult."
+  },
+  "europe": {
+    "pronunciation": {
+      "ipa": "/europe/",
+      "ipaLabel": "Scholarly Reconstruction",
+      "phonemes": [
+        {
+          "symbol": "E",
+          "desc": "Initial sound of Eurṓpē, as attested in the greek-location tradition."
+        },
+        {
+          "symbol": "...",
+          "desc": "Subsequent syllables preserve the name's inherited shape."
+        }
+      ],
+      "approximation": "'europe' — the conventional spoken form.",
+      "kin": [
+        {
+          "label": "Greek Location",
+          "form": "Eurṓpē, the restored Unicode form"
+        }
+      ],
+      "note": "Eurṓpē is Tier 1 because its Unicode restoration preserves the orthographic signature appropriate to the greek-location tradition."
+    },
+    "domains": {
+      "title": "Personified Continent of Europe",
+      "subtitle": "The domain of Eurṓpē",
+      "lead": "<p>In the greek location tradition, <strong>Eurṓpē</strong> governed personified continent of europe. The name encodes a sphere of power that shaped ritual, narrative, and social order.</p>",
+      "cards": [
+        {
+          "title": "Primary Sphere",
+          "body": "Eurṓpē is principally associated with personified continent of europe."
+        },
+        {
+          "title": "Cultural Role",
+          "body": "Worshippers approached Eurṓpē through cult, myth, and the material culture of the greek-location world."
+        }
+      ]
+    },
+    "symbols": [
+      {
+        "name": "Sacred emblem",
+        "meaning": "Iconographic marker associated with Eurṓpē"
+      },
+      {
+        "name": "Cult site",
+        "meaning": "Sanctuary or holy place where Eurṓpē was honoured"
+      },
+      {
+        "name": "Ritual object",
+        "meaning": "Material focus of devotion for Eurṓpē"
+      },
+      {
+        "name": "Divine weapon or tool",
+        "meaning": "Attribute marking Eurṓpē's power"
+      }
+    ],
+    "mythology": {
+      "lead": "The myths of Eurṓpē preserve the name's power and personality across generations of retelling.",
+      "myths": [
+        {
+          "title": "The story of Eurṓpē",
+          "text": "<p>Eurṓpē appears in greek location tradition as a figure whose domain over personified continent of europe shapes both cosmic order and human experience. The surviving narratives emphasize Eurṓpē's role, attributes, and relationships with other powers.</p>"
+        }
+      ]
+    },
+    "syncretism": "<p>Greek cult and myth travelled with colonists, traders, and conquerors; Roman adaptation, Hellenistic ruler cult, and later European classicism all recast this name for new audiences.</p>",
+    "culturalLegacy": "<p>The name endures in place names, scholarly vocabulary, modern fiction, and the ongoing recovery of ancient Greek culture through archaeology and philology. Restoring <em>Eurṓpē</em> in Unicode preserves the name's cultural specificity against the flattening force of plain ASCII.</p>",
+    "extendedMeditation": "<p>Names are not merely labels; they are compressed worlds. <strong>Eurṓpē</strong> carries within it a greek location understanding of broad-faced (from εὐρύς + ὤψ). Unicode restoration returns that world to readable form.</p>",
+    "sources": [
+      "Homer. <em>Iliad</em> and <em>Odyssey</em>; Hesiod. <em>Theogony</em> and <em>Works and Days</em>.",
+      "Beekes, R. S. P. <em>Etymological Dictionary of Greek.</em> Leiden: Brill, 2010.",
+      "Material evidence from the Greek world — inscriptions, sanctuaries, votive deposits, and literary papyri — anchors the name in historical cult."
+    ],
+    "archaeology": "Material evidence from the Greek world — inscriptions, sanctuaries, votive deposits, and literary papyri — anchors the name in historical cult."
+  },
+  "helheimr": {
+    "pronunciation": {
+      "ipa": "/helheimr/",
+      "ipaLabel": "Scholarly Reconstruction",
+      "phonemes": [
+        {
+          "symbol": "H",
+          "desc": "Initial sound of Helheimr, as attested in the norse tradition."
+        },
+        {
+          "symbol": "...",
+          "desc": "Subsequent syllables preserve the name's inherited shape."
+        }
+      ],
+      "approximation": "'helheimr' — the conventional spoken form.",
+      "kin": [
+        {
+          "label": "Norse",
+          "form": "Helheimr, the restored Unicode form"
+        }
+      ],
+      "note": "Helheimr is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the norse tradition."
+    },
+    "domains": {
+      "title": "Realm of the Dead",
+      "subtitle": "The domain of Helheimr",
+      "lead": "<p>In the norse tradition, <strong>Helheimr</strong> governed realm of the dead. The name encodes a sphere of power that shaped ritual, narrative, and social order.</p>",
+      "cards": [
+        {
+          "title": "Primary Sphere",
+          "body": "Helheimr is principally associated with realm of the dead."
+        },
+        {
+          "title": "Cultural Role",
+          "body": "Worshippers approached Helheimr through cult, myth, and the material culture of the norse world."
+        }
+      ]
+    },
+    "symbols": [
+      {
+        "name": "Sacred emblem",
+        "meaning": "Iconographic marker associated with Helheimr"
+      },
+      {
+        "name": "Cult site",
+        "meaning": "Sanctuary or holy place where Helheimr was honoured"
+      },
+      {
+        "name": "Ritual object",
+        "meaning": "Material focus of devotion for Helheimr"
+      },
+      {
+        "name": "Runic inscription",
+        "meaning": "Attestation in the runic corpus"
+      }
+    ],
+    "mythology": {
+      "lead": "The myths of Helheimr preserve the name's power and personality across generations of retelling.",
+      "myths": [
+        {
+          "title": "The story of Helheimr",
+          "text": "<p>Helheimr appears in norse tradition as a figure whose domain over realm of the dead shapes both cosmic order and human experience. The surviving narratives emphasize Helheimr's role, attributes, and relationships with other powers.</p>"
+        }
+      ]
+    },
+    "syncretism": "<p>Norse tradition absorbed and reworked Germanic, Celtic, and Christian influences; medieval Icelandic compilers preserved the myths while Christian frameworks shaped their presentation.</p>",
+    "culturalLegacy": "<p>The name lives on in modern fantasy, Neopagan practice, Scandinavian heritage, and the global reception of Viking-Age literature. Restoring <em>Helheimr</em> in Unicode preserves the name's cultural specificity against the flattening force of plain ASCII.</p>",
+    "extendedMeditation": "<p>Names are not merely labels; they are compressed worlds. <strong>Helheimr</strong> carries within it a norse understanding of hel's home (from hel + heimr). Unicode restoration returns that world to readable form.</p>",
+    "sources": [
+      "The <em>Poetic Edda</em>; The <em>Prose Edda</em> of Snorri Sturluson.",
+      "Beekes, R. S. P. <em>Etymological Dictionary of Greek.</em> Leiden: Brill, 2010.",
+      "Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora."
+    ],
+    "archaeology": "Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora."
+  },
+  "jotunheimr": {
+    "pronunciation": {
+      "ipa": "/jotunheimr/",
+      "ipaLabel": "Scholarly Reconstruction",
+      "phonemes": [
+        {
+          "symbol": "J",
+          "desc": "Initial sound of Jötunheimr, as attested in the norse tradition."
+        },
+        {
+          "symbol": "...",
+          "desc": "Subsequent syllables preserve the name's inherited shape."
+        }
+      ],
+      "approximation": "'jotunheimr' — the conventional spoken form.",
+      "kin": [
+        {
+          "label": "Norse",
+          "form": "Jötunheimr, the restored Unicode form"
+        }
+      ],
+      "note": "Jötunheimr is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the norse tradition."
+    },
+    "domains": {
+      "title": "Land of the Giants",
+      "subtitle": "The domain of Jötunheimr",
+      "lead": "<p>In the norse tradition, <strong>Jötunheimr</strong> governed land of the giants. The name encodes a sphere of power that shaped ritual, narrative, and social order.</p>",
+      "cards": [
+        {
+          "title": "Primary Sphere",
+          "body": "Jötunheimr is principally associated with land of the giants."
+        },
+        {
+          "title": "Cultural Role",
+          "body": "Worshippers approached Jötunheimr through cult, myth, and the material culture of the norse world."
+        }
+      ]
+    },
+    "symbols": [
+      {
+        "name": "Sacred emblem",
+        "meaning": "Iconographic marker associated with Jötunheimr"
+      },
+      {
+        "name": "Cult site",
+        "meaning": "Sanctuary or holy place where Jötunheimr was honoured"
+      },
+      {
+        "name": "Ritual object",
+        "meaning": "Material focus of devotion for Jötunheimr"
+      },
+      {
+        "name": "Runic inscription",
+        "meaning": "Attestation in the runic corpus"
+      }
+    ],
+    "mythology": {
+      "lead": "The myths of Jötunheimr preserve the name's power and personality across generations of retelling.",
+      "myths": [
+        {
+          "title": "The story of Jötunheimr",
+          "text": "<p>Jötunheimr appears in norse tradition as a figure whose domain over land of the giants shapes both cosmic order and human experience. The surviving narratives emphasize Jötunheimr's role, attributes, and relationships with other powers.</p>"
+        }
+      ]
+    },
+    "syncretism": "<p>Norse tradition absorbed and reworked Germanic, Celtic, and Christian influences; medieval Icelandic compilers preserved the myths while Christian frameworks shaped their presentation.</p>",
+    "culturalLegacy": "<p>The name lives on in modern fantasy, Neopagan practice, Scandinavian heritage, and the global reception of Viking-Age literature. Restoring <em>Jötunheimr</em> in Unicode preserves the name's cultural specificity against the flattening force of plain ASCII.</p>",
+    "extendedMeditation": "<p>Names are not merely labels; they are compressed worlds. <strong>Jötunheimr</strong> carries within it a norse understanding of giant-home (from jötunn + heimr). Unicode restoration returns that world to readable form.</p>",
+    "sources": [
+      "The <em>Poetic Edda</em>; The <em>Prose Edda</em> of Snorri Sturluson.",
+      "Beekes, R. S. P. <em>Etymological Dictionary of Greek.</em> Leiden: Brill, 2010.",
+      "Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora."
+    ],
+    "archaeology": "Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora."
+  },
+  "libye": {
+    "pronunciation": {
+      "ipa": "/libye/",
+      "ipaLabel": "Scholarly Reconstruction",
+      "phonemes": [
+        {
+          "symbol": "L",
+          "desc": "Initial sound of Libyē, as attested in the greek-location tradition."
+        },
+        {
+          "symbol": "...",
+          "desc": "Subsequent syllables preserve the name's inherited shape."
+        }
+      ],
+      "approximation": "'libye' — the conventional spoken form.",
+      "kin": [
+        {
+          "label": "Greek Location",
+          "form": "Libyē, the restored Unicode form"
+        }
+      ],
+      "note": "Libyē is Tier 1 because its Unicode restoration preserves the orthographic signature appropriate to the greek-location tradition."
+    },
+    "domains": {
+      "title": "Personified Continent of Africa",
+      "subtitle": "The domain of Libyē",
+      "lead": "<p>In the greek location tradition, <strong>Libyē</strong> governed personified continent of africa. The name encodes a sphere of power that shaped ritual, narrative, and social order.</p>",
+      "cards": [
+        {
+          "title": "Primary Sphere",
+          "body": "Libyē is principally associated with personified continent of africa."
+        },
+        {
+          "title": "Cultural Role",
+          "body": "Worshippers approached Libyē through cult, myth, and the material culture of the greek-location world."
+        }
+      ]
+    },
+    "symbols": [
+      {
+        "name": "Sacred emblem",
+        "meaning": "Iconographic marker associated with Libyē"
+      },
+      {
+        "name": "Cult site",
+        "meaning": "Sanctuary or holy place where Libyē was honoured"
+      },
+      {
+        "name": "Ritual object",
+        "meaning": "Material focus of devotion for Libyē"
+      },
+      {
+        "name": "Divine weapon or tool",
+        "meaning": "Attribute marking Libyē's power"
+      }
+    ],
+    "mythology": {
+      "lead": "The myths of Libyē preserve the name's power and personality across generations of retelling.",
+      "myths": [
+        {
+          "title": "The story of Libyē",
+          "text": "<p>Libyē appears in greek location tradition as a figure whose domain over personified continent of africa shapes both cosmic order and human experience. The surviving narratives emphasize Libyē's role, attributes, and relationships with other powers.</p>"
+        }
+      ]
+    },
+    "syncretism": "<p>Greek cult and myth travelled with colonists, traders, and conquerors; Roman adaptation, Hellenistic ruler cult, and later European classicism all recast this name for new audiences.</p>",
+    "culturalLegacy": "<p>The name endures in place names, scholarly vocabulary, modern fiction, and the ongoing recovery of ancient Greek culture through archaeology and philology. Restoring <em>Libyē</em> in Unicode preserves the name's cultural specificity against the flattening force of plain ASCII.</p>",
+    "extendedMeditation": "<p>Names are not merely labels; they are compressed worlds. <strong>Libyē</strong> carries within it a greek location understanding of the african continent (etymology uncertain). Unicode restoration returns that world to readable form.</p>",
+    "sources": [
+      "Homer. <em>Iliad</em> and <em>Odyssey</em>; Hesiod. <em>Theogony</em> and <em>Works and Days</em>.",
+      "Beekes, R. S. P. <em>Etymological Dictionary of Greek.</em> Leiden: Brill, 2010.",
+      "Material evidence from the Greek world — inscriptions, sanctuaries, votive deposits, and literary papyri — anchors the name in historical cult."
+    ],
+    "archaeology": "Material evidence from the Greek world — inscriptions, sanctuaries, votive deposits, and literary papyri — anchors the name in historical cult."
+  },
+  "maa": {
+    "pronunciation": {
+      "ipa": "/mꜥ/",
+      "ipaLabel": "Scholarly Reconstruction",
+      "phonemes": [
+        {
+          "symbol": "M",
+          "desc": "Initial sound of Mꜥ, as attested in the egyptian tradition."
+        },
+        {
+          "symbol": "...",
+          "desc": "Subsequent syllables preserve the name's inherited shape."
+        }
+      ],
+      "approximation": "'maa' — the conventional spoken form.",
+      "kin": [
+        {
+          "label": "Egyptian",
+          "form": "Mꜥ, the restored Unicode form"
+        }
+      ],
+      "note": "Mꜥ is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the egyptian tradition."
+    },
+    "domains": {
+      "title": "Vision, Perception, Understanding",
+      "subtitle": "The domain of Mꜥ",
+      "lead": "<p>In the egyptian tradition, <strong>Mꜥ</strong> governed vision, perception, understanding. The name encodes a sphere of power that shaped ritual, narrative, and social order.</p>",
+      "cards": [
+        {
+          "title": "Primary Sphere",
+          "body": "Mꜥ is principally associated with vision, perception, understanding."
+        },
+        {
+          "title": "Cultural Role",
+          "body": "Worshippers approached Mꜥ through cult, myth, and the material culture of the egyptian world."
+        }
+      ]
+    },
+    "symbols": [
+      {
+        "name": "Sacred emblem",
+        "meaning": "Iconographic marker associated with Mꜥ"
+      },
+      {
+        "name": "Cult site",
+        "meaning": "Sanctuary or holy place where Mꜥ was honoured"
+      },
+      {
+        "name": "Ritual object",
+        "meaning": "Material focus of devotion for Mꜥ"
+      },
+      {
+        "name": "Ankh",
+        "meaning": "Symbol of life and divine power"
+      }
+    ],
+    "mythology": {
+      "lead": "The myths of Mꜥ preserve the name's power and personality across generations of retelling.",
+      "myths": [
+        {
+          "title": "The story of Mꜥ",
+          "text": "<p>Mꜥ appears in egyptian tradition as a figure whose domain over vision, perception, understanding shapes both cosmic order and human experience. The surviving narratives emphasize Mꜥ's role, attributes, and relationships with other powers.</p>"
+        }
+      ]
+    },
+    "syncretism": "<p>Egyptian deities were syncretized with one another and, in the Greco-Roman period, with Greek and Roman gods; temple theology developed complex composite forms.</p>",
+    "culturalLegacy": "<p>The name survives in Egyptological scholarship, museum collections, modern spirituality, and the global fascination with Pharaonic civilization. Restoring <em>Mꜥ</em> in Unicode preserves the name's cultural specificity against the flattening force of plain ASCII.</p>",
+    "extendedMeditation": "<p>Names are not merely labels; they are compressed worlds. <strong>Mꜥ</strong> carries within it a egyptian understanding of to see, to perceive, to understand. a core verb root, extremely common in texts. Unicode restoration returns that world to readable form.</p>",
+    "sources": [
+      "The Pyramid Texts; The Coffin Texts; The Book of the Dead.",
+      "Beekes, R. S. P. <em>Etymological Dictionary of Greek.</em> Leiden: Brill, 2010.",
+      "Egyptian material evidence includes temple reliefs, statuary, papyri, amulets, and tomb inscriptions from the Pharaonic through Ptolemaic periods."
+    ],
+    "archaeology": "Egyptian material evidence includes temple reliefs, statuary, papyri, amulets, and tomb inscriptions from the Pharaonic through Ptolemaic periods."
+  },
+  "maat": {
+    "pronunciation": {
+      "ipa": "/mꜣꜥt/",
+      "ipaLabel": "Scholarly Reconstruction",
+      "phonemes": [
+        {
+          "symbol": "M",
+          "desc": "Initial sound of Mꜣꜥt, as attested in the egyptian tradition."
+        },
+        {
+          "symbol": "...",
+          "desc": "Subsequent syllables preserve the name's inherited shape."
+        }
+      ],
+      "approximation": "'maat' — the conventional spoken form.",
+      "kin": [
+        {
+          "label": "Egyptian",
+          "form": "Mꜣꜥt, the restored Unicode form"
+        }
+      ],
+      "note": "Mꜣꜥt is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the egyptian tradition."
+    },
+    "domains": {
+      "title": "Truth, Justice, Order",
+      "subtitle": "The domain of Mꜣꜥt",
+      "lead": "<p>In the egyptian tradition, <strong>Mꜣꜥt</strong> governed truth, justice, order. The name encodes a sphere of power that shaped ritual, narrative, and social order.</p>",
+      "cards": [
+        {
+          "title": "Primary Sphere",
+          "body": "Mꜣꜥt is principally associated with truth, justice, order."
+        },
+        {
+          "title": "Cultural Role",
+          "body": "Worshippers approached Mꜣꜥt through cult, myth, and the material culture of the egyptian world."
+        }
+      ]
+    },
+    "symbols": [
+      {
+        "name": "Sacred emblem",
+        "meaning": "Iconographic marker associated with Mꜣꜥt"
+      },
+      {
+        "name": "Cult site",
+        "meaning": "Sanctuary or holy place where Mꜣꜥt was honoured"
+      },
+      {
+        "name": "Ritual object",
+        "meaning": "Material focus of devotion for Mꜣꜥt"
+      },
+      {
+        "name": "Ankh",
+        "meaning": "Symbol of life and divine power"
+      }
+    ],
+    "mythology": {
+      "lead": "The myths of Mꜣꜥt preserve the name's power and personality across generations of retelling.",
+      "myths": [
+        {
+          "title": "The story of Mꜣꜥt",
+          "text": "<p>Mꜣꜥt appears in egyptian tradition as a figure whose domain over truth, justice, order shapes both cosmic order and human experience. The surviving narratives emphasize Mꜣꜥt's role, attributes, and relationships with other powers.</p>"
+        }
+      ]
+    },
+    "syncretism": "<p>Egyptian deities were syncretized with one another and, in the Greco-Roman period, with Greek and Roman gods; temple theology developed complex composite forms.</p>",
+    "culturalLegacy": "<p>The name survives in Egyptological scholarship, museum collections, modern spirituality, and the global fascination with Pharaonic civilization. Restoring <em>Mꜣꜥt</em> in Unicode preserves the name's cultural specificity against the flattening force of plain ASCII.</p>",
+    "extendedMeditation": "<p>Names are not merely labels; they are compressed worlds. <strong>Mꜣꜥt</strong> carries within it a egyptian understanding of truth, straightness (egyptian mꜣꜥt). Unicode restoration returns that world to readable form.</p>",
+    "sources": [
+      "The Pyramid Texts; The Coffin Texts; The Book of the Dead.",
+      "Beekes, R. S. P. <em>Etymological Dictionary of Greek.</em> Leiden: Brill, 2010.",
+      "Egyptian material evidence includes temple reliefs, statuary, papyri, amulets, and tomb inscriptions from the Pharaonic through Ptolemaic periods."
+    ],
+    "archaeology": "Egyptian material evidence includes temple reliefs, statuary, papyri, amulets, and tomb inscriptions from the Pharaonic through Ptolemaic periods."
+  },
+  "midgardr": {
+    "pronunciation": {
+      "ipa": "/miðgarðr/",
+      "ipaLabel": "Scholarly Reconstruction",
+      "phonemes": [
+        {
+          "symbol": "M",
+          "desc": "Initial sound of Miðgarðr, as attested in the norse tradition."
+        },
+        {
+          "symbol": "...",
+          "desc": "Subsequent syllables preserve the name's inherited shape."
+        }
+      ],
+      "approximation": "'midgardr' — the conventional spoken form.",
+      "kin": [
+        {
+          "label": "Norse",
+          "form": "Miðgarðr, the restored Unicode form"
+        }
+      ],
+      "note": "Miðgarðr is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the norse tradition."
+    },
+    "domains": {
+      "title": "Middle Enclosure (Earth)",
+      "subtitle": "The domain of Miðgarðr",
+      "lead": "<p>In the norse tradition, <strong>Miðgarðr</strong> governed middle enclosure (earth). The name encodes a sphere of power that shaped ritual, narrative, and social order.</p>",
+      "cards": [
+        {
+          "title": "Primary Sphere",
+          "body": "Miðgarðr is principally associated with middle enclosure (earth)."
+        },
+        {
+          "title": "Cultural Role",
+          "body": "Worshippers approached Miðgarðr through cult, myth, and the material culture of the norse world."
+        }
+      ]
+    },
+    "symbols": [
+      {
+        "name": "Sacred emblem",
+        "meaning": "Iconographic marker associated with Miðgarðr"
+      },
+      {
+        "name": "Cult site",
+        "meaning": "Sanctuary or holy place where Miðgarðr was honoured"
+      },
+      {
+        "name": "Ritual object",
+        "meaning": "Material focus of devotion for Miðgarðr"
+      },
+      {
+        "name": "Runic inscription",
+        "meaning": "Attestation in the runic corpus"
+      }
+    ],
+    "mythology": {
+      "lead": "The myths of Miðgarðr preserve the name's power and personality across generations of retelling.",
+      "myths": [
+        {
+          "title": "The story of Miðgarðr",
+          "text": "<p>Miðgarðr appears in norse tradition as a figure whose domain over middle enclosure (earth) shapes both cosmic order and human experience. The surviving narratives emphasize Miðgarðr's role, attributes, and relationships with other powers.</p>"
+        }
+      ]
+    },
+    "syncretism": "<p>Norse tradition absorbed and reworked Germanic, Celtic, and Christian influences; medieval Icelandic compilers preserved the myths while Christian frameworks shaped their presentation.</p>",
+    "culturalLegacy": "<p>The name lives on in modern fantasy, Neopagan practice, Scandinavian heritage, and the global reception of Viking-Age literature. Restoring <em>Miðgarðr</em> in Unicode preserves the name's cultural specificity against the flattening force of plain ASCII.</p>",
+    "extendedMeditation": "<p>Names are not merely labels; they are compressed worlds. <strong>Miðgarðr</strong> carries within it a norse understanding of middle enclosure (from mið + garðr). Unicode restoration returns that world to readable form.</p>",
+    "sources": [
+      "The <em>Poetic Edda</em>; The <em>Prose Edda</em> of Snorri Sturluson.",
+      "Beekes, R. S. P. <em>Etymological Dictionary of Greek.</em> Leiden: Brill, 2010.",
+      "Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora."
+    ],
+    "archaeology": "Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora."
+  },
+  "muspellheimr": {
+    "pronunciation": {
+      "ipa": "/muspellheimr/",
+      "ipaLabel": "Scholarly Reconstruction",
+      "phonemes": [
+        {
+          "symbol": "M",
+          "desc": "Initial sound of Muspellheimr, as attested in the norse tradition."
+        },
+        {
+          "symbol": "...",
+          "desc": "Subsequent syllables preserve the name's inherited shape."
+        }
+      ],
+      "approximation": "'muspellheimr' — the conventional spoken form.",
+      "kin": [
+        {
+          "label": "Norse",
+          "form": "Muspellheimr, the restored Unicode form"
+        }
+      ],
+      "note": "Muspellheimr is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the norse tradition."
+    },
+    "domains": {
+      "title": "World of Fire",
+      "subtitle": "The domain of Muspellheimr",
+      "lead": "<p>In the norse tradition, <strong>Muspellheimr</strong> governed world of fire. The name encodes a sphere of power that shaped ritual, narrative, and social order.</p>",
+      "cards": [
+        {
+          "title": "Primary Sphere",
+          "body": "Muspellheimr is principally associated with world of fire."
+        },
+        {
+          "title": "Cultural Role",
+          "body": "Worshippers approached Muspellheimr through cult, myth, and the material culture of the norse world."
+        }
+      ]
+    },
+    "symbols": [
+      {
+        "name": "Sacred emblem",
+        "meaning": "Iconographic marker associated with Muspellheimr"
+      },
+      {
+        "name": "Cult site",
+        "meaning": "Sanctuary or holy place where Muspellheimr was honoured"
+      },
+      {
+        "name": "Ritual object",
+        "meaning": "Material focus of devotion for Muspellheimr"
+      },
+      {
+        "name": "Runic inscription",
+        "meaning": "Attestation in the runic corpus"
+      }
+    ],
+    "mythology": {
+      "lead": "The myths of Muspellheimr preserve the name's power and personality across generations of retelling.",
+      "myths": [
+        {
+          "title": "The story of Muspellheimr",
+          "text": "<p>Muspellheimr appears in norse tradition as a figure whose domain over world of fire shapes both cosmic order and human experience. The surviving narratives emphasize Muspellheimr's role, attributes, and relationships with other powers.</p>"
+        }
+      ]
+    },
+    "syncretism": "<p>Norse tradition absorbed and reworked Germanic, Celtic, and Christian influences; medieval Icelandic compilers preserved the myths while Christian frameworks shaped their presentation.</p>",
+    "culturalLegacy": "<p>The name lives on in modern fantasy, Neopagan practice, Scandinavian heritage, and the global reception of Viking-Age literature. Restoring <em>Muspellheimr</em> in Unicode preserves the name's cultural specificity against the flattening force of plain ASCII.</p>",
+    "extendedMeditation": "<p>Names are not merely labels; they are compressed worlds. <strong>Muspellheimr</strong> carries within it a norse understanding of muspel-home (world-ender). Unicode restoration returns that world to readable form.</p>",
+    "sources": [
+      "The <em>Poetic Edda</em>; The <em>Prose Edda</em> of Snorri Sturluson.",
+      "Beekes, R. S. P. <em>Etymological Dictionary of Greek.</em> Leiden: Brill, 2010.",
+      "Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora."
+    ],
+    "archaeology": "Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora."
+  },
+  "odinn": {
+    "pronunciation": {
+      "ipa": "/oðinn/",
+      "ipaLabel": "Scholarly Reconstruction",
+      "phonemes": [
+        {
+          "symbol": "Ó",
+          "desc": "Initial sound of Óðinn, as attested in the norse tradition."
+        },
+        {
+          "symbol": "...",
+          "desc": "Subsequent syllables preserve the name's inherited shape."
+        }
+      ],
+      "approximation": "'odinn' — the conventional spoken form.",
+      "kin": [
+        {
+          "label": "Norse",
+          "form": "Óðinn, the restored Unicode form"
+        }
+      ],
+      "note": "Óðinn is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the norse tradition."
+    },
+    "domains": {
+      "title": "Wisdom, War, Death, Poetry",
+      "subtitle": "The domain of Óðinn",
+      "lead": "<p>In the norse tradition, <strong>Óðinn</strong> governed wisdom, war, death, poetry. The name encodes a sphere of power that shaped ritual, narrative, and social order.</p>",
+      "cards": [
+        {
+          "title": "Primary Sphere",
+          "body": "Óðinn is principally associated with wisdom, war, death, poetry."
+        },
+        {
+          "title": "Cultural Role",
+          "body": "Worshippers approached Óðinn through cult, myth, and the material culture of the norse world."
+        }
+      ]
+    },
+    "symbols": [
+      {
+        "name": "Sacred emblem",
+        "meaning": "Iconographic marker associated with Óðinn"
+      },
+      {
+        "name": "Cult site",
+        "meaning": "Sanctuary or holy place where Óðinn was honoured"
+      },
+      {
+        "name": "Ritual object",
+        "meaning": "Material focus of devotion for Óðinn"
+      },
+      {
+        "name": "Runic inscription",
+        "meaning": "Attestation in the runic corpus"
+      }
+    ],
+    "mythology": {
+      "lead": "The myths of Óðinn preserve the name's power and personality across generations of retelling.",
+      "myths": [
+        {
+          "title": "The story of Óðinn",
+          "text": "<p>Óðinn appears in norse tradition as a figure whose domain over wisdom, war, death, poetry shapes both cosmic order and human experience. The surviving narratives emphasize Óðinn's role, attributes, and relationships with other powers.</p>"
+        }
+      ]
+    },
+    "syncretism": "<p>Norse tradition absorbed and reworked Germanic, Celtic, and Christian influences; medieval Icelandic compilers preserved the myths while Christian frameworks shaped their presentation.</p>",
+    "culturalLegacy": "<p>The name lives on in modern fantasy, Neopagan practice, Scandinavian heritage, and the global reception of Viking-Age literature. Restoring <em>Óðinn</em> in Unicode preserves the name's cultural specificity against the flattening force of plain ASCII.</p>",
+    "extendedMeditation": "<p>Names are not merely labels; they are compressed worlds. <strong>Óðinn</strong> carries within it a norse understanding of fury, possession (from *wōđanaz). Unicode restoration returns that world to readable form.</p>",
+    "sources": [
+      "The <em>Poetic Edda</em>; The <em>Prose Edda</em> of Snorri Sturluson.",
+      "Beekes, R. S. P. <em>Etymological Dictionary of Greek.</em> Leiden: Brill, 2010.",
+      "Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora."
+    ],
+    "archaeology": "Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora."
+  },
+  "olympos": {
+    "pronunciation": {
+      "ipa": "/olympos/",
+      "ipaLabel": "Scholarly Reconstruction",
+      "phonemes": [
+        {
+          "symbol": "Ó",
+          "desc": "Initial sound of Ólympos, as attested in the greek-location tradition."
+        },
+        {
+          "symbol": "...",
+          "desc": "Subsequent syllables preserve the name's inherited shape."
+        }
+      ],
+      "approximation": "'olympos' — the conventional spoken form.",
+      "kin": [
+        {
+          "label": "Greek Location",
+          "form": "Ólympos, the restored Unicode form"
+        }
+      ],
+      "note": "Ólympos is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the greek-location tradition."
+    },
+    "domains": {
+      "title": "Mountain of the Gods",
+      "subtitle": "The domain of Ólympos",
+      "lead": "<p>In the greek location tradition, <strong>Ólympos</strong> governed mountain of the gods. The name encodes a sphere of power that shaped ritual, narrative, and social order.</p>",
+      "cards": [
+        {
+          "title": "Primary Sphere",
+          "body": "Ólympos is principally associated with mountain of the gods."
+        },
+        {
+          "title": "Cultural Role",
+          "body": "Worshippers approached Ólympos through cult, myth, and the material culture of the greek-location world."
+        }
+      ]
+    },
+    "symbols": [
+      {
+        "name": "Sacred emblem",
+        "meaning": "Iconographic marker associated with Ólympos"
+      },
+      {
+        "name": "Cult site",
+        "meaning": "Sanctuary or holy place where Ólympos was honoured"
+      },
+      {
+        "name": "Ritual object",
+        "meaning": "Material focus of devotion for Ólympos"
+      },
+      {
+        "name": "Divine weapon or tool",
+        "meaning": "Attribute marking Ólympos's power"
+      }
+    ],
+    "mythology": {
+      "lead": "The myths of Ólympos preserve the name's power and personality across generations of retelling.",
+      "myths": [
+        {
+          "title": "The story of Ólympos",
+          "text": "<p>Ólympos appears in greek location tradition as a figure whose domain over mountain of the gods shapes both cosmic order and human experience. The surviving narratives emphasize Ólympos's role, attributes, and relationships with other powers.</p>"
+        }
+      ]
+    },
+    "syncretism": "<p>Greek cult and myth travelled with colonists, traders, and conquerors; Roman adaptation, Hellenistic ruler cult, and later European classicism all recast this name for new audiences.</p>",
+    "culturalLegacy": "<p>The name endures in place names, scholarly vocabulary, modern fiction, and the ongoing recovery of ancient Greek culture through archaeology and philology. Restoring <em>Ólympos</em> in Unicode preserves the name's cultural specificity against the flattening force of plain ASCII.</p>",
+    "extendedMeditation": "<p>Names are not merely labels; they are compressed worlds. <strong>Ólympos</strong> carries within it a greek location understanding of bright, shining mountain. Unicode restoration returns that world to readable form.</p>",
+    "sources": [
+      "Homer. <em>Iliad</em> and <em>Odyssey</em>; Hesiod. <em>Theogony</em> and <em>Works and Days</em>.",
+      "Beekes, R. S. P. <em>Etymological Dictionary of Greek.</em> Leiden: Brill, 2010.",
+      "Material evidence from the Greek world — inscriptions, sanctuaries, votive deposits, and literary papyri — anchors the name in historical cult."
+    ],
+    "archaeology": "Material evidence from the Greek world — inscriptions, sanctuaries, votive deposits, and literary papyri — anchors the name in historical cult."
+  },
+  "ra": {
+    "pronunciation": {
+      "ipa": "/rꜥ/",
+      "ipaLabel": "Scholarly Reconstruction",
+      "phonemes": [
+        {
+          "symbol": "R",
+          "desc": "Initial sound of Rꜥ, as attested in the egyptian tradition."
+        },
+        {
+          "symbol": "...",
+          "desc": "Subsequent syllables preserve the name's inherited shape."
+        }
+      ],
+      "approximation": "'ra' — the conventional spoken form.",
+      "kin": [
+        {
+          "label": "Egyptian",
+          "form": "Rꜥ, the restored Unicode form"
+        }
+      ],
+      "note": "Rꜥ is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the egyptian tradition."
+    },
+    "domains": {
+      "title": "Sun, Creation, Kingship",
+      "subtitle": "The domain of Rꜥ",
+      "lead": "<p>In the egyptian tradition, <strong>Rꜥ</strong> governed sun, creation, kingship. The name encodes a sphere of power that shaped ritual, narrative, and social order.</p>",
+      "cards": [
+        {
+          "title": "Primary Sphere",
+          "body": "Rꜥ is principally associated with sun, creation, kingship."
+        },
+        {
+          "title": "Cultural Role",
+          "body": "Worshippers approached Rꜥ through cult, myth, and the material culture of the egyptian world."
+        }
+      ]
+    },
+    "symbols": [
+      {
+        "name": "Sacred emblem",
+        "meaning": "Iconographic marker associated with Rꜥ"
+      },
+      {
+        "name": "Cult site",
+        "meaning": "Sanctuary or holy place where Rꜥ was honoured"
+      },
+      {
+        "name": "Ritual object",
+        "meaning": "Material focus of devotion for Rꜥ"
+      },
+      {
+        "name": "Ankh",
+        "meaning": "Symbol of life and divine power"
+      }
+    ],
+    "mythology": {
+      "lead": "The myths of Rꜥ preserve the name's power and personality across generations of retelling.",
+      "myths": [
+        {
+          "title": "The story of Rꜥ",
+          "text": "<p>Rꜥ appears in egyptian tradition as a figure whose domain over sun, creation, kingship shapes both cosmic order and human experience. The surviving narratives emphasize Rꜥ's role, attributes, and relationships with other powers.</p>"
+        }
+      ]
+    },
+    "syncretism": "<p>Egyptian deities were syncretized with one another and, in the Greco-Roman period, with Greek and Roman gods; temple theology developed complex composite forms.</p>",
+    "culturalLegacy": "<p>The name survives in Egyptological scholarship, museum collections, modern spirituality, and the global fascination with Pharaonic civilization. Restoring <em>Rꜥ</em> in Unicode preserves the name's cultural specificity against the flattening force of plain ASCII.</p>",
+    "extendedMeditation": "<p>Names are not merely labels; they are compressed worlds. <strong>Rꜥ</strong> carries within it a egyptian understanding of sun (from egyptian rꜥ). Unicode restoration returns that world to readable form.</p>",
+    "sources": [
+      "The Pyramid Texts; The Coffin Texts; The Book of the Dead.",
+      "Beekes, R. S. P. <em>Etymological Dictionary of Greek.</em> Leiden: Brill, 2010.",
+      "Egyptian material evidence includes temple reliefs, statuary, papyri, amulets, and tomb inscriptions from the Pharaonic through Ptolemaic periods."
+    ],
+    "archaeology": "Egyptian material evidence includes temple reliefs, statuary, papyri, amulets, and tomb inscriptions from the Pharaonic through Ptolemaic periods."
+  },
+  "ragnarok": {
+    "pronunciation": {
+      "ipa": "/ragnarok/",
+      "ipaLabel": "Scholarly Reconstruction",
+      "phonemes": [
+        {
+          "symbol": "R",
+          "desc": "Initial sound of Ragnarǫk, as attested in the norse tradition."
+        },
+        {
+          "symbol": "...",
+          "desc": "Subsequent syllables preserve the name's inherited shape."
+        }
+      ],
+      "approximation": "'ragnarok' — the conventional spoken form.",
+      "kin": [
+        {
+          "label": "Norse",
+          "form": "Ragnarǫk, the restored Unicode form"
+        }
+      ],
+      "note": "Ragnarǫk is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the norse tradition."
+    },
+    "domains": {
+      "title": "Doom of the Gods",
+      "subtitle": "The domain of Ragnarǫk",
+      "lead": "<p>In the norse tradition, <strong>Ragnarǫk</strong> governed doom of the gods. The name encodes a sphere of power that shaped ritual, narrative, and social order.</p>",
+      "cards": [
+        {
+          "title": "Primary Sphere",
+          "body": "Ragnarǫk is principally associated with doom of the gods."
+        },
+        {
+          "title": "Cultural Role",
+          "body": "Worshippers approached Ragnarǫk through cult, myth, and the material culture of the norse world."
+        }
+      ]
+    },
+    "symbols": [
+      {
+        "name": "Sacred emblem",
+        "meaning": "Iconographic marker associated with Ragnarǫk"
+      },
+      {
+        "name": "Cult site",
+        "meaning": "Sanctuary or holy place where Ragnarǫk was honoured"
+      },
+      {
+        "name": "Ritual object",
+        "meaning": "Material focus of devotion for Ragnarǫk"
+      },
+      {
+        "name": "Runic inscription",
+        "meaning": "Attestation in the runic corpus"
+      }
+    ],
+    "mythology": {
+      "lead": "The myths of Ragnarǫk preserve the name's power and personality across generations of retelling.",
+      "myths": [
+        {
+          "title": "The story of Ragnarǫk",
+          "text": "<p>Ragnarǫk appears in norse tradition as a figure whose domain over doom of the gods shapes both cosmic order and human experience. The surviving narratives emphasize Ragnarǫk's role, attributes, and relationships with other powers.</p>"
+        }
+      ]
+    },
+    "syncretism": "<p>Norse tradition absorbed and reworked Germanic, Celtic, and Christian influences; medieval Icelandic compilers preserved the myths while Christian frameworks shaped their presentation.</p>",
+    "culturalLegacy": "<p>The name lives on in modern fantasy, Neopagan practice, Scandinavian heritage, and the global reception of Viking-Age literature. Restoring <em>Ragnarǫk</em> in Unicode preserves the name's cultural specificity against the flattening force of plain ASCII.</p>",
+    "extendedMeditation": "<p>Names are not merely labels; they are compressed worlds. <strong>Ragnarǫk</strong> carries within it a norse understanding of twilight of the gods (from ragna + rǫk). Unicode restoration returns that world to readable form.</p>",
+    "sources": [
+      "The <em>Poetic Edda</em>; The <em>Prose Edda</em> of Snorri Sturluson.",
+      "Beekes, R. S. P. <em>Etymological Dictionary of Greek.</em> Leiden: Brill, 2010.",
+      "Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora."
+    ],
+    "archaeology": "Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora."
+  },
+  "shiva": {
+    "pronunciation": {
+      "ipa": "/siva/",
+      "ipaLabel": "Scholarly Reconstruction",
+      "phonemes": [
+        {
+          "symbol": "Ś",
+          "desc": "Initial sound of Śiva, as attested in the sanskrit tradition."
+        },
+        {
+          "symbol": "...",
+          "desc": "Subsequent syllables preserve the name's inherited shape."
+        }
+      ],
+      "approximation": "'shiva' — the conventional spoken form.",
+      "kin": [
+        {
+          "label": "Sanskrit",
+          "form": "Śiva, the restored Unicode form"
+        }
+      ],
+      "note": "Śiva is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the sanskrit tradition."
+    },
+    "domains": {
+      "title": "Destruction, Transformation, Dance",
+      "subtitle": "The domain of Śiva",
+      "lead": "<p>In the sanskrit tradition, <strong>Śiva</strong> governed destruction, transformation, dance. The name encodes a sphere of power that shaped ritual, narrative, and social order.</p>",
+      "cards": [
+        {
+          "title": "Primary Sphere",
+          "body": "Śiva is principally associated with destruction, transformation, dance."
+        },
+        {
+          "title": "Cultural Role",
+          "body": "Worshippers approached Śiva through cult, myth, and the material culture of the sanskrit world."
+        }
+      ]
+    },
+    "symbols": [
+      {
+        "name": "Sacred emblem",
+        "meaning": "Iconographic marker associated with Śiva"
+      },
+      {
+        "name": "Cult site",
+        "meaning": "Sanctuary or holy place where Śiva was honoured"
+      },
+      {
+        "name": "Ritual object",
+        "meaning": "Material focus of devotion for Śiva"
+      },
+      {
+        "name": "Divine weapon or tool",
+        "meaning": "Attribute marking Śiva's power"
+      }
+    ],
+    "mythology": {
+      "lead": "The myths of Śiva preserve the name's power and personality across generations of retelling.",
+      "myths": [
+        {
+          "title": "The story of Śiva",
+          "text": "<p>Śiva appears in sanskrit tradition as a figure whose domain over destruction, transformation, dance shapes both cosmic order and human experience. The surviving narratives emphasize Śiva's role, attributes, and relationships with other powers.</p>"
+        }
+      ]
+    },
+    "syncretism": "<p>Greek cult and myth travelled with colonists, traders, and conquerors; Roman adaptation, Hellenistic ruler cult, and later European classicism all recast this name for new audiences.</p>",
+    "culturalLegacy": "<p>The name endures in place names, scholarly vocabulary, modern fiction, and the ongoing recovery of ancient Greek culture through archaeology and philology. Restoring <em>Śiva</em> in Unicode preserves the name's cultural specificity against the flattening force of plain ASCII.</p>",
+    "extendedMeditation": "<p>Names are not merely labels; they are compressed worlds. <strong>Śiva</strong> carries within it a sanskrit understanding of auspicious, kind (from शिव). Unicode restoration returns that world to readable form.</p>",
+    "sources": [
+      "Homer. <em>Iliad</em> and <em>Odyssey</em>; Hesiod. <em>Theogony</em> and <em>Works and Days</em>.",
+      "Beekes, R. S. P. <em>Etymological Dictionary of Greek.</em> Leiden: Brill, 2010.",
+      "Material evidence from the Greek world — inscriptions, sanctuaries, votive deposits, and literary papyri — anchors the name in historical cult."
+    ],
+    "archaeology": "Material evidence from the Greek world — inscriptions, sanctuaries, votive deposits, and literary papyri — anchors the name in historical cult."
+  },
+  "sia": {
+    "pronunciation": {
+      "ipa": "/sꜥ/",
+      "ipaLabel": "Scholarly Reconstruction",
+      "phonemes": [
+        {
+          "symbol": "s",
+          "desc": "Initial sound of sꜥ, as attested in the egyptian tradition."
+        },
+        {
+          "symbol": "...",
+          "desc": "Subsequent syllables preserve the name's inherited shape."
+        }
+      ],
+      "approximation": "'sia' — the conventional spoken form.",
+      "kin": [
+        {
+          "label": "Egyptian",
+          "form": "sꜥ, the restored Unicode form"
+        }
+      ],
+      "note": "sꜥ is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the egyptian tradition."
+    },
+    "domains": {
+      "title": "Perception, Intellect, Divine Understanding",
+      "subtitle": "The domain of sꜥ",
+      "lead": "<p>In the egyptian tradition, <strong>sꜥ</strong> governed perception, intellect, divine understanding. The name encodes a sphere of power that shaped ritual, narrative, and social order.</p>",
+      "cards": [
+        {
+          "title": "Primary Sphere",
+          "body": "sꜥ is principally associated with perception, intellect, divine understanding."
+        },
+        {
+          "title": "Cultural Role",
+          "body": "Worshippers approached sꜥ through cult, myth, and the material culture of the egyptian world."
+        }
+      ]
+    },
+    "symbols": [
+      {
+        "name": "Sacred emblem",
+        "meaning": "Iconographic marker associated with sꜥ"
+      },
+      {
+        "name": "Cult site",
+        "meaning": "Sanctuary or holy place where sꜥ was honoured"
+      },
+      {
+        "name": "Ritual object",
+        "meaning": "Material focus of devotion for sꜥ"
+      },
+      {
+        "name": "Ankh",
+        "meaning": "Symbol of life and divine power"
+      }
+    ],
+    "mythology": {
+      "lead": "The myths of sꜥ preserve the name's power and personality across generations of retelling.",
+      "myths": [
+        {
+          "title": "The story of sꜥ",
+          "text": "<p>sꜥ appears in egyptian tradition as a figure whose domain over perception, intellect, divine understanding shapes both cosmic order and human experience. The surviving narratives emphasize sꜥ's role, attributes, and relationships with other powers.</p>"
+        }
+      ]
+    },
+    "syncretism": "<p>Egyptian deities were syncretized with one another and, in the Greco-Roman period, with Greek and Roman gods; temple theology developed complex composite forms.</p>",
+    "culturalLegacy": "<p>The name survives in Egyptological scholarship, museum collections, modern spirituality, and the global fascination with Pharaonic civilization. Restoring <em>sꜥ</em> in Unicode preserves the name's cultural specificity against the flattening force of plain ASCII.</p>",
+    "extendedMeditation": "<p>Names are not merely labels; they are compressed worlds. <strong>sꜥ</strong> carries within it a egyptian understanding of perception, intellect, divine understanding. Unicode restoration returns that world to readable form.</p>",
+    "sources": [
+      "The Pyramid Texts; The Coffin Texts; The Book of the Dead.",
+      "Beekes, R. S. P. <em>Etymological Dictionary of Greek.</em> Leiden: Brill, 2010.",
+      "Egyptian material evidence includes temple reliefs, statuary, papyri, amulets, and tomb inscriptions from the Pharaonic through Ptolemaic periods."
+    ],
+    "archaeology": "Egyptian material evidence includes temple reliefs, statuary, papyri, amulets, and tomb inscriptions from the Pharaonic through Ptolemaic periods."
+  },
+  "sparte": {
+    "pronunciation": {
+      "ipa": "/sparte/",
+      "ipaLabel": "Scholarly Reconstruction",
+      "phonemes": [
+        {
+          "symbol": "S",
+          "desc": "Initial sound of Spártē, as attested in the greek-location tradition."
+        },
+        {
+          "symbol": "...",
+          "desc": "Subsequent syllables preserve the name's inherited shape."
+        }
+      ],
+      "approximation": "'sparte' — the conventional spoken form.",
+      "kin": [
+        {
+          "label": "Greek Location",
+          "form": "Spártē, the restored Unicode form"
+        }
+      ],
+      "note": "Spártē is Tier 1 because its Unicode restoration preserves the orthographic signature appropriate to the greek-location tradition."
+    },
+    "domains": {
+      "title": "Warrior City",
+      "subtitle": "The domain of Spártē",
+      "lead": "<p>In the greek location tradition, <strong>Spártē</strong> governed warrior city. The name encodes a sphere of power that shaped ritual, narrative, and social order.</p>",
+      "cards": [
+        {
+          "title": "Primary Sphere",
+          "body": "Spártē is principally associated with warrior city."
+        },
+        {
+          "title": "Cultural Role",
+          "body": "Worshippers approached Spártē through cult, myth, and the material culture of the greek-location world."
+        }
+      ]
+    },
+    "symbols": [
+      {
+        "name": "Sacred emblem",
+        "meaning": "Iconographic marker associated with Spártē"
+      },
+      {
+        "name": "Cult site",
+        "meaning": "Sanctuary or holy place where Spártē was honoured"
+      },
+      {
+        "name": "Ritual object",
+        "meaning": "Material focus of devotion for Spártē"
+      },
+      {
+        "name": "Divine weapon or tool",
+        "meaning": "Attribute marking Spártē's power"
+      }
+    ],
+    "mythology": {
+      "lead": "The myths of Spártē preserve the name's power and personality across generations of retelling.",
+      "myths": [
+        {
+          "title": "The story of Spártē",
+          "text": "<p>Spártē appears in greek location tradition as a figure whose domain over warrior city shapes both cosmic order and human experience. The surviving narratives emphasize Spártē's role, attributes, and relationships with other powers.</p>"
+        }
+      ]
+    },
+    "syncretism": "<p>Greek cult and myth travelled with colonists, traders, and conquerors; Roman adaptation, Hellenistic ruler cult, and later European classicism all recast this name for new audiences.</p>",
+    "culturalLegacy": "<p>The name endures in place names, scholarly vocabulary, modern fiction, and the ongoing recovery of ancient Greek culture through archaeology and philology. Restoring <em>Spártē</em> in Unicode preserves the name's cultural specificity against the flattening force of plain ASCII.</p>",
+    "extendedMeditation": "<p>Names are not merely labels; they are compressed worlds. <strong>Spártē</strong> carries within it a greek location understanding of sown land (from σπείρω). Unicode restoration returns that world to readable form.</p>",
+    "sources": [
+      "Homer. <em>Iliad</em> and <em>Odyssey</em>; Hesiod. <em>Theogony</em> and <em>Works and Days</em>.",
+      "Beekes, R. S. P. <em>Etymological Dictionary of Greek.</em> Leiden: Brill, 2010.",
+      "Material evidence from the Greek world — inscriptions, sanctuaries, votive deposits, and literary papyri — anchors the name in historical cult."
+    ],
+    "archaeology": "Material evidence from the Greek world — inscriptions, sanctuaries, votive deposits, and literary papyri — anchors the name in historical cult."
+  },
+  "thor": {
+    "pronunciation": {
+      "ipa": "/þorr/",
+      "ipaLabel": "Scholarly Reconstruction",
+      "phonemes": [
+        {
+          "symbol": "Þ",
+          "desc": "Initial sound of Þórr, as attested in the norse tradition."
+        },
+        {
+          "symbol": "...",
+          "desc": "Subsequent syllables preserve the name's inherited shape."
+        }
+      ],
+      "approximation": "'thor' — the conventional spoken form.",
+      "kin": [
+        {
+          "label": "Norse",
+          "form": "Þórr, the restored Unicode form"
+        }
+      ],
+      "note": "Þórr is Tier 2 because its Unicode restoration preserves the orthographic signature appropriate to the norse tradition."
+    },
+    "domains": {
+      "title": "Thunder, Storms, Oak",
+      "subtitle": "The domain of Þórr",
+      "lead": "<p>In the norse tradition, <strong>Þórr</strong> governed thunder, storms, oak. The name encodes a sphere of power that shaped ritual, narrative, and social order.</p>",
+      "cards": [
+        {
+          "title": "Primary Sphere",
+          "body": "Þórr is principally associated with thunder, storms, oak."
+        },
+        {
+          "title": "Cultural Role",
+          "body": "Worshippers approached Þórr through cult, myth, and the material culture of the norse world."
+        }
+      ]
+    },
+    "symbols": [
+      {
+        "name": "Sacred emblem",
+        "meaning": "Iconographic marker associated with Þórr"
+      },
+      {
+        "name": "Cult site",
+        "meaning": "Sanctuary or holy place where Þórr was honoured"
+      },
+      {
+        "name": "Ritual object",
+        "meaning": "Material focus of devotion for Þórr"
+      },
+      {
+        "name": "Runic inscription",
+        "meaning": "Attestation in the runic corpus"
+      }
+    ],
+    "mythology": {
+      "lead": "The myths of Þórr preserve the name's power and personality across generations of retelling.",
+      "myths": [
+        {
+          "title": "The story of Þórr",
+          "text": "<p>Þórr appears in norse tradition as a figure whose domain over thunder, storms, oak shapes both cosmic order and human experience. The surviving narratives emphasize Þórr's role, attributes, and relationships with other powers.</p>"
+        }
+      ]
+    },
+    "syncretism": "<p>Norse tradition absorbed and reworked Germanic, Celtic, and Christian influences; medieval Icelandic compilers preserved the myths while Christian frameworks shaped their presentation.</p>",
+    "culturalLegacy": "<p>The name lives on in modern fantasy, Neopagan practice, Scandinavian heritage, and the global reception of Viking-Age literature. Restoring <em>Þórr</em> in Unicode preserves the name's cultural specificity against the flattening force of plain ASCII.</p>",
+    "extendedMeditation": "<p>Names are not merely labels; they are compressed worlds. <strong>Þórr</strong> carries within it a norse understanding of thunder (from *þunraz). Unicode restoration returns that world to readable form.</p>",
+    "sources": [
+      "The <em>Poetic Edda</em>; The <em>Prose Edda</em> of Snorri Sturluson.",
+      "Beekes, R. S. P. <em>Etymological Dictionary of Greek.</em> Leiden: Brill, 2010.",
+      "Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora."
+    ],
+    "archaeology": "Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora."
   }
 }
