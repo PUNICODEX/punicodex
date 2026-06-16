@@ -1742,6 +1742,836 @@
         draw();
     }
 
+    // ─── EFFECT: IB SCALE (Ab — Egyptian heart weighing) ─────────────────────
+    function ibScale(canvas, ctx, width, height, primary, secondary) {
+        const feathers = [];
+        for (let i = 0; i < 30; i++) {
+            feathers.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                size: randomRange(4, 10),
+                speedY: randomRange(0.3, 1.0),
+                drift: randomRange(-0.3, 0.3),
+                sway: Math.random() * Math.PI * 2,
+                opacity: Math.random() * 0.4 + 0.2,
+                color: Math.random() > 0.7 ? secondary : primary
+            });
+        }
+        let t = 0;
+        const beamY = height * 0.35;
+        const pivotX = width * 0.5;
+        function draw() {
+            ctx.fillStyle = 'rgba(5, 5, 8, 0.18)';
+            ctx.fillRect(0, 0, width, height);
+
+            const angle = Math.sin(t * 0.02) * 0.08;
+            ctx.strokeStyle = `rgba(${primary.r}, ${primary.g}, ${primary.b}, 0.35)`;
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(pivotX - width * 0.18, beamY - Math.sin(angle) * width * 0.18);
+            ctx.lineTo(pivotX + width * 0.18, beamY + Math.sin(angle) * width * 0.18);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(pivotX, beamY - height * 0.12);
+            ctx.lineTo(pivotX, beamY);
+            ctx.stroke();
+
+            const leftPanX = pivotX - Math.cos(angle) * width * 0.18;
+            const leftPanY = beamY - Math.sin(angle) * width * 0.18 + 10;
+            const rightPanX = pivotX + Math.cos(angle) * width * 0.18;
+            const rightPanY = beamY + Math.sin(angle) * width * 0.18 + 10;
+            ctx.strokeStyle = `rgba(${secondary.r}, ${secondary.g}, ${secondary.b}, 0.35)`;
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.arc(leftPanX, leftPanY, 12, 0, Math.PI * 2);
+            ctx.arc(rightPanX, rightPanY, 12, 0, Math.PI * 2);
+            ctx.stroke();
+
+            feathers.forEach(f => {
+                f.y += f.speedY;
+                f.x += f.drift + Math.sin(t * 0.03 + f.sway) * 0.3;
+                if (f.y > height + 20) {
+                    f.y = -20;
+                    f.x = Math.random() * width;
+                }
+                ctx.save();
+                ctx.translate(f.x, f.y);
+                ctx.rotate(Math.sin(t * 0.04 + f.sway) * 0.5);
+                ctx.fillStyle = `rgba(${f.color.r}, ${f.color.g}, ${f.color.b}, ${f.opacity})`;
+                ctx.beginPath();
+                ctx.ellipse(0, 0, f.size * 0.3, f.size, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            });
+
+            t++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: AETHER FLAME (Aithḗr — bright upper air) ────────────────────
+    function aetherFlame(canvas, ctx, width, height, primary, secondary) {
+        const sparks = [];
+        for (let i = 0; i < 80; i++) {
+            sparks.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                size: Math.random() * 2 + 0.5,
+                speedY: randomRange(0.8, 2.2),
+                drift: randomRange(-0.5, 0.5),
+                opacity: Math.random() * 0.5 + 0.2,
+                life: Math.random(),
+                color: Math.random() > 0.6 ? secondary : primary
+            });
+        }
+        let t = 0;
+        function draw() {
+            ctx.fillStyle = 'rgba(5, 5, 8, 0.2)';
+            ctx.fillRect(0, 0, width, height);
+            sparks.forEach(s => {
+                s.y -= s.speedY;
+                s.x += s.drift + Math.sin(t * 0.02 + s.y * 0.01) * 0.3;
+                s.life -= 0.004;
+                if (s.y < 0 || s.life <= 0) {
+                    s.y = height + Math.random() * 30;
+                    s.x = Math.random() * width;
+                    s.life = 1;
+                }
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${s.color.r}, ${s.color.g}, ${s.color.b}, ${s.opacity * s.life})`;
+                ctx.fill();
+            });
+            t++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: ASHA FIRE (Aša — Zoroastrian sacred fire) ───────────────────
+    function ashaFire(canvas, ctx, width, height, primary, secondary) {
+        const flames = [];
+        for (let i = 0; i < 50; i++) {
+            flames.push({
+                x: Math.random() * width,
+                y: height + Math.random() * 60,
+                size: randomRange(8, 24),
+                speedY: randomRange(1, 2.5),
+                drift: randomRange(-0.4, 0.4),
+                opacity: Math.random() * 0.4 + 0.2,
+                color: Math.random() > 0.6 ? secondary : primary
+            });
+        }
+        let t = 0;
+        function draw() {
+            ctx.fillStyle = 'rgba(8, 4, 2, 0.2)';
+            ctx.fillRect(0, 0, width, height);
+            flames.forEach(f => {
+                f.y -= f.speedY;
+                f.x += f.drift + Math.sin(t * 0.05 + f.y * 0.02) * 0.4;
+                if (f.y < -f.size) {
+                    f.y = height + Math.random() * 30;
+                    f.x = Math.random() * width;
+                }
+                ctx.beginPath();
+                ctx.moveTo(f.x, f.y);
+                ctx.lineTo(f.x - f.size * 0.25, f.y + f.size);
+                ctx.lineTo(f.x + f.size * 0.25, f.y + f.size);
+                ctx.closePath();
+                ctx.fillStyle = `rgba(${f.color.r}, ${f.color.g}, ${f.color.b}, ${f.opacity})`;
+                ctx.fill();
+            });
+            t++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: MORNING STAR (Aštart — Venus / Phoenician queen) ────────────
+    function morningStar(canvas, ctx, width, height, primary, secondary) {
+        let t = 0;
+        const starX = width * 0.7;
+        const starY = height * 0.3;
+        function draw() {
+            ctx.fillStyle = 'rgba(5, 5, 8, 0.18)';
+            ctx.fillRect(0, 0, width, height);
+
+            const pulse = 0.7 + 0.3 * Math.sin(t * 0.03);
+            const radius = Math.min(width, height) * 0.12 * pulse;
+            const glow = ctx.createRadialGradient(starX, starY, radius * 0.2, starX, starY, radius * 2.5);
+            glow.addColorStop(0, `rgba(${primary.r}, ${primary.g}, ${primary.b}, 0.5)`);
+            glow.addColorStop(0.5, `rgba(${primary.r}, ${primary.g}, ${primary.b}, 0.15)`);
+            glow.addColorStop(1, 'rgba(0,0,0,0)');
+            ctx.fillStyle = glow;
+            ctx.fillRect(0, 0, width, height);
+
+            ctx.save();
+            ctx.translate(starX, starY);
+            ctx.rotate(t * 0.005);
+            for (let i = 0; i < 8; i++) {
+                const angle = (i / 8) * Math.PI * 2;
+                const len = radius * (1.4 + Math.sin(t * 0.02 + i) * 0.2);
+                ctx.beginPath();
+                ctx.moveTo(Math.cos(angle) * radius * 0.6, Math.sin(angle) * radius * 0.6);
+                ctx.lineTo(Math.cos(angle) * len, Math.sin(angle) * len);
+                ctx.strokeStyle = `rgba(${secondary.r}, ${secondary.g}, ${secondary.b}, 0.25)`;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+            ctx.restore();
+
+            ctx.beginPath();
+            ctx.arc(starX, starY, radius * 0.5, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${primary.r}, ${primary.g}, ${primary.b}, 0.35)`;
+            ctx.fill();
+
+            t++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: SOUL BIRD (Bꜣ — Egyptian soul-bird) ─────────────────────────
+    function soulBird(canvas, ctx, width, height, primary, secondary) {
+        const birds = [];
+        for (let i = 0; i < 24; i++) {
+            birds.push({
+                x: Math.random() * width,
+                y: height + Math.random() * 100,
+                size: randomRange(8, 16),
+                speedY: randomRange(0.8, 2),
+                drift: randomRange(-0.5, 0.5),
+                wingPhase: Math.random() * Math.PI * 2,
+                opacity: Math.random() * 0.4 + 0.2,
+                color: Math.random() > 0.7 ? secondary : primary
+            });
+        }
+        let t = 0;
+        function draw() {
+            ctx.fillStyle = 'rgba(5, 5, 8, 0.15)';
+            ctx.fillRect(0, 0, width, height);
+            birds.forEach(b => {
+                b.y -= b.speedY;
+                b.x += b.drift + Math.sin(t * 0.02 + b.wingPhase) * 0.4;
+                if (b.y < -30) {
+                    b.y = height + 30;
+                    b.x = Math.random() * width;
+                }
+                const wing = Math.sin(t * 0.12 + b.wingPhase) * b.size * 0.7;
+                ctx.fillStyle = `rgba(${b.color.r}, ${b.color.g}, ${b.color.b}, ${b.opacity})`;
+                ctx.beginPath();
+                ctx.ellipse(b.x - wing * 0.5, b.y, Math.abs(wing), b.size * 0.35, -0.4, 0, Math.PI * 2);
+                ctx.ellipse(b.x + wing * 0.5, b.y, Math.abs(wing), b.size * 0.35, 0.4, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(b.x + b.size * 0.15, b.y - b.size * 0.1, b.size * 0.25, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${b.color.r}, ${b.color.g}, ${b.color.b}, ${b.opacity * 1.3})`;
+                ctx.fill();
+            });
+            t++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: ABZU WATERS (Ea/Enki — Mesopotamian fresh water) ────────────
+    function abzuWaters(canvas, ctx, width, height, primary, secondary) {
+        const bubbles = [];
+        for (let i = 0; i < 50; i++) {
+            bubbles.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                size: randomRange(2, 6),
+                speedY: randomRange(0.4, 1.4),
+                drift: randomRange(-0.3, 0.3),
+                opacity: Math.random() * 0.4 + 0.1
+            });
+        }
+        let t = 0;
+        function draw() {
+            ctx.fillStyle = 'rgba(4, 8, 10, 0.18)';
+            ctx.fillRect(0, 0, width, height);
+            bubbles.forEach(b => {
+                b.y -= b.speedY;
+                b.x += b.drift + Math.sin(t * 0.02 + b.y * 0.01) * 0.3;
+                if (b.y < -10) {
+                    b.y = height + 10;
+                    b.x = Math.random() * width;
+                }
+                ctx.strokeStyle = `rgba(${primary.r}, ${primary.g}, ${primary.b}, ${b.opacity})`;
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.arc(b.x, b.y, b.size, 0, Math.PI * 2);
+                ctx.stroke();
+            });
+            ctx.strokeStyle = `rgba(${secondary.r}, ${secondary.g}, ${secondary.b}, 0.08)`;
+            ctx.lineWidth = 1.5;
+            for (let i = 0; i < 4; i++) {
+                const y = height * (0.5 + i * 0.12);
+                ctx.beginPath();
+                for (let x = 0; x <= width; x += 20) {
+                    const yy = y + Math.sin(x * 0.006 + t * 0.01 + i) * 12;
+                    if (x === 0) ctx.moveTo(x, yy);
+                    else ctx.lineTo(x, yy);
+                }
+                ctx.stroke();
+            }
+            t++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: HIGH THRONE (Ēl — Canaanite high god) ───────────────────────
+    function highThrone(canvas, ctx, width, height, primary, secondary) {
+        let t = 0;
+        function draw() {
+            ctx.fillStyle = 'rgba(5, 5, 8, 0.15)';
+            ctx.fillRect(0, 0, width, height);
+
+            const peakX = width * 0.5;
+            const peakY = height * 0.45;
+            ctx.fillStyle = `rgba(${secondary.r}, ${secondary.g}, ${secondary.b}, 0.08)`;
+            ctx.beginPath();
+            ctx.moveTo(0, height);
+            ctx.lineTo(peakX, peakY);
+            ctx.lineTo(width, height);
+            ctx.closePath();
+            ctx.fill();
+            ctx.strokeStyle = `rgba(${primary.r}, ${primary.g}, ${primary.b}, 0.25)`;
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            const rayCount = 7;
+            for (let i = 0; i < rayCount; i++) {
+                const x = width * (0.2 + (i / (rayCount - 1)) * 0.6);
+                const grad = ctx.createLinearGradient(x, peakY - height * 0.1, x, 0);
+                grad.addColorStop(0, `rgba(${primary.r}, ${primary.g}, ${primary.b}, 0.15)`);
+                grad.addColorStop(1, 'rgba(0,0,0,0)');
+                ctx.fillStyle = grad;
+                ctx.fillRect(x - 1, 0, 2, peakY);
+            }
+
+            const glow = ctx.createRadialGradient(peakX, peakY, 10, peakX, peakY, Math.min(width, height) * 0.35);
+            glow.addColorStop(0, `rgba(${primary.r}, ${primary.g}, ${primary.b}, 0.25)`);
+            glow.addColorStop(1, 'rgba(0,0,0,0)');
+            ctx.fillStyle = glow;
+            ctx.fillRect(0, 0, width, height);
+
+            t++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: GOLDEN ARROWS (Érōs — love / desire) ────────────────────────
+    function goldenArrows(canvas, ctx, width, height, primary, secondary) {
+        const arrows = [];
+        for (let i = 0; i < 40; i++) {
+            arrows.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                length: randomRange(40, 90),
+                speed: randomRange(2, 5),
+                angle: randomRange(-Math.PI / 8, Math.PI / 8),
+                opacity: Math.random() * 0.4 + 0.2,
+                color: Math.random() > 0.7 ? secondary : primary
+            });
+        }
+        let t = 0;
+        function draw() {
+            ctx.fillStyle = 'rgba(5, 5, 8, 0.15)';
+            ctx.fillRect(0, 0, width, height);
+            arrows.forEach(a => {
+                a.x += Math.cos(a.angle) * a.speed;
+                a.y += Math.sin(a.angle) * a.speed;
+                if (a.x > width + a.length || a.y > height + a.length || a.y < -a.length) {
+                    a.x = -a.length;
+                    a.y = Math.random() * height;
+                    a.angle = randomRange(-Math.PI / 8, Math.PI / 8);
+                }
+                ctx.save();
+                ctx.translate(a.x, a.y);
+                ctx.rotate(a.angle);
+                ctx.strokeStyle = `rgba(${a.color.r}, ${a.color.g}, ${a.color.b}, ${a.opacity})`;
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.lineTo(-a.length, 0);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.lineTo(-8, -4);
+                ctx.lineTo(-8, 4);
+                ctx.closePath();
+                ctx.fillStyle = `rgba(${a.color.r}, ${a.color.g}, ${a.color.b}, ${a.opacity})`;
+                ctx.fill();
+                ctx.restore();
+            });
+            t++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: HEKAU FLAME (Ḥkꜣ — Egyptian magic) ──────────────────────────
+    function hekauFlame(canvas, ctx, width, height, primary, secondary) {
+        const sparks = [];
+        const glyphs = [];
+        for (let i = 0; i < 60; i++) {
+            sparks.push({
+                x: Math.random() * width,
+                y: height + Math.random() * 50,
+                size: Math.random() * 2 + 0.5,
+                speedY: randomRange(1, 2.5),
+                drift: randomRange(-0.5, 0.5),
+                opacity: Math.random() * 0.5 + 0.2,
+                color: Math.random() > 0.6 ? secondary : primary
+            });
+        }
+        let t = 0;
+        function draw() {
+            ctx.fillStyle = 'rgba(5, 5, 8, 0.2)';
+            ctx.fillRect(0, 0, width, height);
+            sparks.forEach(s => {
+                s.y -= s.speedY;
+                s.x += s.drift;
+                if (s.y < 0) {
+                    s.y = height + Math.random() * 30;
+                    s.x = Math.random() * width;
+                }
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${s.color.r}, ${s.color.g}, ${s.color.b}, ${s.opacity})`;
+                ctx.fill();
+            });
+            if (Math.random() < 0.02) {
+                glyphs.push({
+                    x: Math.random() * width,
+                    y: height + 20,
+                    size: randomRange(10, 20),
+                    speedY: randomRange(0.8, 1.6),
+                    life: 1
+                });
+            }
+            for (let i = glyphs.length - 1; i >= 0; i--) {
+                const g = glyphs[i];
+                g.y -= g.speedY;
+                g.life -= 0.008;
+                if (g.life <= 0) {
+                    glyphs.splice(i, 1);
+                    continue;
+                }
+                ctx.strokeStyle = `rgba(${secondary.r}, ${secondary.g}, ${secondary.b}, ${g.life * 0.4})`;
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                ctx.arc(g.x, g.y, g.size * 0.5, 0, Math.PI * 1.5);
+                ctx.moveTo(g.x - g.size * 0.5, g.y);
+                ctx.lineTo(g.x + g.size * 0.5, g.y);
+                ctx.stroke();
+            }
+            t++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: VITAL SPARK (Kꜣ — Egyptian life-force) ──────────────────────
+    function vitalSpark(canvas, ctx, width, height, primary, secondary) {
+        const sparks = [];
+        for (let i = 0; i < 70; i++) {
+            sparks.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                size: Math.random() * 2 + 0.5,
+                speedY: randomRange(0.6, 1.8),
+                drift: randomRange(-0.3, 0.3),
+                opacity: Math.random() * 0.5 + 0.2,
+                pulse: Math.random() * Math.PI * 2,
+                color: Math.random() > 0.7 ? secondary : primary
+            });
+        }
+        let t = 0;
+        function draw() {
+            ctx.fillStyle = 'rgba(5, 5, 8, 0.18)';
+            ctx.fillRect(0, 0, width, height);
+            sparks.forEach(s => {
+                s.y -= s.speedY;
+                s.x += s.drift;
+                if (s.y < -5) {
+                    s.y = height + 5;
+                    s.x = Math.random() * width;
+                }
+                const pulse = 0.5 + 0.5 * Math.sin(t * 0.08 + s.pulse);
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.size * (0.7 + 0.6 * pulse), 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${s.color.r}, ${s.color.g}, ${s.color.b}, ${s.opacity * pulse})`;
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = `rgba(${s.color.r}, ${s.color.g}, ${s.color.b}, 0.4)`;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            });
+            t++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: CRONIAN SICKLE (Krónos — time / harvest) ────────────────────
+    function cronianSickle(canvas, ctx, width, height, primary, secondary) {
+        let rotation = 0;
+        const sparks = [];
+        for (let i = 0; i < 40; i++) {
+            sparks.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                size: Math.random() * 1.5 + 0.3,
+                speedY: randomRange(0.5, 1.5),
+                opacity: Math.random() * 0.4 + 0.1,
+                color: Math.random() > 0.8 ? secondary : primary
+            });
+        }
+        function draw() {
+            ctx.fillStyle = 'rgba(5, 5, 8, 0.18)';
+            ctx.fillRect(0, 0, width, height);
+
+            const cx = width * 0.5;
+            const cy = height * 0.5;
+            const r = Math.min(width, height) * 0.25;
+            ctx.save();
+            ctx.translate(cx, cy);
+            ctx.rotate(rotation);
+            ctx.strokeStyle = `rgba(${primary.r}, ${primary.g}, ${primary.b}, 0.35)`;
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.arc(0, 0, r, Math.PI * 0.1, Math.PI * 1.6);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(r * Math.cos(Math.PI * 1.6), r * Math.sin(Math.PI * 1.6));
+            ctx.lineTo(r * Math.cos(Math.PI * 1.6) + 20, r * Math.sin(Math.PI * 1.6) - 10);
+            ctx.lineTo(r * Math.cos(Math.PI * 1.6) + 10, r * Math.sin(Math.PI * 1.6) + 15);
+            ctx.closePath();
+            ctx.fillStyle = `rgba(${primary.r}, ${primary.g}, ${primary.b}, 0.35)`;
+            ctx.fill();
+            ctx.restore();
+
+            sparks.forEach(s => {
+                s.y += s.speedY;
+                if (s.y > height) {
+                    s.y = -5;
+                    s.x = Math.random() * width;
+                }
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${s.color.r}, ${s.color.g}, ${s.color.b}, ${s.opacity})`;
+                ctx.fill();
+            });
+
+            rotation += 0.003;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: WORLD RIVER (Ōkeanós — encircling ocean) ────────────────────
+    function worldRiver(canvas, ctx, width, height, primary, secondary) {
+        const currents = [];
+        for (let i = 0; i < 6; i++) {
+            currents.push({
+                y: height * (0.3 + i * 0.1),
+                amp: randomRange(15, 30),
+                freq: randomRange(0.004, 0.009),
+                phase: Math.random() * Math.PI * 2,
+                speed: randomRange(0.01, 0.02)
+            });
+        }
+        const drift = [];
+        for (let i = 0; i < 30; i++) {
+            drift.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                size: Math.random() * 2 + 0.5,
+                speedX: randomRange(0.5, 1.5),
+                opacity: Math.random() * 0.3 + 0.1,
+                color: Math.random() > 0.6 ? secondary : primary
+            });
+        }
+        let t = 0;
+        function draw() {
+            ctx.fillStyle = 'rgba(4, 8, 14, 0.18)';
+            ctx.fillRect(0, 0, width, height);
+            currents.forEach((c, idx) => {
+                ctx.strokeStyle = `rgba(${primary.r}, ${primary.g}, ${primary.b}, ${0.06 + idx * 0.03})`;
+                ctx.lineWidth = 2 + idx * 0.4;
+                ctx.beginPath();
+                for (let x = 0; x <= width; x += 15) {
+                    const y = c.y + Math.sin(x * c.freq + c.phase + t * c.speed) * c.amp;
+                    if (x === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+            });
+            drift.forEach(d => {
+                d.x += d.speedX;
+                if (d.x > width + 5) {
+                    d.x = -5;
+                    d.y = Math.random() * height;
+                }
+                ctx.beginPath();
+                ctx.arc(d.x, d.y, d.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${d.color.r}, ${d.color.g}, ${d.color.b}, ${d.opacity})`;
+                ctx.fill();
+            });
+            t++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: GOLDEN EGG (Prajāpati — cosmic egg) ─────────────────────────
+    function goldenEgg(canvas, ctx, width, height, primary, secondary) {
+        let t = 0;
+        const orbiters = [];
+        for (let i = 0; i < 20; i++) {
+            orbiters.push({
+                angle: Math.random() * Math.PI * 2,
+                radius: randomRange(60, 160),
+                speed: randomRange(0.005, 0.015),
+                size: randomRange(1.5, 3.5),
+                color: Math.random() > 0.5 ? secondary : primary
+            });
+        }
+        function draw() {
+            ctx.fillStyle = 'rgba(8, 4, 2, 0.2)';
+            ctx.fillRect(0, 0, width, height);
+
+            const cx = width * 0.5;
+            const cy = height * 0.5;
+            const pulse = 0.8 + 0.2 * Math.sin(t * 0.03);
+            const rx = Math.min(width, height) * 0.12 * pulse;
+            const ry = rx * 1.35;
+
+            const glow = ctx.createRadialGradient(cx, cy, rx * 0.3, cx, cy, rx * 3);
+            glow.addColorStop(0, `rgba(${primary.r}, ${primary.g}, ${primary.b}, 0.4)`);
+            glow.addColorStop(0.5, `rgba(${primary.r}, ${primary.g}, ${primary.b}, 0.1)`);
+            glow.addColorStop(1, 'rgba(0,0,0,0)');
+            ctx.fillStyle = glow;
+            ctx.fillRect(0, 0, width, height);
+
+            ctx.fillStyle = `rgba(${primary.r}, ${primary.g}, ${primary.b}, 0.25)`;
+            ctx.beginPath();
+            ctx.ellipse(cx, cy, rx, ry, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = `rgba(${secondary.r}, ${secondary.g}, ${secondary.b}, 0.3)`;
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            orbiters.forEach(o => {
+                o.angle += o.speed;
+                const x = cx + Math.cos(o.angle) * o.radius;
+                const y = cy + Math.sin(o.angle) * o.radius * 0.4;
+                ctx.beginPath();
+                ctx.arc(x, y, o.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${o.color.r}, ${o.color.g}, ${o.color.b}, 0.5)`;
+                ctx.fill();
+            });
+
+            t++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: COSMIC ORDER (Ṛta — Vedic cosmic order) ─────────────────────
+    function cosmicOrder(canvas, ctx, width, height, primary, secondary) {
+        const rings = [];
+        for (let i = 0; i < 6; i++) {
+            rings.push({
+                radius: Math.min(width, height) * (0.1 + i * 0.07),
+                speed: randomRange(0.002, 0.006),
+                phase: Math.random() * Math.PI * 2,
+                color: i % 2 === 0 ? primary : secondary
+            });
+        }
+        let t = 0;
+        function draw() {
+            ctx.fillStyle = 'rgba(5, 5, 8, 0.15)';
+            ctx.fillRect(0, 0, width, height);
+            const cx = width * 0.5;
+            const cy = height * 0.5;
+            rings.forEach(r => {
+                const pulse = r.radius * (1 + Math.sin(t * r.speed + r.phase) * 0.05);
+                ctx.strokeStyle = `rgba(${r.color.r}, ${r.color.g}, ${r.color.b}, 0.18)`;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.ellipse(cx, cy, pulse, pulse * 0.35, 0, 0, Math.PI * 2);
+                ctx.stroke();
+            });
+            t++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: DRY WIND (Šw — Egyptian air) ────────────────────────────────
+    function dryWind(canvas, ctx, width, height, primary, secondary) {
+        const streaks = [];
+        for (let i = 0; i < 80; i++) {
+            streaks.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                length: randomRange(40, 120),
+                speed: randomRange(3, 8),
+                opacity: Math.random() * 0.25 + 0.05,
+                color: Math.random() > 0.7 ? secondary : primary
+            });
+        }
+        let t = 0;
+        function draw() {
+            ctx.fillStyle = 'rgba(5, 5, 8, 0.12)';
+            ctx.fillRect(0, 0, width, height);
+            streaks.forEach(s => {
+                s.x += s.speed;
+                if (s.x > width + s.length) {
+                    s.x = -s.length;
+                    s.y = Math.random() * height;
+                }
+                ctx.strokeStyle = `rgba(${s.color.r}, ${s.color.g}, ${s.color.b}, ${s.opacity})`;
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(s.x, s.y);
+                ctx.lineTo(s.x - s.length, s.y + Math.sin(t * 0.02 + s.y * 0.01) * 6);
+                ctx.stroke();
+            });
+            t++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: THUNDER PEAK (Trengtreng — Mapuche thunder mountain) ────────
+    function thunderPeak(canvas, ctx, width, height, primary, secondary) {
+        let lightning = 0;
+        const embers = [];
+        for (let i = 0; i < 60; i++) {
+            embers.push({
+                x: Math.random() * width,
+                y: height + Math.random() * 40,
+                size: Math.random() * 2 + 0.5,
+                speedY: randomRange(1, 3),
+                drift: randomRange(-0.5, 0.5),
+                opacity: Math.random() * 0.5 + 0.2,
+                color: Math.random() > 0.6 ? secondary : primary
+            });
+        }
+        let t = 0;
+        function draw() {
+            ctx.fillStyle = 'rgba(6, 4, 4, 0.2)';
+            ctx.fillRect(0, 0, width, height);
+
+            const peakX = width * 0.5;
+            const peakY = height * 0.55;
+            ctx.fillStyle = `rgba(${secondary.r}, ${secondary.g}, ${secondary.b}, 0.06)`;
+            ctx.beginPath();
+            ctx.moveTo(0, height);
+            ctx.lineTo(peakX, peakY);
+            ctx.lineTo(width, height);
+            ctx.closePath();
+            ctx.fill();
+
+            embers.forEach(e => {
+                e.y -= e.speedY;
+                e.x += e.drift;
+                if (e.y < 0) {
+                    e.y = height + Math.random() * 30;
+                    e.x = Math.random() * width;
+                }
+                ctx.beginPath();
+                ctx.arc(e.x, e.y, e.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${e.color.r}, ${e.color.g}, ${e.color.b}, ${e.opacity})`;
+                ctx.fill();
+            });
+
+            if (Math.random() < 0.01) lightning = randomRange(0.25, 0.55);
+            if (lightning > 0.01) {
+                ctx.strokeStyle = `rgba(255, 245, 220, ${lightning})`;
+                ctx.lineWidth = 2;
+                ctx.shadowBlur = 16;
+                ctx.shadowColor = `rgba(255, 200, 80, ${lightning})`;
+                ctx.beginPath();
+                let lx = randomRange(width * 0.3, width * 0.7);
+                let ly = peakY;
+                ctx.moveTo(lx, ly);
+                while (ly < height * 0.9) {
+                    lx += randomRange(-50, 50);
+                    ly += randomRange(30, 70);
+                    ctx.lineTo(lx, ly);
+                }
+                ctx.stroke();
+                ctx.shadowBlur = 0;
+                lightning *= 0.85;
+            }
+
+            t++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: VAK WAVES (Vāc — Vedic sacred speech) ───────────────────────
+    function vakWaves(canvas, ctx, width, height, primary, secondary) {
+        const waves = [];
+        for (let i = 0; i < 5; i++) {
+            waves.push({
+                x: width * 0.5,
+                y: height * 0.7,
+                radius: Math.min(width, height) * (0.1 + i * 0.08),
+                speed: randomRange(0.003, 0.007),
+                phase: Math.random() * Math.PI * 2,
+                color: i % 2 === 0 ? primary : secondary
+            });
+        }
+        const sparks = [];
+        for (let i = 0; i < 40; i++) {
+            sparks.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                size: Math.random() * 1.5 + 0.3,
+                speedY: randomRange(0.4, 1.2),
+                opacity: Math.random() * 0.4 + 0.1,
+                color: Math.random() > 0.6 ? secondary : primary
+            });
+        }
+        let t = 0;
+        function draw() {
+            ctx.fillStyle = 'rgba(5, 5, 8, 0.15)';
+            ctx.fillRect(0, 0, width, height);
+            waves.forEach(w => {
+                const r = w.radius * (1 + Math.sin(t * w.speed + w.phase) * 0.08);
+                ctx.strokeStyle = `rgba(${w.color.r}, ${w.color.g}, ${w.color.b}, 0.15)`;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.ellipse(w.x, w.y, r, r * 0.25, 0, 0, Math.PI * 2);
+                ctx.stroke();
+            });
+            sparks.forEach(s => {
+                s.y -= s.speedY;
+                if (s.y < -5) {
+                    s.y = height + 5;
+                    s.x = Math.random() * width;
+                }
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${s.color.r}, ${s.color.g}, ${s.color.b}, ${s.opacity})`;
+                ctx.fill();
+            });
+            t++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
     const effects = {
         particles,
         stars,
@@ -1774,7 +2604,24 @@
         tartarosPrison,
         enlilStorm,
         asherahTree,
-        apsuAbyss
+        apsuAbyss,
+        ibScale,
+        aetherFlame,
+        ashaFire,
+        morningStar,
+        soulBird,
+        abzuWaters,
+        highThrone,
+        goldenArrows,
+        hekauFlame,
+        vitalSpark,
+        cronianSickle,
+        worldRiver,
+        goldenEgg,
+        cosmicOrder,
+        dryWind,
+        thunderPeak,
+        vakWaves
     };
 
     function runEffect(canvas) {

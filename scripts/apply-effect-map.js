@@ -20,6 +20,23 @@ const PALETTES = {
   enlil: { primary: '#C0C0C0', secondary: '#4682B4' },
   asherah: { primary: '#228B22', secondary: '#1E90FF' },
   apsu: { primary: '#00CED1', secondary: '#20B2AA' },
+  ibScale: { primary: '#D4AF37', secondary: '#1E3A5F' },
+  aetherFlame: { primary: '#D4AF37', secondary: '#4169E1' },
+  ashaFire: { primary: '#FF4500', secondary: '#F5F5F5' },
+  morningStar: { primary: '#D4AF37', secondary: '#800080' },
+  soulBird: { primary: '#D4AF37', secondary: '#1E3A5F' },
+  abzuWaters: { primary: '#CD7F32', secondary: '#C2B280' },
+  highThrone: { primary: '#D4AF37', secondary: '#4169E1' },
+  goldenArrows: { primary: '#D4AF37', secondary: '#4169E1' },
+  hekauFlame: { primary: '#D4AF37', secondary: '#1E3A5F' },
+  vitalSpark: { primary: '#D4AF37', secondary: '#1E3A5F' },
+  cronianSickle: { primary: '#D4AF37', secondary: '#4169E1' },
+  worldRiver: { primary: '#D4AF37', secondary: '#4169E1' },
+  goldenEgg: { primary: '#FF9933', secondary: '#8B0000' },
+  cosmicOrder: { primary: '#FF9933', secondary: '#8B0000' },
+  dryWind: { primary: '#D4AF37', secondary: '#1E3A5F' },
+  thunderPeak: { primary: '#D4AF37', secondary: '#DC143C' },
+  vakWaves: { primary: '#FF9933', secondary: '#8B0000' },
 };
 
 function updateFile(filePath, effect, palette) {
