@@ -208,6 +208,15 @@
           "400": { "$ref": "#/components/responses/ValidationError" }
         }
       }
+    },
+    "/version": {
+      "get": {
+        "summary": "Get current dataset version and counts",
+        "operationId": "getVersion",
+        "responses": {
+          "200": { "$ref": "#/components/responses/VersionResponse" }
+        }
+      }
     }
   },
   "components": {
@@ -385,6 +394,10 @@
       },
       "BatchConvertResponse": {
         "description": "Batch conversion results",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+      },
+      "VersionResponse": {
+        "description": "Dataset version and canonical source hashes",
         "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
       },
       "ValidationError": {

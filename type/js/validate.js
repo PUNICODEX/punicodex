@@ -12,6 +12,7 @@ const {
   containsGreekOrCjk,
   isPlaceholder,
 } = require('./original-scripts.js');
+const { SOURCE_CATALOG } = require('./source-catalog.js');
 
 // ── Load lexicon ──────────────────────────────────────────
 const lexiconPath = path.join(__dirname, 'lexicon.js');
@@ -223,6 +224,12 @@ LEXICON.forEach((entry, i) => {
             v.sources.every((s) => typeof s === 'string' && s.length > 0),
           `[${label}] variants[${k}] sources must be a non-empty array of non-empty strings`
         );
+        v.sources.forEach((src) => {
+          assert(
+            SOURCE_CATALOG[src],
+            `[${label}] variants[${k}] source "${src}" not found in SOURCE_CATALOG`
+          );
+        });
       }
       if (v.type === 'alt-stress' || v.type === 'alt') {
         if (!v.sources || v.sources.length === 0) {
@@ -257,11 +264,16 @@ LEXICON.forEach((entry, i) => {
   // Etymology check (optional)
   const ALLOWED_PROTO_LANGUAGES = [
     'proto-indo-european',
+    'proto-indo-iranian',
     'proto-afro-asiatic',
+    'proto-semitic',
     'proto-polynesian',
     'proto-uto-aztecan',
     'proto-sino-tibetan',
     'proto-mayan',
+    'egyptian',
+    'sumerian',
+    'dravidian',
     'isolate',
     'unknown',
   ];
@@ -329,9 +341,20 @@ LEXICON.forEach((entry, i) => {
         typeof src === 'string' && src.length > 0,
         `[${label}] sources[${k}] must be a non-empty string`
       );
+      assert(SOURCE_CATALOG[src], `[${label}] sources[${k}] "${src}" not found in SOURCE_CATALOG`);
     });
   } else {
     assert(false, `[${label}] sources must be an array`);
+  }
+
+  // Provenance / variant sources must also be cataloged
+  if (entry.provenance && Array.isArray(entry.provenance.sources)) {
+    entry.provenance.sources.forEach((src, k) => {
+      assert(
+        SOURCE_CATALOG[src],
+        `[${label}] provenance.sources[${k}] "${src}" not found in SOURCE_CATALOG`
+      );
+    });
   }
 
   // Breakdown integrity

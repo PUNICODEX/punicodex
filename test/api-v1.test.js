@@ -108,6 +108,7 @@ async function runTests() {
   const convertBatch = require('../api/v1/convert/batch.js');
   const openapi = require('../api/v1/openapi.json.js');
   const docs = require('../api/v1/docs/index.js');
+  const version = require('../api/v1/version/index.js');
   const adminListKeys = require('../api/admin/api-keys/index.js');
   const adminCreateKey = adminListKeys;
   const adminRevokeKey = require('../api/admin/api-keys/[id]/revoke.js');
@@ -307,6 +308,16 @@ async function runTests() {
     assert.strictEqual(status, 200);
     assert.ok(typeof body === 'string', 'docs must return HTML string');
     assert.ok(body.includes('swagger-ui'), 'must include swagger-ui');
+  });
+
+  await test('GET /api/v1/version returns dataset version', async () => {
+    const { status, body } = await invoke(version, 'GET', '/api/v1/version');
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+    assert.ok(body.data.version, 'must include version');
+    assert.ok(body.data.releasedAt, 'must include releasedAt');
+    assert.ok(body.data.counts, 'must include counts');
+    assert.ok(body.data.canonicalHashes, 'must include canonicalHashes');
   });
 
   await test('OPTIONS request returns CORS preflight', async () => {

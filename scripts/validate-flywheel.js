@@ -11,6 +11,7 @@ const vm = require('node:vm');
 const { domainToASCII } = require('node:url');
 
 const ROOT = path.resolve(__dirname, '..');
+const BASE_URL = 'https://punycodex.com';
 
 // ── Canonical sources ──────────────────────────────────────────────────────
 const PATHS = {
@@ -22,6 +23,7 @@ const PATHS = {
   mobileLexicon: path.join(ROOT, 'mobile', 'shared', 'lexicon.js'),
   androidLexicon: path.join(ROOT, 'android', 'app', 'src', 'main', 'assets', 'shared', 'lexicon.json'),
   rendererLexicon: path.join(ROOT, 'platform', 'browser', 'renderer', 'lexicon.json'),
+  dbInit: path.join(ROOT, 'platform', 'db', 'init.js'),
 };
 
 let failures = 0;
@@ -103,6 +105,19 @@ function parseMiddleware() {
   return { domainMap, archetypeIds };
 }
 
+function parseDbInitFlagshipIds() {
+  const src = fs.readFileSync(PATHS.dbInit, 'utf8');
+  const match = src.match(/const flagshipIds = new Set\(\[([\s\S]*?)\]\);/);
+  if (!match) throw new Error('Could not parse flagshipIds in platform/db/init.js');
+  const ids = [];
+  const lineRe = /^\s*'([^']+)',?\s*$/gm;
+  let m;
+  while ((m = lineRe.exec(match[1])) !== null) {
+    ids.push(m[1]);
+  }
+  return new Set(ids);
+}
+
 function pick(obj, keys) {
   const out = {};
   for (const key of keys) {
@@ -146,11 +161,26 @@ const middleware = parseMiddleware();
 const lexiconById = new Map(lexicon.map(e => [e.id, e]));
 const archetypeById = new Map(archetypes.map(a => [a.id, a]));
 const archetypeIds = new Set(archetypes.map(a => a.id));
+const flagshipIds = new Set(archetypes.filter(a => a.built).map(a => a.id));
+
+// Map of normalized display text → set of valid entry ids for internal-link validation.
+const linkTextToIds = new Map();
+for (const entry of lexicon) {
+  const names = [entry.id, entry.ascii, entry.unicode, entry.greek].filter(Boolean);
+  for (const v of entry.variants || []) names.push(v.unicode);
+  for (const name of names) {
+    const clean = name.normalize('NFC').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    if (!linkTextToIds.has(clean)) linkTextToIds.set(clean, new Set());
+    linkTextToIds.get(clean).add(entry.id);
+  }
+}
 
 // ── 1. Archetype ↔ Lexicon integrity ───────────────────────────────────────
 console.log('\n▸ Archetype ↔ Lexicon');
 let nameMismatches = 0;
 let greekMismatches = 0;
+let tierMismatches = 0;
+let tierDetailMismatches = 0;
 let missingFromLexicon = 0;
 
 for (const a of archetypes) {
@@ -180,11 +210,24 @@ for (const a of archetypes) {
     fail(`Archetype ${a.id} Greek "${a.greek}" does not match lexicon "${entry.greek}"`);
     greekMismatches++;
   }
+
+  // Canonical tier lives in the lexicon; archetypes must derive from it.
+  const expectedTier = entry.tier === 'dual' ? 'dual-tier' : entry.tier === '1' ? 'tier-1' : 'tier-2';
+  const expectedTierDetail = entry.tier === 'dual' ? 'dual-tier' : 'single-tier';
+  if (a.tier !== expectedTier) {
+    fail(`Archetype ${a.id} tier "${a.tier}" does not match lexicon tier "${entry.tier}" (expected "${expectedTier}")`);
+    tierMismatches++;
+  }
+  if (a.tierDetail !== expectedTierDetail) {
+    fail(`Archetype ${a.id} tierDetail "${a.tierDetail}" does not match expected "${expectedTierDetail}"`);
+    tierDetailMismatches++;
+  }
 }
 
 if (missingFromLexicon === 0) pass('All archetype IDs exist in the lexicon');
 if (nameMismatches === 0) pass('Archetype names align with lexicon Unicode restorations');
 if (greekMismatches === 0) pass('Archetype Greek originals align with the lexicon');
+if (tierMismatches === 0 && tierDetailMismatches === 0) pass('Archetype tiers align with the canonical lexicon');
 
 // ── 2. Middleware DOMAIN_MAP coverage ──────────────────────────────────────
 console.log('\n▸ Middleware DOMAIN_MAP');
@@ -236,6 +279,19 @@ if (jsonEqual(middlewareIds, expectedIds)) {
 if (missingDomainKeys === 0) pass('All archetype domains are present in DOMAIN_MAP');
 if (unexpectedTargets === 0) pass('All DOMAIN_MAP targets are /sites/{id} paths');
 if (archetypeIdMismatch === 0) pass('All DOMAIN_MAP ids are valid archetypes');
+
+// ── 2b. Database flagship IDs ───────────────────────────────────────────────
+console.log('\n▸ Database Flagship IDs');
+const dbFlagshipIds = parseDbInitFlagshipIds();
+const dbFlagshipSorted = [...dbFlagshipIds].sort();
+if (jsonEqual(dbFlagshipSorted, expectedIds)) {
+  pass('platform/db/init.js flagshipIds match archetype source exactly');
+} else {
+  const missing = expectedIds.filter(id => !dbFlagshipIds.has(id));
+  const extra = dbFlagshipSorted.filter(id => !archetypeIds.has(id));
+  if (missing.length) fail(`flagshipIds missing: ${missing.join(', ')}`);
+  if (extra.length) fail(`flagshipIds has unexpected ids: ${extra.join(', ')}`);
+}
 
 // ── 3. Owned domains ↔ Archetypes / Middleware ─────────────────────────────
 console.log('\n▸ Owned Domains');
@@ -437,6 +493,10 @@ for (const a of archetypes) {
     warn(`Flagship ${a.id} is missing og:title`);
     flagshipWarnings++;
   }
+  if (!html.match(/<meta[^>]+property=["']og:image["']/i)) {
+    warn(`Flagship ${a.id} is missing og:image`);
+    flagshipWarnings++;
+  }
   if (!html.match(/<link[^>]+rel=["']canonical["']/i)) {
     warn(`Flagship ${a.id} is missing canonical link`);
     flagshipWarnings++;
@@ -480,12 +540,117 @@ for (const a of archetypes) {
     warn(`Flagship ${a.id} page does not reference logomark asset`);
     flagshipWarnings++;
   }
+
+  // Malformed empty-name attributes produced by some cheerio/regex pipelines.
+  const emptyAttrMatches = html.match(/"=""/g);
+  if (emptyAttrMatches) {
+    fail(`Flagship ${a.id} page contains ${emptyAttrMatches.length} malformed empty-name attribute(s) (e.g., <a href=\"...\" \"=\">)`);
+  }
 }
 
 if (flagshipWarnings === 0) {
   pass('All flagship pages pass content consistency checks');
 } else {
   pass(`Flagship content checks completed with ${flagshipWarnings} warning(s)`);
+}
+
+// ── 8. Internal link integrity ───────────────────────────────────────────────
+console.log('\n▸ Internal Link Integrity');
+let linkMismatches = 0;
+const internalLinkRe = /<a\s+href="\.\.\/\.\.\/([^/]+)\/"[^>]*>([^<]+)<\/a>/g;
+for (const a of archetypes) {
+  if (!a.built) continue;
+  const lorePath = path.join(ROOT, 'sites', a.id, 'lore', 'index.html');
+  if (!fs.existsSync(lorePath)) continue;
+  const html = fs.readFileSync(lorePath, 'utf8');
+  let m;
+  while ((m = internalLinkRe.exec(html)) !== null) {
+    const target = m[1];
+    const text = m[2].trim();
+    const cleanText = text.normalize('NFC').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    const possibleTargets = linkTextToIds.get(cleanText);
+    if (possibleTargets && !possibleTargets.has(target)) {
+      fail(`Flagship ${a.id} lore links "${text}" to ${target}, but it should target one of: ${[...possibleTargets].join(', ')}`);
+      linkMismatches++;
+    }
+  }
+}
+if (linkMismatches === 0) pass('All flagship lore internal links point to correct entries');
+
+// ── 9. Public copy markers ──────────────────────────────────────────────────
+console.log('\n▸ Public Copy Markers');
+const publicPages = [
+  path.join(ROOT, 'index.html'),
+  path.join(ROOT, 'about', 'index.html'),
+  path.join(ROOT, 'pantheon', 'index.html'),
+  path.join(ROOT, 'lexicon', 'index.html'),
+  path.join(ROOT, 'realms', 'index.html'),
+  path.join(ROOT, 'tiers', 'index.html'),
+];
+let staleMarkers = 0;
+for (const pagePath of publicPages) {
+  if (!fs.existsSync(pagePath)) continue;
+  const html = fs.readFileSync(pagePath, 'utf8');
+  const markers = html.match(/__SYNC:[a-z0-9-]+__/g);
+  if (markers) {
+    fail(`${path.relative(ROOT, pagePath)} contains unreplaced sync markers: ${[...new Set(markers)].join(', ')}`);
+    staleMarkers++;
+  }
+}
+if (staleMarkers === 0) pass('All public copy sync markers are replaced');
+
+// ── 10. Sitemap completeness ─────────────────────────────────────────────────
+console.log('\n▸ Sitemap Completeness');
+const sitemapPath = path.join(ROOT, 'sitemap.xml');
+let sitemapMissing = 0;
+if (!fs.existsSync(sitemapPath)) {
+  fail('sitemap.xml is missing');
+  sitemapMissing++;
+} else {
+  const sitemap = fs.readFileSync(sitemapPath, 'utf8');
+  const sitemapUrls = new Set((sitemap.match(/<loc>([^<]+)<\/loc>/g) || []).map(s => s.slice(5, -6)));
+  const expectedUrls = new Set();
+  const addUrl = (loc) => expectedUrls.add(`${BASE_URL}${loc}`);
+  addUrl('/');
+  addUrl('/pantheon/');
+  addUrl('/lexicon/');
+  addUrl('/type/');
+  addUrl('/tiers/');
+  addUrl('/realms/');
+  addUrl('/codex/');
+  addUrl('/search.html');
+  addUrl('/about/');
+  addUrl('/contact/');
+  addUrl('/store/');
+  addUrl('/api/v1/docs/');
+  addUrl('/terms/');
+  addUrl('/terms/advertising/');
+  addUrl('/privacy/');
+  addUrl('/404.html');
+  for (const entry of lexicon) {
+    addUrl(`/sites/${entry.id}/`);
+    if (flagshipIds.has(entry.id)) {
+      addUrl(`/sites/${entry.id}/lore/`);
+      addUrl(`/sites/${entry.id}/lore/extended/`);
+      addUrl(`/sites/${entry.id}/gallery/`);
+    }
+  }
+
+  const missingUrls = [];
+  for (const url of expectedUrls) {
+    if (!sitemapUrls.has(url)) missingUrls.push(url);
+  }
+  if (missingUrls.length) {
+    for (const url of missingUrls.slice(0, 10)) {
+      fail(`sitemap.xml missing: ${url}`);
+    }
+    if (missingUrls.length > 10) {
+      fail(`... and ${missingUrls.length - 10} more missing URLs`);
+    }
+    sitemapMissing += missingUrls.length;
+  } else {
+    pass(`sitemap.xml contains all ${expectedUrls.size} expected URLs`);
+  }
 }
 
 // ═════════════════════════════════════════════════════════════════════════════

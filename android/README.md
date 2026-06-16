@@ -8,7 +8,7 @@ Play Store-ready Android app bundling the PÚNYCODEX companion app + system keyb
 |-----------|-----------|---------|
 | Main App | Capacitor + WebView | Full PWA experience (Type, Compose, Directory, History) |
 | Keyboard IME | Native Java (`InputMethodService`) | System keyboard with Unicode suggestions |
-| Suggestion Engine | Java trie (ported from JS) | Real-time autocomplete for 850+ lexicon entries |
+| Suggestion Engine | Java trie (ported from JS) | Real-time autocomplete for 859 lexicon entries |
 | Shared Data | JSON assets | Lexicon + 584-character palette bundled in APK |
 
 ## Project Structure
@@ -28,7 +28,7 @@ android/
 │   ├── assets/
 │   │   ├── public/                        # Copied from mobile/ (web app)
 │   │   └── shared/
-│   │       ├── lexicon.json               # 850 entries
+│   │       ├── lexicon.json               # 859 entries
 │   │       └── keyboard-palette.json      # 584 quick-insert chars
 │   └── res/
 │       ├── layout/keyboard_view.xml       # Keyboard UI

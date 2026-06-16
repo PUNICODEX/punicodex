@@ -114,7 +114,8 @@ const LEXICON = [
         id: 'hadesv1',
         unicode: 'Hādēs',
         type: 'alt-stress',
-        note: 'Macron on alpha: length-preserved variant without acute'
+        note: 'Macron on alpha: length-preserved variant without acute',
+        sources: ['LSJ', 'Beekes', 'Smyth']
       }
     ],
     breakdown: [
@@ -1823,6 +1824,21 @@ const LEXICON = [
       'Pape-Benseler',
       'Beekes'
     ],
+        etymology: {
+      protoForm: '',
+      protoLanguage: 'unknown',
+      protoGloss: '',
+      derivation: 'From Greek ἔρως, derived from the verb ἔραμαι / ἐράω \'to love, desire\'; the further Indo-European etymology is uncertain.',
+      certainty: 'attested',
+      cognates: [
+        {
+          language: 'greek',
+          form: 'ἔραμαι',
+          relationship: 'derivative',
+          note: 'Verb \'to love, desire\' (LSJ, Beekes)'
+        }
+      ]
+    },
     breakdown: [
       {
         char: 'e',
@@ -2402,6 +2418,15 @@ const LEXICON = [
     variants: [
       
     ],
+        etymology: {
+      protoForm: '',
+      protoLanguage: 'unknown',
+      protoGloss: '',
+      derivation: 'Anciently analyzed as Διός (genitive of Ζεύς) + Νῦσα, a mythical mountain of ecstasy; the second element is of unknown, probably non-Greek origin.',
+      certainty: 'disputed',
+      cognates: [
+      ]
+    },
     breakdown: [
       {
         char: 'd',
@@ -2542,7 +2567,8 @@ const LEXICON = [
     ],
     variants: [
       { unicode: 'krónos', type: 'owned', note: 'Lowercase owned domain form' },
-      { unicode: 'Cronus', type: 'alt', note: 'Latinized spelling common in English' }
+      { unicode: 'Cronus', type: 'alt', note: 'Latinized spelling common in English',
+        sources: ['LSJ', 'Oxford'] }
     ],
     etymology: {
       protoForm: '*kers-',
@@ -3062,6 +3088,21 @@ const LEXICON = [
       'Pape-Benseler',
       'Barrington'
     ],
+        etymology: {
+      protoForm: '*gʷelbʰ-',
+      protoLanguage: 'proto-indo-european',
+      protoGloss: 'womb, swell',
+      derivation: 'Usually connected with Greek δελφύς \'womb\' and a Proto-Indo-European root *gʷelbʰ- \'womb, swell\', though Beekes considers a pre-Greek origin equally possible.',
+      certainty: 'disputed',
+      cognates: [
+        {
+          language: 'greek',
+          form: 'δελφύς',
+          relationship: 'cognate',
+          note: '\'Womb\', the sanctuary\'s symbolic etymology (LSJ, Beekes)'
+        }
+      ]
+    },
     breakdown: [
       {
         char: 'd',
@@ -4511,7 +4552,8 @@ const LEXICON = [
       {
         unicode: 'Thorr',
         type: 'alt-stress',
-        note: 'Alternate: Thorr (length on o)'
+        note: 'Alternate: Thorr (length on o)',
+        sources: ['Cleasby-Vigfusson', 'EDPG']
       }
     ],
     etymology: {
@@ -5381,7 +5423,8 @@ const LEXICON = [
       {
         unicode: 'Rá',
         type: 'alt-stress',
-        note: 'Modern stress form: the acute marks the stressed vowel in the conventional vocalization "Ra". The Egyptological spelling records only the consonants rꜥ.'
+        note: 'Modern stress form: the acute marks the stressed vowel in the conventional vocalization "Ra". The Egyptological spelling records only the consonants rꜥ.',
+        sources: ['Faulkner', 'Allen, Middle Egyptian']
       }
     ],
     accuracyNote: 'Egyptian rꜥ is written without vowels. The macron form Rā is sometimes seen as a phonological convenience, but Ra has no long vowel in Egyptological terms, so Rā is not a scholarly form and is not listed here. The domain Rā.com is registered by a third party.',
@@ -5450,7 +5493,8 @@ const LEXICON = [
       {
         unicode: 'Osíris',
         type: 'alt-stress',
-        note: 'Acute on iota: alternate stress position'
+        note: 'Acute on iota: alternate stress position',
+        sources: ['Faulkner', 'Allen, Middle Egyptian']
       }
     ]
   },
@@ -5510,7 +5554,8 @@ const LEXICON = [
       {
         unicode: 'Anúbis',
         type: 'alt-stress',
-        note: 'Acute on upsilon: alternate stress position'
+        note: 'Acute on upsilon: alternate stress position',
+        sources: ['Faulkner']
       }
     ]
   },
@@ -5529,6 +5574,15 @@ const LEXICON = [
       'Faulkner',
       'Wb'
     ],
+        etymology: {
+      protoForm: '',
+      protoLanguage: 'egyptian',
+      protoGloss: 'the distant one, falcon',
+      derivation: 'From Egyptian ḥr, written with the falcon sign and interpreted as \'the distant/high one\' or \'falcon\'; the original vowels are not recorded in hieroglyphs.',
+      certainty: 'attested',
+      cognates: [
+      ]
+    },
     breakdown: [
       {
         char: 'h',
@@ -5606,7 +5660,8 @@ const LEXICON = [
       {
         unicode: 'Ísis',
         type: 'alt-stress',
-        note: 'Acute on iota: alternate stress position'
+        note: 'Acute on iota: alternate stress position',
+        sources: ['Faulkner']
       }
     ]
   },
@@ -5660,7 +5715,8 @@ const LEXICON = [
       {
         unicode: 'Thóth',
         type: 'alt-stress',
-        note: 'Acute on omicron: alternate stress position'
+        note: 'Acute on omicron: alternate stress position',
+        sources: ['Faulkner']
       }
     ]
   },
@@ -5710,17 +5766,20 @@ const LEXICON = [
       {
         unicode: 'Jmn',
         type: 'alt',
-        note: 'Egyptological consonantal skeleton (reed-leaf j-m-n)'
+        note: 'Egyptological consonantal skeleton (reed-leaf j-m-n)',
+        sources: ['Faulkner', 'Wb']
       },
       {
         unicode: 'Amon',
         type: 'alt',
-        note: 'Vocalized transliteration: Amon'
+        note: 'Vocalized transliteration: Amon',
+        sources: ['Faulkner']
       },
       {
         unicode: 'Amen',
         type: 'alt',
-        note: 'Vocalized transliteration: Amen'
+        note: 'Vocalized transliteration: Amen',
+        sources: ['Faulkner']
       }
     ]
   },
@@ -6021,6 +6080,15 @@ const LEXICON = [
       'Faulkner',
       'Wb'
     ],
+        etymology: {
+      protoForm: '',
+      protoLanguage: 'egyptian',
+      protoGloss: 'truth, straightness',
+      derivation: 'From Egyptian mꜣꜥt \'truth, justice, order\', abstracted from the verb mꜣꜥ \'to be true, straight\'; the hieroglyphic spelling records consonants only.',
+      certainty: 'attested',
+      cognates: [
+      ]
+    },
     breakdown: [
       {
         char: 'm',
@@ -6328,7 +6396,8 @@ const LEXICON = [
       {
         unicode: 'Siva',
         type: 'alt-stress',
-        note: 'Alternate transliteration: Siva'
+        note: 'Alternate transliteration: Siva',
+        sources: ['Monier-Williams', 'Macdonell']
       }
     ],
     etymology: {
@@ -6355,6 +6424,15 @@ const LEXICON = [
       'MW',
       'KEWA'
     ],
+        etymology: {
+      protoForm: '',
+      protoLanguage: 'unknown',
+      protoGloss: '',
+      derivation: 'From Sanskrit viṣṇu- \'all-pervading\', traditionally derived from the root viṣ- \'to pervade, be active\'; a secure Proto-Indo-European reconstruction and the name\'s prehistory remain disputed.',
+      certainty: 'disputed',
+      cognates: [
+      ]
+    },
     breakdown: [
       {
         char: 'v',
@@ -6474,6 +6552,27 @@ const LEXICON = [
       'MW',
       'KEWA'
     ],
+        etymology: {
+      protoForm: '',
+      protoLanguage: 'unknown',
+      protoGloss: '',
+      derivation: 'Sanskrit tatpuruṣa compound of gaṇa- \'host, troop\' and īśa- \'lord\', meaning \'Lord of the Hosts\'.',
+      certainty: 'attested',
+      cognates: [
+        {
+          language: 'sanskrit',
+          form: 'gaṇa-',
+          relationship: 'derivative',
+          note: '\'host, troop\' (MW, KEWA)'
+        },
+        {
+          language: 'sanskrit',
+          form: 'īśa-',
+          relationship: 'derivative',
+          note: '\'lord, master\' (MW, KEWA)'
+        }
+      ]
+    },
     breakdown: [
       {
         char: 'g',
@@ -7352,7 +7451,8 @@ const LEXICON = [
     ],
     variants: [
       { unicode: 'ištar', type: 'owned', note: 'Owned lowercase Unicode domain label' },
-      { unicode: 'Inanna', type: 'alt', note: 'Sumerian counterpart' }
+      { unicode: 'Inanna', type: 'alt', note: 'Sumerian counterpart',
+        sources: ['CAD', 'Kramer', 'Black-Green'] }
     ],
     etymology: {
       protoForm: 'unknown',
@@ -7582,7 +7682,8 @@ const LEXICON = [
     ],
     variants: [
       { unicode: 'enlīl', type: 'owned', note: 'Lowercase owned domain form' },
-      { unicode: 'Ellil', type: 'alt', note: 'Akkadian variant reflecting late pronunciation' }
+      { unicode: 'Ellil', type: 'alt', note: 'Akkadian variant reflecting late pronunciation',
+        sources: ['CAD', 'Black-Green'] }
     ],
     etymology: {
       protoForm: 'EN.LIL',
@@ -7643,6 +7744,21 @@ const LEXICON = [
       'CAD',
       'AHw'
     ],
+        etymology: {
+      protoForm: '',
+      protoLanguage: 'sumerian',
+      protoGloss: 'lord of the earth',
+      derivation: 'Akkadian Ea is the phonetic reading of the Sumerian god Enki (EN.KI), \'lord of the earth\'; the name\'s independent Akkadian etymology, if any, is unknown.',
+      certainty: 'disputed',
+      cognates: [
+        {
+          language: 'sumerian',
+          form: 'Enki (EN.KI)',
+          relationship: 'cognate',
+          note: 'Sumerian \'lord of the earth\' (CAD, Black-Green)'
+        }
+      ]
+    },
     breakdown: [
       {
         char: 'e',
@@ -11578,6 +11694,15 @@ const LEXICON = [
       'Faulkner',
       'Wb'
     ],
+        etymology: {
+      protoForm: '',
+      protoLanguage: 'egyptian',
+      protoGloss: 'perception, intellect',
+      derivation: 'From Egyptian sꜥ \'perception, intellect, divine understanding\'; the hieroglyphic spelling records consonants only.',
+      certainty: 'attested',
+      cognates: [
+      ]
+    },
     breakdown: [
       {
         char: 's',
@@ -11614,6 +11739,15 @@ const LEXICON = [
       'Faulkner',
       'Wb'
     ],
+        etymology: {
+      protoForm: '',
+      protoLanguage: 'egyptian',
+      protoGloss: 'emptiness, dryness, rising',
+      derivation: 'From Egyptian šw, associated with emptiness/dryness and the rising of light/air; the name denotes the god of wind and sunlight.',
+      certainty: 'attested',
+      cognates: [
+      ]
+    },
     breakdown: [
       {
         char: 's',
@@ -12218,7 +12352,8 @@ const LEXICON = [
       {
         unicode: 'Lóki',
         type: 'alt-stress',
-        note: 'Acute on o: alternate stress'
+        note: 'Acute on o: alternate stress',
+        sources: ['Cleasby-Vigfusson', 'Poetic Edda']
       }
     ]
   },
@@ -12299,6 +12434,21 @@ const LEXICON = [
       'MW',
       'KEWA'
     ],
+        etymology: {
+      protoForm: '*u̯er-',
+      protoLanguage: 'proto-indo-european',
+      protoGloss: 'to cover, bind, enclose',
+      derivation: 'Usually derived from Sanskrit vṛ- \'to cover, encompass\', with a proposed Proto-Indo-European root *u̯er- \'to cover, bind\'; the exact formation and prehistory remain disputed.',
+      certainty: 'disputed',
+      cognates: [
+        {
+          language: 'avestan',
+          form: 'Vourunaša / Vouruna',
+          relationship: 'cognate',
+          note: 'Iranian counterpart linked to waters and oaths (Avesta)'
+        }
+      ]
+    },
     breakdown: [
       {
         char: 'v',
@@ -12459,6 +12609,21 @@ const LEXICON = [
       'MW',
       'KEWA'
     ],
+        etymology: {
+      protoForm: '',
+      protoLanguage: 'unknown',
+      protoGloss: '',
+      derivation: 'From Sanskrit kālī-, feminine of kāla- \'black, dark; time\', meaning \'the black one\'; by folk etymology she is also \'Goddess of Time\'.',
+      certainty: 'attested',
+      cognates: [
+        {
+          language: 'sanskrit',
+          form: 'kāla-',
+          relationship: 'derivative',
+          note: '\'black, dark; time\' (MW, KEWA)'
+        }
+      ]
+    },
     breakdown: [
       {
         char: 'k',
@@ -16096,6 +16261,27 @@ const LEXICON = [
       'Hesiod',
       'LSJ'
     ],
+        etymology: {
+      protoForm: '*h₂eidh-',
+      protoLanguage: 'proto-indo-european',
+      protoGloss: 'to burn, blaze',
+      derivation: 'From Greek αἰθήρ \'bright upper air\', derived from αἴθω \'to burn, blaze\', continuing Proto-Indo-European *h₂eidh- \'to burn\'.',
+      certainty: 'attested',
+      cognates: [
+        {
+          language: 'greek',
+          form: 'αἴθω',
+          relationship: 'derivative',
+          note: '\'to burn, blaze\' (LSJ, Beekes)'
+        },
+        {
+          language: 'latin',
+          form: 'aedēs',
+          relationship: 'cognate',
+          note: '\'hearth, temple\' (Lewis-Short)'
+        }
+      ]
+    },
     breakdown: [
       {
         char: 'a',
@@ -21347,6 +21533,15 @@ const LEXICON = [
       'Faulkner',
       'Wb'
     ],
+        etymology: {
+      protoForm: '',
+      protoLanguage: 'egyptian',
+      protoGloss: 'magic, authoritative speech',
+      derivation: 'From Egyptian ḥkꜣ \'magic, first work\', the power of effective speech; the hieroglyphic spelling records consonants only.',
+      certainty: 'attested',
+      cognates: [
+      ]
+    },
     breakdown: [
       {
         char: 'h',
@@ -22479,9 +22674,25 @@ const LEXICON = [
       {
         unicode: 'Abzu',
         type: 'alt',
-        note: 'Sumerian form of the primordial freshwater abyss'
+        note: 'Sumerian form of the primordial freshwater abyss',
+        sources: ['ETCSL', 'Black-Green', 'Enuma Elish']
       }
     ],
+        etymology: {
+      protoForm: '',
+      protoLanguage: 'sumerian',
+      protoGloss: 'primeval freshwater abyss',
+      derivation: 'Akkadian Apsû is the Akkadian reading of Sumerian abzu (AB.ZU), the primeval freshwater abyss beneath the earth; the cuneiform signs are logographic.',
+      certainty: 'attested',
+      cognates: [
+        {
+          language: 'sumerian',
+          form: 'abzu (AB.ZU)',
+          relationship: 'cognate',
+          note: 'Sumerian \'abyss, primeval water\' (ETCSL, Black-Green)'
+        }
+      ]
+    },
     breakdown: [
       {
         char: 'a',
@@ -36864,6 +37075,27 @@ const LEXICON = [
       'MW',
       'RV'
     ],
+        etymology: {
+      protoForm: '',
+      protoLanguage: 'unknown',
+      protoGloss: '',
+      derivation: 'Sanskrit tatpuruṣa compound prajā- \'offspring, creatures\' + pati- \'lord, master\', meaning \'Lord of Creatures\'.',
+      certainty: 'attested',
+      cognates: [
+        {
+          language: 'sanskrit',
+          form: 'prajā-',
+          relationship: 'derivative',
+          note: '\'offspring, creatures\' (MW, RV)'
+        },
+        {
+          language: 'sanskrit',
+          form: 'pati-',
+          relationship: 'derivative',
+          note: '\'lord, master\' (MW, RV)'
+        }
+      ]
+    },
     breakdown: [
       {
         char: 'p',
@@ -44208,7 +44440,8 @@ const LEXICON = [
     variants: [
       { unicode: 'Baʿal', type: 'ideal', note: 'Ugaritic/Phoenician ʿayin (ʿ) is the ideal consonant, but is rejected by the DNS root zone' },
       { unicode: 'baꜥal', type: 'owned', note: 'Lowercase owned form' },
-      { unicode: 'Baál', type: 'alt', note: 'Stress-only alternate transliteration (previous Phoenician entry)' }
+      { unicode: 'Baál', type: 'alt', note: 'Stress-only alternate transliteration (previous Phoenician entry)',
+        sources: ['KAI', 'Coogan', 'CIS'] }
     ],
     etymology: {
       protoForm: '*baʿl-',
@@ -44320,7 +44553,8 @@ const LEXICON = [
     variants: [
       { unicode: 'ʿAnat', type: 'ideal', note: 'Ugaritic/Phoenician ʿayin (ʿ) is ideal but not registrable at the DNS root' },
       { unicode: 'ꜥanat', type: 'owned', note: 'Lowercase owned form' },
-      { unicode: 'Anát', type: 'alt', note: 'Stress-only alternate transliteration (previous Phoenician entry)' }
+      { unicode: 'Anát', type: 'alt', note: 'Stress-only alternate transliteration (previous Phoenician entry)',
+        sources: ['KTU', 'Coogan', 'De Moor'] }
     ],
     etymology: {
       protoForm: '*ʿanatu',
@@ -49768,8 +50002,30 @@ const LEXICON = [
     meaning: 'Truth, cosmic order, natural law. The Vedic principle of righteousness and universal harmony.',
     sources: ['\u1E5Cgveda', 'Br\u0101hma\u1E47as', 'Upani\u1E63ads'],
     variants: [
-      { unicode: 'Rita', type: 'alt', note: 'Older European convention (German philology)' }
+      { unicode: 'Rita', type: 'alt', note: 'Older European convention (German philology)',
+        sources: ['Monier-Williams', 'KEWA'] }
     ],
+        etymology: {
+      protoForm: '*ṛtá',
+      protoLanguage: 'proto-indo-iranian',
+      protoGloss: 'cosmic order, truth, what is fitting',
+      derivation: 'From Vedic ṛtá- \'cosmic order, truth\', continuing Proto-Indo-Iranian *ṛtá-, cognate with Avestan aṣ̌a and Latin rītus.',
+      certainty: 'attested',
+      cognates: [
+        {
+          language: 'avestan',
+          form: 'aṣ̌a',
+          relationship: 'cognate',
+          note: 'Avestan \'truth, righteousness\' (Avesta)'
+        },
+        {
+          language: 'latin',
+          form: 'rītus',
+          relationship: 'cognate',
+          note: '\'rite, religious custom\' (Lewis-Short)'
+        }
+      ]
+    },
     breakdown: [
       { char: 'r', to: '\u1E5A', type: 'special', note: 'Vocalic r — dot below marks syllabic /r/; capitalized in the restoration' },
       { char: 't', to: 't', type: 'same', note: 'Same' },
@@ -49791,6 +50047,15 @@ const LEXICON = [
     variants: [
       
     ],
+        etymology: {
+      protoForm: '',
+      protoLanguage: 'egyptian',
+      protoGloss: 'soul, manifestation',
+      derivation: 'From Egyptian bꜣ, written b-aleph, denoting the mobile aspect of the soul or personality; the original vocalization is unknown.',
+      certainty: 'attested',
+      cognates: [
+      ]
+    },
     breakdown: [
       { char: 'b', to: 'B', type: 'same', note: 'Same, capitalized' },
       { char: 'a', to: '\uA723', type: 'special', note: 'Egyptological aleph — glottal stop or specific vocalic quality' }
@@ -49811,6 +50076,15 @@ const LEXICON = [
     variants: [
       
     ],
+        etymology: {
+      protoForm: '',
+      protoLanguage: 'egyptian',
+      protoGloss: 'vital essence, double',
+      derivation: 'From Egyptian kꜣ, a term for the life-force or \'double\' created with a person; the hieroglyphic spelling records consonants only.',
+      certainty: 'attested',
+      cognates: [
+      ]
+    },
     breakdown: [
       { char: 'k', to: 'K', type: 'same', note: 'Same, capitalized' },
       { char: 'a', to: '\uA723', type: 'special', note: 'Egyptological aleph — glottal stop or specific vocalic quality' }
@@ -49829,9 +50103,32 @@ const LEXICON = [
     meaning: 'She of the womb. The planet Venus as deity. Queen of heaven.',
     sources: ['Ugaritic texts', 'CIS', 'KAI'],
     variants: [
-      { unicode: 'Ashtart', type: 'alt', note: 'Hebraic/Biblical form' },
-      { unicode: 'Astarte', type: 'alt', note: 'Greek-influenced form (Astarte)' }
+      { unicode: 'Ashtart', type: 'alt', note: 'Hebraic/Biblical form',
+        sources: ['KAI', 'Coogan', 'CIS'] },
+      { unicode: 'Astarte', type: 'alt', note: 'Greek-influenced form (Astarte)',
+        sources: ['KAI', 'Coogan', 'Smith'] }
     ],
+        etymology: {
+      protoForm: '*ʿaṯtart-',
+      protoLanguage: 'proto-semitic',
+      protoGloss: 'goddess of love, war, Venus',
+      derivation: 'The Phoenician theonym continues Common Semitic *ʿAṯtart-, reflected in Ugaritic ʿAṯrt, Akkadian Ištar, and Hebrew ʿAštōreṯ; it is associated with the planet Venus.',
+      certainty: 'attested',
+      cognates: [
+        {
+          language: 'ugaritic',
+          form: 'ʿAṯrt',
+          relationship: 'cognate',
+          note: 'Ugaritic goddess of fertility and war (Ugaritic texts)'
+        },
+        {
+          language: 'akkadian',
+          form: 'Ištar',
+          relationship: 'cognate',
+          note: 'Mesopotamian goddess of love and war (CAD)'
+        }
+      ]
+    },
     breakdown: [
       { char: 'a', to: 'A', type: 'same', note: 'Same, capitalized' },
       { char: 's', to: '\u0161', type: 'special', note: 'Caron marks voiceless postalveolar fricative /\u0283/' },
@@ -49894,6 +50191,15 @@ const LEXICON = [
       'Hesiod',
       'LSJ'
     ],
+        etymology: {
+      protoForm: '',
+      protoLanguage: 'unknown',
+      protoGloss: '',
+      derivation: 'Attested already in Mycenaean Greek (o-ke-a-no) and Homer as the river encircling the world; its ultimate origin is uncertain, with both Indo-European and pre-Greek derivations remaining disputed.',
+      certainty: 'disputed',
+      cognates: [
+      ]
+    },
     breakdown: [
       { char: 'o', to: 'Ō', type: 'length', note: 'Macron: long omega' },
       { char: 'k', to: 'k', type: 'same', note: 'Same' },
@@ -49918,6 +50224,15 @@ const LEXICON = [
     sources: [
       'Mapuche oral tradition'
     ],
+        etymology: {
+      protoForm: '',
+      protoLanguage: 'unknown',
+      protoGloss: '',
+      derivation: 'A Mapuche theonym for the thunder-and-war god; its formation is best explained as onomatopoeic or descriptive within Mapuche oral tradition, with no known external cognates.',
+      certainty: 'speculative',
+      cognates: [
+      ]
+    },
     breakdown: [
       { char: 't', to: 'T', type: 'same', note: 'Same' },
       { char: 'r', to: 'r', type: 'same', note: 'Same' },
@@ -49949,6 +50264,21 @@ const LEXICON = [
     variants: [
       
     ],
+        etymology: {
+      protoForm: '*ṛ́ta',
+      protoLanguage: 'proto-indo-iranian',
+      protoGloss: 'truth, cosmic order',
+      derivation: 'Avestan aša continues Proto-Iranian *ṛ́ta, the Iranian reflex of Proto-Indo-Iranian *ṛtá- \'cosmic order, truth\', cognate with Vedic ṛtá.',
+      certainty: 'attested',
+      cognates: [
+        {
+          language: 'sanskrit',
+          form: 'ṛtá',
+          relationship: 'cognate',
+          note: 'Vedic \'cosmic order, truth\' (Ṛgveda)'
+        }
+      ]
+    },
     breakdown: [
       {
         char: 'a',
@@ -49989,6 +50319,27 @@ const LEXICON = [
     variants: [
       
     ],
+        etymology: {
+      protoForm: '*u̯ēkʷ-s',
+      protoLanguage: 'proto-indo-european',
+      protoGloss: 'speech, voice',
+      derivation: 'From Vedic vāc- \'speech, voice\', continuing Proto-Indo-European *u̯ēkʷ-s \'speech, voice\', reflected in Latin vōx and Greek ἔπος.',
+      certainty: 'attested',
+      cognates: [
+        {
+          language: 'latin',
+          form: 'vōx',
+          relationship: 'cognate',
+          note: '\'voice\' (Lewis-Short)'
+        },
+        {
+          language: 'greek',
+          form: 'ἔπος',
+          relationship: 'cognate',
+          note: '\'word, speech\' (LSJ)'
+        }
+      ]
+    },
     breakdown: [
       {
         char: 'v',

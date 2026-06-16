@@ -31,7 +31,11 @@ const scripts = [
   'scripts/build-android-assets.js',
   'scripts/export-platform-lexicon.js',
   'scripts/sync-middleware-domains.js',
+  'scripts/sync-public-copy.js',
   'scripts/generate-temples.js',
+  'scripts/gen-sitemap.js',
+  'scripts/inject-analytics.js',
+  'scripts/update-data-version.js',
 ];
 
 function run(script) {

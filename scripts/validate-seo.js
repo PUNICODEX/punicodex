@@ -76,10 +76,16 @@ function checkPage(entry) {
   if (!html.includes('og:url')) {
     errors.push({ id: entry.id, issue: 'Missing og:url' });
   }
+  if (!html.includes('og:image')) {
+    errors.push({ id: entry.id, issue: 'Missing og:image' });
+  }
 
   // Check Twitter Card
   if (!html.includes('twitter:card')) {
     errors.push({ id: entry.id, issue: 'Missing twitter:card' });
+  }
+  if (!html.includes('twitter:image')) {
+    errors.push({ id: entry.id, issue: 'Missing twitter:image' });
   }
 
   // Check temple-base.css or styles.css

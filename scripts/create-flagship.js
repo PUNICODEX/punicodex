@@ -1693,8 +1693,9 @@ function buildEtymologySection(entry, catalogEntry) {
       return step + arrow;
     })
     .join('');
-  const note = etym.derivation
-    ? `<p class="etymology-note">${etym.derivation}</p>`
+  const etymNote = catalogEntry?.pronunciation?.note || etym.derivation || '';
+  const note = etymNote
+    ? `<p class="etymology-note">${etymNote}</p>`
     : `<p class="etymology-note">The name <strong>${entry.unicode}</strong> carries the orthographic signature of the ${entry.pantheon} tradition: ${greek}. Unicode restoration recovers what ASCII flattens.</p>`;
   const kin = catalogEntry?.pronunciation?.kin ? catalogEntry.pronunciation.kin : [];
   const derivativeGroups = [];
@@ -1952,15 +1953,108 @@ function buildSourcesSection(entry, catalogEntry) {
     hindu: 'The <em>Ṛgveda</em>; the <em>Brāhmaṇas</em>; early Upaniṣadic literature.',
     japanese: 'The <em>Kojiki</em>; the <em>Nihon Shoki</em>; shrine ritual records.',
   };
+  const lexKeys = ['LSJ', 'Beekes', 'Pape-Benseler', 'Chantraine', 'Faulkner', 'Budge', 'Watkins', 'West'];
+  const primaryPatterns = [
+    /Homer/,
+    /Hesiod/,
+    /Aeschylus/,
+    /Sophocles/,
+    /Euripides/,
+    /Pindar/,
+    /Pausanias/,
+    /Apollodorus/,
+    /Ovid/,
+    /Vergil/,
+    /Virgil/,
+    /Plato/,
+    /Cicero/,
+    /Homeric Hymn/,
+    /Orphic Hymn/,
+    /Theogony/,
+    /Works and Days/,
+    /Iliad/,
+    /Odyssey/,
+    /Library/,
+    /Metamorphoses/,
+    /Aeneid/,
+    /Phaedo/,
+    /Protagoras/,
+    /Republic/,
+    /Suppliants/,
+    /Eumenides/,
+    /Prometheus Bound/,
+    /Iphigenia/,
+    /Sappho/,
+  ];
+  const archaeologyPatterns = [
+    /Archaeology/,
+    /Art History/,
+    /Iconography/,
+    /Inscription/,
+    /Excavation/,
+    /Sanctuary/,
+    /Temple/,
+    /Vase/,
+    /Frieze/,
+    /Pergamon/,
+    /Parthenon/,
+    /Acropolis/,
+    /Eleusis/,
+    /Delphi/,
+    /Linear B/,
+    /Mycenaean/,
+    /Minoan/,
+    /Pylos/,
+    /Knossos/,
+    /Mycenae/,
+  ];
+
   const lexItems = (entry.sources || []).map((s) => sourceCitations[s] || `<cite>${s}</cite>`);
   if (!lexItems.length)
     lexItems.push(`<cite>Lexical and philological sources for ${entry.unicode}.</cite>`);
-  const primaryText =
-    primaryByPantheon[entry.pantheon] ||
-    `Primary sources in the ${entry.pantheon} tradition for ${entry.unicode}.`;
-  const extraSources = catalogEntry?.sources
-    ? catalogEntry.sources.map((s) => `<cite>${s}</cite>`)
-    : [];
+
+  let primaryItems = [];
+  let archaeologyItems = [];
+  let religiousItems = [];
+
+  if (catalogEntry?.sources && catalogEntry.sources.length > 0) {
+    for (const s of catalogEntry.sources) {
+      const name = (s.name || s).toString();
+      const cite = `<cite>${name}</cite>`;
+      if (lexKeys.includes(name)) continue;
+      if (primaryPatterns.some((p) => p.test(name))) {
+        primaryItems.push(cite);
+      } else if (archaeologyPatterns.some((p) => p.test(name))) {
+        archaeologyItems.push(cite);
+      } else {
+        religiousItems.push(cite);
+      }
+    }
+  }
+
+  if (!primaryItems.length) {
+    const primaryText =
+      primaryByPantheon[entry.pantheon] ||
+      `Primary sources in the ${entry.pantheon} tradition for ${entry.unicode}.`;
+    primaryItems.push(`<cite>${primaryText}</cite>`);
+  }
+
+  if (!archaeologyItems.length) {
+    archaeologyItems.push(
+      `<cite>Material evidence — iconography, inscriptions, and temple archaeology — for ${entry.unicode} and related cults.</cite>`
+    );
+  }
+
+  if (catalogEntry?.archaeology) {
+    archaeologyItems.push(`<cite>${catalogEntry.archaeology}</cite>`);
+  }
+
+  if (!religiousItems.length) {
+    religiousItems.push(
+      `<cite>Comparative studies of ${entry.pantheon} religion and the place of ${entry.unicode} within it.</cite>`
+    );
+  }
+
   return `<section class="section section-name" id="sources">
     <div class="section-bg-glow"></div>
     <div class="container">
@@ -1980,15 +2074,15 @@ function buildSourcesSection(entry, catalogEntry) {
                 </div>
                 <div class="source-category">
                     <h3>Primary Texts</h3>
-                    <ul class="source-list"><li><cite>${primaryText}</cite></li></ul>
+                    <ul class="source-list">${primaryItems.map((li) => `<li>${li}</li>`).join('')}</ul>
                 </div>
                 <div class="source-category">
                     <h3>Archaeology &amp; Art History</h3>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for ${entry.unicode} and related cults.</cite></li></ul>
+                    <ul class="source-list">${archaeologyItems.map((li) => `<li>${li}</li>`).join('')}</ul>
                 </div>
                 <div class="source-category">
                     <h3>Religious Studies</h3>
-                    <ul class="source-list">${extraSources.length ? extraSources.map((li) => `<li>${li}</li>`).join('') : `<li><cite>Comparative studies of ${entry.pantheon} religion and the place of ${entry.unicode} within it.</cite></li>`}</ul>
+                    <ul class="source-list">${religiousItems.map((li) => `<li>${li}</li>`).join('')}</ul>
                 </div>
             </div>
         </div>
@@ -2569,30 +2663,55 @@ function main() {
   const regenerateAll = args.includes('--regenerate-all');
 
   const EXTENDED_IDS = [
-    'aether',
+    'aither',
     'anat',
+    'apollon',
+    'aphrodite',
+    'ares',
+    'artemis',
     'asherah',
     'astart',
+    'athena',
+    'atlas',
     'ba',
     'baal',
     'chaos',
+    'demeter',
     'dionysos',
     'el',
-    'enki',
+    'ea',
     'enlil',
     'eros',
+    'gaia',
     'ganesha',
+    'hades',
+    'hekate',
     'heka',
+    'helios',
+    'hephaistos',
+    'hera',
+    'hermes',
+    'hestia',
     'horus',
     'ishtar',
     'kali',
+    'ker',
     'kronos',
+    'medousa',
+    'nike',
+    'okeanos',
+    'persephone',
+    'pontos',
+    'poseidon',
     'prajapati',
+    'prometheus',
     'rta',
+    'selene',
     'shu',
     'tartaros',
     'typhon',
     'vishnu',
+    'zeus',
   ];
 
   if (regenerateAll) {
