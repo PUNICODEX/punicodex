@@ -1,3 +1,36 @@
+/* ===== NÍKĒ CANVAS — The Triumph Unfolds ===== */
+/* Canvas layers:
+ * 1. Deep navy background
+ * 2. Golden ascending light rays
+ * 3. Rising victory sparks (gold/silver)
+ * 4. Speed streaks (diagonal upward)
+ * 5. Laurel leaves falling
+ * 6. Wing silhouettes
+ * 7. Star bursts
+ * 8. Swoosh arcs
+ */
+
+const canvas = document.getElementById('victory-canvas');
+const ctx = canvas ? canvas.getContext('2d') : null;
+
+let width, height, dpr;
+let mouseX = 0, mouseY = 0;
+let frameCount = 0;
+
+// Resize
+function resize() {
+    if (!canvas) return;
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    initElements();
+}
+
 // ========== BOOKING SYSTEM ==========
 const API_BASE = window.PUNYCODEX_API_BASE || ''; // Set window.PUNYCODEX_API_BASE in HTML if needed
 
