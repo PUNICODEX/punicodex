@@ -1,0 +1,109 @@
+#!/usr/bin/env node
+/**
+ * Inject analytics (GA4) and Google Search Console verification tags.
+ *
+ * Reads:
+ *   GA_MEASUREMENT_ID   — e.g. G-XXXXXXXXXX
+ *   GSC_VERIFICATION    — e.g. abcdefg123456
+ *
+ * If the env vars are not set, the script leaves existing markers in place
+ * but does not inject new ones, so local builds remain clean.
+ */
+
+const fs = require('fs');
+const path = require('path');
+
+const ROOT = path.join(__dirname, '..');
+const GA_ID = process.env.GA_MEASUREMENT_ID;
+const GSC = process.env.GSC_VERIFICATION;
+
+const MARKER_START = '<!-- PUNYCODEX-ANALYTICS-START -->';
+const MARKER_END = '<!-- PUNYCODEX-ANALYTICS-END -->';
+
+function buildSnippet() {
+  const parts = [];
+  if (GSC) {
+    parts.push(`<meta name="google-site-verification" content="${GSC}">`);
+  }
+  if (GA_ID) {
+    parts.push(
+      `<script async src="https://www.googletagmanager.com/gtag/js?id=${GA_ID}"></script>`,
+      `<script>`,
+      `  window.dataLayer = window.dataLayer || [];`,
+      `  function gtag(){dataLayer.push(arguments);}`,
+      `  gtag('js', new Date());`,
+      `  gtag('config', '${GA_ID}', { send_page_view: true });`,
+      `</script>`
+    );
+  }
+  if (parts.length === 0) return '';
+  return `\n${MARKER_START}\n${parts.join('\n')}\n${MARKER_END}\n`;
+}
+
+function walk(dir, callback) {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      walk(fullPath, callback);
+    } else if (entry.isFile() && entry.name.endsWith('.html')) {
+      callback(fullPath);
+    }
+  }
+}
+
+const snippet = buildSnippet();
+if (!snippet) {
+  console.log('No analytics env vars set (GA_MEASUREMENT_ID / GSC_VERIFICATION); skipping injection.');
+  process.exit(0);
+}
+
+const targets = [];
+walk(path.join(ROOT, 'sites'), (p) => targets.push(p));
+walk(path.join(ROOT, 'platform', 'public'), (p) => targets.push(p));
+
+const rootPages = [
+  'index.html',
+  'search.html',
+  'oracle.html',
+  path.join('about', 'index.html'),
+  path.join('contact', 'index.html'),
+  path.join('codex', 'index.html'),
+  path.join('store', 'index.html'),
+  path.join('pantheon', 'index.html'),
+  path.join('lexicon', 'index.html'),
+  path.join('lexicon', 'cognates.html'),
+  path.join('realms', 'index.html'),
+  path.join('tiers', 'index.html'),
+  path.join('type', 'index.html'),
+  path.join('type', 'test.html'),
+  path.join('terms', 'index.html'),
+  path.join('terms', 'advertising', 'index.html'),
+  path.join('privacy', 'index.html'),
+];
+for (const p of rootPages) {
+  const full = path.join(ROOT, p);
+  if (fs.existsSync(full)) targets.push(full);
+}
+
+let injected = 0;
+for (const filePath of targets) {
+  let html = fs.readFileSync(filePath, 'utf8');
+
+  // Remove any previously injected snippet.
+  const startIdx = html.indexOf(MARKER_START);
+  const endIdx = html.indexOf(MARKER_END);
+  if (startIdx !== -1 && endIdx !== -1) {
+    html = html.slice(0, startIdx) + html.slice(endIdx + MARKER_END.length);
+  }
+
+  // Inject immediately after <head>.
+  const headMatch = html.match(/<head[^>]*>/i);
+  if (!headMatch) continue;
+  const insertPos = headMatch.index + headMatch[0].length;
+  html = html.slice(0, insertPos) + snippet + html.slice(insertPos);
+
+  fs.writeFileSync(filePath, html, 'utf8');
+  injected++;
+}
+
+console.log(`Injected analytics snippet into ${injected} HTML files.`);

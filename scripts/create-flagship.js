@@ -1616,7 +1616,7 @@ function buildQuickFactsSection(entry, catalogEntry) {
   const symbols = catalogEntry?.symbols || [];
   const ipa = catalogEntry?.pronunciation?.ipa ? catalogEntry.pronunciation.ipa : '';
   const facts = [
-    { dt: getOriginalScriptLabel(entry), dd: hasOriginal ? greek : entry.unicode },
+    { dt: getOriginalScriptLabel(entry), dd: hasOriginal ? greek : entry.unicode, isScript: true },
     { dt: 'Unicode Restoration', dd: entry.unicode },
     {
       dt: 'Pantheon',
@@ -1640,7 +1640,10 @@ function buildQuickFactsSection(entry, catalogEntry) {
         .join(', '),
     });
   const rows = facts
-    .map((f) => `<div class="fact-item reveal-up"><dt>${f.dt}</dt><dd>${f.dd}</dd></div>`)
+    .map(
+      (f) =>
+        `<div class="fact-card reveal-up"><span class="fact-label">${f.dt}</span><span class="fact-value ${f.isScript ? 'script' : ''}">${f.dd}</span></div>`
+    )
     .join('');
   return `<section class="section section-name" id="quick-facts">
     <div class="section-bg-glow"></div>
@@ -1651,7 +1654,7 @@ function buildQuickFactsSection(entry, catalogEntry) {
             <p class="section-subtitle">Essential information about ${entry.unicode}, ${entry.domain}</p>
         </div>
         <div class="facts-grid reveal-up">
-            <dl class="facts-list">${rows}</dl>
+            <div class="facts-list">${rows}</div>
         </div>
     </div>
 </section>`;
@@ -1684,13 +1687,14 @@ function buildEtymologySection(entry, catalogEntry) {
   steps.push({ lang: 'Modern ASCII', form: entry.ascii, gloss: 'Plain-ASCII fallback' });
   const chain = steps
     .map((s, i) => {
-      const step = `<div class="etymology-step reveal-up" ${i > 0 ? `data-delay="${i * 100}"` : ''}>
-      <span class="etym-lang">${s.lang}</span>
-      <span class="etym-form">${s.form}</span>
-      <span class="etym-gloss">${s.gloss}</span>
+      const step = `<div class="etymology-step reveal-up" data-step="${i + 1}" ${i > 0 ? `data-delay="${i * 100}"` : ''}>
+      <div class="etym-step-content">
+        <span class="etym-lang">${s.lang}</span>
+        <span class="etym-form">${s.form}</span>
+        <span class="etym-gloss">${s.gloss}</span>
+      </div>
     </div>`;
-      const arrow = i < steps.length - 1 ? '<div class="etym-arrow">↓</div>' : '';
-      return step + arrow;
+      return step;
     })
     .join('');
   const etymNote = catalogEntry?.pronunciation?.note || etym.derivation || '';
@@ -1740,7 +1744,7 @@ function buildEtymologySection(entry, catalogEntry) {
         </div>
         <div class="etymology-content">
             <div class="etymology-main reveal-up">
-                <div class="etymology-chain">${chain}</div>
+                <div class="etymology-timeline">${chain}</div>
                 ${note}
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
@@ -1831,7 +1835,7 @@ function buildCulturalSignificanceSection(entry, catalogEntry) {
   const grid = cards
     .map(
       (c, i) =>
-        `<article class="cultural-card reveal-up" ${i > 0 ? `data-delay="${i * 100}"` : ''}><h3 class="cultural-card-title">${c.title}</h3><p class="cultural-card-body">${c.body}</p></article>`
+        `<article class="cultural-card reveal-up ${i === 0 ? 'feature-card' : ''}" ${i > 0 ? `data-delay="${i * 100}"` : ''}><h3 class="cultural-card-title">${c.title}</h3><p class="cultural-card-body">${c.body}</p></article>`
     )
     .join('');
   return `<section class="section section-name" id="cultural-significance">
@@ -1907,7 +1911,7 @@ function buildFaqSection(entry, catalogEntry) {
   const faqs = items
     .map(
       (it, i) =>
-        `<details class="faq-item reveal-up" ${i === 0 ? 'open' : ''}><summary class="faq-question">${it.q}</summary><div class="faq-answer"><p>${it.a}</p></div></details>`
+        `<details class="faq-item reveal-up" ${i === 0 ? 'open' : ''}><summary class="faq-question"><span class="faq-number">${String(i + 1).padStart(2, '0')}</span>${it.q}</summary><div class="faq-answer"><p>${it.a}</p></div></details>`
     )
     .join('');
   return `<section class="section section-victory" id="faq">
@@ -2055,6 +2059,24 @@ function buildSourcesSection(entry, catalogEntry) {
     );
   }
 
+  const sourceCategories = [
+    { title: 'Lexicography & Philology', icon: '◈', items: lexItems },
+    { title: 'Primary Texts', icon: '◎', items: primaryItems },
+    { title: 'Archaeology & Art History', icon: '◉', items: archaeologyItems },
+    { title: 'Religious Studies', icon: '✦', items: religiousItems },
+  ];
+  const categoryGrid = sourceCategories
+    .map(
+      (cat) => `<div class="source-category reveal-up">
+                    <div class="source-category-header">
+                        <span class="source-icon">${cat.icon}</span>
+                        <h3>${cat.title}</h3>
+                    </div>
+                    <ul class="source-list">${cat.items.map((li) => `<li>${li}</li>`).join('')}</ul>
+                </div>`
+    )
+    .join('');
+
   return `<section class="section section-name" id="sources">
     <div class="section-bg-glow"></div>
     <div class="container">
@@ -2067,24 +2089,7 @@ function buildSourcesSection(entry, catalogEntry) {
             <div class="sources-intro">
                 <p>Every claim on this page is grounded in established scholarship. The orthographic restorations follow disciplinary convention. The etymological chain follows the best available reference works. This is not invention — it is <strong>resurrection through scholarship.</strong></p>
             </div>
-            <div class="sources-grid">
-                <div class="source-category">
-                    <h3>Lexicography &amp; Philology</h3>
-                    <ul class="source-list">${lexItems.map((li) => `<li>${li}</li>`).join('')}</ul>
-                </div>
-                <div class="source-category">
-                    <h3>Primary Texts</h3>
-                    <ul class="source-list">${primaryItems.map((li) => `<li>${li}</li>`).join('')}</ul>
-                </div>
-                <div class="source-category">
-                    <h3>Archaeology &amp; Art History</h3>
-                    <ul class="source-list">${archaeologyItems.map((li) => `<li>${li}</li>`).join('')}</ul>
-                </div>
-                <div class="source-category">
-                    <h3>Religious Studies</h3>
-                    <ul class="source-list">${religiousItems.map((li) => `<li>${li}</li>`).join('')}</ul>
-                </div>
-            </div>
+            <div class="sources-grid">${categoryGrid}</div>
         </div>
     </div>
 </section>`;

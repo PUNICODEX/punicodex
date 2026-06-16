@@ -1,0 +1,591 @@
+/**
+ * PÚNYCODEX — Extended Lore Visual System
+ * Shared premium styling for flagship extended-lore pages.
+ * Loaded after the per-site styles.css and enhances the scholarly sections.
+ */
+
+/* ─── Section-scoped reset: override the cramped defaults ─── */
+.section#quick-facts .facts-grid,
+.section#etymology .etymology-content,
+.section#unicode-breakdown .breakdown-table,
+.section#cultural-significance .cultural-grid,
+.section#faq .faq-list,
+.section#sources .sources-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ─── Section ornament: small accent line under headers ─── */
+.section#quick-facts .section-header,
+.section#etymology .section-header,
+.section#unicode-breakdown .section-header,
+.section#cultural-significance .section-header,
+.section#faq .section-header,
+.section#sources .section-header {
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.section-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--primary) 30%, transparent);
+  background: color-mix(in srgb, var(--primary) 8%, transparent);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: 0.04em;
+  line-height: 1.15;
+}
+
+.section-subtitle {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: var(--white-dim);
+  max-width: 700px;
+  margin-top: 0.75rem;
+}
+
+/* ─── Quick Facts: stat-card grid ─── */
+.section#quick-facts .facts-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  background: none;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
+}
+
+.fact-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(20,20,20,0.9), rgba(8,8,8,0.95));
+  border: 1px solid color-mix(in srgb, var(--primary) 12%, transparent);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: all 0.4s var(--ease-out-expo);
+  overflow: hidden;
+}
+
+.fact-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--primary-bright), var(--primary));
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.fact-card:hover {
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--primary) 30%, transparent);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.45), 0 0 40px color-mix(in srgb, var(--primary) 12%, transparent);
+}
+
+.fact-card:hover::before { opacity: 1; }
+
+.fact-label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+  margin-bottom: 0.75rem;
+}
+
+.fact-value {
+  display: block;
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--white);
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.fact-value.script {
+  font-family: var(--font-greek);
+  font-size: 1.6rem;
+  color: var(--primary);
+}
+
+/* ─── Etymology: horizontal timeline ─── */
+.etymology-content {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.etymology-main {
+  background: linear-gradient(135deg, rgba(20,20,20,0.9), rgba(8,8,8,0.95));
+  border: 1px solid color-mix(in srgb, var(--primary) 12%, transparent);
+  border-radius: 20px;
+  padding: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+.etymology-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+  position: relative;
+  padding-left: 0;
+}
+
+.etymology-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0.75rem;
+  bottom: 0.75rem;
+  left: 1.15rem;
+  width: 2px;
+  background: linear-gradient(180deg, var(--primary), color-mix(in srgb, var(--primary) 20%, transparent));
+  border-radius: 2px;
+}
+
+.etymology-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: 1rem;
+  align-items: start;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  border: none;
+}
+
+.etymology-step::before {
+  content: attr(data-step);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--primary) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary) 40%, transparent);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  color: var(--primary);
+  position: relative;
+  z-index: 2;
+  align-self: center;
+  margin: 0 auto;
+}
+
+.etym-step-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+}
+
+.etym-lang {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+}
+
+.etym-form {
+  font-family: var(--font-greek);
+  font-size: 1.5rem;
+  color: var(--primary);
+  line-height: 1.2;
+}
+
+.etym-gloss {
+  font-size: 0.85rem;
+  color: var(--white-dim);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.etymology-note {
+  font-size: 1rem;
+  color: var(--white);
+  line-height: 1.85;
+  padding: 1.25rem;
+  background: color-mix(in srgb, var(--primary) 5%, transparent);
+  border-left: 3px solid var(--primary);
+  border-radius: 0 12px 12px 0;
+  font-style: normal;
+}
+
+.etymology-note strong { color: var(--primary-bright); }
+
+.derivatives-sidebar {
+  background: linear-gradient(135deg, rgba(20,20,20,0.9), rgba(8,8,8,0.95));
+  border: 1px solid color-mix(in srgb, var(--primary) 12%, transparent);
+  border-radius: 20px;
+  padding: clamp(1.75rem, 4vw, 2.25rem);
+  position: sticky;
+  top: 100px;
+}
+
+.derivatives-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--primary) 15%, transparent);
+  letter-spacing: 0.04em;
+}
+
+.derivative-group h4 {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+}
+
+.derivative-group li {
+  font-size: 0.9rem;
+  padding-left: 1.25rem;
+  line-height: 1.7;
+}
+
+.derivative-group li::before {
+  content: '›';
+  font-size: 1rem;
+  top: -0.1rem;
+}
+
+/* ─── Unicode Breakdown: elegant data table ─── */
+.section#unicode-breakdown .breakdown-table {
+  background: linear-gradient(135deg, rgba(20,20,20,0.9), rgba(8,8,8,0.95));
+  border: 1px solid color-mix(in srgb, var(--primary) 12%, transparent);
+  border-radius: 20px;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.char-table {
+  font-size: 0.9rem;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.char-table thead {
+  background: color-mix(in srgb, var(--primary) 10%, transparent);
+  border-bottom: 2px solid color-mix(in srgb, var(--primary) 30%, transparent);
+}
+
+.char-table th {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  padding: 1rem 1rem;
+  color: var(--primary);
+}
+
+.char-table tbody tr {
+  transition: background 0.25s ease;
+}
+
+.char-table tbody tr:hover {
+  background: color-mix(in srgb, var(--primary) 5%, transparent);
+}
+
+.char-table td {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.char-cell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.75rem;
+  height: 2.75rem;
+  background: color-mix(in srgb, var(--primary) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary) 25%, transparent);
+  border-radius: 10px;
+  font-family: var(--font-greek);
+  font-size: 1.4rem;
+  color: var(--primary);
+}
+
+.char-table code {
+  background: rgba(0,0,0,0.3);
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  color: var(--primary-bright);
+}
+
+.breakdown-note {
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  text-align: left;
+  padding: 1rem 1.25rem;
+  background: color-mix(in srgb, var(--primary) 5%, transparent);
+  border-radius: 12px;
+  border-left: 3px solid var(--primary);
+}
+
+/* ─── Cultural Significance: masonry-style cards ─── */
+.cultural-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.cultural-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(20,20,20,0.9), rgba(8,8,8,0.95));
+  border: 1px solid color-mix(in srgb, var(--primary) 12%, transparent);
+  border-radius: 20px;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  transition: all 0.4s var(--ease-out-expo);
+  overflow: hidden;
+}
+
+.cultural-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle at top right, color-mix(in srgb, var(--primary) 12%, transparent), transparent 70%);
+  pointer-events: none;
+}
+
+.cultural-card:hover {
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--primary) 30%, transparent);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.45), 0 0 40px color-mix(in srgb, var(--primary) 10%, transparent);
+}
+
+.cultural-card.feature-card {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.cultural-card.feature-card .cultural-card-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.cultural-card.feature-card .cultural-card-body {
+  font-size: 1rem;
+  line-height: 1.85;
+}
+
+.cultural-card-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 0.875rem;
+  letter-spacing: 0.03em;
+  line-height: 1.3;
+}
+
+.cultural-card-body {
+  font-size: 0.95rem;
+  color: var(--white-dim);
+  line-height: 1.85;
+}
+
+.cultural-card-body strong { color: var(--white); }
+.cultural-card-body em { color: var(--primary-bright); }
+
+/* ─── FAQ: refined accordion ─── */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.faq-item {
+  background: linear-gradient(135deg, rgba(20,20,20,0.9), rgba(8,8,8,0.95));
+  border: 1px solid color-mix(in srgb, var(--primary) 12%, transparent);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+  border-color: color-mix(in srgb, var(--primary) 25%, transparent);
+}
+
+.faq-question {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--white);
+  padding: 1.25rem 1.5rem;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  transition: color 0.2s;
+}
+
+.faq-question::-webkit-details-marker { display: none; }
+
+.faq-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--primary) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary) 30%, transparent);
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  color: var(--primary);
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+.faq-question::after {
+  content: '+';
+  font-size: 1.4rem;
+  color: var(--primary);
+  margin-left: auto;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.faq-item[open] .faq-question::after {
+  content: '−';
+  transform: rotate(0);
+}
+
+.faq-item[open] .faq-question { color: var(--primary); }
+
+.faq-answer {
+  padding: 1rem 1.5rem 1.5rem 4.5rem;
+  font-size: 1rem;
+  color: var(--white-dim);
+  line-height: 1.85;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  margin: 0;
+}
+
+.faq-answer p { margin: 0; }
+.faq-answer strong { color: var(--white); }
+
+/* ─── Sources: category cards with icons ─── */
+.sources-intro {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 3rem;
+  font-size: 1.1rem;
+  line-height: 1.85;
+  color: var(--white-dim);
+  font-style: italic;
+}
+
+.sources-intro strong {
+  color: var(--primary);
+  font-style: normal;
+}
+
+.sources-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.source-category {
+  background: linear-gradient(135deg, rgba(20,20,20,0.9), rgba(8,8,8,0.95));
+  border: 1px solid color-mix(in srgb, var(--primary) 12%, transparent);
+  border-radius: 20px;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  transition: all 0.4s ease;
+}
+
+.source-category:hover {
+  border-color: color-mix(in srgb, var(--primary) 30%, transparent);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+}
+
+.source-category-header {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--primary) 12%, transparent);
+}
+
+.source-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--primary) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary) 30%, transparent);
+  font-size: 1.1rem;
+}
+
+.source-category h3 {
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  margin: 0;
+  padding: 0;
+  border: none;
+  color: var(--primary);
+}
+
+.source-list { gap: 0.875rem; }
+.source-list li {
+  font-size: 0.9rem;
+  line-height: 1.75;
+  padding-left: 1.25rem;
+}
+.source-list li::before {
+  content: '•';
+  font-size: 0.8rem;
+  top: 0.25rem;
+}
+
+/* ─── Responsive adjustments ─── */
+@media (max-width: 1024px) {
+  .etymology-content { grid-template-columns: 1fr; }
+  .derivatives-sidebar { position: static; }
+  .cultural-grid { grid-template-columns: 1fr 1fr; }
+  .cultural-card.feature-card {
+    grid-column: span 2;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .section#quick-facts .facts-list { grid-template-columns: 1fr; }
+  .cultural-grid { grid-template-columns: 1fr; }
+  .cultural-card.feature-card { grid-column: span 1; }
+  .sources-grid { grid-template-columns: 1fr; }
+  .faq-answer { padding: 1rem 1.25rem 1.25rem; margin: 0 1rem 1rem; }
+  .faq-question { padding: 1.1rem 1.25rem; font-size: 0.95rem; }
+}
