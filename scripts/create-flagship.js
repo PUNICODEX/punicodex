@@ -31,6 +31,33 @@ const {
 
 const LORE_STUBS = require(path.join(__dirname, 'lore-stubs.js'));
 
+const BESPOKE_EFFECTS = (() => {
+  try {
+    return require(path.join(TEMPLATE_DIR, 'effects', 'effects.json'));
+  } catch {
+    return {};
+  }
+})();
+
+function getBespokeEffectJs(id) {
+  const meta = BESPOKE_EFFECTS[id];
+  if (!meta) return null;
+  try {
+    return fs.readFileSync(path.join(TEMPLATE_DIR, 'effects', `${id}.js`), 'utf8');
+  } catch {
+    return null;
+  }
+}
+
+function applyBespokeCanvas(html, id, primary, secondary) {
+  const canvasId = BESPOKE_EFFECTS[id]?.canvasId;
+  if (!canvasId) return html;
+  return html.replace(
+    /<canvas\s+id="[^"]*-canvas"\s+data-effect="[^"]*"\s+data-primary="[^"]*"\s+data-secondary="[^"]*"><\/canvas>/g,
+    `<canvas id="${canvasId}" class="hero-canvas" data-primary="${primary}" data-secondary="${secondary}"></canvas>`
+  );
+}
+
 const SLOT_TYPES = [
   'Crown',
   'Column',
@@ -805,6 +832,10 @@ function buildCss(palette) {
 function buildScript(templeId) {
   let js = fs.readFileSync(path.join(TEMPLATE_DIR, 'flagship.js'), 'utf8');
   js = js.replace(/\{\{TEMPLE_ID\}\}/g, templeId);
+  const bespoke = getBespokeEffectJs(templeId);
+  if (bespoke) {
+    js = `${bespoke.trimEnd()}\n\n${js}`;
+  }
   return js;
 }
 
@@ -2302,6 +2333,7 @@ function generateHomePage(entry, palette, slotNames, templateDir) {
     vars[`SLOT_OFFSET_${String(i + 1).padStart(2, '0')}`] = String(52 + i + 1).padStart(2, '0');
   }
   html = replacePlaceholders(html, vars);
+  html = applyBespokeCanvas(html, templeId, palette.primary, palette.secondary);
   if (!hasRealGreek(entry)) html = stripPlaceholderGreek(html, entry.unicode);
 
   // Optional full-bleed phenomenon background behind the mascot (e.g. Aša)
@@ -2536,6 +2568,7 @@ function generateLorePage(entry, palette, loreSections, templateDir, catalog) {
   vars.EXTENDED_TAB = buildExtendedTab('lore', entry.id);
 
   html = replacePlaceholders(html, vars);
+  html = applyBespokeCanvas(html, entry.id, palette.primary, palette.secondary);
   if (!hasRealGreek(entry)) html = stripPlaceholderGreek(html, entry.unicode);
   return html;
 }
@@ -2595,6 +2628,7 @@ function generateGalleryPage(entry, palette, templateDir) {
     EXTENDED_TAB: buildExtendedTab('gallery', entry.id),
   };
   html = replacePlaceholders(html, vars);
+  html = applyBespokeCanvas(html, templeId, palette.primary, palette.secondary);
   if (!hasRealGreek(entry)) html = stripPlaceholderGreek(html, entry.unicode);
   return html;
 }
@@ -2625,6 +2659,7 @@ function generateExtendedPage(entry, palette, templateDir, catalog) {
     FOOTER: buildZeusFooter(entry, '../../'),
   };
   html = replacePlaceholders(html, vars);
+  html = applyBespokeCanvas(html, entry.id, palette.primary, palette.secondary);
   if (!hasRealGreek(entry)) html = stripPlaceholderGreek(html, entry.unicode);
   return html;
 }
