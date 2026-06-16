@@ -1963,7 +1963,16 @@ function buildSourcesSection(entry, catalogEntry) {
     hindu: 'The <em>Ṛgveda</em>; the <em>Brāhmaṇas</em>; early Upaniṣadic literature.',
     japanese: 'The <em>Kojiki</em>; the <em>Nihon Shoki</em>; shrine ritual records.',
   };
-  const lexKeys = ['LSJ', 'Beekes', 'Pape-Benseler', 'Chantraine', 'Faulkner', 'Budge', 'Watkins', 'West'];
+  const lexKeys = [
+    'LSJ',
+    'Beekes',
+    'Pape-Benseler',
+    'Chantraine',
+    'Faulkner',
+    'Budge',
+    'Watkins',
+    'West',
+  ];
   const primaryPatterns = [
     /Homer/,
     /Hesiod/,
@@ -2139,9 +2148,9 @@ function buildSourcesSection(entry, catalogEntry) {
   if (!lexItems.length)
     lexItems.push(`<cite>Lexical and philological sources for ${entry.unicode}.</cite>`);
 
-  let primaryItems = [];
-  let archaeologyItems = [];
-  let religiousItems = [];
+  const primaryItems = [];
+  const archaeologyItems = [];
+  const religiousItems = [];
 
   if (catalogEntry?.sources && catalogEntry.sources.length > 0) {
     for (const s of catalogEntry.sources) {

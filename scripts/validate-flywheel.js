@@ -23,6 +23,11 @@ const PATHS = {
   mobileLexicon: path.join(ROOT, 'mobile', 'shared', 'lexicon.js'),
   androidLexicon: path.join(ROOT, 'android', 'app', 'src', 'main', 'assets', 'shared', 'lexicon.json'),
   rendererLexicon: path.join(ROOT, 'platform', 'browser', 'renderer', 'lexicon.json'),
+  loreCatalog: path.join(ROOT, 'scripts', 'lore-catalog.json'),
+  rendererLoreCatalog: path.join(ROOT, 'platform', 'browser', 'renderer', 'lore-catalog.json'),
+  extLoreCatalog: path.join(ROOT, 'extension', 'shared', 'lore-catalog.json'),
+  mobileLoreCatalog: path.join(ROOT, 'mobile', 'shared', 'lore-catalog.json'),
+  typeLoreCatalog: path.join(ROOT, 'type', 'js', 'lore-catalog.json'),
   dbInit: path.join(ROOT, 'platform', 'db', 'init.js'),
 };
 
@@ -365,6 +370,76 @@ if (jsonEqual(androidRaw, expectedAndroid)) {
   pass('Android lexicon.json derives correctly from canonical lexicon');
 } else {
   fail('Android lexicon.json diverges from canonical lexicon');
+}
+
+// ── 4b. Generated lore catalog copies ──────────────────────────────────────
+console.log('\n▸ Generated Lore Catalog Copies');
+
+function loadLoreCatalog() {
+  if (!fs.existsSync(PATHS.loreCatalog)) return null;
+  return JSON.parse(fs.readFileSync(PATHS.loreCatalog, 'utf8'));
+}
+
+function stripHtml(html) {
+  if (typeof html !== 'string') return html;
+  return html
+    .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
+    .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function cleanLoreValue(value, key) {
+  if (typeof value === 'string') {
+    const stripKeys = ['lead', 'text', 'desc', 'syncretism', 'culturalLegacy', 'archaeology', 'note', 'meaning'];
+    if (stripKeys.includes(key)) return stripHtml(value);
+    return value;
+  }
+  if (Array.isArray(value)) return value.map((item) => cleanLoreValue(item, key));
+  if (value && typeof value === 'object') {
+    const out = {};
+    for (const [k, v] of Object.entries(value)) {
+      out[k] = cleanLoreValue(v, k);
+    }
+    return out;
+  }
+  return value;
+}
+
+function cleanLoreForComparison(lore) {
+  if (!lore || typeof lore !== 'object') return lore;
+  const out = {};
+  for (const [id, entry] of Object.entries(lore)) {
+    if (id.startsWith('_')) continue;
+    out[id] = cleanLoreValue(entry, id);
+  }
+  return out;
+}
+
+const canonicalLore = loadLoreCatalog();
+if (canonicalLore === null) {
+  warn('Canonical lore catalog not found at scripts/lore-catalog.json');
+} else {
+  const expectedClean = cleanLoreForComparison(canonicalLore);
+  const loreConsumers = [
+    { name: 'Renderer', path: PATHS.rendererLoreCatalog },
+    { name: 'Extension', path: PATHS.extLoreCatalog },
+    { name: 'Mobile', path: PATHS.mobileLoreCatalog },
+    { name: 'Type Tool', path: PATHS.typeLoreCatalog },
+  ];
+  for (const { name, path: p } of loreConsumers) {
+    if (!fs.existsSync(p)) {
+      fail(`${name} lore catalog missing at ${p}`);
+      continue;
+    }
+    const consumer = JSON.parse(fs.readFileSync(p, 'utf8'));
+    if (jsonEqual(cleanLoreForComparison(consumer), expectedClean)) {
+      pass(`${name} lore catalog derives from canonical`);
+    } else {
+      fail(`${name} lore catalog diverges from canonical`);
+    }
+  }
 }
 
 // ── 5. Renderer lexicon JSON ───────────────────────────────────────────────

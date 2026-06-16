@@ -30,6 +30,7 @@ const scripts = [
   'scripts/sync-shared-engine.js',
   'scripts/build-android-assets.js',
   'scripts/export-platform-lexicon.js',
+  'scripts/export-lore-catalog.js',
   'scripts/sync-middleware-domains.js',
   'scripts/sync-public-copy.js',
   'scripts/generate-temples.js',

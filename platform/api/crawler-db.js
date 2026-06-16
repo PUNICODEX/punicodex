@@ -5,6 +5,14 @@ const { getDbPath } = require('../db/db');
 const { searchKeywords } = require('./keyword-extractor');
 const { rankResults, listVariants } = require('./ranker');
 
+// Load clean flagship lore catalog (generated from scripts/lore-catalog.json)
+let LORE_CATALOG = {};
+try {
+  LORE_CATALOG = require('../browser/renderer/lore-catalog.json');
+} catch (_e) {
+  // Catalog may be absent during initial setup.
+}
+
 const DB_PATH = getDbPath();
 let db;
 
@@ -1067,6 +1075,7 @@ function getKnowledgePanelData(q) {
       etymology: entry.etymology,
       notes: entry.notes,
     },
+    lore: LORE_CATALOG[entry.id] || null,
     sites,
     related,
   };

@@ -16,6 +16,7 @@ const CANONICAL_FILES = {
   sourceCatalog: 'type/js/source-catalog.js',
   archetypes: 'js/archetypes-v2.js',
   ownedDomains: 'platform/db/owned-domains.json',
+  loreCatalog: 'scripts/lore-catalog.json',
 };
 
 function hashFile(rel) {

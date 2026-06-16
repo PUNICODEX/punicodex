@@ -128,6 +128,50 @@
         }
       }
     },
+    "/names/{id}/lore": {
+      "get": {
+        "summary": "Get flagship narrative lore",
+        "operationId": "getLore",
+        "parameters": [{ "$ref": "#/components/parameters/PathId" }],
+        "responses": {
+          "200": { "$ref": "#/components/responses/LoreResponse" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/names/{id}/pronunciation": {
+      "get": {
+        "summary": "Get pronunciation guide",
+        "operationId": "getPronunciation",
+        "parameters": [{ "$ref": "#/components/parameters/PathId" }],
+        "responses": {
+          "200": { "$ref": "#/components/responses/PronunciationResponse" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/names/{id}/mythology": {
+      "get": {
+        "summary": "Get mythology section",
+        "operationId": "getMythology",
+        "parameters": [{ "$ref": "#/components/parameters/PathId" }],
+        "responses": {
+          "200": { "$ref": "#/components/responses/MythologyResponse" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/names/{id}/archaeology": {
+      "get": {
+        "summary": "Get archaeology section",
+        "operationId": "getArchaeology",
+        "parameters": [{ "$ref": "#/components/parameters/PathId" }],
+        "responses": {
+          "200": { "$ref": "#/components/responses/ArchaeologyResponse" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
     "/pantheons": {
       "get": {
         "summary": "List pantheons",
@@ -370,6 +414,22 @@
       },
       "SlotsResponse": {
         "description": "Ad slot inventory",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+      },
+      "LoreResponse": {
+        "description": "Flagship narrative lore",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+      },
+      "PronunciationResponse": {
+        "description": "Pronunciation guide",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+      },
+      "MythologyResponse": {
+        "description": "Mythology section",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+      },
+      "ArchaeologyResponse": {
+        "description": "Archaeology section",
         "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
       },
       "PantheonsResponse": {

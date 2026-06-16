@@ -43,6 +43,7 @@
     const resultVariants = document.getElementById('result-variants');
     const resultSources = document.getElementById('result-sources');
     const resultDomainStatus = document.getElementById('result-domain-status');
+    const resultLore = document.getElementById('result-lore');
     const copyBtn = document.getElementById('copy-btn');
     const starBtn = document.getElementById('star-btn');
     const shareTypeBtn = document.getElementById('share-type-btn');
@@ -129,6 +130,10 @@
     // Performance: domain status cache
     const domainCache = new Map();
 
+    // Lore catalog
+    let loreCatalog = null;
+    let loreCatalogPromise = null;
+
     // Performance: directory virtualization
     let dirObserver = null;
     let dirVirtualItems = [];
@@ -156,6 +161,22 @@
             clearTimeout(t);
             t = setTimeout(() => fn(...args), ms);
         };
+    }
+
+    function loadLoreCatalog() {
+        if (loreCatalog) return Promise.resolve(loreCatalog);
+        if (loreCatalogPromise) return loreCatalogPromise;
+        loreCatalogPromise = fetch('shared/lore-catalog.json')
+            .then(res => res.ok ? res.json() : {})
+            .then(data => {
+                loreCatalog = data || {};
+                return loreCatalog;
+            })
+            .catch(() => {
+                loreCatalog = {};
+                return loreCatalog;
+            });
+        return loreCatalogPromise;
     }
 
     function showToast(msg, type = 'default') {
@@ -726,6 +747,27 @@
         });
     }
 
+    function renderLore(entry) {
+        if (!resultLore || !loreCatalog) return;
+        const lore = loreCatalog[entry.id];
+        if (!lore) {
+            resultLore.classList.add('hidden');
+            return;
+        }
+        let html = '<div class="result-lore-header">Flagship Lore</div>';
+        if (lore.summary) {
+            html += `<div class="result-lore-section"><div class="result-lore-title">Overview</div><p>${esc(lore.summary)}</p></div>`;
+        }
+        if (lore.pronunciation && lore.pronunciation.guide) {
+            html += `<div class="result-lore-section"><div class="result-lore-title">Pronunciation</div><p>${esc(lore.pronunciation.guide)}</p></div>`;
+        }
+        if (lore.mythology && lore.mythology.summary) {
+            html += `<div class="result-lore-section"><div class="result-lore-title">Mythology</div><p>${esc(lore.mythology.summary)}</p></div>`;
+        }
+        resultLore.innerHTML = html;
+        resultLore.classList.remove('hidden');
+    }
+
     async function renderResult() {
         const entry = findExactMatch(currentInput);
         currentTypeEntry = entry;
@@ -738,6 +780,10 @@
         resultMeaning.textContent = entry.meaning || '';
         resultSources.innerHTML = entry.sources.map(src => `<span class="source-badge">${esc(src)}</span>`).join('');
         renderVariants(entry);
+        if (resultLore) {
+            resultLore.classList.add('hidden');
+            loadLoreCatalog().then(() => renderLore(entry));
+        }
 
         const favorited = isFavorite(entry.id);
         starBtn.querySelector('.action-icon').textContent = favorited ? '★' : '☆';

@@ -46,6 +46,7 @@
     const resultSources = document.getElementById('result-sources');
     const resultEtymology = document.getElementById('result-etymology');
     const resultEtymologyRow = document.getElementById('result-etymology-row');
+    const resultLore = document.getElementById('result-lore');
     const copyBtn = document.getElementById('copy-btn');
     const clearBtn = document.getElementById('clear-btn');
     const pantheonFilter = document.getElementById('pantheon-filter');
@@ -74,6 +75,8 @@
     let isComposing = false;
     let activeCompletionIndex = -1;
     let debounceTimer = null;
+    let loreCatalog = null;
+    let loreCatalogPromise = null;
 
     // ═══════════════════════════════════════════════════════════
     // URL STATE SYNC
@@ -122,6 +125,22 @@
 
     function nfc(str) {
         return PUNYCODEX_ENGINE.nfc(str);
+    }
+
+    function loadLoreCatalog() {
+        if (loreCatalog) return Promise.resolve(loreCatalog);
+        if (loreCatalogPromise) return loreCatalogPromise;
+        loreCatalogPromise = fetch('js/lore-catalog.json')
+            .then(res => res.ok ? res.json() : {})
+            .then(data => {
+                loreCatalog = data || {};
+                return loreCatalog;
+            })
+            .catch(() => {
+                loreCatalog = {};
+                return loreCatalog;
+            });
+        return loreCatalogPromise;
     }
 
     function getCompletions(prefix, limit = CONFIG.maxCompletions) {
@@ -368,6 +387,28 @@
         }
     }
 
+    function renderLore(entry) {
+        if (!resultLore || !loreCatalog) return;
+        const lore = loreCatalog[entry.id];
+        if (!lore) {
+            resultLore.classList.add('hidden');
+            return;
+        }
+
+        let html = '<div class="result-lore-header">Flagship Lore</div>';
+        if (lore.summary) {
+            html += `<div class="result-lore-section"><div class="result-lore-title">Overview</div><p>${escapeHtml(lore.summary)}</p></div>`;
+        }
+        if (lore.pronunciation && lore.pronunciation.guide) {
+            html += `<div class="result-lore-section"><div class="result-lore-title">Pronunciation</div><p>${escapeHtml(lore.pronunciation.guide)}</p></div>`;
+        }
+        if (lore.mythology && lore.mythology.summary) {
+            html += `<div class="result-lore-section"><div class="result-lore-title">Mythology</div><p>${escapeHtml(lore.mythology.summary)}</p><a href="/sites/${entry.id}/lore.html" target="_blank" rel="noopener" class="result-lore-link">Read full lore →</a></div>`;
+        }
+        resultLore.innerHTML = html;
+        resultLore.classList.remove('hidden');
+    }
+
     function renderResult() {
         const entry = selectedEntry || findExactMatch(currentInput);
         if (!entry) {
@@ -462,6 +503,11 @@
             resultSources.innerHTML = entry.sources.map(src =>
                 `<span class="source-badge">${escapeHtml(src)}</span>`
             ).join('');
+        }
+
+        if (resultLore) {
+            resultLore.classList.add('hidden');
+            loadLoreCatalog().then(() => renderLore(entry));
         }
 
         resultEl.classList.remove('hidden');

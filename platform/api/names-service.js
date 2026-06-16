@@ -27,6 +27,14 @@ const searchApi = require('./search.js');
 const crawlerDb = require('./crawler-db.js');
 const bookings = require('./bookings.js');
 
+// Load clean flagship lore catalog (generated from scripts/lore-catalog.json)
+let LORE_CATALOG = {};
+try {
+  LORE_CATALOG = require('../../platform/browser/renderer/lore-catalog.json');
+} catch (_e) {
+  // Catalog may be absent during initial setup; fall back to empty object.
+}
+
 // Build trie once per process
 const trie = PUNYCODEX_ENGINE.buildTrie(LEXICON);
 const entriesById = new Map(LEXICON.map((e) => [e.id, e]));
@@ -190,6 +198,7 @@ function transformEntryDetail(row) {
     availability,
     hasFlagship: Boolean(row.has_flagship),
     links: buildLinks(row.id),
+    lore: LORE_CATALOG[row.id] || null,
   };
 }
 
@@ -543,6 +552,54 @@ function convertBatch(params) {
   };
 }
 
+function getLore(id) {
+  const entry = entriesById.get(id);
+  if (!entry) return null;
+  const lore = LORE_CATALOG[id] || null;
+  return {
+    id,
+    hasLore: Boolean(lore),
+    lore,
+    links: buildLinks(id),
+  };
+}
+
+function getPronunciation(id) {
+  const entry = entriesById.get(id);
+  if (!entry) return null;
+  const lore = LORE_CATALOG[id];
+  return {
+    id,
+    hasPronunciation: Boolean(lore?.pronunciation),
+    pronunciation: lore?.pronunciation || null,
+    links: buildLinks(id),
+  };
+}
+
+function getMythology(id) {
+  const entry = entriesById.get(id);
+  if (!entry) return null;
+  const lore = LORE_CATALOG[id];
+  return {
+    id,
+    hasMythology: Boolean(lore?.mythology),
+    mythology: lore?.mythology || null,
+    links: buildLinks(id),
+  };
+}
+
+function getArchaeology(id) {
+  const entry = entriesById.get(id);
+  if (!entry) return null;
+  const lore = LORE_CATALOG[id];
+  return {
+    id,
+    hasArchaeology: Boolean(lore?.archaeology),
+    archaeology: lore?.archaeology || null,
+    links: buildLinks(id),
+  };
+}
+
 module.exports = {
   listNames,
   getName,
@@ -553,6 +610,10 @@ module.exports = {
   getAvailability,
   getSite,
   getSlots,
+  getLore,
+  getPronunciation,
+  getMythology,
+  getArchaeology,
   listPantheons,
   getPantheon,
   listTiers,

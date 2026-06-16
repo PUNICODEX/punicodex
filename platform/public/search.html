@@ -745,6 +745,49 @@
     .kp-badge.tier-2 { background: rgba(135, 174, 232, 0.12); color: var(--tier-2); }
     .kp-badge.pantheon { background: var(--surface-hover); color: var(--text-dim); border: 1px solid var(--border); text-transform: capitalize; }
 
+    .kp-lore {
+      margin-top: 1rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .kp-lore-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.5rem;
+    }
+
+    .kp-lore-text {
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: var(--text);
+    }
+
+    .kp-lore-text p {
+      margin: 0 0 0.5rem;
+    }
+
+    .kp-lore-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .kp-lore-cta {
+      margin-top: 0.6rem;
+    }
+
+    .kp-lore-cta a {
+      font-size: 0.8rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .kp-lore-cta a:hover {
+      text-decoration: underline;
+    }
+
     .kp-sites {
       margin-top: 1rem;
       padding-top: 0.75rem;
@@ -1827,6 +1870,26 @@
         html += `<span class="kp-badge ${tierClass}">${tierLabel}</span>`;
         html += `<span class="kp-badge pantheon">${escapeHtml(e.pantheon)}</span>`;
         html += `</div></div></div>`;
+
+        const lore = knowledgePanel.lore;
+        if (lore) {
+          if (lore.summary) {
+            html += `<div class="kp-lore"><div class="kp-lore-title">Overview</div>`;
+            html += `<div class="kp-lore-text">${escapeHtml(lore.summary)}</div>`;
+            html += `</div>`;
+          }
+          if (lore.pronunciation && lore.pronunciation.guide) {
+            html += `<div class="kp-lore"><div class="kp-lore-title">Pronunciation</div>`;
+            html += `<div class="kp-lore-text">${escapeHtml(lore.pronunciation.guide)}</div>`;
+            html += `</div>`;
+          }
+          if (lore.mythology && lore.mythology.summary) {
+            html += `<div class="kp-lore"><div class="kp-lore-title">Mythology</div>`;
+            html += `<div class="kp-lore-text">${escapeHtml(lore.mythology.summary)}</div>`;
+            html += `<div class="kp-lore-cta"><a href="/sites/${e.id}/lore.html" target="_blank" rel="noopener">Read full lore →</a></div>`;
+            html += `</div>`;
+          }
+        }
 
         if (knowledgePanel.sites && knowledgePanel.sites.length) {
           html += `<div class="kp-sites"><div class="kp-sites-title">Live Sites</div><div class="kp-site-list">`;
