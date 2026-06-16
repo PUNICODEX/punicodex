@@ -8,9 +8,9 @@
   },
   "scripts": {
     "test": "node test/run-all.js",
-    "db": "node platform/db/init.js && node platform/db/migrate-crawler.js && node platform/db/migrate-booking.js && node platform/db/migrate-booking-v2.js && node platform/db/migrate-trial-columns.js && node platform/db/migrate-ai-columns.js && node platform/db/migrate-api-keys.js",
+    "db": "node platform/db/init.js && node platform/db/migrate-crawler.js && node platform/db/migrate-booking.js && node platform/db/migrate-booking-v2.js && node platform/db/migrate-trial-columns.js && node platform/db/migrate-ai-columns.js && node platform/db/migrate-entity-mentions.js && node platform/db/migrate-api-keys.js",
     "platform": "node platform/server.js",
-    "db-init": "node platform/db/init.js && node platform/db/migrate-crawler.js && node platform/db/migrate-booking.js && node platform/db/migrate-booking-v2.js && node platform/db/migrate-trial-columns.js && node platform/db/migrate-ai-columns.js && node platform/db/migrate-api-keys.js",
+    "db-init": "node platform/db/init.js && node platform/db/migrate-crawler.js && node platform/db/migrate-booking.js && node platform/db/migrate-booking-v2.js && node platform/db/migrate-trial-columns.js && node platform/db/migrate-ai-columns.js && node platform/db/migrate-entity-mentions.js && node platform/db/migrate-api-keys.js",
     "trial-reminders": "node platform/scripts/trial-reminders.js",
     "enrich-entries": "node platform/scripts/enrich-entries.js",
     "curator": "node platform/scripts/ai-curator.js",

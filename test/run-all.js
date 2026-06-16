@@ -19,6 +19,7 @@ const C = {
 const SUITES = [
   { name: 'Lexicon Validator', cmd: 'node type/js/validate.js' },
   { name: 'Engine Unit Tests', cmd: 'node type/js/test-engine.js' },
+  { name: 'Oracle Tests', cmd: 'node test/oracle.test.js' },
   { name: 'API v1 Integration Tests', cmd: 'node test/api-v1.test.js' },
   { name: 'Link Checker', cmd: 'node test/links.js' },
   { name: 'SEO Validator', cmd: 'node scripts/validate-seo.js' },

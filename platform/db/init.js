@@ -31,6 +31,7 @@ db.exec(`
     etymology TEXT,
     variants TEXT,
     has_flagship INTEGER DEFAULT 0,
+    confidence_score REAL DEFAULT 0,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
   );
 

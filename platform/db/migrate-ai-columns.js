@@ -12,6 +12,7 @@ const columns = [
   { name: 'ai_relevance_today', def: 'TEXT' },
   { name: 'ai_enriched_at', def: 'TEXT' },
   { name: 'ai_review_status', def: "TEXT DEFAULT 'pending'" },
+  { name: 'confidence_score', def: 'REAL DEFAULT 0' },
 ];
 
 const existing = db

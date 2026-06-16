@@ -217,7 +217,7 @@ db.exec(`
   CREATE TABLE IF NOT EXISTS entity_mentions (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     site_id INTEGER NOT NULL,
-    entry_id INTEGER NOT NULL,
+    entry_id TEXT NOT NULL,
     mention_count INTEGER DEFAULT 1,
     contexts TEXT,
     pantheon TEXT,
