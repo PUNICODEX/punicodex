@@ -1081,6 +1081,667 @@
         draw();
     }
 
+    // ─── EFFECT: TYPHON STORM ────────────────────────────────────────────────
+    function typhonStorm(canvas, ctx, width, height, primary, secondary) {
+        const serpents = [];
+        const sparks = [];
+        for (let i = 0; i < 7; i++) {
+            serpents.push({
+                x: Math.random() * width,
+                y: height + randomRange(20, 100),
+                amp: randomRange(30, 70),
+                freq: randomRange(0.005, 0.012),
+                phase: Math.random() * Math.PI * 2,
+                speed: randomRange(0.8, 1.6),
+                length: randomRange(height * 0.6, height * 0.9)
+            });
+        }
+        let lightning = 0;
+        let t = 0;
+        function draw() {
+            ctx.fillStyle = 'rgba(12, 6, 6, 0.25)';
+            ctx.fillRect(0, 0, width, height);
+
+            serpents.forEach(s => {
+                s.y -= s.speed;
+                if (s.y < -s.length) s.y = height + randomRange(20, 80);
+                ctx.strokeStyle = `rgba(${primary.r}, ${primary.g}, ${primary.b}, 0.25)`;
+                ctx.lineWidth = 4;
+                ctx.beginPath();
+                for (let ly = 0; ly < s.length; ly += 8) {
+                    const x = s.x + Math.sin((s.y + ly) * s.freq + s.phase + t * 0.02) * s.amp * (ly / s.length);
+                    const y = s.y + ly;
+                    if (ly === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+            });
+
+            if (Math.random() < 0.012) lightning = randomRange(0.25, 0.6);
+            if (lightning > 0.01) {
+                ctx.strokeStyle = `rgba(255, 240, 200, ${lightning})`;
+                ctx.lineWidth = 2;
+                ctx.shadowBlur = 18;
+                ctx.shadowColor = `rgba(255, 120, 80, ${lightning})`;
+                ctx.beginPath();
+                let lx = randomRange(width * 0.2, width * 0.8);
+                let ly = 0;
+                ctx.moveTo(lx, ly);
+                while (ly < height * 0.7) {
+                    lx += randomRange(-50, 50);
+                    ly += randomRange(30, 70);
+                    ctx.lineTo(lx, ly);
+                }
+                ctx.stroke();
+                ctx.shadowBlur = 0;
+                lightning *= 0.82;
+            }
+
+            if (Math.random() < 0.08) {
+                sparks.push({
+                    x: Math.random() * width,
+                    y: height + 10,
+                    vx: randomRange(-1, 1),
+                    vy: randomRange(-3, -6),
+                    life: 1
+                });
+            }
+            for (let i = sparks.length - 1; i >= 0; i--) {
+                const sp = sparks[i];
+                sp.x += sp.vx;
+                sp.y += sp.vy;
+                sp.life -= 0.015;
+                if (sp.life <= 0) {
+                    sparks.splice(i, 1);
+                    continue;
+                }
+                ctx.fillStyle = `rgba(${secondary.r}, ${secondary.g}, ${secondary.b}, ${sp.life})`;
+                ctx.beginPath();
+                ctx.arc(sp.x, sp.y, 1.5, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            t++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: KALI DANCE ──────────────────────────────────────────────────
+    function kaliDance(canvas, ctx, width, height, primary, secondary) {
+        const flames = [];
+        const skulls = [];
+        const swords = [];
+        for (let i = 0; i < 40; i++) {
+            flames.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                size: randomRange(10, 30),
+                speedY: randomRange(-1, -3),
+                opacity: Math.random() * 0.4 + 0.1
+            });
+        }
+        let t = 0;
+        function draw() {
+            ctx.fillStyle = 'rgba(8, 2, 4, 0.3)';
+            ctx.fillRect(0, 0, width, height);
+
+            flames.forEach(f => {
+                f.y += f.speedY;
+                f.x += Math.sin(t * 0.03 + f.y * 0.01) * 0.5;
+                if (f.y < -f.size) f.y = height + f.size;
+                ctx.fillStyle = `rgba(${primary.r}, ${primary.g}, ${primary.b}, ${f.opacity})`;
+                ctx.beginPath();
+                ctx.moveTo(f.x, f.y);
+                ctx.lineTo(f.x - f.size * 0.3, f.y + f.size);
+                ctx.lineTo(f.x + f.size * 0.3, f.y + f.size);
+                ctx.closePath();
+                ctx.fill();
+            });
+
+            if (Math.random() < 0.02) {
+                skulls.push({
+                    x: Math.random() * width,
+                    y: height + 20,
+                    size: randomRange(6, 12),
+                    speedY: randomRange(-0.5, -1.5),
+                    life: 1
+                });
+            }
+            for (let i = skulls.length - 1; i >= 0; i--) {
+                const s = skulls[i];
+                s.y += s.speedY;
+                s.life -= 0.008;
+                if (s.life <= 0) {
+                    skulls.splice(i, 1);
+                    continue;
+                }
+                ctx.strokeStyle = `rgba(${secondary.r}, ${secondary.g}, ${secondary.b}, ${s.life * 0.5})`;
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+                ctx.moveTo(s.x - s.size * 0.4, s.y + s.size * 0.2);
+                ctx.lineTo(s.x + s.size * 0.4, s.y + s.size * 0.2);
+                ctx.stroke();
+            }
+
+            if (Math.random() < 0.015) {
+                swords.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    length: randomRange(40, 90),
+                    angle: randomRange(-Math.PI / 6, Math.PI / 6),
+                    life: 1
+                });
+            }
+            for (let i = swords.length - 1; i >= 0; i--) {
+                const sw = swords[i];
+                sw.life -= 0.025;
+                if (sw.life <= 0) {
+                    swords.splice(i, 1);
+                    continue;
+                }
+                ctx.save();
+                ctx.translate(sw.x, sw.y);
+                ctx.rotate(sw.angle);
+                ctx.strokeStyle = `rgba(220, 220, 220, ${sw.life * 0.5})`;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(0, -sw.length / 2);
+                ctx.lineTo(0, sw.length / 2);
+                ctx.stroke();
+                ctx.restore();
+            }
+
+            t++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: VISHNU OCEAN ────────────────────────────────────────────────
+    function vishnuOcean(canvas, ctx, width, height, primary, secondary) {
+        const waves = [];
+        for (let i = 0; i < 6; i++) {
+            waves.push({
+                y: height * (0.4 + i * 0.1),
+                amp: randomRange(15, 35),
+                freq: randomRange(0.003, 0.008),
+                phase: Math.random() * Math.PI * 2,
+                speed: randomRange(0.005, 0.015)
+            });
+        }
+        const serpent = [];
+        let t = 0;
+        function draw() {
+            ctx.fillStyle = 'rgba(4, 10, 24, 0.25)';
+            ctx.fillRect(0, 0, width, height);
+
+            waves.forEach((w, idx) => {
+                const r = Math.round(primary.r * (1 - idx / 5) + secondary.r * (idx / 5));
+                const g = Math.round(primary.g * (1 - idx / 5) + secondary.g * (idx / 5));
+                const b = Math.round(primary.b * (1 - idx / 5) + secondary.b * (idx / 5));
+                ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${0.08 + idx * 0.04})`;
+                ctx.lineWidth = 2 + idx * 0.5;
+                ctx.beginPath();
+                for (let x = 0; x <= width; x += 10) {
+                    const y = w.y + Math.sin(x * w.freq + w.phase + t * w.speed) * w.amp;
+                    if (x === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+            });
+
+            const serpY = height * 0.5;
+            ctx.strokeStyle = `rgba(${secondary.r}, ${secondary.g}, ${secondary.b}, 0.35)`;
+            ctx.lineWidth = 6;
+            ctx.beginPath();
+            for (let x = 0; x <= width; x += 15) {
+                const y = serpY + Math.sin(x * 0.01 + t * 0.01) * (height * 0.08);
+                if (x === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+
+            ctx.fillStyle = `rgba(${secondary.r}, ${secondary.g}, ${secondary.b}, 0.15)`;
+            for (let i = 0; i < 5; i++) {
+                const cx = width * 0.5 + Math.cos(t * 0.005 + i * 1.2) * width * 0.25;
+                const cy = height * 0.48 + Math.sin(t * 0.005 + i * 1.2) * height * 0.1;
+                ctx.beginPath();
+                ctx.arc(cx, cy, 4 + i * 2, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            t++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: HORUS SUN ───────────────────────────────────────────────────
+    function horusSun(canvas, ctx, width, height, primary, secondary) {
+        const rays = [];
+        const wings = [];
+        const rayCount = 24;
+        for (let i = 0; i < rayCount; i++) {
+            rays.push({
+                angle: (i / rayCount) * Math.PI * 2,
+                length: randomRange(80, 160),
+                pulse: Math.random() * Math.PI * 2
+            });
+        }
+        let t = 0;
+        function draw() {
+            ctx.fillStyle = 'rgba(10, 10, 6, 0.25)';
+            ctx.fillRect(0, 0, width, height);
+
+            const cx = width * 0.5;
+            const cy = height * 0.35;
+            const discR = 50 + Math.sin(t * 0.02) * 4;
+
+            rays.forEach(r => {
+                const pulse = 0.8 + 0.2 * Math.sin(t * 0.03 + r.pulse);
+                ctx.strokeStyle = `rgba(${primary.r}, ${primary.g}, ${primary.b}, ${0.1 * pulse})`;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(cx + Math.cos(r.angle) * discR, cy + Math.sin(r.angle) * discR);
+                ctx.lineTo(cx + Math.cos(r.angle) * r.length * pulse, cy + Math.sin(r.angle) * r.length * pulse);
+                ctx.stroke();
+            });
+
+            ctx.fillStyle = `rgba(${primary.r}, ${primary.g}, ${primary.b}, 0.25)`;
+            ctx.beginPath();
+            ctx.arc(cx, cy, discR, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.strokeStyle = `rgba(${secondary.r}, ${secondary.g}, ${secondary.b}, 0.3)`;
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(cx, cy + discR * 0.4, discR * 0.4, 0, Math.PI);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(cx - discR * 0.25, cy + discR * 0.25, discR * 0.08, 0, Math.PI * 2);
+            ctx.arc(cx + discR * 0.25, cy + discR * 0.25, discR * 0.08, 0, Math.PI * 2);
+            ctx.stroke();
+
+            if (Math.random() < 0.03) {
+                wings.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    size: randomRange(20, 50),
+                    life: 1
+                });
+            }
+            for (let i = wings.length - 1; i >= 0; i--) {
+                const w = wings[i];
+                w.life -= 0.01;
+                if (w.life <= 0) {
+                    wings.splice(i, 1);
+                    continue;
+                }
+                ctx.strokeStyle = `rgba(${primary.r}, ${primary.g}, ${primary.b}, ${w.life * 0.25})`;
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                ctx.moveTo(w.x - w.size, w.y);
+                ctx.quadraticCurveTo(w.x, w.y - w.size * 0.5, w.x + w.size, w.y);
+                ctx.stroke();
+            }
+
+            t++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: GANESHA BLESSING ────────────────────────────────────────────
+    function ganeshaBlessing(canvas, ctx, width, height, primary, secondary) {
+        const petals = [];
+        const oms = [];
+        for (let i = 0; i < 50; i++) {
+            petals.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                size: randomRange(4, 10),
+                rotation: Math.random() * Math.PI * 2,
+                rotSpeed: randomRange(-0.02, 0.02),
+                speedY: randomRange(0.3, 1)
+            });
+        }
+        let t = 0;
+        function draw() {
+            ctx.fillStyle = 'rgba(10, 8, 6, 0.25)';
+            ctx.fillRect(0, 0, width, height);
+
+            petals.forEach(p => {
+                p.y += p.speedY;
+                p.rotation += p.rotSpeed;
+                if (p.y > height + 10) p.y = -10;
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate(p.rotation);
+                ctx.fillStyle = `rgba(${primary.r}, ${primary.g}, ${primary.b}, 0.35)`;
+                ctx.beginPath();
+                ctx.ellipse(0, 0, p.size, p.size * 0.5, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            });
+
+            if (Math.random() < 0.02) {
+                oms.push({
+                    x: Math.random() * width,
+                    y: height + 20,
+                    size: randomRange(16, 30),
+                    life: 1,
+                    speedY: randomRange(-0.5, -1.2)
+                });
+            }
+            for (let i = oms.length - 1; i >= 0; i--) {
+                const o = oms[i];
+                o.y += o.speedY;
+                o.life -= 0.005;
+                if (o.life <= 0) {
+                    oms.splice(i, 1);
+                    continue;
+                }
+                ctx.font = `${o.size}px serif`;
+                ctx.fillStyle = `rgba(${secondary.r}, ${secondary.g}, ${secondary.b}, ${o.life * 0.35})`;
+                ctx.fillText('ॐ', o.x, o.y);
+            }
+
+            t++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: CHAOS VOID ──────────────────────────────────────────────────
+    function chaosVoid(canvas, ctx, width, height, primary, secondary) {
+        const motes = [];
+        const count = Math.min(80, Math.floor((width * height) / 22000));
+        for (let i = 0; i < count; i++) {
+            motes.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                size: Math.random() * 2 + 0.5,
+                angle: Math.random() * Math.PI * 2,
+                radius: Math.random() * 200 + 50,
+                speed: Math.random() * 0.002 + 0.0005,
+                opacity: Math.random() * 0.3 + 0.05,
+                color: Math.random() > 0.7 ? secondary : primary
+            });
+        }
+        let t = 0;
+        function draw() {
+            ctx.fillStyle = 'rgba(4, 4, 6, 0.25)';
+            ctx.fillRect(0, 0, width, height);
+
+            const cx = width * 0.5;
+            const cy = height * 0.5;
+            motes.forEach(m => {
+                const r = m.radius * (0.8 + 0.2 * Math.sin(t * 0.005));
+                const x = cx + Math.cos(m.angle + t * m.speed) * r;
+                const y = cy + Math.sin(m.angle + t * m.speed) * r * 0.5;
+                ctx.beginPath();
+                ctx.arc(x, y, m.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${m.color.r}, ${m.color.g}, ${m.color.b}, ${m.opacity})`;
+                ctx.fill();
+            });
+
+            t++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: TARTAROS PRISON ─────────────────────────────────────────────
+    function tartarosPrison(canvas, ctx, width, height, primary, secondary) {
+        const sparks = [];
+        const chains = [];
+        for (let i = 0; i < 5; i++) {
+            chains.push({
+                x: (i + 0.5) * (width / 5),
+                y: -20,
+                length: height + 40,
+                sway: Math.random() * Math.PI * 2
+            });
+        }
+        let t = 0;
+        function draw() {
+            ctx.fillStyle = 'rgba(6, 4, 4, 0.3)';
+            ctx.fillRect(0, 0, width, height);
+
+            chains.forEach(c => {
+                ctx.strokeStyle = `rgba(${primary.r}, ${primary.g}, ${primary.b}, 0.15)`;
+                ctx.lineWidth = 4;
+                ctx.beginPath();
+                for (let y = 0; y < c.length; y += 12) {
+                    const x = c.x + Math.sin(y * 0.02 + c.sway + t * 0.01) * 6;
+                    if (y === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+                for (let y = 20; y < c.length; y += 60) {
+                    const x = c.x + Math.sin(y * 0.02 + c.sway + t * 0.01) * 6;
+                    ctx.strokeStyle = `rgba(${primary.r}, ${primary.g}, ${primary.b}, 0.2)`;
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    ctx.arc(x, y, 10, 0, Math.PI * 2);
+                    ctx.stroke();
+                }
+            });
+
+            if (Math.random() < 0.04) {
+                sparks.push({
+                    x: Math.random() * width,
+                    y: 0,
+                    vy: randomRange(1, 3),
+                    life: 1
+                });
+            }
+            for (let i = sparks.length - 1; i >= 0; i--) {
+                const s = sparks[i];
+                s.y += s.vy;
+                s.life -= 0.008;
+                if (s.life <= 0 || s.y > height) {
+                    sparks.splice(i, 1);
+                    continue;
+                }
+                ctx.fillStyle = `rgba(${secondary.r}, ${secondary.g}, ${secondary.b}, ${s.life})`;
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, 2, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            t++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: ENLIL STORM ─────────────────────────────────────────────────
+    function enlilStorm(canvas, ctx, width, height, primary, secondary) {
+        const wind = [];
+        for (let i = 0; i < 60; i++) {
+            wind.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                length: randomRange(40, 120),
+                speed: randomRange(4, 10),
+                opacity: Math.random() * 0.3 + 0.1
+            });
+        }
+        let lightning = 0;
+        let t = 0;
+        function draw() {
+            ctx.fillStyle = 'rgba(14, 12, 10, 0.25)';
+            ctx.fillRect(0, 0, width, height);
+
+            ctx.strokeStyle = `rgba(${secondary.r}, ${secondary.g}, ${secondary.b}, 0.25)`;
+            ctx.lineWidth = 1;
+            wind.forEach(w => {
+                w.x += w.speed;
+                if (w.x > width + w.length) w.x = -w.length;
+                ctx.beginPath();
+                ctx.moveTo(w.x, w.y);
+                ctx.lineTo(w.x - w.length, w.y);
+                ctx.stroke();
+            });
+
+            const grad = ctx.createLinearGradient(0, height * 0.55, 0, height);
+            grad.addColorStop(0, `rgba(${primary.r}, ${primary.g}, ${primary.b}, 0.1)`);
+            grad.addColorStop(1, `rgba(${primary.r}, ${primary.g}, ${primary.b}, 0.35)`);
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            ctx.moveTo(0, height);
+            ctx.lineTo(width * 0.15, height * 0.65);
+            ctx.lineTo(width * 0.4, height * 0.55);
+            ctx.lineTo(width * 0.65, height * 0.62);
+            ctx.lineTo(width * 0.85, height * 0.58);
+            ctx.lineTo(width, height * 0.7);
+            ctx.lineTo(width, height);
+            ctx.closePath();
+            ctx.fill();
+
+            if (Math.random() < 0.006) lightning = randomRange(0.2, 0.5);
+            if (lightning > 0.01) {
+                ctx.fillStyle = `rgba(255, 250, 230, ${lightning})`;
+                ctx.fillRect(0, 0, width, height);
+                lightning *= 0.85;
+            }
+
+            t++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: ASHERAH TREE ────────────────────────────────────────────────
+    function asherahTree(canvas, ctx, width, height, primary, secondary) {
+        const branches = [];
+        const waves = [];
+        const branchCount = 7;
+        for (let i = 0; i < branchCount; i++) {
+            branches.push({
+                x: (i + 0.5) * (width / branchCount),
+                y: height + randomRange(20, 60),
+                height: randomRange(height * 0.5, height * 0.8),
+                sway: Math.random() * Math.PI * 2,
+                speed: randomRange(0.005, 0.012)
+            });
+        }
+        for (let i = 0; i < 4; i++) {
+            waves.push({
+                y: height * (0.55 + i * 0.12),
+                amp: randomRange(10, 25),
+                freq: randomRange(0.004, 0.009),
+                phase: Math.random() * Math.PI * 2,
+                speed: randomRange(0.005, 0.01)
+            });
+        }
+        let t = 0;
+        function draw() {
+            ctx.fillStyle = 'rgba(8, 8, 12, 0.25)';
+            ctx.fillRect(0, 0, width, height);
+
+            branches.forEach(b => {
+                ctx.strokeStyle = `rgba(${primary.r}, ${primary.g}, ${primary.b}, 0.35)`;
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                for (let y = 0; y < b.height; y += 8) {
+                    const x = b.x + Math.sin(y * 0.008 + b.sway + t * b.speed) * (20 * (y / b.height));
+                    const py = height - y;
+                    if (y === 0) ctx.moveTo(x, py);
+                    else ctx.lineTo(x, py);
+                }
+                ctx.stroke();
+                for (let y = 40; y < b.height; y += 50) {
+                    const x = b.x + Math.sin(y * 0.008 + b.sway + t * b.speed) * (20 * (y / b.height));
+                    const py = height - y;
+                    ctx.fillStyle = `rgba(${secondary.r}, ${secondary.g}, ${secondary.b}, 0.35)`;
+                    ctx.beginPath();
+                    ctx.ellipse(x, py, 6, 3, 0, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            });
+
+            waves.forEach((w, idx) => {
+                ctx.strokeStyle = `rgba(${secondary.r}, ${secondary.g}, ${secondary.b}, ${0.08 + idx * 0.03})`;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                for (let x = 0; x <= width; x += 10) {
+                    const y = w.y + Math.sin(x * w.freq + w.phase + t * w.speed) * w.amp;
+                    if (x === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+            });
+
+            t++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // ─── EFFECT: APSU ABYSS ──────────────────────────────────────────────────
+    function apsuAbyss(canvas, ctx, width, height, primary, secondary) {
+        const bubbles = [];
+        const plankton = [];
+        for (let i = 0; i < 40; i++) {
+            bubbles.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                size: randomRange(2, 6),
+                speed: randomRange(0.5, 2),
+                opacity: Math.random() * 0.4 + 0.1
+            });
+        }
+        for (let i = 0; i < 30; i++) {
+            plankton.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                size: randomRange(1, 3),
+                pulse: Math.random() * Math.PI * 2
+            });
+        }
+        let t = 0;
+        function draw() {
+            ctx.fillStyle = 'rgba(4, 8, 14, 0.25)';
+            ctx.fillRect(0, 0, width, height);
+
+            bubbles.forEach(b => {
+                b.y -= b.speed;
+                b.x += Math.sin(t * 0.01 + b.y * 0.005) * 0.3;
+                if (b.y < -10) {
+                    b.y = height + 10;
+                    b.x = Math.random() * width;
+                }
+                ctx.strokeStyle = `rgba(${secondary.r}, ${secondary.g}, ${secondary.b}, ${b.opacity})`;
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.arc(b.x, b.y, b.size, 0, Math.PI * 2);
+                ctx.stroke();
+            });
+
+            plankton.forEach(p => {
+                const glow = 0.4 + 0.4 * Math.sin(t * 0.03 + p.pulse);
+                ctx.fillStyle = `rgba(${primary.r}, ${primary.g}, ${primary.b}, ${glow})`;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            const grad = ctx.createLinearGradient(0, 0, 0, height);
+            grad.addColorStop(0, `rgba(${primary.r}, ${primary.g}, ${primary.b}, 0)`);
+            grad.addColorStop(1, `rgba(${primary.r}, ${primary.g}, ${primary.b}, 0.08)`);
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, width, height);
+
+            t++;
+            canvas.__raf = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
     const effects = {
         particles,
         stars,
@@ -1103,7 +1764,17 @@
         stormOnZaphon,
         vineRevel,
         descentGate,
-        cosmicWaters
+        cosmicWaters,
+        typhonStorm,
+        kaliDance,
+        vishnuOcean,
+        horusSun,
+        ganeshaBlessing,
+        chaosVoid,
+        tartarosPrison,
+        enlilStorm,
+        asherahTree,
+        apsuAbyss
     };
 
     function runEffect(canvas) {
