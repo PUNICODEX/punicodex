@@ -15,6 +15,7 @@ const DEFAULT_TIER_LIMITS = {
   hobby: { limit: 1000, windowMs: 24 * 60 * 60 * 1000 }, // 1,000/day
   pro: { limit: 10000, windowMs: 24 * 60 * 60 * 1000 }, // 10,000/day
   enterprise: { limit: 100000, windowMs: 24 * 60 * 60 * 1000 }, // 100,000/day
+  public: { limit: 10, windowMs: 60 * 1000 }, // 10/min for unauthenticated public endpoints
 };
 
 class InMemoryRateLimiter {
@@ -209,6 +210,10 @@ async function checkRateLimit(key, tier = 'free') {
   return limiter.check(key);
 }
 
+async function checkPublicRateLimit(key) {
+  return checkRateLimit(key, 'public');
+}
+
 function resetLimiters() {
   for (const limiter of limiters.values()) {
     limiter.stop();
@@ -229,6 +234,7 @@ module.exports = {
   InMemoryRateLimiter,
   RedisRateLimiter,
   checkRateLimit,
+  checkPublicRateLimit,
   resetLimiters,
   DEFAULT_TIER_LIMITS,
 };

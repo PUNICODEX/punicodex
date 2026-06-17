@@ -183,6 +183,11 @@ function updateBookingStripeSession(bookingId, sessionId) {
 
 function markBookingPaid(sessionId, paymentIntent, amountCents, subscriptionId = null) {
   const db = getDb();
+  const existing = db.prepare('SELECT * FROM bookings WHERE stripe_session_id = ?').get(sessionId);
+  if (existing && !['pending_payment', 'pending_application'].includes(existing.status)) {
+    db.close();
+    return existing;
+  }
   db.prepare(`
     UPDATE bookings
     SET stripe_payment_intent = ?, amount_paid_cents = ?, stripe_subscription_id = ?, status = 'pending_upload', updated_at = CURRENT_TIMESTAMP

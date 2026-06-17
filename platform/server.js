@@ -60,9 +60,12 @@ const {
 const {
   login: adminLogin,
   validateAdminToken,
+  revokeToken,
   getAllBookings,
   getBookingStats,
 } = require('./api/admin');
+const { logAction } = require('./api/admin-actions');
+const { createPublicRateLimit } = require('./api/public-rate-limiter');
 const {
   listKeys,
   createKey,
@@ -111,6 +114,16 @@ if (!fs.existsSync(UPLOADS_DIR)) {
 const app = express();
 const PORT = process.env.PORT || 3456;
 const PLATFORM_URL = process.env.PLATFORM_URL || `http://localhost:${PORT}`;
+
+const verifySendLimit = createPublicRateLimit('verify-send');
+const verifyCheckLimit = createPublicRateLimit('verify-check');
+const bookingsLimit = createPublicRateLimit('bookings');
+const bookingsRecoverLimit = createPublicRateLimit('bookings-recover');
+const bookingUploadLimit = createPublicRateLimit('booking-upload');
+const bookingMetaLimit = createPublicRateLimit('booking-meta');
+const tenantsPreviewLimit = createPublicRateLimit('tenants-preview');
+const analyticsPixelLimit = createPublicRateLimit('analytics-pixel');
+const analyticsClickLimit = createPublicRateLimit('analytics-click');
 
 function isSafeRedirectUrl(url) {
   if (!url || typeof url !== 'string') return false;
@@ -781,7 +794,7 @@ function validateMeta(width, customHeading, customSubtitle) {
   return null;
 }
 
-app.post('/api/bookings', async (req, res) => {
+app.post('/api/bookings', bookingsLimit, async (req, res) => {
   try {
     const {
       slotId,
@@ -882,7 +895,7 @@ app.post('/api/bookings', async (req, res) => {
 });
 
 // Email verification
-app.post('/api/verify/send', async (req, res) => {
+app.post('/api/verify/send', verifySendLimit, async (req, res) => {
   try {
     const { email } = req.body;
     if (!email?.includes('@')) return res.status(400).json({ error: 'Valid email required' });
@@ -903,7 +916,7 @@ app.post('/api/verify/send', async (req, res) => {
   }
 });
 
-app.post('/api/verify/check', (req, res) => {
+app.post('/api/verify/check', verifyCheckLimit, (req, res) => {
   try {
     const { email, code } = req.body;
     if (!email || !code) return res.status(400).json({ error: 'Email and code required' });
@@ -949,7 +962,7 @@ app.get('/api/bookings/:token/all', (req, res) => {
   }
 });
 
-app.post('/api/bookings/:token/meta', (req, res) => {
+app.post('/api/bookings/:token/meta', bookingMetaLimit, (req, res) => {
   try {
     const { customHeading, customSubtitle, slotId } = req.body;
     const booking = getBookingByToken(req.params.token);
@@ -986,7 +999,7 @@ app.get('/api/bookings/:token', (req, res) => {
   }
 });
 
-app.post('/api/bookings/recover', async (req, res) => {
+app.post('/api/bookings/recover', bookingsRecoverLimit, async (req, res) => {
   try {
     const { email } = req.body;
     if (!email?.includes('@')) {
@@ -1038,7 +1051,7 @@ app.get('/api/bookings/:token/check-payment', async (req, res) => {
 });
 
 // Upload creative (base64)
-app.post('/api/bookings/:token/upload', (req, res) => {
+app.post('/api/bookings/:token/upload', bookingUploadLimit, (req, res) => {
   try {
     const { image, filename } = req.body;
     if (!image || !filename) return res.status(400).json({ error: 'image and filename required' });
@@ -1147,7 +1160,7 @@ app.get('/api/bookings/:token/slots', (req, res) => {
 });
 
 // --- Analytics ---
-app.get('/api/analytics/pixel.gif', (req, res) => {
+app.get('/api/analytics/pixel.gif', analyticsPixelLimit, (req, res) => {
   try {
     const { b: token } = req.query;
     if (!token) {
@@ -1177,7 +1190,7 @@ app.get('/api/analytics/pixel.gif', (req, res) => {
   }
 });
 
-app.get('/api/analytics/click', (req, res) => {
+app.get('/api/analytics/click', analyticsClickLimit, (req, res) => {
   try {
     const { b: token, url } = req.query;
     if (!token || !url) return res.status(400).send('Missing parameters');
@@ -1236,7 +1249,7 @@ app.get('/api/tenants/:entryId', (req, res) => {
   }
 });
 
-app.post('/api/tenants/preview', async (req, res) => {
+app.post('/api/tenants/preview', tenantsPreviewLimit, async (req, res) => {
   try {
     const result = await proposeTenant(req.body);
     if (!result.success) return res.status(400).json(result);
@@ -1250,6 +1263,12 @@ app.post('/api/tenants', requireAdmin, async (req, res) => {
   try {
     const result = await createTenant(req.body);
     if (!result.success) return res.status(400).json(result);
+    logAction({
+      adminToken: req.headers['x-admin-token'],
+      action: 'admin.tenant.create',
+      entryId: req.body.entryId,
+      payload: { companyName: req.body.companyName, category: req.body.category },
+    });
     res.json(result);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -1260,6 +1279,12 @@ app.patch('/api/tenants/:entryId', requireAdmin, async (req, res) => {
   try {
     const result = await updateTenant(req.params.entryId, req.body);
     if (!result.success) return res.status(400).json(result);
+    logAction({
+      adminToken: req.headers['x-admin-token'],
+      action: 'admin.tenant.update',
+      entryId: req.params.entryId,
+      payload: req.body,
+    });
     res.json(result);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -1270,6 +1295,11 @@ app.delete('/api/tenants/:entryId', requireAdmin, async (req, res) => {
   try {
     const result = deleteTenant(req.params.entryId);
     if (!result.success) return res.status(404).json(result);
+    logAction({
+      adminToken: req.headers['x-admin-token'],
+      action: 'admin.tenant.delete',
+      entryId: req.params.entryId,
+    });
     res.json(result);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -1283,6 +1313,16 @@ app.post('/api/admin/login', (req, res) => {
     const result = adminLogin(password);
     if (!result.success) return res.status(401).json(result);
     res.json(result);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/api/admin/logout', requireAdmin, (req, res) => {
+  try {
+    const token = req.headers['x-admin-token'];
+    revokeToken(token);
+    res.json({ success: true });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -1349,6 +1389,12 @@ app.post('/api/admin/bookings/create', requireAdmin, (req, res) => {
       siteSlug,
     });
     setBookingStatus(id, 'pending_upload', 'Admin-created trial lease');
+    logAction({
+      adminToken: req.headers['x-admin-token'],
+      action: 'admin.booking.create',
+      bookingId: id,
+      payload: { siteSlug, leaseMonths: months, trialMonths: trial },
+    });
 
     sendBookingConfirmation({
       email,
@@ -1379,6 +1425,12 @@ app.post('/api/admin/bookings/:id/approve', requireAdmin, (req, res) => {
     const booking = getBookingById(req.params.id);
     if (!booking) return res.status(404).json({ error: 'Booking not found' });
     setBookingStatus(req.params.id, 'approved', req.body.note || null);
+    logAction({
+      adminToken: req.headers['x-admin-token'],
+      action: 'admin.booking.approve',
+      bookingId: booking.id,
+      payload: { note: req.body.note || null },
+    });
     notifyApproved({
       email: booking.email,
       slotName: booking.slot_name,
@@ -1397,6 +1449,12 @@ app.post('/api/admin/bookings/:id/reject', requireAdmin, (req, res) => {
     if (!booking) return res.status(404).json({ error: 'Booking not found' });
     const note = req.body.note || 'Does not meet guidelines';
     setBookingStatus(req.params.id, 'rejected', note);
+    logAction({
+      adminToken: req.headers['x-admin-token'],
+      action: 'admin.booking.reject',
+      bookingId: booking.id,
+      payload: { note },
+    });
     notifyRejected({
       email: booking.email,
       slotName: booking.slot_name,
@@ -1415,6 +1473,12 @@ app.post('/api/admin/bookings/:id/golive', requireAdmin, async (req, res) => {
     const booking = getBookingById(req.params.id);
     if (!booking) return res.status(404).json({ error: 'Booking not found' });
     await goLive(req.params.id);
+    logAction({
+      adminToken: req.headers['x-admin-token'],
+      action: 'admin.booking.golive',
+      bookingId: booking.id,
+      payload: { trialMonths: booking.trial_months, leaseMonths: booking.lease_months },
+    });
     const isTrial = (booking.trial_months || 0) > 0;
     if (isTrial) {
       notifyTrialStarted({
@@ -1453,6 +1517,11 @@ app.post('/api/admin/bookings/:id/end', requireAdmin, async (req, res) => {
       }
     }
     endBooking(req.params.id);
+    logAction({
+      adminToken: req.headers['x-admin-token'],
+      action: 'admin.booking.end',
+      bookingId: booking.id,
+    });
     res.json({ success: true, status: 'ended' });
   } catch (err) {
     res.status(500).json({ error: err.message });

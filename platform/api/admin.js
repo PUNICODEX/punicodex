@@ -10,10 +10,13 @@ function getDb() {
   return db;
 }
 
+const SESSION_TTL_MS = 8 * 60 * 60 * 1000; // 8 hours
+
 function createAdminToken() {
   const db = getDb();
   const token = crypto.randomBytes(32).toString('hex');
-  db.prepare('INSERT INTO admin_sessions (token) VALUES (?)').run(token);
+  const expiresAt = new Date(Date.now() + SESSION_TTL_MS).toISOString();
+  db.prepare('INSERT INTO admin_sessions (token, expires_at) VALUES (?, ?)').run(token, expiresAt);
   db.close();
   return token;
 }
@@ -23,7 +26,18 @@ function validateAdminToken(token) {
   const db = getDb();
   const row = db.prepare('SELECT * FROM admin_sessions WHERE token = ?').get(token);
   db.close();
-  return !!row;
+  if (!row) return false;
+  if (row.expires_at && new Date(row.expires_at) < new Date()) {
+    revokeToken(token);
+    return false;
+  }
+  return true;
+}
+
+function revokeToken(token) {
+  const db = getDb();
+  db.prepare('DELETE FROM admin_sessions WHERE token = ?').run(token);
+  db.close();
 }
 
 function login(password) {
@@ -105,6 +119,7 @@ function getBookingStats(siteSlug = null) {
 module.exports = {
   login,
   validateAdminToken,
+  revokeToken,
   getAllBookings,
   getBookingStats,
 };
