@@ -21,7 +21,8 @@ const CANONICAL_FILES = {
 
 function hashFile(rel) {
   const full = path.join(root, rel);
-  return crypto.createHash('sha256').update(fs.readFileSync(full)).digest('hex');
+  const content = fs.readFileSync(full, 'utf8').replace(/\r\n/g, '\n');
+  return crypto.createHash('sha256').update(content).digest('hex');
 }
 
 function loadLexicon() {
@@ -72,7 +73,8 @@ const existing = fs.existsSync(versionPath)
 // Bump patch if canonical hashes changed; keep major/minor as manual.
 const oldHashes = existing.canonicalHashes || {};
 let patch = existing.schema?.patch || 0;
-if (JSON.stringify(oldHashes) !== JSON.stringify(hashes)) {
+const hashesChanged = JSON.stringify(oldHashes) !== JSON.stringify(hashes);
+if (hashesChanged) {
   patch += 1;
 }
 
@@ -83,19 +85,29 @@ const version = `${major}.${minor}.${patch}`;
 const licenseSpdx = process.env.PUNYCODEX_LICENSE || existing.license?.spdx || 'TBD';
 const licenseUrl = process.env.PUNYCODEX_LICENSE_URL || existing.license?.url || '';
 
+const counts = {
+  entries: lexicon.length,
+  pantheons: countPantheons(lexicon),
+  flagships: flagshipIds.size,
+  originalScripts: countOriginalScripts(),
+  sourceCatalogEntries: countSourceCatalog(),
+};
+
+// Only rewrite the file when something material changed. This keeps
+// `npm run generate` idempotent and avoids timestamp-only diffs in CI.
+const countsChanged = JSON.stringify(existing.counts) !== JSON.stringify(counts);
+if (!hashesChanged && !countsChanged && existing.version === version) {
+  console.log(`data-version.json unchanged: ${version}`);
+  process.exit(0);
+}
+
 const versionDoc = {
   version,
   releasedAt: new Date().toISOString(),
   dataSet: existing.dataSet || 'PÚNYCODEX Lexicon, Original Scripts, and Source Catalog',
   canonicalSources: CANONICAL_FILES,
   canonicalHashes: hashes,
-  counts: {
-    entries: lexicon.length,
-    pantheons: countPantheons(lexicon),
-    flagships: flagshipIds.size,
-    originalScripts: countOriginalScripts(),
-    sourceCatalogEntries: countSourceCatalog(),
-  },
+  counts,
   schema: { major, minor, patch },
   license: {
     spdx: licenseSpdx,
