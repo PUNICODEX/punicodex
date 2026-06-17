@@ -58,10 +58,16 @@ const els = {
   rejectReason: document.getElementById('booking-reject-reason'),
   reuploadBtn: document.getElementById('booking-reupload'),
   rejectedClose: document.getElementById('booking-rejected-close'),
+  applySlotName: document.getElementById('booking-apply-slot-name'),
+  applicationNote: document.getElementById('booking-application-note'),
+  submitApplication: document.getElementById('booking-submit-application'),
+  applyError: document.getElementById('booking-apply-error'),
 };
 
 let selectedFile = null;
 let selectedFileBase64 = null;
+let verificationToken = '';
+let isBundleApplication = false;
 
 // Fetch slots and update UI
 async function loadSlots() {
@@ -236,11 +242,13 @@ function openModal(slotId) {
         width: dimsMatch ? parseInt(dimsMatch[1]) : 0,
         height: dimsMatch ? parseInt(dimsMatch[2]) : 0,
         price_cents: parseInt(slotEl.dataset.priceCents, 10) || 0,
+        is_bundle: parseInt(slotEl.dataset.bundle, 10) || 0,
       };
     }
 
     currentSlotPriceCents = slot.price_cents || 0;
     currentLeaseMonths = 1;
+    isBundleApplication = Boolean(slot.is_bundle) || false;
     if (els.leaseMonthly) els.leaseMonthly.classList.add('active');
     if (els.leaseYearly) els.leaseYearly.classList.remove('active');
     updatePriceDisplay();
@@ -258,7 +266,12 @@ function openModal(slotId) {
 }
 
 function updatePriceDisplay() {
-  const total = currentSlotPriceCents * currentLeaseMonths;
+  let total;
+  if (currentLeaseMonths === 12) {
+    total = Math.round(currentSlotPriceCents * 12 * 0.9);
+  } else {
+    total = currentSlotPriceCents * currentLeaseMonths;
+  }
   const label = currentLeaseMonths === 12 ? '/yr' : '/mo';
   els.price.innerHTML = `$${(total / 100).toLocaleString()}<span>${label}</span>`;
 }
@@ -357,6 +370,41 @@ els.sendCode.addEventListener('click', sendVerificationCode);
 els.resendCode.addEventListener('click', sendVerificationCode);
 
 // Step 1b: Verify code & proceed to Stripe
+els.submitApplication.addEventListener('click', async () => {
+  const note = els.applicationNote ? els.applicationNote.value.trim() : '';
+  showStep('loading');
+  try {
+    const res = await fetch(`${API_BASE}/api/bookings/apply`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        slotId: currentSlotId,
+        email: els.email.value.trim(),
+        companyName: els.company.value.trim(),
+        websiteUrl: els.website.value.trim(),
+        customHeading: els.heading ? els.heading.value.trim() : '',
+        customSubtitle: els.subtitle ? els.subtitle.value.trim() : '',
+        leaseMonths: currentLeaseMonths,
+        verificationToken,
+        applicationNote: note,
+      }),
+    });
+    const data = await res.json();
+    if (data.status === 'pending_application') {
+      showStep('3');
+      if (els.dashboardLink) {
+        els.dashboardLink.href = `${API_BASE}/sites/{{TEMPLE_ID}}/dashboard/?token=${data.token}`;
+      }
+    } else {
+      showBookingError(data.error || 'Application failed');
+      showStep('apply');
+    }
+  } catch (err) {
+    showBookingError('Network error. Please try again.');
+    showStep('apply');
+  }
+});
+
 els.verifyBtn.addEventListener('click', async () => {
   const email = els.email.value.trim();
   const code = els.codeInput.value.trim();
@@ -376,12 +424,22 @@ els.verifyBtn.addEventListener('click', async () => {
       body: JSON.stringify({ email, code }),
     });
     const verifyData = await verifyRes.json();
+    if (verifyData.verified && verifyData.verificationToken) {
+      verificationToken = verifyData.verificationToken;
+    }
     if (!verifyData.verified) {
       if (els.verifyError) {
         els.verifyError.textContent = verifyData.error || 'Invalid code';
         els.verifyError.style.display = 'block';
       }
       showStep('verify');
+      return;
+    }
+
+    if (isBundleApplication) {
+      const slot = slotsData.find((s) => s.id === currentSlotId) || {};
+      if (els.applySlotName) els.applySlotName.textContent = slot.name || 'Total Conquest';
+      showStep('apply');
       return;
     }
 
@@ -397,6 +455,7 @@ els.verifyBtn.addEventListener('click', async () => {
         customHeading: els.heading ? els.heading.value.trim() : '',
         customSubtitle: els.subtitle ? els.subtitle.value.trim() : '',
         leaseMonths: currentLeaseMonths,
+        verificationToken,
       }),
     });
     const data = await res.json();

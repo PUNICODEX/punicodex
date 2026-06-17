@@ -95,6 +95,40 @@ async function notifyAdminPending({ slotName, companyName, bookingId }) {
   });
 }
 
+async function notifyAdminApplication({ slotName, companyName, bookingId, applicationNote }) {
+  const adminEmail = process.env.ADMIN_EMAIL;
+  if (!adminEmail) return { success: true, skipped: true };
+  return sendEmail({
+    to: adminEmail,
+    subject: `New application — ${slotName}`,
+    html: `
+      <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
+        <h2 style="color:#d4af37;">Níkē Admin — Application Pending</h2>
+        <p><strong>${companyName || 'A new advertiser'}</strong> applied for <strong>${slotName}</strong>.</p>
+        ${applicationNote ? `<p><strong>Note:</strong> ${applicationNote}</p>` : ''}
+        <p>Booking ID: <code>${bookingId}</code></p>
+        <p><a href="${PLATFORM_URL}/admin-bookings.html" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">Review Application</a></p>
+      </div>
+    `,
+  });
+}
+
+async function notifyApplicationApproved({ email, slotName, companyName, stripeUrl }) {
+  return sendEmail({
+    to: email,
+    subject: `Your application for ${slotName} is approved`,
+    html: `
+      <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
+        <h2 style="color:#d4af37;">Níkē.com — Application Approved</h2>
+        <p>Hi ${companyName || 'there'},</p>
+        <p>Your application for <strong>${slotName}</strong> has been approved.</p>
+        <p>Complete payment to secure the placement:</p>
+        <p><a href="${stripeUrl}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">Pay Now</a></p>
+      </div>
+    `,
+  });
+}
+
 async function notifyApproved({ email, slotName, companyName, bookingToken }) {
   return sendEmail({
     to: email,
@@ -357,11 +391,13 @@ module.exports = {
   notifyPaymentPending,
   notifyUploadReady,
   notifyAdminPending,
+  notifyAdminApplication,
   notifyApproved,
   notifyRejected,
   notifyLive,
   notifyTrialStarted,
   notifyTrialEnding,
+  notifyApplicationApproved,
   sendDashboardLinks,
   sendVerificationCode,
   sendBookingConfirmation,

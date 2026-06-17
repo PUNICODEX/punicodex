@@ -373,9 +373,10 @@
 
         function renderDashboard(bookings, stats) {
             allBookings = bookings;
-            const filters = ['all', 'pending_payment', 'pending_upload', 'pending_approval', 'approved', 'live', 'rejected', 'ended'];
+            const filters = ['all', 'pending_application', 'pending_payment', 'pending_upload', 'pending_approval', 'approved', 'live', 'rejected', 'ended'];
             const filterLabels = {
                 all: 'All',
+                pending_application: 'Application',
                 pending_payment: 'Pending Payment',
                 pending_upload: 'Pending Upload',
                 pending_approval: 'Pending Approval',
@@ -429,7 +430,9 @@
               : '';
 
             let actions = '';
-            if (b.status === 'pending_approval') {
+            if (b.status === 'pending_application') {
+                actions = `<button class="action-btn btn-golive" onclick="approveApplication(${b.id})">Approve Application</button>`;
+            } else if (b.status === 'pending_approval') {
                 actions = `
                     <input type="text" class="reject-note" id="note-${b.id}" placeholder="Rejection reason (optional)">
                     <button class="action-btn btn-approve" onclick="approve(${b.id})">Approve</button>
@@ -478,6 +481,18 @@
         async function approve(id) {
             await api(`/api/admin/bookings/${id}/approve`, { method: 'POST', body: JSON.stringify({}) });
             loadBookings();
+        }
+
+        async function approveApplication(id) {
+            const btn = event.target;
+            btn.textContent = 'Sending...';
+            try {
+                await api(`/api/admin/bookings/${id}/approve-application`, { method: 'POST', body: JSON.stringify({}) });
+                loadBookings();
+            } catch (err) {
+                btn.textContent = 'Failed';
+                setTimeout(() => btn.textContent = 'Approve Application', 2000);
+            }
         }
 
         async function reject(id) {

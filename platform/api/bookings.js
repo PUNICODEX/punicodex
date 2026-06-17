@@ -97,12 +97,14 @@ function createBooking({
   leaseMonths = 1,
   trialMonths = 0,
   siteSlug = null,
+  status = 'pending_payment',
+  applicationNote = null,
 }) {
   const db = getDb();
   const token = generateToken();
   const stmt = db.prepare(`
-    INSERT INTO bookings (slot_id, email, company_name, website_url, custom_heading, custom_subtitle, status, analytics_token, lease_months, trial_months, site_slug)
-    VALUES (?, ?, ?, ?, ?, ?, 'pending_payment', ?, ?, ?, ?)
+    INSERT INTO bookings (slot_id, email, company_name, website_url, custom_heading, custom_subtitle, status, analytics_token, lease_months, trial_months, site_slug, admin_note)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `);
   const result = stmt.run(
     slotId,
@@ -111,10 +113,12 @@ function createBooking({
     websiteUrl || null,
     customHeading || null,
     customSubtitle || null,
+    status,
     token,
     leaseMonths,
     trialMonths,
-    siteSlug || 'nike'
+    siteSlug || 'nike',
+    applicationNote || null
   );
   const bookingId = result.lastInsertRowid;
 

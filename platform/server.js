@@ -66,6 +66,7 @@ const {
 } = require('./api/admin');
 const { logAction } = require('./api/admin-actions');
 const { createPublicRateLimit } = require('./api/public-rate-limiter');
+const { createVerifiedSession, consumeVerifiedSession } = require('./api/verified-sessions');
 const {
   listKeys,
   createKey,
@@ -91,10 +92,12 @@ if (!stripeSecretKey) {
 const stripe = require('stripe')(stripeSecretKey);
 const {
   notifyAdminPending,
+  notifyAdminApplication,
   notifyApproved,
   notifyRejected,
   notifyLive,
   notifyTrialStarted,
+  notifyApplicationApproved,
   sendDashboardLinks,
   sendVerificationCode,
   sendBookingConfirmation,
@@ -805,8 +808,12 @@ app.post('/api/bookings', bookingsLimit, async (req, res) => {
       customSubtitle,
       leaseMonths = 1,
       trialMonths = 0,
+      verificationToken,
     } = req.body;
     if (!slotId || !email) return res.status(400).json({ error: 'slotId and email required' });
+    if (!verificationToken || !consumeVerifiedSession(email, verificationToken)) {
+      return res.status(400).json({ error: 'Email not verified. Please request a new code.' });
+    }
     const months = parseInt(leaseMonths, 10) || 1;
     if (![1, 12].includes(months))
       return res.status(400).json({ error: 'leaseMonths must be 1 or 12' });
@@ -838,7 +845,12 @@ app.post('/api/bookings', bookingsLimit, async (req, res) => {
       siteSlug,
     });
     const isTrial = trial > 0;
-    const amountCents = isTrial ? slot.price_cents : slot.price_cents * months;
+    const isYearly = months === 12 && !isTrial;
+    const amountCents = isTrial
+      ? slot.price_cents
+      : isYearly
+        ? Math.round(slot.price_cents * 12 * 0.9)
+        : slot.price_cents * months;
 
     // Create Stripe checkout session
     let stripeResult;
@@ -894,6 +906,91 @@ app.post('/api/bookings', bookingsLimit, async (req, res) => {
   }
 });
 
+function computeBookingAmount(slot, months, trial) {
+  const isTrial = trial > 0;
+  const isYearly = months === 12 && !isTrial;
+  return isTrial
+    ? slot.price_cents
+    : isYearly
+      ? Math.round(slot.price_cents * 12 * 0.9)
+      : slot.price_cents * months;
+}
+
+// Application-only booking (Slot 13 / Total Conquest)
+app.post('/api/bookings/apply', bookingsLimit, async (req, res) => {
+  try {
+    const {
+      slotId,
+      email,
+      companyName,
+      websiteUrl,
+      customHeading,
+      customSubtitle,
+      leaseMonths = 1,
+      trialMonths = 0,
+      applicationNote,
+      verificationToken,
+    } = req.body;
+    if (!slotId || !email) return res.status(400).json({ error: 'slotId and email required' });
+    if (!verificationToken || !consumeVerifiedSession(email, verificationToken)) {
+      return res.status(400).json({ error: 'Email not verified. Please request a new code.' });
+    }
+
+    const months = parseInt(leaseMonths, 10) || 1;
+    if (![1, 12].includes(months))
+      return res.status(400).json({ error: 'leaseMonths must be 1 or 12' });
+    const trial = parseInt(trialMonths, 10) || 0;
+    if (![0, 3, 6].includes(trial))
+      return res.status(400).json({ error: 'trialMonths must be 0, 3, or 6' });
+    if (trial >= months)
+      return res.status(400).json({ error: 'trialMonths must be less than leaseMonths' });
+
+    const slot = getSlotById(slotId);
+    if (!slot) return res.status(404).json({ error: 'Slot not found' });
+    if (!slot.is_bundle)
+      return res
+        .status(400)
+        .json({ error: 'Applications are only accepted for the Total Conquest bundle' });
+    if (slot.status !== 'available')
+      return res.status(400).json({ error: 'Slot is not available' });
+
+    const metaError = validateMeta(slot.width, customHeading, customSubtitle);
+    if (metaError) return res.status(400).json({ error: metaError });
+
+    const siteSlug = slot.site_slug || 'nike';
+    const { id, token } = createBooking({
+      slotId,
+      email,
+      companyName,
+      websiteUrl,
+      customHeading,
+      customSubtitle,
+      leaseMonths: months,
+      trialMonths: trial,
+      siteSlug,
+      status: 'pending_application',
+      applicationNote,
+    });
+
+    notifyAdminApplication({
+      slotName: slot.name,
+      companyName,
+      bookingId: id,
+      applicationNote,
+    }).catch(() => {});
+
+    res.json({
+      bookingId: id,
+      token,
+      status: 'pending_application',
+      message: 'Application submitted. You will receive a payment link once approved.',
+    });
+  } catch (err) {
+    console.error('Application creation error:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Email verification
 app.post('/api/verify/send', verifySendLimit, async (req, res) => {
   try {
@@ -929,7 +1026,8 @@ app.post('/api/verify/check', verifyCheckLimit, (req, res) => {
     if (row.code !== code) return res.status(400).json({ error: 'Invalid code.' });
 
     db.prepare('DELETE FROM email_verifications WHERE email = ?').run(email);
-    res.json({ verified: true });
+    const verificationToken = createVerifiedSession(email);
+    res.json({ verified: true, verificationToken });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -1416,6 +1514,57 @@ app.post('/api/admin/bookings/create', requireAdmin, (req, res) => {
       trialMonths: trial,
     });
   } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/api/admin/bookings/:id/approve-application', requireAdmin, async (req, res) => {
+  try {
+    const booking = getBookingById(req.params.id);
+    if (!booking) return res.status(404).json({ error: 'Booking not found' });
+    if (booking.status !== 'pending_application') {
+      return res.status(400).json({ error: 'Booking is not pending application' });
+    }
+    const slot = getSlotById(booking.slot_id);
+    if (!slot) return res.status(404).json({ error: 'Slot not found' });
+
+    const months = booking.lease_months || 1;
+    const trial = booking.trial_months || 0;
+    const amountCents = computeBookingAmount(slot, months, trial);
+    const siteSlug = slot.site_slug || 'nike';
+    const siteName = siteSlug === 'hermes' ? 'Hermês' : 'Níkē';
+
+    const stripeResult = await createBookingCheckoutSession({
+      bookingId: booking.id,
+      email: booking.email,
+      slotName: slot.name,
+      amountCents,
+      token: booking.analytics_token,
+      leaseMonths: months,
+      trialMonths: trial,
+      siteSlug,
+      siteName,
+    });
+    updateBookingStripeSession(booking.id, stripeResult.sessionId);
+    setBookingStatus(booking.id, 'pending_payment');
+
+    notifyApplicationApproved({
+      email: booking.email,
+      slotName: slot.name,
+      companyName: booking.company_name,
+      stripeUrl: stripeResult.sessionUrl,
+    }).catch(() => {});
+
+    logAction({
+      adminToken: req.headers['x-admin-token'],
+      action: 'admin.booking.approve-application',
+      bookingId: booking.id,
+      payload: { amountCents, sessionId: stripeResult.sessionId },
+    });
+
+    res.json({ success: true, status: 'pending_payment', stripeUrl: stripeResult.sessionUrl });
+  } catch (err) {
+    console.error('Approve application error:', err);
     res.status(500).json({ error: err.message });
   }
 });
