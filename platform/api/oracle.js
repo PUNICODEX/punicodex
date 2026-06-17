@@ -299,6 +299,33 @@ function _extractNamedEntities(q) {
   return [];
 }
 
+/**
+ * Try to match individual entity tokens (id/ascii/unicode) independent of stop words.
+ * This catches "Who is Zeus?", "Is Athena available?", and anaphoric follow-ups.
+ */
+function retrieveEntriesByToken(q, limit = 5) {
+  const database = getDb();
+  const normalized = normalizeQuery(q)
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .trim();
+  const tokens = normalized.split(/\s+/).filter((t) => t.length >= 2 && !STOP_WORDS.has(t));
+  const results = [];
+  const seen = new Set();
+  const stmt = database.prepare(
+    'SELECT * FROM entries WHERE LOWER(id) = ? OR LOWER(ascii) = ? OR LOWER(unicode) = ? LIMIT 1'
+  );
+  for (const token of tokens) {
+    const cleanToken = normalizeQuery(token);
+    const row = stmt.get(cleanToken, cleanToken, cleanToken);
+    if (row && !seen.has(row.id)) {
+      seen.add(row.id);
+      results.push(row);
+      if (results.length >= limit) break;
+    }
+  }
+  return results;
+}
+
 function retrieveEntriesFTS(q, limit = 10) {
   const database = getDb();
   const normalized = normalizeQuery(q);
@@ -382,21 +409,30 @@ async function retrieveEntriesSemantic(q, limit = 10) {
 }
 
 async function retrieveEntries(q, limit = 5) {
+  const byToken = retrieveEntriesByToken(q, limit);
   const fts = retrieveEntriesFTS(q, limit);
   const semantic = await retrieveEntriesSemantic(q, limit);
 
-  const seen = new Set(fts.map((e) => e.id));
-  const combined = [...fts];
-  for (const e of semantic) {
-    if (!seen.has(e.id)) {
-      seen.add(e.id);
-      combined.push(e);
+  const seen = new Set();
+  const combined = [];
+  const tokenIds = new Set(byToken.map((e) => e.id));
+  for (const source of [byToken, fts, semantic]) {
+    for (const e of source) {
+      if (!seen.has(e.id)) {
+        seen.add(e.id);
+        combined.push(e);
+      }
     }
   }
 
-  // Re-rank: exact > fts > semantic
-  const normalized = normalizeQuery(q);
+  // Re-rank: token match > exact substring > tier > confidence
+  const normalized = normalizeQuery(q).replace(/[^a-z0-9]/g, '');
   combined.sort((a, b) => {
+    const aToken = tokenIds.has(a.id);
+    const bToken = tokenIds.has(b.id);
+    if (aToken && !bToken) return -1;
+    if (bToken && !aToken) return 1;
+
     const aNormAscii = normalizeQuery(a.ascii);
     const aNormUnicode = normalizeQuery(a.unicode);
     const bNormAscii = normalizeQuery(b.ascii);
