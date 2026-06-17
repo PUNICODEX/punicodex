@@ -1877,8 +1877,6 @@
       showSkeleton();
 
       const apiMode = currentMode === 'network' ? 'network' : 'all';
-      // Update the Oracle in parallel with search results.
-      updateOracle(q);
 
       const params = new URLSearchParams();
       params.set('q', q);
@@ -2296,17 +2294,23 @@
     }
 
     // ====== ASK THE ORACLE ======
-    let oracleCollapsed = false;
+    let oracleCollapsed = true;
     let oracleHistory = [];
     let oracleThreadId = 0;
 
-    function toggleOracle() {
+    function applyOracleCollapsed() {
       const body = document.getElementById('oracleBody');
       const inputRow = document.getElementById('oracleInputRow');
-      oracleCollapsed = !oracleCollapsed;
       body.style.display = oracleCollapsed ? 'none' : 'flex';
       inputRow.style.display = oracleCollapsed ? 'none' : 'flex';
     }
+
+    function toggleOracle() {
+      oracleCollapsed = !oracleCollapsed;
+      applyOracleCollapsed();
+    }
+
+    applyOracleCollapsed();
 
     async function updateOracle(q) {
       oracleHistory = [];
