@@ -1,0 +1,71 @@
+/**
+ * PUNYCODEX Browser Shell styles.
+ * Companion to js/browser-shell.js, js/command-palette.js, js/keyboard-shortcuts.js.
+ */
+.pcd-palette-overlay {
+  position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6);
+  display: none; align-items: flex-start; justify-content: center;
+  padding-top: 15vh; z-index: 100;
+}
+.pcd-palette-overlay.open { display: flex; }
+
+.pcd-palette {
+  width: min(600px, 92%); background: var(--surface, #12121a);
+  border: 1px solid var(--border, #2a2a3a); border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5); overflow: hidden;
+}
+
+.pcd-palette-input {
+  width: 100%; padding: 0.9rem 1rem; font-size: 1rem;
+  background: transparent; border: none; border-bottom: 1px solid var(--border, #2a2a3a);
+  color: var(--text, #f0eef5); outline: none;
+}
+
+.pcd-palette-results { max-height: 50vh; overflow-y: auto; }
+
+.pcd-palette-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.65rem 1rem; cursor: pointer; color: var(--text-dim, #9b98b0);
+}
+.pcd-palette-item:hover,
+.pcd-palette-item.selected { background: var(--surface-hover, #232330); color: var(--text, #f0eef5); }
+
+.pcd-palette-cmd { font-size: 0.7rem; color: var(--text-muted, #6b6880); }
+
+.pcd-shell {
+  display: flex; flex-direction: column; height: 100vh; overflow: hidden;
+  background: var(--bg, #0a0a0f); color: var(--text, #f0eef5);
+}
+
+.pcd-shell-toolbar {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.5rem 0.75rem; background: var(--surface, #12121a);
+  border-bottom: 1px solid var(--border, #2a2a3a);
+}
+
+.pcd-shell-omnibox {
+  flex: 1; padding: 0.45rem 0.75rem; background: var(--bg, #0a0a0f);
+  border: 1px solid var(--border, #2a2a3a); border-radius: 8px;
+  color: var(--text, #f0eef5); outline: none;
+}
+.pcd-shell-omnibox:focus { border-color: var(--accent, #d4af37); }
+
+.pcd-shell-tabbar {
+  display: flex; background: var(--surface, #12121a);
+  border-bottom: 1px solid var(--border, #2a2a3a); overflow-x: auto;
+}
+
+.pcd-shell-tab {
+  display: flex; align-items: center; gap: 0.4rem;
+  padding: 0.5rem 0.9rem; font-size: 0.8rem; color: var(--text-dim, #9b98b0);
+  border-right: 1px solid var(--border, #2a2a3a); cursor: pointer; white-space: nowrap;
+}
+.pcd-shell-tab.active { background: var(--surface-2, #1a1a25); color: var(--text, #f0eef5); }
+
+.pcd-shell-workspace { flex: 1; display: flex; overflow: hidden; }
+.pcd-shell-sidebar {
+  width: 240px; background: var(--surface, #12121a); border-right: 1px solid var(--border, #2a2a3a);
+  overflow-y: auto; transition: width 0.2s;
+}
+.pcd-shell-sidebar.collapsed { width: 0; border-right: none; overflow: hidden; }
+.pcd-shell-content { flex: 1; position: relative; overflow: hidden; }

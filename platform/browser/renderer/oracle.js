@@ -32,6 +32,12 @@ const _Oracle = (function () {
   // CONSULT THE CANON (offline first)
   // ═══════════════════════════════════════════════════════════
 
+  function looksLikeQuestion(query) {
+    return /^(who|what|where|when|why|how|which|is|are|was|were|tell me|explain|describe|what does|meaning of|etymology of|pronunciation of|mythology of)/i.test(
+      query.trim()
+    );
+  }
+
   async function consult(query) {
     if (!query) {
       resultsEl.innerHTML = '';
@@ -40,6 +46,20 @@ const _Oracle = (function () {
 
     resultsEl.innerHTML =
       '<div class="sidebar-empty" style="padding:2rem 1rem;font-size:0.85rem;">Consulting the Oracle...</div>';
+
+    // Question-shaped queries go to the /api/oracle RAG endpoint.
+    if (looksLikeQuestion(query)) {
+      try {
+        const apiRes = await window.punycodex.apiGet(`/api/oracle?q=${encodeURIComponent(query)}`);
+        if (apiRes.ok && apiRes.data) {
+          lastResults = [];
+          renderOracleAnswer(apiRes.data);
+          return;
+        }
+      } catch (_apiErr) {
+        // Fall through to local name search if Oracle is unreachable.
+      }
+    }
 
     try {
       // Always search the local Canon first (works offline)
@@ -116,6 +136,53 @@ const _Oracle = (function () {
         if (entry) onOracleSelect(entry);
       });
     });
+  }
+
+  function renderOracleAnswer(data) {
+    let html = '';
+
+    if (data.answer) {
+      html += `<div class="oracle-qa-answer">${linkifyAnswer(escapeHtml(data.answer))}</div>`;
+    }
+
+    if (data.citations?.length) {
+      html += `<div class="oracle-qa-sources-title">Sources</div>`;
+      html += `<div class="oracle-qa-sources">`;
+      for (const c of data.citations) {
+        const isExternal = c.url?.startsWith('http');
+        html += `<a href="${escapeHtml(c.url)}" class="oracle-qa-source" ${isExternal ? 'target="_blank" rel="noopener"' : ''}>${escapeHtml(c.label)}</a>`;
+      }
+      html += `</div>`;
+    }
+
+    if (data.followUps?.length) {
+      html += `<div class="oracle-qa-followups-title">Follow-ups</div>`;
+      html += `<div class="oracle-qa-followups">`;
+      for (const f of data.followUps) {
+        html += `<button class="oracle-qa-followup" data-q="${escapeHtml(f)}">${escapeHtml(f)}</button>`;
+      }
+      html += `</div>`;
+    }
+
+    resultsEl.innerHTML =
+      html ||
+      '<div class="sidebar-empty" style="padding:2rem 1rem;font-size:0.85rem;">The Oracle has no answer for that yet.</div>';
+
+    resultsEl.querySelectorAll('.oracle-qa-followup').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        input.value = btn.dataset.q;
+        consult(btn.dataset.q);
+      });
+    });
+  }
+
+  function linkifyAnswer(text) {
+    let out = text.replace(/\*\*(.+?)\*\*/g, (_, m) => `<strong>${m}</strong>`);
+    out = out.replace(
+      /\[(.+?)\]\((.+?)\)/g,
+      (_, label, url) => `<a href="${url}" target="_blank" rel="noopener">${label}</a>`
+    );
+    return out;
   }
 
   async function onOracleSelect(entry) {

@@ -8,9 +8,9 @@
   },
   "scripts": {
     "test": "node test/run-all.js",
-    "db": "node platform/db/init.js && node platform/db/migrate-crawler.js && node platform/db/migrate-booking.js && node platform/db/migrate-booking-v2.js && node platform/db/migrate-trial-columns.js && node platform/db/migrate-booking-v3.js && node platform/db/migrate-booking-v4.js && node platform/db/migrate-ai-columns.js && node platform/db/migrate-entity-mentions.js && node platform/db/migrate-api-keys.js && node platform/db/migrate-claims.js",
+    "db": "node platform/db/init.js && node platform/db/migrate-crawler.js && node platform/db/migrate-booking.js && node platform/db/migrate-booking-v2.js && node platform/db/migrate-trial-columns.js && node platform/db/migrate-booking-v3.js && node platform/db/migrate-booking-v4.js && node platform/db/migrate-ai-columns.js && node platform/db/migrate-entity-mentions.js && node platform/db/migrate-api-keys.js && node platform/db/migrate-claims.js && node platform/db/migrate-search-v2.js && node platform/db/migrate-workspaces.js && node platform/db/migrate-gamification.js && node platform/db/migrate-marketplace.js && node platform/db/migrate-agents.js && node platform/db/migrate-partners.js",
     "platform": "node platform/server.js",
-    "db-init": "node platform/db/init.js && node platform/db/migrate-crawler.js && node platform/db/migrate-booking.js && node platform/db/migrate-booking-v2.js && node platform/db/migrate-trial-columns.js && node platform/db/migrate-booking-v3.js && node platform/db/migrate-booking-v4.js && node platform/db/migrate-ai-columns.js && node platform/db/migrate-entity-mentions.js && node platform/db/migrate-api-keys.js && node platform/db/migrate-claims.js",
+    "db-init": "node platform/db/init.js && node platform/db/migrate-crawler.js && node platform/db/migrate-booking.js && node platform/db/migrate-booking-v2.js && node platform/db/migrate-trial-columns.js && node platform/db/migrate-booking-v3.js && node platform/db/migrate-booking-v4.js && node platform/db/migrate-ai-columns.js && node platform/db/migrate-entity-mentions.js && node platform/db/migrate-api-keys.js && node platform/db/migrate-claims.js && node platform/db/migrate-search-v2.js && node platform/db/migrate-workspaces.js && node platform/db/migrate-gamification.js && node platform/db/migrate-marketplace.js && node platform/db/migrate-agents.js && node platform/db/migrate-partners.js",
     "trial-reminders": "node platform/scripts/trial-reminders.js",
     "lease-expiry": "node platform/scripts/lease-expiry.js",
     "enrich-entries": "node platform/scripts/enrich-entries.js",
@@ -30,7 +30,10 @@
     "android:sync": "npx cap copy android",
     "android:build": "cd android && ./gradlew assembleRelease",
     "android:bundle": "cd android && ./gradlew bundleRelease",
-    "android:open": "npx cap open android"
+    "android:open": "npx cap open android",
+    "browser:dev": "NODE_ENV=development electron platform/browser/main.js",
+    "browser:build": "electron-builder --dir",
+    "browser:dist": "electron-builder"
   },
   "repository": {
     "type": "git",

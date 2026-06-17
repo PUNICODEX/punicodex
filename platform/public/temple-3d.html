@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PUNYCODEX — 3D Temple</title>
+  <meta name="description" content="Explore the pantheons in 3D.">
+  <link rel="canonical" href="https://punycodex.com/temple-3d.html">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <style>
+    :root {
+      --bg: #0a0a0f; --surface: #12121a; --text: #f0eef5; --accent: #d4af37; --border: #2a2a3a;
+      --font-display: 'Cinzel', Georgia, serif; --font-body: 'Montserrat', sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: var(--bg); color: var(--text); overflow: hidden; }
+    header { position: absolute; top: 0; left: 0; right: 0; z-index: 10; padding: 1rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10,10,15,0.7); }
+    .logo { font-family: var(--font-display); color: var(--accent); text-decoration: none; font-size: 1.2rem; }
+    #pantheonSelect { background: var(--surface); color: var(--text); border: 1px solid var(--border); padding: 0.4rem 0.8rem; border-radius: 6px; }
+    #canvas-container { width: 100vw; height: 100vh; }
+    #info { position: absolute; bottom: 1rem; left: 1rem; background: rgba(18,18,26,0.8); padding: 0.75rem 1rem; border-radius: 10px; border: 1px solid var(--border); max-width: 260px; }
+    #info h3 { font-family: var(--font-display); color: var(--accent); margin-bottom: 0.3rem; }
+    #info a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/" class="logo">PUNYCODEX</a>
+    <select id="pantheonSelect"></select>
+  </header>
+  <div id="canvas-container"></div>
+  <div id="info">
+    <h3>3D Temple Mode</h3>
+    <p style="font-size:0.8rem;color:#9b98b0">Drag to rotate. Click a glowing orb to open its temple page.</p>
+    <div id="selection"></div>
+  </div>
+
+  <script src="/js/temple-3d.js"></script>
+  <script>
+    const container = document.getElementById('canvas-container');
+    const select = document.getElementById('pantheonSelect');
+    const selectionEl = document.getElementById('selection');
+    let currentScene = null;
+    let allEntries = [];
+    let pantheons = [];
+
+    async function init() {
+      const res = await fetch('/api/v1/pantheons');
+      pantheons = await res.json();
+      select.innerHTML = pantheons.map(p => `<option value="${p}">${p}</option>`).join('');
+      select.addEventListener('change', () => loadPantheon(select.value));
+
+      const entriesRes = await fetch('/api/v1/names?limit=1000');
+      const data = await entriesRes.json();
+      allEntries = data.entries || data.data || [];
+      loadPantheon(pantheons[0]);
+    }
+
+    function loadPantheon(pantheon) {
+      if (currentScene) {
+        container.innerHTML = '';
+      }
+      const entries = allEntries.filter(e => e.pantheon === pantheon).slice(0, 12);
+      currentScene = PunyTemple3D.init(container, pantheon, entries);
+    }
+
+    window.onTempleHotspotClick = (entry) => {
+      selectionEl.innerHTML = `<p><strong>${entry.unicode}</strong><br><a href="/sites/${entry.id}/" target="_blank">Open temple →</a></p>`;
+    };
+
+    init();
+  </script>
+</body>
+</html>

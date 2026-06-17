@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PUNYCODEX — Universal Unicode Search</title>
+  <meta name="description" content="Search the Unicode web across sites, domains, lore, images, and scholarly sources.">
+  <link rel="canonical" href="https://punycodex.com/search-v2.html">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --surface-2: #1a1a25;
+      --surface-hover: #232330;
+      --text: #f0eef5;
+      --text-dim: #9b98b0;
+      --text-muted: #6b6880;
+      --accent: #d4af37;
+      --accent-glow: rgba(212, 175, 55, 0.14);
+      --border: #2a2a3a;
+      --link-blue: #9dc3ff;
+      --link-green: #a5d6a7;
+      --gold: #d4af37;
+      --tier-dual: #d4af37;
+      --tier-1: #7ec9a0;
+      --tier-2: #87aee8;
+      --available: #7ec9a0;
+      --live: #87c9e8;
+      --font-display: 'Cinzel', Georgia, serif;
+      --font-body: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background:
+        radial-gradient(ellipse at 10% 0%, rgba(212,175,55,0.04) 0%, transparent 35%),
+        radial-gradient(ellipse at 90% 100%, rgba(96,165,250,0.04) 0%, transparent 30%),
+        var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header {
+      padding: 1rem;
+      border-bottom: 1px solid var(--border);
+      background: rgba(18, 18, 26, 0.9);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .header-inner { max-width: 900px; margin: 0 auto; }
+    .header-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .logo-row { display: flex; align-items: center; gap: 0.75rem; }
+    .logo-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), #b8941d);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; color: #0a0a0f; font-weight: 700;
+      box-shadow: 0 4px 16px rgba(212,175,55,0.18);
+    }
+    .logo { font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; letter-spacing: 0.1em; color: var(--accent); text-decoration: none; }
+    .logo-sub { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.05rem; }
+    .global-nav { display: flex; align-items: center; gap: 0.5rem; }
+    .global-nav a { font-size: 0.75rem; font-weight: 500; color: var(--text-dim); text-decoration: none; padding: 0.35rem 0.7rem; border-radius: 6px; transition: 0.2s; }
+    .global-nav a:hover { color: var(--text); background: var(--surface-2); }
+
+    .search-box {
+      position: relative;
+      margin-top: 0.75rem;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 0.85rem 3rem 0.85rem 1.1rem;
+      font-size: 1rem;
+      font-family: var(--font-body);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .search-box input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+    .search-box button {
+      position: absolute;
+      right: 8px; top: 50%; transform: translateY(-50%);
+      background: var(--accent); color: #0a0a0f; border: none;
+      border-radius: 8px; padding: 0.5rem 0.9rem;
+      font-weight: 700; cursor: pointer;
+    }
+
+    .verticals {
+      display: flex;
+      gap: 0.25rem;
+      margin-top: 0.75rem;
+      overflow-x: auto;
+      padding-bottom: 0.25rem;
+    }
+    .verticals button {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-dim);
+      padding: 0.4rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: 0.2s;
+    }
+    .verticals button.active {
+      background: var(--accent);
+      color: #0a0a0f;
+      border-color: var(--accent);
+    }
+    .verticals button:hover:not(.active) { background: var(--surface-2); color: var(--text); }
+
+    main { max-width: 900px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+
+    .status-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      color: var(--text-muted); font-size: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .spell-correction {
+      color: var(--text-dim); font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+    .spell-correction a { color: var(--link-blue); cursor: pointer; text-decoration: underline; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.1rem;
+      margin-bottom: 1rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .card:hover { border-color: #3a3a50; }
+
+    .instant-answer { border-left: 4px solid var(--accent); }
+    .instant-answer h3 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--accent); }
+    .instant-answer .code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--surface-2); padding: 0.35rem 0.6rem; border-radius: 6px; font-size: 0.95rem; }
+    .instant-answer .domain-list { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.5rem; }
+    .instant-answer .domain-row { display: flex; align-items: center; justify-content: space-between; background: var(--surface-2); padding: 0.5rem 0.75rem; border-radius: 8px; }
+
+    .oracle-card { border-left: 4px solid var(--link-blue); }
+    .oracle-card h3 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--link-blue); }
+    .oracle-card .citations { margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .oracle-card .citation { background: var(--surface-2); color: var(--text-dim); font-size: 0.7rem; padding: 0.2rem 0.5rem; border-radius: 4px; }
+    .oracle-card .followups { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
+    .oracle-card .followups button { background: var(--surface-2); border: 1px solid var(--border); color: var(--text-dim); padding: 0.35rem 0.7rem; border-radius: 16px; font-size: 0.75rem; cursor: pointer; }
+    .oracle-card .followups button:hover { color: var(--text); border-color: var(--link-blue); }
+
+    .result-item { display: block; text-decoration: none; color: inherit; }
+    .result-item .url { color: var(--text-muted); font-size: 0.75rem; margin-bottom: 0.15rem; }
+    .result-item .title { color: var(--link-blue); font-size: 1.05rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .result-item .title:hover { text-decoration: underline; }
+    .result-item .snippet { color: var(--text-dim); font-size: 0.9rem; line-height: 1.5; }
+    .result-item .meta { display: flex; gap: 0.5rem; margin-top: 0.5rem; font-size: 0.7rem; color: var(--text-muted); }
+    .result-item .badge { background: var(--surface-2); padding: 0.15rem 0.4rem; border-radius: 4px; }
+    .result-item .tier-dual { color: var(--tier-dual); }
+    .result-item .tier-1 { color: var(--tier-1); }
+    .result-item .tier-2 { color: var(--tier-2); }
+
+    .feedback { display: flex; gap: 0.5rem; margin-top: 0.5rem; }
+    .feedback button { background: transparent; border: 1px solid var(--border); color: var(--text-muted); font-size: 0.7rem; padding: 0.2rem 0.5rem; border-radius: 4px; cursor: pointer; }
+    .feedback button:hover { color: var(--text); border-color: var(--text-dim); }
+
+    .image-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.75rem; }
+    .image-grid a { display: block; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); background: var(--surface-2); text-decoration: none; }
+    .image-grid img { width: 100%; height: 120px; object-fit: cover; display: block; }
+    .image-grid .img-label { padding: 0.4rem 0.6rem; font-size: 0.7rem; color: var(--text-dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .domain-card .domain-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem; }
+    .domain-card .domain-name { font-size: 1.05rem; font-weight: 600; color: var(--link-green); }
+    .domain-card .registrar-links { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem; }
+    .domain-card .registrar-links a { font-size: 0.7rem; background: var(--surface-2); color: var(--text-dim); padding: 0.25rem 0.5rem; border-radius: 4px; text-decoration: none; }
+    .domain-card .registrar-links a:hover { color: var(--text); }
+
+    .lore-card h4 { font-family: var(--font-display); color: var(--accent); margin-bottom: 0.35rem; }
+    .lore-card p { color: var(--text-dim); font-size: 0.9rem; }
+
+    .api-card .method { color: var(--accent); font-weight: 700; font-size: 0.75rem; margin-right: 0.5rem; }
+    .api-card .path { color: var(--link-blue); font-family: ui-monospace, monospace; font-size: 0.9rem; }
+
+    .history-row { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 0; border-bottom: 1px solid var(--border); }
+    .history-row a { color: var(--text); text-decoration: none; }
+    .history-row a:hover { color: var(--link-blue); }
+
+    .sidebar { margin-top: 1.5rem; }
+    .sidebar h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 0.6rem; }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .chip { background: var(--surface-2); border: 1px solid var(--border); color: var(--text-dim); padding: 0.35rem 0.7rem; border-radius: 16px; font-size: 0.75rem; cursor: pointer; text-decoration: none; }
+    .chip:hover { color: var(--text); border-color: var(--text-dim); }
+
+    .load-more { width: 100%; padding: 0.8rem; margin-top: 1rem; background: var(--surface-2); border: 1px solid var(--border); color: var(--text); border-radius: 10px; cursor: pointer; font-weight: 600; }
+    .load-more:hover { background: var(--surface-hover); }
+    .load-more:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .empty { text-align: center; padding: 4rem 1rem; color: var(--text-muted); }
+    .empty-title { font-family: var(--font-display); font-size: 1.3rem; color: var(--text); margin-bottom: 0.5rem; }
+
+    @media (max-width: 640px) {
+      .header-top { flex-wrap: wrap; }
+      .global-nav { display: none; }
+      .verticals { gap: 0.15rem; }
+      .verticals button { padding: 0.35rem 0.7rem; font-size: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="header-top">
+        <a href="/" class="logo-row">
+          <div class="logo-icon">P</div>
+          <div>
+            <div class="logo">PUNYCODEX</div>
+            <div class="logo-sub">Universal Unicode Search</div>
+          </div>
+        </a>
+        <nav class="global-nav">
+          <a href="/pantheon/">Pantheon</a>
+          <a href="/lexicon/">Lexicon</a>
+          <a href="/type/">Type</a>
+          <a href="/tiers/">Tiers</a>
+          <a href="/api/v1/docs">API</a>
+        </nav>
+      </div>
+      <div class="search-box">
+        <input type="text" id="q" placeholder="Search names, domains, lore, API…" autocomplete="off" autofocus>
+        <button id="searchBtn">Search</button>
+      </div>
+      <div class="verticals" id="verticals"></div>
+    </div>
+  </header>
+
+  <main>
+    <div class="status-bar">
+      <span id="statusText">Enter a query to search the Unicode web.</span>
+      <span id="timingText"></span>
+    </div>
+    <div id="spellCorrection" class="spell-correction" style="display:none"></div>
+    <div id="results"></div>
+    <button id="loadMore" class="load-more" style="display:none">Load more</button>
+    <div class="sidebar" id="sidebar" style="display:none"></div>
+  </main>
+
+  <script>
+    const API_BASE = '';
+    const VERTICALS = [
+      { id: 'all', label: 'All' },
+      { id: 'sites', label: 'Sites' },
+      { id: 'domains', label: 'Domains' },
+      { id: 'lore', label: 'Lore' },
+      { id: 'api', label: 'API' },
+      { id: 'images', label: 'Images' },
+      { id: 'history', label: 'History' },
+    ];
+
+    const qInput = document.getElementById('q');
+    const searchBtn = document.getElementById('searchBtn');
+    const resultsEl = document.getElementById('results');
+    const loadMoreBtn = document.getElementById('loadMore');
+    const statusText = document.getElementById('statusText');
+    const timingText = document.getElementById('timingText');
+    const spellEl = document.getElementById('spellCorrection');
+    const sidebarEl = document.getElementById('sidebar');
+    const verticalsEl = document.getElementById('verticals');
+
+    let currentQ = '';
+    let currentVertical = 'all';
+    let currentCursor = null;
+    let isLoading = false;
+    let sessionToken = localStorage.getItem('punycodex_search_session') || null;
+
+    function init() {
+      verticalsEl.innerHTML = VERTICALS.map(v =>
+        `<button data-vertical="${v.id}" class="${v.id === currentVertical ? 'active' : ''}">${v.label}</button>`
+      ).join('');
+      verticalsEl.addEventListener('click', (e) => {
+        if (e.target.dataset.vertical) {
+          currentVertical = e.target.dataset.vertical;
+          updateVerticalButtons();
+          if (currentQ) doSearch();
+        }
+      });
+
+      const params = new URLSearchParams(location.search);
+      const initialQ = params.get('q');
+      const initialVertical = params.get('vertical');
+      if (initialVertical && VERTICALS.some(v => v.id === initialVertical)) {
+        currentVertical = initialVertical;
+        updateVerticalButtons();
+      }
+      if (initialQ) {
+        qInput.value = initialQ;
+        doSearch();
+      }
+    }
+
+    function updateVerticalButtons() {
+      verticalsEl.querySelectorAll('button').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.vertical === currentVertical);
+      });
+    }
+
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    }
+
+    async function doSearch(append = false) {
+      const q = qInput.value.trim();
+      if (!q) return;
+      currentQ = q;
+      if (!append) {
+        currentCursor = null;
+        resultsEl.innerHTML = '<div class="empty"><div class="empty-title">Searching…</div></div>';
+        loadMoreBtn.style.display = 'none';
+        sidebarEl.style.display = 'none';
+        spellEl.style.display = 'none';
+      }
+      isLoading = true;
+      statusText.textContent = append ? 'Loading more…' : `Searching ${currentVertical}…`;
+
+      const params = new URLSearchParams();
+      params.set('q', q);
+      params.set('vertical', currentVertical);
+      params.set('limit', '20');
+      if (append && currentCursor) params.set('cursor', currentCursor);
+
+      try {
+        const headers = { 'Content-Type': 'application/json' };
+        if (sessionToken) headers['x-session-token'] = sessionToken;
+        const res = await fetch(`${API_BASE}/api/search/v2?${params}`, { headers });
+        const data = await res.json();
+        if (data.sessionToken) {
+          sessionToken = data.sessionToken;
+          localStorage.setItem('punycodex_search_session', sessionToken);
+        }
+        render(data, append);
+      } catch (e) {
+        if (!append) resultsEl.innerHTML = `<div class="empty"><div class="empty-title">Error</div><div>${escapeHtml(e.message)}</div></div>`;
+      } finally {
+        isLoading = false;
+        statusText.textContent = currentQ ? `Results for “${escapeHtml(currentQ)}”` : 'Enter a query.';
+      }
+    }
+
+    function render(data, append) {
+      timingText.textContent = data.timing ? `${data.timing}s` : '';
+      currentCursor = data.pagination?.nextCursor || null;
+      loadMoreBtn.style.display = data.pagination?.hasMore ? 'block' : 'none';
+
+      if (data.spellCorrection) {
+        spellEl.innerHTML = `Did you mean: <a onclick="searchFor('${escapeHtml(data.spellCorrection)}')">${escapeHtml(data.spellCorrection)}</a>?`;
+        spellEl.style.display = 'block';
+      } else {
+        spellEl.style.display = 'none';
+      }
+
+      let html = '';
+
+      if (data.instantAnswer) {
+        html += renderInstantAnswer(data.instantAnswer);
+      }
+
+      if (data.oracle) {
+        html += renderOracle(data.oracle);
+      }
+
+      if (currentVertical === 'all') {
+        const sets = data.results || {};
+        if (sets.sites?.results?.length) html += `<h4 style="margin:1.2rem 0 0.6rem;color:var(--text-muted);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;">Sites</h4>` + sets.sites.results.map(renderSite).join('');
+        if (sets.domains?.results?.length) html += `<h4 style="margin:1.2rem 0 0.6rem;color:var(--text-muted);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;">Domains</h4>` + sets.domains.results.map(renderDomain).join('');
+        if (sets.lore?.results?.length) html += `<h4 style="margin:1.2rem 0 0.6rem;color:var(--text-muted);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;">Lore</h4>` + sets.lore.results.map(renderLore).join('');
+        if (sets.images?.results?.length) html += `<h4 style="margin:1.2rem 0 0.6rem;color:var(--text-muted);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;">Images</h4>` + renderImageGrid(sets.images.results);
+      } else {
+        const set = data.results?.[currentVertical];
+        if (set?.results?.length) {
+          if (currentVertical === 'sites') html += set.results.map(renderSite).join('');
+          else if (currentVertical === 'domains') html += set.results.map(renderDomain).join('');
+          else if (currentVertical === 'lore') html += set.results.map(renderLore).join('');
+          else if (currentVertical === 'api') html += set.results.map(renderApi).join('');
+          else if (currentVertical === 'images') html += renderImageGrid(set.results);
+          else if (currentVertical === 'history') html += set.results.map(renderHistory).join('');
+        }
+      }
+
+      if (!html) {
+        html = `<div class="empty"><div class="empty-title">No results</div><div>Try a broader query or another vertical.</div></div>`;
+      }
+
+      if (append) {
+        const temp = document.createElement('div');
+        temp.innerHTML = html;
+        while (temp.firstChild) resultsEl.appendChild(temp.firstChild);
+      } else {
+        resultsEl.innerHTML = html;
+      }
+
+      renderSidebar(data.related || [], data.trending || []);
+    }
+
+    function renderInstantAnswer(ia) {
+      let body = '';
+      if (ia.type === 'convert') {
+        body = `<div>Unicode: <span class="code">${escapeHtml(ia.unicode)}</span></div>
+                <div style="margin-top:0.5rem">Punycode: <span class="code">${escapeHtml(ia.punycode)}</span></div>`;
+      } else if (ia.type === 'availability') {
+        body = `<div class="domain-list">${ia.domains.map(d => `
+          <div class="domain-row">
+            <span>${escapeHtml(d.unicode || d.ascii)} — ${escapeHtml(d.domain)}</span>
+            <span style="color:var(--available);text-transform:capitalize">${escapeHtml(d.status)}</span>
+          </div>`).join('')}</div>`;
+      } else if (ia.type === 'tier-system') {
+        body = `<p>${escapeHtml(ia.body)}</p><a href="${ia.link}" style="color:var(--link-blue)">Read more →</a>`;
+      }
+      return `<div class="card instant-answer"><h3>${escapeHtml(ia.title)}</h3>${body}</div>`;
+    }
+
+    function renderOracle(oracle) {
+      return `<div class="card oracle-card">
+        <h3>Oracle Answer</h3>
+        <p>${escapeHtml(oracle.answer)}</p>
+        ${oracle.citations?.length ? `<div class="citations">${oracle.citations.map(c => `<span class="citation">${escapeHtml(c.label || c)}</span>`).join('')}</div>` : ''}
+        ${oracle.followUps?.length ? `<div class="followups">${oracle.followUps.map(f => `<button onclick="searchFor('${escapeHtml(f)}')">${escapeHtml(f)}</button>`).join('')}</div>` : ''}
+      </div>`;
+    }
+
+    function renderSite(r) {
+      const tierClass = r.tier === 'dual' ? 'tier-dual' : r.tier === '1' ? 'tier-1' : 'tier-2';
+      return `<div class="card result-item" data-site-id="${r.id}">
+        <a href="${escapeHtml(r.url)}" target="_blank" rel="noopener" class="title">${escapeHtml(r.title || r.domain)}</a>
+        <div class="url">${escapeHtml(r.punycode || r.domain)}</div>
+        <div class="snippet">${r.snippet || r.description || ''}</div>
+        <div class="meta">
+          ${r.pantheon ? `<span class="badge">${escapeHtml(r.pantheon)}</span>` : ''}
+          ${r.tier ? `<span class="badge ${tierClass}">${r.tier === 'dual' ? 'Dual' : 'Tier ' + escapeHtml(r.tier)}</span>` : ''}
+          ${r.isFlagship ? `<span class="badge" style="color:var(--gold)">👑 Flagship</span>` : ''}
+          ${r.lastCrawled ? `<span class="badge">${new Date(r.lastCrawled).toLocaleDateString()}</span>` : ''}
+        </div>
+        <div class="feedback">
+          <button onclick="sendFeedback(${r.id}, true)">👍 Helpful</button>
+          <button onclick="sendFeedback(${r.id}, false)">👎 Not helpful</button>
+        </div>
+      </div>`;
+    }
+
+    function renderDomain(r) {
+      const links = r.registrarLinks || {};
+      return `<div class="card domain-card">
+        <div class="domain-header">
+          <span class="domain-name">${escapeHtml(r.domain)}</span>
+          <span style="color:var(--available);font-size:0.8rem;text-transform:capitalize">${escapeHtml(r.status)}</span>
+        </div>
+        <div class="url">${escapeHtml(r.unicode || r.ascii)} · ${escapeHtml(r.meaning || '')}</div>
+        <div class="registrar-links">
+          ${Object.entries(links).map(([name, url]) => `<a href="${escapeHtml(url)}" target="_blank" rel="noopener">${escapeHtml(name)}</a>`).join('')}
+        </div>
+      </div>`;
+    }
+
+    function renderLore(r) {
+      return `<div class="card lore-card">
+        <h4>${escapeHtml(r.entryId)}</h4>
+        <p>${escapeHtml(r.mythology || r.etymology || r.pronunciation?.approximation || 'Scholarly lore available.')}</p>
+        <a href="${r.link}" style="color:var(--link-blue);font-size:0.8rem">Read full lore →</a>
+      </div>`;
+    }
+
+    function renderApi(r) {
+      return `<div class="card api-card">
+        <span class="method">${escapeHtml(r.method)}</span>
+        <span class="path">${escapeHtml(r.path)}</span>
+        <p style="color:var(--text-dim);font-size:0.85rem;margin-top:0.3rem">${escapeHtml(r.description)}</p>
+      </div>`;
+    }
+
+    function renderImageGrid(images) {
+      return `<div class="image-grid">${images.map(r => `
+        <a href="${escapeHtml(r.link)}" target="_blank" rel="noopener" title="${escapeHtml(r.title || r.domain)}">
+          <img src="${escapeHtml(r.imageUrl || r.faviconUrl)}" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
+          <div class="img-label">${escapeHtml(r.domain || r.unicode || '')}</div>
+        </a>
+      `).join('')}</div>`;
+    }
+
+    function renderHistory(r) {
+      return `<div class="history-row">
+        <a href="${escapeHtml(r.link)}">${escapeHtml(r.query)}</a>
+        <span style="color:var(--text-muted);font-size:0.75rem">${new Date(r.timestamp).toLocaleString()}</span>
+      </div>`;
+    }
+
+    function renderSidebar(related, trending) {
+      let html = '';
+      if (related.length) {
+        html += `<h4>Related</h4><div class="chip-row" style="margin-bottom:1.2rem">${related.map(r =>
+          `<button class="chip" onclick="searchFor('${escapeHtml(r.unicode || r.ascii)}')">${escapeHtml(r.unicode || r.ascii)}</button>`
+        ).join('')}</div>`;
+      }
+      if (trending.length) {
+        html += `<h4>Trending</h4><div class="chip-row">${trending.map(t =>
+          `<button class="chip" onclick="searchFor('${escapeHtml(t.query)}')">${escapeHtml(t.query)}</button>`
+        ).join('')}</div>`;
+      }
+      if (html) {
+        sidebarEl.innerHTML = html;
+        sidebarEl.style.display = 'block';
+      }
+    }
+
+    async function sendFeedback(siteId, helpful) {
+      if (!sessionToken || !currentQ) return;
+      try {
+        await fetch('/api/search/feedback', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'x-session-token': sessionToken },
+          body: JSON.stringify({ query: currentQ, siteId, helpful }),
+        });
+      } catch (e) {
+        console.error('feedback failed', e);
+      }
+    }
+
+    function searchFor(term) {
+      qInput.value = term;
+      const url = new URL(location.href);
+      url.searchParams.set('q', term);
+      url.searchParams.set('vertical', currentVertical);
+      history.pushState({}, '', url);
+      doSearch();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    searchBtn.addEventListener('click', () => doSearch());
+    qInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') doSearch();
+    });
+    loadMoreBtn.addEventListener('click', () => doSearch(true));
+
+    window.searchFor = searchFor;
+    window.sendFeedback = sendFeedback;
+
+    init();
+  </script>
+</body>
+</html>

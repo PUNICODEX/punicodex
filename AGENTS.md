@@ -323,7 +323,7 @@ The Realms page uses filter buttons (All / Norse / Greek / Japanese) and links e
 
 | Type | Count | Location | Content Depth |
 |------|-------|----------|---------------|
-| Flagship | 74 | `sites/{id}/` (existing / hand-expanded) | Hand-crafted: myths, pronunciation, symbols, domains, custom canvas |
+| Flagship | 81 | `sites/{id}/` (existing / hand-expanded) | Hand-crafted: myths, pronunciation, symbols, domains, custom canvas |
 | Base | 794 | `sites/{id}/` (generated) | Programmatic: name cards, breakdown, tier explanation, sources, related entries |
 
 **Shared infrastructure:**
@@ -577,7 +577,7 @@ Results sorted by:
 
 - GoDaddy, Namecheap, Porkbun, Dynadot, Spaceship
 
-### Flagship Domains (74)
+### Flagship Domains (81)
 
 Seeded as `active` sites in `indexed_sites`. When DNS resolves and content is fetched, the crawler updates their real title/description.
 

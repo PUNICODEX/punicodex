@@ -1,13 +1,13 @@
 /**
- * PÚNYCODEX — Oracle smoke tests
+ * PÚNYCODEX — Oracle tests
  */
 
 const assert = require('node:assert');
 const { askOracle, detectIntent } = require('../platform/api/oracle');
 
-function test(name, fn) {
+async function test(name, fn) {
   try {
-    fn();
+    await fn();
     console.log(`  ✓ ${name}`);
   } catch (err) {
     console.error(`  ✗ ${name}`);
@@ -18,16 +18,16 @@ function test(name, fn) {
 
 console.log('Oracle Tests');
 
-test('detectIntent classifies "who" questions', () => {
+test('detectIntent classifies "who" questions', async () => {
   assert.strictEqual(detectIntent('Who is Zeus?'), 'who');
 });
 
-test('detectIntent classifies etymology questions', () => {
+test('detectIntent classifies etymology questions', async () => {
   assert.strictEqual(detectIntent('What is the etymology of Aphrodite?'), 'etymology');
 });
 
-test('askOracle returns an answer for a known deity', () => {
-  const result = askOracle('Who is Zeus?');
+test('askOracle returns an answer for a known deity', async () => {
+  const result = await askOracle('Who is Zeus?');
   assert.ok(result.answer, 'answer should exist');
   assert.ok(result.answer.includes('Zeús'), 'answer should mention Zeús');
   assert.strictEqual(result.primaryId, 'zeus');
@@ -41,19 +41,31 @@ test('askOracle returns an answer for a known deity', () => {
   );
 });
 
-test('askOracle handles empty query gracefully', () => {
-  const result = askOracle('');
+test('askOracle handles empty query gracefully', async () => {
+  const result = await askOracle('');
   assert.ok(result.answer);
   assert.strictEqual(result.primaryId, null);
 });
 
-test('askOracle handles follow-up anaphora', () => {
-  const first = askOracle('Who is Zeus?');
-  const followUp = askOracle('What does he mean?', [
+test('askOracle handles follow-up anaphora', async () => {
+  const first = await askOracle('Who is Zeus?');
+  const followUp = await askOracle('What does he mean?', [
     { role: 'oracle', primaryId: first.primaryId },
   ]);
   assert.ok(followUp.answer);
   assert.strictEqual(followUp.primaryId, 'zeus');
+});
+
+test('askOracle uses lore when available', async () => {
+  const result = await askOracle('Tell me about Zeus');
+  assert.ok(result.answer);
+  assert.ok(result.answer.toLowerCase().includes('zeus') || result.answer.includes('Zeús'));
+});
+
+test('askOracle returns availability for commercial intent', async () => {
+  const result = await askOracle('Is Athena available?');
+  assert.ok(result.answer);
+  assert.strictEqual(result.primaryId, 'athena');
 });
 
 if (!process.exitCode) {

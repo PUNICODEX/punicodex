@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>PUNYCODEX AR Glyph Lens</title>
+  <style>
+    :root { --bg: #0a0a0f; --accent: #d4af37; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: var(--bg); color: #fff; overflow: hidden; }
+    #camera { position: fixed; inset: 0; object-fit: cover; width: 100%; height: 100%; transform: scaleX(-1); }
+    #overlay { position: fixed; inset: 0; pointer-events: none; }
+    .card {
+      position: absolute; bottom: 2rem; left: 1rem; right: 1rem;
+      background: rgba(10,10,15,0.9); border: 1px solid var(--accent); border-radius: 14px;
+      padding: 1rem; pointer-events: auto; display: none;
+    }
+    .card.active { display: block; }
+    .card h2 { color: var(--accent); }
+    .shutter {
+      position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      width: 64px; height: 64px; border-radius: 50%;
+      border: 4px solid var(--accent); background: rgba(212,175,55,0.2); cursor: pointer;
+    }
+    #status { position: fixed; top: 1rem; left: 1rem; right: 1rem; text-align: center; color: #aaa; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <video id="camera" autoplay playsinline muted></video>
+  <div id="overlay"></div>
+  <div id="status">Point camera at a Unicode glyph or temple seal.</div>
+  <div id="resultCard" class="card">
+    <h2 id="resultName"></h2>
+    <p id="resultMeta"></p>
+    <a id="resultLink" href="#" style="color:var(--accent)">Open entry →</a>
+  </div>
+  <button class="shutter" id="shutter" aria-label="Scan glyph"></button>
+
+  <script>
+    const video = document.getElementById('camera');
+    const shutter = document.getElementById('shutter');
+    const card = document.getElementById('resultCard');
+    const statusEl = document.getElementById('status');
+
+    async function startCamera() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+        video.srcObject = stream;
+      } catch (e) {
+        statusEl.textContent = 'Camera access required for AR lens.';
+      }
+    }
+
+    async function scan() {
+      statusEl.textContent = 'Analyzing…';
+      // Placeholder: in a full implementation we'd run OCR/glyph detection here.
+      // For now, simulate a match based on a random flagship entry.
+      try {
+        const res = await fetch('/api/v1/names?hasFlagship=true&limit=10');
+        const data = await res.json();
+        const entries = data.entries || data.data || [];
+        const entry = entries[Math.floor(Math.random() * entries.length)];
+        document.getElementById('resultName').textContent = entry.unicode;
+        document.getElementById('resultMeta').textContent = `${entry.pantheon} · ${entry.meaning || ''}`;
+        document.getElementById('resultLink').href = `/sites/${entry.id}/`;
+        card.classList.add('active');
+        statusEl.textContent = 'Match found';
+      } catch (e) {
+        statusEl.textContent = 'Scan failed.';
+      }
+    }
+
+    shutter.addEventListener('click', scan);
+    startCamera();
+  </script>
+</body>
+</html>

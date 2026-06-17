@@ -1,0 +1,100 @@
+/**
+ * PUNYCODEX Gamification UI styles.
+ */
+.pcd-ink-widget {
+  background: var(--surface, #12121a);
+  border: 1px solid var(--border, #2a2a3a);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  text-align: center;
+}
+.pcd-ink-total {
+  font-family: var(--font-display, 'Cinzel', serif);
+  font-size: 1.4rem;
+  color: var(--accent, #d4af37);
+}
+.pcd-ink-recent {
+  font-size: 0.75rem;
+  color: var(--text-dim, #9b98b0);
+  margin-top: 0.25rem;
+}
+
+.pcd-badge-toast {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--surface, #12121a);
+  border: 1px solid var(--accent, #d4af37);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  transform: translateY(120%);
+  transition: transform 0.3s ease;
+  z-index: 200;
+  max-width: 280px;
+}
+.pcd-badge-toast.show { transform: translateY(0); }
+.pcd-badge-icon { font-size: 1.5rem; }
+
+.pcd-badge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 0.75rem;
+}
+.pcd-badge-card {
+  background: var(--surface, #12121a);
+  border: 1px solid var(--border, #2a2a3a);
+  border-radius: 10px;
+  padding: 0.75rem;
+  text-align: center;
+  opacity: 0.5;
+}
+.pcd-badge-card.owned { opacity: 1; border-color: var(--accent, #d4af37); }
+.pcd-badge-card .pcd-badge-icon { font-size: 1.6rem; }
+.pcd-badge-title { font-weight: 600; font-size: 0.8rem; margin-top: 0.4rem; }
+.pcd-badge-desc { font-size: 0.7rem; color: var(--text-dim, #9b98b0); }
+
+.pcd-collection { margin-bottom: 0.75rem; }
+.pcd-collection-name { font-size: 0.85rem; font-weight: 600; }
+.pcd-collection-bar {
+  height: 6px;
+  background: var(--surface-2, #1a1a25);
+  border-radius: 3px;
+  margin: 0.3rem 0;
+  overflow: hidden;
+}
+.pcd-collection-bar span {
+  display: block;
+  height: 100%;
+  background: var(--accent, #d4af37);
+  border-radius: 3px;
+}
+.pcd-collection-count { font-size: 0.7rem; color: var(--text-muted, #6b6880); }
+
+.pcd-challenge {
+  background: var(--surface, #12121a);
+  border: 1px solid var(--border, #2a2a3a);
+  border-radius: 14px;
+  padding: 1rem;
+}
+.pcd-challenge h3 { font-family: var(--font-display, 'Cinzel', serif); color: var(--accent, #d4af37); margin-bottom: 0.5rem; }
+.pcd-challenge-clues { margin: 0.75rem 0; padding-left: 1.2rem; color: var(--text-dim, #9b98b0); }
+.pcd-challenge-input { display: flex; gap: 0.5rem; }
+.pcd-challenge-input input {
+  flex: 1; padding: 0.5rem; background: var(--bg, #0a0a0f); border: 1px solid var(--border, #2a2a3a);
+  border-radius: 6px; color: var(--text, #f0eef5);
+}
+.pcd-challenge-input button {
+  background: var(--accent, #d4af37); color: #0a0a0f; border: none;
+  border-radius: 6px; padding: 0.5rem 1rem; font-weight: 600; cursor: pointer;
+}
+.pcd-challenge-result { margin-top: 0.75rem; font-size: 0.9rem; }
+
+.pcd-leaderboard { margin-bottom: 1rem; }
+.pcd-leaderboard h4 { font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted, #6b6880); margin-bottom: 0.4rem; }
+.pcd-leaderboard table { width: 100%; font-size: 0.8rem; border-collapse: collapse; }
+.pcd-leaderboard td { padding: 0.3rem 0; border-bottom: 1px solid var(--border, #2a2a3a); }
+.pcd-leaderboard td:last-child { text-align: right; }

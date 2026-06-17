@@ -1,14 +1,12 @@
-const postgres = require('postgres');
-
 const DATABASE_URL = process.env.DATABASE_URL;
 if (!DATABASE_URL) {
   console.error('DATABASE_URL is required');
   process.exit(1);
 }
 
-const sql = postgres(DATABASE_URL);
-
 async function main() {
+  const { default: postgres } = await import('postgres');
+  const sql = postgres(DATABASE_URL);
   await sql`
     CREATE TABLE IF NOT EXISTS claims (
       id SERIAL PRIMARY KEY,

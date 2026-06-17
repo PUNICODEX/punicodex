@@ -2619,6 +2619,10 @@
         } else {
           currentResults = data.results;
           renderWebResults(data, dymData.suggestions, relatedData.related, knowledgeData, paaData?.questions);
+          if (looksLikeQuestion(q)) {
+            if (oracleCollapsed) toggleOracle();
+            updateOracle(q);
+          }
         }
       } catch (e) {
         if (!append) {
@@ -3117,6 +3121,10 @@
 
     // ====== ASK THE ORACLE ======
     let oracleCollapsed = true;
+
+    function looksLikeQuestion(q) {
+      return /^(who|what|where|when|why|how|which|is|are|was|were|tell me|explain|describe|what does|meaning of|etymology of|pronunciation of|mythology of)/i.test(q.trim());
+    }
 
     function toggleOracle() {
       const body = document.getElementById('oracleBody');

@@ -8,13 +8,13 @@
  */
 
 const Database = require('better-sqlite3');
-const { pipeline } = require('@xenova/transformers');
 const { getDbPath } = require('../db/db');
 
 const MODEL_NAME = 'Xenova/all-MiniLM-L6-v2';
 const EMBEDDING_DIM = 384;
 
 let db;
+let transformersPromise = null;
 let embedderPromise = null;
 let embeddingCache = null; // Map<siteId, Float32Array>
 
@@ -26,12 +26,20 @@ function getDb() {
   return db;
 }
 
+async function loadTransformers() {
+  if (!transformersPromise) {
+    transformersPromise = import('@xenova/transformers');
+  }
+  return transformersPromise;
+}
+
 /**
  * Load (or return the existing) embedding pipeline.
  * The first call downloads/initializes the model; subsequent calls reuse it.
  */
-function getEmbedder() {
+async function getEmbedder() {
   if (!embedderPromise) {
+    const { pipeline } = await loadTransformers();
     embedderPromise = pipeline('feature-extraction', MODEL_NAME, {
       quantized: true,
     });
@@ -106,11 +114,11 @@ async function upsertSiteEmbedding(siteId, site) {
   dbConn
     .prepare(
       `
-      INSERT INTO embeddings (site_id, embedding, model)
+      INSERT INTO embeddings (site_id, embedding, model_version)
       VALUES (?, ?, ?)
       ON CONFLICT(site_id) DO UPDATE SET
         embedding = excluded.embedding,
-        model = excluded.model,
+        model_version = excluded.model_version,
         created_at = CURRENT_TIMESTAMP
     `
     )

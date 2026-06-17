@@ -35,6 +35,19 @@ const { UnicodeCrawler, isSafeUrl } = require('./crawler');
 const { processQueue } = require('./scripts/bulk-crawl');
 const { didYouMean, relatedSearches, autocomplete } = require('./api/query-intel');
 const { askOracle } = require('./api/oracle');
+const { searchV2, recordFeedback, updatePreferences } = require('./api/search-v2');
+const workspaceApi = require('./api/workspaces');
+const { awardXp, getXpSummary } = require('./api/ink-xp');
+const { getBadges, checkAndAward, getBadgeDefinitions } = require('./api/badges');
+const { getOrCreateChallenge, attemptSolution, getStreak } = require('./api/daily-challenge');
+const { getLeaderboards } = require('./api/leaderboards');
+const marketplaceApi = require('./api/marketplace');
+const scoutAgent = require('./agents/scout');
+const sentinelAgent = require('./agents/sentinel');
+const loreCuratorAgent = require('./agents/lore-curator');
+const researchAgent = require('./agents/research-assistant');
+const glyphSearch = require('./api/glyph-search');
+const partnerApi = require('./api/partners');
 const {
   getSlots,
   getSlotBySlug,
@@ -428,6 +441,332 @@ app.get('/api/search/web', async (req, res) => {
     }
 
     res.json(results);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Universal vertical search v2
+app.get('/api/search/v2', async (req, res) => {
+  try {
+    const { q, vertical, sort, limit, cursor, pantheon, tier, unicodeOnly, concept } = req.query;
+    if (!q?.trim()) return res.status(400).json({ error: 'q parameter required' });
+    const result = await searchV2(
+      q,
+      {
+        vertical,
+        sort,
+        limit,
+        cursor,
+        pantheon,
+        tier,
+        unicodeOnly,
+        concept,
+      },
+      req
+    );
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Search v2 feedback and preferences
+app.post('/api/search/feedback', async (req, res) => {
+  try {
+    const token = req.headers['x-session-token'];
+    if (!token) return res.status(400).json({ error: 'x-session-token required' });
+    const { query, siteId, entryId, helpful, reason } = req.body || {};
+    if (!query) return res.status(400).json({ error: 'query required' });
+    recordFeedback(token, query, { siteId, entryId, helpful, reason });
+    res.json({ ok: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.patch('/api/search/preferences', async (req, res) => {
+  try {
+    const token = req.headers['x-session-token'];
+    if (!token) return res.status(400).json({ error: 'x-session-token required' });
+    const prefs = updatePreferences(token, req.body || {});
+    res.json({ ok: true, preferences: prefs });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Gamification: Ink XP, badges, daily challenge, leaderboards
+app.all('/api/gamification', async (req, res) => {
+  try {
+    const token = req.headers['x-session-token'];
+    if (!token) return res.status(400).json({ error: 'x-session-token required' });
+    const entries = db
+      .prepare('SELECT id, ascii, unicode, pantheon, tier, meaning, greek FROM entries')
+      .all();
+
+    if (req.method === 'GET') {
+      const { type } = req.query;
+      if (type === 'challenge') {
+        const challenge = getOrCreateChallenge(entries);
+        const { current, longest } = getStreak(token);
+        const solved = db
+          .prepare(
+            'SELECT 1 FROM challenge_attempts WHERE session_token = ? AND challenge_date = ?'
+          )
+          .get(token, challenge.date);
+        return res.json({ challenge, streak: { current, longest }, solved: !!solved });
+      }
+      if (type === 'leaderboards') return res.json(getLeaderboards());
+      return res.json({
+        summary: getXpSummary(token),
+        badges: getBadges(token),
+        definitions: getBadgeDefinitions(),
+      });
+    }
+
+    if (req.method === 'POST') {
+      const { action } = req.body || {};
+      if (action === 'xp') {
+        const { eventType, payload } = req.body;
+        const xp = awardXp(token, eventType, payload || {});
+        const newBadges = checkAndAward(token);
+        return res.json({ xp, newBadges });
+      }
+      if (action === 'challenge') {
+        const { date, guess } = req.body;
+        if (!date || !guess) return res.status(400).json({ error: 'date and guess required' });
+        const result = attemptSolution(token, date, guess, entries);
+        if (result.correct) {
+          awardXp(token, 'daily_streak', { date });
+          const solved = db
+            .prepare('SELECT COUNT(*) as c FROM challenge_attempts WHERE session_token = ?')
+            .get(token).c;
+          checkAndAward(token, { daily_solved: solved });
+        }
+        return res.json(result);
+      }
+      return res.status(400).json({ error: 'Unknown action' });
+    }
+
+    return res.status(405).json({ error: 'Method not allowed' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Partner program (Open Unicode Web Protocol)
+app.all('/api/partners', async (req, res) => {
+  try {
+    if (req.method === 'OPTIONS') return res.status(200).end();
+
+    if (req.method === 'POST' && req.body?.action === 'register') {
+      const { name, email, tier, scopes, rateLimit } = req.body;
+      if (!name) return res.status(400).json({ error: 'name required' });
+      const result = partnerApi.registerPartner({ name, email, tier, scopes, rateLimit });
+      return res.status(201).json(result);
+    }
+
+    const auth = req.headers.authorization || '';
+    const match = auth.match(/^Bearer\s+(.+)$/);
+    const key = match ? match[1] : null;
+    if (!key) return res.status(401).json({ error: 'Authorization: Bearer <key> required' });
+    const partner = partnerApi.validatePartnerKey(key);
+    if (!partner) return res.status(401).json({ error: 'Invalid partner key' });
+
+    if (req.method === 'GET') {
+      const { q, limit, offset } = req.query;
+      return res.json(
+        partnerApi.queryRecords({
+          q,
+          limit: limit ? parseInt(limit, 10) : 20,
+          offset: offset ? parseInt(offset, 10) : 0,
+        })
+      );
+    }
+    if (req.method === 'POST') {
+      const record = req.body;
+      if (!record || typeof record !== 'object')
+        return res.status(400).json({ error: 'record JSON required' });
+      const result = partnerApi.submitRecord(partner.id, record);
+      return res.status(201).json(result);
+    }
+    return res.status(405).json({ error: 'Method not allowed' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Glyph / visual search
+app.get('/api/glyph', async (req, res) => {
+  try {
+    const { q } = req.query;
+    if (!q) return res.status(400).json({ error: 'q parameter required' });
+    const results = glyphSearch.searchByGlyph(q, 10);
+    res.json({ query: q, description: glyphSearch.describeGlyph(q), results });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Autonomous agents
+app.all('/api/agents', async (req, res) => {
+  try {
+    const token = req.headers['x-session-token'];
+    if (!token) return res.status(400).json({ error: 'x-session-token required' });
+    const { agent } = req.query;
+
+    if (req.method === 'POST') {
+      if (agent === 'scout') {
+        const { domains } = req.body || {};
+        if (!Array.isArray(domains))
+          return res.status(400).json({ error: 'domains array required' });
+        const result = scoutAgent.discoverCandidates(domains);
+        return res.json(result);
+      }
+      if (agent === 'sentinel') {
+        const { batchSize } = req.body || {};
+        const result = await sentinelAgent.verifyAvailability(batchSize || 50);
+        return res.json({ checked: result.length, results: result });
+      }
+      if (agent === 'lore-curator') {
+        const gaps = loreCuratorAgent.findGaps();
+        return res.json({
+          gaps: gaps.map((g) => ({ ...g, suggestions: loreCuratorAgent.suggestSources(g) })),
+        });
+      }
+      if (agent === 'research') {
+        const { topic } = req.body || {};
+        if (!topic) return res.status(400).json({ error: 'topic required' });
+        const report = researchAgent.createReport(token, topic);
+        const completed = researchAgent.completeReport(report.id);
+        return res.json(completed);
+      }
+      return res.status(400).json({ error: 'Unknown agent' });
+    }
+
+    if (req.method === 'GET' && agent === 'research') {
+      return res.json({ reports: researchAgent.getReports(token) });
+    }
+
+    return res.status(405).json({ error: 'Method not allowed' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Marketplace: listings, lease inquiries, registrar prices, reviews
+app.all('/api/marketplace', async (req, res) => {
+  try {
+    const token = req.headers['x-session-token'];
+    if (!token) return res.status(400).json({ error: 'x-session-token required' });
+    const { action, entryId, domain } = req.query;
+
+    if (req.method === 'GET') {
+      if (action === 'listings') return res.json(marketplaceApi.listPremiumListings());
+      if (action === 'reviews' && entryId) return res.json(marketplaceApi.getReviews(entryId));
+      if (action === 'registrars' && domain)
+        return res.json(marketplaceApi.compareRegistrars(domain));
+      return res.json({ inquiries: marketplaceApi.getLeaseInquiries(token) });
+    }
+
+    if (req.method === 'POST') {
+      const body = req.body || {};
+      if (body.action === 'inquiry') {
+        if (!body.entryId) return res.status(400).json({ error: 'entryId required' });
+        const inquiry = marketplaceApi.createLeaseInquiry(token, body);
+        return res.status(201).json(inquiry);
+      }
+      if (body.action === 'review') {
+        if (!body.entryId || !body.rating)
+          return res.status(400).json({ error: 'entryId and rating required' });
+        const review = marketplaceApi.addReview(token, body);
+        return res.status(201).json(review);
+      }
+      if (body.action === 'listing' && body.entryId) {
+        const listing = marketplaceApi.createPremiumListing(body.entryId, body);
+        return res.status(201).json(listing);
+      }
+      return res.status(400).json({ error: 'Unknown action' });
+    }
+
+    return res.status(405).json({ error: 'Method not allowed' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Spatial workspace sync
+app.all('/api/workspace', async (req, res) => {
+  try {
+    const token = req.headers['x-session-token'];
+    if (!token) return res.status(400).json({ error: 'x-session-token required' });
+    const { publicId } = req.query;
+
+    if (req.method === 'GET') {
+      if (publicId) {
+        const workspace = workspaceApi.getWorkspace(publicId);
+        if (!workspace) return res.status(404).json({ error: 'Workspace not found' });
+        return res.json(workspace);
+      }
+      const [workspaces, readingList, timeline] = [
+        workspaceApi.listWorkspaces(token),
+        workspaceApi.getReadingList(token, { limit: 50 }),
+        workspaceApi.getTimeline(token, { limit: 50 }),
+      ];
+      return res.json({ workspaces, readingList, timeline, sessionToken: token });
+    }
+
+    if (req.method === 'POST') {
+      const { action, name, payload, entryId, url, title, note, eventType, eventPayload } =
+        req.body || {};
+      if (action === 'workspace') {
+        if (!name || !payload) return res.status(400).json({ error: 'name and payload required' });
+        const ws = workspaceApi.createWorkspace(token, name, payload);
+        return res.status(201).json(ws);
+      }
+      if (action === 'reading-list') {
+        if (!url) return res.status(400).json({ error: 'url required' });
+        const item = workspaceApi.addToReadingList(token, { entryId, url, title, note });
+        workspaceApi.recordTimelineEvent(token, 'reading_added', { url, title });
+        return res.status(201).json(item);
+      }
+      if (action === 'timeline') {
+        if (!eventType) return res.status(400).json({ error: 'eventType required' });
+        workspaceApi.recordTimelineEvent(token, eventType, eventPayload || {});
+        return res.json({ ok: true });
+      }
+      return res.status(400).json({ error: 'Unknown action' });
+    }
+
+    if (req.method === 'PATCH') {
+      if (publicId) {
+        const { name, payload } = req.body || {};
+        const ws = workspaceApi.updateWorkspace(publicId, token, name, payload);
+        if (!ws) return res.status(404).json({ error: 'Workspace not found or not owned' });
+        return res.json(ws);
+      }
+      const { id, updates } = req.body || {};
+      if (!id || !updates) return res.status(400).json({ error: 'id and updates required' });
+      const ok = workspaceApi.updateReadingItem(id, token, updates);
+      if (!ok) return res.status(404).json({ error: 'Reading item not found' });
+      return res.json({ ok: true });
+    }
+
+    if (req.method === 'DELETE') {
+      if (publicId) {
+        const ok = workspaceApi.deleteWorkspace(publicId, token);
+        if (!ok) return res.status(404).json({ error: 'Workspace not found or not owned' });
+        return res.json({ ok: true });
+      }
+      const { id } = req.body || {};
+      if (!id) return res.status(400).json({ error: 'id required' });
+      const ok = workspaceApi.removeFromReadingList(id, token);
+      if (!ok) return res.status(404).json({ error: 'Reading item not found' });
+      return res.json({ ok: true });
+    }
+
+    return res.status(405).json({ error: 'Method not allowed' });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

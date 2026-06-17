@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PUNYCODEX — Tenant Storefront</title>
+  <meta name="description" content="Lease or acquire a Unicode domain on PUNYCODEX.">
+  <link rel="canonical" href="https://punycodex.com/tenant.html">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f; --surface: #12121a; --surface-2: #1a1a25; --text: #f0eef5;
+      --text-dim: #9b98b0; --text-muted: #6b6880; --accent: #d4af37; --border: #2a2a3a;
+      --link-blue: #9dc3ff; --available: #7ec9a0; --font-display: 'Cinzel', Georgia, serif;
+      --font-body: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: var(--bg); color: var(--text); min-height: 100vh; }
+    header { padding: 1rem; border-bottom: 1px solid var(--border); background: var(--surface); }
+    .header-inner { max-width: 800px; margin: 0 auto; display: flex; align-items: center; gap: 1rem; }
+    .logo { font-family: var(--font-display); color: var(--accent); text-decoration: none; font-size: 1.2rem; }
+    main { max-width: 800px; margin: 0 auto; padding: 2rem 1rem; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; margin-bottom: 1.5rem; }
+    .hero { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+    .hero-icon { width: 64px; height: 64px; border-radius: 16px; background: var(--surface-2); display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+    .hero-title { font-family: var(--font-display); font-size: 1.6rem; color: var(--accent); }
+    .hero-domain { color: var(--text-dim); font-size: 0.9rem; }
+    .badge { display: inline-block; background: var(--surface-2); color: var(--text-dim); padding: 0.25rem 0.6rem; border-radius: 4px; font-size: 0.75rem; margin-right: 0.4rem; }
+    .badge.premium { background: var(--accent); color: #0a0a0f; }
+    .cta-row { display: flex; gap: 0.75rem; margin-top: 1.25rem; }
+    .cta { padding: 0.75rem 1.25rem; border-radius: 10px; text-decoration: none; font-weight: 600; }
+    .cta.primary { background: var(--accent); color: #0a0a0f; }
+    .cta.secondary { background: var(--surface-2); color: var(--text); border: 1px solid var(--border); }
+    form label { display: block; font-size: 0.8rem; color: var(--text-dim); margin: 0.75rem 0 0.3rem; }
+    form input, form textarea, form select {
+      width: 100%; padding: 0.6rem; background: var(--bg); border: 1px solid var(--border);
+      border-radius: 8px; color: var(--text); font-family: var(--font-body);
+    }
+    form button { margin-top: 1rem; background: var(--accent); color: #0a0a0f; border: none; padding: 0.75rem 1.25rem; border-radius: 8px; font-weight: 700; cursor: pointer; }
+    .review { border-bottom: 1px solid var(--border); padding: 0.75rem 0; }
+    .review-stars { color: var(--accent); }
+    .registrar-row { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
+    .registrar-row a { color: var(--link-blue); text-decoration: none; font-size: 0.85rem; }
+    .empty { color: var(--text-muted); font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="/" class="logo">PUNYCODEX</a>
+      <span style="color:var(--text-muted);font-size:0.8rem">Unicode Domain Marketplace</span>
+    </div>
+  </header>
+  <main>
+    <div id="storefront"></div>
+
+    <div class="card">
+      <h3 style="font-family:var(--font-display);color:var(--accent);margin-bottom:0.75rem">Lease / Acquire Inquiry</h3>
+      <form id="inquiryForm">
+        <label>Email</label>
+        <input type="email" id="email" required>
+        <label>Message</label>
+        <textarea id="message" rows="3" placeholder="Tell us about your intended use…"></textarea>
+        <button type="submit">Send Inquiry</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h3 style="font-family:var(--font-display);color:var(--accent);margin-bottom:0.75rem">Registrar Comparison</h3>
+      <div id="registrars"></div>
+    </div>
+
+    <div class="card">
+      <h3 style="font-family:var(--font-display);color:var(--accent);margin-bottom:0.75rem">Reviews</h3>
+      <div id="reviews"></div>
+      <form id="reviewForm" style="margin-top:1rem">
+        <div style="display:flex;gap:0.75rem">
+          <select id="rating">
+            <option value="5">★★★★★</option>
+            <option value="4">★★★★</option>
+            <option value="3">★★★</option>
+            <option value="2">★★</option>
+            <option value="1">★</option>
+          </select>
+          <input type="text" id="reviewText" placeholder="Write a review…" style="flex:1">
+          <button type="submit">Post</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const entryId = params.get('id');
+    let sessionToken = localStorage.getItem('punycodex_search_session') || null;
+    let entry = null;
+    let site = null;
+
+    async function init() {
+      if (!entryId) {
+        document.getElementById('storefront').innerHTML = '<div class="card"><div class="empty">No entry specified. Use ?id=zeus</div></div>';
+        return;
+      }
+      await loadEntry();
+      await loadSite();
+      renderStorefront();
+      await loadRegistrars();
+      await loadReviews();
+      ensureSession();
+    }
+
+    async function ensureSession() {
+      if (sessionToken) return;
+      const res = await fetch('/api/search/v2?q=zeus&limit=1');
+      const data = await res.json();
+      if (data.sessionToken) {
+        sessionToken = data.sessionToken;
+        localStorage.setItem('punycodex_search_session', sessionToken);
+      }
+    }
+
+    async function loadEntry() {
+      const res = await fetch(`/api/v1/names/${entryId}`);
+      if (res.ok) entry = await res.json();
+    }
+
+    async function loadSite() {
+      const res = await fetch(`/api/entry/${entryId}`);
+      if (res.ok) {
+        const data = await res.json();
+        site = data.site;
+      }
+    }
+
+    function renderStorefront() {
+      const el = document.getElementById('storefront');
+      if (!entry) {
+        el.innerHTML = '<div class="card"><div class="empty">Entry not found.</div></div>';
+        return;
+      }
+      el.innerHTML = `
+        <div class="card">
+          <div class="hero">
+            <div class="hero-icon">🏛</div>
+            <div>
+              <div class="hero-title">${escapeHtml(entry.unicode)}</div>
+              <div class="hero-domain">${escapeHtml(site?.punycode || entry.domain || entry.id)}</div>
+              <div style="margin-top:0.4rem">
+                <span class="badge">${escapeHtml(entry.pantheon)}</span>
+                <span class="badge">${entry.tier === 'dual' ? 'Dual-Tier' : `Tier ${entry.tier}`}</span>
+                ${site?.isFlagship ? '<span class="badge premium">👑 Crown Jewel</span>' : ''}
+              </div>
+            </div>
+          </div>
+          <p style="color:var(--text-dim)">${escapeHtml(entry.meaning || '')}</p>
+          <div class="cta-row">
+            ${site ? `<a href="https://${site.punycode}" target="_blank" rel="noopener" class="cta primary">Visit Site ↗</a>` : ''}
+            <a href="/sites/${entry.id}/" class="cta secondary">Temple Page</a>
+            <a href="/type/index.html#${entry.id}" class="cta secondary">Type Tool</a>
+          </div>
+        </div>
+      `;
+    }
+
+    async function loadRegistrars() {
+      const domain = site?.domain || entry?.domain;
+      const el = document.getElementById('registrars');
+      if (!domain) {
+        el.innerHTML = '<div class="empty">No domain available.</div>';
+        return;
+      }
+      const res = await fetch(`/api/marketplace?action=registrars&domain=${encodeURIComponent(domain)}`);
+      const data = await res.json();
+      el.innerHTML = data.length
+        ? data.map(r => `
+          <div class="registrar-row">
+            <span>${escapeHtml(r.registrar)}</span>
+            <span>${r.price ? `${r.price / 100} ${r.currency}/yr` : 'Price unavailable'}</span>
+            <a href="${escapeHtml(r.link)}" target="_blank" rel="noopener">Register ↗</a>
+          </div>`).join('')
+        : '<div class="empty">No registrar prices cached.</div>';
+    }
+
+    async function loadReviews() {
+      const el = document.getElementById('reviews');
+      const res = await fetch(`/api/marketplace?action=reviews&entryId=${entryId}`);
+      const data = await res.json();
+      el.innerHTML = data.reviews.length
+        ? data.reviews.map(r => `
+          <div class="review">
+            <div class="review-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</div>
+            <div>${escapeHtml(r.review || '')}</div>
+            <div style="font-size:0.7rem;color:var(--text-muted);margin-top:0.25rem">${new Date(r.createdAt).toLocaleDateString()}</div>
+          </div>`).join('')
+        : '<div class="empty">No reviews yet.</div>';
+    }
+
+    document.getElementById('inquiryForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!sessionToken) await ensureSession();
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      const res = await fetch('/api/marketplace', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-session-token': sessionToken },
+        body: JSON.stringify({ action: 'inquiry', entryId, email, message }),
+      });
+      if (res.ok) {
+        e.target.reset();
+        alert('Inquiry sent.');
+      } else {
+        alert('Failed to send inquiry.');
+      }
+    });
+
+    document.getElementById('reviewForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!sessionToken) await ensureSession();
+      const rating = parseInt(document.getElementById('rating').value, 10);
+      const review = document.getElementById('reviewText').value;
+      const res = await fetch('/api/marketplace', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-session-token': sessionToken },
+        body: JSON.stringify({ action: 'review', entryId, rating, review }),
+      });
+      if (res.ok) {
+        e.target.reset();
+        await loadReviews();
+      }
+    });
+
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    }
+
+    init();
+  </script>
+</body>
+</html>

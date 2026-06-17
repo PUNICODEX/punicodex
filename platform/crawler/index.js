@@ -67,6 +67,28 @@ class UnicodeCrawler {
     };
   }
 
+  recordCrawlHistory(siteId, status, error, contentHash, startedAt) {
+    try {
+      this.db
+        .prepare(
+          `INSERT INTO crawl_history (site_id, status, error, content_hash, started_at, finished_at)
+           VALUES (?, ?, ?, ?, datetime(?, 'unixepoch'), datetime('now'))`
+        )
+        .run(siteId, status, error || null, contentHash || null, Math.floor(startedAt / 1000));
+    } catch (err) {
+      console.error('Failed to record crawl history:', err.message);
+    }
+  }
+
+  getSiteIdByDomain(domain) {
+    try {
+      const row = this.db.prepare('SELECT id FROM indexed_sites WHERE domain = ?').get(domain);
+      return row ? row.id : null;
+    } catch (_e) {
+      return null;
+    }
+  }
+
   normalizeDomain(input) {
     const trimmed = input.trim().toLowerCase();
     const domain = trimmed.startsWith('http')
@@ -705,6 +727,7 @@ class UnicodeCrawler {
   // ==================== CRAWL DOMAIN ====================
 
   async crawlDomain(input) {
+    const startedAt = Date.now();
     const { domain, punycode } = this.normalizeDomain(input);
     const entry = this.matchLexicon(punycode);
 
@@ -722,15 +745,18 @@ class UnicodeCrawler {
           status = 'error', last_crawled = datetime('now')
       `);
       stmt.run(domain, punycode, result.error);
+      const siteId = this.getSiteIdByDomain(domain);
+      this.recordCrawlHistory(siteId, 'error', result.error, null, startedAt);
       return { domain, status: 'error', error: result.error };
     }
 
     if (existing && existing.content_hash === result.content_hash) {
       this.db
         .prepare(`
-        UPDATE indexed_sites SET last_crawled = datetime('now') WHERE id = ?
+        UPDATE indexed_sites SET last_crawled = datetime('now'), next_crawl_after = datetime('now','+7 days') WHERE id = ?
       `)
         .run(existing.id);
+      this.recordCrawlHistory(existing.id, 'unchanged', null, result.content_hash, startedAt);
       return { domain, status: 'unchanged', cached: true };
     }
 
@@ -810,7 +836,8 @@ class UnicodeCrawler {
         tier_label = excluded.tier_label,
         status = excluded.status,
         content_hash = excluded.content_hash,
-        last_crawled = datetime('now')
+        last_crawled = datetime('now'),
+        next_crawl_after = datetime('now','+7 days')
     `);
 
     stmt.run(
@@ -870,6 +897,9 @@ class UnicodeCrawler {
       entry ? entry.tierLabel : null,
       result.content_hash
     );
+
+    const siteId = this.getSiteIdByDomain(domain);
+    this.recordCrawlHistory(siteId, 'active', null, result.content_hash, startedAt);
 
     // Extract SEO keywords from the crawled page (and the tenant's front URL if set).
     try {
@@ -943,7 +973,7 @@ class UnicodeCrawler {
 
   async recrawlAll() {
     const sites = this.db
-      .prepare('SELECT punycode FROM indexed_sites WHERE status = "active" OR status = "pending"')
+      .prepare("SELECT punycode FROM indexed_sites WHERE status = 'active' OR status = 'pending'")
       .all();
     return this.crawlBulk(sites.map((s) => s.punycode));
   }

@@ -36,7 +36,7 @@ async function embedSites() {
   db.pragma('journal_mode = WAL');
 
   console.log(`🧠 Loading embedding model: ${MODEL}...`);
-  const { pipeline } = require('@xenova/transformers');
+  const { pipeline } = await import('@xenova/transformers');
   const embedder = await pipeline('feature-extraction', MODEL, {
     quantized: true, // Use quantized model for faster inference
   });

@@ -12,14 +12,14 @@ function safeParseHistory(raw) {
   }
 }
 
-module.exports = (req, res) => {
+module.exports = async (req, res) => {
   setCors(req, res);
   if (req.method === 'OPTIONS') return res.status(200).end();
 
   try {
     const q = req.query.q || '';
     const history = safeParseHistory(req.query.history);
-    const result = askOracle(q, history);
+    const result = await askOracle(q, history);
     res.json({
       query: q,
       answer: result.answer,

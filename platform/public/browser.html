@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PUNYCODEX Browser</title>
+  <meta name="description" content="A browser shell for the Unicode web, powered by PUNYCODEX.">
+  <link rel="canonical" href="https://punycodex.com/browser.html">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --surface-2: #1a1a25;
+      --surface-hover: #232330;
+      --text: #f0eef5;
+      --text-dim: #9b98b0;
+      --text-muted: #6b6880;
+      --accent: #d4af37;
+      --accent-glow: rgba(212, 175, 55, 0.14);
+      --border: #2a2a3a;
+      --link-blue: #9dc3ff;
+      --font-display: 'Cinzel', Georgia, serif;
+      --font-body: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; overflow: hidden; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Toolbar */
+    .toolbar {
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    .toolbar-btn {
+      background: transparent; border: none; color: var(--text-dim);
+      width: 28px; height: 28px; border-radius: 6px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .toolbar-btn:hover { background: var(--surface-hover); color: var(--text); }
+    .omnibox-wrap { flex: 1; position: relative; }
+    .omnibox {
+      width: 100%; padding: 0.45rem 0.75rem;
+      background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+      color: var(--text); font-size: 0.9rem; outline: none;
+    }
+    .omnibox:focus { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-glow); }
+    .omnibox-hint {
+      position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+      color: var(--text-muted); font-size: 0.7rem; pointer-events: none;
+    }
+
+    /* Tabs */
+    .tab-bar {
+      display: flex; align-items: center;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+    }
+    .tab {
+      display: flex; align-items: center; gap: 0.4rem;
+      padding: 0.5rem 0.9rem;
+      font-size: 0.8rem; color: var(--text-dim);
+      border-right: 1px solid var(--border);
+      cursor: pointer; white-space: nowrap; max-width: 180px;
+    }
+    .tab.active { background: var(--surface-2); color: var(--text); }
+    .tab:hover { background: var(--surface-hover); }
+    .tab-close { width: 16px; height: 16px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; }
+    .tab-close:hover { background: rgba(255,255,255,0.1); color: var(--text); }
+    .new-tab { padding: 0.5rem 0.7rem; color: var(--text-muted); cursor: pointer; font-size: 1rem; }
+    .new-tab:hover { color: var(--text); }
+
+    /* Main layout */
+    .workspace {
+      flex: 1; display: flex; overflow: hidden;
+    }
+    .sidebar {
+      width: 240px; background: var(--surface); border-right: 1px solid var(--border);
+      display: flex; flex-direction: column; transition: width 0.2s;
+    }
+    .sidebar.collapsed { width: 0; border-right: none; overflow: hidden; }
+    .sidebar h3 {
+      font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--text-muted); padding: 0.75rem 0.9rem 0.4rem;
+    }
+    .sidebar-list { overflow-y: auto; flex: 1; }
+    .sidebar-item {
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.5rem 0.9rem; font-size: 0.8rem; color: var(--text-dim);
+      cursor: pointer; border-left: 3px solid transparent;
+    }
+    .sidebar-item:hover { background: var(--surface-hover); color: var(--text); }
+    .sidebar-item.active { background: var(--surface-2); border-left-color: var(--accent); color: var(--text); }
+
+    /* Content area */
+    .content {
+      flex: 1; position: relative; background: var(--bg);
+    }
+    .tab-pane { position: absolute; inset: 0; display: none; }
+    .tab-pane.active { display: block; }
+    .tab-pane iframe { width: 100%; height: 100%; border: none; background: #fff; }
+    .new-tab-page {
+      display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+      padding-top: 12vh; height: 100%; overflow-y: auto;
+    }
+    .ntp-logo { font-family: var(--font-display); font-size: 2.2rem; color: var(--accent); margin-bottom: 1.5rem; }
+    .ntp-search {
+      width: min(560px, 90%); position: relative;
+    }
+    .ntp-search input {
+      width: 100%; padding: 0.9rem 1rem; font-size: 1rem;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      color: var(--text); outline: none;
+    }
+    .ntp-search input:focus { border-color: var(--accent); }
+    .ntp-shortcuts { display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap; justify-content: center; }
+    .ntp-shortcut {
+      display: flex; flex-direction: column; align-items: center; gap: 0.35rem;
+      width: 80px; padding: 0.75rem 0.25rem; border-radius: 10px;
+      background: var(--surface); border: 1px solid var(--border); cursor: pointer;
+      color: var(--text-dim); font-size: 0.7rem; text-decoration: none;
+    }
+    .ntp-shortcut:hover { background: var(--surface-hover); color: var(--text); }
+    .ntp-shortcut .icon { font-size: 1.3rem; }
+
+    /* Command palette */
+    .palette-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+      display: none; align-items: flex-start; justify-content: center;
+      padding-top: 15vh; z-index: 100;
+    }
+    .palette-overlay.open { display: flex; }
+    .palette {
+      width: min(600px, 92%);
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5); overflow: hidden;
+    }
+    .palette input {
+      width: 100%; padding: 0.9rem 1rem; font-size: 1rem;
+      background: transparent; border: none; border-bottom: 1px solid var(--border);
+      color: var(--text); outline: none;
+    }
+    .palette-results { max-height: 50vh; overflow-y: auto; }
+    .palette-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.65rem 1rem; cursor: pointer; color: var(--text-dim);
+    }
+    .palette-item:hover, .palette-item.selected { background: var(--surface-hover); color: var(--text); }
+    .palette-item .cmd { font-size: 0.7rem; color: var(--text-muted); }
+
+    /* Shortcuts help */
+    .help-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+      display: none; align-items: center; justify-content: center; z-index: 101;
+    }
+    .help-overlay.open { display: flex; }
+    .help-modal {
+      width: min(480px, 92%); background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.5rem;
+    }
+    .help-modal h2 { font-family: var(--font-display); color: var(--accent); margin-bottom: 1rem; }
+    .help-row { display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid var(--border); }
+    .help-row kbd { background: var(--surface-2); padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.75rem; }
+
+    @media (max-width: 768px) {
+      .sidebar { position: absolute; z-index: 40; height: 100%; }
+      .sidebar.collapsed { width: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="toolbar-btn" id="backBtn" title="Back">←</button>
+    <button class="toolbar-btn" id="forwardBtn" title="Forward">→</button>
+    <button class="toolbar-btn" id="reloadBtn" title="Reload">↻</button>
+    <button class="toolbar-btn" id="homeBtn" title="Home">⌂</button>
+    <div class="omnibox-wrap">
+      <input type="text" class="omnibox" id="omnibox" placeholder="Search or enter address" autocomplete="off">
+      <span class="omnibox-hint">⌘K</span>
+    </div>
+    <button class="toolbar-btn" id="sidebarBtn" title="Toggle Scriptorium">☰</button>
+    <button class="toolbar-btn" id="paletteBtn" title="Command palette">⌘</button>
+  </div>
+
+  <div class="tab-bar" id="tabBar">
+    <!-- tabs injected -->
+    <div class="new-tab" id="newTabBtn" title="New tab">+</div>
+  </div>
+
+  <div class="workspace">
+    <aside class="sidebar" id="sidebar">
+      <h3>Scriptorium</h3>
+      <div class="sidebar-list" id="sidebarList"></div>
+    </aside>
+    <main class="content" id="content"></main>
+  </div>
+
+  <!-- Command palette -->
+  <div class="palette-overlay" id="paletteOverlay">
+    <div class="palette">
+      <input type="text" id="paletteInput" placeholder="Type a command, page, or name…" autocomplete="off">
+      <div class="palette-results" id="paletteResults"></div>
+    </div>
+  </div>
+
+  <!-- Shortcuts help -->
+  <div class="help-overlay" id="helpOverlay">
+    <div class="help-modal">
+      <h2>Keyboard Shortcuts</h2>
+      <div class="help-row"><span>Focus omnibox</span><kbd>/</kbd></div>
+      <div class="help-row"><span>New tab</span><kbd>t</kbd></div>
+      <div class="help-row"><span>Close tab</span><kbd>x</kbd></div>
+      <div class="help-row"><span>Next / previous tab</span><kbd>j</kbd> / <kbd>k</kbd></div>
+      <div class="help-row"><span>Command palette</span><kbd>Ctrl/⌘ K</kbd></div>
+      <div class="help-row"><span>Toggle sidebar</span><kbd>s</kbd></div>
+      <div class="help-row"><span>Show shortcuts</span><kbd>?</kbd></div>
+      <div style="text-align:right;margin-top:1rem"><button id="closeHelp" class="toolbar-btn" style="width:auto;padding:0.4rem 0.8rem">Close</button></div>
+    </div>
+  </div>
+
+  <script>
+    const contentEl = document.getElementById('content');
+    const tabBar = document.getElementById('tabBar');
+    const omnibox = document.getElementById('omnibox');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarList = document.getElementById('sidebarList');
+    const paletteOverlay = document.getElementById('paletteOverlay');
+    const paletteInput = document.getElementById('paletteInput');
+    const paletteResults = document.getElementById('paletteResults');
+    const helpOverlay = document.getElementById('helpOverlay');
+
+    let tabs = [];
+    let activeTabId = null;
+    let tabCounter = 0;
+    let historyStack = JSON.parse(localStorage.getItem('punycodex_browser_history') || '[]');
+    let savedItems = JSON.parse(localStorage.getItem('punycodex_browser_saved') || '[]');
+    let workspaces = JSON.parse(localStorage.getItem('punycodex_workspaces') || '[]');
+
+    const COMMANDS = [
+      { id: 'new-tab', title: 'New Tab', action: () => addTab() },
+      { id: 'close-tab', title: 'Close Tab', action: () => closeTab(activeTabId) },
+      { id: 'reload', title: 'Reload', action: () => reloadTab() },
+      { id: 'home', title: 'Go Home', action: () => navigateTab('search-v2.html') },
+      { id: 'toggle-sidebar', title: 'Toggle Scriptorium', action: toggleSidebar },
+      { id: 'show-shortcuts', title: 'Keyboard Shortcuts', action: toggleHelp },
+      { id: 'save-workspace', title: 'Save Workspace', action: saveWorkspace },
+      { id: 'clear-history', title: 'Clear History', action: clearHistory },
+    ];
+
+    function init() {
+      if (tabs.length === 0) addTab('search-v2.html');
+      renderTabs();
+      renderSidebar();
+      setupKeyboard();
+
+      // Load params
+      const params = new URLSearchParams(location.search);
+      const url = params.get('url');
+      const workspace = params.get('workspace');
+      if (url) {
+        addTab(url);
+      } else if (workspace) {
+        restoreWorkspace(workspace);
+      }
+    }
+
+    function addTab(url = null, title = 'New Tab') {
+      const id = `tab-${++tabCounter}`;
+      const tab = { id, url: url || 'about:newtab', title, favicon: null };
+      tabs.push(tab);
+      createPane(tab);
+      setActiveTab(id);
+      if (url) navigateTab(url, id);
+      return id;
+    }
+
+    function createPane(tab) {
+      const pane = document.createElement('div');
+      pane.className = 'tab-pane';
+      pane.id = `pane-${tab.id}`;
+      pane.dataset.tabId = tab.id;
+      contentEl.appendChild(pane);
+    }
+
+    function setActiveTab(id) {
+      activeTabId = id;
+      document.querySelectorAll('.tab-pane').forEach(p => p.classList.toggle('active', p.dataset.tabId === id));
+      document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tabId === id));
+      const tab = tabs.find(t => t.id === id);
+      if (tab) omnibox.value = tab.url === 'about:newtab' ? '' : tab.url;
+    }
+
+    function closeTab(id) {
+      const idx = tabs.findIndex(t => t.id === id);
+      if (idx === -1) return;
+      tabs.splice(idx, 1);
+      const pane = document.getElementById(`pane-${id}`);
+      if (pane) pane.remove();
+      if (activeTabId === id) {
+        const next = tabs[Math.min(idx, tabs.length - 1)];
+        if (next) setActiveTab(next.id);
+      }
+      renderTabs();
+      if (tabs.length === 0) addTab('search-v2.html');
+    }
+
+    function renderTabs() {
+      tabBar.querySelectorAll('.tab').forEach(t => t.remove());
+      tabs.forEach(tab => {
+        const el = document.createElement('div');
+        el.className = 'tab' + (tab.id === activeTabId ? ' active' : '');
+        el.dataset.tabId = tab.id;
+        el.innerHTML = `<span class="tab-title">${escapeHtml(tab.title)}</span><span class="tab-close">×</span>`;
+        el.addEventListener('click', (e) => {
+          if (e.target.classList.contains('tab-close')) closeTab(tab.id);
+          else setActiveTab(tab.id);
+        });
+        tabBar.insertBefore(el, document.getElementById('newTabBtn'));
+      });
+    }
+
+    function navigateTab(urlOrQuery, tabId = activeTabId) {
+      const tab = tabs.find(t => t.id === tabId);
+      if (!tab) return;
+
+      const resolved = resolveInput(urlOrQuery);
+      tab.url = resolved;
+      tab.title = resolved;
+      omnibox.value = resolved;
+
+      let pane = document.getElementById(`pane-${tabId}`);
+      pane.innerHTML = '';
+
+      if (resolved === 'about:newtab' || resolved.startsWith('search-v2.html') || resolved.startsWith('/search.html')) {
+        pane.appendChild(buildNewTabPage(resolved));
+      } else if (resolved.startsWith('http')) {
+        const iframe = document.createElement('iframe');
+        iframe.src = resolved;
+        iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-forms';
+        iframe.title = tab.title;
+        pane.appendChild(iframe);
+      } else {
+        pane.innerHTML = `<div style="padding:2rem;color:var(--text-muted)">Cannot load <code>${escapeHtml(resolved)}</code>. Try a URL or search query.</div>`;
+      }
+
+      recordHistory(urlOrQuery);
+      renderTabs();
+    }
+
+    function resolveInput(input) {
+      const trimmed = input.trim();
+      if (!trimmed) return 'about:newtab';
+      if (trimmed === 'about:newtab') return trimmed;
+      if (/^(https?:\/\/|xn--)/i.test(trimmed)) return trimmed;
+      if (/^[a-z0-9][\w\-\.]*\.[a-z]{2,}$/i.test(trimmed)) return `https://${trimmed}`;
+      if (trimmed.startsWith('/')) return trimmed;
+      return `search-v2.html?q=${encodeURIComponent(trimmed)}`;
+    }
+
+    function buildNewTabPage(url) {
+      const params = new URLSearchParams(url.includes('?') ? url.split('?')[1] : '');
+      const q = params.get('q') || '';
+      const div = document.createElement('div');
+      div.className = 'new-tab-page';
+      div.innerHTML = `
+        <div class="ntp-logo">PUNYCODEX</div>
+        <div class="ntp-search">
+          <input type="text" placeholder="Search the Unicode web…" value="${escapeHtml(q)}" id="ntpInput" autocomplete="off">
+        </div>
+        <div class="ntp-shortcuts">
+          <a class="ntp-shortcut" href="search-v2.html" target="_self"><span class="icon">🔍</span>Search</a>
+          <a class="ntp-shortcut" href="/pantheon/" target="_self"><span class="icon">🏛</span>Pantheon</a>
+          <a class="ntp-shortcut" href="/lexicon/" target="_self"><span class="icon">📖</span>Lexicon</a>
+          <a class="ntp-shortcut" href="/type/" target="_self"><span class="icon">⌨</span>Type</a>
+          <a class="ntp-shortcut" href="/api/v1/docs" target="_self"><span class="icon">⚡</span>API</a>
+        </div>
+      `;
+      const input = div.querySelector('#ntpInput');
+      input.focus();
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') navigateTab(input.value);
+      });
+      return div;
+    }
+
+    function reloadTab() {
+      const tab = tabs.find(t => t.id === activeTabId);
+      if (tab) navigateTab(tab.url);
+    }
+
+    function toggleSidebar() {
+      sidebar.classList.toggle('collapsed');
+    }
+
+    function renderSidebar() {
+      let html = '';
+      html += `<div class="sidebar-item active" onclick="navigateTab('search-v2.html')"><span>🔍</span> Universal Search</div>`;
+      html += `<div class="sidebar-item" onclick="navigateTab('/pantheon/')"><span>🏛</span> Pantheon</div>`;
+      html += `<div class="sidebar-item" onclick="navigateTab('/lexicon/')"><span>📖</span> Lexicon</div>`;
+      html += `<div class="sidebar-item" onclick="navigateTab('/type/')"><span>⌨</span> Type Tool</div>`;
+      html += `<div class="sidebar-item" onclick="navigateTab('/tiers/')"><span>🏅</span> Tiers</div>`;
+      html += `<h3>Saved</h3>`;
+      if (savedItems.length === 0) html += `<div class="sidebar-item" style="opacity:0.6">No saved items</div>`;
+      savedItems.forEach(item => {
+        html += `<div class="sidebar-item" onclick="navigateTab('${escapeHtml(item.url)}')"><span>🔖</span>${escapeHtml(item.title)}</div>`;
+      });
+      html += `<h3>Workspaces</h3>`;
+      if (workspaces.length === 0) html += `<div class="sidebar-item" style="opacity:0.6">No workspaces</div>`;
+      workspaces.forEach(ws => {
+        html += `<div class="sidebar-item" onclick="restoreWorkspaceByName('${escapeHtml(ws.name)}')"><span>🗂</span>${escapeHtml(ws.name)}</div>`;
+      });
+      html += `<h3>Recent</h3>`;
+      historyStack.slice(0, 12).forEach(h => {
+        html += `<div class="sidebar-item" onclick="navigateTab('${escapeHtml(h)}')" title="${escapeHtml(h)}"><span>🕘</span>${escapeHtml(truncate(h, 28))}</div>`;
+      });
+      sidebarList.innerHTML = html;
+    }
+
+    function recordHistory(url) {
+      historyStack = [url, ...historyStack.filter(h => h !== url)].slice(0, 50);
+      localStorage.setItem('punycodex_browser_history', JSON.stringify(historyStack));
+      renderSidebar();
+    }
+
+    function clearHistory() {
+      historyStack = [];
+      localStorage.removeItem('punycodex_browser_history');
+      renderSidebar();
+    }
+
+    function saveWorkspace() {
+      const name = prompt('Name this workspace:');
+      if (!name) return;
+      workspaces = workspaces.filter(w => w.name !== name);
+      workspaces.unshift({ name, tabs: tabs.map(t => ({ url: t.url, title: t.title })), createdAt: Date.now() });
+      localStorage.setItem('punycodex_workspaces', JSON.stringify(workspaces));
+      renderSidebar();
+      alert(`Workspace “${name}” saved. Share with ?workspace=${encodeURIComponent(name)}`);
+    }
+
+    function restoreWorkspaceByName(name) {
+      const ws = workspaces.find(w => w.name === name);
+      if (!ws) return;
+      tabs.forEach(t => document.getElementById(`pane-${t.id}`)?.remove());
+      tabs = [];
+      ws.tabs.forEach(t => addTab(t.url, t.title));
+    }
+
+    function restoreWorkspace(name) {
+      restoreWorkspaceByName(name);
+    }
+
+    // Command palette
+    function openPalette() {
+      paletteOverlay.classList.add('open');
+      paletteInput.value = '';
+      paletteInput.focus();
+      renderPalette('');
+    }
+    function closePalette() { paletteOverlay.classList.remove('open'); }
+    function renderPalette(q) {
+      const items = [...COMMANDS];
+      const lower = q.toLowerCase();
+      const filtered = items.filter(c => c.title.toLowerCase().includes(lower));
+      paletteResults.innerHTML = filtered.map((c, i) =>
+        `<div class="palette-item ${i === 0 ? 'selected' : ''}" data-index="${i}"><span>${escapeHtml(c.title)}</span><span class="cmd">↵</span></div>`
+      ).join('') || '<div class="palette-item">No commands found</div>';
+    }
+    function executeSelected() {
+      const selected = paletteResults.querySelector('.palette-item.selected');
+      if (!selected) return;
+      const idx = parseInt(selected.dataset.index, 10);
+      const results = [...COMMANDS].filter(c => c.title.toLowerCase().includes(paletteInput.value.toLowerCase()));
+      if (results[idx]) {
+        closePalette();
+        results[idx].action();
+      }
+    }
+
+    paletteInput.addEventListener('input', () => renderPalette(paletteInput.value));
+    paletteInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') executeSelected();
+      if (e.key === 'Escape') closePalette();
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        const items = [...paletteResults.querySelectorAll('.palette-item')];
+        const current = items.findIndex(el => el.classList.contains('selected'));
+        let next = current + (e.key === 'ArrowDown' ? 1 : -1);
+        next = Math.max(0, Math.min(items.length - 1, next));
+        items.forEach((el, i) => el.classList.toggle('selected', i === next));
+        e.preventDefault();
+      }
+    });
+    paletteOverlay.addEventListener('click', (e) => { if (e.target === paletteOverlay) closePalette(); });
+
+    // Toolbar buttons
+    document.getElementById('backBtn').addEventListener('click', () => history.back());
+    document.getElementById('forwardBtn').addEventListener('click', () => history.forward());
+    document.getElementById('reloadBtn').addEventListener('click', reloadTab);
+    document.getElementById('homeBtn').addEventListener('click', () => navigateTab('search-v2.html'));
+    document.getElementById('newTabBtn').addEventListener('click', () => addTab());
+    document.getElementById('sidebarBtn').addEventListener('click', toggleSidebar);
+    document.getElementById('paletteBtn').addEventListener('click', openPalette);
+    document.getElementById('closeHelp').addEventListener('click', toggleHelp);
+
+    omnibox.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') navigateTab(omnibox.value);
+    });
+
+    function setupKeyboard() {
+      document.addEventListener('keydown', (e) => {
+        const tag = document.activeElement?.tagName;
+        const typing = tag === 'INPUT' || tag === 'TEXTAREA';
+
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+          e.preventDefault();
+          openPalette();
+          return;
+        }
+        if (typing) return;
+
+        if (e.key === '/') { e.preventDefault(); omnibox.focus(); }
+        if (e.key === 't') { e.preventDefault(); addTab(); }
+        if (e.key === 'x') { e.preventDefault(); closeTab(activeTabId); }
+        if (e.key === 'j') { e.preventDefault(); cycleTab(1); }
+        if (e.key === 'k') { e.preventDefault(); cycleTab(-1); }
+        if (e.key === 's') { e.preventDefault(); toggleSidebar(); }
+        if (e.key === '?') { e.preventDefault(); toggleHelp(); }
+      });
+    }
+
+    function cycleTab(dir) {
+      const idx = tabs.findIndex(t => t.id === activeTabId);
+      const next = (idx + dir + tabs.length) % tabs.length;
+      setActiveTab(tabs[next].id);
+    }
+
+    function toggleHelp() {
+      helpOverlay.classList.toggle('open');
+    }
+
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    }
+    function truncate(str, n) { return str.length > n ? str.slice(0, n) + '…' : str; }
+
+    // Expose globals for inline handlers
+    window.navigateTab = navigateTab;
+    window.restoreWorkspaceByName = restoreWorkspaceByName;
+    window.toggleSidebar = toggleSidebar;
+
+    init();
+  </script>
+</body>
+</html>
