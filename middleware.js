@@ -488,6 +488,11 @@ export default function middleware(request) {
   };
   const directId = DIRECT_SERVE_MAP[host];
   if (directId) {
+    // Shared static assets live at the project root, not inside /sites/{id}.
+    // Serve them from the root so root-relative /js/... and /css/... links work.
+    if (/^\/(js|css)\//.test(url.pathname)) {
+      return fetch(url);
+    }
     url.pathname = '/sites/' + directId + url.pathname;
     return fetch(url);
   }
