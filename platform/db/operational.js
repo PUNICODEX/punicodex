@@ -1,15 +1,23 @@
-const postgres = require('postgres');
 const { getDb: getSharedDb, closeDb: closeSharedDb } = require('./connection');
 
 const DATABASE_URL = process.env.DATABASE_URL;
 
 let pgClient = null;
+let postgresPromise = null;
 
-function getPgClient() {
+async function loadPostgres() {
+  if (!postgresPromise) {
+    postgresPromise = import('postgres');
+  }
+  return postgresPromise;
+}
+
+async function getPgClient() {
   if (!pgClient) {
     if (!DATABASE_URL) {
       throw new Error('DATABASE_URL is not configured');
     }
+    const { default: postgres } = await loadPostgres();
     pgClient = postgres(DATABASE_URL);
   }
   return pgClient;
@@ -53,7 +61,7 @@ function convertPlaceholders(sql) {
 async function query(sql, params = []) {
   if (isPostgres()) {
     const tagged = toTaggedTemplate(sql, params);
-    return getPgClient()(...tagged);
+    return (await getPgClient())(...tagged);
   }
   const db = getSharedDb();
   const convertedSql = convertPlaceholders(sql);
@@ -63,7 +71,7 @@ async function query(sql, params = []) {
 async function get(sql, params = []) {
   if (isPostgres()) {
     const tagged = toTaggedTemplate(sql, params);
-    const rows = await getPgClient()(...tagged);
+    const rows = await (await getPgClient())(...tagged);
     return rows[0];
   }
   const db = getSharedDb();
@@ -74,7 +82,7 @@ async function get(sql, params = []) {
 async function all(sql, params = []) {
   if (isPostgres()) {
     const tagged = toTaggedTemplate(sql, params);
-    return getPgClient()(...tagged);
+    return (await getPgClient())(...tagged);
   }
   const db = getSharedDb();
   const convertedSql = convertPlaceholders(sql);
@@ -84,7 +92,7 @@ async function all(sql, params = []) {
 async function run(sql, params = []) {
   if (isPostgres()) {
     const tagged = toTaggedTemplate(sql, params);
-    const result = await getPgClient()(...tagged);
+    const result = await (await getPgClient())(...tagged);
     return { changes: result.count || 0 };
   }
   const db = getSharedDb();
@@ -100,7 +108,7 @@ async function insert(sql, params = []) {
   }
   if (isPostgres()) {
     const tagged = toTaggedTemplate(sql, params);
-    const rows = await getPgClient()(...tagged);
+    const rows = await (await getPgClient())(...tagged);
     return rows[0]?.id;
   }
   const db = getSharedDb();
@@ -115,8 +123,9 @@ async function exec(sql) {
       .split(';')
       .map((s) => s.trim())
       .filter((s) => s.length > 0);
+    const client = await getPgClient();
     for (const statement of statements) {
-      await getPgClient().unsafe(statement);
+      await client.unsafe(statement);
     }
     return;
   }
@@ -126,7 +135,7 @@ async function exec(sql) {
 
 async function transaction(fn) {
   if (isPostgres()) {
-    return getPgClient().begin(fn);
+    return (await getPgClient()).begin(fn);
   }
   const db = getSharedDb();
   const tx = db.transaction((cb) => cb());
