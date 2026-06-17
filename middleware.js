@@ -483,8 +483,6 @@ export default function middleware(request) {
   const DIRECT_SERVE_MAP = {
     'helheimr.com': 'helheimr',
     'www.helheimr.com': 'helheimr',
-    'trengtreng.com': 'trengtreng',
-    'www.trengtreng.com': 'trengtreng',
   };
   const directId = DIRECT_SERVE_MAP[host];
   if (directId) {
