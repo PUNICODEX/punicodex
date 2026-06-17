@@ -1844,6 +1844,35 @@
       border-color: var(--accent);
       color: var(--accent);
     }
+    .oracle-ask {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .oracle-input {
+      flex: 1;
+      padding: 0.65rem 1rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      outline: none;
+    }
+    .oracle-input:focus { border-color: var(--accent); }
+    .oracle-submit {
+      padding: 0.65rem 1.1rem;
+      background: var(--accent);
+      color: #0a0a0f;
+      border: none;
+      border-radius: 999px;
+      font-weight: 700;
+      font-family: var(--font-body);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .oracle-submit:hover { background: #e0bd4d; }
     .oracle-empty {
       color: var(--text-muted);
       font-size: 0.9rem;
@@ -1956,8 +1985,12 @@
       <span class="oracle-title">Ask the Oracle</span>
       <span class="oracle-sub" id="oracleSub">AI-curated answer</span>
     </div>
-    <div class="oracle-body" id="oracleBody">
-      <div class="oracle-empty">Type a question above and the Oracle will answer from the PUNYCODEX knowledge base.</div>
+    <div class="oracle-body" id="oracleBody" style="display:none">
+      <div class="oracle-ask">
+        <input type="text" id="oracleInput" class="oracle-input" placeholder="Ask the Oracle a question…" autocomplete="off">
+        <button class="oracle-submit" onclick="submitOracle()" type="button">Ask</button>
+      </div>
+      <div id="oracleAnswer"></div>
     </div>
   </section>
 
@@ -2539,8 +2572,6 @@
       }
 
       const apiMode = currentMode === 'network' ? 'network' : 'all';
-      // Update the Oracle in parallel with search results.
-      updateOracle(q);
 
       const params = new URLSearchParams();
       params.set('q', q);
@@ -3085,7 +3116,7 @@
     }
 
     // ====== ASK THE ORACLE ======
-    let oracleCollapsed = false;
+    let oracleCollapsed = true;
 
     function toggleOracle() {
       const body = document.getElementById('oracleBody');
@@ -3093,25 +3124,37 @@
       body.style.display = oracleCollapsed ? 'none' : 'block';
     }
 
+    function submitOracle() {
+      const input = document.getElementById('oracleInput');
+      const q = input?.value.trim() || '';
+      if (!q) return;
+      // Expand the panel if it was collapsed so the answer is visible.
+      if (oracleCollapsed) {
+        toggleOracle();
+      }
+      updateOracle(q);
+      input.value = '';
+    }
+
     async function updateOracle(q) {
-      const body = document.getElementById('oracleBody');
+      const answerEl = document.getElementById('oracleAnswer');
       if (!q) {
-        body.innerHTML = '<div class="oracle-empty">Type a question above and the Oracle will answer from the PUNYCODEX knowledge base.</div>';
+        answerEl.innerHTML = '<div class="oracle-empty">The Oracle is waiting for a question.</div>';
         return;
       }
-      body.innerHTML = '<div class="oracle-loading"><span>🔮</span><span>The Oracle is consulting the archives...</span></div>';
+      answerEl.innerHTML = '<div class="oracle-loading"><span>🔮</span><span>The Oracle is consulting the archives...</span></div>';
       try {
         const res = await fetch(`${API_BASE}/api/oracle?q=${encodeURIComponent(q)}`);
         if (!res.ok) throw new Error('Oracle unavailable');
         const data = await res.json();
         renderOracle(data);
       } catch (err) {
-        body.innerHTML = `<div class="oracle-error">The Oracle is resting: ${escapeHtml(err.message)}</div>`;
+        answerEl.innerHTML = `<div class="oracle-error">The Oracle is resting: ${escapeHtml(err.message)}</div>`;
       }
     }
 
     function renderOracle(data) {
-      const body = document.getElementById('oracleBody');
+      const answerEl = document.getElementById('oracleAnswer');
       let html = '';
 
       if (data.answer) {
@@ -3130,8 +3173,12 @@
         html += `</div>`;
       }
 
-      body.innerHTML = html || '<div class="oracle-empty">The Oracle has no answer for that yet.</div>';
+      answerEl.innerHTML = html || '<div class="oracle-empty">The Oracle has no answer for that yet.</div>';
     }
+
+    document.getElementById('oracleInput')?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') submitOracle();
+    });
 
     function linkifyOracleAnswer(text) {
       // Convert **bold** to <strong>
