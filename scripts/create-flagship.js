@@ -1155,6 +1155,10 @@ function joinFeatures(arr) {
   return `${arr.slice(0, -1).join(', ')}, and ${arr[arr.length - 1]}`;
 }
 
+function isAsciiOnlyUnicode(entry) {
+  return /^[\x00-\x7F]+$/.test(entry.unicode || '');
+}
+
 function buildNameProse(entry) {
   const label = scriptLabel(entry);
   const source = getOriginalScript(entry);
@@ -1164,9 +1168,15 @@ function buildNameProse(entry) {
   const meaningClause = entry.meaning ? ` — “${entry.meaning}”` : '';
   const original = hasOriginal
     ? `The name in its original ${label} form. <strong>${entry.unicode}</strong> (${source}) is attested as ${entry.domain.toLowerCase()}${meaningClause}. Its ${featureList} carry the full phonetic and orthographic weight of the source tradition.`
-    : `The name survives only in scholarly transliteration. <strong>${entry.unicode}</strong> is the standard ${label} romanisation, attested as ${entry.domain.toLowerCase()}${meaningClause}. Its ${featureList} preserve distinctions lost in plain ASCII.`;
-  const ascii = `Reduced to plain <strong>${entry.ascii}</strong>, the name loses everything that made it specific: ${featureList}. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.`;
-  const unicode = `The Unicode restoration recovers what ASCII flattened. <strong>${entry.unicode}</strong> restores ${featureList}, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.`;
+    : isAsciiOnlyUnicode(entry)
+      ? `The name survives in scholarly transliteration. <strong>${entry.unicode}</strong> is the standard ${label} romanisation, attested as ${entry.domain.toLowerCase()}${meaningClause}. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.`
+      : `The name survives only in scholarly transliteration. <strong>${entry.unicode}</strong> is the standard ${label} romanisation, attested as ${entry.domain.toLowerCase()}${meaningClause}. Its ${featureList} preserve distinctions lost in plain ASCII.`;
+  const ascii = isAsciiOnlyUnicode(entry)
+    ? `The plain <strong>${entry.ascii}</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.`
+    : `Reduced to plain <strong>${entry.ascii}</strong>, the name loses everything that made it specific: ${featureList}. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.`;
+  const unicode = isAsciiOnlyUnicode(entry)
+    ? `The Unicode restoration does not need to recover lost marks for <strong>${entry.unicode}</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.`
+    : `The Unicode restoration recovers what ASCII flattened. <strong>${entry.unicode}</strong> restores ${featureList}, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.`;
   return { original, ascii, unicode };
 }
 
@@ -1586,6 +1596,9 @@ function buildZeusFooter(entry, assetPrefix) {
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+                <p class="footer-links" style="margin-top:0.5rem;font-size:0.75rem;color:var(--text-muted);">
+                    <a href="#" id="my-bookings-footer" style="color:var(--text-muted);text-decoration:underline;">My Bookings</a>
+                </p>
             </div>
         </div>
     </footer>`;

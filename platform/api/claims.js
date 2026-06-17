@@ -1,105 +1,91 @@
-const Database = require('better-sqlite3');
-const path = require('node:path');
+const { get, all, run, insert } = require('../db/operational');
+const { getDb } = require('../db/connection');
 
-const DB_PATH = path.join(__dirname, '..', 'db', 'punycodex.db');
-
-function getDb() {
-  return new Database(DB_PATH);
+async function createClaim({ entryId, email, unicodeVariant, amount }) {
+  const id = await insert(
+    `
+      INSERT INTO claims (entry_id, email, unicode_variant, amount_paid, status)
+      VALUES ($1, $2, $3, $4, 'pending')
+      RETURNING id
+    `,
+    [entryId, email, unicodeVariant, amount]
+  );
+  return { id };
 }
 
-function createClaim({ entryId, email, unicodeVariant, amount }) {
-  const db = getDb();
-  const stmt = db.prepare(`
-    INSERT INTO claims (entry_id, email, unicode_variant, amount_paid, status)
-    VALUES (?, ?, ?, ?, 'pending')
-  `);
-  const result = stmt.run(entryId, email, unicodeVariant, amount);
-  db.close();
-  return { id: result.lastInsertRowid };
-}
-
-function updateClaimStripeSession(claimId, sessionId) {
-  const db = getDb();
-  db.prepare('UPDATE claims SET stripe_session_id = ?, status = ? WHERE id = ?').run(
+async function updateClaimStripeSession(claimId, sessionId) {
+  await run('UPDATE claims SET stripe_session_id = $1, status = $2 WHERE id = $3', [
     sessionId,
     'pending',
-    claimId
+    claimId,
+  ]);
+}
+
+async function markClaimPaid(sessionId, paymentIntent) {
+  await run(
+    'UPDATE claims SET stripe_payment_intent = $1, status = $2 WHERE stripe_session_id = $3',
+    [paymentIntent, 'paid', sessionId]
   );
-  db.close();
+  return getClaimById(sessionId);
 }
 
-function markClaimPaid(sessionId, paymentIntent) {
-  const db = getDb();
-  db.prepare(
-    'UPDATE claims SET stripe_payment_intent = ?, status = ? WHERE stripe_session_id = ?'
-  ).run(paymentIntent, 'paid', sessionId);
-  const claim = db.prepare('SELECT * FROM claims WHERE stripe_session_id = ?').get(sessionId);
-  db.close();
-  return claim;
-}
-
-function markClaimBuilding(claimId, githubRepo) {
-  const db = getDb();
-  db.prepare('UPDATE claims SET status = ?, github_repo = ? WHERE id = ?').run(
+async function markClaimBuilding(claimId, githubRepo) {
+  await run('UPDATE claims SET status = $1, github_repo = $2 WHERE id = $3', [
     'building',
     githubRepo,
-    claimId
-  );
-  db.close();
+    claimId,
+  ]);
 }
 
-function markClaimActive(claimId, deployUrl) {
-  const db = getDb();
-  db.prepare('UPDATE claims SET status = ?, deploy_url = ? WHERE id = ?').run(
+async function markClaimActive(claimId, deployUrl) {
+  await run('UPDATE claims SET status = $1, deploy_url = $2 WHERE id = $3', [
     'active',
     deployUrl,
-    claimId
+    claimId,
+  ]);
+}
+
+function fetchEntryFields(entryId) {
+  const db = getDb();
+  const row = db
+    .prepare(
+      'SELECT ascii, unicode as entry_unicode, greek, pantheon, tier, tier_label, meaning, domain as god_domain FROM entries WHERE id = ?'
+    )
+    .get(entryId);
+  return row || {};
+}
+
+async function getClaim(id) {
+  const claim = await get('SELECT * FROM claims WHERE id = $1', [id]);
+  if (!claim) return null;
+  const entry = fetchEntryFields(claim.entry_id);
+  return { ...claim, ...entry };
+}
+
+async function getClaimsByEmail(email) {
+  const claims = await all(
+    `
+      SELECT *
+      FROM claims
+      WHERE email = $1
+      ORDER BY created_at DESC
+    `,
+    [email]
   );
-  db.close();
+  return claims.map((claim) => ({ ...claim, ...fetchEntryFields(claim.entry_id) }));
 }
 
-function getClaim(id) {
-  const db = getDb();
-  const claim = db
-    .prepare(`
-    SELECT c.*, e.ascii, e.unicode as entry_unicode, e.greek, e.pantheon, e.tier, e.tier_label, e.meaning, e.domain as god_domain
-    FROM claims c
-    JOIN entries e ON c.entry_id = e.id
-    WHERE c.id = ?
-  `)
-    .get(id);
-  db.close();
-  return claim;
-}
-
-function getClaimsByEmail(email) {
-  const db = getDb();
-  const claims = db
-    .prepare(`
-    SELECT c.*, e.ascii, e.unicode as entry_unicode, e.pantheon, e.tier
-    FROM claims c
-    JOIN entries e ON c.entry_id = e.id
-    WHERE c.email = ?
-    ORDER BY c.created_at DESC
-  `)
-    .all(email);
-  db.close();
-  return claims;
-}
-
-function getPendingBuilds() {
-  const db = getDb();
-  const claims = db
-    .prepare(`
-    SELECT c.*, e.ascii, e.unicode as entry_unicode, e.greek, e.pantheon, e.tier, e.meaning, e.domain as god_domain
-    FROM claims c
-    JOIN entries e ON c.entry_id = e.id
-    WHERE c.status = 'paid'
-    ORDER BY c.created_at ASC
-  `)
-    .all();
-  db.close();
-  return claims;
+async function getPendingBuilds() {
+  const claims = await all(
+    `
+      SELECT *
+      FROM claims
+      WHERE status = 'paid'
+      ORDER BY created_at ASC
+    `,
+    []
+  );
+  return claims.map((claim) => ({ ...claim, ...fetchEntryFields(claim.entry_id) }));
 }
 
 module.exports = {

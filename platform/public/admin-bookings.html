@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Níkē Admin — Bookings</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <style>
         :root {
             --bg: #080e19;
@@ -132,6 +133,23 @@
             gap: 0.5rem;
             flex-wrap: wrap;
             border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .revenue-section {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .revenue-section h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .revenue-chart-wrap {
+            background: var(--bg-elevated);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 10px;
+            padding: 1rem;
+            height: 260px;
         }
         .filter-btn {
             background: transparent;
@@ -411,10 +429,53 @@
                         <button class="filter-btn ${f === currentFilter ? 'active' : ''}" onclick="setFilter('${f}')">${filterLabels[f]}</button>
                     `).join('')}
                 </div>
+                <div class="revenue-section">
+                    <h2>Revenue — Last 30 Days</h2>
+                    <div class="revenue-chart-wrap">
+                        <canvas id="revenue-chart"></canvas>
+                    </div>
+                </div>
                 <div class="bookings-grid">
                     ${bookings.length === 0 ? '<div class="empty-state">No bookings in this category.</div>' : bookings.map(b => renderCard(b)).join('')}
                 </div>
             `;
+            loadRevenueChart();
+        }
+
+        async function loadRevenueChart() {
+            if (typeof Chart === 'undefined') return;
+            try {
+                const data = await api('/api/admin/revenue');
+                if (!data.daily) return;
+                const ctx = document.getElementById('revenue-chart');
+                if (!ctx) return;
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: data.daily.map(d => d.day.slice(5)),
+                        datasets: [{
+                            label: 'Revenue ($)',
+                            data: data.daily.map(d => parseFloat(d.revenueDollars)),
+                            borderColor: '#d4af37',
+                            backgroundColor: 'rgba(212,175,55,0.1)',
+                            fill: true,
+                            tension: 0.3,
+                            pointRadius: 2,
+                        }],
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            x: { ticks: { color: '#7a8a9e' }, grid: { color: 'rgba(255,255,255,0.04)' } },
+                            y: { ticks: { color: '#7a8a9e' }, grid: { color: 'rgba(255,255,255,0.04)' }, beginAtZero: true },
+                        },
+                    },
+                });
+            } catch (err) {
+                console.error('Revenue chart failed:', err);
+            }
         }
 
         function renderCard(b) {

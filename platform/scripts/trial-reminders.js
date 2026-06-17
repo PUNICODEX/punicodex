@@ -11,7 +11,7 @@ function daysBetween(from, to) {
 }
 
 async function runTrialReminders() {
-  const trials = getTrialsNeedingReminder();
+  const trials = await getTrialsNeedingReminder();
   const now = new Date();
   let sent7 = 0;
   let sent1 = 0;
@@ -24,7 +24,7 @@ async function runTrialReminders() {
       const daysLeft = daysBetween(now, trialEnds);
 
       if (daysLeft <= 0 && booking.billing_status === 'trialing') {
-        setBillingStatus(booking.id, 'active');
+        await setBillingStatus(booking.id, 'active');
         converted++;
         continue;
       }
@@ -38,7 +38,7 @@ async function runTrialReminders() {
           trialEndsAt: booking.trial_ends_at,
           bookingToken: booking.analytics_token,
         });
-        recordTrialReminder(booking.id, '1d');
+        await recordTrialReminder(booking.id, '1d');
         sent1++;
       } else if (daysLeft <= 7 && daysLeft > 1 && !booking.reminder_7d_sent) {
         await notifyTrialEnding({
@@ -49,7 +49,7 @@ async function runTrialReminders() {
           trialEndsAt: booking.trial_ends_at,
           bookingToken: booking.analytics_token,
         });
-        recordTrialReminder(booking.id, '7d');
+        await recordTrialReminder(booking.id, '7d');
         sent7++;
       }
     } catch (err) {

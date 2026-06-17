@@ -14,11 +14,11 @@ module.exports = async (req, res) => {
 
   try {
     if (req.method === 'GET') {
-      return res.json({ keys: listKeys(), stats: getKeyStats() });
+      return res.json({ keys: await listKeys(), stats: await getKeyStats() });
     }
     if (req.method === 'POST') {
       const { name, tier, scopes, rateLimit } = req.body || {};
-      const key = createKey({ name, tier, scopes, rateLimit });
+      const key = await createKey({ name, tier, scopes, rateLimit });
       return res.status(201).json({ success: true, key });
     }
     res.status(405).json({ error: 'Method not allowed' });

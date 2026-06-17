@@ -17,7 +17,7 @@ const { resetLimiters } = require('../platform/api/api-rate-limiter.js');
 resetLimiters();
 
 const { login: adminLogin } = require('../platform/api/admin.js');
-const adminAuth = adminLogin(process.env.ADMIN_PASSWORD);
+let adminAuth;
 
 // Helper to invoke a handler as if it were a Vercel serverless function
 function invoke(handler, method, url, options = {}) {
@@ -94,6 +94,8 @@ async function test(name, fn) {
 
 async function runTests() {
   console.log('\n▸ API v1 Integration Tests\n');
+
+  adminAuth = await adminLogin(process.env.ADMIN_PASSWORD);
 
   const namesList = require('../api/v1/names/index.js');
   const nameDetail = require('../api/v1/names/[id]/index.js');

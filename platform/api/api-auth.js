@@ -6,19 +6,9 @@
  */
 
 const crypto = require('node:crypto');
-const Database = require('better-sqlite3');
-const { getDbPath } = require('../db/db');
+const { get, run } = require('../db/operational');
 
 const DEMO_KEY = 'pk_punycodex_demo';
-
-let db;
-function getDb() {
-  if (!db) {
-    db = new Database(getDbPath());
-    db.pragma('journal_mode = WAL');
-  }
-  return db;
-}
 
 function hashKey(key) {
   return crypto.createHash('sha256').update(key).digest('hex');
@@ -36,13 +26,13 @@ function getClientIp(req) {
   return req.socket?.remoteAddress || req.connection?.remoteAddress || 'unknown';
 }
 
-function lookupKey(key) {
+async function lookupKey(key) {
   if (!key) return null;
   try {
     const hashed = hashKey(key);
-    const row = getDb()
-      .prepare('SELECT * FROM api_keys WHERE key_hash = ? AND revoked_at IS NULL')
-      .get(hashed);
+    const row = await get('SELECT * FROM api_keys WHERE key_hash = $1 AND revoked_at IS NULL', [
+      hashed,
+    ]);
     if (!row) return null;
     return {
       id: row.id,
@@ -57,19 +47,18 @@ function lookupKey(key) {
   }
 }
 
-function recordKeyUsage(keyId) {
+async function recordKeyUsage(keyId) {
   try {
-    getDb()
-      .prepare(
-        'UPDATE api_keys SET last_used_at = CURRENT_TIMESTAMP, request_count = request_count + 1 WHERE id = ?'
-      )
-      .run(keyId);
+    await run(
+      'UPDATE api_keys SET last_used_at = CURRENT_TIMESTAMP, request_count = request_count + 1 WHERE id = $1',
+      [keyId]
+    );
   } catch (err) {
     console.error('Failed to record key usage:', err);
   }
 }
 
-function authenticate(req) {
+async function authenticate(req) {
   const key = extractBearer(req);
   if (!key) {
     return {
@@ -80,12 +69,12 @@ function authenticate(req) {
     };
   }
 
-  const keyRecord = lookupKey(key);
+  const keyRecord = await lookupKey(key);
   if (!keyRecord) {
     return { invalid: true };
   }
 
-  recordKeyUsage(keyRecord.id);
+  await recordKeyUsage(keyRecord.id);
   return {
     keyId: keyRecord.id,
     name: keyRecord.name,

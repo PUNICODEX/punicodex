@@ -60,6 +60,7 @@
                 <a href="https://punycodex.com/type/">Type</a>
                 <a href="https://punycodex.com/search.html">Search</a>
                 <a href="https://punycodex.com/tiers/">Tiers</a>
+                <a href="#" id="my-bookings-nav">My Bookings</a>
             </div>
         </div>
     </div>
@@ -330,7 +331,7 @@
                 </div>
 
                 <!-- 13: Full Page Ownership -->
-                <div class="space-slot space-slot--fullpage" data-space="65" data-price-cents="50000">
+                <div class="space-slot space-slot--fullpage" data-space="65" data-price-cents="50000" data-bundle="1">
                     <div class="space-meta">
                         <span class="space-num">13</span>
                         <div class="space-info">
@@ -421,6 +422,19 @@
                     </div>
                     <button type="button" class="booking-submit" id="booking-send-code">Send Verification Code</button>
                     <p class="booking-note">We'll email you a code to confirm your address before payment.</p>
+                </div>
+            </div>
+
+            <!-- Step 1c: Application (Slot 13) -->
+            <div class="booking-step" id="booking-step-apply" style="display:none;">
+                <h3 class="booking-modal-title">Apply for <span id="booking-apply-slot-name"></span></h3>
+                <p class="booking-modal-subtitle">Tell us about your planned campaign. We'll review and send a payment link if approved.</p>
+                <div class="booking-form">
+                    <div class="booking-error" id="booking-apply-error" style="display:none;"></div>
+                    <label class="booking-label">Campaign Note</label>
+                    <textarea class="booking-input" id="booking-application-note" rows="4" placeholder="Describe your brand, campaign goals, and any creative direction..."></textarea>
+                    <button type="button" class="booking-submit" id="booking-submit-application">Submit Application</button>
+                    <p class="booking-note">Applications are typically reviewed within 24–48 hours.</p>
                 </div>
             </div>
 
@@ -561,6 +575,9 @@
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+                <p class="footer-links" style="margin-top:0.5rem;font-size:0.75rem;color:var(--text-muted);">
+                    <a href="#" id="my-bookings-footer" style="color:var(--text-muted);text-decoration:underline;">My Bookings</a>
+                </p>
             </div>
         </div>
     </footer>

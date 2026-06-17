@@ -56,16 +56,20 @@ const {
   saveSlotCreative,
   updateSlotMeta,
   isBundleSlot,
+  setCancelAtEnd,
 } = require('./api/bookings');
+const { get, run } = require('./db/operational');
 const {
   login: adminLogin,
   validateAdminToken,
   revokeToken,
   getAllBookings,
   getBookingStats,
+  getRevenueStats,
 } = require('./api/admin');
 const { logAction } = require('./api/admin-actions');
 const { createPublicRateLimit } = require('./api/public-rate-limiter');
+const { validateCreativeDimensions } = require('./api/image-meta');
 const { createVerifiedSession, consumeVerifiedSession } = require('./api/verified-sessions');
 const {
   listKeys,
@@ -76,7 +80,11 @@ const {
   getKeyUsage,
   getKeyStats,
 } = require('./api/api-key-admin');
-const { createBookingCheckoutSession, handleWebhook } = require('./api/stripe');
+const {
+  createBookingCheckoutSession,
+  createRenewalCheckoutSession,
+  handleWebhook,
+} = require('./api/stripe');
 const {
   proposeTenant,
   createTenant,
@@ -105,6 +113,8 @@ const {
 } = require('./api/email');
 const fs = require('node:fs');
 const _crypto = require('node:crypto');
+const { runTrialReminders } = require('./scripts/trial-reminders');
+const { runLeaseExpiry } = require('./scripts/lease-expiry');
 
 const dnsLookup = promisify(dns.lookup);
 
@@ -157,11 +167,11 @@ app.use('/favicons', express.static(path.join(__dirname, 'public', 'favicons')))
 app.use('/thumbnails', express.static(path.join(__dirname, 'public', 'thumbnails')));
 
 // Redirect root to search
-app.get('/', (_req, res) => res.redirect('/search.html'));
+app.get('/', async (_req, res) => res.redirect('/search.html'));
 
 // ============ PHASE 1: LEXICON & SEARCH ============
 
-app.get('/api/health', (_req, res) => {
+app.get('/api/health', async (_req, res) => {
   const stats = getStats();
   res.json({
     status: 'ok',
@@ -172,7 +182,7 @@ app.get('/api/health', (_req, res) => {
   });
 });
 
-app.get('/api/search', (req, res) => {
+app.get('/api/search', async (req, res) => {
   try {
     const { q, pantheon, tier, hasSite, limit, offset } = req.query;
     const result = search({
@@ -189,7 +199,7 @@ app.get('/api/search', (req, res) => {
   }
 });
 
-app.get('/api/entry/:id', (req, res) => {
+app.get('/api/entry/:id', async (req, res) => {
   try {
     const entry = getEntry(req.params.id);
     if (!entry) return res.status(404).json({ error: 'Not found' });
@@ -211,7 +221,7 @@ app.get('/api/entry/:id', (req, res) => {
   }
 });
 
-app.get('/api/stats', (_req, res) => {
+app.get('/api/stats', async (_req, res) => {
   try {
     res.json(getStats());
   } catch (err) {
@@ -219,7 +229,7 @@ app.get('/api/stats', (_req, res) => {
   }
 });
 
-app.get('/api/pantheons', (_req, res) => {
+app.get('/api/pantheons', async (_req, res) => {
   try {
     res.json(getPantheons());
   } catch (err) {
@@ -227,7 +237,7 @@ app.get('/api/pantheons', (_req, res) => {
   }
 });
 
-app.get('/api/pantheon/:name', (req, res) => {
+app.get('/api/pantheon/:name', async (req, res) => {
   try {
     res.json(getByPantheon(req.params.name));
   } catch (err) {
@@ -235,7 +245,7 @@ app.get('/api/pantheon/:name', (req, res) => {
   }
 });
 
-app.get('/api/entry/:id/variants', (req, res) => {
+app.get('/api/entry/:id/variants', async (req, res) => {
   try {
     const variants = getVariants(req.params.id);
     if (variants === null) return res.status(404).json({ error: 'Entry not found' });
@@ -245,7 +255,7 @@ app.get('/api/entry/:id/variants', (req, res) => {
   }
 });
 
-app.get('/api/variants/:ascii', (req, res) => {
+app.get('/api/variants/:ascii', async (req, res) => {
   try {
     const variants = getVariantsByAscii(req.params.ascii);
     res.json({ ascii: req.params.ascii, count: variants.length, variants });
@@ -254,7 +264,7 @@ app.get('/api/variants/:ascii', (req, res) => {
   }
 });
 
-app.get('/api/flagships', (_req, res) => {
+app.get('/api/flagships', async (_req, res) => {
   try {
     res.json(getFlagships());
   } catch (err) {
@@ -341,7 +351,7 @@ app.post('/api/domain-status', async (req, res) => {
 // ============ PHASE 2: CRAWLER & SEARCH ENGINE ============
 
 // Get crawler stats
-app.get('/api/crawler/stats', (_req, res) => {
+app.get('/api/crawler/stats', async (_req, res) => {
   try {
     res.json(getCrawlerStats());
   } catch (err) {
@@ -350,7 +360,7 @@ app.get('/api/crawler/stats', (_req, res) => {
 });
 
 // List indexed sites
-app.get('/api/sites', (req, res) => {
+app.get('/api/sites', async (req, res) => {
   try {
     const { status, pantheon, entryId, limit, offset } = req.query;
     res.json(
@@ -368,7 +378,7 @@ app.get('/api/sites', (req, res) => {
 });
 
 // Search indexed sites (legacy LIKE-based search)
-app.get('/api/sites/search', (req, res) => {
+app.get('/api/sites/search', async (req, res) => {
   try {
     const { q, limit } = req.query;
     if (!q) return res.status(400).json({ error: 'q parameter required' });
@@ -424,7 +434,7 @@ app.get('/api/search/web', async (req, res) => {
 });
 
 // Click tracking for feedback loop
-app.post('/api/search/click', (req, res) => {
+app.post('/api/search/click', async (req, res) => {
   try {
     const { query, siteId, position, dwellTimeMs } = req.body;
     if (!query || !siteId) {
@@ -466,7 +476,7 @@ app.post('/api/search/click', (req, res) => {
 });
 
 // Find duplicate content clusters (must be BEFORE /api/sites/:punycode)
-app.get('/api/sites/duplicates', (req, res) => {
+app.get('/api/sites/duplicates', async (req, res) => {
   try {
     const threshold = parseInt(req.query.threshold, 10) || 3;
     const clusters = findDuplicateClusters(threshold, 2, 200);
@@ -477,7 +487,7 @@ app.get('/api/sites/duplicates', (req, res) => {
 });
 
 // Get single site by punycode
-app.get('/api/sites/:punycode', (req, res) => {
+app.get('/api/sites/:punycode', async (req, res) => {
   try {
     const site = getSiteByPunycode(req.params.punycode);
     if (!site) return res.status(404).json({ error: 'Site not found' });
@@ -527,7 +537,7 @@ app.post('/api/crawl/recrawl', requireAdmin, async (_req, res) => {
 });
 
 // Mark site as spam (admin only)
-app.post('/api/sites/:punycode/spam', requireAdmin, (req, res) => {
+app.post('/api/sites/:punycode/spam', requireAdmin, async (req, res) => {
   try {
     markSiteSpam(req.params.punycode);
     res.json({ success: true, punycode: req.params.punycode, status: 'spam' });
@@ -539,7 +549,7 @@ app.post('/api/sites/:punycode/spam', requireAdmin, (req, res) => {
 // ============ PHASE 6: QUERY INTELLIGENCE ============
 
 // Autocomplete suggestions
-app.get('/api/search/suggest', (req, res) => {
+app.get('/api/search/suggest', async (req, res) => {
   try {
     const { q, limit } = req.query;
     if (!q?.trim()) return res.json({ suggestions: [], query: q });
@@ -551,7 +561,7 @@ app.get('/api/search/suggest', (req, res) => {
 });
 
 // "Did you mean?" spell correction
-app.get('/api/search/didyoumean', (req, res) => {
+app.get('/api/search/didyoumean', async (req, res) => {
   try {
     const { q, limit } = req.query;
     if (!q?.trim()) return res.json({ suggestions: [], query: q });
@@ -563,7 +573,7 @@ app.get('/api/search/didyoumean', (req, res) => {
 });
 
 // Related searches
-app.get('/api/search/related', (req, res) => {
+app.get('/api/search/related', async (req, res) => {
   try {
     const { q, limit } = req.query;
     if (!q?.trim()) return res.json({ related: [], query: q });
@@ -577,7 +587,7 @@ app.get('/api/search/related', (req, res) => {
 // ============ PHASE 3: DISCOVERY & QUEUE ============
 
 // Get crawl queue
-app.get('/api/crawler/queue', (req, res) => {
+app.get('/api/crawler/queue', async (req, res) => {
   try {
     const { status, limit, offset } = req.query;
     res.json(
@@ -593,7 +603,7 @@ app.get('/api/crawler/queue', (req, res) => {
 });
 
 // Add domains to crawl queue (admin only)
-app.post('/api/crawler/queue', requireAdmin, (req, res) => {
+app.post('/api/crawler/queue', requireAdmin, async (req, res) => {
   try {
     const { domains, source, priority } = req.body;
     if (!domains) return res.status(400).json({ error: 'domains required (string or array)' });
@@ -632,7 +642,7 @@ app.post('/api/crawler/queue/process', requireAdmin, async (req, res) => {
 });
 
 // Get discovered domains
-app.get('/api/crawler/discovered', (req, res) => {
+app.get('/api/crawler/discovered', async (req, res) => {
   try {
     const { source, limit, offset } = req.query;
     res.json(
@@ -648,7 +658,7 @@ app.get('/api/crawler/discovered', (req, res) => {
 });
 
 // Trigger CT log discovery (runs in background) (admin only)
-app.post('/api/crawler/discover', requireAdmin, (req, res) => {
+app.post('/api/crawler/discover', requireAdmin, async (req, res) => {
   try {
     const { domains, source } = req.body;
     if (!domains) return res.status(400).json({ error: 'domains array required' });
@@ -688,7 +698,7 @@ app.post('/api/crawler/discover', requireAdmin, (req, res) => {
 
 // ============ AVAILABILITY ============
 
-app.get('/api/availability/:entryId', (req, res) => {
+app.get('/api/availability/:entryId', async (req, res) => {
   try {
     const avail = getAvailability(req.params.entryId);
     if (!avail) return res.status(404).json({ error: 'Not tracked' });
@@ -698,7 +708,7 @@ app.get('/api/availability/:entryId', (req, res) => {
   }
 });
 
-app.post('/api/availability/:entryId', (req, res) => {
+app.post('/api/availability/:entryId', async (req, res) => {
   try {
     const { domain, punycode, status } = req.body;
     setAvailability(req.params.entryId, domain, punycode, status);
@@ -710,7 +720,7 @@ app.post('/api/availability/:entryId', (req, res) => {
 
 // ============ PHASE 5 — KNOWLEDGE PANELS ============
 
-app.get('/api/search/knowledge', (req, res) => {
+app.get('/api/search/knowledge', async (req, res) => {
   try {
     const { q } = req.query;
     const panel = getKnowledgePanelData(q);
@@ -722,7 +732,7 @@ app.get('/api/search/knowledge', (req, res) => {
 });
 
 // People Also Ask (entity-driven expandable questions)
-app.get('/api/search/paa', (req, res) => {
+app.get('/api/search/paa', async (req, res) => {
   try {
     const { q, limit } = req.query;
     const questions = generatePeopleAlsoAsk(q, limit ? parseInt(limit, 10) : 4);
@@ -745,7 +755,7 @@ app.get('/api/oracle', async (req, res) => {
 });
 
 // Webmaster domain submission
-app.post('/api/submit', (req, res) => {
+app.post('/api/submit', async (req, res) => {
   try {
     const { domain, email } = req.body;
     if (!domain) return res.status(400).json({ error: 'domain required' });
@@ -759,17 +769,17 @@ app.post('/api/submit', (req, res) => {
 // ============ NIKE BOOKING SYSTEM ============
 
 // --- Public Slots ---
-app.get('/api/slots', (req, res) => {
+app.get('/api/slots', async (req, res) => {
   try {
-    res.json({ slots: getSlots(req.query.site || null) });
+    res.json({ slots: await getSlots(req.query.site || null) });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-app.get('/api/slots/:slug', (req, res) => {
+app.get('/api/slots/:slug', async (req, res) => {
   try {
-    const slot = getSlotBySlug(req.params.slug, req.query.site || null);
+    const slot = await getSlotBySlug(req.params.slug, req.query.site || null);
     if (!slot) return res.status(404).json({ error: 'Slot not found' });
     res.json(slot);
   } catch (err) {
@@ -811,7 +821,7 @@ app.post('/api/bookings', bookingsLimit, async (req, res) => {
       verificationToken,
     } = req.body;
     if (!slotId || !email) return res.status(400).json({ error: 'slotId and email required' });
-    if (!verificationToken || !consumeVerifiedSession(email, verificationToken)) {
+    if (!verificationToken || !(await consumeVerifiedSession(email, verificationToken))) {
       return res.status(400).json({ error: 'Email not verified. Please request a new code.' });
     }
     const months = parseInt(leaseMonths, 10) || 1;
@@ -823,7 +833,7 @@ app.post('/api/bookings', bookingsLimit, async (req, res) => {
     if (trial >= months)
       return res.status(400).json({ error: 'trialMonths must be less than leaseMonths' });
 
-    const slot = getSlotById(slotId);
+    const slot = await getSlotById(slotId);
     if (!slot) return res.status(404).json({ error: 'Slot not found' });
     if (slot.status !== 'available')
       return res.status(400).json({ error: 'Slot is not available' });
@@ -833,7 +843,7 @@ app.post('/api/bookings', bookingsLimit, async (req, res) => {
 
     const siteSlug = slot.site_slug || 'nike';
     const siteName = siteSlug === 'hermes' ? 'Hermês' : 'Níkē';
-    const { id, token } = createBooking({
+    const { id, token } = await createBooking({
       slotId,
       email,
       companyName,
@@ -868,14 +878,14 @@ app.post('/api/bookings', bookingsLimit, async (req, res) => {
       });
     } catch (stripeErr) {
       // Stripe not configured — clean up booking and return clear error
-      db.prepare('DELETE FROM bookings WHERE id = ?').run(id);
+      await run('DELETE FROM bookings WHERE id = $1', [id]);
       console.error('Stripe error:', stripeErr.message);
       return res.status(400).json({
         error: 'Payment provider not configured. Add STRIPE_SECRET_KEY to environment variables.',
       });
     }
 
-    updateBookingStripeSession(id, stripeResult.sessionId);
+    await updateBookingStripeSession(id, stripeResult.sessionId);
 
     // Send booking confirmation email
     sendBookingConfirmation({
@@ -932,7 +942,7 @@ app.post('/api/bookings/apply', bookingsLimit, async (req, res) => {
       verificationToken,
     } = req.body;
     if (!slotId || !email) return res.status(400).json({ error: 'slotId and email required' });
-    if (!verificationToken || !consumeVerifiedSession(email, verificationToken)) {
+    if (!verificationToken || !(await consumeVerifiedSession(email, verificationToken))) {
       return res.status(400).json({ error: 'Email not verified. Please request a new code.' });
     }
 
@@ -945,7 +955,7 @@ app.post('/api/bookings/apply', bookingsLimit, async (req, res) => {
     if (trial >= months)
       return res.status(400).json({ error: 'trialMonths must be less than leaseMonths' });
 
-    const slot = getSlotById(slotId);
+    const slot = await getSlotById(slotId);
     if (!slot) return res.status(404).json({ error: 'Slot not found' });
     if (!slot.is_bundle)
       return res
@@ -958,7 +968,7 @@ app.post('/api/bookings/apply', bookingsLimit, async (req, res) => {
     if (metaError) return res.status(400).json({ error: metaError });
 
     const siteSlug = slot.site_slug || 'nike';
-    const { id, token } = createBooking({
+    const { id, token } = await createBooking({
       slotId,
       email,
       companyName,
@@ -1000,11 +1010,14 @@ app.post('/api/verify/send', verifySendLimit, async (req, res) => {
     const code = Math.floor(100000 + Math.random() * 900000).toString();
     const expires = new Date(Date.now() + 10 * 60 * 1000).toISOString();
 
-    db.prepare(`
+    await run(
+      `
       INSERT INTO email_verifications (email, code, expires_at)
-      VALUES (?, ?, ?)
-      ON CONFLICT(email) DO UPDATE SET code = excluded.code, expires_at = excluded.expires_at
-    `).run(email, code, expires);
+      VALUES ($1, $2, $3)
+      ON CONFLICT (email) DO UPDATE SET code = EXCLUDED.code, expires_at = EXCLUDED.expires_at
+    `,
+      [email, code, expires]
+    );
 
     await sendVerificationCode({ email, code });
     res.json({ sent: true });
@@ -1013,31 +1026,31 @@ app.post('/api/verify/send', verifySendLimit, async (req, res) => {
   }
 });
 
-app.post('/api/verify/check', verifyCheckLimit, (req, res) => {
+app.post('/api/verify/check', verifyCheckLimit, async (req, res) => {
   try {
     const { email, code } = req.body;
     if (!email || !code) return res.status(400).json({ error: 'Email and code required' });
 
-    const row = db.prepare('SELECT * FROM email_verifications WHERE email = ?').get(email);
+    const row = await get('SELECT * FROM email_verifications WHERE email = $1', [email]);
     if (!row)
       return res.status(400).json({ error: 'No verification found. Please request a new code.' });
     if (new Date(row.expires_at) < new Date())
       return res.status(400).json({ error: 'Code expired. Please request a new one.' });
     if (row.code !== code) return res.status(400).json({ error: 'Invalid code.' });
 
-    db.prepare('DELETE FROM email_verifications WHERE email = ?').run(email);
-    const verificationToken = createVerifiedSession(email);
+    await run('DELETE FROM email_verifications WHERE email = $1', [email]);
+    const verificationToken = await createVerifiedSession(email);
     res.json({ verified: true, verificationToken });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-app.get('/api/bookings/:token/all', (req, res) => {
+app.get('/api/bookings/:token/all', async (req, res) => {
   try {
-    const primary = getBookingByToken(req.params.token);
+    const primary = await getBookingByToken(req.params.token);
     if (!primary) return res.status(404).json({ error: 'Booking not found' });
-    const bookings = getBookingsByEmail(primary.email);
+    const bookings = await getBookingsByEmail(primary.email);
     res.json({
       bookings: bookings.map((b) => ({
         id: b.id,
@@ -1053,6 +1066,14 @@ app.get('/api/bookings/:token/all', (req, res) => {
         is_bundle: b.is_bundle,
         slot_id: b.slot_id,
         lease_months: b.lease_months,
+        site_slug: b.site_slug,
+        started_at: b.started_at,
+        ends_at: b.ends_at,
+        trial_ends_at: b.trial_ends_at,
+        billing_status: b.billing_status,
+        cancel_at_end: b.cancel_at_end,
+        canceled_at: b.canceled_at,
+        amount_paid_cents: b.amount_paid_cents,
       })),
     });
   } catch (err) {
@@ -1060,38 +1081,113 @@ app.get('/api/bookings/:token/all', (req, res) => {
   }
 });
 
-app.post('/api/bookings/:token/meta', bookingMetaLimit, (req, res) => {
+app.post('/api/bookings/:token/meta', bookingMetaLimit, async (req, res) => {
   try {
     const { customHeading, customSubtitle, slotId } = req.body;
-    const booking = getBookingByToken(req.params.token);
+    const booking = await getBookingByToken(req.params.token);
     if (!booking) return res.status(404).json({ error: 'Booking not found' });
 
     // Per-slot meta update for bundle bookings
-    if (slotId && isBundleSlot(booking.slot_id)) {
-      const slot = getSlotById(slotId);
+    if (slotId && (await isBundleSlot(booking.slot_id))) {
+      const slot = await getSlotById(slotId);
       if (!slot) return res.status(404).json({ error: 'Slot not found' });
       const metaError = validateMeta(slot.width, customHeading, customSubtitle);
       if (metaError) return res.status(400).json({ error: metaError });
-      updateSlotMeta(booking.id, slotId, { customHeading, customSubtitle });
+      await updateSlotMeta(booking.id, slotId, { customHeading, customSubtitle });
       return res.json({ success: true });
     }
 
     const metaError = validateMeta(booking.width, customHeading, customSubtitle);
     if (metaError) return res.status(400).json({ error: metaError });
-    db.prepare(
-      'UPDATE bookings SET custom_heading = ?, custom_subtitle = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?'
-    ).run(customHeading || null, customSubtitle || null, booking.id);
+    await run(
+      'UPDATE bookings SET custom_heading = $1, custom_subtitle = $2, updated_at = CURRENT_TIMESTAMP WHERE id = $3',
+      [customHeading || null, customSubtitle || null, booking.id]
+    );
     res.json({ success: true });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-app.get('/api/bookings/:token', (req, res) => {
+app.get('/api/bookings/:token', async (req, res) => {
   try {
-    const booking = getBookingByToken(req.params.token);
+    const booking = await getBookingByToken(req.params.token);
     if (!booking) return res.status(404).json({ error: 'Booking not found' });
     res.json(booking);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/api/bookings/:token/cancel', bookingMetaLimit, async (req, res) => {
+  try {
+    const booking = await getBookingByToken(req.params.token);
+    if (!booking) return res.status(404).json({ error: 'Booking not found' });
+    if (
+      !['live', 'approved', 'pending_payment', 'pending_upload', 'pending_approval'].includes(
+        booking.status
+      )
+    ) {
+      return res.status(400).json({ error: `Cannot cancel in status: ${booking.status}` });
+    }
+    await setCancelAtEnd(booking.id, true);
+    res.json({ success: true, cancelAtEnd: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/api/bookings/:token/uncancel', bookingMetaLimit, async (req, res) => {
+  try {
+    const booking = await getBookingByToken(req.params.token);
+    if (!booking) return res.status(404).json({ error: 'Booking not found' });
+    await setCancelAtEnd(booking.id, false);
+    res.json({ success: true, cancelAtEnd: false });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/api/bookings/:token/renew', bookingMetaLimit, async (req, res) => {
+  try {
+    const booking = await getBookingByToken(req.params.token);
+    if (!booking) return res.status(404).json({ error: 'Booking not found' });
+    if (!['live', 'approved', 'pending_approval'].includes(booking.status)) {
+      return res.status(400).json({ error: `Cannot renew in status: ${booking.status}` });
+    }
+
+    const extensionMonths = parseInt(req.body.extensionMonths, 10) || 12;
+    if (![1, 12].includes(extensionMonths)) {
+      return res.status(400).json({ error: 'extensionMonths must be 1 or 12' });
+    }
+
+    const slot = await getSlotById(booking.slot_id);
+    if (!slot) return res.status(404).json({ error: 'Slot not found' });
+
+    const isYearly = extensionMonths === 12;
+    const amountCents = isYearly
+      ? Math.round(slot.price_cents * 12 * 0.9)
+      : slot.price_cents * extensionMonths;
+    const siteSlug = slot.site_slug || 'nike';
+    const siteName = siteSlug === 'hermes' ? 'Hermês' : 'Níkē';
+
+    const stripeResult = await createRenewalCheckoutSession({
+      bookingId: booking.id,
+      email: booking.email,
+      slotName: slot.name,
+      amountCents,
+      token: booking.analytics_token,
+      extensionMonths,
+      siteSlug,
+      siteName,
+    });
+
+    res.json({
+      success: true,
+      stripeUrl: stripeResult.sessionUrl,
+      extensionMonths,
+      totalCents: amountCents,
+    });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -1103,7 +1199,7 @@ app.post('/api/bookings/recover', bookingsRecoverLimit, async (req, res) => {
     if (!email?.includes('@')) {
       return res.status(400).json({ error: 'Valid email required' });
     }
-    const bookings = getBookingsByEmail(email);
+    const bookings = await getBookingsByEmail(email);
     if (bookings.length === 0) {
       return res.json({
         sent: true,
@@ -1119,7 +1215,7 @@ app.post('/api/bookings/recover', bookingsRecoverLimit, async (req, res) => {
 
 app.get('/api/bookings/:token/check-payment', async (req, res) => {
   try {
-    const booking = getBookingByToken(req.params.token);
+    const booking = await getBookingByToken(req.params.token);
     if (!booking) return res.status(404).json({ error: 'Booking not found' });
 
     // Already past payment
@@ -1135,7 +1231,11 @@ app.get('/api/bookings/:token/check-payment', async (req, res) => {
     try {
       const session = await stripe.checkout.sessions.retrieve(booking.stripe_session_id);
       if (session.payment_status === 'paid') {
-        const updated = markBookingPaid(session.id, session.payment_intent, session.amount_total);
+        const updated = await markBookingPaid(
+          session.id,
+          session.payment_intent,
+          session.amount_total
+        );
         return res.json({ status: updated.status, booking: updated });
       }
     } catch (stripeErr) {
@@ -1149,12 +1249,12 @@ app.get('/api/bookings/:token/check-payment', async (req, res) => {
 });
 
 // Upload creative (base64)
-app.post('/api/bookings/:token/upload', bookingUploadLimit, (req, res) => {
+app.post('/api/bookings/:token/upload', bookingUploadLimit, async (req, res) => {
   try {
     const { image, filename } = req.body;
     if (!image || !filename) return res.status(400).json({ error: 'image and filename required' });
 
-    const booking = getBookingByToken(req.params.token);
+    const booking = await getBookingByToken(req.params.token);
     if (!booking) return res.status(404).json({ error: 'Booking not found' });
     if (!['pending_upload', 'rejected'].includes(booking.status)) {
       return res.status(400).json({ error: `Cannot upload in status: ${booking.status}` });
@@ -1173,6 +1273,11 @@ app.post('/api/bookings/:token/upload', bookingUploadLimit, (req, res) => {
       return res.status(400).json({ error: 'Image must be under 2MB' });
     }
 
+    const dimError = validateCreativeDimensions(buffer, booking.width, booking.height);
+    if (dimError) {
+      return res.status(400).json({ error: dimError });
+    }
+
     const ext = mimeType.split('/')[1];
     const safeName = `${Date.now()}.${ext}`;
     const slotDir = path.join(UPLOADS_DIR, String(booking.id));
@@ -1180,7 +1285,7 @@ app.post('/api/bookings/:token/upload', bookingUploadLimit, (req, res) => {
     const filePath = path.join(slotDir, safeName);
     fs.writeFileSync(filePath, buffer);
 
-    saveCreative(booking.id, `/uploads/${booking.id}/${safeName}`, filename);
+    await saveCreative(booking.id, `/uploads/${booking.id}/${safeName}`, filename);
 
     // Notify admin
     notifyAdminPending({
@@ -1197,13 +1302,13 @@ app.post('/api/bookings/:token/upload', bookingUploadLimit, (req, res) => {
 });
 
 // Per-slot creative upload (for bundle bookings)
-app.post('/api/bookings/:token/slot/:slotId/upload', (req, res) => {
+app.post('/api/bookings/:token/slot/:slotId/upload', async (req, res) => {
   try {
     const { image, filename } = req.body;
     const slotId = parseInt(req.params.slotId, 10);
     if (!image || !filename) return res.status(400).json({ error: 'image and filename required' });
 
-    const booking = getBookingByToken(req.params.token);
+    const booking = await getBookingByToken(req.params.token);
     if (!booking) return res.status(404).json({ error: 'Booking not found' });
     if (booking.slot_id !== 13)
       return res.status(400).json({ error: 'Per-slot upload only available for bundle bookings' });
@@ -1211,7 +1316,7 @@ app.post('/api/bookings/:token/slot/:slotId/upload', (req, res) => {
       return res.status(400).json({ error: `Cannot upload in status: ${booking.status}` });
     }
 
-    const members = getBundleMembers(13);
+    const members = await getBundleMembers(13);
     if (!members.includes(slotId)) {
       return res.status(400).json({ error: 'Invalid slot for this bundle' });
     }
@@ -1228,6 +1333,13 @@ app.post('/api/bookings/:token/slot/:slotId/upload', (req, res) => {
       return res.status(400).json({ error: 'Image must be under 2MB' });
     }
 
+    const memberSlot = await getSlotById(slotId);
+    if (!memberSlot) return res.status(404).json({ error: 'Slot not found' });
+    const dimError = validateCreativeDimensions(buffer, memberSlot.width, memberSlot.height);
+    if (dimError) {
+      return res.status(400).json({ error: dimError });
+    }
+
     const ext = mimeType.split('/')[1];
     const safeName = `${Date.now()}.${ext}`;
     const slotDir = path.join(UPLOADS_DIR, String(booking.id), String(slotId));
@@ -1236,7 +1348,7 @@ app.post('/api/bookings/:token/slot/:slotId/upload', (req, res) => {
     fs.writeFileSync(filePath, buffer);
 
     const publicPath = `/uploads/${booking.id}/${slotId}/${safeName}`;
-    saveSlotCreative(booking.id, slotId, publicPath, filename);
+    await saveSlotCreative(booking.id, slotId, publicPath, filename);
 
     res.json({ success: true, path: publicPath });
   } catch (err) {
@@ -1246,11 +1358,11 @@ app.post('/api/bookings/:token/slot/:slotId/upload', (req, res) => {
 });
 
 // Get all per-slot creatives for a bundle booking
-app.get('/api/bookings/:token/slots', (req, res) => {
+app.get('/api/bookings/:token/slots', async (req, res) => {
   try {
-    const booking = getBookingByToken(req.params.token);
+    const booking = await getBookingByToken(req.params.token);
     if (!booking) return res.status(404).json({ error: 'Booking not found' });
-    const creatives = getSlotCreatives(booking.id);
+    const creatives = await getSlotCreatives(booking.id);
     res.json({ bookingId: booking.id, slotId: booking.slot_id, creatives });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -1258,7 +1370,7 @@ app.get('/api/bookings/:token/slots', (req, res) => {
 });
 
 // --- Analytics ---
-app.get('/api/analytics/pixel.gif', analyticsPixelLimit, (req, res) => {
+app.get('/api/analytics/pixel.gif', analyticsPixelLimit, async (req, res) => {
   try {
     const { b: token } = req.query;
     if (!token) {
@@ -1267,9 +1379,9 @@ app.get('/api/analytics/pixel.gif', analyticsPixelLimit, (req, res) => {
         Buffer.from('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7', 'base64')
       );
     }
-    const booking = getBookingByToken(token);
+    const booking = await getBookingByToken(token);
     if (booking && booking.status === 'live') {
-      recordEvent({
+      await recordEvent({
         bookingId: booking.id,
         eventType: 'impression',
         ip: req.ip || req.connection.remoteAddress,
@@ -1288,15 +1400,15 @@ app.get('/api/analytics/pixel.gif', analyticsPixelLimit, (req, res) => {
   }
 });
 
-app.get('/api/analytics/click', analyticsClickLimit, (req, res) => {
+app.get('/api/analytics/click', analyticsClickLimit, async (req, res) => {
   try {
     const { b: token, url } = req.query;
     if (!token || !url) return res.status(400).send('Missing parameters');
     if (!isSafeRedirectUrl(url)) return res.status(400).send('Invalid redirect URL');
 
-    const booking = getBookingByToken(token);
+    const booking = await getBookingByToken(token);
     if (booking && booking.status === 'live') {
-      recordEvent({
+      await recordEvent({
         bookingId: booking.id,
         eventType: 'click',
         ip: req.ip || req.connection.remoteAddress,
@@ -1310,11 +1422,39 @@ app.get('/api/analytics/click', analyticsClickLimit, (req, res) => {
   }
 });
 
-app.get('/api/analytics/dashboard', (req, res) => {
+app.post('/api/analytics/viewability', analyticsPixelLimit, async (req, res) => {
+  try {
+    const { token, visibleSeconds, visiblePercent } = req.body || {};
+    if (!token) return res.status(400).json({ error: 'token required' });
+    const seconds = parseFloat(visibleSeconds) || 0;
+    const percent = parseFloat(visiblePercent) || 0;
+    if (seconds < 1 || percent < 50) {
+      return res.status(400).json({ error: 'Viewability threshold not met' });
+    }
+
+    const booking = await getBookingByToken(token);
+    if (booking && booking.status === 'live') {
+      await recordEvent({
+        bookingId: booking.id,
+        eventType: 'viewable_impression',
+        ip: req.ip || req.connection.remoteAddress,
+        userAgent: req.headers['user-agent'],
+        referrer: req.headers.referer,
+        visibleSeconds: seconds,
+        visiblePercent: percent,
+      });
+    }
+    res.json({ success: true });
+  } catch (_err) {
+    res.status(500).json({ error: 'Error' });
+  }
+});
+
+app.get('/api/analytics/dashboard', async (req, res) => {
   try {
     const { token } = req.query;
     if (!token) return res.status(400).json({ error: 'token required' });
-    const data = getDashboardMetrics(token);
+    const data = await getDashboardMetrics(token);
     if (!data) return res.status(404).json({ error: 'Booking not found' });
     res.json(data);
   } catch (err) {
@@ -1323,7 +1463,7 @@ app.get('/api/analytics/dashboard', (req, res) => {
 });
 
 // --- Tenant Onboarding ---
-app.get('/api/tenants', requireAdmin, (req, res) => {
+app.get('/api/tenants', requireAdmin, async (req, res) => {
   try {
     const { status, limit, offset } = req.query;
     const tenants = listTenants({
@@ -1337,7 +1477,7 @@ app.get('/api/tenants', requireAdmin, (req, res) => {
   }
 });
 
-app.get('/api/tenants/:entryId', (req, res) => {
+app.get('/api/tenants/:entryId', async (req, res) => {
   try {
     const tenant = getTenant(req.params.entryId);
     if (!tenant) return res.status(404).json({ error: 'Tenant not found' });
@@ -1361,7 +1501,7 @@ app.post('/api/tenants', requireAdmin, async (req, res) => {
   try {
     const result = await createTenant(req.body);
     if (!result.success) return res.status(400).json(result);
-    logAction({
+    await logAction({
       adminToken: req.headers['x-admin-token'],
       action: 'admin.tenant.create',
       entryId: req.body.entryId,
@@ -1377,7 +1517,7 @@ app.patch('/api/tenants/:entryId', requireAdmin, async (req, res) => {
   try {
     const result = await updateTenant(req.params.entryId, req.body);
     if (!result.success) return res.status(400).json(result);
-    logAction({
+    await logAction({
       adminToken: req.headers['x-admin-token'],
       action: 'admin.tenant.update',
       entryId: req.params.entryId,
@@ -1393,7 +1533,7 @@ app.delete('/api/tenants/:entryId', requireAdmin, async (req, res) => {
   try {
     const result = deleteTenant(req.params.entryId);
     if (!result.success) return res.status(404).json(result);
-    logAction({
+    await logAction({
       adminToken: req.headers['x-admin-token'],
       action: 'admin.tenant.delete',
       entryId: req.params.entryId,
@@ -1405,10 +1545,10 @@ app.delete('/api/tenants/:entryId', requireAdmin, async (req, res) => {
 });
 
 // --- Admin ---
-app.post('/api/admin/login', (req, res) => {
+app.post('/api/admin/login', async (req, res) => {
   try {
     const { password } = req.body;
-    const result = adminLogin(password);
+    const result = await adminLogin(password);
     if (!result.success) return res.status(401).json(result);
     res.json(result);
   } catch (err) {
@@ -1416,37 +1556,46 @@ app.post('/api/admin/login', (req, res) => {
   }
 });
 
-app.post('/api/admin/logout', requireAdmin, (req, res) => {
+app.post('/api/admin/logout', requireAdmin, async (req, res) => {
   try {
     const token = req.headers['x-admin-token'];
-    revokeToken(token);
+    await revokeToken(token);
     res.json({ success: true });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-function requireAdmin(req, res, next) {
+async function requireAdmin(req, res, next) {
   const token = req.headers['x-admin-token'];
-  if (!validateAdminToken(token)) {
+  if (!(await validateAdminToken(token))) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
   next();
 }
 
-app.get('/api/admin/bookings', requireAdmin, (req, res) => {
+app.get('/api/admin/bookings', requireAdmin, async (req, res) => {
   try {
     const { status, site } = req.query;
     res.json({
-      bookings: getAllBookings(status || null, site || null),
-      stats: getBookingStats(site || null),
+      bookings: await getAllBookings(status || null, site || null),
+      stats: await getBookingStats(site || null),
     });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-app.post('/api/admin/bookings/create', requireAdmin, (req, res) => {
+app.get('/api/admin/revenue', requireAdmin, async (req, res) => {
+  try {
+    const days = parseInt(req.query.days, 10) || 30;
+    res.json(await getRevenueStats(Math.min(days, 365)));
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/api/admin/bookings/create', requireAdmin, async (req, res) => {
   try {
     const {
       slotId,
@@ -1468,14 +1617,14 @@ app.post('/api/admin/bookings/create', requireAdmin, (req, res) => {
     if (trial >= months)
       return res.status(400).json({ error: 'trialMonths must be less than leaseMonths' });
 
-    const slot = getSlotById(slotId);
+    const slot = await getSlotById(slotId);
     if (!slot) return res.status(404).json({ error: 'Slot not found' });
 
     const metaError = validateMeta(slot.width, customHeading, customSubtitle);
     if (metaError) return res.status(400).json({ error: metaError });
 
     const siteSlug = slot.site_slug || 'nike';
-    const { id, token } = createBooking({
+    const { id, token } = await createBooking({
       slotId,
       email,
       companyName,
@@ -1486,8 +1635,8 @@ app.post('/api/admin/bookings/create', requireAdmin, (req, res) => {
       trialMonths: trial,
       siteSlug,
     });
-    setBookingStatus(id, 'pending_upload', 'Admin-created trial lease');
-    logAction({
+    await setBookingStatus(id, 'pending_upload', 'Admin-created trial lease');
+    await logAction({
       adminToken: req.headers['x-admin-token'],
       action: 'admin.booking.create',
       bookingId: id,
@@ -1520,12 +1669,12 @@ app.post('/api/admin/bookings/create', requireAdmin, (req, res) => {
 
 app.post('/api/admin/bookings/:id/approve-application', requireAdmin, async (req, res) => {
   try {
-    const booking = getBookingById(req.params.id);
+    const booking = await getBookingById(req.params.id);
     if (!booking) return res.status(404).json({ error: 'Booking not found' });
     if (booking.status !== 'pending_application') {
       return res.status(400).json({ error: 'Booking is not pending application' });
     }
-    const slot = getSlotById(booking.slot_id);
+    const slot = await getSlotById(booking.slot_id);
     if (!slot) return res.status(404).json({ error: 'Slot not found' });
 
     const months = booking.lease_months || 1;
@@ -1545,8 +1694,8 @@ app.post('/api/admin/bookings/:id/approve-application', requireAdmin, async (req
       siteSlug,
       siteName,
     });
-    updateBookingStripeSession(booking.id, stripeResult.sessionId);
-    setBookingStatus(booking.id, 'pending_payment');
+    await updateBookingStripeSession(booking.id, stripeResult.sessionId);
+    await setBookingStatus(booking.id, 'pending_payment');
 
     notifyApplicationApproved({
       email: booking.email,
@@ -1555,7 +1704,7 @@ app.post('/api/admin/bookings/:id/approve-application', requireAdmin, async (req
       stripeUrl: stripeResult.sessionUrl,
     }).catch(() => {});
 
-    logAction({
+    await logAction({
       adminToken: req.headers['x-admin-token'],
       action: 'admin.booking.approve-application',
       bookingId: booking.id,
@@ -1569,12 +1718,12 @@ app.post('/api/admin/bookings/:id/approve-application', requireAdmin, async (req
   }
 });
 
-app.post('/api/admin/bookings/:id/approve', requireAdmin, (req, res) => {
+app.post('/api/admin/bookings/:id/approve', requireAdmin, async (req, res) => {
   try {
-    const booking = getBookingById(req.params.id);
+    const booking = await getBookingById(req.params.id);
     if (!booking) return res.status(404).json({ error: 'Booking not found' });
-    setBookingStatus(req.params.id, 'approved', req.body.note || null);
-    logAction({
+    await setBookingStatus(req.params.id, 'approved', req.body.note || null);
+    await logAction({
       adminToken: req.headers['x-admin-token'],
       action: 'admin.booking.approve',
       bookingId: booking.id,
@@ -1592,13 +1741,13 @@ app.post('/api/admin/bookings/:id/approve', requireAdmin, (req, res) => {
   }
 });
 
-app.post('/api/admin/bookings/:id/reject', requireAdmin, (req, res) => {
+app.post('/api/admin/bookings/:id/reject', requireAdmin, async (req, res) => {
   try {
-    const booking = getBookingById(req.params.id);
+    const booking = await getBookingById(req.params.id);
     if (!booking) return res.status(404).json({ error: 'Booking not found' });
     const note = req.body.note || 'Does not meet guidelines';
-    setBookingStatus(req.params.id, 'rejected', note);
-    logAction({
+    await setBookingStatus(req.params.id, 'rejected', note);
+    await logAction({
       adminToken: req.headers['x-admin-token'],
       action: 'admin.booking.reject',
       bookingId: booking.id,
@@ -1619,10 +1768,10 @@ app.post('/api/admin/bookings/:id/reject', requireAdmin, (req, res) => {
 
 app.post('/api/admin/bookings/:id/golive', requireAdmin, async (req, res) => {
   try {
-    const booking = getBookingById(req.params.id);
+    const booking = await getBookingById(req.params.id);
     if (!booking) return res.status(404).json({ error: 'Booking not found' });
     await goLive(req.params.id);
-    logAction({
+    await logAction({
       adminToken: req.headers['x-admin-token'],
       action: 'admin.booking.golive',
       bookingId: booking.id,
@@ -1655,7 +1804,7 @@ app.post('/api/admin/bookings/:id/golive', requireAdmin, async (req, res) => {
 
 app.post('/api/admin/bookings/:id/end', requireAdmin, async (req, res) => {
   try {
-    const booking = getBookingById(req.params.id);
+    const booking = await getBookingById(req.params.id);
     if (!booking) return res.status(404).json({ error: 'Booking not found' });
     // Cancel Stripe subscription if one exists
     if (booking.stripe_subscription_id) {
@@ -1665,8 +1814,8 @@ app.post('/api/admin/bookings/:id/end', requireAdmin, async (req, res) => {
         console.error('Stripe cancel error:', stripeErr.message);
       }
     }
-    endBooking(req.params.id);
-    logAction({
+    await endBooking(req.params.id);
+    await logAction({
       adminToken: req.headers['x-admin-token'],
       action: 'admin.booking.end',
       bookingId: booking.id,
@@ -1680,7 +1829,6 @@ app.post('/api/admin/bookings/:id/end', requireAdmin, async (req, res) => {
 // Trigger trial reminders manually or via cron
 app.post('/api/admin/trial-reminders', requireAdmin, async (_req, res) => {
   try {
-    const { runTrialReminders } = require('./scripts/trial-reminders');
     const result = await runTrialReminders();
     res.json({ success: true, ...result });
   } catch (err) {
@@ -1688,8 +1836,38 @@ app.post('/api/admin/trial-reminders', requireAdmin, async (_req, res) => {
   }
 });
 
+function requireCronSecret(req, res, next) {
+  const secret = req.headers['x-cron-secret'];
+  const expected = process.env.CRON_SECRET;
+  if (!expected) {
+    return res.status(503).json({ error: 'CRON_SECRET not configured' });
+  }
+  if (secret !== expected) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  next();
+}
+
+app.post('/api/cron/trial-reminders', requireCronSecret, async (_req, res) => {
+  try {
+    const result = await runTrialReminders();
+    res.json({ success: true, ...result });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/api/cron/lease-expiry', requireCronSecret, async (_req, res) => {
+  try {
+    const result = await runLeaseExpiry();
+    res.json({ success: true, ...result });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // --- AI Content Review ---
-app.get('/api/admin/ai-review/stats', requireAdmin, (_req, res) => {
+app.get('/api/admin/ai-review/stats', requireAdmin, async (_req, res) => {
   try {
     const row = db
       .prepare(`
@@ -1707,7 +1885,7 @@ app.get('/api/admin/ai-review/stats', requireAdmin, (_req, res) => {
   }
 });
 
-app.get('/api/admin/ai-review', requireAdmin, (req, res) => {
+app.get('/api/admin/ai-review', requireAdmin, async (req, res) => {
   try {
     const { status = 'pending', limit = 50, offset = 0 } = req.query;
     const allowed = ['pending', 'approved', 'rejected', 'all'];
@@ -1741,7 +1919,7 @@ app.get('/api/admin/ai-review', requireAdmin, (req, res) => {
   }
 });
 
-app.post('/api/admin/curator/run', requireAdmin, (req, res) => {
+app.post('/api/admin/curator/run', requireAdmin, async (req, res) => {
   try {
     const { dryRun = false, limit = 50 } = req.body;
     const { runCurator } = require('./scripts/ai-curator');
@@ -1752,7 +1930,7 @@ app.post('/api/admin/curator/run', requireAdmin, (req, res) => {
   }
 });
 
-app.get('/api/admin/curator/suggestions', requireAdmin, (req, res) => {
+app.get('/api/admin/curator/suggestions', requireAdmin, async (req, res) => {
   try {
     const { status = 'open', type, entryId, limit = 50, offset = 0 } = req.query;
     const allowedStatus = ['open', 'approved', 'rejected', 'all'];
@@ -1808,7 +1986,7 @@ app.get('/api/admin/curator/suggestions', requireAdmin, (req, res) => {
   }
 });
 
-app.post('/api/admin/curator/suggestions/:id/approve', requireAdmin, (req, res) => {
+app.post('/api/admin/curator/suggestions/:id/approve', requireAdmin, async (req, res) => {
   try {
     const suggestion = db
       .prepare('SELECT * FROM curator_suggestions WHERE id = ?')
@@ -1845,7 +2023,7 @@ app.post('/api/admin/curator/suggestions/:id/approve', requireAdmin, (req, res) 
   }
 });
 
-app.post('/api/admin/curator/suggestions/:id/reject', requireAdmin, (req, res) => {
+app.post('/api/admin/curator/suggestions/:id/reject', requireAdmin, async (req, res) => {
   try {
     const suggestion = db
       .prepare('SELECT * FROM curator_suggestions WHERE id = ?')
@@ -1862,7 +2040,7 @@ app.post('/api/admin/curator/suggestions/:id/reject', requireAdmin, (req, res) =
   }
 });
 
-app.post('/api/admin/ai-review/:id', requireAdmin, (req, res) => {
+app.post('/api/admin/ai-review/:id', requireAdmin, async (req, res) => {
   try {
     const { status, summary, symbols, pronunciation, etymologyNarrative, relevanceToday } =
       req.body;
@@ -1935,9 +2113,9 @@ app.post('/api/admin/ai-review/:id', requireAdmin, (req, res) => {
 
 app.post('/api/admin/bookings/:id/report', requireAdmin, async (req, res) => {
   try {
-    const booking = getBookingById(req.params.id);
+    const booking = await getBookingById(req.params.id);
     if (!booking) return res.status(404).json({ error: 'Booking not found' });
-    const metrics = getDashboardMetrics(booking.analytics_token);
+    const metrics = await getDashboardMetrics(booking.analytics_token);
     await sendAnalyticsReport({
       email: booking.email,
       booking: metrics.booking,
@@ -1956,7 +2134,7 @@ app.post('/api/webhook', express.raw({ type: 'application/json' }), async (req, 
     const result = await handleWebhook(req.body, signature);
     if (result && result.type === 'booking' && result.booking) {
       // Send upload-ready email
-      const booking = getBookingByToken(result.booking.analytics_token);
+      const booking = await getBookingByToken(result.booking.analytics_token);
       if (booking) {
         const { notifyUploadReady } = require('./api/email');
         notifyUploadReady({
@@ -1982,30 +2160,30 @@ app.use('/sites/hermes', express.static(path.join(__dirname, '..', 'sites', 'her
 
 // ============ API KEY MANAGEMENT ============
 
-app.get('/api/admin/api-keys', requireAdmin, (_req, res) => {
+app.get('/api/admin/api-keys', requireAdmin, async (_req, res) => {
   try {
-    res.json({ keys: listKeys(), stats: getKeyStats() });
+    res.json({ keys: await listKeys(), stats: await getKeyStats() });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-app.post('/api/admin/api-keys', requireAdmin, (req, res) => {
+app.post('/api/admin/api-keys', requireAdmin, async (req, res) => {
   try {
     const { name, tier, scopes, rateLimit } = req.body;
-    const key = createKey({ name, tier, scopes, rateLimit });
+    const key = await createKey({ name, tier, scopes, rateLimit });
     res.status(201).json({ success: true, key });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
 });
 
-app.patch('/api/admin/api-keys/:id', requireAdmin, (req, res) => {
+app.patch('/api/admin/api-keys/:id', requireAdmin, async (req, res) => {
   try {
     const id = parseInt(req.params.id, 10);
     if (Number.isNaN(id)) return res.status(400).json({ error: 'Invalid key id' });
     const { name, tier, scopes, rateLimit } = req.body;
-    const key = updateKey(id, { name, tier, scopes, rateLimit });
+    const key = await updateKey(id, { name, tier, scopes, rateLimit });
     if (!key) return res.status(404).json({ error: 'Key not found' });
     res.json({ success: true, key });
   } catch (err) {
@@ -2013,11 +2191,11 @@ app.patch('/api/admin/api-keys/:id', requireAdmin, (req, res) => {
   }
 });
 
-app.post('/api/admin/api-keys/:id/revoke', requireAdmin, (req, res) => {
+app.post('/api/admin/api-keys/:id/revoke', requireAdmin, async (req, res) => {
   try {
     const id = parseInt(req.params.id, 10);
     if (Number.isNaN(id)) return res.status(400).json({ error: 'Invalid key id' });
-    const key = revokeKey(id);
+    const key = await revokeKey(id);
     if (!key) return res.status(404).json({ error: 'Key not found' });
     res.json({ success: true, key });
   } catch (err) {
@@ -2025,11 +2203,11 @@ app.post('/api/admin/api-keys/:id/revoke', requireAdmin, (req, res) => {
   }
 });
 
-app.post('/api/admin/api-keys/:id/unrevoke', requireAdmin, (req, res) => {
+app.post('/api/admin/api-keys/:id/unrevoke', requireAdmin, async (req, res) => {
   try {
     const id = parseInt(req.params.id, 10);
     if (Number.isNaN(id)) return res.status(400).json({ error: 'Invalid key id' });
-    const key = unrevokeKey(id);
+    const key = await unrevokeKey(id);
     if (!key) return res.status(404).json({ error: 'Key not found' });
     res.json({ success: true, key });
   } catch (err) {
@@ -2037,13 +2215,13 @@ app.post('/api/admin/api-keys/:id/unrevoke', requireAdmin, (req, res) => {
   }
 });
 
-app.get('/api/admin/api-keys/:id/usage', requireAdmin, (req, res) => {
+app.get('/api/admin/api-keys/:id/usage', requireAdmin, async (req, res) => {
   try {
     const id = parseInt(req.params.id, 10);
     if (Number.isNaN(id)) return res.status(400).json({ error: 'Invalid key id' });
     const days = parseInt(req.query.days, 10) || 7;
     const limit = parseInt(req.query.limit, 10) || 100;
-    res.json(getKeyUsage(id, { days, limit }));
+    res.json(await getKeyUsage(id, { days, limit }));
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

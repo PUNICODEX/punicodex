@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Níkē Advertiser Panel</title>
+    <title>Advertiser Panel</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <style>
@@ -201,6 +201,28 @@
         .placement-btn:hover { opacity: 0.85; }
         .btn-primary { background: var(--gold); color: #000; }
         .btn-secondary { background: transparent; color: var(--gold); border: 1px solid rgba(212,175,55,0.3); }
+        .btn-danger { background: rgba(255,107,107,0.12); color: var(--danger); border: 1px solid rgba(255,107,107,0.25); }
+        .btn-danger:hover { opacity: 0.85; }
+
+        .placement-billing {
+            padding: 0.75rem 1.25rem;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+        }
+        .placement-billing-row { display: flex; justify-content: space-between; gap: 0.5rem; }
+        .placement-billing-label { color: var(--text-muted); }
+        .placement-billing-value { color: var(--text); font-weight: 500; }
+        .placement-cancel-notice {
+            padding: 0.75rem 1.25rem;
+            background: rgba(255,107,107,0.08);
+            color: var(--danger);
+            font-size: 0.75rem;
+            border-bottom: 1px solid rgba(255,107,107,0.12);
+        }
 
         /* Editor modal */
         .editor-overlay {
@@ -442,7 +464,9 @@
             }
             bookings = all.bookings || [];
             if (bookings.length > 0) {
-                document.getElementById('panel-company').textContent = bookings[0].company_name || 'Advertiser Panel';
+                const company = bookings[0].company_name || 'Advertiser Panel';
+                document.getElementById('panel-company').textContent = company;
+                document.title = `${company} — Advertiser Panel`;
             }
 
             // Enrich with dashboard metrics and slot creatives for bundles
@@ -450,6 +474,19 @@
                 const metrics = await api(`/api/analytics/dashboard?token=${b.token}`);
                 b.metrics = metrics ? metrics.metrics : null;
                 b.booking = metrics ? metrics.booking : null;
+                // Merge server-side details into booking object for rendering
+                if (b.booking) {
+                    b.booking.site_slug = b.site_slug || b.booking.site_slug || 'nike';
+                    b.booking.started_at = b.started_at || b.booking.started_at;
+                    b.booking.ends_at = b.ends_at || b.booking.ends_at;
+                    b.booking.trial_ends_at = b.trial_ends_at || b.booking.trial_ends_at;
+                    b.booking.billing_status = b.billing_status || b.booking.billing_status;
+                    b.booking.cancel_at_end = b.cancel_at_end || b.booking.cancel_at_end;
+                    b.booking.canceled_at = b.canceled_at || b.booking.canceled_at;
+                    b.booking.amount_paid_cents = b.amount_paid_cents || b.booking.amount_paid_cents;
+                    b.booking.slot_name = b.slot_name;
+                    b.booking.lease_months = b.lease_months;
+                }
                 if (b.is_bundle) {
                     const sc = await api(`/api/bookings/${b.token}/slots`);
                     slotCreatives[b.token] = sc && sc.creatives ? sc.creatives : [];
@@ -472,6 +509,58 @@
                 <div class="overview-card"><div class="overview-value">${totalClk.toLocaleString()}</div><div class="overview-label">Total Clicks</div></div>
                 <div class="overview-card"><div class="overview-value">${ctr}%</div><div class="overview-label">Avg CTR</div></div>
             `;
+        }
+
+        function formatDate(iso) {
+            if (!iso) return '—';
+            const d = new Date(iso);
+            if (Number.isNaN(d.getTime())) return '—';
+            return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+        function formatCurrency(cents) {
+            if (!cents || Number.isNaN(Number(cents))) return '$0.00';
+            return '$' + (Number(cents) / 100).toFixed(2);
+        }
+        function canCancelStatus(status) {
+            return ['live', 'approved', 'pending_payment', 'pending_upload', 'pending_approval', 'pending_application'].includes(status);
+        }
+        function canRenewStatus(status) {
+            return ['live', 'approved', 'pending_approval'].includes(status);
+        }
+        function billingRows(b) {
+            const bb = b.booking || {};
+            const trialRow = bb.trial_ends_at
+                ? `<div class="placement-billing-row"><span class="placement-billing-label">Trial ends</span><span class="placement-billing-value">${formatDate(bb.trial_ends_at)}</span></div>`
+                : '';
+            return `
+                <div class="placement-billing-row"><span class="placement-billing-label">Started</span><span class="placement-billing-value">${formatDate(bb.started_at)}</span></div>
+                <div class="placement-billing-row"><span class="placement-billing-label">Ends</span><span class="placement-billing-value">${formatDate(bb.ends_at)}</span></div>
+                ${trialRow}
+                <div class="placement-billing-row"><span class="placement-billing-label">Billing</span><span class="placement-billing-value">${bb.billing_status || b.billing_status || '—'}</span></div>
+                <div class="placement-billing-row"><span class="placement-billing-label">Paid</span><span class="placement-billing-value">${formatCurrency(bb.amount_paid_cents)}</span></div>
+            `;
+        }
+        function cancelNotice(b) {
+            const bb = b.booking || {};
+            if (!bb.cancel_at_end) return '';
+            return `<div class="placement-cancel-notice">⏹ Scheduled to cancel at term end (${formatDate(bb.ends_at)})</div>`;
+        }
+        function managementButtons(b, { includeEdit = true, isBundle = false } = {}) {
+            const bb = b.booking || {};
+            const siteSlug = bb.site_slug || b.site_slug || 'nike';
+            const editBtn = includeEdit && !isBundle
+                ? `<button class="placement-btn btn-primary" onclick="openEditor('${b.token}', '${escapeJs(bb.custom_heading || '')}', '${escapeJs(bb.custom_subtitle || '')}')">Edit</button>`
+                : '';
+            const analyticsBtn = `<a class="placement-btn btn-secondary" href="${API_BASE}/sites/${siteSlug}/dashboard/?token=${b.token}" target="_blank">Analytics</a>`;
+            const renewBtn = canRenewStatus(b.status)
+                ? `<button class="placement-btn btn-secondary" onclick="renewBooking('${b.token}')">Renew</button>`
+                : '';
+            const cancelBtn = bb.cancel_at_end
+                ? `<button class="placement-btn btn-secondary" onclick="uncancelBooking('${b.token}')">Undo Cancel</button>`
+                : canCancelStatus(b.status)
+                    ? `<button class="placement-btn btn-danger" onclick="cancelBooking('${b.token}')">Cancel</button>`
+                    : '';
+            return `<div class="placement-actions">${editBtn}${analyticsBtn}${renewBtn}${cancelBtn}</div>`;
         }
 
         function renderPlacements() {
@@ -539,12 +628,15 @@
                                 <span class="placement-card-name">${b.slot_name} <span class="bundle-badge">Bundle</span></span>
                                 <span class="placement-card-status ${statusClass}">${b.status.replace(/_/g, ' ')}</span>
                             </div>
+                            <div class="placement-billing" style="grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));">${billingRows(b)}</div>
+                            ${cancelNotice(b)}
                             <div class="placement-creative">${creative}</div>
                             <div class="placement-stats">
                                 <div class="placement-stat"><div class="placement-stat-value">${(m.totalImpressions || 0).toLocaleString()}</div><div class="placement-stat-label">Impressions</div></div>
                                 <div class="placement-stat"><div class="placement-stat-value">${(m.totalClicks || 0).toLocaleString()}</div><div class="placement-stat-label">Clicks</div></div>
                                 <div class="placement-stat"><div class="placement-stat-value">${m.ctr || '0.00'}%</div><div class="placement-stat-label">CTR</div></div>
                             </div>
+                            ${canEdit ? managementButtons(b, { includeEdit: false, isBundle: true }) : ''}
                             <div class="bundle-banner">
                                 <span class="bundle-badge">13 Slots</span>
                                 <span class="bundle-title">Manage individual creatives for each slot below</span>
@@ -563,18 +655,15 @@
                             <span class="placement-card-name">${b.slot_name} <span style="font-size:0.65rem;color:var(--text-muted);margin-left:0.3rem;">${b.lease_months === 12 ? '12 months' : '1 month'}</span></span>
                             <span class="placement-card-status ${statusClass}">${b.status.replace(/_/g, ' ')}</span>
                         </div>
+                        <div class="placement-billing">${billingRows(b)}</div>
+                        ${cancelNotice(b)}
                         <div class="placement-creative">${creative}</div>
                         <div class="placement-stats">
                             <div class="placement-stat"><div class="placement-stat-value">${(m.totalImpressions || 0).toLocaleString()}</div><div class="placement-stat-label">Impressions</div></div>
                             <div class="placement-stat"><div class="placement-stat-value">${(m.totalClicks || 0).toLocaleString()}</div><div class="placement-stat-label">Clicks</div></div>
                             <div class="placement-stat"><div class="placement-stat-value">${m.ctr || '0.00'}%</div><div class="placement-stat-label">CTR</div></div>
                         </div>
-                        ${canEdit ? `
-                            <div class="placement-actions">
-                                <button class="placement-btn btn-primary" onclick="openEditor('${b.token}', '${escapeJs(b.booking?.custom_heading || '')}', '${escapeJs(b.booking?.custom_subtitle || '')}')">Edit</button>
-                                <a class="placement-btn btn-secondary" href="${API_BASE}/sites/nike/dashboard/?token=${b.token}" target="_blank">Analytics</a>
-                            </div>
-                        ` : ''}
+                        ${canEdit ? managementButtons(b) : ''}
                     </div>
                 `;
             }).join('');
@@ -668,6 +757,33 @@
         document.getElementById('editor-overlay').addEventListener('click', e => {
             if (e.target.id === 'editor-overlay') closeEditor();
         });
+
+        async function cancelBooking(tk) {
+            if (!confirm('Cancel this placement at the end of its current term? It will remain active until then.')) return;
+            const res = await fetch(`${API_BASE}/api/bookings/${tk}/cancel`, { method: 'POST', headers: { 'Content-Type': 'application/json' } });
+            const data = await res.json();
+            if (!data.success) { alert(data.error || 'Cancel failed'); return; }
+            loadData();
+        }
+        async function uncancelBooking(tk) {
+            if (!confirm('Keep this placement auto-renewing?')) return;
+            const res = await fetch(`${API_BASE}/api/bookings/${tk}/uncancel`, { method: 'POST', headers: { 'Content-Type': 'application/json' } });
+            const data = await res.json();
+            if (!data.success) { alert(data.error || 'Undo failed'); return; }
+            loadData();
+        }
+        async function renewBooking(tk) {
+            const months = prompt('Extend lease by how many months? (1 or 12)', '12');
+            if (!months || ![1, 12].includes(parseInt(months, 10))) { alert('Please enter 1 or 12'); return; }
+            const res = await fetch(`${API_BASE}/api/bookings/${tk}/renew`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ extensionMonths: parseInt(months, 10) }),
+            });
+            const data = await res.json();
+            if (!data.success) { alert(data.error || 'Renewal failed'); return; }
+            if (data.stripeUrl) window.location.href = data.stripeUrl;
+        }
 
         loadData();
     </script>

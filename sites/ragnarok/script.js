@@ -425,10 +425,16 @@ const els = {
   rejectReason: document.getElementById('booking-reject-reason'),
   reuploadBtn: document.getElementById('booking-reupload'),
   rejectedClose: document.getElementById('booking-rejected-close'),
+  applySlotName: document.getElementById('booking-apply-slot-name'),
+  applicationNote: document.getElementById('booking-application-note'),
+  submitApplication: document.getElementById('booking-submit-application'),
+  applyError: document.getElementById('booking-apply-error'),
 };
 
 let selectedFile = null;
 let selectedFileBase64 = null;
+let verificationToken = '';
+let isBundleApplication = false;
 
 // Fetch slots and update UI
 async function loadSlots() {
@@ -440,6 +446,36 @@ async function loadSlots() {
   } catch (err) {
 
   }
+}
+
+function trackViewability(container, token) {
+  if (!('IntersectionObserver' in window)) return;
+  let timer = null;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+        if (timer) return;
+        timer = setTimeout(() => {
+          fetch(`${API_BASE}/api/analytics/viewability`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              token,
+              visibleSeconds: 1,
+              visiblePercent: Math.round(entry.intersectionRatio * 100),
+            }),
+          }).catch(() => {});
+          observer.disconnect();
+        }, 1000);
+      } else {
+        if (timer) {
+          clearTimeout(timer);
+          timer = null;
+        }
+      }
+    });
+  }, { threshold: [0, 0.5, 1] });
+  observer.observe(container);
 }
 
 function updateSlotUI() {
@@ -502,6 +538,9 @@ function updateSlotUI() {
         glow.className = 'space-frame-glow';
         frame.appendChild(glow);
       }
+
+      // Fire viewability beacon after 1s at ≥50% visibility
+      trackViewability(frame, slot.analytics_token);
     } else if (slot.status !== 'available') {
       // RESERVED: hide button, show overlay inside frame
       const overlay = document.createElement('div');
@@ -603,11 +642,13 @@ function openModal(slotId) {
         width: dimsMatch ? parseInt(dimsMatch[1]) : 0,
         height: dimsMatch ? parseInt(dimsMatch[2]) : 0,
         price_cents: parseInt(slotEl.dataset.priceCents, 10) || 0,
+        is_bundle: parseInt(slotEl.dataset.bundle, 10) || 0,
       };
     }
 
     currentSlotPriceCents = slot.price_cents || 0;
     currentLeaseMonths = 1;
+    isBundleApplication = Boolean(slot.is_bundle) || false;
     if (els.leaseMonthly) els.leaseMonthly.classList.add('active');
     if (els.leaseYearly) els.leaseYearly.classList.remove('active');
     updatePriceDisplay();
@@ -625,7 +666,12 @@ function openModal(slotId) {
 }
 
 function updatePriceDisplay() {
-  const total = currentSlotPriceCents * currentLeaseMonths;
+  let total;
+  if (currentLeaseMonths === 12) {
+    total = Math.round(currentSlotPriceCents * 12 * 0.9);
+  } else {
+    total = currentSlotPriceCents * currentLeaseMonths;
+  }
   const label = currentLeaseMonths === 12 ? '/yr' : '/mo';
   els.price.innerHTML = `$${(total / 100).toLocaleString()}<span>${label}</span>`;
 }
@@ -724,6 +770,41 @@ els.sendCode.addEventListener('click', sendVerificationCode);
 els.resendCode.addEventListener('click', sendVerificationCode);
 
 // Step 1b: Verify code & proceed to Stripe
+els.submitApplication.addEventListener('click', async () => {
+  const note = els.applicationNote ? els.applicationNote.value.trim() : '';
+  showStep('loading');
+  try {
+    const res = await fetch(`${API_BASE}/api/bookings/apply`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        slotId: currentSlotId,
+        email: els.email.value.trim(),
+        companyName: els.company.value.trim(),
+        websiteUrl: els.website.value.trim(),
+        customHeading: els.heading ? els.heading.value.trim() : '',
+        customSubtitle: els.subtitle ? els.subtitle.value.trim() : '',
+        leaseMonths: currentLeaseMonths,
+        verificationToken,
+        applicationNote: note,
+      }),
+    });
+    const data = await res.json();
+    if (data.status === 'pending_application') {
+      showStep('3');
+      if (els.dashboardLink) {
+        els.dashboardLink.href = `${API_BASE}/sites/ragnarok/dashboard/?token=${data.token}`;
+      }
+    } else {
+      showBookingError(data.error || 'Application failed');
+      showStep('apply');
+    }
+  } catch (err) {
+    showBookingError('Network error. Please try again.');
+    showStep('apply');
+  }
+});
+
 els.verifyBtn.addEventListener('click', async () => {
   const email = els.email.value.trim();
   const code = els.codeInput.value.trim();
@@ -743,12 +824,22 @@ els.verifyBtn.addEventListener('click', async () => {
       body: JSON.stringify({ email, code }),
     });
     const verifyData = await verifyRes.json();
+    if (verifyData.verified && verifyData.verificationToken) {
+      verificationToken = verifyData.verificationToken;
+    }
     if (!verifyData.verified) {
       if (els.verifyError) {
         els.verifyError.textContent = verifyData.error || 'Invalid code';
         els.verifyError.style.display = 'block';
       }
       showStep('verify');
+      return;
+    }
+
+    if (isBundleApplication) {
+      const slot = slotsData.find((s) => s.id === currentSlotId) || {};
+      if (els.applySlotName) els.applySlotName.textContent = slot.name || 'Total Conquest';
+      showStep('apply');
       return;
     }
 
@@ -764,6 +855,7 @@ els.verifyBtn.addEventListener('click', async () => {
         customHeading: els.heading ? els.heading.value.trim() : '',
         customSubtitle: els.subtitle ? els.subtitle.value.trim() : '',
         leaseMonths: currentLeaseMonths,
+        verificationToken,
       }),
     });
     const data = await res.json();
@@ -785,6 +877,7 @@ async function handleReturnFromStripe() {
   const token = params.get('booking');
   const paid = params.get('paid');
   const canceled = params.get('canceled');
+  const renewed = params.get('renewed');
 
   if (!token) return;
 
@@ -804,6 +897,18 @@ async function handleReturnFromStripe() {
 
     if (canceled) {
       showBookingError('Payment was canceled. You can try again anytime.');
+      return;
+    }
+
+    if (renewed && booking.status === 'live') {
+      openModal(booking.slot_id);
+      showStep('3');
+      const titleEl = document.querySelector('#booking-step-3 .booking-modal-title');
+      if (titleEl) titleEl.textContent = 'Renewal Complete';
+      const subtitleEl = document.querySelector('#booking-step-3 .booking-modal-subtitle');
+      if (subtitleEl) subtitleEl.textContent = 'Your lease has been extended. Thank you for continuing with us.';
+      els.dashboardLink.href = `${API_BASE}/sites/ragnarok/dashboard/?token=${token}`;
+      await loadSlots();
       return;
     }
 
@@ -944,6 +1049,7 @@ if (changeCreativeBtn) {
 // ========== MY BOOKINGS MODAL ==========
 const myBookingsModal = document.getElementById('my-bookings-modal');
 const myBookingsNav = document.getElementById('my-bookings-nav');
+const myBookingsFooter = document.getElementById('my-bookings-footer');
 const myBookingsClose = document.getElementById('my-bookings-close');
 const myBookingsBackdrop = document.getElementById('my-bookings-backdrop');
 const myBookingsSubmit = document.getElementById('my-bookings-submit');
@@ -964,6 +1070,7 @@ function closeMyBookings() {
 }
 
 if (myBookingsNav) myBookingsNav.addEventListener('click', openMyBookings);
+if (myBookingsFooter) myBookingsFooter.addEventListener('click', openMyBookings);
 if (myBookingsClose) myBookingsClose.addEventListener('click', closeMyBookings);
 if (myBookingsBackdrop) myBookingsBackdrop.addEventListener('click', closeMyBookings);
 

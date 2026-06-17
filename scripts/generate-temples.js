@@ -51,6 +51,10 @@ function loadBuiltArchetypeIds() {
 }
 const BUILT_ARCHETYPE_IDS = loadBuiltArchetypeIds();
 
+function isAsciiOnlyUnicode(entry) {
+  return /^[\x00-\x7F]+$/.test(entry.unicode || '');
+}
+
 // ─── Pantheon Theming ───
 const PANTHEON_COLORS = {
   greek: {
@@ -239,6 +243,9 @@ function getTierExplanation(entry, subtype) {
     return `The ${pantheonLabel} form <strong>${original}</strong> is classified as <strong>single-tier Tier-1</strong> in the PUNYCODEX collection. The Unicode restoration represents the scholarly convention for this name.`;
   }
   if (entry.tier === '2') {
+    if (isAsciiOnlyUnicode(entry)) {
+      return `The ${pantheonLabel} name <strong>${original}</strong> is attested in the Latin alphabet. The Unicode restoration is identical to ASCII, so no diacritic or script recovery is needed. It is catalogued as a <strong>single-tier Tier-2</strong> name because the scholarly form carries no stress or length marks.`;
+    }
     if (subtype === 'Tier-2 Basic') {
       return `The ${pantheonLabel} form <strong>${original}</strong> preserves neither stress nor length in this Unicode restoration. This makes it a <strong>single-tier Tier-2 Basic</strong> name — still a scholarly step above plain ASCII, but without the distinctive phonetic features that define higher tiers.`;
     }
@@ -532,7 +539,7 @@ ${JSON.stringify(
                     </div>
                     <h3 class="card-title">ASCII Constraint</h3>
                     <p class="card-ascii">${entry.ascii.toUpperCase()}</p>
-                    <p class="card-body">Stripped of its identity, the name was reduced to plain Latin letters. The original orthography — stress, length, breathing — was erased by systems that only understand A-Z.</p>
+                    <p class="card-body">${isAsciiOnlyUnicode(entry) ? `This name is already attested in the Latin alphabet. The Unicode form <strong>${escapeHtml(entry.unicode)}</strong> is identical to ASCII apart from capitalization, so no diacritic, stress, or script information was erased.` : `Stripped of its identity, the name was reduced to plain Latin letters. The original orthography — stress, length, breathing — was erased by systems that only understand A-Z.`}</p>
                 </div>
 
                 <div class="name-card reveal-up" data-delay="200">
@@ -544,7 +551,7 @@ ${JSON.stringify(
                     </div>
                     <h3 class="card-title">Unicode Restoration</h3>
                     <p class="card-unicode">${escapeHtml(entry.unicode)}</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII destroyed. This is <strong>philological accuracy</strong> — not decoration. The domain encodes to Punycode, but the browser displays the truth.</p>
+                    <p class="card-body">${isAsciiOnlyUnicode(entry) ? `Because the name is already in Latin letters, the Unicode restoration does not add diacritics or change the script. Its value here is canonical spelling and consistent cataloguing, not the recovery of lost marks.` : `The Unicode restoration recovers what ASCII destroyed. This is <strong>philological accuracy</strong> — not decoration. The domain encodes to Punycode, but the browser displays the truth.`}</p>
                 </div>
             </div>
 
@@ -564,7 +571,7 @@ ${JSON.stringify(
                 <div class="explainer-label">Punycode Encoding</div>
                 <div class="explainer-box">
                     <code class="explainer-code">${entry.unicode.toLowerCase()}.com &rarr; ${punycode || `${entry.unicode.toLowerCase()}.com`}</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>${escapeHtml(entry.unicode)}</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>${escapeHtml(entry.unicode)}</em>.</p>
+                    <p class="explainer-note">${isAsciiOnlyUnicode(entry) ? `Because <strong>${escapeHtml(entry.unicode)}</strong> uses only ASCII characters, no Punycode encoding is required. The browser displays the name as-is, and the domain is the same sequence to both DNS and humanity.` : `The non-ASCII characters in <strong>${escapeHtml(entry.unicode)}</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>${escapeHtml(entry.unicode)}</em>.`}</p>
                 </div>
             </div>
         </div>

@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
     const id = parseInt(getId(req), 10);
     if (Number.isNaN(id)) return res.status(400).json({ error: 'Invalid key id' });
 
-    const key = revokeKey(id);
+    const key = await revokeKey(id);
     if (!key) return res.status(404).json({ error: 'Key not found' });
     return res.json({ success: true, key });
   } catch (err) {

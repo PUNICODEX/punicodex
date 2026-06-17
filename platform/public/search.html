@@ -2508,6 +2508,7 @@
         <div class="serp-utilities">
           <a href="${r.url}" target="_blank" rel="noopener" class="serp-utility">Visit ↗</a>
           ${r.lexiconEntryId ? `<a href="entry.html?id=${encodeURIComponent(r.lexiconEntryId)}" class="serp-utility">Lexicon Entry</a>` : ''}
+          ${r.isFlagship && r.lexiconEntryId ? `<a href="/sites/${encodeURIComponent(r.lexiconEntryId)}/#spaces" class="serp-utility" style="color:var(--accent);">Advertise here</a>` : ''}
           <button class="serp-utility" onclick="copyToClipboard('${escapeHtml(r.punycode)}')">Copy</button>
           <button class="serp-utility" onclick="showSimilar('${escapeHtml(r.punycode)}')">Similar</button>
         </div>

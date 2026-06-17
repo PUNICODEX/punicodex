@@ -1,33 +1,32 @@
 const crypto = require('node:crypto');
-const { getDb } = require('../db/connection');
+const { get, run } = require('../db/operational');
 
 function generateToken() {
   return crypto.randomBytes(24).toString('hex');
 }
 
-function createVerifiedSession(email) {
-  const db = getDb();
+async function createVerifiedSession(email) {
   const token = generateToken();
   const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString();
-  db.prepare(`INSERT INTO verified_sessions (token, email, expires_at) VALUES (?, ?, ?)`).run(
+  await run(`INSERT INTO verified_sessions (token, email, expires_at) VALUES ($1, $2, $3)`, [
     token,
     email,
-    expiresAt
-  );
+    expiresAt,
+  ]);
   return token;
 }
 
-function consumeVerifiedSession(email, token) {
-  const db = getDb();
-  const row = db
-    .prepare('SELECT * FROM verified_sessions WHERE token = ? AND email = ?')
-    .get(token, email);
+async function consumeVerifiedSession(email, token) {
+  const row = await get('SELECT * FROM verified_sessions WHERE token = $1 AND email = $2', [
+    token,
+    email,
+  ]);
   if (!row) return false;
   if (new Date(row.expires_at) < new Date()) {
-    db.prepare('DELETE FROM verified_sessions WHERE token = ?').run(token);
+    await run('DELETE FROM verified_sessions WHERE token = $1', [token]);
     return false;
   }
-  db.prepare('DELETE FROM verified_sessions WHERE token = ?').run(token);
+  await run('DELETE FROM verified_sessions WHERE token = $1', [token]);
   return true;
 }
 

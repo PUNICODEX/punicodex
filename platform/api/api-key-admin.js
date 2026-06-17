@@ -3,8 +3,7 @@
  */
 
 const crypto = require('node:crypto');
-const Database = require('better-sqlite3');
-const { getDbPath } = require('../db/db');
+const { get, all, run, insert } = require('../db/operational');
 const { hashKey } = require('./api-auth.js');
 
 const VALID_SCOPES = new Set(['names:read', 'names:write', 'admin']);
@@ -16,12 +15,6 @@ const DEFAULT_TIER_LIMITS = {
   pro: 10000,
   enterprise: 100000,
 };
-
-function getDb() {
-  const db = new Database(getDbPath());
-  db.pragma('journal_mode = WAL');
-  return db;
-}
 
 function validateScopes(scopes) {
   if (!Array.isArray(scopes)) return { valid: false, error: 'scopes must be an array' };
@@ -76,36 +69,30 @@ function toKeyRow(row) {
   };
 }
 
-function listKeys() {
-  const db = getDb();
-  const rows = db
-    .prepare(
-      `
+async function listKeys() {
+  const rows = await all(
+    `
       SELECT id, name, tier, scopes, rate_limit, request_count, created_at, last_used_at, revoked_at
       FROM api_keys
       ORDER BY created_at DESC
-    `
-    )
-    .all();
-  db.close();
+    `,
+    []
+  );
   return rows.map(toKeyRow);
 }
 
-function getKeyById(id) {
-  const db = getDb();
-  const row = db
-    .prepare(
-      `
-      SELECT id, name, tier, scopes, rate_limit, request_count, created_at, last_used_at, revoked_at
-      FROM api_keys WHERE id = ?
+async function getKeyById(id) {
+  const row = await get(
     `
-    )
-    .get(id);
-  db.close();
+      SELECT id, name, tier, scopes, rate_limit, request_count, created_at, last_used_at, revoked_at
+      FROM api_keys WHERE id = $1
+    `,
+    [id]
+  );
   return row ? toKeyRow(row) : null;
 }
 
-function createKey({ name, tier = 'free', scopes = ['names:read'], rateLimit = null }) {
+async function createKey({ name, tier = 'free', scopes = ['names:read'], rateLimit = null }) {
   const tierValidation = validateTier(tier);
   if (!tierValidation.valid) throw new Error(tierValidation.error);
 
@@ -116,19 +103,17 @@ function createKey({ name, tier = 'free', scopes = ['names:read'], rateLimit = n
   const plaintext = generateKey();
   const keyHash = hashKey(plaintext);
 
-  const db = getDb();
-  const result = db
-    .prepare(
-      `
-      INSERT INTO api_keys (key_hash, name, tier, scopes, rate_limit)
-      VALUES (?, ?, ?, ?, ?)
+  const id = await insert(
     `
-    )
-    .run(keyHash, name || null, tier, serializeScopes(scopes), finalRateLimit);
-  db.close();
+      INSERT INTO api_keys (key_hash, name, tier, scopes, rate_limit)
+      VALUES ($1, $2, $3, $4, $5)
+      RETURNING id
+    `,
+    [keyHash, name || null, tier, serializeScopes(scopes), finalRateLimit]
+  );
 
   return {
-    id: result.lastInsertRowid,
+    id,
     plaintext,
     name: name || null,
     tier,
@@ -137,91 +122,80 @@ function createKey({ name, tier = 'free', scopes = ['names:read'], rateLimit = n
   };
 }
 
-function updateKey(id, { name, tier, scopes, rateLimit }) {
-  const key = getKeyById(id);
+async function updateKey(id, { name, tier, scopes, rateLimit }) {
+  const key = await getKeyById(id);
   if (!key) return null;
 
   const updates = [];
   const params = [];
 
   if (name !== undefined) {
-    updates.push('name = ?');
+    updates.push(`name = $${params.length + 1}`);
     params.push(name || null);
   }
   if (tier !== undefined) {
     const tierValidation = validateTier(tier);
     if (!tierValidation.valid) throw new Error(tierValidation.error);
-    updates.push('tier = ?');
+    updates.push(`tier = $${params.length + 1}`);
     params.push(tier);
   }
   if (scopes !== undefined) {
     const scopeValidation = validateScopes(scopes);
     if (!scopeValidation.valid) throw new Error(scopeValidation.error);
-    updates.push('scopes = ?');
+    updates.push(`scopes = $${params.length + 1}`);
     params.push(serializeScopes(scopes));
   }
   if (rateLimit !== undefined) {
-    updates.push('rate_limit = ?');
+    updates.push(`rate_limit = $${params.length + 1}`);
     params.push(rateLimit);
   }
 
   if (updates.length === 0) return key;
 
   params.push(id);
-  const db = getDb();
-  db.prepare(`UPDATE api_keys SET ${updates.join(', ')} WHERE id = ?`).run(...params);
-  db.close();
+  await run(`UPDATE api_keys SET ${updates.join(', ')} WHERE id = $${params.length}`, params);
 
   return getKeyById(id);
 }
 
-function revokeKey(id) {
-  const db = getDb();
-  db.prepare('UPDATE api_keys SET revoked_at = CURRENT_TIMESTAMP WHERE id = ?').run(id);
-  db.close();
+async function revokeKey(id) {
+  await run('UPDATE api_keys SET revoked_at = CURRENT_TIMESTAMP WHERE id = $1', [id]);
   return getKeyById(id);
 }
 
-function unrevokeKey(id) {
-  const db = getDb();
-  db.prepare('UPDATE api_keys SET revoked_at = NULL WHERE id = ?').run(id);
-  db.close();
+async function unrevokeKey(id) {
+  await run('UPDATE api_keys SET revoked_at = NULL WHERE id = $1', [id]);
   return getKeyById(id);
 }
 
-function getKeyUsage(id, options = {}) {
+async function getKeyUsage(id, options = {}) {
   const { days = 7, limit = 100 } = options;
-  const db = getDb();
 
   const since = new Date();
   since.setDate(since.getDate() - days);
   const sinceIso = since.toISOString();
 
-  const daily = db
-    .prepare(
-      `
+  const daily = await all(
+    `
       SELECT date(created_at) as day, COUNT(*) as requests
       FROM api_request_log
-      WHERE key_id = ? AND created_at >= ?
+      WHERE key_id = $1 AND created_at >= $2
       GROUP BY date(created_at)
       ORDER BY day DESC
-    `
-    )
-    .all(id, sinceIso);
+    `,
+    [id, sinceIso]
+  );
 
-  const recent = db
-    .prepare(
-      `
+  const recent = await all(
+    `
       SELECT request_id, method, path, status_code, duration_ms, created_at
       FROM api_request_log
-      WHERE key_id = ?
+      WHERE key_id = $1
       ORDER BY created_at DESC
-      LIMIT ?
-    `
-    )
-    .all(id, limit);
-
-  db.close();
+      LIMIT $2
+    `,
+    [id, limit]
+  );
 
   return {
     id,
@@ -232,21 +206,23 @@ function getKeyUsage(id, options = {}) {
   };
 }
 
-function getKeyStats() {
-  const db = getDb();
-  const total = db.prepare('SELECT COUNT(*) as c FROM api_keys').get().c;
-  const active = db.prepare('SELECT COUNT(*) as c FROM api_keys WHERE revoked_at IS NULL').get().c;
-  const revoked = db
-    .prepare('SELECT COUNT(*) as c FROM api_keys WHERE revoked_at IS NOT NULL')
-    .get().c;
+async function getKeyStats() {
+  const totalRow = await get('SELECT COUNT(*) as c FROM api_keys');
+  const activeRow = await get('SELECT COUNT(*) as c FROM api_keys WHERE revoked_at IS NULL');
+  const revokedRow = await get('SELECT COUNT(*) as c FROM api_keys WHERE revoked_at IS NOT NULL');
 
   const today = new Date().toISOString().slice(0, 10);
-  const requestsToday = db
-    .prepare('SELECT COUNT(*) as c FROM api_request_log WHERE date(created_at) = ?')
-    .get(today).c;
+  const requestsTodayRow = await get(
+    'SELECT COUNT(*) as c FROM api_request_log WHERE date(created_at) = $1',
+    [today]
+  );
 
-  db.close();
-  return { total, active, revoked, requestsToday };
+  return {
+    total: totalRow?.c || 0,
+    active: activeRow?.c || 0,
+    revoked: revokedRow?.c || 0,
+    requestsToday: requestsTodayRow?.c || 0,
+  };
 }
 
 module.exports = {

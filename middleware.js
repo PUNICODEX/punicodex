@@ -461,6 +461,35 @@ export default function middleware(request) {
   // Normalize host: lowercase, strip port, trim whitespace
   const host = (request.headers.get('host') || '').toLowerCase().split(':')[0].trim();
 
+
+
+  // ─── 0b. Defensive domains ─────────────────────────────────────────
+  // punicodex.com is a defensive typo domain -> redirect to punycodex.com
+  const DEFENSIVE_DOMAINS = new Set(['punicodex.com', 'www.punicodex.com']);
+  if (DEFENSIVE_DOMAINS.has(host)) {
+    url.hostname = 'punycodex.com';
+    return new Response(null, {
+      status: 301,
+      headers: {
+        'Location': url.toString(),
+        'Cache-Control': 'public, max-age=0, must-revalidate',
+      },
+    });
+  }
+
+  // ─── 0. Direct-serve flagship domains ──────────────────────────────
+  // Some deity domains should serve their temple page directly instead
+  // of redirecting to punycodex.com/{id}.
+  const DIRECT_SERVE_MAP = {
+    'helheimr.com': 'helheimr',
+    'www.helheimr.com': 'helheimr',
+  };
+  const directId = DIRECT_SERVE_MAP[host];
+  if (directId) {
+    url.pathname = '/sites/' + directId + url.pathname;
+    return fetch(url);
+  }
+
   // ─── 1. Domain redirect ────────────────────────────────────────────
   // Unicode/punycode domains → 301 redirect to punycodex.com/{id}
   const id = DOMAIN_TO_ID[host];

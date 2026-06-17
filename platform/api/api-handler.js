@@ -25,7 +25,7 @@ function createApiHandler(handler, options = {}) {
 
     try {
       // Authentication
-      const auth = authenticate(req);
+      const auth = await authenticate(req);
       if (auth.invalid) {
         error(res, 'UNAUTHORIZED', 'Invalid API key.', { status: 401 });
         return;

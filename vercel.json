@@ -5,6 +5,16 @@
       "includeFiles": "platform/db/**"
     }
   },
+  "crons": [
+    {
+      "path": "/api/cron/trial-reminders",
+      "schedule": "3 9 * * *"
+    },
+    {
+      "path": "/api/cron/lease-expiry",
+      "schedule": "7 9 * * *"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

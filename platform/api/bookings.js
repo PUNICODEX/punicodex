@@ -1,13 +1,7 @@
-const Database = require('better-sqlite3');
 const crypto = require('node:crypto');
-const { getDbPath } = require('../db/db');
+const { insert, get, all, run } = require('../db/operational');
+const { getDb } = require('../db/connection');
 const { extractAndSave } = require('./keyword-extractor');
-
-function getDb() {
-  const db = new Database(getDbPath());
-  db.pragma('journal_mode = WAL');
-  return db;
-}
 
 function generateToken() {
   return crypto.randomBytes(24).toString('hex');
@@ -17,13 +11,38 @@ function hashIp(ip) {
   return crypto.createHash('sha256').update(ip).digest('hex').slice(0, 16);
 }
 
+const BOT_PATTERNS = [
+  /bot/i,
+  /crawler/i,
+  /spider/i,
+  /scrape/i,
+  /slurp/i,
+  /facebookexternalhit/i,
+  /whatsapp/i,
+  /linkedinbot/i,
+  /pingdom/i,
+  /gtmetrix/i,
+  /chrome-lighthouse/i,
+  /googlebot/i,
+  /bingbot/i,
+  /yandex/i,
+  /baiduspider/i,
+  /duckduckbot/i,
+  /ahrefs/i,
+  /semrush/i,
+];
+
+function isBot(userAgent) {
+  if (!userAgent || typeof userAgent !== 'string') return false;
+  return BOT_PATTERNS.some((pattern) => pattern.test(userAgent));
+}
+
 // ─── Ad Slots ───
 
-function getSlots(siteSlug = null) {
-  const db = getDb();
+async function getSlots(siteSlug = null) {
   let query = `
     SELECT s.*,
-      b.status as booking_status, b.analytics_token, b.company_name, b.website_url, b.hide_meta, b.id as booking_id,
+      b.status as booking_status, b.analytics_token, b.company_name, b.website_url, b.id as booking_id,
       COALESCE(sc.creative_path, b.creative_path) as creative_path,
       COALESCE(sc.custom_heading, b.custom_heading) as custom_heading,
       COALESCE(sc.custom_subtitle, b.custom_subtitle) as custom_subtitle,
@@ -35,59 +54,47 @@ function getSlots(siteSlug = null) {
   `;
   const params = [];
   if (siteSlug) {
-    query += ` WHERE s.site_slug = ?`;
+    query += ` WHERE s.site_slug = $${params.length + 1}`;
     params.push(siteSlug);
   }
   query += ` ORDER BY s.sort_order`;
-  const slots = db.prepare(query).all(...params);
-  db.close();
-  return slots;
+  return all(query, params);
 }
 
-function isBundleSlot(slotId) {
-  const db = getDb();
-  const row = db.prepare('SELECT is_bundle FROM ad_slots WHERE id = ?').get(slotId);
-  db.close();
+async function isBundleSlot(slotId) {
+  const row = await get('SELECT is_bundle FROM ad_slots WHERE id = $1', [slotId]);
   return row ? row.is_bundle === 1 : false;
 }
 
-function getBundleMembers(bundleSlotId) {
-  const db = getDb();
-  const rows = db
-    .prepare('SELECT member_slot_id FROM bundle_members WHERE bundle_slot_id = ?')
-    .all(bundleSlotId);
-  db.close();
+async function getBundleMembers(bundleSlotId) {
+  const rows = await all('SELECT member_slot_id FROM bundle_members WHERE bundle_slot_id = $1', [
+    bundleSlotId,
+  ]);
   return rows.map((r) => r.member_slot_id);
 }
 
-function getSlotBySlug(slug, siteSlug = null) {
-  const db = getDb();
+async function getSlotBySlug(slug, siteSlug = null) {
   let query = `
     SELECT s.*, b.status as booking_status, b.analytics_token, b.company_name, b.website_url
     FROM ad_slots s
     LEFT JOIN bookings b ON s.current_booking_id = b.id
-    WHERE s.slug = ?
+    WHERE s.slug = $1
   `;
   const params = [slug];
   if (siteSlug) {
-    query += ` AND s.site_slug = ?`;
+    query += ` AND s.site_slug = $${params.length + 1}`;
     params.push(siteSlug);
   }
-  const slot = db.prepare(query).get(...params);
-  db.close();
-  return slot;
+  return get(query, params);
 }
 
-function getSlotById(id) {
-  const db = getDb();
-  const slot = db.prepare('SELECT * FROM ad_slots WHERE id = ?').get(id);
-  db.close();
-  return slot;
+async function getSlotById(id) {
+  return get('SELECT * FROM ad_slots WHERE id = $1', [id]);
 }
 
 // ─── Bookings ───
 
-function createBooking({
+async function createBooking({
   slotId,
   email,
   companyName,
@@ -100,129 +107,117 @@ function createBooking({
   status = 'pending_payment',
   applicationNote = null,
 }) {
-  const db = getDb();
   const token = generateToken();
-  const stmt = db.prepare(`
-    INSERT INTO bookings (slot_id, email, company_name, website_url, custom_heading, custom_subtitle, status, analytics_token, lease_months, trial_months, site_slug, admin_note)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-  `);
-  const result = stmt.run(
-    slotId,
-    email,
-    companyName || null,
-    websiteUrl || null,
-    customHeading || null,
-    customSubtitle || null,
-    status,
-    token,
-    leaseMonths,
-    trialMonths,
-    siteSlug || 'nike',
-    applicationNote || null
+  const { id: bookingId } = await insert(
+    `
+      INSERT INTO bookings (slot_id, email, company_name, website_url, custom_heading, custom_subtitle, status, analytics_token, lease_months, trial_months, site_slug, admin_note)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+      RETURNING id
+    `,
+    [
+      slotId,
+      email,
+      companyName || null,
+      websiteUrl || null,
+      customHeading || null,
+      customSubtitle || null,
+      status,
+      token,
+      leaseMonths,
+      trialMonths,
+      siteSlug || 'nike',
+      applicationNote || null,
+    ]
   );
-  const bookingId = result.lastInsertRowid;
 
   // If booking a bundle, reserve the bundle slot and all member slots
-  if (isBundleSlot(slotId)) {
-    const members = getBundleMembers(slotId);
-    const reserveStmt = db.prepare(`
-      UPDATE ad_slots SET status = 'reserved', current_booking_id = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?
-    `);
-    // Reserve member slots 1-12
+  if (await isBundleSlot(slotId)) {
+    const members = await getBundleMembers(slotId);
+    const reserveSql = `
+      UPDATE ad_slots SET status = 'reserved', current_booking_id = $1, updated_at = CURRENT_TIMESTAMP WHERE id = $2
+    `;
     for (const memberId of members) {
-      reserveStmt.run(bookingId, memberId);
+      await run(reserveSql, [bookingId, memberId]);
     }
     // Reserve the bundle slot itself (13)
-    reserveStmt.run(bookingId, slotId);
+    await run(reserveSql, [bookingId, slotId]);
   }
 
-  db.close();
   return { id: bookingId, token };
 }
 
-function getBookingByToken(token) {
-  const db = getDb();
-  const booking = db
-    .prepare(`
-    SELECT b.*, s.name as slot_name, s.slug as slot_slug, s.width, s.height, s.price_cents
-    FROM bookings b
-    JOIN ad_slots s ON b.slot_id = s.id
-    WHERE b.analytics_token = ?
-  `)
-    .get(token);
-  db.close();
-  return booking;
+async function getBookingByToken(token) {
+  return get(
+    `
+      SELECT b.*, s.name as slot_name, s.slug as slot_slug, s.width, s.height, s.price_cents
+      FROM bookings b
+      JOIN ad_slots s ON b.slot_id = s.id
+      WHERE b.analytics_token = $1
+    `,
+    [token]
+  );
 }
 
-function getBookingById(id) {
-  const db = getDb();
-  const booking = db
-    .prepare(`
-    SELECT b.*, s.name as slot_name, s.slug as slot_slug
-    FROM bookings b
-    JOIN ad_slots s ON b.slot_id = s.id
-    WHERE b.id = ?
-  `)
-    .get(id);
-  db.close();
-  return booking;
+async function getBookingById(id) {
+  return get(
+    `
+      SELECT b.*, s.name as slot_name, s.slug as slot_slug
+      FROM bookings b
+      JOIN ad_slots s ON b.slot_id = s.id
+      WHERE b.id = $1
+    `,
+    [id]
+  );
 }
 
-function getBookingByStripeSession(sessionId) {
-  const db = getDb();
-  const booking = db.prepare('SELECT * FROM bookings WHERE stripe_session_id = ?').get(sessionId);
-  db.close();
-  return booking;
+async function getBookingByStripeSession(sessionId) {
+  return get('SELECT * FROM bookings WHERE stripe_session_id = $1', [sessionId]);
 }
 
-function updateBookingStripeSession(bookingId, sessionId) {
-  const db = getDb();
-  db.prepare('UPDATE bookings SET stripe_session_id = ?, status = ? WHERE id = ?').run(
+async function updateBookingStripeSession(bookingId, sessionId) {
+  await run('UPDATE bookings SET stripe_session_id = $1, status = $2 WHERE id = $3', [
     sessionId,
     'pending_payment',
-    bookingId
-  );
-  db.close();
+    bookingId,
+  ]);
 }
 
-function markBookingPaid(sessionId, paymentIntent, amountCents, subscriptionId = null) {
-  const db = getDb();
-  const existing = db.prepare('SELECT * FROM bookings WHERE stripe_session_id = ?').get(sessionId);
+async function markBookingPaid(sessionId, paymentIntent, amountCents, subscriptionId = null) {
+  const existing = await getBookingByStripeSession(sessionId);
   if (existing && !['pending_payment', 'pending_application'].includes(existing.status)) {
-    db.close();
     return existing;
   }
-  db.prepare(`
-    UPDATE bookings
-    SET stripe_payment_intent = ?, amount_paid_cents = ?, stripe_subscription_id = ?, status = 'pending_upload', updated_at = CURRENT_TIMESTAMP
-    WHERE stripe_session_id = ?
-  `).run(paymentIntent, amountCents, subscriptionId || null, sessionId);
-  const booking = db.prepare('SELECT * FROM bookings WHERE stripe_session_id = ?').get(sessionId);
-  db.close();
-  return booking;
+  await run(
+    `
+      UPDATE bookings
+      SET stripe_payment_intent = $1, amount_paid_cents = $2, stripe_subscription_id = $3, status = 'pending_upload', updated_at = CURRENT_TIMESTAMP
+      WHERE stripe_session_id = $4
+    `,
+    [paymentIntent, amountCents, subscriptionId || null, sessionId]
+  );
+  return getBookingByStripeSession(sessionId);
 }
 
-function saveCreative(bookingId, filePath, originalName) {
-  const db = getDb();
-  db.prepare(`
-    UPDATE bookings
-    SET creative_path = ?, creative_original_name = ?, status = 'pending_approval', updated_at = CURRENT_TIMESTAMP
-    WHERE id = ?
-  `).run(filePath, originalName, bookingId);
-  db.close();
+async function saveCreative(bookingId, filePath, originalName) {
+  await run(
+    `
+      UPDATE bookings
+      SET creative_path = $1, creative_original_name = $2, status = 'pending_approval', updated_at = CURRENT_TIMESTAMP
+      WHERE id = $3
+    `,
+    [filePath, originalName, bookingId]
+  );
 }
 
-function setBookingStatus(bookingId, status, note = null) {
-  const db = getDb();
-  const updates = ['status = ?', 'updated_at = CURRENT_TIMESTAMP'];
+async function setBookingStatus(bookingId, status, note = null) {
+  const updates = ['status = $1', 'updated_at = CURRENT_TIMESTAMP'];
   const params = [status];
   if (note !== null) {
-    updates.push('admin_note = ?');
+    updates.push(`admin_note = $${params.length + 1}`);
     params.push(note);
   }
   params.push(bookingId);
-  db.prepare(`UPDATE bookings SET ${updates.join(', ')} WHERE id = ?`).run(...params);
-  db.close();
+  await run(`UPDATE bookings SET ${updates.join(', ')} WHERE id = $${params.length}`, params);
 }
 
 function addMonths(date, months) {
@@ -232,16 +227,16 @@ function addMonths(date, months) {
 }
 
 async function goLive(bookingId) {
-  const db = getDb();
-  const bookingMeta = db
-    .prepare(`
-    SELECT b.slot_id, b.lease_months, b.trial_months, b.company_name, b.website_url, b.custom_heading,
-           s.site_slug
-    FROM bookings b
-    JOIN ad_slots s ON b.slot_id = s.id
-    WHERE b.id = ?
-  `)
-    .get(bookingId);
+  const bookingMeta = await get(
+    `
+      SELECT b.slot_id, b.lease_months, b.trial_months, b.company_name, b.website_url, b.custom_heading,
+             s.site_slug
+      FROM bookings b
+      JOIN ad_slots s ON b.slot_id = s.id
+      WHERE b.id = $1
+    `,
+    [bookingId]
+  );
 
   const now = new Date();
   const nowIso = now.toISOString();
@@ -255,59 +250,67 @@ async function goLive(bookingId) {
 
   const billingStatus = trialMonths > 0 ? 'trialing' : 'active';
 
-  db.prepare(`
-    UPDATE bookings
-    SET status = 'live', started_at = ?, ends_at = ?, trial_ends_at = ?, billing_starts_at = ?, billing_status = ?, updated_at = CURRENT_TIMESTAMP
-    WHERE id = ?
-  `).run(nowIso, endsIso, trialEndsIso, billingStartsIso, billingStatus, bookingId);
+  await run(
+    `
+      UPDATE bookings
+      SET status = 'live', started_at = $1, ends_at = $2, trial_ends_at = $3, billing_starts_at = $4, billing_status = $5, updated_at = CURRENT_TIMESTAMP
+      WHERE id = $6
+    `,
+    [nowIso, endsIso, trialEndsIso, billingStartsIso, billingStatus, bookingId]
+  );
 
-  const booking = db.prepare('SELECT * FROM bookings WHERE id = ?').get(bookingId);
+  const booking = await getBookingById(bookingId);
 
   // Set bundle slot live
-  db.prepare(
-    `UPDATE ad_slots SET status = 'live', current_booking_id = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?`
-  ).run(bookingId, booking.slot_id);
+  await run(
+    `UPDATE ad_slots SET status = 'live', current_booking_id = $1, updated_at = CURRENT_TIMESTAMP WHERE id = $2`,
+    [bookingId, booking.slot_id]
+  );
 
   // Cascade to all member slots
-  if (isBundleSlot(booking.slot_id)) {
-    const members = getBundleMembers(booking.slot_id);
-    const cascadeStmt = db.prepare(
-      `UPDATE ad_slots SET status = 'live', current_booking_id = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?`
-    );
+  if (await isBundleSlot(booking.slot_id)) {
+    const members = await getBundleMembers(booking.slot_id);
+    const cascadeSql = `UPDATE ad_slots SET status = 'live', current_booking_id = $1, updated_at = CURRENT_TIMESTAMP WHERE id = $2`;
     for (const memberId of members) {
-      cascadeStmt.run(bookingId, memberId);
+      await run(cascadeSql, [bookingId, memberId]);
     }
   }
 
   // Push tenant details to indexed_sites so the search engine can crawl
   // their real website and extract SEO keywords.
   if (bookingMeta?.website_url && bookingMeta?.site_slug) {
-    db.prepare(`
-      UPDATE indexed_sites
-      SET tenant_name = COALESCE(tenant_name, ?),
-          tenant_front_url = COALESCE(tenant_front_url, ?),
-          tenant_category = COALESCE(tenant_category, ?),
-          lease_status = 'leased'
-      WHERE lexicon_entry_id = ? AND status = 'active'
-    `).run(
-      bookingMeta.company_name || null,
-      bookingMeta.website_url,
-      bookingMeta.custom_heading || bookingMeta.company_name || null,
-      bookingMeta.site_slug
-    );
+    const sqlite = getDb();
+    sqlite
+      .prepare(
+        `
+          UPDATE indexed_sites
+          SET tenant_name = COALESCE(tenant_name, ?),
+              tenant_front_url = COALESCE(tenant_front_url, ?),
+              tenant_category = COALESCE(tenant_category, ?),
+              lease_status = 'leased'
+          WHERE lexicon_entry_id = ? AND status = 'active'
+        `
+      )
+      .run(
+        bookingMeta.company_name || null,
+        bookingMeta.website_url,
+        bookingMeta.custom_heading || bookingMeta.company_name || null,
+        bookingMeta.site_slug
+      );
 
     // Crawl the tenant's real site and extract keywords immediately.
     try {
-      const site = db
-        .prepare(`
-        SELECT * FROM indexed_sites
-        WHERE lexicon_entry_id = ? AND status = 'active'
-        ORDER BY is_flagship DESC, id ASC
-        LIMIT 1
-      `)
+      const site = sqlite
+        .prepare(
+          `
+            SELECT * FROM indexed_sites
+            WHERE lexicon_entry_id = ? AND status = 'active'
+            ORDER BY is_flagship DESC, id ASC
+            LIMIT 1
+          `
+        )
         .get(bookingMeta.site_slug);
       if (site) {
-        db.close();
         await extractAndSave(site);
         return booking;
       }
@@ -316,245 +319,285 @@ async function goLive(bookingId) {
     }
   }
 
-  db.close();
   return booking;
 }
 
-function setBillingStatus(bookingId, status) {
-  const db = getDb();
-  db.prepare(
-    `UPDATE bookings SET billing_status = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?`
-  ).run(status, bookingId);
-  db.close();
-}
-
-function recordTrialReminder(bookingId, type) {
-  const db = getDb();
-  const col = type === '7d' ? 'reminder_7d_sent' : 'reminder_1d_sent';
-  db.prepare(`UPDATE bookings SET ${col} = 1, updated_at = CURRENT_TIMESTAMP WHERE id = ?`).run(
-    bookingId
+async function setBillingStatus(bookingId, status) {
+  await run(
+    `UPDATE bookings SET billing_status = $1, updated_at = CURRENT_TIMESTAMP WHERE id = $2`,
+    [status, bookingId]
   );
-  db.close();
 }
 
-function getTrialsNeedingReminder() {
-  const db = getDb();
-  const rows = db
-    .prepare(`
-    SELECT b.*, s.name as slot_name, s.slug as slot_slug
-    FROM bookings b
-    JOIN ad_slots s ON b.slot_id = s.id
-    WHERE b.status = 'live'
-      AND b.trial_months > 0
-      AND b.trial_ends_at IS NOT NULL
-      AND b.billing_status = 'trialing'
-  `)
-    .all();
-  db.close();
-  return rows;
+async function recordTrialReminder(bookingId, type) {
+  const col = type === '7d' ? 'reminder_7d_sent' : 'reminder_1d_sent';
+  await run(`UPDATE bookings SET ${col} = 1, updated_at = CURRENT_TIMESTAMP WHERE id = $1`, [
+    bookingId,
+  ]);
 }
 
-function endBooking(bookingId) {
-  const db = getDb();
-  const booking = db.prepare('SELECT * FROM bookings WHERE id = ?').get(bookingId);
-  db.prepare(`
-    UPDATE bookings SET status = 'ended', billing_status = 'canceled', updated_at = CURRENT_TIMESTAMP WHERE id = ?
-  `).run(bookingId);
-  // Free bundle slot
-  db.prepare(`
-    UPDATE ad_slots SET status = 'available', current_booking_id = NULL, updated_at = CURRENT_TIMESTAMP WHERE id = ?
-  `).run(booking.slot_id);
-  // Cascade to all member slots
-  if (isBundleSlot(booking.slot_id)) {
-    const members = getBundleMembers(booking.slot_id);
-    const cascadeStmt = db.prepare(
-      `UPDATE ad_slots SET status = 'available', current_booking_id = NULL, updated_at = CURRENT_TIMESTAMP WHERE id = ?`
+async function getTrialsNeedingReminder() {
+  return all(
+    `
+      SELECT b.*, s.name as slot_name, s.slug as slot_slug
+      FROM bookings b
+      JOIN ad_slots s ON b.slot_id = s.id
+      WHERE b.status = 'live'
+        AND b.trial_months > 0
+        AND b.trial_ends_at IS NOT NULL
+        AND b.billing_status = 'trialing'
+    `
+  );
+}
+
+async function setCancelAtEnd(bookingId, cancel) {
+  if (cancel) {
+    await run(
+      `UPDATE bookings SET cancel_at_end = 1, canceled_at = CURRENT_TIMESTAMP, updated_at = CURRENT_TIMESTAMP WHERE id = $1`,
+      [bookingId]
     );
+  } else {
+    await run(
+      `UPDATE bookings SET cancel_at_end = 0, canceled_at = NULL, updated_at = CURRENT_TIMESTAMP WHERE id = $1`,
+      [bookingId]
+    );
+  }
+}
+
+async function extendBooking(bookingId, extensionMonths, amountCents) {
+  const booking = await getBookingById(bookingId);
+  if (!booking) return null;
+  const currentEnds = booking.ends_at ? new Date(booking.ends_at) : new Date();
+  const newEnds = addMonths(currentEnds, extensionMonths).toISOString();
+  await run(
+    `
+      UPDATE bookings
+      SET ends_at = $1, lease_months = lease_months + $2, amount_paid_cents = COALESCE(amount_paid_cents, 0) + $3, updated_at = CURRENT_TIMESTAMP
+      WHERE id = $4
+    `,
+    [newEnds, extensionMonths, amountCents, bookingId]
+  );
+  return getBookingById(bookingId);
+}
+
+async function endBooking(bookingId) {
+  const booking = await getBookingById(bookingId);
+  await run(
+    `UPDATE bookings SET status = 'ended', billing_status = 'canceled', updated_at = CURRENT_TIMESTAMP WHERE id = $1`,
+    [bookingId]
+  );
+  // Free bundle slot
+  await run(
+    `UPDATE ad_slots SET status = 'available', current_booking_id = NULL, updated_at = CURRENT_TIMESTAMP WHERE id = $1`,
+    [booking.slot_id]
+  );
+  // Cascade to all member slots
+  if (await isBundleSlot(booking.slot_id)) {
+    const members = await getBundleMembers(booking.slot_id);
+    const cascadeSql = `UPDATE ad_slots SET status = 'available', current_booking_id = NULL, updated_at = CURRENT_TIMESTAMP WHERE id = $1`;
     for (const memberId of members) {
-      cascadeStmt.run(memberId);
+      await run(cascadeSql, [memberId]);
     }
   }
   // Clear tenant metadata and reset lease status on the associated indexed site.
   if (booking?.site_slug) {
-    db.prepare(`
-      UPDATE indexed_sites
-      SET tenant_name = NULL,
-          tenant_category = NULL,
-          tenant_front_url = NULL,
-          lease_status = 'available',
-          archetype_score = 0.0,
-          archetype_signals = NULL
-      WHERE lexicon_entry_id = ? AND status = 'active'
-    `).run(booking.site_slug);
+    const sqlite = getDb();
+    sqlite
+      .prepare(
+        `
+          UPDATE indexed_sites
+          SET tenant_name = NULL,
+              tenant_category = NULL,
+              tenant_front_url = NULL,
+              lease_status = 'available',
+              archetype_score = 0.0,
+              archetype_signals = NULL
+          WHERE lexicon_entry_id = ? AND status = 'active'
+        `
+      )
+      .run(booking.site_slug);
   }
-  db.close();
 }
 
-function getBookingsByEmail(email, siteSlug = null) {
-  const db = getDb();
+async function getBookingsByEmail(email, siteSlug = null) {
   let query = `
     SELECT b.*, s.name as slot_name, s.slug as slot_slug, s.is_bundle
     FROM bookings b
     JOIN ad_slots s ON b.slot_id = s.id
-    WHERE b.email = ?
+    WHERE b.email = $1
   `;
   const params = [email];
   if (siteSlug) {
-    query += ` AND b.site_slug = ?`;
+    query += ` AND b.site_slug = $${params.length + 1}`;
     params.push(siteSlug);
   }
   query += ` ORDER BY b.created_at DESC`;
-  const bookings = db.prepare(query).all(...params);
-  db.close();
-  return bookings;
+  return all(query, params);
 }
 
 // ─── Slot Creatives (for bundle bookings) ───
 
-function getSlotCreative(bookingId, slotId) {
-  const db = getDb();
-  const row = db
-    .prepare('SELECT * FROM slot_creatives WHERE booking_id = ? AND slot_id = ?')
-    .get(bookingId, slotId);
-  db.close();
+async function getSlotCreative(bookingId, slotId) {
+  const row = await get('SELECT * FROM slot_creatives WHERE booking_id = $1 AND slot_id = $2', [
+    bookingId,
+    slotId,
+  ]);
   return row || null;
 }
 
-function getSlotCreatives(bookingId) {
-  const db = getDb();
-  const rows = db
-    .prepare(`
-    SELECT sc.*, s.name as slot_name, s.width, s.height, s.slug as slot_slug
-    FROM slot_creatives sc
-    JOIN ad_slots s ON sc.slot_id = s.id
-    WHERE sc.booking_id = ?
-  `)
-    .all(bookingId);
-  db.close();
-  return rows;
+async function getSlotCreatives(bookingId) {
+  return all(
+    `
+      SELECT sc.*, s.name as slot_name, s.width, s.height, s.slug as slot_slug
+      FROM slot_creatives sc
+      JOIN ad_slots s ON sc.slot_id = s.id
+      WHERE sc.booking_id = $1
+    `,
+    [bookingId]
+  );
 }
 
-function saveSlotCreative(bookingId, slotId, filePath, originalName) {
-  const db = getDb();
-  const existing = db
-    .prepare('SELECT id FROM slot_creatives WHERE booking_id = ? AND slot_id = ?')
-    .get(bookingId, slotId);
+async function saveSlotCreative(bookingId, slotId, filePath, originalName) {
+  const existing = await getSlotCreative(bookingId, slotId);
   if (existing) {
-    db.prepare(
-      `UPDATE slot_creatives SET creative_path = ?, creative_original_name = ? WHERE booking_id = ? AND slot_id = ?`
-    ).run(filePath, originalName, bookingId, slotId);
+    await run(
+      `UPDATE slot_creatives SET creative_path = $1, creative_original_name = $2 WHERE booking_id = $3 AND slot_id = $4`,
+      [filePath, originalName, bookingId, slotId]
+    );
   } else {
-    db.prepare(
-      `INSERT INTO slot_creatives (booking_id, slot_id, creative_path, creative_original_name) VALUES (?, ?, ?, ?)`
-    ).run(bookingId, slotId, filePath, originalName);
+    await insert(
+      `INSERT INTO slot_creatives (booking_id, slot_id, creative_path, creative_original_name) VALUES ($1, $2, $3, $4) RETURNING id`,
+      [bookingId, slotId, filePath, originalName]
+    );
   }
-  db.close();
 }
 
-function updateSlotMeta(bookingId, slotId, { customHeading, customSubtitle, websiteUrl }) {
-  const db = getDb();
-  const existing = db
-    .prepare('SELECT id FROM slot_creatives WHERE booking_id = ? AND slot_id = ?')
-    .get(bookingId, slotId);
+async function updateSlotMeta(bookingId, slotId, { customHeading, customSubtitle, websiteUrl }) {
+  const existing = await getSlotCreative(bookingId, slotId);
   if (existing) {
     const sets = [];
     const params = [];
     if (customHeading !== undefined) {
-      sets.push('custom_heading = ?');
+      sets.push(`custom_heading = $${params.length + 1}`);
       params.push(customHeading || null);
     }
     if (customSubtitle !== undefined) {
-      sets.push('custom_subtitle = ?');
+      sets.push(`custom_subtitle = $${params.length + 1}`);
       params.push(customSubtitle || null);
     }
     if (websiteUrl !== undefined) {
-      sets.push('website_url = ?');
+      sets.push(`website_url = $${params.length + 1}`);
       params.push(websiteUrl || null);
     }
     if (sets.length > 0) {
       params.push(bookingId, slotId);
-      db.prepare(
-        `UPDATE slot_creatives SET ${sets.join(', ')} WHERE booking_id = ? AND slot_id = ?`
-      ).run(...params);
+      await run(
+        `UPDATE slot_creatives SET ${sets.join(', ')} WHERE booking_id = $${params.length - 1} AND slot_id = $${params.length}`,
+        params
+      );
     }
   } else {
-    db.prepare(
-      `INSERT INTO slot_creatives (booking_id, slot_id, custom_heading, custom_subtitle, website_url) VALUES (?, ?, ?, ?, ?)`
-    ).run(bookingId, slotId, customHeading || null, customSubtitle || null, websiteUrl || null);
+    await insert(
+      `INSERT INTO slot_creatives (booking_id, slot_id, custom_heading, custom_subtitle, website_url) VALUES ($1, $2, $3, $4, $5) RETURNING id`,
+      [bookingId, slotId, customHeading || null, customSubtitle || null, websiteUrl || null]
+    );
   }
-  db.close();
 }
 
 // ─── Analytics ───
 
-function recordEvent({ bookingId, eventType, ip, userAgent, referrer }) {
-  const db = getDb();
+async function recordEvent({
+  bookingId,
+  eventType,
+  ip,
+  userAgent,
+  referrer,
+  visibleSeconds,
+  visiblePercent,
+}) {
   const ipHash = hashIp(ip || 'unknown');
-  db.prepare(`
-    INSERT INTO analytics_events (booking_id, event_type, ip_hash, user_agent, referrer)
-    VALUES (?, ?, ?, ?, ?)
-  `).run(bookingId, eventType, ipHash, userAgent || null, referrer || null);
-  db.close();
+  const botFlag = isBot(userAgent) ? 1 : 0;
+  await insert(
+    `
+      INSERT INTO analytics_events (booking_id, event_type, ip_hash, user_agent, referrer, is_bot, visible_seconds, visible_percent)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+      RETURNING id
+    `,
+    [
+      bookingId,
+      eventType,
+      ipHash,
+      userAgent || null,
+      referrer || null,
+      botFlag,
+      visibleSeconds ?? null,
+      visiblePercent ?? null,
+    ]
+  );
 }
 
-function getDashboardMetrics(token) {
-  const db = getDb();
-  const booking = db
-    .prepare(`
-    SELECT b.*, s.name as slot_name, s.slug as slot_slug
-    FROM bookings b
-    JOIN ad_slots s ON b.slot_id = s.id
-    WHERE b.analytics_token = ?
-  `)
-    .get(token);
-  if (!booking) {
-    db.close();
-    return null;
-  }
+async function getDashboardMetrics(token) {
+  const booking = await get(
+    `
+      SELECT b.*, s.name as slot_name, s.slug as slot_slug
+      FROM bookings b
+      JOIN ad_slots s ON b.slot_id = s.id
+      WHERE b.analytics_token = $1
+    `,
+    [token]
+  );
+  if (!booking) return null;
 
-  const totalImpressions = db
-    .prepare(`
-    SELECT COUNT(*) as c FROM analytics_events
-    WHERE booking_id = ? AND event_type = 'impression'
-  `)
-    .get(booking.id).c;
+  const totalImpressionsRow = await get(
+    `SELECT COUNT(*) as c FROM analytics_events WHERE booking_id = $1 AND event_type = 'impression' AND is_bot = 0`,
+    [booking.id]
+  );
+  const totalImpressions = totalImpressionsRow?.c || 0;
 
-  const uniqueImpressions = db
-    .prepare(`
-    SELECT COUNT(DISTINCT ip_hash) as c FROM analytics_events
-    WHERE booking_id = ? AND event_type = 'impression'
-  `)
-    .get(booking.id).c;
+  const uniqueImpressionsRow = await get(
+    `SELECT COUNT(DISTINCT ip_hash) as c FROM analytics_events WHERE booking_id = $1 AND event_type = 'impression' AND is_bot = 0`,
+    [booking.id]
+  );
+  const uniqueImpressions = uniqueImpressionsRow?.c || 0;
 
-  const totalClicks = db
-    .prepare(`
-    SELECT COUNT(*) as c FROM analytics_events
-    WHERE booking_id = ? AND event_type = 'click'
-  `)
-    .get(booking.id).c;
+  const viewableImpressionsRow = await get(
+    `SELECT COUNT(*) as c FROM analytics_events WHERE booking_id = $1 AND event_type = 'viewable_impression' AND is_bot = 0`,
+    [booking.id]
+  );
+  const viewableImpressions = viewableImpressionsRow?.c || 0;
 
-  const daily = db
-    .prepare(`
-    SELECT date(created_at) as day, event_type, COUNT(*) as count
-    FROM analytics_events
-    WHERE booking_id = ? AND created_at >= date('now', '-30 days')
-    GROUP BY day, event_type
-    ORDER BY day DESC
-  `)
-    .all(booking.id);
+  const totalClicksRow = await get(
+    `SELECT COUNT(*) as c FROM analytics_events WHERE booking_id = $1 AND event_type = 'click' AND is_bot = 0`,
+    [booking.id]
+  );
+  const totalClicks = totalClicksRow?.c || 0;
 
-  const referrers = db
-    .prepare(`
-    SELECT referrer, COUNT(*) as count
-    FROM analytics_events
-    WHERE booking_id = ? AND event_type = 'impression' AND referrer IS NOT NULL
-    GROUP BY referrer
-    ORDER BY count DESC
-    LIMIT 10
-  `)
-    .all(booking.id);
+  const cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - 30);
+  const cutoffIso = cutoff.toISOString();
 
-  db.close();
+  const daily = await all(
+    `
+      SELECT date(created_at) as day, event_type, COUNT(*) as count
+      FROM analytics_events
+      WHERE booking_id = $1 AND created_at >= $2 AND is_bot = 0
+      GROUP BY day, event_type
+      ORDER BY day DESC
+    `,
+    [booking.id, cutoffIso]
+  );
+
+  const referrers = await all(
+    `
+      SELECT referrer, COUNT(*) as count
+      FROM analytics_events
+      WHERE booking_id = $1 AND event_type = 'impression' AND referrer IS NOT NULL AND is_bot = 0
+      GROUP BY referrer
+      ORDER BY count DESC
+      LIMIT 10
+    `,
+    [booking.id]
+  );
 
   return {
     booking: {
@@ -572,8 +615,11 @@ function getDashboardMetrics(token) {
     metrics: {
       totalImpressions,
       uniqueImpressions,
+      viewableImpressions,
       totalClicks,
       ctr: totalImpressions > 0 ? ((totalClicks / totalImpressions) * 100).toFixed(2) : '0.00',
+      vtr:
+        totalImpressions > 0 ? ((viewableImpressions / totalImpressions) * 100).toFixed(2) : '0.00',
       daily,
       referrers,
     },
@@ -608,4 +654,6 @@ module.exports = {
   setBillingStatus,
   recordTrialReminder,
   getTrialsNeedingReminder,
+  setCancelAtEnd,
+  extendBooking,
 };

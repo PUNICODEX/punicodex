@@ -81,6 +81,36 @@ async function loadSlots() {
   }
 }
 
+function trackViewability(container, token) {
+  if (!('IntersectionObserver' in window)) return;
+  let timer = null;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+        if (timer) return;
+        timer = setTimeout(() => {
+          fetch(`${API_BASE}/api/analytics/viewability`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              token,
+              visibleSeconds: 1,
+              visiblePercent: Math.round(entry.intersectionRatio * 100),
+            }),
+          }).catch(() => {});
+          observer.disconnect();
+        }, 1000);
+      } else {
+        if (timer) {
+          clearTimeout(timer);
+          timer = null;
+        }
+      }
+    });
+  }, { threshold: [0, 0.5, 1] });
+  observer.observe(container);
+}
+
 function updateSlotUI() {
   document.querySelectorAll('.space-slot').forEach(slotEl => {
     const spaceNum = slotEl.dataset.space;
@@ -141,6 +171,9 @@ function updateSlotUI() {
         glow.className = 'space-frame-glow';
         frame.appendChild(glow);
       }
+
+      // Fire viewability beacon after 1s at ≥50% visibility
+      trackViewability(frame, slot.analytics_token);
     } else if (slot.status !== 'available') {
       // RESERVED: hide button, show overlay inside frame
       const overlay = document.createElement('div');
@@ -477,6 +510,7 @@ async function handleReturnFromStripe() {
   const token = params.get('booking');
   const paid = params.get('paid');
   const canceled = params.get('canceled');
+  const renewed = params.get('renewed');
 
   if (!token) return;
 
@@ -496,6 +530,18 @@ async function handleReturnFromStripe() {
 
     if (canceled) {
       showBookingError('Payment was canceled. You can try again anytime.');
+      return;
+    }
+
+    if (renewed && booking.status === 'live') {
+      openModal(booking.slot_id);
+      showStep('3');
+      const titleEl = document.querySelector('#booking-step-3 .booking-modal-title');
+      if (titleEl) titleEl.textContent = 'Renewal Complete';
+      const subtitleEl = document.querySelector('#booking-step-3 .booking-modal-subtitle');
+      if (subtitleEl) subtitleEl.textContent = 'Your lease has been extended. Thank you for continuing with us.';
+      els.dashboardLink.href = `${API_BASE}/sites/{{TEMPLE_ID}}/dashboard/?token=${token}`;
+      await loadSlots();
       return;
     }
 
@@ -636,6 +682,7 @@ if (changeCreativeBtn) {
 // ========== MY BOOKINGS MODAL ==========
 const myBookingsModal = document.getElementById('my-bookings-modal');
 const myBookingsNav = document.getElementById('my-bookings-nav');
+const myBookingsFooter = document.getElementById('my-bookings-footer');
 const myBookingsClose = document.getElementById('my-bookings-close');
 const myBookingsBackdrop = document.getElementById('my-bookings-backdrop');
 const myBookingsSubmit = document.getElementById('my-bookings-submit');
@@ -656,6 +703,7 @@ function closeMyBookings() {
 }
 
 if (myBookingsNav) myBookingsNav.addEventListener('click', openMyBookings);
+if (myBookingsFooter) myBookingsFooter.addEventListener('click', openMyBookings);
 if (myBookingsClose) myBookingsClose.addEventListener('click', closeMyBookings);
 if (myBookingsBackdrop) myBookingsBackdrop.addEventListener('click', closeMyBookings);
 

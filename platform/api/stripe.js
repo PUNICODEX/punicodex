@@ -4,6 +4,7 @@ if (!stripeSecretKey) {
 }
 const stripe = require('stripe')(stripeSecretKey);
 const { updateClaimStripeSession, markClaimPaid } = require('./claims');
+const { extendBooking } = require('./bookings');
 
 const PRICE_BASE = 1500; // $15.00 in cents
 const PRICE_PREMIUM = 3500; // $35.00 in cents
@@ -101,6 +102,46 @@ async function createBookingCheckoutSession({
   return { sessionUrl: session.url, sessionId: session.id, mode: sessionConfig.mode };
 }
 
+async function createRenewalCheckoutSession({
+  bookingId,
+  email,
+  slotName,
+  amountCents,
+  token,
+  extensionMonths = 12,
+  siteSlug = 'nike',
+  siteName = 'Níkē',
+}) {
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ['card'],
+    line_items: [
+      {
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: `${siteName} Ad Space Renewal: ${slotName}`,
+            description: `Extend your advertising placement by ${extensionMonths} months on ${siteName}.com`,
+          },
+          unit_amount: amountCents,
+        },
+        quantity: 1,
+      },
+    ],
+    mode: 'payment',
+    success_url: `${process.env.PLATFORM_URL || 'http://localhost:3456'}/sites/${siteSlug}/?booking=${token}&renewed=1`,
+    cancel_url: `${process.env.PLATFORM_URL || 'http://localhost:3456'}/sites/${siteSlug}/?booking=${token}&canceled=1`,
+    customer_email: email,
+    metadata: {
+      type: 'booking_renewal',
+      booking_id: String(bookingId),
+      slot_name: slotName,
+      extension_months: String(extensionMonths),
+    },
+  });
+
+  return { sessionUrl: session.url, sessionId: session.id };
+}
+
 async function handleWebhook(payload, signature) {
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
   if (!webhookSecret) {
@@ -126,10 +167,15 @@ async function handleWebhook(payload, signature) {
       const subscriptionId = isSubscription ? session.subscription || null : null;
       const booking = markBookingPaid(session.id, paymentIntent, amountTotal, subscriptionId);
       return { event: 'payment.success', type: 'booking', booking, mode: session.mode };
-    } else {
-      const claim = markClaimPaid(session.id, session.payment_intent);
-      return { event: 'payment.success', type: 'claim', claim };
     }
+    if (metadata.type === 'booking_renewal') {
+      const bookingId = parseInt(metadata.booking_id, 10);
+      const extensionMonths = parseInt(metadata.extension_months, 10) || 12;
+      const booking = extendBooking(bookingId, extensionMonths, session.amount_total || 0);
+      return { event: 'payment.success', type: 'booking_renewal', booking };
+    }
+    const claim = markClaimPaid(session.id, session.payment_intent);
+    return { event: 'payment.success', type: 'claim', claim };
   }
 
   return { event: event.type, claim: null, booking: null };
@@ -138,6 +184,7 @@ async function handleWebhook(payload, signature) {
 module.exports = {
   createCheckoutSession,
   createBookingCheckoutSession,
+  createRenewalCheckoutSession,
   handleWebhook,
   PRICE_BASE,
   PRICE_PREMIUM,

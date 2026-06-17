@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
 
     const days = parseInt(req.query?.days, 10) || 7;
     const limit = parseInt(req.query?.limit, 10) || 100;
-    return res.json(getKeyUsage(id, { days, limit }));
+    return res.json(await getKeyUsage(id, { days, limit }));
   } catch (err) {
     handleError(res, err);
   }
