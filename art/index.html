@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PUNYCODEX — Art Marketplace</title>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/art/art.css">
+  <link rel="canonical" href="/art/">
+  <meta name="description" content="Collect and license mythological art for every PUNYCODEX entry.">
+</head>
+<body>
+  <nav class="global-nav" id="main-nav">
+    <a href="/" class="nav-logo">PÚNYCODEX</a>
+    <div class="nav-links">
+      <a href="/pantheon/" class="nav-link">Pantheon</a>
+      <a href="/lexicon/" class="nav-link">Lexicon</a>
+      <a href="/type/" class="nav-link">Type</a>
+      <a href="/tiers/" class="nav-link">Tiers</a>
+      <a href="/game/" class="nav-link">Game</a>
+      <a href="/art/" class="nav-link active">Art</a>
+    </div>
+  </nav>
+
+  <main class="art-container">
+    <header class="art-header">
+      <h1>Art Marketplace <span class="badge prototype">Prototype</span></h1>
+      <p>Watermarked previews. Buy a license to unlock the unmarked original.</p>
+    </header>
+
+    <section class="art-filters">
+      <input type="search" id="art-search" placeholder="Search names, pantheons, domains...">
+      <select id="art-pantheon">
+        <option value="">All Pantheons</option>
+      </select>
+      <select id="art-license">
+        <option value="">Any License</option>
+        <option value="personal">Personal</option>
+        <option value="commercial">Commercial</option>
+        <option value="exclusive">Exclusive</option>
+      </select>
+    </section>
+
+    <section class="art-grid" id="art-grid"></section>
+  </main>
+
+  <div class="art-modal" id="art-modal" style="display:none;">
+    <div class="art-modal-backdrop"></div>
+    <div class="art-modal-content">
+      <button class="art-modal-close" id="art-modal-close">&times;</button>
+      <div class="art-preview" id="modal-preview"></div>
+      <h2 id="modal-title"></h2>
+      <p id="modal-meta"></p>
+      <div class="license-options" id="license-options"></div>
+      <button class="btn primary" id="buy-btn">Proceed to Checkout</button>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>PUNYCODEX Art Marketplace — prototype. Prices and previews are simulated.</p>
+  </footer>
+
+  <script src="/type/js/lexicon.js"></script>
+  <script src="/js/art-marketplace-data.js"></script>
+  <script src="/art/art.js"></script>
+</body>
+</html>

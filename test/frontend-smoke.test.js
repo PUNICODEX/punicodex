@@ -68,4 +68,18 @@ test('public search page exists and references search scripts', () => {
   assert.ok(html.includes('search'));
 });
 
+test('art marketplace page exists and loads marketplace scripts', () => {
+  const html = readHtml('art/index.html');
+  assert.ok(html.includes('<title>'));
+  assert.ok(html.includes('art-marketplace-data.js'));
+  assert.ok(html.includes('art/art.js'));
+});
+
+test('card game page exists and loads game scripts', () => {
+  const html = readHtml('game/index.html');
+  assert.ok(html.includes('<title>'));
+  assert.ok(html.includes('card-game-data.js'));
+  assert.ok(html.includes('game/game.js'));
+});
+
 run();
