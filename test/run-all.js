@@ -48,6 +48,7 @@ const SUITES = [
   { name: 'Booking Validation Tests', cmd: 'node test/booking-validation.test.js' },
   { name: 'Cron Single-Flight Tests', cmd: 'node test/cron-single-flight.test.js' },
   { name: 'Email Safety Tests', cmd: 'node test/email.test.js' },
+  { name: 'Lexicon Entry Cases', cmd: 'node test/lexicon-entry-cases.test.js' },
   { name: 'Ecosystem Tests', cmd: 'node test/ecosystem.test.js' },
   { name: 'Protocol Tests', cmd: 'node test/protocol.test.js' },
   { name: 'Homograph Defense Tests', cmd: 'node test/homograph-defense.test.js' },
