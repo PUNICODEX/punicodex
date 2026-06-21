@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PUNYCODEX — Mythic Duel</title>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/game/game.css">
+  <link rel="canonical" href="/game/">
+  <meta name="description" content="A playable mythology trading-card prototype built from the PUNYCODEX lexicon.">
+</head>
+<body>
+  <nav class="global-nav" id="main-nav">
+    <a href="/" class="nav-logo">PÚNYCODEX</a>
+    <div class="nav-links">
+      <a href="/pantheon/" class="nav-link">Pantheon</a>
+      <a href="/lexicon/" class="nav-link">Lexicon</a>
+      <a href="/type/" class="nav-link">Type</a>
+      <a href="/tiers/" class="nav-link">Tiers</a>
+      <a href="/game/" class="nav-link active">Game</a>
+    </div>
+  </nav>
+
+  <main class="game-container">
+    <header class="game-header">
+      <h1>Mythic Duel <span class="badge prototype">Prototype</span></h1>
+      <p>Battle with cards drawn from the PUNYCODEX scholarly lexicon.</p>
+      <button id="new-game" class="btn primary">New Duel</button>
+    </header>
+
+    <section class="battlefield">
+      <div class="hero-row enemy-hero">
+        <div class="hero-card">
+          <span class="hero-label">AI Oracle</span>
+          <span class="hero-health" id="enemy-health">30</span>
+        </div>
+        <div class="deck-count">Deck: <span id="enemy-deck">0</span></div>
+      </div>
+
+      <div class="board-row" id="enemy-board"></div>
+
+      <div class="turn-banner" id="turn-banner">Your Turn</div>
+
+      <div class="board-row" id="player-board"></div>
+
+      <div class="hero-row player-hero">
+        <div class="hero-card">
+          <span class="hero-label">You</span>
+          <span class="hero-health" id="player-health">30</span>
+        </div>
+        <div class="mana-pool">Ink: <span id="player-mana">0</span> / <span id="player-max-mana">1</span></div>
+        <div class="deck-count">Deck: <span id="player-deck">0</span></div>
+      </div>
+    </section>
+
+    <section class="hand-row" id="player-hand"></section>
+
+    <section class="controls">
+      <button id="end-turn" class="btn secondary" disabled>End Turn</button>
+      <div class="log" id="game-log"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>PUNYCODEX Mythic Duel — prototype. Card stats are auto-generated from lexicon tiers and domains.</p>
+  </footer>
+
+  <script src="/type/js/lexicon.js"></script>
+  <script src="/js/card-game-data.js"></script>
+  <script src="/game/game.js"></script>
+</body>
+</html>

@@ -1,0 +1,262 @@
+:root {
+  --game-bg: #0b0f17;
+  --card-bg: #141b2a;
+  --card-border: rgba(212, 175, 55, 0.25);
+  --card-hover: rgba(212, 175, 55, 0.4);
+  --rarity-common: #9aa3b2;
+  --rarity-uncommon: #4caf50;
+  --rarity-rare: #2196f3;
+  --rarity-epic: #9c27b0;
+  --rarity-legendary: #ff9800;
+  --rarity-mythic: #f44336;
+}
+
+.game-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem;
+  padding-top: 6rem;
+}
+
+.game-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.game-header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.25rem;
+}
+
+.badge.prototype {
+  background: rgba(212, 175, 55, 0.15);
+  color: #d4af37;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+}
+
+.battlefield {
+  background: linear-gradient(180deg, rgba(212,175,55,0.05) 0%, rgba(20,27,42,0.6) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.12);
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.hero-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.hero-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(0,0,0,0.25);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.hero-health {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f44336;
+}
+
+.deck-count, .mana-pool {
+  font-size: 0.875rem;
+  color: #b0b8c8;
+}
+
+.turn-banner {
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #d4af37;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border-top: 1px solid rgba(212, 175, 55, 0.1);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.board-row {
+  display: flex;
+  gap: 0.75rem;
+  min-height: 160px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0.5rem 0;
+}
+
+.hand-row {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  min-height: 180px;
+}
+
+.card {
+  width: 130px;
+  background: var(--card-bg);
+  border: 2px solid var(--card-border);
+  border-radius: 0.75rem;
+  padding: 0.65rem;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  user-select: none;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--card-hover);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+}
+
+.card.selected {
+  border-color: #d4af37;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.25);
+}
+
+.card.exhausted {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.card.unplayable {
+  opacity: 0.6;
+}
+
+.card-rarity {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 28px 28px 0;
+  border-color: transparent var(--rarity-common) transparent transparent;
+  border-radius: 0 0.5rem 0 0;
+}
+
+.card-rarity.rare { border-color: transparent var(--rarity-rare) transparent transparent; }
+.card-rarity.epic { border-color: transparent var(--rarity-epic) transparent transparent; }
+.card-rarity.legendary { border-color: transparent var(--rarity-legendary) transparent transparent; }
+.card-rarity.mythic { border-color: transparent var(--rarity-mythic) transparent transparent; }
+
+.card-cost {
+  position: absolute;
+  top: 0.25rem;
+  left: 0.25rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: #1a2333;
+  border: 1px solid #d4af37;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: #d4af37;
+}
+
+.card-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-top: 1rem;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.card-original {
+  font-size: 0.6rem;
+  text-align: center;
+  color: #9aa3b2;
+  min-height: 0.8rem;
+}
+
+.card-domain {
+  font-size: 0.6rem;
+  text-align: center;
+  color: #d4af37;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-ability {
+  font-size: 0.55rem;
+  text-align: center;
+  color: #b0b8c8;
+  background: rgba(0,0,0,0.25);
+  padding: 0.35rem;
+  border-radius: 0.35rem;
+  flex: 1;
+}
+
+.card-stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.card-stats .power { color: #ff6b6b; }
+.card-stats .health { color: #4ecdc4; }
+
+.controls {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.controls .btn {
+  min-width: 120px;
+}
+
+.log {
+  flex: 1;
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  font-size: 0.8rem;
+  color: #b0b8c8;
+  min-height: 80px;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.log p {
+  margin: 0 0 0.25rem;
+}
+
+.log p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 100px;
+    padding: 0.5rem;
+  }
+  .card-name {
+    font-size: 0.75rem;
+  }
+}
