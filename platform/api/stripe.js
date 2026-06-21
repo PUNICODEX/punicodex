@@ -1,10 +1,18 @@
-const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
-if (!stripeSecretKey) {
-  throw new Error('STRIPE_SECRET_KEY environment variable is required');
-}
-const stripe = require('stripe')(stripeSecretKey);
 const { updateClaimStripeSession, markClaimPaid } = require('./claims');
 const { extendBooking } = require('./bookings');
+
+function getStripeSecretKey() {
+  const key = process.env.STRIPE_SECRET_KEY;
+  if (!key) {
+    throw new Error('STRIPE_SECRET_KEY environment variable is required');
+  }
+  return key;
+}
+
+function getStripe() {
+  const stripe = require('stripe');
+  return stripe(getStripeSecretKey());
+}
 
 const PRICE_BASE = 1500; // $15.00 in cents
 const PRICE_PREMIUM = 3500; // $35.00 in cents
@@ -12,7 +20,7 @@ const PRICE_PREMIUM = 3500; // $35.00 in cents
 async function createCheckoutSession({ claimId, email, unicodeVariant, templateType }) {
   const amount = templateType === 'premium' ? PRICE_PREMIUM : PRICE_BASE;
 
-  const session = await stripe.checkout.sessions.create({
+  const session = await getStripe().checkout.sessions.create({
     payment_method_types: ['card'],
     line_items: [
       {
@@ -97,7 +105,7 @@ async function createBookingCheckoutSession({
     sessionConfig.mode = 'payment';
   }
 
-  const session = await stripe.checkout.sessions.create(sessionConfig);
+  const session = await getStripe().checkout.sessions.create(sessionConfig);
 
   return { sessionUrl: session.url, sessionId: session.id, mode: sessionConfig.mode };
 }
@@ -112,7 +120,7 @@ async function createRenewalCheckoutSession({
   siteSlug = 'nike',
   siteName = 'Níkē',
 }) {
-  const session = await stripe.checkout.sessions.create({
+  const session = await getStripe().checkout.sessions.create({
     payment_method_types: ['card'],
     line_items: [
       {
@@ -150,7 +158,7 @@ async function handleWebhook(payload, signature) {
 
   let event;
   try {
-    event = stripe.webhooks.constructEvent(payload, signature, webhookSecret);
+    event = getStripe().webhooks.constructEvent(payload, signature, webhookSecret);
   } catch (err) {
     throw new Error(`Webhook signature verification failed: ${err.message}`);
   }

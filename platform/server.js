@@ -62,7 +62,6 @@ const {
   goLive,
   endBooking,
   getBookingsByEmail,
-  recordEvent,
   getDashboardMetrics,
   getBundleMembers,
   getSlotCreatives,
@@ -71,6 +70,7 @@ const {
   isBundleSlot,
   setCancelAtEnd,
 } = require('./api/bookings');
+const adAnalytics = require('./api/ad-analytics');
 const { get, run } = require('./db/operational');
 const {
   login: adminLogin,
@@ -93,11 +93,7 @@ const {
   getKeyUsage,
   getKeyStats,
 } = require('./api/api-key-admin');
-const {
-  createBookingCheckoutSession,
-  createRenewalCheckoutSession,
-  handleWebhook,
-} = require('./api/stripe');
+const { createBookingCheckoutSession, createRenewalCheckoutSession } = require('./api/stripe');
 const {
   proposeTenant,
   createTenant,
@@ -139,7 +135,6 @@ if (!fs.existsSync(UPLOADS_DIR)) {
 
 const app = express();
 const PORT = process.env.PORT || 3456;
-const PLATFORM_URL = process.env.PLATFORM_URL || `http://localhost:${PORT}`;
 
 const verifySendLimit = createPublicRateLimit('verify-send');
 const verifyCheckLimit = createPublicRateLimit('verify-check');
@@ -151,20 +146,6 @@ const tenantsPreviewLimit = createPublicRateLimit('tenants-preview');
 const analyticsPixelLimit = createPublicRateLimit('analytics-pixel');
 const analyticsClickLimit = createPublicRateLimit('analytics-click');
 const adminLoginLimit = createPublicRateLimit('admin-login');
-
-function isSafeRedirectUrl(url) {
-  if (!url || typeof url !== 'string') return false;
-  // Allow same-origin absolute paths
-  if (url.startsWith('/')) return true;
-  try {
-    const target = new URL(url);
-    const platform = new URL(PLATFORM_URL);
-    if (target.protocol !== 'http:' && target.protocol !== 'https:') return false;
-    return target.hostname === platform.hostname && target.port === platform.port;
-  } catch {
-    return false;
-  }
-}
 
 // Database for crawler
 const Database = require('better-sqlite3');
@@ -1711,95 +1692,20 @@ app.get('/api/bookings/:token/slots', async (req, res) => {
 
 // --- Analytics ---
 app.get('/api/analytics/pixel.gif', analyticsPixelLimit, async (req, res) => {
-  try {
-    const { b: token } = req.query;
-    if (!token) {
-      res.set('Content-Type', 'image/gif');
-      return res.send(
-        Buffer.from('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7', 'base64')
-      );
-    }
-    const booking = await getBookingByToken(token);
-    if (booking && booking.status === 'live') {
-      await recordEvent({
-        bookingId: booking.id,
-        eventType: 'impression',
-        ip: req.ip || req.connection.remoteAddress,
-        userAgent: req.headers['user-agent'],
-        referrer: req.headers.referer,
-      });
-    }
-    res.set('Content-Type', 'image/gif');
-    res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-    res.set('Pragma', 'no-cache');
-    res.set('Expires', '0');
-    res.send(Buffer.from('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7', 'base64'));
-  } catch (_err) {
-    res.set('Content-Type', 'image/gif');
-    res.send(Buffer.from('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7', 'base64'));
-  }
+  await adAnalytics.trackPixel(req.query.b, req, res);
 });
 
 app.get('/api/analytics/click', analyticsClickLimit, async (req, res) => {
-  try {
-    const { b: token, url } = req.query;
-    if (!token || !url) return res.status(400).send('Missing parameters');
-    if (!isSafeRedirectUrl(url)) return res.status(400).send('Invalid redirect URL');
-
-    const booking = await getBookingByToken(token);
-    if (booking && booking.status === 'live') {
-      await recordEvent({
-        bookingId: booking.id,
-        eventType: 'click',
-        ip: req.ip || req.connection.remoteAddress,
-        userAgent: req.headers['user-agent'],
-        referrer: req.headers.referer,
-      });
-    }
-    res.redirect(url);
-  } catch (_err) {
-    res.status(500).send('Error');
-  }
+  await adAnalytics.trackClick(req.query.b, req.query.url, req, res);
 });
 
 app.post('/api/analytics/viewability', analyticsPixelLimit, async (req, res) => {
-  try {
-    const { token, visibleSeconds, visiblePercent } = req.body || {};
-    if (!token) return res.status(400).json({ error: 'token required' });
-    const seconds = parseFloat(visibleSeconds) || 0;
-    const percent = parseFloat(visiblePercent) || 0;
-    if (seconds < 1 || percent < 50) {
-      return res.status(400).json({ error: 'Viewability threshold not met' });
-    }
-
-    const booking = await getBookingByToken(token);
-    if (booking && booking.status === 'live') {
-      await recordEvent({
-        bookingId: booking.id,
-        eventType: 'viewable_impression',
-        ip: req.ip || req.connection.remoteAddress,
-        userAgent: req.headers['user-agent'],
-        referrer: req.headers.referer,
-        visibleSeconds: seconds,
-        visiblePercent: percent,
-      });
-    }
-    res.json({ success: true });
-  } catch (_err) {
-    res.status(500).json({ error: 'Error' });
-  }
+  const { token, visibleSeconds, visiblePercent } = req.body || {};
+  await adAnalytics.trackViewability(token, visibleSeconds, visiblePercent, req, res);
 });
 
 app.get('/api/analytics/dashboard', async (req, res) => {
-  try {
-    const { token } = req.query;
-    if (!token) return res.status(400).json({ error: 'token required' });
-    const data = await getDashboardMetrics(token);
-    if (!data) return res.status(404).json({ error: 'Booking not found' });
-    res.json(data);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+  await adAnalytics.getDashboard(req.query.token, res);
 });
 
 // --- Tenant Onboarding ---
@@ -2467,25 +2373,13 @@ app.post('/api/admin/bookings/:id/report', requireAdmin, async (req, res) => {
   }
 });
 
+const { processWebhook } = require('./api/webhook-handler');
+
 // Stripe webhook
 app.post('/api/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
   try {
     const signature = req.headers['stripe-signature'];
-    const result = await handleWebhook(req.body, signature);
-    if (result && result.type === 'booking' && result.booking) {
-      // Send upload-ready email
-      const booking = await getBookingByToken(result.booking.analytics_token);
-      if (booking) {
-        const { notifyUploadReady } = require('./api/email');
-        notifyUploadReady({
-          email: booking.email,
-          slotName: booking.slot_name,
-          companyName: booking.company_name,
-          bookingToken: booking.analytics_token,
-          leaseMonths: booking.lease_months,
-        }).catch(() => {});
-      }
-    }
+    await processWebhook(req.body, signature);
     res.json({ received: true });
   } catch (err) {
     console.error('Webhook error:', err.message);
