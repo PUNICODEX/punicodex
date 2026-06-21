@@ -59,9 +59,12 @@ function mockRes() {
   return res;
 }
 
+let nextAdSlotId = 2;
+
 async function makeLiveBooking(email = 'adtest@example.com') {
+  const slotId = nextAdSlotId++;
   const { id, token } = await createBooking({
-    slotId: 1,
+    slotId,
     email,
     companyName: 'Ad Test Co',
     websiteUrl: 'https://example.com',
@@ -69,6 +72,9 @@ async function makeLiveBooking(email = 'adtest@example.com') {
     trialMonths: 0,
     siteSlug: 'nike',
   });
+  const db = new Database(getTestDbPath(__filename));
+  db.prepare("UPDATE bookings SET status = 'approved' WHERE id = ?").run(id);
+  db.close();
   await goLive(id);
   return { id, token };
 }

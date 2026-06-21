@@ -12,6 +12,7 @@ function getDb() {
   if (!db) {
     db = new Database(getDbPath());
     db.pragma('journal_mode = WAL');
+    db.pragma('busy_timeout = 5000');
   }
   return db;
 }

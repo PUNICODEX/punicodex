@@ -1,5 +1,5 @@
 const crypto = require('node:crypto');
-const { insert, get, all, run } = require('../db/operational');
+const { insert, get, all, run, transaction } = require('../db/operational');
 const { getDb } = require('../db/connection');
 const { extractAndSave } = require('./keyword-extractor');
 
@@ -9,6 +9,21 @@ function generateToken() {
 
 function hashIp(ip) {
   return crypto.createHash('sha256').update(ip).digest('hex').slice(0, 16);
+}
+
+// Per-process serialization for slot-mutating operations. Serverless processes are
+// single-request-per-function on Vercel, so this prevents intra-process races; the
+// database partial unique index is the cross-process backstop.
+const slotLocks = new Map();
+
+function withSlotLock(slotId, fn) {
+  const next = (slotLocks.get(slotId) || Promise.resolve()).catch(() => {});
+  const run = next.then(fn);
+  slotLocks.set(
+    slotId,
+    run.catch(() => {})
+  );
+  return run;
 }
 
 const BOT_PATTERNS = [
@@ -35,6 +50,23 @@ const BOT_PATTERNS = [
 function isBot(userAgent) {
   if (!userAgent || typeof userAgent !== 'string') return false;
   return BOT_PATTERNS.some((pattern) => pattern.test(userAgent));
+}
+
+class BookingConflictError extends Error {
+  constructor(message) {
+    super(message);
+    this.status = 409;
+    this.isBookingConflict = true;
+  }
+}
+
+function isUniqueViolation(err) {
+  if (!err) return false;
+  // SQLite
+  if (err.message?.includes('UNIQUE constraint failed')) return true;
+  // Postgres
+  if (err.code === '23505') return true;
+  return false;
 }
 
 // ─── Ad Slots ───
@@ -107,43 +139,81 @@ async function createBooking({
   status = 'pending_payment',
   applicationNote = null,
 }) {
-  const token = generateToken();
-  const bookingId = await insert(
-    `
-      INSERT INTO bookings (slot_id, email, company_name, website_url, custom_heading, custom_subtitle, status, analytics_token, lease_months, trial_months, site_slug, admin_note)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
-      RETURNING id
-    `,
-    [
-      slotId,
-      email,
-      companyName || null,
-      websiteUrl || null,
-      customHeading || null,
-      customSubtitle || null,
-      status,
-      token,
-      leaseMonths,
-      trialMonths,
-      siteSlug || 'nike',
-      applicationNote || null,
-    ]
-  );
+  return withSlotLock(slotId, async () => {
+    const token = generateToken();
+    let result;
 
-  // If booking a bundle, reserve the bundle slot and all member slots
-  if (await isBundleSlot(slotId)) {
-    const members = await getBundleMembers(slotId);
-    const reserveSql = `
-      UPDATE ad_slots SET status = 'reserved', current_booking_id = $1, updated_at = CURRENT_TIMESTAMP WHERE id = $2
-    `;
-    for (const memberId of members) {
-      await run(reserveSql, [bookingId, memberId]);
+    try {
+      await transaction(async ({ get, all, run, insert }) => {
+        const slot = await get('SELECT * FROM ad_slots WHERE id = $1', [slotId]);
+        if (!slot) throw Object.assign(new Error('Slot not found'), { status: 404 });
+        if (slot.status !== 'available') {
+          throw new BookingConflictError('Slot is not available');
+        }
+
+        const bookingId = await insert(
+          `
+              INSERT INTO bookings (slot_id, email, company_name, website_url, custom_heading, custom_subtitle, status, analytics_token, lease_months, trial_months, site_slug, admin_note)
+              VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+              RETURNING id
+            `,
+          [
+            slotId,
+            email,
+            companyName || null,
+            websiteUrl || null,
+            customHeading || null,
+            customSubtitle || null,
+            status,
+            token,
+            leaseMonths,
+            trialMonths,
+            siteSlug || 'nike',
+            applicationNote || null,
+          ]
+        );
+
+        result = { id: bookingId, token };
+
+        const reserveSql = `
+            UPDATE ad_slots
+            SET status = 'reserved', current_booking_id = $1, updated_at = CURRENT_TIMESTAMP
+            WHERE id = $2 AND status = 'available'
+          `;
+
+        if (slot.is_bundle === 1) {
+          const memberRows = await all(
+            'SELECT member_slot_id FROM bundle_members WHERE bundle_slot_id = $1',
+            [slotId]
+          );
+          const members = memberRows.map((r) => r.member_slot_id);
+          for (const memberId of members) {
+            const member = await get('SELECT status FROM ad_slots WHERE id = $1', [memberId]);
+            if (member?.status !== 'available') {
+              throw new BookingConflictError('Bundle member slot is no longer available');
+            }
+            const reserveResult = await run(reserveSql, [bookingId, memberId]);
+            if (reserveResult.changes === 0) {
+              throw new BookingConflictError('Bundle member slot is no longer available');
+            }
+          }
+        }
+
+        const reserveResult = await run(reserveSql, [bookingId, slotId]);
+        if (reserveResult.changes === 0) {
+          throw new BookingConflictError('Slot is no longer available');
+        }
+      });
+    } catch (err) {
+      if (err.isBookingConflict) throw err;
+      if (isUniqueViolation(err)) {
+        throw new BookingConflictError('Slot is no longer available');
+      }
+      throw err;
     }
-    // Reserve the bundle slot itself (13)
-    await run(reserveSql, [bookingId, slotId]);
-  }
 
-  return { id: bookingId, token };
+    return result;
+  });
 }
 
 async function getBookingByToken(token) {
@@ -227,21 +297,22 @@ function addMonths(date, months) {
 }
 
 async function goLive(bookingId) {
-  const bookingMeta = await get(
-    `
-      SELECT b.slot_id, b.lease_months, b.trial_months, b.company_name, b.website_url, b.custom_heading,
-             s.site_slug
-      FROM bookings b
-      JOIN ad_slots s ON b.slot_id = s.id
-      WHERE b.id = $1
-    `,
-    [bookingId]
-  );
+  const booking = await getBookingById(bookingId);
+  if (!booking) throw Object.assign(new Error('Booking not found'), { status: 404 });
+  if (booking.status !== 'approved') {
+    throw new BookingConflictError('Booking must be approved before going live');
+  }
+
+  const slot = await getSlotById(booking.slot_id);
+  if (!slot) throw Object.assign(new Error('Slot not found'), { status: 404 });
+  if (slot.status === 'live' && slot.current_booking_id !== bookingId) {
+    throw new BookingConflictError('Slot is already live with another booking');
+  }
 
   const now = new Date();
   const nowIso = now.toISOString();
-  const months = bookingMeta?.lease_months || 1;
-  const trialMonths = bookingMeta?.trial_months || 0;
+  const months = booking.lease_months || 1;
+  const trialMonths = booking.trial_months || 0;
   const trialEnds = trialMonths > 0 ? addMonths(now, trialMonths) : now;
   const trialEndsIso = trialEnds.toISOString();
   const billingStartsIso = trialMonths > 0 ? trialEndsIso : nowIso;
@@ -250,35 +321,46 @@ async function goLive(bookingId) {
 
   const billingStatus = trialMonths > 0 ? 'trialing' : 'active';
 
-  await run(
-    `
-      UPDATE bookings
-      SET status = 'live', started_at = $1, ends_at = $2, trial_ends_at = $3, billing_starts_at = $4, billing_status = $5, updated_at = CURRENT_TIMESTAMP
-      WHERE id = $6
-    `,
-    [nowIso, endsIso, trialEndsIso, billingStartsIso, billingStatus, bookingId]
-  );
+  const liveBooking = await withSlotLock(booking.slot_id, async () => {
+    await transaction(async ({ all, run }) => {
+      const bookingUpdate = await run(
+        `
+            UPDATE bookings
+            SET status = 'live', started_at = $1, ends_at = $2, trial_ends_at = $3, billing_starts_at = $4, billing_status = $5, updated_at = CURRENT_TIMESTAMP
+            WHERE id = $6 AND status = 'approved'
+          `,
+        [nowIso, endsIso, trialEndsIso, billingStartsIso, billingStatus, bookingId]
+      );
+      if (bookingUpdate.changes === 0) {
+        throw new BookingConflictError('Booking is no longer approved');
+      }
 
-  const booking = await getBookingById(bookingId);
+      // Set bundle slot live
+      await run(
+        `UPDATE ad_slots SET status = 'live', current_booking_id = $1, updated_at = CURRENT_TIMESTAMP WHERE id = $2`,
+        [bookingId, booking.slot_id]
+      );
 
-  // Set bundle slot live
-  await run(
-    `UPDATE ad_slots SET status = 'live', current_booking_id = $1, updated_at = CURRENT_TIMESTAMP WHERE id = $2`,
-    [bookingId, booking.slot_id]
-  );
+      // Cascade to all member slots
+      if (slot.is_bundle === 1) {
+        const memberRows = await all(
+          'SELECT member_slot_id FROM bundle_members WHERE bundle_slot_id = $1',
+          [booking.slot_id]
+        );
+        const members = memberRows.map((r) => r.member_slot_id);
+        const cascadeSql = `UPDATE ad_slots SET status = 'live', current_booking_id = $1, updated_at = CURRENT_TIMESTAMP WHERE id = $2`;
+        for (const memberId of members) {
+          await run(cascadeSql, [bookingId, memberId]);
+        }
+      }
+    });
 
-  // Cascade to all member slots
-  if (await isBundleSlot(booking.slot_id)) {
-    const members = await getBundleMembers(booking.slot_id);
-    const cascadeSql = `UPDATE ad_slots SET status = 'live', current_booking_id = $1, updated_at = CURRENT_TIMESTAMP WHERE id = $2`;
-    for (const memberId of members) {
-      await run(cascadeSql, [bookingId, memberId]);
-    }
-  }
+    return getBookingById(bookingId);
+  });
 
   // Push tenant details to indexed_sites so the search engine can crawl
   // their real website and extract SEO keywords.
-  if (bookingMeta?.website_url && bookingMeta?.site_slug) {
+  if (booking.website_url && slot.site_slug) {
     const sqlite = getDb();
     sqlite
       .prepare(
@@ -292,10 +374,10 @@ async function goLive(bookingId) {
         `
       )
       .run(
-        bookingMeta.company_name || null,
-        bookingMeta.website_url,
-        bookingMeta.custom_heading || bookingMeta.company_name || null,
-        bookingMeta.site_slug
+        booking.company_name || null,
+        booking.website_url,
+        booking.custom_heading || booking.company_name || null,
+        slot.site_slug
       );
 
     // Crawl the tenant's real site and extract keywords immediately.
@@ -309,17 +391,17 @@ async function goLive(bookingId) {
             LIMIT 1
           `
         )
-        .get(bookingMeta.site_slug);
+        .get(slot.site_slug);
       if (site) {
         await extractAndSave(site);
-        return booking;
+        return liveBooking;
       }
     } catch (err) {
       console.error(`Keyword extraction failed for booking ${bookingId}:`, err.message);
     }
   }
 
-  return booking;
+  return liveBooking;
 }
 
 async function setBillingStatus(bookingId, status) {

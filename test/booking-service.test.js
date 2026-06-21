@@ -49,6 +49,7 @@ const {
   renewBooking,
   recoverBookings,
 } = require('../platform/api/booking-service.js');
+const { createBooking } = require('../platform/api/bookings.js');
 
 function getVerificationCode(email) {
   const db = new Database(getTestDbPath(__filename));
@@ -163,7 +164,7 @@ test('checkVerification rejects wrong and expired codes', async () => {
 test('createBookingRequest creates a pending_payment booking', async () => {
   const token = await makeVerifiedEmail('booking-create@example.com');
   const result = await createBookingRequest({
-    slotId: 1,
+    slotId: 20,
     email: 'booking-create@example.com',
     companyName: 'Test Co',
     websiteUrl: 'https://example.com',
@@ -176,7 +177,7 @@ test('createBookingRequest creates a pending_payment booking', async () => {
   assert.ok(result.bookingId);
   assert.ok(result.token);
   assert.strictEqual(result.leaseMonths, 1);
-  assert.strictEqual(result.totalCents, 120000);
+  assert.strictEqual(result.totalCents, 30000);
   assert.ok(result.stripeUrl.includes('checkout.stripe.com'));
   const booking = await getBookingByTokenSafe(result.token);
   assert.strictEqual(booking.status, 'pending_payment');
@@ -243,7 +244,7 @@ test('applyBookingRequest rejects non-bundle slots', async () => {
   const token = await makeVerifiedEmail('apply-nonbundle@example.com');
   try {
     await applyBookingRequest({
-      slotId: 1,
+      slotId: 22,
       email: 'apply-nonbundle@example.com',
       verificationToken: token,
     });
@@ -283,7 +284,7 @@ test('getAllBookingsByToken returns bookings for the same email', async () => {
 test('updateBookingMeta validates heading length', async () => {
   const token = await makeVerifiedEmail('meta-update@example.com');
   const result = await createBookingRequest({
-    slotId: 14,
+    slotId: 21,
     email: 'meta-update@example.com',
     companyName: 'Meta Co',
     leaseMonths: 1,
@@ -308,7 +309,7 @@ test('updateBookingMeta validates heading length', async () => {
 test('cancelBooking and uncancelBooking toggle cancel_at_end', async () => {
   const token = await makeVerifiedEmail('cancel-test@example.com');
   const result = await createBookingRequest({
-    slotId: 15,
+    slotId: 23,
     email: 'cancel-test@example.com',
     companyName: 'Cancel Co',
     leaseMonths: 1,
@@ -324,7 +325,7 @@ test('cancelBooking and uncancelBooking toggle cancel_at_end', async () => {
 test('renewBooking generates a renewal checkout URL', async () => {
   const token = await makeVerifiedEmail('renew-test@example.com');
   const result = await createBookingRequest({
-    slotId: 16,
+    slotId: 24,
     email: 'renew-test@example.com',
     companyName: 'Renew Co',
     leaseMonths: 1,
@@ -344,7 +345,7 @@ test('renewBooking generates a renewal checkout URL', async () => {
 test('recoverBookings sends dashboard links when bookings exist', async () => {
   const token = await makeVerifiedEmail('recover-test@example.com');
   await createBookingRequest({
-    slotId: 17,
+    slotId: 25,
     email: 'recover-test@example.com',
     companyName: 'Recover Co',
     leaseMonths: 1,
@@ -353,6 +354,63 @@ test('recoverBookings sends dashboard links when bookings exist', async () => {
   });
   const result = await recoverBookings('recover-test@example.com');
   assert.strictEqual(result.sent, true);
+});
+
+test('createBooking blocks a second active booking for the same slot', async () => {
+  const first = await createBooking({
+    slotId: 18,
+    email: 'race-first@example.com',
+    companyName: 'First Co',
+    leaseMonths: 1,
+    trialMonths: 0,
+    siteSlug: 'nike',
+    status: 'pending_payment',
+  });
+  assert.ok(first.id);
+
+  try {
+    await createBooking({
+      slotId: 18,
+      email: 'race-second@example.com',
+      companyName: 'Second Co',
+      leaseMonths: 1,
+      trialMonths: 0,
+      siteSlug: 'nike',
+      status: 'pending_payment',
+    });
+    assert.fail('expected conflict');
+  } catch (err) {
+    assert.strictEqual(err.status, 409);
+  }
+});
+
+test('createBooking handles concurrent attempts for the same slot', async () => {
+  const attempts = [
+    createBooking({
+      slotId: 19,
+      email: 'concurrent-a@example.com',
+      companyName: 'Concurrent A',
+      leaseMonths: 1,
+      trialMonths: 0,
+      siteSlug: 'nike',
+      status: 'pending_payment',
+    }),
+    createBooking({
+      slotId: 19,
+      email: 'concurrent-b@example.com',
+      companyName: 'Concurrent B',
+      leaseMonths: 1,
+      trialMonths: 0,
+      siteSlug: 'nike',
+      status: 'pending_payment',
+    }),
+  ];
+  const results = await Promise.allSettled(attempts);
+  const fulfilled = results.filter((r) => r.status === 'fulfilled');
+  const rejected = results.filter((r) => r.status === 'rejected');
+  assert.strictEqual(fulfilled.length, 1, 'exactly one concurrent attempt should succeed');
+  assert.strictEqual(rejected.length, 1, 'exactly one concurrent attempt should fail');
+  assert.strictEqual(rejected[0].reason.status, 409);
 });
 
 run();

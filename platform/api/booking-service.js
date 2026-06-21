@@ -92,17 +92,26 @@ async function createBookingRequest({
 
   const siteSlug = slot.site_slug || 'nike';
   const siteName = siteSlug === 'hermes' ? 'Hermês' : 'Níkē';
-  const { id, token } = await createBooking({
-    slotId,
-    email,
-    companyName,
-    websiteUrl,
-    customHeading,
-    customSubtitle,
-    leaseMonths: months,
-    trialMonths: trial,
-    siteSlug,
-  });
+  let bookingResult;
+  try {
+    bookingResult = await createBooking({
+      slotId,
+      email,
+      companyName,
+      websiteUrl,
+      customHeading,
+      customSubtitle,
+      leaseMonths: months,
+      trialMonths: trial,
+      siteSlug,
+    });
+  } catch (err) {
+    if (err.status === 409) {
+      throw new BookingError(409, err.message);
+    }
+    throw err;
+  }
+  const { id, token } = bookingResult;
 
   const isTrial = trial > 0;
   const isYearly = months === 12 && !isTrial;
@@ -197,19 +206,28 @@ async function applyBookingRequest({
   if (metaError) throw new BookingError(400, metaError);
 
   const siteSlug = slot.site_slug || 'nike';
-  const { id, token } = await createBooking({
-    slotId,
-    email,
-    companyName,
-    websiteUrl,
-    customHeading,
-    customSubtitle,
-    leaseMonths: months,
-    trialMonths: trial,
-    siteSlug,
-    status: 'pending_application',
-    applicationNote,
-  });
+  let bookingResult;
+  try {
+    bookingResult = await createBooking({
+      slotId,
+      email,
+      companyName,
+      websiteUrl,
+      customHeading,
+      customSubtitle,
+      leaseMonths: months,
+      trialMonths: trial,
+      siteSlug,
+      status: 'pending_application',
+      applicationNote,
+    });
+  } catch (err) {
+    if (err.status === 409) {
+      throw new BookingError(409, err.message);
+    }
+    throw err;
+  }
+  const { id, token } = bookingResult;
 
   notifyAdminApplication({
     slotName: slot.name,

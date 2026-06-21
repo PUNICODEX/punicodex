@@ -1,4 +1,6 @@
+const Database = require('better-sqlite3');
 const { getDb: getSharedDb, closeDb: closeSharedDb } = require('./connection');
+const { getDbPath } = require('./db');
 
 const DATABASE_URL = process.env.DATABASE_URL;
 
@@ -133,18 +135,50 @@ async function exec(sql) {
   db.exec(sql);
 }
 
-async function transaction(fn) {
+async function transaction(fn, opts = {}) {
   if (isPostgres()) {
     return (await getPgClient()).begin(fn);
   }
-  const db = getSharedDb();
-  db.exec('BEGIN');
+  // Use a dedicated connection per SQLite transaction. The shared connection
+  // cannot nest or interleave transactions, and Node's async model would
+  // otherwise cause "cannot start a transaction within a transaction" errors
+  // under concurrent writes. WAL mode lets multiple connections proceed safely.
+  const db = new Database(getDbPath());
+  db.pragma('journal_mode = WAL');
+  db.pragma('busy_timeout = 5000');
+  db.exec(opts.immediate ? 'BEGIN IMMEDIATE' : 'BEGIN');
+
+  const tQuery = (sql, params) => {
+    const converted = convertPlaceholders(sql);
+    return db.prepare(converted).all(...params);
+  };
+  const tGet = (sql, params) => {
+    const rows = tQuery(sql, params);
+    return rows[0];
+  };
+  const tAll = tQuery;
+  const tRun = (sql, params) => {
+    const converted = convertPlaceholders(sql);
+    const info = db.prepare(converted).run(...params);
+    return { changes: info.changes };
+  };
+  const tInsert = (sql, params) => {
+    if (!sql.match(/RETURNING\s+id/i)) {
+      throw new Error('insert() requires RETURNING id in the SQL');
+    }
+    const converted = convertPlaceholders(sql);
+    const row = db.prepare(converted).get(...params);
+    return row?.id;
+  };
+
   try {
-    await fn({ get, all, run, insert });
+    await fn({ get: tGet, all: tAll, run: tRun, insert: tInsert });
     db.exec('COMMIT');
   } catch (err) {
     db.exec('ROLLBACK');
     throw err;
+  } finally {
+    db.close();
   }
 }
 

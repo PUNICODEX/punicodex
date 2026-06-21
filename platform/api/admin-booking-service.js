@@ -102,17 +102,26 @@ async function createBookingAdmin(
   if (metaError) throw new AdminBookingError(400, metaError);
 
   const siteSlug = slot.site_slug || 'nike';
-  const { id, token } = await createBooking({
-    slotId,
-    email,
-    companyName,
-    websiteUrl,
-    customHeading,
-    customSubtitle,
-    leaseMonths: months,
-    trialMonths: trial,
-    siteSlug,
-  });
+  let bookingResult;
+  try {
+    bookingResult = await createBooking({
+      slotId,
+      email,
+      companyName,
+      websiteUrl,
+      customHeading,
+      customSubtitle,
+      leaseMonths: months,
+      trialMonths: trial,
+      siteSlug,
+    });
+  } catch (err) {
+    if (err.status === 409) {
+      throw new AdminBookingError(409, err.message);
+    }
+    throw err;
+  }
+  const { id, token } = bookingResult;
   await setBookingStatus(id, 'pending_upload', 'Admin-created trial lease');
 
   await logAction({

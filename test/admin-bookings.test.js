@@ -102,6 +102,58 @@ async function runTests() {
     assert.strictEqual(res.body.status, 'ended');
   });
 
+  await test('POST /api/admin/bookings rejects a slot that is already reserved', async () => {
+    const createRes = await invoke(bookingsHandler, 'POST', '/api/admin/bookings', {
+      headers: adminHeader(adminToken),
+      body: {
+        slotId: 9,
+        email: 'reserved-slot@example.com',
+        companyName: 'Reserved Co',
+        leaseMonths: 1,
+        trialMonths: 0,
+      },
+    });
+    assert.strictEqual(createRes.status, 201);
+
+    const secondRes = await invoke(bookingsHandler, 'POST', '/api/admin/bookings', {
+      headers: adminHeader(adminToken),
+      body: {
+        slotId: 9,
+        email: 'reserved-slot-2@example.com',
+        companyName: 'Reserved Two',
+        leaseMonths: 1,
+        trialMonths: 0,
+      },
+    });
+    assert.strictEqual(secondRes.status, 409);
+  });
+
+  await test('POST /api/admin/bookings/:id/golive rejects an unapproved booking', async () => {
+    const createRes = await invoke(bookingsHandler, 'POST', '/api/admin/bookings', {
+      headers: adminHeader(adminToken),
+      body: {
+        slotId: 10,
+        email: 'unapproved-golive@example.com',
+        companyName: 'Unapproved Co',
+        leaseMonths: 1,
+        trialMonths: 0,
+      },
+    });
+    assert.strictEqual(createRes.status, 201);
+
+    const handler = require('../api/admin/bookings/[id]/golive/index.js');
+    const res = await invoke(
+      handler,
+      'POST',
+      `/api/admin/bookings/${createRes.body.bookingId}/golive`,
+      {
+        headers: adminHeader(adminToken),
+        params: { id: String(createRes.body.bookingId) },
+      }
+    );
+    assert.strictEqual(res.status, 409);
+  });
+
   let rejectedId;
 
   await test('POST /api/admin/bookings/:id/reject', async () => {
