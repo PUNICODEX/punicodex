@@ -8,26 +8,20 @@
  */
 const Database = require('better-sqlite3');
 const { getDbPath } = require('../../../platform/db/db');
-const { setCors, handleError, requireCronSecret } = require('../../_utils');
+const { runCron } = require('../_utils');
 
 const DEFAULT_BATCH_SIZE = 50;
 const DEFAULT_STALE_DAYS = 7;
 
-function getDb() {
+function openDb() {
   const db = new Database(getDbPath());
   db.pragma('journal_mode = WAL');
+  db.pragma('busy_timeout = 5000');
   return db;
 }
 
-module.exports = (req, res) => {
-  setCors(req, res);
-  if (req.method === 'OPTIONS') return res.status(200).end();
-  if (req.method !== 'GET' && req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
-  if (!requireCronSecret(req, res)) return;
-
-  const db = getDb();
+module.exports = runCron('cron/crawler', { ttlMinutes: 30, nextRun: '6 hours' })(async (req) => {
+  const db = openDb();
   try {
     const batchSize = Math.min(
       Number.isNaN(parseInt(req.query?.batchSize, 10))
@@ -68,16 +62,7 @@ module.exports = (req, res) => {
       if (info.changes > 0) enqueued++;
     }
 
-    res.json({
-      success: true,
-      scanned: staleSites.length,
-      enqueued,
-      staleDays,
-      batchSize,
-      nextRun: '6 hours',
-    });
-  } catch (err) {
-    handleError(res, err);
+    return { scanned: staleSites.length, enqueued, staleDays, batchSize };
   } finally {
     try {
       db.close();
@@ -85,4 +70,4 @@ module.exports = (req, res) => {
       // ignore
     }
   }
-};
+});
