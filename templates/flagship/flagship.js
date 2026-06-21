@@ -272,8 +272,8 @@ function openModal(slotId) {
       const dimsMatch = dimsEl ? dimsEl.textContent.match(/(\d+)\s*×\s*(\d+)/) : null;
       slot = {
         name: nameEl ? nameEl.textContent : 'Slot',
-        width: dimsMatch ? parseInt(dimsMatch[1]) : 0,
-        height: dimsMatch ? parseInt(dimsMatch[2]) : 0,
+        width: dimsMatch ? parseInt(dimsMatch[1], 10) : 0,
+        height: dimsMatch ? parseInt(dimsMatch[2], 10) : 0,
         price_cents: parseInt(slotEl.dataset.priceCents, 10) || 0,
         is_bundle: parseInt(slotEl.dataset.bundle, 10) || 0,
       };

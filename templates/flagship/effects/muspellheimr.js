@@ -358,7 +358,7 @@
                     const delay = entry.target.dataset.delay || 0;
                     setTimeout(() => {
                         entry.target.classList.add('visible');
-                    }, parseInt(delay));
+                    }, parseInt(delay, 10));
                     revealObserver.unobserve(entry.target);
                 }
             });

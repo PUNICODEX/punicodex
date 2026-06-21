@@ -206,7 +206,7 @@
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    const delay = parseInt(entry.target.dataset.delay) || 0;
+                    const delay = parseInt(entry.target.dataset.delay, 10) || 0;
                     setTimeout(() => {
                         entry.target.classList.add('revealed');
                     }, delay);
