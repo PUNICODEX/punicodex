@@ -285,6 +285,15 @@ async function runTests() {
     assert.ok(body.data.matches[0].punycode, 'match must have punycode');
   });
 
+  await test('GET /api/v1/convert flags Cyrillic homograph as suspicious', async () => {
+    const { status, body } = await invoke(convert, 'GET', '/api/v1/convert?q=%D0%B0res');
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+    assert.ok(body.data.queryTrust, 'must include queryTrust');
+    assert.strictEqual(body.data.queryTrust.tier, 'suspicious');
+    assert.strictEqual(body.data.queryTrust.canonicalMatch.id, 'ares');
+  });
+
   await test('POST /api/v1/convert/batch handles multiple queries', async () => {
     const { status, body } = await invoke(convertBatch, 'POST', '/api/v1/convert/batch', {
       body: { queries: ['zeus', 'thor'] },

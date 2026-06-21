@@ -33,7 +33,11 @@ function loadLoreCatalog() {
     const catalogPath = path.join(__dirname, '..', '..', 'scripts', 'lore-catalog.json');
     const raw = fs.readFileSync(catalogPath, 'utf8');
     const parsed = JSON.parse(raw);
-    loreCatalog = new Map(parsed.map((item) => [item.id, item]));
+    if (Array.isArray(parsed)) {
+      loreCatalog = new Map(parsed.map((item) => [item.id, item]));
+    } else {
+      loreCatalog = new Map(Object.entries(parsed).map(([id, item]) => [id, item]));
+    }
   } catch (_e) {
     loreCatalog = new Map();
   }

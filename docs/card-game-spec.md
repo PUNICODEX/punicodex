@@ -1,0 +1,178 @@
+# PUNYCODEX Trading Card Game — Design Spec
+
+**Status:** Design / preparation  
+**Goal:** A mythology-based digital trading card game where every card is a PUNYCODEX entry, with stats and abilities derived from scholarly data.  
+**Relation to core:** The card game turns the lexicon into a collectible, playable surface. It drives engagement, creates demand for art from the marketplace, and gives domain owners exclusive in-game status.
+
+---
+
+## 1. Core Concept
+
+A deck-building battle game in the tradition of *Pokémon*, *Hearthstone*, and *Magic: The Gathering*, but where every card is a deity, realm, hero, or mythic concept from the PUNYCODEX canon.
+
+Each card derives its identity from real data:
+- **Name** — Unicode restoration.
+- **Pantheon** — Greek, Norse, Egyptian, etc.
+- **Tier** — Dual-tier and Tier-1 cards are rarer and more powerful.
+- **Domain** — War, Wisdom, Sea, Sky, Death, Love, etc.; determines abilities.
+- **Original script** — displayed on foil/variant cards.
+- **Symbols** — used as ability icons.
+
+The game celebrates the same philology the site does: a card is not just "Zeus"; it is *Zeús* with its Greek form, tier badge, and domain explanation.
+
+---
+
+## 2. Card Model
+
+### Base Stats (auto-generated from lexicon)
+| Stat | Source | Notes |
+|------|--------|-------|
+| `power` | Tier + pantheon + domain | Dual-tier = 90-100 base; Tier-1 = 70-85; Tier-2 = 40-65. |
+| `health` | Domain resilience | e.g., Earth/Sea high, Messenger/Trickster moderate. |
+| `cost` | Rarity + power | 1–10 mana/energy. |
+| `speed` | Pantheon archetype | Norse warriors fast, Egyptian judges slow but durable. |
+
+### Abilities (derived from domains)
+Examples:
+- **Zeús** — *Thunderstrike*: high damage to one target; bonus if enemy is Sea or Sky domain.
+- **Athénā** — *Tactical Counsel*: draw a card and give an ally +defense.
+- **Poseidôn** — *Tidal Wave*: damage all enemies; stronger if the battlefield is "coastal" map.
+- **Hekátē** — *Crossroads*: choose one of three random effects.
+- **Anû** — *Decree of Heaven*: stun an enemy and grant authority buff to allies.
+
+Abilities are stored in a `card_abilities` table and can be hand-tuned for balance.
+
+### Rarity Tiers
+| Rarity | Condition | Example |
+|--------|-----------|---------|
+| Common | Tier-2 entries | minor deities, nymphs, locations |
+| Uncommon | Tier-2 with notable domain | Medousa, Kēr |
+| Rare | Tier-1 entries | Zeús, Árēs, Athénā |
+| Epic | Dual-tier entries | Apóllōn, Hekátē, Níkē |
+| Legendary | Flagship / owned-domain entries | Limited editions for names PUNYCODEX owns |
+| Mythic | Foil original-script variants | Ultra-rare chase cards |
+
+---
+
+## 3. Game Modes
+
+### 3.1 Campaign / Lore Mode
+- Pantheon-themed single-player campaigns.
+- Each level teaches the mythology and rewards cards.
+- Example: "The Egyptian Book" campaign unlocks Ra, Osiris, Isis, Anubis.
+
+### 3.2 Constructed PvP
+- Build a 30-card deck from your collection.
+- Ranked ladder with seasons.
+- Pantheon-themed metas and banned/restricted lists.
+
+### 3.3 Draft
+- Pick cards from randomized packs.
+- Rewards based on win record.
+
+### 3.4 Daily Oracle Challenge
+- A single-card puzzle: "Which deity defeats this card?" Rewards Ink XP and card packs.
+
+### 3.5 Domain Wars (Guild/Clan)
+- Players join a pantheon faction.
+- Faction-wide events and leaderboards.
+
+---
+
+## 4. Economy
+
+### Currencies
+- **Ink** — earned by playing, daily challenges, and quests. Used for basic packs and card upgrades.
+- **Drachma / Denarii** — premium currency for packs, cosmetics, and event entries.
+- **Dust** — obtained by breaking down duplicate cards; used to craft specific cards.
+
+### Card Packs
+- **Common Pack** — 5 cards, mostly Tier-2.
+- **Pantheon Pack** — guaranteed card from one pantheon.
+- **Legendary Pack** — higher epic/legendary drop rate.
+- **Artist Collaboration Pack** — cards illustrated by marketplace artists; artist receives royalty.
+
+### Domain-Owner Perks
+- Owners of PUNYCODEX flagship domains receive a unique **Legendary** variant of that name's card.
+- Their cards have a special "Domain Lord" border and are tradable.
+- Domain owners can host tournaments on their name's temple page.
+
+---
+
+## 5. Art & Assets
+
+- Card art is sourced from the **Art Marketplace** (artists earn royalties per pack sale using their image).
+- Default card art is generated per pantheon with color-coded frames until marketplace art is licensed.
+- Original script is displayed on the card face for Epic+ cards.
+- Tier badge is visible as a foil stamp.
+
+---
+
+## 6. Data Model
+
+### `cards`
+| Column | Type | Notes |
+|--------|------|-------|
+| `id` | TEXT PK | entry id + variant suffix |
+| `entry_id` | TEXT FK | |
+| `variant` | TEXT | `standard` / `foil` / `original-script` / `domain-lord` |
+| `rarity` | TEXT | common / uncommon / rare / epic / legendary / mythic |
+| `power` | INTEGER | |
+| `health` | INTEGER | |
+| `cost` | INTEGER | |
+| `speed` | INTEGER | |
+| `ability_id` | TEXT FK | |
+| `artwork_id` | TEXT FK → artworks.id | nullable |
+| `set_id` | TEXT FK | release set |
+
+### `card_abilities`
+| Column | Type | Notes |
+|--------|------|-------|
+| `id` | TEXT PK | |
+| `entry_id` | TEXT FK | |
+| `name` | TEXT | e.g., "Thunderstrike" |
+| `description` | TEXT | human-readable effect |
+| `effect_json` | TEXT | machine-readable effect (DSL or JSON) |
+| `trigger` | TEXT | `on_play` / `on_attack` / `on_death` / `passive` |
+
+### `player_collections`
+| Column | Type | Notes |
+|--------|------|-------|
+| `user_id` | TEXT | |
+| `card_id` | TEXT FK | |
+| `count` | INTEGER | duplicates |
+| `level` | INTEGER | card upgrade level |
+
+### `decks`
+| Column | Type | Notes |
+|--------|------|-------|
+| `id` | TEXT PK | |
+| `user_id` | TEXT | |
+| `name` | TEXT | |
+| `cards_json` | TEXT | array of card ids |
+
+---
+
+## 7. Web Prototype First
+
+The first playable version is web-based (`/game/`). Later phases:
+- Mobile app integration (Capacitor).
+- Physical card print-on-demand.
+- AR card scanning (point phone at a printed card to see 3D deity).
+
+---
+
+## 8. Balance & Automation
+
+- A **balance simulation** runs in CI: thousands of AI-vs-AI games using current card stats to detect over/under-powered cards.
+- Cards are rebalanced quarterly based on win-rate data.
+- New entries added to the lexicon automatically generate a draft card for review.
+
+---
+
+## 9. Open Questions
+
+- Should the game be free-to-play with cosmetic/premium packs, or a one-time purchase?
+- Should cards be tradable between players (secondary market)?
+- How tightly should card stats be coupled to lexicon tier vs. hand-balanced for gameplay?
+- Do we launch with all 860 entries, or a curated starter set (~100 cards)?

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PUNYCODEX — Universal Unicode Search</title>
+  <meta name="description" content="Search the Unicode web across sites, domains, lore, images, and scholarly sources.">
+  <link rel="canonical" href="https://punycodex.com/search-v2.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/search-system.css">
+  <style>
+    .cn-page { padding: 0; }
+  </style>
+</head>
+<body class="cn-page">
+  <div class="cn-ambient"></div>
+
+  <header class="cn-header">
+    <div class="cn-header-inner">
+      <div class="cn-header-top">
+        <a href="/" class="cn-logo-row">
+          <div class="cn-logo-seal">P</div>
+          <div>
+            <div class="cn-logo-text">PUNYCODEX</div>
+            <div class="cn-logo-sub">Universal Unicode Search</div>
+          </div>
+        </a>
+        <button class="cn-mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="cn-global-nav" id="globalNav">
+          <a href="/pantheon/">Pantheon</a>
+          <a href="/lexicon/">Lexicon</a>
+          <a href="/type/">Type</a>
+          <a href="/tiers/">Tiers</a>
+          <a href="/api/v1/docs">API</a>
+        </nav>
+      </div>
+      <div class="cn-search-wrap">
+        <div class="cn-search-box">
+          <span class="cn-search-icon">⌕</span>
+          <input type="text" id="q" class="cn-search-input" placeholder="Search names, domains, lore, API…" autocomplete="off" autofocus>
+          <button id="searchClear" class="cn-search-clear" aria-label="Clear">×</button>
+          <button id="searchBtn" class="cn-search-btn">Search</button>
+        </div>
+      </div>
+      <div class="cn-verticals" id="verticals"></div>
+    </div>
+  </header>
+
+  <main class="cn-main">
+    <div class="cn-status-bar">
+      <span id="statusText">Enter a query to search the Unicode web.</span>
+      <span id="timingText"></span>
+    </div>
+    <div id="spellCorrection" class="cn-spell" style="display:none"></div>
+    <div id="results"></div>
+    <button id="loadMore" class="cn-btn cn-btn-secondary cn-load-more" style="display:none">Load more</button>
+    <div id="sidebar" style="display:none"></div>
+  </main>
+
+  <script src="/js/search-effects.js"></script>
+  <script>
+    const API_BASE = '';
+    const VERTICALS = [
+      { id: 'all', label: 'All' },
+      { id: 'sites', label: 'Sites' },
+      { id: 'domains', label: 'Domains' },
+      { id: 'lore', label: 'Lore' },
+      { id: 'api', label: 'API' },
+      { id: 'images', label: 'Images' },
+      { id: 'history', label: 'History' },
+    ];
+
+    const qInput = document.getElementById('q');
+    const searchBtn = document.getElementById('searchBtn');
+    const searchClear = document.getElementById('searchClear');
+    const resultsEl = document.getElementById('results');
+    const loadMoreBtn = document.getElementById('loadMore');
+    const statusText = document.getElementById('statusText');
+    const timingText = document.getElementById('timingText');
+    const spellEl = document.getElementById('spellCorrection');
+    const sidebarEl = document.getElementById('sidebar');
+    const verticalsEl = document.getElementById('verticals');
+
+    let currentQ = '';
+    let currentVertical = 'all';
+    let currentCursor = null;
+    let isLoading = false;
+    let sessionToken = localStorage.getItem('punycodex_search_session') || null;
+
+    function init() {
+      verticalsEl.innerHTML = VERTICALS.map(v =>
+        `<button data-vertical="${v.id}" class="cn-vertical ${v.id === currentVertical ? 'active' : ''}">${v.label}<span class="cn-count" id="count-${v.id}"></span></button>`
+      ).join('');
+      verticalsEl.addEventListener('click', (e) => {
+        if (e.target.dataset.vertical) {
+          currentVertical = e.target.dataset.vertical;
+          updateVerticalButtons();
+          if (currentQ) doSearch();
+        }
+      });
+
+      const params = new URLSearchParams(location.search);
+      const initialQ = params.get('q');
+      const initialVertical = params.get('vertical');
+      if (initialVertical && VERTICALS.some(v => v.id === initialVertical)) {
+        currentVertical = initialVertical;
+        updateVerticalButtons();
+      }
+      if (initialQ) {
+        qInput.value = initialQ;
+        doSearch();
+      }
+
+      qInput.addEventListener('input', () => {
+        searchClear.classList.toggle('visible', qInput.value.length > 0);
+      });
+      searchClear.addEventListener('click', () => {
+        qInput.value = '';
+        searchClear.classList.remove('visible');
+        qInput.focus();
+      });
+    }
+
+    function updateVerticalButtons() {
+      verticalsEl.querySelectorAll('.cn-vertical').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.vertical === currentVertical);
+      });
+    }
+
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    }
+
+    async function doSearch(append = false) {
+      const q = qInput.value.trim();
+      if (!q) return;
+      currentQ = q;
+      if (!append) {
+        currentCursor = null;
+        resultsEl.innerHTML = `
+          <div class="cn-empty">
+            <div class="cn-empty-icon">✦</div>
+            <div class="cn-empty-title">Consulting the Codex…</div>
+          </div>
+        `;
+        loadMoreBtn.style.display = 'none';
+        sidebarEl.style.display = 'none';
+        spellEl.style.display = 'none';
+      }
+      isLoading = true;
+      statusText.textContent = append ? 'Loading more…' : `Searching ${currentVertical}…`;
+
+      const params = new URLSearchParams();
+      params.set('q', q);
+      params.set('vertical', currentVertical);
+      params.set('limit', '20');
+      if (append && currentCursor) params.set('cursor', currentCursor);
+
+      try {
+        const headers = { 'Content-Type': 'application/json' };
+        if (sessionToken) headers['x-session-token'] = sessionToken;
+        const res = await fetch(`${API_BASE}/api/search/v2?${params}`, { headers });
+        const data = await res.json();
+        if (data.sessionToken) {
+          sessionToken = data.sessionToken;
+          localStorage.setItem('punycodex_search_session', sessionToken);
+        }
+        render(data, append);
+      } catch (e) {
+        if (!append) {
+          resultsEl.innerHTML = `
+            <div class="cn-empty">
+              <div class="cn-empty-icon">⚠</div>
+              <div class="cn-empty-title">The Codex is silent</div>
+              <div class="cn-empty-sub">${escapeHtml(e.message)}</div>
+            </div>
+          `;
+        }
+      } finally {
+        isLoading = false;
+        statusText.textContent = currentQ ? `Results for “${escapeHtml(currentQ)}”` : 'Enter a query.';
+      }
+    }
+
+    function render(data, append) {
+      timingText.textContent = data.timing ? `${data.timing}s` : '';
+      currentCursor = data.pagination?.nextCursor || null;
+      loadMoreBtn.style.display = data.pagination?.hasMore ? 'block' : 'none';
+
+      // Update vertical counts
+      const counts = data.resultCounts || {};
+      VERTICALS.forEach(v => {
+        const badge = document.getElementById(`count-${v.id}`);
+        if (badge) {
+          const c = counts[v.id];
+          badge.textContent = c !== undefined ? ` ${c.toLocaleString()}` : '';
+        }
+      });
+
+      if (data.spellCorrection) {
+        spellEl.innerHTML = `Did you mean: <a onclick="searchFor('${escapeHtml(data.spellCorrection)}')">${escapeHtml(data.spellCorrection)}</a>?`;
+        spellEl.style.display = 'block';
+      } else {
+        spellEl.style.display = 'none';
+      }
+
+      let html = '';
+
+      if (data.instantAnswer) {
+        html += renderInstantAnswer(data.instantAnswer);
+      }
+
+      if (data.oracle) {
+        html += renderOracle(data.oracle);
+      }
+
+      if (currentVertical === 'all') {
+        const sets = data.results || {};
+        if (sets.sites?.results?.length) html += `<h3 class="cn-section-title">Sites</h3>` + sets.sites.results.map(renderSite).join('');
+        if (sets.domains?.results?.length) html += `<h3 class="cn-section-title">Domains</h3>` + sets.domains.results.map(renderDomain).join('');
+        if (sets.lore?.results?.length) html += `<h3 class="cn-section-title">Lore</h3>` + sets.lore.results.map(renderLore).join('');
+        if (sets.images?.results?.length) html += `<h3 class="cn-section-title">Images</h3>` + renderImageGrid(sets.images.results);
+      } else {
+        const set = data.results?.[currentVertical];
+        if (set?.results?.length) {
+          if (currentVertical === 'sites') html += set.results.map(renderSite).join('');
+          else if (currentVertical === 'domains') html += set.results.map(renderDomain).join('');
+          else if (currentVertical === 'lore') html += set.results.map(renderLore).join('');
+          else if (currentVertical === 'api') html += set.results.map(renderApi).join('');
+          else if (currentVertical === 'images') html += renderImageGrid(set.results);
+          else if (currentVertical === 'history') html += set.results.map(renderHistory).join('');
+        }
+      }
+
+      if (!html) {
+        html = `
+          <div class="cn-empty">
+            <div class="cn-empty-icon">◈</div>
+            <div class="cn-empty-title">No entries found</div>
+            <div class="cn-empty-sub">Try a broader query or another vertical.</div>
+          </div>
+        `;
+      }
+
+      if (append) {
+        const temp = document.createElement('div');
+        temp.innerHTML = html;
+        while (temp.firstChild) resultsEl.appendChild(temp.firstChild);
+      } else {
+        resultsEl.innerHTML = html;
+      }
+
+      // Refresh premium interactions on new cards
+      if (window.PunyCodexEffects) {
+        window.PunyCodexEffects.initSpotlight('.cn-card');
+        window.PunyCodexEffects.initStagger('.cn-card', 0.04);
+      }
+
+      renderSidebar(data.related || [], data.trending || []);
+    }
+
+    function renderInstantAnswer(ia) {
+      let body = '';
+      let panelClass = 'cn-panel-gold';
+      if (ia.type === 'convert') {
+        body = `<div class="cn-card-body">Unicode: <span class="cn-code">${escapeHtml(ia.unicode)}</span></div>
+                <div class="cn-card-body" style="margin-top:0.5rem">Punycode: <span class="cn-code">${escapeHtml(ia.punycode)}</span></div>`;
+      } else if (ia.type === 'availability') {
+        body = `<div>${ia.domains.map(d => `
+          <div class="cn-domain-row">
+            <div>
+              <div class="cn-domain-name">${escapeHtml(d.unicode || d.ascii)}</div>
+              <div class="cn-domain-ascii">${escapeHtml(d.domain)}</div>
+            </div>
+            <span class="cn-badge cn-badge-available">${escapeHtml(d.status)}</span>
+          </div>`).join('')}</div>`;
+        panelClass = 'cn-panel-green';
+      } else if (ia.type === 'tier-system') {
+        body = `<p class="cn-card-body">${escapeHtml(ia.body)}</p><a href="${ia.link}" style="color:var(--cn-gold);font-size:0.85rem">Read more →</a>`;
+      }
+      return `<div class="cn-card ${panelClass}">
+        <div class="cn-card-accent"></div>
+        <div class="cn-card-title">${escapeHtml(ia.title)}</div>
+        ${body}
+      </div>`;
+    }
+
+    function renderOracle(oracle) {
+      const citations = (oracle.citations || [])
+        .map((c) => {
+          const label = escapeHtml(c.label || c);
+          const url = c.url ? escapeHtml(c.url) : '#';
+          const isExternal = url.startsWith('http');
+          return `<a href="${url}" class="cn-citation" ${isExternal ? 'target="_blank" rel="noopener"' : ''}>${label}</a>`;
+        })
+        .join('');
+      const followUps = (oracle.followUps || [])
+        .map((f) => `<button class="cn-followup" onclick="searchFor('${escapeHtml(f)}')">${escapeHtml(f)}</button>`)
+        .join('');
+      return `<div class="cn-card cn-panel-oracle">
+        <div class="cn-card-accent"></div>
+        <div class="cn-card-title">Oracle Answer</div>
+        <div class="cn-card-body oracle-answer">${oracle.answer || ''}</div>
+        ${citations ? `<div class="cn-citations">${citations}</div>` : ''}
+        ${followUps ? `<div class="cn-followups">${followUps}</div>` : ''}
+      </div>`;
+    }
+
+    function renderSite(r) {
+      const tierClass = r.tier === 'dual' ? 'cn-badge-tier-dual' : r.tier === '1' ? 'cn-badge-tier-1' : 'cn-badge-tier-2';
+      const favicon = r.faviconUrl || `/platform/public/favicons/default.ico`;
+      return `<div class="cn-card cn-result" data-site-id="${r.id}">
+        <div class="cn-card-accent"></div>
+        <div class="cn-result-header">
+          <img src="${escapeHtml(favicon)}" alt="" class="cn-result-favicon" onerror="this.style.display='none'">
+          <div class="cn-result-body">
+            <div class="cn-result-url">
+              <span class="cn-result-domain">${escapeHtml(r.punycode || r.domain)}</span>
+              ${r.punycode ? `<span class="cn-result-puny">${escapeHtml(r.domain)}</span>` : ''}
+            </div>
+            <a href="${escapeHtml(r.url)}" target="_blank" rel="noopener" class="cn-result-title">${escapeHtml(r.title || r.domain)}</a>
+            <div class="cn-result-snippet">${r.snippet || r.description || ''}</div>
+            <div class="cn-result-meta">
+              ${r.pantheon ? `<span class="cn-badge cn-badge-pantheon">${escapeHtml(r.pantheon)}</span>` : ''}
+              ${r.tier ? `<span class="cn-badge ${tierClass}">${r.tier === 'dual' ? 'Dual-Tier' : 'Tier ' + escapeHtml(r.tier)}</span>` : ''}
+              ${r.isFlagship ? `<span class="cn-badge cn-badge-flagship">👑 Flagship</span>` : ''}
+              ${r.lastCrawled ? `<span class="cn-badge cn-badge-pantheon">${new Date(r.lastCrawled).toLocaleDateString()}</span>` : ''}
+            </div>
+            <div class="cn-result-actions">
+              <button class="cn-result-action" onclick="sendFeedback(${r.id}, true)">Helpful</button>
+              <button class="cn-result-action" onclick="sendFeedback(${r.id}, false)">Not helpful</button>
+            </div>
+          </div>
+        </div>
+      </div>`;
+    }
+
+    function renderDomain(r) {
+      const links = r.registrarLinks || {};
+      return `<div class="cn-card">
+        <div class="cn-card-accent"></div>
+        <div class="cn-domain-row" style="margin-top:0">
+          <div>
+            <div class="cn-domain-name">${escapeHtml(r.domain)}</div>
+            <div class="cn-domain-ascii">${escapeHtml(r.unicode || r.ascii)} · ${escapeHtml(r.meaning || '')}</div>
+          </div>
+          <span class="cn-badge cn-badge-available">${escapeHtml(r.status)}</span>
+        </div>
+        <div class="cn-registrar-links">
+          ${Object.entries(links).map(([name, url]) => `<a href="${escapeHtml(url)}" target="_blank" rel="noopener" class="cn-registrar-link">${escapeHtml(name)}</a>`).join('')}
+        </div>
+      </div>`;
+    }
+
+    function renderLore(r) {
+      return `<div class="cn-card">
+        <div class="cn-card-accent"></div>
+        <div class="cn-card-title" style="color:var(--cn-gold)">${escapeHtml(r.entryId)}</div>
+        <p class="cn-card-body">${escapeHtml(r.mythology || r.etymology || r.pronunciation?.approximation || 'Scholarly lore available.')}</p>
+        <a href="${r.link}" style="color:var(--cn-blue);font-size:0.82rem">Read full lore →</a>
+      </div>`;
+    }
+
+    function renderApi(r) {
+      return `<div class="cn-card">
+        <div class="cn-card-accent"></div>
+        <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.3rem">
+          <span style="color:var(--cn-gold);font-weight:700;font-size:0.72rem">${escapeHtml(r.method)}</span>
+          <span style="font-family:var(--cn-font-mono);color:var(--cn-blue);font-size:0.88rem">${escapeHtml(r.path)}</span>
+        </div>
+        <p class="cn-card-body">${escapeHtml(r.description)}</p>
+      </div>`;
+    }
+
+    function renderImageGrid(images) {
+      return `<div class="cn-image-grid">${images.map(r => `
+        <a href="${escapeHtml(r.link)}" target="_blank" rel="noopener" class="cn-image-item" title="${escapeHtml(r.title || r.domain)}">
+          <img src="${escapeHtml(r.imageUrl || r.faviconUrl)}" alt="" loading="lazy" onerror="this.style.display='none'">
+          <div class="cn-image-label">${escapeHtml(r.domain || r.unicode || '')}</div>
+        </a>
+      `).join('')}</div>`;
+    }
+
+    function renderHistory(r) {
+      return `<div class="cn-domain-row">
+        <a href="${escapeHtml(r.link)}" style="color:var(--cn-text);font-weight:500">${escapeHtml(r.query)}</a>
+        <span style="color:var(--cn-text-muted);font-size:0.72rem">${new Date(r.timestamp).toLocaleString()}</span>
+      </div>`;
+    }
+
+    function renderSidebar(related, trending) {
+      let html = '';
+      if (related.length) {
+        html += `<h3 class="cn-section-title">Related</h3><div class="cn-chip-row" style="margin-bottom:1.5rem">${related.map(r =>
+          `<button class="cn-chip" onclick="searchFor('${escapeHtml(r.unicode || r.ascii)}')">${escapeHtml(r.unicode || r.ascii)}</button>`
+        ).join('')}</div>`;
+      }
+      if (trending.length) {
+        html += `<h3 class="cn-section-title">Trending</h3><div class="cn-chip-row">${trending.map(t =>
+          `<button class="cn-chip" onclick="searchFor('${escapeHtml(t.query)}')">${escapeHtml(t.query)}</button>`
+        ).join('')}</div>`;
+      }
+      if (html) {
+        sidebarEl.innerHTML = html;
+        sidebarEl.style.display = 'block';
+      }
+    }
+
+    async function sendFeedback(siteId, helpful) {
+      if (!sessionToken || !currentQ) return;
+      try {
+        await fetch('/api/search/feedback', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'x-session-token': sessionToken },
+          body: JSON.stringify({ query: currentQ, siteId, helpful }),
+        });
+      } catch (e) {
+        console.error('feedback failed', e);
+      }
+    }
+
+    function searchFor(term) {
+      qInput.value = term;
+      const url = new URL(location.href);
+      url.searchParams.set('q', term);
+      url.searchParams.set('vertical', currentVertical);
+      history.pushState({}, '', url);
+      doSearch();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    searchBtn.addEventListener('click', () => doSearch());
+    qInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') doSearch();
+    });
+    loadMoreBtn.addEventListener('click', () => doSearch(true));
+
+    // Mobile nav toggle
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const globalNav = document.getElementById('globalNav');
+    if (mobileMenuToggle && globalNav) {
+      mobileMenuToggle.addEventListener('click', () => {
+        const isOpen = globalNav.classList.toggle('mobile-open');
+        mobileMenuToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+      globalNav.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          globalNav.classList.remove('mobile-open');
+          mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+      document.addEventListener('click', (e) => {
+        if (!mobileMenuToggle.contains(e.target) && !globalNav.contains(e.target)) {
+          globalNav.classList.remove('mobile-open');
+          mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    window.searchFor = searchFor;
+    window.sendFeedback = sendFeedback;
+
+    init();
+  </script>
+</body>
+</html>

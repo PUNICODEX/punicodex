@@ -150,6 +150,7 @@ const bookingMetaLimit = createPublicRateLimit('booking-meta');
 const tenantsPreviewLimit = createPublicRateLimit('tenants-preview');
 const analyticsPixelLimit = createPublicRateLimit('analytics-pixel');
 const analyticsClickLimit = createPublicRateLimit('analytics-click');
+const adminLoginLimit = createPublicRateLimit('admin-login');
 
 function isSafeRedirectUrl(url) {
   if (!url || typeof url !== 'string') return false;
@@ -1047,7 +1048,7 @@ app.get('/api/availability/:entryId', async (req, res) => {
   }
 });
 
-app.post('/api/availability/:entryId', async (req, res) => {
+app.post('/api/availability/:entryId', requireAdmin, async (req, res) => {
   try {
     const { domain, punycode, status } = req.body;
     setAvailability(req.params.entryId, domain, punycode, status);
@@ -1884,7 +1885,7 @@ app.delete('/api/tenants/:entryId', requireAdmin, async (req, res) => {
 });
 
 // --- Admin ---
-app.post('/api/admin/login', async (req, res) => {
+app.post('/api/admin/login', adminLoginLimit, async (req, res) => {
   try {
     const { password } = req.body;
     const result = await adminLogin(password);

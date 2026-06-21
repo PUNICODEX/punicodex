@@ -226,6 +226,25 @@ const ORIGINAL_SCRIPTS = {
       ],
     },
   },
+  anu: {
+    originalScript: '𒀭𒀀𒉡',
+    scriptName: 'Cuneiform',
+    provenance: {
+      original: '𒀭𒀀𒉡',
+      transliteration: 'Anû',
+      steps: [
+        'Divine determinative 𒀭 (dingir) marks Anu as a deity',
+        '𒀀 (A) writes the vowel /a/',
+        '𒉡 (NU) writes the syllable /nu/',
+        'dA-nu is read Anû, the Sumerian/Akkadian sky god whose name means "heaven, sky"'
+      ],
+      sources: [
+        'ETCSL',
+        'Black & Green, Gods, Demons and Symbols of Ancient Mesopotamia',
+        'George, House Most High'
+      ],
+    },
+  },
   asgardr: {
     originalScript: 'ᛅᛋᚴᛅᚱᚦᚱ',
     scriptName: 'Younger Futhark',

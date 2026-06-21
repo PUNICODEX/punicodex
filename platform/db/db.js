@@ -2,6 +2,11 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 function getDbPath() {
+  // Tests can point at an isolated copy of the database.
+  if (process.env.PUNYCODEX_TEST_DB_PATH) {
+    return process.env.PUNYCODEX_TEST_DB_PATH;
+  }
+
   // On Vercel serverless functions the project root is read-only;
   // copy the bundled SQLite DB to /tmp so better-sqlite3 can open it
   // with write access (the bundled DB uses WAL journal mode).

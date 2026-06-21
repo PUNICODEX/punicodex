@@ -1,5 +1,6 @@
 const partners = require('../../platform/api/partners');
 const { handleError, setCors } = require('../_utils');
+const { checkPublicRateLimitByReq } = require('../../platform/api/public-rate-limiter');
 
 function getBearer(req) {
   const auth = req.headers.authorization || '';
@@ -10,6 +11,8 @@ function getBearer(req) {
 module.exports = async (req, res) => {
   setCors(req, res);
   if (req.method === 'OPTIONS') return res.status(200).end();
+
+  if (!(await checkPublicRateLimitByReq(req, res, 'partners'))) return;
 
   try {
     if (req.method === 'POST' && req.body?.action === 'register') {

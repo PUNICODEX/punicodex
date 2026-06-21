@@ -26,10 +26,12 @@ const path = require('path');
 const root = path.join(__dirname, '..');
 
 const scripts = [
+  'platform/generate-unicode-dir-v2.js',
   'scripts/sync-shared-lexicon.js',
   'scripts/sync-shared-engine.js',
   'scripts/build-android-assets.js',
   'scripts/export-platform-lexicon.js',
+  'scripts/build-original-script-lookup.js',
   'scripts/export-lore-catalog.js',
   'scripts/sync-middleware-domains.js',
   'scripts/sync-public-copy.js',

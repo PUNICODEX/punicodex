@@ -26,6 +26,7 @@ const PUNYCODEX_ENGINE = require('../../type/js/engine.js');
 const searchApi = require('./search.js');
 const crawlerDb = require('./crawler-db.js');
 const bookings = require('./bookings.js');
+const { classifyTerm, classifyDomain } = require('./homograph-service.js');
 
 // Load clean flagship lore catalog (generated from scripts/lore-catalog.json)
 let LORE_CATALOG = {};
@@ -256,6 +257,20 @@ function getName(id) {
   return transformEntryDetail(row);
 }
 
+function getNamesByIds(ids) {
+  const found = [];
+  const missing = [];
+  for (const id of ids) {
+    const row = searchApi.getEntry(id);
+    if (row) {
+      found.push(transformEntryDetail(row));
+    } else {
+      missing.push(id);
+    }
+  }
+  return { found, missing, count: found.length };
+}
+
 function getVariants(id) {
   const entry = entriesById.get(id);
   if (!entry) return null;
@@ -484,13 +499,39 @@ function autocompleteNames(params) {
 }
 
 function convert(query) {
-  const normalized = query.q.toLowerCase().trim();
+  const raw = String(query?.q || '').trim();
+  const normalized = raw.toLowerCase();
+  const queryTrust = classifyTerm(raw);
+
+  if (!raw) {
+    return {
+      query: raw,
+      queryTrust: {
+        tier: queryTrust.tier,
+        reason: queryTrust.reason,
+        visualDeviation: queryTrust.visualDeviation,
+        canonicalMatch: queryTrust.canonicalMatch,
+      },
+      matches: [],
+      generated: {
+        input: raw,
+        punycode: null,
+        note: 'No query provided.',
+      },
+    };
+  }
 
   // 1. Try exact ASCII match
   const matches = PUNYCODEX_ENGINE.findExactMatches(trie, normalized);
   if (matches.length > 0) {
     return {
-      query: query.q,
+      query: raw,
+      queryTrust: {
+        tier: queryTrust.tier,
+        reason: queryTrust.reason,
+        visualDeviation: queryTrust.visualDeviation,
+        canonicalMatch: queryTrust.canonicalMatch,
+      },
       matches: matches.map((entry) => ({
         id: entry.id,
         ascii: entry.ascii,
@@ -513,7 +554,13 @@ function convert(query) {
       entryPunycode?.toLowerCase() === normalized
     ) {
       return {
-        query: query.q,
+        query: raw,
+        queryTrust: {
+          tier: queryTrust.tier,
+          reason: queryTrust.reason,
+          visualDeviation: queryTrust.visualDeviation,
+          canonicalMatch: queryTrust.canonicalMatch,
+        },
         matches: [
           {
             id: entry.id,
@@ -531,12 +578,19 @@ function convert(query) {
   }
 
   // 3. Fallback: generate punycode for arbitrary input
-  const generatedPunycode = computePunycode(query.q);
+  const generatedPunycode = computePunycode(raw);
+  const fallbackTrust = queryTrust.tier === 'unknown' ? classifyDomain(raw) : queryTrust;
   return {
-    query: query.q,
+    query: raw,
+    queryTrust: {
+      tier: fallbackTrust.tier,
+      reason: fallbackTrust.reason,
+      visualDeviation: fallbackTrust.visualDeviation,
+      canonicalMatch: fallbackTrust.canonicalMatch,
+    },
     matches: [],
     generated: {
-      input: query.q,
+      input: raw,
       punycode: generatedPunycode,
       note: generatedPunycode
         ? 'Input is not in the PUNYCODEX lexicon; punycode generated mechanically.'
@@ -603,6 +657,7 @@ function getArchaeology(id) {
 module.exports = {
   listNames,
   getName,
+  getNamesByIds,
   getVariants,
   getBreakdown,
   getOriginalScriptForName,

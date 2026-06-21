@@ -1,18 +1,25 @@
 package com.punycodex.keyboard;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 
 public class KeyboardSettingsActivity extends AppCompatActivity {
+
+    public static final String PREFS_NAME = "puny_keyboard_settings";
+    public static final String PREF_AUTOCORRECT_ENABLED = "autocorrect_enabled";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
@@ -60,6 +67,32 @@ public class KeyboardSettingsActivity extends AppCompatActivity {
             startActivity(intent);
         });
         layout.addView(inputSettingsBtn);
+
+        LinearLayout toggleRow = new LinearLayout(this);
+        toggleRow.setOrientation(LinearLayout.VERTICAL);
+        toggleRow.setPadding(0, 48, 0, 0);
+        layout.addView(toggleRow);
+
+        TextView toggleLabel = new TextView(this);
+        toggleLabel.setText("Auto-correct ASCII to Unicode");
+        toggleLabel.setTextColor(0xFFFFFFFF);
+        toggleLabel.setTextSize(16);
+        toggleRow.addView(toggleLabel);
+
+        TextView toggleDesc = new TextView(this);
+        toggleDesc.setText("Type \"zeus\" then space to replace it with \"Zeús\". Turn off to keep ASCII.");
+        toggleDesc.setTextColor(0xFFAAAAAA);
+        toggleDesc.setTextSize(12);
+        toggleDesc.setPadding(0, 4, 0, 16);
+        toggleRow.addView(toggleDesc);
+
+        SwitchCompat autocorrectSwitch = new SwitchCompat(this);
+        autocorrectSwitch.setChecked(prefs.getBoolean(PREF_AUTOCORRECT_ENABLED, true));
+        autocorrectSwitch.setTextColor(0xFFFFFFFF);
+        autocorrectSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            prefs.edit().putBoolean(PREF_AUTOCORRECT_ENABLED, isChecked).apply();
+        });
+        toggleRow.addView(autocorrectSwitch);
 
         setContentView(layout);
     }

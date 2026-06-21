@@ -17,24 +17,27 @@ function generateRequestId() {
 function setCors(req, res) {
   const origin = req.headers.origin || '*';
   res.setHeader('Access-Control-Allow-Origin', origin);
+  res.setHeader('Vary', 'Origin');
   for (const [key, value] of Object.entries(CORS_HEADERS)) {
     res.setHeader(key, value);
   }
 }
 
 function success(res, data, options = {}) {
-  const { status = 200, meta = {} } = options;
+  const { status = 200, meta = {}, links } = options;
   const requestId = res.locals?.requestId || generateRequestId();
-  res.status(status).json({
+  const payload = {
     success: true,
     data,
     meta: {
       requestId,
-      version: 'v1',
+      version: res.locals?.apiVersion || 'v1',
       timestamp: new Date().toISOString(),
       ...meta,
     },
-  });
+  };
+  if (links !== undefined) payload.links = links;
+  res.status(status).json(payload);
 }
 
 function error(res, code, message, options = {}) {
@@ -62,7 +65,7 @@ function error(res, code, message, options = {}) {
     },
     meta: {
       requestId,
-      version: 'v1',
+      version: res.locals?.apiVersion || 'v1',
       timestamp: new Date().toISOString(),
     },
   });

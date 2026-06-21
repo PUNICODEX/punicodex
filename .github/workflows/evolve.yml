@@ -1,0 +1,62 @@
+name: PUNYCODEX Evolution
+
+on:
+  # Run on every push while we stabilize; later this can become nightly + dispatch.
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  schedule:
+    # 04:17 UTC — off-peak, avoids the :00/:30 herd.
+    - cron: '17 4 * * *'
+  workflow_dispatch:
+    inputs:
+      operational:
+        description: 'Run operational tasks (crawls, availability, curator)'
+        required: false
+        default: 'false'
+      skip_divergence:
+        description: 'Skip the divergence gate'
+        required: false
+        default: 'false'
+
+jobs:
+  evolve:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Initialize database
+        run: npm run db-init
+
+      - name: Run evolution cycle
+        run: |
+          FLAGS=""
+          if [ "${{ github.event.inputs.operational }}" = "true" ]; then
+            FLAGS="$FLAGS --operational"
+          fi
+          if [ "${{ github.event.inputs.skip_divergence }}" = "true" ]; then
+            FLAGS="$FLAGS --skip-divergence"
+          fi
+          node scripts/evolve.js $FLAGS
+
+      - name: Upload evolution report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: evolution-report-${{ github.run_id }}
+          path: |
+            data-version.json
+            ai-curator-report.json
+            platform/db/punycodex.db

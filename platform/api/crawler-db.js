@@ -1,9 +1,12 @@
 const Database = require('better-sqlite3');
 const _path = require('node:path');
-const { embedText, rerankWithVectors, searchAllVectors } = require('./semantic-search');
+const { embedText, searchAllVectors } = require('./semantic-search');
 const { getDbPath } = require('../db/db');
 const { searchKeywords } = require('./keyword-extractor');
 const { listVariants } = require('./ranker');
+const { toSearchKey } = require('./query-normalize');
+const { classifyDomain, classifyTerm } = require('./homograph-service');
+const { getLtrBoosts } = require('./ltr-service');
 
 // Load clean flagship lore catalog (generated from scripts/lore-catalog.json)
 let LORE_CATALOG = {};
@@ -15,6 +18,98 @@ try {
 
 const DB_PATH = getDbPath();
 let db;
+
+// Eagerly warm the DB connection in production/runtime environments so the first
+// request does not pay the SQLite open cost. Skipped during unit tests to avoid
+// opening the DB when it may not exist.
+if (process.env.NODE_ENV !== 'test' && require('node:fs').existsSync(DB_PATH)) {
+  try {
+    getDb();
+  } catch (_e) {
+    // Lazy fallback on first real request
+  }
+}
+
+// Hot-query LRU cache: exact normalized query -> { results, total, timing, ts }
+const QUERY_CACHE = new Map();
+const QUERY_CACHE_MAX = 200;
+const QUERY_CACHE_TTL_MS = 60_000;
+const QUERY_CACHE_WARM_ONLY = true; // skip cache on first cold module load
+const moduleLoadedAt = Date.now();
+
+function cacheKey(q, options) {
+  return JSON.stringify({
+    q: String(q).toLowerCase().trim(),
+    limit: options.limit,
+    offset: options.offset,
+    mode: options.mode,
+    type: options.type,
+    pantheon: options.pantheon,
+    tier: options.tier,
+    sort: options.sort,
+    unicodeOnly: options.unicodeOnly,
+    concept: options.concept,
+    trust: options.trust,
+  });
+}
+
+function getCachedSearch(key) {
+  const hit = QUERY_CACHE.get(key);
+  if (!hit) return null;
+  if (Date.now() - hit.ts > QUERY_CACHE_TTL_MS) {
+    QUERY_CACHE.delete(key);
+    return null;
+  }
+  // Avoid returning stale cache during the first few seconds after module load
+  // while the DB connection is still warming; warm callers already paid the cost.
+  if (QUERY_CACHE_WARM_ONLY && Date.now() - moduleLoadedAt < 5000) {
+    return null;
+  }
+  return hit.value;
+}
+
+function setCachedSearch(key, value) {
+  if (QUERY_CACHE.size >= QUERY_CACHE_MAX) {
+    const oldest = QUERY_CACHE.keys().next().value;
+    QUERY_CACHE.delete(oldest);
+  }
+  QUERY_CACHE.set(key, { ts: Date.now(), value });
+}
+
+function applyVariantRanking(results, variant) {
+  return results
+    .map((r) => {
+      let boost = 0;
+      const breakdown = { ...r.scoreBreakdown };
+      switch (variant) {
+        case 'freshness':
+          boost = (r.freshnessScore || 0.5) * 0.3 - ((r.pagerank || 0) / 100) * 0.1;
+          breakdown.freshness = parseFloat((boost + (breakdown.freshness || 0)).toFixed(4));
+          break;
+        case 'authority':
+          boost = ((r.pagerank || 0) / 100) * 0.2 + ((r.authorityScore || 0) / 100) * 0.2;
+          breakdown.authority = parseFloat((boost + (breakdown.authority || 0)).toFixed(4));
+          break;
+        case 'keyword':
+          if (r.matchedTerms && r.matchedTerms.length > 0) {
+            boost = 0.5;
+            breakdown.keyword = boost;
+          }
+          break;
+      }
+      const rankScore = (r.rankScore || 0) + boost;
+      return {
+        ...r,
+        rankScore: parseFloat(rankScore.toFixed(4)),
+        scoreBreakdown: {
+          ...breakdown,
+          variant: parseFloat(boost.toFixed(4)),
+          total: parseFloat(rankScore.toFixed(4)),
+        },
+      };
+    })
+    .sort((a, b) => b.rankScore - a.rankScore);
+}
 
 /**
  * Escape a token for FTS5 and optionally wrap it in quotes for phrase search.
@@ -62,57 +157,7 @@ function getDb() {
   return db;
 }
 
-/**
- * Compute click-based ranking boosts for sites.
- * Returns Map<site_id, boost> where boost is 0-0.5 based on click history.
- */
-function getClickBoosts(query, siteIds) {
-  const db = getDb();
-  if (!siteIds || siteIds.length === 0) return new Map();
-
-  const placeholders = siteIds.map(() => '?').join(',');
-
-  // Global click count per site (all time)
-  const globalClicks = db
-    .prepare(`
-    SELECT site_id, COUNT(*) as clicks
-    FROM search_clicks
-    WHERE site_id IN (${placeholders})
-    GROUP BY site_id
-  `)
-    .all(...siteIds);
-
-  // Query-specific click count
-  const queryClicks = db
-    .prepare(`
-    SELECT c.site_id, COUNT(*) as clicks
-    FROM search_clicks c
-    JOIN search_queries q ON c.query_id = q.id
-    WHERE q.query = ? AND c.site_id IN (${placeholders})
-    GROUP BY c.site_id
-  `)
-    .all(query.trim(), ...siteIds);
-
-  const maxGlobal = Math.max(...globalClicks.map((r) => r.clicks), 1);
-  const maxQuery = Math.max(...queryClicks.map((r) => r.clicks), 1);
-
-  const boosts = new Map();
-  for (const siteId of siteIds) {
-    const globalCount = globalClicks.find((r) => r.site_id === siteId)?.clicks || 0;
-    const queryCount = queryClicks.find((r) => r.site_id === siteId)?.clicks || 0;
-
-    // Global boost: logarithmic scale, max 0.2
-    const globalBoost = (Math.log1p(globalCount) / Math.log1p(maxGlobal)) * 0.2;
-    // Query-specific boost: logarithmic scale, max 0.3
-    const queryBoost = (Math.log1p(queryCount) / Math.log1p(maxQuery)) * 0.3;
-
-    boosts.set(siteId, globalBoost + queryBoost);
-  }
-
-  return boosts;
-}
-
-function getSites({ status, pantheon, entryId, limit = 50, offset = 0 }) {
+function getSites({ status, pantheon, entryId, trust = 'all', limit = 50, offset = 0 }) {
   const db = getDb();
   let sql = 'SELECT * FROM indexed_sites WHERE 1=1';
   let countSql = 'SELECT COUNT(*) as total FROM indexed_sites WHERE 1=1';
@@ -132,6 +177,19 @@ function getSites({ status, pantheon, entryId, limit = 50, offset = 0 }) {
     sql += ' AND lexicon_entry_id = ?';
     countSql += ' AND lexicon_entry_id = ?';
     params.push(entryId);
+  }
+
+  const allowedTrust = ['safe', 'canonical', 'styled', 'all'];
+  const trustMode = allowedTrust.includes(trust) ? trust : 'all';
+  if (trustMode === 'safe') {
+    sql += " AND (trust_tier IS NULL OR trust_tier IN ('canonical', 'styled', 'unknown'))";
+    countSql += " AND (trust_tier IS NULL OR trust_tier IN ('canonical', 'styled', 'unknown'))";
+  } else if (trustMode === 'canonical') {
+    sql += " AND trust_tier = 'canonical'";
+    countSql += " AND trust_tier = 'canonical'";
+  } else if (trustMode === 'styled') {
+    sql += " AND trust_tier IN ('canonical', 'styled')";
+    countSql += " AND trust_tier IN ('canonical', 'styled')";
   }
 
   sql +=
@@ -197,6 +255,7 @@ async function searchWeb(q, options = {}) {
     variant = 'default',
     unicodeOnly = false,
     concept,
+    trust = 'safe',
   } = options;
   const db = getDb();
   if (!q?.trim()) {
@@ -204,8 +263,16 @@ async function searchWeb(q, options = {}) {
   }
 
   const startTime = Date.now();
+
+  // Hot-query cache: identical queries reuse the last result set for sub-millisecond responses.
+  const qCacheKey = cacheKey(q, options);
+  const cached = getCachedSearch(qCacheKey);
+  if (cached) {
+    return { ...cached, timing: Date.now() - startTime };
+  }
   const ftsQuery = parseFtsQuery(q);
   const queryNormalized = ftsQuery;
+  const searchKey = toSearchKey(q);
   const limitNum = Math.min(Math.max(1, parseInt(limit, 10) || 20), 100);
   const offsetNum = Math.max(0, parseInt(offset, 10) || 0);
 
@@ -244,6 +311,20 @@ async function searchWeb(q, options = {}) {
     params.push(conceptLike, conceptLike, conceptLike);
   }
 
+  // Trust-tier filtering. Default 'safe' excludes unsafe + suspicious.
+  const allowedTrust = ['safe', 'canonical', 'styled', 'all'];
+  const trustMode = allowedTrust.includes(trust) ? trust : 'safe';
+  if (trustMode === 'safe') {
+    filters.push(
+      "AND (s.trust_tier IS NULL OR s.trust_tier IN ('canonical', 'styled', 'unknown'))"
+    );
+  } else if (trustMode === 'canonical') {
+    filters.push("AND s.trust_tier = 'canonical'");
+  } else if (trustMode === 'styled') {
+    filters.push("AND s.trust_tier IN ('canonical', 'styled')");
+  }
+  // trustMode === 'all' adds no filter
+
   const allowedSorts = {
     relevance: 'rank_score DESC',
     alphabetical: 's.title ASC',
@@ -271,6 +352,21 @@ async function searchWeb(q, options = {}) {
   } catch (_e) {
     // Count failure is non-fatal
   }
+
+  const selectParams = [
+    q,
+    q,
+    searchKey,
+    `%${q.toLowerCase()}%`,
+    `%${q.toLowerCase()}%`,
+    `%${searchKey}%`,
+    ...params,
+  ];
+
+  // When an A/B rank variant is active, fetch a larger candidate pool so the
+  // variant re-ranking can surface results that the default formula buried.
+  const useVariant = variant && variant !== 'default' && variant !== 'control';
+  const candidateLimit = useVariant ? Math.min(limitNum + 50, 100) : limitNum;
 
   // Primary: FTS5 with BM25 scoring + ranking boosts
   let results = [];
@@ -305,6 +401,12 @@ async function searchWeb(q, options = {}) {
           + COALESCE(s.authority_score, 0.0) / 100.0 * 0.25
           /* Unicode domain bonus */
           + CASE WHEN s.punycode LIKE 'xn--%' THEN 0.40 ELSE 0.0 END
+          /* Exact transliteration match bonus */
+          + CASE
+              WHEN LOWER(e.unicode) = LOWER(?) OR LOWER(e.ascii) = LOWER(?) OR e.search_key = ? THEN 2.00
+              WHEN LOWER(e.unicode) LIKE ? OR LOWER(e.ascii) LIKE ? OR e.search_key LIKE ? THEN 0.60
+              ELSE 0.0
+            END
         ) AS rank_score,
         snippet(indexed_sites_fts, 2, '<mark>', '</mark>', '...', 25) AS title_snippet,
         snippet(indexed_sites_fts, 3, '<mark>', '</mark>', '...', 25) AS desc_snippet,
@@ -313,6 +415,7 @@ async function searchWeb(q, options = {}) {
         snippet(indexed_sites_fts, 8, '<mark>', '</mark>', '...', 25) AS og_desc_snippet
       FROM indexed_sites_fts
       JOIN indexed_sites s ON indexed_sites_fts.rowid = s.id
+      LEFT JOIN entries e ON s.lexicon_entry_id = e.id
       WHERE indexed_sites_fts MATCH ?
         AND s.status != 'spam'
         AND (s.is_flagship = 1 OR s.quality_score >= 0.3 OR s.tenant_name IS NOT NULL)
@@ -320,7 +423,7 @@ async function searchWeb(q, options = {}) {
       ORDER BY ${orderBy}
       LIMIT ? OFFSET ?
     `)
-      .all(...params, limitNum, offsetNum);
+      .all(...selectParams, candidateLimit, offsetNum);
 
     results = rows.map((row) => {
       // Best snippet hierarchy: OG desc > Twitter desc > meta desc > FTS snippet > h1 > first_p > content_snippet
@@ -340,6 +443,11 @@ async function searchWeb(q, options = {}) {
 
       // Best title hierarchy: OG title > Twitter title > meta title
       const bestTitle = row.og_title || row.twitter_title || row.title || row.domain;
+
+      // Classify on-demand if the DB trust_tier is missing (e.g. legacy crawls).
+      const domainTrust = row.trust_tier
+        ? { tier: row.trust_tier, reason: 'indexed' }
+        : classifyDomain(row.domain || row.punycode);
 
       return {
         id: row.id,
@@ -395,8 +503,14 @@ async function searchWeb(q, options = {}) {
         ratingCount: row.rating_count,
         isPunycode: row.punycode?.startsWith('xn--'),
         matchedTerms: extractMatchedTerms(bestSnippet),
+        trustTier: domainTrust.tier,
+        trustReason: domainTrust.reason,
       };
     });
+
+    if (useVariant) {
+      results = applyVariantRanking(results, variant).slice(0, limitNum);
+    }
   } catch (e) {
     console.error('FTS5 error:', e.message);
   }
@@ -414,6 +528,7 @@ async function searchWeb(q, options = {}) {
       const fetchLimit = needFallback + fallbackOffset + 5;
       const keywordMatches = searchKeywords(q, fetchLimit);
       const existingIds = new Set(results.map((r) => r.id));
+      const beforeFallbackCount = results.length;
       let skipped = 0;
       for (const row of keywordMatches) {
         if (unicodeOnly && !row.punycode?.startsWith('xn--')) continue;
@@ -457,8 +572,8 @@ async function searchWeb(q, options = {}) {
           keywordSource: row.keyword_source,
         });
       }
-      keywordFallbackCount = keywordMatches.length;
-      keywordFallbackUsed = true;
+      keywordFallbackCount = results.length - beforeFallbackCount;
+      keywordFallbackUsed = keywordFallbackCount > 0;
     }
   } catch (e) {
     console.error('Keyword fallback error:', e.message);
@@ -716,23 +831,24 @@ async function searchWeb(q, options = {}) {
     // Entity ranking is optional — don't break search if it fails
   }
 
-  // ====== PHASE 8: CLICK FEEDBACK BOOST ======
-  // Boost sites that users have previously clicked for this or similar queries
+  // ====== PHASE 8: LEARNING-TO-RANK BOOST ======
+  // Boost sites that users have actually clicked for this query. The LTR service
+  // uses position-aware, freshness-discounted click signals from search_result_clicks.
   let clickBoostApplied = false;
   try {
     if (results.length > 0) {
       const siteIds = results.map((r) => r.id);
-      const clickBoosts = getClickBoosts(q, siteIds);
+      const ltrBoosts = getLtrBoosts(q, siteIds);
 
       results = results.map((r) => {
-        const boost = clickBoosts.get(r.id) || 0;
+        const boost = ltrBoosts.get(r.id) || 0;
         if (boost > 0) {
           return {
             ...r,
             rankScore: (r.rankScore || 0) + boost,
             scoreBreakdown: {
               ...r.scoreBreakdown,
-              click: parseFloat(boost.toFixed(4)),
+              ltr: parseFloat(boost.toFixed(4)),
               total: parseFloat(((r.rankScore || 0) + boost).toFixed(4)),
             },
           };
@@ -740,30 +856,20 @@ async function searchWeb(q, options = {}) {
         return r;
       });
 
-      // Re-sort after click boost
+      // Re-sort after LTR boost
       results.sort((a, b) => (b.rankScore || 0) - (a.rankScore || 0));
       clickBoostApplied = true;
     }
   } catch (_e) {
-    // Click boost is optional
+    // LTR boost is optional
   }
 
   // ====== PHASE 9: SEMANTIC RE-RANKING ======
-  let semanticReranked = false;
-  let _semanticScore = null;
-  if (results.length > 0) {
-    try {
-      const queryEmbedding = await embedText(q);
-      if (queryEmbedding) {
-        results = rerankWithVectors(results, queryEmbedding, 0.35);
-        semanticReranked = true;
-        _semanticScore = results[0]?.semanticScore || null;
-      }
-    } catch (e) {
-      // Semantic re-ranking is optional — don't break search if it fails
-      console.error('[search] Semantic re-ranking failed:', e.message);
-    }
-  }
+  // Disabled on the default hot path: loading the transformer model on every
+  // cold start costs 200-300 ms and rarely changes the top result when FTS +
+  // transliteration signals already identify the canonical match. Semantic
+  // fallback still handles zero-result conceptual queries via precomputed
+  // site embeddings.
 
   // Attach top sub-pages to final result set
   if (results.length > 0) {
@@ -841,6 +947,34 @@ async function searchWeb(q, options = {}) {
   }
 
   const timing = ((Date.now() - startTime) / 1000).toFixed(3);
+  const queryTrust = classifyTerm(q);
+
+  const response = {
+    results,
+    total: 0,
+    hasMore: false,
+    offset: offsetNum,
+    limit: limitNum,
+    query: q,
+    queryNormalized,
+    queryTrust: {
+      tier: queryTrust.tier,
+      reason: queryTrust.reason,
+      visualDeviation: queryTrust.visualDeviation,
+      canonicalMatch: queryTrust.canonicalMatch,
+    },
+    timing,
+    mode,
+    entityBonusApplied,
+    matchedEntryId,
+    clickBoostApplied,
+    semanticReranked: false,
+    isSemanticFallback,
+    availability,
+    variant: variant || 'default',
+    rankVariant: variant || 'default',
+    variants: listVariants(),
+  };
 
   let total = totalMain;
   if (isSemanticFallback) {
@@ -850,27 +984,11 @@ async function searchWeb(q, options = {}) {
   } else if (keywordFallbackUsed) {
     total = totalMain + keywordFallbackCount;
   }
-  const hasMore = total > offsetNum + results.length;
+  response.total = total;
+  response.hasMore = total > offsetNum + results.length;
 
-  return {
-    results,
-    total,
-    hasMore,
-    offset: offsetNum,
-    limit: limitNum,
-    query: q,
-    queryNormalized,
-    timing,
-    mode,
-    entityBonusApplied,
-    matchedEntryId,
-    clickBoostApplied,
-    semanticReranked,
-    isSemanticFallback,
-    availability,
-    variant: variant || 'default',
-    variants: listVariants(),
-  };
+  setCachedSearch(qCacheKey, response);
+  return response;
 }
 
 function extractMatchedTerms(snippet) {
@@ -1184,11 +1302,41 @@ function getKnowledgePanelData(q) {
   };
 }
 
+function stripHtml(html) {
+  if (!html) return '';
+  return String(html)
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .replace(/\s+([.,;:!?])/g, '$1')
+    .trim();
+}
+
+function sentenceJoin(parts, maxLen = 280) {
+  const out = [];
+  let len = 0;
+  for (const p of parts) {
+    if (!p) continue;
+    const addLen = out.length ? p.length + 1 : p.length;
+    if (len + addLen > maxLen && out.length) break;
+    out.push(p);
+    len += addLen;
+  }
+  return out.join(' ');
+}
+
+function formatSources(sources) {
+  if (!Array.isArray(sources) || !sources.length) return '';
+  const labels = sources
+    .slice(0, 3)
+    .map((s) => (typeof s === 'string' ? s : s.author || s.title || s.id || 'Source'))
+    .filter(Boolean);
+  return labels.length ? `Sources: ${labels.join('; ')}.` : '';
+}
+
 /**
  * Generate a richer "People Also Ask" list for a query.
- * Mixes lexicon facts, etymology, variant spellings, flagship/tenant data,
- * and semantic co-occurrence. Falls back to tenant-driven answers when the
- * query looks commercial and no lexicon entry matches.
+ * Answers draw from the lexicon, the curated lore catalog, etymology,
+ * variant spellings, flagship/tenant data, and the semantic graph.
  */
 function generatePeopleAlsoAsk(q, limit = 4) {
   const db = getDb();
@@ -1197,26 +1345,26 @@ function generatePeopleAlsoAsk(q, limit = 4) {
   const raw = q.trim();
   const query = raw.toLowerCase();
 
-  // Find best matching lexicon entry
+  // Find best matching lexicon entry (with search_key fallback)
   let entry = db
     .prepare(`
     SELECT id, unicode, ascii, greek, original_script, meaning, pantheon, tier, tier_label, domain, etymology, variants, has_flagship
     FROM entries
-    WHERE LOWER(ascii) = ? OR LOWER(unicode) = ? OR LOWER(id) = ?
+    WHERE LOWER(ascii) = ? OR LOWER(unicode) = ? OR LOWER(id) = ? OR search_key = ?
     LIMIT 1
   `)
-    .get(query, query, query);
+    .get(query, query, query, toSearchKey(raw));
 
   if (!entry) {
     entry = db
       .prepare(`
       SELECT id, unicode, ascii, greek, original_script, meaning, pantheon, tier, tier_label, domain, etymology, variants, has_flagship
       FROM entries
-      WHERE LOWER(ascii) LIKE ? OR LOWER(unicode) LIKE ? OR LOWER(meaning) LIKE ? OR LOWER(domain) LIKE ?
+      WHERE LOWER(ascii) LIKE ? OR LOWER(unicode) LIKE ? OR LOWER(meaning) LIKE ? OR LOWER(domain) LIKE ? OR search_key LIKE ?
       ORDER BY tier = 'dual' DESC, tier = '1' DESC, has_flagship DESC, ascii ASC
       LIMIT 1
     `)
-      .get(`%${query}%`, `%${query}%`, `%${query}%`, `%${query}%`);
+      .get(`%${query}%`, `%${query}%`, `%${query}%`, `%${query}%`, `%${toSearchKey(raw)}%`);
   }
 
   const questions = [];
@@ -1230,25 +1378,95 @@ function generatePeopleAlsoAsk(q, limit = 4) {
     questions.push({ question, answer: String(answer).trim(), source });
   }
 
+  const lore = entry ? LORE_CATALOG[entry.id] || null : null;
+
   if (entry) {
     const name = entry.unicode || entry.ascii;
 
-    // Meaning
-    if (entry.meaning) {
-      add(`What does ${name} mean?`, entry.meaning);
+    // Meaning — combine lexicon meaning with lore overview and etymology
+    if (entry.meaning || lore?.domains?.subtitle) {
+      const meaningParts = [];
+      if (entry.meaning) meaningParts.push(`${name} means “${entry.meaning}”.`);
+      if (lore?.domains?.subtitle) {
+        meaningParts.push(
+          `In the sources, ${name} presides over ${stripHtml(lore.domains.subtitle).toLowerCase()}.`
+        );
+      }
+      if (lore?.pronunciation?.note) {
+        const note = stripHtml(lore.pronunciation.note);
+        if (note && !meaningParts.some((p) => p.includes(note.slice(0, 40)))) {
+          meaningParts.push(note);
+        }
+      }
+      add(`What does ${name} mean?`, sentenceJoin(meaningParts));
+    }
+
+    // Pronunciation
+    if (lore?.pronunciation) {
+      const p = lore.pronunciation;
+      const parts = [];
+      if (p.ipa) parts.push(`Reconstructed IPA: ${p.ipa}${p.ipaLabel ? ` (${p.ipaLabel})` : ''}.`);
+      if (p.approximation) parts.push(stripHtml(p.approximation));
+      if (parts.length) {
+        add(`How do you pronounce ${name}?`, sentenceJoin(parts));
+      }
     }
 
     // Original script form
     const original = entry.original_script || entry.greek;
     if (original && original !== '-' && original !== '—') {
-      add(`What is the original script of ${name}?`, original);
-      add(`How do you write ${name} in its original script?`, original);
+      const scriptName =
+        entry.pantheon === 'greek' || entry.pantheon === 'greek-location'
+          ? 'Greek'
+          : entry.pantheon === 'egyptian'
+            ? 'hieroglyphs'
+            : entry.pantheon === 'mesopotamian'
+              ? 'cuneiform'
+              : entry.pantheon === 'norse'
+                ? 'runes'
+                : entry.pantheon === 'sanskrit'
+                  ? 'Devanagari'
+                  : 'the original script';
+      add(
+        `What is the original script of ${name}?`,
+        `${name} is written ${original} in ${scriptName}.`
+      );
     }
 
-    // Domain / powers
-    if (entry.domain) {
+    // Domain / powers — use lore lead + cards when available
+    if (lore?.domains) {
+      const parts = [];
+      if (lore.domains.lead) parts.push(stripHtml(lore.domains.lead));
+      if (Array.isArray(lore.domains.cards) && lore.domains.cards.length) {
+        const cards = lore.domains.cards
+          .map((c) => `${c.name}${c.desc ? ` (${c.desc})` : ''}`)
+          .join('; ');
+        parts.push(`Primary domains include ${cards}.`);
+      }
+      add(`What is ${name} the god or symbol of?`, sentenceJoin(parts));
+      add(`What domain does ${name} rule?`, sentenceJoin(parts));
+    } else if (entry.domain) {
       add(`What is ${name} the god or symbol of?`, entry.domain);
       add(`What domain does ${name} rule?`, entry.domain);
+    }
+
+    // Symbols
+    if (Array.isArray(lore?.symbols) && lore.symbols.length) {
+      const symbols = lore.symbols
+        .map((s) => `${s.name}${s.meaning ? ` — ${s.meaning}` : ''}`)
+        .join('; ');
+      add(`What are the symbols of ${name}?`, `Key attributes include ${symbols}.`);
+    }
+
+    // Mythology
+    if (lore?.mythology) {
+      const parts = [];
+      if (lore.mythology.lead) parts.push(stripHtml(lore.mythology.lead));
+      if (Array.isArray(lore.mythology.myths) && lore.mythology.myths.length) {
+        const myth = lore.mythology.myths[0];
+        parts.push(`${myth.title || myth.tag}: ${stripHtml(myth.text)}`);
+      }
+      add(`What is the mythology of ${name}?`, sentenceJoin(parts));
     }
 
     // Pantheon
@@ -1275,7 +1493,6 @@ function generatePeopleAlsoAsk(q, limit = 4) {
         `What is the Unicode tier of ${name}?`,
         `${name} is classified as ${tierLabel} — ${tierExplanation}`
       );
-      add(`Why is ${name} a Tier ${entry.tier} Unicode name?`, tierExplanation);
     }
 
     // Variant spellings
@@ -1299,32 +1516,41 @@ function generatePeopleAlsoAsk(q, limit = 4) {
       }
     }
 
-    // Etymology (JSON or plain text)
+    // Etymology — prioritize lore narrative, fall back to lexicon etymology
+    const etyParts = [];
+    if (lore?.etymology?.narrative) {
+      etyParts.push(stripHtml(lore.etymology.narrative));
+    } else if (lore?.etymology?.summary) {
+      etyParts.push(stripHtml(lore.etymology.summary));
+    }
     if (entry.etymology) {
       try {
         const ety = JSON.parse(entry.etymology);
-        const parts = [];
         if (ety.protoForm && ety.protoLanguage)
-          parts.push(`From Proto-${ety.protoLanguage} *${ety.protoForm}*.`);
-        if (ety.derivation) parts.push(ety.derivation);
+          etyParts.push(`From Proto-${ety.protoLanguage} *${ety.protoForm}*.`);
+        if (ety.derivation) etyParts.push(ety.derivation);
         if (ety.cognates?.length) {
           const cognates = ety.cognates.map((c) => `${c.form} (${c.language})`).join(', ');
-          parts.push(`Cognates: ${cognates}.`);
-        }
-        if (parts.length) {
-          add(`What is the etymology of ${name}?`, parts.join(' '));
-        } else {
-          add(`What is the etymology of ${name}?`, entry.etymology);
-        }
-        if (ety.protoForm) {
-          add(
-            `What is the Proto-${ety.protoLanguage || 'Indo-European'} root of ${name}?`,
-            `*${ety.protoForm}*${ety.protoGloss ? ` — ${ety.protoGloss}` : ''}`
-          );
+          etyParts.push(`Cognates include ${cognates}.`);
         }
       } catch (_e) {
-        add(`What is the etymology of ${name}?`, entry.etymology);
+        etyParts.push(entry.etymology);
       }
+    }
+    if (etyParts.length) {
+      const sources = formatSources(lore?.etymology?.sources || lore?.sources);
+      add(
+        `What is the etymology of ${name}?`,
+        sentenceJoin(etyParts) + (sources ? ` ${sources}` : '')
+      );
+    }
+
+    // Cultural legacy
+    if (lore?.culturalLegacy) {
+      add(
+        `What is the cultural legacy of ${name}?`,
+        sentenceJoin([stripHtml(lore.culturalLegacy)])
+      );
     }
 
     // Flagship / tenant sites on this entry

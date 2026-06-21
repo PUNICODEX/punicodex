@@ -6,6 +6,16 @@
 (function() {
     'use strict';
 
+    function escapeHtml(str) {
+        if (str == null) return '';
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
+
     const grid = document.getElementById('pantheon-grid-large');
     const emptyState = document.getElementById('empty-state');
     const filterPills = document.querySelectorAll('.filter-pill');
@@ -33,13 +43,20 @@
             const tierClass = a.tier;
             const badgeText = !a.built ? 'Awaiting' : a.tier === 'tier-1' ? 'Tier 1' : 'Tier 2';
 
+            const scriptInfo = typeof ORIGINAL_SCRIPT_LOOKUP !== 'undefined' ? ORIGINAL_SCRIPT_LOOKUP[a.id] : null;
+            const originalScript = scriptInfo ? scriptInfo.originalScript : (a.greek || '');
+            const scriptName = scriptInfo ? scriptInfo.scriptName : 'Greek';
+            const scriptLabel = originalScript && originalScript !== '—'
+                ? `<span class="card-script-name">${escapeHtml(scriptName)}</span>${escapeHtml(originalScript)}`
+                : '<span class="card-script-name">Scholarly transliteration</span>';
+
             return `
                 <${tag} ${hrefAttr} class="archetype-card reveal-up ${unbuiltClass}" data-id="${a.id}" data-tier="${a.tier}" data-pantheon="${a.pantheon}" data-built="${a.built}" data-name="${(a.name || "").toLowerCase()}" data-greek="${(a.greek || "").toLowerCase()}" data-domain="${(a.domain || "").toLowerCase()}" style="--stagger-index:${index % 4}">
                     <div class="card-portrait">
                         <img src="${a.mascotPath}" alt="${a.name} — ${a.domain}" data-fallback="${a.mascotFallback || a.mascotPath}" loading="lazy" decoding="async" style="opacity:1; display:block;">
                     </div>
                     <p class="card-name">${a.name}</p>
-                    <p class="card-greek">${a.greek}</p>
+                    <p class="card-greek">${scriptLabel}</p>
                     <p class="card-domain">${a.domain}</p>
                     <p class="card-punycode">${a.domainUnicode} &rarr; ${a.domainPunycode}</p>
                     <span class="card-badge ${tierClass}">${badgeText}</span>

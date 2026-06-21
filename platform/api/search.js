@@ -2,6 +2,7 @@ const Database = require('better-sqlite3');
 const _path = require('node:path');
 const { domainToASCII } = require('node:url');
 const { getDbPath } = require('../db/db');
+const { classifyTerm, classifyDomain, TRUST_TIERS } = require('./homograph-service');
 
 const DB_PATH = getDbPath();
 let db;
@@ -54,6 +55,7 @@ function search({
   sort = 'relevance',
   limit = 20,
   offset = 0,
+  trust = 'safe',
 }) {
   const db = getDb();
 
@@ -88,7 +90,8 @@ function search({
     const ftsQuery = q
       .trim()
       .split(/\s+/)
-      .map((t) => `${t}*`)
+      .map((t) => escapeFtsToken(t))
+      .filter(Boolean)
       .join(' ');
     sql = `
       SELECT 
@@ -132,10 +135,10 @@ function search({
     params.push(tier);
   }
 
-  if (hasSite === 'true') {
+  if (hasSite === true || hasSite === 'true') {
     sql += ' AND s.id IS NOT NULL';
     countSql += ' AND s.id IS NOT NULL';
-  } else if (hasSite === 'false') {
+  } else if (hasSite === false || hasSite === 'false') {
     sql += ' AND s.id IS NULL';
     countSql += ' AND s.id IS NULL';
   }
@@ -177,24 +180,82 @@ function search({
     entries = entries.filter(isGodEntry);
   }
 
+  // Attach trust tier to each result and optionally filter by trust.
+  const allowedTrust = ['safe', 'canonical', 'styled', 'all'];
+  const trustMode = allowedTrust.includes(trust) ? trust : 'safe';
+
+  const enriched = entries
+    .map((entry) => {
+      const domain = entry.site_domain || entry.unicode || entry.ascii;
+      const domainTrust = classifyDomain(domain);
+      const nameTrust = classifyTerm(entry.unicode || entry.ascii || entry.id);
+      // Use the more restrictive of the name and site/domain trust.
+      const trustOrder = {
+        [TRUST_TIERS.UNSAFE]: 0,
+        [TRUST_TIERS.SUSPICIOUS]: 1,
+        [TRUST_TIERS.UNKNOWN]: 2,
+        [TRUST_TIERS.STYLED]: 3,
+        [TRUST_TIERS.CANONICAL]: 4,
+      };
+      const entryTrust =
+        trustOrder[domainTrust.tier] <= trustOrder[nameTrust.tier] ? domainTrust : nameTrust;
+      return { entry, entryTrust };
+    })
+    .filter(({ entryTrust }) => {
+      if (trustMode === 'all') return true;
+      if (trustMode === 'safe') {
+        return [TRUST_TIERS.CANONICAL, TRUST_TIERS.STYLED, TRUST_TIERS.UNKNOWN].includes(
+          entryTrust.tier
+        );
+      }
+      if (trustMode === 'canonical') return entryTrust.tier === TRUST_TIERS.CANONICAL;
+      if (trustMode === 'styled') {
+        return [TRUST_TIERS.CANONICAL, TRUST_TIERS.STYLED].includes(entryTrust.tier);
+      }
+      return true;
+    });
+
   const { total } = db.prepare(countSql).get(...params);
+  const queryTrust = q ? classifyTerm(q) : null;
 
   return {
-    entries: entries.map(enrichEntry),
+    entries: enriched.map(({ entry, entryTrust }) =>
+      enrichEntry(entry, { trustTier: entryTrust.tier, trustReason: entryTrust.reason })
+    ),
     total,
     limit,
     offset,
+    queryTrust: queryTrust
+      ? {
+          tier: queryTrust.tier,
+          reason: queryTrust.reason,
+          visualDeviation: queryTrust.visualDeviation,
+          canonicalMatch: queryTrust.canonicalMatch,
+        }
+      : null,
   };
 }
 
 function parseSources(sources) {
   if (!sources) return [];
   if (Array.isArray(sources)) return sources;
+  return safeJsonParse(sources, []);
+}
+
+function safeJsonParse(value, fallback) {
   try {
-    return JSON.parse(sources);
+    return JSON.parse(value);
   } catch {
-    return [];
+    return fallback;
   }
+}
+
+function escapeFtsToken(token) {
+  if (!token) return '';
+  // Escape internal double quotes by doubling them, then wrap the token so FTS5
+  // treats it as a literal term. The trailing * enables prefix matching.
+  const escaped = token.replace(/"/g, '""');
+  return `"${escaped}"*`;
 }
 
 function computePunycode(unicode) {
@@ -207,7 +268,7 @@ function computePunycode(unicode) {
   }
 }
 
-function enrichEntry(row) {
+function enrichEntry(row, trust = {}) {
   const site = row.site_id
     ? {
         id: row.site_id,
@@ -219,6 +280,8 @@ function enrichEntry(row) {
         status: row.site_status,
         tierLabel: row.site_tier_label,
         isFlagship: row.site_is_flagship,
+        trustTier: trust.trustTier || null,
+        trustReason: trust.trustReason || null,
       }
     : null;
 
@@ -267,7 +330,7 @@ function getEntry(id) {
     breakdown,
     site: site || null,
     availability: avail
-      ? { ...avail, registrar_links: JSON.parse(avail.registrar_links || '{}') }
+      ? { ...avail, registrar_links: safeJsonParse(avail.registrar_links || '{}', {}) }
       : null,
   };
 }
@@ -288,7 +351,9 @@ function getStats() {
     sites: {
       indexed: db.prepare('SELECT COUNT(*) as c FROM indexed_sites').get().c,
       active: db.prepare("SELECT COUNT(*) as c FROM indexed_sites WHERE status = 'active'").get().c,
-      available: db.prepare('SELECT COUNT(*) as c FROM availability').get().c,
+      available: db
+        .prepare("SELECT COUNT(*) as c FROM availability WHERE status = 'available'")
+        .get().c,
     },
   };
 }
@@ -385,27 +450,31 @@ function getVariantsByAscii(ascii) {
   `)
     .all(ascii);
 
-  return variants.map((row) => ({
-    id: row.id,
-    ascii: row.ascii,
-    unicode: row.unicode,
-    greek: row.greek,
-    pantheon: row.pantheon,
-    tier: row.tier,
-    tierLabel: row.tier_label,
-    meaning: row.meaning,
-    sources: parseSources(row.sources),
-    domain: row.domain,
-    hasFlagship: row.has_flagship,
-    site: row.site_title
-      ? {
-          title: row.site_title,
-          description: row.site_description,
-          status: row.site_status,
-          punycode: row.site_punycode,
-        }
-      : null,
-  }));
+  return variants.map((row) => {
+    const punycode = computePunycode(row.unicode);
+    return {
+      id: row.id,
+      ascii: row.ascii,
+      unicode: row.unicode,
+      greek: row.greek,
+      pantheon: row.pantheon,
+      tier: row.tier,
+      tierLabel: row.tier_label,
+      meaning: row.meaning,
+      sources: parseSources(row.sources),
+      domain: row.domain,
+      punycode,
+      hasFlagship: row.has_flagship,
+      site: row.site_title
+        ? {
+            title: row.site_title,
+            description: row.site_description,
+            status: row.site_status,
+            punycode: row.site_punycode,
+          }
+        : null,
+    };
+  });
 }
 
 module.exports = {

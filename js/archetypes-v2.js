@@ -1,7 +1,7 @@
 /**
  * PÚNYCODEX — Central Archetype Database
  * Handcrafted flagship temples only.
- * 81 handcrafted archetypes.
+ * 83 handcrafted archetypes.
  */
 
 const ARCHETYPES = [
@@ -1682,6 +1682,48 @@ const ARCHETYPES = [
         mascotPath: "/sites/vac/assets/vac_mascot.webp",
         mascotFallback: "/sites/vac/assets/vac_mascot.webp",
         logomarkPath: "/sites/vac/assets/vac_logomark.webp",
+        built: true,
+        hasAdSite: true,
+        darkPunchline: false
+    },
+    {
+        id: "anu",
+        name: "Anû",
+        greek: "—",
+        domain: "Sky, Heaven, Kingship",
+        tagline: "Heaven, Sky, King of the Mesopotamian Gods",
+        tier: "tier-2",
+        tierDetail: "single-tier",
+        pantheon: "mesopotamian",
+        folder: "anu",
+        domainUnicode: "Anû.com",
+        domainPunycode: "xn--an-vka.com",
+        domainAlt: [],
+        colors: { primary: "#CD7F32", secondary: "#C2B280", glow: "rgba(205,127,50,0.3)" },
+        mascotPath: "/sites/anu/assets/anu_mascot.webp",
+        mascotFallback: "/sites/anu/assets/anu_mascot.webp",
+        logomarkPath: "/sites/anu/assets/anu_logomark.webp",
+        built: true,
+        hasAdSite: true,
+        darkPunchline: false
+    },
+    {
+        id: "hen",
+        name: "Hén",
+        greek: "ἕν",
+        domain: "Unity, The One, Oneness",
+        tagline: "The One · Neoplatonic Unity",
+        tier: "tier-2",
+        tierDetail: "single-tier",
+        pantheon: "greek",
+        folder: "hen",
+        domainUnicode: "Hén.com",
+        domainPunycode: "xn--hn-bja.com",
+        domainAlt: [],
+        colors: { primary: "#D4AF37", secondary: "#4169E1", glow: "rgba(212,175,55,0.3)" },
+        mascotPath: "/sites/hen/assets/hen_mascot.webp",
+        mascotFallback: "/sites/hen/assets/hen_mascot.webp",
+        logomarkPath: "/sites/hen/assets/hen_logomark.webp",
         built: true,
         hasAdSite: true,
         darkPunchline: false

@@ -47,6 +47,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
+        debug {
+            // The capacitor-android library only publishes a release variant;
+            // let debug builds fall back to it so Gradle sync works in Android Studio.
+            matchingFallbacks = ['release']
+        }
     }
 }
 

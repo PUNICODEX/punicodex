@@ -7,7 +7,12 @@
  * counters, which is sufficient for local development.
  */
 
-const Redis = require('ioredis');
+const {
+  getRedisClient,
+  disableRedis,
+  resetRedisClient,
+  isRedisEnabled,
+} = require('./redis-client.js');
 
 // Default tier limits: requests per window
 const DEFAULT_TIER_LIMITS = {
@@ -39,7 +44,9 @@ class InMemoryRateLimiter {
   check(key) {
     const now = Date.now();
     const windowStart = Math.floor(now / this.windowMs) * this.windowMs;
-    const windowKey = `${key}:${windowStart}`;
+    // Use '#' as the window delimiter because rate-limit keys (IPs, tokens)
+    // frequently contain colons, especially IPv6 addresses.
+    const windowKey = `${key}#${windowStart}`;
 
     let count = this.windows.get(windowKey) || 0;
     const allowed = count < this.maxRequests;
@@ -59,8 +66,9 @@ class InMemoryRateLimiter {
   sweep() {
     const cutoff = Date.now() - this.windowMs * 2;
     for (const [key, _count] of this.windows) {
-      const parts = key.split(':');
-      const windowStart = Number(parts[parts.length - 1]);
+      const delim = key.lastIndexOf('#');
+      if (delim === -1) continue;
+      const windowStart = Number(key.slice(delim + 1));
       if (windowStart < cutoff) {
         this.windows.delete(key);
       }
@@ -130,58 +138,13 @@ class RedisRateLimiter {
   }
 }
 
-// Redis client singleton
-let redisClient = null;
-let redisFailed = false;
-
-function hasRedisConfig() {
-  return Boolean(process.env.REDIS_URL);
-}
-
-function createRedisClient() {
-  const client = new Redis(process.env.REDIS_URL, {
-    maxRetriesPerRequest: 1,
-    enableReadyCheck: false,
-    lazyConnect: true,
-  });
-
-  client.on('error', (err) => {
-    console.error('[rate-limiter] Redis connection error:', err.message);
-    disableRedis();
-  });
-
-  return client;
-}
-
-function getRedisClient() {
-  if (redisFailed || !hasRedisConfig()) {
-    return null;
-  }
-  if (!redisClient) {
-    redisClient = createRedisClient();
-  }
-  return redisClient;
-}
-
-function disableRedis() {
-  redisFailed = true;
-  if (redisClient) {
-    try {
-      redisClient.disconnect();
-    } catch {
-      // ignore
-    }
-    redisClient = null;
-  }
-}
-
 // Per-tier limiter instances
 const limiters = new Map();
 
 function getLimiterForTier(tier) {
   const config = DEFAULT_TIER_LIMITS[tier] || DEFAULT_TIER_LIMITS.free;
   if (!limiters.has(tier)) {
-    const useRedis = hasRedisConfig() && !redisFailed;
+    const useRedis = isRedisEnabled();
     if (useRedis) {
       limiters.set(
         tier,
@@ -219,15 +182,7 @@ function resetLimiters() {
     limiter.stop();
   }
   limiters.clear();
-  if (redisClient) {
-    try {
-      redisClient.disconnect();
-    } catch {
-      // ignore
-    }
-    redisClient = null;
-  }
-  redisFailed = false;
+  resetRedisClient();
 }
 
 module.exports = {

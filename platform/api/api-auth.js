@@ -8,8 +8,6 @@
 const crypto = require('node:crypto');
 const { get, run } = require('../db/operational');
 
-const DEMO_KEY = 'pk_punycodex_demo';
-
 function hashKey(key) {
   return crypto.createHash('sha256').update(key).digest('hex');
 }
@@ -20,10 +18,32 @@ function extractBearer(req) {
   return auth.slice(7).trim();
 }
 
+function normalizeIp(ip) {
+  if (!ip || ip === 'unknown') return 'unknown';
+  let s = ip.trim();
+
+  // IPv6 with port: [::1]:3000
+  if (s.startsWith('[')) {
+    const end = s.indexOf(']');
+    if (end !== -1) s = s.slice(1, end);
+    return s || 'unknown';
+  }
+
+  // IPv4 with port: 127.0.0.1:3000
+  if (s.includes('.') && s.includes(':')) {
+    s = s.split(':')[0];
+    return s || 'unknown';
+  }
+
+  return s;
+}
+
 function getClientIp(req) {
   const forwarded = req.headers?.['x-forwarded-for'];
-  if (forwarded) return forwarded.split(',')[0].trim();
-  return req.socket?.remoteAddress || req.connection?.remoteAddress || 'unknown';
+  const raw = forwarded
+    ? forwarded.split(',')[0].trim()
+    : req.socket?.remoteAddress || req.connection?.remoteAddress || 'unknown';
+  return normalizeIp(raw);
 }
 
 async function lookupKey(key) {
@@ -71,7 +91,12 @@ async function authenticate(req) {
 
   const keyRecord = await lookupKey(key);
   if (!keyRecord) {
-    return { invalid: true };
+    return {
+      invalid: true,
+      tier: 'free',
+      scopes: [],
+      rateLimitKey: `ip:${getClientIp(req)}`,
+    };
   }
 
   await recordKeyUsage(keyRecord.id);
@@ -117,5 +142,5 @@ module.exports = {
   extractBearer,
   hashKey,
   getClientIp,
-  DEMO_KEY,
+  normalizeIp,
 };

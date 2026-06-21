@@ -6,256 +6,437 @@
   <title>PUNYCODEX — Universal Unicode Search</title>
   <meta name="description" content="Search the Unicode web across sites, domains, lore, images, and scholarly sources.">
   <link rel="canonical" href="https://punycodex.com/search-v2.html">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/search-system.css?v=search12">
   <style>
-    :root {
-      --bg: #0a0a0f;
-      --surface: #12121a;
-      --surface-2: #1a1a25;
-      --surface-hover: #232330;
-      --text: #f0eef5;
-      --text-dim: #9b98b0;
-      --text-muted: #6b6880;
-      --accent: #d4af37;
-      --accent-glow: rgba(212, 175, 55, 0.14);
-      --border: #2a2a3a;
-      --link-blue: #9dc3ff;
-      --link-green: #a5d6a7;
-      --gold: #d4af37;
-      --tier-dual: #d4af37;
-      --tier-1: #7ec9a0;
-      --tier-2: #87aee8;
-      --available: #7ec9a0;
-      --live: #87c9e8;
-      --font-display: 'Cinzel', Georgia, serif;
-      --font-body: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    }
+    .cn-page { padding: 0; }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--font-body);
-      background:
-        radial-gradient(ellipse at 10% 0%, rgba(212,175,55,0.04) 0%, transparent 35%),
-        radial-gradient(ellipse at 90% 100%, rgba(96,165,250,0.04) 0%, transparent 30%),
-        var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      line-height: 1.55;
-      -webkit-font-smoothing: antialiased;
-    }
+.cn-btn-oracle {
+  background: linear-gradient(135deg, rgba(212,175,55,0.15), rgba(212,175,55,0.05)) !important;
+  border-color: var(--cn-gold-dim) !important;
+  color: var(--cn-gold) !important;
+}
+.cn-btn-oracle:hover {
+  background: var(--cn-gold) !important;
+  border-color: var(--cn-gold) !important;
+  color: var(--cn-void) !important;
+}
 
-    header {
-      padding: 1rem;
-      border-bottom: 1px solid var(--border);
-      background: rgba(18, 18, 26, 0.9);
-      backdrop-filter: blur(12px);
+.cn-oracle-loading {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  color: var(--cn-text-muted);
+  font-style: italic;
+}
+.cn-oracle-loading::before {
+  content: '';
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--cn-gold-dim);
+  border-top-color: var(--cn-gold);
+  border-radius: 50%;
+  animation: cn-spin 1s linear infinite;
+}
+@keyframes cn-spin { to { transform: rotate(360deg); } }
+
+.cn-oracle-answer h4 {
+  font-family: var(--cn-font-display);
+  color: var(--cn-gold);
+  margin: 1rem 0 0.5rem;
+  font-size: 0.95rem;
+}
+.cn-oracle-answer ul { margin: 0.5rem 0; padding-left: 1.25rem; }
+.cn-oracle-answer li { margin: 0.35rem 0; color: var(--cn-text-dim); }
+.cn-oracle-answer p { margin: 0.5rem 0; line-height: 1.6; }
+.cn-oracle-answer strong { color: var(--cn-text); }
+.cn-oracle-answer em { color: var(--cn-gold); font-style: normal; }
+
+    /* Search header */
+    .cn-search-header {
       position: sticky;
       top: 0;
-      z-index: 50;
-    }
-    .header-inner { max-width: 900px; margin: 0 auto; }
-    .header-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-    .logo-row { display: flex; align-items: center; gap: 0.75rem; }
-    .logo-icon {
-      width: 36px; height: 36px; border-radius: 10px;
-      background: linear-gradient(135deg, var(--accent), #b8941d);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem; color: #0a0a0f; font-weight: 700;
-      box-shadow: 0 4px 16px rgba(212,175,55,0.18);
-    }
-    .logo { font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; letter-spacing: 0.1em; color: var(--accent); text-decoration: none; }
-    .logo-sub { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.05rem; }
-    .global-nav { display: flex; align-items: center; gap: 0.5rem; }
-    .global-nav a { font-size: 0.75rem; font-weight: 500; color: var(--text-dim); text-decoration: none; padding: 0.35rem 0.7rem; border-radius: 6px; transition: 0.2s; }
-    .global-nav a:hover { color: var(--text); background: var(--surface-2); }
-
-    .search-box {
-      position: relative;
-      margin-top: 0.75rem;
-    }
-    .search-box input {
-      width: 100%;
-      padding: 0.85rem 3rem 0.85rem 1.1rem;
-      font-size: 1rem;
-      font-family: var(--font-body);
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-    .search-box input:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-glow);
-    }
-    .search-box button {
-      position: absolute;
-      right: 8px; top: 50%; transform: translateY(-50%);
-      background: var(--accent); color: #0a0a0f; border: none;
-      border-radius: 8px; padding: 0.5rem 0.9rem;
-      font-weight: 700; cursor: pointer;
+      z-index: 100;
+      background: rgba(5, 5, 8, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
 
-    .verticals {
+    .cn-search-header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+    }
+
+    .cn-search-header-top {
       display: flex;
-      gap: 0.25rem;
-      margin-top: 0.75rem;
-      overflow-x: auto;
-      padding-bottom: 0.25rem;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+      position: relative;
     }
-    .verticals button {
-      background: transparent;
-      border: 1px solid transparent;
-      color: var(--text-dim);
-      padding: 0.4rem 0.9rem;
-      border-radius: 20px;
+
+    .cn-mobile-menu-btn {
+      display: none;
+      background: none;
+      border: 1px solid var(--cn-border-strong);
+      color: var(--cn-text);
+      padding: 0.5rem;
+      border-radius: var(--cn-radius-sm);
+      cursor: pointer;
+    }
+
+    .cn-global-nav.mobile-open {
+      display: flex;
+      position: absolute;
+      top: calc(100% + 0.5rem);
+      right: 0;
+      flex-direction: column;
+      gap: 0;
+      min-width: 180px;
+      padding: 0.5rem;
+      background: var(--cn-surface);
+      border: 1px solid var(--cn-border-strong);
+      border-radius: var(--cn-radius-md);
+      box-shadow: var(--cn-shadow-lg);
+      z-index: 100;
+    }
+
+    .cn-global-nav.mobile-open a {
+      padding: 0.75rem 1rem;
+      border-radius: var(--cn-radius-sm);
+    }
+
+    .cn-global-nav.mobile-open a:hover {
+      background: var(--cn-hover);
+    }
+
+    /* Autocomplete */
+    .cn-autocomplete {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      right: 0;
+      background: var(--cn-surface-2);
+      border: 1px solid var(--cn-border-strong);
+      border-radius: var(--cn-radius-md);
+      box-shadow: var(--cn-shadow-lg);
+      max-height: 360px;
+      overflow-y: auto;
+      z-index: 101;
+      display: none;
+    }
+
+    .cn-autocomplete.visible { display: block; }
+
+    .cn-autocomplete-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      transition: background 0.15s;
+    }
+
+    .cn-autocomplete-item:hover,
+    .cn-autocomplete-item.active {
+      background: var(--cn-hover);
+    }
+
+    .cn-autocomplete-item .cn-ac-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--cn-surface-3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      color: var(--cn-gold);
+      flex-shrink: 0;
+    }
+
+    .cn-autocomplete-item .cn-ac-main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .cn-autocomplete-item .cn-ac-title {
+      font-family: var(--cn-font-display);
+      font-size: 1rem;
+      color: var(--cn-text);
+    }
+
+    .cn-autocomplete-item .cn-ac-sub {
+      font-size: 0.75rem;
+      color: var(--cn-text-muted);
+    }
+
+    .cn-autocomplete-empty {
+      padding: 1rem;
+      text-align: center;
+      color: var(--cn-text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* Filters */
+    .cn-filters {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .cn-filter-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .cn-filter-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cn-text-muted);
+    }
+
+    .cn-filter-select {
+      background: var(--cn-surface-2);
+      border: 1px solid var(--cn-border);
+      border-radius: var(--cn-radius-sm);
+      color: var(--cn-text);
+      padding: 0.5rem 1.75rem 0.5rem 0.75rem;
       font-size: 0.8rem;
+      font-family: var(--cn-font-body);
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235e6580' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.5rem center;
+      cursor: pointer;
+      min-width: 120px;
+    }
+
+    .cn-filter-select:focus {
+      outline: none;
+      border-color: var(--cn-gold);
+    }
+
+    .cn-pill {
+      padding: 0.4rem 0.85rem;
+      background: var(--cn-surface-2);
+      border: 1px solid var(--cn-border);
+      border-radius: var(--cn-radius-full);
+      color: var(--cn-text-dim);
+      font-size: 0.78rem;
       font-weight: 600;
       cursor: pointer;
+      transition: all 0.15s;
       white-space: nowrap;
-      transition: 0.2s;
     }
-    .verticals button.active {
-      background: var(--accent);
-      color: #0a0a0f;
-      border-color: var(--accent);
+
+    .cn-pill:hover {
+      border-color: var(--cn-gold-dim);
+      color: var(--cn-text);
     }
-    .verticals button:hover:not(.active) { background: var(--surface-2); color: var(--text); }
 
-    main { max-width: 900px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+    .cn-pill.active {
+      background: var(--cn-gold);
+      border-color: var(--cn-gold);
+      color: var(--cn-void);
+    }
 
-    .status-bar {
-      display: flex; align-items: center; justify-content: space-between;
-      color: var(--text-muted); font-size: 0.75rem;
+    .cn-pill .cn-count {
+      opacity: 0.7;
+      margin-left: 0.3rem;
+      font-weight: 500;
+    }
+
+    .cn-pill.active .cn-count { color: var(--cn-void); }
+
+    .cn-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.85rem;
+      background: var(--cn-surface-2);
+      border: 1px solid var(--cn-border);
+      border-radius: var(--cn-radius-full);
+      color: var(--cn-text-dim);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .cn-toggle.active {
+      border-color: var(--cn-gold);
+      color: var(--cn-gold);
+      background: rgba(212, 175, 55, 0.08);
+    }
+
+    /* Layout */
+    .cn-search-layout {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .cn-results-col { min-width: 0; }
+    .cn-sidebar-col { position: sticky; top: 180px; }
+
+    @media (max-width: 1024px) {
+      .cn-search-layout { grid-template-columns: 1fr; }
+      .cn-sidebar-col { position: static; }
+      .cn-mobile-menu-btn { display: block; }
+      .cn-global-nav { display: none; }
+    }
+
+    @media (max-width: 768px) {
+      .cn-filters { display: none; }
+      .cn-filters.expanded { display: flex; flex-direction: column; align-items: stretch; margin-top: 1rem; }
+      .cn-filter-group { flex-wrap: wrap; }
+      .cn-search-header-inner { padding: 1rem; }
+    }
+
+    /* Result counts */
+    .cn-vertical-counts {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
       margin-bottom: 1rem;
     }
-    .spell-correction {
-      color: var(--text-dim); font-size: 0.85rem;
+
+    /* Active filter chips */
+    .cn-active-filters {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
       margin-bottom: 1rem;
     }
-    .spell-correction a { color: var(--link-blue); cursor: pointer; text-decoration: underline; }
 
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.1rem;
-      margin-bottom: 1rem;
-      transition: border-color 0.2s, transform 0.2s;
+    .cn-active-filter {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.75rem;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid var(--cn-gold-dim);
+      border-radius: var(--cn-radius-full);
+      color: var(--cn-gold);
+      font-size: 0.75rem;
+      font-weight: 600;
     }
-    .card:hover { border-color: #3a3a50; }
 
-    .instant-answer { border-left: 4px solid var(--accent); }
-    .instant-answer h3 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--accent); }
-    .instant-answer .code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--surface-2); padding: 0.35rem 0.6rem; border-radius: 6px; font-size: 0.95rem; }
-    .instant-answer .domain-list { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.5rem; }
-    .instant-answer .domain-row { display: flex; align-items: center; justify-content: space-between; background: var(--surface-2); padding: 0.5rem 0.75rem; border-radius: 8px; }
-
-    .oracle-card { border-left: 4px solid var(--link-blue); }
-    .oracle-card h3 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--link-blue); }
-    .oracle-card .citations { margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .oracle-card .citation { background: var(--surface-2); color: var(--text-dim); font-size: 0.7rem; padding: 0.2rem 0.5rem; border-radius: 4px; }
-    .oracle-card .followups { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
-    .oracle-card .followups button { background: var(--surface-2); border: 1px solid var(--border); color: var(--text-dim); padding: 0.35rem 0.7rem; border-radius: 16px; font-size: 0.75rem; cursor: pointer; }
-    .oracle-card .followups button:hover { color: var(--text); border-color: var(--link-blue); }
-
-    .result-item { display: block; text-decoration: none; color: inherit; }
-    .result-item .url { color: var(--text-muted); font-size: 0.75rem; margin-bottom: 0.15rem; }
-    .result-item .title { color: var(--link-blue); font-size: 1.05rem; font-weight: 600; margin-bottom: 0.25rem; }
-    .result-item .title:hover { text-decoration: underline; }
-    .result-item .snippet { color: var(--text-dim); font-size: 0.9rem; line-height: 1.5; }
-    .result-item .meta { display: flex; gap: 0.5rem; margin-top: 0.5rem; font-size: 0.7rem; color: var(--text-muted); }
-    .result-item .badge { background: var(--surface-2); padding: 0.15rem 0.4rem; border-radius: 4px; }
-    .result-item .tier-dual { color: var(--tier-dual); }
-    .result-item .tier-1 { color: var(--tier-1); }
-    .result-item .tier-2 { color: var(--tier-2); }
-
-    .feedback { display: flex; gap: 0.5rem; margin-top: 0.5rem; }
-    .feedback button { background: transparent; border: 1px solid var(--border); color: var(--text-muted); font-size: 0.7rem; padding: 0.2rem 0.5rem; border-radius: 4px; cursor: pointer; }
-    .feedback button:hover { color: var(--text); border-color: var(--text-dim); }
-
-    .image-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.75rem; }
-    .image-grid a { display: block; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); background: var(--surface-2); text-decoration: none; }
-    .image-grid img { width: 100%; height: 120px; object-fit: cover; display: block; }
-    .image-grid .img-label { padding: 0.4rem 0.6rem; font-size: 0.7rem; color: var(--text-dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-    .domain-card .domain-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem; }
-    .domain-card .domain-name { font-size: 1.05rem; font-weight: 600; color: var(--link-green); }
-    .domain-card .registrar-links { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem; }
-    .domain-card .registrar-links a { font-size: 0.7rem; background: var(--surface-2); color: var(--text-dim); padding: 0.25rem 0.5rem; border-radius: 4px; text-decoration: none; }
-    .domain-card .registrar-links a:hover { color: var(--text); }
-
-    .lore-card h4 { font-family: var(--font-display); color: var(--accent); margin-bottom: 0.35rem; }
-    .lore-card p { color: var(--text-dim); font-size: 0.9rem; }
-
-    .api-card .method { color: var(--accent); font-weight: 700; font-size: 0.75rem; margin-right: 0.5rem; }
-    .api-card .path { color: var(--link-blue); font-family: ui-monospace, monospace; font-size: 0.9rem; }
-
-    .history-row { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 0; border-bottom: 1px solid var(--border); }
-    .history-row a { color: var(--text); text-decoration: none; }
-    .history-row a:hover { color: var(--link-blue); }
-
-    .sidebar { margin-top: 1.5rem; }
-    .sidebar h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 0.6rem; }
-    .chip-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .chip { background: var(--surface-2); border: 1px solid var(--border); color: var(--text-dim); padding: 0.35rem 0.7rem; border-radius: 16px; font-size: 0.75rem; cursor: pointer; text-decoration: none; }
-    .chip:hover { color: var(--text); border-color: var(--text-dim); }
-
-    .load-more { width: 100%; padding: 0.8rem; margin-top: 1rem; background: var(--surface-2); border: 1px solid var(--border); color: var(--text); border-radius: 10px; cursor: pointer; font-weight: 600; }
-    .load-more:hover { background: var(--surface-hover); }
-    .load-more:disabled { opacity: 0.5; cursor: not-allowed; }
-
-    .empty { text-align: center; padding: 4rem 1rem; color: var(--text-muted); }
-    .empty-title { font-family: var(--font-display); font-size: 1.3rem; color: var(--text); margin-bottom: 0.5rem; }
-
-    @media (max-width: 640px) {
-      .header-top { flex-wrap: wrap; }
-      .global-nav { display: none; }
-      .verticals { gap: 0.15rem; }
-      .verticals button { padding: 0.35rem 0.7rem; font-size: 0.75rem; }
+    .cn-active-filter button {
+      background: none;
+      border: none;
+      color: var(--cn-gold);
+      cursor: pointer;
+      font-size: 1rem;
+      line-height: 1;
+      padding: 0;
     }
   </style>
 </head>
-<body>
-  <header>
-    <div class="header-inner">
-      <div class="header-top">
-        <a href="/" class="logo-row">
-          <div class="logo-icon">P</div>
+<body class="cn-page">
+  <div class="cn-ambient"></div>
+
+  <header class="cn-search-header">
+    <div class="cn-search-header-inner">
+      <div class="cn-search-header-top">
+        <a href="/" class="cn-logo-row">
+          <div class="cn-logo-seal">P</div>
           <div>
-            <div class="logo">PUNYCODEX</div>
-            <div class="logo-sub">Universal Unicode Search</div>
+            <div class="cn-logo-text">PUNYCODEX</div>
+            <div class="cn-logo-sub">Universal Unicode Search</div>
           </div>
         </a>
-        <nav class="global-nav">
+        <nav class="cn-global-nav" id="globalNav">
           <a href="/pantheon/">Pantheon</a>
           <a href="/lexicon/">Lexicon</a>
           <a href="/type/">Type</a>
           <a href="/tiers/">Tiers</a>
           <a href="/api/v1/docs">API</a>
         </nav>
+        <button class="cn-mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">☰</button>
       </div>
-      <div class="search-box">
-        <input type="text" id="q" placeholder="Search names, domains, lore, API…" autocomplete="off" autofocus>
-        <button id="searchBtn">Search</button>
+
+      <div class="cn-search-wrap" style="position:relative;">
+        <div class="cn-search-box">
+          <span class="cn-search-icon">⌕</span>
+          <input type="text" id="q" class="cn-search-input" placeholder="Search names, domains, lore, API…" autocomplete="off" autofocus aria-label="Search query" aria-autocomplete="list" aria-controls="autocomplete">
+          <button id="searchClear" class="cn-search-clear" aria-label="Clear">×</button>
+          <button id="oracleBtn" class="cn-search-btn cn-btn-oracle" title="Ask the Oracle (Ctrl+Enter)">Oracle</button>
+          <button id="searchBtn" class="cn-search-btn">Search</button>
+        </div>
+        <div id="autocomplete" class="cn-autocomplete" role="listbox"></div>
       </div>
-      <div class="verticals" id="verticals"></div>
+
+      <div class="cn-filters" id="filters">
+        <div class="cn-filter-group">
+          <span class="cn-filter-label">View</span>
+          <div id="verticals"></div>
+        </div>
+        <div class="cn-filter-group">
+          <span class="cn-filter-label">Pantheon</span>
+          <select id="pantheonFilter" class="cn-filter-select">
+            <option value="">All pantheons</option>
+          </select>
+        </div>
+        <div class="cn-filter-group">
+          <span class="cn-filter-label">Tier</span>
+          <div id="tierFilters"></div>
+        </div>
+        <div class="cn-filter-group">
+          <button id="hasSiteToggle" class="cn-toggle" data-filter="hasSite">Has site</button>
+          <button id="unicodeOnlyToggle" class="cn-toggle" data-filter="unicodeOnly">Unicode only</button>
+        </div>
+        <div class="cn-filter-group" style="margin-left:auto;">
+          <span class="cn-filter-label">Sort</span>
+          <select id="sortFilter" class="cn-filter-select">
+            <option value="relevance">Relevance</option>
+            <option value="alphabetical">Alphabetical</option>
+            <option value="tier">Tier</option>
+            <option value="recently_crawled">Recently crawled</option>
+            <option value="quality">Quality</option>
+          </select>
+        </div>
+      </div>
+
+      <button id="filterToggle" class="cn-mobile-menu-btn" style="display:none;margin-top:0.75rem;width:100%;">Filters</button>
     </div>
   </header>
 
-  <main>
-    <div class="status-bar">
-      <span id="statusText">Enter a query to search the Unicode web.</span>
-      <span id="timingText"></span>
+  <main class="cn-search-layout">
+    <div class="cn-results-col">
+      <div class="cn-status-bar">
+        <span id="statusText">Enter a query to search the Unicode web.</span>
+        <span id="timingText"></span>
+      </div>
+
+      <div id="activeFilters" class="cn-active-filters" style="display:none;"></div>
+      <div id="confusableWarning" class="cn-confusable-warning" style="display:none"></div>
+      <div id="spellCorrection" class="cn-spell" style="display:none"></div>
+      <div id="results"></div>
+      <button id="loadMore" class="cn-btn cn-btn-secondary cn-load-more" style="display:none">Load more</button>
     </div>
-    <div id="spellCorrection" class="spell-correction" style="display:none"></div>
-    <div id="results"></div>
-    <button id="loadMore" class="load-more" style="display:none">Load more</button>
-    <div class="sidebar" id="sidebar" style="display:none"></div>
+
+    <aside class="cn-sidebar-col">
+      <div id="sidebar"></div>
+    </aside>
   </main>
 
+  <script src="/js/search-effects.js?v=search12"></script>
   <script>
     const API_BASE = '';
     const VERTICALS = [
@@ -268,81 +449,390 @@
       { id: 'history', label: 'History' },
     ];
 
+    const TIER_FILTERS = [
+      { id: 'dual', label: 'Dual' },
+      { id: '1', label: 'Tier 1' },
+      { id: '2', label: 'Tier 2' },
+    ];
+
+    const PANTHEON_LABELS = {
+      greek: 'Greek', 'greek-location': 'Greek Location', norse: 'Norse', egyptian: 'Egyptian',
+      sanskrit: 'Sanskrit', celtic: 'Celtic', mesopotamian: 'Mesopotamian', polynesian: 'Polynesian',
+      japanese: 'Japanese', nahuatl: 'Nahuatl', yoruba: 'Yoruba', slavic: 'Slavic',
+      zoroastrian: 'Zoroastrian', incan: 'Incan', chinese: 'Chinese', buddhist: 'Buddhist',
+      taoist: 'Taoist', korean: 'Korean', canaanite: 'Canaanite', phoenician: 'Phoenician', hittite: 'Hittite'
+    };
+
     const qInput = document.getElementById('q');
     const searchBtn = document.getElementById('searchBtn');
+    const oracleBtn = document.getElementById('oracleBtn');
+    const searchClear = document.getElementById('searchClear');
     const resultsEl = document.getElementById('results');
     const loadMoreBtn = document.getElementById('loadMore');
     const statusText = document.getElementById('statusText');
     const timingText = document.getElementById('timingText');
     const spellEl = document.getElementById('spellCorrection');
+    const confusableEl = document.getElementById('confusableWarning');
     const sidebarEl = document.getElementById('sidebar');
     const verticalsEl = document.getElementById('verticals');
+    const pantheonSelect = document.getElementById('pantheonFilter');
+    const tierFiltersEl = document.getElementById('tierFilters');
+    const hasSiteToggle = document.getElementById('hasSiteToggle');
+    const unicodeOnlyToggle = document.getElementById('unicodeOnlyToggle');
+    const sortFilter = document.getElementById('sortFilter');
+    const autocompleteEl = document.getElementById('autocomplete');
+    const activeFiltersEl = document.getElementById('activeFilters');
 
     let currentQ = '';
     let currentVertical = 'all';
     let currentCursor = null;
     let isLoading = false;
+    let abortController = null;
     let sessionToken = localStorage.getItem('punycodex_search_session') || null;
+    let facets = { pantheons: [], tiers: [] };
+    let autocompleteIndex = -1;
+    let autocompleteItems = [];
+
+    const filters = {
+      pantheon: '',
+      tier: '',
+      hasSite: false,
+      unicodeOnly: false,
+      sort: 'relevance',
+    };
 
     function init() {
-      verticalsEl.innerHTML = VERTICALS.map(v =>
-        `<button data-vertical="${v.id}" class="${v.id === currentVertical ? 'active' : ''}">${v.label}</button>`
-      ).join('');
-      verticalsEl.addEventListener('click', (e) => {
-        if (e.target.dataset.vertical) {
-          currentVertical = e.target.dataset.vertical;
-          updateVerticalButtons();
-          if (currentQ) doSearch();
-        }
-      });
+      renderVerticals();
+      renderTierFilters();
+      loadFacets();
 
       const params = new URLSearchParams(location.search);
       const initialQ = params.get('q');
       const initialVertical = params.get('vertical');
+      oracleModeActive = params.get('oracle') === 'true';
+      filters.pantheon = params.get('pantheon') || '';
+      filters.tier = params.get('tier') || '';
+      filters.hasSite = params.get('hasSite') === 'true';
+      filters.unicodeOnly = params.get('unicodeOnly') === 'true';
+      filters.sort = params.get('sort') || 'relevance';
+
       if (initialVertical && VERTICALS.some(v => v.id === initialVertical)) {
         currentVertical = initialVertical;
-        updateVerticalButtons();
       }
+      updateVerticalButtons();
+      updateFilterUI();
+
       if (initialQ) {
         qInput.value = initialQ;
-        doSearch();
+        doSearch(false, oracleModeActive);
+      }
+
+      // Event listeners
+      qInput.addEventListener('input', debounce(handleInput, 120));
+      qInput.addEventListener('keydown', handleInputKeydown);
+      qInput.addEventListener('focus', () => { if (autocompleteItems.length) showAutocomplete(); });
+      searchBtn.addEventListener('click', () => { hideAutocomplete(); doSearch(); });
+      oracleBtn.addEventListener('click', () => { hideAutocomplete(); doSearch(false, true); });
+      searchClear.addEventListener('click', () => {
+        qInput.value = '';
+        searchClear.classList.remove('visible');
+        hideAutocomplete();
+        qInput.focus();
+      });
+      loadMoreBtn.addEventListener('click', () => doSearch(true));
+      pantheonSelect.addEventListener('change', (e) => { filters.pantheon = e.target.value; doSearch(); });
+      hasSiteToggle.addEventListener('click', () => toggleFilter('hasSite'));
+      unicodeOnlyToggle.addEventListener('click', () => toggleFilter('unicodeOnly'));
+      sortFilter.addEventListener('change', (e) => { filters.sort = e.target.value; doSearch(); });
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.cn-search-wrap')) hideAutocomplete();
+      });
+
+      // Mobile filter toggle
+      const filterToggle = document.getElementById('filterToggle');
+      const filtersEl = document.getElementById('filters');
+      if (filterToggle && filtersEl) {
+        filterToggle.style.display = window.innerWidth <= 768 ? 'block' : 'none';
+        filterToggle.addEventListener('click', () => filtersEl.classList.toggle('expanded'));
+        window.addEventListener('resize', () => {
+          filterToggle.style.display = window.innerWidth <= 768 ? 'block' : 'none';
+          if (window.innerWidth > 768) filtersEl.classList.remove('expanded');
+        });
+      }
+
+      // Mobile nav toggle
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const globalNav = document.getElementById('globalNav');
+      if (mobileMenuBtn && globalNav) {
+        mobileMenuBtn.addEventListener('click', () => {
+          globalNav.classList.toggle('mobile-open');
+        });
+        globalNav.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => globalNav.classList.remove('mobile-open'));
+        });
+        document.addEventListener('click', (e) => {
+          if (!mobileMenuBtn.contains(e.target) && !globalNav.contains(e.target)) {
+            globalNav.classList.remove('mobile-open');
+          }
+        });
       }
     }
 
+    function renderVerticals() {
+      verticalsEl.innerHTML = VERTICALS.map(v =>
+        `<button data-vertical="${v.id}" class="cn-pill ${v.id === currentVertical ? 'active' : ''}">${v.label}<span class="cn-count" id="count-${v.id}"></span></button>`
+      ).join('');
+      verticalsEl.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-vertical]');
+        if (!btn) return;
+        currentVertical = btn.dataset.vertical;
+        updateVerticalButtons();
+        doSearch();
+      });
+    }
+
     function updateVerticalButtons() {
-      verticalsEl.querySelectorAll('button').forEach(btn => {
+      verticalsEl.querySelectorAll('.cn-pill').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.vertical === currentVertical);
       });
     }
 
-    function escapeHtml(str) {
-      return String(str).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    function renderTierFilters() {
+      tierFiltersEl.innerHTML = TIER_FILTERS.map(t =>
+        `<button data-tier="${t.id}" class="cn-pill ${filters.tier === t.id ? 'active' : ''}">${t.label}</button>`
+      ).join('');
+      tierFiltersEl.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-tier]');
+        if (!btn) return;
+        filters.tier = filters.tier === btn.dataset.tier ? '' : btn.dataset.tier;
+        renderTierFilters();
+        doSearch();
+      });
     }
 
-    async function doSearch(append = false) {
+    function updateFilterUI() {
+      pantheonSelect.value = filters.pantheon;
+      hasSiteToggle.classList.toggle('active', filters.hasSite);
+      unicodeOnlyToggle.classList.toggle('active', filters.unicodeOnly);
+      sortFilter.value = filters.sort;
+      renderActiveFilters();
+    }
+
+    function renderActiveFilters() {
+      const chips = [];
+      if (filters.pantheon) chips.push({ key: 'pantheon', label: PANTHEON_LABELS[filters.pantheon] || filters.pantheon });
+      if (filters.tier) chips.push({ key: 'tier', label: `Tier ${filters.tier === 'dual' ? 'Dual' : filters.tier}` });
+      if (filters.hasSite) chips.push({ key: 'hasSite', label: 'Has site' });
+      if (filters.unicodeOnly) chips.push({ key: 'unicodeOnly', label: 'Unicode only' });
+
+      if (chips.length === 0) {
+        activeFiltersEl.style.display = 'none';
+        return;
+      }
+
+      activeFiltersEl.style.display = 'flex';
+      activeFiltersEl.innerHTML = chips.map(c => `
+        <span class="cn-active-filter">
+          ${escapeHtml(c.label)}
+          <button data-filter="${c.key}" aria-label="Remove ${escapeHtml(c.label)}">×</button>
+        </span>
+      `).join('');
+
+      activeFiltersEl.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const key = btn.dataset.filter;
+          if (key === 'pantheon') filters.pantheon = '';
+          if (key === 'tier') filters.tier = '';
+          if (key === 'hasSite') filters.hasSite = false;
+          if (key === 'unicodeOnly') filters.unicodeOnly = false;
+          updateFilterUI();
+          doSearch();
+        });
+      });
+    }
+
+    function toggleFilter(key) {
+      filters[key] = !filters[key];
+      updateFilterUI();
+      doSearch();
+    }
+
+    function loadFacets() {
+      fetch(`${API_BASE}/api/search/facets`)
+        .then(r => r.json())
+        .then(data => {
+          if (data.success) {
+            facets = data.data;
+            populatePantheonOptions();
+            updateFacetCounts();
+          }
+        })
+        .catch(() => {});
+    }
+
+    function populatePantheonOptions() {
+      pantheonSelect.innerHTML = '<option value="">All pantheons</option>' +
+        facets.pantheons.map(p => `<option value="${p.id}">${PANTHEON_LABELS[p.id] || p.id} (${p.count})</option>`).join('');
+      pantheonSelect.value = filters.pantheon;
+    }
+
+    function updateFacetCounts() {
+      const tierMap = new Map(facets.tiers.map(t => [t.id, t.count]));
+      tierFiltersEl.querySelectorAll('[data-tier]').forEach(btn => {
+        const count = tierMap.get(btn.dataset.tier);
+        if (count !== undefined) {
+          btn.innerHTML = `${btn.textContent.split(' ')[0]} ${btn.dataset.tier === 'dual' ? 'Tier' : ''} <span class="cn-count">${count.toLocaleString()}</span>`;
+        }
+      });
+    }
+
+    async function handleInput() {
+      const val = qInput.value.trim();
+      searchClear.classList.toggle('visible', val.length > 0);
+      if (val.length < 2) {
+        hideAutocomplete();
+        return;
+      }
+      await fetchAutocomplete(val);
+    }
+
+    async function fetchAutocomplete(q) {
+      try {
+        const res = await fetch(`${API_BASE}/api/v1/autocomplete?q=${encodeURIComponent(q)}&limit=8`);
+        const data = await res.json();
+        const items = data.data?.items || [];
+        autocompleteItems = items;
+        autocompleteIndex = -1;
+        if (items.length) {
+          renderAutocomplete(items);
+        } else {
+          hideAutocomplete();
+        }
+      } catch (e) {
+        hideAutocomplete();
+      }
+    }
+
+    function renderAutocomplete(items) {
+      autocompleteEl.innerHTML = items.map((item, i) => `
+        <div class="cn-autocomplete-item" data-index="${i}" role="option">
+          <div class="cn-ac-icon">${item.pantheonEmoji || 'Ψ'}</div>
+          <div class="cn-ac-main">
+            <div class="cn-ac-title">${escapeHtml(item.unicode)} <span style="color:var(--cn-text-muted);font-weight:400;">(${escapeHtml(item.ascii)})</span></div>
+            <div class="cn-ac-sub">${escapeHtml(item.pantheonLabel || '')} · ${escapeHtml(item.tierLabel || '')}</div>
+          </div>
+        </div>
+      `).join('');
+      autocompleteEl.classList.add('visible');
+      autocompleteEl.querySelectorAll('.cn-autocomplete-item').forEach(el => {
+        el.addEventListener('click', () => {
+          qInput.value = autocompleteItems[el.dataset.index].unicode;
+          hideAutocomplete();
+          doSearch();
+        });
+      });
+    }
+
+    function showAutocomplete() { autocompleteEl.classList.add('visible'); }
+    function hideAutocomplete() {
+      autocompleteEl.classList.remove('visible');
+      autocompleteIndex = -1;
+    }
+
+    function handleInputKeydown(e) {
+      if (e.key === 'Enter' && e.ctrlKey) {
+        e.preventDefault();
+        hideAutocomplete();
+        doSearch(false, true);
+        return;
+      }
+      if (e.key === 'Enter' && !autocompleteEl.classList.contains('visible')) {
+        e.preventDefault();
+        hideAutocomplete();
+        doSearch();
+        return;
+      }
+      if (!autocompleteEl.classList.contains('visible')) return;
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        autocompleteIndex = Math.min(autocompleteIndex + 1, autocompleteItems.length - 1);
+        highlightAutocomplete();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        autocompleteIndex = Math.max(autocompleteIndex - 1, -1);
+        highlightAutocomplete();
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (autocompleteIndex >= 0) {
+          qInput.value = autocompleteItems[autocompleteIndex].unicode;
+          hideAutocomplete();
+          doSearch();
+        } else {
+          hideAutocomplete();
+          doSearch();
+        }
+      } else if (e.key === 'Escape') {
+        hideAutocomplete();
+      }
+    }
+
+    function highlightAutocomplete() {
+      const items = autocompleteEl.querySelectorAll('.cn-autocomplete-item');
+      items.forEach((el, i) => el.classList.toggle('active', i === autocompleteIndex));
+      if (autocompleteIndex >= 0) items[autocompleteIndex].scrollIntoView({ block: 'nearest' });
+    }
+
+    async function doSearch(append = false, oracleMode = false) {
       const q = qInput.value.trim();
-      if (!q) return;
-      currentQ = q;
-      if (!append) {
-        currentCursor = null;
-        resultsEl.innerHTML = '<div class="empty"><div class="empty-title">Searching…</div></div>';
+      if (!q && !append) {
+        resultsEl.innerHTML = '';
         loadMoreBtn.style.display = 'none';
-        sidebarEl.style.display = 'none';
+        sidebarEl.innerHTML = '';
+        statusText.textContent = 'Enter a query to search the Unicode web.';
+        return;
+      }
+      if (!append) {
+        currentQ = q;
+        currentCursor = null;
+        resultsEl.innerHTML = oracleMode
+          ? `<div class="cn-oracle-loading">The Oracle is consulting the Codex…</div>`
+          : `
+          <div class="cn-empty">
+            <div class="cn-empty-icon">✦</div>
+            <div class="cn-empty-title">Consulting the Codex…</div>
+          </div>
+        `;
+        loadMoreBtn.style.display = 'none';
+        sidebarEl.innerHTML = '';
         spellEl.style.display = 'none';
       }
       isLoading = true;
-      statusText.textContent = append ? 'Loading more…' : `Searching ${currentVertical}…`;
+      statusText.textContent = append ? 'Loading more…' : (oracleMode ? 'Consulting the Oracle…' : `Searching ${currentVertical}…`);
+
+      if (abortController) abortController.abort();
+      abortController = new AbortController();
 
       const params = new URLSearchParams();
-      params.set('q', q);
-      params.set('vertical', currentVertical);
+      params.set('q', currentQ);
+      params.set('vertical', oracleMode ? 'lore' : currentVertical);
+      if (oracleMode) params.set('oracle', 'true');
       params.set('limit', '20');
+      params.set('sort', filters.sort);
       if (append && currentCursor) params.set('cursor', currentCursor);
+      if (filters.pantheon) params.set('pantheon', filters.pantheon);
+      if (filters.tier) params.set('tier', filters.tier);
+      if (filters.hasSite) params.set('hasSite', 'true');
+      if (filters.unicodeOnly) params.set('unicodeOnly', 'true');
+
+      updateUrl(params);
 
       try {
         const headers = { 'Content-Type': 'application/json' };
         if (sessionToken) headers['x-session-token'] = sessionToken;
-        const res = await fetch(`${API_BASE}/api/search/v2?${params}`, { headers });
+        const res = await fetch(`${API_BASE}/api/search/v2?${params}`, {
+          headers,
+          signal: abortController.signal,
+        });
         const data = await res.json();
         if (data.sessionToken) {
           sessionToken = data.sessionToken;
@@ -350,23 +840,71 @@
         }
         render(data, append);
       } catch (e) {
-        if (!append) resultsEl.innerHTML = `<div class="empty"><div class="empty-title">Error</div><div>${escapeHtml(e.message)}</div></div>`;
+        if (e.name === 'AbortError') return;
+        if (!append) {
+          resultsEl.innerHTML = `
+            <div class="cn-empty">
+              <div class="cn-empty-icon">⚠</div>
+              <div class="cn-empty-title">The Codex is silent</div>
+              <div class="cn-empty-sub">${escapeHtml(e.message)}</div>
+            </div>
+          `;
+        }
       } finally {
         isLoading = false;
         statusText.textContent = currentQ ? `Results for “${escapeHtml(currentQ)}”` : 'Enter a query.';
       }
     }
 
+    function updateUrl(params) {
+      const url = new URL(location.href);
+      url.search = params.toString();
+      history.replaceState(null, '', url.toString());
+    }
+
+    let oracleModeActive = false;
+
     function render(data, append) {
       timingText.textContent = data.timing ? `${data.timing}s` : '';
       currentCursor = data.pagination?.nextCursor || null;
       loadMoreBtn.style.display = data.pagination?.hasMore ? 'block' : 'none';
 
+      // Update vertical counts
+      const counts = data.resultCounts || {};
+      VERTICALS.forEach(v => {
+        const badge = document.getElementById(`count-${v.id}`);
+        if (badge) {
+          const c = counts[v.id];
+          badge.textContent = c !== undefined ? ` ${c.toLocaleString()}` : '';
+        }
+      });
+
+      // Update facets if present
+      if (data.facets) {
+        facets = data.facets;
+        populatePantheonOptions();
+        updateFacetCounts();
+      }
+
       if (data.spellCorrection) {
-        spellEl.innerHTML = `Did you mean: <a onclick="searchFor('${escapeHtml(data.spellCorrection)}')">${escapeHtml(data.spellCorrection)}</a>?`;
+        spellEl.innerHTML = `Did you mean: <a href="#" onclick="searchFor('${escapeHtml(data.spellCorrection)}');return false;">${escapeHtml(data.spellCorrection)}</a>?`;
         spellEl.style.display = 'block';
       } else {
         spellEl.style.display = 'none';
+      }
+
+      if (data.confusableAnalysis) {
+        const ca = data.confusableAnalysis;
+        confusableEl.innerHTML = `
+          <span class="cn-confusable-icon">⚠</span>
+          <div>
+            <strong>Possible lookalike characters detected</strong>
+            <span>Your query contains characters that look like Latin letters but may be from another script. Canonical fold: <code>${escapeHtml(ca.canonical)}</code></span>
+          </div>
+        `;
+        confusableEl.style.display = 'flex';
+      } else {
+        confusableEl.style.display = 'none';
       }
 
       let html = '';
@@ -381,10 +919,10 @@
 
       if (currentVertical === 'all') {
         const sets = data.results || {};
-        if (sets.sites?.results?.length) html += `<h4 style="margin:1.2rem 0 0.6rem;color:var(--text-muted);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;">Sites</h4>` + sets.sites.results.map(renderSite).join('');
-        if (sets.domains?.results?.length) html += `<h4 style="margin:1.2rem 0 0.6rem;color:var(--text-muted);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;">Domains</h4>` + sets.domains.results.map(renderDomain).join('');
-        if (sets.lore?.results?.length) html += `<h4 style="margin:1.2rem 0 0.6rem;color:var(--text-muted);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;">Lore</h4>` + sets.lore.results.map(renderLore).join('');
-        if (sets.images?.results?.length) html += `<h4 style="margin:1.2rem 0 0.6rem;color:var(--text-muted);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;">Images</h4>` + renderImageGrid(sets.images.results);
+        if (sets.sites?.results?.length) html += `<h3 class="cn-section-title">Sites</h3>` + sets.sites.results.map(renderSite).join('');
+        if (sets.domains?.results?.length) html += `<h3 class="cn-section-title">Domains</h3>` + sets.domains.results.map(renderDomain).join('');
+        if (sets.lore?.results?.length) html += `<h3 class="cn-section-title">Lore</h3>` + sets.lore.results.map(renderLore).join('');
+        if (sets.images?.results?.length) html += `<h3 class="cn-section-title">Images</h3>` + renderImageGrid(sets.images.results);
       } else {
         const set = data.results?.[currentVertical];
         if (set?.results?.length) {
@@ -398,7 +936,13 @@
       }
 
       if (!html) {
-        html = `<div class="empty"><div class="empty-title">No results</div><div>Try a broader query or another vertical.</div></div>`;
+        html = `
+          <div class="cn-empty">
+            <div class="cn-empty-icon">◈</div>
+            <div class="cn-empty-title">No entries found</div>
+            <div class="cn-empty-sub">Try a broader query, remove filters, or switch verticals.</div>
+          </div>
+        `;
       }
 
       if (append) {
@@ -409,149 +953,197 @@
         resultsEl.innerHTML = html;
       }
 
+      if (window.PunyCodexEffects) {
+        window.PunyCodexEffects.initSpotlight('.cn-card');
+        window.PunyCodexEffects.initStagger('.cn-card', 0.04);
+      }
+
       renderSidebar(data.related || [], data.trending || []);
     }
 
     function renderInstantAnswer(ia) {
       let body = '';
+      let panelClass = 'cn-panel-gold';
       if (ia.type === 'convert') {
-        body = `<div>Unicode: <span class="code">${escapeHtml(ia.unicode)}</span></div>
-                <div style="margin-top:0.5rem">Punycode: <span class="code">${escapeHtml(ia.punycode)}</span></div>`;
+        body = `<div class="cn-card-body">Unicode: <span class="cn-code">${escapeHtml(ia.unicode)}</span></div>
+                <div class="cn-card-body" style="margin-top:0.5rem">Punycode: <span class="cn-code">${escapeHtml(ia.punycode)}</span></div>`;
       } else if (ia.type === 'availability') {
-        body = `<div class="domain-list">${ia.domains.map(d => `
-          <div class="domain-row">
-            <span>${escapeHtml(d.unicode || d.ascii)} — ${escapeHtml(d.domain)}</span>
-            <span style="color:var(--available);text-transform:capitalize">${escapeHtml(d.status)}</span>
+        body = `<div>${ia.domains.map(d => `
+          <div class="cn-domain-row">
+            <div>
+              <div class="cn-domain-name">${escapeHtml(d.unicode || d.ascii)}</div>
+              <div class="cn-domain-ascii">${escapeHtml(d.domain)}</div>
+            </div>
+            <span class="cn-badge cn-badge-available">${escapeHtml(d.status)}</span>
           </div>`).join('')}</div>`;
+        panelClass = 'cn-panel-green';
       } else if (ia.type === 'tier-system') {
-        body = `<p>${escapeHtml(ia.body)}</p><a href="${ia.link}" style="color:var(--link-blue)">Read more →</a>`;
+        body = `<p class="cn-card-body">${escapeHtml(ia.body)}</p><a href="${ia.link}" style="color:var(--cn-gold);font-size:0.85rem">Read more →</a>`;
       }
-      return `<div class="card instant-answer"><h3>${escapeHtml(ia.title)}</h3>${body}</div>`;
+      return `<div class="cn-card ${panelClass}">
+        <div class="cn-card-accent"></div>
+        <div class="cn-card-title">${escapeHtml(ia.title)}</div>
+        ${body}
+      </div>`;
     }
 
     function renderOracle(oracle) {
-      return `<div class="card oracle-card">
-        <h3>Oracle Answer</h3>
-        <p>${escapeHtml(oracle.answer)}</p>
-        ${oracle.citations?.length ? `<div class="citations">${oracle.citations.map(c => `<span class="citation">${escapeHtml(c.label || c)}</span>`).join('')}</div>` : ''}
-        ${oracle.followUps?.length ? `<div class="followups">${oracle.followUps.map(f => `<button onclick="searchFor('${escapeHtml(f)}')">${escapeHtml(f)}</button>`).join('')}</div>` : ''}
+      const citations = (oracle.citations || [])
+        .map((c) => {
+          const label = escapeHtml(c.label || c);
+          const url = c.url ? escapeHtml(c.url) : '#';
+          const isExternal = url.startsWith('http');
+          return `<a href="${url}" class="cn-citation" ${isExternal ? 'target="_blank" rel="noopener"' : ''}>${label}</a>`;
+        })
+        .join('');
+      const followUps = (oracle.followUps || [])
+        .map((f) => `<button class="cn-followup" onclick="searchFor('${escapeHtml(f)}')">${escapeHtml(f)}</button>`)
+        .join('');
+      const intentBadge = oracle.intent ? `<span class="cn-meta-tag">${escapeHtml(oracle.intent)}</span>` : '';
+      return `<div class="cn-card cn-panel-blue cn-oracle-answer">
+        <div class="cn-card-accent"></div>
+        <div class="cn-card-title">Oracle Answer ${intentBadge}</div>
+        <div class="cn-card-body">${oracle.answer}</div>
+        ${citations ? `<div class="cn-citations">${citations}</div>` : ''}
+        ${followUps ? `<div class="cn-followups"><span class="cn-followup-label">Ask follow-up:</span>${followUps}</div>` : ''}
       </div>`;
     }
 
     function renderSite(r) {
-      const tierClass = r.tier === 'dual' ? 'tier-dual' : r.tier === '1' ? 'tier-1' : 'tier-2';
-      return `<div class="card result-item" data-site-id="${r.id}">
-        <a href="${escapeHtml(r.url)}" target="_blank" rel="noopener" class="title">${escapeHtml(r.title || r.domain)}</a>
-        <div class="url">${escapeHtml(r.punycode || r.domain)}</div>
-        <div class="snippet">${r.snippet || r.description || ''}</div>
-        <div class="meta">
-          ${r.pantheon ? `<span class="badge">${escapeHtml(r.pantheon)}</span>` : ''}
-          ${r.tier ? `<span class="badge ${tierClass}">${r.tier === 'dual' ? 'Dual' : 'Tier ' + escapeHtml(r.tier)}</span>` : ''}
-          ${r.isFlagship ? `<span class="badge" style="color:var(--gold)">👑 Flagship</span>` : ''}
-          ${r.lastCrawled ? `<span class="badge">${new Date(r.lastCrawled).toLocaleDateString()}</span>` : ''}
-        </div>
-        <div class="feedback">
-          <button onclick="sendFeedback(${r.id}, true)">👍 Helpful</button>
-          <button onclick="sendFeedback(${r.id}, false)">👎 Not helpful</button>
-        </div>
-      </div>`;
+      const url = escapeHtml(r.url || `https://${r.punycode}`);
+      const image = r.ogImagePath ? `<img src="${escapeHtml(r.ogImagePath)}" alt="" class="cn-result-thumb" loading="lazy" onerror="this.style.display='none'">` : '';
+      const meta = [
+        r.pantheon ? `<span class="cn-meta-tag">${escapeHtml(r.pantheon)}</span>` : '',
+        r.tier ? `<span class="cn-meta-tag cn-tier-${r.tier}">${escapeHtml(r.tierLabel || r.tier)}</span>` : '',
+        r.isFlagship ? `<span class="cn-meta-tag cn-flagship">Flagship</span>` : '',
+      ].filter(Boolean).join('');
+      return `<article class="cn-card cn-result-card">
+        <a href="${url}" target="_blank" rel="noopener" class="cn-result-link">
+          ${image}
+          <div class="cn-result-body">
+            <div class="cn-result-title">${escapeHtml(r.title || r.domain)}</div>
+            <div class="cn-result-url">${escapeHtml(r.punycode || r.domain)}</div>
+            <div class="cn-result-snippet">${r.snippet || escapeHtml(r.description || '')}</div>
+            <div class="cn-result-meta">${meta}</div>
+          </div>
+        </a>
+      </article>`;
     }
 
     function renderDomain(r) {
-      const links = r.registrarLinks || {};
-      return `<div class="card domain-card">
-        <div class="domain-header">
-          <span class="domain-name">${escapeHtml(r.domain)}</span>
-          <span style="color:var(--available);font-size:0.8rem;text-transform:capitalize">${escapeHtml(r.status)}</span>
+      const statusClass = r.status === 'available' ? 'cn-badge-available' : r.status === 'registered' ? 'cn-badge-leased' : '';
+      const registrarLinks = r.registrarLinks ? Object.entries(r.registrarLinks).map(([name, link]) =>
+        `<a href="${escapeHtml(link)}" target="_blank" rel="noopener" class="cn-registrar-link">${escapeHtml(name)}</a>`
+      ).join('') : '';
+      const puny = escapeHtml(r.punycode);
+      const unicode = escapeHtml(r.unicode || r.ascii);
+      return `<article class="cn-card cn-domain-card">
+        <div class="cn-domain-row">
+          <div class="cn-domain-info">
+            <div class="cn-domain-name">${unicode}</div>
+            <div class="cn-domain-ascii">
+              <span class="cn-domain-label">ASCII</span>${escapeHtml(r.domain)}
+              <button class="cn-copy-btn" onclick="copyText('${escapeHtml(r.domain)}')" title="Copy ASCII domain">⎘</button>
+            </div>
+            <div class="cn-domain-punycode">
+              <span class="cn-domain-label">Punycode</span>${puny}
+              <button class="cn-copy-btn" onclick="copyText('${puny}')" title="Copy punycode">⎘</button>
+            </div>
+            ${r.meaning ? `<div class="cn-result-snippet">${escapeHtml(r.meaning)}</div>` : ''}
+          </div>
+          <div class="cn-domain-actions">
+            <span class="cn-badge ${statusClass}">${escapeHtml(r.status)}</span>
+            <div class="cn-registrar-links">${registrarLinks}</div>
+            <a href="/sites/${r.entryId}/" class="cn-domain-temple">Temple →</a>
+          </div>
         </div>
-        <div class="url">${escapeHtml(r.unicode || r.ascii)} · ${escapeHtml(r.meaning || '')}</div>
-        <div class="registrar-links">
-          ${Object.entries(links).map(([name, url]) => `<a href="${escapeHtml(url)}" target="_blank" rel="noopener">${escapeHtml(name)}</a>`).join('')}
-        </div>
-      </div>`;
+      </article>`;
     }
 
+    window.copyText = function(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        // brief toast could go here
+      }).catch(() => {});
+    };
+
     function renderLore(r) {
-      return `<div class="card lore-card">
-        <h4>${escapeHtml(r.entryId)}</h4>
-        <p>${escapeHtml(r.mythology || r.etymology || r.pronunciation?.approximation || 'Scholarly lore available.')}</p>
-        <a href="${r.link}" style="color:var(--link-blue);font-size:0.8rem">Read full lore →</a>
-      </div>`;
+      const summary = r.mythology || r.etymology || r.archaeology || '';
+      const truncated = summary.length > 220 ? summary.slice(0, 220) + '…' : summary;
+      return `<article class="cn-card cn-lore-card">
+        <a href="${r.link}" class="cn-result-link">
+          <div class="cn-result-title">${escapeHtml(r.entryId)}</div>
+          <div class="cn-result-snippet">${escapeHtml(truncated)}</div>
+          <div class="cn-result-meta">
+            ${r.pronunciation ? `<span class="cn-meta-tag">Pronunciation</span>` : ''}
+            ${r.symbols?.length ? `<span class="cn-meta-tag">Symbols</span>` : ''}
+          </div>
+        </a>
+      </article>`;
     }
 
     function renderApi(r) {
-      return `<div class="card api-card">
-        <span class="method">${escapeHtml(r.method)}</span>
-        <span class="path">${escapeHtml(r.path)}</span>
-        <p style="color:var(--text-dim);font-size:0.85rem;margin-top:0.3rem">${escapeHtml(r.description)}</p>
-      </div>`;
+      return `<article class="cn-card cn-api-card">
+        <div class="cn-api-method">${escapeHtml(r.method)}</div>
+        <div class="cn-api-path">${escapeHtml(r.path)}</div>
+        <div class="cn-result-snippet">${escapeHtml(r.description)}</div>
+        <a href="/api/v1/docs" class="cn-domain-temple">API Docs →</a>
+      </article>`;
     }
 
     function renderImageGrid(images) {
-      return `<div class="image-grid">${images.map(r => `
-        <a href="${escapeHtml(r.link)}" target="_blank" rel="noopener" title="${escapeHtml(r.title || r.domain)}">
-          <img src="${escapeHtml(r.imageUrl || r.faviconUrl)}" alt="" loading="lazy" onerror="this.parentElement.style.display='none'">
-          <div class="img-label">${escapeHtml(r.domain || r.unicode || '')}</div>
-        </a>
-      `).join('')}</div>`;
+      return `<div class="cn-image-grid">${images.map(r => {
+        const src = r.imageUrl || r.faviconUrl;
+        return `<a href="${escapeHtml(r.link || '#')}" target="_blank" rel="noopener" class="cn-image-item" title="${escapeHtml(r.domain || r.unicode || '')}">
+          ${src ? `<img src="${escapeHtml(src)}" alt="" loading="lazy" onerror="this.style.display='none'">` : '<div class="cn-image-placeholder">Ψ</div>'}
+          <span class="cn-image-label">${escapeHtml(r.unicode || r.domain || r.title || '')}</span>
+        </a>`;
+      }).join('')}</div>`;
     }
 
     function renderHistory(r) {
-      return `<div class="history-row">
-        <a href="${escapeHtml(r.link)}">${escapeHtml(r.query)}</a>
-        <span style="color:var(--text-muted);font-size:0.75rem">${new Date(r.timestamp).toLocaleString()}</span>
-      </div>`;
+      return `<article class="cn-card cn-history-card">
+        <a href="/search-v2.html?q=${encodeURIComponent(r.query)}" class="cn-result-link">
+          <div class="cn-result-title">${escapeHtml(r.query)}</div>
+          <div class="cn-result-snippet">${escapeHtml(r.mode || '')} · ${escapeHtml(r.timestamp || '')}</div>
+        </a>
+      </article>`;
     }
 
     function renderSidebar(related, trending) {
       let html = '';
       if (related.length) {
-        html += `<h4>Related</h4><div class="chip-row" style="margin-bottom:1.2rem">${related.map(r =>
-          `<button class="chip" onclick="searchFor('${escapeHtml(r.unicode || r.ascii)}')">${escapeHtml(r.unicode || r.ascii)}</button>`
-        ).join('')}</div>`;
+        html += `<div class="cn-card cn-sidebar-card">
+          <div class="cn-card-title">Related</div>
+          <div class="cn-chip-list">${related.map(q => `<button class="cn-chip" onclick="searchFor('${escapeHtml(q)}')">${escapeHtml(q)}</button>`).join('')}</div>
+        </div>`;
       }
       if (trending.length) {
-        html += `<h4>Trending</h4><div class="chip-row">${trending.map(t =>
-          `<button class="chip" onclick="searchFor('${escapeHtml(t.query)}')">${escapeHtml(t.query)}</button>`
-        ).join('')}</div>`;
+        html += `<div class="cn-card cn-sidebar-card">
+          <div class="cn-card-title">Trending</div>
+          <div class="cn-chip-list">${trending.map(t => `<button class="cn-chip" onclick="searchFor('${escapeHtml(t.query)}')">${escapeHtml(t.query)}</button>`).join('')}</div>
+        </div>`;
       }
-      if (html) {
-        sidebarEl.innerHTML = html;
-        sidebarEl.style.display = 'block';
-      }
+      sidebarEl.innerHTML = html;
     }
 
-    async function sendFeedback(siteId, helpful) {
-      if (!sessionToken || !currentQ) return;
-      try {
-        await fetch('/api/search/feedback', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'x-session-token': sessionToken },
-          body: JSON.stringify({ query: currentQ, siteId, helpful }),
-        });
-      } catch (e) {
-        console.error('feedback failed', e);
-      }
+    function escapeHtml(str) {
+      if (str == null) return '';
+      return String(str).replace(/[&<>'"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>', '&gt;', "'": '&#39;', '"': '&quot;' }[c]));
     }
 
-    function searchFor(term) {
-      qInput.value = term;
-      const url = new URL(location.href);
-      url.searchParams.set('q', term);
-      url.searchParams.set('vertical', currentVertical);
-      history.pushState({}, '', url);
+    function debounce(fn, ms) {
+      let t;
+      return (...args) => {
+        clearTimeout(t);
+        t = setTimeout(() => fn(...args), ms);
+      };
+    }
+
+    window.searchFor = function(q) {
+      qInput.value = q;
+      searchClear.classList.toggle('visible', q.length > 0);
       doSearch();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    searchBtn.addEventListener('click', () => doSearch());
-    qInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') doSearch();
-    });
-    loadMoreBtn.addEventListener('click', () => doSearch(true));
-
-    window.searchFor = searchFor;
-    window.sendFeedback = sendFeedback;
+    };
 
     init();
   </script>

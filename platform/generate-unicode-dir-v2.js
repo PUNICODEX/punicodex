@@ -3,6 +3,7 @@
  * Builds ~4,500 curated Unicode characters.
  */
 const fs = require('node:fs');
+const path = require('node:path');
 
 function individual(cplist, category, categoryLabel, keywords = '') {
   return cplist.map(([cp, name]) => {
@@ -163,6 +164,44 @@ ALL.push(
     'latin',
     'Latin & Accents',
     'accent diacritic macron breve caron acute grave circumflex umlaut tilde cedilla stroke ligature phonetic ipa'
+  )
+);
+
+// Extra Latin characters used by the PUNYCODEX lexicon but missed by the
+// broad ranges above (e.g. code points skipped for combining marks, rare
+// scholarly letters, Egyptological yod, Pinyin carons, IPA helpers).
+ALL.push(
+  ...individual(
+    [
+      [0x00de, 'Latin Thorn'],
+      [0x00fe, 'Latin thorn'],
+      [0x011c, 'Latin G-circumflex'],
+      [0x011d, 'Latin g-circumflex'],
+      [0x0176, 'Latin Y-circumflex'],
+      [0x0177, 'Latin y-circumflex'],
+      [0x01ce, 'Latin a-caron (Pinyin)'],
+      [0x01d0, 'Latin i-caron (Pinyin)'],
+      [0x01d2, 'Latin o-caron (Pinyin)'],
+      [0x01d4, 'Latin u-caron (Pinyin)'],
+      [0x01da, 'Latin u-diaeresis-caron (Pinyin)'],
+      [0x01ea, 'Latin O-ogonek'],
+      [0x01eb, 'Latin o-ogonek'],
+      [0x0259, 'Latin schwa'],
+      [0x02bf, 'Modifier letter left half ring'],
+      [0x1e47, 'Latin n-dot-below'],
+      [0x1e48, 'Latin N-dot-below'],
+      [0x1e63, 'Latin s-dot-below'],
+      [0x1e64, 'Latin S-dot-below'],
+      [0x1e5b, 'Latin r-dot-below'],
+      [0x1e5c, 'Latin R-dot-below'],
+      [0xa722, 'Latin Egyptological Alef'],
+      [0xa723, 'Latin egyptological alef'],
+      [0xa724, 'Latin Egyptological Ain'],
+      [0xa725, 'Latin egyptological ain'],
+    ],
+    'latin',
+    'Latin & Accents',
+    'accent diacritic macron breve caron acute grave circumflex umlaut tilde cedilla stroke ligature phonetic ipa egyptological'
   )
 );
 
@@ -3695,6 +3734,36 @@ ALL.push(...range(0x1ee4, 0x1eee, 'latin', 'Latin Extended', 'Latin', 'latin ext
 ALL.push(...range(0x1ef0, 0x1ef2, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
 ALL.push(...range(0x1ef4, 0x1ef8, 'latin', 'Latin Extended', 'Latin', 'latin extended accent'));
 
+// Fill scholarly Latin blocks that the gap-ridden ranges above miss.
+// These ranges intentionally overlap with earlier individual entries so that
+// no code point is skipped; duplicates are removed below.
+ALL.push(...range(0x0100, 0x017f, 'latin', 'Latin Extended-A', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x0180, 0x024f, 'latin', 'Latin Extended-B', 'Latin', 'latin extended accent'));
+ALL.push(...range(0x0250, 0x02af, 'latin', 'IPA Extensions', 'Latin', 'ipa phonetic'));
+ALL.push(
+  ...range(0x02b0, 0x02ff, 'latin', 'Spacing Modifier Letters', 'Latin', 'modifier letter phonetic')
+);
+ALL.push(
+  ...range(0x1e00, 0x1eff, 'latin', 'Latin Extended Additional', 'Latin', 'latin extended accent')
+);
+ALL.push(...range(0x2c60, 0x2c7f, 'latin', 'Latin Extended-C', 'Latin', 'latin extended accent'));
+ALL.push(
+  ...range(0xa720, 0xa7ff, 'latin', 'Latin Extended-D', 'Latin', 'latin extended egyptological')
+);
+
+// Remove duplicate characters while keeping the first (best-named) occurrence.
+{
+  const seen = new Set();
+  const deduped = [];
+  for (const entry of ALL) {
+    if (seen.has(entry.char)) continue;
+    seen.add(entry.char);
+    deduped.push(entry);
+  }
+  ALL.length = 0;
+  ALL.push(...deduped);
+}
+
 // Add index ID to each entry for fast lookup
 ALL.forEach((e, i) => {
   e.id = i;
@@ -3746,7 +3815,8 @@ if (typeof module !== 'undefined') {
 }
 `;
 
-fs.writeFileSync('../mobile/shared/unicode-dir.js', output, 'utf8');
+const outPath = path.join(__dirname, '..', 'mobile', 'shared', 'unicode-dir.js');
+fs.writeFileSync(outPath, output, 'utf8');
 console.log(
   `Generated mobile/shared/unicode-dir.js with ${ALL.length.toLocaleString()} characters across ${Object.keys(catCounts).length} categories.`
 );

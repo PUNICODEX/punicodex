@@ -1,10 +1,13 @@
 /**
- * Query Intelligence Engine (Phase 6)
+ * Query Intelligence Engine (Phase 6.5)
  * Spell correction, "Did you mean?", related searches, autocomplete.
+ *
+ * Now Unicode-aware: diacritic-stripped search keys, Greek-latinized fallback,
+ * and SQL-backed fuzzy matching instead of loading the entire lexicon.
  */
 const Database = require('better-sqlite3');
-const _path = require('node:path');
 const { getDbPath } = require('../db/db');
+const { normalizeQuery, toSearchKey, confusableRisk } = require('./query-normalize');
 
 const DB_PATH = getDbPath();
 let db;
@@ -46,35 +49,96 @@ function similarity(a, b) {
 }
 
 /**
+ * Find candidate entries using the precomputed search_key column, FTS,
+ * and a bounded SQL LIKE sweep. Much faster than loading all rows.
+ */
+function findEntryCandidates(q, limit = 20) {
+  const db = getDb();
+  const norm = normalizeQuery(q);
+  const canonical = norm.canonical;
+  const greekKey = norm.keys.find((k) => k !== canonical) || canonical;
+  const like = `%${canonical}%`;
+  const greekLike = `%${greekKey}%`;
+
+  // 1. Exact search_key match (fast, indexed)
+  const exact = db
+    .prepare(
+      `SELECT id, ascii, unicode, meaning, pantheon, tier
+       FROM entries
+       WHERE search_key = ?
+       LIMIT ?`
+    )
+    .all(canonical, limit);
+
+  // 2. Prefix match on search_key / ascii / unicode
+  const prefix =
+    canonical.length >= 2
+      ? db
+          .prepare(
+            `SELECT id, ascii, unicode, meaning, pantheon, tier
+         FROM entries
+         WHERE search_key LIKE ? OR LOWER(ascii) LIKE ? OR LOWER(unicode) LIKE ?
+         ORDER BY tier = 'dual' DESC, tier = '1' DESC, has_flagship DESC, ascii ASC
+         LIMIT ?`
+          )
+          .all(`${canonical}%`, `${canonical}%`, `${canonical}%`, limit)
+      : [];
+
+  // 3. Substring / Greek-latinized fallback
+  const fuzzy = db
+    .prepare(
+      `SELECT id, ascii, unicode, meaning, pantheon, tier
+       FROM entries
+       WHERE search_key LIKE ? OR LOWER(ascii) LIKE ? OR LOWER(unicode) LIKE ?
+          OR search_key LIKE ? OR LOWER(ascii) LIKE ? OR LOWER(unicode) LIKE ?
+       ORDER BY tier = 'dual' DESC, tier = '1' DESC, has_flagship DESC, ascii ASC
+       LIMIT ?`
+    )
+    .all(like, like, like, greekLike, greekLike, greekLike, limit);
+
+  // 4. FTS5 for meaning/domain/pantheon matches
+  const ftsTokens = canonical
+    .split(/\s+/)
+    .filter((t) => t.length >= 2)
+    .map((t) => `"${t.replace(/"/g, '""')}"*`)
+    .join(' ');
+  const fts = ftsTokens
+    ? db
+        .prepare(
+          `SELECT e.id, e.ascii, e.unicode, e.meaning, e.pantheon, e.tier
+         FROM entries e
+         JOIN entries_fts fts ON e.rowid = fts.rowid
+         WHERE entries_fts MATCH ?
+         ORDER BY e.tier = 'dual' DESC, e.tier = '1' DESC, e.has_flagship DESC
+         LIMIT ?`
+        )
+        .all(ftsTokens, limit)
+    : [];
+
+  // Deduplicate and preserve priority order
+  const seen = new Set();
+  const out = [];
+  for (const row of [...exact, ...prefix, ...fuzzy, ...fts]) {
+    if (seen.has(row.id)) continue;
+    seen.add(row.id);
+    out.push(row);
+  }
+  return out.slice(0, limit);
+}
+
+/**
  * Spell correction / "Did you mean?"
- * Finds the closest matching entry or site for a given query.
+ * Uses bounded SQL candidates + lightweight Levenshtein scoring.
  */
 function didYouMean(q, limit = 3) {
   const db = getDb();
   const query = q.trim().toLowerCase();
   if (!query || query.length < 2) return [];
 
-  // Get candidates from lexicon
-  const entries = db
-    .prepare(`
-    SELECT id, ascii, unicode, meaning, pantheon, tier
-    FROM entries
-    WHERE ascii IS NOT NULL
-  `)
-    .all();
-
-  // Get candidates from indexed sites
-  const sites = db
-    .prepare(`
-    SELECT domain, punycode, title
-    FROM indexed_sites
-    WHERE status = 'active'
-  `)
-    .all();
-
   const candidates = [];
 
-  for (const e of entries) {
+  // Lexicon candidates via SQL
+  for (const e of findEntryCandidates(q, 20)) {
     const ascii = (e.ascii || '').toLowerCase();
     const unicode = (e.unicode || '').toLowerCase();
     const meaning = (e.meaning || '').toLowerCase();
@@ -82,34 +146,27 @@ function didYouMean(q, limit = 3) {
     let score = 0;
     let matchedField = '';
 
-    // Exact substring match gets high score
-    if (ascii.includes(query) || query.includes(ascii)) {
-      score = Math.max(score, similarity(query, ascii) * 0.9);
-      matchedField = 'ascii';
-    }
-    if (unicode.includes(query) || query.includes(unicode)) {
-      score = Math.max(score, similarity(query, unicode) * 0.95);
-      matchedField = 'unicode';
-    }
-    if (meaning.includes(query)) {
-      score = Math.max(score, similarity(query, meaning) * 0.7);
-      matchedField = 'meaning';
-    }
+    if (ascii === query || unicode === query) {
+      score = 1;
+      matchedField = unicode === query ? 'unicode' : 'ascii';
+    } else {
+      if (ascii.includes(query) || query.includes(ascii)) {
+        score = Math.max(score, similarity(query, ascii) * 0.9);
+        matchedField = 'ascii';
+      }
+      if (unicode.includes(query) || query.includes(unicode)) {
+        score = Math.max(score, similarity(query, unicode) * 0.95);
+        matchedField = 'unicode';
+      }
+      if (meaning.includes(query)) {
+        score = Math.max(score, similarity(query, meaning) * 0.7);
+        if (!matchedField) matchedField = 'meaning';
+      }
 
-    // Also check Levenshtein for typos
-    if (ascii.length > 0 && ascii !== query) {
-      const levScore = similarity(query, ascii);
-      if (levScore > 0.5) {
-        score = Math.max(score, levScore * 0.85);
-        if (!matchedField) matchedField = 'ascii';
-      }
-    }
-    if (unicode.length > 0 && unicode !== query) {
-      const levScore = similarity(query, unicode);
-      if (levScore > 0.5) {
-        score = Math.max(score, levScore * 0.9);
-        if (!matchedField) matchedField = 'unicode';
-      }
+      const levAscii = ascii.length > 0 ? similarity(query, ascii) : 0;
+      const levUnicode = unicode.length > 0 ? similarity(query, unicode) : 0;
+      if (levAscii > 0.55) score = Math.max(score, levAscii * 0.85);
+      if (levUnicode > 0.55) score = Math.max(score, levUnicode * 0.9);
     }
 
     if (score > 0.3) {
@@ -126,29 +183,36 @@ function didYouMean(q, limit = 3) {
     }
   }
 
+  // Site candidates (bounded SQL)
+  const like = `%${query}%`;
+  const sites = db
+    .prepare(
+      `SELECT domain, punycode, title
+       FROM indexed_sites
+       WHERE status = 'active'
+         AND (LOWER(domain) LIKE ? OR LOWER(punycode) LIKE ? OR LOWER(title) LIKE ?)
+       ORDER BY is_flagship DESC, quality_score DESC
+       LIMIT ?`
+    )
+    .all(like, like, like, 20);
+
   for (const s of sites) {
     const domain = (s.domain || '').toLowerCase();
     const punycode = (s.punycode || '').toLowerCase();
     const title = (s.title || '').toLowerCase();
 
     let score = 0;
-    if (domain.includes(query) || query.includes(domain)) {
+    if (domain === query || punycode === query) score = 0.95;
+    if (domain.includes(query) || query.includes(domain))
       score = Math.max(score, similarity(query, domain) * 0.8);
-    }
-    if (punycode.includes(query) || query.includes(punycode)) {
+    if (punycode.includes(query) || query.includes(punycode))
       score = Math.max(score, similarity(query, punycode) * 0.8);
-    }
-    if (title.includes(query)) {
-      score = Math.max(score, similarity(query, title) * 0.75);
-    }
+    if (title.includes(query)) score = Math.max(score, similarity(query, title) * 0.75);
 
-    // Levenshtein for typos
     const domainBase = domain.replace(/\.[^.]+$/, '');
     if (domainBase.length > 0 && domainBase !== query) {
       const levScore = similarity(query, domainBase);
-      if (levScore > 0.5) {
-        score = Math.max(score, levScore * 0.8);
-      }
+      if (levScore > 0.55) score = Math.max(score, levScore * 0.8);
     }
 
     if (score > 0.3) {
@@ -163,10 +227,8 @@ function didYouMean(q, limit = 3) {
     }
   }
 
-  // Sort by score descending
   candidates.sort((a, b) => b.score - a.score);
 
-  // Deduplicate by text
   const seen = new Set();
   const unique = [];
   for (const c of candidates) {
@@ -190,83 +252,77 @@ function relatedSearches(q, limit = 6) {
   const query = q.trim().toLowerCase();
   if (!query) return [];
 
-  // Find the best matching entry
-  const entries = db
-    .prepare(`
-    SELECT id, ascii, unicode, pantheon, tier, meaning
-    FROM entries
-    WHERE ascii IS NOT NULL
-  `)
-    .all();
+  const bestEntry = db
+    .prepare(
+      `SELECT id, ascii, unicode, pantheon, tier, meaning
+       FROM entries
+       WHERE LOWER(ascii) = ? OR LOWER(unicode) = ? OR search_key = ?
+       ORDER BY tier = 'dual' DESC, tier = '1' DESC, has_flagship DESC
+       LIMIT 1`
+    )
+    .get(query, query, toSearchKey(query));
 
-  let bestEntry = null;
-  let bestScore = 0;
-
-  for (const e of entries) {
-    const ascii = (e.ascii || '').toLowerCase();
-    const unicode = (e.unicode || '').toLowerCase();
-    let score = 0;
-    if (ascii === query || query.includes(ascii) || ascii.includes(query)) score = 1;
-    if (unicode === query || query.includes(unicode) || unicode.includes(query)) score = 1;
-    if (score > bestScore) {
-      bestScore = score;
-      bestEntry = e;
+  if (!bestEntry) {
+    const partial = db
+      .prepare(
+        `SELECT id, ascii, unicode, pantheon, tier, meaning
+         FROM entries
+         WHERE LOWER(ascii) LIKE ? OR LOWER(unicode) LIKE ? OR search_key LIKE ?
+         ORDER BY tier = 'dual' DESC, tier = '1' DESC, has_flagship DESC
+         LIMIT 1`
+      )
+      .get(`%${query}%`, `%${query}%`, `%${toSearchKey(query)}%`);
+    if (!partial) {
+      return db
+        .prepare(
+          `SELECT id, ascii, unicode, pantheon, meaning
+           FROM entries
+           WHERE ascii IS NOT NULL
+           ORDER BY RANDOM()
+           LIMIT ?`
+        )
+        .all(limit);
     }
   }
 
-  if (!bestEntry) {
-    // Fallback: return random diverse entries
-    return db
-      .prepare(`
-      SELECT id, ascii, unicode, pantheon, meaning
-      FROM entries
-      WHERE ascii IS NOT NULL
-      ORDER BY RANDOM()
-      LIMIT ?
-    `)
-      .all(limit);
-  }
-
+  const entry = bestEntry;
   const related = [];
 
-  // Same pantheon
   const samePantheon = db
-    .prepare(`
-    SELECT id, ascii, unicode, pantheon, meaning
-    FROM entries
-    WHERE pantheon = ? AND id != ?
-    ORDER BY RANDOM()
-    LIMIT ?
-  `)
-    .all(bestEntry.pantheon, bestEntry.id, Math.ceil(limit / 2));
+    .prepare(
+      `SELECT id, ascii, unicode, pantheon, meaning
+       FROM entries
+       WHERE pantheon = ? AND id != ?
+       ORDER BY has_flagship DESC, tier = 'dual' DESC, tier = '1' DESC, RANDOM()
+       LIMIT ?`
+    )
+    .all(entry.pantheon, entry.id, Math.ceil(limit / 2));
   related.push(...samePantheon);
 
-  // Same tier, different pantheon
   if (related.length < limit) {
     const sameTier = db
-      .prepare(`
-      SELECT id, ascii, unicode, pantheon, meaning
-      FROM entries
-      WHERE tier = ? AND pantheon != ? AND id != ?
-      ORDER BY RANDOM()
-      LIMIT ?
-    `)
-      .all(bestEntry.tier, bestEntry.pantheon, bestEntry.id, limit - related.length);
+      .prepare(
+        `SELECT id, ascii, unicode, pantheon, meaning
+         FROM entries
+         WHERE tier = ? AND pantheon != ? AND id != ?
+         ORDER BY has_flagship DESC, RANDOM()
+         LIMIT ?`
+      )
+      .all(entry.tier, entry.pantheon, entry.id, limit - related.length);
     related.push(...sameTier);
   }
 
-  // Fill with random if still short
   if (related.length < limit) {
-    const existingIds = related.map((r) => r.id).concat([bestEntry.id]);
+    const existingIds = related.map((r) => r.id).concat([entry.id]);
     const placeholders = existingIds.map(() => '?').join(',');
     const random = db
-      .prepare(`
-      SELECT id, ascii, unicode, pantheon, meaning
-      FROM entries
-      WHERE id NOT IN (${placeholders})
-      ORDER BY RANDOM()
-      LIMIT ?
-    `)
+      .prepare(
+        `SELECT id, ascii, unicode, pantheon, meaning
+         FROM entries
+         WHERE id NOT IN (${placeholders})
+         ORDER BY RANDOM()
+         LIMIT ?`
+      )
       .all(...existingIds, limit - related.length);
     related.push(...random);
   }
@@ -276,38 +332,56 @@ function relatedSearches(q, limit = 6) {
 
 /**
  * Autocomplete suggestions.
- * Returns prefix matches from lexicon + indexed sites.
+ * Returns prefix matches from lexicon + indexed sites, plus a small
+ * set of fuzzy candidates when the prefix is short or has no prefix hits.
  */
 function autocomplete(q, limit = 10) {
   const db = getDb();
   const prefix = q.trim().toLowerCase();
   if (!prefix || prefix.length < 1) return [];
 
+  const searchKey = toSearchKey(prefix);
   const like = `${prefix}%`;
+  const keyLike = `${searchKey}%`;
 
-  // Lexicon matches
+  // Lexicon prefix matches (Unicode-aware)
   const entries = db
-    .prepare(`
-    SELECT id, ascii, unicode, pantheon, tier
-    FROM entries
-    WHERE ascii LIKE ? OR unicode LIKE ?
-    ORDER BY tier = 'dual' DESC, tier = '1' DESC, ascii ASC
-    LIMIT ?
-  `)
-    .all(like, like, limit);
+    .prepare(
+      `SELECT id, ascii, unicode, pantheon, tier
+       FROM entries
+       WHERE search_key LIKE ? OR LOWER(ascii) LIKE ? OR LOWER(unicode) LIKE ?
+       ORDER BY tier = 'dual' DESC, tier = '1' DESC, has_flagship DESC, ascii ASC
+       LIMIT ?`
+    )
+    .all(keyLike, like, like, limit);
 
-  // Site matches (if we have room)
+  // Fuzzy fallback for short or misspelled prefixes
+  let fuzzy = [];
+  if (entries.length < limit && prefix.length >= 2) {
+    const fuzzyLike = `%${searchKey}%`;
+    fuzzy = db
+      .prepare(
+        `SELECT id, ascii, unicode, pantheon, tier
+         FROM entries
+         WHERE search_key LIKE ? AND search_key NOT LIKE ?
+         ORDER BY tier = 'dual' DESC, tier = '1' DESC, has_flagship DESC, ascii ASC
+         LIMIT ?`
+      )
+      .all(fuzzyLike, keyLike, limit - entries.length);
+  }
+
+  const siteLimit = limit - entries.length - fuzzy.length;
   const sites =
-    entries.length < limit
+    siteLimit > 0
       ? db
-          .prepare(`
-        SELECT domain, punycode, title
-        FROM indexed_sites
-        WHERE status = 'active' AND (domain LIKE ? OR punycode LIKE ? OR title LIKE ?)
-        ORDER BY is_flagship DESC, word_count DESC
-        LIMIT ?
-      `)
-          .all(like, like, like, limit - entries.length)
+          .prepare(
+            `SELECT domain, punycode, title
+             FROM indexed_sites
+             WHERE status = 'active' AND (domain LIKE ? OR punycode LIKE ? OR title LIKE ?)
+             ORDER BY is_flagship DESC, quality_score DESC
+             LIMIT ?`
+          )
+          .all(like, like, like, siteLimit)
       : [];
 
   const results = [
@@ -318,6 +392,15 @@ function autocomplete(q, limit = 10) {
       pantheon: e.pantheon,
       tier: e.tier,
       url: `/type/#${e.id}`,
+    })),
+    ...fuzzy.map((e) => ({
+      type: 'entry',
+      text: e.unicode,
+      ascii: e.ascii,
+      pantheon: e.pantheon,
+      tier: e.tier,
+      url: `/type/#${e.id}`,
+      fuzzy: true,
     })),
     ...sites.map((s) => ({
       type: 'site',
@@ -337,4 +420,6 @@ module.exports = {
   autocomplete,
   levenshtein,
   similarity,
+  findEntryCandidates,
+  confusableRisk,
 };

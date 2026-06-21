@@ -5,7 +5,7 @@
  * Re-checks a batch of availability rows against live DNS.
  */
 const { verifyAvailability } = require('../../../platform/scripts/verify-availability');
-const { setCors, handleError } = require('../../_utils');
+const { setCors, handleError, requireCronSecret } = require('../../_utils');
 
 const DEFAULT_MAX_AGE_HOURS = 24;
 const DEFAULT_LIMIT = 500;
@@ -16,6 +16,7 @@ module.exports = async (req, res) => {
   if (req.method !== 'GET' && req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
+  if (!requireCronSecret(req, res)) return;
 
   try {
     const maxAgeHours = Math.min(

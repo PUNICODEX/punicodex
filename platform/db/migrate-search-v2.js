@@ -4,6 +4,7 @@
  */
 const Database = require('better-sqlite3');
 const path = require('node:path');
+const { toSearchKey } = require(path.join(__dirname, '..', 'api', 'query-normalize.js'));
 
 const DB_PATH = path.join(__dirname, 'punycodex.db');
 const db = new Database(DB_PATH);
@@ -51,6 +52,29 @@ db.exec(`
   CREATE INDEX IF NOT EXISTS idx_trending_query ON trending_searches(query);
   CREATE INDEX IF NOT EXISTS idx_trending_last ON trending_searches(last_seen_at);
 `);
+
+// Backfill search_key for Unicode-aware lookup
+const hasSearchKey = db
+  .prepare('PRAGMA table_info(entries)')
+  .all()
+  .some((c) => c.name === 'search_key');
+if (hasSearchKey) {
+  const needsBackfill = db
+    .prepare('SELECT COUNT(*) AS n FROM entries WHERE search_key IS NULL')
+    .get().n;
+  if (needsBackfill > 0) {
+    const update = db.prepare('UPDATE entries SET search_key = ? WHERE id = ?');
+    const rows = db.prepare('SELECT id, unicode FROM entries WHERE search_key IS NULL').all();
+    const txn = db.transaction((rows) => {
+      for (const row of rows) {
+        update.run(toSearchKey(row.unicode), row.id);
+      }
+    });
+    txn(rows);
+    console.log(`Backfilled search_key for ${rows.length} entries.`);
+  }
+  db.exec('CREATE INDEX IF NOT EXISTS idx_entries_search_key ON entries(search_key)');
+}
 
 console.log('Search v2 schema migrated.');
 db.close();

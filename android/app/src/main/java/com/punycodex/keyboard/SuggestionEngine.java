@@ -104,9 +104,10 @@ public class SuggestionEngine {
         return categoryIndex.containsKey(name.toLowerCase());
     }
 
-    /** Return all displayable forms of an entry: primary unicode + variants, sorted by preference. */
+    /** Return all displayable forms of an entry: ASCII, primary unicode + variants, sorted by preference. */
     public List<Form> getEntryForms(LexiconEntry entry) {
         List<Form> forms = new ArrayList<>();
+        forms.add(new Form(entry.ascii, entry.greek, "ascii"));
         forms.add(new Form(entry.unicode, entry.greek, "primary"));
         for (LexiconEntry.Variant v : entry.getSortedVariants()) {
             if (!v.unicode.equals(entry.unicode)) {

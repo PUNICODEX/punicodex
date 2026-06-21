@@ -22265,18 +22265,36 @@ const LEXICON = [
   },
   {
     id: 'anu',
+    hasAdSite: true,
     ascii: 'anu',
-    unicode: 'Anu',
+    unicode: 'Anû',
     greek: '—',
+    originalScript: '𒀭𒀀𒉡',
     pantheon: 'mesopotamian',
     tier: '2',
     tierLabel: 'Tier 2',
-    domain: 'Sky, King of Gods',
-    meaning: 'Heaven, sky',
+    domain: 'Sky, Heaven, Kingship',
+    meaning: 'The Sumerian/Akkadian sky god; king of the Mesopotamian pantheon; name means "heaven, sky".',
     sources: [
       'ETCSL',
-      'Black-Green'
+      'Black-Green',
+      'CAD'
     ],
+    variants: [
+      { unicode: 'anû', type: 'owned', note: 'Lowercase owned domain form' },
+      { unicode: 'Anu', type: 'alt', note: 'Unmarked scholarly transliteration', sources: ['ETCSL', 'Black-Green'] }
+    ],
+    etymology: {
+      protoForm: 'Anu',
+      protoLanguage: 'sumerian',
+      protoGloss: 'sky, heaven',
+      derivation: 'From Sumerian 𒀭𒀀𒉡 (Anu), the sky god whose name means "sky, heaven"; in Akkadian tradition Anu remained king of the gods, father of Enlil.',
+      certainty: 'attested',
+      cognates: [
+        { language: 'Sumerian', form: '𒀭𒀀𒉡 (Anu)', relationship: 'cognate', note: 'sky, heaven' },
+        { language: 'Akkadian', form: 'Anu', relationship: 'cognate', note: 'king of the gods' }
+      ]
+    },
     breakdown: [
       {
         char: 'a',
@@ -22292,9 +22310,9 @@ const LEXICON = [
       },
       {
         char: 'u',
-        to: 'u',
-        type: 'same',
-        note: 'Same'
+        to: 'û',
+        type: 'length',
+        note: 'Circumflex marks long ū'
       }
     ]
   },
@@ -50364,7 +50382,60 @@ const LEXICON = [
         note: 'Same'
       }
     ]
-  }
+  },
+  {
+    id: 'hen',
+    hasAdSite: true,
+    ascii: 'hen',
+    unicode: 'Hén',
+    greek: 'ἕν',
+    pantheon: 'greek',
+    tier: '2',
+    tierLabel: 'Tier 2',
+    domain: 'Unity, The One, Oneness',
+    meaning: 'Greek neuter of εἷς, "one"; philosophically "The One" in Neoplatonism.',
+    sources: [
+      'LSJ',
+      'Beekes',
+      'Plato'
+    ],
+    variants: [
+      { unicode: 'hén', type: 'owned', note: 'Lowercase owned domain form' },
+      { unicode: 'hen', type: 'ascii', note: 'Plain ASCII form' }
+    ],
+    etymology: {
+      protoForm: '*sem-',
+      protoLanguage: 'proto-indo-european',
+      protoGloss: 'one',
+      derivation: 'From Greek ἕν, neuter of εἷς "one", continuing Proto-Indo-European *sem- "one", reflected in Latin semel "once" and English same.',
+      certainty: 'speculative',
+      cognates: [
+        { language: 'greek', form: 'εἷς, μία, ἕν', relationship: 'cognate', note: 'one' },
+        { language: 'latin', form: 'semel', relationship: 'cognate', note: 'once' },
+        { language: 'english', form: 'same', relationship: 'cognate', note: 'one' }
+      ]
+    },
+    breakdown: [
+      {
+        char: 'h',
+        to: 'H',
+        type: 'same',
+        note: 'Same, capitalized'
+      },
+      {
+        char: 'e',
+        to: 'é',
+        type: 'stress',
+        note: 'Acute marks stress on e'
+      },
+      {
+        char: 'n',
+        to: 'n',
+        type: 'same',
+        note: 'Same'
+      }
+    ]
+  },
 ];
 
 // Node.js export for build scripts

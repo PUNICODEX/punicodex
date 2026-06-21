@@ -6,7 +6,7 @@
  * Keeps limits small so it completes within serverless timeouts.
  */
 const { discoverFromCtLogs } = require('../../../platform/scripts/discover-domains');
-const { setCors, handleError } = require('../../_utils');
+const { setCors, handleError, requireCronSecret } = require('../../_utils');
 
 const DEFAULT_DAYS = 1;
 const DEFAULT_MAX_DOMAINS = 200;
@@ -17,6 +17,7 @@ module.exports = async (req, res) => {
   if (req.method !== 'GET' && req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
+  if (!requireCronSecret(req, res)) return;
 
   try {
     const days = Math.min(parseInt(req.query?.days, 10) || DEFAULT_DAYS, 7);

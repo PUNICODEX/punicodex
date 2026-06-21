@@ -3,7 +3,6 @@
  */
 
 const Database = require('better-sqlite3');
-const crypto = require('node:crypto');
 const path = require('node:path');
 
 const DB_PATH = path.join(__dirname, 'punycodex.db');
@@ -42,16 +41,8 @@ db.exec(`
   CREATE INDEX IF NOT EXISTS idx_api_request_log_created ON api_request_log(created_at);
 `);
 
-// Seed a demo key for local development if none exists
-const demoKey = 'pk_punycodex_demo';
-const demoHash = crypto.createHash('sha256').update(demoKey).digest('hex');
-const existing = db.prepare('SELECT id FROM api_keys WHERE key_hash = ?').get(demoHash);
-if (!existing) {
-  db.prepare(
-    'INSERT INTO api_keys (key_hash, name, tier, scopes, rate_limit) VALUES (?, ?, ?, ?, ?)'
-  ).run(demoHash, 'Demo / Development Key', 'free', JSON.stringify(['names:read']), 100);
-  console.log('Seeded demo API key:', demoKey);
-}
+// No demo key is seeded. In local development, create one via the admin dashboard
+// or set a temporary key through the API key admin endpoint.
 
 db.close();
 console.log('API keys migration complete.');

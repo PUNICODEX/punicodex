@@ -2,7 +2,9 @@ package com.punycodex.keyboard;
 
 import com.punycodex.app.BuildConfig;
 import com.punycodex.app.R;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.inputmethodservice.InputMethodService;
 import android.media.AudioManager;
 import android.os.Build;
@@ -23,15 +25,20 @@ import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -46,47 +53,64 @@ public class PunyKeyboardService extends InputMethodService {
 
     private static final Map<String, String[]> ACCENT_MAP = new HashMap<>();
     static {
-        ACCENT_MAP.put("a", new String[]{"á","à","â","ä","ã","å","ā","ă","ą","α"});
-        ACCENT_MAP.put("e", new String[]{"é","è","ê","ë","ē","ĕ","ė","ę","ε","η"});
-        ACCENT_MAP.put("i", new String[]{"í","ì","î","ï","ī","ĭ","į","ı","ι"});
-        ACCENT_MAP.put("o", new String[]{"ó","ò","ô","ö","õ","ō","ŏ","ø","ο","ω"});
-        ACCENT_MAP.put("u", new String[]{"ú","ù","û","ü","ū","ŭ","ů","ų","υ"});
-        ACCENT_MAP.put("y", new String[]{"ý","ÿ","ŷ","γ"});
-        ACCENT_MAP.put("n", new String[]{"ñ","ń","ņ","ň","ν"});
-        ACCENT_MAP.put("c", new String[]{"ç","ć","ĉ","ċ","č","χ"});
-        ACCENT_MAP.put("s", new String[]{"ś","ŝ","ş","š","ß","σ"});
-        ACCENT_MAP.put("z", new String[]{"ź","ż","ž","ζ"});
-        ACCENT_MAP.put("d", new String[]{"đ","ď","ð","δ"});
-        ACCENT_MAP.put("g", new String[]{"ğ","ĝ","ģ","ġ","γ"});
-        ACCENT_MAP.put("l", new String[]{"ł","ľ","ĺ","ļ","λ"});
-        ACCENT_MAP.put("r", new String[]{"ŕ","ř","ŗ","ρ"});
-        ACCENT_MAP.put("t", new String[]{"ţ","ť","ŧ","τ","θ"});
-        ACCENT_MAP.put("p", new String[]{"π","φ","ψ"});
-        ACCENT_MAP.put("b", new String[]{"β"});
-        ACCENT_MAP.put("x", new String[]{"ξ","χ"});
-        ACCENT_MAP.put("k", new String[]{"κ"});
-        ACCENT_MAP.put("m", new String[]{"μ"});
-        ACCENT_MAP.put("w", new String[]{"ω"});
-        ACCENT_MAP.put("A", new String[]{"Á","À","Â","Ä","Ã","Å","Ā","Α"});
-        ACCENT_MAP.put("E", new String[]{"É","È","Ê","Ë","Ē","Ε","Η"});
-        ACCENT_MAP.put("I", new String[]{"Í","Ì","Î","Ï","Ī","Ι"});
-        ACCENT_MAP.put("O", new String[]{"Ó","Ò","Ô","Ö","Õ","Ō","Ø","Ο","Ω"});
-        ACCENT_MAP.put("U", new String[]{"Ú","Ù","Û","Ü","Ū","Υ"});
-        ACCENT_MAP.put("N", new String[]{"Ñ","Ν"});
-        ACCENT_MAP.put("C", new String[]{"Ç","Ć","Ĉ","Č"});
-        ACCENT_MAP.put("S", new String[]{"Ś","Ŝ","Ş","Š","Σ"});
-        ACCENT_MAP.put("Z", new String[]{"Ź","Ż","Ž","Ζ"});
-        ACCENT_MAP.put("D", new String[]{"Đ","Ď","Δ"});
-        ACCENT_MAP.put("G", new String[]{"Ğ","Ĝ","Ģ","Γ"});
-        ACCENT_MAP.put("L", new String[]{"Ł","Ľ","Ĺ","Ļ","Λ"});
-        ACCENT_MAP.put("R", new String[]{"Ŕ","Ř","Ρ"});
-        ACCENT_MAP.put("T", new String[]{"Ţ","Ť","Τ","Θ"});
-        ACCENT_MAP.put("P", new String[]{"Π","Φ","Ψ"});
-        ACCENT_MAP.put("B", new String[]{"Β"});
-        ACCENT_MAP.put("X", new String[]{"Ξ","Χ"});
-        ACCENT_MAP.put("K", new String[]{"Κ"});
-        ACCENT_MAP.put("M", new String[]{"Μ"});
-        ACCENT_MAP.put("W", new String[]{"Ω"});
+        // Curated long-press defaults: 5–10 common scholarly/typographic forms
+        // for every A–Z letter. Vowels get the classic diacritics; consonants
+        // get the most useful precomposed forms plus a few combining-mark
+        // options for letters that lack precomposed accents. Anything else can
+        // be added per-letter with the "+" button.
+        ACCENT_MAP.put("a", new String[]{"á","à","â","ä","ã","å","ā","ă","ǎ"});
+        ACCENT_MAP.put("b", new String[]{"ḃ","ḅ","ḇ","ƀ","β"});
+        ACCENT_MAP.put("c", new String[]{"ç","ć","ĉ","č","ċ","ḉ"});
+        ACCENT_MAP.put("d", new String[]{"đ","ď","ð","ḍ","ḏ","ḑ"});
+        ACCENT_MAP.put("e", new String[]{"é","è","ê","ë","ē","ĕ","ė","ę","ə"});
+        ACCENT_MAP.put("f", new String[]{"ḟ","ƒ","f\u0301","f\u0300","f\u0302","f\u0308","f\u0304"});
+        ACCENT_MAP.put("g", new String[]{"ğ","ĝ","ģ","ġ","ǵ","ḡ"});
+        ACCENT_MAP.put("h", new String[]{"ĥ","ḥ","ḫ","ẖ","ħ","ɦ"});
+        ACCENT_MAP.put("i", new String[]{"í","ì","î","ï","ī","ĭ","į","ı","ǐ"});
+        ACCENT_MAP.put("j", new String[]{"ĵ","ɉ","j\u0301","j\u0300","j\u0302"});
+        ACCENT_MAP.put("k", new String[]{"ḱ","ḳ","ḵ","ƙ","k\u0301"});
+        ACCENT_MAP.put("l", new String[]{"ł","ľ","ĺ","ļ","ḷ","ŀ"});
+        ACCENT_MAP.put("m", new String[]{"ḿ","ṁ","ṃ","ɱ","m\u0301"});
+        ACCENT_MAP.put("n", new String[]{"ñ","ń","ņ","ň","ṇ","ṉ"});
+        ACCENT_MAP.put("o", new String[]{"ó","ò","ô","ö","õ","ō","ŏ","ø","ǒ"});
+        ACCENT_MAP.put("p", new String[]{"ṕ","ṗ","ƥ","ᵽ","p\u0301"});
+        ACCENT_MAP.put("q", new String[]{"ʠ","q\u0301","q\u0300","q\u0302","q\u0308"});
+        ACCENT_MAP.put("r", new String[]{"ŕ","ř","ŗ","ṛ","ṙ","ṟ"});
+        ACCENT_MAP.put("s", new String[]{"ś","ŝ","ş","š","ṣ","ß","ṡ"});
+        ACCENT_MAP.put("t", new String[]{"ţ","ť","ṭ","þ","ṯ","ṱ"});
+        ACCENT_MAP.put("u", new String[]{"ú","ù","û","ü","ū","ŭ","ů","ų","ǔ"});
+        ACCENT_MAP.put("v", new String[]{"ṽ","ṿ","v\u0301","v\u0300","v\u0302"});
+        ACCENT_MAP.put("w", new String[]{"ẃ","ẁ","ŵ","ẅ","ẇ","ẉ"});
+        ACCENT_MAP.put("x", new String[]{"ẋ","ẍ","x\u0301","x\u0300","x\u0302"});
+        ACCENT_MAP.put("y", new String[]{"ý","ỳ","ŷ","ÿ","ỹ","ẏ"});
+        ACCENT_MAP.put("z", new String[]{"ź","ẑ","ż","ž","ẓ","ẕ"});
+
+        ACCENT_MAP.put("A", new String[]{"Á","À","Â","Ä","Ã","Å","Ā","Ă","Ǎ"});
+        ACCENT_MAP.put("B", new String[]{"Ḃ","Ḅ","Ḇ","Ƀ","Β"});
+        ACCENT_MAP.put("C", new String[]{"Ç","Ć","Ĉ","Č","Ċ","Ḉ"});
+        ACCENT_MAP.put("D", new String[]{"Đ","Ď","Ð","Ḍ","Ḏ","Ḑ"});
+        ACCENT_MAP.put("E", new String[]{"É","È","Ê","Ë","Ē","Ĕ","Ė","Ę","Ə"});
+        ACCENT_MAP.put("F", new String[]{"Ḟ","Ƒ","F\u0301","F\u0300","F\u0302","F\u0308","F\u0304"});
+        ACCENT_MAP.put("G", new String[]{"Ğ","Ĝ","Ģ","Ġ","Ǵ","Ḡ"});
+        ACCENT_MAP.put("H", new String[]{"Ĥ","Ḥ","Ḫ","H\u0331","Ħ","H\u0301"});
+        ACCENT_MAP.put("I", new String[]{"Í","Ì","Î","Ï","Ī","Ĭ","Į","I","Ǐ"});
+        ACCENT_MAP.put("J", new String[]{"Ĵ","J\u0332","J\u0301","J\u0300","J\u0302"});
+        ACCENT_MAP.put("K", new String[]{"Ḱ","Ḳ","Ḵ","Ƙ","K\u0301"});
+        ACCENT_MAP.put("L", new String[]{"Ł","Ľ","Ĺ","Ļ","Ḷ","Ŀ"});
+        ACCENT_MAP.put("M", new String[]{"Ḿ","Ṁ","Ṃ","M\u0301","M\u0304"});
+        ACCENT_MAP.put("N", new String[]{"Ñ","Ń","Ņ","Ň","Ṇ","Ṉ"});
+        ACCENT_MAP.put("O", new String[]{"Ó","Ò","Ô","Ö","Õ","Ō","Ŏ","Ø","Ǒ"});
+        ACCENT_MAP.put("P", new String[]{"Ṕ","Ṗ","Ƥ","P\u0301","P\u0304"});
+        ACCENT_MAP.put("Q", new String[]{"Q\u0301","Q\u0300","Q\u0302","Q\u0308","ʠ"});
+        ACCENT_MAP.put("R", new String[]{"Ŕ","Ř","Ŗ","Ṛ","Ṙ","Ṟ"});
+        ACCENT_MAP.put("S", new String[]{"Ś","Ŝ","Ş","Š","Ṣ","Σ","Ṡ"});
+        ACCENT_MAP.put("T", new String[]{"Ţ","Ť","Ṭ","Þ","Ṯ","Ṱ"});
+        ACCENT_MAP.put("U", new String[]{"Ú","Ù","Û","Ü","Ū","Ŭ","Ů","Ų","Ǔ"});
+        ACCENT_MAP.put("V", new String[]{"Ṽ","Ṿ","V\u0301","V\u0300","V\u0302"});
+        ACCENT_MAP.put("W", new String[]{"Ẃ","Ẁ","Ŵ","Ẅ","Ẇ","Ẉ"});
+        ACCENT_MAP.put("X", new String[]{"Ẋ","Ẍ","X\u0301","X\u0300","X\u0302"});
+        ACCENT_MAP.put("Y", new String[]{"Ý","Ỳ","Ŷ","Ÿ","Ỹ","Ẏ"});
+        ACCENT_MAP.put("Z", new String[]{"Ź","Ẑ","Ż","Ž","Ẓ","Ẕ"});
     }
 
     private static final String[] LETTER_IDS = {
@@ -94,6 +118,11 @@ public class PunyKeyboardService extends InputMethodService {
         "key_a","key_s","key_d","key_f","key_g","key_h","key_j","key_k","key_l",
         "key_z","key_x","key_c","key_v","key_b","key_n","key_m"
     };
+
+    private static final String ACCENT_PREFS_NAME = "puny_keyboard_accents";
+    private static final String CUSTOM_ACCENT_PREFIX = "custom_accents_";
+    private static final String SETTINGS_PREFS_NAME = "puny_keyboard_settings";
+    private static final String PREF_AUTOCORRECT_ENABLED = "autocorrect_enabled";
 
     private View keyboardView;
     private View symbolKeyboardView;
@@ -129,6 +158,10 @@ public class PunyKeyboardService extends InputMethodService {
 
     private final List<Button> letterButtons = new ArrayList<>();
 
+    // User-defined long-press accents, persisted across sessions
+    private SharedPreferences accentPrefs;
+    private final Map<String, Set<String>> customAccents = new HashMap<>();
+
     // Background IPC thread — all InputConnection calls off main thread
     private HandlerThread ipcThread;
     private Handler ipcHandler;
@@ -136,6 +169,13 @@ public class PunyKeyboardService extends InputMethodService {
     // Rapid-key suppression
     private long lastKeyTime = 0;
     private static final long RAPID_KEY_THRESHOLD_MS = 80;
+
+    private static final long REPEAT_INITIAL_DELAY_MS = 300;
+    private static final long REPEAT_INTERVAL_MS = 80;
+    private static final long REPEAT_BASE_INTERVAL_MS = 90;
+    private static final long REPEAT_FAST_INTERVAL_MS = 45;
+    private static final long REPEAT_ACCELERATE_THRESHOLD_MS = 900;
+    private static final long REPEAT_WORD_THRESHOLD_MS = 1800;
 
     private PopupWindow keyPopup;
     private TextView keyPopupText;
@@ -145,6 +185,14 @@ public class PunyKeyboardService extends InputMethodService {
     private Button activeKey;
     private boolean longPressFired = false;
     private boolean soundEnabled = true;
+
+    private final Handler repeatHandler = new Handler(Looper.getMainLooper());
+    private Runnable repeatRunnable;
+    private Runnable currentRepeatAction;
+    private boolean repeatFired = false;
+
+    private Runnable backspaceRepeatRunnable;
+    private long backspaceRepeatStartTime;
 
     // Performance: cached haptic effect
     private VibrationEffect cachedHapticLight;
@@ -175,6 +223,9 @@ public class PunyKeyboardService extends InputMethodService {
         }
         soundEnabled = getSharedPreferences("puny_keyboard_prefs", Context.MODE_PRIVATE)
             .getBoolean("sound_enabled", true);
+
+        accentPrefs = getSharedPreferences(ACCENT_PREFS_NAME, Context.MODE_PRIVATE);
+        loadCustomAccents();
 
         // Pre-cache haptic effects
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -344,8 +395,7 @@ public class PunyKeyboardService extends InputMethodService {
 
             Button backspaceBtn = keyboardView.findViewById(R.id.key_backspace);
             if (backspaceBtn != null) {
-                backspaceBtn.setOnClickListener(v -> onBackspace());
-                backspaceBtn.setOnLongClickListener(v -> { onLongBackspace(); return true; });
+                attachBackspaceTouchListener(backspaceBtn);
             }
 
             spaceBtn = keyboardView.findViewById(R.id.key_space);
@@ -358,13 +408,13 @@ public class PunyKeyboardService extends InputMethodService {
             if (symbolsBtn != null) attachSimpleTouchListener(symbolsBtn, this::onSymbolsToggle);
 
             Button commaBtn = keyboardView.findViewById(R.id.key_comma);
-            if (commaBtn != null) attachSimpleTouchListener(commaBtn, () -> onPunct(","));
+            if (commaBtn != null) attachRepeatingTouchListener(commaBtn, () -> onPunct(","), this::onRepeatComma);
 
             Button periodBtn = keyboardView.findViewById(R.id.key_period);
-            if (periodBtn != null) attachSimpleTouchListener(periodBtn, () -> onPunct("."));
+            if (periodBtn != null) attachRepeatingTouchListener(periodBtn, () -> onPunct("."), this::onRepeatPeriod);
 
             Button questionBtn = keyboardView.findViewById(R.id.key_question);
-            if (questionBtn != null) attachSimpleTouchListener(questionBtn, () -> onPunct("?"));
+            if (questionBtn != null) attachRepeatingTouchListener(questionBtn, () -> onPunct("?"), this::onRepeatQuestion);
         } catch (Exception e) {
             android.util.Log.e("PunyKeyboard", "setupKeys failed", e);
         }
@@ -388,8 +438,7 @@ public class PunyKeyboardService extends InputMethodService {
 
             Button symBackspace = symbolKeyboardView.findViewById(R.id.key_sym_backspace);
             if (symBackspace != null) {
-                symBackspace.setOnClickListener(v -> onBackspace());
-                symBackspace.setOnLongClickListener(v -> { onLongBackspace(); return true; });
+                attachBackspaceTouchListener(symBackspace);
             }
 
             symSpaceBtn = symbolKeyboardView.findViewById(R.id.key_sym_space);
@@ -399,10 +448,10 @@ public class PunyKeyboardService extends InputMethodService {
             if (symReturn != null) attachSimpleTouchListener(symReturn, this::onReturn);
 
             Button symComma = symbolKeyboardView.findViewById(R.id.key_sym_comma);
-            if (symComma != null) attachSimpleTouchListener(symComma, () -> onPunct(","));
+            if (symComma != null) attachRepeatingTouchListener(symComma, () -> onPunct(","), this::onRepeatComma);
 
             Button symPeriod = symbolKeyboardView.findViewById(R.id.key_sym_period);
-            if (symPeriod != null) attachSimpleTouchListener(symPeriod, () -> onPunct("."));
+            if (symPeriod != null) attachRepeatingTouchListener(symPeriod, () -> onPunct("."), this::onRepeatPeriod);
 
             Button abcBtn = symbolKeyboardView.findViewById(R.id.key_abc);
             if (abcBtn != null) attachSimpleTouchListener(abcBtn, this::onSymbolsToggle);
@@ -476,6 +525,141 @@ public class PunyKeyboardService extends InputMethodService {
         });
     }
 
+    /**
+     * Touch listener that treats a quick tap as a single action and a held press
+     * as an auto-repeating action. This gives native key-repeat behavior for
+     * backspace (delete whole words) and punctuation such as period (ellipsis).
+     */
+    private void attachRepeatingTouchListener(Button btn, Runnable tapAction, Runnable repeatAction) {
+        btn.setOnTouchListener((v, event) -> {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    btn.setPressed(true);
+                    startRepeat(repeatAction);
+                    return true;
+                case MotionEvent.ACTION_UP:
+                    btn.setPressed(false);
+                    stopRepeat();
+                    if (!repeatFired) {
+                        tapAction.run();
+                    } else {
+                        postSyncWordFromCursor();
+                        debouncedUpdateSuggestions();
+                        updateSpaceBar();
+                    }
+                    return true;
+                case MotionEvent.ACTION_CANCEL:
+                    btn.setPressed(false);
+                    stopRepeat();
+                    return true;
+            }
+            return false;
+        });
+    }
+
+    private void startRepeat(Runnable action) {
+        stopRepeat();
+        currentRepeatAction = action;
+        repeatFired = false;
+        repeatRunnable = () -> {
+            if (!repeatFired) {
+                repeatFired = true;
+                hapticLight();
+            }
+            if (currentRepeatAction != null) {
+                currentRepeatAction.run();
+            }
+            if (repeatRunnable != null) {
+                repeatHandler.postDelayed(repeatRunnable, REPEAT_INTERVAL_MS);
+            }
+        };
+        repeatHandler.postDelayed(repeatRunnable, REPEAT_INITIAL_DELAY_MS);
+    }
+
+    private void stopRepeat() {
+        if (repeatRunnable != null) {
+            repeatHandler.removeCallbacks(repeatRunnable);
+            repeatRunnable = null;
+        }
+        currentRepeatAction = null;
+    }
+
+    /**
+     * Dedicated backspace touch listener with staged repeat:
+     *   1. Tap → single character delete.
+     *   2. Hold > 300 ms → repeat single-character deletes every 90 ms.
+     *   3. Hold > 900 ms → accelerate to 45 ms.
+     *   4. Hold > 1800 ms → delete whole words each tick.
+     */
+    private void attachBackspaceTouchListener(Button btn) {
+        btn.setOnTouchListener((v, event) -> {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    btn.setPressed(true);
+                    startBackspaceRepeat();
+                    return true;
+                case MotionEvent.ACTION_UP:
+                    btn.setPressed(false);
+                    stopBackspaceRepeat();
+                    if (!repeatFired) {
+                        onBackspace();
+                    } else {
+                        postSyncWordFromCursor();
+                        debouncedUpdateSuggestions();
+                        updateSpaceBar();
+                    }
+                    return true;
+                case MotionEvent.ACTION_CANCEL:
+                    btn.setPressed(false);
+                    stopBackspaceRepeat();
+                    return true;
+            }
+            return false;
+        });
+    }
+
+    private void startBackspaceRepeat() {
+        stopBackspaceRepeat();
+        repeatFired = false;
+        backspaceRepeatStartTime = System.currentTimeMillis();
+        backspaceRepeatRunnable = () -> {
+            if (!repeatFired) {
+                repeatFired = true;
+                hapticLight();
+            }
+            long elapsed = System.currentTimeMillis() - backspaceRepeatStartTime;
+            if (elapsed >= REPEAT_WORD_THRESHOLD_MS) {
+                deleteWordBeforeCursor();
+            } else {
+                deleteSingleCharBeforeCursor();
+            }
+            long nextDelay = elapsed >= REPEAT_ACCELERATE_THRESHOLD_MS
+                ? REPEAT_FAST_INTERVAL_MS
+                : REPEAT_BASE_INTERVAL_MS;
+            if (backspaceRepeatRunnable != null) {
+                repeatHandler.postDelayed(backspaceRepeatRunnable, nextDelay);
+            }
+        };
+        repeatHandler.postDelayed(backspaceRepeatRunnable, REPEAT_INITIAL_DELAY_MS);
+    }
+
+    private void stopBackspaceRepeat() {
+        if (backspaceRepeatRunnable != null) {
+            repeatHandler.removeCallbacks(backspaceRepeatRunnable);
+            backspaceRepeatRunnable = null;
+        }
+    }
+
+    private void deleteSingleCharBeforeCursor() {
+        InputConnection ic = getCurrentInputConnection();
+        if (ic == null) return;
+        ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
+        ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_DEL));
+        if (currentWord.length() > 0) {
+            currentWord.setLength(currentWord.length() - 1);
+        }
+    }
+
     // ═══════════════════════════════════════════════
     // KEYBOARD MODE TOGGLE
     // ═══════════════════════════════════════════════
@@ -529,17 +713,31 @@ public class PunyKeyboardService extends InputMethodService {
         String text = key.getText().toString();
         if (isShifted || capsLock) text = text.toUpperCase();
         keyPopupText.setText(text);
+        keyPopupText.measure(
+            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+        );
 
         int[] loc = new int[2];
         key.getLocationInWindow(loc);
-        int popupX = loc[0] + key.getWidth() / 2 - dp(28);
+        int popupX = loc[0] + key.getWidth() / 2 - keyPopupText.getMeasuredWidth() / 2;
         int popupY = loc[1] - dp(POPUP_OFFSET_DP);
+        popupX = clampPopupX(popupX, keyPopupText.getMeasuredWidth());
 
         if (keyPopup.isShowing()) {
             keyPopup.update(popupX, popupY, -1, -1);
         } else {
             keyPopup.showAtLocation(keyboardView, Gravity.NO_GRAVITY, popupX, popupY);
         }
+    }
+
+    private int clampPopupX(int desiredX, int popupWidth) {
+        int screenWidth = getResources().getDisplayMetrics().widthPixels;
+        int margin = dp(8);
+        int minX = margin;
+        int maxX = screenWidth - popupWidth - margin;
+        if (maxX < minX) maxX = minX;
+        return Math.max(minX, Math.min(desiredX, maxX));
     }
 
     private void hideKeyPopup() {
@@ -550,7 +748,8 @@ public class PunyKeyboardService extends InputMethodService {
         dismissAllPopups();
         String base = key.getText().toString();
         if (isShifted || capsLock) base = base.toUpperCase();
-        String[] accents = ACCENT_MAP.get(base);
+        final String baseKey = base;
+        String[] accents = getAccentsForBase(baseKey);
         if (accents == null || accents.length == 0) return;
 
         LinearLayout container = new LinearLayout(this);
@@ -569,36 +768,36 @@ public class PunyKeyboardService extends InputMethodService {
                 if (idx >= accents.length) break;
                 String ch = accents[idx];
 
-                TextView tv = new TextView(this);
-                tv.setText(ch);
-                tv.setTextSize(22);
-                tv.setTextColor(0xFFD4AF37);
-                tv.setGravity(Gravity.CENTER);
-                tv.setBackgroundResource(R.drawable.accent_key_bg);
-                tv.setMinWidth(dp(44));
-                tv.setMinHeight(dp(44));
-                tv.setPadding(dp(4), dp(4), dp(4), dp(4));
-
-                LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(dp(48), dp(48));
-                p.setMargins(dp(3), dp(3), dp(3), dp(3));
-                tv.setLayoutParams(p);
-
-                tv.setOnClickListener(v -> {
+                TextView tv = createAccentTextView(ch, () -> {
                     hapticMedium();
                     playKeySound();
                     lastKeyTime = System.currentTimeMillis();
                     InputConnection ic = getCurrentInputConnection();
                     if (ic != null) ic.commitText(ch, 1);
                     dismissAccentPopup();
-                    postSyncWordFromCursor(); // async — no blocking IPC
+                    postSyncWordFromCursor();
                     debouncedUpdateSuggestions();
                     updateSpaceBar();
                 });
-
                 row.addView(tv);
             }
             container.addView(row);
         }
+
+        // "+" row to add a custom character to this base letter
+        LinearLayout addRow = new LinearLayout(this);
+        addRow.setOrientation(LinearLayout.HORIZONTAL);
+        addRow.setGravity(Gravity.CENTER);
+        TextView addTv = createAccentTextView("+", () -> {
+            dismissAccentPopup();
+            showAddAccentDialog(baseKey);
+        });
+        addTv.setTextColor(0xFF888888);
+        LinearLayout.LayoutParams addParams = (LinearLayout.LayoutParams) addTv.getLayoutParams();
+        addParams.width = dp(48) * Math.min(5, accents.length) + dp(6) * (Math.min(5, accents.length) - 1);
+        addTv.setLayoutParams(addParams);
+        addRow.addView(addTv);
+        container.addView(addRow);
 
         accentPopup = new PopupWindow(container, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, false);
         accentPopup.setOutsideTouchable(true);
@@ -615,8 +814,118 @@ public class PunyKeyboardService extends InputMethodService {
         key.getLocationInWindow(loc);
         int popupX = loc[0] + key.getWidth() / 2 - container.getMeasuredWidth() / 2;
         int popupY = loc[1] - dp(POPUP_OFFSET_DP) - dp(20);
+        popupX = clampPopupX(popupX, container.getMeasuredWidth());
 
         accentPopup.showAtLocation(keyboardView, Gravity.NO_GRAVITY, popupX, popupY);
+    }
+
+    private TextView createAccentTextView(String text, Runnable onClick) {
+        TextView tv = new TextView(this);
+        tv.setText(text);
+        tv.setTextSize(22);
+        tv.setTextColor(0xFFD4AF37);
+        tv.setGravity(Gravity.CENTER);
+        tv.setBackgroundResource(R.drawable.accent_key_bg);
+        tv.setMinWidth(dp(44));
+        tv.setMinHeight(dp(44));
+        tv.setPadding(dp(4), dp(4), dp(4), dp(4));
+
+        LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(dp(48), dp(48));
+        p.setMargins(dp(3), dp(3), dp(3), dp(3));
+        tv.setLayoutParams(p);
+        tv.setOnClickListener(v -> onClick.run());
+        return tv;
+    }
+
+    private String[] getAccentsForBase(String base) {
+        String[] defaults = ACCENT_MAP.get(base);
+        Set<String> merged = new LinkedHashSet<>();
+        if (defaults != null) {
+            for (String ch : defaults) merged.add(ch);
+        }
+        Set<String> custom = customAccents.get(base);
+        if (custom != null) {
+            for (String ch : custom) merged.add(ch);
+        }
+        return merged.isEmpty() ? null : merged.toArray(new String[0]);
+    }
+
+    private void loadCustomAccents() {
+        customAccents.clear();
+        for (String key : accentPrefs.getAll().keySet()) {
+            if (!key.startsWith(CUSTOM_ACCENT_PREFIX)) continue;
+            String base = key.substring(CUSTOM_ACCENT_PREFIX.length());
+            Set<String> set = accentPrefs.getStringSet(key, new HashSet<>());
+            customAccents.put(base, new HashSet<>(set));
+        }
+    }
+
+    private void saveCustomAccent(String base, String ch) {
+        Set<String> set = customAccents.computeIfAbsent(base, k -> new HashSet<>());
+        set.add(ch);
+        accentPrefs.edit().putStringSet(CUSTOM_ACCENT_PREFIX + base, set).apply();
+    }
+
+    private void showAddAccentDialog(String base) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Add character to " + base);
+
+        final EditText input = new EditText(this);
+        input.setHint("U+1E43 or ṃ");
+        input.setInputType(android.text.InputType.TYPE_CLASS_TEXT);
+        builder.setView(input);
+
+        builder.setPositiveButton("Add", (dialog, which) -> {
+            String raw = input.getText().toString().trim();
+            String ch = parseSingleChar(raw);
+            if (ch == null) {
+                Toast.makeText(this, "Enter one Unicode character or U+XXXX", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            saveCustomAccent(base, ch);
+            Toast.makeText(this, "Added " + ch + " to " + base, Toast.LENGTH_SHORT).show();
+        });
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
+
+        AlertDialog dialog = builder.create();
+        android.view.Window win = dialog.getWindow();
+        if (win != null) {
+            win.setType(android.view.WindowManager.LayoutParams.TYPE_APPLICATION_ATTACHED_DIALOG);
+            win.addFlags(android.view.WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+            android.view.WindowManager.LayoutParams lp = win.getAttributes();
+            lp.token = getWindow().getWindow().getDecorView().getWindowToken();
+            win.setAttributes(lp);
+        }
+        dialog.show();
+    }
+
+    private String parseSingleChar(String raw) {
+        if (raw.isEmpty()) return null;
+        int cp;
+        if (raw.toLowerCase().startsWith("u+")) {
+            try {
+                cp = Integer.parseInt(raw.substring(2), 16);
+            } catch (NumberFormatException e) {
+                return null;
+            }
+        } else if (raw.startsWith("0x") || raw.startsWith("0X")) {
+            try {
+                cp = Integer.parseInt(raw.substring(2), 16);
+            } catch (NumberFormatException e) {
+                return null;
+            }
+        } else if (raw.codePointCount(0, raw.length()) == 1) {
+            cp = raw.codePointAt(0);
+        } else {
+            try {
+                cp = Integer.parseInt(raw);
+            } catch (NumberFormatException e) {
+                return null;
+            }
+        }
+        if (cp <= 0 || cp > 0x10ffff) return null;
+        if (Character.isISOControl(cp) || Character.isWhitespace(cp)) return null;
+        return new String(Character.toChars(cp));
     }
 
     private void dismissAccentPopup() {
@@ -707,11 +1016,34 @@ public class PunyKeyboardService extends InputMethodService {
         hapticMedium();
         playKeySound();
         lastKeyTime = System.currentTimeMillis();
+        if (maybeAutoCorrectWord(punct)) {
+            debouncedUpdateSuggestions();
+            updateSpaceBar();
+            return;
+        }
         InputConnection ic = getCurrentInputConnection();
         if (ic != null) ic.commitText(punct, 1);
         currentWord.setLength(0);
         debouncedUpdateSuggestions();
         updateSpaceBar();
+    }
+
+    private void onRepeatPeriod() {
+        commitRepeatText("…");
+    }
+
+    private void onRepeatComma() {
+        commitRepeatText(",");
+    }
+
+    private void onRepeatQuestion() {
+        commitRepeatText("?");
+    }
+
+    private void commitRepeatText(String text) {
+        InputConnection ic = getCurrentInputConnection();
+        if (ic != null) ic.commitText(text, 1);
+        currentWord.setLength(0);
     }
 
     private void onBackspace() {
@@ -735,53 +1067,72 @@ public class PunyKeyboardService extends InputMethodService {
         updateSpaceBar();
     }
 
-    private void onLongBackspace() {
-        hapticHeavy();
-        playKeySound();
-        lastKeyTime = System.currentTimeMillis();
-
-        final InputConnection ic = getCurrentInputConnection();
+    private void deleteWordBeforeCursor() {
+        InputConnection ic = getCurrentInputConnection();
         if (ic == null) return;
+        CharSequence before = ic.getTextBeforeCursor(100, 0);
+        if (before == null || before.length() == 0) return;
 
-        // Run blocking IPC on background thread to avoid ANR
-        ipcHandler.post(() -> {
-            CharSequence before = ic.getTextBeforeCursor(100, 0);
-            if (before == null || before.length() == 0) return;
-
-            String text = before.toString();
-            int deleteLen = 0;
-            // Walk backwards to find word boundary (space or newline)
-            for (int i = text.length() - 1; i >= 0; i--) {
-                char c = text.charAt(i);
-                if (c == ' ' || c == '\n') {
-                    deleteLen = text.length() - i - 1;
-                    break;
-                }
-                deleteLen = text.length() - i;
-            }
-            if (deleteLen > 0) {
-                ic.deleteSurroundingText(deleteLen, 0);
-            }
-
-            // Post UI updates back to main thread
-            suggestionHandler.post(() -> {
-                currentWord.setLength(0);
-                postSyncWordFromCursor();
-                debouncedUpdateSuggestions();
-                updateSpaceBar();
-            });
-        });
+        String text = before.toString();
+        int len = text.length();
+        int i = len - 1;
+        while (i >= 0 && Character.isLetterOrDigit(text.charAt(i))) {
+            i--;
+        }
+        int deleteLen = len - i - 1;
+        if (deleteLen > 0) {
+            ic.deleteSurroundingText(deleteLen, 0);
+        } else {
+            // No word character directly before cursor; delete one char so a
+            // held backspace keeps making progress through spaces/punctuation.
+            ic.deleteSurroundingText(1, 0);
+        }
     }
 
     private void onSpace() {
         hapticLight();
         playKeySound();
         lastKeyTime = System.currentTimeMillis();
+        if (maybeAutoCorrectWord(" ")) {
+            debouncedUpdateSuggestions();
+            updateSpaceBar();
+            return;
+        }
         InputConnection ic = getCurrentInputConnection();
         if (ic != null) ic.commitText(" ", 1);
         currentWord.setLength(0);
         debouncedUpdateSuggestions();
         updateSpaceBar();
+    }
+
+    /**
+     * If the current word exactly matches a lexicon entry, replace the typed
+     * word with its canonical Unicode form and then commit the separator.
+     * This gives the keyboard native-style autocorrect behavior.
+     */
+    private boolean isAutoCorrectEnabled() {
+        return getSharedPreferences(SETTINGS_PREFS_NAME, MODE_PRIVATE)
+            .getBoolean(PREF_AUTOCORRECT_ENABLED, true);
+    }
+
+    private boolean maybeAutoCorrectWord(String separator) {
+        if (!isAutoCorrectEnabled() || engine == null || currentWord.length() == 0) return false;
+        String typed = currentWord.toString().trim();
+        if (typed.isEmpty()) return false;
+        LexiconEntry exact = engine.findExactMatch(typed.toLowerCase());
+        if (exact == null) return false;
+
+        InputConnection ic = getCurrentInputConnection();
+        if (ic == null) return false;
+
+        // Delete the typed ASCII word and replace it with the Unicode restoration.
+        ic.deleteSurroundingText(typed.length(), 0);
+        ic.commitText(exact.unicode, 1);
+        if (separator != null && !separator.isEmpty()) {
+            ic.commitText(separator, 1);
+        }
+        currentWord.setLength(0);
+        return true;
     }
 
     private void onReturn() {
@@ -967,7 +1318,7 @@ public class PunyKeyboardService extends InputMethodService {
                 bindPrimaryChip(getPooledChip(), exact, hasVariants);
             }
 
-            List<LexiconEntry> completions = engine.getCompletions(lowerWord, 4);
+            List<LexiconEntry> completions = engine.getCompletions(lowerWord, 6);
             for (LexiconEntry entry : completions) {
                 if (exact != null && entry.ascii.equals(exact.ascii)) continue;
                 hasResults = true;
@@ -1037,6 +1388,8 @@ public class PunyKeyboardService extends InputMethodService {
         chip.setPadding(dp(14), dp(4), dp(14), dp(4));
         chip.setClickable(true);
         chip.setFocusable(true);
+        chip.setClipChildren(false);
+        chip.setClipToPadding(false);
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
@@ -1047,7 +1400,8 @@ public class PunyKeyboardService extends InputMethodService {
         unicodeView.setTextSize(18);
         unicodeView.setTextColor(0xFFD4AF37);
         unicodeView.setGravity(Gravity.CENTER);
-        unicodeView.setIncludeFontPadding(false);
+        unicodeView.setIncludeFontPadding(true);
+        unicodeView.setMinHeight(dp(30));
         unicodeView.setId(View.generateViewId());
         chip.addView(unicodeView);
 
@@ -1098,7 +1452,8 @@ public class PunyKeyboardService extends InputMethodService {
         unicodeView.setText(entry.unicode);
         unicodeView.setTextSize(18);
         unicodeView.setTextColor(0xFFE8C96A);
-        String badge = entry.greek.isEmpty() ? "Primary" : entry.greek;
+        int formCount = engine.getEntryForms(entry).size();
+        String badge = "Verified · " + formCount + (formCount == 1 ? " form" : " forms");
         if (hasVariants) badge += " ▼";
         subView.setText(badge);
         subView.setTextSize(10);
@@ -1142,8 +1497,6 @@ public class PunyKeyboardService extends InputMethodService {
 
         List<SuggestionEngine.Form> allForms = engine.getEntryForms(entry);
         for (SuggestionEngine.Form form : allForms) {
-            if ("ascii".equals(form.type)) continue;
-
             LinearLayout row = new LinearLayout(this);
             row.setOrientation(LinearLayout.HORIZONTAL);
             row.setGravity(Gravity.CENTER_VERTICAL);
@@ -1160,6 +1513,10 @@ public class PunyKeyboardService extends InputMethodService {
             int color;
             String label;
             switch (form.type) {
+                case "ascii":
+                    color = 0xFF888888;
+                    label = "ASCII";
+                    break;
                 case "ideal":
                     color = 0xFFD4AF37;
                     label = "★ Ideal";
@@ -1418,7 +1775,7 @@ public class PunyKeyboardService extends InputMethodService {
 
         Button comma = createFallbackKey(",");
         comma.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f));
-        comma.setOnClickListener(v -> onPunct(","));
+        attachRepeatingTouchListener(comma, () -> onPunct(","), this::onRepeatComma);
         bottomRow.addView(comma);
 
         Button space = createFallbackKey(" ");
@@ -1428,12 +1785,12 @@ public class PunyKeyboardService extends InputMethodService {
 
         Button period = createFallbackKey(".");
         period.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f));
-        period.setOnClickListener(v -> onPunct("."));
+        attachRepeatingTouchListener(period, () -> onPunct("."), this::onRepeatPeriod);
         bottomRow.addView(period);
 
         Button question = createFallbackKey("?");
         question.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f));
-        question.setOnClickListener(v -> onPunct("?"));
+        attachRepeatingTouchListener(question, () -> onPunct("?"), this::onRepeatQuestion);
         bottomRow.addView(question);
 
         Button retBtn = createFallbackKey("↵");

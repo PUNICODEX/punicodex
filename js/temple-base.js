@@ -344,3 +344,69 @@
             return text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
         }
     })();
+
+    // ============================
+    // Tenant Sponsors Panel
+    // ============================
+    (function loadTenantSponsors() {
+        const pathMatch = window.location.pathname.match(/\/sites\/([^/]+)\//);
+        if (!pathMatch) return;
+        const entryId = pathMatch[1];
+
+        fetch(`/api/tenant-ads?entryId=${encodeURIComponent(entryId)}&limit=3`)
+            .then(r => r.ok ? r.json() : null)
+            .then(ads => {
+                if (!Array.isArray(ads) || ads.length === 0) return;
+
+                const section = document.createElement('section');
+                section.className = 'tenant-sponsors-section';
+                section.innerHTML = `
+                    <div class="tenant-sponsors-header">
+                        <h2 class="tenant-sponsors-title">Sponsors</h2>
+                        <span class="tenant-sponsors-badge">Advertisement</span>
+                    </div>
+                    <div class="tenant-sponsors-grid">
+                        ${ads.map(ad => `
+                            <a href="${escapeHtml(ad.websiteUrl)}" target="_blank" rel="sponsored noopener"
+                               class="tenant-sponsor-card" data-tenant-ad-id="${ad.id}">
+                                <div class="tenant-sponsor-headline">${escapeHtml(ad.headline)}</div>
+                                <div class="tenant-sponsor-description">${escapeHtml(ad.description || '')}</div>
+                                <div class="tenant-sponsor-url">${escapeHtml(ad.displayUrl || ad.websiteUrl)}</div>
+                            </a>
+                        `).join('')}
+                    </div>
+                `;
+
+                const footer = document.querySelector('footer');
+                if (footer && footer.parentNode) {
+                    footer.parentNode.insertBefore(section, footer);
+                }
+
+                // Record impressions
+                ads.forEach(ad => {
+                    fetch(`/api/tenant-ads/${ad.id}/analytics`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ eventType: 'impression' })
+                    }).catch(() => {});
+                });
+
+                section.querySelectorAll('.tenant-sponsor-card').forEach(card => {
+                    card.addEventListener('click', () => {
+                        const adId = card.dataset.tenantAdId;
+                        fetch(`/api/tenant-ads/${adId}/analytics`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ eventType: 'click' })
+                        }).catch(() => {});
+                    });
+                });
+            })
+            .catch(err => console.error('Tenant sponsors failed to load:', err));
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    })();

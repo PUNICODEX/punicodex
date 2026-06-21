@@ -76,9 +76,13 @@ try {
 
 // Curate keyboard palette: all categories with sensible per-category limits
 const PALETTE_LIMITS = {
-    latin: 120,
-    greek: 80,
-    cyrillic: 40,
+    // Scholarly scripts are the keyboard's reason to exist: include them fully.
+    latin: 500,
+    greek: 300,
+    cyrillic: 82,
+    runic: 81,
+    gothic: 27,
+    // The rest are bounded to keep the initial grid usable, but searchable.
     math: 60,
     arrows: 30,
     symbols: 40,
@@ -86,7 +90,6 @@ const PALETTE_LIMITS = {
     supsub: 25,
     roman: 32,
     enclosed: 60,
-    runic: 27,
     hieroglyphs: 20,
     alchemical: 20,
     // Previously missing categories — now included
@@ -98,22 +101,50 @@ const PALETTE_LIMITS = {
     cuneiform: 40,
     dingbats: 40,
     domino: 30,
-    gothic: 27,
     letterlike: 30,
     linearb: 30,
     punctuation: 40,
     shapes: 30,
 };
 
+// Build a set of characters actually needed to type the lexicon Unicode forms
+// so we never truncate them out of the palette.
+const usedChars = new Set();
+for (const e of LEXICON) {
+    for (const ch of e.unicode || '') usedChars.add(ch);
+    for (const v of e.variants || []) {
+        for (const ch of v.unicode || '') usedChars.add(ch);
+    }
+}
+
 const PALETTE_CATEGORIES = new Set(Object.keys(PALETTE_LIMITS));
 const palette = [];
+const addedChars = new Set();
 const catCounts = {};
 
+// Pass 1: guarantee every lexicon-used character is included.
 for (const e of UNICODE_DIR) {
     if (!PALETTE_CATEGORIES.has(e.category)) continue;
+    if (!usedChars.has(e.char)) continue;
+    if (addedChars.has(e.char)) continue;
+    addedChars.add(e.char);
+    catCounts[e.category] = (catCounts[e.category] || 0) + 1;
+    palette.push({
+        char: e.char,
+        name: e.name,
+        category: e.category,
+        keywords: e.keywords
+    });
+}
+
+// Pass 2: fill remaining slots up to per-category limits.
+for (const e of UNICODE_DIR) {
+    if (!PALETTE_CATEGORIES.has(e.category)) continue;
+    if (addedChars.has(e.char)) continue;
     const limit = PALETTE_LIMITS[e.category];
-    catCounts[e.category] = (catCounts[e.category] || 0);
+    catCounts[e.category] = catCounts[e.category] || 0;
     if (catCounts[e.category] >= limit) continue;
+    addedChars.add(e.char);
     catCounts[e.category]++;
     palette.push({
         char: e.char,

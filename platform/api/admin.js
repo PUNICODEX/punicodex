@@ -5,16 +5,32 @@ const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
 const SESSION_TTL_MS = 8 * 60 * 60 * 1000; // 8 hours
 
+function hashToken(token) {
+  return crypto.createHash('sha256').update(token).digest('hex');
+}
+
+function constantTimeCompare(a, b) {
+  if (!a || !b) return false;
+  const bufA = crypto.createHash('sha256').update(a).digest();
+  const bufB = crypto.createHash('sha256').update(b).digest();
+  return crypto.timingSafeEqual(bufA, bufB);
+}
+
 async function createAdminToken() {
   const token = crypto.randomBytes(32).toString('hex');
+  const tokenHash = hashToken(token);
   const expiresAt = new Date(Date.now() + SESSION_TTL_MS).toISOString();
-  await run('INSERT INTO admin_sessions (token, expires_at) VALUES ($1, $2)', [token, expiresAt]);
+  await run('INSERT INTO admin_sessions (token, expires_at) VALUES ($1, $2)', [
+    tokenHash,
+    expiresAt,
+  ]);
   return token;
 }
 
 async function validateAdminToken(token) {
   if (!token) return false;
-  const row = await get('SELECT * FROM admin_sessions WHERE token = $1', [token]);
+  const tokenHash = hashToken(token);
+  const row = await get('SELECT * FROM admin_sessions WHERE token = $1', [tokenHash]);
   if (!row) return false;
   if (row.expires_at && new Date(row.expires_at) < new Date()) {
     await revokeToken(token);
@@ -24,14 +40,15 @@ async function validateAdminToken(token) {
 }
 
 async function revokeToken(token) {
-  await run('DELETE FROM admin_sessions WHERE token = $1', [token]);
+  const tokenHash = hashToken(token);
+  await run('DELETE FROM admin_sessions WHERE token = $1', [tokenHash]);
 }
 
 async function login(password) {
   if (!ADMIN_PASSWORD) {
     return { success: false, error: 'Admin password not configured' };
   }
-  if (password !== ADMIN_PASSWORD) {
+  if (!constantTimeCompare(password, ADMIN_PASSWORD)) {
     return { success: false, error: 'Invalid password' };
   }
   const token = await createAdminToken();

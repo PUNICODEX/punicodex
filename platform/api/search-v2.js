@@ -8,6 +8,11 @@ const { searchWeb } = require('./crawler-db');
 const { didYouMean, relatedSearches, autocomplete } = require('./query-intel');
 const { askOracle, detectIntent } = require('./oracle');
 const { getDbPath } = require('../db/db');
+const { normalizeQuery: normalizeSearchQuery, toSearchKey } = require('./query-normalize');
+const { analyzeConfusables } = require('./confusables');
+const { classifyTerm } = require('./homograph-service');
+const { getOrSetJson } = require('./redis-client');
+const tenantAds = require('./tenant-ads-service');
 
 const DB_PATH = getDbPath();
 let db;
@@ -112,9 +117,9 @@ const API_ENDPOINTS = [
   { method: 'GET', path: '/api/oracle', description: 'Scholarly Oracle answers' },
 ];
 
-const VALID_VERTICALS = ['all', 'sites', 'domains', 'lore', 'api', 'images', 'history'];
+const VALID_VERTICALS = ['all', 'sites', 'domains', 'lore', 'api', 'images', 'history', 'ads'];
 const VALID_SORTS = ['relevance', 'alphabetical', 'tier', 'recently_crawled', 'quality'];
-const RANK_VARIANTS = ['control', 'freshness', 'authority', 'engagement'];
+const RANK_VARIANTS = ['control', 'freshness', 'authority', 'engagement', 'keyword'];
 
 function getSessionToken(req) {
   const header = req.headers['x-session-token'] || '';
@@ -134,7 +139,10 @@ function getOrCreateSession(token) {
   let row = db.prepare('SELECT * FROM search_sessions WHERE token = ?').get(token);
   if (!row) {
     const variant = assignVariant(token);
-    db.prepare('INSERT INTO search_sessions (token, ab_variant) VALUES (?, ?)').run(token, variant);
+    const insert = db.prepare(
+      'INSERT OR IGNORE INTO search_sessions (token, ab_variant) VALUES (?, ?)'
+    );
+    insert.run(token, variant);
     row = db.prepare('SELECT * FROM search_sessions WHERE token = ?').get(token);
   }
   db.prepare("UPDATE search_sessions SET last_seen_at = datetime('now') WHERE token = ?").run(
@@ -199,12 +207,21 @@ async function searchV2(q, options = {}, req = null) {
     return emptyResponse(rawQ);
   }
 
-  const session = req ? getOrCreateSession(getSessionToken(req)) : null;
-  const normalizedQ = normalizeQuery(rawQ);
+  const sessionToken =
+    (options.sessionToken && options.sessionToken.length >= 8 && options.sessionToken.length <= 64
+      ? options.sessionToken
+      : null) || (req ? getSessionToken(req) : null);
+  const session = sessionToken ? getOrCreateSession(sessionToken) : null;
+  const normalizedQ = normalizeSearchInput(rawQ);
   const spellSuggestion = await maybeCorrectSpell(normalizedQ);
   const finalQ = spellSuggestion?.use || normalizedQ;
 
-  const vertical = VALID_VERTICALS.includes(options.vertical) ? options.vertical : 'all';
+  const oracleMode = options.oracle === 'true' || options.oracle === true;
+  const vertical = oracleMode
+    ? 'lore'
+    : VALID_VERTICALS.includes(options.vertical)
+      ? options.vertical
+      : 'all';
   const limit = Math.min(Math.max(1, parseInt(options.limit, 10) || 20), 100);
   const offset = decodeCursor(options.cursor);
   const sort = VALID_SORTS.includes(options.sort) ? options.sort : 'relevance';
@@ -212,92 +229,256 @@ async function searchV2(q, options = {}, req = null) {
     pantheon: options.pantheon || null,
     tier: options.tier || null,
     unicodeOnly: options.unicodeOnly === 'true' || options.unicodeOnly === true,
+    hasSite: options.hasSite === 'true' || options.hasSite === true,
     concept: options.concept || null,
+    trust: ['safe', 'canonical', 'styled', 'all'].includes(options.trust) ? options.trust : 'safe',
   };
 
-  const rankVariant = session?.variant || 'control';
+  const requestedVariant = RANK_VARIANTS.includes(options.variant) ? options.variant : null;
+  const rankVariant = requestedVariant || session?.variant || 'control';
 
-  // Track query for analytics / trending
-  recordQuery(finalQ, vertical, req);
+  // Track query for analytics / trending (always recorded, never cached)
+  const queryId = recordQuery(finalQ, vertical, req);
 
-  // --- Instant answers (always computed, lightweight) ---
-  const instantAnswer = computeInstantAnswer(finalQ);
-
-  // --- Vertical dispatch ---
-  const resultSets = {};
-  const fetchList =
-    vertical === 'all' ? ['sites', 'domains', 'lore', 'api', 'images', 'history'] : [vertical];
-
-  if (fetchList.includes('sites')) {
-    resultSets.sites = await searchWeb(finalQ, {
+  // Try Redis-backed response cache. Session-specific fields are injected
+  // after the cache lookup so the same cached payload can serve anonymous
+  // and personalized users. The rank variant is part of the key because
+  // it changes scoring/shuffling.
+  const cacheKey = buildSearchCacheKey({
+    rawQ,
+    finalQ,
+    vertical,
+    limit,
+    offset,
+    sort,
+    filters,
+    rankVariant,
+  });
+  const cached = await getOrSetJson(cacheKey, SEARCH_CACHE_TTL_SECONDS, async () => {
+    return buildSearchResponse({
+      rawQ,
+      finalQ,
+      vertical,
       limit,
       offset,
       sort,
-      mode: 'all',
-      ...filters,
-      variant: rankVariant,
+      filters,
+      rankVariant,
+      spellSuggestion,
+      instantAnswer: computeInstantAnswer(rawQ),
     });
+  });
+
+  const response = { ...cached };
+
+  // Update the recorded query with the actual result count now that results exist.
+  if (queryId) {
+    const resultCount =
+      (response.results?.sites?.total || 0) + (response.results?.names?.total || 0);
+    updateQueryResultCount(queryId, resultCount);
   }
 
-  if (fetchList.includes('domains')) {
-    resultSets.domains = searchDomains(finalQ, { limit, offset, filters });
-  }
-
-  if (fetchList.includes('lore')) {
-    resultSets.lore = searchLore(finalQ, { limit, offset });
-  }
-
-  if (fetchList.includes('api')) {
-    resultSets.api = searchApi(finalQ, { limit, offset });
-  }
-
-  if (fetchList.includes('images')) {
-    resultSets.images = searchImages(finalQ, { limit, offset, filters });
-  }
-
-  if (fetchList.includes('history')) {
-    resultSets.history = session
+  // History is session-specific and not cached.
+  if (vertical === 'all' || vertical === 'history') {
+    response.results.history = session
       ? searchHistory(session.token, finalQ, { limit, offset })
       : { results: [], total: 0, note: 'history requires session' };
   }
 
-  // --- Oracle answer (for question-shaped queries) ---
-  let oracle = null;
+  // Personalization boosts are applied after the cache lookup.
+  const appliedPersonalization = applyPersonalization(response.results, session, finalQ);
+
+  if (session) {
+    response.personalization = {
+      preferences: session.preferences || {},
+      applied: appliedPersonalization || [],
+    };
+  }
+
+  response.sessionToken = session?.token || null;
+  response.timing = ((Date.now() - startTime) / 1000).toFixed(3);
+  return response;
+}
+
+const SEARCH_CACHE_TTL_SECONDS = 60;
+
+function buildSearchCacheKey({
+  rawQ,
+  finalQ,
+  vertical,
+  limit,
+  offset,
+  sort,
+  filters,
+  rankVariant,
+}) {
+  const payload = { q: finalQ || rawQ, vertical, limit, offset, sort, filters, rankVariant };
+  return `punycodex:search:v2:${crypto.createHash('sha256').update(JSON.stringify(payload)).digest('hex')}`;
+}
+
+async function buildSearchResponse({
+  rawQ,
+  finalQ,
+  vertical,
+  limit,
+  offset,
+  sort,
+  filters,
+  rankVariant,
+  spellSuggestion,
+  instantAnswer,
+}) {
+  // --- Vertical dispatch (parallel where possible) ---
+  const resultSets = {};
+  const fetchList =
+    vertical === 'all'
+      ? ['sites', 'domains', 'lore', 'api', 'images', 'history', 'ads']
+      : [vertical];
+
+  const verticalTasks = [];
+
+  if (fetchList.includes('sites')) {
+    verticalTasks.push(
+      searchWeb(finalQ, {
+        limit,
+        offset,
+        sort,
+        mode: 'all',
+        ...filters,
+        variant: rankVariant,
+      }).then((res) => {
+        resultSets.sites = res;
+      })
+    );
+  }
+
+  if (fetchList.includes('domains')) {
+    verticalTasks.push(
+      Promise.resolve().then(() => {
+        resultSets.domains = searchDomains(finalQ, { limit, offset, filters });
+      })
+    );
+  }
+
+  if (fetchList.includes('lore')) {
+    verticalTasks.push(
+      Promise.resolve().then(() => {
+        resultSets.lore = searchLore(finalQ, { limit, offset });
+      })
+    );
+  }
+
+  if (fetchList.includes('api')) {
+    verticalTasks.push(
+      Promise.resolve().then(() => {
+        resultSets.api = searchApi(finalQ, { limit, offset });
+      })
+    );
+  }
+
+  if (fetchList.includes('ads')) {
+    verticalTasks.push(
+      Promise.resolve().then(() => {
+        resultSets.ads = searchTenantAds(finalQ, { limit, offset });
+      })
+    );
+  }
+
+  if (fetchList.includes('images')) {
+    verticalTasks.push(
+      Promise.resolve().then(() => {
+        resultSets.images = searchImages(finalQ, { limit, offset, filters });
+      })
+    );
+  }
+
+  await Promise.all(verticalTasks);
+
+  // --- Oracle answer (parallel with verticals, quick mode for speed) ---
+  let oraclePromise = Promise.resolve(null);
   if (vertical === 'all' || vertical === 'lore') {
     try {
       const intent = detectIntent(finalQ);
+      const questionLike =
+        finalQ.endsWith('?') ||
+        /\b(who|what|where|how|why|when|which|is|are|was|were|does|did|do|can|could|would|should)\b/i.test(
+          finalQ
+        );
+      const directNameMatch =
+        !questionLike &&
+        db
+          .prepare(
+            `SELECT 1 FROM entries WHERE LOWER(id) = ? OR LOWER(ascii) = ? OR LOWER(unicode) = ? OR search_key = ?`
+          )
+          .get(
+            finalQ.toLowerCase(),
+            finalQ.toLowerCase(),
+            finalQ.toLowerCase(),
+            toSearchKey(finalQ)
+          ) != null;
+
       if (
-        intent.includes('definition') ||
-        intent.includes('etymology') ||
-        intent.includes('mythology') ||
-        finalQ.endsWith('?')
+        questionLike ||
+        directNameMatch ||
+        intent === 'who' ||
+        intent === 'etymology' ||
+        intent === 'meaning' ||
+        intent === 'mythology' ||
+        intent === 'symbols' ||
+        intent === 'pronunciation' ||
+        intent === 'attribute' ||
+        intent === 'script' ||
+        intent === 'variants'
       ) {
-        oracle = await askOracle(finalQ, []);
+        oraclePromise = askOracle(finalQ, [], { quick: true });
       }
     } catch (_e) {
       // Oracle is optional; never break search
     }
   }
 
-  // --- Personalization boosts ---
-  applyPersonalization(resultSets, session, finalQ);
+  // Await Oracle in parallel (with a timeout so it never blocks results)
+  let oracle = null;
+  try {
+    oracle = await Promise.race([
+      oraclePromise,
+      new Promise((resolve) => setTimeout(() => resolve(null), 1200)),
+    ]);
+  } catch (_e) {
+    oracle = null;
+  }
 
   // --- Related / trending sidebars ---
   const related = relatedSearches(finalQ, 6);
   const trending = trendingSearches(vertical, 6);
 
-  const timing = ((Date.now() - startTime) / 1000).toFixed(3);
   const nextOffset = offset + limit;
   const hasMore = Object.values(resultSets).some((r) => r && r.total > nextOffset);
+
+  const resultCounts = {};
+  for (const [key, set] of Object.entries(resultSets)) {
+    resultCounts[key] = set?.total || 0;
+  }
+
+  const facets = computeFacets(finalQ);
+  const confusableAnalysis = analyzeConfusables(rawQ);
+  const queryTrust = classifyTerm(rawQ);
 
   return {
     query: rawQ,
     normalizedQuery: finalQ,
     vertical,
     sort,
+    filters,
     rankVariant,
-    sessionToken: session?.token || null,
     spellCorrection: spellSuggestion?.correction || null,
+    confusableAnalysis: confusableAnalysis.hasConfusables ? confusableAnalysis : null,
+    queryTrust: {
+      tier: queryTrust.tier,
+      reason: queryTrust.reason,
+      visualDeviation: queryTrust.visualDeviation,
+      canonicalMatch: queryTrust.canonicalMatch,
+    },
     instantAnswer: instantAnswer || null,
     oracle: oracle
       ? {
@@ -308,6 +489,8 @@ async function searchV2(q, options = {}, req = null) {
         }
       : null,
     results: resultSets,
+    resultCounts,
+    facets,
     related,
     trending,
     pagination: {
@@ -316,7 +499,6 @@ async function searchV2(q, options = {}, req = null) {
       nextCursor: hasMore ? encodeCursor(nextOffset) : null,
       hasMore,
     },
-    timing,
   };
 }
 
@@ -333,12 +515,8 @@ function emptyResponse(q) {
   };
 }
 
-function normalizeQuery(q) {
-  return q
-    .replace(/[\u2018\u2019]/g, "'")
-    .replace(/[\u201C\u201D]/g, '"')
-    .replace(/\s+/g, ' ')
-    .trim();
+function normalizeSearchInput(q) {
+  return normalizeSearchQuery(q).canonical;
 }
 
 async function maybeCorrectSpell(q) {
@@ -363,9 +541,11 @@ function recordQuery(q, vertical, req) {
       ? crypto.createHash('sha256').update(ip).digest('hex').substring(0, 16)
       : null;
 
-    db.prepare(
-      'INSERT INTO search_queries (query, result_count, mode, user_agent_hash, ip_hash) VALUES (?, ?, ?, ?, ?)'
-    ).run(q, 0, `v2:${vertical}`, uaHash, ipHash);
+    const info = db
+      .prepare(
+        'INSERT INTO search_queries (query, result_count, mode, user_agent_hash, ip_hash) VALUES (?, ?, ?, ?, ?)'
+      )
+      .run(q, 0, `v2:${vertical}`, uaHash, ipHash);
 
     db.prepare(
       `INSERT INTO trending_searches (query, vertical, count, last_seen_at)
@@ -374,8 +554,57 @@ function recordQuery(q, vertical, req) {
          count = count + 1,
          last_seen_at = datetime('now')`
     ).run(q, vertical);
+
+    return info.lastInsertRowid;
   } catch (_e) {
     // Analytics failures are non-fatal
+    return null;
+  }
+}
+
+function updateQueryResultCount(queryId, count) {
+  if (!queryId) return;
+  try {
+    const db = getDb();
+    db.prepare('UPDATE search_queries SET result_count = ? WHERE id = ?').run(count, queryId);
+  } catch (_e) {
+    // Analytics failures are non-fatal
+  }
+}
+
+function computeFacets(q) {
+  try {
+    const db = getDb();
+    const like = q ? `%${q.toLowerCase()}%` : '%';
+    const keyLike = q ? `%${toSearchKey(q)}%` : '%';
+
+    const pantheons = db
+      .prepare(`
+        SELECT e.pantheon, COUNT(*) as count
+        FROM entries e
+        WHERE (LOWER(e.ascii) LIKE ? OR LOWER(e.unicode) LIKE ? OR LOWER(e.id) LIKE ? OR e.search_key LIKE ?)
+          AND e.pantheon IS NOT NULL
+        GROUP BY e.pantheon
+        ORDER BY count DESC
+      `)
+      .all(like, like, like, keyLike);
+
+    const tiers = db
+      .prepare(`
+        SELECT e.tier, COUNT(*) as count
+        FROM entries e
+        WHERE (LOWER(e.ascii) LIKE ? OR LOWER(e.unicode) LIKE ? OR LOWER(e.id) LIKE ? OR e.search_key LIKE ?)
+        GROUP BY e.tier
+        ORDER BY CASE e.tier WHEN 'dual' THEN 1 WHEN '1' THEN 2 WHEN '2' THEN 3 ELSE 4 END
+      `)
+      .all(like, like, like, keyLike);
+
+    return {
+      pantheons: pantheons.map((p) => ({ id: p.pantheon, count: p.count })),
+      tiers: tiers.map((t) => ({ id: t.tier, count: t.count })),
+    };
+  } catch (_e) {
+    return { pantheons: [], tiers: [] };
   }
 }
 
@@ -461,12 +690,20 @@ function buildAvailabilityAnswer(target) {
               e.unicode, e.ascii, e.meaning, e.pantheon, e.tier
        FROM availability a
        JOIN entries e ON a.entry_id = e.id
-       WHERE (LOWER(e.ascii) = ? OR LOWER(e.unicode) = ? OR LOWER(e.id) = ?
-              OR LOWER(a.domain) LIKE ? OR LOWER(e.ascii) LIKE ?)
+       WHERE (LOWER(e.ascii) = ? OR LOWER(e.unicode) = ? OR LOWER(e.id) = ? OR e.search_key = ?
+              OR LOWER(a.domain) LIKE ? OR LOWER(e.ascii) LIKE ? OR e.search_key LIKE ?)
        ORDER BY e.tier = 'dual' DESC, e.tier = '1' DESC
        LIMIT 3`
     )
-    .all(target.toLowerCase(), target.toLowerCase(), target.toLowerCase(), like, like);
+    .all(
+      target.toLowerCase(),
+      target.toLowerCase(),
+      target.toLowerCase(),
+      toSearchKey(target),
+      like,
+      like,
+      `%${toSearchKey(target)}%`
+    );
 
   if (rows.length === 0) return null;
 
@@ -491,14 +728,16 @@ function buildAvailabilityAnswer(target) {
 function searchDomains(q, { limit, offset, filters }) {
   const db = getDb();
   const query = q.toLowerCase();
+  const searchKey = toSearchKey(q);
   const like = `%${query}%`;
-  const params = [query, query, query, like, like];
+  const keyLike = `%${searchKey}%`;
+  const params = [query, query, query, searchKey, keyLike, like];
   let sql = `SELECT a.entry_id, a.domain, a.punycode, a.status, a.registrar_links,
                     e.unicode, e.ascii, e.meaning, e.pantheon, e.tier
              FROM availability a
              JOIN entries e ON a.entry_id = e.id
-             WHERE (LOWER(e.ascii) = ? OR LOWER(e.unicode) = ? OR LOWER(e.id) = ?
-                    OR LOWER(e.ascii) LIKE ? OR LOWER(e.unicode) LIKE ?)`;
+             WHERE (LOWER(e.ascii) = ? OR LOWER(e.unicode) = ? OR LOWER(e.id) = ? OR e.search_key = ?
+                    OR e.search_key LIKE ? OR LOWER(e.unicode) LIKE ?)`;
 
   if (filters.pantheon) {
     sql += ' AND e.pantheon = ?';
@@ -507,6 +746,12 @@ function searchDomains(q, { limit, offset, filters }) {
   if (filters.tier) {
     sql += ' AND e.tier = ?';
     params.push(filters.tier);
+  }
+  if (filters.hasSite) {
+    sql += ` AND EXISTS (
+      SELECT 1 FROM indexed_sites s
+      WHERE s.lexicon_entry_id = e.id AND s.status = 'active'
+    )`;
   }
 
   const countSql = sql.replace(/SELECT[\s\S]+?FROM/, 'SELECT COUNT(*) AS total FROM');
@@ -651,6 +896,29 @@ function searchImages(q, { limit, offset, filters }) {
   };
 }
 
+function searchTenantAds(q, { limit, offset }) {
+  const ads = tenantAds.findTenantAdsForQuery(q, { limit, offset });
+  const allAds = tenantAds.findTenantAdsForQuery(q, { limit: 10000, offset: 0 });
+  return {
+    results: ads.map((ad) => ({
+      type: 'tenant-ad',
+      id: ad.id,
+      entryId: ad.entryId,
+      companyName: ad.companyName,
+      websiteUrl: ad.websiteUrl,
+      displayUrl: ad.displayUrl,
+      headline: ad.headline,
+      description: ad.description,
+      sponsored: true,
+      link: ad.websiteUrl,
+      analyticsToken: ad.analyticsToken,
+    })),
+    total: allAds.length,
+    limit,
+    offset,
+  };
+}
+
 function searchHistory(_token, q, { limit, offset }) {
   const db = getDb();
   const like = `%${q.toLowerCase()}%`;
@@ -682,12 +950,14 @@ function searchHistory(_token, q, { limit, offset }) {
 }
 
 function applyPersonalization(resultSets, session, q) {
-  if (!session) return;
+  if (!session) return [];
   const prefs = session.preferences || {};
   const penalties = getFeedbackPenalties(session.token, q);
+  const applied = [];
 
   // Boost preferred pantheon in sites / images / domains
   if (prefs.preferredPantheon) {
+    applied.push('preferredPantheon');
     for (const key of ['sites', 'images', 'domains']) {
       const set = resultSets[key];
       if (!set?.results) continue;
@@ -710,6 +980,7 @@ function applyPersonalization(resultSets, session, q) {
 
   // Apply feedback penalties
   if (penalties.size > 0 && resultSets.sites?.results) {
+    applied.push('feedbackPenalties');
     resultSets.sites.results = resultSets.sites.results.map((r) => {
       const penalty = penalties.get(r.id) || 0;
       if (penalty && r.rankScore != null) {
@@ -719,6 +990,8 @@ function applyPersonalization(resultSets, session, q) {
     });
     resultSets.sites.results.sort((a, b) => (b.rankScore || 0) - (a.rankScore || 0));
   }
+
+  return applied;
 }
 
 function getFeedbackPenalties(token, q) {

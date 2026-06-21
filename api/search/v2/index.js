@@ -6,7 +6,8 @@ module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') return res.status(200).end();
 
   try {
-    const { q, vertical, sort, limit, cursor, pantheon, tier, unicodeOnly, concept } = req.query;
+    const { q, vertical, sort, limit, cursor, pantheon, tier, unicodeOnly, hasSite, concept } =
+      req.query;
 
     const result = await searchV2(
       q,
@@ -18,6 +19,7 @@ module.exports = async (req, res) => {
         pantheon,
         tier,
         unicodeOnly,
+        hasSite,
         concept,
       },
       req

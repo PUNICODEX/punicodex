@@ -8,7 +8,7 @@
  */
 const Database = require('better-sqlite3');
 const { getDbPath } = require('../../../platform/db/db');
-const { setCors, handleError } = require('../../_utils');
+const { setCors, handleError, requireCronSecret } = require('../../_utils');
 
 const DEFAULT_BATCH_SIZE = 50;
 const DEFAULT_STALE_DAYS = 7;
@@ -25,6 +25,7 @@ module.exports = (req, res) => {
   if (req.method !== 'GET' && req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
+  if (!requireCronSecret(req, res)) return;
 
   const db = getDb();
   try {

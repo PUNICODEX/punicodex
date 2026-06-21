@@ -19,7 +19,8 @@ module.exports = async (req, res) => {
   try {
     const q = req.query.q || '';
     const history = safeParseHistory(req.query.history);
-    const result = await askOracle(q, history);
+    const quick = req.query.quick === 'true';
+    const result = await askOracle(q, history, { quick });
     res.json({
       query: q,
       answer: result.answer,

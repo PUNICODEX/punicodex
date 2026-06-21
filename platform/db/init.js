@@ -32,8 +32,28 @@ db.exec(`
     variants TEXT,
     has_flagship INTEGER DEFAULT 0,
     confidence_score REAL DEFAULT 0,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    search_key TEXT,
+    verified_as TEXT DEFAULT 'canonical' CHECK (verified_as IN ('canonical', 'variant', 'loan', 'constructed')),
+    canonical_id TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (canonical_id) REFERENCES entries(id)
   );
+
+  CREATE TABLE canonical_domains (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    entry_id TEXT NOT NULL,
+    domain TEXT NOT NULL UNIQUE,
+    punycode TEXT NOT NULL,
+    trust_tier TEXT DEFAULT 'canonical' CHECK (trust_tier IN ('canonical', 'styled', 'suspicious', 'unsafe')),
+    source TEXT,
+    verified_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (entry_id) REFERENCES entries(id)
+  );
+
+  CREATE INDEX idx_entries_verified ON entries(verified_as);
+  CREATE INDEX idx_entries_canonical_id ON entries(canonical_id);
+  CREATE INDEX idx_canonical_domains_entry ON canonical_domains(entry_id);
+  CREATE INDEX idx_canonical_domains_punycode ON canonical_domains(punycode);
 
   CREATE TABLE breakdowns (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -52,6 +72,7 @@ db.exec(`
     greek,
     original_script,
     pantheon,
+    domain,
     meaning,
     content='entries',
     content_rowid='rowid'
@@ -60,6 +81,7 @@ db.exec(`
   CREATE INDEX idx_pantheon ON entries(pantheon);
   CREATE INDEX idx_tier ON entries(tier);
   CREATE INDEX idx_flagship ON entries(has_flagship);
+  CREATE INDEX idx_entries_search_key ON entries(search_key);
 `);
 
 // Read lexicon
@@ -74,11 +96,12 @@ fs.unlinkSync(tmpPath);
 const { getOriginalScript } = require(
   path.join(__dirname, '..', '..', 'type', 'js', 'original-scripts.js')
 );
+const { toSearchKey } = require(path.join(__dirname, '..', 'api', 'query-normalize.js'));
 
 // Insert entries
 const insertEntry = db.prepare(`
-  INSERT INTO entries (id, ascii, unicode, greek, original_script, pantheon, tier, tier_label, domain, meaning, sources, etymology, variants, has_flagship)
-  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  INSERT INTO entries (id, ascii, unicode, greek, original_script, pantheon, tier, tier_label, domain, meaning, sources, etymology, variants, has_flagship, search_key, verified_as, canonical_id)
+  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 `);
 
 const insertBreakdown = db.prepare(`
@@ -87,8 +110,8 @@ const insertBreakdown = db.prepare(`
 `);
 
 const insertFts = db.prepare(`
-  INSERT INTO entries_fts (id, ascii, unicode, greek, original_script, pantheon, meaning)
-  VALUES (?, ?, ?, ?, ?, ?, ?)
+  INSERT INTO entries_fts (id, ascii, unicode, greek, original_script, pantheon, domain, meaning)
+  VALUES (?, ?, ?, ?, ?, ?, ?, ?)
 `);
 
 // Flagship IDs
@@ -99,6 +122,7 @@ const flagshipIds = new Set([
   'akh',
   'alfheimr',
   'anat',
+  'anu',
   'aphrodite',
   'apollon',
   'apsu',
@@ -133,6 +157,7 @@ const flagshipIds = new Set([
   'hera',
   'hermes',
   'hestia',
+  'hen',
   'horus',
   'ishtar',
   'jotunheimr',
@@ -192,7 +217,10 @@ const insertEntryTxn = db.transaction((entries) => {
       entry.sources ? JSON.stringify(entry.sources) : null,
       entry.etymology ? JSON.stringify(entry.etymology) : null,
       entry.variants ? JSON.stringify(entry.variants) : null,
-      flagshipIds.has(entry.id) ? 1 : 0
+      flagshipIds.has(entry.id) ? 1 : 0,
+      toSearchKey(entry.unicode),
+      entry.verifiedAs || 'canonical',
+      entry.canonicalId || null
     );
 
     insertFts.run(
@@ -202,6 +230,7 @@ const insertEntryTxn = db.transaction((entries) => {
       entry.greek || '',
       getOriginalScript(entry) || '',
       entry.pantheon,
+      entry.domain || '',
       entry.meaning || ''
     );
 

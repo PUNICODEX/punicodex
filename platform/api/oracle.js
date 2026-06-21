@@ -1,9 +1,9 @@
 /**
  * Ask the Oracle — conversational RAG-style Q&A over the PUNYCODEX knowledge base.
  *
- * Phase 2: Full-knowledge retrieval using FTS5, semantic vectors, lore,
- * breakdowns, variants, original scripts, availability, and live sites.
- * Optional LLM generation when ORACLE_LLM_API_KEY + ORACLE_LLM_MODEL are set.
+ * Phase 2.5: Deep, citation-rich answers using the full lore catalog,
+ * etymology, variants, original scripts, live sites, and scholarly sources.
+ * Optional LLM polish when ORACLE_LLM_API_KEY + ORACLE_LLM_MODEL are set.
  */
 const Database = require('better-sqlite3');
 const { getDbPath } = require('../db/db');
@@ -19,6 +19,54 @@ function getDb() {
     db.pragma('journal_mode = WAL');
   }
   return db;
+}
+
+/**
+ * Fast in-memory LRU cache for Oracle answers.
+ * Keys are hashed queries; entries expire after 5 minutes.
+ */
+const ORACLE_CACHE = new Map();
+const ORACLE_CACHE_MAX = 200;
+const ORACLE_CACHE_TTL_MS = 5 * 60 * 1000;
+
+function hashQuery(q, history = []) {
+  const crypto = require('node:crypto');
+  const payload = JSON.stringify({ q: q.toLowerCase().trim(), historyLen: history.length });
+  return crypto.createHash('sha256').update(payload).digest('hex').substring(0, 32);
+}
+
+function getCachedOracle(key) {
+  const hit = ORACLE_CACHE.get(key);
+  if (!hit) return null;
+  if (Date.now() - hit.ts > ORACLE_CACHE_TTL_MS) {
+    ORACLE_CACHE.delete(key);
+    return null;
+  }
+  return hit.value;
+}
+
+function setCachedOracle(key, value) {
+  if (ORACLE_CACHE.size >= ORACLE_CACHE_MAX) {
+    const oldest = ORACLE_CACHE.keys().next().value;
+    ORACLE_CACHE.delete(oldest);
+  }
+  ORACLE_CACHE.set(key, { ts: Date.now(), value });
+}
+
+/**
+ * Direct entry lookup — fastest path when the query is obviously a name.
+ */
+function lookupEntryDirectly(q) {
+  const database = getDb();
+  const normalized = normalizeQuery(q);
+  const row = database
+    .prepare(
+      `SELECT * FROM entries
+       WHERE LOWER(id) = ? OR LOWER(ascii) = ? OR LOWER(unicode) = ?
+       LIMIT 1`
+    )
+    .get(normalized, normalized, normalized);
+  return row || null;
 }
 
 const STOP_WORDS = new Set([
@@ -160,15 +208,24 @@ const STOP_WORDS = new Set([
   'whose',
 ]);
 
-function _tokenize(q) {
-  return String(q)
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^a-z0-9\s]/g, ' ')
-    .split(/\s+/)
-    .filter((w) => w.length >= 3 && !STOP_WORDS.has(w));
-}
+const CONCEPT_BOOST = new Map([
+  ['wisdom', ['wisdom', 'knowledge', 'counsel', 'strategy']],
+  ['war', ['war', 'warfare', 'battle', 'warrior', 'combat', 'strategic warfare']],
+  ['love', ['love', 'desire', 'beauty', 'fertility', 'erotic']],
+  ['death', ['death', 'dead', 'underworld', 'afterlife', 'funerary']],
+  ['sea', ['sea', 'ocean', 'water', 'maritime', 'sailor']],
+  ['sky', ['sky', 'heaven', 'storm', 'thunder', 'lightning']],
+  ['sun', ['sun', 'solar', 'light', 'day']],
+  ['moon', ['moon', 'lunar', 'night']],
+  ['earth', ['earth', 'land', 'ground', 'fertility', 'harvest']],
+  ['crafts', ['craft', 'weaving', 'pottery', 'carpentry', 'artisan']],
+  ['hunt', ['hunt', 'hunter', 'wild', 'archer']],
+  ['fire', ['fire', 'forge', 'smith', 'volcano']],
+  ['trickster', ['trickster', 'messenger', 'commerce', 'thieves']],
+  ['fertility', ['fertility', 'grain', 'harvest', 'agriculture']],
+  ['justice', ['justice', 'law', 'order', 'oath']],
+  ['magic', ['magic', 'sorcery', 'witchcraft', 'hekate']],
+]);
 
 function normalizeQuery(q) {
   return String(q)
@@ -177,36 +234,20 @@ function normalizeQuery(q) {
     .replace(/[\u0300-\u036f]/g, '');
 }
 
-/**
- * Detect intent with NER-assisted regex.
- */
-function detectIntent(q) {
-  const lower = normalizeQuery(q);
+function _tokenize(q) {
+  return normalizeQuery(q)
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .split(/\s+/)
+    .filter((w) => w.length >= 3 && !STOP_WORDS.has(w));
+}
 
-  if (/\b(who|whom)\b/.test(lower)) return 'who';
-  if (/\b(what does|meaning of|mean)\b/.test(lower)) return 'meaning';
-  if (/\b(how (is|was|do|does)|related to|connection between|compare)\b/.test(lower))
-    return 'relation';
-  if (/\b(etymology|origin|root|comes from|derived from|cognates?)\b/.test(lower))
-    return 'etymology';
-  if (/\b(pronunciation|pronounce|how do you say|how is .* pronounced)\b/.test(lower))
-    return 'pronunciation';
-  if (/\b(myth|mythology|story|legend|tale|epic|saga)\b/.test(lower)) return 'mythology';
-  if (/\b(symbol|icon|attribute|sacred animal|sacred bird|weapon|staff)\b/.test(lower))
-    return 'symbols';
-  if (/\b(variant|spelling|alternate|other form|different spelling)\b/.test(lower))
-    return 'variants';
-  if (/\b(original script|writing|glyph|hieroglyph|devanagari|cuneiform|rune)\b/.test(lower))
-    return 'script';
-  if (
-    /\b(business(es)?|company|companies|tenant|lease|leasing|advertiser|shop|store)\b/.test(lower)
-  )
-    return 'tenant';
-  if (/\b(where|buy|purchase|find|acquire|get this name)\b/.test(lower)) return 'commercial';
-  if (/\b(claim|buy this domain|how much|price|cost|pricing)\b/.test(lower)) return 'acquisition';
-  if (/\b(tell me more|more about|explain|describe|overview)\b/.test(lower)) return 'explore';
-
-  return 'general';
+function stripHtml(html) {
+  if (!html) return '';
+  return String(html)
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .replace(/\s+([.,;:!?])/g, '$1')
+    .trim();
 }
 
 function safeJsonParse(str) {
@@ -218,12 +259,70 @@ function safeJsonParse(str) {
   }
 }
 
+function detectIntent(q) {
+  const lower = normalizeQuery(q);
+
+  if (/\b(who is|who was|who are|whom is|whom was|tell me about)\b/.test(lower)) return 'who';
+  if (/\b(what is the etymology of|what was the etymology of|etymology of)\b/.test(lower))
+    return 'etymology';
+  if (/\b(what does|meaning of|what do|mean|stands for)\b/.test(lower)) return 'meaning';
+  if (
+    /\b(goddess of|god of|deity of|presides? over|rules? over|patron of|associated with)\b/.test(
+      lower
+    )
+  )
+    return 'attribute';
+  if (/\b(how (is|was|do|does)|related to|connection between|compare)\b/.test(lower))
+    return 'relation';
+  if (/\b(etymology|origin|root|comes from|derived from|cognates?)\b/.test(lower))
+    return 'etymology';
+  if (/\b(pronunciation|pronounce|how do you say|how is .* pronounced|phonetics?)\b/.test(lower))
+    return 'pronunciation';
+  if (/\b(myth|mythology|story|legend|tale|epic|saga|born|birth|killed|defeated)\b/.test(lower))
+    return 'mythology';
+  if (/\b(symbol|icon|attribute|sacred animal|sacred bird|weapon|staff|object)\b/.test(lower))
+    return 'symbols';
+  if (/\b(variant|spelling|alternate|other form|different spelling|diacritics?)\b/.test(lower))
+    return 'variants';
+  if (/\b(original script|writing|glyph|hieroglyph|devanagari|cuneiform|rune|script)\b/.test(lower))
+    return 'script';
+  if (
+    /\b(business(es)?|company|companies|tenant|lease|leasing|advertiser|shop|store)\b/.test(lower)
+  )
+    return 'tenant';
+  if (/\b(where|buy|purchase|find|acquire|get this name)\b/.test(lower)) return 'commercial';
+  if (/\b(claim|buy this domain|how much|price|cost|pricing)\b/.test(lower)) return 'acquisition';
+  if (/\b(archaeology|archaeological|site|temple|shrine|worshipped|cult)\b/.test(lower))
+    return 'archaeology';
+  if (/\b(legacy|today|modern|influence|cultural|civilization)\b/.test(lower)) return 'legacy';
+  if (/\b(tell me more|more about|explain|describe|overview)\b/.test(lower)) return 'explore';
+
+  return 'general';
+}
+
+function formatProtoLanguage(lang) {
+  if (!lang) return '';
+  const map = {
+    'proto-indo-european': 'Proto-Indo-European',
+    'proto-germanic': 'Proto-Germanic',
+    'proto-semitic': 'Proto-Semitic',
+    'proto-celtic': 'Proto-Celtic',
+    'proto-slavic': 'Proto-Slavic',
+    'proto-uralic': 'Proto-Uralic',
+    'proto-dravidian': 'Proto-Dravidian',
+    'proto-sino-tibetan': 'Proto-Sino-Tibetan',
+  };
+  return map[lang.toLowerCase()] || lang.replace(/^proto-/, 'Proto-');
+}
+
 function etymologySummary(etymology) {
-  const parsed = safeJsonParse(etymology);
-  if (!parsed) return etymology;
+  const parsed =
+    typeof etymology === 'object' && etymology !== null ? etymology : safeJsonParse(etymology);
+  if (!parsed) return typeof etymology === 'string' ? etymology : '';
   const parts = [];
   if (parsed.protoForm && parsed.protoLanguage) {
-    parts.push(`From Proto-${parsed.protoLanguage} *${parsed.protoForm}*`);
+    const form = parsed.protoForm.startsWith('*') ? parsed.protoForm : `*${parsed.protoForm}`;
+    parts.push(`From ${formatProtoLanguage(parsed.protoLanguage)} ${form}`);
     if (parsed.protoGloss) parts.push(`(“${parsed.protoGloss}”)`);
   }
   if (parsed.derivation) parts.push(parsed.derivation);
@@ -268,7 +367,6 @@ function _extractNamedEntities(q) {
   const normalized = normalizeQuery(q);
   const tokens = normalized.split(/\s+/).filter(Boolean);
 
-  // Direct matches on unicode / ascii / id
   const direct = database
     .prepare(
       `
@@ -280,7 +378,6 @@ function _extractNamedEntities(q) {
 
   if (direct.length) return direct;
 
-  // Token prefix / substring matches across unicode, ascii, id, meaning, domain
   if (tokens.length) {
     const conditions = tokens
       .map(() => 'LOWER(unicode) LIKE ? OR LOWER(ascii) LIKE ? OR LOWER(id) LIKE ?')
@@ -299,10 +396,6 @@ function _extractNamedEntities(q) {
   return [];
 }
 
-/**
- * Try to match individual entity tokens (id/ascii/unicode) independent of stop words.
- * This catches "Who is Zeus?", "Is Athena available?", and anaphoric follow-ups.
- */
 function retrieveEntriesByToken(q, limit = 5) {
   const database = getDb();
   const normalized = normalizeQuery(q)
@@ -330,7 +423,6 @@ function retrieveEntriesFTS(q, limit = 10) {
   const database = getDb();
   const normalized = normalizeQuery(q);
 
-  // Exact match
   const exact = database
     .prepare(
       `
@@ -343,7 +435,6 @@ function retrieveEntriesFTS(q, limit = 10) {
 
   if (exact.length) return exact;
 
-  // FTS5 prefix search
   const ftsQuery = normalized
     .replace(/[^a-z0-9\s]/g, ' ')
     .split(/\s+/)
@@ -364,6 +455,41 @@ function retrieveEntriesFTS(q, limit = 10) {
     `
     )
     .all(ftsQuery, limit);
+}
+
+function retrieveEntriesByConcept(q, limit = 5) {
+  const database = getDb();
+  const tokens = _tokenize(q);
+  const conceptTerms = new Set(tokens);
+
+  // Expand with synonym map
+  for (const term of Array.from(conceptTerms)) {
+    for (const [concept, synonyms] of CONCEPT_BOOST) {
+      if (term === concept || synonyms.includes(term)) {
+        conceptTerms.add(concept);
+        synonyms.forEach((s) => conceptTerms.add(s));
+      }
+    }
+  }
+
+  if (conceptTerms.size === 0) return [];
+
+  const likes = Array.from(conceptTerms).map((t) => `%${t}%`);
+  const domainConditions = likes.map(() => 'LOWER(e.domain) LIKE ?').join(' OR ');
+  const meaningConditions = likes.map(() => 'LOWER(e.meaning) LIKE ?').join(' OR ');
+
+  const rows = database
+    .prepare(
+      `
+      SELECT e.*, 1 as concept_match FROM entries e
+      WHERE (${domainConditions}) OR (${meaningConditions})
+      ORDER BY e.tier = 'dual' DESC, e.tier = '1' DESC, e.confidence_score DESC, e.has_flagship DESC
+      LIMIT ?
+    `
+    )
+    .all(...likes, ...likes, limit);
+
+  return rows;
 }
 
 async function retrieveEntriesSemantic(q, limit = 10) {
@@ -408,15 +534,17 @@ async function retrieveEntriesSemantic(q, limit = 10) {
   }
 }
 
-async function retrieveEntries(q, limit = 5) {
+async function retrieveEntries(q, limit = 5, quick = false) {
   const byToken = retrieveEntriesByToken(q, limit);
+  const byConcept = retrieveEntriesByConcept(q, limit);
   const fts = retrieveEntriesFTS(q, limit);
-  const semantic = await retrieveEntriesSemantic(q, limit);
+  const semantic = quick ? [] : await retrieveEntriesSemantic(q, limit);
 
   const seen = new Set();
   const combined = [];
   const tokenIds = new Set(byToken.map((e) => e.id));
-  for (const source of [byToken, fts, semantic]) {
+
+  for (const source of [byToken, byConcept, fts, semantic]) {
     for (const e of source) {
       if (!seen.has(e.id)) {
         seen.add(e.id);
@@ -425,7 +553,6 @@ async function retrieveEntries(q, limit = 5) {
     }
   }
 
-  // Re-rank: token match > exact substring > tier > confidence
   const normalized = normalizeQuery(q).replace(/[^a-z0-9]/g, '');
   combined.sort((a, b) => {
     const aToken = tokenIds.has(a.id);
@@ -494,7 +621,6 @@ function retrieveSitesFTS(q, limit = 5) {
     if (rows.length) return rows;
   }
 
-  // Fallback: LIKE search over titles/descriptions
   return database
     .prepare(
       `
@@ -556,30 +682,190 @@ function retrieveRelated(entry, limit = 3) {
     .all(entry.id, entry.id, limit);
 }
 
-function _formatLore(lore) {
-  if (!lore) return null;
-  const parts = [];
-  if (lore.overview) parts.push(lore.overview);
-  if (lore.pronunciation?.ipa) parts.push(`Pronounced ${lore.pronunciation.ipa}.`);
-  if (lore.mythology) parts.push(lore.mythology);
-  if (lore.archaeology) parts.push(lore.archaeology);
-  if (lore.culturalLegacy) parts.push(lore.culturalLegacy);
-  return parts.join(' ');
+function retrievePantheonSiblings(entry, limit = 3) {
+  if (!entry) return [];
+  const database = getDb();
+  return database
+    .prepare(
+      `
+      SELECT id, unicode, ascii, meaning, tier, has_flagship FROM entries
+      WHERE pantheon = ? AND id != ?
+      ORDER BY has_flagship DESC, tier = 'dual' DESC, tier = '1' DESC, confidence_score DESC
+      LIMIT ?
+    `
+    )
+    .all(entry.pantheon, entry.id, limit);
 }
 
-function _formatBreakdown(breakdown) {
-  if (!breakdown?.length) return null;
-  return breakdown
-    .map((b) => `${b.char || ''} → ${b.to_char || b.to || ''} (${b.type || 'char'})`)
-    .join('; ');
+function formatLoreSources(sources) {
+  if (!Array.isArray(sources) || !sources.length) return '';
+  return `<div class="oracle-section"><h4>Sources</h4><ul>${sources
+    .map((s) => {
+      if (typeof s === 'string') return `<li>${s}</li>`;
+      const label = [s.author, s.title, s.year].filter(Boolean).join(', ');
+      const note = s.note ? ` — ${s.note}` : '';
+      return `<li>${label || s.id || 'Source'}${note}</li>`;
+    })
+    .join('')}</ul></div>`;
+}
+
+function formatLexiconSources(sources) {
+  if (!Array.isArray(sources) || !sources.length) return '';
+  return `<span class="oracle-source-list">${sources.join(', ')}</span>`;
+}
+
+function formatSymbols(symbols) {
+  if (!Array.isArray(symbols) || !symbols.length) return '';
+  return `<div class="oracle-section"><h4>Symbols & attributes</h4><ul>${symbols
+    .map((s) => `<li><strong>${s.name}</strong>${s.meaning ? `: ${s.meaning}` : ''}</li>`)
+    .join('')}</ul></div>`;
+}
+
+function formatMyths(mythology) {
+  if (!mythology?.myths?.length) return '';
+  const lead = mythology.lead ? `<p>${stripHtml(mythology.lead)}</p>` : '';
+  const myths = mythology.myths
+    .slice(0, 4)
+    .map((m) => {
+      const title = m.title || m.tag;
+      return `<li><strong>${title}</strong>${m.text ? `: ${stripHtml(m.text)}` : ''}</li>`;
+    })
+    .join('');
+  return `<div class="oracle-section"><h4>Mythology</h4>${lead}<ul>${myths}</ul></div>`;
+}
+
+function formatDomains(domains, name) {
+  if (!domains) return '';
+  const lead = domains.lead ? `<p>${stripHtml(domains.lead)}</p>` : '';
+  const cards = Array.isArray(domains.cards)
+    ? domains.cards
+        .map((c) => `<li><strong>${c.name}</strong>${c.desc ? `: ${c.desc}` : ''}</li>`)
+        .join('')
+    : '';
+  return `<div class="oracle-section"><h4>What ${name} presides over</h4>${lead}${
+    cards ? `<ul>${cards}</ul>` : ''
+  }</div>`;
+}
+
+function formatPronunciation(pronunciation) {
+  if (!pronunciation) return '';
+  const ipa = pronunciation.ipa
+    ? `<p><strong>IPA:</strong> ${pronunciation.ipa}${pronunciation.ipaLabel ? ` (${pronunciation.ipaLabel})` : ''}</p>`
+    : '';
+  const approx = pronunciation.approximation ? `<p>${pronunciation.approximation}</p>` : '';
+  const note = pronunciation.note ? `<p class="oracle-note">${pronunciation.note}</p>` : '';
+  return `<div class="oracle-section"><h4>Pronunciation</h4>${ipa}${approx}${note}</div>`;
+}
+
+function formatEtymology(etymology, lore) {
+  const lex = etymologySummary(etymology);
+  const loreEtym = lore?.etymology?.narrative || lore?.etymology?.summary || '';
+  if (!lex && !loreEtym) return '';
+  return `<div class="oracle-section"><h4>Etymology</h4>${
+    loreEtym ? `<p>${stripHtml(loreEtym)}</p>` : ''
+  }${lex ? `<p>${lex}</p>` : ''}</div>`;
+}
+
+function formatOriginalScript(ctx) {
+  const script = ctx.originalScript;
+  if (!script || script === '—') return '';
+  const greek =
+    ctx.greek && ctx.greek !== '-' && ctx.greek !== script
+      ? `<p><strong>Greek:</strong> ${ctx.greek}</p>`
+      : '';
+  return `<div class="oracle-section"><h4>Original script</h4>${greek}<p>${script}</p></div>`;
 }
 
 function formatVariants(variants) {
-  if (!variants?.length) return null;
-  return variants
+  if (!Array.isArray(variants) || !variants.length) return '';
+  const items = variants
     .filter((v) => ['owned', 'ideal', 'macron-only', 'ascii'].includes(v.type) || v.sources?.length)
-    .map((v) => `${v.unicode || v.text} (${v.type})`)
-    .join(', ');
+    .map(
+      (v) =>
+        `<li><strong>${v.unicode || v.text}</strong> — ${v.type}${v.note ? ` (${v.note})` : ''}</li>`
+    )
+    .join('');
+  if (!items) return '';
+  return `<div class="oracle-section"><h4>Name variations</h4><ul>${items}</ul></div>`;
+}
+
+function formatCulturalLegacy(legacy) {
+  if (!legacy) return '';
+  const text = typeof legacy === 'string' ? legacy : legacy.text || legacy.overview || '';
+  if (!text) return '';
+  return `<div class="oracle-section"><h4>Cultural legacy</h4><p>${stripHtml(text)}</p></div>`;
+}
+
+function formatSyncretism(syncretism) {
+  if (!syncretism) return '';
+  const text =
+    typeof syncretism === 'string' ? syncretism : syncretism.text || syncretism.summary || '';
+  if (!text) return '';
+  return `<div class="oracle-section"><h4>Syncretism</h4><p>${stripHtml(text)}</p></div>`;
+}
+
+function formatArchaeology(archaeology) {
+  if (!archaeology) return '';
+  const text =
+    typeof archaeology === 'string' ? archaeology : archaeology.text || archaeology.summary || '';
+  if (!text) return '';
+  return `<div class="oracle-section"><h4>Archaeology & worship</h4><p>${stripHtml(text)}</p></div>`;
+}
+
+function formatSites(name, sites, availability) {
+  const activeSites = (sites || []).filter((s) => s.status === 'active' || s.is_flagship);
+  if (activeSites.length) {
+    const list = activeSites
+      .slice(0, 3)
+      .map((s) => {
+        const domain = s.punycode || s.domain;
+        const title = s.tenant_name || s.title || domain;
+        const url = `https://${domain}`;
+        return `<li><a href="${url}" target="_blank" rel="noopener"><strong>${title}</strong></a>${
+          s.description ? ` — ${stripHtml(s.description).slice(0, 120)}` : ''
+        }</li>`;
+      })
+      .join('');
+    return `<div class="oracle-section"><h4>On the Unicode web</h4><ul>${list}</ul></div>`;
+  }
+  if (availability?.status === 'available') {
+    return `<div class="oracle-section"><h4>On the Unicode web</h4><p><strong>${name}</strong> is available for registration as a Unicode domain. Claim it through a registrar or lease ad space on its temple page.</p></div>`;
+  }
+  return '';
+}
+
+function buildCitations(entries, sites, loreSources = []) {
+  const citations = [];
+  for (const e of entries.slice(0, 3)) {
+    citations.push({
+      type: 'entry',
+      label: e.unicode || e.ascii,
+      url: `/sites/${e.id}/`,
+      snippet: e.meaning,
+    });
+  }
+  for (const s of sites.slice(0, 3)) {
+    const domain = s.punycode || s.domain;
+    citations.push({
+      type: 'site',
+      label: s.tenant_name || s.title || domain,
+      url: `https://${domain}`,
+      snippet: s.description || s.content_snippet,
+    });
+  }
+  for (const src of loreSources.slice(0, 4)) {
+    const label =
+      typeof src === 'string' ? src : [src.author, src.title].filter(Boolean).join(', ');
+    if (label && !citations.some((c) => c.label === label)) {
+      citations.push({
+        type: 'source',
+        label,
+        url: `/sites/${entries[0]?.id}/lore.html`,
+        snippet: '',
+      });
+    }
+  }
+  return citations;
 }
 
 function generateFollowUps(intent, primary, related = [], sites = []) {
@@ -593,25 +879,36 @@ function generateFollowUps(intent, primary, related = [], sites = []) {
 
   const name = primary.unicode || primary.ascii;
 
-  if (intent === 'who' || intent === 'general' || intent === 'explore') {
-    followUps.push(`What does ${name} mean?`);
+  if (intent === 'who' || intent === 'general' || intent === 'explore' || intent === 'attribute') {
     followUps.push(`What is the etymology of ${name}?`);
+    followUps.push(`What are the symbols of ${name}?`);
   }
   if (intent === 'meaning' || intent === 'etymology') {
     followUps.push(`Who is ${name}?`);
-    followUps.push(`Which businesses are on ${name}?`);
+    followUps.push(`What are the myths of ${name}?`);
   }
-  if (intent === 'tenant' || intent === 'commercial') {
+  if (intent === 'mythology') {
+    followUps.push(`What does ${name} preside over?`);
+    followUps.push(`How is ${name} pronounced?`);
+  }
+  if (intent === 'symbols') {
+    followUps.push(`What are the myths of ${name}?`);
+    followUps.push(`What does ${name} mean?`);
+  }
+  if (intent === 'pronunciation') {
+    followUps.push(`What does ${name} mean?`);
     followUps.push(`Who is ${name}?`);
+  }
+  if (intent === 'tenant' || intent === 'commercial' || sites.length) {
+    followUps.push(`Which businesses are on ${name}?`);
     followUps.push(`How do I lease ${name}?`);
   }
-  if (intent === 'relation' || intent === 'general') {
-    if (related.length) {
-      followUps.push(`How is ${name} related to ${related[0].unicode || related[0].ascii}?`);
-    }
+  if (intent === 'acquisition') {
+    followUps.push(`Is ${name} available?`);
+    followUps.push(`How much does ${name} cost?`);
   }
-  if (sites.length && !followUps.some((f) => f.includes('business'))) {
-    followUps.push(`Which businesses are on ${name}?`);
+  if (related.length) {
+    followUps.push(`How is ${name} related to ${related[0].unicode || related[0].ascii}?`);
   }
   if (!followUps.some((f) => f.includes('lease')) && (primary.has_flagship || primary.tier)) {
     followUps.push(`How do I lease ${name}?`);
@@ -620,28 +917,7 @@ function generateFollowUps(intent, primary, related = [], sites = []) {
   return followUps.slice(0, 3);
 }
 
-function buildCitations(entries, sites) {
-  const citations = [];
-  for (const e of entries.slice(0, 3)) {
-    citations.push({
-      type: 'entry',
-      label: e.unicode || e.ascii,
-      url: `/sites/${e.id}/`,
-      snippet: e.meaning,
-    });
-  }
-  for (const s of sites.slice(0, 3)) {
-    citations.push({
-      type: 'site',
-      label: s.tenant_name || s.title || s.domain,
-      url: `https://${s.punycode}`,
-      snippet: s.description || s.content_snippet,
-    });
-  }
-  return citations;
-}
-
-function synthesizeAnswer(q, entries, sites, related, intent, history = []) {
+function synthesizeAnswer(q, entries, sites, related, intent, _history = []) {
   const primary = entries[0];
   const context = {
     query: q,
@@ -653,18 +929,15 @@ function synthesizeAnswer(q, entries, sites, related, intent, history = []) {
   };
 
   let answer = '';
-  const citations = buildCitations(entries, sites);
-
-  const isFollowUp = history.length > 0 && history.some((h) => h.role === 'user');
-  const followIntro = isFollowUp && primary ? `Following up on **${primary.unicode}** — ` : '';
 
   if (!primary) {
+    const citations = buildCitations(entries, sites);
     if (sites.length) {
-      answer = `${followIntro}We found these indexed sites related to “${q}”: ${sites
-        .map((s) => `**${s.tenant_name || s.title || s.domain}**`)
-        .join(', ')}.`;
+      answer = `<p>We found these indexed sites related to “${q}”:</p><ul>${sites
+        .map((s) => `<li><strong>${s.tenant_name || s.title || s.domain}</strong></li>`)
+        .join('')}</ul>`;
     } else {
-      answer = `I don’t have enough data in the PUNYCODEX knowledge base to answer “${q}” confidently. Try a deity, realm, or mythological concept.`;
+      answer = `<p>The PUNYCODEX knowledge base does not yet cover “${q}” with confidence. Try a deity, realm, myth, or Unicode domain name.</p>`;
     }
 
     return {
@@ -678,106 +951,119 @@ function synthesizeAnswer(q, entries, sites, related, intent, history = []) {
 
   const ctx = getEntryContext(primary.id);
   const name = primary.unicode || primary.ascii;
+  const asciiName = primary.ascii || name;
   const tierLabel =
     primary.tier === 'dual' ? 'Dual-Tier' : primary.tier === '1' ? 'Tier-1' : 'Tier-2';
+  const lore = ctx?.lore || {};
 
-  switch (intent) {
-    case 'who':
-      answer = `${followIntro}**${name}** is a **${tierLabel}** Unicode restoration from the **${primary.pantheon}** pantheon.`;
-      if (ctx?.meaning) answer += ` The name means “${ctx.meaning}.”`;
-      if (ctx?.lore?.overview) answer += ` ${ctx.lore.overview}`;
-      if (ctx?.domain) answer += ` It is associated with ${ctx.domain}.`;
-      break;
+  // Identity lead
+  answer += `<div class="oracle-lead">`;
+  answer += `<p><strong>${name}</strong> is a <strong>${tierLabel}</strong> Unicode restoration of the ${primary.pantheon} name <strong>${asciiName}</strong>`;
+  if (primary.greek && primary.greek !== '-') answer += ` (Greek <em>${primary.greek.trim()}</em>)`;
+  answer += `. `;
 
-    case 'meaning':
-      answer = `${followIntro}**${name}** means “${ctx?.meaning || 'unknown'}.”`;
-      if (ctx?.etymology) {
-        answer += ` ${etymologySummary(ctx.etymology)}`;
-      }
-      if (ctx?.domain) answer += ` The name is associated with ${ctx.domain}.`;
-      break;
+  const domainText = (primary.domain || lore.domains?.subtitle || '').trim();
+  if (intent === 'attribute' || intent === 'who' || intent === 'general' || intent === 'explore') {
+    if (domainText) {
+      answer += `In the classical sources, ${name} is the deity of <strong>${domainText}</strong>. `;
+    } else if (ctx?.meaning) {
+      answer += `The name means “${ctx.meaning}.” `;
+    }
+  }
+  answer += `</p></div>`;
 
-    case 'etymology':
-      answer = `${followIntro}The etymology of **${name}**: ${
-        etymologySummary(ctx?.etymology) || 'We do not yet have a detailed etymology on file.'
-      }`;
-      break;
-
-    case 'pronunciation':
-      answer = `${followIntro}**${name}**${
-        ctx?.lore?.pronunciation?.ipa
-          ? ` is pronounced **${ctx.lore.pronunciation.ipa}**.`
-          : ' has no recorded pronunciation guide yet.'
-      }`;
-      if (ctx?.lore?.pronunciation?.guide) answer += ` ${ctx.lore.pronunciation.guide}`;
-      break;
-
-    case 'mythology':
-      answer = `${followIntro}**${name}**${
-        ctx?.lore?.mythology
-          ? `: ${ctx.lore.mythology}`
-          : ' has no detailed mythology entry in the catalog yet.'
-      }`;
-      break;
-
-    case 'symbols':
-      answer = `${followIntro}**${name}**${
-        ctx?.lore?.symbols
-          ? ` is associated with ${ctx.lore.symbols}.`
-          : ' has no recorded symbols or attributes yet.'
-      }`;
-      break;
-
-    case 'variants':
-      answer = `${followIntro}**${name}** has the following attested Unicode forms: ${
-        formatVariants(ctx?.variants) || 'no variants recorded.'
-      }`;
-      break;
-
-    case 'script':
-      answer = `${followIntro}**${name}**${
-        ctx?.originalScript
-          ? ` is written in the original script as **${ctx.originalScript}**.`
-          : ' has no original-script record yet.'
-      }`;
-      break;
-
-    case 'tenant':
-    case 'commercial':
-      if (sites.length) {
-        const names = sites.map((s) => s.tenant_name || s.title || s.domain).join(', ');
-        answer = `${followIntro}The following businesses are connected to **${name}**: **${names}**.`;
-      } else if (ctx?.availability?.status === 'available') {
-        answer = `${followIntro}**${name}** is available for registration. You can claim it through a registrar or lease ad space on its temple page.`;
-      } else {
-        answer = `${followIntro}**${name}** has no tenant currently leasing this name. You could claim it.`;
-      }
-      break;
-
-    case 'acquisition':
-      answer = `${followIntro}**${name}** is a PUNYCODEX entry. You can lease ad space on its temple page or claim the Unicode domain through our platform. Use the “Lease this Space” buttons on the temple page or contact us to discuss domain acquisition.`;
-      break;
-
-    case 'relation':
-      if (related.length) {
-        const relatedList = related.map((r) => `**${r.unicode || r.ascii}**`).join(', ');
-        answer = `${followIntro}**${name}** is often mentioned alongside ${relatedList} across the indexed Unicode web.`;
-      } else {
-        answer = `${followIntro}**${name}** does not yet have enough semantic connections in our index. As we crawl more sites, related entities will appear here.`;
-      }
-      break;
-
-    default:
-      answer = `${followIntro}Here is what PUNYCODEX knows about **${name}**: ${
-        ctx?.meaning ? `it means “${ctx.meaning}.”` : ''
-      } ${ctx?.domain ? `It is associated with ${ctx.domain}.` : ''} ${
-        ctx?.lore?.overview ? ctx.lore.overview : ''
-      }`.trim();
-      if (!answer.replace(/[* ]/g, '')) {
-        answer = `${followIntro}**${name}** is a **${tierLabel}** entry in the **${primary.pantheon}** pantheon.`;
-      }
+  // Sections based on intent, but always include core context
+  if (intent === 'attribute' || intent === 'who' || intent === 'general' || intent === 'explore') {
+    answer += formatDomains(lore.domains, name);
+    answer += formatSymbols(lore.symbols);
+    answer += formatMyths(lore.mythology);
   }
 
+  if (intent === 'mythology') {
+    answer += formatMyths(lore.mythology);
+    answer += formatDomains(lore.domains, name);
+    answer += formatSymbols(lore.symbols);
+  }
+
+  if (intent === 'symbols') {
+    answer += formatSymbols(lore.symbols);
+    answer += formatMyths(lore.mythology);
+  }
+
+  if (intent === 'etymology' || intent === 'meaning') {
+    answer += formatEtymology(ctx?.etymology, lore);
+    answer += formatPronunciation(lore.pronunciation);
+    answer += formatVariants(ctx?.variants);
+  }
+
+  if (intent === 'pronunciation') {
+    answer += formatPronunciation(lore.pronunciation);
+    answer += formatEtymology(ctx?.etymology, lore);
+  }
+
+  if (intent === 'script') {
+    answer += formatOriginalScript(ctx);
+    answer += formatVariants(ctx?.variants);
+  }
+
+  if (intent === 'variants') {
+    answer += formatVariants(ctx?.variants);
+    answer += formatOriginalScript(ctx);
+  }
+
+  if (intent === 'archaeology') {
+    answer += formatArchaeology(lore.archaeology);
+    answer += formatCulturalLegacy(lore.culturalLegacy);
+  }
+
+  if (intent === 'legacy') {
+    answer += formatCulturalLegacy(lore.culturalLegacy);
+    answer += formatSyncretism(lore.syncretism);
+  }
+
+  if (intent === 'relation') {
+    if (related.length) {
+      answer += `<div class="oracle-section"><h4>Related figures</h4><p>${name} is often mentioned alongside ${related
+        .map((r) => `<strong>${r.unicode || r.ascii}</strong>`)
+        .join(', ')} across the indexed Unicode web and classical sources.</p></div>`;
+    }
+    const siblings = retrievePantheonSiblings(primary, 4);
+    if (siblings.length) {
+      answer += `<div class="oracle-section"><h4>Other ${primary.pantheon} names</h4><ul>${siblings
+        .map(
+          (s) =>
+            `<li><strong>${s.unicode || s.ascii}</strong>${s.meaning ? ` — ${s.meaning}` : ''}</li>`
+        )
+        .join('')}</ul></div>`;
+    }
+  }
+
+  if (intent === 'tenant' || intent === 'commercial' || intent === 'acquisition') {
+    answer += formatSites(name, sites, ctx?.availability);
+  }
+
+  // Default enrichments for every answer
+  if (!['etymology', 'meaning', 'pronunciation', 'script', 'variants'].includes(intent)) {
+    answer += formatEtymology(ctx?.etymology, lore);
+    answer += formatPronunciation(lore.pronunciation);
+  }
+
+  if (!['tenant', 'commercial', 'acquisition'].includes(intent)) {
+    answer += formatSites(name, sites, ctx?.availability);
+  }
+
+  answer += formatOriginalScript(ctx);
+  answer += formatVariants(ctx?.variants);
+  answer += formatCulturalLegacy(lore.culturalLegacy);
+  answer += formatSyncretism(lore.syncretism);
+  answer += formatArchaeology(lore.archaeology);
+  answer += formatLoreSources(lore.sources);
+
+  if (ctx?.sources?.length) {
+    answer += `<div class="oracle-section"><h4>Lexicon authorities</h4><p>${formatLexiconSources(ctx.sources)}</p></div>`;
+  }
+
+  const citations = buildCitations(entries, sites, lore.sources);
   const followUps = generateFollowUps(intent, primary, related, sites);
 
   return { answer, citations, context, followUps, primaryId: primary.id };
@@ -801,7 +1087,7 @@ async function callLlmIfConfigured(prompt) {
           {
             role: 'system',
             content:
-              'You are the PUNYCODEX Oracle, a scholarly assistant for Unicode domain names and mythological entities. Answer using ONLY the provided context. Cite sources inline with [entry:id] or [site:domain]. Keep answers concise.',
+              'You are the PUNYCODEX Oracle. Synthesize the provided context into a scholarly, dense, citation-aware paragraph. Do not add facts absent from the context. Use HTML: <strong> for emphasis, <p> for paragraphs. Keep under 250 words.',
           },
           { role: 'user', content: prompt },
         ],
@@ -822,26 +1108,84 @@ function buildLlmPrompt(q, contexts, intent) {
   const _primary = contexts[0];
   const promptParts = [`User question: ${q}`, `Intent: ${intent}`, '', 'Context:'];
 
-  for (const ctx of contexts.slice(0, 3)) {
+  for (const ctx of contexts.slice(0, 2)) {
     promptParts.push(
       `- ${ctx.unicode || ctx.ascii} (${ctx.pantheon}, ${ctx.tierLabel || ctx.tier})`
     );
     if (ctx.meaning) promptParts.push(`  Meaning: ${ctx.meaning}`);
-    if (ctx.lore?.overview) promptParts.push(`  Overview: ${ctx.lore.overview}`);
+    if (ctx.lore?.overview || ctx.lore?.domains?.lead) {
+      promptParts.push(`  Overview: ${stripHtml(ctx.lore.overview || ctx.lore.domains.lead)}`);
+    }
+    if (ctx.lore?.mythology?.lead)
+      promptParts.push(`  Mythology: ${stripHtml(ctx.lore.mythology.lead)}`);
     if (ctx.etymology) promptParts.push(`  Etymology: ${etymologySummary(ctx.etymology)}`);
     if (ctx.site) promptParts.push(`  Live site: ${ctx.site.domain} — ${ctx.site.title}`);
-    if (ctx.availability?.status === 'available')
-      promptParts.push(`  Status: available for registration`);
   }
 
-  promptParts.push('', 'Answer the question using only the context above. Cite sources inline.');
+  promptParts.push('', 'Answer the question using only the context above.');
   return promptParts.join('\n');
 }
 
-async function askOracle(q, history = []) {
+function synthesizeQuickAnswer(entry, intent) {
+  const name = entry.unicode || entry.ascii;
+  const asciiName = entry.ascii || name;
+  const tierLabel = entry.tier === 'dual' ? 'Dual-Tier' : entry.tier === '1' ? 'Tier-1' : 'Tier-2';
+  const ctx = getEntryContext(entry.id);
+  const lore = ctx?.lore || {};
+
+  let answer = `<div class="oracle-lead"><p><strong>${name}</strong> is a <strong>${tierLabel}</strong> Unicode restoration of the ${entry.pantheon} name <strong>${asciiName}</strong>`;
+  if (entry.greek && entry.greek !== '-') answer += ` (Greek <em>${entry.greek.trim()}</em>)`;
+  answer += `. `;
+
+  const domainText = (entry.domain || lore.domains?.subtitle || '').trim();
+  if (domainText) {
+    answer += `In the classical sources, ${name} is the deity of <strong>${domainText}</strong>. `;
+  } else if (ctx?.meaning) {
+    answer += `The name means “${ctx.meaning}.” `;
+  }
+  answer += `</p></div>`;
+
+  if (intent === 'etymology' || intent === 'meaning') {
+    answer += formatEtymology(ctx?.etymology, lore);
+  }
+  if (intent === 'mythology') {
+    answer += formatMyths(lore.mythology);
+  }
+  if (intent === 'symbols') {
+    answer += formatSymbols(lore.symbols);
+  }
+  if (intent === 'pronunciation') {
+    answer += formatPronunciation(lore.pronunciation);
+  }
+
+  // Always add the most useful single-sentence enrichments
+  if (lore.mythology?.lead && intent !== 'mythology') {
+    answer += `<div class="oracle-section"><h4>Mythology</h4><p>${stripHtml(lore.mythology.lead)}</p></div>`;
+  }
+  if (ctx?.etymology && intent !== 'etymology' && intent !== 'meaning') {
+    answer += formatEtymology(ctx.etymology, lore);
+  }
+  if (ctx?.originalScript && ctx.originalScript !== '—') {
+    answer += formatOriginalScript(ctx);
+  }
+
+  const citations = buildCitations([entry], []);
+  const followUps = generateFollowUps(intent, entry);
+
+  return {
+    answer,
+    citations,
+    context: { entries: [entry], sites: [], related: [], intent },
+    followUps,
+    primaryId: entry.id,
+    quick: true,
+  };
+}
+
+async function askOracle(q, history = [], { quick = false } = {}) {
   if (!q?.trim()) {
     return {
-      answer: 'Ask me about a deity, realm, symbol, or business on PUNYCODEX.',
+      answer: '<p>Ask me about a deity, realm, symbol, or business on PUNYCODEX.</p>',
       citations: [],
       context: {},
       followUps: generateFollowUps('general', null),
@@ -850,8 +1194,23 @@ async function askOracle(q, history = []) {
   }
 
   const resolvedQ = resolveAnaphora(q, history);
+  const cacheKey = hashQuery(resolvedQ, history);
+  const cached = getCachedOracle(cacheKey);
+  if (cached && !quick) return cached;
+
   const intent = detectIntent(resolvedQ);
-  let entries = await retrieveEntries(resolvedQ);
+
+  // Fast path: direct name match → skip expensive retrieval
+  const direct = lookupEntryDirectly(resolvedQ);
+  if (direct) {
+    const result = quick
+      ? synthesizeQuickAnswer(direct, intent)
+      : synthesizeAnswer(resolvedQ, [direct], [], [], intent, history);
+    if (!quick) setCachedOracle(cacheKey, result);
+    return result;
+  }
+
+  let entries = await retrieveEntries(resolvedQ, 5, quick);
 
   if (!entries.length && resolvedQ !== q && history.length) {
     for (let i = history.length - 1; i >= 0; i--) {
@@ -875,19 +1234,23 @@ async function askOracle(q, history = []) {
 
   // Optional LLM polish with grounded prompt
   const contexts = entries
-    .slice(0, 3)
+    .slice(0, 2)
     .map((e) => getEntryContext(e.id))
     .filter(Boolean);
   if (contexts.length && process.env.ORACLE_LLM_API_KEY) {
     const prompt = buildLlmPrompt(resolvedQ, contexts, intent);
     const llmAnswer = await callLlmIfConfigured(prompt);
     if (llmAnswer) {
-      result.answer = llmAnswer;
+      // Prepend LLM summary, keep our structured sections below for depth
+      result.answer = `<div class="oracle-llm-summary">${llmAnswer}</div>${result.answer}`;
     }
   }
 
+  setCachedOracle(cacheKey, result);
   return result;
 }
+
+askOracle.cacheStats = () => ({ size: ORACLE_CACHE.size, max: ORACLE_CACHE_MAX });
 
 module.exports = {
   askOracle,

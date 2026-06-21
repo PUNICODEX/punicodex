@@ -34,6 +34,7 @@ db.exec(`
     archetype_signals TEXT,
     archetype_version TEXT,
     lease_status TEXT DEFAULT 'available' CHECK (lease_status IN ('available', 'leased', 'reserved', 'flagship')),
+    trust_tier TEXT CHECK (trust_tier IN ('canonical', 'styled', 'suspicious', 'unsafe', 'unknown')),
     -- Open Graph
     og_title TEXT,
     og_description TEXT,
@@ -170,6 +171,10 @@ const upgradeCols = [
   ['simhash', 'TEXT'],
   ['next_crawl_after', 'DATETIME'],
   ['crawl_interval_days', 'INTEGER DEFAULT 7'],
+  [
+    'trust_tier',
+    "TEXT CHECK (trust_tier IN ('canonical', 'styled', 'suspicious', 'unsafe', 'unknown'))",
+  ],
 ];
 for (const [col, type] of upgradeCols) {
   try {
@@ -1146,9 +1151,12 @@ const insertAvail = db.prepare(`
   VALUES (?, ?, ?, 'available')
 `);
 
+const { domainToASCII } = require('node:url');
+
 for (const e of entries) {
-  const punycode = require('node:url').domainToASCII(`${e.ascii}.com`);
-  insertAvail.run(e.id, `${e.unicode}.com`, punycode);
+  const unicodeDomain = `${e.unicode}.com`;
+  const punycode = domainToASCII(unicodeDomain);
+  insertAvail.run(e.id, unicodeDomain, punycode);
 }
 
 console.log(`\nSeeded ${flagships.length} flagship sites`);
