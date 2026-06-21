@@ -138,8 +138,14 @@ async function transaction(fn) {
     return (await getPgClient()).begin(fn);
   }
   const db = getSharedDb();
-  const tx = db.transaction((cb) => cb());
-  tx(() => fn({ get, all, run, insert }));
+  db.exec('BEGIN');
+  try {
+    await fn({ get, all, run, insert });
+    db.exec('COMMIT');
+  } catch (err) {
+    db.exec('ROLLBACK');
+    throw err;
+  }
 }
 
 async function closeDb() {

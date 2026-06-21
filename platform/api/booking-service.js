@@ -1,3 +1,4 @@
+const crypto = require('node:crypto');
 const { run, get } = require('../db/operational');
 const {
   getSlots,
@@ -246,7 +247,7 @@ async function applyBookingRequest({
 async function sendVerification(email) {
   if (!email?.includes('@')) throw new BookingError(400, 'Valid email required');
 
-  const code = Math.floor(100000 + Math.random() * 900000).toString();
+  const code = crypto.randomInt(100000, 1000000).toString();
   const expires = new Date(Date.now() + 10 * 60 * 1000).toISOString();
 
   await run(

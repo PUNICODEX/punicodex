@@ -21,12 +21,16 @@ async function updateClaimStripeSession(claimId, sessionId) {
   ]);
 }
 
+async function getClaimByStripeSession(sessionId) {
+  return get('SELECT * FROM claims WHERE stripe_session_id = $1', [sessionId]);
+}
+
 async function markClaimPaid(sessionId, paymentIntent) {
   await run(
     'UPDATE claims SET stripe_payment_intent = $1, status = $2 WHERE stripe_session_id = $3',
     [paymentIntent, 'paid', sessionId]
   );
-  return getClaimById(sessionId);
+  return getClaimByStripeSession(sessionId);
 }
 
 async function markClaimBuilding(claimId, githubRepo) {

@@ -56,10 +56,15 @@ async function checkDomain(domain) {
       );
       resolves = true;
       ip = lookup;
-    } catch {
+    } catch (lookupErr) {
+      const lookupMsg = lookupErr.message || '';
+      const lookupCode = lookupErr.code || '';
+      if (lookupCode === 'ENOTFOUND' || lookupCode === 'ENODATA') {
+        return { status: 'available', details: 'NXDOMAIN', ip: null, httpStatus: null, checkedAt };
+      }
       return {
-        status: 'available',
-        details: 'No DNS records',
+        status: 'unknown',
+        details: lookupMsg.includes('TIMEOUT') ? 'DNS timeout' : 'DNS error',
         ip: null,
         httpStatus: null,
         checkedAt,
@@ -79,10 +84,9 @@ async function checkDomain(domain) {
 
   // Step 2: HTTP probe (https first, then http)
   for (const protocol of ['https', 'http']) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), HTTP_TIMEOUT);
     try {
-      const controller = new AbortController();
-      const timer = setTimeout(() => controller.abort(), HTTP_TIMEOUT);
-
       const response = await fetch(`${protocol}://${clean}/`, {
         signal: controller.signal,
         redirect: 'follow',
@@ -91,8 +95,6 @@ async function checkDomain(domain) {
           Accept: 'text/html',
         },
       });
-
-      clearTimeout(timer);
 
       const contentType = response.headers.get('content-type') || '';
       const isHtml = contentType.includes('text/html');
@@ -121,6 +123,8 @@ async function checkDomain(domain) {
       if (fetchErr.message?.includes('TIMEOUT')) continue;
       // Try next protocol
       continue;
+    } finally {
+      clearTimeout(timer);
     }
   }
 

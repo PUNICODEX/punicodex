@@ -46,7 +46,7 @@ async function createCheckoutSession({ claimId, email, unicodeVariant, templateT
     },
   });
 
-  updateClaimStripeSession(claimId, session.id);
+  await updateClaimStripeSession(claimId, session.id);
   return { sessionUrl: session.url, sessionId: session.id };
 }
 
@@ -173,16 +173,16 @@ async function handleWebhook(payload, signature) {
       const paymentIntent = isSubscription ? session.subscription || null : session.payment_intent;
       const amountTotal = isSubscription ? 0 : session.amount_total;
       const subscriptionId = isSubscription ? session.subscription || null : null;
-      const booking = markBookingPaid(session.id, paymentIntent, amountTotal, subscriptionId);
+      const booking = await markBookingPaid(session.id, paymentIntent, amountTotal, subscriptionId);
       return { event: 'payment.success', type: 'booking', booking, mode: session.mode };
     }
     if (metadata.type === 'booking_renewal') {
       const bookingId = parseInt(metadata.booking_id, 10);
       const extensionMonths = parseInt(metadata.extension_months, 10) || 12;
-      const booking = extendBooking(bookingId, extensionMonths, session.amount_total || 0);
+      const booking = await extendBooking(bookingId, extensionMonths, session.amount_total || 0);
       return { event: 'payment.success', type: 'booking_renewal', booking };
     }
-    const claim = markClaimPaid(session.id, session.payment_intent);
+    const claim = await markClaimPaid(session.id, session.payment_intent);
     return { event: 'payment.success', type: 'claim', claim };
   }
 

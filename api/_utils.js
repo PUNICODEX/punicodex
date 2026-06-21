@@ -6,9 +6,21 @@ function handleError(res, err) {
   res.status(500).json({ error: err.message || 'Internal server error' });
 }
 
+const ALLOWED_ORIGINS = new Set(
+  (process.env.ALLOWED_ORIGINS || 'https://punycodex.com,http://localhost:3456')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean)
+);
+
 function setCors(req, res) {
-  const origin = req.headers.origin || '*';
-  res.setHeader('Access-Control-Allow-Origin', origin);
+  const origin = req.headers.origin;
+  if (origin && ALLOWED_ORIGINS.has(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+  } else {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+  }
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader(
     'Access-Control-Allow-Headers',
@@ -26,6 +38,12 @@ async function requireAdmin(req, res) {
   return true;
 }
 
+function constantTimeCompare(a, b) {
+  const ah = crypto.createHash('sha256').update(a).digest();
+  const bh = crypto.createHash('sha256').update(b).digest();
+  return crypto.timingSafeEqual(ah, bh);
+}
+
 function requireCronSecret(req, res) {
   const secret = process.env.CRON_SECRET;
   const provided = req.headers['x-cron-secret'];
@@ -33,11 +51,15 @@ function requireCronSecret(req, res) {
     res.status(500).json({ error: 'Cron secret not configured' });
     return false;
   }
-  if (!provided || !crypto.timingSafeEqual(Buffer.from(secret), Buffer.from(provided))) {
+  if (!provided || !constantTimeCompare(secret, provided)) {
     res.status(401).json({ error: 'Unauthorized' });
     return false;
   }
   return true;
 }
 
-module.exports = { handleError, setCors, requireAdmin, requireCronSecret };
+function getRouteParam(req, name) {
+  return req.query?.[name] ?? req.params?.[name] ?? undefined;
+}
+
+module.exports = { handleError, setCors, requireAdmin, requireCronSecret, getRouteParam };
