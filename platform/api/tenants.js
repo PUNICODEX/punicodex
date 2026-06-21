@@ -10,6 +10,7 @@ const Database = require('better-sqlite3');
 const { getDbPath } = require('../db/db');
 const { isSafeUrl } = require('../crawler');
 const { scoreArchetype } = require('./archetype-scorer');
+const { safeJsonParse } = require('./safe-json');
 
 let db;
 
@@ -90,7 +91,7 @@ async function proposeTenant({ entryId, companyName, category, frontUrl, email }
       category,
       frontUrl: normalizedUrl,
       archetype_score: archetype.archetype_score,
-      archetype_signals: JSON.parse(archetype.archetype_signals),
+      archetype_signals: safeJsonParse(archetype.archetype_signals, {}),
     },
     warnings:
       archetype.archetype_score < 0.3
@@ -256,7 +257,7 @@ async function updateTenant(entryId, updates) {
       tenant_category: category,
       tenant_front_url: frontUrl,
       archetype_score: archetype.archetype_score,
-      archetype_signals: JSON.parse(archetype.archetype_signals),
+      archetype_signals: safeJsonParse(archetype.archetype_signals, {}),
       archetype_version: 'v1',
       lease_status: updates.leaseStatus || tenant.lease_status || 'leased',
     },

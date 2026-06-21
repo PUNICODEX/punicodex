@@ -1,3 +1,5 @@
+const { safeJsonParse } = require('./safe-json');
+
 function generateTemple(entry) {
   const breakdownRows = (entry.breakdown || [])
     .map((b) => `<tr><td>${b.char}</td><td>${b.to}</td><td>${b.type}</td><td>${b.note}</td></tr>`)
@@ -150,7 +152,7 @@ function generateTemple(entry) {
     <div class="section">
       <h2>Scholarly Sources</h2>
       <div class="meaning">
-        ${entry.sources ? JSON.parse(entry.sources).join(', ') : 'Sources being compiled.'}
+        ${entry.sources ? safeJsonParse(entry.sources, []).join(', ') : 'Sources being compiled.'}
       </div>
     </div>
   </div>

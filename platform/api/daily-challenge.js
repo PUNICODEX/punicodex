@@ -3,6 +3,7 @@
  */
 const Database = require('better-sqlite3');
 const { getDbPath } = require('../db/db');
+const { safeJsonParse } = require('./safe-json');
 
 const DB_PATH = getDbPath();
 let db;
@@ -82,7 +83,7 @@ function getOrCreateChallenge(entries) {
   return {
     date: row.challenge_date,
     entryId: row.entry_id,
-    clues: JSON.parse(row.clues),
+    clues: safeJsonParse(row.clues, []),
   };
 }
 
@@ -91,7 +92,7 @@ function getChallengeForDate(date) {
   const db = getDb();
   const row = db.prepare('SELECT * FROM daily_challenges WHERE challenge_date = ?').get(date);
   if (!row) return null;
-  return { date: row.challenge_date, entryId: row.entry_id, clues: JSON.parse(row.clues) };
+  return { date: row.challenge_date, entryId: row.entry_id, clues: safeJsonParse(row.clues, []) };
 }
 
 function attemptSolution(sessionToken, date, guess, entries) {

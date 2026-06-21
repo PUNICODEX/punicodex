@@ -2,12 +2,8 @@
  * GET /api/admin/api-keys/:id/usage
  */
 
-const { setCors, requireAdmin, handleError } = require('../../../../api/_utils.js');
+const { setCors, requireAdmin, handleError, getRouteParam } = require('../../../../api/_utils.js');
 const { getKeyUsage } = require('../../../../platform/api/api-key-admin.js');
-
-function getId(req) {
-  return req.query?.id || req.params?.id || req.url.split('/')[req.url.split('/').length - 2];
-}
 
 module.exports = async (req, res) => {
   setCors(req, res);
@@ -18,7 +14,7 @@ module.exports = async (req, res) => {
     if (req.method !== 'GET') {
       return res.status(405).json({ error: 'Method not allowed' });
     }
-    const id = parseInt(getId(req), 10);
+    const id = parseInt(getRouteParam(req, 'id'), 10);
     if (Number.isNaN(id)) return res.status(400).json({ error: 'Invalid key id' });
 
     const days = parseInt(req.query?.days, 10) || 7;

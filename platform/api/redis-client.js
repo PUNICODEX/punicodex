@@ -7,6 +7,7 @@
  */
 
 const Redis = require('ioredis');
+const { safeJsonParse } = require('./safe-json');
 
 let redisClient = null;
 let redisFailed = false;
@@ -79,7 +80,7 @@ async function getOrSetJson(key, ttlSeconds, compute) {
     try {
       const cached = await client.get(key);
       if (cached) {
-        return JSON.parse(cached);
+        return safeJsonParse(cached);
       }
     } catch (err) {
       console.error('[redis-client] GET failed:', err.message);

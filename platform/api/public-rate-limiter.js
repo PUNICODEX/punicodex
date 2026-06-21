@@ -1,14 +1,5 @@
 const { checkPublicRateLimit } = require('./api-rate-limiter');
-
-function getClientIp(req) {
-  return (
-    req.headers['x-forwarded-for']?.split(',')[0]?.trim() ||
-    req.headers['x-real-ip'] ||
-    req.ip ||
-    req.connection?.remoteAddress ||
-    'unknown'
-  );
-}
+const { getClientIp } = require('./client-ip');
 
 /**
  * Express middleware that rate-limits a public endpoint by IP.

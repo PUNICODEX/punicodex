@@ -1,20 +1,10 @@
 const { getBookingByToken, recordEvent, getDashboardMetrics } = require('./bookings');
+const { getClientIp } = require('./client-ip');
 
 const GIF_BUFFER = Buffer.from(
   'R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
   'base64'
 );
-
-function getClientIp(req) {
-  return (
-    req.headers['x-forwarded-for']?.split(',')[0]?.trim() ||
-    req.headers['x-real-ip'] ||
-    req.ip ||
-    req.connection?.remoteAddress ||
-    req.socket?.remoteAddress ||
-    'unknown'
-  );
-}
 
 function isSafeRedirectUrl(url, platformUrl) {
   if (!url || typeof url !== 'string') return false;

@@ -2,12 +2,8 @@
  * PATCH /api/admin/api-keys/:id
  */
 
-const { setCors, requireAdmin, handleError } = require('../../../../api/_utils.js');
+const { setCors, requireAdmin, handleError, getRouteParam } = require('../../../../api/_utils.js');
 const { updateKey } = require('../../../../platform/api/api-key-admin.js');
-
-function getId(req) {
-  return req.query?.id || req.params?.id || req.url.split('/').pop().split('?')[0];
-}
 
 module.exports = async (req, res) => {
   setCors(req, res);
@@ -18,7 +14,7 @@ module.exports = async (req, res) => {
     if (req.method !== 'PATCH') {
       return res.status(405).json({ error: 'Method not allowed' });
     }
-    const id = parseInt(getId(req), 10);
+    const id = parseInt(getRouteParam(req, 'id'), 10);
     if (Number.isNaN(id)) return res.status(400).json({ error: 'Invalid key id' });
 
     const { name, tier, scopes, rateLimit } = req.body || {};

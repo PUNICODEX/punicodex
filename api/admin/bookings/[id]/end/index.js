@@ -2,12 +2,8 @@
  * POST /api/admin/bookings/:id/end
  */
 
-const { setCors, requireAdmin, handleError } = require('../../../../_utils.js');
+const { setCors, requireAdmin, handleError, getRouteParam } = require('../../../../_utils.js');
 const { endBookingAdmin } = require('../../../../../platform/api/admin-booking-service.js');
-
-function getId(req) {
-  return req.query?.id || req.params?.id || req.url.split('/').slice(-2)[0].split('?')[0];
-}
 
 module.exports = async (req, res) => {
   setCors(req, res);
@@ -16,7 +12,7 @@ module.exports = async (req, res) => {
 
   try {
     if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
-    const id = parseInt(getId(req), 10);
+    const id = parseInt(getRouteParam(req, 'id'), 10);
     if (Number.isNaN(id)) return res.status(400).json({ error: 'Invalid booking id' });
 
     const result = await endBookingAdmin(id, req.headers['x-admin-token']);
