@@ -36,6 +36,7 @@ const SUITES = [
   { name: 'Crawler DB Tests', cmd: 'node test/crawler-db.test.js' },
   { name: 'API v2 Integration Tests', cmd: 'node test/api-v2.test.js' },
   { name: 'Observability Tests', cmd: 'node test/observability.test.js' },
+  { name: 'Admin Booking Routes', cmd: 'node test/admin-bookings.test.js' },
   { name: 'Ecosystem Tests', cmd: 'node test/ecosystem.test.js' },
   { name: 'Protocol Tests', cmd: 'node test/protocol.test.js' },
   { name: 'Homograph Defense Tests', cmd: 'node test/homograph-defense.test.js' },

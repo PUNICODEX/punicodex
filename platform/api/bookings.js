@@ -108,7 +108,7 @@ async function createBooking({
   applicationNote = null,
 }) {
   const token = generateToken();
-  const { id: bookingId } = await insert(
+  const bookingId = await insert(
     `
       INSERT INTO bookings (slot_id, email, company_name, website_url, custom_heading, custom_subtitle, status, analytics_token, lease_months, trial_months, site_slug, admin_note)
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)

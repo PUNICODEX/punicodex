@@ -12,7 +12,7 @@ function setCors(req, res) {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader(
     'Access-Control-Allow-Headers',
-    'Content-Type, x-session-token, Authorization, x-cron-secret'
+    'Content-Type, x-session-token, Authorization, x-admin-token, x-cron-secret'
   );
   res.setHeader('Vary', 'Origin');
 }
