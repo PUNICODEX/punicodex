@@ -119,4 +119,31 @@ test('keyboard palette includes Indic dot-below letters', () => {
   assert.ok(paletteChars.has('ṣ'), 'palette should include ṣ');
 });
 
+// Roman-numeral long-press palette on the symbol keyboard.
+function accentsForBase(base) {
+  for (const line of accentBlock) {
+    const strings = line.match(/"([^"]+)"/g) || [];
+    if (strings.length > 0 && strings[0].slice(1, -1) === base) {
+      return strings.slice(1).map((s) => s.slice(1, -1));
+    }
+  }
+  return [];
+}
+
+test('long-press 1 includes Roman numeral one (Ⅰ)', () => {
+  assert.ok(accentMapChars.has('Ⅰ'), 'Roman numeral one should be reachable');
+  assert.ok(accentsForBase('1').includes('Ⅰ'));
+});
+
+test('long-press 5 includes Roman numeral five (Ⅴ)', () => {
+  assert.ok(accentMapChars.has('Ⅴ'), 'Roman numeral five should be reachable');
+  assert.ok(accentsForBase('5').includes('Ⅴ'));
+});
+
+test('long-press 0 includes Roman numeral building blocks (Ⅹ, Ⅿ)', () => {
+  const zeroAccents = accentsForBase('0');
+  assert.ok(zeroAccents.includes('Ⅹ'), '0 long-press should include 10 (Ⅹ)');
+  assert.ok(zeroAccents.includes('Ⅿ'), '0 long-press should include 1000 (Ⅿ)');
+});
+
 run();

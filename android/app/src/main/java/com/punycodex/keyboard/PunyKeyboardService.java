@@ -111,6 +111,21 @@ public class PunyKeyboardService extends InputMethodService {
         ACCENT_MAP.put("X", new String[]{"Ẋ","Ẍ","X\u0301","X\u0300","X\u0302"});
         ACCENT_MAP.put("Y", new String[]{"Ý","Ỳ","Ŷ","Ÿ","Ỹ","Ẏ"});
         ACCENT_MAP.put("Z", new String[]{"Ź","Ẑ","Ż","Ž","Ẓ","Ẕ"});
+
+        // Roman numerals on long-press of the digit keys. 1–9 give the
+        // precomposed forms; 0 holds the positional building blocks (Ⅹ, Ⅼ, Ⅽ,
+        // Ⅾ, Ⅿ and their lowercase variants) so any Roman numeral can be built
+        // by combining the symbols.
+        ACCENT_MAP.put("1", new String[]{"Ⅰ","ⅰ"});
+        ACCENT_MAP.put("2", new String[]{"Ⅱ","ⅱ"});
+        ACCENT_MAP.put("3", new String[]{"Ⅲ","ⅲ"});
+        ACCENT_MAP.put("4", new String[]{"Ⅳ","ⅳ"});
+        ACCENT_MAP.put("5", new String[]{"Ⅴ","ⅴ"});
+        ACCENT_MAP.put("6", new String[]{"Ⅵ","ⅵ"});
+        ACCENT_MAP.put("7", new String[]{"Ⅶ","ⅶ"});
+        ACCENT_MAP.put("8", new String[]{"Ⅷ","ⅷ"});
+        ACCENT_MAP.put("9", new String[]{"Ⅸ","ⅸ"});
+        ACCENT_MAP.put("0", new String[]{"Ⅹ","ⅹ","Ⅼ","ⅼ","Ⅽ","ⅽ","Ⅾ","ⅾ","Ⅿ","ⅿ"});
     }
 
     private static final String[] LETTER_IDS = {
@@ -431,7 +446,13 @@ public class PunyKeyboardService extends InputMethodService {
             for (String id : symbolIds) {
                 int resId = getResources().getIdentifier(id, "id", getPackageName());
                 Button btn = symbolKeyboardView.findViewById(resId);
-                if (btn != null) {
+                if (btn == null) continue;
+                String label = btn.getText().toString();
+                // Digit keys get long-press Roman-numeral popups; everything else
+                // is a plain symbol key.
+                if (label.length() == 1 && Character.isDigit(label.charAt(0))) {
+                    attachSymbolLongPressTouchListener(btn);
+                } else {
                     btn.setOnClickListener(v -> onSymbolKey(btn.getText().toString()));
                 }
             }
@@ -489,6 +510,46 @@ public class PunyKeyboardService extends InputMethodService {
                         String text = btn.getText().toString();
                         if (isShifted || capsLock) text = text.toUpperCase();
                         onKey(text);
+                    }
+                    activeKey = null;
+                    return true;
+
+                case MotionEvent.ACTION_CANCEL:
+                    longPressHandler.removeCallbacks(longPressRunnable);
+                    btn.setPressed(false);
+                    hideKeyPopup();
+                    dismissAccentPopup();
+                    activeKey = null;
+                    return true;
+            }
+            return false;
+        });
+    }
+
+    private void attachSymbolLongPressTouchListener(Button btn) {
+        btn.setOnTouchListener((v, event) -> {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    activeKey = btn;
+                    longPressFired = false;
+                    showKeyPopup(btn);
+                    hapticLight();
+                    playKeySound();
+                    btn.setPressed(true);
+                    longPressRunnable = () -> {
+                        longPressFired = true;
+                        hideKeyPopup();
+                        showAccentPopup(btn);
+                    };
+                    longPressHandler.postDelayed(longPressRunnable, LONG_PRESS_DELAY);
+                    return true;
+
+                case MotionEvent.ACTION_UP:
+                    longPressHandler.removeCallbacks(longPressRunnable);
+                    btn.setPressed(false);
+                    hideKeyPopup();
+                    if (!longPressFired) {
+                        onSymbolKey(btn.getText().toString());
                     }
                     activeKey = null;
                     return true;
