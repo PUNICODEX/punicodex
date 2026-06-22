@@ -10,7 +10,6 @@
  * from `homograph-service.js` so existing consumers keep working.
  */
 
-const { domainToUnicode, URL } = require('node:url');
 const { getDb } = require('../db/connection');
 const { parseDomain } = require('./domain-parser');
 const { validateIdna } = require('./idna-validator');
@@ -18,6 +17,8 @@ const { analyzeConfusables } = require('./confusables');
 const { skeletonSimilarity } = require('./confusable-atlas');
 const { toSearchKey } = require('./query-normalize');
 const { decompose, computeVisualDeviation } = require('./name-decomposer');
+const { decomposeUrl } = require('./url-decomposer');
+const { classifyUrlParts } = require('./url-classifier');
 const {
   findIdentities,
   buildIdentityMatch,
@@ -523,73 +524,38 @@ function classifyDomain(domain, _options = {}) {
 
 function classifyUrl(urlString, _options = {}) {
   const raw = String(urlString).trim();
-  let parsed;
-  try {
-    parsed = new URL(raw);
-  } catch {
+  const decomposition = decomposeUrl(raw);
+
+  if (!decomposition.valid) {
     // Not a parseable URL; fall back to domain classification.
     return classifyDomain(raw);
   }
 
-  const hostname = parsed.hostname;
-  const labels = hostname.split('.').filter(Boolean);
-  const decodedLabels = labels.map((label) =>
-    label.startsWith('xn--') ? decodePuny(label) : label
-  );
-
-  const labelResults = decodedLabels.map((label, index) => ({
-    part: 'hostname-label',
-    raw: labels[index],
-    decoded: label,
-    result: buildVerdict(label),
-  }));
-
-  const pathSegments = parsed.pathname.split('/').filter(Boolean);
-  const pathResults = pathSegments.map((segment) => ({
-    part: 'path-segment',
-    raw: segment,
-    result: buildVerdict(segment),
-  }));
-
-  const queryResults = [];
-  parsed.searchParams.forEach((value, key) => {
-    queryResults.push({ part: 'query-key', raw: key, result: buildVerdict(key) });
-    if (value) {
-      queryResults.push({ part: 'query-value', raw: value, result: buildVerdict(value) });
-    }
-  });
-
-  const allParts = [...labelResults, ...pathResults, ...queryResults];
-  const worstPart = allParts.reduce(
-    (worst, current) => {
-      return SEVERITY_RANK[current.result.severity] > SEVERITY_RANK[worst.result.severity]
-        ? current
-        : worst;
-    },
-    allParts[0] || { result: buildVerdict('') }
-  );
+  const classification = classifyUrlParts(raw, { classifyTerm: buildVerdict });
+  const worstPart = classification.parts.find((p) => p.part === classification.worstPart) ||
+    classification.parts[0] || {
+      part: 'url',
+      verdict: classification.overallVerdict,
+      severity: classification.overallSeverity,
+      canonicalMatch: null,
+    };
 
   const result = {
     ...finalizeVerdict({
-      verdict: worstPart.result.verdict,
-      reason: `URL analysis: ${worstPart.part} triggered ${worstPart.result.reason}`,
-      canonicalMatch: worstPart.result.canonicalMatch,
+      verdict: classification.overallVerdict,
+      reason: `URL analysis: ${classification.worstPart} triggered ${worstPart.verdict}`,
+      canonicalMatch: worstPart.canonicalMatch || null,
       analysis: buildAnalysis(raw),
     }),
     input: {
       raw,
-      hostname,
-      decodedHostname: decodedLabels.join('.'),
-      pathname: parsed.pathname,
-      search: parsed.search,
+      hostname: decomposition.hostname.value,
+      decodedHostname: decomposition.hostname.decodedLabels.join('.'),
+      pathname: decomposition.pathname,
+      search: decomposition.search,
     },
-    parts: allParts.map((p) => ({
-      part: p.part,
-      raw: p.raw,
-      verdict: p.result.verdict,
-      severity: p.result.severity,
-      canonicalMatch: p.result.canonicalMatch,
-    })),
+    parts: classification.parts,
+    urlDecomposition: decomposition,
   };
 
   return result;
@@ -619,15 +585,6 @@ function classifyQueryAndDomain(query, domain, _options = {}) {
     query: queryResult,
     domain: domainResult,
   };
-}
-
-function decodePuny(label) {
-  if (!label.startsWith('xn--')) return label;
-  try {
-    return domainToUnicode(label);
-  } catch {
-    return label;
-  }
 }
 
 function resetCache() {

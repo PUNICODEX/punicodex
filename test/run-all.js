@@ -50,6 +50,8 @@ const SUITES = [
   { name: 'Email Safety Tests', cmd: 'node test/email.test.js' },
   { name: 'Lexicon Entry Cases', cmd: 'node test/lexicon-entry-cases.test.js' },
   { name: 'Domain Parser Tests', cmd: 'node test/domain-parser.test.js' },
+  { name: 'URL Decomposer Tests', cmd: 'node test/url-decomposer.test.js' },
+  { name: 'URL Classifier Tests', cmd: 'node test/url-classifier.test.js' },
   { name: 'IDNA Validator Tests', cmd: 'node test/idna-validator.test.js' },
   { name: 'DNS Enricher Tests', cmd: 'node test/dns-enricher.test.js' },
   { name: 'Authenticity Service Tests', cmd: 'node test/authenticity-service.test.js' },
