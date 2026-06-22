@@ -86,7 +86,7 @@ test('authenticity checker page exists and loads script', () => {
   const html = readHtml('authenticity/index.html');
   assert.ok(html.includes('<title>'));
   assert.ok(html.includes('script.js'));
-  assert.ok(html.includes('data-api-endpoint="/api/v2/authenticity/check"'));
+  assert.ok(html.includes('data-api-endpoint="/api/v1/authenticity/check"'));
 });
 
 run();

@@ -28,7 +28,7 @@
   const exportJsonBtn = document.getElementById('export-json-btn');
   const exportPdfLink = document.getElementById('export-pdf-link');
   const localeSelect = document.getElementById('locale-select');
-  const apiEndpoint = document.body.dataset.apiEndpoint || '/api/v2/authenticity/check';
+  const apiEndpoint = document.body.dataset.apiEndpoint || '/api/v1/authenticity/check';
   const apiBase = apiEndpoint.replace(/\/check$/, '');
 
   let lastInput = '';
@@ -85,7 +85,7 @@
 
   async function evaluatePolicy(value, type, data) {
     try {
-      const res = await fetch('/api/v2/policy/evaluate', {
+      const res = await fetch('/api/v1/policy/evaluate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
