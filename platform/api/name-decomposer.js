@@ -26,6 +26,47 @@ const INVISIBLE_CODE_POINTS = new Set([
   0x2067, // RLI
   0x2068, // FSI
   0x2069, // PDI
+  0x180e, // Mongolian vowel separator
+  0x200e, // left-to-right mark
+  0x200f, // right-to-left mark
+  0x061c, // Arabic letter mark
+  0xfe00, // variation selector-1
+  0xfe01, // variation selector-2
+  0xfe02, // variation selector-3
+  0xfe03, // variation selector-4
+  0xfe04, // variation selector-5
+  0xfe05, // variation selector-6
+  0xfe06, // variation selector-7
+  0xfe07, // variation selector-8
+  0xfe08, // variation selector-9
+  0xfe09, // variation selector-10
+  0xfe0a, // variation selector-11
+  0xfe0b, // variation selector-12
+  0xfe0c, // variation selector-13
+  0xfe0d, // variation selector-14
+  0xfe0e, // variation selector-15
+  0xfe0f, // variation selector-16
+]);
+
+// Variation selectors 17-256 (U+E0100-U+E01EF).
+for (let cp = 0xe0100; cp <= 0xe01ef; cp++) {
+  INVISIBLE_CODE_POINTS.add(cp);
+}
+
+// Bidirectional override / isolate code points.
+const BIDIRECTIONAL_OVERRIDE_CODE_POINTS = new Set([
+  0x202a, // LRE
+  0x202b, // RLE
+  0x202c, // PDF
+  0x202d, // LRO
+  0x202e, // RLO
+  0x2066, // LRI
+  0x2067, // RLI
+  0x2068, // FSI
+  0x2069, // PDI
+  0x200e, // LRM
+  0x200f, // RLM
+  0x061c, // ALM
 ]);
 
 // Combining diacritical marks block.
@@ -37,6 +78,24 @@ function isCombiningDiacritic(cp) {
 
 function isInvisible(cp) {
   return INVISIBLE_CODE_POINTS.has(cp);
+}
+
+function isBidirectionalOverride(cp) {
+  return BIDIRECTIONAL_OVERRIDE_CODE_POINTS.has(cp);
+}
+
+function hasInvisibleChars(str) {
+  for (const ch of String(str)) {
+    if (isInvisible(ch.codePointAt(0))) return true;
+  }
+  return false;
+}
+
+function hasBidirectionalOverride(str) {
+  for (const ch of String(str)) {
+    if (isBidirectionalOverride(ch.codePointAt(0))) return true;
+  }
+  return false;
 }
 
 function isControl(cp) {
@@ -121,6 +180,7 @@ function decompose(str) {
       script,
       isAscii: cp <= 127,
       isInvisible: isInvisible(cp),
+      isBidirectionalOverride: isBidirectionalOverride(cp),
       isControl: isControl(cp),
       isCombiningDiacritic: isCombiningDiacritic(cp),
       isDiacritic: isCombiningDiacritic(cp),
@@ -132,17 +192,25 @@ function decompose(str) {
     position += 1;
   }
 
+  const invisibleChars = chars
+    .filter((c) => c.isInvisible)
+    .map((c) => ({ char: c.char, position: c.position }));
+  const bidiOverrides = chars
+    .filter((c) => c.isBidirectionalOverride)
+    .map((c) => ({ char: c.char, position: c.position }));
+
   return {
     raw: s,
     normalized: s.normalize('NFKC'),
     length: chars.length,
     hasMixedScripts: hasMixedScripts(s),
+    hasInvisibleChars: invisibleChars.length > 0,
+    hasBidirectionalOverride: bidiOverrides.length > 0,
     scripts: [
       ...new Set(chars.map((c) => c.script).filter((s) => s !== 'Inherited' && s !== 'Common')),
     ],
-    invisibleChars: chars
-      .filter((c) => c.isInvisible)
-      .map((c) => ({ char: c.char, position: c.position })),
+    invisibleChars,
+    bidiOverrides,
     confusableAnalysis: confusable,
     chars,
   };
@@ -196,5 +264,10 @@ module.exports = {
   decompose,
   computeVisualDeviation,
   isInvisible,
+  isBidirectionalOverride,
   isCombiningDiacritic,
+  hasInvisibleChars,
+  hasBidirectionalOverride,
+  INVISIBLE_CODE_POINTS,
+  BIDIRECTIONAL_OVERRIDE_CODE_POINTS,
 };

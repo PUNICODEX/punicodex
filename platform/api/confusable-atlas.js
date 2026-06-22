@@ -1,166 +1,27 @@
 /**
- * PÚNYCODEX — Confusable Atlas
+ * PÚNYCODEX — Confusable Atlas V2
  *
  * A structured, multi-dimensional map of Unicode characters that can be used
  * to impersonate Latin/ASCII names. It powers the skeleton-fold similarity
  * check behind the Authenticity Checker.
  *
- * The atlas is intentionally conservative: a character is only considered
- * confusable if it is visually identical or near-identical to a Latin letter
- * in common sans-serif fonts.
+ * The atlas loads its character database from platform/db/confusables.json and
+ * remains backward-compatible with the V1 API.
  */
 
+const path = require('node:path');
 const { analyzeConfusables } = require('./confusables');
+const { renderedSimilarity } = require('./glyph-renderer');
+
+const CONFUSABLE_DB = require(path.join(__dirname, '..', 'db', 'confusables.json'));
 
 /**
  * Map from confusable character → canonical ASCII/Latin equivalent(s).
  * Multi-character values (e.g., Cyrillic ы → "bl") are allowed.
  */
-const CONFUSABLE_TO_ASCII = new Map([
-  // Latin lookalikes
-  ['0', 'o'],
-  ['1', 'l'],
-  ['!', 'i'],
-  ['|', 'l'],
-  ['¡', 'i'],
-  ['Ɩ', 'l'],
-  ['׀', 'l'],
-  ['∣', 'l'],
-  ['⼁', 'l'],
-  // Greek
-  ['α', 'a'],
-  ['β', 'b'],
-  ['γ', 'y'],
-  ['δ', 'd'],
-  ['ε', 'e'],
-  ['ζ', 'z'],
-  ['η', 'n'],
-  ['θ', 'o'],
-  ['ι', 'i'],
-  ['κ', 'k'],
-  ['λ', 'l'],
-  ['μ', 'u'],
-  ['ν', 'v'],
-  ['ξ', 'x'],
-  ['ο', 'o'],
-  ['π', 'p'],
-  ['ρ', 'p'],
-  ['σ', 'o'],
-  ['ς', 's'],
-  ['τ', 't'],
-  ['υ', 'u'],
-  ['φ', 'o'],
-  ['χ', 'x'],
-  ['ψ', 'u'],
-  ['ω', 'w'],
-  // Cyrillic
-  ['а', 'a'],
-  ['б', 'b'],
-  ['в', 'b'],
-  ['г', 'r'],
-  ['д', 'a'],
-  ['е', 'e'],
-  ['ё', 'e'],
-  ['ж', 'x'],
-  ['з', '3'],
-  ['и', 'u'],
-  ['й', 'u'],
-  ['к', 'k'],
-  ['л', 'n'],
-  ['м', 'm'],
-  ['н', 'n'],
-  ['о', 'o'],
-  ['п', 'n'],
-  ['р', 'p'],
-  ['с', 'c'],
-  ['т', 't'],
-  ['у', 'y'],
-  ['ф', 'f'],
-  ['х', 'x'],
-  ['ц', 'u'],
-  ['ч', '4'],
-  ['ш', 'w'],
-  ['щ', 'w'],
-  ['ъ', 'b'],
-  ['ы', 'bl'],
-  ['ь', 'b'],
-  ['э', '3'],
-  ['ю', 'io'],
-  ['я', 'r'],
-  // Armenian
-  ['ա', 'a'],
-  ['բ', 'b'],
-  ['գ', 'g'],
-  ['դ', 'd'],
-  ['ե', 'e'],
-  ['զ', 'z'],
-  ['է', 'e'],
-  ['ը', 'e'],
-  ['թ', 't'],
-  ['ժ', 'zh'],
-  ['ի', 'i'],
-  ['լ', 'l'],
-  ['խ', 'kh'],
-  ['ծ', 'ts'],
-  ['կ', 'k'],
-  ['հ', 'h'],
-  ['ձ', 'dz'],
-  ['ղ', 'gh'],
-  ['ճ', 'ch'],
-  ['մ', 'm'],
-  ['յ', 'y'],
-  ['ն', 'n'],
-  ['շ', 'sh'],
-  ['ո', 'vo'],
-  ['չ', 'ch'],
-  ['պ', 'p'],
-  ['ջ', 'j'],
-  ['ռ', 'r'],
-  ['ս', 's'],
-  ['վ', 'v'],
-  ['տ', 't'],
-  ['ր', 'r'],
-  ['ց', 'ts'],
-  ['ւ', 'w'],
-  ['փ', 'p'],
-  ['ք', 'k'],
-  ['օ', 'o'],
-  ['ֆ', 'f'],
-  // Georgian
-  ['ა', 'a'],
-  ['ბ', 'b'],
-  ['გ', 'g'],
-  ['დ', 'd'],
-  ['ე', 'e'],
-  ['ვ', 'v'],
-  ['ზ', 'z'],
-  ['თ', 't'],
-  ['ი', 'i'],
-  ['კ', 'k'],
-  ['ლ', 'l'],
-  ['მ', 'm'],
-  ['ნ', 'n'],
-  ['ო', 'o'],
-  ['პ', 'p'],
-  ['ჟ', 'j'],
-  ['რ', 'r'],
-  ['ს', 's'],
-  ['ტ', 't'],
-  ['უ', 'u'],
-  ['ფ', 'p'],
-  ['ქ', 'k'],
-  ['ღ', 'g'],
-  ['ყ', 'q'],
-  ['შ', 'w'],
-  ['ჩ', 'ch'],
-  ['ც', 'c'],
-  ['ძ', 'z'],
-  ['წ', 'ts'],
-  ['ჭ', 'ch'],
-  ['ხ', 'x'],
-  ['ჯ', 'j'],
-  ['ჰ', 'h'],
-]);
+const CONFUSABLE_TO_ASCII = new Map(
+  CONFUSABLE_DB.entries.map((entry) => [entry.char, entry.target])
+);
 
 /**
  * Contextual substitutions: pairs or short sequences that look like another
@@ -263,6 +124,40 @@ function levenshtein(a, b) {
   return curr[n];
 }
 
+function rawCharSimilarity(a, b) {
+  const sa = String(a).normalize('NFKC');
+  const sb = String(b).normalize('NFKC');
+  const charsA = [...sa];
+  const charsB = [...sb];
+  const max = Math.max(charsA.length, charsB.length);
+  if (max === 0) return 1;
+  const min = Math.min(charsA.length, charsB.length);
+  let matches = 0;
+  for (let i = 0; i < min; i++) {
+    if (charsA[i] === charsB[i]) matches++;
+  }
+  return matches / max;
+}
+
+/**
+ * Compute a perceptual similarity that combines skeleton folding, rendered
+ * similarity, and raw character equality. The raw penalty ensures that
+ * purely stylistic variants (e.g., 𝒜pple vs apple) are not scored as
+ * identical even though they fold to the same ASCII form.
+ *
+ * Options:
+ *   - weightSkeleton (number, default 0.45)
+ *   - weightRendered (number, default 0.45)
+ *   - weightRaw (number, default 0.10)
+ */
+function perceptualSimilarity(a, b, options = {}) {
+  const { weightSkeleton = 0.45, weightRendered = 0.45, weightRaw = 0.1 } = options;
+  const skeleton = skeletonSimilarity(a, b);
+  const rendered = renderedSimilarity(a, b);
+  const raw = rawCharSimilarity(a, b);
+  return skeleton * weightSkeleton + rendered * weightRendered + raw * weightRaw;
+}
+
 /**
  * Find the best canonical candidate that is visually similar after skeleton
  * folding. Returns null if no candidate reaches the threshold.
@@ -303,6 +198,8 @@ module.exports = {
   getScriptRisk,
   buildSkeleton,
   skeletonSimilarity,
+  levenshtein,
   findCanonicalLookalike,
   analyzeWithAtlas,
+  perceptualSimilarity,
 };
