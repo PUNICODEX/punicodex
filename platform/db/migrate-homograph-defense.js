@@ -2,9 +2,6 @@ const Database = require('better-sqlite3');
 const fs = require('node:fs');
 const path = require('node:path');
 const { domainToASCII } = require('node:url');
-const { classifyDomain, TRUST_TIERS } = require(
-  path.join(__dirname, '..', 'api', 'homograph-service')
-);
 
 const DB_PATH = path.join(__dirname, 'punycodex.db');
 const db = new Database(DB_PATH);
@@ -65,6 +62,39 @@ db.exec(`
   )
 `);
 
+// Map an owned domain to its canonical entries row. The classifier may return a
+// brand identity for names like hermês/níkē, but the database FK requires a
+// real lexicon entry id, so we look it up directly from entries.
+function findEntryIdForDomain(domain) {
+  const base = String(domain).replace(/\.[^.]+$/, '');
+  const row = db
+    .prepare(`
+    SELECT id FROM entries
+    WHERE ascii = ? COLLATE NOCASE
+       OR id = ? COLLATE NOCASE
+       OR search_key = ?
+       OR unicode = ? COLLATE NOCASE
+    LIMIT 1
+  `)
+    .get(base, base, base, base);
+  if (row) return row.id;
+
+  const folded = base
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase();
+  const foldedRow = db
+    .prepare(`
+    SELECT id FROM entries
+    WHERE ascii = ? COLLATE NOCASE
+       OR id = ? COLLATE NOCASE
+       OR search_key = ?
+    LIMIT 1
+  `)
+    .get(folded, folded, folded);
+  return foldedRow?.id;
+}
+
 // Seed canonical_domains from owned-domains.json.
 const ownedDomains = JSON.parse(
   fs.readFileSync(path.join(__dirname, 'owned-domains.json'), 'utf8')
@@ -74,18 +104,20 @@ const insertDomain = db.prepare(`
   VALUES (?, ?, ?, ?, ?)
 `);
 let seeded = 0;
+let skipped = 0;
 for (const domain of ownedDomains) {
   const punycode = domainToASCII(domain);
-  const classification = classifyDomain(domain, { strictDomains: false });
-  const entryId = classification.canonicalMatch?.id;
+  const entryId = findEntryIdForDomain(domain);
   if (!entryId) {
     console.warn(`  ! Could not map owned domain to canonical entry: ${domain}`);
+    skipped++;
     continue;
   }
-  const trustTier = classification.tier === TRUST_TIERS.CANONICAL ? 'canonical' : 'styled';
-  insertDomain.run(entryId, domain, punycode, trustTier, 'owned');
+  insertDomain.run(entryId, domain, punycode, 'canonical', 'owned');
   seeded++;
 }
-console.log(`  + Seeded ${seeded} owned canonical domains`);
+console.log(
+  `  + Seeded ${seeded} owned canonical domains` + (skipped > 0 ? ` (${skipped} skipped)` : '')
+);
 
 console.log('Homograph defense migration applied.');
