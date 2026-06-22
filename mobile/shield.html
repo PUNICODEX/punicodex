@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#050505">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="PÚNYCODEX Shield">
+    <title>PÚNYCODEX Shield</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/mobile.css">
+    <link rel="apple-touch-icon" href="icon192.png">
+</head>
+<body>
+    <div id="app">
+        <header class="app-header">
+            <h1 class="app-logo">P<span class="accent">U</span>NYCODEX</h1>
+            <span class="header-subtitle">Shield</span>
+        </header>
+
+        <main class="shield-main" role="main">
+            <section class="shield-hero" aria-labelledby="shield-title">
+                <h2 id="shield-title">Authenticity Shield</h2>
+                <p>Paste any link, name, or domain to check for homograph and mixed-script attacks.</p>
+            </section>
+
+            <section class="shield-checker" aria-label="Authenticity checker">
+                <div class="shield-input-wrap">
+                    <input
+                        id="shield-input"
+                        type="text"
+                        inputmode="url"
+                        autocomplete="off"
+                        placeholder="Paste a link or name…"
+                        aria-label="Input to check"
+                    />
+                    <button id="shield-paste-btn" class="icon-btn" aria-label="Paste from clipboard">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                        </svg>
+                    </button>
+                </div>
+                <button id="shield-check-btn" class="primary-btn">Check</button>
+
+                <div id="shield-result" class="shield-result hidden" aria-live="polite" role="status">
+                    <div id="shield-severity" class="severity-badge"></div>
+                    <h3 id="shield-verdict"></h3>
+                    <p id="shield-explanation"></p>
+                    <ul id="shield-recommendations"></ul>
+                    <div id="shield-target" class="shield-target hidden">
+                        <span>Looks like</span>
+                        <strong id="shield-target-name"></strong>
+                    </div>
+                    <ul id="shield-alternatives"></ul>
+                </div>
+            </section>
+
+            <section class="shield-history" aria-labelledby="history-title">
+                <div class="history-header">
+                    <h2 id="history-title">History</h2>
+                    <button id="clear-history-btn" class="text-btn">Clear</button>
+                </div>
+                <ul id="history-list" class="history-list"></ul>
+                <p id="history-empty" class="history-empty">No checks yet.</p>
+            </section>
+        </main>
+
+        <nav class="app-nav" aria-label="Primary">
+            <a class="nav-btn" href="index.html">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                </svg>
+                <span>Type</span>
+            </a>
+            <a class="nav-btn active" href="shield.html" aria-current="page">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+                <span>Shield</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="../sdk/js/src/mobile-classifier.js"></script>
+    <script src="js/shield.js"></script>
+</body>
+</html>

@@ -9,6 +9,13 @@
 
 const { decomposeUrl } = require('./url-decomposer');
 const { VERDICTS, SEVERITIES, SEVERITY_RANK } = require('./authenticity-verdicts');
+const { isIdentityAllowedForDomain } = require('./identity-domain-helpers');
+
+const DECEPTIVE_VERDICTS = new Set([
+  VERDICTS.HOMOGRAPH_SPOOF,
+  VERDICTS.MIXED_SCRIPT_SPOOF,
+  VERDICTS.UNSAFE,
+]);
 
 const SUSPICIOUS_PATH_SEGMENTS = new Set([
   'login',
@@ -99,16 +106,45 @@ function classifyUrlParts(urlString, options = {}) {
     risks.push('credential in URL userinfo');
   }
 
+  const registrableDomain = decomposition.hostname.registrableDomain;
+
   // Hostname labels
   for (let i = 0; i < decomposition.hostname.labels.length; i++) {
     const raw = decomposition.hostname.labels[i];
     const decoded = decomposition.hostname.decodedLabels[i];
     const result = classifyTerm(decoded);
+    let { verdict, severity } = result;
+
+    // A protected identity in a hostname label whose registrable domain is not
+    // allowed is a lookalike (e.g., perun.app when punycodex does not own it).
+    // Do not override an already-deceptive verdict such as a homograph spoof.
+    if (
+      result.canonicalMatch &&
+      !DECEPTIVE_VERDICTS.has(verdict) &&
+      !isIdentityAllowedForDomain(result.canonicalMatch, registrableDomain)
+    ) {
+      // Punycode labels that decode to a protected identity on an unrelated
+      // domain are homograph spoofs, not merely lookalikes.
+      if (raw.startsWith('xn--')) {
+        verdict = VERDICTS.HOMOGRAPH_SPOOF;
+        severity = escalate(severity, SEVERITIES.CRITICAL);
+        risks.push(
+          `punycode hostname label impersonates ${result.canonicalMatch.name || result.canonicalMatch.id}`
+        );
+      } else {
+        severity = escalate(severity, SEVERITIES.HIGH);
+        verdict = VERDICTS.LOOKALIKE_DOMAIN;
+        risks.push(
+          `hostname label impersonates ${result.canonicalMatch.name || result.canonicalMatch.id} on unrelated domain`
+        );
+      }
+    }
+
     parts.push({
       part: 'hostname-label',
       raw,
-      verdict: result.verdict,
-      severity: result.severity,
+      verdict,
+      severity,
       canonicalMatch: result.canonicalMatch,
     });
   }
@@ -137,6 +173,21 @@ function classifyUrlParts(urlString, options = {}) {
       severity = escalate(severity, SEVERITIES.HIGH);
       verdict = VERDICTS.HOMOGRAPH_SPOOF;
       risks.push(`suspicious path segment on deceptive domain: ${decoded}`);
+    }
+
+    // A protected identity in the path of an unrelated domain is a lookalike.
+    // Public lexicon names in paths/queries are not treated as impersonation.
+    if (
+      result.canonicalMatch &&
+      result.canonicalMatch.type !== 'lexicon' &&
+      !DECEPTIVE_VERDICTS.has(verdict) &&
+      !isIdentityAllowedForDomain(result.canonicalMatch, registrableDomain)
+    ) {
+      severity = escalate(severity, SEVERITIES.HIGH);
+      verdict = VERDICTS.LOOKALIKE_DOMAIN;
+      risks.push(
+        `path segment impersonates ${result.canonicalMatch.name || result.canonicalMatch.id} on unrelated domain`
+      );
     }
 
     parts.push({
@@ -189,6 +240,21 @@ function classifyUrlParts(urlString, options = {}) {
         verdict = VERDICTS.HOMOGRAPH_SPOOF;
         risks.push(`redirect parameter ${key} targets suspicious URL`);
       }
+    }
+
+    // A protected identity in a query value of an unrelated domain is a lookalike.
+    // Public lexicon names in query values are not treated as impersonation.
+    if (
+      valueResult.canonicalMatch &&
+      valueResult.canonicalMatch.type !== 'lexicon' &&
+      !DECEPTIVE_VERDICTS.has(verdict) &&
+      !isIdentityAllowedForDomain(valueResult.canonicalMatch, registrableDomain)
+    ) {
+      severity = escalate(severity, SEVERITIES.HIGH);
+      verdict = VERDICTS.LOOKALIKE_DOMAIN;
+      risks.push(
+        `query value impersonates ${valueResult.canonicalMatch.name || valueResult.canonicalMatch.id} on unrelated domain`
+      );
     }
 
     parts.push({

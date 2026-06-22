@@ -8,7 +8,7 @@
 const { domainToUnicode } = require('node:url');
 const { getDb } = require('../db/connection');
 const { migrateIdentities } = require('../db/migrate-identities');
-const { buildSkeleton, skeletonSimilarity } = require('./confusable-atlas');
+const { buildSkeleton, levenshtein } = require('./confusable-atlas');
 const { toSearchKey } = require('./query-normalize');
 
 let identityCache = null;
@@ -111,6 +111,9 @@ function loadIdentities() {
     }
   }
 
+  const aliasIndex = new Map();
+  const foldedIndex = new Map();
+
   for (const identity of byId.values()) {
     const aliasSet = new Set([
       identity.name,
@@ -124,9 +127,32 @@ function loadIdentities() {
     identity._foldedAliases = new Set(
       Array.from(aliasSet).filter(Boolean).map(toSearchKey).filter(Boolean)
     );
+
+    for (const alias of identity._normalizedAliases) {
+      const list = aliasIndex.get(alias) || [];
+      list.push(identity);
+      aliasIndex.set(alias, list);
+    }
+    for (const alias of identity._foldedAliases) {
+      const list = foldedIndex.get(alias) || [];
+      list.push(identity);
+      foldedIndex.set(alias, list);
+    }
   }
 
   identityCache = Array.from(byId.values());
+  identityCache._aliasIndex = aliasIndex;
+  identityCache._foldedIndex = foldedIndex;
+
+  // Precompute visual-match skeletons so each classification computes the input
+  // skeleton once and skips candidates that cannot reach the threshold.
+  for (const identity of identityCache) {
+    identity._visualCandidates = Array.from(identity._normalizedAliases).map((alias) => {
+      const skeleton = buildSkeleton(alias);
+      return { alias, skeleton, length: skeleton.length };
+    });
+  }
+
   identityCacheBuiltAt = now;
   return identityCache;
 }
@@ -145,53 +171,54 @@ function findIdentities(input, options = {}) {
 
   const identities = loadIdentities();
   const matches = [];
+  const matchedIds = new Set();
 
-  for (const identity of identities) {
-    if (!includeLexicon && identity.type === 'lexicon') {
-      continue;
+  // Fast O(1) exact/folded lookups using pre-built indexes.
+  if (matchTypes.includes('exact')) {
+    for (const identity of identities._aliasIndex.get(norm) || []) {
+      if (!includeLexicon && identity.type === 'lexicon') continue;
+      if (matchedIds.has(identity.id)) continue;
+      matchedIds.add(identity.id);
+      matches.push({ identity, matchType: 'exact', score: 1, matchedAlias: norm });
     }
+  }
 
-    let matchType = null;
-    let score = 0;
-    let matchedAlias = null;
+  if (matchTypes.includes('folded') && folded) {
+    for (const identity of identities._foldedIndex.get(folded) || []) {
+      if (!includeLexicon && identity.type === 'lexicon') continue;
+      if (matchedIds.has(identity.id)) continue;
+      matchedIds.add(identity.id);
+      matches.push({ identity, matchType: 'folded', score: 1, matchedAlias: folded });
+    }
+  }
 
-    if (matchTypes.includes('exact')) {
-      if (identity._normalizedAliases.has(norm)) {
-        matchType = 'exact';
-        score = 1;
-        matchedAlias = norm;
+  if (matchTypes.includes('visual')) {
+    const rawSkeleton = buildSkeleton(raw);
+    const rawLen = rawSkeleton.length;
+    for (const identity of identities) {
+      if (!includeLexicon && identity.type === 'lexicon') {
+        continue;
       }
-    }
+      if (matchedIds.has(identity.id)) continue;
 
-    if (!matchType && matchTypes.includes('folded') && folded) {
-      if (identity._foldedAliases.has(folded)) {
-        matchType = 'folded';
-        score = 1;
-        matchedAlias = folded;
-      }
-    }
-
-    if (!matchType && matchTypes.includes('visual')) {
-      const candidates = [
-        identity.name,
-        identity.unicode,
-        identity.ascii,
-        ...identity.aliases,
-      ].filter(Boolean);
-      for (const candidate of candidates) {
-        const sim = skeletonSimilarity(raw, candidate);
+      let score = 0;
+      let matchedAlias = null;
+      for (const cand of identity._visualCandidates || []) {
+        const maxLen = Math.max(rawLen, cand.length);
+        const maxDistance = maxLen * (1 - threshold);
+        if (maxLen > 0 && Math.abs(rawLen - cand.length) > maxDistance) {
+          continue;
+        }
+        const sim =
+          cand.skeleton === rawSkeleton ? 1 : 1 - levenshtein(rawSkeleton, cand.skeleton) / maxLen;
         if (sim > score) {
           score = sim;
-          matchedAlias = candidate;
+          matchedAlias = cand.alias;
         }
       }
-      if (score > 0) {
-        matchType = 'visual';
+      if (score >= threshold) {
+        matches.push({ identity, matchType: 'visual', score, matchedAlias });
       }
-    }
-
-    if (matchType && (matchType !== 'visual' || score >= threshold)) {
-      matches.push({ identity, matchType, score, matchedAlias });
     }
   }
 

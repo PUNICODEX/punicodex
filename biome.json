@@ -67,9 +67,22 @@
           "navigator"
         ]
       }
+    },
+    {
+      "includes": ["mobile/js/shield.js"],
+      "javascript": {
+        "globals": [
+          "document",
+          "window",
+          "localStorage",
+          "navigator",
+          "PUNYCODEX_MOBILE_CLASSIFIER"
+        ]
+      }
     }
   ],
   "files": {
+    "maxSize": 2097152,
     "includes": [
       "api/**/*.js",
       "type/js/engine.js",
@@ -85,8 +98,10 @@
       "scripts/regenerate-stub-flagships.js",
       "sdk/js/**/*.js",
       "extension-v2/**/*.js",
+      "mobile/js/shield.js",
       "test/sdk-js.test.js",
       "test/extension-v2.test.js",
+      "test/mobile-share-extension.test.js",
       "package.json",
       "biome.json"
     ]

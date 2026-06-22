@@ -11,6 +11,7 @@ const {
   classifyDomain,
   classifyUrl,
 } = require('../../../../../platform/api/authenticity-service.js');
+const { buildEvidence } = require('../../../../../platform/api/evidence-builder.js');
 
 const VALID_TYPES = new Set(['auto', 'term', 'domain', 'url']);
 
@@ -50,9 +51,10 @@ module.exports = createApiHandler(async (req, res) => {
     if (!input) {
       return { input, error: 'empty input' };
     }
+    const result = classifyByType(input, normalizedType);
     return {
       input,
-      result: classifyByType(input, normalizedType),
+      result: { ...result, evidence: buildEvidence(input, result) },
     };
   });
 

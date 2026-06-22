@@ -23,7 +23,13 @@
   const visualDiff = document.getElementById('visual-diff');
   const diffInput = document.getElementById('diff-input');
   const diffCanonical = document.getElementById('diff-canonical');
+  const characterMapArea = document.getElementById('character-map-area');
+  const characterMap = document.getElementById('character-map');
+  const exportJsonBtn = document.getElementById('export-json-btn');
+  const exportPdfLink = document.getElementById('export-pdf-link');
   const localeSelect = document.getElementById('locale-select');
+  const apiEndpoint = document.body.dataset.apiEndpoint || '/api/v2/authenticity/check';
+  const apiBase = apiEndpoint.replace(/\/check$/, '');
 
   let lastInput = '';
   let lastResult = null;
@@ -108,7 +114,7 @@
 
     try {
       const [checkRes, policyRes] = await Promise.all([
-        fetch(`/api/v2/authenticity/check?input=${encodeURIComponent(value)}&type=${type}`),
+        fetch(`${apiEndpoint}?input=${encodeURIComponent(value)}&type=${type}`),
         evaluatePolicy(value, type),
       ]);
       if (!checkRes.ok) throw new Error('API error');
@@ -123,6 +129,9 @@
       partsArea.classList.add('hidden');
       confusablesList.innerHTML = '';
       visualDiff.classList.add('hidden');
+      characterMapArea.classList.add('hidden');
+      exportJsonBtn.classList.add('hidden');
+      exportPdfLink.classList.add('hidden');
     }
   }
 
@@ -203,16 +212,55 @@
     } else {
       visualDiff.classList.add('hidden');
     }
+
+    const evidence = data.evidence;
+    if (evidence && evidence.characterMap && evidence.characterMap.length > 0) {
+      characterMapArea.classList.remove('hidden');
+      characterMap.innerHTML = evidence.characterMap
+        .map((c) => {
+          const riskClass = c.deviationScore >= 0.5 ? 'high-risk' : c.deviationScore >= 0.1 ? 'med-risk' : 'low-risk';
+          const title = `Position ${c.position}\nCode point: ${c.codePoint}\nScript: ${c.script}\nConfusable: ${c.confusableMapping || 'none'}\nDeviation: ${c.deviationScore}`;
+          return `<span class="char-cell ${riskClass}" title="${escapeHtml(title)}">${escapeHtml(c.char)}</span>`;
+        })
+        .join('');
+    } else {
+      characterMapArea.classList.add('hidden');
+    }
+
+    if (evidence) {
+      exportJsonBtn.classList.remove('hidden');
+      const sev = data.severity || data.analysis?.severity || 'none';
+      if (sev === 'high' || sev === 'critical') {
+        exportPdfLink.classList.remove('hidden');
+        exportPdfLink.href = `/api/v1/authenticity/report/${Date.now()}/pdf?input=${encodeURIComponent(lastInput)}&type=${typeSelect.value}`;
+      } else {
+        exportPdfLink.classList.add('hidden');
+      }
+    } else {
+      exportJsonBtn.classList.add('hidden');
+      exportPdfLink.classList.add('hidden');
+    }
+  }
+
+  function exportJson() {
+    if (!lastResult || !lastResult.evidence) return;
+    const blob = new Blob([JSON.stringify(lastResult.evidence, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `punycodex-evidence-${Date.now()}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
   }
 
   async function report() {
     if (!lastInput || !lastResult) return;
     reportStatus.textContent = t('cta.report', 'Reporting…');
     try {
-      const res = await fetch('/api/v2/authenticity/report', {
+      const res = await fetch(`${apiBase}/report`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ input: lastInput, type: typeSelect.value }),
+        body: JSON.stringify({ input: lastInput, type: typeSelect.value, result: lastResult }),
       });
       if (!res.ok) throw new Error('Report failed');
       reportStatus.textContent = 'Reported. Thank you.';
@@ -232,6 +280,7 @@
     if (e.key === 'Enter') check(input.value.trim(), typeSelect.value);
   });
   reportBtn.addEventListener('click', report);
+  exportJsonBtn.addEventListener('click', exportJson);
 
   modeCheck.addEventListener('click', () => setMode('check'));
   modeUrl.addEventListener('click', () => setMode('url'));

@@ -1,7 +1,8 @@
 /**
  * POST /api/v1/authenticity/report
  *
- * Report a suspicious name, domain, or URL to the threat feed.
+ * Accepts a user-submitted report for a suspicious name, domain, or URL,
+ * upserts a discovered-spoof record, and returns confirmation plus the spoof id.
  */
 
 const { createApiHandler } = require('../../../../platform/api/api-handler.js');
@@ -11,10 +12,10 @@ const {
   classifyDomain,
   classifyUrl,
 } = require('../../../../platform/api/authenticity-service.js');
+const { getDb } = require('../../../../platform/db/connection.js');
 const {
-  recordDiscoveredSpoof,
-  recordSpoofReport,
-} = require('../../../../platform/api/authenticity-threat-feed.js');
+  migrateAuthenticityThreatFeed,
+} = require('../../../../platform/db/migrate-authenticity-threat-feed.js');
 
 function classifyByType(input, type) {
   if (type === 'term') return classifyTerm(input);
@@ -25,60 +26,70 @@ function classifyByType(input, type) {
   return classifyTerm(input);
 }
 
-function detectPunycode(input) {
-  if (input.startsWith('xn--')) return input;
-  if (input.includes('xn--')) {
-    return input.split('.').find((label) => label.startsWith('xn--')) || null;
-  }
-  return null;
-}
-
 module.exports = createApiHandler(async (req, res) => {
   if (req.method !== 'POST') {
     error(res, 'METHOD_NOT_ALLOWED', 'Only POST is allowed.', { status: 405 });
     return;
   }
 
-  const { input, type = 'auto', comment = '', reporterToken = null } = req.body || {};
-  if (!input || typeof input !== 'string' || input.trim().length === 0) {
-    error(res, 'VALIDATION_ERROR', 'Body field "input" is required.', { status: 400 });
+  const { input, type = 'auto', comment } = req.body || {};
+  if (!input || typeof input !== 'string') {
+    error(res, 'VALIDATION_ERROR', 'Field "input" is required.', { status: 400 });
     return;
   }
 
-  const normalizedInput = input.trim();
-  const normalizedType = String(type).toLowerCase();
-  const classification = classifyByType(normalizedInput, normalizedType);
+  const db = getDb();
+  migrateAuthenticityThreatFeed(db);
 
+  const normalizedType = String(type).toLowerCase();
+  const result = classifyByType(input, normalizedType);
   const inputType =
     normalizedType === 'url' ? 'url' : normalizedType === 'domain' ? 'domain' : 'name';
+  const canonicalId = result.canonicalMatch?.id || null;
 
-  const spoof = recordDiscoveredSpoof({
-    input: normalizedInput,
-    inputType,
-    punycode: detectPunycode(normalizedInput),
-    verdict: classification.verdict,
-    severity: classification.severity,
-    canonicalEntryId: classification.canonicalMatch?.id || null,
-    discoverySource: 'user-report',
-    confidence: classification.lookalikeScore || 0,
-  });
+  const existing = db
+    .prepare('SELECT id FROM discovered_spoofs WHERE input = ? AND input_type = ?')
+    .get(input, inputType);
 
-  const report = recordSpoofReport({
-    discoveredSpoofId: spoof.id,
-    reporterToken: reporterToken || null,
-    notes: comment || null,
-  });
+  let spoofId;
+  if (existing) {
+    db.prepare(
+      `UPDATE discovered_spoofs
+       SET last_seen = CURRENT_TIMESTAMP, report_count = report_count + 1,
+           verdict = ?, severity = ?, confidence = ?, canonical_entry_id = ?
+       WHERE id = ?`
+    ).run(
+      result.verdict,
+      result.severity,
+      typeof result.confidence === 'number' ? result.confidence : 0,
+      canonicalId,
+      existing.id
+    );
+    spoofId = existing.id;
+  } else {
+    const insert = db.prepare(
+      `INSERT INTO discovered_spoofs
+       (input, input_type, punycode, verdict, severity, canonical_entry_id, discovery_source, confidence, report_count)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
+    );
+    const info = insert.run(
+      input,
+      inputType,
+      result.input?.normalized || input,
+      result.verdict,
+      result.severity,
+      canonicalId,
+      'user-report',
+      typeof result.confidence === 'number' ? result.confidence : 0,
+      1
+    );
+    spoofId = info.lastInsertRowid;
+  }
 
-  success(res, {
-    reported: true,
-    spoof: {
-      id: report.id,
-      input: report.input,
-      inputType: report.input_type,
-      verdict: report.verdict,
-      severity: report.severity,
-      reportCount: report.report_count,
-    },
-    classification,
-  });
+  db.prepare('INSERT INTO spoof_reports (discovered_spoof_id, notes) VALUES (?, ?)').run(
+    spoofId,
+    comment || null
+  );
+
+  success(res, { reported: true, spoof: { id: spoofId } });
 });

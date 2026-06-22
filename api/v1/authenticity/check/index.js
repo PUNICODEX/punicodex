@@ -11,8 +11,12 @@ const {
   classifyDomain,
   classifyUrl,
 } = require('../../../../platform/api/authenticity-service.js');
+const { buildEvidence } = require('../../../../platform/api/evidence-builder.js');
+const { withResultCache } = require('../../../../platform/api/cache.js');
+const { getVersion } = require('../../../../platform/api/version-service.js');
 
 const VALID_TYPES = new Set(['auto', 'term', 'domain', 'url']);
+const MODEL_VERSION = getVersion().version;
 
 function classifyByType(input, type) {
   if (type === 'term') return classifyTerm(input);
@@ -49,7 +53,14 @@ module.exports = createApiHandler(async (req, res) => {
     return;
   }
 
-  const result = classifyByType(input, type);
+  const policyHash = req.headers['x-tenant-id'] || 'default';
+  const result = await withResultCache(
+    { input, type, modelVersion: MODEL_VERSION, policyHash },
+    () => {
+      const r = classifyByType(input, type);
+      return { ...r, evidence: buildEvidence(input, r) };
+    }
+  );
   success(res, result, {
     links: { self: `/api/v1/authenticity/check?input=${encodeURIComponent(input)}&type=${type}` },
   });

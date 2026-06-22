@@ -301,4 +301,14 @@ try {
   process.exit(1);
 }
 
+// Apply MLOps & continuous learning schema
+try {
+  const { migrateMLOps } = require('./migrate-mlops.js');
+  migrateMLOps({ db });
+  console.log('MLOps & continuous learning schema applied.');
+} catch (err) {
+  console.error('MLOps migration failed:', err.message);
+  process.exit(1);
+}
+
 db.close();

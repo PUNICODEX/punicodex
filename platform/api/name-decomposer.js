@@ -30,6 +30,8 @@ const INVISIBLE_CODE_POINTS = new Set([
   0x200e, // left-to-right mark
   0x200f, // right-to-left mark
   0x061c, // Arabic letter mark
+  0x00ad, // soft hyphen
+  0xffef, // byte order mark (interchange)
   0xfe00, // variation selector-1
   0xfe01, // variation selector-2
   0xfe02, // variation selector-3

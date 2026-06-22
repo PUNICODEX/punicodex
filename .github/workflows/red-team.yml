@@ -1,0 +1,65 @@
+name: Red-Team Authenticity CI
+
+on:
+  schedule:
+    # Every Monday at 09:00 UTC.
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+    inputs:
+      samples:
+        description: 'Max samples per benchmark set'
+        required: false
+        default: '0'
+        type: string
+
+jobs:
+  adversarial-tests:
+    name: Adversarial benchmarks + fuzz
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Initialize platform database
+        run: npm run db-init
+
+      - name: Regenerate benchmarks
+        run: node scripts/build-authenticity-benchmarks.js
+
+      - name: Run red-team runner
+        run: |
+          if [ "${{ github.event.inputs.samples }}" != "0" ] && [ -n "${{ github.event.inputs.samples }}" ]; then
+            node scripts/red-team-run.js --samples ${{ github.event.inputs.samples }}
+          else
+            node scripts/red-team-run.js
+          fi
+
+      - name: Run differential check
+        run: node scripts/diff-v1-v2.js
+
+      - name: Run Unicode fuzzer
+        run: node scripts/fuzz-unicode.js --samples 1000
+
+      - name: Upload red-team report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: red-team-report
+          path: data/benchmarks/authenticity/red-team-report-*.json
+
+      - name: Upload fuzz report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fuzz-report
+          path: data/benchmarks/authenticity/fuzz-report-*.json

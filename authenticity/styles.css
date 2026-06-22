@@ -298,11 +298,52 @@
   font-size: 0.8rem;
 }
 
+.character-map-area {
+  background: var(--surface-2);
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 16px;
+}
+
+.character-map {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.char-cell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  min-height: 36px;
+  border-radius: 6px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  font-size: 1.1rem;
+  cursor: help;
+}
+
+.char-cell.low-risk {
+  background: rgba(107, 158, 117, 0.1);
+  border-color: rgba(107, 158, 117, 0.3);
+}
+
+.char-cell.med-risk {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.char-cell.high-risk {
+  background: rgba(231, 76, 60, 0.1);
+  border-color: rgba(231, 76, 60, 0.4);
+}
+
 .result-actions {
   margin-top: 20px;
   display: flex;
   gap: 12px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .report-status {

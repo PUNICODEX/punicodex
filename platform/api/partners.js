@@ -14,6 +14,37 @@ function getDb() {
   return db;
 }
 
+const PARTNER_TIERS = {
+  'browser-vendor': {
+    rateLimit: 1000000,
+    slaUptime: 99.999,
+    supportResponseMinutes: 15,
+    revenueSharePercent: 15,
+  },
+  browser: {
+    rateLimit: 1000000,
+    slaUptime: 99.999,
+    supportResponseMinutes: 15,
+    revenueSharePercent: 15,
+  },
+  registrar: {
+    rateLimit: 500000,
+    slaUptime: 99.99,
+    supportResponseMinutes: 30,
+    revenueSharePercent: 20,
+  },
+  isp: { rateLimit: 250000, slaUptime: 99.99, supportResponseMinutes: 30, revenueSharePercent: 12 },
+  enterprise: {
+    rateLimit: 100000,
+    slaUptime: 99.99,
+    supportResponseMinutes: 60,
+    revenueSharePercent: 0,
+  },
+  ngo: { rateLimit: 50000, slaUptime: 99.9, supportResponseMinutes: 240, revenueSharePercent: 0 },
+  pro: { rateLimit: 10000, slaUptime: 99.9, supportResponseMinutes: 60, revenueSharePercent: 0 },
+  free: { rateLimit: 100, slaUptime: 99.0, supportResponseMinutes: null, revenueSharePercent: 0 },
+};
+
 function migratePartners() {
   const db = getDb();
   db.exec(`
@@ -39,27 +70,94 @@ function migratePartners() {
     );
     CREATE INDEX IF NOT EXISTS idx_partner_records_partner ON partner_records(partner_id);
   `);
+  migratePartnerOnboarding();
+}
+
+function migratePartnerOnboarding() {
+  const db = getDb();
+  const columns = db
+    .prepare('PRAGMA table_info(partners)')
+    .all()
+    .map((r) => r.name);
+  if (!columns.includes('organization')) {
+    db.exec('ALTER TABLE partners ADD COLUMN organization TEXT');
+  }
+  if (!columns.includes('website_url')) {
+    db.exec('ALTER TABLE partners ADD COLUMN website_url TEXT');
+  }
+  if (!columns.includes('use_case')) {
+    db.exec('ALTER TABLE partners ADD COLUMN use_case TEXT');
+  }
 }
 
 function generateKey() {
   return `pcd_${crypto.randomBytes(24).toString('hex')}`;
 }
 
+function normalizeTier(tier) {
+  const t = String(tier || 'free').toLowerCase();
+  return PARTNER_TIERS[t] ? t : 'free';
+}
+
+function getPartnerSla(tier) {
+  const t = normalizeTier(tier);
+  return {
+    tier: t,
+    ...PARTNER_TIERS[t],
+  };
+}
+
 function registerPartner({ name, email, tier, scopes, rateLimit }) {
   migratePartners();
   const db = getDb();
   const key = generateKey();
+  const normalizedTier = normalizeTier(tier);
+  const limit = rateLimit || PARTNER_TIERS[normalizedTier].rateLimit;
   db.prepare(
     'INSERT INTO partners (name, email, tier, api_key, scopes, rate_limit) VALUES (?, ?, ?, ?, ?, ?)'
-  ).run(
-    name,
-    email || null,
-    tier || 'free',
-    key,
-    JSON.stringify(scopes || ['read']),
-    rateLimit || 100
-  );
+  ).run(name, email || null, normalizedTier, key, JSON.stringify(scopes || ['read']), limit);
   return { id: db.prepare('SELECT id FROM partners WHERE api_key = ?').get(key).id, apiKey: key };
+}
+
+function onboardPartner({ name, email, organization, websiteUrl, useCase, tier, scopes }) {
+  migratePartners();
+  const normalizedTier = normalizeTier(tier);
+  const result = registerPartner({
+    name,
+    email,
+    tier: normalizedTier,
+    scopes: scopes || ['read'],
+  });
+
+  const db = getDb();
+  db.prepare(
+    'UPDATE partners SET organization = ?, website_url = ?, use_case = ? WHERE id = ?'
+  ).run(organization || null, websiteUrl || null, useCase || null, result.id);
+
+  return {
+    id: result.id,
+    apiKey: result.apiKey,
+    tier: normalizedTier,
+    sla: getPartnerSla(normalizedTier),
+    onboardingComplete: true,
+  };
+}
+
+function rotatePartnerKey(partnerId) {
+  migratePartners();
+  const db = getDb();
+  const row = db.prepare('SELECT id FROM partners WHERE id = ? AND active = 1').get(partnerId);
+  if (!row) return null;
+  const newKey = generateKey();
+  db.prepare('UPDATE partners SET api_key = ? WHERE id = ?').run(newKey, partnerId);
+  return { id: partnerId, apiKey: newKey };
+}
+
+function revokePartner(partnerId) {
+  migratePartners();
+  const db = getDb();
+  const info = db.prepare('UPDATE partners SET active = 0 WHERE id = ?').run(partnerId);
+  return { revoked: info.changes > 0 };
 }
 
 function validatePartnerKey(key) {
@@ -136,4 +234,15 @@ function safeJson(str, fallback) {
   }
 }
 
-module.exports = { registerPartner, validatePartnerKey, submitRecord, queryRecords, listPartners };
+module.exports = {
+  registerPartner,
+  validatePartnerKey,
+  submitRecord,
+  queryRecords,
+  listPartners,
+  onboardPartner,
+  rotatePartnerKey,
+  revokePartner,
+  getPartnerSla,
+  PARTNER_TIERS,
+};

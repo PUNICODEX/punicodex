@@ -2,5 +2,34 @@
   "generatedAt": "2026-06-22T06:50:04.727Z",
   "access_review": [],
   "change_management": [],
-  "model_validation": null
+  "model_validation": null,
+  "controls": [
+    {
+      "controlId": "CC6.1",
+      "title": "Logical and Physical Access Controls",
+      "evidence": [
+        "Multi-tenant RBAC with role-based access to admin dashboards",
+        "API keys scoped per tenant and per permission set"
+      ],
+      "status": "implemented"
+    },
+    {
+      "controlId": "CC7.2",
+      "title": "System Operations and Monitoring",
+      "evidence": [
+        "Audit log table captures every classification decision and review action",
+        "Immutable hash chain across audit log entries"
+      ],
+      "status": "implemented"
+    },
+    {
+      "controlId": "CC8.1",
+      "title": "Change Management",
+      "evidence": [
+        "Divergence gate enforces regeneration of derived artifacts",
+        "Model versioning with A/B testing and rollback support"
+      ],
+      "status": "implemented"
+    }
+  ]
 }

@@ -23,6 +23,30 @@ const CONFUSABLE_TO_ASCII = new Map(
   CONFUSABLE_DB.entries.map((entry) => [entry.char, entry.target])
 );
 
+// LRU cache for buildSkeleton. Inputs are short strings, but the same
+// protected-identity candidates are compared against thousands of inputs, so
+// caching skeletons removes the dominant repeated work from findCanonicalMatch.
+const SKELETON_CACHE_LIMIT = 20000;
+const skeletonCache = new Map();
+
+function getCachedSkeleton(str) {
+  const key = String(str);
+  if (skeletonCache.has(key)) {
+    // Move to end for LRU eviction ordering.
+    const value = skeletonCache.get(key);
+    skeletonCache.delete(key);
+    skeletonCache.set(key, value);
+    return value;
+  }
+  const value = buildSkeletonUncached(key);
+  if (skeletonCache.size >= SKELETON_CACHE_LIMIT) {
+    const firstKey = skeletonCache.keys().next().value;
+    skeletonCache.delete(firstKey);
+  }
+  skeletonCache.set(key, value);
+  return value;
+}
+
 /**
  * Contextual substitutions: pairs or short sequences that look like another
  * character when rendered.
@@ -65,7 +89,7 @@ function getScriptRisk(scriptA, scriptB) {
  * and applying contextual substitutions. The skeleton is used for visual
  * similarity comparison.
  */
-function buildSkeleton(str) {
+function buildSkeletonUncached(str) {
   const s = String(str).normalize('NFKC');
 
   // Replace known confusable characters.
@@ -88,12 +112,16 @@ function buildSkeleton(str) {
   return skeleton.toLowerCase();
 }
 
+function buildSkeleton(str) {
+  return getCachedSkeleton(str);
+}
+
 /**
  * Compute a 0–1 visual similarity between two strings using skeleton fold.
  */
 function skeletonSimilarity(a, b) {
-  const sa = buildSkeleton(a);
-  const sb = buildSkeleton(b);
+  const sa = getCachedSkeleton(a);
+  const sb = getCachedSkeleton(b);
   if (sa === sb) return 1;
   const max = Math.max(sa.length, sb.length);
   if (max === 0) return 0;
@@ -198,6 +226,7 @@ module.exports = {
   getScriptRisk,
   buildSkeleton,
   skeletonSimilarity,
+  renderedSimilarity,
   levenshtein,
   findCanonicalLookalike,
   analyzeWithAtlas,

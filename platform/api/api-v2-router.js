@@ -12,13 +12,17 @@
 const { success, error } = require('./api-response.js');
 const namesService = require('./names-service.js');
 const { searchWeb, getSites, getSiteByPunycode } = require('./crawler-db.js');
-const { getVersion } = require('./version-service.js');
 const { validateListNamesQuery } = require('./api-validation.js');
 const { classifyTerm, classifyDomain, classifyUrl } = require('./authenticity-service.js');
+const { buildEvidence } = require('./evidence-builder.js');
+const { withResultCache } = require('./cache.js');
+const { getVersion } = require('./version-service.js');
 const { recordDiscoveredSpoof, recordSpoofReport } = require('./authenticity-threat-feed.js');
 const { handleThreatFeedStream } = require('./threat-routes.js');
 const { handleGetPolicy, handleEvaluatePolicy } = require('./policy-routes.js');
 const { handlers: governanceHandlers } = require('./governance-routes.js');
+
+const MODEL_VERSION = getVersion().version;
 
 const VALID_NAME_SUBRESOURCES = new Set([
   'variants',
@@ -244,7 +248,14 @@ async function handleAuthenticityCheck(req, res) {
     );
     return;
   }
-  const result = classifyByType(input, type);
+  const policyHash = req.headers?.['x-tenant-id'] || 'default';
+  const result = await withResultCache(
+    { input, type, modelVersion: MODEL_VERSION, policyHash },
+    () => {
+      const r = classifyByType(input, type);
+      return { ...r, evidence: buildEvidence(input, r) };
+    }
+  );
   success(res, rewriteLinks(result), {
     links: { self: `/api/v2/authenticity/check?input=${encodeURIComponent(input)}&type=${type}` },
   });
@@ -265,11 +276,21 @@ async function handleAuthenticityBatch(req, res) {
     });
     return;
   }
-  const results = inputs.map((raw) => {
-    const value = String(raw).trim();
-    if (!value) return { input: raw, error: 'empty input' };
-    return { input: value, result: classifyByType(value, normalizedType) };
-  });
+  const policyHash = req.headers?.['x-tenant-id'] || 'default';
+  const results = await Promise.all(
+    inputs.map(async (raw) => {
+      const value = String(raw).trim();
+      if (!value) return { input: raw, error: 'empty input' };
+      const result = await withResultCache(
+        { input: value, type: normalizedType, modelVersion: MODEL_VERSION, policyHash },
+        () => {
+          const r = classifyByType(value, normalizedType);
+          return { ...r, evidence: buildEvidence(value, r) };
+        }
+      );
+      return { input: value, result };
+    })
+  );
   success(res, rewriteLinks(results), {
     meta: { count: results.length, type: normalizedType },
     links: { self: '/api/v2/authenticity/check/batch' },

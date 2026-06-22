@@ -201,6 +201,7 @@ function computeRiskFeatures(input, options = {}) {
   const raw = String(input || '');
   const decomposition = decompose(raw);
   const canonicalRows = options.canonicalRows || loadCanonicalRows();
+  const matchInfo = options.matchInfo || null;
 
   const confusableCount = decomposition.chars.filter((c) => c.isConfusable).length;
   const confusableDensity = raw.length > 0 ? confusableCount / raw.length : 0;
@@ -234,6 +235,36 @@ function computeRiskFeatures(input, options = {}) {
   if (lexiconState.hasCanonicalExact || lexiconState.variantRecognition) {
     skeletonMax = 1;
     glyphMax = 1;
+  } else if (matchInfo) {
+    // Reuse identity matches and lookalike score already computed by the
+    // canonical matcher. This removes a redundant O(n) scan per classification.
+    const identityMatches = matchInfo.identityMatches || [];
+    if (identityMatches.length > 0) {
+      identityPriority = identityMatches[0].identity.priority || 0;
+    }
+    const hasIdentityExactFolded = identityMatches.some((m) => m.matchType !== 'visual');
+    if (hasIdentityExactFolded && !hasDeception) {
+      skeletonMax = 1;
+      glyphMax = 1;
+    } else if (hasDeception) {
+      skeletonMax = matchInfo.lookalikeScore || 0;
+      // Compute glyph similarity only against the top candidates to keep cost low.
+      const topCandidates = [];
+      for (const match of identityMatches.slice(0, 8)) {
+        const candidate =
+          match.matchedAlias ||
+          match.identity.unicode ||
+          match.identity.ascii ||
+          match.identity.name;
+        if (candidate) topCandidates.push(candidate);
+      }
+      let glyphMaxLocal = 0;
+      for (const candidate of topCandidates) {
+        const score = glyphRenderedSimilarity(raw, candidate);
+        if (score > glyphMaxLocal) glyphMaxLocal = score;
+      }
+      glyphMax = glyphMaxLocal;
+    }
   } else {
     const identityMatches = findIdentities(raw, {
       includeLexicon: true,

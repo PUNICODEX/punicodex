@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PUNYCODEX System Status</title>
+  <meta name="description" content="Real-time PUNYCODEX service status and SLO compliance.">
+  <link rel="canonical" href="https://punycodex.com/status.html">
+  <style>
+    :root {
+      --bg: #0b0c10;
+      --fg: #c5c6c7;
+      --muted: #66fcf1;
+      --ok: #27c93f;
+      --warn: #ffbd2e;
+      --bad: #ff5f56;
+      --card: #1f2833;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+    }
+    .container { max-width: 960px; margin: 0 auto; padding: 2rem; }
+    header { border-bottom: 1px solid var(--card); padding-bottom: 1rem; margin-bottom: 2rem; }
+    h1 { color: var(--muted); margin: 0; }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      background: var(--card);
+      font-weight: 600;
+    }
+    .status-badge::before {
+      content: "";
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--ok);
+    }
+    .status-badge.degraded::before { background: var(--warn); }
+    .status-badge.down::before { background: var(--bad); }
+    .slo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .slo-card {
+      background: var(--card);
+      padding: 1.25rem;
+      border-radius: 8px;
+    }
+    .slo-card h3 { margin: 0 0 0.5rem; font-size: 1rem; color: var(--muted); }
+    .slo-value { font-size: 1.5rem; font-weight: 700; }
+    .slo-target { font-size: 0.875rem; color: #888; }
+    footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--card); color: #888; font-size: 0.875rem; }
+    .refresh { margin-top: 1rem; }
+    .refresh button {
+      background: var(--muted);
+      color: #0b0c10;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>PUNYCODEX System Status</h1>
+      <p>Real-time status and service-level objective compliance.</p>
+      <div class="status-badge" id="overall-status">Operational</div>
+    </header>
+
+    <section>
+      <h2>Service Level Objectives</h2>
+      <div class="slo-grid" id="slo-grid">
+        <!-- Populated by JavaScript -->
+      </div>
+      <div class="refresh">
+        <button id="refresh-btn">Refresh</button>
+        <span id="last-updated"></span>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        Status data is polled from <code>/api/v1/health</code> and
+        <code>/api/admin/observability</code>. For incident updates, see
+        <a href="https://punycodex.com/about/authenticity.html">about/authenticity.html</a>.
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    const SLO_ENDPOINT = '/api/v1/status/slos';
+
+    function renderSlos(data) {
+      const grid = document.getElementById('slo-grid');
+      grid.innerHTML = '';
+      const slos = data.slos || {};
+      for (const [key, slo] of Object.entries(slos)) {
+        const card = document.createElement('div');
+        card.className = 'slo-card';
+        const title = key.replace(/([A-Z])/g, ' $1').replace(/^./, s => s.toUpperCase());
+        const actualText = slo.actual === null ? '—' : String(slo.actual);
+        const statusColor = slo.compliant === null ? 'var(--fg)' : (slo.compliant ? 'var(--ok)' : 'var(--bad)');
+        card.innerHTML = `
+          <h3>${title}</h3>
+          <div class="slo-value" style="color:${statusColor}">${actualText}</div>
+          <div class="slo-target">Target: ${slo.targetLabel || slo.target}</div>
+        `;
+        grid.appendChild(card);
+      }
+      const badge = document.getElementById('overall-status');
+      badge.textContent = data.overallCompliant ? 'Operational' : 'Degraded';
+      badge.className = 'status-badge' + (data.overallCompliant ? '' : ' degraded');
+      document.getElementById('last-updated').textContent = 'Updated: ' + new Date().toLocaleString();
+    }
+
+    async function fetchSlos() {
+      try {
+        const res = await fetch(SLO_ENDPOINT);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        renderSlos(data.data || data);
+      } catch (err) {
+        document.getElementById('overall-status').textContent = 'Status unavailable';
+        document.getElementById('overall-status').className = 'status-badge degraded';
+        console.error('Failed to load SLOs:', err);
+      }
+    }
+
+    document.getElementById('refresh-btn').addEventListener('click', fetchSlos);
+    fetchSlos();
+  </script>
+</body>
+</html>

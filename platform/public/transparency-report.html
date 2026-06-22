@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Transparency Report — PUNYCODEX</title>
+    <meta name="description" content="Quarterly transparency report for PUNYCODEX regulatory, legal, and abuse-handling activity." />
+    <link rel="canonical" href="transparency-report.html" />
+    <style>
+      :root {
+        --bg: #0b0d10;
+        --panel: #14171c;
+        --text: #e8ecf1;
+        --muted: #9aa3ad;
+        --accent: #4fd1c5;
+        --border: #2a2f36;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+      header {
+        border-bottom: 1px solid var(--border);
+        padding: 2rem 1rem;
+        text-align: center;
+      }
+      header h1 { margin: 0 0 0.25rem; font-size: 1.75rem; }
+      header p { margin: 0; color: var(--muted); }
+      main {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2rem 1rem 4rem;
+      }
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 1.25rem;
+        margin-bottom: 1.25rem;
+      }
+      .card h2 { margin-top: 0; font-size: 1.15rem; color: var(--accent); }
+      .stat-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1rem;
+      }
+      .stat { background: rgba(255,255,255,0.03); border-radius: 0.5rem; padding: 0.75rem; }
+      .stat dt { color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+      .stat dd { margin: 0.25rem 0 0; font-size: 1.5rem; font-weight: 700; }
+      pre {
+        background: rgba(0,0,0,0.25);
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        padding: 1rem;
+        overflow-x: auto;
+        font-size: 0.85rem;
+      }
+      .error { color: #ff6b6b; }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        padding: 2rem 1rem;
+        border-top: 1px solid var(--border);
+        font-size: 0.875rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>PUNYCODEX Transparency Report</h1>
+      <p>Regulatory, legal, and abuse-handling activity — generated automatically from source tables.</p>
+    </header>
+    <main>
+      <section class="card">
+        <h2>Overview</h2>
+        <dl class="stat-grid" id="overview">
+          <div class="stat"><dt>Generated</dt><dd id="generated-at">—</dd></div>
+          <div class="stat"><dt>DSAR requests</dt><dd id="dsar-count">—</dd></div>
+          <div class="stat"><dt>UDRP cases</dt><dd id="udrp-count">—</dd></div>
+          <div class="stat"><dt>Abuse reports</dt><dd id="abuse-count">—</dd></div>
+          <div class="stat"><dt>Lawful access requests</dt><dd id="lawful-count">—</dd></div>
+        </dl>
+      </section>
+      <section class="card">
+        <h2>Full Report (JSON)</h2>
+        <pre id="report-json">Loading…</pre>
+      </section>
+    </main>
+    <footer>
+      <p>PUNYCODEX Name Authenticity Shield · Phase 16 — Regulatory, Legal &amp; Abuse Handling</p>
+    </footer>
+    <script>
+      async function loadReport() {
+        const pre = document.getElementById('report-json');
+        try {
+          const response = await fetch('/api/v1/transparency-report');
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          const payload = await response.json();
+          const report = payload.data || payload;
+          pre.textContent = JSON.stringify(report, null, 2);
+          document.getElementById('generated-at').textContent = report.generatedAt
+            ? new Date(report.generatedAt).toLocaleDateString()
+            : '—';
+          document.getElementById('dsar-count').textContent = sum(report.summary?.dsarRequests);
+          document.getElementById('udrp-count').textContent = sum(report.summary?.udrpCases);
+          document.getElementById('abuse-count').textContent = sum(report.summary?.abuseReports);
+          document.getElementById('lawful-count').textContent = sum(report.summary?.lawfulAccessRequests);
+        } catch (err) {
+          pre.innerHTML = `<span class="error">Failed to load report: ${err.message}</span>`;
+        }
+      }
+      function sum(rows) {
+        if (!Array.isArray(rows)) return '—';
+        const total = rows.reduce((acc, row) => acc + (Number(row.count) || 0), 0);
+        return total;
+      }
+      loadReport();
+    </script>
+  </body>
+</html>

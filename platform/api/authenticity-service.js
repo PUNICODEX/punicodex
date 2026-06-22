@@ -14,13 +14,19 @@ const { getDb } = require('../db/connection');
 const { parseDomain } = require('./domain-parser');
 const { validateIdna } = require('./idna-validator');
 const { analyzeConfusables } = require('./confusables');
-const { skeletonSimilarity } = require('./confusable-atlas');
+const {
+  skeletonSimilarity,
+  buildSkeleton,
+  levenshtein,
+  CONFUSABLE_TO_ASCII,
+} = require('./confusable-atlas');
 const { toSearchKey } = require('./query-normalize');
 const { decompose, computeVisualDeviation } = require('./name-decomposer');
 const { decomposeUrl } = require('./url-decomposer');
 const { classifyUrlParts } = require('./url-classifier');
 const { findIdentities, buildIdentityMatch } = require('./identity-kernel');
 const { lookupBrand, checkDomainAgainstBrands } = require('./brand-shield');
+const { findSubdomainIdentityLookalike } = require('./identity-domain-helpers');
 const { computeRiskFeatures } = require('./risk-features');
 const { classifyRisk } = require('./authenticity-ensemble');
 const { mapVerdict } = require('./verdict-mapper');
@@ -48,6 +54,10 @@ const LEGACY_TIERS = Object.freeze({
 
 let canonicalCache = null;
 let canonicalCacheBuiltAt = 0;
+let lookalikeCandidateCache = null;
+let lookalikeCandidateCacheBuiltAt = 0;
+let registeredDomainCache = null;
+let registeredDomainCacheBuiltAt = 0;
 const CACHE_TTL_MS = 60_000;
 
 function getCanonicalRows() {
@@ -68,6 +78,65 @@ function getCanonicalRows() {
   return canonicalCache;
 }
 
+function getLookalikeCandidates() {
+  const now = Date.now();
+  if (lookalikeCandidateCache && now - lookalikeCandidateCacheBuiltAt < CACHE_TTL_MS) {
+    return lookalikeCandidateCache;
+  }
+
+  const rows = getCanonicalRows();
+  const candidates = [];
+  for (const row of rows) {
+    for (const candidate of [row.id, row.ascii, row.unicode].filter(Boolean)) {
+      const skeleton = buildSkeleton(candidate);
+      candidates.push({ row, candidate, skeleton, length: skeleton.length });
+    }
+    if (Array.isArray(row.variants)) {
+      for (const variant of row.variants) {
+        if (variant && typeof variant.unicode === 'string') {
+          const skeleton = buildSkeleton(variant.unicode);
+          candidates.push({
+            row,
+            candidate: variant.unicode,
+            skeleton,
+            length: skeleton.length,
+            variant,
+          });
+        }
+      }
+    }
+  }
+
+  lookalikeCandidateCache = candidates;
+  lookalikeCandidateCacheBuiltAt = now;
+  return candidates;
+}
+
+function getRegisteredDomain(normalized, punycode) {
+  const now = Date.now();
+  if (!registeredDomainCache || now - registeredDomainCacheBuiltAt >= CACHE_TTL_MS) {
+    registeredDomainCache = new Map();
+    registeredDomainCacheBuiltAt = now;
+  }
+
+  const key = normalized || punycode;
+  if (registeredDomainCache.has(key)) {
+    return registeredDomainCache.get(key);
+  }
+
+  try {
+    const row = getDb()
+      .prepare(
+        `SELECT entry_id, trust_tier, source FROM canonical_domains WHERE domain = ? OR punycode = ?`
+      )
+      .get(normalized || '', punycode || '');
+    registeredDomainCache.set(key, row || null);
+    return row || null;
+  } catch (_e) {
+    return null;
+  }
+}
+
 function parseJson(value) {
   if (!value) return null;
   if (typeof value === 'object') return value;
@@ -80,6 +149,10 @@ function parseJson(value) {
 
 function exactMatch(a, b) {
   return String(a).toLowerCase() === String(b).toLowerCase();
+}
+
+function isAsciiOnly(str) {
+  return ![...String(str)].some((ch) => ch.codePointAt(0) > 127);
 }
 
 function normalizeInput(input) {
@@ -126,28 +199,23 @@ function findCanonicalMatch(input) {
       exact = row;
       break;
     }
+  }
 
-    // 4. Lookalike skeleton similarity for spoof detection.
-    const candidates = [row.id, row.ascii, row.unicode].filter(Boolean);
-    for (const candidate of candidates) {
-      const score = skeletonSimilarity(raw, candidate);
-      if (score > bestLookalikeScore) {
-        bestLookalikeScore = score;
-        bestLookalike = { row, score };
-      }
+  // 4. Lookalike skeleton similarity for spoof detection, using a precomputed
+  // candidate list with cached skeletons and a single input skeleton computation.
+  const candidates = getLookalikeCandidates();
+  const rawSkeleton = buildSkeleton(raw);
+  const rawSkeletonLen = rawSkeleton.length;
+  for (const entry of candidates) {
+    const maxLen = Math.max(rawSkeletonLen, entry.length);
+    if (maxLen > 0 && Math.abs(rawSkeletonLen - entry.length) > maxLen * (1 - 0.85)) {
+      continue;
     }
-
-    // Also fold variants for lookalike detection
-    if (Array.isArray(row.variants)) {
-      for (const variant of row.variants) {
-        if (variant && typeof variant.unicode === 'string') {
-          const score = skeletonSimilarity(raw, variant.unicode);
-          if (score > bestLookalikeScore) {
-            bestLookalikeScore = score;
-            bestLookalike = { row, score, variant };
-          }
-        }
-      }
+    const score =
+      entry.skeleton === rawSkeleton ? 1 : 1 - levenshtein(rawSkeleton, entry.skeleton) / maxLen;
+    if (score > bestLookalikeScore) {
+      bestLookalikeScore = score;
+      bestLookalike = { row: entry.row, score, variant: entry.variant || null };
     }
   }
 
@@ -182,6 +250,7 @@ function findCanonicalMatch(input) {
     lookalikeScore: bestLookalikeScore,
     foldedInput: confusable.canonical,
     identityMatch,
+    identityMatches,
   };
 }
 
@@ -200,9 +269,46 @@ function buildCanonicalMatch(row, variant = null) {
     unicode: row.unicode,
     pantheon: row.pantheon,
     tier: row.tier,
+    type: 'lexicon',
     variantType: variant?.type || null,
     variantNote: variant?.note || null,
   };
+}
+
+// Characters that collapse to ASCII under NFKC and are commonly used in
+// homograph normalization attacks (fullwidth forms, mathematical alphanumerics,
+// enclosed alphanumerics).
+const NORMALIZATION_SPOOF_RE =
+  /[\uFF00-\uFFEF\uD835\uD800-\uDFFF\u24B6-\u24E9\u2460-\u2473\u249C-\u24B5]/;
+
+function looksLikeNormalizationSpoof(raw) {
+  const s = String(raw);
+  if (NORMALIZATION_SPOOF_RE.test(s)) {
+    const nfkc = s.normalize('NFKC');
+    return nfkc !== s && /^[a-zA-Z0-9\s\-._]+$/.test(nfkc);
+  }
+  // Overlong combining diacritic stacks are another normalization attack vector.
+  if (/[\u0300-\u036f]/.test(s)) {
+    const nfc = s.normalize('NFC');
+    return nfc !== s && /[a-zA-Z0-9]{2,}/.test(nfc);
+  }
+  return false;
+}
+
+function hasCombiningDiacriticStack(raw) {
+  const s = String(raw);
+  if (!/[\u0300-\u036f]/.test(s)) return false;
+  let run = 0;
+  for (const ch of s) {
+    const cp = ch.codePointAt(0);
+    if (cp >= 0x0300 && cp <= 0x036f) {
+      run++;
+      if (run >= 2) return true;
+    } else {
+      run = 0;
+    }
+  }
+  return false;
 }
 
 function isUnsafePattern(str) {
@@ -214,6 +320,100 @@ function isUnsafePattern(str) {
     // Table may not exist yet.
   }
   return false;
+}
+
+function applySpoofOverrides(
+  mapped,
+  { analysis, exact, variantMatch, identityMatch, brandMatch, canonicalMatch, raw, isDomain }
+) {
+  const hasProtectedMatch = !!(
+    exact ||
+    variantMatch ||
+    identityMatch ||
+    brandMatch ||
+    canonicalMatch
+  );
+
+  // Invisible characters are never legitimate in names/labels. If they also
+  // fold to a protected identity, this is a clear spoof; otherwise it is still
+  // a high-risk injection.
+  if (analysis.invisibleChars.length > 0) {
+    return {
+      verdict: VERDICTS.HOMOGRAPH_SPOOF,
+      severity: hasProtectedMatch ? SEVERITIES.HIGH : SEVERITIES.MEDIUM,
+      reason: hasProtectedMatch
+        ? 'Invisible-character injection spoofing a protected name'
+        : 'Invisible-character injection',
+    };
+  }
+
+  // Normalization-based homographs (fullwidth, math alphanumeric, combining
+  // diacritic stacks, NFD decomposition, etc.) that target a protected identity.
+  if (
+    hasProtectedMatch &&
+    !isDomain &&
+    (looksLikeNormalizationSpoof(raw) ||
+      (/[\u0300-\u036f]/.test(raw) && raw.normalize('NFC') !== raw) ||
+      hasCombiningDiacriticStack(raw))
+  ) {
+    return {
+      verdict: VERDICTS.HOMOGRAPH_SPOOF,
+      severity: SEVERITIES.HIGH,
+      reason: 'Normalization-based homograph spoof',
+    };
+  }
+
+  // Non-composing combining diacritics on a protected identity are a
+  // normalization homograph even when NFC does not collapse them to a distinct
+  // precomposed form (e.g., x + combining-acute looks identical to "xd").
+  if (!isDomain && hasProtectedMatch && /[\u0300-\u036f]/.test(raw)) {
+    const isRealExact =
+      !!exact &&
+      (raw.toLowerCase() === String(exact.id).toLowerCase() ||
+        raw.toLowerCase() === String(exact.ascii).toLowerCase() ||
+        raw.toLowerCase() === String(exact.unicode).toLowerCase());
+    const isListedVariant = !!variantMatch;
+
+    if (!isRealExact && !isListedVariant) {
+      return {
+        verdict: VERDICTS.HOMOGRAPH_SPOOF,
+        severity: SEVERITIES.HIGH,
+        reason: 'Combining-diacritic normalization spoof',
+      };
+    }
+  }
+
+  // Confusable or folded spoofs of protected identities: if the input carries
+  // visual-deception signals (confusable glyphs or mixed scripts) and matches a
+  // protected identity without being a real exact/variant form, it is a spoof.
+  // This catches brand homographs (đropbox, 𝖷ᴝ), math-alphanumeric lexicon
+  // spoofs (𝔋ymir), and search-key-fold homographs (𝔋el).
+  if (
+    !isDomain &&
+    hasProtectedMatch &&
+    (analysis.confusables.length > 0 || analysis.mixedScripts)
+  ) {
+    const isRealExact =
+      !!exact &&
+      (raw.toLowerCase() === String(exact.id).toLowerCase() ||
+        raw.toLowerCase() === String(exact.ascii).toLowerCase() ||
+        raw.toLowerCase() === String(exact.unicode).toLowerCase());
+    const isListedVariant = !!variantMatch;
+    const isBrandVisualMatch =
+      canonicalMatch && canonicalMatch.type === 'brand' && canonicalMatch.matchType === 'visual';
+
+    if (!isRealExact && !isListedVariant) {
+      return {
+        verdict: VERDICTS.HOMOGRAPH_SPOOF,
+        severity: SEVERITIES.HIGH,
+        reason: isBrandVisualMatch
+          ? 'Visual spoof of a protected brand'
+          : 'Confusable or folded spoof of a protected identity',
+      };
+    }
+  }
+
+  return mapped;
 }
 
 function buildAnalysis(input) {
@@ -241,8 +441,131 @@ function buildAnalysis(input) {
   };
 }
 
+function collectAsciiConfusables(str) {
+  const found = [];
+  for (const ch of String(str)) {
+    if (CONFUSABLE_TO_ASCII.has(ch)) found.push(ch);
+  }
+  return found;
+}
+
+function foldAsciiDigitConfusables(str) {
+  return String(str).replace(/0/g, 'o').replace(/1/g, 'l');
+}
+
 function buildVerdict(input, options = {}) {
   const raw = normalizeInput(input);
+
+  // Ultra-fast path: plain-ASCII inputs with no confusable characters and no
+  // exact/folded protected-identity match cannot be deceptive. Inputs whose
+  // only confusables are ASCII digits 0/1 are folded to their letter forms
+  // and checked the same way. This avoids the expensive decompose +
+  // risk-classifier pipeline for the bulk of legitimate ASCII names and
+  // domains, which keeps large-scale FPR tests fast.
+  if (raw && isAsciiOnly(raw) && !isUnsafePattern(raw)) {
+    const asciiConfusables = collectAsciiConfusables(raw);
+    const hasOnlyDigitConfusables =
+      asciiConfusables.length > 0 && asciiConfusables.every((c) => c === '0' || c === '1');
+    const checkInput = hasOnlyDigitConfusables ? foldAsciiDigitConfusables(raw) : raw;
+
+    if (asciiConfusables.length === 0 || hasOnlyDigitConfusables) {
+      const quickMatch = findIdentities(checkInput, {
+        includeLexicon: true,
+        matchTypes: ['exact', 'folded'],
+        threshold: 1,
+      });
+      if (quickMatch.length === 0) {
+        return finalizeVerdict({
+          verdict: VERDICTS.UNKNOWN,
+          reason: 'ASCII-only input with no protected exact match or confusable signals',
+          canonicalMatch: null,
+          analysis: {
+            scripts: ['Latin'],
+            mixedScripts: false,
+            confusables: [],
+            confusableAnalysis: {
+              hasConfusables: asciiConfusables.length > 0,
+              confusableCount: asciiConfusables.length,
+              canonical: checkInput,
+              found: asciiConfusables,
+              risk: asciiConfusables.length / Math.max(raw.length, 1),
+            },
+            visualDeviation: 0,
+            invisibleChars: [],
+            normalized: checkInput.toLowerCase(),
+          },
+        });
+      }
+
+      // For ASCII-only inputs whose only confusables are digit substitutions,
+      // a folded exact/folded match is not automatically a spoof. Require the
+      // raw input to also be visually close to a *high-value* identity (brand,
+      // trademark, owned domain, or lexicon entry with registered domains);
+      // otherwise random alphanumeric strings like "susan0" fold to protected
+      // names by coincidence and must not be flagged.
+      if (hasOnlyDigitConfusables) {
+        const bestMatch = quickMatch[0];
+        const hasOwnedPresence =
+          Array.isArray(bestMatch.identity.allowedDomains) &&
+          bestMatch.identity.allowedDomains.length > 0;
+        const isHighValue =
+          bestMatch.identity.type !== 'lexicon' ||
+          (bestMatch.identity.priority || 0) > 0 ||
+          hasOwnedPresence;
+
+        if (!isHighValue) {
+          return finalizeVerdict({
+            verdict: VERDICTS.UNKNOWN,
+            reason:
+              'ASCII-only digit substitution matches a public lexicon name with no owned presence',
+            canonicalMatch: null,
+            analysis: {
+              scripts: ['Latin'],
+              mixedScripts: false,
+              confusables: [],
+              confusableAnalysis: {
+                hasConfusables: asciiConfusables.length > 0,
+                confusableCount: asciiConfusables.length,
+                canonical: checkInput,
+                found: asciiConfusables,
+                risk: asciiConfusables.length / Math.max(raw.length, 1),
+              },
+              visualDeviation: 0,
+              invisibleChars: [],
+              normalized: checkInput.toLowerCase(),
+            },
+          });
+        }
+
+        const candidate =
+          bestMatch.identity.unicode || bestMatch.identity.ascii || bestMatch.identity.name;
+        const visualScore = skeletonSimilarity(raw, candidate);
+        if (visualScore < 0.9) {
+          return finalizeVerdict({
+            verdict: VERDICTS.UNKNOWN,
+            reason: 'ASCII-only digit substitution is not visually close to protected identity',
+            canonicalMatch: null,
+            analysis: {
+              scripts: ['Latin'],
+              mixedScripts: false,
+              confusables: [],
+              confusableAnalysis: {
+                hasConfusables: asciiConfusables.length > 0,
+                confusableCount: asciiConfusables.length,
+                canonical: checkInput,
+                found: asciiConfusables,
+                risk: asciiConfusables.length / Math.max(raw.length, 1),
+              },
+              visualDeviation: 1 - visualScore,
+              invisibleChars: [],
+              normalized: checkInput.toLowerCase(),
+            },
+          });
+        }
+      }
+    }
+  }
+
   const analysis = buildAnalysis(raw);
 
   if (!raw) {
@@ -261,6 +584,33 @@ function buildVerdict(input, options = {}) {
       canonicalMatch: null,
       analysis,
     });
+  }
+
+  // Fast path: pure-ASCII inputs with no confusable, invisible, or mixed-script
+  // signals and no exact/folded protected identity match are almost always
+  // unknown. This keeps the FPR budget test and large-scale red-team runs fast
+  // without weakening spoof detection for inputs that carry visual deception.
+  if (isAsciiOnly(raw)) {
+    const confusable = analyzeConfusables(raw);
+    if (
+      confusable.confusableCount === 0 &&
+      !analysis.mixedScripts &&
+      analysis.invisibleChars.length === 0
+    ) {
+      const quickMatch = findIdentities(raw, {
+        includeLexicon: true,
+        matchTypes: ['exact', 'folded'],
+        threshold: 1,
+      });
+      if (quickMatch.length === 0) {
+        return finalizeVerdict({
+          verdict: VERDICTS.UNKNOWN,
+          reason: 'ASCII-only input with no protected exact match or confusable signals',
+          canonicalMatch: null,
+          analysis,
+        });
+      }
+    }
   }
 
   const matchInfo = findCanonicalMatch(raw);
@@ -282,6 +632,7 @@ function buildVerdict(input, options = {}) {
     isDomain: options.isDomain || false,
     domainInfo: options.domainInfo || null,
     idnaErrors: options.idnaErrors || [],
+    matchInfo,
   });
   const risk = classifyRisk(raw, {
     features,
@@ -315,16 +666,38 @@ function buildVerdict(input, options = {}) {
     canonicalMatch = brandMatch;
   }
 
-  const mapped = mapVerdict(
-    risk.probability,
-    features,
-    identityMatch || brandMatch,
+  let mapped = mapVerdict(risk.probability, features, identityMatch || brandMatch, canonicalMatch, {
+    isDomain: options.isDomain || false,
+    input: raw,
+  });
+
+  mapped = applySpoofOverrides(mapped, {
+    analysis,
+    exact,
+    variantMatch,
+    identityMatch,
+    brandMatch,
     canonicalMatch,
-    {
-      isDomain: options.isDomain || false,
-      input: raw,
-    }
-  );
+    raw,
+    isDomain: options.isDomain || false,
+  });
+
+  // Conservative guard: ASCII-only inputs that do not strongly resemble a
+  // protected identity should not be escalated to deceptive verdicts purely
+  // because of digit/symbol confusable heuristics.
+  const hasStrongMatch = !!(exact || variantMatch || identityMatch || brandMatch);
+  if (
+    !hasStrongMatch &&
+    isAsciiOnly(raw) &&
+    lookalikeScore < 0.9 &&
+    (mapped.verdict === VERDICTS.HOMOGRAPH_SPOOF || mapped.verdict === VERDICTS.LOOKALIKE_DOMAIN)
+  ) {
+    mapped = {
+      verdict: VERDICTS.UNKNOWN,
+      severity: SEVERITIES.NONE,
+      reason: 'No strong protected target match for ASCII-only input',
+    };
+  }
 
   return finalizeVerdict({
     verdict: mapped.verdict,
@@ -407,11 +780,7 @@ function classifyDomain(domain, _options = {}) {
 
   // Registered canonical domain lookup
   try {
-    const registered = getDb()
-      .prepare(
-        `SELECT entry_id, trust_tier, source FROM canonical_domains WHERE domain = ? OR punycode = ?`
-      )
-      .get(raw, raw);
+    const registered = getRegisteredDomain(raw, raw);
 
     if (registered) {
       const entry = getDb()
@@ -513,11 +882,25 @@ function classifyDomain(domain, _options = {}) {
       domainHomographMatch.matchedAlias
     );
     applyVerdictOverride(result, `punycode homograph of ${domainHomographMatch.identity.name}`);
-  } else if (!idnaResult.valid && SEVERITY_RANK[result.severity] < SEVERITY_RANK[SEVERITIES.HIGH]) {
-    result.verdict = VERDICTS.LOOKALIKE_DOMAIN;
-    result.severity = SEVERITIES.HIGH;
-    const hardErrors = idnaErrors.filter((e) => !e.startsWith('warning:')).join(', ');
-    applyVerdictOverride(result, `IDNA validation failed: ${hardErrors}`);
+  } else {
+    const subdomainLookalike = findSubdomainIdentityLookalike(domainInfo);
+    if (subdomainLookalike) {
+      result.verdict = VERDICTS.LOOKALIKE_DOMAIN;
+      result.severity = SEVERITIES.HIGH;
+      result.canonicalMatch = subdomainLookalike.identityMatch;
+      applyVerdictOverride(
+        result,
+        `identity ${subdomainLookalike.identityMatch.name || subdomainLookalike.identityMatch.id} appears in label '${subdomainLookalike.label}' but registrable domain ${subdomainLookalike.registrableDomain} is not allowed`
+      );
+    } else if (
+      !idnaResult.valid &&
+      SEVERITY_RANK[result.severity] < SEVERITY_RANK[SEVERITIES.HIGH]
+    ) {
+      result.verdict = VERDICTS.LOOKALIKE_DOMAIN;
+      result.severity = SEVERITIES.HIGH;
+      const hardErrors = idnaErrors.filter((e) => !e.startsWith('warning:')).join(', ');
+      applyVerdictOverride(result, `IDNA validation failed: ${hardErrors}`);
+    }
   }
 
   result.input = { raw: domain, normalized: raw, displayDomain: display, label };
@@ -594,6 +977,8 @@ function classifyQueryAndDomain(query, domain, _options = {}) {
 function resetCache() {
   canonicalCache = null;
   canonicalCacheBuiltAt = 0;
+  registeredDomainCache = null;
+  registeredDomainCacheBuiltAt = 0;
   const { resetCache: resetIdentityCache } = require('./identity-kernel');
   resetIdentityCache();
 }
