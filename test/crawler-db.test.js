@@ -86,11 +86,32 @@ async function run() {
   });
 
   await testAsync('searchWeb pagination respects limit and offset', async () => {
-    const page1 = await crawlerDb.searchWeb('greek', { limit: 1, offset: 0 });
-    const page2 = await crawlerDb.searchWeb('greek', { limit: 1, offset: 2 });
-    assert.ok(page1.results.length > 0, 'first page should contain results');
-    assert.ok(page1.total >= page1.results.length, 'total should account for all matches');
-    assert.strictEqual(page2.results.length, 0, 'offset beyond total should be empty');
+    // Create two deterministic tenant sites so pagination behavior is isolated
+    // from the current corpus (the word "greek" is not guaranteed to match
+    // anything after temple regeneration).
+    const token = 'pagtest-' + Math.random().toString(36).slice(2, 8);
+    const site1 = makeIndexedSite({
+      title: `${token} one`,
+      tenantName: 'Pagination Tenant 1',
+      tenantCategory: 'test',
+      status: 'active',
+    });
+    const site2 = makeIndexedSite({
+      title: `${token} two`,
+      tenantName: 'Pagination Tenant 2',
+      tenantCategory: 'test',
+      status: 'active',
+    });
+    try {
+      const page1 = await crawlerDb.searchWeb(token, { limit: 1, offset: 0 });
+      const page2 = await crawlerDb.searchWeb(token, { limit: 1, offset: 2 });
+      assert.ok(page1.results.length > 0, 'first page should contain results');
+      assert.ok(page1.total >= page1.results.length, 'total should account for all matches');
+      assert.strictEqual(page2.results.length, 0, 'offset beyond total should be empty');
+    } finally {
+      site1.cleanup();
+      site2.cleanup();
+    }
   });
 
   await testAsync('searchWeb total is accurate under fallbacks', async () => {
