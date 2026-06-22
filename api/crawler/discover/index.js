@@ -2,8 +2,12 @@ const { domainToASCII } = require('node:url');
 const Database = require('better-sqlite3');
 const { getDbPath } = require('../../../platform/db/db');
 const { handleError, setCors, requireAdmin } = require('../../_utils');
+const { classifyDomain } = require('../../../platform/api/authenticity-service');
+const { recordDiscoveredSpoof } = require('../../../platform/api/authenticity-threat-feed');
 
 const db = new Database(getDbPath());
+
+const SEVERITY_RANK = { none: 0, low: 1, medium: 2, high: 3, critical: 4 };
 
 module.exports = async (req, res) => {
   setCors(req, res);
@@ -37,6 +41,23 @@ module.exports = async (req, res) => {
       if (info.changes > 0) {
         added++;
         queueStmt.run(domain, punycode, source || 'ct-log');
+        try {
+          const classification = classifyDomain(punycode);
+          if (SEVERITY_RANK[classification.severity] >= 3) {
+            recordDiscoveredSpoof({
+              input: punycode,
+              inputType: 'domain',
+              punycode,
+              verdict: classification.verdict,
+              severity: classification.severity,
+              canonicalEntryId: classification.canonicalMatch?.id || null,
+              discoverySource: source || 'ct-log',
+              confidence: classification.lookalikeScore || 0,
+            });
+          }
+        } catch (_e) {
+          // Authenticity classification must not break discovery ingestion.
+        }
       }
     }
 

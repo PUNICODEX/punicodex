@@ -58,6 +58,22 @@ Features:
 
 Release package: `@punycodex/embeddings`
 
+## 6. Name Authenticity Checker
+
+Path: `platform/api/authenticity-service.js`, `platform/api/confusable-atlas.js`,
+`platform/api/authenticity-threat-feed.js`, `authenticity/`
+
+Features:
+- Verdict taxonomy: canonical, recognized variant, styled, uncertain, homograph spoof,
+  mixed-script spoof, lookalike domain, unsafe, unknown
+- Skeleton-based visual similarity detection
+- Variant-aware matching against the canonical lexicon
+- Full URL, domain, and term classification
+- Threat feed with manual review workflow
+- Public checker page, API v1/v2 endpoints, browser-extension integration
+
+Release package: `@punycodex/authenticity`
+
 ## Release Checklist
 
 - [ ] Choose license (CC BY 4.0 recommended for data; MIT for code)

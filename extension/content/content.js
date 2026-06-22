@@ -235,5 +235,28 @@
     window.addEventListener('scroll', hideDropdown, { passive: true });
     window.addEventListener('resize', hideDropdown);
 
+    // Authenticity warning banner for suspicious current-page domains
+    async function checkPageAuthenticity() {
+        try {
+            if (settings.authenticityWarnings === false) return;
+            const apiUrl = `https://punycodex.com/api/v2/authenticity/check?input=${encodeURIComponent(window.location.href)}&type=url`;
+            const res = await fetch(apiUrl, { cache: 'no-store' });
+            if (!res.ok) return;
+            const payload = await res.json();
+            const data = payload && payload.data ? payload.data : payload;
+            if (!data || !data.severity) return;
+            if (data.severity !== 'high' && data.severity !== 'critical') return;
+
+            const banner = document.createElement('div');
+            banner.id = 'punycodex-authenticity-warning';
+            banner.textContent = `PÚNYCODEX warning: ${data.label || data.verdict} — ${data.reason || ''}`;
+            document.body.appendChild(banner);
+        } catch (_e) {
+            // Network or CORS issues are expected on some pages; fail silently.
+        }
+    }
+
+    checkPageAuthenticity();
+
     console.log('PÚNYCODEX Type content script loaded.');
 })();

@@ -10,14 +10,16 @@
  * from `homograph-service.js` so existing consumers keep working.
  */
 
-const { domainToUnicode } = require('node:url');
+const { domainToUnicode, URL } = require('node:url');
 const { getDb } = require('../db/connection');
-const { analyzeConfusables, foldedSimilarity } = require('./confusables');
+const { analyzeConfusables } = require('./confusables');
+const { skeletonSimilarity } = require('./confusable-atlas');
 const { toSearchKey } = require('./query-normalize');
 const { decompose, computeVisualDeviation } = require('./name-decomposer');
 const {
   VERDICTS,
   SEVERITIES,
+  SEVERITY_RANK,
   VERDICT_SEVERITY,
   worstSeverity,
   explainVerdict,
@@ -117,10 +119,10 @@ function findCanonicalMatch(input) {
       break;
     }
 
-    // 4. Lookalike fold similarity for spoof detection.
+    // 4. Lookalike skeleton similarity for spoof detection.
     const candidates = [row.id, row.ascii, row.unicode].filter(Boolean);
     for (const candidate of candidates) {
-      const score = foldedSimilarity(raw, candidate);
+      const score = skeletonSimilarity(raw, candidate);
       if (score > bestLookalikeScore) {
         bestLookalikeScore = score;
         bestLookalike = { row, score };
@@ -131,7 +133,7 @@ function findCanonicalMatch(input) {
     if (Array.isArray(row.variants)) {
       for (const variant of row.variants) {
         if (variant && typeof variant.unicode === 'string') {
-          const score = foldedSimilarity(raw, variant.unicode);
+          const score = skeletonSimilarity(raw, variant.unicode);
           if (score > bestLookalikeScore) {
             bestLookalikeScore = score;
             bestLookalike = { row, score, variant };
@@ -387,9 +389,77 @@ function classifyDomain(domain, _options = {}) {
 }
 
 function classifyUrl(urlString, _options = {}) {
-  // Phase 6 will expand this to full URL analysis. For now, classify the
-  // registrable hostname using the domain classifier.
-  return classifyDomain(urlString);
+  const raw = String(urlString).trim();
+  let parsed;
+  try {
+    parsed = new URL(raw);
+  } catch {
+    // Not a parseable URL; fall back to domain classification.
+    return classifyDomain(raw);
+  }
+
+  const hostname = parsed.hostname;
+  const labels = hostname.split('.').filter(Boolean);
+  const decodedLabels = labels.map((label) =>
+    label.startsWith('xn--') ? decodePuny(label) : label
+  );
+
+  const labelResults = decodedLabels.map((label, index) => ({
+    part: 'hostname-label',
+    raw: labels[index],
+    decoded: label,
+    result: buildVerdict(label),
+  }));
+
+  const pathSegments = parsed.pathname.split('/').filter(Boolean);
+  const pathResults = pathSegments.map((segment) => ({
+    part: 'path-segment',
+    raw: segment,
+    result: buildVerdict(segment),
+  }));
+
+  const queryResults = [];
+  parsed.searchParams.forEach((value, key) => {
+    queryResults.push({ part: 'query-key', raw: key, result: buildVerdict(key) });
+    if (value) {
+      queryResults.push({ part: 'query-value', raw: value, result: buildVerdict(value) });
+    }
+  });
+
+  const allParts = [...labelResults, ...pathResults, ...queryResults];
+  const worstPart = allParts.reduce(
+    (worst, current) => {
+      return SEVERITY_RANK[current.result.severity] > SEVERITY_RANK[worst.result.severity]
+        ? current
+        : worst;
+    },
+    allParts[0] || { result: buildVerdict('') }
+  );
+
+  const result = {
+    ...finalizeVerdict({
+      verdict: worstPart.result.verdict,
+      reason: `URL analysis: ${worstPart.part} triggered ${worstPart.result.reason}`,
+      canonicalMatch: worstPart.result.canonicalMatch,
+      analysis: buildAnalysis(raw),
+    }),
+    input: {
+      raw,
+      hostname,
+      decodedHostname: decodedLabels.join('.'),
+      pathname: parsed.pathname,
+      search: parsed.search,
+    },
+    parts: allParts.map((p) => ({
+      part: p.part,
+      raw: p.raw,
+      verdict: p.result.verdict,
+      severity: p.result.severity,
+      canonicalMatch: p.result.canonicalMatch,
+    })),
+  };
+
+  return result;
 }
 
 function classifyQueryAndDomain(query, domain, _options = {}) {

@@ -436,3 +436,39 @@ body {
 .reject-flash {
     animation: reject-flash 0.3s ease;
 }
+
+/* Authenticity */
+.popup-authenticity {
+    background: var(--surface);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    border-radius: 8px;
+    padding: 10px 12px;
+}
+
+.authenticity-header {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+}
+
+.authenticity-status {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.authenticity-status.canonical { color: var(--green); }
+.authenticity-status.recognized-variant { color: var(--green); }
+.authenticity-status.styled { color: var(--gold); }
+.authenticity-status.transliteration-uncertain { color: var(--gold); }
+.authenticity-status.homograph-spoof,
+.authenticity-status.mixed-script-spoof,
+.authenticity-status.lookalike-domain { color: var(--ember); }
+.authenticity-status.unsafe { color: #e74c3c; }
+
+.authenticity-detail {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-top: 4px;
+}

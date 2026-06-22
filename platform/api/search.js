@@ -228,7 +228,11 @@ function search({
     queryTrust: queryTrust
       ? {
           tier: queryTrust.tier,
+          verdict: queryTrust.verdict,
+          severity: queryTrust.severity,
+          label: queryTrust.label,
           reason: queryTrust.reason,
+          lookalikeScore: queryTrust.lookalikeScore,
           visualDeviation: queryTrust.visualDeviation,
           canonicalMatch: queryTrust.canonicalMatch,
         }

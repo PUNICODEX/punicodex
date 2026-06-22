@@ -611,6 +611,9 @@
       if (r.scoreBreakdown) {
         html += `<span class="score-breakdown" tabindex="0" aria-label="Ranking signals">⚡ ${r.scoreBreakdown.total.toFixed(2)}${buildScoreTooltip(r.scoreBreakdown)}</span>`;
       }
+      if (r.verdict && (r.severity === 'high' || r.severity === 'critical')) {
+        html += `<span class="serp-badge trust-warning">⚠️ ${escapeHtml(r.label || r.verdict)}</span>`;
+      }
       html += `</div>`;
 
       if (r.tenant && r.tenant.name) {
@@ -869,6 +872,9 @@
 
       const semanticBadge = data.isSemanticFallback ? `<span style="color:var(--cn-blue);margin-left:0.5rem;font-size:0.75rem">🧠 semantic match</span>` : '';
       html += `<div class="result-count">About ${data.total || data.results.length} results (${data.timing}s)${semanticBadge}</div>`;
+      if (data.queryTrust && (data.queryTrust.severity === 'high' || data.queryTrust.severity === 'critical')) {
+        html += `<div class="query-trust-banner query-trust-${data.queryTrust.severity}">⚠️ ${escapeHtml(data.queryTrust.label || data.queryTrust.verdict)} — ${escapeHtml(data.queryTrust.reason || '')}</div>`;
+      }
       html += `<div class="serp-results-list">`;
 
       data.results.forEach((r, i) => {

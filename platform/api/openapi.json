@@ -253,6 +253,85 @@
         }
       }
     },
+    "/authenticity/check": {
+      "get": {
+        "summary": "Classify a name, domain, or URL for authenticity",
+        "operationId": "authenticityCheck",
+        "parameters": [
+          {
+            "name": "input",
+            "in": "query",
+            "required": true,
+            "description": "The name, domain, or URL to classify.",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "required": false,
+            "description": "Classification mode: auto, term, domain, or url.",
+            "schema": { "type": "string", "default": "auto" }
+          }
+        ],
+        "responses": {
+          "200": { "$ref": "#/components/responses/AuthenticityCheckResponse" },
+          "400": { "$ref": "#/components/responses/ValidationError" },
+          "429": { "$ref": "#/components/responses/RateLimitError" }
+        }
+      }
+    },
+    "/authenticity/check/batch": {
+      "post": {
+        "summary": "Batch classify names, domains, or URLs",
+        "operationId": "authenticityCheckBatch",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "inputs": { "type": "array", "items": { "type": "string" }, "maxItems": 100 },
+                  "type": { "type": "string", "default": "auto" }
+                },
+                "required": ["inputs"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "$ref": "#/components/responses/AuthenticityBatchCheckResponse" },
+          "400": { "$ref": "#/components/responses/ValidationError" }
+        }
+      }
+    },
+    "/authenticity/report": {
+      "post": {
+        "summary": "Report a suspicious name, domain, or URL",
+        "operationId": "authenticityReport",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "input": { "type": "string" },
+                  "type": { "type": "string", "default": "auto" },
+                  "comment": { "type": "string" },
+                  "reporterToken": { "type": "string" }
+                },
+                "required": ["input"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "$ref": "#/components/responses/AuthenticityReportResponse" },
+          "400": { "$ref": "#/components/responses/ValidationError" }
+        }
+      }
+    },
     "/version": {
       "get": {
         "summary": "Get current dataset version and counts",
@@ -454,6 +533,18 @@
       },
       "BatchConvertResponse": {
         "description": "Batch conversion results",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+      },
+      "AuthenticityCheckResponse": {
+        "description": "Authenticity classification for a single input",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+      },
+      "AuthenticityBatchCheckResponse": {
+        "description": "Authenticity classification for a batch of inputs",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+      },
+      "AuthenticityReportResponse": {
+        "description": "Acknowledgement of a threat report",
         "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
       },
       "VersionResponse": {

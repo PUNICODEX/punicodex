@@ -4,6 +4,8 @@
 
 const assert = require('node:assert');
 const Database = require('better-sqlite3');
+const http = require('node:http');
+const { URL } = require('node:url');
 
 process.env.ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'test-admin-password-for-ci';
 
@@ -18,6 +20,55 @@ const {
   getRevenueStats,
   hashToken,
 } = require('../platform/api/admin.js');
+const { migrateThreatFeed } = require('../platform/api/authenticity-threat-feed.js');
+
+migrateThreatFeed();
+
+function invoke(handler, method, url, options = {}) {
+  return new Promise((resolve) => {
+    const parsed = new URL(url, 'http://localhost');
+    const req = new http.IncomingMessage(null);
+    req.method = method;
+    req.url = url;
+    req.headers = options.headers || {};
+    req.body = options.body || null;
+    req.query = Object.fromEntries(parsed.searchParams);
+    req.params = options.params || {};
+
+    const res = new http.ServerResponse(req);
+    let statusCode = 200;
+    let responseBody = null;
+    let ended = false;
+
+    res.setHeader = () => {};
+    res.status = (code) => {
+      statusCode = code;
+      return res;
+    };
+    res.json = (data) => {
+      responseBody = data;
+      if (!ended) {
+        ended = true;
+        resolve({ status: statusCode, body: responseBody });
+      }
+    };
+    res.send = (data) => {
+      responseBody = data;
+      if (!ended) {
+        ended = true;
+        resolve({ status: statusCode, body: responseBody });
+      }
+    };
+    res.end = () => {
+      if (!ended) {
+        ended = true;
+        resolve({ status: statusCode, body: responseBody });
+      }
+    };
+
+    handler(req, res);
+  });
+}
 
 const tests = [];
 
@@ -109,6 +160,52 @@ test('getRevenueStats returns daily series', async () => {
   assert.strictEqual(stats.daily.length, 7);
   assert.strictEqual(typeof stats.totalRevenueCents, 'number');
   assert.ok(/^\d+\.\d{2}$/.test(stats.totalRevenueDollars));
+});
+
+test('admin threat feed endpoints require authentication', async () => {
+  const listSpoofs = require('../api/admin/authenticity/spoofs/index.js');
+  const { status, body } = await invoke(listSpoofs, 'GET', '/api/admin/authenticity/spoofs');
+  assert.strictEqual(status, 401);
+  assert.strictEqual(body.error, 'Unauthorized');
+});
+
+test('admin can list unreviewed spoofs', async () => {
+  const { token } = await login(process.env.ADMIN_PASSWORD);
+  const listSpoofs = require('../api/admin/authenticity/spoofs/index.js');
+  const { status, body } = await invoke(listSpoofs, 'GET', '/api/admin/authenticity/spoofs', {
+    headers: { 'x-admin-token': token },
+  });
+  assert.strictEqual(status, 200);
+  assert.strictEqual(body.success, true);
+  assert.ok(Array.isArray(body.items));
+});
+
+test('admin can review a spoof', async () => {
+  const { recordDiscoveredSpoof } = require('../platform/api/authenticity-threat-feed.js');
+  const spoof = recordDiscoveredSpoof({
+    input: 'admin-test-spoof.example.com',
+    inputType: 'domain',
+    verdict: 'lookalike-domain',
+    severity: 'high',
+    discoverySource: 'manual',
+    confidence: 0.9,
+  });
+
+  const { token } = await login(process.env.ADMIN_PASSWORD);
+  const reviewHandler = require('../api/admin/authenticity/spoofs/[id]/review/index.js');
+  const { status, body } = await invoke(
+    reviewHandler,
+    'POST',
+    `/api/admin/authenticity/spoofs/${spoof.id}/review`,
+    {
+      headers: { 'x-admin-token': token },
+      params: { id: String(spoof.id) },
+      body: { decision: 'false-positive' },
+    }
+  );
+  assert.strictEqual(status, 200);
+  assert.strictEqual(body.success, true);
+  assert.strictEqual(body.spoof.reviewer_decision, 'false-positive');
 });
 
 run();

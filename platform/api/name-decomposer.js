@@ -7,7 +7,8 @@
  * authenticity verdict.
  */
 
-const { analyzeConfusables, CONFUSABLE_TO_ASCII } = require('./confusables');
+const { analyzeConfusables } = require('./confusables');
+const { CONFUSABLE_TO_ASCII } = require('./confusable-atlas');
 
 // Characters that are visually invisible or control-oriented.
 const INVISIBLE_CODE_POINTS = new Set([

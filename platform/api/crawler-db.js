@@ -2,7 +2,7 @@ const Database = require('better-sqlite3');
 const _path = require('node:path');
 const { embedText, searchAllVectors } = require('./semantic-search');
 const { getDbPath } = require('../db/db');
-const { searchKeywords } = require('./keyword-extractor');
+const { searchKeywords, tokenize } = require('./keyword-extractor');
 const { listVariants } = require('./ranker');
 const { toSearchKey } = require('./query-normalize');
 const { classifyDomain, classifyTerm } = require('./homograph-service');
@@ -445,9 +445,10 @@ async function searchWeb(q, options = {}) {
       const bestTitle = row.og_title || row.twitter_title || row.title || row.domain;
 
       // Classify on-demand if the DB trust_tier is missing (e.g. legacy crawls).
+      const fullClassification = classifyDomain(row.domain || row.punycode);
       const domainTrust = row.trust_tier
-        ? { tier: row.trust_tier, reason: 'indexed' }
-        : classifyDomain(row.domain || row.punycode);
+        ? { tier: row.trust_tier, reason: 'indexed', ...fullClassification }
+        : fullClassification;
 
       return {
         id: row.id,
@@ -505,6 +506,9 @@ async function searchWeb(q, options = {}) {
         matchedTerms: extractMatchedTerms(bestSnippet),
         trustTier: domainTrust.tier,
         trustReason: domainTrust.reason,
+        verdict: domainTrust.verdict,
+        severity: domainTrust.severity,
+        lookalikeScore: domainTrust.lookalikeScore,
       };
     });
 
@@ -519,16 +523,34 @@ async function searchWeb(q, options = {}) {
   // Tenants can provide a front URL; we crawl it and extract their existing
   // SEO keywords rather than forcing them to type keywords into a dashboard.
   // Surface those sites when the query matches their extracted keyword set.
-  let keywordFallbackCount = 0;
-  let keywordFallbackUsed = false;
+  let keywordTotal = 0;
   try {
+    // Count total keyword matches so pagination is accurate on the first page.
+    const words = tokenize(q);
+    if (words.length > 0) {
+      const conditions = words.map(() => `sk.keyword LIKE ?`).join(' OR ');
+      const params = words.map((w) => `%${w}%`);
+      const unicodeFilter = unicodeOnly ? "AND s.punycode LIKE 'xn--%'" : '';
+      const countRow = db
+        .prepare(
+          `SELECT COUNT(DISTINCT s.id) AS total
+           FROM site_keywords sk
+           JOIN indexed_sites s ON sk.site_id = s.id
+           WHERE s.status = 'active'
+             AND (${conditions})
+             ${unicodeFilter}`
+        )
+        .get(...params);
+      keywordTotal = countRow?.total || 0;
+    }
+
     const needFallback = limitNum - results.length;
-    if (needFallback > 0 || (totalMain > 0 && offsetNum >= totalMain)) {
-      const fallbackOffset = totalMain > 0 && offsetNum >= totalMain ? offsetNum - totalMain : 0;
-      const fetchLimit = needFallback + fallbackOffset + 5;
+    const fallbackOffset = Math.max(0, offsetNum - totalMain);
+    if (needFallback > 0 || fallbackOffset > 0) {
+      const fetchLimit = needFallback + fallbackOffset + 20;
       const keywordMatches = searchKeywords(q, fetchLimit);
+
       const existingIds = new Set(results.map((r) => r.id));
-      const beforeFallbackCount = results.length;
       let skipped = 0;
       for (const row of keywordMatches) {
         if (unicodeOnly && !row.punycode?.startsWith('xn--')) continue;
@@ -572,8 +594,6 @@ async function searchWeb(q, options = {}) {
           keywordSource: row.keyword_source,
         });
       }
-      keywordFallbackCount = results.length - beforeFallbackCount;
-      keywordFallbackUsed = keywordFallbackCount > 0;
     }
   } catch (e) {
     console.error('Keyword fallback error:', e.message);
@@ -959,7 +979,11 @@ async function searchWeb(q, options = {}) {
     queryNormalized,
     queryTrust: {
       tier: queryTrust.tier,
+      verdict: queryTrust.verdict,
+      severity: queryTrust.severity,
+      label: queryTrust.label,
       reason: queryTrust.reason,
+      lookalikeScore: queryTrust.lookalikeScore,
       visualDeviation: queryTrust.visualDeviation,
       canonicalMatch: queryTrust.canonicalMatch,
     },
@@ -977,12 +1001,12 @@ async function searchWeb(q, options = {}) {
   };
 
   let total = totalMain;
-  if (isSemanticFallback) {
+  if (keywordTotal > 0) {
+    total = totalMain + keywordTotal;
+  } else if (isSemanticFallback) {
     total = semanticTotal;
   } else if (likeTotal > 0) {
     total = likeTotal;
-  } else if (keywordFallbackUsed) {
-    total = totalMain + keywordFallbackCount;
   }
   response.total = total;
   response.hasMore = total > offsetNum + results.length;

@@ -233,6 +233,46 @@ async function runTests() {
     assert.ok(body.data.paths);
   });
 
+  await test('GET /api/v2/authenticity/check classifies canonical term', async () => {
+    const { status, body } = await invoke(
+      'GET',
+      '/api/v2/authenticity/check?input=Aphrod%C3%ADt%C4%93&type=term'
+    );
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+    assert.strictEqual(body.data.verdict, 'canonical');
+  });
+
+  await test('GET /api/v2/authenticity/check flags homograph domain', async () => {
+    const { status, body } = await invoke(
+      'GET',
+      '/api/v2/authenticity/check?input=%D0%B0res.com&type=domain'
+    );
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+    assert.ok(
+      ['homograph-spoof', 'mixed-script-spoof', 'lookalike-domain'].includes(body.data.verdict)
+    );
+  });
+
+  await test('POST /api/v2/authenticity/check/batch classifies batch', async () => {
+    const { status, body } = await invoke('POST', '/api/v2/authenticity/check/batch', {
+      body: { inputs: ['Zeus', 'ares.com'], type: 'auto' },
+    });
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+    assert.strictEqual(body.data.length, 2);
+  });
+
+  await test('POST /api/v2/authenticity/report records report', async () => {
+    const { status, body } = await invoke('POST', '/api/v2/authenticity/report', {
+      body: { input: 'fake-ares.example.com', type: 'domain', comment: 'v2 test' },
+    });
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+    assert.strictEqual(body.data.reported, true);
+  });
+
   console.log(`\nAPI v2: ${passed} passed, ${failed} failed`);
   if (failed > 0) process.exit(1);
 }

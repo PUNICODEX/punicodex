@@ -59,6 +59,12 @@ function computeVisualDeviation(str) {
 function toLegacy(result) {
   return {
     tier: result.tier,
+    verdict: result.verdict,
+    severity: result.severity,
+    label: result.label,
+    explanation: result.explanation,
+    recommendations: result.recommendations,
+    lookalikeScore: result.lookalikeScore,
     canonicalMatch: result.canonicalMatch,
     reason: result.reason,
     visualDeviation: result.analysis?.visualDeviation ?? 0,

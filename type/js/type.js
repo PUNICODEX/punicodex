@@ -49,6 +49,7 @@
     const resultLore = document.getElementById('result-lore');
     const copyBtn = document.getElementById('copy-btn');
     const clearBtn = document.getElementById('clear-btn');
+    const authenticityLink = document.getElementById('authenticity-link');
     const pantheonFilter = document.getElementById('pantheon-filter');
 
     if (!inputField) return; // Guard for non-type pages
@@ -516,6 +517,9 @@
         resultEl.classList.add('reveal');
 
         copyBtn.textContent = 'Copy Unicode';
+        if (authenticityLink) {
+            authenticityLink.href = `/authenticity/?input=${encodeURIComponent(entry.unicode || entry.ascii || currentInput)}&type=term`;
+        }
         updateMeta(entry);
     }
 

@@ -7,6 +7,7 @@
 
     const optInline = document.getElementById('opt-inline');
     const optPreview = document.getElementById('opt-preview');
+    const optAuthenticity = document.getElementById('opt-authenticity');
     const optPantheon = document.getElementById('opt-pantheon');
     const modeAll = document.getElementById('mode-all');
     const modeAllowlist = document.getElementById('mode-allowlist');
@@ -38,11 +39,12 @@
 
     // Load settings
     chrome.storage.sync.get([
-        'enabled', 'inlineMode', 'showPreview', 'pantheonFilter',
+        'enabled', 'inlineMode', 'showPreview', 'authenticityWarnings', 'pantheonFilter',
         'siteMode', 'siteList'
     ], (result) => {
         if (result.inlineMode !== undefined) optInline.checked = result.inlineMode;
         if (result.showPreview !== undefined) optPreview.checked = result.showPreview;
+        if (result.authenticityWarnings !== undefined) optAuthenticity.checked = result.authenticityWarnings;
         if (result.pantheonFilter) optPantheon.value = result.pantheonFilter;
         setSiteMode(result.siteMode || 'all');
         siteList.value = (result.siteList || DEFAULT_SITES).join('\n');
@@ -59,6 +61,7 @@
             enabled: true,
             inlineMode: optInline.checked,
             showPreview: optPreview.checked,
+            authenticityWarnings: optAuthenticity.checked,
             pantheonFilter: optPantheon.value,
             siteMode: getSiteMode(),
             siteList: sites,

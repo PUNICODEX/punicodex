@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Name Authenticity Checker — PÚNYCODEX</title>
+  <meta name="description" content="Check any name, domain, or URL against the PÚNYCODEX canonical lexicon. Detect homograph spoofs, mixed-script attacks, and lookalike domains.">
+  <link rel="canonical" href="https://punycodex.com/authenticity/">
+  <meta property="og:title" content="Name Authenticity Checker — PÚNYCODEX">
+  <meta property="og:description" content="Detect homograph spoofs and mixed-script attacks against canonical Unicode names.">
+  <meta property="og:url" content="https://punycodex.com/authenticity/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PÚNYCODEX">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Name Authenticity Checker — PÚNYCODEX">
+  <meta name="twitter:description" content="Detect homograph spoofs and mixed-script attacks against canonical Unicode names.">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-api-endpoint="/api/v2/authenticity/check">
+  <nav class="global-nav">
+    <a class="nav-logo" href="/">P<span class="accent">U</span>NYCODEX</a>
+    <div class="nav-links">
+      <a href="/pantheon/">Pantheon</a>
+      <a href="/lexicon/">Lexicon</a>
+      <a href="/type/">Type</a>
+      <a href="/tiers/">Tiers</a>
+      <a href="/realms/">Realms</a>
+    </div>
+  </nav>
+
+  <main class="authenticity-page">
+    <section class="hero">
+      <h1>Name Authenticity Checker</h1>
+      <p class="lead">
+        Paste any name, domain, or URL. We compare it to the canonical PÚNYCODEX lexicon
+        and flag homograph spoofs, mixed-script attacks, and lookalike domains.
+      </p>
+    </section>
+
+    <section class="checker-card">
+      <div class="input-row">
+        <input
+          type="text"
+          id="check-input"
+          class="check-input"
+          placeholder="e.g. apóllōn.com, https://example.com/path, or Ζεύς"
+          autocomplete="off"
+          autofocus
+        >
+        <select id="check-type" class="check-type">
+          <option value="auto">Auto</option>
+          <option value="term">Name</option>
+          <option value="domain">Domain</option>
+          <option value="url">URL</option>
+        </select>
+        <button id="check-btn" class="btn btn-primary">Check</button>
+      </div>
+
+      <div id="result-area" class="result-area hidden">
+        <div class="verdict-row">
+          <span id="verdict-badge" class="verdict-badge"></span>
+          <span id="verdict-severity" class="verdict-severity"></span>
+        </div>
+        <h2 id="verdict-label"></h2>
+        <p id="verdict-reason"></p>
+        <ul id="verdict-recommendations" class="recommendations"></ul>
+
+        <div id="canonical-match" class="canonical-match hidden">
+          <h3>Canonical Match</h3>
+          <div class="match-grid">
+            <div><span class="meta-key">ID</span><span id="match-id" class="meta-value"></span></div>
+            <div><span class="meta-key">ASCII</span><span id="match-ascii" class="meta-value"></span></div>
+            <div><span class="meta-key">Unicode</span><span id="match-unicode" class="meta-value"></span></div>
+            <div><span class="meta-key">Pantheon</span><span id="match-pantheon" class="meta-value"></span></div>
+          </div>
+        </div>
+
+        <div id="parts-area" class="parts-area hidden">
+          <h3>URL Part Breakdown</h3>
+          <table class="parts-table">
+            <thead>
+              <tr><th>Part</th><th>Value</th><th>Verdict</th><th>Severity</th></tr>
+            </thead>
+            <tbody id="parts-body"></tbody>
+          </table>
+        </div>
+
+        <div id="analysis-area" class="analysis-area">
+          <h3>Character Analysis</h3>
+          <div id="confusables-list" class="confusables-list"></div>
+        </div>
+
+        <div class="result-actions">
+          <button id="report-btn" class="btn btn-secondary">Report Suspicious Input</button>
+          <span id="report-status" class="report-status"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="examples">
+      <h2>Try These Examples</h2>
+      <div class="example-chips">
+        <button class="example-chip" data-value="Zeus" data-type="term">Zeus</button>
+        <button class="example-chip" data-value="apóllōn.com" data-type="domain">apóllōn.com</button>
+        <button class="example-chip" data-value="\u0430res.com" data-type="domain">аres.com (Cyrillic а)</button>
+        <button class="example-chip" data-value="https://punycode.example.com/zeus" data-type="url">Suspicious URL</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-links">
+      <a href="/about/">About</a>
+      <a href="/api/v1/docs">API</a>
+      <a href="/terms/">Terms</a>
+      <a href="/privacy/">Privacy</a>
+    </div>
+    <p class="copyright">© PÚNYCODEX. Authenticity engine version 2.0.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

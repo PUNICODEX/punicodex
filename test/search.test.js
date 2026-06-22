@@ -179,6 +179,15 @@ function run() {
     const result = searchService.search({ q: 'zeus', limit: 1 });
     assert.ok(result.queryTrust);
     assert.ok(['canonical', 'styled', 'unknown'].includes(result.queryTrust.tier));
+    assert.ok(result.queryTrust.verdict);
+    assert.ok(result.queryTrust.severity);
+  });
+
+  test('search queryTrust flags homograph queries', () => {
+    const result = searchService.search({ q: '\u0430res', limit: 1 });
+    assert.ok(result.queryTrust);
+    assert.strictEqual(result.queryTrust.verdict, 'homograph-spoof');
+    assert.strictEqual(result.queryTrust.severity, 'high');
   });
 
   test('getPantheons returns distinct pantheons', () => {

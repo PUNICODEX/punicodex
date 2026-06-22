@@ -7,6 +7,8 @@ const { promisify } = require('node:util');
 const { extractAndSave } = require('../api/keyword-extractor');
 const { upsertSiteEmbedding } = require('../api/embeddings');
 const { scoreArchetype } = require('../api/archetype-scorer');
+const { classifyDomain } = require('../api/authenticity-service');
+const { recordDiscoveredSpoof } = require('../api/authenticity-threat-feed');
 
 const dnsLookup = promisify(dns.lookup);
 
@@ -77,6 +79,27 @@ class UnicodeCrawler {
         .run(siteId, status, error || null, contentHash || null, Math.floor(startedAt / 1000));
     } catch (err) {
       console.error('Failed to record crawl history:', err.message);
+    }
+  }
+
+  recordAuthenticitySignal(domain, punycode) {
+    try {
+      const classification = classifyDomain(punycode || domain);
+      const severityRank = { none: 0, low: 1, medium: 2, high: 3, critical: 4 };
+      if (severityRank[classification.severity] >= 3) {
+        recordDiscoveredSpoof({
+          input: punycode || domain,
+          inputType: 'domain',
+          punycode: punycode || null,
+          verdict: classification.verdict,
+          severity: classification.severity,
+          canonicalEntryId: classification.canonicalMatch?.id || null,
+          discoverySource: 'crawler',
+          confidence: classification.lookalikeScore || 0,
+        });
+      }
+    } catch (err) {
+      console.error('Failed to record authenticity signal:', err.message);
     }
   }
 
@@ -747,6 +770,7 @@ class UnicodeCrawler {
       stmt.run(domain, punycode, result.error);
       const siteId = this.getSiteIdByDomain(domain);
       this.recordCrawlHistory(siteId, 'error', result.error, null, startedAt);
+      this.recordAuthenticitySignal(domain, punycode);
       return { domain, status: 'error', error: result.error };
     }
 
@@ -900,6 +924,7 @@ class UnicodeCrawler {
 
     const siteId = this.getSiteIdByDomain(domain);
     this.recordCrawlHistory(siteId, 'active', null, result.content_hash, startedAt);
+    this.recordAuthenticitySignal(domain, punycode);
 
     // Extract SEO keywords from the crawled page (and the tenant's front URL if set).
     try {

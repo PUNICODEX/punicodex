@@ -307,6 +307,38 @@
         scheduleUpdate();
     });
 
+    // Authenticity check for the current browser tab
+    const authStatus = document.getElementById('authenticity-status');
+    const authDetail = document.getElementById('authenticity-detail');
+
+    async function checkCurrentTabAuthenticity() {
+        if (!chrome.tabs || !authStatus) return;
+        try {
+            const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+            if (!tab || !tab.url || tab.url.startsWith('chrome://') || tab.url.startsWith('about:')) {
+                authStatus.textContent = 'No page to check';
+                authDetail.textContent = '';
+                return;
+            }
+            const url = new URL(tab.url);
+            const apiUrl = `https://punycodex.com/api/v2/authenticity/check?input=${encodeURIComponent(url.href)}&type=url`;
+            const res = await fetch(apiUrl, { cache: 'no-store' });
+            if (!res.ok) throw new Error('API unavailable');
+            const payload = await res.json();
+            const data = payload && payload.data ? payload.data : payload;
+            if (!data || !data.verdict) throw new Error('Unexpected response');
+
+            authStatus.textContent = data.label || data.verdict;
+            authStatus.className = 'authenticity-status ' + data.verdict;
+            authDetail.textContent = data.reason || data.explanation || '';
+        } catch (err) {
+            authStatus.textContent = 'Offline';
+            authDetail.textContent = 'Connect to punycodex.com to enable tab checks.';
+        }
+    }
+
+    checkCurrentTabAuthenticity();
+
     // Init
     inputField.focus();
     updateAll();

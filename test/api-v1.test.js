@@ -108,6 +108,9 @@ async function runTests() {
   const autocomplete = require('../api/v1/autocomplete/index.js');
   const convert = require('../api/v1/convert/index.js');
   const convertBatch = require('../api/v1/convert/batch.js');
+  const authenticityCheck = require('../api/v1/authenticity/check/index.js');
+  const authenticityBatch = require('../api/v1/authenticity/check/batch/index.js');
+  const authenticityReport = require('../api/v1/authenticity/report/index.js');
   const openapi = require('../api/v1/openapi.json.js');
   const docs = require('../api/v1/docs/index.js');
   const version = require('../api/v1/version/index.js');
@@ -417,6 +420,70 @@ async function runTests() {
       body.keys.every((k) => !k.keyHash),
       'must never expose key hash'
     );
+  });
+
+  await test('GET /api/v1/authenticity/check classifies canonical term', async () => {
+    const { status, body } = await invoke(
+      authenticityCheck,
+      'GET',
+      '/api/v1/authenticity/check?input=Zeus&type=term'
+    );
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+    assert.strictEqual(body.data.verdict, 'canonical');
+  });
+
+  await test('GET /api/v1/authenticity/check detects homograph spoof', async () => {
+    const { status, body } = await invoke(
+      authenticityCheck,
+      'GET',
+      '/api/v1/authenticity/check?input=%D0%B0res.com&type=domain'
+    );
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+    assert.ok(
+      ['homograph-spoof', 'mixed-script-spoof', 'lookalike-domain'].includes(body.data.verdict)
+    );
+  });
+
+  await test('GET /api/v1/authenticity/check handles URLs', async () => {
+    const { status, body } = await invoke(
+      authenticityCheck,
+      'GET',
+      '/api/v1/authenticity/check?input=https%3A%2F%2Fzeus.example.com%2Fpath&type=url'
+    );
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+    assert.ok(body.data.parts, 'URL classification must include parts');
+  });
+
+  await test('POST /api/v1/authenticity/check/batch classifies multiple inputs', async () => {
+    const { status, body } = await invoke(
+      authenticityBatch,
+      'POST',
+      '/api/v1/authenticity/check/batch',
+      {
+        body: { inputs: ['Zeus', 'ares.com', 'https://example.com'], type: 'auto' },
+      }
+    );
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+    assert.strictEqual(body.data.length, 3);
+  });
+
+  await test('POST /api/v1/authenticity/report records a threat report', async () => {
+    const { status, body } = await invoke(
+      authenticityReport,
+      'POST',
+      '/api/v1/authenticity/report',
+      {
+        body: { input: 'suspicious-zeus.example.com', type: 'domain', comment: 'test report' },
+      }
+    );
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+    assert.strictEqual(body.data.reported, true);
+    assert.ok(body.data.spoof.id);
   });
 
   console.log(`\n  ${passed} passed, ${failed} failed`);

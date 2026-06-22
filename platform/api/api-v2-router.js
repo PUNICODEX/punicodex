@@ -14,6 +14,8 @@ const namesService = require('./names-service.js');
 const { searchWeb, getSites, getSiteByPunycode } = require('./crawler-db.js');
 const { getVersion } = require('./version-service.js');
 const { validateListNamesQuery } = require('./api-validation.js');
+const { classifyTerm, classifyDomain, classifyUrl } = require('./authenticity-service.js');
+const { recordDiscoveredSpoof, recordSpoofReport } = require('./authenticity-threat-feed.js');
 
 const VALID_NAME_SUBRESOURCES = new Set([
   'variants',
@@ -44,6 +46,25 @@ function rewriteLinks(value) {
     return out;
   }
   return value;
+}
+
+const VALID_CLASSIFY_TYPES = new Set(['auto', 'term', 'domain', 'url']);
+
+function classifyByType(input, type) {
+  if (type === 'term') return classifyTerm(input);
+  if (type === 'domain') return classifyDomain(input);
+  if (type === 'url') return classifyUrl(input);
+  if (/^https?:\/\//i.test(input) || input.includes('/')) return classifyUrl(input);
+  if (input.includes('.') || input.startsWith('xn--')) return classifyDomain(input);
+  return classifyTerm(input);
+}
+
+function detectPunycode(input) {
+  if (input.startsWith('xn--')) return input;
+  if (input.includes('xn--')) {
+    return input.split('.').find((label) => label.startsWith('xn--')) || null;
+  }
+  return null;
 }
 
 function buildPaginationLinks(req, total, limit, offset) {
@@ -202,6 +223,99 @@ async function handleConvertBatch(req, res) {
   });
 }
 
+async function handleAuthenticityCheck(req, res) {
+  const input = String(req.query.input || '').trim();
+  if (!input) {
+    error(res, 'VALIDATION_ERROR', 'Query parameter "input" is required.', { status: 400 });
+    return;
+  }
+  const type = String(req.query.type || 'auto').toLowerCase();
+  if (!VALID_CLASSIFY_TYPES.has(type)) {
+    error(
+      res,
+      'VALIDATION_ERROR',
+      'Query parameter "type" must be one of: auto, term, domain, url.',
+      {
+        status: 400,
+      }
+    );
+    return;
+  }
+  const result = classifyByType(input, type);
+  success(res, rewriteLinks(result), {
+    links: { self: `/api/v2/authenticity/check?input=${encodeURIComponent(input)}&type=${type}` },
+  });
+}
+
+async function handleAuthenticityBatch(req, res) {
+  const { inputs, type = 'auto' } = req.body || {};
+  if (!Array.isArray(inputs) || inputs.length === 0 || inputs.length > 100) {
+    error(res, 'VALIDATION_ERROR', 'Body must contain an inputs array (1-100 items).', {
+      status: 400,
+    });
+    return;
+  }
+  const normalizedType = String(type).toLowerCase();
+  if (!VALID_CLASSIFY_TYPES.has(normalizedType)) {
+    error(res, 'VALIDATION_ERROR', 'Field "type" must be one of: auto, term, domain, url.', {
+      status: 400,
+    });
+    return;
+  }
+  const results = inputs.map((raw) => {
+    const value = String(raw).trim();
+    if (!value) return { input: raw, error: 'empty input' };
+    return { input: value, result: classifyByType(value, normalizedType) };
+  });
+  success(res, rewriteLinks(results), {
+    meta: { count: results.length, type: normalizedType },
+    links: { self: '/api/v2/authenticity/check/batch' },
+  });
+}
+
+async function handleAuthenticityReport(req, res) {
+  const { input, type = 'auto', comment = '', reporterToken = null } = req.body || {};
+  if (!input || typeof input !== 'string' || input.trim().length === 0) {
+    error(res, 'VALIDATION_ERROR', 'Body field "input" is required.', { status: 400 });
+    return;
+  }
+  const normalizedInput = input.trim();
+  const normalizedType = String(type).toLowerCase();
+  const classification = classifyByType(normalizedInput, normalizedType);
+  const inputType =
+    normalizedType === 'url' ? 'url' : normalizedType === 'domain' ? 'domain' : 'name';
+  const spoof = recordDiscoveredSpoof({
+    input: normalizedInput,
+    inputType,
+    punycode: detectPunycode(normalizedInput),
+    verdict: classification.verdict,
+    severity: classification.severity,
+    canonicalEntryId: classification.canonicalMatch?.id || null,
+    discoverySource: 'user-report',
+    confidence: classification.lookalikeScore || 0,
+  });
+  const report = recordSpoofReport({
+    discoveredSpoofId: spoof.id,
+    reporterToken: reporterToken || null,
+    notes: comment || null,
+  });
+  success(
+    res,
+    rewriteLinks({
+      reported: true,
+      spoof: {
+        id: report.id,
+        input: report.input,
+        inputType: report.input_type,
+        verdict: report.verdict,
+        severity: report.severity,
+        reportCount: report.report_count,
+      },
+      classification,
+    })
+  );
+}
+
 async function handleSearchWeb(req, res) {
   const q = String(req.query.q || '').trim();
   if (!q) {
@@ -315,6 +429,9 @@ function getOpenApiSpec() {
       '/api/v2/autocomplete': { GET: 'Autocomplete names' },
       '/api/v2/convert': { GET: 'Convert a query' },
       '/api/v2/convert/batch': { POST: 'Batch convert' },
+      '/api/v2/authenticity/check': { GET: 'Classify a name, domain, or URL' },
+      '/api/v2/authenticity/check/batch': { POST: 'Batch classify' },
+      '/api/v2/authenticity/report': { POST: 'Report a suspicious input' },
       '/api/v2/search/web': { GET: 'Web search' },
       '/api/v2/sites': { GET: 'List indexed sites' },
       '/api/v2/sites/{punycode}': { GET: 'Site detail' },
@@ -385,6 +502,26 @@ async function route(req, res) {
     }
     if (method === 'GET') return handleConvert(req, res);
     error(res, 'METHOD_NOT_ALLOWED', 'Only GET is allowed.', { status: 405 });
+    return;
+  }
+
+  if (resource === 'authenticity') {
+    if (identifier === 'check') {
+      if (subresource === 'batch') {
+        if (method === 'POST') return handleAuthenticityBatch(req, res);
+        error(res, 'METHOD_NOT_ALLOWED', 'Only POST is allowed.', { status: 405 });
+        return;
+      }
+      if (method === 'GET') return handleAuthenticityCheck(req, res);
+      error(res, 'METHOD_NOT_ALLOWED', 'Only GET is allowed.', { status: 405 });
+      return;
+    }
+    if (identifier === 'report') {
+      if (method === 'POST') return handleAuthenticityReport(req, res);
+      error(res, 'METHOD_NOT_ALLOWED', 'Only POST is allowed.', { status: 405 });
+      return;
+    }
+    error(res, 'NOT_FOUND', `Unknown authenticity resource '${identifier}'.`, { status: 404 });
     return;
   }
 
