@@ -19,12 +19,8 @@ const { toSearchKey } = require('./query-normalize');
 const { decompose, computeVisualDeviation } = require('./name-decomposer');
 const { decomposeUrl } = require('./url-decomposer');
 const { classifyUrlParts } = require('./url-classifier');
-const {
-  findIdentities,
-  buildIdentityMatch,
-  findIdentityByDomain,
-  findIdentityByBlockedPattern,
-} = require('./identity-kernel');
+const { findIdentities, buildIdentityMatch } = require('./identity-kernel');
+const { lookupBrand, checkDomainAgainstBrands } = require('./brand-shield');
 const { computeRiskFeatures } = require('./risk-features');
 const { classifyRisk } = require('./authenticity-ensemble');
 const { mapVerdict } = require('./verdict-mapper');
@@ -276,6 +272,9 @@ function buildVerdict(input, options = {}) {
     identityMatch: rawIdentityMatch,
   } = matchInfo;
 
+  // Brand Shield fallback when the input is not a lexicon match.
+  const brandMatch = !exact && !variantMatch ? lookupBrand(raw) : null;
+
   const canonicalRows = getCanonicalRows();
   const features = computeRiskFeatures(raw, {
     canonicalRows,
@@ -312,10 +311,20 @@ function buildVerdict(input, options = {}) {
     canonicalMatch = identityMatch;
   }
 
-  const mapped = mapVerdict(risk.probability, features, identityMatch, canonicalMatch, {
-    isDomain: options.isDomain || false,
-    input: raw,
-  });
+  if (!canonicalMatch && brandMatch) {
+    canonicalMatch = brandMatch;
+  }
+
+  const mapped = mapVerdict(
+    risk.probability,
+    features,
+    identityMatch || brandMatch,
+    canonicalMatch,
+    {
+      isDomain: options.isDomain || false,
+      input: raw,
+    }
+  );
 
   return finalizeVerdict({
     verdict: mapped.verdict,
@@ -439,41 +448,36 @@ function classifyDomain(domain, _options = {}) {
 
   const label = display.split('.')[0] || raw;
 
-  // Identity-allowed domain lookup (brands and other protected properties).
+  // Brand & Trademark Shield: allowed-domain or blocked-pattern checks.
   try {
-    const identity = findIdentityByDomain(raw) || findIdentityByDomain(display);
-    if (identity) {
+    const brandCheck = checkDomainAgainstBrands(domain) || checkDomainAgainstBrands(display);
+    if (brandCheck) {
       const analysis = attachDomainMetadata(buildAnalysis(display));
-      const result = finalizeVerdict({
-        verdict: VERDICTS.CANONICAL,
-        reason: `identity-allowed domain (${identity.type})`,
-        canonicalMatch: buildIdentityMatch(identity, 'exact', raw),
-        analysis,
-      });
-      result.input = { raw: domain, normalized: raw, displayDomain: display, label };
-      result.domainInfo = domainInfo;
-      result.idna = idnaResult;
-      return result;
-    }
-  } catch (_e) {
-    // Identity tables may not exist yet.
-  }
-
-  // Known brand blocked patterns signal a lookalike domain.
-  try {
-    const blocked = findIdentityByBlockedPattern(raw) || findIdentityByBlockedPattern(label);
-    if (blocked) {
-      const analysis = attachDomainMetadata(buildAnalysis(display));
-      const result = finalizeVerdict({
-        verdict: VERDICTS.LOOKALIKE_DOMAIN,
-        reason: `domain matches blocked pattern for ${blocked.identity.name}`,
-        canonicalMatch: buildIdentityMatch(blocked.identity, 'blocked', null),
-        analysis,
-      });
-      result.input = { raw: domain, normalized: raw, displayDomain: display, label };
-      result.domainInfo = domainInfo;
-      result.idna = idnaResult;
-      return result;
+      if (brandCheck.matchType === 'allowed-domain') {
+        const result = finalizeVerdict({
+          verdict: VERDICTS.CANONICAL,
+          reason: `identity-allowed domain (${brandCheck.identity.type})`,
+          canonicalMatch: brandCheck.identity,
+          analysis,
+        });
+        result.input = { raw: domain, normalized: raw, displayDomain: display, label };
+        result.domainInfo = domainInfo;
+        result.idna = idnaResult;
+        return result;
+      }
+      if (brandCheck.matchType === 'blocked-pattern') {
+        const result = finalizeVerdict({
+          verdict: VERDICTS.LOOKALIKE_DOMAIN,
+          severity: SEVERITIES.HIGH,
+          reason: `domain matches blocked pattern for ${brandCheck.identity.name}`,
+          canonicalMatch: brandCheck.identity,
+          analysis,
+        });
+        result.input = { raw: domain, normalized: raw, displayDomain: display, label };
+        result.domainInfo = domainInfo;
+        result.idna = idnaResult;
+        return result;
+      }
     }
   } catch (_e) {
     // Identity tables may not exist yet.

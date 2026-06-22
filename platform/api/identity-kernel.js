@@ -298,7 +298,7 @@ function registerIdentity(data) {
   const extra = stringify(data.data);
 
   db.prepare(
-    `INSERT INTO identities
+    `INSERT OR IGNORE INTO identities
       (id, type, name, ascii, unicode, scripts, owner, priority, allowed_domains, blocked_patterns, data)
      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
   ).run(

@@ -102,6 +102,7 @@ const {
   updateTenant,
   deleteTenant,
 } = require('./api/tenants');
+const { listDisputes, getDispute, reviewDispute, appealDispute } = require('./api/dispute-service');
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 if (!stripeSecretKey) {
   throw new Error('STRIPE_SECRET_KEY environment variable is required');
@@ -2456,6 +2457,67 @@ app.get('/api/admin/api-keys/:id/usage', requireAdmin, async (req, res) => {
     const days = parseInt(req.query.days, 10) || 7;
     const limit = parseInt(req.query.limit, 10) || 100;
     res.json(await getKeyUsage(id, { days, limit }));
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Brand & Trademark Shield dispute admin routes
+app.get('/api/admin/disputes', requireAdmin, async (req, res) => {
+  try {
+    const { identityId, decision } = req.query;
+    const limit = parseInt(req.query.limit, 10) || 50;
+    const offset = parseInt(req.query.offset, 10) || 0;
+    res.json(await listDisputes({ identityId, decision, limit, offset }));
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/api/admin/disputes/:id', requireAdmin, async (req, res) => {
+  try {
+    const dispute = await getDispute(parseInt(req.params.id, 10));
+    if (!dispute) return res.status(404).json({ error: 'Dispute not found' });
+    res.json(dispute);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/api/admin/disputes/:id/review', requireAdmin, async (req, res) => {
+  try {
+    const id = parseInt(req.params.id, 10);
+    const { decision, reviewerNotes } = req.body || {};
+    if (!['confirmed', 'false-positive', 'pending'].includes(decision)) {
+      return res
+        .status(400)
+        .json({ error: "decision must be 'confirmed', 'false-positive', or 'pending'" });
+    }
+    const dispute = await reviewDispute(id, decision, reviewerNotes);
+    await logAction({
+      adminToken: req.headers['x-admin-token'],
+      action: 'admin.dispute.review',
+      disputeId: id,
+      payload: { decision },
+    });
+    res.json(dispute);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/api/admin/disputes/:id/appeal', requireAdmin, async (req, res) => {
+  try {
+    const id = parseInt(req.params.id, 10);
+    const { notes } = req.body || {};
+    const dispute = await appealDispute(id, notes);
+    await logAction({
+      adminToken: req.headers['x-admin-token'],
+      action: 'admin.dispute.appeal',
+      disputeId: id,
+      payload: { notes },
+    });
+    res.json(dispute);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
