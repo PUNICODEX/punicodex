@@ -50,6 +50,8 @@ const SUITES = [
   { name: 'Email Safety Tests', cmd: 'node test/email.test.js' },
   { name: 'Lexicon Entry Cases', cmd: 'node test/lexicon-entry-cases.test.js' },
   { name: 'Authenticity Service Tests', cmd: 'node test/authenticity-service.test.js' },
+  { name: 'Authenticity Ensemble Tests', cmd: 'node test/authenticity-ensemble.test.js' },
+  { name: 'Verdict Mapper Tests', cmd: 'node test/verdict-mapper.test.js' },
   { name: 'Confusable Atlas Tests', cmd: 'node test/confusable-atlas.test.js' },
   { name: 'Authenticity Threat Feed Tests', cmd: 'node test/authenticity-threat-feed.test.js' },
   { name: 'Authenticity Case Matrix', cmd: 'node test/authenticity-cases.test.js' },

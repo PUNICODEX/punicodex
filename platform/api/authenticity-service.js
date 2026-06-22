@@ -22,6 +22,9 @@ const {
   findIdentityByDomain,
   findIdentityByBlockedPattern,
 } = require('./identity-kernel');
+const { computeRiskFeatures } = require('./risk-features');
+const { classifyRisk } = require('./authenticity-ensemble');
+const { mapVerdict } = require('./verdict-mapper');
 const {
   VERDICTS,
   SEVERITIES,
@@ -239,7 +242,7 @@ function buildAnalysis(input) {
   };
 }
 
-function buildVerdict(input) {
+function buildVerdict(input, options = {}) {
   const raw = normalizeInput(input);
   const analysis = buildAnalysis(raw);
 
@@ -261,131 +264,80 @@ function buildVerdict(input) {
     });
   }
 
-  const { exact, variantMatch, lookalike, lookalikeScore, identityMatch } = findCanonicalMatch(raw);
+  const matchInfo = findCanonicalMatch(raw);
+  const {
+    exact,
+    variantMatch,
+    lookalike,
+    lookalikeScore,
+    identityMatch: rawIdentityMatch,
+  } = matchInfo;
 
-  // Canonical exact
+  const canonicalRows = getCanonicalRows();
+  const features = computeRiskFeatures(raw, {
+    canonicalRows,
+    checkBlockedPattern: false,
+    isDomain: options.isDomain || false,
+  });
+  const risk = classifyRisk(raw, {
+    features,
+    canonicalRows,
+    checkBlockedPattern: false,
+    isDomain: options.isDomain || false,
+  });
+
+  let canonicalMatch = null;
   if (exact) {
-    return finalizeVerdict({
-      verdict: VERDICTS.CANONICAL,
-      reason: 'exact canonical transliteration',
-      canonicalMatch: buildCanonicalMatch(exact),
-      analysis,
-      lookalikeScore,
-    });
+    canonicalMatch = buildCanonicalMatch(exact);
+  } else if (variantMatch) {
+    canonicalMatch = buildCanonicalMatch(variantMatch.row, variantMatch.variant);
+  } else if (lookalike) {
+    canonicalMatch = buildMatchFromLookalike(lookalike);
   }
 
-  // Recognized variant
-  if (variantMatch) {
-    return finalizeVerdict({
-      verdict: VERDICTS.RECOGNIZED_VARIANT,
-      reason: `recognized ${variantMatch.variant.type || 'variant'} form`,
-      canonicalMatch: buildCanonicalMatch(variantMatch.row, variantMatch.variant),
-      analysis,
-      lookalikeScore,
-    });
+  const identityMatch = rawIdentityMatch
+    ? buildIdentityMatch(
+        rawIdentityMatch.identity,
+        rawIdentityMatch.matchType,
+        rawIdentityMatch.matchedAlias
+      )
+    : null;
+
+  if (!canonicalMatch && identityMatch) {
+    canonicalMatch = identityMatch;
   }
 
-  const { mixedScripts } = analysis;
-  const hasConfusables = analysis.confusables.length > 0;
-
-  // Protected identity exact/folded matches with deception signals are treated
-  // as spoofs (e.g. Cyrillic substitution against a brand name).
-  if (identityMatch && (mixedScripts || hasConfusables)) {
-    const isHomograph = hasConfusables;
-    return finalizeVerdict({
-      verdict: isHomograph ? VERDICTS.HOMOGRAPH_SPOOF : VERDICTS.MIXED_SCRIPT_SPOOF,
-      reason: isHomograph
-        ? 'confusable visual spoof of protected identity'
-        : 'mixed-script visual spoof of protected identity',
-      canonicalMatch: buildIdentityMatch(
-        identityMatch.identity,
-        identityMatch.matchType,
-        identityMatch.matchedAlias
-      ),
-      analysis,
-      lookalikeScore,
-    });
-  }
-
-  // Protected identity exact/folded matches without deception signals are styled
-  // for brands and recognized variants for lexicon identities.
-  if (identityMatch) {
-    const isLexicon = identityMatch.identity.type === 'lexicon';
-    return finalizeVerdict({
-      verdict: isLexicon ? VERDICTS.RECOGNIZED_VARIANT : VERDICTS.STYLED,
-      reason: isLexicon ? 'recognized lexicon identity' : 'recognized brand identity',
-      canonicalMatch: buildIdentityMatch(
-        identityMatch.identity,
-        identityMatch.matchType,
-        identityMatch.matchedAlias
-      ),
-      analysis,
-      lookalikeScore,
-    });
-  }
-
-  // Deceptive spoof of a canonical name.
-  // Confusable substitutions take precedence over mixed-script classification
-  // because a single Cyrillic "а" in "аres" is first and foremost a homograph.
-  if (lookalike && (mixedScripts || hasConfusables)) {
-    const isHomograph = hasConfusables;
-    return finalizeVerdict({
-      verdict: isHomograph ? VERDICTS.HOMOGRAPH_SPOOF : VERDICTS.MIXED_SCRIPT_SPOOF,
-      reason: isHomograph
-        ? 'confusable-script visual spoof of canonical term'
-        : 'mixed-script visual spoof of canonical term',
-      canonicalMatch: buildMatchFromLookalike(lookalike),
-      analysis,
-      lookalikeScore,
-    });
-  }
-
-  // Uncertain transliteration: folds to canonical but not a listed variant
-  if (lookalike && !mixedScripts) {
-    return finalizeVerdict({
-      verdict: VERDICTS.TRANSLITERATION_UNCERTAIN,
-      reason: 'input folds to a canonical term but is not a recognized variant',
-      canonicalMatch: buildMatchFromLookalike(lookalike),
-      analysis,
-      lookalikeScore,
-    });
-  }
-
-  // Mixed scripts without a canonical target are still suspicious because
-  // mixing scripts in a single label is a classic spoofing pattern.
-  if (mixedScripts) {
-    return finalizeVerdict({
-      verdict: VERDICTS.MIXED_SCRIPT_SPOOF,
-      reason: 'mixed-script label with no canonical basis',
-      canonicalMatch: null,
-      analysis,
-      lookalikeScore,
-    });
-  }
-
-  // Non-ASCII characters in a single script that do not impersonate a
-  // canonical name are treated as styled (e.g., mathematical bold, fullwidth).
-  const hasNonAscii = analysis.confusableAnalysis.found.some((ch) => ch.codePointAt(0) > 127);
-  if (hasNonAscii) {
-    return finalizeVerdict({
-      verdict: VERDICTS.STYLED,
-      reason: 'non-ASCII styling with no canonical basis',
-      canonicalMatch: null,
-      analysis,
-      lookalikeScore,
-    });
-  }
+  const mapped = mapVerdict(risk.probability, features, identityMatch, canonicalMatch, {
+    isDomain: options.isDomain || false,
+    input: raw,
+  });
 
   return finalizeVerdict({
-    verdict: VERDICTS.UNKNOWN,
-    reason: 'no canonical match',
-    canonicalMatch: null,
+    verdict: mapped.verdict,
+    reason: mapped.reason,
+    canonicalMatch,
     analysis,
     lookalikeScore,
+    probability: risk.probability,
+    confidence: risk.confidence,
+    features,
+    modelVersion: risk.modelVersion,
+    ruleOverrides: risk.ruleOverrides,
   });
 }
 
-function finalizeVerdict({ verdict, reason, canonicalMatch, analysis, lookalikeScore = 0 }) {
+function finalizeVerdict({
+  verdict,
+  reason,
+  canonicalMatch,
+  analysis,
+  lookalikeScore = 0,
+  probability,
+  confidence,
+  features,
+  modelVersion,
+  ruleOverrides,
+}) {
   const explanation = explainVerdict(verdict);
   return {
     verdict,
@@ -397,6 +349,12 @@ function finalizeVerdict({ verdict, reason, canonicalMatch, analysis, lookalikeS
     canonicalMatch,
     lookalikeScore,
     analysis,
+    // Ensemble classifier outputs
+    probability,
+    confidence,
+    features,
+    modelVersion,
+    ruleOverrides,
     // Backward-compatible fields
     tier: LEGACY_TIERS[verdict] || verdict,
   };
@@ -490,7 +448,7 @@ function classifyDomain(domain, _options = {}) {
     // Identity tables may not exist yet.
   }
 
-  const result = buildVerdict(label);
+  const result = buildVerdict(label, { isDomain: true });
   result.input = { raw: domain, normalized: raw, displayDomain: display, label };
   return result;
 }
