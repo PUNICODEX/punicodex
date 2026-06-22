@@ -290,7 +290,9 @@ const v1Docs = require('../api/v1/docs');
 const v1Openapi = require('../api/v1/openapi.json.js');
 const v1Policy = require('../api/v1/policy');
 const v1PolicyEvaluate = require('../api/v1/policy/evaluate');
+const governanceRoutes = require('./api/governance-routes');
 
+app.use('/api/v1/tenants', governanceRoutes.createRouter());
 app.use('/api/v1/names', v1NamesList);
 app.use('/api/v1/names/:id/variants', v1NameVariants);
 app.use('/api/v1/names/:id/breakdown', v1NameBreakdown);

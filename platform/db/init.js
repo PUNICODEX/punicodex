@@ -291,4 +291,14 @@ try {
   process.exit(1);
 }
 
+// Apply enterprise governance & compliance schema
+try {
+  const { migrateEnterpriseGovernance } = require('./migrate-enterprise-governance.js');
+  migrateEnterpriseGovernance({ db });
+  console.log('Enterprise governance schema applied.');
+} catch (err) {
+  console.error('Enterprise governance migration failed:', err.message);
+  process.exit(1);
+}
+
 db.close();

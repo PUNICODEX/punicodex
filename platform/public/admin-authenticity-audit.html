@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PUNYCODEX — Authenticity Audit Log</title>
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --surface-2: #1a1a26;
+      --text: #e8e6f0;
+      --text-dim: #8a87a0;
+      --accent: #c9a96e;
+      --border: #2a2a3a;
+      --live: #87c9e8;
+      --error: #e88787;
+      --available: #7ec9a0;
+      --pending: #e8c97e;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    header {
+      padding: 2rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: 0.1em; color: var(--accent); }
+    .nav a { color: var(--text-dim); text-decoration: none; margin-left: 1.5rem; font-size: 0.9rem; }
+    .nav a:hover { color: var(--accent); }
+    .section {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem 2rem;
+    }
+    .section-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .filters-row {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .filters-row input, .filters-row select {
+      padding: 0.5rem 0.75rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-size: 0.85rem;
+    }
+    .btn {
+      padding: 0.6rem 1rem;
+      background: var(--accent);
+      color: #0a0a0f;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn.secondary { background: var(--surface-2); color: var(--text); border: 1px solid var(--border); }
+    .audit-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+    .audit-table th {
+      text-align: left;
+      padding: 0.75rem;
+      color: var(--text-dim);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      border-bottom: 1px solid var(--border);
+    }
+    .audit-table td {
+      padding: 0.75rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .audit-table tr:hover { background: var(--surface-2); }
+    .badge {
+      font-size: 0.7rem;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .badge-user { background: rgba(135, 201, 232, 0.12); color: var(--live); }
+    .badge-key { background: rgba(232, 201, 126, 0.12); color: var(--pending); }
+    .badge-system { background: rgba(138, 135, 160, 0.12); color: var(--text-dim); }
+    .hash { font-family: monospace; font-size: 0.75rem; color: var(--text-dim); max-width: 120px; overflow: hidden; text-overflow: ellipsis; }
+    .meta { color: var(--text-dim); font-size: 0.8rem; max-width: 300px; overflow: hidden; text-overflow: ellipsis; }
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      padding: 1rem 1.5rem;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 0.9rem;
+      z-index: 100;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    .toast.success { border-color: var(--available); }
+    .toast.error { border-color: var(--error); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">PUNYCODEX</div>
+    <nav class="nav">
+      <a href="search.html">Search</a>
+      <a href="admin.html">Crawler</a>
+      <a href="admin-authenticity.html">Authenticity</a>
+      <a href="admin-authenticity-audit.html">Audit</a>
+      <a href="admin-authenticity-users.html">Users</a>
+      <a href="admin-authenticity-compliance.html">Compliance</a>
+      <a href="admin-authenticity-policy.html">Policy</a>
+    </nav>
+  </header>
+
+  <div class="section">
+    <div class="section-title">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+      Authenticity Audit Log
+    </div>
+    <div class="filters-row">
+      <select id="tenantSelect">
+        <option value="default">default</option>
+      </select>
+      <input type="text" id="actionFilter" placeholder="Action">
+      <input type="text" id="resourceTypeFilter" placeholder="Resource type">
+      <input type="date" id="fromDate">
+      <input type="date" id="toDate">
+      <button class="btn" onclick="loadAudit()">Search</button>
+      <button class="btn secondary" onclick="verifyChain()">Verify Chain</button>
+      <button class="btn secondary" onclick="exportAudit('csv')">Export CSV</button>
+      <button class="btn secondary" onclick="exportAudit('json')">Export JSON</button>
+    </div>
+    <div id="auditTable"><div style="padding:2rem;color:var(--text-dim)">Loading audit log...</div></div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const API_BASE = '';
+
+    function showToast(msg, type = 'success') {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.className = `toast show ${type}`;
+      setTimeout(() => t.classList.remove('show'), 3000);
+    }
+
+    async function loadAudit() {
+      const tenantId = document.getElementById('tenantSelect').value;
+      const params = new URLSearchParams();
+      params.set('limit', '100');
+      const action = document.getElementById('actionFilter').value.trim();
+      const resourceType = document.getElementById('resourceTypeFilter').value.trim();
+      const fromDate = document.getElementById('fromDate').value;
+      const toDate = document.getElementById('toDate').value;
+      if (action) params.set('action', action);
+      if (resourceType) params.set('resource_type', resourceType);
+      if (fromDate) params.set('from', `${fromDate}T00:00:00Z`);
+      if (toDate) params.set('to', `${toDate}T23:59:59Z`);
+
+      try {
+        const res = await fetch(`${API_BASE}/api/v1/tenants/${tenantId}/audit?${params}`, {
+          headers: { 'x-admin-token': localStorage.getItem('nike_admin_token') || '' }
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Failed to load audit log');
+        renderAudit(data.logs || [], data.total);
+      } catch (e) {
+        document.getElementById('auditTable').innerHTML = `<div style="padding:2rem;color:var(--error)">Error: ${e.message}</div>`;
+      }
+    }
+
+    function renderAudit(logs, total) {
+      const container = document.getElementById('auditTable');
+      if (!logs.length) {
+        container.innerHTML = '<div style="padding:2rem;color:var(--text-dim)">No audit entries found.</div>';
+        return;
+      }
+      let html = `<div style="color:var(--text-dim);font-size:0.85rem;margin-bottom:0.75rem;">Showing ${logs.length} of ${total} entries</div>`;
+      html += `<table class="audit-table"><thead><tr>
+        <th>ID</th><th>Actor</th><th>Action</th><th>Resource</th><th>Metadata</th><th>Previous Hash</th><th>Entry Hash</th><th>Created</th>
+      </tr></thead><tbody>`;
+      logs.forEach(log => {
+        const badgeClass = log.actor_type === 'user' ? 'badge-user' : log.actor_type === 'api_key' ? 'badge-key' : 'badge-system';
+        html += `<tr>
+          <td>${log.id}</td>
+          <td><span class="badge ${badgeClass}">${log.actor_type}</span><br><span style="font-size:0.75rem;color:var(--text-dim)">${log.actor_id}</span></td>
+          <td>${log.action}</td>
+          <td>${log.resource_type || '—'}<br><span style="font-size:0.75rem;color:var(--text-dim)">${log.resource_id || '—'}</span></td>
+          <td class="meta">${log.metadata ? JSON.stringify(log.metadata) : '—'}</td>
+          <td class="hash" title="${log.previous_hash || ''}">${log.previous_hash || '—'}</td>
+          <td class="hash" title="${log.entry_hash}">${log.entry_hash}</td>
+          <td>${new Date(log.created_at).toLocaleString()}</td>
+        </tr>`;
+      });
+      html += '</tbody></table>';
+      container.innerHTML = html;
+    }
+
+    async function verifyChain() {
+      const tenantId = document.getElementById('tenantSelect').value;
+      try {
+        const res = await fetch(`${API_BASE}/api/v1/tenants/${tenantId}/audit/verify`, {
+          method: 'POST',
+          headers: { 'x-admin-token': localStorage.getItem('nike_admin_token') || '' }
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Verify failed');
+        if (data.valid) showToast('Audit chain is valid');
+        else showToast(`Audit chain INVALID at id ${data.first_invalid_id}`, 'error');
+      } catch (e) {
+        showToast(`Verify failed: ${e.message}`, 'error');
+      }
+    }
+
+    async function exportAudit(format) {
+      const tenantId = document.getElementById('tenantSelect').value;
+      const token = localStorage.getItem('nike_admin_token') || '';
+      window.open(`${API_BASE}/api/v1/tenants/${tenantId}/audit/export?format=${format}&x-admin-token=${encodeURIComponent(token)}`);
+    }
+
+    loadAudit();
+  </script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PUNYCODEX — Authenticity Policy Editor</title>
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --surface-2: #1a1a26;
+      --text: #e8e6f0;
+      --text-dim: #8a87a0;
+      --accent: #c9a96e;
+      --border: #2a2a3a;
+      --live: #87c9e8;
+      --error: #e88787;
+      --available: #7ec9a0;
+      --pending: #e8c97e;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    header {
+      padding: 2rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: 0.1em; color: var(--accent); }
+    .nav a { color: var(--text-dim); text-decoration: none; margin-left: 1.5rem; font-size: 0.9rem; }
+    .nav a:hover { color: var(--accent); }
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem 2rem;
+    }
+    .section-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .panel h3 { font-size: 0.9rem; margin-bottom: 0.75rem; color: var(--text); }
+    textarea, input, select {
+      width: 100%;
+      padding: 0.75rem;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-family: 'SF Mono', monospace;
+      font-size: 0.85rem;
+    }
+    textarea { min-height: 320px; resize: vertical; }
+    .btn {
+      padding: 0.6rem 1rem;
+      background: var(--accent);
+      color: #0a0a0f;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.85rem;
+      margin-top: 0.75rem;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn.secondary { background: var(--surface-2); color: var(--text); border: 1px solid var(--border); }
+    .row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .row > * { flex: 1; min-width: 200px; }
+    .result {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 0.8rem;
+      white-space: pre-wrap;
+      color: var(--text-dim);
+    }
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      padding: 1rem 1.5rem;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 0.9rem;
+      z-index: 100;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    .toast.success { border-color: var(--available); }
+    .toast.error { border-color: var(--error); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">PUNYCODEX</div>
+    <nav class="nav">
+      <a href="search.html">Search</a>
+      <a href="admin.html">Crawler</a>
+      <a href="admin-authenticity.html">Authenticity</a>
+      <a href="admin-authenticity-audit.html">Audit</a>
+      <a href="admin-authenticity-users.html">Users</a>
+      <a href="admin-authenticity-compliance.html">Compliance</a>
+      <a href="admin-authenticity-policy.html">Policy</a>
+    </nav>
+  </header>
+
+  <div class="section">
+    <div class="section-title">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+      Authenticity Policy Editor
+    </div>
+
+    <div class="panel">
+      <h3>Tenant Policy JSON</h3>
+      <textarea id="policyJson">{
+  "tenantId": "default",
+  "defaultAction": "warn",
+  "severityActions": {
+    "none": "allow",
+    "low": "allow",
+    "medium": "log",
+    "high": "warn",
+    "critical": "block"
+  },
+  "allowlist": [],
+  "blocklist": [],
+  "logRetentionDays": 90,
+  "uiTheme": "inline"
+}</textarea>
+      <div class="row">
+        <button class="btn" onclick="evaluatePolicy()">Evaluate Input</button>
+        <button class="btn secondary" onclick="loadDefaultPolicy()">Load Default</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Test Input</h3>
+      <div class="row">
+        <input type="text" id="testInput" placeholder="Domain, URL, or term to evaluate" value="xn--zes-9na.com">
+        <select id="testType">
+          <option value="auto">auto</option>
+          <option value="term">term</option>
+          <option value="domain">domain</option>
+          <option value="url">url</option>
+        </select>
+      </div>
+      <button class="btn" onclick="evaluatePolicy()" style="margin-top:0.75rem;">Run Evaluation</button>
+      <div class="result" id="evalResult">Evaluation result will appear here.</div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const API_BASE = '';
+
+    function showToast(msg, type = 'success') {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.className = `toast show ${type}`;
+      setTimeout(() => t.classList.remove('show'), 3000);
+    }
+
+    async function loadDefaultPolicy() {
+      try {
+        const res = await fetch(`${API_BASE}/api/v2/policy`);
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Failed');
+        document.getElementById('policyJson').value = JSON.stringify(data, null, 2);
+      } catch (e) {
+        showToast(`Failed: ${e.message}`, 'error');
+      }
+    }
+
+    async function evaluatePolicy() {
+      try {
+        const policy = JSON.parse(document.getElementById('policyJson').value);
+        const input = document.getElementById('testInput').value.trim();
+        const type = document.getElementById('testType').value;
+        const res = await fetch(`${API_BASE}/api/v2/policy/evaluate`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ input, type, policy })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Failed');
+        document.getElementById('evalResult').textContent = JSON.stringify(data, null, 2);
+      } catch (e) {
+        document.getElementById('evalResult').textContent = `Error: ${e.message}`;
+      }
+    }
+
+    loadDefaultPolicy();
+  </script>
+</body>
+</html>

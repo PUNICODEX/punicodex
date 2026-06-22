@@ -18,6 +18,7 @@ const { classifyTerm, classifyDomain, classifyUrl } = require('./authenticity-se
 const { recordDiscoveredSpoof, recordSpoofReport } = require('./authenticity-threat-feed.js');
 const { handleThreatFeedStream } = require('./threat-routes.js');
 const { handleGetPolicy, handleEvaluatePolicy } = require('./policy-routes.js');
+const { handlers: governanceHandlers } = require('./governance-routes.js');
 
 const VALID_NAME_SUBRESOURCES = new Set([
   'variants',
@@ -436,6 +437,12 @@ function getOpenApiSpec() {
       '/api/v2/authenticity/report': { POST: 'Report a suspicious input' },
       '/api/v2/policy': { GET: 'Get default/tenant policy' },
       '/api/v2/policy/evaluate': { POST: 'Evaluate input against policy' },
+      '/api/v2/tenants/{tenantId}/users': { GET: 'List tenant users', POST: 'Add tenant user' },
+      '/api/v2/tenants/{tenantId}/users/{userId}/role': { PATCH: 'Change user role' },
+      '/api/v2/tenants/{tenantId}/audit': { GET: 'Query audit logs' },
+      '/api/v2/tenants/{tenantId}/audit/export': { GET: 'Export audit logs' },
+      '/api/v2/tenants/{tenantId}/audit/verify': { POST: 'Verify audit hash chain' },
+      '/api/v2/tenants/{tenantId}/retention/purge': { POST: 'Purge expired raw inputs' },
       '/api/v2/search/web': { GET: 'Web search' },
       '/api/v2/sites': { GET: 'List indexed sites' },
       '/api/v2/sites/{punycode}': { GET: 'Site detail' },
@@ -458,11 +465,65 @@ async function route(req, res) {
   }
 
   const [resource, identifier, subresource] = slug;
+  const deepSlug3 = slug[3];
+  const deepSlug4 = slug[4];
 
   // Threat feed SSE stream (must be handled before JSON envelope routing)
   if (resource === 'threat-feed' && identifier === 'stream') {
     if (method === 'GET') return handleThreatFeedStream(req, res);
     error(res, 'METHOD_NOT_ALLOWED', 'Only GET is allowed.', { status: 405 });
+    return;
+  }
+
+  if (resource === 'tenants') {
+    if (!identifier) {
+      error(res, 'NOT_FOUND', 'Tenant id required.', { status: 404 });
+      return;
+    }
+
+    if (subresource === 'users') {
+      if (deepSlug3 === undefined) {
+        if (method === 'GET') return governanceHandlers.listUsers(req, res);
+        if (method === 'POST') return governanceHandlers.addUser(req, res);
+        error(res, 'METHOD_NOT_ALLOWED', 'Only GET/POST allowed.', { status: 405 });
+        return;
+      }
+      if (deepSlug4 === 'role') {
+        if (method === 'PATCH') return governanceHandlers.changeRole(req, res);
+        error(res, 'METHOD_NOT_ALLOWED', 'Only PATCH allowed.', { status: 405 });
+        return;
+      }
+      error(res, 'NOT_FOUND', `Unknown users resource '${deepSlug4}'.`, { status: 404 });
+      return;
+    }
+
+    if (subresource === 'audit') {
+      if (deepSlug3 === undefined) {
+        if (method === 'GET') return governanceHandlers.queryAudit(req, res);
+        error(res, 'METHOD_NOT_ALLOWED', 'Only GET allowed.', { status: 405 });
+        return;
+      }
+      if (deepSlug3 === 'export') {
+        if (method === 'GET') return governanceHandlers.exportAudit(req, res);
+        error(res, 'METHOD_NOT_ALLOWED', 'Only GET allowed.', { status: 405 });
+        return;
+      }
+      if (deepSlug3 === 'verify') {
+        if (method === 'POST') return governanceHandlers.verifyAudit(req, res);
+        error(res, 'METHOD_NOT_ALLOWED', 'Only POST allowed.', { status: 405 });
+        return;
+      }
+      error(res, 'NOT_FOUND', `Unknown audit resource '${deepSlug3}'.`, { status: 404 });
+      return;
+    }
+
+    if (subresource === 'retention' && deepSlug3 === 'purge') {
+      if (method === 'POST') return governanceHandlers.purgeRetention(req, res);
+      error(res, 'METHOD_NOT_ALLOWED', 'Only POST allowed.', { status: 405 });
+      return;
+    }
+
+    error(res, 'NOT_FOUND', `Unknown tenant resource '${subresource}'.`, { status: 404 });
     return;
   }
 
