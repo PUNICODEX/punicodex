@@ -44,6 +44,29 @@
       "javascript": {
         "globals": ["Request", "Response", "fetch", "URL"]
       }
+    },
+    {
+      "includes": ["sdk/js/src/**/*.js", "test/sdk-js.test.js"],
+      "javascript": {
+        "globals": ["fetch", "URL"]
+      }
+    },
+    {
+      "includes": ["extension-v2/**/*.js", "test/extension-v2.test.js"],
+      "javascript": {
+        "globals": [
+          "chrome",
+          "document",
+          "window",
+          "fetch",
+          "location",
+          "sessionStorage",
+          "localStorage",
+          "MutationObserver",
+          "Node",
+          "navigator"
+        ]
+      }
     }
   ],
   "files": {
@@ -60,6 +83,10 @@
       "scripts/create-flagship.js",
       "scripts/lore-stubs.js",
       "scripts/regenerate-stub-flagships.js",
+      "sdk/js/**/*.js",
+      "extension-v2/**/*.js",
+      "test/sdk-js.test.js",
+      "test/extension-v2.test.js",
       "package.json",
       "biome.json"
     ]

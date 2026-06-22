@@ -1,0 +1,67 @@
+/* PÚNYCODEX Authenticity Extension v2 — Content styles */
+
+.punycodex-risk-link {
+  text-decoration: underline dotted 2px !important;
+  text-underline-offset: 3px !important;
+}
+
+.punycodex-risk-link[data-punycodex-risk="high"],
+.punycodex-risk-link[data-punycodex-risk="critical"] {
+  text-decoration-color: #e11d48 !important;
+}
+
+.punycodex-risk-link[data-punycodex-risk="medium"] {
+  text-decoration-color: #f59e0b !important;
+}
+
+.punycodex-risk-link[data-punycodex-risk="low"] {
+  text-decoration-color: #eab308 !important;
+}
+
+#punycodex-authenticity-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2147483647;
+  padding: 12px 16px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.punycodex-banner.punycodex-risk-high {
+  background: #fff1f2;
+  color: #881337;
+  border-bottom: 3px solid #e11d48;
+}
+
+.punycodex-banner.punycodex-risk-medium {
+  background: #fffbeb;
+  color: #78350f;
+  border-bottom: 3px solid #f59e0b;
+}
+
+.punycodex-banner.punycodex-risk-low {
+  background: #fefce8;
+  color: #713f12;
+  border-bottom: 3px solid #eab308;
+}
+
+.punycodex-banner-reason {
+  flex: 1;
+}
+
+.punycodex-banner-close {
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  color: inherit;
+  padding: 0 4px;
+}

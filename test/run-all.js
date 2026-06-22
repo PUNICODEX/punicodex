@@ -65,6 +65,8 @@ const SUITES = [
   { name: 'Authenticity Case Matrix', cmd: 'node test/authenticity-cases.test.js' },
   { name: 'Confusable Atlas V2 Tests', cmd: 'node test/confusable-atlas-v2.test.js' },
   { name: 'Glyph Renderer Tests', cmd: 'node test/glyph-renderer.test.js' },
+  { name: 'Authenticity SDK JS Tests', cmd: 'node test/sdk-js.test.js' },
+  { name: 'Authenticity Extension v2 Tests', cmd: 'node test/extension-v2.test.js' },
   { name: 'Normalization Attack Tests', cmd: 'node test/normalization-attacks.test.js' },
   { name: 'Ecosystem Tests', cmd: 'node test/ecosystem.test.js' },
   { name: 'Protocol Tests', cmd: 'node test/protocol.test.js' },

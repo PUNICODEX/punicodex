@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PÚNYCODEX Authenticity</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="popup-header">
+    <img src="../icons/icon32.png" alt="" width="24" height="24">
+    <span>PÚNYCODEX Authenticity</span>
+  </header>
+
+  <main class="popup-body">
+    <section class="current-tab" id="current-tab-section">
+      <div class="section-title">Current tab</div>
+      <div id="current-tab-verdict" class="verdict-badge verdict-unknown">Checking…</div>
+      <div id="current-tab-reason" class="verdict-reason"></div>
+    </section>
+
+    <section class="manual-check">
+      <label for="check-input">Check a name, domain, or URL</label>
+      <input type="text" id="check-input" placeholder="example: аpple.com" autocomplete="off">
+      <div class="button-row">
+        <button id="check-btn" class="primary">Check</button>
+        <button id="report-btn" class="secondary" disabled>Report</button>
+      </div>
+    </section>
+
+    <section class="result-panel hidden" id="result-panel">
+      <div id="result-verdict" class="verdict-badge"></div>
+      <div id="result-reason" class="verdict-reason"></div>
+      <div class="alternatives" id="result-alternatives"></div>
+    </section>
+
+    <section class="footer-links">
+      <a href="#" id="open-options">Options</a>
+      <a href="https://punycodex.com/api/v2/docs" target="_blank" rel="noopener">API docs</a>
+    </section>
+  </main>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

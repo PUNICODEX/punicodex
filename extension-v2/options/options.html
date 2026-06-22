@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PÚNYCODEX Authenticity Options</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="options-container">
+    <header>
+      <img src="../icons/icon48.png" alt="" width="32" height="32">
+      <h1>PÚNYCODEX Authenticity Options</h1>
+    </header>
+
+    <section>
+      <h2>General</h2>
+      <label class="toggle">
+        <input type="checkbox" id="enabled">
+        <span>Enable authenticity checks</span>
+      </label>
+      <label class="toggle">
+        <input type="checkbox" id="warnings">
+        <span>Show on-page warning banners</span>
+      </label>
+    </section>
+
+    <section>
+      <h2>API endpoint</h2>
+      <label for="api-endpoint">Base URL</label>
+      <input type="url" id="api-endpoint" placeholder="https://punycodex.com/api/v2">
+
+      <label for="api-key">API key (optional)</label>
+      <input type="password" id="api-key" placeholder="Bearer token">
+    </section>
+
+    <section>
+      <h2>Actions by severity</h2>
+      <p class="hint">Default action used when no severity-specific action is set.</p>
+      <div class="form-row">
+        <label for="default-action">Default action</label>
+        <select id="default-action">
+          <option value="allow">Allow</option>
+          <option value="log">Log</option>
+          <option value="warn">Warn</option>
+          <option value="block">Block</option>
+        </select>
+      </div>
+
+      <div class="severity-grid">
+        <div class="form-row">
+          <label for="action-critical">Critical</label>
+          <select id="action-critical">
+            <option value="block">Block</option>
+            <option value="warn">Warn</option>
+            <option value="log">Log</option>
+            <option value="allow">Allow</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="action-high">High</label>
+          <select id="action-high">
+            <option value="block">Block</option>
+            <option value="warn">Warn</option>
+            <option value="log">Log</option>
+            <option value="allow">Allow</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="action-medium">Medium</label>
+          <select id="action-medium">
+            <option value="log">Log</option>
+            <option value="warn">Warn</option>
+            <option value="block">Block</option>
+            <option value="allow">Allow</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="action-low">Low</label>
+          <select id="action-low">
+            <option value="allow">Allow</option>
+            <option value="log">Log</option>
+            <option value="warn">Warn</option>
+            <option value="block">Block</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="action-none">None</label>
+          <select id="action-none">
+            <option value="allow">Allow</option>
+            <option value="log">Log</option>
+            <option value="warn">Warn</option>
+            <option value="block">Block</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Lists</h2>
+      <label for="allowlist">Allowlist (one entry per line)</label>
+      <textarea id="allowlist" rows="4" placeholder="nike.com&#10;hermes.com"></textarea>
+
+      <label for="blocklist">Blocklist (one entry per line)</label>
+      <textarea id="blocklist" rows="4" placeholder="evil-apple.com"></textarea>
+    </section>
+
+    <div class="actions">
+      <button id="save-btn" class="primary">Save</button>
+      <button id="reset-btn" class="secondary">Reset defaults</button>
+      <span id="status" class="status"></span>
+    </div>
+  </div>
+
+  <script type="module" src="options.js"></script>
+</body>
+</html>
