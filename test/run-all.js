@@ -61,6 +61,7 @@ const SUITES = [
   { name: 'Authenticity Threat Feed Tests', cmd: 'node test/authenticity-threat-feed.test.js' },
   { name: 'Hermès Disambiguation Tests', cmd: 'node test/hermes-disambiguation.test.js' },
   { name: 'Brand Shield Tests', cmd: 'node test/brand-shield.test.js' },
+  { name: 'Threat Intelligence Stream Tests', cmd: 'node test/threat-stream.test.js' },
   { name: 'Dispute Service Tests', cmd: 'node test/dispute-service.test.js' },
   { name: 'Authenticity Case Matrix', cmd: 'node test/authenticity-cases.test.js' },
   { name: 'Confusable Atlas V2 Tests', cmd: 'node test/confusable-atlas-v2.test.js' },

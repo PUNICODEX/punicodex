@@ -16,6 +16,7 @@ const { getVersion } = require('./version-service.js');
 const { validateListNamesQuery } = require('./api-validation.js');
 const { classifyTerm, classifyDomain, classifyUrl } = require('./authenticity-service.js');
 const { recordDiscoveredSpoof, recordSpoofReport } = require('./authenticity-threat-feed.js');
+const { handleThreatFeedStream } = require('./threat-routes.js');
 
 const VALID_NAME_SUBRESOURCES = new Set([
   'variants',
@@ -454,6 +455,13 @@ async function route(req, res) {
   }
 
   const [resource, identifier, subresource] = slug;
+
+  // Threat feed SSE stream (must be handled before JSON envelope routing)
+  if (resource === 'threat-feed' && identifier === 'stream') {
+    if (method === 'GET') return handleThreatFeedStream(req, res);
+    error(res, 'METHOD_NOT_ALLOWED', 'Only GET is allowed.', { status: 405 });
+    return;
+  }
 
   if (resource === 'names') {
     if (!identifier) {

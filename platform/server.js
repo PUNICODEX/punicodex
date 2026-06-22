@@ -306,6 +306,19 @@ app.use('/api/v1/convert', v1Convert);
 app.use('/api/v1/openapi.json', v1Openapi);
 app.use('/api/v1/docs', v1Docs);
 
+// ============ API v1: THREAT INTELLIGENCE FEED ============
+const v1ThreatFeed = require('../api/v1/threat-feed/index.js');
+const v1ThreatFeedStats = require('../api/v1/threat-feed/stats/index.js');
+const v1ThreatFeedIngest = require('../api/v1/threat-feed/ingest/index.js');
+const v1ThreatFeedClusterReview = require('../api/v1/threat-feed/cluster/[clusterId]/review/index.js');
+const v1ThreatFeedCampaigns = require('../api/v1/threat-feed/campaigns/[identityId]/index.js');
+
+app.get('/api/v1/threat-feed', v1ThreatFeed);
+app.get('/api/v1/threat-feed/stats', v1ThreatFeedStats);
+app.post('/api/v1/threat-feed/ingest', v1ThreatFeedIngest);
+app.post('/api/v1/threat-feed/cluster/:clusterId/review', v1ThreatFeedClusterReview);
+app.get('/api/v1/threat-feed/campaigns/:identityId', v1ThreatFeedCampaigns);
+
 app.get('/api/domain-status/:domain', async (req, res) => {
   try {
     const domain = req.params.domain;

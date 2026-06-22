@@ -281,4 +281,14 @@ try {
   process.exit(1);
 }
 
+// Apply threat intelligence graph schema
+try {
+  const threatGraphSql = fs.readFileSync(path.join(__dirname, 'threat-graph.sql'), 'utf8');
+  db.exec(threatGraphSql);
+  console.log('Threat graph schema applied.');
+} catch (err) {
+  console.error('Threat graph schema failed:', err.message);
+  process.exit(1);
+}
+
 db.close();
