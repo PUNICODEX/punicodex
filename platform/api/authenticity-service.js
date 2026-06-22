@@ -14,12 +14,7 @@ const { getDb } = require('../db/connection');
 const { parseDomain } = require('./domain-parser');
 const { validateIdna } = require('./idna-validator');
 const { analyzeConfusables } = require('./confusables');
-const {
-  skeletonSimilarity,
-  buildSkeleton,
-  levenshtein,
-  CONFUSABLE_TO_ASCII,
-} = require('./confusable-atlas');
+const { buildSkeleton, levenshtein, CONFUSABLE_TO_ASCII } = require('./confusable-atlas');
 const { toSearchKey } = require('./query-normalize');
 const { decompose, computeVisualDeviation } = require('./name-decomposer');
 const { decomposeUrl } = require('./url-decomposer');
@@ -466,10 +461,68 @@ function buildVerdict(input, options = {}) {
     const asciiConfusables = collectAsciiConfusables(raw);
     const hasOnlyDigitConfusables =
       asciiConfusables.length > 0 && asciiConfusables.every((c) => c === '0' || c === '1');
-    const checkInput = hasOnlyDigitConfusables ? foldAsciiDigitConfusables(raw) : raw;
 
-    if (asciiConfusables.length === 0 || hasOnlyDigitConfusables) {
-      const quickMatch = findIdentities(checkInput, {
+    // For ASCII-only inputs whose only confusables are digit substitutions,
+    // try the canonical fold (0→o, 1→l) and the alternate uppercase fold
+    // (1→i). If either folded form exactly matches a protected identity and
+    // the raw input is not itself an exact alias, this is a digit-substitution
+    // spoof. This catches 0m→om, 1bm→ibm, and paypa1→paypal while leaving
+    // unrelated alphanumeric strings like susan1 alone.
+    if (hasOnlyDigitConfusables) {
+      const checkInput = foldAsciiDigitConfusables(raw);
+      const altInput = raw.replace(/1/g, 'i').replace(/0/g, 'o');
+      const candidates = [...new Set([checkInput, altInput])];
+      for (const candidate of candidates) {
+        const matches = findIdentities(candidate, {
+          includeLexicon: true,
+          matchTypes: ['exact', 'folded'],
+          threshold: 1,
+        });
+        const exactFolded = matches.find(
+          (m) => m.matchType === 'exact' || m.matchType === 'folded'
+        );
+        if (!exactFolded || raw.toLowerCase() === candidate.toLowerCase()) {
+          continue;
+        }
+
+        const identity = exactFolded.identity;
+        const hasOwnedPresence =
+          Array.isArray(identity.allowedDomains) && identity.allowedDomains.length > 0;
+        const isHighValue =
+          identity.type !== 'lexicon' || (identity.priority || 0) > 0 || hasOwnedPresence;
+        // Short names (≤4 chars) are dense enough that a single digit replacement
+        // is almost certainly a deliberate homograph (0m→om, 0ya→oya), while
+        // longer coincidental folds like susan0→susano are common legitimate
+        // usernames and should not be flagged.
+        const isShortDense = candidate.length <= 4;
+
+        if (isHighValue || isShortDense) {
+          return finalizeVerdict({
+            verdict: VERDICTS.HOMOGRAPH_SPOOF,
+            reason: 'ASCII digit substitution spoof of a protected identity',
+            canonicalMatch: buildIdentityMatch(identity, 'visual', exactFolded.matchedAlias),
+            analysis: {
+              scripts: ['Latin'],
+              mixedScripts: false,
+              confusables: [],
+              confusableAnalysis: {
+                hasConfusables: asciiConfusables.length > 0,
+                confusableCount: asciiConfusables.length,
+                canonical: candidate,
+                found: asciiConfusables,
+                risk: asciiConfusables.length / Math.max(raw.length, 1),
+              },
+              visualDeviation: 0,
+              invisibleChars: [],
+              normalized: candidate.toLowerCase(),
+            },
+          });
+        }
+      }
+    }
+
+    if (asciiConfusables.length === 0) {
+      const quickMatch = findIdentities(raw, {
         includeLexicon: true,
         matchTypes: ['exact', 'folded'],
         threshold: 1,
@@ -484,84 +537,17 @@ function buildVerdict(input, options = {}) {
             mixedScripts: false,
             confusables: [],
             confusableAnalysis: {
-              hasConfusables: asciiConfusables.length > 0,
-              confusableCount: asciiConfusables.length,
-              canonical: checkInput,
-              found: asciiConfusables,
-              risk: asciiConfusables.length / Math.max(raw.length, 1),
+              hasConfusables: false,
+              confusableCount: 0,
+              canonical: raw,
+              found: [],
+              risk: 0,
             },
             visualDeviation: 0,
             invisibleChars: [],
-            normalized: checkInput.toLowerCase(),
+            normalized: raw.toLowerCase(),
           },
         });
-      }
-
-      // For ASCII-only inputs whose only confusables are digit substitutions,
-      // a folded exact/folded match is not automatically a spoof. Require the
-      // raw input to also be visually close to a *high-value* identity (brand,
-      // trademark, owned domain, or lexicon entry with registered domains);
-      // otherwise random alphanumeric strings like "susan0" fold to protected
-      // names by coincidence and must not be flagged.
-      if (hasOnlyDigitConfusables) {
-        const bestMatch = quickMatch[0];
-        const hasOwnedPresence =
-          Array.isArray(bestMatch.identity.allowedDomains) &&
-          bestMatch.identity.allowedDomains.length > 0;
-        const isHighValue =
-          bestMatch.identity.type !== 'lexicon' ||
-          (bestMatch.identity.priority || 0) > 0 ||
-          hasOwnedPresence;
-
-        if (!isHighValue) {
-          return finalizeVerdict({
-            verdict: VERDICTS.UNKNOWN,
-            reason:
-              'ASCII-only digit substitution matches a public lexicon name with no owned presence',
-            canonicalMatch: null,
-            analysis: {
-              scripts: ['Latin'],
-              mixedScripts: false,
-              confusables: [],
-              confusableAnalysis: {
-                hasConfusables: asciiConfusables.length > 0,
-                confusableCount: asciiConfusables.length,
-                canonical: checkInput,
-                found: asciiConfusables,
-                risk: asciiConfusables.length / Math.max(raw.length, 1),
-              },
-              visualDeviation: 0,
-              invisibleChars: [],
-              normalized: checkInput.toLowerCase(),
-            },
-          });
-        }
-
-        const candidate =
-          bestMatch.identity.unicode || bestMatch.identity.ascii || bestMatch.identity.name;
-        const visualScore = skeletonSimilarity(raw, candidate);
-        if (visualScore < 0.9) {
-          return finalizeVerdict({
-            verdict: VERDICTS.UNKNOWN,
-            reason: 'ASCII-only digit substitution is not visually close to protected identity',
-            canonicalMatch: null,
-            analysis: {
-              scripts: ['Latin'],
-              mixedScripts: false,
-              confusables: [],
-              confusableAnalysis: {
-                hasConfusables: asciiConfusables.length > 0,
-                confusableCount: asciiConfusables.length,
-                canonical: checkInput,
-                found: asciiConfusables,
-                risk: asciiConfusables.length / Math.max(raw.length, 1),
-              },
-              visualDeviation: 1 - visualScore,
-              invisibleChars: [],
-              normalized: checkInput.toLowerCase(),
-            },
-          });
-        }
       }
     }
   }
@@ -620,6 +606,7 @@ function buildVerdict(input, options = {}) {
     lookalike,
     lookalikeScore,
     identityMatch: rawIdentityMatch,
+    identityMatches,
   } = matchInfo;
 
   // Brand Shield fallback when the input is not a lexicon match.
@@ -697,6 +684,38 @@ function buildVerdict(input, options = {}) {
       severity: SEVERITIES.NONE,
       reason: 'No strong protected target match for ASCII-only input',
     };
+  }
+
+  // Extra-conservative guard for ASCII-only inputs whose only deception signal
+  // is a digit (0/1) that folds to a long, low-priority lexicon identity. Short
+  // dense names (≤4 chars) and high-value identities (brands, owned domains,
+  // or flagged priority) are still caught above; this stops common random
+  // usernames like susan0.de from being flagged as spoofs of susano.
+  const asciiConfusablesMain = collectAsciiConfusables(raw);
+  const onlyDigitConfusablesMain =
+    asciiConfusablesMain.length > 0 && asciiConfusablesMain.every((c) => c === '0' || c === '1');
+  if (
+    onlyDigitConfusablesMain &&
+    isAsciiOnly(raw) &&
+    (mapped.verdict === VERDICTS.HOMOGRAPH_SPOOF || mapped.verdict === VERDICTS.LOOKALIKE_DOMAIN) &&
+    canonicalMatch &&
+    canonicalMatch.type === 'lexicon'
+  ) {
+    const matchedIdentity =
+      (identityMatches || []).find((m) => m.identity.id === canonicalMatch.id)?.identity || null;
+    const targetName = String(canonicalMatch.ascii || canonicalMatch.id || '');
+    const isLowValueLexicon =
+      !matchedIdentity ||
+      ((matchedIdentity.priority || 0) === 0 &&
+        (!Array.isArray(matchedIdentity.allowedDomains) ||
+          matchedIdentity.allowedDomains.length === 0));
+    if (isLowValueLexicon && targetName.length > 4) {
+      mapped = {
+        verdict: VERDICTS.UNKNOWN,
+        severity: SEVERITIES.NONE,
+        reason: 'ASCII digit-only fold to a common lexicon name',
+      };
+    }
   }
 
   return finalizeVerdict({

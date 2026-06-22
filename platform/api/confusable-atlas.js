@@ -90,13 +90,23 @@ function getScriptRisk(scriptA, scriptB) {
  * similarity comparison.
  */
 function buildSkeletonUncached(str) {
-  const s = String(str).normalize('NFKC');
-
-  // Replace known confusable characters.
+  // Replace known confusable characters first, before NFKC expansion, so that
+  // parenthesized / squared / enclosed letter forms fold to their plain letter
+  // rather than expanding to punctuation + letter. Then run NFKC and apply the
+  // map again so that compatibility-normalized digits (e.g., fullwidth １ → 1)
+  // still fold to their ASCII confusable target (1 → l).
   let skeleton = '';
-  for (const ch of s) {
+  for (const ch of String(str)) {
     skeleton += CONFUSABLE_TO_ASCII.get(ch) ?? ch;
   }
+
+  skeleton = skeleton.normalize('NFKC');
+
+  let post = '';
+  for (const ch of skeleton) {
+    post += CONFUSABLE_TO_ASCII.get(ch) ?? ch;
+  }
+  skeleton = post;
 
   // Apply contextual substitutions.
   for (const { pattern, replacement } of CONTEXTUAL_SUBSTITUTIONS) {
