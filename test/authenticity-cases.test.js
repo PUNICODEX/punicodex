@@ -53,6 +53,8 @@ const safeInputs = [
 ];
 
 const spoofInputs = [
+  // ASCII confusable brand lookalike
+  'g00gle',
   // Cyrillic homographs
   '\u0430res',
   '\u0430pollo',

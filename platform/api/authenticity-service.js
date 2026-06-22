@@ -17,6 +17,12 @@ const { skeletonSimilarity } = require('./confusable-atlas');
 const { toSearchKey } = require('./query-normalize');
 const { decompose, computeVisualDeviation } = require('./name-decomposer');
 const {
+  findIdentities,
+  buildIdentityMatch,
+  findIdentityByDomain,
+  findIdentityByBlockedPattern,
+} = require('./identity-kernel');
+const {
   VERDICTS,
   SEVERITIES,
   SEVERITY_RANK,
@@ -143,13 +149,46 @@ function findCanonicalMatch(input) {
     }
   }
 
+  // Fast path: if we already have an exact or variant lexicon match, only
+  // check identities for exact/folded aliases (e.g., a known brand like Apple
+  // that is not in the lexicon). Skip the expensive visual scan because there
+  // are no deception signals to investigate.
+  const hasDeceptionSignals = confusable.hasConfusables || decompose(raw).hasMixedScripts;
+
+  const identityMatches = findIdentities(raw, {
+    includeLexicon: true,
+    matchTypes:
+      exact || variantMatch || !hasDeceptionSignals
+        ? ['exact', 'folded']
+        : ['exact', 'folded', 'visual'],
+    threshold: 0.85,
+  });
+  const identityMatch =
+    identityMatches.find((m) => m.matchType === 'exact' || m.matchType === 'folded') || null;
+
+  for (const im of identityMatches) {
+    if (im.matchType === 'visual' && im.score > bestLookalikeScore) {
+      bestLookalikeScore = im.score;
+      bestLookalike = { identity: im.identity, score: im.score, isIdentity: true };
+    }
+  }
+
   return {
     exact,
     variantMatch,
     lookalike: bestLookalikeScore >= 0.85 ? bestLookalike : null,
     lookalikeScore: bestLookalikeScore,
     foldedInput: confusable.canonical,
+    identityMatch,
   };
+}
+
+function buildMatchFromLookalike(lookalike) {
+  if (!lookalike) return null;
+  if (lookalike.isIdentity) {
+    return buildIdentityMatch(lookalike.identity, 'visual', null);
+  }
+  return buildCanonicalMatch(lookalike.row, lookalike.variant);
 }
 
 function buildCanonicalMatch(row, variant = null) {
@@ -222,7 +261,7 @@ function buildVerdict(input) {
     });
   }
 
-  const { exact, variantMatch, lookalike, lookalikeScore } = findCanonicalMatch(raw);
+  const { exact, variantMatch, lookalike, lookalikeScore, identityMatch } = findCanonicalMatch(raw);
 
   // Canonical exact
   if (exact) {
@@ -249,6 +288,42 @@ function buildVerdict(input) {
   const { mixedScripts } = analysis;
   const hasConfusables = analysis.confusables.length > 0;
 
+  // Protected identity exact/folded matches with deception signals are treated
+  // as spoofs (e.g. Cyrillic substitution against a brand name).
+  if (identityMatch && (mixedScripts || hasConfusables)) {
+    const isHomograph = hasConfusables;
+    return finalizeVerdict({
+      verdict: isHomograph ? VERDICTS.HOMOGRAPH_SPOOF : VERDICTS.MIXED_SCRIPT_SPOOF,
+      reason: isHomograph
+        ? 'confusable visual spoof of protected identity'
+        : 'mixed-script visual spoof of protected identity',
+      canonicalMatch: buildIdentityMatch(
+        identityMatch.identity,
+        identityMatch.matchType,
+        identityMatch.matchedAlias
+      ),
+      analysis,
+      lookalikeScore,
+    });
+  }
+
+  // Protected identity exact/folded matches without deception signals are styled
+  // for brands and recognized variants for lexicon identities.
+  if (identityMatch) {
+    const isLexicon = identityMatch.identity.type === 'lexicon';
+    return finalizeVerdict({
+      verdict: isLexicon ? VERDICTS.RECOGNIZED_VARIANT : VERDICTS.STYLED,
+      reason: isLexicon ? 'recognized lexicon identity' : 'recognized brand identity',
+      canonicalMatch: buildIdentityMatch(
+        identityMatch.identity,
+        identityMatch.matchType,
+        identityMatch.matchedAlias
+      ),
+      analysis,
+      lookalikeScore,
+    });
+  }
+
   // Deceptive spoof of a canonical name.
   // Confusable substitutions take precedence over mixed-script classification
   // because a single Cyrillic "а" in "аres" is first and foremost a homograph.
@@ -259,7 +334,7 @@ function buildVerdict(input) {
       reason: isHomograph
         ? 'confusable-script visual spoof of canonical term'
         : 'mixed-script visual spoof of canonical term',
-      canonicalMatch: buildCanonicalMatch(lookalike.row, lookalike.variant),
+      canonicalMatch: buildMatchFromLookalike(lookalike),
       analysis,
       lookalikeScore,
     });
@@ -270,7 +345,7 @@ function buildVerdict(input) {
     return finalizeVerdict({
       verdict: VERDICTS.TRANSLITERATION_UNCERTAIN,
       reason: 'input folds to a canonical term but is not a recognized variant',
-      canonicalMatch: buildCanonicalMatch(lookalike.row, lookalike.variant),
+      canonicalMatch: buildMatchFromLookalike(lookalike),
       analysis,
       lookalikeScore,
     });
@@ -383,6 +458,38 @@ function classifyDomain(domain, _options = {}) {
   }
 
   const label = display.split('.')[0];
+  const analysis = buildAnalysis(display);
+
+  // Identity-allowed domain lookup (brands and other protected properties).
+  try {
+    const identity = findIdentityByDomain(raw) || findIdentityByDomain(display);
+    if (identity) {
+      return finalizeVerdict({
+        verdict: VERDICTS.CANONICAL,
+        reason: `identity-allowed domain (${identity.type})`,
+        canonicalMatch: buildIdentityMatch(identity, 'exact', raw),
+        analysis,
+      });
+    }
+  } catch (_e) {
+    // Identity tables may not exist yet.
+  }
+
+  // Known brand blocked patterns signal a lookalike domain.
+  try {
+    const blocked = findIdentityByBlockedPattern(raw) || findIdentityByBlockedPattern(label);
+    if (blocked) {
+      return finalizeVerdict({
+        verdict: VERDICTS.LOOKALIKE_DOMAIN,
+        reason: `domain matches blocked pattern for ${blocked.identity.name}`,
+        canonicalMatch: buildIdentityMatch(blocked.identity, 'blocked', null),
+        analysis,
+      });
+    }
+  } catch (_e) {
+    // Identity tables may not exist yet.
+  }
+
   const result = buildVerdict(label);
   result.input = { raw: domain, normalized: raw, displayDomain: display, label };
   return result;
@@ -500,6 +607,8 @@ function decodePuny(label) {
 function resetCache() {
   canonicalCache = null;
   canonicalCacheBuiltAt = 0;
+  const { resetCache: resetIdentityCache } = require('./identity-kernel');
+  resetIdentityCache();
 }
 
 module.exports = {

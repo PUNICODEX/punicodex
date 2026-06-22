@@ -128,9 +128,10 @@ test('Generic xn-- domain is not hard-blocked as unsafe', () => {
 
 // ── Unknown / unregistered Unicode ──
 
-test('ASCII-only confusable styling without canonical lookalike is unknown', () => {
+test('ASCII-only confusable styling matching a protected brand is suspicious', () => {
   const r = classifyTerm('g00gle');
-  assert.strictEqual(r.tier, TRUST_TIERS.UNKNOWN);
+  assert.strictEqual(r.tier, TRUST_TIERS.SUSPICIOUS);
+  assert.strictEqual(r.canonicalMatch.type, 'brand');
 });
 
 test('Plain unknown ASCII term is unknown', () => {

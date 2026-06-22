@@ -102,9 +102,16 @@ test('mixed-script input with no canonical target is suspicious', () => {
 
 // ── Styled / unknown ──
 
-test('pure ASCII confusable without canonical target is unknown', () => {
+test('ASCII confusable matching a protected brand is a homograph spoof', () => {
   const r = classifyAuthenticity('g00gle');
-  assert.strictEqual(r.verdict, VERDICTS.UNKNOWN);
+  assert.strictEqual(r.verdict, VERDICTS.HOMOGRAPH_SPOOF);
+  assert.strictEqual(r.canonicalMatch.type, 'brand');
+});
+
+test('brand name without deception signals is styled', () => {
+  const r = classifyAuthenticity('Apple');
+  assert.strictEqual(r.verdict, VERDICTS.STYLED);
+  assert.strictEqual(r.canonicalMatch.type, 'brand');
 });
 
 test('plain unknown ASCII is unknown', () => {
