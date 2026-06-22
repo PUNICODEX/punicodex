@@ -39,6 +39,22 @@
     </section>
 
     <section class="checker-card">
+      <div class="mode-toggle">
+        <button class="mode-btn active" data-mode="check" id="mode-check">Check</button>
+        <button class="mode-btn" data-mode="url" id="mode-url">URL Inspect</button>
+        <select id="locale-select" class="locale-select" aria-label="Language">
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+          <option value="de">Deutsch</option>
+          <option value="es">Español</option>
+          <option value="ja">日本語</option>
+          <option value="zh">中文</option>
+          <option value="ar">العربية</option>
+          <option value="hi">हिन्दी</option>
+          <option value="ru">Русский</option>
+        </select>
+      </div>
+
       <div class="input-row">
         <input
           type="text"
@@ -57,10 +73,26 @@
         <button id="check-btn" class="btn btn-primary">Check</button>
       </div>
 
+      <div id="visual-diff" class="visual-diff hidden">
+        <h3>Visual Diff</h3>
+        <div class="diff-row">
+          <div class="diff-column">
+            <span class="meta-key">Input</span>
+            <span id="diff-input" class="diff-value"></span>
+          </div>
+          <div class="diff-column">
+            <span class="meta-key">Canonical</span>
+            <span id="diff-canonical" class="diff-value"></span>
+          </div>
+        </div>
+      </div>
+
       <div id="result-area" class="result-area hidden">
         <div class="verdict-row">
           <span id="verdict-badge" class="verdict-badge"></span>
           <span id="verdict-severity" class="verdict-severity"></span>
+          <span id="policy-action" class="policy-action hidden"></span>
+          <span id="tier-badge" class="tier-badge hidden"></span>
         </div>
         <h2 id="verdict-label"></h2>
         <p id="verdict-reason"></p>

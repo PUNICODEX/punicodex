@@ -17,6 +17,7 @@ const { validateListNamesQuery } = require('./api-validation.js');
 const { classifyTerm, classifyDomain, classifyUrl } = require('./authenticity-service.js');
 const { recordDiscoveredSpoof, recordSpoofReport } = require('./authenticity-threat-feed.js');
 const { handleThreatFeedStream } = require('./threat-routes.js');
+const { handleGetPolicy, handleEvaluatePolicy } = require('./policy-routes.js');
 
 const VALID_NAME_SUBRESOURCES = new Set([
   'variants',
@@ -433,6 +434,8 @@ function getOpenApiSpec() {
       '/api/v2/authenticity/check': { GET: 'Classify a name, domain, or URL' },
       '/api/v2/authenticity/check/batch': { POST: 'Batch classify' },
       '/api/v2/authenticity/report': { POST: 'Report a suspicious input' },
+      '/api/v2/policy': { GET: 'Get default/tenant policy' },
+      '/api/v2/policy/evaluate': { POST: 'Evaluate input against policy' },
       '/api/v2/search/web': { GET: 'Web search' },
       '/api/v2/sites': { GET: 'List indexed sites' },
       '/api/v2/sites/{punycode}': { GET: 'Site detail' },
@@ -530,6 +533,21 @@ async function route(req, res) {
       return;
     }
     error(res, 'NOT_FOUND', `Unknown authenticity resource '${identifier}'.`, { status: 404 });
+    return;
+  }
+
+  if (resource === 'policy') {
+    if (identifier === 'evaluate') {
+      if (method === 'POST') return handleEvaluatePolicy(req, res);
+      error(res, 'METHOD_NOT_ALLOWED', 'Only POST is allowed.', { status: 405 });
+      return;
+    }
+    if (!identifier) {
+      if (method === 'GET') return handleGetPolicy(req, res);
+      error(res, 'METHOD_NOT_ALLOWED', 'Only GET is allowed.', { status: 405 });
+      return;
+    }
+    error(res, 'NOT_FOUND', `Unknown policy resource '${identifier}'.`, { status: 404 });
     return;
   }
 

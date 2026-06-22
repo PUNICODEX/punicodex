@@ -3,6 +3,7 @@
  */
 
 import { getAll, DEFAULTS } from '../shared/storage.js';
+import { evaluatePolicy, normalizePolicy } from '../shared/policy.js';
 
 const CACHE_TTL_MS = 5 * 60 * 1000;
 const cache = new Map();
@@ -21,14 +22,16 @@ function getApiUrl(settings, url) {
   return `${base}/authenticity/check?input=${encodeURIComponent(url)}&type=url`;
 }
 
-function buildInterstitialUrl(tabUrl, verdict) {
-  const base = 'https://punycodex.com/interstitial.html';
+function buildInterstitialUrl(tabUrl, verdict, settings) {
+  const base = settings.interstitialUrl || 'https://punycodex.com/interstitial.html';
   const params = new URLSearchParams();
   params.set('url', tabUrl);
   params.set('verdict', verdict.verdict || '');
   params.set('severity', verdict.severity || '');
   params.set('reason', verdict.reason || verdict.explanation || '');
   params.set('target', verdict.targetIdentity ? verdict.targetIdentity.name : '');
+  params.set('identity', verdict.identityId || '');
+  params.set('locale', settings.locale || 'en');
   if (Array.isArray(verdict.safeAlternatives)) {
     params.set('alternatives', verdict.safeAlternatives.join(','));
   }
@@ -36,9 +39,14 @@ function buildInterstitialUrl(tabUrl, verdict) {
 }
 
 function decideActionFromSettings(settings, verdict) {
-  const severity = verdict.severity || 'none';
-  const actions = settings.severityActions || DEFAULTS.severityActions;
-  return actions[severity] || settings.defaultAction || DEFAULTS.defaultAction;
+  const policy = normalizePolicy({
+    defaultAction: settings.defaultAction,
+    severityActions: settings.severityActions,
+    allowlist: settings.allowlist,
+    blocklist: settings.blocklist,
+    uiTheme: settings.uiTheme,
+  });
+  return evaluatePolicy(verdict, { policy });
 }
 
 async function checkUrl(url) {
@@ -79,13 +87,22 @@ function handleTabUpdate(tabId, changeInfo, tab) {
     .then(async (verdict) => {
       if (!verdict) return;
       const settings = await getAll();
-      const action = decideActionFromSettings(settings, verdict);
-      const severity = verdict.severity || 'none';
+      const evaluation = decideActionFromSettings(settings, { ...verdict, input: tab.url });
+      const uiTheme = evaluation.uiTheme || settings.uiTheme || 'inline';
 
-      if ((severity === 'high' || severity === 'critical') && action === 'block') {
-        chrome.tabs.update(tabId, { url: buildInterstitialUrl(tab.url, verdict) });
-      } else if ((severity === 'high' || severity === 'critical') && action === 'warn') {
-        chrome.tabs.sendMessage(tabId, { action: 'showBanner', verdict }).catch(() => {});
+      if (evaluation.action === 'block') {
+        chrome.tabs.update(tabId, { url: buildInterstitialUrl(tab.url, verdict, settings) });
+        return;
+      }
+
+      if (evaluation.action === 'warn') {
+        if (uiTheme === 'interstitial') {
+          chrome.tabs.update(tabId, { url: buildInterstitialUrl(tab.url, verdict, settings) });
+        } else {
+          chrome.tabs
+            .sendMessage(tabId, { action: 'showBanner', verdict, uiTheme })
+            .catch(() => {});
+        }
       }
     })
     .catch(() => {});
@@ -94,7 +111,11 @@ function handleTabUpdate(tabId, changeInfo, tab) {
 function handleMessage(request, _sender, sendResponse) {
   if (request.action === 'checkLink') {
     checkUrl(request.url)
-      .then((verdict) => sendResponse({ success: true, verdict }))
+      .then(async (verdict) => {
+        const settings = await getAll();
+        const evaluation = decideActionFromSettings(settings, { ...verdict, input: request.url });
+        sendResponse({ success: true, verdict, action: evaluation });
+      })
       .catch((err) => sendResponse({ success: false, error: err.message }));
     return true;
   }
@@ -107,7 +128,9 @@ function handleMessage(request, _sender, sendResponse) {
           return sendResponse({ success: false, error: 'No checkable tab' });
         }
         const verdict = await checkUrl(tab.url);
-        sendResponse({ success: true, verdict, url: tab.url });
+        const settings = await getAll();
+        const evaluation = decideActionFromSettings(settings, { ...verdict, input: tab.url });
+        sendResponse({ success: true, verdict, url: tab.url, action: evaluation });
       })
       .catch((err) => sendResponse({ success: false, error: err.message }));
     return true;

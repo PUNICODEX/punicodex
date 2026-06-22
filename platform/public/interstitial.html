@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Potential spoof — PÚNYCODEX Authenticity Shield</title>
+  <title data-i18n="aria.warning">Potential spoof — PÚNYCODEX Authenticity Shield</title>
   <style>
     :root {
       --bg: #0b0c15;
@@ -11,6 +11,8 @@
       --text: #f3f4f6;
       --muted: #9ca3af;
       --danger: #e11d48;
+      --warning: #f97316;
+      --ask: #eab308;
       --accent: #4f46e5;
       --border: #2d2f45;
       --radius: 12px;
@@ -29,8 +31,16 @@
       padding: 24px;
     }
 
+    body[dir="rtl"] .row {
+      flex-direction: row-reverse;
+    }
+
+    body[dir="rtl"] .actions {
+      flex-direction: row-reverse;
+    }
+
     .card {
-      max-width: 640px;
+      max-width: 720px;
       width: 100%;
       background: var(--panel);
       border: 1px solid var(--border);
@@ -80,6 +90,12 @@
       margin-bottom: 24px;
     }
 
+    body[dir="rtl"] .warning {
+      border-left: none;
+      border-right: 4px solid var(--danger);
+      border-radius: 8px 0 0 8px;
+    }
+
     .warning strong {
       color: #fecdd3;
       display: block;
@@ -118,6 +134,35 @@
       border-radius: 999px;
       background: rgba(225, 29, 72, 0.2);
       color: #fecdd3;
+    }
+
+    .severity[data-level="0"] { background: rgba(34, 197, 94, 0.2); color: #bbf7d0; }
+    .severity[data-level="1"] { background: rgba(59, 130, 246, 0.2); color: #bfdbfe; }
+    .severity[data-level="2"] { background: rgba(107, 114, 128, 0.2); color: #e5e7eb; }
+    .severity[data-level="3"] { background: rgba(234, 179, 8, 0.2); color: #fde68a; }
+    .severity[data-level="4"] { background: rgba(249, 115, 22, 0.2); color: #fed7aa; }
+    .severity[data-level="5"] { background: rgba(239, 68, 68, 0.2); color: #fecaca; }
+    .severity[data-level="6"] { background: rgba(23, 23, 23, 0.9); color: #f3f4f6; }
+
+    .tier-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid currentColor;
+      margin-bottom: 16px;
+    }
+
+    .tier-icon {
+      font-size: 14px;
+    }
+
+    .explanation {
+      margin-bottom: 24px;
+      line-height: 1.6;
     }
 
     .alternatives {
@@ -178,14 +223,34 @@
       border-color: var(--muted);
     }
 
+    .back {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .back:hover {
+      background: #4338ca;
+    }
+
     .report {
       background: var(--danger);
       color: #ffffff;
       margin-left: auto;
     }
 
+    body[dir="rtl"] .report {
+      margin-left: 0;
+      margin-right: auto;
+    }
+
     .report:hover {
       background: #be123c;
+    }
+
+    .appeal {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border);
     }
 
     .footer {
@@ -194,25 +259,97 @@
       font-size: 12px;
     }
 
+    .enterprise-branding {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .enterprise-logo {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: var(--border);
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .locale-picker {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+    }
+
+    body[dir="rtl"] .locale-picker {
+      right: auto;
+      left: 16px;
+    }
+
+    .locale-picker select {
+      background: var(--panel);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 13px;
+    }
+
     .hidden {
       display: none;
+    }
+
+    @media (max-width: 560px) {
+      .card { padding: 24px; }
+      h1 { font-size: 22px; }
+      .row { flex-direction: column; }
+      .actions { flex-direction: column; }
+      .report { margin-left: 0; }
     }
   </style>
 </head>
 <body>
-  <div class="card">
+  <div class="locale-picker">
+    <label for="locale-select" class="hidden">Language</label>
+    <select id="locale-select" aria-label="Language">
+      <option value="en">English</option>
+      <option value="fr">Français</option>
+      <option value="de">Deutsch</option>
+      <option value="es">Español</option>
+      <option value="ja">日本語</option>
+      <option value="zh">中文</option>
+      <option value="ar">العربية</option>
+      <option value="hi">हिन्दी</option>
+      <option value="ru">Русский</option>
+    </select>
+  </div>
+
+  <main class="card" role="main" aria-live="polite" aria-atomic="true">
     <div class="brand">
       <div class="brand-logo">P</div>
       <div class="brand-name">PÚNYCODEX AUTHENTICITY SHIELD</div>
     </div>
 
-    <h1>Potential spoof detected</h1>
+    <h1 data-i18n="verdict.deceptive">Potential spoof detected</h1>
     <p class="subtitle">This page was flagged by your enterprise name-authenticity policy.</p>
 
-    <div class="warning" id="warning-box">
+    <div class="tier-badge" id="tier-badge" aria-hidden="true">
+      <span class="tier-icon" id="tier-icon">⚠</span>
+      <span id="tier-label">—</span>
+    </div>
+
+    <div class="warning" id="warning-box" role="alert">
       <strong id="warning-title">Warning</strong>
       <span id="warning-reason">A deceptive name or domain was detected.</span>
     </div>
+
+    <p class="explanation" id="explanation"></p>
 
     <dl class="meta">
       <div class="row">
@@ -225,7 +362,7 @@
       </div>
       <div class="row">
         <dt>Severity</dt>
-        <dd><span class="severity" id="target-severity">—</span></dd>
+        <dd><span class="severity" id="target-severity" data-level="5">—</span></dd>
       </div>
       <div class="row">
         <dt>Target identity</dt>
@@ -234,19 +371,22 @@
     </dl>
 
     <div class="alternatives" id="alternatives-section">
-      <h2>Safe alternatives</h2>
+      <h2 data-i18n="cta.safeAlternatives">Safe alternatives</h2>
       <ul class="alt-list" id="alt-list"></ul>
     </div>
 
     <div class="actions">
-      <button class="proceed" id="proceed-btn">Proceed at your own risk</button>
-      <button class="report" id="report-btn">Report mistake</button>
+      <button class="back" id="back-btn" data-i18n="cta.backToSafety">Go back to safety</button>
+      <button class="proceed" id="proceed-btn" data-i18n="cta.proceed">Proceed at your own risk</button>
+      <button class="appeal" id="appeal-btn">Appeal</button>
+      <button class="report" id="report-btn" data-i18n="cta.report">Report mistake</button>
     </div>
 
-    <div class="footer">
-      Enterprise branding placeholder — replace with your organization’s logo and contact before deployment.
+    <div class="enterprise-branding">
+      <div class="enterprise-logo">E</div>
+      <span>Enterprise branding placeholder — replace with your organization’s logo and contact before deployment.</span>
     </div>
-  </div>
+  </main>
 
   <script>
     (function () {
@@ -258,39 +398,128 @@
       const severity = params.get('severity') || 'none';
       const reason = params.get('reason') || '';
       const targetIdentity = params.get('target') || '';
+      const identityId = params.get('identity') || '';
       const alternatives = (params.get('alternatives') || '').split(',').filter(Boolean);
+      let locale = params.get('locale') || 'en';
 
-      document.getElementById('target-url').textContent = targetUrl || '—';
-      document.getElementById('target-verdict').textContent = verdict;
-      document.getElementById('target-severity').textContent = severity;
-      document.getElementById('target-identity').textContent = targetIdentity || '—';
+      const TIER_ICONS = {
+        authentic: '✓',
+        'verified-variant': '✓',
+        styled: 'ℹ',
+        uncertain: '?',
+        suspicious: '⚠',
+        deceptive: '⛔',
+        'known-threat': '⛔',
+      };
 
-      const warningTitle = document.getElementById('warning-title');
-      const warningReason = document.getElementById('warning-reason');
-      warningTitle.textContent = severity === 'critical' ? 'Critical threat' : 'Potential spoof';
-      warningReason.textContent = reason || `Verdict: ${verdict}`;
+      const TIER_LEVELS = {
+        none: 0,
+        low: 2,
+        medium: 3,
+        high: 4,
+        critical: 5,
+      };
 
-      const altList = document.getElementById('alt-list');
-      const altSection = document.getElementById('alternatives-section');
-      if (alternatives.length === 0) {
-        altSection.classList.add('hidden');
-      } else {
-        for (const alt of alternatives) {
-          const li = document.createElement('li');
-          const a = document.createElement('a');
-          a.href = alt.startsWith('http') ? alt : `https://${alt}`;
-          a.textContent = alt;
-          a.target = '_blank';
-          a.rel = 'noopener';
-          li.appendChild(a);
-          altList.appendChild(li);
+      const EXPLANATION_KEYS = {
+        'homograph-spoof': 'explanation.cyrillicA',
+        'mixed-script-spoof': 'explanation.mixedScript',
+        'invisible-chars': 'explanation.invisibleChars',
+        'lookalike-domain': 'explanation.lookalikeDomain',
+      };
+
+      let bundle = {};
+
+      async function loadBundle(code) {
+        try {
+          const res = await fetch(`/i18n/authenticity/${code}.json`, { cache: 'no-store' });
+          if (!res.ok) throw new Error('Failed to load bundle');
+          bundle = await res.json();
+        } catch {
+          bundle = {};
         }
+        document.documentElement.lang = code;
+        document.body.dir = bundle._rtl ? 'rtl' : 'ltr';
+        document.getElementById('locale-select').value = code;
+      }
+
+      function t(key, fallback) {
+        const parts = key.split('.');
+        let current = bundle;
+        for (const part of parts) {
+          if (current && typeof current === 'object' && part in current) {
+            current = current[part];
+          } else {
+            return fallback !== undefined ? fallback : key;
+          }
+        }
+        return typeof current === 'string' ? current : fallback !== undefined ? fallback : key;
+      }
+
+      function applyI18n() {
+        document.querySelectorAll('[data-i18n]').forEach((el) => {
+          const key = el.getAttribute('data-i18n');
+          const fallback = el.textContent;
+          el.textContent = t(key, fallback);
+        });
+      }
+
+      function render() {
+        document.getElementById('target-url').textContent = targetUrl || '—';
+        document.getElementById('target-verdict').textContent = verdict;
+        document.getElementById('target-severity').textContent = severity;
+        document.getElementById('target-severity').setAttribute('data-level', String(TIER_LEVELS[severity] ?? 5));
+        document.getElementById('target-identity').textContent = targetIdentity || '—';
+
+        const tierIcon = document.getElementById('tier-icon');
+        const tierLabel = document.getElementById('tier-label');
+        tierIcon.textContent = TIER_ICONS[verdict] || '⚠';
+        function toCamelCase(value) {
+          return value.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
+        }
+        tierLabel.textContent = t(`verdict.${toCamelCase(verdict)}`) || verdict;
+
+        const warningTitle = document.getElementById('warning-title');
+        const warningReason = document.getElementById('warning-reason');
+        warningTitle.textContent = severity === 'critical' ? t('verdict.knownThreat', 'Critical threat') : t('verdict.suspicious', 'Potential spoof');
+        warningReason.textContent = reason || `${t('aria.warning', 'Verdict')}: ${verdict}`;
+
+        const explanationKey = EXPLANATION_KEYS[verdict] || 'explanation.default';
+        document.getElementById('explanation').textContent = t(explanationKey, reason || 'This input triggered an authenticity warning.');
+
+        const altList = document.getElementById('alt-list');
+        const altSection = document.getElementById('alternatives-section');
+        if (alternatives.length === 0) {
+          altSection.classList.add('hidden');
+        } else {
+          altList.innerHTML = '';
+          for (const alt of alternatives) {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = alt.startsWith('http') ? alt : `https://${alt}`;
+            a.textContent = alt;
+            a.target = '_blank';
+            a.rel = 'noopener';
+            li.appendChild(a);
+            altList.appendChild(li);
+          }
+        }
+
+        applyI18n();
       }
 
       document.getElementById('proceed-btn').addEventListener('click', () => {
         if (targetUrl) {
           location.href = targetUrl;
         }
+      });
+
+      document.getElementById('back-btn').addEventListener('click', () => {
+        history.back();
+      });
+
+      document.getElementById('appeal-btn').addEventListener('click', () => {
+        const appealUrl = `mailto:security@example.com?subject=${encodeURIComponent('Appeal authenticity block')}&body=${encodeURIComponent(targetUrl)}`;
+        location.href = appealUrl;
       });
 
       document.getElementById('report-btn').addEventListener('click', () => {
@@ -306,13 +535,24 @@
         })
           .then(() => {
             const btn = document.getElementById('report-btn');
-            btn.textContent = 'Reported';
+            btn.textContent = t('cta.report', 'Reported');
             btn.disabled = true;
           })
           .catch(() => {
             alert('Unable to submit report. Please try again later.');
           });
       });
+
+      document.getElementById('locale-select').addEventListener('change', async (e) => {
+        locale = e.target.value;
+        const next = new URLSearchParams(location.search);
+        next.set('locale', locale);
+        history.replaceState(null, '', `${location.pathname}?${next.toString()}`);
+        await loadBundle(locale);
+        render();
+      });
+
+      loadBundle(locale).then(render);
     })();
   </script>
 </body>

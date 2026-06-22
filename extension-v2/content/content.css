@@ -65,3 +65,76 @@
   color: inherit;
   padding: 0 4px;
 }
+
+.punycodex-icon {
+  font-size: 18px;
+  line-height: 1;
+  margin-right: 4px;
+}
+
+#punycodex-authenticity-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  background: rgba(0, 0, 0, 0.6);
+  display: grid;
+  place-items: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.punycodex-modal-panel {
+  background: #ffffff;
+  color: #111827;
+  max-width: 480px;
+  width: calc(100% - 40px);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.punycodex-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.punycodex-modal-header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.punycodex-modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.punycodex-modal-actions button {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.punycodex-modal-primary {
+  background: #111827;
+  color: #ffffff;
+}
+
+.punycodex-modal-secondary {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.punycodex-modal.punycodex-risk-high .punycodex-modal-header,
+.punycodex-modal.punycodex-risk-critical .punycodex-modal-header {
+  color: #881337;
+}
+
+.punycodex-modal.punycodex-risk-medium .punycodex-modal-header {
+  color: #78350f;
+}

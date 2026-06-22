@@ -98,9 +98,21 @@ test('classifyTermOffline returns unknown for random safe term', () => {
 
 test('decideAction maps severity to configured actions', () => {
   const sdk = new AuthenticitySDK();
-  assert.strictEqual(sdk.decideAction({ verdict: 'canonical', severity: 'none' }), 'allow');
-  assert.strictEqual(sdk.decideAction({ verdict: 'homograph-spoof', severity: 'high' }), 'warn');
-  assert.strictEqual(sdk.decideAction({ verdict: 'unsafe', severity: 'critical' }), 'block');
+  assert.deepStrictEqual(sdk.decideAction({ verdict: 'canonical', severity: 'none' }), {
+    action: 'allow',
+    reason: 'severity',
+    uiTheme: 'inline',
+  });
+  assert.deepStrictEqual(sdk.decideAction({ verdict: 'homograph-spoof', severity: 'high' }), {
+    action: 'warn',
+    reason: 'severity',
+    uiTheme: 'inline',
+  });
+  assert.deepStrictEqual(sdk.decideAction({ verdict: 'unsafe', severity: 'critical' }), {
+    action: 'block',
+    reason: 'severity',
+    uiTheme: 'inline',
+  });
 });
 
 test('decideAction respects allowlist and blocklist', () => {
@@ -111,8 +123,16 @@ test('decideAction respects allowlist and blocklist', () => {
       severityActions: { high: 'warn' },
     },
   });
-  assert.strictEqual(sdk.decideAction({ input: 'safe-apple.com', severity: 'high' }), 'allow');
-  assert.strictEqual(sdk.decideAction({ input: 'evil-apple.com', severity: 'low' }), 'block');
+  assert.deepStrictEqual(sdk.decideAction({ input: 'safe-apple.com', severity: 'high' }), {
+    action: 'allow',
+    reason: 'allowlist',
+    uiTheme: 'inline',
+  });
+  assert.deepStrictEqual(sdk.decideAction({ input: 'evil-apple.com', severity: 'low' }), {
+    action: 'block',
+    reason: 'blocklist',
+    uiTheme: 'inline',
+  });
 });
 
 // SDK API tests

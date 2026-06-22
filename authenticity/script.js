@@ -7,6 +7,8 @@
   const resultArea = document.getElementById('result-area');
   const badge = document.getElementById('verdict-badge');
   const severityEl = document.getElementById('verdict-severity');
+  const policyActionEl = document.getElementById('policy-action');
+  const tierBadgeEl = document.getElementById('tier-badge');
   const labelEl = document.getElementById('verdict-label');
   const reasonEl = document.getElementById('verdict-reason');
   const recommendationsEl = document.getElementById('verdict-recommendations');
@@ -16,24 +18,103 @@
   const confusablesList = document.getElementById('confusables-list');
   const reportBtn = document.getElementById('report-btn');
   const reportStatus = document.getElementById('report-status');
+  const modeCheck = document.getElementById('mode-check');
+  const modeUrl = document.getElementById('mode-url');
+  const visualDiff = document.getElementById('visual-diff');
+  const diffInput = document.getElementById('diff-input');
+  const diffCanonical = document.getElementById('diff-canonical');
+  const localeSelect = document.getElementById('locale-select');
 
   let lastInput = '';
   let lastResult = null;
+  let currentMode = 'check';
+  let bundle = {};
+
+  const TIER_ICONS = {
+    authentic: '✓',
+    'verified-variant': '✓',
+    styled: 'ℹ',
+    uncertain: '?',
+    suspicious: '⚠',
+    deceptive: '⛔',
+    'known-threat': '⛔',
+  };
+
+  async function loadBundle(code) {
+    try {
+      const res = await fetch(`/i18n/authenticity/${code}.json`);
+      if (!res.ok) throw new Error('Failed to load bundle');
+      bundle = await res.json();
+    } catch {
+      bundle = {};
+    }
+    document.documentElement.lang = code;
+    document.body.dir = bundle._rtl ? 'rtl' : 'ltr';
+  }
+
+  function t(key, fallback) {
+    const parts = key.split('.');
+    let current = bundle;
+    for (const part of parts) {
+      if (current && typeof current === 'object' && part in current) {
+        current = current[part];
+      } else {
+        return fallback !== undefined ? fallback : key;
+      }
+    }
+    return typeof current === 'string' ? current : fallback !== undefined ? fallback : key;
+  }
+
+  function setMode(mode) {
+    currentMode = mode;
+    modeCheck.classList.toggle('active', mode === 'check');
+    modeUrl.classList.toggle('active', mode === 'url');
+    if (mode === 'url') {
+      typeSelect.value = 'url';
+      input.placeholder = 'https://example.com/path';
+    } else {
+      input.placeholder = 'e.g. apóllōn.com, https://example.com/path, or Ζεύς';
+    }
+  }
+
+  async function evaluatePolicy(value, type, data) {
+    try {
+      const res = await fetch('/api/v2/policy/evaluate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          input: value,
+          type,
+          policy: { uiTheme: 'inline' },
+        }),
+      });
+      if (!res.ok) return null;
+      const payload = await res.json();
+      return payload.data || payload;
+    } catch {
+      return null;
+    }
+  }
 
   async function check(value, type) {
     if (!value) return;
     lastInput = value;
     resultArea.classList.remove('hidden');
-    labelEl.textContent = 'Checking…';
+    labelEl.textContent = t('aria.warning', 'Checking…');
     badge.className = 'verdict-badge';
     badge.textContent = '';
+    policyActionEl.classList.add('hidden');
+    tierBadgeEl.classList.add('hidden');
 
     try {
-      const res = await fetch(`/api/v2/authenticity/check?input=${encodeURIComponent(value)}&type=${type}`);
-      if (!res.ok) throw new Error('API error');
-      const payload = await res.json();
+      const [checkRes, policyRes] = await Promise.all([
+        fetch(`/api/v2/authenticity/check?input=${encodeURIComponent(value)}&type=${type}`),
+        evaluatePolicy(value, type),
+      ]);
+      if (!checkRes.ok) throw new Error('API error');
+      const payload = await checkRes.json();
       lastResult = payload.data || payload;
-      render(lastResult);
+      render(lastResult, policyRes);
     } catch (err) {
       labelEl.textContent = 'Unable to check';
       reasonEl.textContent = err.message || 'The authenticity service is unavailable.';
@@ -41,15 +122,31 @@
       canonicalMatch.classList.add('hidden');
       partsArea.classList.add('hidden');
       confusablesList.innerHTML = '';
+      visualDiff.classList.add('hidden');
     }
   }
 
-  function render(data) {
+  function renderTierBadge(policyRes) {
+    if (!policyRes || !policyRes.tier) return;
+    tierBadgeEl.classList.remove('hidden');
+    const icon = TIER_ICONS[policyRes.verdict?.verdict] || '⚠';
+    tierBadgeEl.textContent = `${icon} ${policyRes.tier.label}`;
+    tierBadgeEl.style.color = policyRes.tier.color;
+    tierBadgeEl.style.borderColor = policyRes.tier.color;
+  }
+
+  function render(data, policyRes) {
     badge.textContent = (data.verdict || 'unknown').replace(/-/g, ' ');
     badge.className = 'verdict-badge ' + (data.verdict || 'unknown');
     severityEl.textContent = `Severity: ${data.severity || 'unknown'}`;
     labelEl.textContent = data.label || data.verdict || 'Unknown';
     reasonEl.textContent = data.reason || data.explanation || '';
+
+    if (policyRes) {
+      policyActionEl.classList.remove('hidden');
+      policyActionEl.textContent = `Policy: ${policyRes.action}`;
+      renderTierBadge(policyRes);
+    }
 
     recommendationsEl.innerHTML = (data.recommendations || [])
       .map((r) => `<li>${escapeHtml(r)}</li>`)
@@ -98,11 +195,19 @@
     } else {
       confusablesList.innerHTML = '<span class="meta-value">No confusable characters detected.</span>';
     }
+
+    if (data.canonicalMatch && data.canonicalMatch.unicode) {
+      visualDiff.classList.remove('hidden');
+      diffInput.textContent = lastInput;
+      diffCanonical.textContent = data.canonicalMatch.unicode;
+    } else {
+      visualDiff.classList.add('hidden');
+    }
   }
 
   async function report() {
     if (!lastInput || !lastResult) return;
-    reportStatus.textContent = 'Reporting…';
+    reportStatus.textContent = t('cta.report', 'Reporting…');
     try {
       const res = await fetch('/api/v2/authenticity/report', {
         method: 'POST',
@@ -128,6 +233,13 @@
   });
   reportBtn.addEventListener('click', report);
 
+  modeCheck.addEventListener('click', () => setMode('check'));
+  modeUrl.addEventListener('click', () => setMode('url'));
+
+  localeSelect.addEventListener('change', (e) => {
+    loadBundle(e.target.value);
+  });
+
   document.querySelectorAll('.example-chip').forEach((chip) => {
     chip.addEventListener('click', () => {
       input.value = chip.dataset.value;
@@ -135,4 +247,8 @@
       check(input.value, typeSelect.value);
     });
   });
+
+  const initialLocale = new URLSearchParams(location.search).get('lang') || 'en';
+  localeSelect.value = initialLocale;
+  loadBundle(initialLocale);
 })();

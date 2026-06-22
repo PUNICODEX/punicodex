@@ -21,7 +21,7 @@ const sdk = new AuthenticitySDK({
 
 const verdict = await sdk.check('аpple', 'term'); // Cyrillic а
 console.log(verdict.verdict); // 'homograph-spoof'
-console.log(sdk.decideAction(verdict)); // 'block' (default policy)
+console.log(sdk.decideAction(verdict)); // { action: 'block', reason: 'severity', uiTheme: 'inline' }
 ```
 
 ## Constructor options
@@ -56,8 +56,9 @@ Actions: `block`, `warn`, `log`, `allow`.
 
 - `sdk.check(input, type)` — Check a term, domain, or URL. If `offlineFirst` and `type === 'term'`, uses the offline classifier.
 - `sdk.checkUrl(url)` — Convenience wrapper for URL checks.
+- `sdk.evaluate(input, type, extraPolicy)` — Evaluate an input against the server-side policy endpoint and return action + tier.
 - `sdk.report(input, type, comment)` — Submit a suspicious name for review.
-- `sdk.decideAction(verdict, severity)` — Map a verdict to an action using the configured policy.
+- `sdk.decideAction(verdict)` — Map a verdict to an action using the configured policy. Returns `{ action, reason, uiTheme }`.
 
 ## Offline classifier
 

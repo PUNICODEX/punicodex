@@ -273,6 +273,41 @@ async function runTests() {
     assert.strictEqual(body.data.reported, true);
   });
 
+  await test('GET /api/v2/policy returns default policy', async () => {
+    const { status, body } = await invoke('GET', '/api/v2/policy');
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+    assert.strictEqual(body.data.tenantId, 'default');
+    assert.ok(body.data.defaultAction);
+    assert.ok(body.data.severityActions);
+  });
+
+  await test('POST /api/v2/policy/evaluate returns action and tier', async () => {
+    const { status, body } = await invoke('POST', '/api/v2/policy/evaluate', {
+      body: { input: 'аres.com', type: 'domain', policy: { defaultAction: 'warn' } },
+    });
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+    assert.ok(['block', 'warn'].includes(body.data.action));
+    assert.ok(body.data.tier);
+    assert.ok(body.data.policyId);
+  });
+
+  await test('POST /api/v2/policy/evaluate respects blocklist', async () => {
+    const { status, body } = await invoke('POST', '/api/v2/policy/evaluate', {
+      body: {
+        input: 'safe-looking.example.com',
+        type: 'domain',
+        policy: { defaultAction: 'allow' },
+        blocklist: ['safe-looking.example.com'],
+      },
+    });
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+    assert.strictEqual(body.data.action, 'block');
+    assert.strictEqual(body.data.reason, 'blocklist');
+  });
+
   console.log(`\nAPI v2: ${passed} passed, ${failed} failed`);
   if (failed > 0) process.exit(1);
 }

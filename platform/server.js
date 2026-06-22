@@ -159,6 +159,7 @@ app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/mobile', express.static(path.join(__dirname, '..', 'mobile')));
+app.use('/i18n', express.static(path.join(__dirname, '..', 'i18n')));
 app.use('/favicons', express.static(path.join(__dirname, 'public', 'favicons')));
 app.use('/thumbnails', express.static(path.join(__dirname, 'public', 'thumbnails')));
 
@@ -287,6 +288,8 @@ const v1Convert = require('../api/v1/convert');
 const v1ConvertBatch = require('../api/v1/convert/batch');
 const v1Docs = require('../api/v1/docs');
 const v1Openapi = require('../api/v1/openapi.json.js');
+const v1Policy = require('../api/v1/policy');
+const v1PolicyEvaluate = require('../api/v1/policy/evaluate');
 
 app.use('/api/v1/names', v1NamesList);
 app.use('/api/v1/names/:id/variants', v1NameVariants);
@@ -305,6 +308,8 @@ app.use('/api/v1/convert/batch', v1ConvertBatch);
 app.use('/api/v1/convert', v1Convert);
 app.use('/api/v1/openapi.json', v1Openapi);
 app.use('/api/v1/docs', v1Docs);
+app.use('/api/v1/policy/evaluate', v1PolicyEvaluate);
+app.use('/api/v1/policy', v1Policy);
 
 // ============ API v1: THREAT INTELLIGENCE FEED ============
 const v1ThreatFeed = require('../api/v1/threat-feed/index.js');

@@ -5,19 +5,25 @@
  */
 
 const { classifyTermOffline } = require('./offline-classifier.js');
+const { evaluatePolicy, DEFAULT_POLICY } = require('../../../platform/api/policy-engine.js');
 
-const DEFAULT_POLICY = Object.freeze({
-  defaultAction: 'warn',
-  severityActions: Object.freeze({
-    none: 'allow',
-    low: 'allow',
-    medium: 'log',
-    high: 'warn',
-    critical: 'block',
-  }),
-  allowlist: [],
-  blocklist: [],
-});
+function mergePolicy(policy, base = DEFAULT_POLICY) {
+  if (!policy || typeof policy !== 'object') {
+    return { ...base };
+  }
+
+  return {
+    tenantId: policy.tenantId || base.tenantId,
+    defaultAction: policy.defaultAction || base.defaultAction,
+    severityActions: { ...base.severityActions, ...(policy.severityActions || {}) },
+    allowlist: Array.isArray(policy.allowlist) ? [...policy.allowlist] : [...base.allowlist],
+    blocklist: Array.isArray(policy.blocklist) ? [...policy.blocklist] : [...base.blocklist],
+    logRetentionDays: policy.logRetentionDays ?? base.logRetentionDays,
+    uiTheme: policy.uiTheme || base.uiTheme,
+    reportEndpoint: policy.reportEndpoint || base.reportEndpoint,
+    siemWebhook: policy.siemWebhook || base.siemWebhook,
+  };
+}
 
 class AuthenticitySDK {
   constructor(options = {}) {
@@ -32,26 +38,13 @@ class AuthenticitySDK {
     return this;
   }
 
-  decideAction(verdict, severity) {
-    const input = verdict && (verdict.input ?? verdict.query);
-    const inputLower = String(input || '').toLowerCase();
-
-    if (this.policy.allowlist.some((entry) => entry.toLowerCase() === inputLower)) {
-      return 'allow';
-    }
-
-    if (this.policy.blocklist.some((entry) => entry.toLowerCase() === inputLower)) {
-      return 'block';
-    }
-
-    const sev = severity || verdict?.severity || 'none';
-    const action = this.policy.severityActions[sev] ?? this.policy.defaultAction ?? 'warn';
-
-    if (verdict && verdict.verdict === 'unsafe' && action === 'allow') {
-      return 'block';
-    }
-
-    return action;
+  decideAction(verdict) {
+    const evaluation = evaluatePolicy(verdict, { policy: this.policy });
+    return {
+      action: evaluation.action,
+      reason: evaluation.reason,
+      uiTheme: evaluation.uiTheme,
+    };
   }
 
   async check(input, type = 'term') {
@@ -73,6 +66,23 @@ class AuthenticitySDK {
 
   async checkUrl(url) {
     return this.check(url, 'url');
+  }
+
+  async evaluate(input, type = 'auto', extraPolicy = {}) {
+    const url = new URL('/policy/evaluate', this.apiBaseUrl);
+    const body = JSON.stringify({
+      input: String(input),
+      type,
+      policy: mergePolicy(extraPolicy, this.policy),
+    });
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: this._headers({ 'Content-Type': 'application/json' }),
+      body,
+    });
+
+    return this._handleResponse(response);
   }
 
   async report(input, type, comment) {
@@ -118,17 +128,4 @@ class AuthenticitySDK {
   }
 }
 
-function mergePolicy(policy, base = DEFAULT_POLICY) {
-  if (!policy || typeof policy !== 'object') {
-    return { ...base };
-  }
-
-  return {
-    defaultAction: policy.defaultAction || base.defaultAction,
-    severityActions: { ...base.severityActions, ...(policy.severityActions || {}) },
-    allowlist: Array.isArray(policy.allowlist) ? [...policy.allowlist] : [...base.allowlist],
-    blocklist: Array.isArray(policy.blocklist) ? [...policy.blocklist] : [...base.blocklist],
-  };
-}
-
-module.exports = { AuthenticitySDK, DEFAULT_POLICY };
+module.exports = { AuthenticitySDK, DEFAULT_POLICY, mergePolicy };

@@ -111,6 +111,8 @@ async function runTests() {
   const authenticityCheck = require('../api/v1/authenticity/check/index.js');
   const authenticityBatch = require('../api/v1/authenticity/check/batch/index.js');
   const authenticityReport = require('../api/v1/authenticity/report/index.js');
+  const v1Policy = require('../api/v1/policy/index.js');
+  const v1PolicyEvaluate = require('../api/v1/policy/evaluate/index.js');
   const openapi = require('../api/v1/openapi.json.js');
   const docs = require('../api/v1/docs/index.js');
   const version = require('../api/v1/version/index.js');
@@ -484,6 +486,24 @@ async function runTests() {
     assertEnvelope(body);
     assert.strictEqual(body.data.reported, true);
     assert.ok(body.data.spoof.id);
+  });
+
+  await test('GET /api/v1/policy returns default policy', async () => {
+    const { status, body } = await invoke(v1Policy, 'GET', '/api/v1/policy');
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+    assert.strictEqual(body.data.tenantId, 'default');
+    assert.ok(body.data.defaultAction);
+  });
+
+  await test('POST /api/v1/policy/evaluate returns action and tier', async () => {
+    const { status, body } = await invoke(v1PolicyEvaluate, 'POST', '/api/v1/policy/evaluate', {
+      body: { input: 'аres.com', type: 'domain', policy: { defaultAction: 'warn' } },
+    });
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+    assert.ok(['block', 'warn'].includes(body.data.action));
+    assert.ok(body.data.tier);
   });
 
   console.log(`\n  ${passed} passed, ${failed} failed`);

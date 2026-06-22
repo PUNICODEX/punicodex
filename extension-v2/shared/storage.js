@@ -8,6 +8,8 @@ const DEFAULTS = Object.freeze({
   apiEndpoint: 'https://punycodex.com/api/v2',
   apiKey: '',
   defaultAction: 'warn',
+  uiTheme: 'inline',
+  locale: 'en',
   severityActions: Object.freeze({
     none: 'allow',
     low: 'allow',

@@ -155,17 +155,22 @@ test('buildInterstitialUrl encodes verdict and alternatives', async () => {
   globalThis.chrome = createMockChrome();
   mockFetch(() => ({ body: { data: { verdict: 'unknown', severity: 'none' } } }));
   const { buildInterstitialUrl } = await import('../extension-v2/background/background.js');
-  const url = buildInterstitialUrl('https://evil.com', {
-    verdict: 'homograph-spoof',
-    severity: 'high',
-    reason: 'Looks like Apple',
-    targetIdentity: { name: 'Apple' },
-    safeAlternatives: ['https://www.apple.com'],
-  });
+  const url = buildInterstitialUrl(
+    'https://evil.com',
+    {
+      verdict: 'homograph-spoof',
+      severity: 'high',
+      reason: 'Looks like Apple',
+      targetIdentity: { name: 'Apple' },
+      safeAlternatives: ['https://www.apple.com'],
+    },
+    { interstitialUrl: 'https://punycodex.com/interstitial.html', locale: 'en' }
+  );
   assert.ok(url.includes('verdict=homograph-spoof'));
   assert.ok(url.includes('severity=high'));
   assert.ok(url.includes('target=Apple'));
   assert.ok(url.includes('alternatives='));
+  assert.ok(url.includes('locale=en'));
   restoreFetch();
 });
 
@@ -173,8 +178,13 @@ test('decideActionFromSettings returns block for critical by default', async () 
   globalThis.chrome = createMockChrome();
   mockFetch(() => ({ body: { data: { verdict: 'unknown', severity: 'none' } } }));
   const { decideActionFromSettings } = await import('../extension-v2/background/background.js');
-  const action = decideActionFromSettings({}, { severity: 'critical' });
-  assert.strictEqual(action, 'block');
+  const evaluation = decideActionFromSettings(
+    {},
+    { severity: 'critical', input: 'https://evil.example' }
+  );
+  assert.strictEqual(evaluation.action, 'block');
+  assert.strictEqual(evaluation.reason, 'severity');
+  assert.strictEqual(evaluation.uiTheme, 'inline');
   restoreFetch();
 });
 

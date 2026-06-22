@@ -3,21 +3,22 @@
  */
 
 const BANNER_STORAGE_KEY = 'punycodex_banner_dismissed';
+const MODAL_STORAGE_KEY = 'punycodex_modal_dismissed';
 
-function isDismissed(url) {
+function isDismissed(url, key) {
   try {
-    const data = JSON.parse(sessionStorage.getItem(BANNER_STORAGE_KEY) || '{}');
+    const data = JSON.parse(sessionStorage.getItem(key) || '{}');
     return data[url] === true;
   } catch {
     return false;
   }
 }
 
-function markDismissed(url) {
+function markDismissed(url, key) {
   try {
-    const data = JSON.parse(sessionStorage.getItem(BANNER_STORAGE_KEY) || '{}');
+    const data = JSON.parse(sessionStorage.getItem(key) || '{}');
     data[url] = true;
-    sessionStorage.setItem(BANNER_STORAGE_KEY, JSON.stringify(data));
+    sessionStorage.setItem(key, JSON.stringify(data));
   } catch {
     // ignore
   }
@@ -29,9 +30,17 @@ function severityClass(severity) {
   return 'punycodex-risk-low';
 }
 
+function createIcon(type) {
+  const span = document.createElement('span');
+  span.className = 'punycodex-icon';
+  span.setAttribute('aria-hidden', 'true');
+  span.textContent = type === 'block' ? '⛔' : type === 'alert' ? '⚠' : type === 'ask' ? '?' : 'ℹ';
+  return span;
+}
+
 function showBanner(verdict) {
   const url = location.href;
-  if (isDismissed(url)) return;
+  if (isDismissed(url, BANNER_STORAGE_KEY)) return;
 
   const existing = document.getElementById('punycodex-authenticity-banner');
   if (existing) return;
@@ -40,7 +49,9 @@ function showBanner(verdict) {
   banner.id = 'punycodex-authenticity-banner';
   banner.className = `punycodex-banner ${severityClass(verdict.severity)}`;
   banner.setAttribute('role', 'alert');
+  banner.setAttribute('aria-live', 'polite');
 
+  const icon = createIcon(verdict.severity === 'critical' ? 'block' : 'alert');
   const title = document.createElement('strong');
   title.textContent = verdict.label || verdict.verdict;
 
@@ -53,14 +64,75 @@ function showBanner(verdict) {
   close.setAttribute('aria-label', 'Dismiss warning');
   close.textContent = '×';
   close.addEventListener('click', () => {
-    markDismissed(url);
+    markDismissed(url, BANNER_STORAGE_KEY);
     banner.remove();
   });
 
+  banner.appendChild(icon);
   banner.appendChild(title);
   banner.appendChild(reason);
   banner.appendChild(close);
   document.body.prepend(banner);
+}
+
+function showModal(verdict) {
+  const url = location.href;
+  if (isDismissed(url, MODAL_STORAGE_KEY)) return;
+
+  const existing = document.getElementById('punycodex-authenticity-modal');
+  if (existing) return;
+
+  const overlay = document.createElement('div');
+  overlay.id = 'punycodex-authenticity-modal';
+  overlay.className = `punycodex-modal ${severityClass(verdict.severity)}`;
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.setAttribute('aria-labelledby', 'punycodex-modal-title');
+
+  const panel = document.createElement('div');
+  panel.className = 'punycodex-modal-panel';
+  panel.setAttribute('role', 'document');
+
+  const header = document.createElement('div');
+  header.className = 'punycodex-modal-header';
+  header.appendChild(createIcon(verdict.severity === 'critical' ? 'block' : 'alert'));
+
+  const title = document.createElement('h2');
+  title.id = 'punycodex-modal-title';
+  title.textContent = verdict.label || verdict.verdict;
+  header.appendChild(title);
+
+  const body = document.createElement('p');
+  body.textContent = verdict.reason || verdict.explanation || '';
+
+  const actions = document.createElement('div');
+  actions.className = 'punycodex-modal-actions';
+
+  const backBtn = document.createElement('button');
+  backBtn.className = 'punycodex-modal-primary';
+  backBtn.textContent = 'Back to safety';
+  backBtn.addEventListener('click', () => {
+    history.back();
+  });
+
+  const proceedBtn = document.createElement('button');
+  proceedBtn.className = 'punycodex-modal-secondary';
+  proceedBtn.textContent = 'Proceed';
+  proceedBtn.addEventListener('click', () => {
+    markDismissed(url, MODAL_STORAGE_KEY);
+    overlay.remove();
+  });
+
+  actions.appendChild(backBtn);
+  actions.appendChild(proceedBtn);
+
+  panel.appendChild(header);
+  panel.appendChild(body);
+  panel.appendChild(actions);
+  overlay.appendChild(panel);
+  document.body.appendChild(overlay);
+
+  backBtn.focus();
 }
 
 async function highlightLink(anchor) {
@@ -74,9 +146,10 @@ async function highlightLink(anchor) {
     const response = await chrome.runtime.sendMessage({ action: 'checkLink', url: href });
     if (!response?.success || !response.verdict) return;
 
-    const { verdict } = response;
+    const { verdict, action } = response;
     const severity = verdict.severity || 'none';
     if (severity === 'none' || severity === 'low') return;
+    if (action && action.action === 'allow') return;
 
     anchor.classList.add('punycodex-risk-link');
     anchor.dataset.punycodexRisk = severity;
@@ -114,8 +187,15 @@ function observeLinks() {
 }
 
 chrome.runtime.onMessage.addListener((request) => {
-  if (request.action === 'showBanner' && request.verdict) {
-    showBanner(request.verdict);
+  if (!request.verdict) return;
+
+  const uiTheme = request.uiTheme || 'inline';
+  if (request.action === 'showBanner') {
+    if (uiTheme === 'modal') {
+      showModal(request.verdict);
+    } else {
+      showBanner(request.verdict);
+    }
   }
 });
 

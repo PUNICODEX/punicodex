@@ -9,6 +9,8 @@ const fields = {
   warnings: document.getElementById('warnings'),
   apiEndpoint: document.getElementById('api-endpoint'),
   apiKey: document.getElementById('api-key'),
+  uiTheme: document.getElementById('ui-theme'),
+  locale: document.getElementById('locale'),
   defaultAction: document.getElementById('default-action'),
   actionCritical: document.getElementById('action-critical'),
   actionHigh: document.getElementById('action-high'),
@@ -40,6 +42,8 @@ async function loadOptions() {
   fields.warnings.checked = settings.warnings !== false;
   fields.apiEndpoint.value = settings.apiEndpoint || DEFAULTS.apiEndpoint;
   fields.apiKey.value = settings.apiKey || '';
+  fields.uiTheme.value = settings.uiTheme || DEFAULTS.uiTheme || 'inline';
+  fields.locale.value = settings.locale || DEFAULTS.locale || 'en';
   fields.defaultAction.value = settings.defaultAction || DEFAULTS.defaultAction;
   fields.actionCritical.value =
     settings.severityActions?.critical || DEFAULTS.severityActions.critical;
@@ -56,6 +60,8 @@ async function saveOptions() {
   await set('warnings', fields.warnings.checked);
   await set('apiEndpoint', fields.apiEndpoint.value.trim() || DEFAULTS.apiEndpoint);
   await set('apiKey', fields.apiKey.value.trim());
+  await set('uiTheme', fields.uiTheme.value);
+  await set('locale', fields.locale.value);
   await set('defaultAction', fields.defaultAction.value);
   await set('severityActions', {
     critical: fields.actionCritical.value,
