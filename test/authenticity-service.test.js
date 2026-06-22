@@ -159,6 +159,42 @@ test('suspicious domain overrides safe query', () => {
   assert.strictEqual(r.overall, VERDICTS.HOMOGRAPH_SPOOF);
 });
 
+// ── Domain metadata & IDNA integration ──
+
+test('classifyDomain exposes parsed domainInfo', () => {
+  const r = classifyDomain('foo.bar.co.uk');
+  assert.ok(r.domainInfo);
+  assert.strictEqual(r.domainInfo.etld, 'co.uk');
+  assert.strictEqual(r.domainInfo.domain, 'bar.co.uk');
+  assert.strictEqual(r.domainInfo.subdomain, 'foo');
+});
+
+test('classifyDomain exposes IDNA validation result', () => {
+  const r = classifyDomain('example.com');
+  assert.ok(r.idna);
+  assert.strictEqual(r.idna.valid, true);
+  assert.ok(Array.isArray(r.idna.errors));
+});
+
+test('classifyDomain attaches IDNA errors to analysis', () => {
+  const r = classifyDomain('example.com');
+  assert.ok(Array.isArray(r.analysis.idnaErrors));
+  assert.ok(r.analysis.domainInfo);
+});
+
+test('hard IDNA failure bumps domain verdict to lookalike-domain', () => {
+  const r = classifyDomain('xn--not-valid.com');
+  assert.strictEqual(r.verdict, VERDICTS.LOOKALIKE_DOMAIN);
+  assert.strictEqual(r.severity, SEVERITIES.HIGH);
+});
+
+test('punycode homograph of brand is classified critical', () => {
+  const r = classifyDomain('xn--pple-43d.com'); // decodes to аpple.com
+  assert.strictEqual(r.verdict, VERDICTS.HOMOGRAPH_SPOOF);
+  assert.strictEqual(r.severity, SEVERITIES.CRITICAL);
+  assert.ok(r.canonicalMatch);
+});
+
 // ── Backward compatibility ──
 
 test('classifyTerm still exposes legacy tier field', () => {

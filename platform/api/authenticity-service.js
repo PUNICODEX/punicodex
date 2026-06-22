@@ -12,6 +12,8 @@
 
 const { domainToUnicode, URL } = require('node:url');
 const { getDb } = require('../db/connection');
+const { parseDomain } = require('./domain-parser');
+const { validateIdna } = require('./idna-validator');
 const { analyzeConfusables } = require('./confusables');
 const { skeletonSimilarity } = require('./confusable-atlas');
 const { toSearchKey } = require('./query-normalize');
@@ -278,6 +280,8 @@ function buildVerdict(input, options = {}) {
     canonicalRows,
     checkBlockedPattern: false,
     isDomain: options.isDomain || false,
+    domainInfo: options.domainInfo || null,
+    idnaErrors: options.idnaErrors || [],
   });
   const risk = classifyRisk(raw, {
     features,
@@ -371,16 +375,24 @@ function classifyDomain(domain, _options = {}) {
     .replace(/^www\./, '')
     .replace(/\/.*$/, '');
 
-  let display = raw;
-  if (raw.includes('xn--')) {
-    try {
-      display = raw
-        .split('.')
-        .map((label) => decodePuny(label) || label)
-        .join('.');
-    } catch {
-      display = raw;
-    }
+  const domainInfo = parseDomain(raw);
+  const display = domainInfo.decodedLabels.join('.') || raw;
+  const idnaResult = validateIdna(raw, { etld: domainInfo.etld });
+  const idnaErrors = idnaResult.errors;
+
+  function attachDomainMetadata(analysis) {
+    analysis.idnaErrors = idnaErrors;
+    analysis.domainInfo = domainInfo;
+    return analysis;
+  }
+
+  function applyVerdictOverride(result, reason) {
+    result.reason = reason;
+    const explanation = explainVerdict(result.verdict);
+    result.label = explanation.label;
+    result.explanation = explanation.explanation;
+    result.recommendations = explanation.recommendations;
+    return result;
   }
 
   // Registered canonical domain lookup
@@ -396,7 +408,7 @@ function classifyDomain(domain, _options = {}) {
         .prepare(`SELECT id, ascii, unicode, pantheon, tier FROM entries WHERE id = ?`)
         .get(registered.entry_id);
 
-      const analysis = buildAnalysis(display);
+      const analysis = attachDomainMetadata(buildAnalysis(display));
       const verdict =
         registered.trust_tier === 'unsafe'
           ? VERDICTS.UNSAFE
@@ -404,30 +416,43 @@ function classifyDomain(domain, _options = {}) {
             ? VERDICTS.LOOKALIKE_DOMAIN
             : VERDICTS.CANONICAL;
 
-      return finalizeVerdict({
+      const result = finalizeVerdict({
         verdict,
         reason: `registered domain (${registered.source || 'canonical'})`,
         canonicalMatch: entry ? buildCanonicalMatch(entry) : null,
         analysis,
       });
+      result.input = {
+        raw: domain,
+        normalized: raw,
+        displayDomain: display,
+        label: domainInfo.decodedLabels[0] || raw,
+      };
+      result.domainInfo = domainInfo;
+      result.idna = idnaResult;
+      return result;
     }
   } catch (_e) {
     // Table may not exist yet.
   }
 
-  const label = display.split('.')[0];
-  const analysis = buildAnalysis(display);
+  const label = display.split('.')[0] || raw;
 
   // Identity-allowed domain lookup (brands and other protected properties).
   try {
     const identity = findIdentityByDomain(raw) || findIdentityByDomain(display);
     if (identity) {
-      return finalizeVerdict({
+      const analysis = attachDomainMetadata(buildAnalysis(display));
+      const result = finalizeVerdict({
         verdict: VERDICTS.CANONICAL,
         reason: `identity-allowed domain (${identity.type})`,
         canonicalMatch: buildIdentityMatch(identity, 'exact', raw),
         analysis,
       });
+      result.input = { raw: domain, normalized: raw, displayDomain: display, label };
+      result.domainInfo = domainInfo;
+      result.idna = idnaResult;
+      return result;
     }
   } catch (_e) {
     // Identity tables may not exist yet.
@@ -437,19 +462,62 @@ function classifyDomain(domain, _options = {}) {
   try {
     const blocked = findIdentityByBlockedPattern(raw) || findIdentityByBlockedPattern(label);
     if (blocked) {
-      return finalizeVerdict({
+      const analysis = attachDomainMetadata(buildAnalysis(display));
+      const result = finalizeVerdict({
         verdict: VERDICTS.LOOKALIKE_DOMAIN,
         reason: `domain matches blocked pattern for ${blocked.identity.name}`,
         canonicalMatch: buildIdentityMatch(blocked.identity, 'blocked', null),
         analysis,
       });
+      result.input = { raw: domain, normalized: raw, displayDomain: display, label };
+      result.domainInfo = domainInfo;
+      result.idna = idnaResult;
+      return result;
     }
   } catch (_e) {
     // Identity tables may not exist yet.
   }
 
-  const result = buildVerdict(label, { isDomain: true });
+  // Punycode homograph of a canonical/brand identity at registrable-domain level.
+  let domainHomographMatch = null;
+  if (domainInfo.isPunycode && domainInfo.domain) {
+    try {
+      const domainLabelCount = domainInfo.domain.split('.').length;
+      const decodedRegistrable = domainInfo.decodedLabels.slice(-domainLabelCount).join('.');
+      const identityMatches = findIdentities(decodedRegistrable, {
+        includeLexicon: true,
+        matchTypes: ['exact', 'folded', 'visual'],
+        threshold: 0.9,
+      });
+      domainHomographMatch = identityMatches.find((m) => m.matchType === 'visual') || null;
+    } catch (_e) {
+      // Identity tables may not exist yet.
+    }
+  }
+
+  const result = buildVerdict(label, { isDomain: true, domainInfo, idnaErrors });
+  result.analysis.idnaErrors = idnaErrors;
+  result.analysis.domainInfo = domainInfo;
+
+  if (domainHomographMatch) {
+    result.verdict = VERDICTS.HOMOGRAPH_SPOOF;
+    result.severity = SEVERITIES.CRITICAL;
+    result.canonicalMatch = buildIdentityMatch(
+      domainHomographMatch.identity,
+      'visual',
+      domainHomographMatch.matchedAlias
+    );
+    applyVerdictOverride(result, `punycode homograph of ${domainHomographMatch.identity.name}`);
+  } else if (!idnaResult.valid && SEVERITY_RANK[result.severity] < SEVERITY_RANK[SEVERITIES.HIGH]) {
+    result.verdict = VERDICTS.LOOKALIKE_DOMAIN;
+    result.severity = SEVERITIES.HIGH;
+    const hardErrors = idnaErrors.filter((e) => !e.startsWith('warning:')).join(', ');
+    applyVerdictOverride(result, `IDNA validation failed: ${hardErrors}`);
+  }
+
   result.input = { raw: domain, normalized: raw, displayDomain: display, label };
+  result.domainInfo = domainInfo;
+  result.idna = idnaResult;
   return result;
 }
 

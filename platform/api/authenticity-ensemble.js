@@ -51,6 +51,8 @@ function classifyRisk(input, options = {}) {
   logOdds += features.bidiOverrideFlag ? 4.0 : 0;
   logOdds += features.normalizationDistance * 1.0;
   logOdds += features.hasBlockedPatternMatch ? 3.0 : 0;
+  logOdds += features.domainEtldRisk * 2.0;
+  logOdds += features.pathQueryRisk * 1.5;
   logOdds += features.variantRecognition ? -4.0 : 0;
   logOdds += features.hasCanonicalExact ? -6.0 : 0;
 

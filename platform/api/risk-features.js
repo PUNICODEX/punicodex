@@ -10,6 +10,7 @@ const { skeletonSimilarity, getScriptRisk, levenshtein } = require('./confusable
 const { renderedSimilarity: glyphRenderedSimilarity } = require('./glyph-renderer');
 const { findIdentities, findIdentityByBlockedPattern } = require('./identity-kernel');
 const { getDb } = require('../db/connection');
+const IDN_POLICIES = require('../db/idn-registry-policies.json');
 
 function parseJson(value) {
   if (!value) return null;
@@ -176,6 +177,26 @@ function computeSimilarityMax(raw, canonicalRows, identityMatches) {
   return { skeletonMax, glyphMax };
 }
 
+function computeDomainEtldRisk(options = {}) {
+  const domainInfo = options.domainInfo || null;
+  const idnaErrors = options.idnaErrors || [];
+
+  if (!domainInfo) return 0;
+  if (domainInfo.isIp) return 0;
+
+  const hardErrors = idnaErrors.filter((e) => !e.startsWith('warning:'));
+  if (hardErrors.length > 0) return 0.8;
+
+  const warnings = idnaErrors.filter((e) => e.startsWith('warning:'));
+  if (warnings.length > 0) return 0.3;
+
+  const etld = domainInfo.etld;
+  if (!etld) return 0.2;
+  if (!Object.hasOwn(IDN_POLICIES, etld)) return 0.1;
+
+  return 0;
+}
+
 function computeRiskFeatures(input, options = {}) {
   const raw = String(input || '');
   const decomposition = decompose(raw);
@@ -254,7 +275,7 @@ function computeRiskFeatures(input, options = {}) {
     invisibleCharFlag,
     bidiOverrideFlag,
     normalizationDistance,
-    domainEtldRisk: 0,
+    domainEtldRisk: computeDomainEtldRisk(options),
     pathQueryRisk: 0,
     reputationScore: 0,
     identityPriority,
