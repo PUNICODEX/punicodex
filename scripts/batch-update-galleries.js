@@ -43,7 +43,7 @@ function generateGalleryHtml(siteId, data) {
     const delayAttr = i > 0 ? ` data-delay="${(i % 4) * 100}"` : '';
     return `                <div class="gallery-item reveal-up"${delayAttr}>
                     <figure class="gallery-figure" data-full-src="${fallbackSrc}" data-caption="${caption}">
-                        <picture><source srcset="${webpSrc}" type="image/webp"><img class="gallery-img" src="${fallbackSrc}" alt="${alt}" loading="lazy" decoding="async"></picture>
+                        <img class="gallery-img" src="${fallbackSrc}" alt="${alt}" loading="lazy" decoding="async">
                     </figure>
                     <p class="gallery-caption">${img.caption}</p>
                 </div>`;

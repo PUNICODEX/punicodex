@@ -2606,7 +2606,7 @@ function buildGalleryGrid(entry) {
       items.push(`
                 <div class="gallery-item reveal-up"${delayAttr}>
                     <figure class="gallery-figure" data-full-src="${fallbackSrc}" data-caption="${caption}">
-                        <picture><source srcset="${webpSrc}" type="image/webp"><img class="gallery-img" src="${fallbackSrc}" alt="${alt}" loading="lazy" decoding="async"></picture>
+                        <img class="gallery-img" src="${fallbackSrc}" alt="${alt}" loading="lazy" decoding="async">
                     </figure>
                     <p class="gallery-caption">${img.caption}</p>
                 </div>`);
@@ -2621,7 +2621,7 @@ function buildGalleryGrid(entry) {
       items.push(`
                 <div class="gallery-item reveal-up">
                     <figure class="gallery-figure" data-full-src="../assets/${img}" data-caption="${caption}">
-                        <picture><source srcset="../assets/${webp}" type="image/webp"><img class="gallery-img" src="../assets/${img}" alt="${caption}" loading="lazy"></picture>
+                        <img class="gallery-img" src="../assets/${img}" alt="${caption}" loading="lazy" decoding="async">
                     </figure>
                     <p class="gallery-caption">${caption}</p>
                 </div>`);
