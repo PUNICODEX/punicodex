@@ -2594,8 +2594,8 @@ function buildGalleryGrid(entry) {
     if (fs.existsSync(imgPath)) {
       items.push(`
                 <div class="gallery-item reveal-up">
-                    <figure class="gallery-figure" data-full-src="../assets/${img}">
-                        <picture><source srcset="../assets/${webp}" type="image/webp"><img src="../assets/${img}" alt="${caption}" loading="lazy"></picture>
+                    <figure class="gallery-figure" data-full-src="../assets/${img}" data-caption="${caption}">
+                        <picture><source srcset="../assets/${webp}" type="image/webp"><img class="gallery-img" src="../assets/${img}" alt="${caption}" loading="lazy"></picture>
                     </figure>
                     <p class="gallery-caption">${caption}</p>
                 </div>`);

@@ -27,15 +27,9 @@
 
   <style>
 /* Gallery lightbox */
-.gallery-item {
+.gallery-figure {
     cursor: zoom-in;
-    background: none;
-    border: none;
-    width: 100%;
-    text-align: left;
-    padding: 0;
-    font: inherit;
-    color: inherit;
+    margin: 0;
 }
 .gallery-lightbox {
     position: fixed;
@@ -227,7 +221,7 @@
     img.src = '';
     document.body.style.overflow = '';
   }
-  document.querySelectorAll('.gallery-item[data-full-src]').forEach(item => {
+  document.querySelectorAll('.gallery-figure[data-full-src]').forEach(item => {
     item.addEventListener('click', () => open(item.dataset.fullSrc, item.dataset.caption));
     item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(item.dataset.fullSrc, item.dataset.caption); } });
   });

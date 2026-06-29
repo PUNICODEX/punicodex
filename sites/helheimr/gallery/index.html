@@ -27,15 +27,9 @@
 
   <style>
 /* Gallery lightbox */
-.gallery-item {
+.gallery-figure {
     cursor: zoom-in;
-    background: none;
-    border: none;
-    width: 100%;
-    text-align: left;
-    padding: 0;
-    font: inherit;
-    color: inherit;
+    margin: 0;
 }
 .gallery-lightbox {
     position: fixed;
@@ -188,22 +182,22 @@
             <div class="gallery-grid">
                 
                 <div class="gallery-item reveal-up">
-                    <figure class="gallery-figure" data-full-src="../assets/helheimr_mascot.png">
-                        <picture><source srcset="../assets/helheimr_mascot.webp" type="image/webp"><img src="../assets/helheimr_mascot.png" alt="The Helheimr mascot — Realm of the Dead" loading="lazy"></picture>
+                    <figure class="gallery-figure" data-full-src="../assets/helheimr_mascot.png" data-caption="The Helheimr mascot — Realm of the Dead">
+                        <picture><source srcset="../assets/helheimr_mascot.webp" type="image/webp"><img class="gallery-img" src="../assets/helheimr_mascot.png" alt="The Helheimr mascot — Realm of the Dead" loading="lazy"></picture>
                     </figure>
                     <p class="gallery-caption">The Helheimr mascot — Realm of the Dead</p>
                 </div>
 
                 <div class="gallery-item reveal-up">
-                    <figure class="gallery-figure" data-full-src="../assets/helheimr_logolockup.png">
-                        <picture><source srcset="../assets/helheimr_logolockup.webp" type="image/webp"><img src="../assets/helheimr_logolockup.png" alt="Helheimr logolockup" loading="lazy"></picture>
+                    <figure class="gallery-figure" data-full-src="../assets/helheimr_logolockup.png" data-caption="Helheimr logolockup">
+                        <picture><source srcset="../assets/helheimr_logolockup.webp" type="image/webp"><img class="gallery-img" src="../assets/helheimr_logolockup.png" alt="Helheimr logolockup" loading="lazy"></picture>
                     </figure>
                     <p class="gallery-caption">Helheimr logolockup</p>
                 </div>
 
                 <div class="gallery-item reveal-up">
-                    <figure class="gallery-figure" data-full-src="../assets/helheimr_logomark.png">
-                        <picture><source srcset="../assets/helheimr_logomark.webp" type="image/webp"><img src="../assets/helheimr_logomark.png" alt="Helheimr logomark seal" loading="lazy"></picture>
+                    <figure class="gallery-figure" data-full-src="../assets/helheimr_logomark.png" data-caption="Helheimr logomark seal">
+                        <picture><source srcset="../assets/helheimr_logomark.webp" type="image/webp"><img class="gallery-img" src="../assets/helheimr_logomark.png" alt="Helheimr logomark seal" loading="lazy"></picture>
                     </figure>
                     <p class="gallery-caption">Helheimr logomark seal</p>
                 </div>
@@ -279,7 +273,7 @@
     img.src = '';
     document.body.style.overflow = '';
   }
-  document.querySelectorAll('.gallery-item[data-full-src]').forEach(item => {
+  document.querySelectorAll('.gallery-figure[data-full-src]').forEach(item => {
     item.addEventListener('click', () => open(item.dataset.fullSrc, item.dataset.caption));
     item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(item.dataset.fullSrc, item.dataset.caption); } });
   });

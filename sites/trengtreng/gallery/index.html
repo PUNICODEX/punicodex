@@ -27,15 +27,9 @@
 
   <style>
 /* Gallery lightbox */
-.gallery-item {
+.gallery-figure {
     cursor: zoom-in;
-    background: none;
-    border: none;
-    width: 100%;
-    text-align: left;
-    padding: 0;
-    font: inherit;
-    color: inherit;
+    margin: 0;
 }
 .gallery-lightbox {
     position: fixed;
@@ -187,29 +181,29 @@
             <div class="gallery-grid">
                 
                 <div class="gallery-item reveal-up">
-                    <figure class="gallery-figure" data-full-src="../assets/trengtreng_mascot.png">
-                        <picture><source srcset="../assets/trengtreng_mascot.webp" type="image/webp"><img src="../assets/trengtreng_mascot.png" alt="The Trengtreng mascot — Thunder, War" loading="lazy"></picture>
+                    <figure class="gallery-figure" data-full-src="../assets/trengtreng_mascot.png" data-caption="The Trengtreng mascot — Thunder, War">
+                        <picture><source srcset="../assets/trengtreng_mascot.webp" type="image/webp"><img class="gallery-img" src="../assets/trengtreng_mascot.png" alt="The Trengtreng mascot — Thunder, War" loading="lazy"></picture>
                     </figure>
                     <p class="gallery-caption">The Trengtreng mascot — Thunder, War</p>
                 </div>
 
                 <div class="gallery-item reveal-up">
-                    <figure class="gallery-figure" data-full-src="../assets/trengtreng_logolockup.png">
-                        <picture><source srcset="../assets/trengtreng_logolockup.webp" type="image/webp"><img src="../assets/trengtreng_logolockup.png" alt="Trengtreng logolockup" loading="lazy"></picture>
+                    <figure class="gallery-figure" data-full-src="../assets/trengtreng_logolockup.png" data-caption="Trengtreng logolockup">
+                        <picture><source srcset="../assets/trengtreng_logolockup.webp" type="image/webp"><img class="gallery-img" src="../assets/trengtreng_logolockup.png" alt="Trengtreng logolockup" loading="lazy"></picture>
                     </figure>
                     <p class="gallery-caption">Trengtreng logolockup</p>
                 </div>
 
                 <div class="gallery-item reveal-up">
-                    <figure class="gallery-figure" data-full-src="../assets/trengtreng_logomark.png">
-                        <picture><source srcset="../assets/trengtreng_logomark.webp" type="image/webp"><img src="../assets/trengtreng_logomark.png" alt="Trengtreng logomark seal" loading="lazy"></picture>
+                    <figure class="gallery-figure" data-full-src="../assets/trengtreng_logomark.png" data-caption="Trengtreng logomark seal">
+                        <picture><source srcset="../assets/trengtreng_logomark.webp" type="image/webp"><img class="gallery-img" src="../assets/trengtreng_logomark.png" alt="Trengtreng logomark seal" loading="lazy"></picture>
                     </figure>
                     <p class="gallery-caption">Trengtreng logomark seal</p>
                 </div>
 
                 <div class="gallery-item reveal-up">
-                    <figure class="gallery-figure" data-full-src="../assets/trengtreng_hero_poster.jpg">
-                        <picture><source srcset="../assets/trengtreng_hero_poster.jpg" type="image/webp"><img src="../assets/trengtreng_hero_poster.jpg" alt="Trengtreng cinematic poster" loading="lazy"></picture>
+                    <figure class="gallery-figure" data-full-src="../assets/trengtreng_hero_poster.jpg" data-caption="Trengtreng cinematic poster">
+                        <picture><source srcset="../assets/trengtreng_hero_poster.jpg" type="image/webp"><img class="gallery-img" src="../assets/trengtreng_hero_poster.jpg" alt="Trengtreng cinematic poster" loading="lazy"></picture>
                     </figure>
                     <p class="gallery-caption">Trengtreng cinematic poster</p>
                 </div>
@@ -285,7 +279,7 @@
     img.src = '';
     document.body.style.overflow = '';
   }
-  document.querySelectorAll('.gallery-item[data-full-src]').forEach(item => {
+  document.querySelectorAll('.gallery-figure[data-full-src]').forEach(item => {
     item.addEventListener('click', () => open(item.dataset.fullSrc, item.dataset.caption));
     item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(item.dataset.fullSrc, item.dataset.caption); } });
   });

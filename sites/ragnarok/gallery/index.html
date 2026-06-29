@@ -27,15 +27,9 @@
 
   <style>
 /* Gallery lightbox */
-.gallery-item {
+.gallery-figure {
     cursor: zoom-in;
-    background: none;
-    border: none;
-    width: 100%;
-    text-align: left;
-    padding: 0;
-    font: inherit;
-    color: inherit;
+    margin: 0;
 }
 .gallery-lightbox {
     position: fixed;
@@ -188,22 +182,22 @@
             <div class="gallery-grid">
                 
                 <div class="gallery-item reveal-up">
-                    <figure class="gallery-figure" data-full-src="../assets/ragnarok_mascot.png">
-                        <picture><source srcset="../assets/ragnarok_mascot.webp" type="image/webp"><img src="../assets/ragnarok_mascot.png" alt="The Ragnarǫk mascot — Doom of the Gods" loading="lazy"></picture>
+                    <figure class="gallery-figure" data-full-src="../assets/ragnarok_mascot.png" data-caption="The Ragnarǫk mascot — Doom of the Gods">
+                        <picture><source srcset="../assets/ragnarok_mascot.webp" type="image/webp"><img class="gallery-img" src="../assets/ragnarok_mascot.png" alt="The Ragnarǫk mascot — Doom of the Gods" loading="lazy"></picture>
                     </figure>
                     <p class="gallery-caption">The Ragnarǫk mascot — Doom of the Gods</p>
                 </div>
 
                 <div class="gallery-item reveal-up">
-                    <figure class="gallery-figure" data-full-src="../assets/ragnarok_logolockup.png">
-                        <picture><source srcset="../assets/ragnarok_logolockup.webp" type="image/webp"><img src="../assets/ragnarok_logolockup.png" alt="Ragnarǫk logolockup" loading="lazy"></picture>
+                    <figure class="gallery-figure" data-full-src="../assets/ragnarok_logolockup.png" data-caption="Ragnarǫk logolockup">
+                        <picture><source srcset="../assets/ragnarok_logolockup.webp" type="image/webp"><img class="gallery-img" src="../assets/ragnarok_logolockup.png" alt="Ragnarǫk logolockup" loading="lazy"></picture>
                     </figure>
                     <p class="gallery-caption">Ragnarǫk logolockup</p>
                 </div>
 
                 <div class="gallery-item reveal-up">
-                    <figure class="gallery-figure" data-full-src="../assets/ragnarok_logomark.png">
-                        <picture><source srcset="../assets/ragnarok_logomark.webp" type="image/webp"><img src="../assets/ragnarok_logomark.png" alt="Ragnarǫk logomark seal" loading="lazy"></picture>
+                    <figure class="gallery-figure" data-full-src="../assets/ragnarok_logomark.png" data-caption="Ragnarǫk logomark seal">
+                        <picture><source srcset="../assets/ragnarok_logomark.webp" type="image/webp"><img class="gallery-img" src="../assets/ragnarok_logomark.png" alt="Ragnarǫk logomark seal" loading="lazy"></picture>
                     </figure>
                     <p class="gallery-caption">Ragnarǫk logomark seal</p>
                 </div>
@@ -279,7 +273,7 @@
     img.src = '';
     document.body.style.overflow = '';
   }
-  document.querySelectorAll('.gallery-item[data-full-src]').forEach(item => {
+  document.querySelectorAll('.gallery-figure[data-full-src]').forEach(item => {
     item.addEventListener('click', () => open(item.dataset.fullSrc, item.dataset.caption));
     item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(item.dataset.fullSrc, item.dataset.caption); } });
   });

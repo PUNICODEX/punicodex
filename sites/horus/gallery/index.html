@@ -27,15 +27,9 @@
 
   <style>
 /* Gallery lightbox */
-.gallery-item {
+.gallery-figure {
     cursor: zoom-in;
-    background: none;
-    border: none;
-    width: 100%;
-    text-align: left;
-    padding: 0;
-    font: inherit;
-    color: inherit;
+    margin: 0;
 }
 .gallery-lightbox {
     position: fixed;
@@ -188,22 +182,22 @@
             <div class="gallery-grid">
                 
                 <div class="gallery-item reveal-up">
-                    <figure class="gallery-figure" data-full-src="../assets/horus_mascot.png">
-                        <picture><source srcset="../assets/horus_mascot.webp" type="image/webp"><img src="../assets/horus_mascot.png" alt="The Ḥr mascot — Sky, Kingship, Falcon" loading="lazy"></picture>
+                    <figure class="gallery-figure" data-full-src="../assets/horus_mascot.png" data-caption="The Ḥr mascot — Sky, Kingship, Falcon">
+                        <picture><source srcset="../assets/horus_mascot.webp" type="image/webp"><img class="gallery-img" src="../assets/horus_mascot.png" alt="The Ḥr mascot — Sky, Kingship, Falcon" loading="lazy"></picture>
                     </figure>
                     <p class="gallery-caption">The Ḥr mascot — Sky, Kingship, Falcon</p>
                 </div>
 
                 <div class="gallery-item reveal-up">
-                    <figure class="gallery-figure" data-full-src="../assets/horus_logolockup.png">
-                        <picture><source srcset="../assets/horus_logolockup.webp" type="image/webp"><img src="../assets/horus_logolockup.png" alt="Ḥr logolockup" loading="lazy"></picture>
+                    <figure class="gallery-figure" data-full-src="../assets/horus_logolockup.png" data-caption="Ḥr logolockup">
+                        <picture><source srcset="../assets/horus_logolockup.webp" type="image/webp"><img class="gallery-img" src="../assets/horus_logolockup.png" alt="Ḥr logolockup" loading="lazy"></picture>
                     </figure>
                     <p class="gallery-caption">Ḥr logolockup</p>
                 </div>
 
                 <div class="gallery-item reveal-up">
-                    <figure class="gallery-figure" data-full-src="../assets/horus_logomark.png">
-                        <picture><source srcset="../assets/horus_logomark.webp" type="image/webp"><img src="../assets/horus_logomark.png" alt="Ḥr logomark seal" loading="lazy"></picture>
+                    <figure class="gallery-figure" data-full-src="../assets/horus_logomark.png" data-caption="Ḥr logomark seal">
+                        <picture><source srcset="../assets/horus_logomark.webp" type="image/webp"><img class="gallery-img" src="../assets/horus_logomark.png" alt="Ḥr logomark seal" loading="lazy"></picture>
                     </figure>
                     <p class="gallery-caption">Ḥr logomark seal</p>
                 </div>
@@ -279,7 +273,7 @@
     img.src = '';
     document.body.style.overflow = '';
   }
-  document.querySelectorAll('.gallery-item[data-full-src]').forEach(item => {
+  document.querySelectorAll('.gallery-figure[data-full-src]').forEach(item => {
     item.addEventListener('click', () => open(item.dataset.fullSrc, item.dataset.caption));
     item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(item.dataset.fullSrc, item.dataset.caption); } });
   });

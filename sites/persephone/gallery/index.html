@@ -27,15 +27,9 @@
 
   <style>
 /* Gallery lightbox */
-.gallery-item {
+.gallery-figure {
     cursor: zoom-in;
-    background: none;
-    border: none;
-    width: 100%;
-    text-align: left;
-    padding: 0;
-    font: inherit;
-    color: inherit;
+    margin: 0;
 }
 .gallery-lightbox {
     position: fixed;
@@ -188,22 +182,22 @@
             <div class="gallery-grid">
                 
                 <div class="gallery-item reveal-up">
-                    <figure class="gallery-figure" data-full-src="../assets/persephone_mascot.png">
-                        <picture><source srcset="../assets/persephone_mascot.webp" type="image/webp"><img src="../assets/persephone_mascot.png" alt="The Persephonē mascot — Spring, Underworld, Vegetation" loading="lazy"></picture>
+                    <figure class="gallery-figure" data-full-src="../assets/persephone_mascot.png" data-caption="The Persephonē mascot — Spring, Underworld, Vegetation">
+                        <picture><source srcset="../assets/persephone_mascot.webp" type="image/webp"><img class="gallery-img" src="../assets/persephone_mascot.png" alt="The Persephonē mascot — Spring, Underworld, Vegetation" loading="lazy"></picture>
                     </figure>
                     <p class="gallery-caption">The Persephonē mascot — Spring, Underworld, Vegetation</p>
                 </div>
 
                 <div class="gallery-item reveal-up">
-                    <figure class="gallery-figure" data-full-src="../assets/persephone_logolockup.png">
-                        <picture><source srcset="../assets/persephone_logolockup.webp" type="image/webp"><img src="../assets/persephone_logolockup.png" alt="Persephonē logolockup" loading="lazy"></picture>
+                    <figure class="gallery-figure" data-full-src="../assets/persephone_logolockup.png" data-caption="Persephonē logolockup">
+                        <picture><source srcset="../assets/persephone_logolockup.webp" type="image/webp"><img class="gallery-img" src="../assets/persephone_logolockup.png" alt="Persephonē logolockup" loading="lazy"></picture>
                     </figure>
                     <p class="gallery-caption">Persephonē logolockup</p>
                 </div>
 
                 <div class="gallery-item reveal-up">
-                    <figure class="gallery-figure" data-full-src="../assets/persephone_logomark.png">
-                        <picture><source srcset="../assets/persephone_logomark.webp" type="image/webp"><img src="../assets/persephone_logomark.png" alt="Persephonē logomark seal" loading="lazy"></picture>
+                    <figure class="gallery-figure" data-full-src="../assets/persephone_logomark.png" data-caption="Persephonē logomark seal">
+                        <picture><source srcset="../assets/persephone_logomark.webp" type="image/webp"><img class="gallery-img" src="../assets/persephone_logomark.png" alt="Persephonē logomark seal" loading="lazy"></picture>
                     </figure>
                     <p class="gallery-caption">Persephonē logomark seal</p>
                 </div>
@@ -279,7 +273,7 @@
     img.src = '';
     document.body.style.overflow = '';
   }
-  document.querySelectorAll('.gallery-item[data-full-src]').forEach(item => {
+  document.querySelectorAll('.gallery-figure[data-full-src]').forEach(item => {
     item.addEventListener('click', () => open(item.dataset.fullSrc, item.dataset.caption));
     item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(item.dataset.fullSrc, item.dataset.caption); } });
   });
