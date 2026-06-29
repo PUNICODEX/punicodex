@@ -3,9 +3,9 @@
  * Update data-version.json from canonical sources.
  * Run automatically by `npm run generate`.
  */
-const fs = require('fs');
-const path = require('path');
-const crypto = require('crypto');
+const fs = require('node:fs');
+const path = require('node:path');
+const crypto = require('node:crypto');
 
 const root = path.join(__dirname, '..');
 const versionPath = path.join(root, 'data-version.json');
@@ -47,8 +47,8 @@ function countOriginalScripts() {
   const match = code.match(/const ORIGINAL_SCRIPTS = \{([\s\S]*?)\n\};/);
   if (!match) return 0;
   const sandbox = { ORIGINAL_SCRIPTS: {} };
-  require('vm').createContext(sandbox);
-  require('vm').runInContext(`ORIGINAL_SCRIPTS = {${match[1]}};`, sandbox);
+  require('node:vm').createContext(sandbox);
+  require('node:vm').runInContext(`ORIGINAL_SCRIPTS = {${match[1]}};`, sandbox);
   return Object.keys(sandbox.ORIGINAL_SCRIPTS).length;
 }
 
@@ -80,10 +80,11 @@ if (hashesChanged) {
 
 const major = existing.schema?.major || 1;
 const minor = existing.schema?.minor || 0;
-const version = `${major}.${minor}.${patch}`;
 
 const licenseSpdx = process.env.PUNYCODEX_LICENSE || existing.license?.spdx || 'TBD';
 const licenseUrl = process.env.PUNYCODEX_LICENSE_URL || existing.license?.url || '';
+const licenseChanged =
+  licenseSpdx !== (existing.license?.spdx || 'TBD') || licenseUrl !== (existing.license?.url || '');
 
 const counts = {
   entries: lexicon.length,
@@ -92,11 +93,18 @@ const counts = {
   originalScripts: countOriginalScripts(),
   sourceCatalogEntries: countSourceCatalog(),
 };
+const countsChanged = JSON.stringify(existing.counts) !== JSON.stringify(counts);
+
+// A license change is material enough to record, even when hashes/counts
+// are stable. Bump the patch when the license changes.
+if (licenseChanged && !hashesChanged && !countsChanged) {
+  patch += 1;
+}
+const version = `${major}.${minor}.${patch}`;
 
 // Only rewrite the file when something material changed. This keeps
 // `npm run generate` idempotent and avoids timestamp-only diffs in CI.
-const countsChanged = JSON.stringify(existing.counts) !== JSON.stringify(counts);
-if (!hashesChanged && !countsChanged && existing.version === version) {
+if (!hashesChanged && !countsChanged && !licenseChanged && existing.version === version) {
   console.log(`data-version.json unchanged: ${version}`);
   process.exit(0);
 }
@@ -119,5 +127,5 @@ const versionDoc = {
   },
 };
 
-fs.writeFileSync(versionPath, JSON.stringify(versionDoc, null, 2) + '\n');
+fs.writeFileSync(versionPath, `${JSON.stringify(versionDoc, null, 2)}\n`);
 console.log(`data-version.json updated: ${version}`);

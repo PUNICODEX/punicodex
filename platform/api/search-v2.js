@@ -125,11 +125,9 @@ function getSessionToken(req) {
   const header = req.headers['x-session-token'] || '';
   if (header.length >= 8 && header.length <= 64) return header;
 
-  // Derive a stable anonymous token from UA + IP (not personally identifying)
-  const ua = req.headers['user-agent'] || '';
-  const ip = req.headers['x-forwarded-for'] || req.connection?.remoteAddress || '';
-  if (!ua && !ip) return null;
-  return crypto.createHash('sha256').update(`punycodex:${ua}:${ip}`).digest('hex').substring(0, 32);
+  // Generate a cryptographically random anonymous session token.
+  // The client must store and resend it as x-session-token for continuity.
+  return crypto.randomBytes(16).toString('hex');
 }
 
 function getOrCreateSession(token) {

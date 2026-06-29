@@ -19,24 +19,7 @@ if (!fs.existsSync(OUT_DIR)) {
 }
 
 // Load lexicon
-const lexiconPath = path.join(__dirname, '..', 'mobile', 'shared', 'lexicon.js');
-const lexiconSrc = fs.readFileSync(lexiconPath, 'utf8');
-
-// Extract LEXICON array from the JS file
-// The lexicon.js exports: const LEXICON = [...];
-const lexiconMatch = lexiconSrc.match(/const\s+LEXICON\s*=\s*(\[.*?\]);/s);
-if (!lexiconMatch) {
-    console.error('Could not find LEXICON array in lexicon.js');
-    process.exit(1);
-}
-
-let LEXICON;
-try {
-    LEXICON = eval(lexiconMatch[1]);
-} catch (e) {
-    console.error('Failed to parse LEXICON:', e.message);
-    process.exit(1);
-}
+const { LEXICON } = require(path.join(__dirname, '..', 'mobile', 'shared', 'lexicon.js'));
 
 // Filter and slim lexicon for keyboard (keep fields needed for suggestions + variant display)
 const slimLexicon = LEXICON.map(e => ({
@@ -57,22 +40,7 @@ fs.writeFileSync(path.join(OUT_DIR, 'lexicon.json'), JSON.stringify(slimLexicon)
 console.log(`Wrote ${slimLexicon.length} lexicon entries`);
 
 // Load unicode directory and build keyboard palette
-const dirPath = path.join(__dirname, '..', 'mobile', 'shared', 'unicode-dir.js');
-const dirSrc = fs.readFileSync(dirPath, 'utf8');
-
-const dirMatch = dirSrc.match(/const\s+UNICODE_DIR\s*=\s*(\[.*?\]);/s);
-if (!dirMatch) {
-    console.error('Could not find UNICODE_DIR array in unicode-dir.js');
-    process.exit(1);
-}
-
-let UNICODE_DIR;
-try {
-    UNICODE_DIR = eval(dirMatch[1]);
-} catch (e) {
-    console.error('Failed to parse UNICODE_DIR:', e.message);
-    process.exit(1);
-}
+const { UNICODE_DIR } = require(path.join(__dirname, '..', 'mobile', 'shared', 'unicode-dir.js'));
 
 // Curate keyboard palette: all categories with sensible per-category limits
 const PALETTE_LIMITS = {

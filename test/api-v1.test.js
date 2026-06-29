@@ -113,6 +113,8 @@ async function runTests() {
   const authenticityReport = require('../api/v1/authenticity/report/index.js');
   const v1Policy = require('../api/v1/policy/index.js');
   const v1PolicyEvaluate = require('../api/v1/policy/evaluate/index.js');
+  const v1Appraise = require('../api/v1/appraise/index.js');
+  const v1AppraiseBatch = require('../api/v1/appraise/batch/index.js');
   const openapi = require('../api/v1/openapi.json.js');
   const docs = require('../api/v1/docs/index.js');
   const version = require('../api/v1/version/index.js');
@@ -504,6 +506,27 @@ async function runTests() {
     assertEnvelope(body);
     assert.ok(['block', 'warn'].includes(body.data.action));
     assert.ok(body.data.tier);
+  });
+
+  await test('GET /api/v1/appraise returns appraisal envelope', async () => {
+    const { status, body } = await invoke(v1Appraise, 'GET', '/api/v1/appraise?q=apóllōn.com');
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+    assert.strictEqual(body.data.appraisal.currency, 'USD');
+    assert.ok(Number.isInteger(body.data.appraisal.unicodeValue));
+    assert.ok(body.data.appraisal.unicodeValue >= 0);
+    assert.strictEqual(body.data.lexiconMatch?.id, 'apollon');
+  });
+
+  await test('POST /api/v1/appraise/batch appraises multiple domains', async () => {
+    const { status, body } = await invoke(v1AppraiseBatch, 'POST', '/api/v1/appraise/batch', {
+      body: { domains: ['zeus.com', 'apóllōn.com', 'аррӏе.com'] },
+    });
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+    assert.strictEqual(body.data.length, 3);
+    const homograph = body.data.find((d) => d.safety.tier === 'suspicious');
+    assert.ok(homograph, 'batch should flag a homograph');
   });
 
   console.log(`\n  ${passed} passed, ${failed} failed`);

@@ -18,8 +18,6 @@ function setCors(req, res) {
   if (origin && ALLOWED_ORIGINS.has(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin);
     res.setHeader('Access-Control-Allow-Credentials', 'true');
-  } else {
-    res.setHeader('Access-Control-Allow-Origin', '*');
   }
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader(

@@ -206,6 +206,44 @@ function validateAvailabilityBody(body) {
   return { params: { status: body.status }, errors: [] };
 }
 
+function validateAppraiseQuery(query) {
+  const qparams = query || {};
+  const errors = [];
+  const q = validateString(qparams.q, 'q', { required: true, maxLength: 256 });
+  if (q) errors.push(q);
+
+  if (errors.length > 0) return { errors };
+  return { params: { q: qparams.q.trim() }, errors: [] };
+}
+
+function validateAppraiseBatchBody(body) {
+  const errors = [];
+  if (!body || typeof body !== 'object') {
+    errors.push(toError('body', 'Request body must be an object'));
+    return { errors };
+  }
+  const { domains } = body;
+  if (!Array.isArray(domains)) {
+    errors.push(toError('domains', 'domains must be an array'));
+    return { errors };
+  }
+  if (domains.length === 0) errors.push(toError('domains', 'domains must not be empty'));
+  if (domains.length > 100) errors.push(toError('domains', 'domains must not exceed 100 items'));
+
+  const normalized = [];
+  for (let i = 0; i < domains.length; i++) {
+    const item = domains[i];
+    if (typeof item !== 'string' || item.trim() === '') {
+      errors.push(toError(`domains[${i}]`, 'Each domain must be a non-empty string'));
+    } else {
+      normalized.push(item.trim());
+    }
+  }
+
+  if (errors.length > 0) return { errors };
+  return { params: { domains: normalized }, errors: [] };
+}
+
 module.exports = {
   VALID_PANTHEONS,
   VALID_TIERS,
@@ -215,6 +253,8 @@ module.exports = {
   validateBatchConvertBody,
   validateAutocompleteQuery,
   validateAvailabilityBody,
+  validateAppraiseQuery,
+  validateAppraiseBatchBody,
   validateId,
   validateString,
   validateInteger,

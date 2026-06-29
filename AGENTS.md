@@ -24,14 +24,18 @@ these in sync, the project uses **canonical sources** and **generated outputs**.
 
 ### Canonical sources (edit these by hand)
 
-- `type/js/lexicon.js` — The 859-entry lexicon. This is the single source of
+- `type/js/lexicon.js` — The 860-entry lexicon. This is the single source of
   truth for all lexicon data.
+- `type/js/original-scripts.js` — Curated original-script mappings and
+  provenance for non-Greek/CJK traditions.
+- `type/js/source-catalog.js` — Rich citation metadata for scholarly reference
+  works.
 - `js/archetypes-v2.js` — Hand-built flagship archetypes, including domain
   ownership and canvas assignments.
 - `platform/db/owned-domains.json` — The complete list of owned Unicode domain
   strings. Every entry here must be covered by an archetype domain set and
   routed in `middleware.js`.
-- `scripts/lore-catalog.json` — Rich scholarly narrative content for the 81
+- `scripts/lore-catalog.json` — Rich scholarly narrative content for the 84
   built flagship entries (pronunciation, mythology, archaeology, sources,
   cultural legacy).
 
@@ -102,16 +106,19 @@ mismatches it reports.
 
 `scripts/generate.js` orchestrates all generation scripts in dependency order:
 
-1. `scripts/sync-shared-lexicon.js`
-2. `scripts/sync-shared-engine.js`
-3. `scripts/build-android-assets.js`
-4. `scripts/export-platform-lexicon.js`
-5. `scripts/sync-middleware-domains.js`
-6. `scripts/sync-public-copy.js`
-7. `scripts/generate-temples.js`
-8. `scripts/gen-sitemap.js`
-9. `scripts/inject-analytics.js`
-10. `scripts/update-data-version.js`
+1. `platform/generate-unicode-dir-v2.js`
+2. `scripts/sync-shared-lexicon.js`
+3. `scripts/sync-shared-engine.js`
+4. `scripts/build-android-assets.js`
+5. `scripts/export-platform-lexicon.js`
+6. `scripts/build-original-script-lookup.js`
+7. `scripts/export-lore-catalog.js`
+8. `scripts/sync-middleware-domains.js`
+9. `scripts/sync-public-copy.js`
+10. `scripts/generate-temples.js`
+11. `scripts/gen-sitemap.js`
+12. `scripts/inject-analytics.js`
+13. `scripts/update-data-version.js`
 
 ### Data versioning (Phase 2.5)
 
@@ -147,29 +154,27 @@ done manually or via a repository webhook once a license is chosen.
 
 ### Data licensing (Phase 2.6)
 
-The dataset license has **not** been chosen yet. `data-version.json` exposes a
-`license` object with `spdx: "TBD"` until a decision is made.
+The PÚNYCODEX dataset is released under **CC BY 4.0** (Creative Commons
+Attribution 4.0 International). See the root `LICENSE` file for the full legal
+text.
 
-Common options for a canonical scholarly dataset:
+- **You are free** to share and adapt the dataset, even commercially.
+- **You must** give appropriate credit, provide a link to the license, and
+  indicate if changes were made.
 
-- **CC BY 4.0** — requires attribution; allows commercial reuse and derivatives.
-  Best for maximum distribution and academic citation.
-- **CC BY-SA 4.0** — attribution + share-alike. Useful if you want downstream
-  datasets to remain open.
-- **CC BY-NC 4.0** — attribution + non-commercial. Restricts commercial reuse.
-- **ODbL 1.0** — designed specifically for databases; share-alike for the
-  dataset itself.
+The software code in this repository remains under the license declared in
+`package.json` (currently ISC) unless otherwise noted in individual files.
 
-To apply a license:
+To keep `data-version.json` and the DataCite metadata XML in sync, set these
+environment variables before running `npm run generate`:
 
-1. Choose a license and add a `LICENSE` file at the repository root.
-2. Set `PUNYCODEX_LICENSE` and `PUNYCODEX_LICENSE_URL` environment variables
-   before running `npm run generate`.
-3. `data-version.json` and the DataCite metadata XML will include the chosen
-   license automatically.
-4. Update the API docs and footer links to reference the license.
+```bash
+export PUNYCODEX_LICENSE=CC-BY-4.0
+export PUNYCODEX_LICENSE_URL=https://creativecommons.org/licenses/by/4.0/
+```
 
-Until then, the data remains "all rights reserved" by the project owner.
+If the license ever changes, `scripts/update-data-version.js` will detect the
+change and bump the data-version patch automatically.
 
 ### Safe-edit scripts (Phase 3)
 
@@ -185,6 +190,66 @@ Use these instead of hand-editing multiple canonical files:
 
 `scripts/sync-mobile-lexicon.js` is **deprecated** and will exit with an error;
 `mobile/shared/lexicon.js` is now a full copy of the canonical lexicon.
+
+### Authoritative import framework (Monolithic Flywheel Evolution)
+
+Publicly available scholarly datasets (Wikidata, Perseus/LSJ, Cologne Sanskrit,
+CDLI, Rundata, etc.) are imported through `data/authoritative/`.
+
+**Governance rule: canonical sources are still king.** Importers are not
+allowed to mutate canonical sources directly. They produce reviewed suggestion
+batches that are applied with `scripts/apply-suggestions.js`.
+
+Directory layout:
+
+- `data/authoritative/importers/{source}.js` — one Node module per upstream source
+- `data/authoritative/source-tiers.json` — authority tier ranking for the merge cascade
+- `data/authoritative/snapshots/{source}/{runId}.json` — raw upstream responses
+- `data/authoritative/staging/suggestions/{source}/{runId}.json` — per-source normalized suggestions
+- `data/authoritative/staging/merged/{runId}.json` — multi-source merged batch
+- `data/authoritative/staging/merged/{runId}-conflicts.json` — same-tier conflicts for review
+- `data/authoritative/staging/applied/{source}-{runId}.json` — audit log of applied batches
+
+Workflow:
+
+1. **Run an importer**
+   ```bash
+   node scripts/import-runner.js {source} [--run-id {id}] [--dry-run]
+   ```
+
+2. **Run the multi-source orchestrator**
+   ```bash
+   node scripts/import-orchestrator.js [--run-id {id}]
+   ```
+   - Sources are ranked by `data/authoritative/source-tiers.json`.
+   - Higher-tier suggestions override lower-tier suggestions for the same
+     `id:field`.
+   - Same-tier conflicts are written to the conflicts file for manual review.
+
+3. **Inspect suggestions**
+   ```bash
+   node scripts/import-runner.js {source} --dry-run
+   ```
+
+4. **Apply reviewed suggestions**
+   ```bash
+   node scripts/apply-suggestions.js data/authoritative/staging/merged/{runId}.json
+   ```
+   - Suggestions with `confidence < 0.5` are skipped automatically.
+
+5. **Regenerate and test**
+   ```bash
+   npm run generate
+   npm test
+   ```
+
+Only these suggestion fields are currently auto-applied:
+`meaning`, `greek`, `domain`, `sourceCatalog`, `originalScript`. More complex
+fields (`etymology`, `variant`, `lore`) are flagged for manual review.
+
+Every suggestion must carry a `provenance` object with `source`, `retrievedAt`,
+`url`, and `license`. Upstream data that is more restrictive than CC BY 4.0
+must be reviewed before inclusion.
 
 ---
 
@@ -319,12 +384,12 @@ The Realms page uses filter buttons (All / Norse / Greek / Japanese) and links e
 
 ### Architecture
 
-**859 individual canonical landing pages** at `/sites/{id}/` — one per lexicon entry.
+**860 individual canonical landing pages** at `/sites/{id}/` — one per lexicon entry.
 
 | Type | Count | Location | Content Depth |
 |------|-------|----------|---------------|
-| Flagship | 81 | `sites/{id}/` (existing / hand-expanded) | Hand-crafted: myths, pronunciation, symbols, domains, custom canvas |
-| Base | 794 | `sites/{id}/` (generated) | Programmatic: name cards, breakdown, tier explanation, sources, related entries |
+| Flagship | 83 | `sites/{id}/` (existing / hand-expanded) | Hand-crafted: myths, pronunciation, symbols, domains, custom canvas |
+| Base | 777 | `sites/{id}/` (generated) | Programmatic: name cards, breakdown, tier explanation, sources, related entries |
 
 **Shared infrastructure:**
 - `css/temple-base.css` — Common temple styles (nav, hero, sections, cards, footer, responsive)
@@ -365,12 +430,12 @@ The Realms page uses filter buttons (All / Norse / Greek / Japanese) and links e
 
 ### Lexicon Browse Page
 
-`/lexicon/index.html` — A filterable, searchable grid of all 859 entries.
+`/lexicon/index.html` — A filterable, searchable grid of all 860 entries.
 
 - **Filters:** Pantheon pills (21), Tier pills (dual / tier-1 / tier-2)
 - **Search:** Debounced input matching ASCII, Unicode, Greek, domain
 - **Sort:** Alphabetical, Pantheon group, Tier
-- **Stats bar:** "859 entries · 21 pantheons · 3 dual-tier · 270 tier-1 · 586 tier-2"
+- **Stats bar:** "860 entries · 21 pantheons · 3 dual-tier · 270 tier-1 · 587 tier-2"
 - Each card links to `/sites/{id}/`
 
 ---
@@ -382,7 +447,7 @@ Four test suites run via `node test/run-all.js`:
 1. **Lexicon Validator** (`type/js/validate.js`) — Schema, uniqueness, trie integrity, Unicode renderability, breakdown integrity, sources. 74,000+ assertions.
 2. **Engine Unit Tests** (`type/js/test-engine.js`) — 49 tests covering trie construction, exact match, completions, pantheon filtering, valid next characters, regression tests.
 3. **Link Checker** (`test/links.js`) — Scans all HTML files, validates 44,748 internal links across 2,098 files.
-4. **SEO Validator** (`scripts/validate-seo.js`) — Verifies schema.org, meta tags, canonical URLs on all 859 temple pages.
+4. **SEO Validator** (`scripts/validate-seo.js`) — Verifies schema.org, meta tags, canonical URLs on all 860 temple pages.
 
 Browser test page: `type/test.html`
 
@@ -465,7 +530,7 @@ User Query → Lexicon Filter → Results Engine
 
 | Table | Purpose |
 |-------|---------|
-| `entries` | 859 lexicon items with tier, pantheon, meaning |
+| `entries` | 860 lexicon items with tier, pantheon, meaning |
 | `indexed_sites` | Crawled xn-- domains with metadata |
 | `availability` | Lexicon entries with no live site → registrar links |
 | `breakdowns` | Character-by-character Unicode analysis |

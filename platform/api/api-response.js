@@ -10,13 +10,23 @@ const CORS_HEADERS = {
   'Access-Control-Max-Age': '86400',
 };
 
+const ALLOWED_ORIGINS = new Set(
+  (process.env.ALLOWED_ORIGINS || 'https://punycodex.com,http://localhost:3456')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean)
+);
+
 function generateRequestId() {
   return `req_${crypto.randomBytes(8).toString('hex')}`;
 }
 
 function setCors(req, res) {
-  const origin = req.headers.origin || '*';
-  res.setHeader('Access-Control-Allow-Origin', origin);
+  const origin = req.headers.origin;
+  if (origin && ALLOWED_ORIGINS.has(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+  }
   res.setHeader('Vary', 'Origin');
   for (const [key, value] of Object.entries(CORS_HEADERS)) {
     res.setHeader(key, value);

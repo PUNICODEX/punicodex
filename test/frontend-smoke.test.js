@@ -89,4 +89,11 @@ test('authenticity checker page exists and loads script', () => {
   assert.ok(html.includes('data-api-endpoint="/api/v1/authenticity/check"'));
 });
 
+test('domain appraiser page exists and calls appraisal api', () => {
+  const html = readHtml('appraise/index.html');
+  assert.ok(html.includes('<title>'));
+  assert.ok(html.includes('/api/v1/appraise'));
+  assert.ok(html.includes('appraise-form'));
+});
+
 run();

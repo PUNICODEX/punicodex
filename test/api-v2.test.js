@@ -308,6 +308,25 @@ async function runTests() {
     assert.strictEqual(body.data.reason, 'blocklist');
   });
 
+  await test('GET /api/v2/appraise returns appraisal envelope', async () => {
+    const { status, body } = await invoke('GET', '/api/v2/appraise?q=apóllōn.com');
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+    assert.strictEqual(body.data.appraisal.currency, 'USD');
+    assert.ok(Number.isInteger(body.data.appraisal.unicodeValue));
+    assert.strictEqual(body.data.lexiconMatch?.id, 'apollon');
+  });
+
+  await test('POST /api/v2/appraise/batch appraises multiple domains', async () => {
+    const { status, body } = await invoke('POST', '/api/v2/appraise/batch', {
+      body: { domains: ['zeus.com', 'apóllōn.com'] },
+    });
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+    assert.strictEqual(body.data.length, 2);
+    assert.ok(body.data.every((d) => d.appraisal?.currency === 'USD'));
+  });
+
   console.log(`\nAPI v2: ${passed} passed, ${failed} failed`);
   if (failed > 0) process.exit(1);
 }

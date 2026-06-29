@@ -333,6 +333,35 @@ LEXICON.forEach((entry, i) => {
     }
   }
 
+  // Senses check (optional)
+  if (entry.senses !== undefined) {
+    assert(Array.isArray(entry.senses), `[${label}] senses must be an array`);
+    const ALLOWED_SENSE_TYPES = [
+      'primary',
+      'etymology',
+      'encyclopedic',
+      'mythological',
+      'scholarly',
+    ];
+    entry.senses.forEach((sense, k) => {
+      assert(
+        typeof sense === 'object' && sense !== null,
+        `[${label}] senses[${k}] must be an object`
+      );
+      assert(
+        typeof sense.type === 'string' && ALLOWED_SENSE_TYPES.includes(sense.type),
+        `[${label}] senses[${k}] type must be one of: ${ALLOWED_SENSE_TYPES.join(', ')}`
+      );
+      assert(
+        typeof sense.text === 'string' && sense.text.length > 0,
+        `[${label}] senses[${k}] text must be a non-empty string`
+      );
+      if (sense.note !== undefined) {
+        assert(typeof sense.note === 'string', `[${label}] senses[${k}] note must be a string`);
+      }
+    });
+  }
+
   // Sources check
   if (Array.isArray(entry.sources)) {
     assert(entry.sources.length > 0, `[${label}] sources array must not be empty`);

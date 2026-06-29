@@ -17,7 +17,19 @@
         if (archetype.hasAdSite) {
             return `/sites/${archetype.id}/lore/`;
         }
-        return archetype.domainUnicode ? `https://${archetype.domainUnicode}` : null;
+        // Always link built temples to punycodex.com so visitors never hit a
+        // raw Unicode/punycode domain and trigger browser safe-browsing warnings.
+        return archetype.built ? `/sites/${archetype.id}/` : null;
+    }
+
+    function escapeHtml(str) {
+        if (str == null) return '';
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
     }
 
     function renderPantheonGrid() {
@@ -37,14 +49,21 @@
             const tierClass = a.tier === 'dual-tier' ? 'dual-tier' : a.tier;
             const badgeText = !a.built ? 'Awaiting' : a.tier === 'tier-1' ? 'Tier 1' : a.tier === 'tier-2' ? 'Tier 2' : 'Dual-Tier';
 
+            const scriptInfo = typeof ORIGINAL_SCRIPT_LOOKUP !== 'undefined' ? ORIGINAL_SCRIPT_LOOKUP[a.id] : null;
+            const originalScript = scriptInfo ? scriptInfo.originalScript : (a.greek || '');
+            const scriptName = scriptInfo ? scriptInfo.scriptName : 'Greek';
+            const scriptLabel = originalScript && originalScript !== '—'
+                ? `<span class="card-script-name">${escapeHtml(scriptName)}</span>${escapeHtml(originalScript)}`
+                : '<span class="card-script-name">Scholarly transliteration</span>';
+
             return `
                 <${tag} ${hrefAttr} class="archetype-card reveal-up ${unbuiltClass}" style="--stagger-index:${index % 6}">
                     <div class="card-portrait">
-                        <img src="${a.mascotPath}" alt="${a.name} — ${a.domain}" loading="lazy" onerror="this.style.opacity='0'; this.parentElement.style.background='linear-gradient(90deg, rgba(255,255,255,0.02) 25%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.02) 75%)'; this.parentElement.style.backgroundSize='200% 100%'; this.parentElement.style.animation='skeletonShimmer 1.5s infinite';">
+                        <img src="${a.mascotPath}" alt="${escapeHtml(a.name)} — ${escapeHtml(a.domain)}" loading="lazy" onerror="this.style.opacity='0'; this.parentElement.style.background='linear-gradient(90deg, rgba(255,255,255,0.02) 25%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.02) 75%)'; this.parentElement.style.backgroundSize='200% 100%'; this.parentElement.style.animation='skeletonShimmer 1.5s infinite';">
                     </div>
-                    <p class="card-name">${a.name}</p>
-                    <p class="card-greek">${a.greek}</p>
-                    <p class="card-domain">${a.domain}</p>
+                    <p class="card-name">${escapeHtml(a.name)}</p>
+                    <p class="card-greek">${scriptLabel}</p>
+                    <p class="card-domain">${escapeHtml(a.domain)}</p>
                     <span class="card-badge ${tierClass}">${badgeText}</span>
                 </${tag}>
             `;

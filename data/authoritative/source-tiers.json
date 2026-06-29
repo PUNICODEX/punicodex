@@ -1,0 +1,37 @@
+{
+  "updatedAt": "2026-06-26",
+  "description": "Authority tiers for the PÚNYCODEX multi-source import cascade. Lower rank numbers are more authoritative. A higher-tier source overrides a lower-tier source when they conflict; same-tier conflicts are flagged for manual review.",
+  "tiers": [
+    {
+      "rank": 1,
+      "name": "primary-lexicon",
+      "description": "Discipline-standard dictionaries, grammars, and inscription corpora",
+      "sources": [
+        "perseus-greek",
+        "cologne-sanskrit",
+        "etcsL-sumerian",
+        "psd-akkadian",
+        "rundata-norse",
+        "faulkner-egyptian",
+        "allen-egyptian"
+      ]
+    },
+    {
+      "rank": 2,
+      "name": "scholarly-corpus",
+      "description": "Curated scholarly text collections and specialized web corpora",
+      "sources": [
+        "ctext-chinese",
+        "celt-irish",
+        "gretil-sanskrit",
+        "skaldic-norse"
+      ]
+    },
+    {
+      "rank": 3,
+      "name": "general-knowledge",
+      "description": "Cross-domain entity graphs and encyclopedias used for linking and gap-filling",
+      "sources": ["wikidata"]
+    }
+  ]
+}

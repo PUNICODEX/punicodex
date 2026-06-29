@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://punycodex.com/data/authoritative/staging/suggestion-schema.json",
+  "title": "PÚNYCODEX Authoritative Import Suggestion Batch",
+  "type": "object",
+  "required": ["source", "runId", "retrievedAt", "license", "suggestions"],
+  "properties": {
+    "source": {
+      "type": "string",
+      "description": "Importer source identifier, e.g. 'wikidata'"
+    },
+    "runId": {
+      "type": "string",
+      "description": "Unique run identifier, safe for use as a filename"
+    },
+    "retrievedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "license": {
+      "type": "string",
+      "description": "License of the upstream data (e.g. 'CC0', 'CC BY-SA 4.0')"
+    },
+    "url": {
+      "type": "string",
+      "description": "Primary URL the data was retrieved from"
+    },
+    "suggestions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/suggestion"
+      }
+    }
+  },
+  "definitions": {
+    "suggestion": {
+      "type": "object",
+      "required": ["id", "field", "value", "provenance"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Lexicon entry id the suggestion targets"
+        },
+        "field": {
+          "type": "string",
+          "enum": [
+            "meaning",
+            "greek",
+            "domain",
+            "etymology",
+            "variant",
+            "sourceCatalog",
+            "originalScript",
+            "lore"
+          ]
+        },
+        "value": {},
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "note": {
+          "type": "string"
+        },
+        "provenance": {
+          "type": "object",
+          "required": ["source", "retrievedAt"],
+          "properties": {
+            "source": { "type": "string" },
+            "recordId": { "type": "string" },
+            "retrievedAt": { "type": "string", "format": "date-time" },
+            "url": { "type": "string" },
+            "license": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

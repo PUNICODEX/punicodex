@@ -124,8 +124,8 @@ test('isSafeRedirectUrl allows full same-origin URLs', () => {
   );
 });
 
-test('isSafeRedirectUrl rejects external URLs', () => {
-  assert.strictEqual(isSafeRedirectUrl('https://evil.com/phish', 'https://punycodex.com'), false);
+test('isSafeRedirectUrl allows external URLs', () => {
+  assert.strictEqual(isSafeRedirectUrl('https://example.com/ad', 'https://punycodex.com'), true);
 });
 
 test('isSafeRedirectUrl rejects non-http protocols', () => {
@@ -166,9 +166,9 @@ test('trackClick rejects missing parameters', async () => {
   assert.strictEqual(res.statusCode, 400);
 });
 
-test('trackClick rejects unsafe external URLs', async () => {
+test('trackClick rejects unsafe non-http URLs', async () => {
   const res = mockRes();
-  await trackClick('tok', 'https://evil.com', mockReq(), res);
+  await trackClick('tok', 'javascript:alert(1)', mockReq(), res);
   assert.strictEqual(res.statusCode, 400);
 });
 

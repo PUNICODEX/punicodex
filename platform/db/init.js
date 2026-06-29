@@ -174,6 +174,7 @@ const flagshipIds = new Set([
   'midgardr',
   'muspellheimr',
   'nike',
+  'om',
   'odinn',
   'okeanos',
   'olympos',

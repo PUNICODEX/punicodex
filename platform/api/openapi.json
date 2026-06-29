@@ -40,6 +40,31 @@
         }
       }
     },
+    "/names/batch": {
+      "post": {
+        "summary": "Batch look up names by ID",
+        "operationId": "getNamesBatch",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ids": { "type": "array", "items": { "type": "string" }, "maxItems": 100 }
+                },
+                "required": ["ids"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "$ref": "#/components/responses/NameBatchResponse" },
+          "400": { "$ref": "#/components/responses/ValidationError" },
+          "429": { "$ref": "#/components/responses/RateLimitError" }
+        }
+      }
+    },
     "/names/{id}": {
       "get": {
         "summary": "Get a single Unicode name record",
@@ -249,6 +274,44 @@
         },
         "responses": {
           "200": { "$ref": "#/components/responses/BatchConvertResponse" },
+          "400": { "$ref": "#/components/responses/ValidationError" }
+        }
+      }
+    },
+    "/appraise": {
+      "get": {
+        "summary": "Appraise a Unicode domain name",
+        "operationId": "appraiseDomain",
+        "parameters": [
+          { "name": "q", "in": "query", "required": true, "description": "Domain name to appraise.", "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "$ref": "#/components/responses/AppraisalResponse" },
+          "400": { "$ref": "#/components/responses/ValidationError" },
+          "429": { "$ref": "#/components/responses/RateLimitError" }
+        }
+      }
+    },
+    "/appraise/batch": {
+      "post": {
+        "summary": "Batch appraise Unicode domain names",
+        "operationId": "appraiseDomainBatch",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "domains": { "type": "array", "items": { "type": "string" }, "maxItems": 100 }
+                },
+                "required": ["domains"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "$ref": "#/components/responses/AppraisalBatchResponse" },
           "400": { "$ref": "#/components/responses/ValidationError" }
         }
       }
@@ -463,6 +526,30 @@
           }
         }
       },
+      "NameBatchResponse": {
+        "description": "Batch lookup results",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [{ "$ref": "#/components/schemas/Envelope" }],
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Name" }
+                },
+                "meta": {
+                  "type": "object",
+                  "properties": {
+                    "requested": { "type": "integer" },
+                    "returned": { "type": "integer" },
+                    "missing": { "type": "array", "items": { "type": "string" } }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "NameDetailResponse": {
         "description": "Full scholarly record",
         "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
@@ -533,6 +620,14 @@
       },
       "BatchConvertResponse": {
         "description": "Batch conversion results",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+      },
+      "AppraisalResponse": {
+        "description": "Domain appraisal result",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+      },
+      "AppraisalBatchResponse": {
+        "description": "Batch domain appraisal results",
         "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
       },
       "AuthenticityCheckResponse": {

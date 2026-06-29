@@ -89,7 +89,7 @@ async function run() {
     // Create two deterministic tenant sites so pagination behavior is isolated
     // from the current corpus (the word "greek" is not guaranteed to match
     // anything after temple regeneration).
-    const token = 'pagtest-' + Math.random().toString(36).slice(2, 8);
+    const token = `pagtest-${Math.random().toString(36).slice(2, 8)}`;
     const site1 = makeIndexedSite({
       title: `${token} one`,
       tenantName: 'Pagination Tenant 1',

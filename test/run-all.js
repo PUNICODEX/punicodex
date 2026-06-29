@@ -40,6 +40,7 @@ const SUITES = [
   { name: 'Search Service Tests', cmd: 'node test/search.test.js' },
   { name: 'Crawler DB Tests', cmd: 'node test/crawler-db.test.js' },
   { name: 'API v2 Integration Tests', cmd: 'node test/api-v2.test.js' },
+  { name: 'Appraisal Tests', cmd: 'node test/appraise.test.js' },
   { name: 'Observability Tests', cmd: 'node test/observability.test.js' },
   { name: 'Admin Tests', cmd: 'node test/admin.test.js' },
   { name: 'Admin Booking Routes', cmd: 'node test/admin-bookings.test.js' },

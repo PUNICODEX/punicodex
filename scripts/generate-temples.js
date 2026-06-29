@@ -51,6 +51,36 @@ function loadBuiltArchetypeIds() {
 }
 const BUILT_ARCHETYPE_IDS = loadBuiltArchetypeIds();
 
+// ─── Domain status data ───
+function loadOwnedDomains() {
+  try {
+    const raw = fs.readFileSync(
+      path.join(__dirname, '..', 'platform', 'db', 'owned-domains.json'),
+      'utf8'
+    );
+    const list = JSON.parse(raw);
+    return new Set(list.map((d) => d.toLowerCase()));
+  } catch {
+    return new Set();
+  }
+}
+
+function loadAvailabilitySnapshot() {
+  try {
+    const raw = fs.readFileSync(
+      path.join(__dirname, '..', 'data', 'domain-availability.json'),
+      'utf8'
+    );
+    const snapshot = JSON.parse(raw);
+    return snapshot.entries || {};
+  } catch {
+    return {};
+  }
+}
+
+const OWNED_DOMAINS = loadOwnedDomains();
+const AVAILABILITY_SNAPSHOT = loadAvailabilitySnapshot();
+
 function isAsciiOnlyUnicode(entry) {
   return /^[\x00-\x7F]+$/.test(entry.unicode || '');
 }
@@ -181,6 +211,78 @@ function getPunycode(unicode) {
   } catch {
     return null;
   }
+}
+
+function getDisplayDomain(unicode) {
+  return `${unicode.toLowerCase()}.com`;
+}
+
+function getDomainStatus(entry) {
+  const displayDomain = getDisplayDomain(entry.unicode);
+  const punycode = getPunycode(entry.unicode);
+  const asciiDomain = punycode || displayDomain;
+
+  const isOwned =
+    OWNED_DOMAINS.has(displayDomain.toLowerCase()) || OWNED_DOMAINS.has(asciiDomain.toLowerCase());
+
+  if (isOwned) {
+    return {
+      status: 'owned',
+      displayDomain,
+      punycode,
+      label: 'PUNYCODEX Domain',
+      cta: `Visit ${escapeHtml(displayDomain)}`,
+      href: `https://${escapeHtml(asciiDomain)}/`,
+    };
+  }
+
+  const snapshot = AVAILABILITY_SNAPSHOT[entry.id];
+  if (snapshot?.status) {
+    const status = snapshot.status;
+    if (status === 'available') {
+      return {
+        status,
+        displayDomain,
+        punycode,
+        label: 'Available',
+        cta: 'Check registrar availability',
+        href: `https://punycodex.com/search.html?q=${encodeURIComponent(asciiDomain)}`,
+        disclaimer:
+          'Not currently registered according to Verisign RDAP, but registry holds, premium listings, or registrar blocks can still prevent registration. Always verify with a registrar.',
+      };
+    }
+    if (status === 'live' || status === 'registered') {
+      return {
+        status,
+        displayDomain,
+        punycode,
+        label: 'Registered',
+        cta: 'View on PUNYCODEX search',
+        href: `https://punycodex.com/search.html?q=${encodeURIComponent(asciiDomain)}`,
+      };
+    }
+  }
+
+  return {
+    status: 'unknown',
+    displayDomain,
+    punycode,
+    label: 'Status Unknown',
+    cta: 'Check availability',
+    href: `https://punycodex.com/search.html?q=${encodeURIComponent(asciiDomain)}`,
+  };
+}
+
+function getAsciiBanner(entry, status) {
+  if (!isAsciiOnlyUnicode(entry) || status.status === 'owned') {
+    return '';
+  }
+  return `
+    <div class="ascii-banner reveal-up">
+      <div class="ascii-banner-label">ASCII Scholarly Entry</div>
+      <p class="ascii-banner-text">This name is currently represented in plain Latin letters. PUNYCODEX catalogs it as a scholarly reference entry; the Unicode restoration does not add diacritics or original-script marks.</p>
+    </div>
+  `;
 }
 
 function getTierSubtype(entry) {
@@ -316,6 +418,29 @@ function generateTempleHTML(entry, related) {
         .join(' ')
     : '';
 
+  // Senses (multiple attested meanings)
+  const SENSE_LABELS = {
+    primary: 'Primary sense',
+    etymology: 'Etymology',
+    encyclopedic: 'Encyclopedic',
+    mythological: 'Mythological',
+    scholarly: 'Scholarly',
+  };
+  const sensesList = Array.isArray(entry.senses) ? entry.senses : [];
+  const hasSenses = sensesList.length > 0;
+  const sensesHtml = hasSenses
+    ? sensesList
+        .map(
+          (s) => `
+          <div class="sense-item">
+            <span class="sense-label">${escapeHtml(SENSE_LABELS[s.type] || s.type)}</span>
+            <span class="sense-text">${escapeHtml(s.text)}</span>
+            ${s.note ? `<span class="sense-note">${escapeHtml(s.note)}</span>` : ''}
+          </div>`
+        )
+        .join('')
+    : '';
+
   // Etymology section
   const hasEtymology = entry.etymology && typeof entry.etymology === 'object';
   const protoLabel = hasEtymology
@@ -350,9 +475,18 @@ function generateTempleHTML(entry, related) {
           .join('')
       : '';
 
+  // Domain status
+  const domainStatus = getDomainStatus(entry);
+  const asciiBanner = getAsciiBanner(entry, domainStatus);
+
   // Meta
   const pageTitle = `${hasOriginal ? `${originalScript} — ` : ''}${entry.unicode} | ${entry.domain} | PUNYCODEX`;
-  const pageDesc = `Discover ${entry.unicode}.com — the authentic Unicode domain for ${hasOriginal ? `${originalScript}, ` : ''}${entry.domain}. Scholarly orthography, Punycode encoding, and sources: ${entry.sources.join(', ')}.`;
+  const pageDesc =
+    domainStatus.status === 'owned'
+      ? `Discover ${entry.unicode}.com — the authentic Unicode domain for ${hasOriginal ? `${originalScript}, ` : ''}${entry.domain}. Scholarly orthography, Punycode encoding, and sources: ${entry.sources.join(', ')}.`
+      : domainStatus.status === 'available'
+        ? `Scholarly profile of ${entry.unicode}.com — ${entry.domain}. This domain appears available per Verisign RDAP. Sources: ${entry.sources.join(', ')}.`
+        : `Scholarly profile of ${entry.unicode} — ${entry.domain}. PUNYCODEX documents the authentic Unicode orthography. Sources: ${entry.sources.join(', ')}.`;
   const canonicalUrl = `https://punycodex.com/sites/${entry.id}/`;
 
   // Tier feature cards
@@ -454,13 +588,13 @@ ${JSON.stringify(
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">${domainStatus.status === 'owned' ? 'The Authentic Orthography' : domainStatus.status === 'available' ? 'Unicode Domain Profile' : 'Scholarly Name Reference'}</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">${hasOriginal ? escapeHtml(originalScript) : escapeHtml(entry.unicode)}</span>
                     <span class="title-divider"></span>
                     <span class="title-trans">${escapeHtml(entry.unicode)}</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">${escapeHtml(entry.domain)}${entry.meaning ? ` · ${escapeHtml(entry.meaning)}` : ''}</p>
+                <p class="hero-subtitle reveal-up">${escapeHtml(entry.domain)}${entry.meaning ? ` · ${escapeHtml(entry.meaning)}` : ''}${domainStatus.status === 'available' ? ' · appears available' : ''}</p>
                 <div class="hero-meta reveal-up">
                     ${
                       isDual && entry.variants
@@ -474,24 +608,27 @@ ${JSON.stringify(
                         <span class="meta-domain">${entry.unicode.toLowerCase()}.com</span>
                         <span class="domain-connector">·</span>
                         <span class="meta-domain-alt">${(entry.variants.find((v) => v.type === 'owned' || v.type === 'alt-stress') || entry.variants[0]).unicode.toLowerCase()}.com</span>
-                    </div>`
+                    </div>
+                    <span class="meta-badge meta-badge--${domainStatus.status}">${escapeHtml(domainStatus.label)}</span>`
                         : `
                     <span class="meta-badge">${escapeHtml(subtype)}</span>
                     <span class="meta-domain">${entry.unicode.toLowerCase()}.com</span>
+                    <span class="meta-badge meta-badge--${domainStatus.status}">${escapeHtml(domainStatus.label)}</span>
                     `
                     }
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="https://punycodex.com/type/#${entry.id}" class="btn-primary">
-                        <span>Try the Type Tool</span>
+                    <a href="${domainStatus.href}" class="btn-primary${domainStatus.status === 'registered' || domainStatus.status === 'live' || domainStatus.status === 'unknown' ? ' btn-ghost' : ''}">
+                        <span>${domainStatus.cta}</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"/>
                         </svg>
                     </a>
-                    <a href="#the-name" class="btn-primary btn-ghost">
-                        <span>Explore the Name</span>
+                    <a href="https://punycodex.com/type/#${entry.id}" class="btn-primary btn-ghost">
+                        <span>Try the Type Tool</span>
                     </a>
                 </div>
+                ${domainStatus.disclaimer ? `<p class="domain-status-note reveal-up">${escapeHtml(domainStatus.disclaimer)}</p>` : ''}
             </div>
             <div class="hero-visual reveal-scale">
                 <div class="hero-pattern">
@@ -514,9 +651,11 @@ ${JSON.stringify(
             <div class="section-header reveal-up">
                 <span class="section-number">01</span>
                 <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Why <em>${entry.unicode.toLowerCase()}.com</em> is the correct form</p>
+                <p class="section-subtitle">${domainStatus.status === 'owned' ? `Why <em>${entry.unicode.toLowerCase()}.com</em> is the correct form` : domainStatus.status === 'available' ? `<em>${entry.unicode.toLowerCase()}.com</em> appears available` : `Scholarly reference for <em>${entry.unicode}</em>`}</p>
             </div>
-            
+
+            ${asciiBanner}
+
             <div class="name-grid">
                 <div class="name-card reveal-up">
                     <div class="card-icon">
@@ -567,11 +706,23 @@ ${JSON.stringify(
                 : ''
             }
 
+            ${
+              hasSenses
+                ? `
+            <div class="senses-panel reveal-up">
+                <div class="senses-panel-label">Name Senses</div>
+                <div class="senses-panel-list">${sensesHtml}</div>
+                <p class="senses-panel-note">The name carries more than one valid sense. The primary sense is the figure or role; the etymology is the older linguistic root.</p>
+            </div>
+            `
+                : ''
+            }
+
             <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-label">${isAsciiOnlyUnicode(entry) ? 'Domain Encoding' : 'Punycode Encoding'}</div>
                 <div class="explainer-box">
                     <code class="explainer-code">${entry.unicode.toLowerCase()}.com &rarr; ${punycode || `${entry.unicode.toLowerCase()}.com`}</code>
-                    <p class="explainer-note">${isAsciiOnlyUnicode(entry) ? `Because <strong>${escapeHtml(entry.unicode)}</strong> uses only ASCII characters, no Punycode encoding is required. The browser displays the name as-is, and the domain is the same sequence to both DNS and humanity.` : `The non-ASCII characters in <strong>${escapeHtml(entry.unicode)}</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>${escapeHtml(entry.unicode)}</em>.`}</p>
+                    <p class="explainer-note">${isAsciiOnlyUnicode(entry) ? `Because <strong>${escapeHtml(entry.unicode)}</strong> uses only ASCII characters, no Punycode encoding is required. The browser displays the name as-is, and the domain is the same sequence to both DNS and humanity.` : `The non-ASCII characters in <strong>${escapeHtml(entry.unicode)}</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>${escapeHtml(entry.unicode)}</em>.`}${domainStatus.status === 'registered' || domainStatus.status === 'live' ? ` This domain is currently registered by another party.` : domainStatus.status === 'available' ? ` This domain appears available per Verisign RDAP, but registry holds, premium listings, or registrar blocks can still prevent registration. Always verify with a registrar.` : domainStatus.status === 'unknown' ? ` Domain status could not be determined.` : ''}</p>
                 </div>
             </div>
         </div>
@@ -837,8 +988,8 @@ ${JSON.stringify(
                 </div>
                 <div class="footer-info">
                     <div class="footer-block">
-                        <span class="footer-label">Domain</span>
-                        <span class="footer-value">${entry.unicode.toLowerCase()}.com</span>
+                        <span class="footer-label">${domainStatus.status === 'owned' ? 'Owned Domain' : 'Domain'}</span>
+                        <span class="footer-value">${entry.unicode.toLowerCase()}.com${domainStatus.status === 'available' ? ' <small>(appears available)</small>' : domainStatus.status === 'registered' || domainStatus.status === 'live' ? ' <small>(registered)</small>' : domainStatus.status === 'unknown' ? ' <small>(status unknown)</small>' : ''}</span>
                     </div>
                     <div class="footer-block">
                         <span class="footer-label">Classification</span>

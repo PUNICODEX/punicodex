@@ -1,7 +1,7 @@
 /**
  * PÚNYCODEX — Central Archetype Database
  * Handcrafted flagship temples only.
- * 83 handcrafted archetypes.
+ * 84 handcrafted archetypes.
  */
 
 const ARCHETYPES = [
@@ -1728,4 +1728,29 @@ const ARCHETYPES = [
         hasAdSite: true,
         darkPunchline: false
     },
+    {
+        id: "om",
+        name: "Oṃ",
+        greek: "—",
+        domain: "Sacred Syllable, Cosmic Sound",
+        tagline: "The primordial sound · Om",
+        tier: "tier-2",
+        tierDetail: "single-tier",
+        pantheon: "sanskrit",
+        folder: "om",
+        domainUnicode: "oṃ.com",
+        domainPunycode: "xn--o-opm.com",
+        domainAlt: ["oṁ.com"],
+        colors: { primary: "#FF9933", secondary: "#138808", glow: "rgba(255,153,51,0.3)" },
+        mascotPath: "/sites/om/assets/om_mascot.webp",
+        mascotFallback: "/sites/om/assets/om_mascot.webp",
+        logomarkPath: "/sites/om/assets/om_logomark.webp",
+        built: true,
+        hasAdSite: false,
+        darkPunchline: false
+    },
 ];
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { ARCHETYPES };
+}

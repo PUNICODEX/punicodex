@@ -13,6 +13,28 @@ const { embedText } = require('./embeddings');
 
 let db;
 
+function escapeHtml(text) {
+  return String(text ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function sanitizeHtml(html) {
+  const allowed = new Set(['p', 'br', 'strong', 'em', 'ul', 'ol', 'li', 'h1', 'h2', 'h3', 'h4']);
+  return String(html ?? '').replace(/<\/?([a-zA-Z0-9]+)([^>]*)>/g, (match, tag, attrs) => {
+    const lower = tag.toLowerCase();
+    if (!allowed.has(lower)) return '';
+    if (lower === 'a') {
+      const href = attrs.match(/href=["'](https?:\/\/[^"']+)["']/i);
+      return href ? `<a href="${href[1]}" target="_blank" rel="noopener noreferrer">` : '';
+    }
+    return `<${match.startsWith('</') ? '/' : ''}${lower}>`;
+  });
+}
+
 function getDb() {
   if (!db) {
     db = new Database(getDbPath());
@@ -818,11 +840,11 @@ function formatSites(name, sites, availability) {
     const list = activeSites
       .slice(0, 3)
       .map((s) => {
-        const domain = s.punycode || s.domain;
-        const title = s.tenant_name || s.title || domain;
+        const domain = escapeHtml(s.punycode || s.domain);
+        const title = escapeHtml(s.tenant_name || s.title || domain);
         const url = `https://${domain}`;
         return `<li><a href="${url}" target="_blank" rel="noopener"><strong>${title}</strong></a>${
-          s.description ? ` — ${stripHtml(s.description).slice(0, 120)}` : ''
+          s.description ? ` — ${escapeHtml(stripHtml(s.description).slice(0, 120))}` : ''
         }</li>`;
       })
       .join('');
@@ -918,9 +940,10 @@ function generateFollowUps(intent, primary, related = [], sites = []) {
 }
 
 function synthesizeAnswer(q, entries, sites, related, intent, _history = []) {
+  const safeQ = escapeHtml(q);
   const primary = entries[0];
   const context = {
-    query: q,
+    query: safeQ,
     intent,
     entry: primary,
     entries: entries.slice(0, 3),
@@ -933,11 +956,11 @@ function synthesizeAnswer(q, entries, sites, related, intent, _history = []) {
   if (!primary) {
     const citations = buildCitations(entries, sites);
     if (sites.length) {
-      answer = `<p>We found these indexed sites related to “${q}”:</p><ul>${sites
-        .map((s) => `<li><strong>${s.tenant_name || s.title || s.domain}</strong></li>`)
+      answer = `<p>We found these indexed sites related to “${safeQ}”:</p><ul>${sites
+        .map((s) => `<li><strong>${escapeHtml(s.tenant_name || s.title || s.domain)}</strong></li>`)
         .join('')}</ul>`;
     } else {
-      answer = `<p>The PUNYCODEX knowledge base does not yet cover “${q}” with confidence. Try a deity, realm, myth, or Unicode domain name.</p>`;
+      answer = `<p>The PUNYCODEX knowledge base does not yet cover “${safeQ}” with confidence. Try a deity, realm, myth, or Unicode domain name.</p>`;
     }
 
     return {
@@ -950,24 +973,25 @@ function synthesizeAnswer(q, entries, sites, related, intent, _history = []) {
   }
 
   const ctx = getEntryContext(primary.id);
-  const name = primary.unicode || primary.ascii;
-  const asciiName = primary.ascii || name;
+  const name = escapeHtml(primary.unicode || primary.ascii);
+  const asciiName = escapeHtml(primary.ascii || name);
   const tierLabel =
     primary.tier === 'dual' ? 'Dual-Tier' : primary.tier === '1' ? 'Tier-1' : 'Tier-2';
   const lore = ctx?.lore || {};
 
   // Identity lead
   answer += `<div class="oracle-lead">`;
-  answer += `<p><strong>${name}</strong> is a <strong>${tierLabel}</strong> Unicode restoration of the ${primary.pantheon} name <strong>${asciiName}</strong>`;
-  if (primary.greek && primary.greek !== '-') answer += ` (Greek <em>${primary.greek.trim()}</em>)`;
+  answer += `<p><strong>${name}</strong> is a <strong>${tierLabel}</strong> Unicode restoration of the ${escapeHtml(primary.pantheon)} name <strong>${asciiName}</strong>`;
+  if (primary.greek && primary.greek !== '-')
+    answer += ` (Greek <em>${escapeHtml(primary.greek.trim())}</em>)`;
   answer += `. `;
 
-  const domainText = (primary.domain || lore.domains?.subtitle || '').trim();
+  const domainText = escapeHtml((primary.domain || lore.domains?.subtitle || '').trim());
   if (intent === 'attribute' || intent === 'who' || intent === 'general' || intent === 'explore') {
     if (domainText) {
       answer += `In the classical sources, ${name} is the deity of <strong>${domainText}</strong>. `;
     } else if (ctx?.meaning) {
-      answer += `The name means “${ctx.meaning}.” `;
+      answer += `The name means “${escapeHtml(ctx.meaning)}.” `;
     }
   }
   answer += `</p></div>`;
@@ -1024,15 +1048,15 @@ function synthesizeAnswer(q, entries, sites, related, intent, _history = []) {
   if (intent === 'relation') {
     if (related.length) {
       answer += `<div class="oracle-section"><h4>Related figures</h4><p>${name} is often mentioned alongside ${related
-        .map((r) => `<strong>${r.unicode || r.ascii}</strong>`)
+        .map((r) => `<strong>${escapeHtml(r.unicode || r.ascii)}</strong>`)
         .join(', ')} across the indexed Unicode web and classical sources.</p></div>`;
     }
     const siblings = retrievePantheonSiblings(primary, 4);
     if (siblings.length) {
-      answer += `<div class="oracle-section"><h4>Other ${primary.pantheon} names</h4><ul>${siblings
+      answer += `<div class="oracle-section"><h4>Other ${escapeHtml(primary.pantheon)} names</h4><ul>${siblings
         .map(
           (s) =>
-            `<li><strong>${s.unicode || s.ascii}</strong>${s.meaning ? ` — ${s.meaning}` : ''}</li>`
+            `<li><strong>${escapeHtml(s.unicode || s.ascii)}</strong>${s.meaning ? ` — ${escapeHtml(s.meaning)}` : ''}</li>`
         )
         .join('')}</ul></div>`;
     }
@@ -1127,21 +1151,22 @@ function buildLlmPrompt(q, contexts, intent) {
 }
 
 function synthesizeQuickAnswer(entry, intent) {
-  const name = entry.unicode || entry.ascii;
-  const asciiName = entry.ascii || name;
+  const name = escapeHtml(entry.unicode || entry.ascii);
+  const asciiName = escapeHtml(entry.ascii || name);
   const tierLabel = entry.tier === 'dual' ? 'Dual-Tier' : entry.tier === '1' ? 'Tier-1' : 'Tier-2';
   const ctx = getEntryContext(entry.id);
   const lore = ctx?.lore || {};
 
-  let answer = `<div class="oracle-lead"><p><strong>${name}</strong> is a <strong>${tierLabel}</strong> Unicode restoration of the ${entry.pantheon} name <strong>${asciiName}</strong>`;
-  if (entry.greek && entry.greek !== '-') answer += ` (Greek <em>${entry.greek.trim()}</em>)`;
+  let answer = `<div class="oracle-lead"><p><strong>${name}</strong> is a <strong>${tierLabel}</strong> Unicode restoration of the ${escapeHtml(entry.pantheon)} name <strong>${asciiName}</strong>`;
+  if (entry.greek && entry.greek !== '-')
+    answer += ` (Greek <em>${escapeHtml(entry.greek.trim())}</em>)`;
   answer += `. `;
 
-  const domainText = (entry.domain || lore.domains?.subtitle || '').trim();
+  const domainText = escapeHtml((entry.domain || lore.domains?.subtitle || '').trim());
   if (domainText) {
     answer += `In the classical sources, ${name} is the deity of <strong>${domainText}</strong>. `;
   } else if (ctx?.meaning) {
-    answer += `The name means “${ctx.meaning}.” `;
+    answer += `The name means “${escapeHtml(ctx.meaning)}.” `;
   }
   answer += `</p></div>`;
 
@@ -1242,7 +1267,7 @@ async function askOracle(q, history = [], { quick = false } = {}) {
     const llmAnswer = await callLlmIfConfigured(prompt);
     if (llmAnswer) {
       // Prepend LLM summary, keep our structured sections below for depth
-      result.answer = `<div class="oracle-llm-summary">${llmAnswer}</div>${result.answer}`;
+      result.answer = `<div class="oracle-llm-summary">${sanitizeHtml(llmAnswer)}</div>${result.answer}`;
     }
   }
 

@@ -1912,6 +1912,11 @@ a.source-badge {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(255,255,255,0.06);
+    pointer-events: none;
+}
+.global-strip a,
+.global-strip button {
+    pointer-events: auto;
 }
 .global-strip-inner {
     max-width: 1200px;
@@ -1946,7 +1951,8 @@ a.source-badge {
 }
 
 /* Tab nav adjustment */
-.tab-nav {
+.tab-nav,
+.extended-nav {
     top: 40px;
 }
 .tab-nav .nav-link.active {

@@ -117,7 +117,7 @@ for (const domain of ownedDomains) {
   seeded++;
 }
 console.log(
-  `  + Seeded ${seeded} owned canonical domains` + (skipped > 0 ? ` (${skipped} skipped)` : '')
+  `  + Seeded ${seeded} owned canonical domains${skipped > 0 ? ` (${skipped} skipped)` : ''}`
 );
 
 console.log('Homograph defense migration applied.');

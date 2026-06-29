@@ -94,6 +94,10 @@ function generateKey() {
   return `pcd_${crypto.randomBytes(24).toString('hex')}`;
 }
 
+function hashKey(key) {
+  return crypto.createHash('sha256').update(key).digest('hex');
+}
+
 function normalizeTier(tier) {
   const t = String(tier || 'free').toLowerCase();
   return PARTNER_TIERS[t] ? t : 'free';
@@ -111,12 +115,16 @@ function registerPartner({ name, email, tier, scopes, rateLimit }) {
   migratePartners();
   const db = getDb();
   const key = generateKey();
+  const keyHash = hashKey(key);
   const normalizedTier = normalizeTier(tier);
   const limit = rateLimit || PARTNER_TIERS[normalizedTier].rateLimit;
   db.prepare(
     'INSERT INTO partners (name, email, tier, api_key, scopes, rate_limit) VALUES (?, ?, ?, ?, ?, ?)'
-  ).run(name, email || null, normalizedTier, key, JSON.stringify(scopes || ['read']), limit);
-  return { id: db.prepare('SELECT id FROM partners WHERE api_key = ?').get(key).id, apiKey: key };
+  ).run(name, email || null, normalizedTier, keyHash, JSON.stringify(scopes || ['read']), limit);
+  return {
+    id: db.prepare('SELECT id FROM partners WHERE api_key = ?').get(keyHash).id,
+    apiKey: key,
+  };
 }
 
 function onboardPartner({ name, email, organization, websiteUrl, useCase, tier, scopes }) {
@@ -149,7 +157,8 @@ function rotatePartnerKey(partnerId) {
   const row = db.prepare('SELECT id FROM partners WHERE id = ? AND active = 1').get(partnerId);
   if (!row) return null;
   const newKey = generateKey();
-  db.prepare('UPDATE partners SET api_key = ? WHERE id = ?').run(newKey, partnerId);
+  const newHash = hashKey(newKey);
+  db.prepare('UPDATE partners SET api_key = ? WHERE id = ?').run(newHash, partnerId);
   return { id: partnerId, apiKey: newKey };
 }
 
@@ -162,8 +171,11 @@ function revokePartner(partnerId) {
 
 function validatePartnerKey(key) {
   migratePartners();
+  if (!key || typeof key !== 'string') return null;
   const db = getDb();
-  const row = db.prepare('SELECT * FROM partners WHERE api_key = ? AND active = 1').get(key);
+  const row = db
+    .prepare('SELECT * FROM partners WHERE api_key = ? AND active = 1')
+    .get(hashKey(key));
   if (!row) return null;
   return {
     id: row.id,

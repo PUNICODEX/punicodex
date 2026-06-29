@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unicode Domain Appraisal Tool | PUNYCODEX</title>
+    <meta name="description" content="The first appraisal engine built for Unicode / IDN domain names. Get an explainable, defensible valuation powered by the PÚNYCODEX lexicon, tier system, and safety signals.">
+    <meta name="theme-color" content="#050505">
+    <meta name="color-scheme" content="dark">
+
+    <link rel="canonical" href="https://punycodex.com/appraise/">
+    <meta property="og:title" content="Unicode Domain Appraisal Tool | PUNYCODEX">
+    <meta property="og:description" content="The first appraisal engine built for Unicode / IDN domain names.">
+    <meta property="og:url" content="https://punycodex.com/appraise/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PUNYCODEX">
+    <meta property="og:image" content="https://punycodex.com/assets/images/og-default.svg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Unicode Domain Appraisal Tool | PUNYCODEX">
+    <meta name="twitter:description" content="The first appraisal engine built for Unicode / IDN domain names.">
+    <meta name="twitter:image" content="https://punycodex.com/assets/images/og-default.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="preload" href="/css/main.css?v=perf7" as="style">
+    <link rel="stylesheet" href="/css/main.css?v=perf7">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%CE%A8%3C/text%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" sizes="128x128" href="/assets/images/apple-touch-icon.png">
+
+    <style>
+        .appraise-hero { padding: 12rem 0 6rem; text-align: center; }
+        .appraise-hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 1rem; }
+        .appraise-hero p { max-width: 640px; margin: 0 auto 2rem; opacity: 0.85; }
+        .appraise-form { max-width: 720px; margin: 0 auto 4rem; display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
+        .appraise-form input { flex: 1 1 280px; padding: 1rem 1.25rem; font-size: 1.1rem; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; background: rgba(0,0,0,0.35); color: #fff; }
+        .appraise-form input:focus { outline: none; border-color: #d4af37; }
+        .appraise-form button { padding: 1rem 2rem; font-size: 1rem; border: none; border-radius: 8px; background: linear-gradient(135deg, #d4af37, #f4d03f); color: #050505; font-weight: 700; cursor: pointer; }
+        .appraise-form button:disabled { opacity: 0.5; cursor: wait; }
+        .examples { text-align: center; margin-bottom: 4rem; }
+        .examples span { opacity: 0.6; margin-right: 0.5rem; }
+        .examples a { color: #d4af37; text-decoration: underline; cursor: pointer; margin: 0 0.4rem; }
+        .result-card { max-width: 800px; margin: 0 auto 6rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; background: rgba(255,255,255,0.03); padding: 2rem; display: none; }
+        .result-card.active { display: block; }
+        .result-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        .result-domain { font-size: 1.75rem; font-weight: 600; word-break: break-all; }
+        .result-value { text-align: right; }
+        .result-value .label { font-size: 0.75rem; text-transform: uppercase; opacity: 0.6; }
+        .result-value .amount { font-size: 2.5rem; font-weight: 700; color: #d4af37; }
+        .result-total { margin-top: 0.35rem; font-size: 0.85rem; opacity: 0.75; }
+        .result-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+        .meta-pill { background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 0.75rem 1rem; }
+        .meta-pill .label { font-size: 0.7rem; text-transform: uppercase; opacity: 0.6; display: block; }
+        .meta-pill .value { font-size: 1rem; font-weight: 600; }
+        .factors { margin-top: 1.5rem; }
+        .factors h3 { font-size: 1rem; margin-bottom: 0.75rem; opacity: 0.9; }
+        .factor-list { list-style: none; padding: 0; margin: 0 0 1.25rem; }
+        .factor-list li { display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .factor-list li span:first-child { opacity: 0.75; }
+        .factor-list li span:last-child { font-variant-numeric: tabular-nums; }
+        .error-message { max-width: 720px; margin: 0 auto 4rem; padding: 1rem 1.25rem; border-radius: 8px; background: rgba(220,38,38,0.12); border: 1px solid rgba(220,38,38,0.35); color: #fecaca; display: none; }
+        .disclaimer { max-width: 800px; margin: 0 auto 4rem; text-align: center; font-size: 0.85rem; opacity: 0.55; }
+    </style>
+</head>
+<body>
+    <nav class="main-nav" id="main-nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-wordmark">P<span class="accent">U</span>NYCODEX</a>
+            <div class="nav-links">
+                <a href="/pantheon/" class="nav-link">Pantheon</a>
+                <a href="/realms/" class="nav-link">Realms</a>
+                <a href="/lexicon/" class="nav-link">Lexicon</a>
+                <a href="/tiers/" class="nav-link">Tier System</a>
+                <a href="/type/" class="nav-link">Type</a>
+                <a href="/search.html" class="nav-link">Search</a>
+                <a href="/appraise/" class="nav-link">Appraise</a>
+                <a href="/codex/" class="nav-link">Codex</a>
+                <a href="/api/v1/docs/" class="nav-link">API</a>
+                <a href="/store/" class="nav-link">Store</a>
+                <a href="/about/" class="nav-link">About</a>
+                <a href="/contact/" class="nav-link">Contact</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="/pantheon/">Pantheon</a>
+        <a href="/realms/">Realms</a>
+        <a href="/lexicon/">Lexicon</a>
+        <a href="/tiers/">Tier System</a>
+        <a href="/type/">Type</a>
+        <a href="/search.html">Search</a>
+        <a href="/appraise/">Appraise</a>
+        <a href="/codex/">Codex</a>
+        <a href="/api/v1/docs/">API</a>
+        <a href="/store/">Store</a>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+    </div>
+
+    <section class="appraise-hero">
+        <div class="container">
+            <p class="hero-eyebrow reveal-up">PÚNYCODEX Appraisal Engine</p>
+            <h1 class="reveal-up">Unicode Domain Appraiser</h1>
+            <p class="body-lg reveal-up">
+                The first valuation model built for Unicode / IDN domain names. It anchors every name to its ASCII control value, then values the Unicode form at 10% of that anchor and applies transparent percentage boosts for canonical form, tier, scholarly sources, brand scarcity, safety, and TLD reality. The Unicode domain itself is never valued above its ASCII root; tenant revenue is reported separately.
+            </p>
+        </div>
+    </section>
+
+    <main class="container">
+        <form class="appraise-form reveal-up" id="appraise-form">
+            <input type="text" id="domain-input" placeholder="e.g. apóllōn.com or xn--aplln-1ta64d.com" autocomplete="off" aria-label="Domain name">
+            <button type="submit" id="appraise-btn">Appraise</button>
+        </form>
+
+        <div class="examples reveal-up">
+            <span>Try:</span>
+            <a data-domain="gaia.com">gaia.com</a>
+            <a data-domain="gaîa.com">gaîa.com</a>
+            <a data-domain="apóllōn.com">apóllōn.com</a>
+            <a data-domain="zeus.com">zeus.com</a>
+            <a data-domain="аррӏе.com">аррӏе.com</a>
+        </div>
+
+        <div class="error-message" id="error-message"></div>
+
+        <div class="result-card" id="result-card">
+            <div class="result-header">
+                <div>
+                    <div class="result-domain" id="res-domain"></div>
+                    <div class="dim-text" id="res-punycode"></div>
+                </div>
+                <div class="result-value">
+                    <div class="label">Domain value</div>
+                    <div class="amount" id="res-value"></div>
+                    <div class="result-total" id="res-total" style="display:none;"></div>
+                </div>
+            </div>
+            <div class="result-meta">
+                <div class="meta-pill"><span class="label">ASCII control</span><span class="value" id="res-ascii"></span></div>
+                <div class="meta-pill"><span class="label">Effective rate</span><span class="value" id="res-rate"></span></div>
+                <div class="meta-pill" id="res-boost-pill"><span class="label">Boost</span><span class="value" id="res-boost"></span></div>
+                <div class="meta-pill"><span class="label">Liquidity</span><span class="value" id="res-liquidity"></span></div>
+                <div class="meta-pill"><span class="label">Recommendation</span><span class="value" id="res-recommendation"></span></div>
+                <div class="meta-pill"><span class="label">Confidence</span><span class="value" id="res-confidence"></span></div>
+                <div class="meta-pill"><span class="label">Safety</span><span class="value" id="res-safety"></span></div>
+                <div class="meta-pill" id="res-brand-scarcity-pill" style="display:none;"><span class="label">Brand scarcity</span><span class="value" id="res-brand-scarcity"></span></div>
+                <div class="meta-pill" id="res-tenant-pill" style="display:none;"><span class="label">Tenant revenue</span><span class="value" id="res-tenant"></span></div>
+            </div>
+            <div id="res-lexicon" class="meta-pill" style="margin-bottom:1rem;display:none;">
+                <span class="label">Lexicon match</span>
+                <span class="value" id="res-lexicon-text"></span>
+            </div>
+            <div class="factors">
+                <h3>ASCII control factors</h3>
+                <ul class="factor-list" id="ascii-factors"></ul>
+                <h3>Unicode premium factors</h3>
+                <ul class="factor-list" id="unicode-factors"></ul>
+                <h3 id="trademark-factor-heading" style="display:none;">Trademark / brand</h3>
+                <ul class="factor-list" id="trademark-factors" style="display:none;"></ul>
+                <h3 id="brand-scarcity-factor-heading" style="display:none;">Brand scarcity</h3>
+                <ul class="factor-list" id="brand-scarcity-factors" style="display:none;"></ul>
+                <h3 id="tenant-factor-heading" style="display:none;">Tenant revenue</h3>
+                <ul class="factor-list" id="tenant-factors" style="display:none;"></ul>
+            </div>
+
+        </div>
+
+        <p class="disclaimer">
+            Appraisals are algorithmic estimates for informational purposes only. They do not constitute financial or investment advice. Realized sale prices depend on buyer, seller, venue, and market conditions.
+        </p>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>PUNYCODEX</h4>
+                    <p>The Unicode Pantheon — restoring the original names of world archetypes to the digital realm.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Explore</h4>
+                    <a href="/pantheon/">Pantheon</a>
+                    <a href="/realms/">Realms</a>
+                    <a href="/type/">Type</a>
+                    <a href="/tiers/">Tier System</a>
+                    <a href="/codex/">Codex</a>
+                    <a href="/store/">Store</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <a href="/about/">About</a>
+                    <a href="/contact/">Contact</a>
+                    <a href="/api/v1/docs/">API Documentation</a>
+                    <a href="/authenticity/">Authenticity Checker</a>
+                    <a href="/appraise/">Domain Appraiser</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <a href="mailto:punycodex@gmail.com">punycodex@gmail.com</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 PÚNYCODEX. All rites reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js?v=perf7" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('appraise-form');
+            const input = document.getElementById('domain-input');
+            const btn = document.getElementById('appraise-btn');
+            const errorBox = document.getElementById('error-message');
+            const card = document.getElementById('result-card');
+
+            function fmtMoney(n) {
+                return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(n);
+            }
+
+            function fmtMultiplier(n) {
+                return `${(n * 100).toFixed(1)}%`;
+            }
+
+            function fmtBoost(n) {
+                const sign = n > 0 ? '+' : '';
+                return `${sign}${(n * 100).toFixed(0)}%`;
+            }
+
+            function showError(msg) {
+                errorBox.textContent = msg;
+                errorBox.style.display = 'block';
+                card.classList.remove('active');
+            }
+
+            function clearError() {
+                errorBox.textContent = '';
+                errorBox.style.display = 'none';
+            }
+
+            function renderFactors(listEl, factors, asPercent = false) {
+                listEl.innerHTML = '';
+                if (!Array.isArray(factors)) return;
+                for (const f of factors) {
+                    const li = document.createElement('li');
+                    const name = f.name || 'factor';
+                    const note = f.note || '';
+                    let impact;
+                    if (typeof f.impact !== 'number') {
+                        impact = f.impact;
+                    } else if (asPercent) {
+                        const sign = f.impact > 0 ? '+' : '';
+                        impact = `${sign}${(f.impact * 100).toFixed(0)}%`;
+                    } else {
+                        impact = f.impact.toFixed(2);
+                    }
+                    li.innerHTML = `<span>${name}${note ? ` <small>(${note})</small>` : ''}</span><span>${impact}</span>`;
+                    listEl.appendChild(li);
+                }
+            }
+
+            function showSection(headingId, listId, show) {
+                document.getElementById(headingId).style.display = show ? 'block' : 'none';
+                document.getElementById(listId).style.display = show ? 'block' : 'none';
+            }
+
+            function renderObjectFactor(listEl, obj) {
+                listEl.innerHTML = '';
+                if (!obj) return;
+                const li = document.createElement('li');
+                const note = obj.note || '';
+                const value = obj.value != null ? `$${Number(obj.value).toLocaleString()}` : obj.factor != null ? obj.factor.toFixed(2) : '';
+                const name = obj.name || obj.brand || obj.tier || 'factor';
+                li.innerHTML = `<span>${name}${note ? ` <small>(${note})</small>` : ''}</span><span>${value}</span>`;
+                listEl.appendChild(li);
+            }
+
+            async function appraise(domain) {
+                clearError();
+                btn.disabled = true;
+                btn.textContent = 'Appraising…';
+                try {
+                    const res = await fetch(`/api/v1/appraise?q=${encodeURIComponent(domain)}`);
+                    const json = await res.json();
+                    if (!json.success || json.error) {
+                        throw new Error(json.error?.message || 'Appraisal failed');
+                    }
+                    const d = json.data;
+                    document.getElementById('res-domain').textContent = d.displayDomain || d.domain;
+                    document.getElementById('res-punycode').textContent = d.punycode ? `punycode: ${d.punycode}` : '';
+                    document.getElementById('res-value').textContent = fmtMoney(d.appraisal.unicodeValue);
+                    const totalEl = document.getElementById('res-total');
+                    const totalValue = d.appraisal.totalValue;
+                    if (totalValue && totalValue > d.appraisal.unicodeValue) {
+                        totalEl.textContent = `Total incl. tenant revenue: ${fmtMoney(totalValue)}`;
+                        totalEl.style.display = 'block';
+                    } else {
+                        totalEl.style.display = 'none';
+                    }
+                    document.getElementById('res-ascii').textContent = fmtMoney(d.appraisal.asciiControlValue);
+                    document.getElementById('res-rate').textContent = fmtMultiplier(d.appraisal.premiumMultiplier);
+                    const summary = d.factors?.unicodeSummary;
+                    document.getElementById('res-boost').textContent = summary
+                        ? fmtBoost(summary.boost)
+                        : '—';
+                    document.getElementById('res-liquidity').textContent = d.appraisal.liquidityRating;
+                    document.getElementById('res-recommendation').textContent = d.appraisal.recommendation;
+                    document.getElementById('res-confidence').textContent = `${(d.appraisal.confidence * 100).toFixed(0)}%`;
+                    document.getElementById('res-safety').textContent = d.safety.verdict;
+
+                    const brandScarcityValue = d.appraisal.brandScarcityValue || 0;
+                    const tenantRevenueValue = d.appraisal.tenantRevenueValue || 0;
+
+                    const brandPill = document.getElementById('res-brand-scarcity-pill');
+                    if (brandScarcityValue > 0) {
+                        brandPill.style.display = 'block';
+                        document.getElementById('res-brand-scarcity').textContent = fmtMoney(brandScarcityValue);
+                    } else {
+                        brandPill.style.display = 'none';
+                    }
+
+                    const tenantPill = document.getElementById('res-tenant-pill');
+                    if (tenantRevenueValue > 0) {
+                        tenantPill.style.display = 'block';
+                        document.getElementById('res-tenant').textContent = fmtMoney(tenantRevenueValue);
+                    } else {
+                        tenantPill.style.display = 'none';
+                    }
+
+                    const lexiconEl = document.getElementById('res-lexicon');
+                    if (d.lexiconMatch) {
+                        lexiconEl.style.display = 'block';
+                        document.getElementById('res-lexicon-text').textContent = `${d.lexiconMatch.unicode} · ${d.lexiconMatch.tierLabel} · ${d.lexiconMatch.form}`;
+                    } else {
+                        lexiconEl.style.display = 'none';
+                    }
+
+                    renderFactors(document.getElementById('ascii-factors'), d.factors?.ascii || []);
+                    renderFactors(document.getElementById('unicode-factors'), d.factors?.unicode || [], true);
+
+                    const tm = d.factors?.trademark;
+                    showSection('trademark-factor-heading', 'trademark-factors', !!tm);
+                    renderObjectFactor(document.getElementById('trademark-factors'), tm);
+
+                    const bs = d.factors?.brandScarcity;
+                    showSection('brand-scarcity-factor-heading', 'brand-scarcity-factors', !!bs);
+                    renderObjectFactor(document.getElementById('brand-scarcity-factors'), bs);
+
+                    const tr = d.factors?.tenantRevenue;
+                    showSection('tenant-factor-heading', 'tenant-factors', !!tr);
+                    renderObjectFactor(document.getElementById('tenant-factors'), tr);
+
+                    card.classList.add('active');
+                } catch (err) {
+                    showError(err.message || 'Could not fetch appraisal. Please try again.');
+                } finally {
+                    btn.disabled = false;
+                    btn.textContent = 'Appraise';
+                }
+            }
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const domain = input.value.trim();
+                if (!domain) return;
+                appraise(domain);
+            });
+
+            document.querySelectorAll('.examples a').forEach((a) => {
+                a.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const domain = a.getAttribute('data-domain');
+                    input.value = domain;
+                    appraise(domain);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

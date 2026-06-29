@@ -11,6 +11,7 @@
 
 const { success, error } = require('./api-response.js');
 const namesService = require('./names-service.js');
+const { appraise, appraiseBatch } = require('./appraise.js');
 const { searchWeb, getSites, getSiteByPunycode } = require('./crawler-db.js');
 const { validateListNamesQuery } = require('./api-validation.js');
 const { classifyTerm, classifyDomain, classifyUrl } = require('./authenticity-service.js');
@@ -227,6 +228,37 @@ async function handleConvertBatch(req, res) {
   success(res, rewriteLinks(result.items), {
     meta: { count: result.count },
     links: { self: '/api/v2/convert/batch' },
+  });
+}
+
+async function handleAppraise(req, res) {
+  const q = String(req.query.q || '').trim();
+  if (!q) {
+    error(res, 'VALIDATION_ERROR', 'Query parameter q is required.', { status: 400 });
+    return;
+  }
+  const result = appraise(q);
+  if (result.error) {
+    error(res, result.error, result.message, { status: 400 });
+    return;
+  }
+  success(res, rewriteLinks(result), {
+    links: { self: `/api/v2/appraise?q=${encodeURIComponent(q)}` },
+  });
+}
+
+async function handleAppraiseBatch(req, res) {
+  const { domains } = req.body || {};
+  if (!Array.isArray(domains) || domains.length === 0 || domains.length > 100) {
+    error(res, 'VALIDATION_ERROR', 'Body must contain a domains array (1-100 items).', {
+      status: 400,
+    });
+    return;
+  }
+  const result = appraiseBatch(domains);
+  success(res, rewriteLinks(result.items), {
+    meta: { count: result.count, requested: result.requested },
+    links: { self: '/api/v2/appraise/batch' },
   });
 }
 
@@ -453,6 +485,8 @@ function getOpenApiSpec() {
       '/api/v2/autocomplete': { GET: 'Autocomplete names' },
       '/api/v2/convert': { GET: 'Convert a query' },
       '/api/v2/convert/batch': { POST: 'Batch convert' },
+      '/api/v2/appraise': { GET: 'Appraise a Unicode domain' },
+      '/api/v2/appraise/batch': { POST: 'Batch appraise domains' },
       '/api/v2/authenticity/check': { GET: 'Classify a name, domain, or URL' },
       '/api/v2/authenticity/check/batch': { POST: 'Batch classify' },
       '/api/v2/authenticity/report': { POST: 'Report a suspicious input' },
@@ -594,6 +628,17 @@ async function route(req, res) {
       return;
     }
     if (method === 'GET') return handleConvert(req, res);
+    error(res, 'METHOD_NOT_ALLOWED', 'Only GET is allowed.', { status: 405 });
+    return;
+  }
+
+  if (resource === 'appraise') {
+    if (identifier === 'batch') {
+      if (method === 'POST') return handleAppraiseBatch(req, res);
+      error(res, 'METHOD_NOT_ALLOWED', 'Only POST is allowed.', { status: 405 });
+      return;
+    }
+    if (method === 'GET') return handleAppraise(req, res);
     error(res, 'METHOD_NOT_ALLOWED', 'Only GET is allowed.', { status: 405 });
     return;
   }

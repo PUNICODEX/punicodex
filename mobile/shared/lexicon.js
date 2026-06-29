@@ -4,7 +4,7 @@
 //
 /*
  * PUNYCODEX Lexicon
- * 850 validated entries across multiple pantheons
+ * 860 validated entries across multiple pantheons
  */
 
 const LEXICON = [
@@ -2675,7 +2675,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Divine Law, Order, Custom',
-    meaning: 'Law, right (from τίθημι)',
+    meaning: 'in ancient Greek mythology, a titaness, the personification of divine order, fairness, law, natural law, and custom, whose symbols are the scales of justice',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Law, right (from τίθημι)'
+      }
+    ],
     sources: [
       'LSJ',
       'Pape-Benseler',
@@ -6270,7 +6276,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Virtue, Kingship, Avatar of Vishnu',
-    meaning: 'Pleasing, dark (from राम)',
+    meaning: 'of various mythical personages (in Veda two Rāmas are mentioned with the patr. Mārgaveya and Aupatasvini; another R˚s with the patr. Jāmadagnya [cf. below] is the supposed author',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Pleasing, dark (from राम)'
+      }
+    ],
     sources: [
       'MW',
       'KEWA'
@@ -6311,7 +6323,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Protection, Strength, War',
-    meaning: 'Invincible, fortress (from दुर्ग)',
+    meaning: '‘the inaccessible or terrific goddess’, N. of the daughter of Himavat and wife of Śiva (also called Umā, Pārvatī &c., and mother of Kārttikeya and Gaṇeśa cf. pUjA), TĀr. x, 2',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Invincible, fortress (from दुर्ग)'
+      }
+    ],
     sources: [
       'MW',
       'KEWA'
@@ -6359,7 +6377,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Destruction, Transformation, Dance',
-    meaning: 'Auspicious, kind (from शिव)',
+    meaning: '‘The Auspicious one’, N. of the disintegrating or destroying and reproducing deity (who constitutes the third god of the Hindū Trimūrti or Triad, the other two being Brahmā ‘the',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Auspicious, kind (from शिव)'
+      }
+    ],
     sources: [
       'MW',
       'KEWA'
@@ -6423,7 +6447,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Preservation, Protection, Universe',
-    meaning: 'All-pervading (from विष्णु)',
+    meaning: 'N. of one of the principal Hindū deities (in the later mythology regarded as ‘the preserver’, and with Brahmā ‘the creator’ and Śiva ‘the destroyer’, constituting the wellknown',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'All-pervading (from विष्णु)'
+      }
+    ],
     sources: [
       'MW',
       'KEWA'
@@ -6488,7 +6518,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Love, Compassion, Avatar of Vishnu',
-    meaning: 'Dark, dark-blue (from कृष्ण)',
+    meaning: 'of a celebrated Avatār of the god Viṣṇu, or sometimes identified with Viṣṇu himself [MBh. v, 2563; xiv, 1589 ff.; Hariv. 2359 &c.] as distinct from his ten Avatārs or incarnations',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Dark, dark-blue (from कृष्ण)'
+      }
+    ],
     sources: [
       'MW',
       'KEWA'
@@ -6634,7 +6670,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Wealth, Fortune, Beauty',
-    meaning: 'Auspicious mark (from लक्ष्मी)',
+    meaning: 'of the goddess of fortune and beauty (frequently in the later mythology identified with Śrī and regarded as the wife of Viṣṇu or Nārāyaṇa; accord. to R. i, 45',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Auspicious mark (from लक्ष्मी)'
+      }
+    ],
     sources: [
       'MW',
       'KEWA'
@@ -6693,7 +6735,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Knowledge, Music, Arts, Speech',
-    meaning: 'She who flows (from सरस्वती)',
+    meaning: 'of the goddess of eloquence and learning (cf. above; she is opposed to Śrī or Lakṣmī [cf. Vikr. v, 24], and sometimes considered as the daughter and also wife of Brahmā',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'She who flows (from सरस्वती)'
+      }
+    ],
     sources: [
       'MW',
       'KEWA'
@@ -6764,7 +6812,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Creation, Vedas, Cosmology',
-    meaning: 'The Creator (from ब्रह्मा)',
+    meaning: 'Brahmā or the one impersonal universal Spirit manifested as a personal Creator and as the first of the triad of personal gods (= prajApati, q.v.; he never appears to have become an',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'The Creator (from ब्रह्मा)'
+      }
+    ],
     sources: [
       'MW',
       'KEWA'
@@ -6820,7 +6874,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Sun, Light, Health',
-    meaning: 'The Sun (from सूर्य)',
+    meaning: 'the sun or its deity (in the Veda the name Sūrya is generally distinguished from Savitṛ [q.v.], and denotes the most concrete of the solar gods, whose connection with the luminary',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'The Sun (from सूर्य)'
+      }
+    ],
     sources: [
       'MW',
       'KEWA'
@@ -6870,7 +6930,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Storms, War, Kingship',
-    meaning: 'The drop (from इन्द्र)',
+    meaning: 'the god of the atmosphere and sky',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'The drop (from इन्द्र)'
+      }
+    ],
     sources: [
       'MW',
       'KEWA'
@@ -6917,7 +6983,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Fire, Sacrifice, Messenger',
-    meaning: 'Fire (from अग्नि)',
+    meaning: 'the god of fire, the fire of the stomach, digestive faculty, gastric fluid',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Fire (from अग्नि)'
+      }
+    ],
     sources: [
       'MW',
       'KEWA'
@@ -6958,7 +7030,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Death, Justice, Underworld',
-    meaning: 'The Twin (from यम)',
+    meaning: 'of the god who presides over the Pitṛs (q.v.) and rules the spirits of the dead, RV. &c. &c., IW.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'The Twin (from यम)'
+      }
+    ],
     sources: [
       'MW',
       'KEWA'
@@ -6999,7 +7077,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Wealth, Treasure, North',
-    meaning: 'Deformed one (from कुबेर)',
+    meaning: 'or in later Sanskṛt kuvera (originally) N. of a chief of the evil beings or spirits or darkness having the N. Vaiśravaṇa, AV. viii, 10, 28; ŚBr.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Deformed one (from कुबेर)'
+      }
+    ],
     sources: [
       'MW',
       'KEWA'
@@ -7052,7 +7136,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Devotion, Strength, Messenger',
-    meaning: 'Having large jaws (from हनुमत्)',
+    meaning: '‘having (large) jaws’, N. of a monkeychief (one of the most celebrated of a host of semidivine monkeylike beings, who, according to R. i, 16, were created to become the allies of',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Having large jaws (from हनुमत्)'
+      }
+    ],
     sources: [
       'MW',
       'KEWA'
@@ -8513,7 +8603,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Sun Goddess, Shintō',
-    meaning: 'Shining in heaven',
+    meaning: 'Sun goddess in Shinto',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Shining in heaven'
+      }
+    ],
     sources: [
       'Hepburn',
       'Kojiki'
@@ -12370,7 +12466,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Moon, Night, Soma',
-    meaning: 'Moon, shining',
+    meaning: 'glittering, shining (as gold), having the brilliancy or hue of light (said of gods, of water [RV. x, 121, 9; TS. vi] and of Soma), RV.; VS.; TS. vi; TBr.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Moon, shining'
+      }
+    ],
     sources: [
       'MW',
       'KEWA'
@@ -12433,7 +12535,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Cosmic Order, Oceans, Law',
-    meaning: 'He who covers',
+    meaning: '‘Allenveloping Sky’, N. of an Āditya (in the Veda commonly associated with Mitra [q.v.] and presiding over the night as Mitra over the day, but often celebrated separately',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'He who covers'
+      }
+    ],
     sources: [
       'MW',
       'KEWA'
@@ -12501,7 +12609,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Sacred River, Purification',
-    meaning: 'Swift goer',
+    meaning: '‘swiftgoer’, the river Ganges (personified and considered as the eldest daughter of Himavat and Menā, R. i, 36, 15; as the wife of Śāntanu and mother of Bhīṣma, MBh. i',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Swift goer'
+      }
+    ],
     sources: [
       'MW',
       'KEWA'
@@ -12548,7 +12662,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Mountains, Fertility, Devotion',
-    meaning: 'Daughter of the mountain',
+    meaning: 'of the god Śiva\'s wife (as daughter of Himavat, king of the snowy mountains), Up.; MBh.; Kāv.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Daughter of the mountain'
+      }
+    ],
     sources: [
       'MW',
       'KEWA'
@@ -12608,7 +12728,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Time, Destruction, Empowerment',
-    meaning: 'The black one, time',
+    meaning: 'of Satyavatī, wife of king Śāntanu and mother of Vyāsa or Kṛṣṇadvaipāyana (after her marriage she had a son Vicitravīrya, whose widows were married by Kṛṣṇadvaipāyana',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'The black one, time'
+      }
+    ],
     sources: [
       'MW',
       'KEWA'
@@ -12664,7 +12790,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Virtue, Devotion, Fertility',
-    meaning: 'Furrow',
+    meaning: 'a furrow, the track or line of a ploughshare (also personified, and apparently once worshipped as a kind of goddess resembling Pomona; in RV. iv, 57, 6',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Furrow'
+      }
+    ],
     sources: [
       'MW',
       'KEWA'
@@ -12705,7 +12837,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Archery, Dharma, Bhagavad Gītā',
-    meaning: 'White, bright, silver',
+    meaning: 'of the third of the Pāṇḍava princes (who was a son of Indra and Kuntī), MBh. &c.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'White, bright, silver'
+      }
+    ],
     sources: [
       'MW',
       'KEWA'
@@ -12758,7 +12896,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Strength, Mace, Wind-son',
-    meaning: 'Terrible, formidable',
+    meaning: 'of the second son of Pāṇḍu (also called Bhīmasena and Vṛkodara; he was only the reputed son of P˚, being really the son of his wife Pṛthā or Kuntī by the windgod Vāyu',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Terrible, formidable'
+      }
+    ],
     sources: [
       'MW',
       'KEWA'
@@ -12805,7 +12949,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Queen, Fire-born, Dharma',
-    meaning: 'Daughter of Drupada',
+    meaning: 'patr.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Daughter of Drupada'
+      }
+    ],
     sources: [
       'MW',
       'KEWA'
@@ -12870,7 +13020,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Charity, Warrior, Sūryaputra',
-    meaning: 'Ear, earrings',
+    meaning: 'of a king of Aṅga (and elder brother by the mother\'s side of the Pāṇḍu princes, being the son of the god Sūrya by Pṛthā or Kuntī, before her marriage with Pāṇḍu; afraid of the',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Ear, earrings'
+      }
+    ],
     sources: [
       'MW',
       'KEWA'
@@ -14796,7 +14952,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Princess, Labyrinth, Thread',
-    meaning: 'Most holy',
+    meaning: 'the daughter of Minos in Greek mythology',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Most holy'
+      }
+    ],
     sources: [
       'LSJ',
       'Pape-Benseler',
@@ -14910,7 +15072,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Youth, Cupbearer of the Gods',
-    meaning: 'Rejoicing in virility',
+    meaning: 'son of Tros in Greek mythology',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Rejoicing in virility'
+      }
+    ],
     sources: [
       'LSJ',
       'Pape-Benseler',
@@ -14976,7 +15144,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Weaver, Turned into Spider',
-    meaning: 'Spider',
+    meaning: 'Mythological weaver who was transformed into a spider',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Spider'
+      }
+    ],
     sources: [
       'LSJ',
       'Pape-Benseler',
@@ -20747,7 +20921,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Dwarf turned Dragon',
-    meaning: 'The embracer',
+    meaning: 'figure in Germanic heroic legend',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'The embracer'
+      }
+    ],
     sources: [
       'Poetic Edda',
       'Cleasby-Vigfusson'
@@ -23176,7 +23356,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Divine Love, Consort of Krishna',
-    meaning: 'Success, prosperity',
+    meaning: 'N. of the 21st Nakṣatra Viśākhā (containing 4 stars in the form of a curve supposed to be α, ι, ν Librae, and γ Scorpionis, cf. nakzatra), L.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Success, prosperity'
+      }
+    ],
     sources: [
       'MW',
       'Bhagavata'
@@ -23223,7 +23409,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Marital Fidelity, First Wife of Shiva',
-    meaning: 'True, virtuous',
+    meaning: 'of the goddess Durgā or Umā (sometimes described as Truth personified or as a daughter of Dakṣa and wife of Bhava [Śiva], and sometimes represented as putting an end to herself by',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'True, virtuous'
+      }
+    ],
     sources: [
       'MW',
       'Shiva Purana'
@@ -23264,7 +23456,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Dawn',
-    meaning: 'Dawn',
+    meaning: 'As, f. (nom. pl. uzAsas and uzasas; instr. pl. uzadBis, RV. i, 6, 3; see Kāś. on Pāṇ. vii, 4, 48) morning light, dawn, morning (personified as the daughter of heaven and sister of',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Dawn'
+      }
+    ],
     sources: [
       'RV',
       'MW'
@@ -23311,7 +23509,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Night',
-    meaning: 'Night',
+    meaning: 'in comp.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Night'
+      }
+    ],
     sources: [
       'RV',
       'MW'
@@ -23358,7 +23562,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Earth',
-    meaning: 'The broad one',
+    meaning: 'the earth or wide world (‘the broad and extended One’, personified as devI and often invoked together with the sky [cf. 3. div and dyAvApfTivI, RTL. 182]; according to VP. daughter',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'The broad one'
+      }
+    ],
     sources: [
       'RV',
       'MW'
@@ -23417,7 +23627,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Infinity, Freedom, Mother of Gods',
-    meaning: 'Boundless',
+    meaning: 'boundlessness, immensity, inexhaustible abundance, unimpaired condition, perfection, creative power, N. of one of the most ancient of the Indian goddesses (‘Infinity’ or the',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Boundless'
+      }
+    ],
     sources: [
       'RV',
       'MW'
@@ -23464,7 +23680,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Mother of Demons',
-    meaning: 'Distributing, splitting',
+    meaning: 'N. of a deity answering to Aditi (q.v.) as Sura to Asura and without any distinct character, AV. vii, 7, 1 &c.; VS. xviii, 22',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Distributing, splitting'
+      }
+    ],
     sources: [
       'RV',
       'MW'
@@ -23505,7 +23727,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Law, Duty, Righteousness',
-    meaning: 'That which holds',
+    meaning: 'of a son of Anu and father of Ghṛta, Hariv.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'That which holds'
+      }
+    ],
     sources: [
       'MW',
       'Manusmriti'
@@ -23605,7 +23833,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Liberation, Release',
-    meaning: 'Release, liberation',
+    meaning: 'of the Divine mountain Meru, L.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Release, liberation'
+      }
+    ],
     sources: [
       'MW',
       'Upanishads'
@@ -23658,7 +23892,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Cycle of Rebirth',
-    meaning: 'Wandering through',
+    meaning: 'course, passage, passing through a succession of states, circuit of mundane existence, transmigration, metempsychosis, the world, secular life, worldly illusion (A saMsArAt',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Wandering through'
+      }
+    ],
     sources: [
       'MW',
       'Upanishads'
@@ -23717,7 +23957,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Self, Soul',
-    meaning: 'Breath, self',
+    meaning: 'the individual soul, self, abstract individual [e.g. Atman (Ved. loc.) Datte, or karoti, ‘he places in himself’, makes his own, TS. v; ŚBr.; AtmanA akarot, ‘he did it himself’',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Breath, self'
+      }
+    ],
     sources: [
       'MW',
       'Upanishads'
@@ -23764,7 +24010,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Ultimate Reality',
-    meaning: 'Growth, expansion',
+    meaning: 'pious effusion or utterance, outpouring of the heart in worshipping the gods, prayer, RV.; AV.; VS.; TS.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Growth, expansion'
+      }
+    ],
     sources: [
       'MW',
       'Upanishads'
@@ -23823,7 +24075,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Illusion, Magic',
-    meaning: 'That which is measured',
+    meaning: 'N. of an Asura (the artificer or architect of the Daityas, also versed in magic, astronomy and military science), MBh.; Kāv.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'That which is measured'
+      }
+    ],
     sources: [
       'MW',
       'Upanishads'
@@ -23864,7 +24122,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Union, Discipline',
-    meaning: 'Yoke, union',
+    meaning: 'of a variable division of time (during which the joint motion in longitude of the sun and moon amounts to 13 degrees 20 minutes; there are 27 such Yogas beginning with Viṣkambha',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Yoke, union'
+      }
+    ],
     sources: [
       'MW',
       'Yoga Sutras'
@@ -23905,7 +24169,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Sacred Formula',
-    meaning: 'Instrument of thought',
+    meaning: 'a sacred formula addressed to any individual deity (e.g. om SivAya namaH), RTL. 61',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Instrument of thought'
+      }
+    ],
     sources: [
       'MW',
       'RV'
@@ -23958,7 +24228,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Weaving, Esoteric System',
-    meaning: 'Loom, warp',
+    meaning: 'a class of works teaching magical and mystical formularies (mostly in the form of dialogues between Śiva and Durgā and said to treat of 5 subjects, 1. the creation',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Loom, warp'
+      }
+    ],
     sources: [
       'MW',
       'Tantric texts'
@@ -24011,7 +24287,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Sacred Syllable, Cosmic Sound',
-    meaning: 'The primordial sound',
+    meaning: 'a word of solemn affirmation and respectful assent, sometimes translated by ‘yes, verily, so be it’ (and in this sense compared with Amen; it is placed at the commencement of most',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'The primordial sound'
+      }
+    ],
     sources: [
       'MW',
       'Upanishads'
@@ -24029,6 +24311,14 @@ const LEXICON = [
         type: 'special',
         note: 'M with dot: anusvara'
       }
+    ],
+    variants: [
+      {
+        unicode: 'Oṁ',
+        type: 'alt',
+        sources: ['MW'],
+        note: 'Popular transliteration of Om with raised anusvara dot'
+      }
     ]
   },
   {
@@ -24040,7 +24330,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Sage, Compiler of Vedas',
-    meaning: 'The arranger',
+    meaning: '‘arranger, compiler’, N. of a celebrated mythical sage and author (often called Vedavyāsa and regarded as the original compiler and arranger of the Vedas',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'The arranger'
+      }
+    ],
     sources: [
       'MW',
       'Mahabharata'
@@ -24087,7 +24383,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Sage, Author of Ramayana',
-    meaning: 'Born of an anthill',
+    meaning: 'N. of the celebrated author of the Rāmāyaṇa (so called, according to some, because when immersed in thought he allowed himself to be overrun with ants like an anthill; he was no',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Born of an anthill'
+      }
+    ],
     sources: [
       'MW',
       'Ramayana'
@@ -24211,7 +24513,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Royal Sage',
-    meaning: 'The most excellent',
+    meaning: '‘the most wealthy’, N. of a celebrated Vedic Ṛṣi or sage (owner of the ‘cow of plenty’, called Nandinī, offspring of Surabhi, which by granting all desires made him',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'The most excellent'
+      }
+    ],
     sources: [
       'MW',
       'RV'
@@ -24282,7 +24590,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Fish Avatar of Vishnu',
-    meaning: 'Fish',
+    meaning: 'N. of a people and country (which accord. to Mn. ii, 19 forms part of Brahmarṣi), RV. &c. &c.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Fish'
+      }
+    ],
     sources: [
       'MW',
       'Bhagavata'
@@ -24335,7 +24649,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Man-Lion Avatar',
-    meaning: 'Man-lion',
+    meaning: 'of Viṣṇu in his 4th Avatāra (when he was half m˚ half l˚), Kāv.; Pur.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Man-lion'
+      }
+    ],
     sources: [
       'MW',
       'Bhagavata'
@@ -26404,7 +26724,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Ocean, Underworld',
-    meaning: 'The great expanse',
+    meaning: 'Hawaiian god symbolized by the squid or by the octopus, typically associated with Kāne',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'The great expanse'
+      }
+    ],
     sources: [
       'Beckwith',
       'Malo'
@@ -26463,7 +26789,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Agriculture, Peace, Rain',
-    meaning: 'News, report',
+    meaning: 'Hawaiian deity, associated with fertility, agriculture, rainfall, music and peace',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'News, report'
+      }
+    ],
     sources: [
       'Beckwith',
       'Malo'
@@ -26533,7 +26865,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Hula, Magic, Healing',
-    meaning: 'Carrying the egg',
+    meaning: 'patron goddess of Hawaiʻi',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Carrying the egg'
+      }
+    ],
     sources: [
       'Beckwith',
       'Hooulumahiehie'
@@ -26586,7 +26924,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Pig God, Agriculture',
-    meaning: 'The pig child',
+    meaning: 'male fertility deity in Hawaiian mythology',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'The pig child'
+      }
+    ],
     sources: [
       'Beckwith',
       'Malo'
@@ -33256,7 +33600,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Dragons, Rain, Rivers',
-    meaning: 'Dragon king',
+    meaning: 'water deity in Chinese mythology',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Dragon king'
+      }
+    ],
     sources: [
       'Shan Hai Jing',
       'Chinese folklore'
@@ -36732,7 +37082,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'War, Commander',
-    meaning: 'Spiller, attacker',
+    meaning: '‘Attacker’, N. of Kārttikeya (q.v., son of Śiva or of Agni; he is called god of war as leader of Śiva\'s hosts against the enemies of the gods ; he is also leader of the demons of',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Spiller, attacker'
+      }
+    ],
     sources: [
       'MW',
       'Puranas'
@@ -36785,7 +37141,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Bull, Gatekeeper of Shiva',
-    meaning: 'The joyful one',
+    meaning: '‘the happy one’, N. of Viṣṇu, MBh.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'The joyful one'
+      }
+    ],
     sources: [
       'MW',
       'Puranas'
@@ -36832,7 +37194,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Eagle, Mount of Vishnu',
-    meaning: 'Devourer',
+    meaning: 'N. of a mythical bird (chief of the feathered race, enemy of the serpentrace [cf. RTL. p. 321], vehicle of Viṣṇu [cf. RTL. pp. 65; 104; 288], son of Kaśyapa and Vinatā; shortly',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Devourer'
+      }
+    ],
     sources: [
       'MW',
       'Mahabharata'
@@ -36885,7 +37253,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Vulture, Heroic Bird',
-    meaning: 'Matted hair',
+    meaning: '& jawA˚yus, m. N. of the king of vultures (son of Aruṇa and Śyenī, MBh.; son of Garuḍa, R.; younger brother of Sampāti; promising his aid to Rāma, out of regard for his father',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Matted hair'
+      }
+    ],
     sources: [
       'MW',
       'Ramayana'
@@ -36938,7 +37312,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Tyrant, Uncle of Krishna',
-    meaning: 'Cup, bowl',
+    meaning: 'm. N. of a king of Mathurā (son of Ugrasena and cousin of the Devakī who was mother of Kṛṣṇa [Ugrasena being brother of Devaka, who was father of Devakī]; he is usually called the',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Cup, bowl'
+      }
+    ],
     sources: [
       'MW',
       'Bhagavata'
@@ -36985,7 +37365,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Demoness, Killer of Infants',
-    meaning: 'Stinking',
+    meaning: 'N. of a female demon (said to cause a partic. disease in children, and to have offered her poisoned breast to the infant Kṛṣṇa who seized it and sucked away her life; regarded also',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Stinking'
+      }
+    ],
     sources: [
       'MW',
       'Bhagavata'
@@ -37038,7 +37424,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Power, Energy, Divine Feminine',
-    meaning: 'Power, ability',
+    meaning: 'N. of a Muni or sage (the eldest of Vasiṣṭha\'s hundred sons; accord. to VP. he was father of Parāśara, and was devoured by king Kalmāṣapāda, when changed to a maneating Rākṣasa',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Power, ability'
+      }
+    ],
     sources: [
       'MW',
       'Devi Mahatmya'
@@ -37092,7 +37484,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Lord of Creatures',
-    meaning: 'Lord of offspring',
+    meaning: 'lord of creatures, creator, RV. &c. &c. (N. of a supreme god above or among the Vedic deities [RV. (only x, 21, 10); AV.; VS.; Br.] but in later times also applied to Viṣṇu, Śiva',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Lord of offspring'
+      }
+    ],
     sources: [
       'MW',
       'RV'
@@ -37184,7 +37582,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Solar Goddess, Truth',
-    meaning: 'Belonging to Savitar',
+    meaning: 'of the wife of Satyavat (king of Śālva; she was daughter of Aśvapati, king of Madra, and is regarded as a type of conjugal love; her story is the subject of a fine episode of the',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Belonging to Savitar'
+      }
+    ],
     sources: [
       'MW',
       'RV'
@@ -37243,7 +37647,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Divine Artificer',
-    meaning: 'The carpenter',
+    meaning: '‘creator of living beings’, the heavenly builder, N. of a god (called sukft, pARi, gaBasti, janiman, svapas, apasAm apastama, viSvarUpa &c., RV.; maker of divine implements',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'The carpenter'
+      }
+    ],
     sources: [
       'MW',
       'RV'
@@ -37308,7 +37718,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Prosperity, Journeys',
-    meaning: 'The nourisher',
+    meaning: 'N. of a Vedic deity (originally connected with the sun, and therefore the surveyor of all things, and the conductor on journeys and on the way to the next world',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'The nourisher'
+      }
+    ],
     sources: [
       'MW',
       'RV'
@@ -37450,7 +37866,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Ritual, Creation',
-    meaning: 'Able, competent',
+    meaning: 'of a son of Uśīnara, BhP. ix, 23, 2',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Able, competent'
+      }
+    ],
     sources: [
       'MW',
       'Puranas'
@@ -37503,7 +37925,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Sage, Ancestor of Priests',
-    meaning: 'Unknown',
+    meaning: 'pl. (√ BrAj) N. of a mythical race of beings (closely connected with fire, which they find [RV. x, 46, 2] and bring to men [i, 58, 6; 195, 2] or enclose in wood [vi, 15',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Unknown'
+      }
+    ],
     sources: [
       'MW',
       'Puranas'
@@ -37556,7 +37984,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Divine Sage, Messenger',
-    meaning: 'Giver of water',
+    meaning: 'or nArada m. N. of a Ṛṣi (a Kāṇva or Kāśyapa, author of RV. viii, 13; ix, 104; 105; Anukr.; as a Devarṣi often associated with Parvata and supposed to be a messenger between gods',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Giver of water'
+      }
+    ],
     sources: [
       'MW',
       'Puranas'
@@ -37609,7 +38043,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Immortal Sage',
-    meaning: 'Son of Mrkanda',
+    meaning: 'N. of a Tīrtha, L.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Son of Mrkanda'
+      }
+    ],
     sources: [
       'MW',
       'Puranas'
@@ -37686,7 +38126,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Vow, Grandfather',
-    meaning: 'Terrible',
+    meaning: 'of a son of Śāṃtanu and Gaṅgā (in the great war of the Bharatas he took the side of the sons of Dhṛtarāṣṭra against the sons of Pāṇḍu, and was renowned for his continence, wisdom',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Terrible'
+      }
+    ],
     sources: [
       'MW',
       'Mahabharata'
@@ -37745,7 +38191,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Guru, Weapons Master',
-    meaning: 'Bucket, vessel',
+    meaning: 'of one of the 8 Vasus (husband of Abhimati and father of Harṣa, Śoka, Bhaya &c.), BhP.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Bucket, vessel'
+      }
+    ],
     sources: [
       'MW',
       'Mahabharata'
@@ -37792,7 +38244,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Royal Guru',
-    meaning: 'Pity, mercy',
+    meaning: 'N. of a man (described as a friend of Indra), RV. viii, 3, 12 and 4, 2',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Pity, mercy'
+      }
+    ],
     sources: [
       'MW',
       'Mahabharata'
@@ -37839,7 +38297,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Twin, Son of Madri',
-    meaning: 'Mongoose',
+    meaning: 'of a son of the Aśvins and Mādrī (twinbrother of Sahadeva and fourth of the Pāṇḍu princes), MBh.; Hariv.; Pur.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Mongoose'
+      }
+    ],
     sources: [
       'MW',
       'Mahabharata'
@@ -37892,7 +38356,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Twin, Son of Madri',
-    meaning: 'With gods',
+    meaning: 'N. of a Ṛṣi (with the patr. vArzAgira), RV. i, 107',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'With gods'
+      }
+    ],
     sources: [
       'MW',
       'Mahabharata'
@@ -39400,7 +39870,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Poet, Shapeshifter',
-    meaning: 'Radiant brow',
+    meaning: 'Welsh bard',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Radiant brow'
+      }
+    ],
     sources: [
       'Mabinogion',
       'MacKillop'
@@ -41341,7 +41817,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Knowledge, Wisdom',
-    meaning: 'Knowledge',
+    meaning: 'of a Śakti, Rasik.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Knowledge'
+      }
+    ],
     sources: [
       'MW',
       'Upanishads'
@@ -41388,7 +41870,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Devotion, Love',
-    meaning: 'Devotion',
+    meaning: 'attachment, devotion, fondness for, devotion to (with loc., gen. or ifc.), trust, homage, worship, piety, faith or love or devotion (as a religious principle or means of salvation',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Devotion'
+      }
+    ],
     sources: [
       'MW',
       'Bhagavata'
@@ -41441,7 +41929,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Meditation, Absorption',
-    meaning: 'Meditation',
+    meaning: 'mental representation of the personal attributes of a deity, W.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Meditation'
+      }
+    ],
     sources: [
       'MW',
       'Yoga Sutras'
@@ -41494,7 +41988,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Heat, Austerity, Spiritual Power',
-    meaning: 'Heat, austerity',
+    meaning: 'N. of a month intervening between winter and spring, VS.; TS. i; ŚBr.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Heat, austerity'
+      }
+    ],
     sources: [
       'MW',
       'Upanishads'
@@ -41541,7 +42041,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Emptiness, Zero',
-    meaning: 'Empty, void',
+    meaning: 'of Brahma, MW.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Empty, void'
+      }
+    ],
     sources: [
       'MW',
       'Buddhist texts'
@@ -41647,7 +42153,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Source, Womb, Shakti',
-    meaning: 'Source, womb',
+    meaning: 'of the sound e, Up.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Source, womb'
+      }
+    ],
     sources: [
       'MW',
       'Shakta texts'
@@ -41688,7 +42200,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Infinite Light, Pure Land',
-    meaning: 'Infinite light',
+    meaning: ', (As), m. pl. ‘of unmeasured splendour’, N. of certain deities in the eighth Manvantara, VP.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Infinite light'
+      }
+    ],
     sources: [
       'Sukhavati-vyuha',
       'Buddhist texts'
@@ -41753,7 +42271,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Universal Illumination, Cosmic Buddha',
-    meaning: 'The illuminator',
+    meaning: 'of a son of the class of gods called Nīlakāyikas, Lalit.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'The illuminator'
+      }
+    ],
     sources: [
       'Avatamsaka Sutra',
       'Buddhist texts'
@@ -41824,7 +42348,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Immovable, East',
-    meaning: 'Immovable',
+    meaning: 'N. of a Buddha of an author, an immense number, said by Buddhists to be 100 vivaras.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Immovable'
+      }
+    ],
     sources: [
       'Vajrayana texts',
       'Buddhist texts'
@@ -41895,7 +42425,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Jewel-Born, South',
-    meaning: 'Born of jewels',
+    meaning: 'N. of a Buddha, (esp.) of a Dhyānibuddha, MWB.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Born of jewels'
+      }
+    ],
     sources: [
       'Vajrayana texts',
       'Buddhist texts'
@@ -41990,7 +42526,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Infallible Success, North',
-    meaning: 'Almighty conqueror',
+    meaning: 'N. of the fifth Dhyānibuddha.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Almighty conqueror'
+      }
+    ],
     sources: [
       'Vajrayana texts',
       'Buddhist texts'
@@ -42079,7 +42621,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Future Buddha, Loving-Kindness',
-    meaning: 'The friendly one',
+    meaning: 'of a Bodhisattva and future Buddha (the 5th of the present age), Lalit.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'The friendly one'
+      }
+    ],
     sources: [
       'Mahayana texts',
       'Buddhist texts'
@@ -42215,7 +42763,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Universal Good, Practice',
-    meaning: 'Universal virtue',
+    meaning: 'N. of a grammar.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Universal virtue'
+      }
+    ],
     sources: [
       'Mahayana texts',
       'Buddhist texts'
@@ -42310,7 +42864,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Earth Womb, Savior of Hell Beings',
-    meaning: 'Earth store',
+    meaning: 'N. of a Bodhisattva, Buddh.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Earth store'
+      }
+    ],
     sources: [
       'Mahayana texts',
       'Buddhist texts'
@@ -42393,7 +42953,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Thunderbolt Holder, Protection',
-    meaning: 'Vajra in hand',
+    meaning: 'N. of Indra, ṢaḍvBr.; MBh. &c.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Vajra in hand'
+      }
+    ],
     sources: [
       'Vajrayana texts',
       'Buddhist texts'
@@ -42464,7 +43030,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Compassion, Liberation',
-    meaning: 'She who saves',
+    meaning: 'of a female monkey (daughter of Suṣeṇa, wife of Bālin and mother of Aṅgada), MBh. iii, 16110 ff.; R. i, iv, vi.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'She who saves'
+      }
+    ],
     sources: [
       'Vajrayana texts',
       'Buddhist texts'
@@ -42505,7 +43077,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Dawn, Light, Warrior Goddess',
-    meaning: 'Ray of light',
+    meaning: 'w.r. for marIci.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Ray of light'
+      }
+    ],
     sources: [
       'Vajrayana texts',
       'Buddhist texts'
@@ -42558,7 +43136,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Time, Death, Protection',
-    meaning: 'Great time / great black one',
+    meaning: 'N. of a Liṅga in Ujjayinī, Kathās.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Great time / great black one'
+      }
+    ],
     sources: [
       'Vajrayana texts',
       'Buddhist texts'
@@ -42623,7 +43207,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Emptiness, Madhyamaka',
-    meaning: 'Noble serpent',
+    meaning: 'N. of an ancient, Buddh.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Noble serpent'
+      }
+    ],
     sources: [
       'Mūlamadhyamakakārikā',
       'Buddhist texts'
@@ -42747,7 +43337,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Abhidharma, Yogacara',
-    meaning: 'Kinsman of wealth',
+    meaning: 'N. of a celebrated Buddhist scholar, Hcar.; Buddh.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Kinsman of wealth'
+      }
+    ],
     sources: [
       'Abhidharmakośa',
       'Buddhist texts'
@@ -42824,7 +43420,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Enlightenment Being, Compassion',
-    meaning: 'Enlightenment being',
+    meaning: 'of the principal Buddha of the present era (before he became a Buddha), Śiś., Sch.; L.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Enlightenment being'
+      }
+    ],
     sources: [
       'Mahayana texts',
       'Buddhist texts'
@@ -42913,7 +43515,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Worthy One, Saint',
-    meaning: 'Worthy, venerable',
+    meaning: 'an Arhat or superior divinity with the Jainas',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Worthy, venerable'
+      }
+    ],
     sources: [
       'Pali Canon',
       'Buddhist texts'
@@ -42960,7 +43568,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Extinction, Liberation',
-    meaning: 'Blowing out',
+    meaning: 'of an Upaniṣad',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Blowing out'
+      }
+    ],
     sources: [
       'Pali Canon',
       'Buddhist texts'
@@ -46743,7 +47357,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Sacred City, Shiva, Ganges',
-    meaning: 'Between Varana and Asi',
+    meaning: 'the city Benares (more properly written Banāras; accord. to JābālUp. so called after the names of two rivers, varaRA and asi, or asI; also written vARArasI, q.v.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Between Varana and Asi'
+      }
+    ],
     sources: [
       'MW',
       'Puranas'
@@ -46808,7 +47428,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Sacred Mountain, Shiva',
-    meaning: 'Crystal',
+    meaning: 'N. of a mountain (fabulous residence of Kubera and paradise of Śiva; placed in the Himālaya range and regarded as one of the loftiest peaks to the north of the Mānasa lake)',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Crystal'
+      }
+    ],
     sources: [
       'MW',
       'Puranas'
@@ -46867,7 +47493,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Cosmic Mountain, Axis Mundi',
-    meaning: 'High, eminent',
+    meaning: 'N. of the wife of Nābhi and mother of Ṛṣabha, VP. (cf. devI).',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'High, eminent'
+      }
+    ],
     sources: [
       'MW',
       'Puranas'
@@ -46967,7 +47599,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Sacred River, Twin of Yama',
-    meaning: 'Twin',
+    meaning: 'N. of a river commonly called the Jumnā (in Hariv. & MārkP. identified with Yamī q.v.; it rises in the Himālaya mountains among the Jumnotri peaks at an elevation of 10,849 feet',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Twin'
+      }
+    ],
     sources: [
       'MW',
       'Puranas'
@@ -47079,7 +47717,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Birthplace of Buddha',
-    meaning: 'The lovely',
+    meaning: 'or f(I).',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'The lovely'
+      }
+    ],
     sources: [
       'Buddhist texts',
       'MW'
@@ -47916,7 +48560,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Death, Destruction, Yogini',
-    meaning: 'Slayer of Chanda',
+    meaning: 'a form of Durgā (cf. carmamuRqA), Mālatīm.; Kathās.; Rājat.; MārkP.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Slayer of Chanda'
+      }
+    ],
     sources: [
       'MW',
       'Devi Mahatmya'
@@ -47981,7 +48631,13 @@ const LEXICON = [
     tier: '1',
     tierLabel: 'Tier 1',
     domain: 'Ten-Headed King, Lanka',
-    meaning: 'The screamer',
+    meaning: 'N. of the ruler of Laṅkā or Ceylon and the famous chief of the Rākṣasas or demons whose destruction by Rāmacandra forms the subject of the Rāmāyaṇa (as son of Viśravas he was',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'The screamer'
+      }
+    ],
     sources: [
       'MW',
       'Ramayana'
@@ -50021,7 +50677,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Cosmic Order, Truth, Law',
-    meaning: 'Truth, cosmic order, natural law. The Vedic principle of righteousness and universal harmony.',
+    meaning: 'm. N. of a Rudra, MBh.',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Truth, cosmic order, natural law. The Vedic principle of righteousness and universal harmony.'
+      }
+    ],
     sources: ['\u1E5Cgveda', 'Br\u0101hma\u1E47as', 'Upani\u1E63ads'],
     variants: [
       { unicode: 'Rita', type: 'alt', note: 'Older European convention (German philology)',
@@ -50332,7 +50994,13 @@ const LEXICON = [
     tier: '2',
     tierLabel: 'Tier 2',
     domain: 'Speech, Voice, Sacred Word',
-    meaning: 'Speech personified; the Vedic goddess of speech and sound, precursor to Sarasvatī.',
+    meaning: 'Speech personified (in various manners or forms, e.g. as Vāc Āmbhṛṇī in RV. x, 125; as the voice of the middle sphere in Naigh. & Nir.; in the Veda she is also represented as',
+    senses: [
+      {
+        type: 'etymology',
+        text: 'Speech personified; the Vedic goddess of speech and sound, precursor to Sarasvatī.'
+      }
+    ],
     sources: [
       'Ṛgveda',
       'Monier-Williams',

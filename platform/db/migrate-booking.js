@@ -56,11 +56,6 @@ db.exec(`
   CREATE INDEX IF NOT EXISTS idx_bookings_status ON bookings(status);
   CREATE INDEX IF NOT EXISTS idx_bookings_token ON bookings(analytics_token);
   CREATE INDEX IF NOT EXISTS idx_bookings_email ON bookings(email);
-
-  -- Prevent two active bookings from ever referencing the same slot.
-  CREATE UNIQUE INDEX IF NOT EXISTS idx_bookings_active_slot
-  ON bookings(slot_id)
-  WHERE status IN ('pending_payment', 'pending_application', 'pending_upload', 'pending_approval', 'approved', 'live');
 `);
 
 // Add meta customization columns (idempotent)

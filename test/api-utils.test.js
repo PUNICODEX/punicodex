@@ -66,10 +66,10 @@ test('setCors allows whitelisted origins with credentials', () => {
   assert.strictEqual(res.headers['Access-Control-Allow-Credentials'], 'true');
 });
 
-test('setCors falls back to wildcard for unknown origins', () => {
+test('setCors omits allow-origin for unknown origins', () => {
   const res = mockRes();
   setCors({ headers: { origin: 'https://evil.com' } }, res);
-  assert.strictEqual(res.headers['Access-Control-Allow-Origin'], '*');
+  assert.strictEqual(res.headers['Access-Control-Allow-Origin'], undefined);
 });
 
 test('setCors sets expected methods and headers', () => {

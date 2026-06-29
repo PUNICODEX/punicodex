@@ -4,9 +4,6 @@ const path = require('node:path');
 const DB_PATH = path.join(__dirname, 'punycodex.db');
 const db = new Database(DB_PATH);
 
-// Drop old claims table (registrar model)
-db.exec(`DROP TABLE IF EXISTS claims;`);
-
 // Drop old FTS if exists (for rebuild)
 db.exec(`DROP TABLE IF EXISTS indexed_sites_fts;`);
 
@@ -1086,6 +1083,22 @@ const flagships = [
     domain: 'vāc.com',
     punycode: 'xn--vc-dla.com',
     pantheon: 'sanskrit',
+    tier: '2',
+    tier_label: 'Tier-2',
+  },
+  {
+    id: 'anu',
+    domain: 'anû.com',
+    punycode: 'xn--an-vka.com',
+    pantheon: 'mesopotamian',
+    tier: '2',
+    tier_label: 'Tier-2',
+  },
+  {
+    id: 'hen',
+    domain: 'hén.com',
+    punycode: 'xn--hn-bja.com',
+    pantheon: 'greek',
     tier: '2',
     tier_label: 'Tier-2',
   },

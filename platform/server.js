@@ -94,6 +94,7 @@ const {
   getKeyStats,
 } = require('./api/api-key-admin');
 const { createBookingCheckoutSession, createRenewalCheckoutSession } = require('./api/stripe');
+const { processWebhook } = require('./api/webhook-handler');
 const {
   proposeTenant,
   createTenant,
@@ -137,6 +138,21 @@ if (!fs.existsSync(UPLOADS_DIR)) {
 const app = express();
 const PORT = process.env.PORT || 3456;
 
+const ALLOWED_ORIGINS = new Set(
+  (process.env.ALLOWED_ORIGINS || 'https://punycodex.com,http://localhost:3456')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean)
+);
+
+function corsOrigin(origin, callback) {
+  if (!origin || ALLOWED_ORIGINS.has(origin)) {
+    callback(null, true);
+  } else {
+    callback(new Error(`CORS blocked origin: ${origin}`));
+  }
+}
+
 const verifySendLimit = createPublicRateLimit('verify-send');
 const verifyCheckLimit = createPublicRateLimit('verify-check');
 const bookingsLimit = createPublicRateLimit('bookings');
@@ -147,6 +163,10 @@ const tenantsPreviewLimit = createPublicRateLimit('tenants-preview');
 const analyticsPixelLimit = createPublicRateLimit('analytics-pixel');
 const analyticsClickLimit = createPublicRateLimit('analytics-click');
 const adminLoginLimit = createPublicRateLimit('admin-login');
+const publicReadLimit = createPublicRateLimit('public-read');
+const publicWriteLimit = createPublicRateLimit('public-write');
+const searchLimit = createPublicRateLimit('search');
+const domainCheckLimit = createPublicRateLimit('domain-check');
 
 // Database for crawler
 const Database = require('better-sqlite3');
@@ -155,7 +175,20 @@ db.pragma('journal_mode = WAL');
 
 const crawler = new UnicodeCrawler(db);
 
-app.use(cors());
+app.use(cors({ origin: corsOrigin, credentials: false }));
+
+// Stripe webhook must receive the raw body before the global JSON parser.
+app.post('/api/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
+  try {
+    const signature = req.headers['stripe-signature'];
+    await processWebhook(req.body, signature);
+    res.json({ received: true });
+  } catch (err) {
+    console.error('Webhook error:', err.message);
+    res.status(400).json({ error: err.message });
+  }
+});
+
 app.use(express.json({ limit: '10mb' }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/mobile', express.static(path.join(__dirname, '..', 'mobile')));
@@ -168,7 +201,7 @@ app.get('/', async (_req, res) => res.redirect('/search.html'));
 
 // ============ PHASE 1: LEXICON & SEARCH ============
 
-app.get('/api/health', async (_req, res) => {
+app.get('/api/health', publicReadLimit, async (_req, res) => {
   const stats = getStats();
   res.json({
     status: 'ok',
@@ -179,7 +212,7 @@ app.get('/api/health', async (_req, res) => {
   });
 });
 
-app.get('/api/search', async (req, res) => {
+app.get('/api/search', searchLimit, async (req, res) => {
   try {
     const { q, pantheon, tier, hasSite, limit, offset } = req.query;
     const result = search({
@@ -196,7 +229,7 @@ app.get('/api/search', async (req, res) => {
   }
 });
 
-app.get('/api/entry/:id', async (req, res) => {
+app.get('/api/entry/:id', searchLimit, async (req, res) => {
   try {
     const entry = getEntry(req.params.id);
     if (!entry) return res.status(404).json({ error: 'Not found' });
@@ -218,7 +251,7 @@ app.get('/api/entry/:id', async (req, res) => {
   }
 });
 
-app.get('/api/stats', async (_req, res) => {
+app.get('/api/stats', publicReadLimit, async (_req, res) => {
   try {
     res.json(getStats());
   } catch (err) {
@@ -226,7 +259,7 @@ app.get('/api/stats', async (_req, res) => {
   }
 });
 
-app.get('/api/pantheons', async (_req, res) => {
+app.get('/api/pantheons', publicReadLimit, async (_req, res) => {
   try {
     res.json(getPantheons());
   } catch (err) {
@@ -234,7 +267,7 @@ app.get('/api/pantheons', async (_req, res) => {
   }
 });
 
-app.get('/api/pantheon/:name', async (req, res) => {
+app.get('/api/pantheon/:name', publicReadLimit, async (req, res) => {
   try {
     res.json(getByPantheon(req.params.name));
   } catch (err) {
@@ -242,7 +275,7 @@ app.get('/api/pantheon/:name', async (req, res) => {
   }
 });
 
-app.get('/api/entry/:id/variants', async (req, res) => {
+app.get('/api/entry/:id/variants', searchLimit, async (req, res) => {
   try {
     const variants = getVariants(req.params.id);
     if (variants === null) return res.status(404).json({ error: 'Entry not found' });
@@ -252,7 +285,7 @@ app.get('/api/entry/:id/variants', async (req, res) => {
   }
 });
 
-app.get('/api/variants/:ascii', async (req, res) => {
+app.get('/api/variants/:ascii', searchLimit, async (req, res) => {
   try {
     const variants = getVariantsByAscii(req.params.ascii);
     res.json({ ascii: req.params.ascii, count: variants.length, variants });
@@ -261,7 +294,7 @@ app.get('/api/variants/:ascii', async (req, res) => {
   }
 });
 
-app.get('/api/flagships', async (_req, res) => {
+app.get('/api/flagships', publicReadLimit, async (_req, res) => {
   try {
     res.json(getFlagships());
   } catch (err) {
@@ -272,6 +305,7 @@ app.get('/api/flagships', async (_req, res) => {
 // ============ API v1: ENTERPRISE UNICODE NAMES API ============
 
 const v1NamesList = require('../api/v1/names');
+const v1NamesBatch = require('../api/v1/names/batch');
 const v1NameDetail = require('../api/v1/names/[id]');
 const v1NameVariants = require('../api/v1/names/[id]/variants');
 const v1NameBreakdown = require('../api/v1/names/[id]/breakdown');
@@ -290,9 +324,13 @@ const v1Docs = require('../api/v1/docs');
 const v1Openapi = require('../api/v1/openapi.json.js');
 const v1Policy = require('../api/v1/policy');
 const v1PolicyEvaluate = require('../api/v1/policy/evaluate');
+const v1Appraise = require('../api/v1/appraise');
+const v1AppraiseBatch = require('../api/v1/appraise/batch');
+const v2Router = require('./api/api-v2-router');
 const governanceRoutes = require('./api/governance-routes');
 
 app.use('/api/v1/tenants', governanceRoutes.createRouter());
+app.use('/api/v1/names/batch', v1NamesBatch);
 app.use('/api/v1/names', v1NamesList);
 app.use('/api/v1/names/:id/variants', v1NameVariants);
 app.use('/api/v1/names/:id/breakdown', v1NameBreakdown);
@@ -312,6 +350,15 @@ app.use('/api/v1/openapi.json', v1Openapi);
 app.use('/api/v1/docs', v1Docs);
 app.use('/api/v1/policy/evaluate', v1PolicyEvaluate);
 app.use('/api/v1/policy', v1Policy);
+app.use('/api/v1/appraise/batch', v1AppraiseBatch);
+app.use('/api/v1/appraise', v1Appraise);
+
+// API v2 catch-all router
+app.all('/api/v2/*', publicReadLimit, (req, res) => {
+  const slug = (req.params[0] || '').split('/').filter(Boolean);
+  req.query.slug = slug.length === 1 && slug[0] === '' ? [] : slug;
+  return v2Router.route(req, res);
+});
 
 // ============ API v1: THREAT INTELLIGENCE FEED ============
 const v1ThreatFeed = require('../api/v1/threat-feed/index.js');
@@ -326,7 +373,7 @@ app.post('/api/v1/threat-feed/ingest', v1ThreatFeedIngest);
 app.post('/api/v1/threat-feed/cluster/:clusterId/review', v1ThreatFeedClusterReview);
 app.get('/api/v1/threat-feed/campaigns/:identityId', v1ThreatFeedCampaigns);
 
-app.get('/api/domain-status/:domain', async (req, res) => {
+app.get('/api/domain-status/:domain', domainCheckLimit, async (req, res) => {
   try {
     const domain = req.params.domain;
     let status = 'unknown',
@@ -344,7 +391,7 @@ app.get('/api/domain-status/:domain', async (req, res) => {
   }
 });
 
-app.post('/api/domain-status', async (req, res) => {
+app.post('/api/domain-status', domainCheckLimit, async (req, res) => {
   try {
     const { domains } = req.body;
     if (!Array.isArray(domains)) return res.status(400).json({ error: 'domains array required' });
@@ -367,7 +414,7 @@ app.post('/api/domain-status', async (req, res) => {
 // ============ PHASE 2: CRAWLER & SEARCH ENGINE ============
 
 // Get crawler stats
-app.get('/api/crawler/stats', async (_req, res) => {
+app.get('/api/crawler/stats', publicReadLimit, async (_req, res) => {
   try {
     res.json(getCrawlerStats());
   } catch (err) {
@@ -376,7 +423,7 @@ app.get('/api/crawler/stats', async (_req, res) => {
 });
 
 // List indexed sites
-app.get('/api/sites', async (req, res) => {
+app.get('/api/sites', publicReadLimit, async (req, res) => {
   try {
     const { status, pantheon, entryId, limit, offset } = req.query;
     res.json(
@@ -394,7 +441,7 @@ app.get('/api/sites', async (req, res) => {
 });
 
 // Search indexed sites (legacy LIKE-based search)
-app.get('/api/sites/search', async (req, res) => {
+app.get('/api/sites/search', searchLimit, async (req, res) => {
   try {
     const { q, limit } = req.query;
     if (!q) return res.status(400).json({ error: 'q parameter required' });
@@ -405,7 +452,7 @@ app.get('/api/sites/search', async (req, res) => {
 });
 
 // Web search: FTS5-powered content search with relevance ranking + semantic re-ranking
-app.get('/api/search/web', async (req, res) => {
+app.get('/api/search/web', searchLimit, async (req, res) => {
   try {
     const { q, limit, offset, mode, type, pantheon, tier, sort, variant, unicodeOnly, concept } =
       req.query;
@@ -450,7 +497,7 @@ app.get('/api/search/web', async (req, res) => {
 });
 
 // Universal vertical search v2
-app.get('/api/search/v2', async (req, res) => {
+app.get('/api/search/v2', searchLimit, async (req, res) => {
   try {
     const { q, vertical, sort, limit, cursor, pantheon, tier, unicodeOnly, concept } = req.query;
     if (!q?.trim()) return res.status(400).json({ error: 'q parameter required' });
@@ -475,7 +522,7 @@ app.get('/api/search/v2', async (req, res) => {
 });
 
 // Search v2 feedback and preferences
-app.post('/api/search/feedback', async (req, res) => {
+app.post('/api/search/feedback', publicWriteLimit, async (req, res) => {
   try {
     const token = req.headers['x-session-token'];
     if (!token) return res.status(400).json({ error: 'x-session-token required' });
@@ -488,7 +535,7 @@ app.post('/api/search/feedback', async (req, res) => {
   }
 });
 
-app.patch('/api/search/preferences', async (req, res) => {
+app.patch('/api/search/preferences', publicWriteLimit, async (req, res) => {
   try {
     const token = req.headers['x-session-token'];
     if (!token) return res.status(400).json({ error: 'x-session-token required' });
@@ -500,7 +547,7 @@ app.patch('/api/search/preferences', async (req, res) => {
 });
 
 // Gamification: Ink XP, badges, daily challenge, leaderboards
-app.all('/api/gamification', async (req, res) => {
+app.all('/api/gamification', publicWriteLimit, async (req, res) => {
   try {
     const token = req.headers['x-session-token'];
     if (!token) return res.status(400).json({ error: 'x-session-token required' });
@@ -559,7 +606,7 @@ app.all('/api/gamification', async (req, res) => {
 });
 
 // Partner program (Open Unicode Web Protocol)
-app.all('/api/partners', async (req, res) => {
+app.all('/api/partners', publicWriteLimit, async (req, res) => {
   try {
     if (req.method === 'OPTIONS') return res.status(200).end();
 
@@ -601,7 +648,7 @@ app.all('/api/partners', async (req, res) => {
 });
 
 // Glyph / visual search
-app.get('/api/glyph', async (req, res) => {
+app.get('/api/glyph', publicReadLimit, async (req, res) => {
   try {
     const { q } = req.query;
     if (!q) return res.status(400).json({ error: 'q parameter required' });
@@ -613,7 +660,7 @@ app.get('/api/glyph', async (req, res) => {
 });
 
 // Autonomous agents
-app.all('/api/agents', async (req, res) => {
+app.all('/api/agents', publicWriteLimit, async (req, res) => {
   try {
     const token = req.headers['x-session-token'];
     if (!token) return res.status(400).json({ error: 'x-session-token required' });
@@ -659,7 +706,7 @@ app.all('/api/agents', async (req, res) => {
 });
 
 // Marketplace: listings, lease inquiries, registrar prices, reviews
-app.all('/api/marketplace', async (req, res) => {
+app.all('/api/marketplace', publicWriteLimit, async (req, res) => {
   try {
     const token = req.headers['x-session-token'];
     if (!token) return res.status(400).json({ error: 'x-session-token required' });
@@ -700,7 +747,7 @@ app.all('/api/marketplace', async (req, res) => {
 });
 
 // Spatial workspace sync
-app.all('/api/workspace', async (req, res) => {
+app.all('/api/workspace', publicWriteLimit, async (req, res) => {
   try {
     const token = req.headers['x-session-token'];
     if (!token) return res.status(400).json({ error: 'x-session-token required' });
@@ -776,7 +823,7 @@ app.all('/api/workspace', async (req, res) => {
 });
 
 // Click tracking for feedback loop
-app.post('/api/search/click', async (req, res) => {
+app.post('/api/search/click', publicWriteLimit, async (req, res) => {
   try {
     const { query, siteId, position, dwellTimeMs } = req.body;
     if (!query || !siteId) {
@@ -818,7 +865,7 @@ app.post('/api/search/click', async (req, res) => {
 });
 
 // Find duplicate content clusters (must be BEFORE /api/sites/:punycode)
-app.get('/api/sites/duplicates', async (req, res) => {
+app.get('/api/sites/duplicates', publicReadLimit, async (req, res) => {
   try {
     const threshold = parseInt(req.query.threshold, 10) || 3;
     const clusters = findDuplicateClusters(threshold, 2, 200);
@@ -829,7 +876,7 @@ app.get('/api/sites/duplicates', async (req, res) => {
 });
 
 // Get single site by punycode
-app.get('/api/sites/:punycode', async (req, res) => {
+app.get('/api/sites/:punycode', publicReadLimit, async (req, res) => {
   try {
     const site = getSiteByPunycode(req.params.punycode);
     if (!site) return res.status(404).json({ error: 'Site not found' });
@@ -891,7 +938,7 @@ app.post('/api/sites/:punycode/spam', requireAdmin, async (req, res) => {
 // ============ PHASE 6: QUERY INTELLIGENCE ============
 
 // Autocomplete suggestions
-app.get('/api/search/suggest', async (req, res) => {
+app.get('/api/search/suggest', searchLimit, async (req, res) => {
   try {
     const { q, limit } = req.query;
     if (!q?.trim()) return res.json({ suggestions: [], query: q });
@@ -903,7 +950,7 @@ app.get('/api/search/suggest', async (req, res) => {
 });
 
 // "Did you mean?" spell correction
-app.get('/api/search/didyoumean', async (req, res) => {
+app.get('/api/search/didyoumean', searchLimit, async (req, res) => {
   try {
     const { q, limit } = req.query;
     if (!q?.trim()) return res.json({ suggestions: [], query: q });
@@ -915,7 +962,7 @@ app.get('/api/search/didyoumean', async (req, res) => {
 });
 
 // Related searches
-app.get('/api/search/related', async (req, res) => {
+app.get('/api/search/related', searchLimit, async (req, res) => {
   try {
     const { q, limit } = req.query;
     if (!q?.trim()) return res.json({ related: [], query: q });
@@ -929,7 +976,7 @@ app.get('/api/search/related', async (req, res) => {
 // ============ PHASE 3: DISCOVERY & QUEUE ============
 
 // Get crawl queue
-app.get('/api/crawler/queue', async (req, res) => {
+app.get('/api/crawler/queue', publicReadLimit, async (req, res) => {
   try {
     const { status, limit, offset } = req.query;
     res.json(
@@ -984,7 +1031,7 @@ app.post('/api/crawler/queue/process', requireAdmin, async (req, res) => {
 });
 
 // Get discovered domains
-app.get('/api/crawler/discovered', async (req, res) => {
+app.get('/api/crawler/discovered', publicReadLimit, async (req, res) => {
   try {
     const { source, limit, offset } = req.query;
     res.json(
@@ -1040,7 +1087,7 @@ app.post('/api/crawler/discover', requireAdmin, async (req, res) => {
 
 // ============ AVAILABILITY ============
 
-app.get('/api/availability/:entryId', async (req, res) => {
+app.get('/api/availability/:entryId', domainCheckLimit, async (req, res) => {
   try {
     const avail = getAvailability(req.params.entryId);
     if (!avail) return res.status(404).json({ error: 'Not tracked' });
@@ -1062,7 +1109,7 @@ app.post('/api/availability/:entryId', requireAdmin, async (req, res) => {
 
 // ============ PHASE 5 — KNOWLEDGE PANELS ============
 
-app.get('/api/search/knowledge', async (req, res) => {
+app.get('/api/search/knowledge', searchLimit, async (req, res) => {
   try {
     const { q } = req.query;
     const panel = getKnowledgePanelData(q);
@@ -1074,7 +1121,7 @@ app.get('/api/search/knowledge', async (req, res) => {
 });
 
 // People Also Ask (entity-driven expandable questions)
-app.get('/api/search/paa', async (req, res) => {
+app.get('/api/search/paa', searchLimit, async (req, res) => {
   try {
     const { q, limit } = req.query;
     const questions = generatePeopleAlsoAsk(q, limit ? parseInt(limit, 10) : 4);
@@ -1085,7 +1132,7 @@ app.get('/api/search/paa', async (req, res) => {
 });
 
 // Oracle — conversational RAG over the PUNYCODEX knowledge base
-app.get('/api/oracle', async (req, res) => {
+app.get('/api/oracle', searchLimit, async (req, res) => {
   try {
     const { q } = req.query;
     if (!q?.trim()) return res.status(400).json({ error: 'q parameter required' });
@@ -1097,7 +1144,7 @@ app.get('/api/oracle', async (req, res) => {
 });
 
 // Webmaster domain submission
-app.post('/api/submit', async (req, res) => {
+app.post('/api/submit', publicWriteLimit, async (req, res) => {
   try {
     const { domain, email } = req.body;
     if (!domain) return res.status(400).json({ error: 'domain required' });
@@ -1111,7 +1158,7 @@ app.post('/api/submit', async (req, res) => {
 // ============ NIKE BOOKING SYSTEM ============
 
 // --- Public Slots ---
-app.get('/api/slots', async (req, res) => {
+app.get('/api/slots', publicReadLimit, async (req, res) => {
   try {
     res.json({ slots: await getSlots(req.query.site || null) });
   } catch (err) {
@@ -1119,7 +1166,7 @@ app.get('/api/slots', async (req, res) => {
   }
 });
 
-app.get('/api/slots/:slug', async (req, res) => {
+app.get('/api/slots/:slug', publicReadLimit, async (req, res) => {
   try {
     const slot = await getSlotBySlug(req.params.slug, req.query.site || null);
     if (!slot) return res.status(404).json({ error: 'Slot not found' });
@@ -1388,7 +1435,7 @@ app.post('/api/verify/check', verifyCheckLimit, async (req, res) => {
   }
 });
 
-app.get('/api/bookings/:token/all', async (req, res) => {
+app.get('/api/bookings/:token/all', publicReadLimit, async (req, res) => {
   try {
     const primary = await getBookingByToken(req.params.token);
     if (!primary) return res.status(404).json({ error: 'Booking not found' });
@@ -1451,7 +1498,7 @@ app.post('/api/bookings/:token/meta', bookingMetaLimit, async (req, res) => {
   }
 });
 
-app.get('/api/bookings/:token', async (req, res) => {
+app.get('/api/bookings/:token', publicReadLimit, async (req, res) => {
   try {
     const booking = await getBookingByToken(req.params.token);
     if (!booking) return res.status(404).json({ error: 'Booking not found' });
@@ -1555,7 +1602,7 @@ app.post('/api/bookings/recover', bookingsRecoverLimit, async (req, res) => {
   }
 });
 
-app.get('/api/bookings/:token/check-payment', async (req, res) => {
+app.get('/api/bookings/:token/check-payment', publicReadLimit, async (req, res) => {
   try {
     const booking = await getBookingByToken(req.params.token);
     if (!booking) return res.status(404).json({ error: 'Booking not found' });
@@ -1644,7 +1691,7 @@ app.post('/api/bookings/:token/upload', bookingUploadLimit, async (req, res) => 
 });
 
 // Per-slot creative upload (for bundle bookings)
-app.post('/api/bookings/:token/slot/:slotId/upload', async (req, res) => {
+app.post('/api/bookings/:token/slot/:slotId/upload', bookingUploadLimit, async (req, res) => {
   try {
     const { image, filename } = req.body;
     const slotId = parseInt(req.params.slotId, 10);
@@ -1700,7 +1747,7 @@ app.post('/api/bookings/:token/slot/:slotId/upload', async (req, res) => {
 });
 
 // Get all per-slot creatives for a bundle booking
-app.get('/api/bookings/:token/slots', async (req, res) => {
+app.get('/api/bookings/:token/slots', publicReadLimit, async (req, res) => {
   try {
     const booking = await getBookingByToken(req.params.token);
     if (!booking) return res.status(404).json({ error: 'Booking not found' });
@@ -1725,7 +1772,7 @@ app.post('/api/analytics/viewability', analyticsPixelLimit, async (req, res) => 
   await adAnalytics.trackViewability(token, visibleSeconds, visiblePercent, req, res);
 });
 
-app.get('/api/analytics/dashboard', async (req, res) => {
+app.get('/api/analytics/dashboard', publicReadLimit, async (req, res) => {
   await adAnalytics.getDashboard(req.query.token, res);
 });
 
@@ -1744,7 +1791,7 @@ app.get('/api/tenants', requireAdmin, async (req, res) => {
   }
 });
 
-app.get('/api/tenants/:entryId', async (req, res) => {
+app.get('/api/tenants/:entryId', publicReadLimit, async (req, res) => {
   try {
     const tenant = getTenant(req.params.entryId);
     if (!tenant) return res.status(404).json({ error: 'Tenant not found' });
@@ -2391,20 +2438,6 @@ app.post('/api/admin/bookings/:id/report', requireAdmin, async (req, res) => {
     res.json({ sent: true });
   } catch (err) {
     res.status(500).json({ error: err.message });
-  }
-});
-
-const { processWebhook } = require('./api/webhook-handler');
-
-// Stripe webhook
-app.post('/api/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
-  try {
-    const signature = req.headers['stripe-signature'];
-    await processWebhook(req.body, signature);
-    res.json({ received: true });
-  } catch (err) {
-    console.error('Webhook error:', err.message);
-    res.status(400).json({ error: err.message });
   }
 });
 

@@ -211,7 +211,9 @@
         const tag = el.tagName.toLowerCase();
         if (tag === 'input') {
             const type = el.type || 'text';
-            return ['text', 'search', 'url', 'email', 'password'].includes(type);
+            // Never observe password fields or other sensitive input types.
+            if (type === 'password') return false;
+            return ['text', 'search', 'url', 'email'].includes(type);
         }
         if (tag === 'textarea') return true;
         return false;
