@@ -30,6 +30,7 @@ const {
 } = require(path.join(ROOT, 'type', 'js', 'original-scripts.js'));
 
 const LORE_STUBS = require(path.join(__dirname, 'lore-stubs.js'));
+const GALLERY_DATA = require(path.join(__dirname, 'gallery-data.json'));
 
 const BESPOKE_EFFECTS = (() => {
   try {
@@ -2589,6 +2590,31 @@ function generateLorePage(entry, palette, loreSections, templateDir, catalog) {
 function buildGalleryGrid(entry) {
   const id = entry.id;
   const items = [];
+
+  // Use curated Wikimedia Commons images when available.
+  const curated = GALLERY_DATA[id];
+  if (curated && Array.isArray(curated.images) && curated.images.length > 0) {
+    curated.images.forEach((img, i) => {
+      const webpSrc = img.src;
+      let fallbackSrc = img.src.replace(/\.webp$/, '');
+      if (fallbackSrc.endsWith('.svg')) {
+        fallbackSrc = fallbackSrc.replace(/\.svg$/, '.png');
+      }
+      const caption = img.caption.replace(/"/g, '&quot;');
+      const alt = img.alt.replace(/"/g, '&quot;');
+      const delayAttr = i > 0 ? ` data-delay="${(i % 4) * 100}"` : '';
+      items.push(`
+                <div class="gallery-item reveal-up"${delayAttr}>
+                    <figure class="gallery-figure" data-full-src="${fallbackSrc}" data-caption="${caption}">
+                        <picture><source srcset="${webpSrc}" type="image/webp"><img class="gallery-img" src="${fallbackSrc}" alt="${alt}" loading="lazy" decoding="async"></picture>
+                    </figure>
+                    <p class="gallery-caption">${img.caption}</p>
+                </div>`);
+    });
+    return items.join('\n');
+  }
+
+  // Fall back to brand assets when no curated gallery exists.
   const pushItem = (img, webp, caption) => {
     const imgPath = path.join(SITES_DIR, id, 'assets', img);
     if (fs.existsSync(imgPath)) {
