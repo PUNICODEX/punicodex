@@ -66,16 +66,22 @@
     // Mobile Nav Toggle
     // ============================
     if (navToggle && navLinks) {
-        navToggle.addEventListener('click', () => {
+        // Use capture phase and stop propagation so flagship script.js files
+        // that also bind a click listener do not double-toggle the menu.
+        navToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopImmediatePropagation();
             navLinks.classList.toggle('active');
             navToggle.classList.toggle('active');
-        });
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+        }, true);
 
         // Close mobile nav on link click
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
                 navToggle.classList.remove('active');
+                document.body.style.overflow = '';
             });
         });
     }
