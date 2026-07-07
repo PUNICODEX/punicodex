@@ -13,6 +13,32 @@ const { generateBlankManifest, validateManifest, getTaxonomyVersion } = require(
 
 const OUT_DIR = path.join(__dirname, '..', 'platform', 'scholars', 'manifests');
 
+function deepEqual(a, b) {
+  return JSON.stringify(a) === JSON.stringify(b);
+}
+
+function withoutGeneratedAt(obj) {
+  const clone = JSON.parse(JSON.stringify(obj));
+  delete clone.generatedAt;
+  return clone;
+}
+
+function writeJsonIfChanged(filePath, data) {
+  let existing = null;
+  if (fs.existsSync(filePath)) {
+    try {
+      existing = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+    } catch {
+      existing = null;
+    }
+  }
+  if (existing && deepEqual(withoutGeneratedAt(existing), withoutGeneratedAt(data))) {
+    return false;
+  }
+  fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+  return true;
+}
+
 function main() {
   fs.mkdirSync(OUT_DIR, { recursive: true });
 
@@ -35,7 +61,7 @@ function main() {
     }
 
     const filePath = path.join(OUT_DIR, `${archetype.id}.json`);
-    fs.writeFileSync(filePath, JSON.stringify(manifest, null, 2));
+    writeJsonIfChanged(filePath, manifest);
     index.manifests[archetype.id] = {
       name: archetype.name,
       pantheon: archetype.pantheon,
@@ -45,7 +71,7 @@ function main() {
     };
   }
 
-  fs.writeFileSync(path.join(OUT_DIR, 'all.json'), JSON.stringify(index, null, 2));
+  writeJsonIfChanged(path.join(OUT_DIR, 'all.json'), index);
 
   console.log(`Generated ${Object.keys(index.manifests).length} blank Scholarly Edition manifests.`);
   console.log(`Index written to: platform/scholars/manifests/all.json`);

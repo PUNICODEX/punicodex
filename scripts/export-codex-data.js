@@ -15,9 +15,42 @@ function out(name) {
   return path.join(OUT_DIR, name);
 }
 
-function writeJson(name, data) {
+function deepEqual(a, b) {
+  return JSON.stringify(a) === JSON.stringify(b);
+}
+
+function withoutTimestamps(obj, paths) {
+  const clone = JSON.parse(JSON.stringify(obj));
+  for (const path of paths) {
+    const parts = path.split('.');
+    let node = clone;
+    for (let i = 0; i < parts.length - 1; i++) {
+      if (node == null) break;
+      node = node[parts[i]];
+    }
+    if (node != null) {
+      delete node[parts[parts.length - 1]];
+    }
+  }
+  return clone;
+}
+
+function writeJson(name, data, ignorePaths = ['meta.generatedAt']) {
   fs.mkdirSync(OUT_DIR, { recursive: true });
-  fs.writeFileSync(out(name), JSON.stringify(data, null, 2));
+  const filePath = out(name);
+  let existing = null;
+  if (fs.existsSync(filePath)) {
+    try {
+      existing = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+    } catch {
+      existing = null;
+    }
+  }
+  if (existing && deepEqual(withoutTimestamps(existing, ignorePaths), withoutTimestamps(data, ignorePaths))) {
+    console.log(`✓ codex/data/${name} (unchanged)`);
+    return;
+  }
+  fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
   console.log(`✓ codex/data/${name}`);
 }
 
