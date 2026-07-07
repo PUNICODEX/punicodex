@@ -98,6 +98,7 @@ const SUITES = [
   { name: 'Spam Classifier Tests', cmd: 'node test/spam-classifier.test.js' },
   { name: 'LTR Tests', cmd: 'node test/ltr.test.js' },
   { name: 'Generated Artifacts Tests', cmd: 'node test/generated-artifacts.test.js' },
+  { name: 'Generator Idempotency Tests', cmd: 'node test/generator-idempotency.test.js' },
   { name: 'Frontend Smoke Tests', cmd: 'node test/frontend-smoke.test.js' },
   { name: 'Mobile Share Extension Tests', cmd: 'node test/mobile-share-extension.test.js' },
   { name: 'iOS SDK Contract Tests', cmd: 'node sdk/ios/Tests/contract.test.js' },
@@ -105,6 +106,7 @@ const SUITES = [
   { name: 'Link Checker', cmd: 'node test/links.js' },
   { name: 'SEO Validator', cmd: 'node scripts/validate-seo.js' },
   { name: 'Philological Accuracy', cmd: 'node scripts/validate-accuracy.js' },
+  { name: 'Divergence Gate', cmd: 'node test/divergence-gate.test.js' },
   { name: 'Flywheel Integrity', cmd: 'node scripts/validate-flywheel.js' },
 ];
 
