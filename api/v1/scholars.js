@@ -28,6 +28,7 @@ const PREFIX_WITH_SLASH = '/api/v1/scholars/';
 
 module.exports = (req, res) => {
   console.log('[scholars] invoked', req.method, req.url, 'query:', JSON.stringify(req.query || {}));
+
   const rawUrl = req.url || '/';
   const queryIndex = rawUrl.indexOf('?');
   const pathPart = queryIndex >= 0 ? rawUrl.slice(0, queryIndex) : rawUrl;

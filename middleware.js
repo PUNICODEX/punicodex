@@ -615,7 +615,10 @@ const LEGACY_REDIRECTS = {
 };
 
 export const config = {
-  matcher: '/:path*',
+  // Run on all paths except the Scholars API. Scholars uses vercel.json
+  // rewrites to a single handler, and the middleware's fetch(request)
+  // pass-through does not correctly dispatch to it.
+  matcher: '/((?!api/v1/scholars/).*)',
 };
 
 export default function middleware(request) {
