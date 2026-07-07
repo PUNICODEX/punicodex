@@ -2766,8 +2766,8 @@ function validateGenerated(_templeId, outputs) {
       issues.push(`${fileName}: leftover placeholders ${leftover.join(', ')}`);
     }
     if (fileName.endsWith('.js')) {
-      if (content.includes('console.error') || content.includes('console.log')) {
-        issues.push(`${fileName}: contains console statement`);
+      if (content.includes('console.log')) {
+        issues.push(`${fileName}: contains console.log statement`);
       }
       if (content.includes('localhost')) {
         issues.push(`${fileName}: contains localhost reference`);

@@ -269,7 +269,7 @@ async function loadSlots() {
     slotsData = data.slots || [];
     updateSlotUI();
   } catch (err) {
-
+    console.error('[PUNYCODEX] loadSlots failed:', err);
   }
 }
 
@@ -306,9 +306,15 @@ function trackViewability(container, token) {
 function updateSlotUI() {
   const orderedSlots = [...slotsData].sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0));
   document.querySelectorAll('.space-slot').forEach(slotEl => {
-    const spaceNum = slotEl.dataset.space;
-    const sortOrder = parseInt(spaceNum, 10);
-    const slot = orderedSlots.find(s => s.sort_order === sortOrder);
+    let slot;
+    if (slotEl.dataset.bundle === '1') {
+      // The full-page takeover maps to the bundle slot in the database.
+      slot = orderedSlots.find(s => s.is_bundle === 1);
+    } else {
+      const spaceNum = slotEl.dataset.space;
+      const sortOrder = parseInt(spaceNum, 10);
+      slot = orderedSlots.find(s => s.sort_order === sortOrder);
+    }
     if (!slot) return;
 
     const frame = slotEl.querySelector('.space-frame');
@@ -519,7 +525,7 @@ function openModal(slotOrId) {
     document.body.style.overflow = 'hidden';
 
   } catch (err) {
-
+    console.error('[PUNYCODEX] openModal failed:', err);
   }
 }
 
@@ -561,8 +567,15 @@ document.addEventListener('click', (e) => {
   if (!slotEl) return;
   // Don't intercept clicks on live ad links
   if (e.target.closest('a.space-live-ad')) return;
-  const sortOrder = parseInt(slotEl.dataset.space, 10);
-  const slot = slotsData.find(s => s.sort_order === sortOrder);
+
+  let slot;
+  if (slotEl.dataset.bundle === '1') {
+    // Full-page takeover maps to the bundle slot.
+    slot = slotsData.find(s => s.is_bundle === 1);
+  } else {
+    const sortOrder = parseInt(slotEl.dataset.space, 10);
+    slot = slotsData.find(s => s.sort_order === sortOrder);
+  }
   if (!slot) return;
 
   openModal(slot);
@@ -801,7 +814,7 @@ async function handleReturnFromStripe() {
       showBookingError('Payment is still processing. Please refresh in a moment.');
     }
   } catch (err) {
-
+    console.error('[PUNYCODEX] handleReturnFromStripe failed:', err);
   }
 }
 
