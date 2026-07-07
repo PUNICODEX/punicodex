@@ -5,6 +5,12 @@
       "includeFiles": "platform/db/**"
     }
   },
+  "rewrites": [
+    {
+      "source": "/api/v1/scholars/:path*",
+      "destination": "/api/v1/scholars"
+    }
+  ],
   "crons": [
     {
       "path": "/api/cron/crawler",
