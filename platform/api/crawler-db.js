@@ -182,14 +182,16 @@ function getSites({ status, pantheon, entryId, trust = 'all', limit = 50, offset
   const allowedTrust = ['safe', 'canonical', 'styled', 'all'];
   const trustMode = allowedTrust.includes(trust) ? trust : 'all';
   if (trustMode === 'safe') {
-    sql += " AND (trust_tier IS NULL OR trust_tier IN ('canonical', 'styled', 'unknown'))";
-    countSql += " AND (trust_tier IS NULL OR trust_tier IN ('canonical', 'styled', 'unknown'))";
+    sql +=
+      " AND (trust_tier IS NULL OR trust_tier IN ('canonical', 'ascii-fallback', 'styled', 'unknown'))";
+    countSql +=
+      " AND (trust_tier IS NULL OR trust_tier IN ('canonical', 'ascii-fallback', 'styled', 'unknown'))";
   } else if (trustMode === 'canonical') {
     sql += " AND trust_tier = 'canonical'";
     countSql += " AND trust_tier = 'canonical'";
   } else if (trustMode === 'styled') {
-    sql += " AND trust_tier IN ('canonical', 'styled')";
-    countSql += " AND trust_tier IN ('canonical', 'styled')";
+    sql += " AND trust_tier IN ('canonical', 'ascii-fallback', 'styled')";
+    countSql += " AND trust_tier IN ('canonical', 'ascii-fallback', 'styled')";
   }
 
   sql +=
@@ -316,12 +318,12 @@ async function searchWeb(q, options = {}) {
   const trustMode = allowedTrust.includes(trust) ? trust : 'safe';
   if (trustMode === 'safe') {
     filters.push(
-      "AND (s.trust_tier IS NULL OR s.trust_tier IN ('canonical', 'styled', 'unknown'))"
+      "AND (s.trust_tier IS NULL OR s.trust_tier IN ('canonical', 'ascii-fallback', 'styled', 'unknown'))"
     );
   } else if (trustMode === 'canonical') {
     filters.push("AND s.trust_tier = 'canonical'");
   } else if (trustMode === 'styled') {
-    filters.push("AND s.trust_tier IN ('canonical', 'styled')");
+    filters.push("AND s.trust_tier IN ('canonical', 'ascii-fallback', 'styled')");
   }
   // trustMode === 'all' adds no filter
 

@@ -178,7 +178,9 @@ function run() {
   test('search queryTrust is returned for queries', () => {
     const result = searchService.search({ q: 'zeus', limit: 1 });
     assert.ok(result.queryTrust);
-    assert.ok(['canonical', 'styled', 'unknown'].includes(result.queryTrust.tier));
+    assert.ok(
+      ['canonical', 'ascii-fallback', 'styled', 'unknown'].includes(result.queryTrust.tier)
+    );
     assert.ok(result.queryTrust.verdict);
     assert.ok(result.queryTrust.severity);
   });

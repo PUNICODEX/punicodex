@@ -430,7 +430,7 @@ async function runTests() {
     const { status, body } = await invoke(
       authenticityCheck,
       'GET',
-      '/api/v1/authenticity/check?input=Zeus&type=term'
+      '/api/v1/authenticity/check?input=Ze%C3%BAs&type=term'
     );
     assert.strictEqual(status, 200);
     assertEnvelope(body);

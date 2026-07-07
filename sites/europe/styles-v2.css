@@ -116,7 +116,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 72px;
+    height: var(--nav-height);
     overflow: visible;
 }
 
@@ -129,7 +129,8 @@ body {
 
 .nav-logo-img {
     display: block;
-    height: 128px;
+    height: 110px;
+    max-width: 260px;
     width: auto;
     object-fit: contain;
     filter: brightness(1.1);
@@ -1355,6 +1356,10 @@ body {
 }
 
 @media (max-width: 768px) {
+    :root {
+        --nav-height: 74px;
+    }
+
     .nav-links {
         display: none;
         position: absolute;
@@ -1379,7 +1384,8 @@ body {
     }
     
     .nav-logo-img {
-        height: 96px;
+        height: 74px;
+    max-width: 184px;
     }
     
     .domains-grid {

@@ -47,9 +47,9 @@ function run() {
 
 // ── Canonical terms ──
 
-test('ASCII canonical term is canonical', () => {
+test('ASCII canonical term returns ascii-fallback tier', () => {
   const r = classifyTerm('zeus');
-  assert.strictEqual(r.tier, TRUST_TIERS.CANONICAL);
+  assert.strictEqual(r.tier, TRUST_TIERS.ASCII_FALLBACK);
   assert.strictEqual(r.canonicalMatch.id, 'zeus');
 });
 
@@ -141,9 +141,9 @@ test('Plain unknown ASCII term is unknown', () => {
 
 // ── Query + domain combined ──
 
-test('Safe query + canonical domain is canonical overall', () => {
+test('Safe query + safe domain is ascii-fallback overall', () => {
   const r = classifyQueryAndDomain('zeus', 'zeus.com');
-  assert.strictEqual(r.overall, TRUST_TIERS.CANONICAL);
+  assert.strictEqual(r.overall, TRUST_TIERS.ASCII_FALLBACK);
 });
 
 test('Suspicious domain overrides safe query', () => {
@@ -183,7 +183,7 @@ test('Database unsafe pattern flags matching term as unsafe', () => {
 test('searchWeb defaults to safe trust tier', async () => {
   const r = await searchWeb('zeus', { limit: 5 });
   assert.ok(r.queryTrust);
-  assert.strictEqual(r.queryTrust.tier, TRUST_TIERS.CANONICAL);
+  assert.strictEqual(r.queryTrust.tier, TRUST_TIERS.ASCII_FALLBACK);
   for (const result of r.results) {
     assert.notStrictEqual(result.trustTier, TRUST_TIERS.UNSAFE);
     assert.notStrictEqual(result.trustTier, TRUST_TIERS.SUSPICIOUS);
@@ -195,7 +195,9 @@ test('searchWeb attaches trust tier to results', async () => {
   assert.ok(r.results.length > 0);
   for (const result of r.results) {
     assert.ok(
-      ['canonical', 'styled', 'suspicious', 'unsafe', 'unknown'].includes(result.trustTier)
+      ['canonical', 'ascii-fallback', 'styled', 'suspicious', 'unsafe', 'unknown'].includes(
+        result.trustTier
+      )
     );
     assert.ok(result.trustReason);
   }

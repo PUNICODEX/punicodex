@@ -2637,7 +2637,12 @@
         const ctx = canvas.getContext('2d');
         if (!ctx) return;
 
-        effect(canvas, ctx, size.width, size.height, primaryRgb, secondaryRgb);
+        function start() {
+            if (canvas.__raf) cancelAnimationFrame(canvas.__raf);
+            effect(canvas, ctx, size.width, size.height, primaryRgb, secondaryRgb);
+        }
+
+        start();
 
         let resizeTimeout;
         const onResize = () => {
@@ -2649,6 +2654,22 @@
             }, 150);
         };
         window.addEventListener('resize', onResize);
+
+        // Pause animation when canvas leaves viewport to save battery/CPU.
+        const visibilityObserver = new IntersectionObserver(
+            (entries) => {
+                if (entries[0].isIntersecting) {
+                    if (!canvas.__raf) start();
+                } else {
+                    if (canvas.__raf) {
+                        cancelAnimationFrame(canvas.__raf);
+                        canvas.__raf = null;
+                    }
+                }
+            },
+            { threshold: 0 }
+        );
+        visibilityObserver.observe(canvas);
     }
 
     function init() {

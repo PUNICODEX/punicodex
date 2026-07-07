@@ -18,6 +18,18 @@ const OPERATIONAL_TABLES = [
   'api_keys',
   'api_request_log',
   'claims',
+  'scholars_institutions',
+  'scholars_users',
+  'scholars_sessions',
+  'scholars_temples',
+  'scholars_sections',
+  'scholars_edits',
+  'scholars_reviews',
+  'scholars_history',
+  'scholars_snapshots',
+  'scholars_media',
+  'scholars_notifications',
+  'scholars_audit_log',
 ];
 
 const sqliteTypeToPostgres = {

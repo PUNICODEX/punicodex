@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lóng — Advertiser Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <style>
+        :root {
+            --bg: #080e19;
+            --bg-elevated: #0e1a2b;
+            --bg-card: #121f33;
+            --gold: #D4AF37;
+            --gold-dim: #8B7355;
+            --gold-bright: #F0D878;
+            --secondary: #4169E1;
+            --text: #e8e4dc;
+            --text-muted: #7a8a9e;
+            --success: #4ade80;
+            --danger: #ff6b6b;
+            --warning: #fbbf24;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+        .dash-header {
+            background: var(--bg-elevated);
+            border-bottom: 1px solid var(--gold-dim);
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .dash-header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--gold);
+        }
+        .dash-header p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .dash-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .dash-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .dash-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+        .dash-card-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+        .dash-card-value {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        .dash-card-sub {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+        .dash-section {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .dash-section h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .dash-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.35rem 1rem;
+            border-radius: 100px;
+            margin-left: 1rem;
+        }
+        .dash-status-live { background: rgba(74,222,128,0.1); color: var(--success); border: 1px solid rgba(74,222,128,0.2); }
+        .dash-status-pending { background: rgba(251,191,36,0.1); color: var(--warning); border: 1px solid rgba(251,191,36,0.2); }
+        .dash-status-ended { background: rgba(255,255,255,0.05); color: var(--text-muted); }
+        .dash-preview {
+            background: linear-gradient(145deg, rgba(14,26,43,0.92), rgba(8,15,25,0.97));
+            border: 1px solid var(--gold-dim);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            margin-bottom: 1rem;
+        }
+        .dash-preview img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            display: block;
+        }
+        .dash-preview.placeholder {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            padding: 2rem;
+            text-align: center;
+        }
+        .dash-form-label {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin: 1rem 0 0.5rem;
+        }
+        .dash-form-label:first-child { margin-top: 0; }
+        .dash-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 0.95rem;
+            outline: none;
+        }
+        .dash-input:focus { border-color: var(--gold); }
+        .dash-upload-zone {
+            border: 2px dashed var(--gold-dim);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        .dash-upload-zone:hover, .dash-upload-zone.dragover {
+            border-color: var(--gold);
+            background: rgba(255,255,255,0.02);
+        }
+        .dash-upload-input {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .dash-upload-icon { font-size: 1.8rem; color: var(--gold); display: block; margin-bottom: 0.5rem; }
+        .dash-upload-hint { font-size: 0.75rem; color: var(--text-muted); }
+        .dash-upload-preview { max-width: 100%; max-height: 200px; border-radius: 6px; margin-top: 1rem; display: none; }
+        .dash-btn {
+            background: var(--gold);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            padding: 0.7rem 1.5rem;
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .dash-btn:hover { opacity: 0.9; }
+        .dash-btn--secondary {
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold-dim);
+        }
+        .dash-actions { display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap; }
+        .dash-notice {
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        .dash-notice--pending { background: rgba(251,191,36,0.08); color: var(--warning); border: 1px solid rgba(251,191,36,0.15); }
+        .dash-notice--error { background: rgba(255,107,107,0.08); color: var(--danger); border: 1px solid rgba(255,107,107,0.15); }
+        .dash-notice--success { background: rgba(74,222,128,0.08); color: var(--success); border: 1px solid rgba(74,222,128,0.15); }
+        .chart-container { position: relative; height: 260px; }
+        .bundle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+        .bundle-slot {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .bundle-slot-header {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .bundle-slot-name { font-family: 'Cinzel', serif; font-size: 0.8rem; color: var(--gold); }
+        .bundle-slot-dims { font-size: 0.65rem; color: var(--text-muted); }
+        .bundle-slot-creative {
+            background: linear-gradient(145deg, rgba(14,26,43,0.92), rgba(8,15,25,0.97));
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .bundle-slot-creative img { max-width: 100%; max-height: 180px; object-fit: contain; display: block; }
+        .bundle-slot-creative.placeholder { color: var(--text-muted); font-size: 0.75rem; padding: 1.5rem; text-align: center; }
+        .bundle-slot-actions { padding: 0.75rem 1rem; display: flex; gap: 0.5rem; }
+        .bundle-slot-btn {
+            flex: 1;
+            padding: 0.45rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .dash-header { padding: 1rem; }
+            .dash-container { padding: 1rem; }
+            .bundle-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="dash-empty" style="text-align:center;padding:4rem 2rem;color:var(--text-muted);">
+            <h2 style="font-family:'Cinzel',serif;color:var(--gold);margin-bottom:0.5rem;">Loading Dashboard...</h2>
+            <p>Please wait while we fetch your analytics.</p>
+        </div>
+    </div>
+
+    <!-- Bundle Slot Editor Modal -->
+    <div class="dash-section" id="slot-editor" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:1000;align-items:center;justify-content:center;padding:1rem;max-width:none;border-radius:0;">
+        <div style="background:var(--bg-card);border:1px solid var(--gold-dim);border-radius:10px;padding:1.5rem;max-width:480px;width:100%;max-height:90vh;overflow-y:auto;">
+            <h2 style="font-family:'Cinzel',serif;color:var(--gold);margin-bottom:0.5rem;">Edit <span id="slot-editor-name"></span></h2>
+            <p id="slot-editor-dims" style="font-size:0.8rem;color:var(--text-muted);margin-bottom:1rem;"></p>
+            <label class="dash-form-label">Heading <span style="text-transform:none;letter-spacing:0;font-weight:400;">(max 60 banner / 36 box)</span></label>
+            <input type="text" class="dash-input" id="slot-edit-heading" placeholder="Heading">
+            <label class="dash-form-label">Subtitle <span style="text-transform:none;letter-spacing:0;font-weight:400;">(max 100 banner / 60 box)</span></label>
+            <input type="text" class="dash-input" id="slot-edit-subtitle" placeholder="Subtitle">
+            <label class="dash-form-label">Destination URL</label>
+            <input type="url" class="dash-input" id="slot-edit-url" placeholder="https://yourbrand.com">
+            <label class="dash-form-label">New Creative</label>
+            <div class="dash-upload-zone" id="slot-edit-upload-zone">
+                <input type="file" class="dash-upload-input" id="slot-edit-upload-input" accept="image/png,image/jpeg,image/webp">
+                <div class="dash-upload-prompt">
+                    <span class="dash-upload-icon">&#8679;</span>
+                    <p>Drag & drop or click to upload</p>
+                    <p class="dash-upload-hint">PNG, JPG, or WebP &middot; Max 2MB</p>
+                </div>
+                <img class="dash-upload-preview" id="slot-edit-preview" alt="Preview" style="display:none;">
+            </div>
+            <div class="dash-actions">
+                <button class="dash-btn" onclick="saveSlotChanges()">Save Slot</button>
+                <button class="dash-btn dash-btn--secondary" onclick="closeSlotEditor()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = window.PUNYCODEX_API_BASE || '';
+        const token = new URLSearchParams(window.location.search).get('token');
+        const SITE_SLUG = 'long';
+
+        let chartInstance = null;
+        let selectedFileBase64 = null;
+        let selectedFileName = null;
+        let currentBooking = null;
+        let slotCreatives = [];
+
+        const SLOT_DEFINITIONS = [
+            { id: 1, name: 'Crown Banner', dims: '1200 × 400' },
+            { id: 2, name: 'Prime Box A', dims: '600 × 600' },
+            { id: 3, name: 'Prime Box B', dims: '600 × 600' },
+            { id: 4, name: 'Upper Banner', dims: '1200 × 400' },
+            { id: 5, name: 'Mid Box A', dims: '600 × 600' },
+            { id: 6, name: 'Mid Box B', dims: '600 × 600' },
+            { id: 7, name: 'Center Banner', dims: '1200 × 400' },
+            { id: 8, name: 'Lower Box A', dims: '600 × 600' },
+            { id: 9, name: 'Lower Box B', dims: '600 × 600' },
+            { id: 10, name: 'Deep Banner', dims: '1200 × 400' },
+            { id: 11, name: 'Base Box A', dims: '600 × 600' },
+            { id: 12, name: 'Base Box B', dims: '600 × 600' },
+            { id: 13, name: 'Foundation Banner', dims: '1200 × 400' },
+        ];
+
+        async function api(path, opts = {}) {
+            const res = await fetch(`${API_BASE}${path}`, {
+                ...opts,
+                headers: { 'Content-Type': 'application/json', ...opts.headers }
+            });
+            return res.json();
+        }
+
+        async function fetchDashboard() {
+            if (!token) {
+                renderError('No access token provided.');
+                return;
+            }
+            try {
+                const res = await fetch(`${API_BASE}/api/analytics/dashboard?token=${token}`);
+                const data = await res.json();
+                if (data.error) {
+                    renderError(data.error);
+                    return;
+                }
+                currentBooking = data.booking;
+                if (currentBooking.is_bundle) {
+                    const sc = await api(`/api/bookings/${token}/slots`);
+                    slotCreatives = sc && sc.creatives ? sc.creatives : [];
+                }
+                render(data);
+            } catch (err) {
+                renderError('Failed to load dashboard.');
+            }
+        }
+
+        function renderError(msg) {
+            document.getElementById('app').innerHTML = `
+                <div class="dash-empty" style="text-align:center;padding:4rem 2rem;color:var(--text-muted);">
+                    <h2 style="font-family:'Cinzel',serif;color:var(--gold);margin-bottom:0.5rem;">Dashboard Unavailable</h2>
+                    <p>${msg}</p>
+                </div>
+            `;
+        }
+
+        function getStatusClass(status) {
+            if (status === 'live') return 'dash-status-live';
+            if (status === 'ended') return 'dash-status-ended';
+            return 'dash-status-pending';
+        }
+
+        function getTimeLeft(endIso) {
+            const diff = new Date(endIso) - Date.now();
+            if (diff <= 0) return 'Expired';
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            return days > 0 ? `${days}d ${hours}h` : `${hours}h`;
+        }
+
+        function render(data) {
+            const b = data.booking;
+            const m = data.metrics;
+            const statusClass = getStatusClass(b.status);
+            const timeLeft = b.ends_at ? getTimeLeft(b.ends_at) : 'N/A';
+
+            const dailyMap = {};
+            m.daily.forEach(d => {
+                if (!dailyMap[d.day]) dailyMap[d.day] = { impressions: 0, clicks: 0 };
+                dailyMap[d.day][d.event_type === 'impression' ? 'impressions' : 'clicks'] = d.count;
+            });
+            const labels = Object.keys(dailyMap).sort().slice(-30);
+            const impData = labels.map(d => dailyMap[d]?.impressions || 0);
+            const clickData = labels.map(d => dailyMap[d]?.clicks || 0);
+
+            const isEditable = b.status !== 'ended' && b.status !== 'canceled';
+
+            document.getElementById('app').innerHTML = `
+                <div class="dash-header">
+                    <div>
+                        <h1>${b.company_name || 'Advertiser'} Dashboard</h1>
+                        <p>${b.slot_name} &middot; ${b.width}×${b.height}px &middot; https://Dragon</p>
+                    </div>
+                    <span class="dash-status ${statusClass}">${b.status.replace(/_/g, ' ').toUpperCase()}</span>
+                </div>
+                <div class="dash-container">
+                    <div class="dash-grid">
+                        <div class="dash-card">
+                            <div class="dash-card-label">Impressions</div>
+                            <div class="dash-card-value">${m.totalImpressions.toLocaleString()}</div>
+                            <div class="dash-card-sub">${m.uniqueImpressions.toLocaleString()} unique</div>
+                        </div>
+                        <div class="dash-card">
+                            <div class="dash-card-label">Clicks</div>
+                            <div class="dash-card-value">${m.totalClicks.toLocaleString()}</div>
+                            <div class="dash-card-sub">CTR: ${m.ctr}%</div>
+                        </div>
+                        <div class="dash-card">
+                            <div class="dash-card-label">Time Remaining</div>
+                            <div class="dash-card-value" style="font-size:1.4rem;">${timeLeft}</div>
+                            <div class="dash-card-sub">${b.ends_at ? new Date(b.ends_at).toLocaleDateString() : '—'}</div>
+                        </div>
+                    </div>
+
+                    <div class="dash-section">
+                        <h2>Performance (Last 30 Days)</h2>
+                        <div class="chart-container">
+                            <canvas id="dashChart"></canvas>
+                        </div>
+                    </div>
+
+                    ${isEditable ? `
+                    <div class="dash-section">
+                        <h2>Edit Placement</h2>
+                        <div class="dash-notice" id="dash-notice"></div>
+                        <label class="dash-form-label">Heading <span style="text-transform:none;letter-spacing:0;font-weight:400;">(max 60 for banner, 36 for box)</span></label>
+                        <input type="text" class="dash-input" id="dash-heading" value="${escapeHtml(b.custom_heading || '')}" placeholder="Your brand heading">
+                        <label class="dash-form-label">Subtitle <span style="text-transform:none;letter-spacing:0;font-weight:400;">(max 100 for banner, 60 for box)</span></label>
+                        <input type="text" class="dash-input" id="dash-subtitle" value="${escapeHtml(b.custom_subtitle || '')}" placeholder="Tagline or description">
+                        <label class="dash-form-label">Destination URL</label>
+                        <input type="url" class="dash-input" id="dash-url" value="${escapeHtml(b.website_url || '')}" placeholder="https://yourbrand.com">
+                        <label class="dash-form-label">New Creative</label>
+                        <div class="dash-upload-zone" id="dash-upload-zone">
+                            <input type="file" class="dash-upload-input" id="dash-upload-input" accept="image/png,image/jpeg,image/webp">
+                            <div class="dash-upload-prompt">
+                                <span class="dash-upload-icon">&#8679;</span>
+                                <p>Drag & drop or click to swap creative</p>
+                                <p class="dash-upload-hint">PNG, JPG, or WebP &middot; Max 2MB &middot; Recommended ${b.width}×${b.height}px</p>
+                            </div>
+                            <img class="dash-upload-preview" id="dash-upload-preview" alt="Preview">
+                        </div>
+                        <div class="dash-actions">
+                            <button class="dash-btn" onclick="saveChanges()">Save Changes</button>
+                            <button class="dash-btn dash-btn--secondary" onclick="resetForm()">Reset</button>
+                        </div>
+                    </div>
+                    ` : ''}
+
+                    <div class="dash-section">
+                        <h2>Creative Preview</h2>
+                        <div class="dash-preview ${b.creative_path ? '' : 'placeholder'}">
+                            ${b.creative_path ? `<img src="${API_BASE}${b.creative_path}" alt="Creative">` : 'No creative uploaded'}
+                        </div>
+                    </div>
+
+                    ${b.is_bundle ? renderBundleSlots(b) : ''}
+                </div>
+            `;
+
+            initChart(labels, impData, clickData);
+            if (isEditable) initUploadHandlers();
+        }
+
+        function renderBundleSlots(b) {
+            const creativeMap = {};
+            slotCreatives.forEach(c => { creativeMap[c.slot_id] = c; });
+            const slotGrid = SLOT_DEFINITIONS.map(s => {
+                const sc = creativeMap[s.id];
+                const slotCreative = sc && sc.creative_path
+                    ? `<img src="${API_BASE}${sc.creative_path}" alt="${s.name}">`
+                    : '<div class="bundle-slot-creative placeholder">No creative</div>';
+                return `
+                    <div class="bundle-slot">
+                        <div class="bundle-slot-header">
+                            <div>
+                                <div class="bundle-slot-name">${s.name}</div>
+                                <div class="bundle-slot-dims">${s.dims}</div>
+                            </div>
+                        </div>
+                        <div class="bundle-slot-creative">${slotCreative}</div>
+                        ${b.status !== 'ended' ? `
+                            <div class="bundle-slot-actions">
+                                <button class="bundle-slot-btn dash-btn" onclick="openSlotEditor(${s.id})">Edit</button>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
+            return `
+                <div class="dash-section">
+                    <h2>Bundle Slots</h2>
+                    <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1rem;">Manage each of the 13 slots individually. Click Edit to change heading, subtitle, URL, or creative.</p>
+                    <div class="bundle-grid">${slotGrid}</div>
+                </div>
+            `;
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        function initChart(labels, impData, clickData) {
+            const ctx = document.getElementById('dashChart');
+            if (!ctx) return;
+            if (chartInstance) chartInstance.destroy();
+            chartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels.map(d => d.slice(5)),
+                    datasets: [
+                        {
+                            label: 'Impressions',
+                            data: impData,
+                            borderColor: 'var(--gold)',
+                            backgroundColor: 'rgba(212,175,55,0.08)',
+                            fill: true,
+                            tension: 0.3,
+                            pointRadius: 2,
+                        },
+                        {
+                            label: 'Clicks',
+                            data: clickData,
+                            borderColor: '#4ade80',
+                            backgroundColor: 'rgba(74,222,128,0.08)',
+                            fill: true,
+                            tension: 0.3,
+                            pointRadius: 2,
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { labels: { color: '#7a8a9e', font: { size: 11 } } }
+                    },
+                    scales: {
+                        x: { ticks: { color: '#7a8a9e', maxTicksLimit: 10 }, grid: { color: 'rgba(255,255,255,0.03)' } },
+                        y: { ticks: { color: '#7a8a9e' }, grid: { color: 'rgba(255,255,255,0.03)' } },
+                    }
+                }
+            });
+        }
+
+        function initUploadHandlers() {
+            const zone = document.getElementById('dash-upload-zone');
+            const input = document.getElementById('dash-upload-input');
+            if (!zone || !input) return;
+            zone.addEventListener('click', () => input.click());
+            zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
+            zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
+            zone.addEventListener('drop', e => {
+                e.preventDefault();
+                zone.classList.remove('dragover');
+                if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+            });
+            input.addEventListener('change', e => {
+                if (e.target.files.length) handleFile(e.target.files[0]);
+            });
+        }
+
+        function handleFile(file) {
+            const allowed = ['image/png', 'image/jpeg', 'image/webp'];
+            if (!allowed.includes(file.type)) { showNotice('PNG, JPG, or WebP only', 'error'); return; }
+            if (file.size > 2 * 1024 * 1024) { showNotice('Max 2MB', 'error'); return; }
+            selectedFileName = file.name;
+            const reader = new FileReader();
+            reader.onload = e => {
+                selectedFileBase64 = e.target.result;
+                const preview = document.getElementById('dash-upload-preview');
+                const prompt = document.querySelector('.dash-upload-prompt');
+                preview.src = selectedFileBase64;
+                preview.style.display = 'block';
+                if (prompt) prompt.style.display = 'none';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function resetForm() {
+            selectedFileBase64 = null;
+            selectedFileName = null;
+            const preview = document.getElementById('dash-upload-preview');
+            const prompt = document.querySelector('.dash-upload-prompt');
+            const input = document.getElementById('dash-upload-input');
+            if (preview) preview.style.display = 'none';
+            if (prompt) prompt.style.display = 'block';
+            if (input) input.value = '';
+            showNotice('', '');
+        }
+
+        function showNotice(msg, type) {
+            const el = document.getElementById('dash-notice');
+            if (!el) return;
+            el.className = 'dash-notice';
+            if (!msg) { el.style.display = 'none'; return; }
+            el.classList.add(`dash-notice--${type}`);
+            el.textContent = msg;
+            el.style.display = 'block';
+        }
+
+        async function saveChanges() {
+            if (!currentBooking) return;
+            const heading = document.getElementById('dash-heading').value.trim();
+            const subtitle = document.getElementById('dash-subtitle').value.trim();
+            const url = document.getElementById('dash-url').value.trim();
+
+            showNotice('Saving...', 'pending');
+
+            try {
+                const metaRes = await api(`/api/bookings/${token}/meta`, {
+                    method: 'POST',
+                    body: JSON.stringify({ customHeading: heading, customSubtitle: subtitle, websiteUrl: url })
+                });
+                if (metaRes.error) { showNotice(metaRes.error, 'error'); return; }
+
+                if (selectedFileBase64) {
+                    const uploadRes = await api(`/api/bookings/${token}/upload`, {
+                        method: 'POST',
+                        body: JSON.stringify({ image: selectedFileBase64, filename: selectedFileName || 'creative.png' })
+                    });
+                    if (uploadRes.error) { showNotice(uploadRes.error, 'error'); return; }
+                }
+
+                showNotice('Changes saved and pending approval.', 'success');
+                resetForm();
+                setTimeout(fetchDashboard, 1200);
+            } catch (err) {
+                showNotice('Save failed. Please try again.', 'error');
+            }
+        }
+
+        let editingSlotId = null;
+        let slotSelectedFileBase64 = null;
+        let slotSelectedFileName = null;
+
+        function openSlotEditor(slotId) {
+            editingSlotId = slotId;
+            slotSelectedFileBase64 = null;
+            slotSelectedFileName = null;
+            const def = SLOT_DEFINITIONS.find(s => s.id === slotId) || {};
+            const sc = slotCreatives.find(c => c.slot_id === slotId) || {};
+            document.getElementById('slot-editor-name').textContent = def.name || `Slot ${slotId}`;
+            document.getElementById('slot-editor-dims').textContent = def.dims ? `Recommended ${def.dims}px` : '';
+            document.getElementById('slot-edit-heading').value = sc.custom_heading || '';
+            document.getElementById('slot-edit-subtitle').value = sc.custom_subtitle || '';
+            document.getElementById('slot-edit-url').value = sc.website_url || '';
+            document.getElementById('slot-edit-preview').style.display = 'none';
+            document.getElementById('slot-edit-preview').src = '';
+            document.getElementById('slot-edit-upload-input').value = '';
+            const prompt = document.querySelector('#slot-edit-upload-zone .dash-upload-prompt');
+            if (prompt) prompt.style.display = 'block';
+
+            const zone = document.getElementById('slot-edit-upload-zone');
+            const input = document.getElementById('slot-edit-upload-input');
+            zone.onclick = () => input.click();
+            zone.ondragover = e => { e.preventDefault(); zone.classList.add('dragover'); };
+            zone.ondragleave = () => zone.classList.remove('dragover');
+            zone.ondrop = e => {
+                e.preventDefault();
+                zone.classList.remove('dragover');
+                if (e.dataTransfer.files.length) handleSlotFile(e.dataTransfer.files[0]);
+            };
+            input.onchange = e => {
+                if (e.target.files.length) handleSlotFile(e.target.files[0]);
+            };
+
+            document.getElementById('slot-editor').style.display = 'flex';
+        }
+
+        function closeSlotEditor() {
+            document.getElementById('slot-editor').style.display = 'none';
+            editingSlotId = null;
+            slotSelectedFileBase64 = null;
+            slotSelectedFileName = null;
+        }
+
+        function handleSlotFile(file) {
+            const allowed = ['image/png', 'image/jpeg', 'image/webp'];
+            if (!allowed.includes(file.type)) { alert('PNG, JPG, or WebP only'); return; }
+            if (file.size > 2 * 1024 * 1024) { alert('Max 2MB'); return; }
+            slotSelectedFileName = file.name;
+            const reader = new FileReader();
+            reader.onload = e => {
+                slotSelectedFileBase64 = e.target.result;
+                const preview = document.getElementById('slot-edit-preview');
+                const prompt = document.querySelector('#slot-edit-upload-zone .dash-upload-prompt');
+                preview.src = slotSelectedFileBase64;
+                preview.style.display = 'block';
+                if (prompt) prompt.style.display = 'none';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function saveSlotChanges() {
+            if (!editingSlotId) return;
+            const heading = document.getElementById('slot-edit-heading').value.trim();
+            const subtitle = document.getElementById('slot-edit-subtitle').value.trim();
+            const url = document.getElementById('slot-edit-url').value.trim();
+
+            try {
+                const metaRes = await api(`/api/bookings/${token}/meta`, {
+                    method: 'POST',
+                    body: JSON.stringify({ slotId: editingSlotId, customHeading: heading, customSubtitle: subtitle, websiteUrl: url })
+                });
+                if (metaRes.error) { alert(metaRes.error); return; }
+
+                if (slotSelectedFileBase64) {
+                    const uploadRes = await api(`/api/bookings/${token}/slot/${editingSlotId}/upload`, {
+                        method: 'POST',
+                        body: JSON.stringify({ image: slotSelectedFileBase64, filename: slotSelectedFileName || 'creative.png' })
+                    });
+                    if (uploadRes.error) { alert(uploadRes.error); return; }
+                }
+
+                closeSlotEditor();
+                fetchDashboard();
+            } catch (err) {
+                alert('Save failed. Please try again.');
+            }
+        }
+
+        fetchDashboard();
+    </script>
+</body>
+</html>

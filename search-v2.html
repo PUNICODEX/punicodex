@@ -20,7 +20,7 @@
   <header class="cn-header">
     <div class="cn-header-inner">
       <div class="cn-header-top">
-        <a href="/" class="cn-logo-row">
+        <a href="/" class="cn-logo-row" aria-label="PUNYCODEX home">
           <div class="cn-logo-seal">P</div>
           <div>
             <div class="cn-logo-text">PUNYCODEX</div>
@@ -63,6 +63,7 @@
     <div id="sidebar" style="display:none"></div>
   </main>
 
+  <script src="/js/px-core.js"></script>
   <script src="/js/search-effects.js"></script>
   <script>
     const API_BASE = '';
@@ -318,7 +319,7 @@
       return `<div class="cn-card cn-result" data-site-id="${r.id}">
         <div class="cn-card-accent"></div>
         <div class="cn-result-header">
-          <img src="${escapeHtml(favicon)}" alt="" class="cn-result-favicon" onerror="this.style.display='none'">
+          <img src="${escapeHtml(favicon)}" alt="" class="cn-result-favicon" loading="lazy" onerror="this.style.display='none'">
           <div class="cn-result-body">
             <div class="cn-result-url">
               <span class="cn-result-domain">${escapeHtml(r.punycode || r.domain)}</span>

@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf7">
     <link rel="stylesheet" href="../../styles.css?v=perf2">
     <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf3">
 
@@ -27,25 +28,26 @@
     <meta name="twitter:description" content="The definitive scholarly guide to Ištar, Love, War, Fertility, Venus. Etymology, pronunciation, Unicode orthography, cultural significance, and primary sources.">
 </head>
 <body>
-    <!-- Global Nav -->
+    <!-- Global Strip -->
     <div class="global-strip">
         <div class="global-strip-inner">
-            <a href="https://punycodex.com/" class="global-brand">PUNYCODEX</a>
+            <a href="https://punycodex.com/" class="global-brand">P<span>U</span>NYCODEX</a>
             <div class="global-links">
                 <a href="https://punycodex.com/pantheon/">Pantheon</a>
                 <a href="https://punycodex.com/lexicon/">Lexicon</a>
                 <a href="https://punycodex.com/type/">Type</a>
                 <a href="https://punycodex.com/search.html">Search</a>
                 <a href="https://punycodex.com/tiers/">Tiers</a>
+                <a href="https://punycodex.com/about/">About</a>
             </div>
         </div>
     </div>
 
     <!-- Ambient Canvas -->
-    <canvas id="ishtar-canvas" data-effect="descentGate" data-primary="#CD7F32" data-secondary="#C2B280"></canvas>
+    <canvas id="ishtar-canvas" data-effect="descentGate" data-primary="#CD7F32" data-secondary="#C2B280" aria-hidden="true"></canvas>
 
     <!-- Extended Lore Navigation -->
-    <nav class="main-nav extended-nav" id="main-nav">
+    <nav class="main-nav extended-nav" id="extended-nav">
         <div class="nav-inner">
             <a href="../../" class="nav-logo">
                 <picture><source srcset="../../assets/ishtar_logolockup.webp" type="image/webp"><img src="../../assets/ishtar_logolockup.png" alt="Ištar" class="nav-logo-img"></picture>
@@ -275,16 +277,16 @@
     </section>
 
     <!-- Footer -->
-        <footer class="main-footer">
+    <footer class="main-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <span class="footer-logo">PUNYCODEX</span>
+                    <a href="https://punycodex.com/" class="footer-logo">PUNYCODEX</a>
                     <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
                 </div>
                 <div class="footer-info">
                     <div class="footer-block">
-                        <span class="footer-label">Domains</span>
+                        <span class="footer-label">Owned Domains</span>
                         <span class="footer-value">ištar.com</span>
                     </div>
                     <div class="footer-block">
@@ -302,14 +304,12 @@
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
-                <p class="footer-links" style="margin-top:0.5rem;font-size:0.75rem;color:var(--text-muted);">
-                    <a href="#" id="my-bookings-footer" style="color:var(--text-muted);text-decoration:underline;">My Bookings</a>
-                </p>
             </div>
         </div>
     </footer>
 
     <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf7"></script>
     <script src="/js/temple-base.js?v=perf2"></script>
     <script src="../../script.js?v=perf2"></script>
 </body>

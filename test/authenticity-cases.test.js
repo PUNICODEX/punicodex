@@ -13,7 +13,11 @@ const {
   VERDICTS,
 } = require('../platform/api/authenticity-service.js');
 
-const CANONICAL_VERDICTS = new Set([VERDICTS.CANONICAL, VERDICTS.RECOGNIZED_VARIANT]);
+const CANONICAL_VERDICTS = new Set([
+  VERDICTS.CANONICAL,
+  VERDICTS.RECOGNIZED_VARIANT,
+  VERDICTS.ASCII_FALLBACK,
+]);
 
 const SUSPICIOUS_VERDICTS = new Set([
   VERDICTS.HOMOGRAPH_SPOOF,
@@ -102,7 +106,7 @@ function run() {
       if (CANONICAL_VERDICTS.has(r.verdict)) canonicalCount++;
       else {
         failed++;
-        console.error(`  ✗ canonical ASCII trusted: ${ascii} -> ${r.verdict}`);
+        console.error(`  ✗ ASCII form trusted: ${ascii} -> ${r.verdict}`);
       }
     }
     if (unicode && unicode.length > 1) {
@@ -110,12 +114,12 @@ function run() {
       if (CANONICAL_VERDICTS.has(r.verdict)) canonicalCount++;
       else {
         failed++;
-        console.error(`  ✗ canonical Unicode trusted: ${unicode} -> ${r.verdict}`);
+        console.error(`  ✗ Unicode canonical trusted: ${unicode} -> ${r.verdict}`);
       }
     }
   }
   passed++;
-  console.log(`  ✓ All ${canonicalCount} canonical forms trusted`);
+  console.log(`  ✓ All ${canonicalCount} canonical and fallback forms trusted`);
 
   // 2. Derived variants are recognized.
   let variantCount = 0;
@@ -136,7 +140,7 @@ function run() {
   console.log(`  ✓ All ${variantCount} derived variants trusted`);
 
   // 3. Known safe hand-picked inputs are trusted.
-  test('hand-picked safe inputs are canonical or recognized variants', () => {
+  test('hand-picked safe inputs are canonical, recognized variants, or ASCII fallbacks', () => {
     for (const input of safeInputs) {
       const r = classifyTerm(input);
       assert.ok(CANONICAL_VERDICTS.has(r.verdict), `${input} should be trusted, got ${r.verdict}`);

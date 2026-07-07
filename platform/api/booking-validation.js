@@ -3,11 +3,13 @@
  */
 
 function getCharLimits(width) {
-  if (width >= 1000) return { heading: 50, subtitle: 80 };
-  if (width >= 800) return { heading: 38, subtitle: 60 };
-  if (width >= 500) return { heading: 24, subtitle: 40 };
-  if (width >= 300) return { heading: 15, subtitle: 26 };
-  return { heading: 10, subtitle: 18 };
+  // New marketplace layout has two slot shapes:
+  // - Banners: 1200 × 400 px
+  // - Boxes: 600 × 600 px
+  if (width >= 1000) return { heading: 60, subtitle: 100 };
+  if (width >= 500) return { heading: 36, subtitle: 60 };
+  if (width >= 300) return { heading: 24, subtitle: 40 };
+  return { heading: 12, subtitle: 20 };
 }
 
 function validateMeta(width, customHeading, customSubtitle) {

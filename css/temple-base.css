@@ -24,6 +24,7 @@
     /* Structural */
     --section-pad: clamp(6rem, 12vh, 10rem);
     --container-max: 1200px;
+    --nav-height: 110px;
     --font-display: 'Cinzel', 'Trajan Pro', 'Times New Roman', serif;
     --font-body: 'Lato', 'Helvetica Neue', sans-serif;
     --font-mono: 'Fira Code', 'Courier New', monospace;
@@ -126,7 +127,7 @@ canvas[data-effect] {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 72px;
+    height: var(--nav-height);
 }
 
 .nav-logo {
@@ -145,9 +146,9 @@ canvas[data-effect] {
 
 .nav-logo-img {
     display: block;
-    height: 96px;
+    height: 110px;
     width: auto;
-    max-width: 220px;
+    max-width: 260px;
     object-fit: contain;
     filter: brightness(1.5) contrast(1.1) drop-shadow(0 0 10px rgba(0,0,0,0.5));
     transition: filter 0.3s ease, transform 0.3s ease;
@@ -158,9 +159,15 @@ canvas[data-effect] {
 }
 
 @media (max-width: 768px) {
+    :root {
+        --nav-height: 74px;
+    }
+    .nav-inner {
+        height: var(--nav-height);
+    }
     .nav-logo-img {
-        height: 64px;
-        max-width: 160px;
+        height: 74px;
+        max-width: 184px;
     }
 }
 
@@ -212,6 +219,88 @@ canvas[data-effect] {
     height: 1.5px;
     background: var(--white);
     transition: all 0.3s ease;
+}
+
+/* ─── Global Strip (top bar above tab nav) ─── */
+.global-strip {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1001;
+    background: rgba(3, 3, 5, 0.78);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.12);
+    padding: 0.5rem 0;
+}
+
+.global-strip-inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 5vw, 3rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+}
+
+.global-brand {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--primary);
+    transition: color 0.3s ease;
+}
+
+.global-brand span {
+    position: relative;
+}
+
+.global-brand span::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--primary);
+    opacity: 0.7;
+}
+
+.global-brand:hover {
+    color: var(--primary-bright);
+}
+
+.global-links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+}
+
+.global-links a {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--white-dim);
+    transition: color 0.3s ease;
+}
+
+.global-links a:hover {
+    color: var(--primary);
+}
+
+@media (max-width: 768px) {
+    .global-links {
+        display: none;
+    }
+
+    .global-strip-inner {
+        justify-content: center;
+    }
 }
 
 /* ─── Hero ─── */
@@ -339,6 +428,12 @@ canvas[data-effect] {
     border-color: color-mix(in srgb, #f87171 60%, transparent);
     background: color-mix(in srgb, #f87171 12%, transparent);
     color: #f87171;
+}
+
+.meta-badge--reference {
+    border-color: color-mix(in srgb, var(--white-dim) 60%, transparent);
+    background: color-mix(in srgb, var(--white-dim) 12%, transparent);
+    color: var(--white-dim);
 }
 
 .meta-badge--unknown {
@@ -1860,4 +1955,11 @@ a.source-badge {
     font-size: 0.75rem;
     color: var(--secondary-glow);
     word-break: break-all;
+}
+
+/* ─── Flagship endorsement hero: keep long titles from blowing up small screens ─── */
+@media (max-width: 640px) {
+    body .endorsement-title {
+        font-size: clamp(1.75rem, 6vw, 2.6rem);
+    }
 }

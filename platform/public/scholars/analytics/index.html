@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarly Edition — Analytics | PUNYCODEX</title>
+    <meta name="description" content="Curator analytics dashboard for the PÚNYCODEX Scholarly Edition. Track edits, approvals, views, and top contributors.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf7">
+
+    <style>
+        :root {
+            --analytics-primary: #D4AF37;
+            --analytics-primary-dim: #8B7355;
+            --analytics-void: #0A0A0A;
+            --analytics-void-raised: #111111;
+            --analytics-white: #F5F5F5;
+            --analytics-white-dim: #A0A0A0;
+            --analytics-white-faint: rgba(255, 255, 255, 0.06);
+            --analytics-success: #7fd67f;
+            --analytics-danger: #ff7f7f;
+            --analytics-info: #7fb8d6;
+            --analytics-border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            background: var(--analytics-void);
+            color: var(--analytics-white);
+            font-family: var(--font-body);
+            min-height: 100vh;
+        }
+
+        .global-strip {
+            background: rgba(0, 0, 0, 0.6);
+            border-bottom: 1px solid var(--analytics-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+        }
+
+        .global-strip-inner {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0.75rem clamp(1rem, 5vw, 3rem);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .global-brand {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            letter-spacing: 0.18em;
+            color: var(--analytics-white);
+            text-decoration: none;
+        }
+
+        .global-brand span {
+            color: var(--analytics-primary);
+        }
+
+        .global-links {
+            display: flex;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .global-links a {
+            color: var(--analytics-white-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+
+        .global-links a:hover {
+            color: var(--analytics-primary);
+        }
+
+        .analytics-hero {
+            padding: 4rem 0 2.5rem;
+            text-align: center;
+            border-bottom: 1px solid var(--analytics-border);
+        }
+
+        .analytics-eyebrow {
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--analytics-primary);
+            margin-bottom: 1rem;
+        }
+
+        .analytics-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--analytics-white);
+            letter-spacing: 0.03em;
+            margin-bottom: 0.75rem;
+        }
+
+        .analytics-subtitle {
+            color: var(--analytics-white-dim);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .analytics-container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 2.5rem clamp(1rem, 5vw, 3rem) 5rem;
+        }
+
+        .analytics-toolbar {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .analytics-toolbar label {
+            color: var(--analytics-white-dim);
+            font-size: 0.9rem;
+        }
+
+        .analytics-toolbar select {
+            background: var(--analytics-void-raised);
+            color: var(--analytics-white);
+            border: 1px solid var(--analytics-border);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+
+        .analytics-toolbar button {
+            background: var(--analytics-primary);
+            color: #000;
+            border: none;
+            padding: 0.5rem 1.25rem;
+            border-radius: 4px;
+            font-family: var(--font-display);
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .analytics-toolbar button:hover {
+            filter: brightness(1.1);
+        }
+
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .analytics-card {
+            background: var(--analytics-void-raised);
+            border: 1px solid var(--analytics-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .analytics-card h2 {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--analytics-primary);
+            margin-bottom: 1.25rem;
+        }
+
+        .analytics-empty {
+            color: var(--analytics-white-dim);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 4px;
+            height: 160px;
+            padding-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .bar-chart-row {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            min-width: 0;
+        }
+
+        .bar-chart-bar {
+            width: 100%;
+            background: var(--analytics-primary);
+            border-radius: 2px 2px 0 0;
+            min-height: 2px;
+            transition: height 0.3s ease;
+        }
+
+        .bar-chart-bar.views {
+            background: var(--analytics-info);
+        }
+
+        .bar-chart-bar.approvals {
+            background: var(--analytics-success);
+        }
+
+        .bar-chart-label {
+            font-size: 0.65rem;
+            color: var(--analytics-white-dim);
+            margin-top: 0.5rem;
+            white-space: nowrap;
+            transform: rotate(-45deg);
+            transform-origin: top left;
+            position: relative;
+            left: 0.25rem;
+        }
+
+        .analytics-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .analytics-table th,
+        .analytics-table td {
+            text-align: left;
+            padding: 0.75rem 0.5rem;
+            border-bottom: 1px solid var(--analytics-border);
+        }
+
+        .analytics-table th {
+            color: var(--analytics-white-dim);
+            font-weight: 400;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .analytics-table td {
+            color: var(--analytics-white);
+        }
+
+        .analytics-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .analytics-error {
+            background: rgba(255, 127, 127, 0.1);
+            border: 1px solid var(--analytics-danger);
+            color: var(--analytics-danger);
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+        }
+
+        .forbidden {
+            text-align: center;
+            padding: 6rem 1rem;
+            color: var(--analytics-white-dim);
+        }
+
+        .forbidden h1 {
+            font-family: var(--font-display);
+            color: var(--analytics-danger);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="global-strip">
+        <div class="global-strip-inner">
+            <a class="global-brand" href="/">PUNY<span>CODEX</span></a>
+            <nav class="global-links">
+                <a href="../admin/index.html">Admin</a>
+                <a href="../review/index.html">Review</a>
+                <a href="../search/index.html">Search</a>
+                <a href="../institution/index.html">Institution</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="analytics-hero">
+            <p class="analytics-eyebrow">Curator View</p>
+            <h1 class="analytics-title">Scholarly Analytics</h1>
+            <p class="analytics-subtitle">Track editorial velocity, review throughput, temple readership, and top contributing institutions.</p>
+        </section>
+
+        <div class="analytics-container">
+            <div id="forbidden" class="forbidden" style="display:none">
+                <h1>Curator Access Required</h1>
+                <p>You must be signed in as a curator to view this dashboard.</p>
+            </div>
+
+            <div id="dashboard">
+                <div class="analytics-toolbar">
+                    <label for="days">Period</label>
+                    <select id="days">
+                        <option value="7">Last 7 days</option>
+                        <option value="30" selected>Last 30 days</option>
+                        <option value="90">Last 90 days</option>
+                    </select>
+                    <button id="refresh">Refresh</button>
+                </div>
+
+                <div id="error" class="analytics-error" style="display:none"></div>
+
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <h2>Edits Submitted</h2>
+                        <div id="edits-chart" class="bar-chart"></div>
+                    </div>
+
+                    <div class="analytics-card">
+                        <h2>Edits Approved</h2>
+                        <div id="approvals-chart" class="bar-chart"></div>
+                    </div>
+
+                    <div class="analytics-card">
+                        <h2>Temple Views</h2>
+                        <div id="views-chart" class="bar-chart"></div>
+                    </div>
+
+                    <div class="analytics-card">
+                        <h2>Top Contributing Institutions</h2>
+                        <table class="analytics-table">
+                            <thead>
+                                <tr><th>Institution</th><th style="text-align:right">Edits</th></tr>
+                            </thead>
+                            <tbody id="institutions-body"></tbody>
+                        </table>
+                    </div>
+
+                    <div class="analytics-card">
+                        <h2>Most Edited Temples</h2>
+                        <table class="analytics-table">
+                            <thead>
+                                <tr><th>Temple</th><th style="text-align:right">Edits</th></tr>
+                            </thead>
+                            <tbody id="temples-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const API_BASE = '/api/v1/scholars';
+        let currentUser = null;
+
+        async function fetchSession() {
+            const res = await fetch(`${API_BASE}/auth/session`, { credentials: 'same-origin' });
+            const json = await res.json();
+            currentUser = json.success ? json.data.user : null;
+        }
+
+        function showForbidden() {
+            document.getElementById('forbidden').style.display = 'block';
+            document.getElementById('dashboard').style.display = 'none';
+        }
+
+        function showError(message) {
+            const el = document.getElementById('error');
+            el.textContent = message;
+            el.style.display = 'block';
+        }
+
+        function clearError() {
+            document.getElementById('error').style.display = 'none';
+        }
+
+        function renderBarChart(containerId, rows, className = '') {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            if (!rows.length) {
+                container.innerHTML = '<p class="analytics-empty">No data for this period.</p>';
+                return;
+            }
+            const max = Math.max(...rows.map((r) => r.count), 1);
+            rows.forEach((row) => {
+                const pct = (row.count / max) * 100;
+                const wrapper = document.createElement('div');
+                wrapper.className = 'bar-chart-row';
+                const bar = document.createElement('div');
+                bar.className = `bar-chart-bar ${className}`;
+                bar.style.height = `${pct}%`;
+                bar.title = `${row.day}: ${row.count}`;
+                const label = document.createElement('span');
+                label.className = 'bar-chart-label';
+                label.textContent = row.day.slice(5);
+                wrapper.appendChild(bar);
+                wrapper.appendChild(label);
+                container.appendChild(wrapper);
+            });
+        }
+
+        function renderTable(bodyId, rows, nameKey) {
+            const body = document.getElementById(bodyId);
+            body.innerHTML = '';
+            if (!rows.length) {
+                body.innerHTML = '<tr><td colspan="2" class="analytics-empty">No data yet.</td></tr>';
+                return;
+            }
+            rows.forEach((row) => {
+                const tr = document.createElement('tr');
+                const name = row[nameKey] || 'Unknown';
+                tr.innerHTML = `<td>${escapeHtml(name)}</td><td style="text-align:right">${row.edit_count}</td>`;
+                body.appendChild(tr);
+            });
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        async function loadAnalytics() {
+            clearError();
+            const days = document.getElementById('days').value;
+            try {
+                const res = await fetch(`${API_BASE}/analytics?days=${days}`, {
+                    credentials: 'same-origin',
+                    headers: { 'x-scholars-session': localStorage.getItem('scholars_session') || '' },
+                });
+                const json = await res.json();
+                if (!res.ok) {
+                    showError(json.error || `Failed to load analytics (${res.status})`);
+                    return;
+                }
+                const data = json.data;
+                renderBarChart('edits-chart', data.editsByDay);
+                renderBarChart('approvals-chart', data.approvalsByDay, 'approvals');
+                renderBarChart('views-chart', data.viewsByDay, 'views');
+                renderTable('institutions-body', data.topInstitutions, 'name');
+                renderTable('temples-body', data.topTemples, 'name');
+            } catch (err) {
+                showError(err.message);
+            }
+        }
+
+        async function init() {
+            await fetchSession();
+            if (!currentUser || currentUser.role !== 'curator') {
+                showForbidden();
+                return;
+            }
+            document.getElementById('refresh').addEventListener('click', loadAnalytics);
+            document.getElementById('days').addEventListener('change', loadAnalytics);
+            await loadAnalytics();
+        }
+
+        init();
+    </script>
+</body>
+</html>

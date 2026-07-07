@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#050505">
+    <title>Building the Temple: A Technical Retrospective — PÚNYCODEX</title>
+    <meta name="description" content="Hand-crafting archetype temples taught us about canvas performance, the Greek pitch accent system, and the theological weight of a single diacritic. A PÚNYCODEX engineering retrospective.">
+    <link rel="canonical" href="https://punycodex.com/codex/building-the-temple/">
+    <meta property="og:title" content="Building the Temple: A Technical Retrospective — PÚNYCODEX">
+    <meta property="og:description" content="Hand-crafting archetype temples taught us about canvas performance, the Greek pitch accent system, and the theological weight of a single diacritic.">
+    <meta property="og:image" content="https://punycodex.com/assets/images/og-default.svg">
+    <meta property="og:url" content="https://punycodex.com/codex/building-the-temple/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PÚNYCODEX">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/main.css?v=perf8">
+    <link rel="stylesheet" href="/css/codex.css?v=perf8">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%CE%A8%3C/text%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" sizes="128x128" href="/assets/images/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+</head>
+<body>
+
+    <nav class="main-nav" id="main-nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-wordmark">P<span class="accent">U</span>NYCODEX</a>
+            <div class="nav-links">
+                <a href="/pantheon/" class="nav-link">Pantheon</a>
+                <a href="/realms/" class="nav-link">Realms</a>
+                <a href="/lexicon/" class="nav-link">Lexicon</a>
+                <a href="/tiers/" class="nav-link">Tier System</a>
+                <a href="/type/" class="nav-link">Type</a>
+                <a href="/search.html" class="nav-link">Search</a>
+                <a href="/codex/" class="nav-link">Codex</a>
+                <a href="/api/v1/docs/" class="nav-link">API</a>
+                <a href="/store/" class="nav-link">Store</a>
+                <a href="/about/" class="nav-link">About</a>
+                <a href="/contact/" class="nav-link">Contact</a>
+            </div>
+            <a href="/pantheon/" class="nav-cta"><span>Enter</span></a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="/pantheon/">Pantheon</a>
+        <a href="/realms/">Realms</a>
+        <a href="/lexicon/">Lexicon</a>
+        <a href="/tiers/">Tier System</a>
+        <a href="/type/">Type</a>
+        <a href="/search.html">Search</a>
+        <a href="/codex/">Codex</a>
+        <a href="/api/v1/docs/">API</a>
+        <a href="/store/">Store</a>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+    </div>
+
+    <main class="page-codex codex-article">
+        <header class="codex-article-hero">
+            <div class="container">
+                <div class="codex-article-meta">
+                    <span class="codex-article-category">Process</span>
+                    <span class="codex-article-date">October 2024</span>
+                    <span class="codex-article-readtime">10 min read</span>
+                </div>
+                <h1 class="codex-article-title display-md">Building the Temple: A Technical Retrospective</h1>
+                <p class="codex-article-lead body-lg">Hand-crafting archetype temples taught us about canvas performance, the Greek pitch accent system, and the theological weight of a single diacritic.</p>
+            </div>
+        </header>
+
+        <article class="codex-article-body container">
+            <p class="lead">PÚNYCODEX now serves 860 individual temple pages, one for every entry in the lexicon. Eighty-three of those are flagships: hand-expanded pages with custom canvases, lore galleries, pronunciation guides, and domain ownership badges. The rest are generated from a single canonical source. This article is the story of how we learned to build at that scale without losing the detail that makes each name feel sacred.</p>
+
+            <h2>The Source of Truth Problem</h2>
+            <p>The first mistake was storing the same data in more than one place. We had a lexicon for the type tool, a separate catalog for temple generation, and a spreadsheet for domain ownership. When a single accent moved — when <code>Apóllōn</code> became <code>Apollōn</code>, for example — the change had to be chased through three files, two build scripts, and a middleware router.</p>
+            <p>The fix was ruthless canonicalization. Today the single source of truth for all 860 names is <code>type/js/lexicon.js</code>. Archetype data lives in <code>js/archetypes-v2.js</code>. Owned domains live in <code>platform/db/owned-domains.json</code>. Everything else — the extension lexicon, the mobile lexicon, the Android JSON assets, the middleware domain map, the browser renderer catalog — is generated.</p>
+            <p>That generation is enforced by a divergence gate in CI: after tests pass, the pipeline runs <code>npm run generate</code> and fails if any generated file differs from what is committed. If the gate fails, you forgot to regenerate.</p>
+
+            <h2>From Spreadsheet to Temple</h2>
+            <p>Promoting a lexicon entry to a flagship used to be a manual copy-paste marathon. Now it is scripted. <code>scripts/create-flagship.js</code> takes an entry id, reads the canonical archetype, assigns a per-deity canvas effect from the shared palette in <code>js/flagship-canvas.js</code>, and emits a full temple directory with lore and gallery pages.</p>
+            <p>The script also respects <code>ACCURACY.md</code>, the project's authoritative accuracy standard. Before any generated text is written, the source hierarchy is checked: Liddell–Scott–Jones, Beekes, the <em>Oxford Classical Dictionary</em>, and curated original-script mappings. A flagship page is not allowed to invent a Greek original; it must inherit one that has already passed validation.</p>
+
+            <h2>The Canvas Constraint</h2>
+            <p>Each flagship has an ambient canvas: storm for Zeus, void for Hades, time for Kronos, light for Apollo, water for Poseidon, and so on. The shared canvas system in <code>js/flagship-canvas.js</code> keeps the code small, but performance still matters. Browsers throttle off-screen canvases, and mobile GPUs struggle with particle counts that desktop handles easily.</p>
+            <p>We settled on a budget: every effect must run at 60 fps on a mid-range phone, degrade gracefully when <code>prefers-reduced-motion</code> is set, and never block the main thread during initial paint. The result is a library of ten effects, each under a few hundred lines, each parameterized by the archetype id so the same script renders a different mood for every god.</p>
+
+            <h2>The Tier System as UX</h2>
+            <p>The tier system began as a scholarly classifier and became a user-experience map. Tier 1 names preserve both stress and length; Tier 2 names preserve only one or neither; the three dual-tier names preserve multiple historically valid spellings. These categories determine what the temple page shows:</p>
+            <ul>
+                <li>Tier 1 temples display a single meta-badge and explain why the full orthography is defensible.</li>
+                <li>Tier 2 temples label the subtype — "Accent-Preserving" or "Macron-Preserving" — and explain the single coordinate that survives.</li>
+                <li>Dual-tier temples display two badges, two name cards, and a footer that identifies the pair as a real attested alternation.</li>
+            </ul>
+            <p>The tier rules are documented on the <a href="/tiers/">Tier System</a> page and enforced by the flywheel validator. A Tier 1 name cannot claim a dual-tier spelling, and a Tier 2 name cannot quietly upgrade itself by adding an un-attested accent.</p>
+
+            <h2>What We Learned</h2>
+            <p>The most important lesson was philological, not technical. A diacritic is not decoration. The acute on <a href="/sites/apollon/">Apóllōn</a> is the difference between a rising pitch and a falling one. The macron on <code>Hēra</code> is the difference between a long vowel and a short one. These distinctions were alive in the mouths of ancient speakers, and they survive in the meters of tragedy and hymn.</p>
+            <p>Building a temple means respecting those distinctions even when the web would rather forget them. It means generating 777 base temples from one canonical lexicon while still hand-expanding 83 flagships. It means running a divergence gate so that no generated file ever drifts from its source. And it means welcoming visitors through the <a href="/pantheon/">Pantheon</a> with a name that sounds, once again, like itself.</p>
+
+            <aside class="codex-article-cta">
+                <a href="/pantheon/" class="btn btn-primary"><span>Enter the Pantheon</span></a>
+                <a href="/tiers/" class="btn btn-outline"><span>Explore Tiers</span></a>
+            </aside>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="footer-wordmark">P<span class="accent">U</span>NYCODEX</a>
+                    <p class="footer-tagline">Restoring the original names of the gods to the digital realm.</p>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-heading">Explore</h4>
+                    <a href="/pantheon/">Pantheon</a>
+                    <a href="/realms/">Realms</a>
+                    <a href="/lexicon/">Lexicon</a>
+                    <a href="/tiers/">Tier System</a>
+                    <a href="/type/">Type</a>
+                    <a href="/search.html">Search</a>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-heading">Resources</h4>
+                    <a href="/codex/">Codex</a>
+                    <a href="/api/v1/docs/">API</a>
+                    <a href="/appraise/">Appraise</a>
+                    <a href="/authenticity/">Authenticity</a>
+                    <a href="/oracle.html">Oracle</a>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-heading">Connect</h4>
+                    <a href="/about/">About</a>
+                    <a href="/contact/">Contact</a>
+                    <a href="/privacy/">Privacy</a>
+                    <a href="/terms/">Terms</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 PÚNYCODEX. All rites reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/px-core.js?v=perf8"></script>
+</body>
+</html>

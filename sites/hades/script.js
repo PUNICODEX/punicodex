@@ -396,7 +396,7 @@
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const delay = parseInt(entry.target.dataset.delay) || 0;
+                const delay = parseInt(entry.target.dataset.delay, 10) || 0;
                 setTimeout(() => {
                     entry.target.classList.add('revealed');
                 }, delay);
@@ -546,6 +546,7 @@ let selectedFile = null;
 let selectedFileBase64 = null;
 let verificationToken = '';
 let isBundleApplication = false;
+let currentUploadSlot = null;
 
 // Fetch slots and update UI
 async function loadSlots() {
@@ -590,10 +591,11 @@ function trackViewability(container, token) {
 }
 
 function updateSlotUI() {
+  const orderedSlots = [...slotsData].sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0));
   document.querySelectorAll('.space-slot').forEach(slotEl => {
     const spaceNum = slotEl.dataset.space;
-    const slotId = parseInt(spaceNum, 10);
-    const slot = slotsData.find(s => s.id === slotId);
+    const sortOrder = parseInt(spaceNum, 10);
+    const slot = orderedSlots.find(s => s.sort_order === sortOrder);
     if (!slot) return;
 
     const frame = slotEl.querySelector('.space-frame');
@@ -630,7 +632,7 @@ function updateSlotUI() {
     // Determine if this slot should render its own creative
     // Bundle members need a per-slot creative; the bundle slot itself uses main creative
     const bundleSlot = slotsData.find(s => s.is_bundle === 1);
-    const isBundleMember = bundleSlot && slotId !== bundleSlot.id && slot.booking_id && bundleSlot.current_booking_id === slot.booking_id;
+    const isBundleMember = bundleSlot && slot.id !== bundleSlot.id && slot.booking_id && bundleSlot.current_booking_id === slot.booking_id;
     const hasOwnCreative = isBundleMember ? slot.has_slot_creative : !!slot.creative_path;
 
     if (slot.status === 'live' && hasOwnCreative) {
@@ -685,6 +687,21 @@ function updateSlotUI() {
       }
     }
   });
+
+  // Full-page takeover is an exclusive first-tenant offer:
+  // hide it as soon as any individual slot is no longer available,
+  // or if the bundle slot itself has been claimed.
+  const bundleSlot = orderedSlots.find(s => s.is_bundle === 1);
+  const anyIndividualClaimed = orderedSlots.some(s => !s.is_bundle && s.status !== 'available');
+  const bundleClaimed = bundleSlot && bundleSlot.status !== 'available';
+  const takeoverEl = document.querySelector('.space-slot[data-bundle="1"]');
+  if (takeoverEl) {
+    if (anyIndividualClaimed || bundleClaimed) {
+      takeoverEl.classList.add('takeover-hidden');
+    } else {
+      takeoverEl.classList.remove('takeover-hidden');
+    }
+  }
 }
 
 // Modal helpers
@@ -709,11 +726,13 @@ function clearBookingError() {
 }
 
 function getCharLimits(width) {
-  if (width >= 1000) return { heading: 50, subtitle: 80 };
-  if (width >= 800)  return { heading: 38, subtitle: 60 };
-  if (width >= 500)  return { heading: 24, subtitle: 40 };
-  if (width >= 300)  return { heading: 15, subtitle: 26 };
-  return { heading: 10, subtitle: 18 };
+  // New marketplace layout has two slot shapes:
+  // - Banners: 1200 × 400 px
+  // - Boxes: 600 × 600 px
+  if (width >= 1000) return { heading: 60, subtitle: 100 };
+  if (width >= 500)  return { heading: 36, subtitle: 60 };
+  if (width >= 300)  return { heading: 24, subtitle: 40 };
+  return { heading: 12, subtitle: 20 };
 }
 
 function updateCharCounter(input, countEl, max) {
@@ -734,28 +753,38 @@ function applyCharLimits(width) {
   updateCharCounter(els.subtitle, els.subtitleCount, limits.subtitle);
 }
 
-function openModal(slotId) {
+function openModal(slotOrId) {
 
   try {
+    let slot;
+    let slotId;
+    if (slotOrId && typeof slotOrId === 'object' && slotOrId.id !== undefined) {
+      slot = slotOrId;
+      slotId = slot.id;
+    } else {
+      slotId = slotOrId;
+      // Robust ID comparison (handles string vs number IDs from API)
+      slot = slotsData.find(s => String(s.id) === String(slotId));
+    }
     currentSlotId = slotId;
-    // Robust ID comparison (handles string vs number IDs from API)
-    let slot = slotsData.find(s => String(s.id) === String(slotId));
 
-    // Fallback to DOM if slotsData hasn't loaded yet
-    if (!slot) {
-      const slotEl = document.querySelector(`.space-slot[data-space="${String(slotId).padStart(2, '0')}"]`);
+    // Fallback to DOM if slotsData hasn't loaded yet (only when caller passed a slot object with sort_order)
+    if (!slot && typeof slotOrId === 'object' && slotOrId.sort_order) {
+      const sortOrder = slotOrId.sort_order;
+      const slotEl = document.querySelector(`.space-slot[data-space="${String(sortOrder).padStart(2, '0')}"]`);
       if (!slotEl) return;
       const nameEl = slotEl.querySelector('.space-name');
       const dimsEl = slotEl.querySelector('.space-dims');
       const dimsMatch = dimsEl ? dimsEl.textContent.match(/(\d+)\s*×\s*(\d+)/) : null;
       slot = {
         name: nameEl ? nameEl.textContent : 'Slot',
-        width: dimsMatch ? parseInt(dimsMatch[1]) : 0,
-        height: dimsMatch ? parseInt(dimsMatch[2]) : 0,
+        width: dimsMatch ? parseInt(dimsMatch[1], 10) : 0,
+        height: dimsMatch ? parseInt(dimsMatch[2], 10) : 0,
         price_cents: parseInt(slotEl.dataset.priceCents, 10) || 0,
         is_bundle: parseInt(slotEl.dataset.bundle, 10) || 0,
       };
     }
+    if (!slot) return;
 
     currentSlotPriceCents = slot.price_cents || 0;
     currentLeaseMonths = 1;
@@ -804,6 +833,8 @@ function resetUpload() {
   els.livePreview.style.display = 'none';
   els.livePreviewFrame.innerHTML = '';
   els.uploadInput.value = '';
+  const warn = document.getElementById('booking-upload-warning');
+  if (warn) warn.remove();
 }
 
 // Event: Click anywhere on an available frame to open booking
@@ -812,9 +843,11 @@ document.addEventListener('click', (e) => {
   if (!slotEl) return;
   // Don't intercept clicks on live ad links
   if (e.target.closest('a.space-live-ad')) return;
-  const slotId = parseInt(slotEl.dataset.space, 10);
+  const sortOrder = parseInt(slotEl.dataset.space, 10);
+  const slot = slotsData.find(s => s.sort_order === sortOrder);
+  if (!slot) return;
 
-  openModal(slotId);
+  openModal(slot);
 });
 
 modalClose.addEventListener('click', closeModal);
@@ -949,7 +982,7 @@ els.verifyBtn.addEventListener('click', async () => {
 
     if (isBundleApplication) {
       const slot = slotsData.find((s) => s.id === currentSlotId) || {};
-      if (els.applySlotName) els.applySlotName.textContent = slot.name || 'Total Conquest';
+      if (els.applySlotName) els.applySlotName.textContent = slot.name || 'Full Page Takeover';
       showStep('apply');
       return;
     }
@@ -1012,7 +1045,7 @@ async function handleReturnFromStripe() {
     }
 
     if (renewed && booking.status === 'live') {
-      openModal(booking.slot_id);
+      openModal(slot);
       showStep('3');
       const titleEl = document.querySelector('#booking-step-3 .booking-modal-title');
       if (titleEl) titleEl.textContent = 'Renewal Complete';
@@ -1024,7 +1057,7 @@ async function handleReturnFromStripe() {
     }
 
     if (paid && (booking.status === 'pending_upload' || booking.status === 'live')) {
-      openModal(booking.slot_id);
+      openModal(slot);
       if (booking.status === 'pending_upload') {
         setupUploadStep(slot);
         showStep('2');
@@ -1036,14 +1069,14 @@ async function handleReturnFromStripe() {
       }
       await loadSlots(); // refresh UI so button disappears
     } else if (booking.status === 'pending_approval') {
-      openModal(booking.slot_id);
+      openModal(slot);
       showStep('3');
       els.dashboardLink.href = `${API_BASE}/sites/hades/dashboard/?token=${token}`;
     } else if (booking.status === 'rejected') {
-      openModal(booking.slot_id);
+      openModal(slot);
       showRejected(booking);
     } else if (booking.status === 'live') {
-      openModal(booking.slot_id);
+      openModal(slot);
       showStep('3');
       els.dashboardLink.href = `${API_BASE}/sites/hades/dashboard/?token=${token}`;
     } else if (booking.status === 'pending_payment') {
@@ -1055,6 +1088,7 @@ async function handleReturnFromStripe() {
 }
 
 function setupUploadStep(slot) {
+  currentUploadSlot = slot;
   els.uploadDims.innerHTML = `Recommended size: <strong style="color:var(--classic-gold);">${slot.width} × ${slot.height} px</strong>`;
   els.uploadDims.className = 'booking-modal-subtitle booking-upload-dims';
   resetUpload();
@@ -1114,6 +1148,30 @@ function handleFileSelect(file) {
     // Live preview in frame
     els.livePreview.style.display = 'block';
     els.livePreviewFrame.innerHTML = `<img src="${selectedFileBase64}" alt="Preview">`;
+
+    // Aspect-ratio sanity check against the booked slot
+    if (currentUploadSlot && currentUploadSlot.width && currentUploadSlot.height) {
+      const img = new Image();
+      img.onload = () => {
+        const expected = currentUploadSlot.width / currentUploadSlot.height;
+        const actual = img.naturalWidth / img.naturalHeight;
+        const deviation = Math.abs(expected - actual) / expected;
+        let warn = document.getElementById('booking-upload-warning');
+        if (deviation > 0.15) {
+          if (!warn) {
+            warn = document.createElement('p');
+            warn.id = 'booking-upload-warning';
+            warn.style.cssText = 'margin-top:0.75rem;font-size:0.8rem;color:#ff6b6b;text-align:center;';
+            els.uploadZone.parentNode.insertBefore(warn, els.uploadZone.nextSibling);
+          }
+          const expectedLabel = expected >= 2.9 ? '3:1 banner' : '1:1 box';
+          warn.textContent = 'Aspect ratio mismatch. Recommended ' + currentUploadSlot.width + 'x' + currentUploadSlot.height + ' (' + expectedLabel + '). Your image is ' + img.naturalWidth + 'x' + img.naturalHeight + '. It will be cropped to fit.';
+        } else if (warn) {
+          warn.remove();
+        }
+      };
+      img.src = selectedFileBase64;
+    }
   };
   reader.readAsDataURL(file);
 }

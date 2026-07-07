@@ -5,66 +5,103 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ask the Oracle — PUNYCODEX</title>
   <meta name="description" content="Ask the Oracle about mythological names, Unicode domains, and the PUNYCODEX knowledge base.">
+  <meta name="theme-color" content="#D4AF37">
+  <meta name="color-scheme" content="dark">
+  <link rel="canonical" href="https://punycodex.com/oracle.html">
+  <meta property="og:title" content="Ask the Oracle — PUNYCODEX">
+  <meta property="og:description" content="Conversational answers drawn from the PUNYCODEX lexicon, indexed sites, and tenant keywords.">
+  <meta property="og:url" content="https://punycodex.com/oracle.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PUNYCODEX">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Ask the Oracle — PUNYCODEX">
+  <meta name="twitter:description" content="Conversational answers drawn from the PUNYCODEX lexicon, indexed sites, and tenant keywords.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/design-system.css">
   <style>
     :root {
-      --bg: #080b14;
-      --surface: #0f1522;
-      --surface-2: #131b2b;
-      --surface-hover: #1a2438;
-      --border: rgba(212,175,55,0.12);
-      --accent: #d4af37;
-      --accent-dim: rgba(212,175,55,0.15);
-      --text: #e8e4dc;
-      --text-dim: #9aa3b2;
-      --text-muted: #6b7480;
-      --link-blue: #7eb8ff;
+      --oracle-bg: var(--void);
+      --oracle-surface: var(--surface-raised);
+      --oracle-surface-2: var(--surface);
+      --oracle-surface-hover: var(--hover);
+      --oracle-border: var(--border);
+      --oracle-accent: var(--gold);
+      --oracle-accent-dim: var(--gold-dim);
+      --oracle-text: var(--text-primary);
+      --oracle-text-dim: var(--text-secondary);
+      --oracle-text-muted: var(--text-dim);
+      --oracle-link-blue: var(--blue);
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      font-family: var(--font-body);
+      background: var(--oracle-bg);
+      color: var(--oracle-text);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
-    header {
-      padding: 1rem 1.5rem;
-      border-bottom: 1px solid var(--border);
-      background: var(--surface);
+
+    /* Utility header */
+    .px-utility-header {
+      padding: var(--space-5) var(--space-6);
+      border-bottom: 1px solid var(--oracle-border);
+      background: var(--oracle-bg);
     }
-    .header-inner {
-      max-width: 760px;
+    .px-utility-header-inner {
+      max-width: var(--container-narrow);
       margin: 0 auto;
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: var(--space-4);
     }
-    .logo { font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--accent); text-decoration: none; }
-    .tagline { font-size: 0.8rem; color: var(--text-muted); margin-left: auto; }
+    .px-utility-wordmark {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 600;
+      color: var(--oracle-accent);
+      letter-spacing: 0.05em;
+    }
+    .px-utility-wordmark:hover { color: var(--gold-bright); }
+    .px-utility-back {
+      margin-left: auto;
+      font-size: var(--text-sm);
+      color: var(--oracle-text-dim);
+    }
+    .px-utility-back:hover { color: var(--oracle-accent); }
+
     main {
       flex: 1;
       max-width: 760px;
       width: 100%;
       margin: 0 auto;
-      padding: 1.5rem 1rem;
+      padding: var(--space-5) var(--space-4);
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: var(--space-4);
     }
+
     .intro {
       text-align: center;
-      padding: 1.5rem 1rem;
+      padding: var(--space-5) var(--space-4);
     }
-    .intro h1 { font-family: 'Cinzel', serif; color: var(--accent); font-size: 1.6rem; margin-bottom: 0.5rem; }
-    .intro p { color: var(--text-dim); font-size: 0.95rem; }
+    .intro h1 {
+      font-family: var(--font-display);
+      color: var(--oracle-accent);
+      font-size: var(--text-3xl);
+      margin-bottom: var(--space-3);
+    }
+    .intro p { color: var(--oracle-text-dim); font-size: var(--text-base); }
+
     .oracle-panel {
       flex: 1;
-      background: linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
-      border: 1px solid var(--border);
-      border-radius: 16px;
+      background: linear-gradient(180deg, var(--oracle-surface) 0%, var(--oracle-surface-2) 100%);
+      border: 1px solid var(--oracle-border);
+      border-radius: var(--radius-xl);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -73,158 +110,181 @@
     .oracle-header {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
-      padding: 0.85rem 1rem;
-      border-bottom: 1px solid var(--border);
+      gap: var(--space-2);
+      padding: var(--space-3) var(--space-4);
+      border-bottom: 1px solid var(--oracle-border);
       user-select: none;
     }
-    .oracle-icon { font-size: 1.1rem; }
-    .oracle-title { font-weight: 600; font-size: 0.95rem; color: var(--accent); }
+    .oracle-icon { font-size: var(--text-xl); }
+    .oracle-title { font-weight: 600; font-size: var(--text-base); color: var(--oracle-accent); }
     .oracle-body {
-      padding: 1rem;
+      padding: var(--space-4);
       overflow-y: auto;
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      gap: var(--space-3);
     }
     .oracle-message {
       display: flex;
       flex-direction: column;
-      gap: 0.4rem;
+      gap: var(--space-1);
       max-width: 90%;
     }
     .oracle-message.user { align-self: flex-end; }
     .oracle-message.oracle { align-self: flex-start; }
     .oracle-bubble {
-      padding: 0.75rem 1rem;
-      border-radius: 14px;
-      font-size: 0.95rem;
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--radius-xl);
+      font-size: var(--text-base);
       line-height: 1.55;
-      color: var(--text);
+      color: var(--oracle-text);
     }
     .oracle-message.user .oracle-bubble {
-      background: var(--accent);
-      color: #0a0a0a;
-      border-bottom-right-radius: 4px;
+      background: var(--oracle-accent);
+      color: var(--void);
+      border-bottom-right-radius: var(--radius-sm);
     }
     .oracle-message.oracle .oracle-bubble {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-bottom-left-radius: 4px;
+      background: var(--oracle-bg);
+      border: 1px solid var(--oracle-border);
+      border-bottom-left-radius: var(--radius-sm);
     }
-    .oracle-bubble a { color: var(--link-blue); text-decoration: none; }
+    .oracle-bubble a { color: var(--oracle-link-blue); text-decoration: none; }
     .oracle-bubble a:hover { text-decoration: underline; }
     .oracle-meta {
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      padding: 0 0.25rem;
+      font-size: var(--text-xs);
+      color: var(--oracle-text-muted);
+      padding: 0 var(--space-1);
     }
     .oracle-citations-title {
-      font-size: 0.7rem;
+      font-size: var(--text-xs);
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: var(--text-muted);
-      margin: 0.5rem 0 0.25rem;
+      color: var(--oracle-text-muted);
+      margin: var(--space-2) 0 var(--space-1);
     }
     .oracle-citations {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.4rem;
+      gap: var(--space-2);
     }
     .oracle-citation {
-      font-size: 0.75rem;
-      padding: 0.25rem 0.6rem;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      color: var(--text-dim);
+      font-size: var(--text-xs);
+      padding: var(--space-1) var(--space-3);
+      background: var(--oracle-bg);
+      border: 1px solid var(--oracle-border);
+      border-radius: var(--radius-full);
+      color: var(--oracle-text-dim);
       text-decoration: none;
-      transition: all 0.2s;
+      transition: border-color 0.2s, color 0.2s;
     }
     .oracle-citation:hover {
-      border-color: var(--accent);
-      color: var(--accent);
+      border-color: var(--oracle-accent);
+      color: var(--oracle-accent);
+    }
+    .oracle-citation:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
     }
     .oracle-followups {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.5rem;
+      gap: var(--space-2);
+      margin-top: var(--space-2);
     }
     .oracle-followup {
-      font-size: 0.8rem;
-      padding: 0.4rem 0.75rem;
-      background: rgba(212,175,55,0.08);
-      border: 1px solid rgba(212,175,55,0.25);
-      border-radius: 999px;
-      color: var(--accent);
+      font-size: var(--text-sm);
+      padding: var(--space-1) var(--space-3);
+      background: var(--gold-dim);
+      border: 1px solid rgba(var(--gold-rgb), 0.25);
+      border-radius: var(--radius-full);
+      color: var(--oracle-accent);
       cursor: pointer;
-      transition: all 0.2s;
+      transition: background 0.2s, border-color 0.2s;
     }
     .oracle-followup:hover {
-      background: rgba(212,175,55,0.18);
-      border-color: var(--accent);
+      background: rgba(var(--gold-rgb), 0.18);
+      border-color: var(--oracle-accent);
+    }
+    .oracle-followup:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
     }
     .oracle-empty {
-      color: var(--text-muted);
-      font-size: 0.9rem;
+      color: var(--oracle-text-muted);
+      font-size: var(--text-sm);
       text-align: center;
-      padding: 2rem 0;
+      padding: var(--space-8) 0;
     }
     .oracle-loading {
-      color: var(--text-muted);
-      font-size: 0.9rem;
+      color: var(--oracle-text-muted);
+      font-size: var(--text-sm);
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: var(--space-2);
     }
-    .oracle-error { color: #ff8a8a; font-size: 0.9rem; }
+    .oracle-error { color: var(--crimson); font-size: var(--text-sm); }
     .oracle-input-row {
       display: flex;
-      gap: 0.5rem;
-      padding: 0.75rem 1rem;
-      border-top: 1px solid var(--border);
-      background: var(--surface);
+      gap: var(--space-2);
+      padding: var(--space-3) var(--space-4);
+      border-top: 1px solid var(--oracle-border);
+      background: var(--oracle-surface);
     }
     .oracle-input {
       flex: 1;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 0.65rem 1rem;
-      color: var(--text);
-      font-size: 0.95rem;
+      background: var(--oracle-bg);
+      border: 1px solid var(--oracle-border);
+      border-radius: var(--radius-full);
+      padding: var(--space-2) var(--space-4);
+      color: var(--oracle-text);
+      font-size: var(--text-base);
       outline: none;
     }
-    .oracle-input:focus { border-color: var(--accent); }
+    .oracle-input:focus {
+      border-color: var(--oracle-accent);
+      box-shadow: 0 0 0 2px var(--gold-dim);
+    }
     .oracle-send {
-      background: var(--accent);
-      color: #0a0a0a;
+      background: var(--oracle-accent);
+      color: var(--void);
       border: none;
-      border-radius: 999px;
-      padding: 0 1.2rem;
+      border-radius: var(--radius-full);
+      padding: 0 var(--space-5);
       font-weight: 600;
       cursor: pointer;
       transition: opacity 0.2s;
     }
     .oracle-send:hover { opacity: 0.85; }
     .oracle-send:disabled { opacity: 0.5; cursor: not-allowed; }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      border-top: 1px solid var(--border);
+    .oracle-send:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
     }
-    footer a { color: var(--accent); text-decoration: none; }
+
+    .px-utility-footer {
+      text-align: center;
+      padding: var(--space-6) var(--space-5);
+      font-size: var(--text-xs);
+      color: var(--oracle-text-muted);
+      border-top: 1px solid var(--oracle-border);
+    }
+    .px-utility-footer a { color: var(--oracle-accent); text-decoration: none; }
+    .px-utility-footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      .px-utility-header { padding: var(--space-4) var(--space-5); }
+      main { padding: var(--space-4) var(--space-3); }
+      .intro h1 { font-size: var(--text-2xl); }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <div class="header-inner">
-      <a href="/search.html" class="logo">PUNYCODEX</a>
-      <span class="tagline">Ask the Oracle</span>
+  <header class="px-utility-header">
+    <div class="px-utility-header-inner">
+      <a href="/" class="px-utility-wordmark">PUNYCODEX</a>
+      <a href="search.html" class="px-utility-back">← Back to Search</a>
     </div>
   </header>
 
@@ -252,8 +312,8 @@
     </section>
   </main>
 
-  <footer>
-    <a href="/search.html">Back to Search</a> · Answers are grounded in PUNYCODEX data only.
+  <footer class="px-utility-footer">
+    <a href="search.html">Back to Search</a> · Answers are grounded in PUNYCODEX data only. · © 2026 PÚNYCODEX
   </footer>
 
   <script>

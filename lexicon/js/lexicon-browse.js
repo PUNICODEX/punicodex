@@ -14,7 +14,6 @@
     // ─── State ───
     let currentPantheon = 'all';
     let currentTier = 'all';
-    let currentProto = 'all';
     let currentSearch = '';
     let currentSort = 'alpha';
 
@@ -24,37 +23,6 @@
     const searchInput = document.getElementById('filter-search');
     const sortSelect = document.getElementById('filter-sort');
 
-    // ─── Proto-language derivation (fallback when etymology absent) ───
-    const PROTO_MAP = {
-        greek: 'proto-indo-european',
-        'greek-location': 'proto-indo-european',
-        norse: 'proto-indo-european',
-        sanskrit: 'proto-indo-european',
-        celtic: 'proto-indo-european',
-        slavic: 'proto-indo-european',
-        zoroastrian: 'proto-indo-european',
-        egyptian: 'proto-afro-asiatic',
-        phoenician: 'proto-afro-asiatic',
-        polynesian: 'proto-polynesian',
-        nahuatl: 'proto-uto-aztecan',
-        chinese: 'proto-sino-tibetan',
-        japanese: 'proto-sino-tibetan',
-        buddhist: 'proto-sino-tibetan',
-        taoist: 'proto-sino-tibetan',
-        korean: 'proto-sino-tibetan',
-        mesopotamian: 'isolate',
-        yoruba: 'isolate',
-        incan: 'isolate',
-        hittite: 'isolate',
-        canaanite: 'proto-afro-asiatic'
-    };
-
-    function deriveProtoLanguage(entry) {
-        if (entry.etymology && entry.etymology.protoLanguage) {
-            return entry.etymology.protoLanguage;
-        }
-        return PROTO_MAP[entry.pantheon] || 'unknown';
-    }
 
     // ─── Pantheon labels ───
     const PANTHEON_LABELS = {
@@ -100,7 +68,6 @@
         return LEXICON.filter(entry => {
             if (currentPantheon !== 'all' && entry.pantheon !== currentPantheon) return false;
             if (currentTier !== 'all' && entry.tier !== currentTier) return false;
-            if (currentProto !== 'all' && deriveProtoLanguage(entry) !== currentProto) return false;
             if (currentSearch) {
                 const q = currentSearch.toLowerCase();
                 const match = entry.ascii.toLowerCase().includes(q) ||
@@ -192,35 +159,28 @@
 
     // ─── Event handlers ───
 
-    // Pantheon pills
-    document.querySelectorAll('[data-filter="pantheon"]').forEach(pill => {
-        pill.addEventListener('click', () => {
-            document.querySelectorAll('[data-filter="pantheon"]').forEach(p => p.classList.remove('active'));
-            pill.classList.add('active');
-            currentPantheon = pill.dataset.value;
+    // Pantheon dropdown
+    const pantheonSelect = document.getElementById('filter-pantheon');
+    if (pantheonSelect) {
+        pantheonSelect.addEventListener('change', () => {
+            currentPantheon = pantheonSelect.value;
             render();
         });
-    });
+    }
 
-    // Tier pills
-    document.querySelectorAll('[data-filter="tier"]').forEach(pill => {
-        pill.addEventListener('click', () => {
-            document.querySelectorAll('[data-filter="tier"]').forEach(p => p.classList.remove('active'));
-            pill.classList.add('active');
-            currentTier = pill.dataset.value;
-            render();
+    // Tier segmented control
+    const tierSegment = document.getElementById('tier-segment');
+    if (tierSegment) {
+        tierSegment.querySelectorAll('[data-filter="tier"]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                tierSegment.querySelectorAll('[data-filter="tier"]').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentTier = btn.dataset.value;
+                render();
+            });
         });
-    });
+    }
 
-    // Proto-language pills
-    document.querySelectorAll('[data-filter="proto"]').forEach(pill => {
-        pill.addEventListener('click', () => {
-            document.querySelectorAll('[data-filter="proto"]').forEach(p => p.classList.remove('active'));
-            pill.classList.add('active');
-            currentProto = pill.dataset.value;
-            render();
-        });
-    });
 
     // Search (debounced)
     let searchTimeout;

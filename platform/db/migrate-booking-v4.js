@@ -22,6 +22,11 @@ if (!cols.includes('visible_percent')) {
   db.exec(`ALTER TABLE analytics_events ADD COLUMN visible_percent REAL`);
   console.log('Added analytics_events.visible_percent');
 }
+// Older analytics_events tables were created without is_bot; add it before migrating.
+if (!cols.includes('is_bot')) {
+  db.exec(`ALTER TABLE analytics_events ADD COLUMN is_bot INTEGER DEFAULT 0`);
+  console.log('Added analytics_events.is_bot');
+}
 
 // Recreate analytics_events to allow 'viewable_impression' in the event_type CHECK.
 const createSql = db

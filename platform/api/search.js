@@ -195,7 +195,8 @@ function search({
         [TRUST_TIERS.SUSPICIOUS]: 1,
         [TRUST_TIERS.UNKNOWN]: 2,
         [TRUST_TIERS.STYLED]: 3,
-        [TRUST_TIERS.CANONICAL]: 4,
+        [TRUST_TIERS.ASCII_FALLBACK]: 4,
+        [TRUST_TIERS.CANONICAL]: 5,
       };
       const entryTrust =
         trustOrder[domainTrust.tier] <= trustOrder[nameTrust.tier] ? domainTrust : nameTrust;
@@ -204,13 +205,18 @@ function search({
     .filter(({ entryTrust }) => {
       if (trustMode === 'all') return true;
       if (trustMode === 'safe') {
-        return [TRUST_TIERS.CANONICAL, TRUST_TIERS.STYLED, TRUST_TIERS.UNKNOWN].includes(
-          entryTrust.tier
-        );
+        return [
+          TRUST_TIERS.CANONICAL,
+          TRUST_TIERS.ASCII_FALLBACK,
+          TRUST_TIERS.STYLED,
+          TRUST_TIERS.UNKNOWN,
+        ].includes(entryTrust.tier);
       }
       if (trustMode === 'canonical') return entryTrust.tier === TRUST_TIERS.CANONICAL;
       if (trustMode === 'styled') {
-        return [TRUST_TIERS.CANONICAL, TRUST_TIERS.STYLED].includes(entryTrust.tier);
+        return [TRUST_TIERS.CANONICAL, TRUST_TIERS.ASCII_FALLBACK, TRUST_TIERS.STYLED].includes(
+          entryTrust.tier
+        );
       }
       return true;
     });

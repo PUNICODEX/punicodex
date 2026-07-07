@@ -23,6 +23,7 @@ const SCRIPT_NAMES = {
   'greek-location': 'Greek',
   egyptian: 'Hieroglyphs',
   mesopotamian: 'Cuneiform',
+  abrahamic: 'Hebrew',
   canaanite: 'Ugaritic / Phoenician',
   phoenician: 'Phoenician',
   hittite: 'Cuneiform / Luwian hieroglyphs',

@@ -31,6 +31,7 @@ const {
 
 const LORE_STUBS = require(path.join(__dirname, 'lore-stubs.js'));
 const GALLERY_DATA = require(path.join(__dirname, 'gallery-data.json'));
+const { generateScholarsPage } = require(path.join(__dirname, 'generate-scholars.js'));
 
 const BESPOKE_EFFECTS = (() => {
   try {
@@ -54,26 +55,36 @@ function applyBespokeCanvas(html, id, primary, secondary) {
   const canvasId = BESPOKE_EFFECTS[id]?.canvasId;
   if (!canvasId) return html;
   return html.replace(
-    /<canvas\s+id="[^"]*-canvas"\s+data-effect="[^"]*"\s+data-primary="[^"]*"\s+data-secondary="[^"]*"><\/canvas>/g,
+    /<canvas\s+id="[^"]*-canvas"\s+data-effect="[^"]*"\s+data-primary="[^"]*"\s+data-secondary="[^"]*"[^>]*><\/canvas>/g,
     `<canvas id="${canvasId}" class="hero-canvas" data-primary="${primary}" data-secondary="${secondary}"></canvas>`
   );
 }
 
 const SLOT_TYPES = [
-  'Crown',
-  'Column',
   'Banner',
-  'Frame I',
-  'Frame II',
-  'Frame III',
-  'Ribbon',
-  'Seal',
-  'Inscription',
-  'Emblem',
-  'Sigil',
-  'Foundation',
-  'Dominion',
+  'Box',
+  'Box',
+  'Banner',
+  'Box',
+  'Box',
+  'Banner',
+  'Box',
+  'Box',
+  'Banner',
+  'Box',
+  'Box',
+  'Banner',
 ];
+
+const SLOT_PRICES_CENTS = {
+  SSS: [75000, 30000, 26000, 47000, 20000, 15000, 27000, 11000, 9000, 16000, 7000, 6000, 11000],
+  S:   [37500, 15000, 13000, 23500, 10000, 7500, 13500, 5500, 4500, 8000, 3500, 3000, 5500],
+  A:   [22500, 9000, 7800, 14100, 6000, 4500, 8100, 3300, 2700, 4800, 2100, 1800, 3300],
+  B:   [15000, 6000, 5200, 9400, 4000, 3000, 5400, 2200, 1800, 3200, 1400, 1200, 2200],
+  C:   [7500, 3000, 2600, 4700, 2000, 1500, 2700, 1100, 900, 1600, 700, 600, 1100],
+};
+
+const FULLPAGE_PRICES_CENTS = { SSS: 250000, S: 125000, A: 75000, B: 50000, C: 25000 };
 
 const PANTHEON_COLORS = {
   greek: {
@@ -765,7 +776,7 @@ function buildRootVariables(p) {
   --font-mono: 'Fira Code', 'Courier New', monospace;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
-  --nav-height: 72px;
+  --nav-height: 110px;
   --classic-gold: var(--primary);
   --pale-gold: var(--primary-bright);
   --gold-dim: var(--primary-dim);
@@ -1559,7 +1570,7 @@ function buildZeusFooter(entry, assetPrefix) {
   const hasOriginal = hasOriginalScript(entry);
   const ownedForms = getOwnedForms(entry);
   const isOwned = ownedForms.length > 0;
-  const domainsLabel = isOwned ? 'Domains' : 'Restoration';
+  const domainsLabel = isOwned ? 'Owned Domains' : 'Restoration';
   const domains = isOwned
     ? ownedForms
         .map((f) => `${f}.com`)
@@ -1574,7 +1585,7 @@ function buildZeusFooter(entry, assetPrefix) {
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <span class="footer-logo">PUNYCODEX</span>
+                    <a href="https://punycodex.com/" class="footer-logo">PUNYCODEX</a>
                     <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
                 </div>
                 <div class="footer-info">
@@ -1597,9 +1608,6 @@ function buildZeusFooter(entry, assetPrefix) {
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
-                <p class="footer-links" style="margin-top:0.5rem;font-size:0.75rem;color:var(--text-muted);">
-                    <a href="#" id="my-bookings-footer" style="color:var(--text-muted);text-decoration:underline;">My Bookings</a>
-                </p>
             </div>
         </div>
     </footer>`;
@@ -2324,7 +2332,7 @@ function cleanSectionContent(html) {
   return inner.trim();
 }
 
-function generateHomePage(entry, palette, slotNames, templateDir) {
+function generateHomePage(entry, palette, slotNames, templateDir, rentalTier = 'B') {
   let html = fs.readFileSync(path.join(templateDir, 'index.html'), 'utf8');
   const templeId = entry.id;
   const vars = {
@@ -2344,8 +2352,16 @@ function generateHomePage(entry, palette, slotNames, templateDir) {
   };
   for (let i = 0; i < SLOT_TYPES.length; i++) {
     vars[`SLOT_${String(i + 1).padStart(2, '0')}_NAME`] = slotNames[i];
-    vars[`SLOT_OFFSET_${String(i + 1).padStart(2, '0')}`] = String(52 + i + 1).padStart(2, '0');
+    vars[`SLOT_OFFSET_${String(i + 1).padStart(2, '0')}`] = String(i + 1).padStart(2, '0');
   }
+  vars.SLOT_OFFSET_14 = '14';
+  vars.BUNDLE_NAME = 'Full Page Takeover';
+  const tier = rentalTier || 'B';
+  const slotPrices = SLOT_PRICES_CENTS[tier] || SLOT_PRICES_CENTS.B;
+  for (let i = 0; i < slotPrices.length; i++) {
+    vars[`SLOT_${String(i + 1).padStart(2, '0')}_PRICE_CENTS`] = String(slotPrices[i]);
+  }
+  vars.FULLPAGE_PRICE_CENTS = String(FULLPAGE_PRICES_CENTS[tier] || FULLPAGE_PRICES_CENTS.B);
   html = replacePlaceholders(html, vars);
   html = applyBespokeCanvas(html, templeId, palette.primary, palette.secondary);
   if (!hasRealGreek(entry)) html = stripPlaceholderGreek(html, entry.unicode);
@@ -2371,6 +2387,24 @@ function generateHomePage(entry, palette, slotNames, templateDir) {
     );
   }
 
+  return html;
+}
+
+function generateDashboardPage(entry, palette, templateDir) {
+  let html = fs.readFileSync(path.join(templateDir, 'dashboard.html'), 'utf8');
+  const templeId = entry.id;
+  const vars = {
+    UNICODE: entry.unicode,
+    ASCII: entry.ascii,
+    DOMAIN: entry.domain,
+    MEANING: entry.meaning || '',
+    TEMPLE_ID: templeId,
+    PRIMARY: palette.primary,
+    PRIMARY_DIM: palette.primaryDim,
+    PRIMARY_BRIGHT: palette.primaryBright,
+    SECONDARY: palette.secondary,
+  };
+  html = replacePlaceholders(html, vars);
   return html;
 }
 
@@ -2595,7 +2629,6 @@ function buildGalleryGrid(entry) {
   const curated = GALLERY_DATA[id];
   if (curated && Array.isArray(curated.images) && curated.images.length > 0) {
     curated.images.forEach((img, i) => {
-      const webpSrc = img.src;
       let fallbackSrc = img.src.replace(/\.webp$/, '');
       if (fallbackSrc.endsWith('.svg')) {
         fallbackSrc = fallbackSrc.replace(/\.svg$/, '.png');
@@ -2615,7 +2648,7 @@ function buildGalleryGrid(entry) {
   }
 
   // Fall back to brand assets when no curated gallery exists.
-  const pushItem = (img, webp, caption) => {
+  const pushItem = (img, _webp, caption) => {
     const imgPath = path.join(SITES_DIR, id, 'assets', img);
     if (fs.existsSync(imgPath)) {
       items.push(`
@@ -2748,7 +2781,7 @@ function validateGenerated(_templeId, outputs) {
     }
   }
 
-  // Slot-name check (home page)
+  // Slot-name check (home page) — exclude the full-page takeover bundle name
   const home = outputs['index.html'];
   const slotNames = [];
   const nameMatches = home.match(/<span class="space-name">([^<]+)<\/span>/g) || [];
@@ -2758,8 +2791,9 @@ function validateGenerated(_templeId, outputs) {
       issues.push(`index.html: slot name contains punctuation: "${name}"`);
     slotNames.push(name);
   }
-  if (slotNames.length !== SLOT_TYPES.length) {
-    issues.push(`index.html: found ${slotNames.length} slot names, expected ${SLOT_TYPES.length}`);
+  // The last name is the bundle; the first SLOT_TYPES.length are individual slots.
+  if (slotNames.length !== SLOT_TYPES.length + 1) {
+    issues.push(`index.html: found ${slotNames.length} slot names, expected ${SLOT_TYPES.length + 1} (13 individual + 1 bundle)`);
   }
 
   return issues;
@@ -2782,6 +2816,8 @@ function createFlagship(templeId, options = {}) {
   const LEXICON = loadLexicon();
   const entry = LEXICON.find((e) => e.id === templeId);
   if (!entry) throw new Error(`Lexicon entry not found: ${templeId}`);
+  const ARCHETYPES = loadArchetypes();
+  const archetype = ARCHETYPES.find((a) => a.id === templeId) || {};
 
   const siteDir = path.join(SITES_DIR, templeId);
   if (!fs.existsSync(siteDir)) throw new Error(`Site directory not found: ${siteDir}`);
@@ -2816,9 +2852,11 @@ function createFlagship(templeId, options = {}) {
   }
 
   const outputs = {
-    'index.html': generateHomePage(entry, palette, slotNames, TEMPLATE_DIR),
+    'index.html': generateHomePage(entry, palette, slotNames, TEMPLATE_DIR, archetype.rentalTier),
     'lore/index.html': generateLorePage(entry, palette, loreSections, TEMPLATE_DIR, catalog),
     'gallery/index.html': generateGalleryPage(entry, palette, TEMPLATE_DIR),
+    'scholars/index.html': generateScholarsPage(templeId),
+    'dashboard/index.html': generateDashboardPage(entry, palette, TEMPLATE_DIR),
     'lore.json': buildLoreJson(entry, catalog[entry.id] || {}),
     'styles.css': buildCss(palette),
     'script.js': buildScript(templeId),
@@ -2846,6 +2884,8 @@ function createFlagship(templeId, options = {}) {
     'script.js',
     'lore/index.html',
     'gallery/index.html',
+    'scholars/index.html',
+    'dashboard/index.html',
     'lore/extended/index.html',
   ];
   for (const f of filesToBackup) {

@@ -107,56 +107,40 @@
     <!-- Filters -->
     <section class="lexicon-filters">
         <div class="container">
-            <div class="filter-row">
-                <span class="filter-label">Pantheon</span>
-                <div class="filter-pills">
-                    <button class="filter-pill active" data-filter="pantheon" data-value="all">All</button>
-                    <button class="filter-pill" data-filter="pantheon" data-value="greek">Greek</button>
-                    <button class="filter-pill" data-filter="pantheon" data-value="greek-location">Greek Locations</button>
-                    <button class="filter-pill" data-filter="pantheon" data-value="norse">Norse</button>
-                    <button class="filter-pill" data-filter="pantheon" data-value="egyptian">Egyptian</button>
-                    <button class="filter-pill" data-filter="pantheon" data-value="sanskrit">Sanskrit</button>
-                    <button class="filter-pill" data-filter="pantheon" data-value="celtic">Celtic</button>
-                    <button class="filter-pill" data-filter="pantheon" data-value="mesopotamian">Mesopotamian</button>
-                    <button class="filter-pill" data-filter="pantheon" data-value="polynesian">Polynesian</button>
-                    <button class="filter-pill" data-filter="pantheon" data-value="japanese">Japanese</button>
-                    <button class="filter-pill" data-filter="pantheon" data-value="nahuatl">Nahuatl</button>
-                    <button class="filter-pill" data-filter="pantheon" data-value="yoruba">Yoruba</button>
-                    <button class="filter-pill" data-filter="pantheon" data-value="slavic">Slavic</button>
-                    <button class="filter-pill" data-filter="pantheon" data-value="zoroastrian">Zoroastrian</button>
-                    <button class="filter-pill" data-filter="pantheon" data-value="incan">Incan</button>
-                </div>
-            </div>
-            <div class="filter-row">
-                <span class="filter-label">Tier</span>
-                <div class="filter-pills">
-                    <button class="filter-pill active" data-filter="tier" data-value="all">All</button>
-                    <button class="filter-pill" data-filter="tier" data-value="1">Tier 1</button>
-                    <button class="filter-pill" data-filter="tier" data-value="2">Tier 2</button>
-                </div>
-            </div>
-            <div class="filter-row">
-                <span class="filter-label">Language Family</span>
-                <div class="filter-pills">
-                    <button class="filter-pill active" data-filter="proto" data-value="all">All</button>
-                    <button class="filter-pill" data-filter="proto" data-value="proto-indo-european">PIE</button>
-                    <button class="filter-pill" data-filter="proto" data-value="proto-afro-asiatic">Afro-Asiatic</button>
-                    <button class="filter-pill" data-filter="proto" data-value="proto-polynesian">Polynesian</button>
-                    <button class="filter-pill" data-filter="proto" data-value="proto-uto-aztecan">Uto-Aztecan</button>
-                    <button class="filter-pill" data-filter="proto" data-value="proto-sino-tibetan">Sino-Tibetan</button>
-                    <button class="filter-pill" data-filter="proto" data-value="isolate">Isolate</button>
-                    <button class="filter-pill" data-filter="proto" data-value="unknown">Unknown</button>
-                </div>
+            <div class="filter-bar-modern">
                 <div class="filter-search">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="11" cy="11" r="8"/>
                         <path d="M21 21l-4.35-4.35"/>
                     </svg>
                     <input type="text" id="filter-search" placeholder="Search names, domains, scripts..." autocomplete="off">
                 </div>
-                <div class="filter-sort">
-                    <span class="filter-label" style="min-width:auto;">Sort</span>
-                    <select id="filter-sort">
+                <div class="filter-segment" id="tier-segment">
+                    <button class="filter-segment-btn active" data-filter="tier" data-value="all">All</button>
+                    <button class="filter-segment-btn" data-filter="tier" data-value="1">Tier 1</button>
+                    <button class="filter-segment-btn" data-filter="tier" data-value="2">Tier 2</button>
+                </div>
+                <div class="filter-select-wrap">
+                    <select id="filter-pantheon" class="filter-select">
+                        <option value="all">All Pantheons</option>
+                        <option value="greek">Greek</option>
+                        <option value="greek-location">Greek Locations</option>
+                        <option value="norse">Norse</option>
+                        <option value="egyptian">Egyptian</option>
+                        <option value="sanskrit">Sanskrit</option>
+                        <option value="celtic">Celtic</option>
+                        <option value="mesopotamian">Mesopotamian</option>
+                        <option value="polynesian">Polynesian</option>
+                        <option value="japanese">Japanese</option>
+                        <option value="nahuatl">Nahuatl</option>
+                        <option value="yoruba">Yoruba</option>
+                        <option value="slavic">Slavic</option>
+                        <option value="zoroastrian">Zoroastrian</option>
+                        <option value="incan">Incan</option>
+                    </select>
+                </div>
+                <div class="filter-select-wrap">
+                    <select id="filter-sort" class="filter-select">
                         <option value="alpha">Alphabetical</option>
                         <option value="pantheon">Pantheon</option>
                         <option value="tier">Tier</option>
@@ -206,7 +190,8 @@
     </footer>
 
     <script src="/type/js/lexicon.js?v=perf7" defer></script>
+    <script src="/js/px-core.js?v=perf7"></script>
     <script src="/js/temple-base.js?v=perf7" defer></script>
-    <script src="/lexicon/js/lexicon-browse.js?v=perf7" defer></script>
+    <script src="/lexicon/js/lexicon-browse.js?v=perf8" defer></script>
 </body>
 </html>

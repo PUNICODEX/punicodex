@@ -17,6 +17,7 @@ const { hasMixedScripts } = require('./name-decomposer');
 // Backward-compatible trust tiers.
 const TRUST_TIERS = Object.freeze({
   CANONICAL: 'canonical',
+  ASCII_FALLBACK: 'ascii-fallback',
   STYLED: 'styled',
   SUSPICIOUS: 'suspicious',
   UNSAFE: 'unsafe',
@@ -79,6 +80,7 @@ function legacyTierFromVerdict(verdict) {
   const map = {
     canonical: TRUST_TIERS.CANONICAL,
     'recognized-variant': TRUST_TIERS.CANONICAL,
+    'ascii-fallback': TRUST_TIERS.ASCII_FALLBACK,
     styled: TRUST_TIERS.STYLED,
     'transliteration-uncertain': TRUST_TIERS.STYLED,
     'homograph-spoof': TRUST_TIERS.SUSPICIOUS,

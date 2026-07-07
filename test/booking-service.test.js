@@ -50,6 +50,7 @@ const {
   recoverBookings,
 } = require('../platform/api/booking-service.js');
 const { createBooking } = require('../platform/api/bookings.js');
+const { getSlotId, getSlotSlug, getBundleSlotId, getIndividualSlotIds } = require('./helpers/slots.js');
 
 function getVerificationCode(email) {
   const db = new Database(getTestDbPath(__filename));
@@ -97,8 +98,9 @@ test('listSlots returns available ad slots', async () => {
 });
 
 test('getSlot returns a slot by slug', async () => {
-  const slot = await getSlot('crown', 'nike');
-  assert.strictEqual(slot.slug, 'crown');
+  const slug = getSlotSlug(__filename, 'nike', 1);
+  const slot = await getSlot(slug, 'nike');
+  assert.strictEqual(slot.slug, slug);
 });
 
 test('getSlot throws 404 for unknown slot', async () => {
@@ -164,7 +166,7 @@ test('checkVerification rejects wrong and expired codes', async () => {
 test('createBookingRequest creates a pending_payment booking', async () => {
   const token = await makeVerifiedEmail('booking-create@example.com');
   const result = await createBookingRequest({
-    slotId: 20,
+    slotId: getSlotId(__filename, 'nike', 1),
     email: 'booking-create@example.com',
     companyName: 'Test Co',
     websiteUrl: 'https://example.com',
@@ -177,7 +179,7 @@ test('createBookingRequest creates a pending_payment booking', async () => {
   assert.ok(result.bookingId);
   assert.ok(result.token);
   assert.strictEqual(result.leaseMonths, 1);
-  assert.strictEqual(result.totalCents, 30000);
+  assert.strictEqual(result.totalCents, 75000);
   assert.ok(result.stripeUrl.includes('checkout.stripe.com'));
   const booking = await getBookingByTokenSafe(result.token);
   assert.strictEqual(booking.status, 'pending_payment');
@@ -186,7 +188,7 @@ test('createBookingRequest creates a pending_payment booking', async () => {
 test('createBookingRequest rejects unverified email', async () => {
   try {
     await createBookingRequest({
-      slotId: 1,
+      slotId: getSlotId(__filename, 'nike', 1),
       email: 'unverified@example.com',
       verificationToken: 'bad-token',
     });
@@ -200,7 +202,7 @@ test('createBookingRequest rejects invalid lease/trial combinations', async () =
   const token = await makeVerifiedEmail('invalid-lease@example.com');
   try {
     await createBookingRequest({
-      slotId: 1,
+      slotId: getSlotId(__filename, 'nike', 1),
       email: 'invalid-lease@example.com',
       leaseMonths: 6,
       trialMonths: 0,
@@ -214,7 +216,7 @@ test('createBookingRequest rejects invalid lease/trial combinations', async () =
   const token2 = await makeVerifiedEmail('invalid-trial@example.com');
   try {
     await createBookingRequest({
-      slotId: 1,
+      slotId: getSlotId(__filename, 'nike', 1),
       email: 'invalid-trial@example.com',
       leaseMonths: 1,
       trialMonths: 1,
@@ -229,7 +231,7 @@ test('createBookingRequest rejects invalid lease/trial combinations', async () =
 test('applyBookingRequest requires a bundle slot', async () => {
   const token = await makeVerifiedEmail('apply-bundle@example.com');
   const result = await applyBookingRequest({
-    slotId: 13,
+    slotId: getBundleSlotId(__filename, 'zeus'),
     email: 'apply-bundle@example.com',
     companyName: 'Bundle Co',
     leaseMonths: 12,
@@ -244,7 +246,7 @@ test('applyBookingRequest rejects non-bundle slots', async () => {
   const token = await makeVerifiedEmail('apply-nonbundle@example.com');
   try {
     await applyBookingRequest({
-      slotId: 22,
+      slotId: getSlotId(__filename, 'nike', 2),
       email: 'apply-nonbundle@example.com',
       verificationToken: token,
     });
@@ -257,7 +259,7 @@ test('applyBookingRequest rejects non-bundle slots', async () => {
 test('getAllBookingsByToken returns bookings for the same email', async () => {
   const token = await makeVerifiedEmail('multi-bookings@example.com');
   const r1 = await createBookingRequest({
-    slotId: 14,
+    slotId: getSlotId(__filename, 'nike', 3),
     email: 'multi-bookings@example.com',
     companyName: 'A',
     leaseMonths: 1,
@@ -267,7 +269,7 @@ test('getAllBookingsByToken returns bookings for the same email', async () => {
   // Need a fresh token for second booking because consumeVerifiedSession deletes it.
   const token2 = await makeVerifiedEmail('multi-bookings@example.com');
   const r2 = await createBookingRequest({
-    slotId: 15,
+    slotId: getSlotId(__filename, 'nike', 4),
     email: 'multi-bookings@example.com',
     companyName: 'B',
     leaseMonths: 1,
@@ -284,7 +286,7 @@ test('getAllBookingsByToken returns bookings for the same email', async () => {
 test('updateBookingMeta validates heading length', async () => {
   const token = await makeVerifiedEmail('meta-update@example.com');
   const result = await createBookingRequest({
-    slotId: 21,
+    slotId: getSlotId(__filename, 'nike', 5),
     email: 'meta-update@example.com',
     companyName: 'Meta Co',
     leaseMonths: 1,
@@ -309,7 +311,7 @@ test('updateBookingMeta validates heading length', async () => {
 test('cancelBooking and uncancelBooking toggle cancel_at_end', async () => {
   const token = await makeVerifiedEmail('cancel-test@example.com');
   const result = await createBookingRequest({
-    slotId: 23,
+    slotId: getSlotId(__filename, 'nike', 6),
     email: 'cancel-test@example.com',
     companyName: 'Cancel Co',
     leaseMonths: 1,
@@ -325,7 +327,7 @@ test('cancelBooking and uncancelBooking toggle cancel_at_end', async () => {
 test('renewBooking generates a renewal checkout URL', async () => {
   const token = await makeVerifiedEmail('renew-test@example.com');
   const result = await createBookingRequest({
-    slotId: 24,
+    slotId: getSlotId(__filename, 'nike', 7),
     email: 'renew-test@example.com',
     companyName: 'Renew Co',
     leaseMonths: 1,
@@ -345,7 +347,7 @@ test('renewBooking generates a renewal checkout URL', async () => {
 test('recoverBookings sends dashboard links when bookings exist', async () => {
   const token = await makeVerifiedEmail('recover-test@example.com');
   await createBookingRequest({
-    slotId: 25,
+    slotId: getSlotId(__filename, 'nike', 8),
     email: 'recover-test@example.com',
     companyName: 'Recover Co',
     leaseMonths: 1,
@@ -358,7 +360,7 @@ test('recoverBookings sends dashboard links when bookings exist', async () => {
 
 test('createBooking blocks a second active booking for the same slot', async () => {
   const first = await createBooking({
-    slotId: 18,
+    slotId: getSlotId(__filename, 'nike', 9),
     email: 'race-first@example.com',
     companyName: 'First Co',
     leaseMonths: 1,
@@ -370,7 +372,7 @@ test('createBooking blocks a second active booking for the same slot', async () 
 
   try {
     await createBooking({
-      slotId: 18,
+      slotId: getSlotId(__filename, 'nike', 9),
       email: 'race-second@example.com',
       companyName: 'Second Co',
       leaseMonths: 1,
@@ -387,7 +389,7 @@ test('createBooking blocks a second active booking for the same slot', async () 
 test('createBooking handles concurrent attempts for the same slot', async () => {
   const attempts = [
     createBooking({
-      slotId: 19,
+      slotId: getSlotId(__filename, 'nike', 10),
       email: 'concurrent-a@example.com',
       companyName: 'Concurrent A',
       leaseMonths: 1,
@@ -396,7 +398,7 @@ test('createBooking handles concurrent attempts for the same slot', async () => 
       status: 'pending_payment',
     }),
     createBooking({
-      slotId: 19,
+      slotId: getSlotId(__filename, 'nike', 10),
       email: 'concurrent-b@example.com',
       companyName: 'Concurrent B',
       leaseMonths: 1,

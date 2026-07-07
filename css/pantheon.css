@@ -40,77 +40,138 @@
 }
 
 /* Filter Bar */
-.filter-bar {
+.lexicon-filters {
     position: sticky;
     top: var(--nav-height);
     z-index: 100;
     background: rgba(5, 5, 5, 0.95);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.06);
-    padding: var(--space-3) 0;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.08);
+    padding: 0.625rem 0;
     transition: all var(--duration-normal) var(--ease-smooth);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
-.filter-row {
+.filter-bar-modern {
     display: flex;
-    gap: var(--space-3);
     align-items: center;
+    gap: var(--space-3);
     flex-wrap: wrap;
-    margin-bottom: var(--space-3);
 }
 
-.filter-pills {
-    display: flex;
-    gap: var(--space-2);
-    flex-wrap: wrap;
-    flex: 1;
-    overflow-x: auto;
-    padding-bottom: 4px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+.filter-search {
+    position: relative;
+    flex: 1 1 260px;
+    min-width: 200px;
 }
 
-.filter-pills::-webkit-scrollbar {
-    display: none;
+.filter-search svg {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    pointer-events: none;
 }
 
-.filter-pill {
-    padding: 8px 18px;
+.filter-search input {
+    width: 100%;
+    padding: 9px 12px 9px 34px;
+    background: rgba(20, 20, 20, 0.85);
     border: 1px solid rgba(212, 175, 55, 0.1);
     border-radius: var(--radius-md);
-    background: rgba(255, 255, 255, 0.02);
-    color: var(--text-secondary);
+    color: var(--text-primary);
     font-family: var(--font-body);
     font-size: 13px;
+    outline: none;
+    transition: all var(--duration-normal) var(--ease-smooth);
+}
+
+.filter-search input:focus {
+    border-color: rgba(212, 175, 55, 0.35);
+    box-shadow: 0 0 18px rgba(212, 175, 55, 0.12);
+}
+
+.filter-segment {
+    display: inline-flex;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    border-radius: var(--radius-md);
+    padding: 3px;
+    gap: 3px;
+}
+
+.filter-segment-btn {
+    padding: 7px 14px;
+    border: none;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.02em;
-    cursor: none;
-    transition: all var(--duration-normal) var(--ease-smooth);
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-smooth);
     white-space: nowrap;
-    position: relative;
-    overflow: hidden;
 }
 
-@media (pointer: coarse) {
-    .filter-pill { cursor: pointer; }
-}
-
-.filter-pill:hover {
-    border-color: rgba(212, 175, 55, 0.25);
+.filter-segment-btn:hover {
     color: var(--gold);
-    background: rgba(212, 175, 55, 0.08);
 }
 
-.filter-pill.active {
+.filter-segment-btn.active {
     background: var(--gold);
-    border-color: var(--gold);
     color: var(--void);
     font-weight: 600;
 }
 
-.filter-pill.active:hover {
-    color: var(--void);
-    background: var(--gold-bright);
-    border-color: var(--gold-bright);
+.filter-select-wrap {
+    position: relative;
+    flex: 0 0 auto;
+}
+
+.filter-select {
+    padding: 9px 32px 9px 14px;
+    background: rgba(20, 20, 20, 0.85);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 13px;
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+    min-width: 140px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23d4af37' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    transition: all var(--duration-normal) var(--ease-smooth);
+}
+
+.filter-select:hover,
+.filter-select:focus {
+    border-color: rgba(212, 175, 55, 0.35);
+}
+
+@media (max-width: 768px) {
+    .filter-bar-modern {
+        gap: var(--space-2);
+    }
+
+    .filter-search {
+        flex: 1 1 100%;
+        min-width: 0;
+    }
+
+    .filter-segment,
+    .filter-select-wrap {
+        flex: 1 1 auto;
+    }
+
+    .filter-select {
+        width: 100%;
+    }
 }
 
 .search-box {

@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bꜣ — Endorsed by the Soul, Personality, Manifestation</title>
     <meta name="description" content="Your brand, endorsed by Bꜣ — the Soul, Personality, Manifestation. Premium advertising placements on a domain rooted in ancient power.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&amp;family=Montserrat:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf7">
     <link rel="stylesheet" href="styles.css?v=perf2">
     <link rel="canonical" href="https://punycodex.com/sites/ba/">
     <meta property="og:title" content="Bꜣ — Endorsed by the Soul, Personality, Manifestation">
@@ -50,26 +49,26 @@
     </script>
 </head>
 <body>
-    <!-- Global Nav -->
+    <!-- Global Strip -->
     <div class="global-strip">
         <div class="global-strip-inner">
-            <a href="https://punycodex.com/" class="global-brand">PUNYCODEX</a>
+            <a href="https://punycodex.com/" class="global-brand">P<span>U</span>NYCODEX</a>
             <div class="global-links">
                 <a href="https://punycodex.com/pantheon/">Pantheon</a>
                 <a href="https://punycodex.com/lexicon/">Lexicon</a>
                 <a href="https://punycodex.com/type/">Type</a>
                 <a href="https://punycodex.com/search.html">Search</a>
                 <a href="https://punycodex.com/tiers/">Tiers</a>
-                <a href="#" id="my-bookings-nav">My Bookings</a>
+                <a href="https://punycodex.com/about/">About</a>
             </div>
         </div>
     </div>
 
     <!-- Ambient Canvas -->
-    <canvas id="ba-canvas" data-effect="soulBird" data-primary="#D4AF37" data-secondary="#1E3A5F"></canvas>
+    <canvas id="ba-canvas" data-effect="soulBird" data-primary="#D4AF37" data-secondary="#1E3A5F" aria-hidden="true"></canvas>
 
     <!-- Tab Navigation -->
-    <nav class="main-nav tab-nav" id="main-nav">
+    <nav class="main-nav tab-nav" id="tab-nav">
         <div class="nav-inner">
             <a href="#hero" class="nav-logo">
                 <picture><source srcset="assets/ba_logolockup.webp" type="image/webp"><img src="assets/ba_logolockup.png" alt="Bꜣ" class="nav-logo-img"></picture>
@@ -77,7 +76,7 @@
             <div class="nav-links">
                 <a href="./" class="nav-link active">Home</a>
                 <a href="lore/index.html" class="nav-link">Lore</a>
-                <a href="gallery/index.html" class="nav-link">Gallery</a>
+                <a href="gallery/index.html" class="nav-link">Gallery</a><a href="scholars/index.html" class="nav-link">Scholars</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
@@ -98,7 +97,7 @@
                     <span class="meta-domain">Bꜣ.com</span>
                     <span class="meta-badge">Premium Ad Spaces Available</span>
                 </div>
-                <p class="endorsement-lead">Twelve sacred frames. One temple. Claim your place.</p>
+                <p class="endorsement-lead">Thirteen sacred frames. One temple. Claim your place.</p>
                 <div class="endorsement-cta">
                     <a href="#spaces" class="btn-primary">Reserve Your Space</a>
                     <a href="lore/index.html" class="btn-primary btn-ghost">Enter the Temple</a>
@@ -107,21 +106,23 @@
         </div>
     </header>
 
-    <!-- 12 Sacred Spaces -->
+    <!-- 13 Sacred Spaces + Full-Page Takeover -->
     <section class="section spaces-section" id="spaces">
         <div class="container">
             <div class="spaces-layout reveal-up">
-                <!-- Row 1: Soul Crown -->
-                <div class="space-row">
-                    <div class="space-slot" data-space="53" data-price-cents="6000">
+                <p class="spaces-legend">Banners at 1200 × 400 px · Boxes at 600 × 600 px · Prices scale by temple tier</p>
+
+                <!-- Row 1: Banner Soul Crown -->
+                <div class="space-row space-row--banner">
+                    <div class="space-slot" data-space="01" data-price-cents="7500">
                         <div class="space-meta">
                             <span class="space-num">01</span>
                             <div class="space-info">
                                 <span class="space-name">Soul Crown</span>
-                                <span class="space-dims">1136 × 379 px</span>
+                                <span class="space-dims">1200 × 400 px</span>
                             </div>
                         </div>
-                        <div class="space-frame space-frame--hero">
+                        <div class="space-frame space-frame--banner">
                             <div class="space-frame-glow"></div>
                             <div class="space-frame-content">
                                 <span class="space-placeholder-logo">◆</span>
@@ -130,83 +131,85 @@
                     </div>
                 </div>
 
-                <!-- Row 2: Ka Column + Akh Banner + Personality Frame I -->
-                <div class="space-row space-row--sidebar">
-                    <div class="space-slot space-slot--narrow" data-space="54" data-price-cents="5000">
+                <!-- Row 2: Box Ka Column + Box Akh Banner -->
+                <div class="space-row space-row--boxes">
+                    <div class="space-slot" data-space="02" data-price-cents="3000">
                         <div class="space-meta">
                             <span class="space-num">02</span>
                             <div class="space-info">
                                 <span class="space-name">Ka Column</span>
-                                <span class="space-dims">260 × 520 px</span>
+                                <span class="space-dims">600 × 600 px</span>
                             </div>
                         </div>
-                        <div class="space-frame space-frame--column">
+                        <div class="space-frame space-frame--box">
                             <div class="space-frame-glow"></div>
                             <div class="space-frame-content">
                                 <span class="space-placeholder-logo">◆</span>
                             </div>
                         </div>
                     </div>
-                    <div class="space-column">
-                        <div class="space-slot" data-space="55" data-price-cents="4500">
-                            <div class="space-meta">
-                                <span class="space-num">03</span>
-                                <div class="space-info">
-                                    <span class="space-name">Akh Banner</span>
-                                    <span class="space-dims">844 × 317 px</span>
-                                </div>
-                            </div>
-                            <div class="space-frame space-frame--inline">
-                                <div class="space-frame-glow"></div>
-                                <div class="space-frame-content">
-                                    <span class="space-placeholder-logo">◆</span>
-                                </div>
+                    <div class="space-slot" data-space="03" data-price-cents="2600">
+                        <div class="space-meta">
+                            <span class="space-num">03</span>
+                            <div class="space-info">
+                                <span class="space-name">Akh Banner</span>
+                                <span class="space-dims">600 × 600 px</span>
                             </div>
                         </div>
-                        <div class="space-slot" data-space="56" data-price-cents="4000">
-                            <div class="space-meta">
-                                <span class="space-num">04</span>
-                                <div class="space-info">
-                                    <span class="space-name">Personality Frame I</span>
-                                    <span class="space-dims">844 × 394 px</span>
-                                </div>
-                            </div>
-                            <div class="space-frame space-frame--content">
-                                <div class="space-frame-glow"></div>
-                                <div class="space-frame-content">
-                                    <span class="space-placeholder-logo">◆</span>
-                                </div>
+                        <div class="space-frame space-frame--box">
+                            <div class="space-frame-glow"></div>
+                            <div class="space-frame-content">
+                                <span class="space-placeholder-logo">◆</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Row 3: Ib Frame II + Sheut Frame III -->
-                <div class="space-row space-row--halves">
-                    <div class="space-slot" data-space="57" data-price-cents="3500">
+                <!-- Row 3: Banner Personality Frame I -->
+                <div class="space-row space-row--banner">
+                    <div class="space-slot" data-space="04" data-price-cents="4700">
+                        <div class="space-meta">
+                            <span class="space-num">04</span>
+                            <div class="space-info">
+                                <span class="space-name">Personality Frame I</span>
+                                <span class="space-dims">1200 × 400 px</span>
+                            </div>
+                        </div>
+                        <div class="space-frame space-frame--banner">
+                            <div class="space-frame-glow"></div>
+                            <div class="space-frame-content">
+                                <span class="space-placeholder-logo">◆</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 4: Box Ib Frame II + Box Sheut Frame III -->
+                <div class="space-row space-row--boxes">
+                    <div class="space-slot" data-space="05" data-price-cents="2000">
                         <div class="space-meta">
                             <span class="space-num">05</span>
                             <div class="space-info">
                                 <span class="space-name">Ib Frame II</span>
-                                <span class="space-dims">552 × 309 px</span>
+                                <span class="space-dims">600 × 600 px</span>
                             </div>
                         </div>
-                        <div class="space-frame space-frame--half">
+                        <div class="space-frame space-frame--box">
                             <div class="space-frame-glow"></div>
                             <div class="space-frame-content">
                                 <span class="space-placeholder-logo">◆</span>
                             </div>
                         </div>
                     </div>
-                    <div class="space-slot" data-space="58" data-price-cents="3000">
+                    <div class="space-slot" data-space="06" data-price-cents="1500">
                         <div class="space-meta">
                             <span class="space-num">06</span>
                             <div class="space-info">
                                 <span class="space-name">Sheut Frame III</span>
-                                <span class="space-dims">552 × 309 px</span>
+                                <span class="space-dims">600 × 600 px</span>
                             </div>
                         </div>
-                        <div class="space-frame space-frame--half">
+                        <div class="space-frame space-frame--box">
                             <div class="space-frame-glow"></div>
                             <div class="space-frame-content">
                                 <span class="space-placeholder-logo">◆</span>
@@ -215,47 +218,51 @@
                     </div>
                 </div>
 
-                <!-- Row 4: Ba Ribbon + Bird Seal + Sarcophagus Inscription -->
-                <div class="space-row space-row--triple">
-                    <div class="space-slot" data-space="59" data-price-cents="2500">
+                <!-- Row 5: Banner Ba Ribbon -->
+                <div class="space-row space-row--banner">
+                    <div class="space-slot" data-space="07" data-price-cents="2700">
                         <div class="space-meta">
                             <span class="space-num">07</span>
                             <div class="space-info">
                                 <span class="space-name">Ba Ribbon</span>
-                                <span class="space-dims">511 × 131 px</span>
+                                <span class="space-dims">1200 × 400 px</span>
                             </div>
                         </div>
-                        <div class="space-frame space-frame--ribbon">
+                        <div class="space-frame space-frame--banner">
                             <div class="space-frame-glow"></div>
                             <div class="space-frame-content">
                                 <span class="space-placeholder-logo">◆</span>
                             </div>
                         </div>
                     </div>
-                    <div class="space-slot" data-space="60" data-price-cents="2000">
+                </div>
+
+                <!-- Row 6: Box Bird Seal + Box Sarcophagus Inscription -->
+                <div class="space-row space-row--boxes">
+                    <div class="space-slot" data-space="08" data-price-cents="1100">
                         <div class="space-meta">
                             <span class="space-num">08</span>
                             <div class="space-info">
                                 <span class="space-name">Bird Seal</span>
-                                <span class="space-dims">306 × 115 px</span>
+                                <span class="space-dims">600 × 600 px</span>
                             </div>
                         </div>
-                        <div class="space-frame space-frame--badge">
+                        <div class="space-frame space-frame--box">
                             <div class="space-frame-glow"></div>
                             <div class="space-frame-content">
                                 <span class="space-placeholder-logo">◆</span>
                             </div>
                         </div>
                     </div>
-                    <div class="space-slot" data-space="61" data-price-cents="1800">
+                    <div class="space-slot" data-space="09" data-price-cents="900">
                         <div class="space-meta">
                             <span class="space-num">09</span>
                             <div class="space-info">
                                 <span class="space-name">Sarcophagus Inscription</span>
-                                <span class="space-dims">255 × 87 px</span>
+                                <span class="space-dims">600 × 600 px</span>
                             </div>
                         </div>
-                        <div class="space-frame space-frame--text">
+                        <div class="space-frame space-frame--box">
                             <div class="space-frame-glow"></div>
                             <div class="space-frame-content">
                                 <span class="space-placeholder-logo">◆</span>
@@ -264,32 +271,17 @@
                     </div>
                 </div>
 
-                <!-- Row 5: Afterlife Emblem + Eternal Sigil -->
-                <div class="space-row space-row--halves">
-                    <div class="space-slot" data-space="62" data-price-cents="1500">
+                <!-- Row 7: Banner Afterlife Emblem -->
+                <div class="space-row space-row--banner">
+                    <div class="space-slot" data-space="10" data-price-cents="1600">
                         <div class="space-meta">
                             <span class="space-num">10</span>
                             <div class="space-info">
                                 <span class="space-name">Afterlife Emblem</span>
-                                <span class="space-dims">552 × 221 px</span>
+                                <span class="space-dims">1200 × 400 px</span>
                             </div>
                         </div>
-                        <div class="space-frame space-frame--emblem">
-                            <div class="space-frame-glow"></div>
-                            <div class="space-frame-content">
-                                <span class="space-placeholder-logo">◆</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="space-slot" data-space="63" data-price-cents="1200">
-                        <div class="space-meta">
-                            <span class="space-num">11</span>
-                            <div class="space-info">
-                                <span class="space-name">Eternal Sigil</span>
-                                <span class="space-dims">552 × 221 px</span>
-                            </div>
-                        </div>
-                        <div class="space-frame space-frame--emblem">
+                        <div class="space-frame space-frame--banner">
                             <div class="space-frame-glow"></div>
                             <div class="space-frame-content">
                                 <span class="space-placeholder-logo">◆</span>
@@ -298,17 +290,51 @@
                     </div>
                 </div>
 
-                <!-- Row 6: Ren Foundation -->
-                <div class="space-row">
-                    <div class="space-slot" data-space="64" data-price-cents="2000">
+                <!-- Row 8: Box Eternal Sigil + Box Ren Foundation -->
+                <div class="space-row space-row--boxes">
+                    <div class="space-slot" data-space="11" data-price-cents="700">
+                        <div class="space-meta">
+                            <span class="space-num">11</span>
+                            <div class="space-info">
+                                <span class="space-name">Eternal Sigil</span>
+                                <span class="space-dims">600 × 600 px</span>
+                            </div>
+                        </div>
+                        <div class="space-frame space-frame--box">
+                            <div class="space-frame-glow"></div>
+                            <div class="space-frame-content">
+                                <span class="space-placeholder-logo">◆</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-slot" data-space="12" data-price-cents="600">
                         <div class="space-meta">
                             <span class="space-num">12</span>
                             <div class="space-info">
                                 <span class="space-name">Ren Foundation</span>
-                                <span class="space-dims">1136 × 95 px</span>
+                                <span class="space-dims">600 × 600 px</span>
                             </div>
                         </div>
-                        <div class="space-frame space-frame--footer">
+                        <div class="space-frame space-frame--box">
+                            <div class="space-frame-glow"></div>
+                            <div class="space-frame-content">
+                                <span class="space-placeholder-logo">◆</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 9: Banner Ba Dominion -->
+                <div class="space-row space-row--banner">
+                    <div class="space-slot" data-space="13" data-price-cents="1100">
+                        <div class="space-meta">
+                            <span class="space-num">13</span>
+                            <div class="space-info">
+                                <span class="space-name">Ba Dominion</span>
+                                <span class="space-dims">1200 × 400 px</span>
+                            </div>
+                        </div>
+                        <div class="space-frame space-frame--banner">
                             <div class="space-frame-glow"></div>
                             <div class="space-frame-content">
                                 <span class="space-placeholder-logo">◆</span>
@@ -320,17 +346,17 @@
                 <!-- Divider -->
                 <div class="spaces-divider">
                     <span></span>
-                    <em>The Thirteenth Chamber</em>
+                    <em>The Full-Page Takeover</em>
                     <span></span>
                 </div>
 
-                <!-- 13: Full Page Ownership -->
-                <div class="space-slot space-slot--fullpage" data-space="65" data-price-cents="50000" data-bundle="1">
+                <!-- 14: Full Page Ownership -->
+                <div class="space-slot space-slot--fullpage" data-space="14" data-price-cents="25000" data-bundle="1">
                     <div class="space-meta">
-                        <span class="space-num">13</span>
+                        <span class="space-num">14</span>
                         <div class="space-info">
-                            <span class="space-name">Ba Dominion</span>
-                            <span class="space-dims">All 12 allocated spots + 1× 1136 × 379 px bottom hero</span>
+                            <span class="space-name">Full Page Takeover</span>
+                            <span class="space-dims">All 13 individual spots · One campaign</span>
                         </div>
                         <span class="space-exclusive">By Application Only</span>
                     </div>
@@ -377,7 +403,7 @@
     <div class="booking-modal" id="booking-modal" style="display:none;">
         <div class="booking-modal-backdrop"></div>
         <div class="booking-modal-panel">
-            <button type="button" class="booking-modal-close" id="booking-modal-close" aria-label="Close">&times;</button>
+            <button type="button" class="booking-modal-close" id="booking-modal-close" aria-label="Close">×</button>
 
             <!-- Step 1: Details -->
             <div class="booking-step" id="booking-step-1">
@@ -386,7 +412,7 @@
                 <div class="booking-form">
                     <div class="booking-error" id="booking-error" style="display:none;"></div>
                     <label class="booking-label">Email</label>
-                    <input type="email" class="booking-input" id="booking-email" placeholder="you@company.com" required>
+                    <input type="email" class="booking-input" id="booking-email" placeholder="you@company.com" required="">
                     <label class="booking-label">Company Name</label>
                     <input type="text" class="booking-input" id="booking-company" placeholder="Your Brand">
                     <label class="booking-label">Website URL</label>
@@ -397,7 +423,7 @@
                     <label class="booking-label">Subtitle (replaces dimensions) <span class="booking-char-limit" id="booking-subtitle-limit"></span></label>
                     <input type="text" class="booking-input" id="booking-subtitle" placeholder="Tagline or description">
                     <p class="booking-char-count" id="booking-subtitle-count">0 / 0</p>
-                    <p class="booking-note" style="text-align:left;margin-top:0.25rem;">Leave both empty to hide the heading & subtitle entirely.</p>
+                    <p class="booking-note" style="text-align:left;margin-top:0.25rem;">Leave both empty to hide the heading &amp; subtitle entirely.</p>
                     <label class="booking-label">Lease Period</label>
                     <div class="booking-toggle" id="booking-lease-toggle">
                         <button type="button" class="booking-toggle-btn active" data-months="1" id="lease-monthly">Monthly</button>
@@ -439,7 +465,7 @@
                 <div class="booking-form">
                     <div class="booking-error" id="booking-verify-error" style="display:none;"></div>
                     <input type="text" class="booking-input" id="booking-code" placeholder="123456" maxlength="6" style="text-align:center;letter-spacing:0.5em;font-size:1.2rem;font-family:monospace;">
-                    <button type="button" class="booking-submit" id="booking-verify-btn">Verify & Proceed to Payment</button>
+                    <button type="button" class="booking-submit" id="booking-verify-btn">Verify &amp; Proceed to Payment</button>
                     <button type="button" class="booking-submit booking-submit--secondary" id="booking-resend-code">Resend Code</button>
                 </div>
             </div>
@@ -451,9 +477,9 @@
                 <div class="booking-upload-zone" id="booking-upload-zone">
                     <input type="file" class="booking-upload-input" id="booking-upload-input" accept="image/png,image/jpeg,image/webp">
                     <div class="booking-upload-prompt">
-                        <span class="booking-upload-icon">&#8679;</span>
-                        <p>Drag & drop or click to upload</p>
-                        <p class="booking-upload-hint">PNG, JPG, or WebP &middot; Max 2MB</p>
+                        <span class="booking-upload-icon">⇧</span>
+                        <p>Drag &amp; drop or click to upload</p>
+                        <p class="booking-upload-hint">PNG, JPG, or WebP · Max 2MB</p>
                     </div>
                     <img class="booking-upload-preview" id="booking-upload-preview" style="display:none;" alt="Preview">
                 </div>
@@ -470,7 +496,7 @@
 
             <!-- Step 3: Pending -->
             <div class="booking-step" id="booking-step-3" style="display:none;">
-                <div class="booking-status-icon">&#10003;</div>
+                <div class="booking-status-icon">✓</div>
                 <h3 class="booking-modal-title">Under Review</h3>
                 <p class="booking-modal-subtitle">Your creative has been submitted. You'll receive an email once it's approved.</p>
                 <p class="booking-token-note">Dashboard: <a href="#" id="booking-dashboard-link" target="_blank">Open Analytics</a></p>
@@ -480,7 +506,7 @@
 
             <!-- Step 3b: Rejected -->
             <div class="booking-step" id="booking-step-rejected" style="display:none;">
-                <div class="booking-status-icon booking-status-icon--error">&#10007;</div>
+                <div class="booking-status-icon booking-status-icon--error">✗</div>
                 <h3 class="booking-modal-title">Needs Changes</h3>
                 <p class="booking-modal-subtitle" id="booking-reject-reason"></p>
                 <button type="button" class="booking-submit" id="booking-reupload">Re-upload Creative</button>
@@ -499,7 +525,7 @@
     <div class="booking-modal" id="my-bookings-modal" style="display:none;">
         <div class="booking-modal-backdrop" id="my-bookings-backdrop"></div>
         <div class="booking-modal-panel">
-            <button type="button" class="booking-modal-close" id="my-bookings-close" aria-label="Close">&times;</button>
+            <button type="button" class="booking-modal-close" id="my-bookings-close" aria-label="Close">×</button>
             <h3 class="booking-modal-title">My Bookings</h3>
             <p class="booking-modal-subtitle">Enter your email to see all your reservations.</p>
             <div id="my-bookings-step-email">
@@ -507,7 +533,7 @@
                 <button type="button" class="booking-submit" id="my-bookings-submit" style="margin-top:0.75rem;">Send My Links</button>
             </div>
             <div id="my-bookings-step-sent" style="display:none;">
-                <div class="booking-status-icon">&#10003;</div>
+                <div class="booking-status-icon">✓</div>
                 <p class="booking-modal-subtitle" style="text-align:center;">Check your inbox for your dashboard links.</p>
             </div>
         </div>
@@ -517,6 +543,7 @@
     
 
 <script>window.PUNYCODEX_API_BASE = "";</script>
+    <script src="/js/px-core.js?v=perf7"></script>
     <script src="/js/temple-base.js?v=perf2"></script>
     <script src="script.js?v=perf2"></script>
 
@@ -546,12 +573,12 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <span class="footer-logo">PUNYCODEX</span>
+                    <a href="https://punycodex.com/" class="footer-logo">PUNYCODEX</a>
                     <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
                 </div>
                 <div class="footer-info">
                     <div class="footer-block">
-                        <span class="footer-label">Domains</span>
+                        <span class="footer-label">Owned Domains</span>
                         <span class="footer-value">bꜣ.com</span>
                     </div>
                     <div class="footer-block">
@@ -568,13 +595,11 @@
                 <picture><source srcset="assets/ba_logomark.webp" type="image/webp"><img src="assets/ba_logomark.png" alt="Bꜣ logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
-                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
-                <p class="footer-links" style="margin-top:0.5rem;font-size:0.75rem;color:var(--text-muted);">
-                    <a href="#" id="my-bookings-footer" style="color:var(--text-muted);text-decoration:underline;">My Bookings</a>
-                </p>
+                <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>
             </div>
         </div>
     </footer>
 
-</body>
-</html>
+
+
+</body></html>

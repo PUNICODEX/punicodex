@@ -2638,6 +2638,58 @@ const ORIGINAL_SCRIPT_LOOKUP = {
   "hen": {
     "originalScript": "ἕν",
     "scriptName": "Greek"
+  },
+  "nirmata": {
+    "originalScript": "निर्माता",
+    "scriptName": "Devanagari"
+  },
+  "leviathan": {
+    "originalScript": "לִוְיָתָן",
+    "scriptName": "Hebrew"
+  },
+  "ankh": {
+    "originalScript": "𓋹",
+    "scriptName": "Hieroglyphs"
+  },
+  "nht": {
+    "originalScript": "𓈖𓎛𓏏",
+    "scriptName": "Hieroglyphs"
+  },
+  "moses": {
+    "originalScript": "מֹשֶׁה",
+    "scriptName": "Hebrew"
+  },
+  "david": {
+    "originalScript": "דָּוִד",
+    "scriptName": "Hebrew"
+  },
+  "solomon": {
+    "originalScript": "שְׁלֹמֹה",
+    "scriptName": "Hebrew"
+  },
+  "noah": {
+    "originalScript": "נֹחַ",
+    "scriptName": "Hebrew"
+  },
+  "cain": {
+    "originalScript": "קַיִן",
+    "scriptName": "Hebrew"
+  },
+  "abel": {
+    "originalScript": "הֶבֶל",
+    "scriptName": "Hebrew"
+  },
+  "long": {
+    "originalScript": "龍",
+    "scriptName": "Chinese characters"
+  },
+  "wuji": {
+    "originalScript": "無極",
+    "scriptName": "Chinese characters"
+  },
+  "yinyang": {
+    "originalScript": "陰陽",
+    "scriptName": "Chinese characters"
   }
 };
 

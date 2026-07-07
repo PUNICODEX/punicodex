@@ -16,6 +16,16 @@
   </style>
 </head>
 <body class="cn-browser">
+  <header class="cn-browser-global-header">
+    <a href="/" class="cn-browser-wordmark" aria-label="PUNYCODEX home">PUNYCODEX</a>
+    <nav class="cn-browser-global-nav">
+      <a href="/pantheon/">Pantheon</a>
+      <a href="/lexicon/">Lexicon</a>
+      <a href="/type/">Type</a>
+      <a href="/tiers/">Tiers</a>
+    </nav>
+  </header>
+
   <div class="cn-browser-toolbar">
     <button class="cn-browser-btn" id="backBtn" title="Back">←</button>
     <button class="cn-browser-btn" id="forwardBtn" title="Forward">→</button>
@@ -69,6 +79,7 @@
     </div>
   </div>
 
+  <script src="/js/px-core.js"></script>
   <script src="/js/search-effects.js"></script>
   <script>
     const contentEl = document.getElementById('content');

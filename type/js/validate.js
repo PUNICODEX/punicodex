@@ -173,6 +173,7 @@ LEXICON.forEach((entry, i) => {
         '\\u{16A0}-\\u{16FF}' + // Runic
         '\\u{10B00}-\\u{10B3F}' + // Avestan
         '\\u{14400}-\\u{1467F}' + // Anatolian hieroglyphs
+        '\\u{0590}-\\u{05FF}' + // Hebrew
         ']',
       'u'
     );

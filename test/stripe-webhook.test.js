@@ -42,6 +42,7 @@ require.cache[stripeModulePath] = {
 const { handleWebhook } = require('../platform/api/stripe.js');
 const { createBooking, updateBookingStripeSession } = require('../platform/api/bookings.js');
 const { createClaim, updateClaimStripeSession } = require('../platform/api/claims.js');
+const { getSlotId } = require('./helpers/slots.js');
 
 function makeEvent(type, object) {
   return { type, data: { object } };
@@ -110,7 +111,7 @@ test('handleWebhook returns event type for unrelated events', async () => {
 
 test('handleWebhook marks a booking as pending_upload after payment', async () => {
   const { id } = await createBooking({
-    slotId: 1,
+    slotId: getSlotId(__filename, 'nike', 1),
     email: 'stripebooking@example.com',
     companyName: 'Stripe Co',
     leaseMonths: 1,
@@ -139,7 +140,7 @@ test('handleWebhook marks a booking as pending_upload after payment', async () =
 
 test('handleWebhook extends booking for renewal payments', async () => {
   const { id } = await createBooking({
-    slotId: 1,
+    slotId: getSlotId(__filename, 'nike', 1),
     email: 'renewal@example.com',
     companyName: 'Renewal Co',
     leaseMonths: 1,

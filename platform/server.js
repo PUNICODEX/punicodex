@@ -124,6 +124,7 @@ const {
 } = require('./api/email');
 const fs = require('node:fs');
 const _crypto = require('node:crypto');
+const { uploadBookingCreative, uploadSlotCreative } = require('./api/booking-upload');
 const { runTrialReminders } = require('./scripts/trial-reminders');
 const { runLeaseExpiry } = require('./scripts/lease-expiry');
 
@@ -354,7 +355,7 @@ app.use('/api/v1/appraise/batch', v1AppraiseBatch);
 app.use('/api/v1/appraise', v1Appraise);
 
 // API v2 catch-all router
-app.all('/api/v2/*', publicReadLimit, (req, res) => {
+app.all(/^\/api\/v2\/(.*)$/, publicReadLimit, (req, res) => {
   const slug = (req.params[0] || '').split('/').filter(Boolean);
   req.query.slug = slug.length === 1 && slug[0] === '' ? [] : slug;
   return v2Router.route(req, res);
@@ -366,12 +367,15 @@ const v1ThreatFeedStats = require('../api/v1/threat-feed/stats/index.js');
 const v1ThreatFeedIngest = require('../api/v1/threat-feed/ingest/index.js');
 const v1ThreatFeedClusterReview = require('../api/v1/threat-feed/cluster/[clusterId]/review/index.js');
 const v1ThreatFeedCampaigns = require('../api/v1/threat-feed/campaigns/[identityId]/index.js');
+const scholarsApi = require('../api/scholars');
 
 app.get('/api/v1/threat-feed', v1ThreatFeed);
 app.get('/api/v1/threat-feed/stats', v1ThreatFeedStats);
 app.post('/api/v1/threat-feed/ingest', v1ThreatFeedIngest);
 app.post('/api/v1/threat-feed/cluster/:clusterId/review', v1ThreatFeedClusterReview);
 app.get('/api/v1/threat-feed/campaigns/:identityId', v1ThreatFeedCampaigns);
+
+app.use('/api/v1/scholars', scholarsApi);
 
 app.get('/api/domain-status/:domain', domainCheckLimit, async (req, res) => {
   try {
@@ -1640,50 +1644,8 @@ app.get('/api/bookings/:token/check-payment', publicReadLimit, async (req, res) 
 // Upload creative (base64)
 app.post('/api/bookings/:token/upload', bookingUploadLimit, async (req, res) => {
   try {
-    const { image, filename } = req.body;
-    if (!image || !filename) return res.status(400).json({ error: 'image and filename required' });
-
-    const booking = await getBookingByToken(req.params.token);
-    if (!booking) return res.status(404).json({ error: 'Booking not found' });
-    if (!['pending_upload', 'rejected'].includes(booking.status)) {
-      return res.status(400).json({ error: `Cannot upload in status: ${booking.status}` });
-    }
-
-    // Parse data URI
-    const match = image.match(/^data:(image\/(png|jpeg|jpg|webp));base64,(.+)$/);
-    if (!match)
-      return res.status(400).json({ error: 'Invalid image format. Must be base64 data URI.' });
-
-    const mimeType = match[1];
-    const base64Data = match[3];
-    const buffer = Buffer.from(base64Data, 'base64');
-
-    if (buffer.length > 2 * 1024 * 1024) {
-      return res.status(400).json({ error: 'Image must be under 2MB' });
-    }
-
-    const dimError = validateCreativeDimensions(buffer, booking.width, booking.height);
-    if (dimError) {
-      return res.status(400).json({ error: dimError });
-    }
-
-    const ext = mimeType.split('/')[1];
-    const safeName = `${Date.now()}.${ext}`;
-    const slotDir = path.join(UPLOADS_DIR, String(booking.id));
-    if (!fs.existsSync(slotDir)) fs.mkdirSync(slotDir, { recursive: true });
-    const filePath = path.join(slotDir, safeName);
-    fs.writeFileSync(filePath, buffer);
-
-    await saveCreative(booking.id, `/uploads/${booking.id}/${safeName}`, filename);
-
-    // Notify admin
-    notifyAdminPending({
-      slotName: booking.slot_name,
-      companyName: booking.company_name,
-      bookingId: booking.id,
-    }).catch(() => {});
-
-    res.json({ success: true, path: `/uploads/${booking.id}/${safeName}` });
+    const result = await uploadBookingCreative(req.params.token, req.body, { notifyAdminPending });
+    return res.status(result.status).json(result.body);
   } catch (err) {
     console.error('Upload error:', err);
     res.status(500).json({ error: err.message });
@@ -1693,53 +1655,9 @@ app.post('/api/bookings/:token/upload', bookingUploadLimit, async (req, res) => 
 // Per-slot creative upload (for bundle bookings)
 app.post('/api/bookings/:token/slot/:slotId/upload', bookingUploadLimit, async (req, res) => {
   try {
-    const { image, filename } = req.body;
     const slotId = parseInt(req.params.slotId, 10);
-    if (!image || !filename) return res.status(400).json({ error: 'image and filename required' });
-
-    const booking = await getBookingByToken(req.params.token);
-    if (!booking) return res.status(404).json({ error: 'Booking not found' });
-    if (booking.slot_id !== 13)
-      return res.status(400).json({ error: 'Per-slot upload only available for bundle bookings' });
-    if (!['pending_upload', 'rejected', 'approved', 'live'].includes(booking.status)) {
-      return res.status(400).json({ error: `Cannot upload in status: ${booking.status}` });
-    }
-
-    const members = await getBundleMembers(13);
-    if (!members.includes(slotId)) {
-      return res.status(400).json({ error: 'Invalid slot for this bundle' });
-    }
-
-    const match = image.match(/^data:(image\/(png|jpeg|jpg|webp));base64,(.+)$/);
-    if (!match)
-      return res.status(400).json({ error: 'Invalid image format. Must be base64 data URI.' });
-
-    const mimeType = match[1];
-    const base64Data = match[3];
-    const buffer = Buffer.from(base64Data, 'base64');
-
-    if (buffer.length > 2 * 1024 * 1024) {
-      return res.status(400).json({ error: 'Image must be under 2MB' });
-    }
-
-    const memberSlot = await getSlotById(slotId);
-    if (!memberSlot) return res.status(404).json({ error: 'Slot not found' });
-    const dimError = validateCreativeDimensions(buffer, memberSlot.width, memberSlot.height);
-    if (dimError) {
-      return res.status(400).json({ error: dimError });
-    }
-
-    const ext = mimeType.split('/')[1];
-    const safeName = `${Date.now()}.${ext}`;
-    const slotDir = path.join(UPLOADS_DIR, String(booking.id), String(slotId));
-    if (!fs.existsSync(slotDir)) fs.mkdirSync(slotDir, { recursive: true });
-    const filePath = path.join(slotDir, safeName);
-    fs.writeFileSync(filePath, buffer);
-
-    const publicPath = `/uploads/${booking.id}/${slotId}/${safeName}`;
-    await saveSlotCreative(booking.id, slotId, publicPath, filename);
-
-    res.json({ success: true, path: publicPath });
+    const result = await uploadSlotCreative(req.params.token, slotId, req.body);
+    return res.status(result.status).json(result.body);
   } catch (err) {
     console.error('Slot upload error:', err);
     res.status(500).json({ error: err.message });

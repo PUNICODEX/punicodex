@@ -10,6 +10,7 @@
 const VERDICTS = Object.freeze({
   CANONICAL: 'canonical',
   RECOGNIZED_VARIANT: 'recognized-variant',
+  ASCII_FALLBACK: 'ascii-fallback',
   STYLED: 'styled',
   TRANSLITERATION_UNCERTAIN: 'transliteration-uncertain',
   HOMOGRAPH_SPOOF: 'homograph-spoof',
@@ -30,6 +31,7 @@ const SEVERITIES = Object.freeze({
 const VERDICT_SEVERITY = Object.freeze({
   [VERDICTS.CANONICAL]: SEVERITIES.NONE,
   [VERDICTS.RECOGNIZED_VARIANT]: SEVERITIES.LOW,
+  [VERDICTS.ASCII_FALLBACK]: SEVERITIES.NONE,
   [VERDICTS.STYLED]: SEVERITIES.LOW,
   [VERDICTS.TRANSLITERATION_UNCERTAIN]: SEVERITIES.MEDIUM,
   [VERDICTS.HOMOGRAPH_SPOOF]: SEVERITIES.HIGH,
@@ -50,6 +52,7 @@ const SEVERITY_RANK = Object.freeze({
 const VERDICT_LABEL = Object.freeze({
   [VERDICTS.CANONICAL]: 'Authentic Canonical',
   [VERDICTS.RECOGNIZED_VARIANT]: 'Recognized Variant',
+  [VERDICTS.ASCII_FALLBACK]: 'ASCII Fallback',
   [VERDICTS.STYLED]: 'Styled Presentation',
   [VERDICTS.TRANSLITERATION_UNCERTAIN]: 'Uncertain Transliteration',
   [VERDICTS.HOMOGRAPH_SPOOF]: 'Homograph Spoof',
@@ -61,9 +64,11 @@ const VERDICT_LABEL = Object.freeze({
 
 const VERDICT_EXPLANATION = Object.freeze({
   [VERDICTS.CANONICAL]:
-    'This input exactly matches a PUNYCODEX canonical transliteration or one of its listed variants.',
+    'This input exactly matches a PUNYCODEX canonical Unicode transliteration. It preserves stress, length, and other philological features that the plain ASCII form cannot represent.',
   [VERDICTS.RECOGNIZED_VARIANT]:
     'This is a scholarly variant recorded in the lexicon (e.g., macron-only, alternate stress, or ideal stacked form). It is a legitimate restoration.',
+  [VERDICTS.ASCII_FALLBACK]:
+    "This is the plain-ASCII search/routing form of a canonical name. It is safe and useful for compatibility, but it is not the scholarly canonical form: it has lost the stress marks, length marks, or other diacritics that carry the name's philological meaning.",
   [VERDICTS.STYLED]:
     'This uses Unicode stylistically but does not impersonate another name. It is not in the canonical lexicon and should be treated as decorative.',
   [VERDICTS.TRANSLITERATION_UNCERTAIN]:
@@ -88,6 +93,10 @@ const VERDICT_RECOMMENDATIONS = Object.freeze({
   [VERDICTS.RECOGNIZED_VARIANT]: [
     'This variant is documented; verify it matches the source you intend.',
     'Compare with the canonical entry to understand the difference.',
+  ],
+  [VERDICTS.ASCII_FALLBACK]: [
+    'This form is safe for routing and search, but prefer the canonical Unicode form for scholarly or display use.',
+    'See the canonical entry for the diacritic-bearing restoration.',
   ],
   [VERDICTS.STYLED]: [
     'Styled text is usually harmless but may not render correctly everywhere.',

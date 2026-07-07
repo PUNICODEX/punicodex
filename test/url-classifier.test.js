@@ -91,11 +91,11 @@ test('query keys are classified independently', () => {
   assert.ok(valuePart);
 });
 
-test('hostname labels return canonical for canonical names', () => {
+test('hostname labels return ascii-fallback for ASCII canonical names', () => {
   const r = classifyUrlParts('https://zeus.com/', { classifyTerm });
   const label = r.parts.find((p) => p.part === 'hostname-label' && p.raw === 'zeus');
   assert.ok(label);
-  assert.strictEqual(label.verdict, VERDICTS.CANONICAL);
+  assert.strictEqual(label.verdict, VERDICTS.ASCII_FALLBACK);
 });
 
 test('punycode homograph is detected in hostname labels', () => {

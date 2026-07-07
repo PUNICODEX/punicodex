@@ -100,24 +100,57 @@ function getCanonicalIndex(canonicalRows) {
   return canonicalIndexCache.index;
 }
 
+function isAsciiOnly(str) {
+  return ![...String(str)].some((ch) => ch.codePointAt(0) > 127);
+}
+
 function findLexiconMatchState(input, canonicalRows) {
   const raw = String(input).trim();
   const lower = raw.toLowerCase();
   const index = getCanonicalIndex(canonicalRows);
 
-  if (index.idLower.has(lower) || index.asciiLower.has(lower) || index.unicodeLower.has(lower)) {
-    return { hasCanonicalExact: true, variantRecognition: false };
+  // Exact canonical match: Unicode form only. The ID and ASCII fields are
+  // machine/search forms; when they differ from the Unicode restoration they
+  // are ASCII fallbacks, not scholarly canonical forms.
+  if (index.unicodeLower.has(lower)) {
+    return { hasCanonicalExact: true, hasAsciiFallbackExact: false, variantRecognition: false };
+  }
+
+  if (index.idLower.has(lower)) {
+    const row = canonicalRows.find((r) => String(r.id || '').toLowerCase() === lower);
+    const unicodeLower = row ? String(row.unicode || '').toLowerCase() : '';
+    if (unicodeLower && unicodeLower !== lower) {
+      return { hasCanonicalExact: false, hasAsciiFallbackExact: true, variantRecognition: false };
+    }
+    // ID and Unicode are identical; treat as canonical.
+    return { hasCanonicalExact: true, hasAsciiFallbackExact: false, variantRecognition: false };
+  }
+
+  if (index.asciiLower.has(lower)) {
+    const row = canonicalRows.find((r) => String(r.ascii || '').toLowerCase() === lower);
+    const unicodeLower = row ? String(row.unicode || '').toLowerCase() : '';
+    if (unicodeLower && unicodeLower !== lower) {
+      return { hasCanonicalExact: false, hasAsciiFallbackExact: true, variantRecognition: false };
+    }
+    // ASCII and Unicode are identical; the Unicode branch already covered it.
+    return { hasCanonicalExact: true, hasAsciiFallbackExact: false, variantRecognition: false };
   }
 
   if (index.variantLower.has(lower)) {
-    return { hasCanonicalExact: false, variantRecognition: true };
+    return { hasCanonicalExact: false, hasAsciiFallbackExact: false, variantRecognition: true };
   }
 
   if (index.searchKeySet.has(toSearchKey(raw))) {
-    return { hasCanonicalExact: true, variantRecognition: false };
+    // A pure-ASCII input that folds to the same search key is the ASCII fallback
+    // form, not the canonical restoration. A non-ASCII fold (e.g., different
+    // accent convention) is treated as canonical.
+    if (isAsciiOnly(raw)) {
+      return { hasCanonicalExact: false, hasAsciiFallbackExact: true, variantRecognition: false };
+    }
+    return { hasCanonicalExact: true, hasAsciiFallbackExact: false, variantRecognition: false };
   }
 
-  return { hasCanonicalExact: false, variantRecognition: false };
+  return { hasCanonicalExact: false, hasAsciiFallbackExact: false, variantRecognition: false };
 }
 
 function collectCandidates(canonicalRows) {
@@ -232,7 +265,11 @@ function computeRiskFeatures(input, options = {}) {
   let glyphMax = 0;
   let identityPriority = 0;
 
-  if (lexiconState.hasCanonicalExact || lexiconState.variantRecognition) {
+  if (
+    lexiconState.hasCanonicalExact ||
+    lexiconState.hasAsciiFallbackExact ||
+    lexiconState.variantRecognition
+  ) {
     skeletonMax = 1;
     glyphMax = 1;
   } else if (matchInfo) {
@@ -312,6 +349,7 @@ function computeRiskFeatures(input, options = {}) {
     identityPriority,
     variantRecognition: lexiconState.variantRecognition,
     hasCanonicalExact: lexiconState.hasCanonicalExact,
+    hasAsciiFallbackExact: lexiconState.hasAsciiFallbackExact,
     hasBlockedPatternMatch,
   };
 }

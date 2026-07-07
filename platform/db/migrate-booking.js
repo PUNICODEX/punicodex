@@ -142,40 +142,41 @@ if (count === 0) {
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
   `);
   const slots = [
-    [1, 'Crown Position', 'crown', 1136, 379, 120000, '1200:400', 1, 0],
-    [2, 'Victory Column', 'column', 260, 520, 80000, '300:600', 2, 0],
-    [3, 'Champion Strip', 'champion', 844, 317, 60000, '844:317', 3, 0],
-    [4, 'Wingspan I', 'wingspan-1', 844, 394, 50000, '844:394', 4, 0],
-    [5, 'Wingspan II', 'wingspan-2', 552, 309, 40000, '552:309', 5, 0],
-    [6, 'Wingspan III', 'wingspan-3', 552, 309, 35000, '552:309', 6, 0],
-    [7, 'Golden Ribbon', 'ribbon', 511, 131, 30000, '511:131', 7, 0],
-    [8, 'Laurel Badge', 'badge', 306, 115, 25000, '306:115', 8, 0],
-    [9, 'Inscription', 'inscription', 255, 87, 18000, '255:87', 9, 0],
-    [10, 'Emblem I', 'emblem-1', 552, 221, 15000, '552:221', 10, 0],
-    [11, 'Emblem II', 'emblem-2', 552, 221, 12000, '552:221', 11, 0],
-    [12, 'Foundation', 'foundation', 1136, 95, 30000, '1200:100', 12, 0],
-    [13, 'Total Conquest', 'total-conquest', 1136, 379, 515000, null, 13, 1],
+    [1, 'Crown Banner', 'crown-banner', 1200, 400, 75000, '1200:400', 1, 0],
+    [2, 'Victory Box I', 'victory-box-1', 600, 600, 30000, '600:600', 2, 0],
+    [3, 'Victory Box II', 'victory-box-2', 600, 600, 26000, '600:600', 3, 0],
+    [4, 'Champion Banner', 'champion-banner', 1200, 400, 47000, '1200:400', 4, 0],
+    [5, 'Herald Box I', 'herald-box-1', 600, 600, 20000, '600:600', 5, 0],
+    [6, 'Herald Box II', 'herald-box-2', 600, 600, 15000, '600:600', 6, 0],
+    [7, 'Silver Banner', 'silver-banner', 1200, 400, 27000, '1200:400', 7, 0],
+    [8, 'Traveler Box I', 'traveler-box-1', 600, 600, 11000, '600:600', 8, 0],
+    [9, 'Traveler Box II', 'traveler-box-2', 600, 600, 9000, '600:600', 9, 0],
+    [10, 'Caduceus Banner', 'caduceus-banner', 1200, 400, 16000, '1200:400', 10, 0],
+    [11, 'Messenger Box I', 'messenger-box-1', 600, 600, 7000, '600:600', 11, 0],
+    [12, 'Messenger Box II', 'messenger-box-2', 600, 600, 6000, '600:600', 12, 0],
+    [13, 'Foundation Banner', 'foundation-banner', 1200, 400, 11000, '1200:400', 13, 0],
+    [14, 'Full Page Takeover', 'full-page-takeover', 1200, 400, 250000, null, 14, 1],
   ];
   for (const slot of slots) {
     insert.run(...slot);
   }
-  console.log('Seeded 13 ad_slots');
+  console.log('Seeded 14 ad_slots');
 } else {
   console.log(`Ad slots already seeded: ${count}`);
 }
 
-// Seed bundle_members for Total Conquest (slot 13 → slots 1-12) if not present
+// Seed bundle_members for Full Page Takeover (slot 14 → slots 1-13) if not present
 const bundleCount = db
-  .prepare('SELECT COUNT(*) as c FROM bundle_members WHERE bundle_slot_id = 13')
+  .prepare('SELECT COUNT(*) as c FROM bundle_members WHERE bundle_slot_id = 14')
   .get().c;
 if (bundleCount === 0) {
   const insertBundle = db.prepare(
     'INSERT INTO bundle_members (bundle_slot_id, member_slot_id) VALUES (?, ?)'
   );
-  for (let i = 1; i <= 12; i++) {
-    insertBundle.run(13, i);
+  for (let i = 1; i <= 13; i++) {
+    insertBundle.run(14, i);
   }
-  console.log('Seeded bundle_members for Total Conquest');
+  console.log('Seeded bundle_members for Full Page Takeover');
 }
 
 console.log('Booking migration complete');

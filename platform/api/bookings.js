@@ -552,6 +552,11 @@ async function saveSlotCreative(bookingId, slotId, filePath, originalName) {
       [bookingId, slotId, filePath, originalName]
     );
   }
+  // A new or updated slot creative requires admin re-approval before going live.
+  await run(
+    `UPDATE bookings SET status = 'pending_approval', updated_at = CURRENT_TIMESTAMP WHERE id = $1`,
+    [bookingId]
+  );
 }
 
 async function updateSlotMeta(bookingId, slotId, { customHeading, customSubtitle, websiteUrl }) {
@@ -584,6 +589,11 @@ async function updateSlotMeta(bookingId, slotId, { customHeading, customSubtitle
       [bookingId, slotId, customHeading || null, customSubtitle || null, websiteUrl || null]
     );
   }
+  // Text/URL changes on a live bundle slot require admin re-approval.
+  await run(
+    `UPDATE bookings SET status = 'pending_approval', updated_at = CURRENT_TIMESTAMP WHERE id = $1`,
+    [bookingId]
+  );
 }
 
 // ─── Analytics ───

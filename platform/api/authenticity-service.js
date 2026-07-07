@@ -38,6 +38,7 @@ const {
 const LEGACY_TIERS = Object.freeze({
   [VERDICTS.CANONICAL]: 'canonical',
   [VERDICTS.RECOGNIZED_VARIANT]: 'canonical',
+  [VERDICTS.ASCII_FALLBACK]: 'ascii-fallback',
   [VERDICTS.STYLED]: 'styled',
   [VERDICTS.TRANSLITERATION_UNCERTAIN]: 'styled',
   [VERDICTS.HOMOGRAPH_SPOOF]: 'suspicious',
@@ -161,22 +162,47 @@ function findCanonicalMatch(input) {
   const confusable = analyzeConfusables(raw);
 
   let exact = null;
+  let asciiFallback = null;
   let variantMatch = null;
   let bestLookalike = null;
   let bestLookalikeScore = 0;
 
   for (const row of getCanonicalRows()) {
-    // 1. Exact canonical match (ID, ASCII, or Unicode form).
-    if (
-      exactMatch(lower, row.id) ||
-      exactMatch(lower, row.ascii) ||
-      exactMatch(lower, row.unicode)
-    ) {
+    // 1. Exact canonical match: Unicode form only.
+    if (exactMatch(lower, row.unicode)) {
       exact = row;
       break;
     }
 
-    // 2. Recognized variant match (macron-only, ideal, alt-stress, etc.).
+    // 2. ID match: the entry slug is a machine identifier and search key. When
+    // it differs from the Unicode restoration it is an ASCII fallback, not the
+    // scholarly canonical form.
+    if (exactMatch(lower, row.id)) {
+      const unicodeLower = String(row.unicode || '').toLowerCase();
+      if (unicodeLower !== lower) {
+        asciiFallback = row;
+        break;
+      }
+      // ID and Unicode are identical; treat as canonical.
+      exact = row;
+      break;
+    }
+
+    // 3. ASCII fallback match: exact match on entry.ascii, but only when the
+    // ASCII form differs from the Unicode restoration. If they are identical,
+    // the Unicode match above already covered it.
+    if (exactMatch(lower, row.ascii)) {
+      const unicodeLower = String(row.unicode || '').toLowerCase();
+      if (unicodeLower !== lower) {
+        asciiFallback = row;
+        break;
+      }
+      // ASCII and Unicode are identical; treat as canonical since the canonical form is plain ASCII.
+      exact = row;
+      break;
+    }
+
+    // 4. Recognized variant match (macron-only, ideal, alt-stress, etc.).
     if (Array.isArray(row.variants)) {
       for (const variant of row.variants) {
         if (variant && typeof variant.unicode === 'string' && exactMatch(lower, variant.unicode)) {
@@ -187,11 +213,16 @@ function findCanonicalMatch(input) {
       if (variantMatch) break;
     }
 
-    // 3. Search-key fold match (e.g., "áres" → "ares"). Treat as canonical
-    // because it is the same name under a different accent convention, but
-    // only when no listed variant already covered it.
+    // 5. Search-key fold match (e.g., "áres" → "ares"). A non-ASCII input that
+    // folds to the same base is treated as canonical (same name, different
+    // accent convention). A pure-ASCII input that folds to the same key is the
+    // ASCII fallback form and must not be called canonical.
     if (searchKey === row.search_key) {
-      exact = row;
+      if (isAsciiOnly(raw)) {
+        asciiFallback = row;
+      } else {
+        exact = row;
+      }
       break;
     }
   }
@@ -214,16 +245,16 @@ function findCanonicalMatch(input) {
     }
   }
 
-  // Fast path: if we already have an exact or variant lexicon match, only
-  // check identities for exact/folded aliases (e.g., a known brand like Apple
-  // that is not in the lexicon). Skip the expensive visual scan because there
-  // are no deception signals to investigate.
+  // Fast path: if we already have an exact, variant, or ASCII-fallback lexicon
+  // match, only check identities for exact/folded aliases (e.g., a known brand
+  // like Apple that is not in the lexicon). Skip the expensive visual scan
+  // because there are no deception signals to investigate.
   const hasDeceptionSignals = confusable.hasConfusables || decompose(raw).hasMixedScripts;
 
   const identityMatches = findIdentities(raw, {
     includeLexicon: true,
     matchTypes:
-      exact || variantMatch || !hasDeceptionSignals
+      exact || asciiFallback || variantMatch || !hasDeceptionSignals
         ? ['exact', 'folded']
         : ['exact', 'folded', 'visual'],
     threshold: 0.85,
@@ -240,6 +271,7 @@ function findCanonicalMatch(input) {
 
   return {
     exact,
+    asciiFallback,
     variantMatch,
     lookalike: bestLookalikeScore >= 0.85 ? bestLookalike : null,
     lookalikeScore: bestLookalikeScore,
@@ -602,6 +634,7 @@ function buildVerdict(input, options = {}) {
   const matchInfo = findCanonicalMatch(raw);
   const {
     exact,
+    asciiFallback,
     variantMatch,
     lookalike,
     lookalikeScore,
@@ -610,7 +643,7 @@ function buildVerdict(input, options = {}) {
   } = matchInfo;
 
   // Brand Shield fallback when the input is not a lexicon match.
-  const brandMatch = !exact && !variantMatch ? lookupBrand(raw) : null;
+  const brandMatch = !exact && !variantMatch && !asciiFallback ? lookupBrand(raw) : null;
 
   const canonicalRows = getCanonicalRows();
   const features = computeRiskFeatures(raw, {
@@ -633,6 +666,8 @@ function buildVerdict(input, options = {}) {
     canonicalMatch = buildCanonicalMatch(exact);
   } else if (variantMatch) {
     canonicalMatch = buildCanonicalMatch(variantMatch.row, variantMatch.variant);
+  } else if (asciiFallback) {
+    canonicalMatch = buildCanonicalMatch(asciiFallback);
   } else if (lookalike) {
     canonicalMatch = buildMatchFromLookalike(lookalike);
   }
@@ -672,7 +707,7 @@ function buildVerdict(input, options = {}) {
   // Conservative guard: ASCII-only inputs that do not strongly resemble a
   // protected identity should not be escalated to deceptive verdicts purely
   // because of digit/symbol confusable heuristics.
-  const hasStrongMatch = !!(exact || variantMatch || identityMatch || brandMatch);
+  const hasStrongMatch = !!(exact || asciiFallback || variantMatch || identityMatch || brandMatch);
   if (
     !hasStrongMatch &&
     isAsciiOnly(raw) &&

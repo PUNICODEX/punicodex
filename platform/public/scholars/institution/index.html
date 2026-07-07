@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarly Edition — University Dashboard | PUNYCODEX</title>
+    <meta name="description" content="University dashboard for the PÚNYCODEX Scholarly Edition. Track contributions, members, and scholarly edits for your institution.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf7">
+
+    <style>
+        :root {
+            --scholar-primary: #D4AF37;
+            --scholar-primary-dim: #8B7355;
+            --scholar-void: #0A0A0A;
+            --scholar-void-raised: #111111;
+            --scholar-white: #F5F5F5;
+            --scholar-white-dim: #A0A0A0;
+            --scholar-white-faint: rgba(255, 255, 255, 0.06);
+            --scholar-success: #7fd67f;
+            --scholar-danger: #ff7f7f;
+            --scholar-warn: #f0d878;
+            --scholar-border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            background: var(--scholar-void);
+            color: var(--scholar-white);
+            font-family: var(--font-body);
+            min-height: 100vh;
+        }
+
+        .global-strip {
+            background: rgba(0, 0, 0, 0.6);
+            border-bottom: 1px solid var(--scholar-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+        }
+
+        .global-strip-inner {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0.75rem clamp(1rem, 5vw, 3rem);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .global-brand {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            letter-spacing: 0.18em;
+            color: var(--scholar-white);
+            text-decoration: none;
+        }
+
+        .global-brand span {
+            color: var(--scholar-primary);
+        }
+
+        .global-links {
+            display: flex;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .global-links a {
+            color: var(--scholar-white-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+
+        .global-links a:hover {
+            color: var(--scholar-primary);
+        }
+
+        .institution-hero {
+            padding: 4rem 0 2.5rem;
+            text-align: center;
+            border-bottom: 1px solid var(--scholar-border);
+        }
+
+        .institution-eyebrow {
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--scholar-primary);
+            margin-bottom: 1rem;
+        }
+
+        .institution-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--scholar-white);
+            letter-spacing: 0.03em;
+            margin-bottom: 0.75rem;
+        }
+
+        .institution-subtitle {
+            color: var(--scholar-white-dim);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .institution-container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 2.5rem clamp(1rem, 5vw, 3rem) 5rem;
+        }
+
+        .institution-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .institution-toolbar-info {
+            color: var(--scholar-white-dim);
+            font-size: 0.95rem;
+        }
+
+        .institution-toolbar-info strong {
+            color: var(--scholar-primary);
+        }
+
+        .institution-actions {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .institution-btn {
+            padding: 0.55rem 1rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid var(--scholar-border);
+            background: transparent;
+            color: var(--scholar-white);
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .institution-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .institution-btn.primary {
+            background: var(--scholar-primary);
+            color: #000;
+            border-color: var(--scholar-primary);
+        }
+
+        .institution-btn.primary:hover {
+            background: var(--scholar-warn);
+            border-color: var(--scholar-warn);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .stat-card {
+            background: var(--scholar-void-raised);
+            border: 1px solid var(--scholar-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-card.wide {
+            grid-column: 1 / -1;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-label {
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--scholar-primary-dim);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card.wide .stat-label {
+            margin-bottom: 0.35rem;
+        }
+
+        .stat-value {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--scholar-primary);
+            letter-spacing: 0.03em;
+        }
+
+        .stat-card.wide .stat-value {
+            font-size: 1.5rem;
+        }
+
+        .institution-name {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--scholar-white);
+            letter-spacing: 0.03em;
+        }
+
+        .institution-meta {
+            color: var(--scholar-white-dim);
+            font-size: 0.9rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--scholar-primary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--scholar-border);
+        }
+
+        .members-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2.5rem;
+        }
+
+        .members-table th,
+        .members-table td {
+            padding: 0.85rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--scholar-border);
+        }
+
+        .members-table th {
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--scholar-primary-dim);
+            font-weight: 600;
+        }
+
+        .members-table td {
+            color: var(--scholar-white-dim);
+            font-size: 0.95rem;
+        }
+
+        .members-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .role-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            background: rgba(212, 175, 55, 0.12);
+            color: var(--scholar-primary);
+        }
+
+        .pending-card {
+            background: var(--scholar-void-raised);
+            border: 1px solid var(--scholar-border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .pending-card-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .pending-card-author {
+            font-family: var(--font-display);
+            color: var(--scholar-primary);
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+        }
+
+        .pending-card-target {
+            color: var(--scholar-white-dim);
+            font-size: 0.85rem;
+        }
+
+        .pending-card-target a {
+            color: var(--scholar-white);
+            text-decoration: none;
+        }
+
+        .pending-card-target a:hover {
+            color: var(--scholar-primary);
+        }
+
+        .pending-card-body {
+            color: var(--scholar-white-dim);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1rem;
+            border: 1px dashed var(--scholar-border);
+            border-radius: 12px;
+            color: var(--scholar-white-dim);
+        }
+
+        .login-box {
+            max-width: 420px;
+            margin: 4rem auto;
+            background: var(--scholar-void-raised);
+            border: 1px solid var(--scholar-border);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .login-box h2 {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            color: var(--scholar-white);
+            margin-bottom: 0.75rem;
+        }
+
+        .login-box p {
+            color: var(--scholar-white-dim);
+            margin-bottom: 1.25rem;
+            line-height: 1.6;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            text-align: left;
+        }
+
+        .login-form label {
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--scholar-primary-dim);
+        }
+
+        .login-form input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--scholar-border);
+            border-radius: 6px;
+            padding: 0.65rem 0.75rem;
+            color: var(--scholar-white);
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+
+        .login-form input:focus {
+            outline: none;
+            border-color: var(--scholar-primary);
+        }
+
+        .login-form .institution-btn {
+            align-self: flex-start;
+        }
+
+        .login-message {
+            margin-top: 0.75rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .login-message.success { color: var(--scholar-success); }
+        .login-message.error { color: var(--scholar-danger); }
+
+        .error-banner {
+            max-width: var(--container-max);
+            margin: 2rem auto 0;
+            padding: 0 clamp(1rem, 5vw, 3rem);
+            color: var(--scholar-danger);
+            background: rgba(255, 127, 127, 0.08);
+            border: 1px solid rgba(255, 127, 127, 0.25);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        @media (max-width: 640px) {
+            .global-strip-inner {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .institution-toolbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .stat-card.wide {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .members-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="/" class="global-brand">P<span>U</span>NYCODEX</a>
+            <div class="global-links">
+                <a href="/pantheon/">Pantheon</a>
+                <a href="/lexicon/">Lexicon</a>
+                <a href="/type/">Type</a>
+                <a href="/search.html">Search</a>
+                <a href="/tiers/">Tiers</a>
+                <a href="/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <header class="institution-hero">
+        <div class="institution-eyebrow">PUNYCODEX Scholarly Edition</div>
+        <h1 class="institution-title">University Dashboard</h1>
+        <p class="institution-subtitle">A single pane for your institution’s contributions to the Unicode pantheon. Review members, track edits, and measure scholarly impact.</p>
+    </header>
+
+    <main class="institution-container" id="app">
+        <noscript>
+            <div class="error-banner">This university dashboard requires JavaScript to communicate with the Scholarly Edition API.</div>
+        </noscript>
+    </main>
+
+    <script>
+    (function() {
+        const apiBase = '/api/v1/scholars';
+        const container = document.getElementById('app');
+        const sessionId = localStorage.getItem('scholars_session');
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        function formatDate(iso) {
+            if (!iso) return '—';
+            const d = new Date(iso);
+            if (Number.isNaN(d.getTime())) return iso;
+            return d.toLocaleString(undefined, { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+        }
+
+        async function api(path, options = {}) {
+            const headers = {
+                'Content-Type': 'application/json',
+                ...(sessionId ? { 'x-scholars-session': sessionId } : {}),
+                ...(options.headers || {}),
+            };
+            const res = await fetch(apiBase + path, {
+                ...options,
+                headers,
+            });
+            const data = await res.json().catch(() => ({ success: false, error: 'Invalid response' }));
+            return { ok: res.ok, status: res.status, data };
+        }
+
+        function renderLoginPrompt() {
+            container.innerHTML = `
+                <div class="login-box">
+                    <h2>University Access Required</h2>
+                    <p>This dashboard loads institution-level metrics from the Scholarly Edition API. Sign in with a verified university email to continue.</p>
+                    <form class="login-form" id="magic-link-form">
+                        <label for="user-email">University email</label>
+                        <input type="email" id="user-email" placeholder="you@university.edu" required>
+                        <button type="submit" class="institution-btn primary">Send Magic Link</button>
+                    </form>
+                    <div style="margin: 1.25rem 0; border-top: 1px solid var(--scholar-border);"></div>
+                    <form class="login-form" id="session-form">
+                        <label for="session-id">Or paste session ID</label>
+                        <input type="text" id="session-id" placeholder="scholars_session token" required>
+                        <button type="submit" class="institution-btn">Load Dashboard</button>
+                    </form>
+                    <div class="login-message" id="login-message"></div>
+                </div>
+            `;
+
+            document.getElementById('magic-link-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('user-email').value.trim();
+                const message = document.getElementById('login-message');
+                message.className = 'login-message';
+                message.textContent = 'Sending…';
+                const { ok, data } = await api('/auth/magic-link', {
+                    method: 'POST',
+                    body: JSON.stringify({ email }),
+                });
+                if (ok) {
+                    message.className = 'login-message success';
+                    message.innerHTML = 'Magic link generated. In development, the verification URL is logged to the server console; paste it into the browser to set <code>scholars_session</code> in localStorage.';
+                } else {
+                    message.className = 'login-message error';
+                    message.textContent = data?.error || 'Failed to request magic link.';
+                }
+            });
+
+            document.getElementById('session-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const id = document.getElementById('session-id').value.trim();
+                if (id) {
+                    localStorage.setItem('scholars_session', id);
+                    window.location.reload();
+                }
+            });
+        }
+
+        function renderError(message) {
+            container.innerHTML = `<div class="error-banner">${escapeHtml(message)}</div>`;
+        }
+
+        function renderStats(dashboard, pending) {
+            const { institution, stats, users } = dashboard;
+            const allowedRoles = ['reviewer', 'dept_admin', 'inst_admin', 'curator'];
+
+            container.innerHTML = `
+                <div class="institution-toolbar">
+                    <div class="institution-toolbar-info">
+                        Signed in as <strong>${escapeHtml(dashboard.user.email)}</strong>
+                        <span class="role-badge">${escapeHtml(dashboard.user.role)}</span>
+                    </div>
+                    <div class="institution-actions">
+                        <a href="../review/index.html" class="institution-btn">Review Queue</a>
+                        <button class="institution-btn" id="refresh-btn">Refresh</button>
+                        <button class="institution-btn" id="logout-btn">Sign out</button>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card wide">
+                        <div>
+                            <div class="stat-label">Institution</div>
+                            <div class="institution-name">${escapeHtml(institution.name)}</div>
+                            <div class="institution-meta">${escapeHtml(institution.domain || institution.slug || '')}</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div class="stat-label">Status</div>
+                            <div class="institution-meta" style="text-transform: uppercase; letter-spacing: 0.1em;">${escapeHtml(institution.status)}</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Members</div>
+                        <div class="stat-value">${stats.memberCount}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Edits Submitted</div>
+                        <div class="stat-value">${stats.totalSubmitted}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Approved Edits</div>
+                        <div class="stat-value">${stats.approved}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Pending Edits</div>
+                        <div class="stat-value">${stats.pending}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Attributed Sections</div>
+                        <div class="stat-value">${stats.attributedSections}</div>
+                    </div>
+                </div>
+
+                <h2 class="section-title">Members</h2>
+                ${renderMembersTable(users)}
+
+                <h2 class="section-title">Pending Edits</h2>
+                ${renderPendingList(pending)}
+            `;
+
+            document.getElementById('logout-btn').addEventListener('click', () => {
+                localStorage.removeItem('scholars_session');
+                window.location.reload();
+            });
+
+            document.getElementById('refresh-btn').addEventListener('click', () => {
+                loadDashboard();
+            });
+        }
+
+        function renderMembersTable(users) {
+            if (!users || users.length === 0) {
+                return '<div class="empty-state">No members found for this institution.</div>';
+            }
+            const rows = users.map((u) => `
+                <tr>
+                    <td>${escapeHtml(u.displayName || '—')}</td>
+                    <td>${escapeHtml(u.email)}</td>
+                    <td><span class="role-badge">${escapeHtml(u.role)}</span></td>
+                    <td>${escapeHtml(u.department || '—')}</td>
+                    <td>${escapeHtml(u.status)}</td>
+                </tr>
+            `).join('');
+            return `
+                <table class="members-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Department</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>${rows}</tbody>
+                </table>
+            `;
+        }
+
+        function renderPendingList(edits) {
+            if (!edits || edits.length === 0) {
+                return '<div class="empty-state">No pending edits from your institution.</div>';
+            }
+            return edits.map((edit) => `
+                <div class="pending-card">
+                    <div class="pending-card-header">
+                        <div class="pending-card-author">${escapeHtml(edit.display_name || edit.email || 'Unknown author')}</div>
+                        <div class="pending-card-target">
+                            <a href="/sites/${escapeHtml(edit.entry_id)}/scholars/" target="_blank">${escapeHtml(edit.entry_id)}</a> · ${escapeHtml(edit.section_label || edit.section_key)}
+                        </div>
+                    </div>
+                    <div class="pending-card-body">${escapeHtml((edit.proposed_body || '').slice(0, 240))}${(edit.proposed_body || '').length > 240 ? '…' : ''}</div>
+                    <div class="pending-card-body" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--scholar-primary-dim);">${formatDate(edit.created_at)}</div>
+                </div>
+            `).join('');
+        }
+
+        async function loadDashboard() {
+            container.innerHTML = '<div class="empty-state">Loading institution dashboard…</div>';
+
+            const [sessionRes, dashboardRes] = await Promise.all([
+                api('/auth/session'),
+                api('/institution'),
+            ]);
+
+            const user = sessionRes.data?.data?.user;
+            if (!sessionRes.ok || !user) {
+                localStorage.removeItem('scholars_session');
+                renderLoginPrompt();
+                return;
+            }
+
+            const allowedRoles = ['reviewer', 'dept_admin', 'inst_admin', 'curator'];
+            if (!allowedRoles.includes(user.role)) {
+                renderError(`Account ${user.email} has role "${user.role}". Institution dashboard access requires reviewer, department admin, or institution admin privileges.`);
+                return;
+            }
+
+            if (!dashboardRes.ok) {
+                renderError(dashboardRes.data?.error || `Failed to load dashboard (HTTP ${dashboardRes.status}).`);
+                return;
+            }
+
+            const pendingRes = await api('/edits/pending');
+            const pending = pendingRes.ok ? (pendingRes.data?.data || []) : [];
+
+            renderStats({ ...dashboardRes.data.data, user }, pending);
+        }
+
+        async function init() {
+            if (!sessionId) {
+                renderLoginPrompt();
+                return;
+            }
+            await loadDashboard();
+        }
+
+        init();
+    })();
+    </script>
+</body>
+</html>

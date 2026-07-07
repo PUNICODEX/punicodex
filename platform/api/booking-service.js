@@ -196,7 +196,7 @@ async function applyBookingRequest({
   const slot = await getSlotById(slotId);
   if (!slot) throw new BookingError(404, 'Slot not found');
   if (!slot.is_bundle) {
-    throw new BookingError(400, 'Applications are only accepted for the Total Conquest bundle');
+    throw new BookingError(400, 'Applications are only accepted for the Full Page Takeover bundle');
   }
   if (slot.status !== 'available') {
     throw new BookingError(400, 'Slot is not available');
@@ -317,7 +317,7 @@ async function getAllBookingsByToken(token) {
   };
 }
 
-async function updateBookingMeta(token, { customHeading, customSubtitle, slotId }) {
+async function updateBookingMeta(token, { customHeading, customSubtitle, websiteUrl, slotId }) {
   const booking = await getBookingByTokenSafe(token);
 
   if (slotId && (await isBundleSlot(booking.slot_id))) {
@@ -325,15 +325,43 @@ async function updateBookingMeta(token, { customHeading, customSubtitle, slotId 
     if (!slot) throw new BookingError(404, 'Slot not found');
     const metaError = validateMeta(slot.width, customHeading, customSubtitle);
     if (metaError) throw new BookingError(400, metaError);
-    await updateSlotMeta(booking.id, slotId, { customHeading, customSubtitle });
+    await updateSlotMeta(booking.id, slotId, { customHeading, customSubtitle, websiteUrl });
     return { success: true };
   }
 
   const metaError = validateMeta(booking.width, customHeading, customSubtitle);
   if (metaError) throw new BookingError(400, metaError);
+
+  // Build dynamic update so we only touch fields that were supplied.
+  const sets = [];
+  const params = [];
+  if (customHeading !== undefined) {
+    sets.push(`custom_heading = $${params.length + 1}`);
+    params.push(customHeading || null);
+  }
+  if (customSubtitle !== undefined) {
+    sets.push(`custom_subtitle = $${params.length + 1}`);
+    params.push(customSubtitle || null);
+  }
+  if (websiteUrl !== undefined) {
+    sets.push(`website_url = $${params.length + 1}`);
+    params.push(websiteUrl || null);
+  }
+
+  // Any meta change on a live or approved booking must be re-approved.
+  if (['live', 'approved'].includes(booking.status)) {
+    sets.push(`status = $${params.length + 1}`);
+    params.push('pending_approval');
+  }
+
+  if (sets.length === 0) {
+    return { success: true };
+  }
+
+  params.push(booking.id);
   await run(
-    'UPDATE bookings SET custom_heading = $1, custom_subtitle = $2, updated_at = CURRENT_TIMESTAMP WHERE id = $3',
-    [customHeading || null, customSubtitle || null, booking.id]
+    `UPDATE bookings SET ${sets.join(', ')}, updated_at = CURRENT_TIMESTAMP WHERE id = $${params.length}`,
+    params
   );
   return { success: true };
 }

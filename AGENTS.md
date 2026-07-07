@@ -119,6 +119,36 @@ mismatches it reports.
 11. `scripts/gen-sitemap.js`
 12. `scripts/inject-analytics.js`
 13. `scripts/update-data-version.js`
+14. `scripts/generate-scholars-manifests.js`
+15. `scripts/generate-scholars.js`
+
+### Scholarly Edition
+
+The Scholarly Edition is a university-edited scholarly layer for the 123
+flagship temples. It lives at `/sites/{id}/scholars/` and is managed through
+the `/api/v1/scholars/` API.
+
+**Canonical / hand-edited:**
+- `docs/scholarly-edition/scholarly-section-taxonomy-v0.1.json` — section registry
+- `docs/scholarly-edition/GOVERNANCE.md` — editorial rules
+- `docs/scholarly-edition/ARCHITECTURE.md` — technical blueprint
+
+**Generated (do not edit by hand):**
+- `platform/scholars/manifests/{id}.json` — per-temple section manifests
+- `sites/{id}/scholars/index.html` — Scholarly Edition pages
+
+**Database:**
+- `platform/db/migrate-scholars.js` — core Scholars schema
+- `platform/db/migrate-scholars-quality.js` — quality gate column
+- Seed with `node platform/db/scholars/seed.js`
+- Migrate lore-catalog content with `node scripts/migrate-lore-to-scholars.js`
+
+**Key pages:**
+- `/scholars/review/index.html` — reviewer queue
+- `/scholars/admin/index.html` — curator admin
+- `/scholars/institution/index.html` — university dashboard
+- `/scholars/search/index.html` — Scholarly Edition search
+- `/scholars/analytics/index.html` — curator analytics
 
 ### Data versioning (Phase 2.5)
 

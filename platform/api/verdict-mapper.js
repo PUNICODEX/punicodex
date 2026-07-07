@@ -43,6 +43,14 @@ function mapVerdict(probability, features, identityMatch, canonicalMatch, option
     };
   }
 
+  if (features.hasAsciiFallbackExact) {
+    return {
+      verdict: VERDICTS.ASCII_FALLBACK,
+      severity: SEVERITIES.NONE,
+      reason: 'ASCII fallback form; the scholarly canonical form uses Unicode diacritics',
+    };
+  }
+
   if (features.variantRecognition) {
     return {
       verdict: VERDICTS.RECOGNIZED_VARIANT,

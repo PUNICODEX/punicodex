@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#050505">
     <title>The Codex — PÚNYCODEX</title>
-    <meta name="description" content="Chronicles of the Unicode Pantheon: essays on linguistics, Greek mythology, domain technology, and the philosophy of digital restoration.">
+    <meta name="description" content="The Codex: a living atlas of the Unicode Pantheon. Explore 860 scholarly name restorations, original scripts, etymological constellations, and primary sources.">
     <link rel="canonical" href="https://punycodex.com/codex/">
     <meta property="og:title" content="The Codex — PÚNYCODEX">
-    <meta property="og:description" content="Chronicles of the Unicode Pantheon.">
+    <meta property="og:description" content="A living atlas of the Unicode Pantheon.">
     <meta property="og:image" content="https://punycodex.com/assets/images/og-default.svg">
     <meta property="og:url" content="https://punycodex.com/codex/">
     <meta name="twitter:card" content="summary_large_image">
@@ -17,8 +17,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/css/main.css?v=perf7">
-    <link rel="stylesheet" href="/css/codex.css?v=perf7">
+    <link rel="stylesheet" href="/css/main.css?v=perf8">
+    <link rel="stylesheet" href="/css/codex.css?v=perf8">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%CE%A8%3C/text%3E%3C/svg%3E">
     <link rel="apple-touch-icon" sizes="128x128" href="/assets/images/apple-touch-icon.png">
     <link rel="manifest" href="/manifest.json">
@@ -33,7 +33,7 @@
                 <a href="/realms/" class="nav-link">Realms</a>
                 <a href="/lexicon/" class="nav-link">Lexicon</a>
                 <a href="/tiers/" class="nav-link">Tier System</a>
-<a href="/type/" class="nav-link">Type</a>
+                <a href="/type/" class="nav-link">Type</a>
                 <a href="/search.html" class="nav-link">Search</a>
                 <a href="/codex/" class="nav-link">Codex</a>
                 <a href="/api/v1/docs/" class="nav-link">API</a>
@@ -48,78 +48,201 @@
 
     <div class="mobile-menu" id="mobile-menu">
         <a href="/pantheon/">Pantheon</a>
-        <a href="/realms/">Realms</a><a href="/tiers/">Tier System</a><a href="/codex/">Codex</a>
-    <a href="/api/v1/docs/">API</a>
-        <a href="/store/">Store</a><a href="/about/">About</a><a href="/contact/">Contact</a>
+        <a href="/realms/">Realms</a>
+        <a href="/lexicon/">Lexicon</a>
+        <a href="/tiers/">Tier System</a>
+        <a href="/type/">Type</a>
+        <a href="/search.html">Search</a>
+        <a href="/codex/">Codex</a>
+        <a href="/api/v1/docs/">API</a>
+        <a href="/store/">Store</a>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
     </div>
 
     <main class="page-codex">
-        <section class="page-hero">
+        <!-- Hero -->
+        <section class="codex-hero">
             <div class="container">
-                <h1 class="display-lg text-center reveal-up">THE CODEX</h1>
-                <p class="body-lg text-center reveal-up">Chronicles of the Unicode Pantheon — essays on linguistics, mythology, and the craft of restoration.</p>
+                <div class="codex-hero-sigil" aria-hidden="true">Ψ</div>
+                <p class="codex-hero-eyebrow reveal-up">The Living Manuscript</p>
+                <h1 class="codex-hero-title display-lg reveal-up">THE CODEX</h1>
+                <p class="codex-hero-subtitle body-lg reveal-up">A scholarly atlas of Unicode restoration. Explore the names, scripts, sources, and constellations that power the PÚNYCODEX engine.</p>
+
+                <div class="codex-stats reveal-up">
+                    <div class="codex-stat">
+                        <span class="codex-stat-value" id="stat-entries">0</span>
+                        <span class="codex-stat-label">Names</span>
+                    </div>
+                    <div class="codex-stat">
+                        <span class="codex-stat-value" id="stat-pantheons">0</span>
+                        <span class="codex-stat-label">Pantheons</span>
+                    </div>
+                    <div class="codex-stat">
+                        <span class="codex-stat-value" id="stat-owned">0</span>
+                        <span class="codex-stat-label">Owned</span>
+                    </div>
+                    <div class="codex-stat">
+                        <span class="codex-stat-value" id="stat-flagships">0</span>
+                        <span class="codex-stat-label">Flagships</span>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="codex-content">
+        <!-- Restoration Engine -->
+        <section class="codex-section codex-section-dark" id="restoration-engine">
             <div class="container">
+                <div class="section-header section-header-center">
+                    <p class="section-eyebrow reveal-up">Restoration Engine</p>
+                    <h2 class="section-title reveal-up">Type an ASCII name. Watch it become divine.</h2>
+                    <p class="section-subtitle reveal-up">The same engine that drives every temple and the type tool, exposed here in real time.</p>
+                </div>
+
+                <div class="restore-panel reveal-up">
+                    <div class="restore-input-wrap">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="M21 21l-4.35-4.35"/>
+                        </svg>
+                        <input type="text" id="codex-restore-input" placeholder="Type an ASCII name…" autocomplete="off" aria-label="ASCII name">
+                    </div>
+                    <div class="restore-output" id="codex-restore-output">
+                        <p class="restore-hint">Type an ASCII name above to see its Unicode restoration.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pantheon Constellation -->
+        <section class="codex-section" id="constellation">
+            <div class="container">
+                <div class="section-header section-header-center">
+                    <p class="section-eyebrow reveal-up">Pantheon Constellation</p>
+                    <h2 class="section-title reveal-up">860 names, one map</h2>
+                    <p class="section-subtitle reveal-up">Each dot is a lexicon entry. Color is pantheon, size is tier, lines are shared etymology. Click any name to enter its temple.</p>
+                </div>
+
+                <div class="constellation-legend reveal-up">
+                    <span class="constellation-legend-item"><span class="legend-dot tier-dual"></span>Dual-Tier</span>
+                    <span class="constellation-legend-item"><span class="legend-dot tier-1"></span>Tier 1</span>
+                    <span class="constellation-legend-item"><span class="legend-dot tier-2"></span>Tier 2</span>
+                    <span class="constellation-legend-item"><span class="legend-dot owned"></span>Owned</span>
+                </div>
+
+                <div class="constellation-filters reveal-up" id="constellation-filters">
+                    <span class="constellation-filter-label">Filter pantheons:</span>
+                </div>
+
+                <div class="constellation-container" id="constellation-container" aria-label="Interactive pantheon constellation graph"></div>
+            </div>
+        </section>
+
+        <!-- Script Atlas -->
+        <section class="codex-section codex-section-dark" id="script-atlas-section">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-eyebrow reveal-up">Script Atlas</p>
+                    <h2 class="section-title reveal-up">Original writing systems</h2>
+                    <p class="section-subtitle reveal-up">A gallery of the real scripts behind the names, from Greek majuscules to Egyptian hieroglyphs and Norse runes.</p>
+                </div>
+
+                <div class="script-atlas" id="script-atlas">
+                    <!-- populated by codex-atlas.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Source Codex -->
+        <section class="codex-section" id="source-codex-section">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-eyebrow reveal-up">Source Codex</p>
+                    <h2 class="section-title reveal-up">Scholarly foundations</h2>
+                    <p class="section-subtitle reveal-up">Every entry in PÚNYCODEX is anchored to authoritative reference works. Search the catalog below.</p>
+                </div>
+
+                <div class="source-codex-toolbar reveal-up">
+                    <div class="source-codex-search">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="M21 21l-4.35-4.35"/>
+                        </svg>
+                        <input type="text" id="source-codex-search" placeholder="Search sources by title, scope, or code…" autocomplete="off">
+                    </div>
+                    <span class="source-codex-count" id="source-codex-count">0 sources</span>
+                </div>
+
+                <div class="source-codex-table-wrap reveal-up">
+                    <table class="source-codex-table">
+                        <thead>
+                            <tr>
+                                <th>Code</th>
+                                <th>Full Title</th>
+                                <th>Scope</th>
+                                <th>Year</th>
+                                <th>Edition</th>
+                                <th>Link</th>
+                            </tr>
+                        </thead>
+                        <tbody id="source-codex-body">
+                            <!-- populated by codex-atlas.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chronicles -->
+        <section class="codex-section codex-section-dark" id="chronicles">
+            <div class="container">
+                <div class="section-header section-header-center">
+                    <p class="section-eyebrow reveal-up">Chronicles</p>
+                    <h2 class="section-title reveal-up">Essays on linguistics, mythology, and craft</h2>
+                </div>
                 <div class="codex-grid">
-                    <article class="codex-card reveal-up">
+                    <a href="/codex/why-greek-accents-matter/" class="codex-card reveal-up">
                         <div class="codex-image">
-                            <div class="codex-image-placeholder" style="background: linear-gradient(135deg, #1a0a0a 0%, #2a1a1a 50%, #1a0a0a 100%);">
-                                <span class="codex-image-icon">&#x00B4;</span>
+                            <div class="codex-image-placeholder">
+                                <span class="codex-image-icon">Ἄ</span>
                             </div>
                         </div>
                         <div class="codex-meta">
                             <span class="codex-category">Linguistics</span>
-                            <span class="codex-date">December 2024</span>
-                            <span class="codex-readtime">6 min read</span>
+                            <span class="codex-readtime">Dec 2024 · 6 min</span>
                         </div>
-                        <h2 class="codex-title">Why Greek Accents Matter in the Digital Age</h2>
-                        <p class="codex-excerpt body-md">The erasure of diacritics in ASCII domains is not a technical limitation — it is a cultural amnesia. When Apóllōn becomes "Apollo," something irreplaceable is lost: the pitch accent that rises like a musical note, the long vowels that stretch across syllables like held breath. This essay explores why Unicode restoration is not pedantry, but philological justice.</p>
-                        <a href="#" class="codex-readmore" onclick="event.preventDefault(); PX.showToast('Full article coming soon')">Read More &rarr;</a>
-                    </article>
-
-                    <article class="codex-card reveal-up">
+                        <h3 class="codex-title">Why Greek Accents Matter in the Digital Age</h3>
+                        <p class="codex-excerpt">The erasure of diacritics in ASCII domains is not a technical limitation — it is a cultural amnesia.</p>
+                        <span class="codex-readmore">Read essay</span>
+                    </a>
+                    <a href="/codex/anatomy-of-a-punycode-domain/" class="codex-card reveal-up">
                         <div class="codex-image">
-                            <div class="codex-image-placeholder" style="background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2a 50%, #0a0a1a 100%);">
+                            <div class="codex-image-placeholder">
                                 <span class="codex-image-icon">xn--</span>
                             </div>
                         </div>
                         <div class="codex-meta">
                             <span class="codex-category">Technology</span>
-                            <span class="codex-date">November 2024</span>
-                            <span class="codex-readtime">8 min read</span>
+                            <span class="codex-readtime">Nov 2024 · 8 min</span>
                         </div>
-                        <h2 class="codex-title">The Anatomy of a Punycode Domain</h2>
-                        <p class="codex-excerpt body-md">How does zeús.com become xn--zes-9na.com? A deep dive into the IDNA2008 algorithm, the difference between encoding and representation, and why browsers intentionally hide the truth from users. Understanding Punycode is essential to understanding why Unicode domains remain invisible despite being technically possible for over a decade.</p>
-                        <a href="#" class="codex-readmore" onclick="event.preventDefault(); PX.showToast('Full article coming soon')">Read More &rarr;</a>
-                    </article>
-
-                    <article class="codex-card reveal-up">
+                        <h3 class="codex-title">The Anatomy of a Punycode Domain</h3>
+                        <p class="codex-excerpt">How does zeús.com become xn--zes-9na.com? A deep dive into the IDNA2008 algorithm.</p>
+                        <span class="codex-readmore">Read essay</span>
+                    </a>
+                    <a href="/codex/building-the-temple/" class="codex-card reveal-up">
                         <div class="codex-image">
-                            <div class="codex-image-placeholder" style="background: linear-gradient(135deg, #1a1a0a 0%, #2a2a1a 50%, #1a1a0a 100%);">
-                                <span class="codex-image-icon">&#x03A8;</span>
+                            <div class="codex-image-placeholder">
+                                <span class="codex-image-icon">Ψ</span>
                             </div>
                         </div>
                         <div class="codex-meta">
                             <span class="codex-category">Process</span>
-                            <span class="codex-date">October 2024</span>
-                            <span class="codex-readtime">10 min read</span>
+                            <span class="codex-readtime">Oct 2024 · 10 min</span>
                         </div>
-                        <h2 class="codex-title">Building the Temple: A Technical Retrospective</h2>
-                        <p class="codex-excerpt body-md">Hand-crafting twenty archetype temples taught us about canvas performance, the Greek pitch accent system, and the theological weight of a single diacritic. This retrospective covers the architecture decisions, the animation challenges, the tier system evolution, and the philosophical moments that shaped the project.</p>
-                        <a href="#" class="codex-readmore" onclick="event.preventDefault(); PX.showToast('Full article coming soon')">Read More &rarr;</a>
-                    </article>
-                </div>
-
-                <div class="newsletter-cta reveal-up">
-                    <h3 class="heading-md text-center">Receive the Chronicles</h3>
-                    <p class="body-md text-center mb-4">New essays on linguistics, mythology, and domain restoration. No spam. No ASCII.</p>
-                    <form class="newsletter-form" onsubmit="event.preventDefault(); PX.showToast('Subscribed! Welcome to the Pantheon.'); this.reset();">
-                        <input type="email" placeholder="your@email.com" required class="newsletter-input">
-                        <button type="submit" class="btn btn-primary">Subscribe</button>
-                    </form>
+                        <h3 class="codex-title">Building the Temple: A Technical Retrospective</h3>
+                        <p class="codex-excerpt">Hand-crafting archetype temples taught us about canvas performance and the weight of a single diacritic.</p>
+                        <span class="codex-readmore">Read essay</span>
+                    </a>
                 </div>
             </div>
         </section>
@@ -128,16 +251,42 @@
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-col"><h4>PÚNYCODEX</h4><p>The Unicode Pantheon — restoring the original names of world archetypes to the digital realm.</p></div>
-                <div class="footer-col"><h4>Explore</h4><a href="/pantheon/">Pantheon</a>
-        <a href="/realms/">Realms</a><a href="/tiers/">Tier System</a><a href="/codex/">Codex</a><a href="/store/">Store</a></div>
-                <div class="footer-col"><h4>Resources</h4><a href="/about/">About</a><a href="/contact/">Contact</a></div>
-                <div class="footer-col"><h4>Connect</h4><a href="mailto:punycodex@gmail.com">punycodex@gmail.com</a></div>
+                <div class="footer-brand">
+                    <a href="/" class="footer-wordmark">P<span class="accent">U</span>NYCODEX</a>
+                    <p class="footer-tagline">Restoring the original names of the gods to the digital realm.</p>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-heading">Explore</h4>
+                    <a href="/pantheon/">Pantheon</a>
+                    <a href="/realms/">Realms</a>
+                    <a href="/lexicon/">Lexicon</a>
+                    <a href="/tiers/">Tier System</a>
+                    <a href="/type/">Type</a>
+                    <a href="/search.html">Search</a>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-heading">Resources</h4>
+                    <a href="/codex/">Codex</a>
+                    <a href="/api/v1/docs/">API</a>
+                    <a href="/appraise/">Appraise</a>
+                    <a href="/authenticity/">Authenticity</a>
+                    <a href="/oracle.html">Oracle</a>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-heading">Connect</h4>
+                    <a href="/about/">About</a>
+                    <a href="/contact/">Contact</a>
+                    <a href="/privacy/">Privacy</a>
+                    <a href="/terms/">Terms</a>
+                </div>
             </div>
-            <div class="footer-bottom"><p>&copy; 2024 PÚNYCODEX. All rites reserved.</p></div>
+            <div class="footer-bottom">
+                <p>© 2026 PÚNYCODEX. All rites reserved.</p>
+            </div>
         </div>
     </footer>
 
-    <script src="/js/main.js?v=perf7" defer></script>
+    <script src="/js/px-core.js?v=perf8"></script>
+    <script src="/codex/js/codex-atlas.js?v=perf8" defer></script>
 </body>
 </html>

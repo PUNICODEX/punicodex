@@ -21,6 +21,7 @@ const {
   GIF_BUFFER,
 } = require('../platform/api/ad-analytics.js');
 const { createBooking, goLive } = require('../platform/api/bookings.js');
+const { getIndividualSlotIds } = require('./helpers/slots.js');
 
 function mockReq(overrides = {}) {
   return {
@@ -59,10 +60,11 @@ function mockRes() {
   return res;
 }
 
-let nextAdSlotId = 2;
+const nikeSlotIds = getIndividualSlotIds(__filename, 'nike');
+let nextAdSlotIndex = 0;
 
 async function makeLiveBooking(email = 'adtest@example.com') {
-  const slotId = nextAdSlotId++;
+  const slotId = nikeSlotIds[nextAdSlotIndex++];
   const { id, token } = await createBooking({
     slotId,
     email,

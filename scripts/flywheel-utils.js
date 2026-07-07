@@ -69,11 +69,13 @@ function replaceArchetypeBlock(src, id, newBlock) {
 
 function insertArchetypeBlock(src, newBlock) {
   // Insert before the closing ]; of the ARCHETYPES array
-  const closeMatch = src.match(/(\n\s*\]);\s*$/);
-  if (!closeMatch) throw new Error('Could not find ARCHETYPES array close');
-  const insertAt = closeMatch.index;
-  const sep = src.charAt(insertAt) === '\n' ? '' : '\n';
-  return src.slice(0, insertAt) + sep + newBlock + src.slice(insertAt);
+  const exportIdx = src.indexOf('if (typeof module');
+  const closeIdx = exportIdx >= 0 ? src.lastIndexOf('];', exportIdx) : src.lastIndexOf('];');
+  if (closeIdx < 0) throw new Error('Could not find ARCHETYPES array close');
+  const insertAt = src.lastIndexOf('\n', closeIdx) + 1;
+  // Ensure a newline separates the new block from the original closing ];
+  const suffix = src.slice(insertAt).startsWith('];') ? '\n' + src.slice(insertAt) : src.slice(insertAt);
+  return src.slice(0, insertAt) + newBlock + '\n' + suffix;
 }
 
 function jsonString(v) {
@@ -174,7 +176,7 @@ function saveLexicon(src) {
 
 function setLexiconField(src, id, field, value) {
   const valueStr = typeof value === 'string' ? JSON.stringify(value) : JSON.stringify(value);
-  const blockRe = new RegExp(`(\\{[\\s\\S]*?\\n\\s*id:\\s*'${id}'[\\s\\S]*?\\n\\s*\\},?)`);
+  const blockRe = new RegExp(`(\\{[\\s\\S]*?\\n\\s*(?:id:\\s*'${id}'|"id":\\s*"${id}")[\\s\\S]*?\\n\\s*\\},?)`);
   const blockMatch = src.match(blockRe);
   if (!blockMatch) throw new Error(`Lexicon entry ${id} not found`);
 
@@ -183,7 +185,7 @@ function setLexiconField(src, id, field, value) {
   if (fieldRe.test(block)) {
     block = block.replace(fieldRe, `$1${field}: ${valueStr},`);
   } else {
-    const idRe = new RegExp(`^(\\s*)id:\\s*'${id}',?\\s*$`, 'm');
+    const idRe = new RegExp(`^(\\s*)(?:id:\\s*'${id}'|"id":\\s*"${id}"),?\\s*$`, 'm');
     const idMatch = block.match(idRe);
     if (!idMatch) throw new Error(`Could not locate id line for ${id}`);
     const indent = idMatch[1];
@@ -256,7 +258,7 @@ function formatArchetype(a) {
     `        hasAdSite: ${a.hasAdSite},`,
     `        darkPunchline: ${a.darkPunchline}`
   );
-  lines.push('    }');
+  lines.push('    },');
   return lines.join('\n');
 }
 
@@ -265,7 +267,7 @@ function upsertArchetype(src, archetype) {
   if (findArchetypeBlock(src, archetype.id)) {
     return replaceArchetypeBlock(src, archetype.id, block);
   }
-  return insertArchetypeBlock(src, block + ',');
+  return insertArchetypeBlock(src, block);
 }
 
 module.exports = {

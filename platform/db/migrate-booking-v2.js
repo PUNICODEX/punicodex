@@ -50,40 +50,41 @@ if (hermesCount === 0) {
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `);
   const slots = [
-    [14, 'Winged Crown', 'hermes-winged-crown', 1136, 379, 120000, '1200:400', 1, 0, 'hermes'],
-    [15, "Herald's Column", 'hermes-herald-column', 260, 520, 80000, '300:600', 2, 0, 'hermes'],
-    [16, "Traveler's Strip", 'hermes-traveler-strip', 844, 317, 60000, '844:317', 3, 0, 'hermes'],
-    [17, 'Sandal I', 'hermes-sandal-1', 844, 394, 50000, '844:394', 4, 0, 'hermes'],
-    [18, 'Sandal II', 'hermes-sandal-2', 552, 309, 40000, '552:309', 5, 0, 'hermes'],
-    [19, 'Sandal III', 'hermes-sandal-3', 552, 309, 35000, '552:309', 6, 0, 'hermes'],
-    [20, 'Silver Ribbon', 'hermes-silver-ribbon', 511, 131, 30000, '511:131', 7, 0, 'hermes'],
-    [21, 'Caduceus Badge', 'hermes-caduceus-badge', 306, 115, 25000, '306:115', 8, 0, 'hermes'],
-    [22, 'Inscription', 'hermes-inscription', 255, 87, 18000, '255:87', 9, 0, 'hermes'],
-    [23, 'Emblem I', 'hermes-emblem-1', 552, 221, 15000, '552:221', 10, 0, 'hermes'],
-    [24, 'Emblem II', 'hermes-emblem-2', 552, 221, 12000, '552:221', 11, 0, 'hermes'],
-    [25, 'Foundation', 'hermes-foundation', 1136, 95, 30000, '1200:100', 12, 0, 'hermes'],
-    [26, 'Total Conquest', 'hermes-total-conquest', 1136, 379, 515000, null, 13, 1, 'hermes'],
+    [15, 'Winged Crown Banner', 'hermes-crown-banner', 1200, 400, 75000, '1200:400', 1, 0, 'hermes'],
+    [16, 'Herald Box I', 'hermes-herald-box-1', 600, 600, 30000, '600:600', 2, 0, 'hermes'],
+    [17, 'Herald Box II', 'hermes-herald-box-2', 600, 600, 26000, '600:600', 3, 0, 'hermes'],
+    [18, 'Traveler Banner', 'hermes-traveler-banner', 1200, 400, 47000, '1200:400', 4, 0, 'hermes'],
+    [19, 'Sandal Box I', 'hermes-sandal-box-1', 600, 600, 20000, '600:600', 5, 0, 'hermes'],
+    [20, 'Sandal Box II', 'hermes-sandal-box-2', 600, 600, 15000, '600:600', 6, 0, 'hermes'],
+    [21, 'Silver Banner', 'hermes-silver-banner', 1200, 400, 27000, '1200:400', 7, 0, 'hermes'],
+    [22, 'Caduceus Box I', 'hermes-caduceus-box-1', 600, 600, 11000, '600:600', 8, 0, 'hermes'],
+    [23, 'Caduceus Box II', 'hermes-caduceus-box-2', 600, 600, 9000, '600:600', 9, 0, 'hermes'],
+    [24, 'Messenger Banner', 'hermes-messenger-banner', 1200, 400, 16000, '1200:400', 10, 0, 'hermes'],
+    [25, 'Road Box I', 'hermes-road-box-1', 600, 600, 7000, '600:600', 11, 0, 'hermes'],
+    [26, 'Road Box II', 'hermes-road-box-2', 600, 600, 6000, '600:600', 12, 0, 'hermes'],
+    [27, 'Foundation Banner', 'hermes-foundation-banner', 1200, 400, 11000, '1200:400', 13, 0, 'hermes'],
+    [28, 'Full Page Takeover', 'hermes-full-page-takeover', 1200, 400, 250000, null, 14, 1, 'hermes'],
   ];
   for (const slot of slots) {
     insert.run(...slot);
   }
-  console.log('Seeded 13 Hermes ad_slots (IDs 14-26)');
+  console.log('Seeded 14 Hermes ad_slots (IDs 15-28)');
 } else {
   console.log(`Hermes slots already seeded: ${hermesCount}`);
 }
 
-// ─── Seed bundle_members for Hermes (slot 26 → slots 14-25) ───
+// ─── Seed bundle_members for Hermes (slot 28 → slots 15-27) ───
 const hermesBundleCount = db
-  .prepare('SELECT COUNT(*) as c FROM bundle_members WHERE bundle_slot_id = 26')
+  .prepare('SELECT COUNT(*) as c FROM bundle_members WHERE bundle_slot_id = 28')
   .get().c;
 if (hermesBundleCount === 0) {
   const insertBundle = db.prepare(
     'INSERT INTO bundle_members (bundle_slot_id, member_slot_id) VALUES (?, ?)'
   );
-  for (let i = 14; i <= 25; i++) {
-    insertBundle.run(26, i);
+  for (let i = 15; i <= 27; i++) {
+    insertBundle.run(28, i);
   }
-  console.log('Seeded bundle_members for Hermes Total Conquest (26 → 14-25)');
+  console.log('Seeded bundle_members for Hermes Full Page Takeover (28 → 15-27)');
 } else {
   console.log(`Hermes bundle_members already seeded: ${hermesBundleCount}`);
 }

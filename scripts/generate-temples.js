@@ -233,24 +233,13 @@ function getDomainStatus(entry) {
       label: 'PUNYCODEX Domain',
       cta: `Visit ${escapeHtml(displayDomain)}`,
       href: `https://${escapeHtml(asciiDomain)}/`,
+      isOwned: true,
     };
   }
 
   const snapshot = AVAILABILITY_SNAPSHOT[entry.id];
   if (snapshot?.status) {
     const status = snapshot.status;
-    if (status === 'available') {
-      return {
-        status,
-        displayDomain,
-        punycode,
-        label: 'Available',
-        cta: 'Check registrar availability',
-        href: `https://punycodex.com/search.html?q=${encodeURIComponent(asciiDomain)}`,
-        disclaimer:
-          'Not currently registered according to Verisign RDAP, but registry holds, premium listings, or registrar blocks can still prevent registration. Always verify with a registrar.',
-      };
-    }
     if (status === 'live' || status === 'registered') {
       return {
         status,
@@ -259,17 +248,21 @@ function getDomainStatus(entry) {
         label: 'Registered',
         cta: 'View on PUNYCODEX search',
         href: `https://punycodex.com/search.html?q=${encodeURIComponent(asciiDomain)}`,
+        isOwned: false,
       };
     }
   }
 
+  // Do not claim "available" for unverified domains. RDAP snapshots are stale
+  // and the vast majority of listed names are already registered in practice.
   return {
-    status: 'unknown',
+    status: 'reference',
     displayDomain,
     punycode,
-    label: 'Status Unknown',
+    label: 'Domain Reference',
     cta: 'Check availability',
     href: `https://punycodex.com/search.html?q=${encodeURIComponent(asciiDomain)}`,
+    isOwned: false,
   };
 }
 
@@ -480,13 +473,12 @@ function generateTempleHTML(entry, related) {
   const asciiBanner = getAsciiBanner(entry, domainStatus);
 
   // Meta
-  const pageTitle = `${hasOriginal ? `${originalScript} — ` : ''}${entry.unicode} | ${entry.domain} | PUNYCODEX`;
-  const pageDesc =
-    domainStatus.status === 'owned'
-      ? `Discover ${entry.unicode}.com — the authentic Unicode domain for ${hasOriginal ? `${originalScript}, ` : ''}${entry.domain}. Scholarly orthography, Punycode encoding, and sources: ${entry.sources.join(', ')}.`
-      : domainStatus.status === 'available'
-        ? `Scholarly profile of ${entry.unicode}.com — ${entry.domain}. This domain appears available per Verisign RDAP. Sources: ${entry.sources.join(', ')}.`
-        : `Scholarly profile of ${entry.unicode} — ${entry.domain}. PUNYCODEX documents the authentic Unicode orthography. Sources: ${entry.sources.join(', ')}.`;
+  const pageTitle = domainStatus.isOwned
+    ? `${hasOriginal ? `${originalScript} — ` : ''}${entry.unicode} | ${entry.domain} | PUNYCODEX`
+    : `${entry.unicode} — ${entry.meaning || entry.domain} | PUNYCODEX`;
+  const pageDesc = domainStatus.isOwned
+    ? `Discover ${entry.unicode}.com — the authentic Unicode domain for ${hasOriginal ? `${originalScript}, ` : ''}${entry.domain}. Scholarly orthography, Punycode encoding, and sources: ${entry.sources.join(', ')}.`
+    : `Scholarly profile of ${entry.unicode} — ${entry.meaning || entry.domain}. PUNYCODEX documents the authentic Unicode orthography. Sources: ${entry.sources.join(', ')}.`;
   const canonicalUrl = `https://punycodex.com/sites/${entry.id}/`;
 
   // Tier feature cards
@@ -565,7 +557,7 @@ ${JSON.stringify(
 </head>
 <body>
     <!-- Particle Canvas -->
-    <canvas id="particle-canvas"></canvas>
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
 
     <!-- Navigation -->
     <nav class="main-nav" id="main-nav">
@@ -588,13 +580,13 @@ ${JSON.stringify(
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">${domainStatus.status === 'owned' ? 'The Authentic Orthography' : domainStatus.status === 'available' ? 'Unicode Domain Profile' : 'Scholarly Name Reference'}</p>
+                <p class="hero-eyebrow reveal-up">${domainStatus.isOwned ? 'The Authentic Orthography' : 'Scholarly Name Reference'}</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">${hasOriginal ? escapeHtml(originalScript) : escapeHtml(entry.unicode)}</span>
                     <span class="title-divider"></span>
                     <span class="title-trans">${escapeHtml(entry.unicode)}</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">${escapeHtml(entry.domain)}${entry.meaning ? ` · ${escapeHtml(entry.meaning)}` : ''}${domainStatus.status === 'available' ? ' · appears available' : ''}</p>
+                <p class="hero-subtitle reveal-up">${entry.meaning ? escapeHtml(entry.meaning) : escapeHtml(entry.domain)}${domainStatus.isOwned ? ` · ${escapeHtml(entry.domain)}` : ''}</p>
                 <div class="hero-meta reveal-up">
                     ${
                       isDual && entry.variants
@@ -604,21 +596,17 @@ ${JSON.stringify(
                         <span class="tier-connector"></span>
                         <span class="meta-badge tier-2">Tier-2 ${subtype.includes('Macron') ? 'Macron-Preserving' : 'Full'}</span>
                     </div>
-                    <div class="domain-bridge">
-                        <span class="meta-domain">${entry.unicode.toLowerCase()}.com</span>
-                        <span class="domain-connector">·</span>
-                        <span class="meta-domain-alt">${(entry.variants.find((v) => v.type === 'owned' || v.type === 'alt-stress') || entry.variants[0]).unicode.toLowerCase()}.com</span>
-                    </div>
+
                     <span class="meta-badge meta-badge--${domainStatus.status}">${escapeHtml(domainStatus.label)}</span>`
                         : `
                     <span class="meta-badge">${escapeHtml(subtype)}</span>
-                    <span class="meta-domain">${entry.unicode.toLowerCase()}.com</span>
+                    ${domainStatus.isOwned ? `<span class="meta-domain">${entry.unicode.toLowerCase()}.com</span>` : ''}
                     <span class="meta-badge meta-badge--${domainStatus.status}">${escapeHtml(domainStatus.label)}</span>
                     `
                     }
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="${domainStatus.href}" class="btn-primary${domainStatus.status === 'registered' || domainStatus.status === 'live' || domainStatus.status === 'unknown' ? ' btn-ghost' : ''}">
+                    <a href="${domainStatus.href}" class="btn-primary${domainStatus.isOwned ? '' : ' btn-ghost'}">
                         <span>${domainStatus.cta}</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"/>
@@ -651,7 +639,7 @@ ${JSON.stringify(
             <div class="section-header reveal-up">
                 <span class="section-number">01</span>
                 <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">${domainStatus.status === 'owned' ? `Why <em>${entry.unicode.toLowerCase()}.com</em> is the correct form` : domainStatus.status === 'available' ? `<em>${entry.unicode.toLowerCase()}.com</em> appears available` : `Scholarly reference for <em>${entry.unicode}</em>`}</p>
+                <p class="section-subtitle">${domainStatus.isOwned ? `Why <em>${entry.unicode.toLowerCase()}.com</em> is the correct form` : `Scholarly reference for <em>${entry.unicode}</em>`}</p>
             </div>
 
             ${asciiBanner}
@@ -700,7 +688,7 @@ ${JSON.stringify(
             <div class="variants-panel reveal-up">
                 <div class="variants-panel-label">Valid Scholarly Variations</div>
                 <div class="variants-panel-list">${variantHtml}</div>
-                <p class="variants-panel-note">Each variant is an attested scholarly orthography. The <strong>owned</strong> form is the active domain; others are historically valid alternatives.</p>
+                <p class="variants-panel-note">Each variant is an attested scholarly orthography. ${domainStatus.isOwned ? 'The <strong>owned</strong> form is the active domain; others are historically valid alternatives.' : 'No domain is claimed here; these are documented Unicode forms for scholarly reference.'}</p>
             </div>
             `
                 : ''
@@ -722,7 +710,7 @@ ${JSON.stringify(
                 <div class="explainer-label">${isAsciiOnlyUnicode(entry) ? 'Domain Encoding' : 'Punycode Encoding'}</div>
                 <div class="explainer-box">
                     <code class="explainer-code">${entry.unicode.toLowerCase()}.com &rarr; ${punycode || `${entry.unicode.toLowerCase()}.com`}</code>
-                    <p class="explainer-note">${isAsciiOnlyUnicode(entry) ? `Because <strong>${escapeHtml(entry.unicode)}</strong> uses only ASCII characters, no Punycode encoding is required. The browser displays the name as-is, and the domain is the same sequence to both DNS and humanity.` : `The non-ASCII characters in <strong>${escapeHtml(entry.unicode)}</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>${escapeHtml(entry.unicode)}</em>.`}${domainStatus.status === 'registered' || domainStatus.status === 'live' ? ` This domain is currently registered by another party.` : domainStatus.status === 'available' ? ` This domain appears available per Verisign RDAP, but registry holds, premium listings, or registrar blocks can still prevent registration. Always verify with a registrar.` : domainStatus.status === 'unknown' ? ` Domain status could not be determined.` : ''}</p>
+                    <p class="explainer-note">${isAsciiOnlyUnicode(entry) ? `Because <strong>${escapeHtml(entry.unicode)}</strong> uses only ASCII characters, no Punycode encoding is required. The browser displays the name as-is.` : `The non-ASCII characters in <strong>${escapeHtml(entry.unicode)}</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>${escapeHtml(entry.unicode)}</em>.`}${domainStatus.status === 'registered' || domainStatus.status === 'live' ? ` This domain is currently registered by another party.` : !domainStatus.isOwned ? ` PUNYCODEX does not claim this domain is available; always verify status with a registrar.` : ''}</p>
                 </div>
             </div>
         </div>
@@ -988,8 +976,8 @@ ${JSON.stringify(
                 </div>
                 <div class="footer-info">
                     <div class="footer-block">
-                        <span class="footer-label">${domainStatus.status === 'owned' ? 'Owned Domain' : 'Domain'}</span>
-                        <span class="footer-value">${entry.unicode.toLowerCase()}.com${domainStatus.status === 'available' ? ' <small>(appears available)</small>' : domainStatus.status === 'registered' || domainStatus.status === 'live' ? ' <small>(registered)</small>' : domainStatus.status === 'unknown' ? ' <small>(status unknown)</small>' : ''}</span>
+                        <span class="footer-label">${domainStatus.isOwned ? 'Owned Domain' : 'Domain Reference'}</span>
+                        <span class="footer-value">${entry.unicode.toLowerCase()}.com${domainStatus.status === 'registered' || domainStatus.status === 'live' ? ' <small>(registered)</small>' : !domainStatus.isOwned ? ' <small>(reference only)</small>' : ''}</span>
                     </div>
                     <div class="footer-block">
                         <span class="footer-label">Classification</span>

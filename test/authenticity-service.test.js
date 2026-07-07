@@ -50,6 +50,7 @@ async function run() {
 test('verdict constants are defined', () => {
   assert.ok(VERDICTS.CANONICAL);
   assert.ok(VERDICTS.RECOGNIZED_VARIANT);
+  assert.ok(VERDICTS.ASCII_FALLBACK);
   assert.ok(VERDICTS.HOMOGRAPH_SPOOF);
   assert.ok(VERDICTS.MIXED_SCRIPT_SPOOF);
   assert.ok(VERDICTS.UNSAFE);
@@ -58,9 +59,9 @@ test('verdict constants are defined', () => {
 
 // ── Canonical inputs ──
 
-test('ASCII canonical name returns canonical verdict', () => {
+test('ASCII name returns ascii-fallback verdict', () => {
   const r = classifyAuthenticity('zeus');
-  assert.strictEqual(r.verdict, VERDICTS.CANONICAL);
+  assert.strictEqual(r.verdict, VERDICTS.ASCII_FALLBACK);
   assert.strictEqual(r.severity, SEVERITIES.NONE);
   assert.strictEqual(r.canonicalMatch.id, 'zeus');
 });
@@ -128,7 +129,7 @@ test('analysis exposes scripts and confusables', () => {
   assert.ok(r.analysis.visualDeviation > 0);
 });
 
-test('visual deviation is zero for pure ASCII canonical', () => {
+test('visual deviation is zero for pure ASCII fallback', () => {
   const r = classifyAuthenticity('zeus');
   assert.strictEqual(r.analysis.visualDeviation, 0);
 });
@@ -149,9 +150,9 @@ test('canonical punycode domain is canonical', () => {
 
 // ── Query + domain combined ──
 
-test('safe query + canonical domain is canonical overall', () => {
+test('safe query + safe domain is ascii-fallback overall', () => {
   const r = classifyQueryAndDomain('zeus', 'zeus.com');
-  assert.strictEqual(r.overall, VERDICTS.CANONICAL);
+  assert.strictEqual(r.overall, VERDICTS.ASCII_FALLBACK);
 });
 
 test('suspicious domain overrides safe query', () => {
@@ -199,7 +200,7 @@ test('punycode homograph of brand is classified critical', () => {
 
 test('classifyTerm still exposes legacy tier field', () => {
   const r = classifyTerm('zeus');
-  assert.strictEqual(r.tier, 'canonical');
+  assert.strictEqual(r.tier, 'ascii-fallback');
   assert.ok(r.canonicalMatch);
 });
 

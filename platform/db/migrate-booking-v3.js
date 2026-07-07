@@ -1,142 +1,260 @@
+/**
+ * PÚNYCODEX — Booking migration v3
+ *
+ * Seeds the new 13+1 tenant-space layout (5 banners + 8 boxes + Full Page Takeover)
+ * for every ad-enabled flagship temple. It is idempotent and booking-safe:
+ *   - Sites that already have exactly 14 new-style slots are skipped.
+ *   - Sites with existing bookings are skipped (to avoid data loss in production).
+ *   - All other sites are reseeded from the generated temple HTML.
+ *
+ * Run: node platform/db/migrate-booking-v3.js
+ */
+
+const fs = require('node:fs');
+const path = require('node:path');
+const cheerio = require('cheerio');
 const Database = require('better-sqlite3');
-const { getDbPath } = require('./db');
 
-const db = new Database(getDbPath());
-db.pragma('journal_mode = WAL');
+const ROOT = path.join(__dirname, '..', '..');
+const SITES_DIR = path.join(ROOT, 'sites');
+const DB_PATH = path.join(__dirname, 'punycodex.db');
 
-function tableExists(name) {
-  return (
-    db.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name=?").get(name) !==
-    undefined
-  );
+const SLOT_TYPES = [
+  'Banner',
+  'Box',
+  'Box',
+  'Banner',
+  'Box',
+  'Box',
+  'Banner',
+  'Box',
+  'Box',
+  'Banner',
+  'Box',
+  'Box',
+  'Banner',
+];
+
+function loadArchetypes() {
+  const archetypePath = path.join(ROOT, 'js', 'archetypes-v2.js');
+  const code = fs.readFileSync(archetypePath, 'utf8').replace('const ARCHETYPES', 'var ARCHETYPES');
+  return new Function(`${code}; return ARCHETYPES;`)();
 }
 
-function columnNames(table) {
-  return db
-    .prepare(`PRAGMA table_info(${table})`)
-    .all()
-    .map((c) => c.name);
+function slugify(text) {
+  return text
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-zA-Z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .toLowerCase();
 }
 
-// ─── admin_actions audit log ───
-if (!tableExists('admin_actions')) {
-  db.exec(`
-    CREATE TABLE admin_actions (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      admin_token TEXT,
-      action TEXT NOT NULL,
-      booking_id INTEGER,
-      entry_id TEXT,
-      payload TEXT,
-      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    )
-  `);
-  db.exec(`CREATE INDEX idx_admin_actions_booking ON admin_actions(booking_id)`);
-  db.exec(`CREATE INDEX idx_admin_actions_created ON admin_actions(created_at)`);
-  console.log('Created admin_actions table');
-}
-
-// ─── verified_sessions for email verification tokens ───
-if (!tableExists('verified_sessions')) {
-  db.exec(`
-    CREATE TABLE verified_sessions (
-      token TEXT PRIMARY KEY,
-      email TEXT NOT NULL,
-      expires_at DATETIME NOT NULL,
-      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    )
-  `);
-  db.exec(`CREATE INDEX idx_verified_sessions_email ON verified_sessions(email)`);
-  db.exec(`CREATE INDEX idx_verified_sessions_expires ON verified_sessions(expires_at)`);
-  console.log('Created verified_sessions table');
-}
-
-// ─── admin_sessions: add expires_at ───
-const adminCols = columnNames('admin_sessions');
-if (!adminCols.includes('expires_at')) {
-  db.exec(`ALTER TABLE admin_sessions ADD COLUMN expires_at DATETIME`);
-  console.log('Added admin_sessions.expires_at');
-}
-
-// ─── bookings: add cancel flags and widen status CHECK ───
-const existingCols = columnNames('bookings');
-const desiredNewCols = {
-  cancel_at_end: 'INTEGER DEFAULT 0',
-  canceled_at: 'TEXT',
-};
-
-let needsRecreate = false;
-for (const col of Object.keys(desiredNewCols)) {
-  if (!existingCols.includes(col)) {
-    needsRecreate = true;
-  }
-}
-
-// We also want to allow 'pending_application' and 'cancelled' in the CHECK constraint.
-// SQLite does not let us alter CHECK, so we recreate the table only when needed.
-if (needsRecreate) {
-  const allCols = [...existingCols];
-  for (const [col] of Object.entries(desiredNewCols)) {
-    if (!allCols.includes(col)) allCols.push(col);
+function parseSlotsFromHtml(siteSlug) {
+  const htmlPath = path.join(SITES_DIR, siteSlug, 'index.html');
+  if (!fs.existsSync(htmlPath)) {
+    throw new Error(`Generated HTML not found: ${htmlPath}`);
   }
 
-  const colDefs = allCols
-    .map((c) => {
-      if (c === 'id') return 'id INTEGER PRIMARY KEY AUTOINCREMENT';
-      if (c === 'status') {
-        return "status TEXT DEFAULT 'pending_payment' CHECK (status IN ('pending_payment','pending_application','pending_upload','pending_approval','approved','rejected','live','ended','cancelled'))";
-      }
-      if (desiredNewCols[c]) return `${c} ${desiredNewCols[c]}`;
-      // Keep original type from PRAGMA
-      const info = db
-        .prepare(`PRAGMA table_info(bookings)`)
-        .all()
-        .find((x) => x.name === c);
-      let type = info?.type || 'TEXT';
-      if (info?.notnull) type += ' NOT NULL';
-      if (info?.dflt_value !== null && info?.dflt_value !== undefined) {
-        type += ` DEFAULT ${info.dflt_value}`;
-      }
-      return `${c} ${type}`;
-    })
-    .join(', ');
+  const html = fs.readFileSync(htmlPath, 'utf8');
+  const $ = cheerio.load(html);
+  const slots = [];
 
-  const indexList = db
-    .prepare("SELECT sql FROM sqlite_master WHERE type='index' AND tbl_name='bookings'")
-    .all();
+  $('.space-slot').each((_idx, el) => {
+    const $el = $(el);
+    const sortOrder = parseInt($el.attr('data-space'), 10);
+    if (!sortOrder || sortOrder < 1 || sortOrder > 14) {
+      throw new Error(`${siteSlug}: unexpected data-space "${$el.attr('data-space')}"`);
+    }
 
-  db.exec('BEGIN TRANSACTION');
-  try {
-    db.exec(`CREATE TABLE bookings_new (${colDefs})`);
-    // Only copy columns that exist in the old table; new columns receive defaults.
-    db.exec(
-      `INSERT INTO bookings_new (${existingCols.join(', ')}) SELECT ${existingCols.join(', ')} FROM bookings`
-    );
-    db.exec('DROP TABLE bookings');
-    db.exec('ALTER TABLE bookings_new RENAME TO bookings');
+    const priceCents = parseInt($el.attr('data-price-cents'), 10);
+    if (!Number.isFinite(priceCents)) {
+      throw new Error(`${siteSlug}: slot ${sortOrder} missing data-price-cents`);
+    }
 
-    // Re-create original indexes (except SQLite internal ones)
-    for (const idx of indexList) {
-      if (idx.sql && !idx.sql.includes('sqlite_autoindex')) {
-        db.exec(idx.sql);
+    const name = $el.find('.space-name').first().text().trim();
+    if (!name) {
+      throw new Error(`${siteSlug}: slot ${sortOrder} missing space-name`);
+    }
+
+    const isBundle = $el.attr('data-bundle') === '1' || $el.hasClass('space-slot--fullpage');
+
+    let width;
+    let height;
+    let aspectRatio;
+
+    if (isBundle) {
+      width = 1200;
+      height = 400;
+      aspectRatio = null;
+    } else {
+      const type = SLOT_TYPES[sortOrder - 1];
+      if (type === 'Banner') {
+        width = 1200;
+        height = 400;
+        aspectRatio = '1200:400';
+      } else {
+        width = 600;
+        height = 600;
+        aspectRatio = '600:600';
       }
     }
-    db.exec('COMMIT');
-    console.log('Recreated bookings table with new status CHECK and cancel columns');
-  } catch (err) {
-    db.exec('ROLLBACK');
-    throw err;
+
+    slots.push({
+      sortOrder,
+      name,
+      slug: `${siteSlug}-${slugify(name)}`,
+      width,
+      height,
+      priceCents,
+      aspectRatio,
+      isBundle: isBundle ? 1 : 0,
+    });
+  });
+
+  if (slots.length !== 14) {
+    throw new Error(`${siteSlug}: expected 14 slots, found ${slots.length}`);
   }
-} else {
-  console.log('Bookings table already has cancel columns');
+
+  const seenSortOrders = new Set(slots.map((s) => s.sortOrder));
+  if (seenSortOrders.size !== 14) {
+    throw new Error(`${siteSlug}: duplicate sort_order values`);
+  }
+
+  const bundle = slots.find((s) => s.isBundle);
+  if (!bundle || bundle.sortOrder !== 14) {
+    throw new Error(`${siteSlug}: bundle must be at sort_order 14`);
+  }
+
+  return slots.sort((a, b) => a.sortOrder - b.sortOrder);
 }
 
-// ─── analytics_events: add is_bot column for future bot-flagging (optional) ───
-const analyticsCols = columnNames('analytics_events');
-if (!analyticsCols.includes('is_bot')) {
-  db.exec(`ALTER TABLE analytics_events ADD COLUMN is_bot INTEGER DEFAULT 0`);
-  console.log('Added analytics_events.is_bot');
+function seedSite(db, siteSlug, slots) {
+  const deleteBundle = db.prepare('DELETE FROM bundle_members WHERE bundle_slot_id IN (SELECT id FROM ad_slots WHERE site_slug = ?)');
+  const deleteSlots = db.prepare('DELETE FROM ad_slots WHERE site_slug = ?');
+
+  deleteBundle.run(siteSlug);
+  deleteSlots.run(siteSlug);
+
+  const insertSlot = db.prepare(`
+    INSERT INTO ad_slots (name, slug, width, height, price_cents, aspect_ratio, sort_order, is_bundle, site_slug)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `);
+
+  const insertedIds = [];
+  for (const slot of slots) {
+    const result = insertSlot.run(
+      slot.name,
+      slot.slug,
+      slot.width,
+      slot.height,
+      slot.priceCents,
+      slot.aspectRatio,
+      slot.sortOrder,
+      slot.isBundle,
+      siteSlug
+    );
+    insertedIds.push(result.lastInsertRowid);
+  }
+
+  const bundleId = insertedIds[13];
+  const insertBundleMember = db.prepare('INSERT INTO bundle_members (bundle_slot_id, member_slot_id) VALUES (?, ?)');
+  for (let i = 0; i < 13; i++) {
+    insertBundleMember.run(bundleId, insertedIds[i]);
+  }
+
+  return { siteSlug, slots: insertedIds.length };
 }
 
-db.close();
-console.log('Booking v3 migration complete');
+function main() {
+  const db = new Database(DB_PATH);
+
+  // Ensure site_slug column exists (idempotent)
+  try {
+    db.exec('ALTER TABLE ad_slots ADD COLUMN site_slug TEXT DEFAULT \'nike\'');
+  } catch (_e) {}
+
+  // Ensure tables exist
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS ad_slots (
+      id INTEGER PRIMARY KEY,
+      name TEXT NOT NULL,
+      slug TEXT NOT NULL UNIQUE,
+      width INTEGER NOT NULL,
+      height INTEGER NOT NULL,
+      price_cents INTEGER NOT NULL,
+      aspect_ratio TEXT,
+      sort_order INTEGER NOT NULL,
+      is_bundle INTEGER DEFAULT 0,
+      status TEXT DEFAULT 'available' CHECK (status IN ('available', 'reserved', 'live')),
+      current_booking_id INTEGER,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      site_slug TEXT DEFAULT 'nike'
+    );
+    CREATE INDEX IF NOT EXISTS idx_ad_slots_status ON ad_slots(status);
+    CREATE INDEX IF NOT EXISTS idx_ad_slots_slug ON ad_slots(slug);
+
+    CREATE TABLE IF NOT EXISTS bundle_members (
+      bundle_slot_id INTEGER NOT NULL,
+      member_slot_id INTEGER NOT NULL,
+      PRIMARY KEY (bundle_slot_id, member_slot_id),
+      FOREIGN KEY (bundle_slot_id) REFERENCES ad_slots(id),
+      FOREIGN KEY (member_slot_id) REFERENCES ad_slots(id)
+    );
+  `);
+
+  const archetypes = loadArchetypes().filter((a) => a.hasAdSite);
+  console.log(`Found ${archetypes.length} ad-enabled flagships`);
+
+  const skipped = [];
+  const reseeded = [];
+  const errors = [];
+
+  for (const archetype of archetypes) {
+    const siteSlug = archetype.id;
+
+    // Safety: never touch a site that has any bookings.
+    const bookingCount = db
+      .prepare('SELECT COUNT(*) as c FROM bookings WHERE site_slug = ?')
+      .get(siteSlug).c;
+    if (bookingCount > 0) {
+      skipped.push({ siteSlug, reason: `${bookingCount} existing booking(s)` });
+      continue;
+    }
+
+    // Check whether the new layout is already present.
+    const currentSlots = db
+      .prepare('SELECT id, sort_order, is_bundle FROM ad_slots WHERE site_slug = ? ORDER BY sort_order')
+      .all(siteSlug);
+
+    if (currentSlots.length === 14) {
+      const hasBundleAt14 = currentSlots.some((s) => s.sort_order === 14 && s.is_bundle === 1);
+      if (hasBundleAt14) {
+        skipped.push({ siteSlug, reason: 'already has 14 new-style slots' });
+        continue;
+      }
+    }
+
+    try {
+      const slots = parseSlotsFromHtml(siteSlug);
+      const result = seedSite(db, siteSlug, slots);
+      reseeded.push(result);
+    } catch (err) {
+      errors.push({ siteSlug, error: err.message });
+      console.error(`✗ ${siteSlug}: ${err.message}`);
+    }
+  }
+
+  db.close();
+
+  console.log('\n─── Migration complete ───');
+  console.log(`Reseeded: ${reseeded.length}`);
+  console.log(`Skipped:  ${skipped.length}`);
+  if (errors.length > 0) {
+    console.log(`Errors:   ${errors.length}`);
+    process.exit(1);
+  }
+}
+
+main();

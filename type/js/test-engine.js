@@ -337,8 +337,8 @@ test('Correct pantheon counts', () => {
   assert.strictEqual(counts.greek, 252, 'Greek count');
   assert.strictEqual(counts['greek-location'], 21, 'Greek-location count');
   assert.strictEqual(counts.norse, 85, 'Norse count');
-  assert.strictEqual(counts.egyptian, 64, 'Egyptian count');
-  assert.strictEqual(counts.sanskrit, 87, 'Sanskrit count');
+  assert.strictEqual(counts.egyptian, 66, 'Egyptian count');
+  assert.strictEqual(counts.sanskrit, 88, 'Sanskrit count');
   assert.strictEqual(counts.celtic, 47, 'Celtic count');
   assert.strictEqual(counts.mesopotamian, 30, 'Mesopotamian count');
   assert.strictEqual(counts.polynesian, 21, 'Polynesian count');
@@ -348,13 +348,13 @@ test('Correct pantheon counts', () => {
   assert.strictEqual(counts.slavic, 21, 'Slavic count');
   assert.strictEqual(counts.zoroastrian, 18, 'Zoroastrian count');
   assert.strictEqual(counts.incan, 12, 'Incan count');
-  assert.strictEqual(counts.chinese, 40, 'Chinese count');
+  assert.strictEqual(counts.chinese, 41, 'Chinese count');
   assert.strictEqual(counts.buddhist, 21, 'Buddhist count');
-  assert.strictEqual(counts.taoist, 10, 'Taoist count');
+  assert.strictEqual(counts.taoist, 12, 'Taoist count');
   assert.strictEqual(counts.korean, 12, 'Korean count');
   assert.strictEqual(counts.phoenician, 8, 'Phoenician count');
   assert.strictEqual(counts.hittite, 8, 'Hittite count');
-  assert.strictEqual(counts.canaanite, 4, 'Canaanite count');
+  assert.strictEqual(counts.canaanite, 11, 'Canaanite count');
 });
 
 section('Unicode & Normalization');

@@ -13,6 +13,7 @@ prepareTestDb(__filename);
 
 const { login: adminLogin } = require('../platform/api/admin.js');
 const { invoke, adminHeader } = require('./helpers/http.js');
+const { getSlotId } = require('./helpers/slots.js');
 
 let adminToken;
 
@@ -55,7 +56,7 @@ async function runTests() {
     const res = await invoke(bookingsHandler, 'POST', '/api/admin/bookings', {
       headers: adminHeader(adminToken),
       body: {
-        slotId: 1,
+        slotId: getSlotId(__filename, 'nike', 1),
         email: 'advertiser@example.com',
         companyName: 'Test Co',
         websiteUrl: 'https://example.com',
@@ -106,7 +107,7 @@ async function runTests() {
     const createRes = await invoke(bookingsHandler, 'POST', '/api/admin/bookings', {
       headers: adminHeader(adminToken),
       body: {
-        slotId: 9,
+        slotId: getSlotId(__filename, 'nike', 2),
         email: 'reserved-slot@example.com',
         companyName: 'Reserved Co',
         leaseMonths: 1,
@@ -118,7 +119,7 @@ async function runTests() {
     const secondRes = await invoke(bookingsHandler, 'POST', '/api/admin/bookings', {
       headers: adminHeader(adminToken),
       body: {
-        slotId: 9,
+        slotId: getSlotId(__filename, 'nike', 2),
         email: 'reserved-slot-2@example.com',
         companyName: 'Reserved Two',
         leaseMonths: 1,
@@ -132,7 +133,7 @@ async function runTests() {
     const createRes = await invoke(bookingsHandler, 'POST', '/api/admin/bookings', {
       headers: adminHeader(adminToken),
       body: {
-        slotId: 10,
+        slotId: getSlotId(__filename, 'nike', 3),
         email: 'unapproved-golive@example.com',
         companyName: 'Unapproved Co',
         leaseMonths: 1,
@@ -160,7 +161,7 @@ async function runTests() {
     const createRes = await invoke(bookingsHandler, 'POST', '/api/admin/bookings', {
       headers: adminHeader(adminToken),
       body: {
-        slotId: 8,
+        slotId: getSlotId(__filename, 'nike', 4),
         email: 'rejected@example.com',
         companyName: 'Bad Actor',
         leaseMonths: 1,

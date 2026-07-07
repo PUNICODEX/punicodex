@@ -41,13 +41,19 @@ const {
 function parseArgs(argv) {
   const id = argv[0];
   let domain = null;
+  let skipGenerate = false;
+  let skipValidate = false;
   for (let i = 1; i < argv.length; i++) {
     if (argv[i] === '--domain' && argv[i + 1]) {
       domain = argv[i + 1];
       i++;
+    } else if (argv[i] === '--skip-generate') {
+      skipGenerate = true;
+    } else if (argv[i] === '--skip-validate') {
+      skipValidate = true;
     }
   }
-  return { id, domain };
+  return { id, domain, skipGenerate, skipValidate };
 }
 
 function assetExists(dir, name, exts) {
@@ -55,10 +61,10 @@ function assetExists(dir, name, exts) {
 }
 
 function main() {
-  const { id, domain } = parseArgs(process.argv.slice(2));
+  const { id, domain, skipGenerate, skipValidate } = parseArgs(process.argv.slice(2));
 
   if (!id) {
-    console.error('Usage: node scripts/promote-to-flagship.js <id> [--domain <domain>]');
+    console.error('Usage: node scripts/promote-to-flagship.js <id> [--domain <domain>] [--skip-generate] [--skip-validate]');
     process.exit(1);
   }
 
@@ -109,7 +115,7 @@ function main() {
     greek: entry.greek || '—',
     domain: entry.domain || `${entry.pantheon} deity`,
     tagline: entry.meaning ? `${entry.domain} · ${entry.meaning}` : `${entry.domain}`,
-    tier: entry.tier,
+    tier: entry.tier === 'dual' ? 'dual-tier' : entry.tier === '1' ? 'tier-1' : 'tier-2',
     tierDetail: entry.tier === 'dual' ? 'dual-tier' : 'single-tier',
     pantheon: entry.pantheon,
     folder: id,
@@ -146,10 +152,14 @@ function main() {
   runCommand(`node scripts/create-flagship.js ${id}`);
 
   // Regenerate derived artifacts
-  runGenerate();
+  if (!skipGenerate) {
+    runGenerate();
+  }
 
   // Validate
-  runValidators(['node scripts/validate-seo.js']);
+  if (!skipValidate) {
+    runValidators(['node scripts/validate-seo.js']);
+  }
 
   console.log(`\n✓ ${id} promoted to flagship`);
 }
