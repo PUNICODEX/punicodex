@@ -8,20 +8,14 @@ const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
 const express = require('express');
-const {
-  requestMagicLink,
-  verifyMagicToken,
-  getSession,
-  logout,
-  requireAuth,
-} = require('../../platform/scholars/auth');
+const { requestMagicLink, verifyMagicToken, getSession, logout, requireAuth } = require('./auth');
 const {
   requireRole,
   requireCurator,
   canSubmitEdit,
   canReviewEdit,
   isReviewerOrHigher,
-} = require('../../platform/scholars/authz');
+} = require('./authz');
 const {
   listTemples,
   countTemples,
@@ -68,27 +62,17 @@ const {
   markNotificationRead,
   dismissNotification,
   listReviewersForInstitution,
-} = require('../../platform/db/scholars');
-const { generateBlankManifest } = require('../../platform/scholars/taxonomy');
-const {
-  scoreEdit,
-  validateEdit,
-  buildQualityReason,
-  MIN_SCORE,
-} = require('../../platform/scholars/quality');
+} = require('../db/scholars');
+const { generateBlankManifest } = require('./taxonomy');
+const { scoreEdit, validateEdit, buildQualityReason, MIN_SCORE } = require('./quality');
 const {
   securityHeaders,
   createPublicRateLimit,
   createScholarsRateLimit,
   validateInputLength,
   auditLog,
-} = require('../../platform/scholars/security');
-const {
-  get: cacheGet,
-  set: cacheSet,
-  del: cacheDel,
-  cacheKey,
-} = require('../../platform/scholars/cache');
+} = require('./security');
+const { get: cacheGet, set: cacheSet, del: cacheDel, cacheKey } = require('./cache');
 
 const router = express.Router();
 
@@ -787,7 +771,7 @@ const ALLOWED_MEDIA_TYPES = ['image/webp', 'image/png', 'image/jpeg'];
 const MAX_MEDIA_BYTES = 5 * 1024 * 1024;
 const UPLOAD_DIR =
   process.env.PUNYCODEX_SCHOLARS_UPLOAD_DIR ||
-  path.join(__dirname, '..', '..', 'platform', 'public', 'uploads', 'scholars');
+  path.join(__dirname, '..', 'public', 'uploads', 'scholars');
 
 function ensureUploadDir() {
   if (!fs.existsSync(UPLOAD_DIR)) {
@@ -1133,7 +1117,7 @@ router.post(
   validateInputLength([{ key: 'isFrozen', max: 50 }]),
   asyncHandler(async (req, res) => {
     const { isFrozen } = req.body || {};
-    const { setTempleFrozen } = require('../../platform/db/scholars');
+    const { setTempleFrozen } = require('../db/scholars');
     setTempleFrozen(req.params.id, Boolean(isFrozen));
     invalidateTempleCache(req.params.id);
     audit({

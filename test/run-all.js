@@ -22,7 +22,7 @@ const SUITES = [
   { name: 'Scholars Taxonomy Tests', cmd: 'node platform/scholars/taxonomy.test.js' },
   { name: 'Scholars Quality Gate Tests', cmd: 'node platform/scholars/quality.test.js' },
   { name: 'Scholars DB Tests', cmd: 'node platform/db/scholars/index.test.js' },
-  { name: 'Scholars API Tests', cmd: 'node api/scholars/index.test.js' },
+  { name: 'Scholars API Tests', cmd: 'node platform/scholars/router.test.js' },
   { name: 'Oracle Tests', cmd: 'node test/oracle.test.js' },
   { name: 'Search v2 Tests', cmd: 'node test/search-v2.test.js' },
   { name: 'Browser Shell Tests', cmd: 'node test/browser-shell.test.js' },

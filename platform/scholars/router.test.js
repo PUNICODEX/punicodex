@@ -16,10 +16,10 @@ const uploadDir = path.join(tmpDir, 'uploads');
 process.env.PUNYCODEX_TEST_DB_PATH = dbPath;
 process.env.PUNYCODEX_SCHOLARS_UPLOAD_DIR = uploadDir;
 
-const { getDb, closeDb } = require('../../platform/db/connection');
-const dbLayer = require('../../platform/db/scholars');
+const { getDb, closeDb } = require('../db/connection');
+const dbLayer = require('../db/scholars');
 const express = require('express');
-const scholarsApi = require('./index');
+const scholarsApi = require('./router');
 
 let passed = 0;
 let failed = 0;
@@ -44,7 +44,7 @@ async function runAllTests() {
 }
 
 function runScholarsMigrations(db) {
-  const migrationPath = path.join(__dirname, '..', '..', 'platform', 'db', 'migrate-scholars.js');
+  const migrationPath = path.join(__dirname, '..', 'db', 'migrate-scholars.js');
   const source = fs.readFileSync(migrationPath, 'utf8');
   const match =
     source.match(/const SCHOLARS_SCHEMA = `([\s\S]*?)`;/) ||
@@ -54,14 +54,7 @@ function runScholarsMigrations(db) {
   }
   db.exec(match[1]);
 
-  const qualityMigrationPath = path.join(
-    __dirname,
-    '..',
-    '..',
-    'platform',
-    'db',
-    'migrate-scholars-quality.js'
-  );
+  const qualityMigrationPath = path.join(__dirname, '..', 'db', 'migrate-scholars-quality.js');
   const qualitySource = fs.readFileSync(qualityMigrationPath, 'utf8');
   const qualityMatch = qualitySource.match(/const MIGRATION_SQL = `([\s\S]*?)`;/);
   if (!qualityMatch) {

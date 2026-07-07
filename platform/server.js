@@ -367,7 +367,7 @@ const v1ThreatFeedStats = require('../api/v1/threat-feed/stats/index.js');
 const v1ThreatFeedIngest = require('../api/v1/threat-feed/ingest/index.js');
 const v1ThreatFeedClusterReview = require('../api/v1/threat-feed/cluster/[clusterId]/review/index.js');
 const v1ThreatFeedCampaigns = require('../api/v1/threat-feed/campaigns/[identityId]/index.js');
-const scholarsApi = require('../api/scholars');
+const scholarsApi = require('../platform/scholars/router');
 
 app.get('/api/v1/threat-feed', v1ThreatFeed);
 app.get('/api/v1/threat-feed/stats', v1ThreatFeedStats);
