@@ -5,7 +5,10 @@ const db = new Database(getDbPath());
 db.pragma('journal_mode = WAL');
 
 // admin_sessions was created without an expires_at column; add it for token expiry.
-const adminCols = db.prepare('PRAGMA table_info(admin_sessions)').all().map((c) => c.name);
+const adminCols = db
+  .prepare('PRAGMA table_info(admin_sessions)')
+  .all()
+  .map((c) => c.name);
 if (!adminCols.includes('expires_at')) {
   db.exec(`ALTER TABLE admin_sessions ADD COLUMN expires_at DATETIME`);
   console.log('Added admin_sessions.expires_at');

@@ -130,7 +130,9 @@ function parseSlotsFromHtml(siteSlug) {
 }
 
 function seedSite(db, siteSlug, slots) {
-  const deleteBundle = db.prepare('DELETE FROM bundle_members WHERE bundle_slot_id IN (SELECT id FROM ad_slots WHERE site_slug = ?)');
+  const deleteBundle = db.prepare(
+    'DELETE FROM bundle_members WHERE bundle_slot_id IN (SELECT id FROM ad_slots WHERE site_slug = ?)'
+  );
   const deleteSlots = db.prepare('DELETE FROM ad_slots WHERE site_slug = ?');
 
   deleteBundle.run(siteSlug);
@@ -158,7 +160,9 @@ function seedSite(db, siteSlug, slots) {
   }
 
   const bundleId = insertedIds[13];
-  const insertBundleMember = db.prepare('INSERT INTO bundle_members (bundle_slot_id, member_slot_id) VALUES (?, ?)');
+  const insertBundleMember = db.prepare(
+    'INSERT INTO bundle_members (bundle_slot_id, member_slot_id) VALUES (?, ?)'
+  );
   for (let i = 0; i < 13; i++) {
     insertBundleMember.run(bundleId, insertedIds[i]);
   }
@@ -171,7 +175,7 @@ function main() {
 
   // Ensure site_slug column exists (idempotent)
   try {
-    db.exec('ALTER TABLE ad_slots ADD COLUMN site_slug TEXT DEFAULT \'nike\'');
+    db.exec("ALTER TABLE ad_slots ADD COLUMN site_slug TEXT DEFAULT 'nike'");
   } catch (_e) {}
 
   // Ensure tables exist
@@ -225,7 +229,9 @@ function main() {
 
     // Check whether the new layout is already present.
     const currentSlots = db
-      .prepare('SELECT id, sort_order, is_bundle FROM ad_slots WHERE site_slug = ? ORDER BY sort_order')
+      .prepare(
+        'SELECT id, sort_order, is_bundle FROM ad_slots WHERE site_slug = ? ORDER BY sort_order'
+      )
       .all(siteSlug);
 
     if (currentSlots.length === 14) {

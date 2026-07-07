@@ -84,12 +84,19 @@ module.exports = async (req, res) => {
       // POST /api/bookings/:token/upload
       if (slugParts.length === 2 && action === 'upload' && req.method === 'POST') {
         if (!(await checkPublicRateLimitByReq(req, res, 'booking-upload'))) return;
-        const result = await uploadBookingCreative(token, body, { notifyAdminPending: () => Promise.resolve() });
+        const result = await uploadBookingCreative(token, body, {
+          notifyAdminPending: () => Promise.resolve(),
+        });
         return res.status(result.status).json(result.body);
       }
 
       // POST /api/bookings/:token/slot/:slotId/upload
-      if (slugParts.length === 4 && slugParts[1] === 'slot' && slugParts[3] === 'upload' && req.method === 'POST') {
+      if (
+        slugParts.length === 4 &&
+        slugParts[1] === 'slot' &&
+        slugParts[3] === 'upload' &&
+        req.method === 'POST'
+      ) {
         if (!(await checkPublicRateLimitByReq(req, res, 'booking-upload'))) return;
         const slotId = parseInt(slugParts[2], 10);
         const result = await uploadSlotCreative(token, slotId, body);

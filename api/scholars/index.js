@@ -83,7 +83,12 @@ const {
   validateInputLength,
   auditLog,
 } = require('../../platform/scholars/security');
-const { get: cacheGet, set: cacheSet, del: cacheDel, cacheKey } = require('../../platform/scholars/cache');
+const {
+  get: cacheGet,
+  set: cacheSet,
+  del: cacheDel,
+  cacheKey,
+} = require('../../platform/scholars/cache');
 
 const router = express.Router();
 

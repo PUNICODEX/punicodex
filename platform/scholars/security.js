@@ -104,7 +104,8 @@ const strictLimiter = new ScholarsRateLimiter({ windowMs: 60 * 1000, maxRequests
  * @param {'public'|'auth'|'strict'} [options.tier='auth'] - Which limit bucket to use.
  */
 function createScholarsRateLimit(endpointName, { tier = 'auth' } = {}) {
-  const limiter = tier === 'public' ? publicLimiter : tier === 'strict' ? strictLimiter : authLimiter;
+  const limiter =
+    tier === 'public' ? publicLimiter : tier === 'strict' ? strictLimiter : authLimiter;
   return function scholarsRateLimitMiddleware(req, res, next) {
     const ip = getClientIp(req);
     const key = `${endpointName}:${ip}`;

@@ -50,7 +50,12 @@ const {
   recoverBookings,
 } = require('../platform/api/booking-service.js');
 const { createBooking } = require('../platform/api/bookings.js');
-const { getSlotId, getSlotSlug, getBundleSlotId, getIndividualSlotIds } = require('./helpers/slots.js');
+const {
+  getSlotId,
+  getSlotSlug,
+  getBundleSlotId,
+  getIndividualSlotIds,
+} = require('./helpers/slots.js');
 
 function getVerificationCode(email) {
   const db = new Database(getTestDbPath(__filename));

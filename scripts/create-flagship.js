@@ -78,10 +78,10 @@ const SLOT_TYPES = [
 
 const SLOT_PRICES_CENTS = {
   SSS: [75000, 30000, 26000, 47000, 20000, 15000, 27000, 11000, 9000, 16000, 7000, 6000, 11000],
-  S:   [37500, 15000, 13000, 23500, 10000, 7500, 13500, 5500, 4500, 8000, 3500, 3000, 5500],
-  A:   [22500, 9000, 7800, 14100, 6000, 4500, 8100, 3300, 2700, 4800, 2100, 1800, 3300],
-  B:   [15000, 6000, 5200, 9400, 4000, 3000, 5400, 2200, 1800, 3200, 1400, 1200, 2200],
-  C:   [7500, 3000, 2600, 4700, 2000, 1500, 2700, 1100, 900, 1600, 700, 600, 1100],
+  S: [37500, 15000, 13000, 23500, 10000, 7500, 13500, 5500, 4500, 8000, 3500, 3000, 5500],
+  A: [22500, 9000, 7800, 14100, 6000, 4500, 8100, 3300, 2700, 4800, 2100, 1800, 3300],
+  B: [15000, 6000, 5200, 9400, 4000, 3000, 5400, 2200, 1800, 3200, 1400, 1200, 2200],
+  C: [7500, 3000, 2600, 4700, 2000, 1500, 2700, 1100, 900, 1600, 700, 600, 1100],
 };
 
 const FULLPAGE_PRICES_CENTS = { SSS: 250000, S: 125000, A: 75000, B: 50000, C: 25000 };
@@ -2793,7 +2793,9 @@ function validateGenerated(_templeId, outputs) {
   }
   // The last name is the bundle; the first SLOT_TYPES.length are individual slots.
   if (slotNames.length !== SLOT_TYPES.length + 1) {
-    issues.push(`index.html: found ${slotNames.length} slot names, expected ${SLOT_TYPES.length + 1} (13 individual + 1 bundle)`);
+    issues.push(
+      `index.html: found ${slotNames.length} slot names, expected ${SLOT_TYPES.length + 1} (13 individual + 1 bundle)`
+    );
   }
 
   return issues;

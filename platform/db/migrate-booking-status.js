@@ -11,7 +11,10 @@ const createSql = db
   .get()?.sql;
 
 const needsStatusFix = !createSql || !createSql.includes('pending_application');
-const columns = db.prepare('PRAGMA table_info(bookings)').all().map((c) => c.name);
+const columns = db
+  .prepare('PRAGMA table_info(bookings)')
+  .all()
+  .map((c) => c.name);
 const needsCancelAtEnd = !columns.includes('cancel_at_end');
 const needsCanceledAt = !columns.includes('canceled_at');
 
@@ -55,9 +58,43 @@ if (needsStatusFix || needsCancelAtEnd || needsCanceledAt) {
       )
     `);
 
-    const oldColumns = db.prepare('PRAGMA table_info(bookings)').all().map((c) => c.name);
+    const oldColumns = db
+      .prepare('PRAGMA table_info(bookings)')
+      .all()
+      .map((c) => c.name);
     const commonColumns = oldColumns.filter((c) =>
-      ['id','slot_id','email','company_name','website_url','custom_heading','custom_subtitle','status','stripe_session_id','stripe_payment_intent','amount_paid_cents','creative_path','creative_original_name','admin_note','analytics_token','started_at','ends_at','created_at','updated_at','lease_months','site_slug','trial_months','trial_ends_at','billing_starts_at','reminder_7d_sent','reminder_1d_sent','stripe_subscription_id','billing_status','cancel_at_end','canceled_at'].includes(c)
+      [
+        'id',
+        'slot_id',
+        'email',
+        'company_name',
+        'website_url',
+        'custom_heading',
+        'custom_subtitle',
+        'status',
+        'stripe_session_id',
+        'stripe_payment_intent',
+        'amount_paid_cents',
+        'creative_path',
+        'creative_original_name',
+        'admin_note',
+        'analytics_token',
+        'started_at',
+        'ends_at',
+        'created_at',
+        'updated_at',
+        'lease_months',
+        'site_slug',
+        'trial_months',
+        'trial_ends_at',
+        'billing_starts_at',
+        'reminder_7d_sent',
+        'reminder_1d_sent',
+        'stripe_subscription_id',
+        'billing_status',
+        'cancel_at_end',
+        'canceled_at',
+      ].includes(c)
     );
     db.exec(`
       INSERT INTO bookings_new (${commonColumns.join(', ')})
@@ -71,7 +108,9 @@ if (needsStatusFix || needsCancelAtEnd || needsCanceledAt) {
     db.exec('CREATE INDEX idx_bookings_email ON bookings(email)');
     db.exec('CREATE INDEX idx_bookings_analytics_token ON bookings(analytics_token)');
     db.exec('COMMIT');
-    console.log('Recreated bookings table with pending_application status and cancel_at_end column');
+    console.log(
+      'Recreated bookings table with pending_application status and cancel_at_end column'
+    );
   } catch (err) {
     db.exec('ROLLBACK');
     throw err;
