@@ -549,10 +549,11 @@ document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right, .reveal-scal
 });
 
 // ========== NAV SCROLL EFFECT ==========
-const nav = document.getElementById('main-nav');
+const nav = document.querySelector('.main-nav');
 let lastScrollY = 0;
 
 window.addEventListener('scroll', () => {
+    if (!nav) return;
     const scrollY = window.scrollY;
     if (scrollY > 50) {
         nav.style.background = 'rgba(6, 10, 6, 0.98)';

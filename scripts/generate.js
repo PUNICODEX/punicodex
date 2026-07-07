@@ -16,6 +16,7 @@
  *   - platform/browser/renderer/lexicon.json
  *   - middleware.js (DOMAIN_MAP)
  *   - sites/{id}/ base temples (skipped if they already exist)
+ *   - sites/{id}/ flagship temples (regenerated if --regenerate-all)
  *
  * Usage: npm run generate
  */
@@ -37,6 +38,7 @@ const scripts = [
   'scripts/sync-middleware-domains.js',
   'scripts/sync-public-copy.js',
   'scripts/generate-temples.js',
+  'scripts/create-flagship.js --regenerate-all',
   'scripts/generate-scholars-manifests.js',
   'scripts/generate-scholars.js',
   'scripts/gen-sitemap.js',
@@ -45,9 +47,11 @@ const scripts = [
 ];
 
 function run(script) {
-  const scriptPath = path.join(root, script);
+  const parts = script.split(/\s+/);
+  const scriptPath = path.join(root, parts[0]);
+  const args = parts.slice(1);
   console.log(`\n▸ ${script}`);
-  const result = spawnSync(process.execPath, [scriptPath], {
+  const result = spawnSync(process.execPath, [scriptPath, ...args], {
     cwd: root,
     stdio: 'inherit',
   });

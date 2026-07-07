@@ -333,7 +333,7 @@
     
     } else {
     }
-    const nav = document.getElementById('main-nav');
+    const nav = document.querySelector('.main-nav');
     function setTorchFromScroll() {
         const sy = window.scrollY || document.documentElement.scrollTop || 0;
         const sh = document.documentElement.scrollHeight || document.body.scrollHeight || 1;
@@ -344,6 +344,7 @@
         targetTorchY = 0.5 + (p * 0.25); // 0.5 -> 0.75
     }
     window.addEventListener('scroll', () => {
+        if (!nav) return;
         nav.classList.toggle('scrolled', window.scrollY > 50);
         setTorchFromScroll();
     });

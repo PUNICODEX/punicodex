@@ -2903,6 +2903,24 @@ function createFlagship(templeId, options = {}) {
   for (const [relativePath, content] of Object.entries(outputs)) {
     const outPath = path.join(siteDir, relativePath);
     fs.mkdirSync(path.dirname(outPath), { recursive: true });
+
+    // Preserve lore.json timestamp when the meaningful content has not changed
+    // so that regeneration does not create spurious git diffs.
+    if (relativePath === 'lore.json' && fs.existsSync(outPath)) {
+      try {
+        const existingRaw = fs.readFileSync(outPath, 'utf8');
+        const existingJson = JSON.parse(existingRaw);
+        const newJson = JSON.parse(content);
+        delete existingJson.generatedAt;
+        delete newJson.generatedAt;
+        if (JSON.stringify(existingJson) === JSON.stringify(newJson)) {
+          continue;
+        }
+      } catch {
+        // If parsing fails, fall through and overwrite normally.
+      }
+    }
+
     fs.writeFileSync(outPath, content, 'utf8');
   }
 

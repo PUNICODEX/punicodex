@@ -154,11 +154,12 @@
     // ============================
     // Navigation
     // ============================
-    const nav = document.getElementById('main-nav');
+    const nav = document.querySelector('.main-nav');
     const navToggle = document.getElementById('nav-toggle');
     const navLinks = document.querySelector('.nav-links');
 
     window.addEventListener('scroll', () => {
+        if (!nav) return;
         nav.classList.toggle('scrolled', window.scrollY > 100);
     });
 

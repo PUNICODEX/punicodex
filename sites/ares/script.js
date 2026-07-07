@@ -474,10 +474,11 @@ const canvas = document.getElementById('battlefield-canvas');
     /* =====================================================
        NAV SCROLL EFFECT
        ===================================================== */
-    const nav = document.getElementById('main-nav');
+    const nav = document.querySelector('.main-nav');
     let lastScroll = 0;
 
     window.addEventListener('scroll', () => {
+        if (!nav) return;
         const currentScroll = window.pageYOffset;
         if (currentScroll > 80) {
             nav.classList.add('scrolled');

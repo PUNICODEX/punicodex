@@ -41,13 +41,14 @@
     // ============================
     // Navigation Scroll Effect
     // ============================
-    const nav = document.getElementById('main-nav');
+    const nav = document.querySelector('.main-nav');
     const navToggle = document.getElementById('nav-toggle');
     const navLinks = document.querySelector('.nav-links');
 
     if (nav) {
         let ticking = false;
         window.addEventListener('scroll', () => {
+            if (!nav) return;
             if (!ticking) {
                 window.requestAnimationFrame(() => {
                     if (window.scrollY > 100) {

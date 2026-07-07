@@ -264,12 +264,13 @@
     // ============================
     // Navigation
     // ============================
-    const nav = document.getElementById('main-nav');
+    const nav = document.querySelector('.main-nav');
     const navToggle = document.getElementById('nav-toggle');
     const navLinks = document.querySelector('.nav-links');
     let lastScrollY = 0;
 
     window.addEventListener('scroll', () => {
+        if (!nav) return;
         const scrollY = window.scrollY;
         
         if (scrollY > 100) {
