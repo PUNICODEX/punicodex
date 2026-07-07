@@ -40,22 +40,8 @@
     }, { passive: true });
     handleNavScroll();
 
-    // Mobile menu toggle
-    if (navToggle && mobileMenu) {
-        navToggle.addEventListener('click', () => {
-            navToggle.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-        });
-
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navToggle.classList.remove('active');
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-        });
-    }
+    // Mobile menu toggle is handled by px-core.js (shared navigation init).
+    // This page loads px-core.js before main.js, so we avoid duplicate handlers here.
 
     // Ensure global nav includes API link on legacy pages
     function ensureApiNavLink() {

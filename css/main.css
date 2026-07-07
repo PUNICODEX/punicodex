@@ -350,7 +350,8 @@ ul, ol {
     gap: 5px;
     width: 28px;
     height: 20px;
-    z-index: 1001;
+    z-index: 1003;
+    position: relative;
 }
 
 .nav-toggle span {
@@ -389,7 +390,7 @@ ul, ol {
     position: fixed;
     inset: 0;
     background: rgba(5, 5, 5, 0.98);
-    z-index: 999;
+    z-index: 1002;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -403,6 +404,11 @@ ul, ol {
 .mobile-menu.active {
     opacity: 1;
     pointer-events: all;
+    overflow-y: auto;
+}
+
+body.menu-open {
+    overflow: hidden;
 }
 
 .mobile-menu a {

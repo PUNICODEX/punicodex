@@ -55,11 +55,25 @@
 
 @media (max-width: 640px) {
     .global-strip-inner {
-        justify-content: center;
-        gap: 0;
+        justify-content: space-between;
+        gap: 0.75rem;
+        flex-wrap: nowrap;
     }
     .global-links {
-        display: none;
+        display: flex;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+    .global-links a {
+        font-size: 0.55rem;
+        letter-spacing: 0.06em;
+    }
+    .global-brand {
+        font-size: 0.65rem;
+        letter-spacing: 0.1em;
+        white-space: nowrap;
+        flex-shrink: 0;
     }
 }
 
@@ -67,6 +81,12 @@
 .tab-nav,
 .extended-nav {
     top: 54px;
+}
+@media (max-width: 640px) {
+    .tab-nav,
+    .extended-nav {
+        top: 72px;
+    }
 }
 .tab-nav .nav-link.active {
     color: var(--classic-gold);
@@ -627,11 +647,14 @@
         gap: 2rem;
     }
     .space-row {
+        flex-direction: row;
+        gap: 1rem;
+    }
+    .space-row--banner {
         flex-direction: column;
-        gap: 1.25rem;
     }
     .space-row--boxes > .space-slot {
-        flex: 1 1 100%;
+        flex: 1 1 calc(50% - 0.5rem);
         min-width: 0;
     }
     .space-frame {

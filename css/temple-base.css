@@ -41,6 +41,7 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    overflow-x: hidden;
 }
 
 body {
@@ -160,14 +161,14 @@ canvas[data-effect] {
 
 @media (max-width: 768px) {
     :root {
-        --nav-height: 74px;
+        --nav-height: 130px;
     }
     .nav-inner {
         height: var(--nav-height);
     }
     .nav-logo-img {
-        height: 74px;
-        max-width: 184px;
+        height: 130px;
+        max-width: min(280px, 58vw);
     }
 }
 
@@ -294,12 +295,34 @@ canvas[data-effect] {
 }
 
 @media (max-width: 768px) {
-    .global-links {
-        display: none;
+    .global-strip {
+        padding: 0.35rem 0;
     }
 
     .global-strip-inner {
-        justify-content: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        flex-wrap: nowrap;
+    }
+
+    .global-links {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+
+    .global-links a {
+        font-size: 0.55rem;
+        letter-spacing: 0.05em;
+        white-space: nowrap;
+    }
+
+    .global-brand {
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        white-space: nowrap;
+        flex-shrink: 0;
     }
 }
 
