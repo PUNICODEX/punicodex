@@ -1,12 +1,12 @@
 /**
- * Vercel serverless handler for the Scholarly Edition API.
+ * Shared Vercel serverless handler for the Scholarly Edition API.
  *
- * Mounted as a catch-all under /api/v1/scholars/* so the Express router
- * can serve /health, /temples, /auth, and all other sub-routes.
+ * Creates a mini Express app, mounts the scholars router at the root,
+ * and exports a function that Vercel can dispatch for /api/v1/scholars/*.
  */
 
 const express = require('express');
-const scholarsRouter = require('../../../platform/scholars/router');
+const scholarsRouter = require('./router');
 
 const app = express();
 app.use(scholarsRouter);
