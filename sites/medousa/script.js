@@ -632,7 +632,8 @@ function updateSlotUI() {
           <div class="space-frame-glow"></div>
           <div class="space-frame-content">
             <span class="space-placeholder-logo">◆</span>
-            
+            <span class="space-placeholder-text">Available</span>
+            <span class="space-placeholder-dims">Select to reserve</span>
           </div>
         `;
       }
@@ -746,6 +747,10 @@ function openModal(slotOrId) {
     els.slotName.textContent = slot.name;
     els.slotDims.textContent = `${slot.width} × ${slot.height} px`;
     applyCharLimits(slot.width || 0);
+    if (isBundleApplication) {
+      els.slotDims.textContent = 'All 13 ad spaces · One unified campaign';
+    }
+
     clearBookingError();
     showStep('1');
     modal.style.display = 'flex';

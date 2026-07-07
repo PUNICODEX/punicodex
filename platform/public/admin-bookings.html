@@ -656,7 +656,7 @@
             const btn = event.target;
             btn.textContent = 'Creating...';
             try {
-                const data = await api('/api/admin/bookings/create', {
+                const data = await api('/api/admin/bookings', {
                     method: 'POST',
                     body: JSON.stringify({ slotId, email, companyName, websiteUrl, leaseMonths, trialMonths }),
                 });

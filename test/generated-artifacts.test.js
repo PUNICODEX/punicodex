@@ -7,6 +7,7 @@
  */
 
 const assert = require('node:assert');
+const crypto = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -85,6 +86,22 @@ test('data-version.json is valid and counts match canonical', () => {
   assert.ok(manifest.releasedAt, 'manifest should have releasedAt');
   assert.ok(manifest.canonicalHashes, 'manifest should have canonicalHashes');
   assert.strictEqual(manifest.counts.entries, canonicalEntries.length);
+});
+
+test('data-version.json canonicalHashes match current canonical sources', () => {
+  const manifest = readJson('data-version.json');
+  assert.ok(manifest.canonicalSources, 'manifest should list canonicalSources');
+  for (const [key, relPath] of Object.entries(manifest.canonicalSources)) {
+    const file = path.join(root, relPath);
+    assert.ok(fs.existsSync(file), `${relPath} should exist`);
+    const content = fs.readFileSync(file, 'utf8').replace(/\r\n/g, '\n');
+    const hash = crypto.createHash('sha256').update(content).digest('hex');
+    assert.strictEqual(
+      manifest.canonicalHashes[key],
+      hash,
+      `canonical hash mismatch for ${relPath}: data-version is stale, run \`npm run generate\``
+    );
+  }
 });
 
 test('every entry has a generated temple page', () => {

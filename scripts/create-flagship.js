@@ -2390,13 +2390,15 @@ function generateHomePage(entry, palette, slotNames, templateDir, rentalTier = '
   return html;
 }
 
-function generateDashboardPage(entry, palette, templateDir) {
+function generateDashboardPage(entry, palette, templateDir, archetype = {}) {
   let html = fs.readFileSync(path.join(templateDir, 'dashboard.html'), 'utf8');
   const templeId = entry.id;
+  const domainUnicode = archetype.domainUnicode || `${entry.unicode}.com`;
   const vars = {
     UNICODE: entry.unicode,
     ASCII: entry.ascii,
     DOMAIN: entry.domain,
+    DOMAIN_UNICODE: domainUnicode,
     MEANING: entry.meaning || '',
     TEMPLE_ID: templeId,
     PRIMARY: palette.primary,
@@ -2858,7 +2860,7 @@ function createFlagship(templeId, options = {}) {
     'lore/index.html': generateLorePage(entry, palette, loreSections, TEMPLATE_DIR, catalog),
     'gallery/index.html': generateGalleryPage(entry, palette, TEMPLATE_DIR),
     'scholars/index.html': generateScholarsPage(templeId),
-    'dashboard/index.html': generateDashboardPage(entry, palette, TEMPLATE_DIR),
+    'dashboard/index.html': generateDashboardPage(entry, palette, TEMPLATE_DIR, archetype),
     'lore.json': buildLoreJson(entry, catalog[entry.id] || {}),
     'styles.css': buildCss(palette),
     'script.js': buildScript(templeId),

@@ -9,15 +9,17 @@
  *   2. Run `npm run generate`.
  *   3. Fail if the generator introduced *new* tracked changes or *new*
  *      untracked files on top of the pre-existing state.
- *   4. Run `npm run generate` a second time.
- *   5. Fail if the second run changed anything at all (idempotency).
+ *   4. Fail if any known generated artifact is still dirty (catches the
+ *      common case where a canonical source was edited but `npm run generate`
+ *      was not run and committed).
+ *   5. Run `npm run generate` a second time.
+ *   6. Fail if the second run changed anything at all (idempotency).
  */
 
 'use strict';
 
 const assert = require('node:assert');
 const { execSync } = require('node:child_process');
-const fs = require('node:fs');
 const path = require('node:path');
 
 const ROOT = path.join(__dirname, '..');
@@ -61,6 +63,22 @@ function setDiff(a, b) {
   return [...b].filter((x) => !a.has(x));
 }
 
+function isGeneratedArtifact(file) {
+  if (file === 'middleware.js') return true;
+  if (file === 'data-version.json') return true;
+  if (file === 'sitemap.xml') return true;
+  if (file === 'js/original-script-lookup.js') return true;
+  if (file.startsWith('codex/data/')) return true;
+  if (file.startsWith('platform/scholars/manifests/')) return true;
+  if (file.startsWith('platform/browser/renderer/')) return true;
+  if (file.startsWith('extension/shared/')) return true;
+  if (file.startsWith('mobile/shared/')) return true;
+  if (file.startsWith('android/app/src/main/assets/shared/')) return true;
+  if (/^sites\/[^/]+\/(index\.html|styles\.css|script\.js|scholars\/index\.html)$/.test(file))
+    return true;
+  return false;
+}
+
 test('working tree is inside a git repository', () => {
   const topLevel = run('git rev-parse --show-toplevel');
   assert.strictEqual(path.resolve(topLevel), path.resolve(ROOT));
@@ -84,6 +102,19 @@ test('npm run generate does not introduce new changes on a clean-ish tree', () =
     newlyUntracked,
     [],
     `npm run generate created untracked file(s):\n${newlyUntracked.join('\n')}`
+  );
+});
+
+test('generated artifacts are fully committed after npm run generate', () => {
+  const afterFirst = parseStatus(gitStatusPorcelain());
+  const dirtyGenerated = [...afterFirst.modified, ...afterFirst.untracked].filter(
+    isGeneratedArtifact
+  );
+
+  assert.deepStrictEqual(
+    dirtyGenerated,
+    [],
+    `generated artifact(s) are still dirty after regeneration; run \`npm run generate\` and commit them:\n${dirtyGenerated.join('\n')}`
   );
 });
 
