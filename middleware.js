@@ -615,10 +615,7 @@ const LEGACY_REDIRECTS = {
 };
 
 export const config = {
-  // Run on all paths except the Scholars API, which is routed directly to its
-  // Vercel Function. The middleware's fetch(request) pass-through does not
-  // correctly dispatch to the nested scholars entry points, so we skip them here.
-  matcher: '/((?!api/v1/scholars/).*)',
+  matcher: '/:path*',
 };
 
 export default function middleware(request) {
