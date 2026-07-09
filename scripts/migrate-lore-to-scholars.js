@@ -4,13 +4,15 @@
  *
  * Reads scripts/lore-catalog.json and populates scholars_sections for every
  * flagship temple that has lore data. Idempotent: sections with a non-empty
- * body are skipped.
+ * body are skipped. Safe to re-run on existing data: migrations are applied
+ * idempotently and the migration account is created or activated as needed.
  */
 
 const fs = require('node:fs');
 const path = require('node:path');
 const { getDb, closeDb } = require('../platform/db/connection');
 const { migrate } = require('../platform/db/migrate-scholars');
+const { migrate: migrateQuality } = require('../platform/db/migrate-scholars-quality');
 const dbApi = require('../platform/db/scholars');
 const { validateSectionKey, getSectionDefinition } = require('../platform/scholars/taxonomy');
 
@@ -130,11 +132,15 @@ function ensureMigrationUser(db) {
       metadata: { note: MIGRATION_NOTE },
     });
     institution = dbApi.getInstitutionById(result.lastInsertRowid);
-    // The schema defaults new institutions to 'pending'; activate the migration account.
-    db.prepare("UPDATE scholars_institutions SET status = 'active' WHERE id = ?").run(
-      institution.id
-    );
+  }
+
+  // Ensure the migration institution is active and sponsored so it does not block reads.
+  if (institution.status !== 'active' || institution.sponsorship_status !== 'active') {
+    db.prepare(
+      "UPDATE scholars_institutions SET status = 'active', sponsorship_status = 'active' WHERE id = ?"
+    ).run(institution.id);
     institution.status = 'active';
+    institution.sponsorship_status = 'active';
   }
 
   let user = dbApi.getUserByEmail(MIGRATION_EMAIL);
@@ -149,12 +155,19 @@ function ensureMigrationUser(db) {
     user = dbApi.getUserById(result.lastInsertRowid);
   }
 
+  // The migration user must be active so foreign-key checks on existing data do not fail.
+  if (user.account_status !== 'active') {
+    db.prepare("UPDATE scholars_users SET account_status = 'active' WHERE id = ?").run(user.id);
+    user.account_status = 'active';
+  }
+
   return { institution, user };
 }
 
 function main() {
   const db = getDb();
   migrate(db);
+  migrateQuality(db);
 
   const raw = fs.readFileSync(LORE_PATH, 'utf8');
   const loreCatalog = JSON.parse(raw);

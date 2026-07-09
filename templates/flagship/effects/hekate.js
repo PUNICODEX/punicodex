@@ -363,7 +363,6 @@
     const toggle = document.getElementById('nav-toggle');
     const navLinks = document.querySelector('.nav-links');
     if (toggle && navLinks) {
-        toggle.addEventListener('click', () => navLinks.classList.toggle('active'));
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => navLinks.classList.remove('active'));
         });

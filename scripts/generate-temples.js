@@ -995,6 +995,7 @@ ${JSON.stringify(
         </div>
     </footer>
 
+    <script src="https://punycodex.com/js/px-core.js"></script>
     <script src="https://punycodex.com/js/temple-base.js"></script>
 </body>
 </html>`;

@@ -1,6 +1,15 @@
 /**
  * PÚNYCODEX — Scholarly Edition Authorization (RBAC)
+ *
+ * B2B sponsorship model:
+ * - Students submit edits only for temples/sections tied to their institution's
+ *   active sponsorship and allowed departments.
+ * - Reviewers and curators review edits under the same sponsorship/department
+ *   constraints; curators may review across institutions.
+ * - Institution admins manage only users within their own institution.
  */
+
+const { isDepartmentAllowed, getInstitutionById } = require('../db/scholars');
 
 const ROLES = ['student', 'reviewer', 'dept_admin', 'inst_admin', 'curator'];
 
@@ -13,7 +22,7 @@ const ROLE_RANK = {
 };
 
 function hasRole(user, minRole) {
-  if (!user || !user.role) return false;
+  if (!user?.role) return false;
   return ROLE_RANK[user.role] >= ROLE_RANK[minRole];
 }
 
@@ -30,20 +39,93 @@ function isInstitutionAdmin(user) {
 }
 
 function sameInstitution(user, otherInstitutionId) {
-  if (!user || !user.institutionId) return false;
+  if (!user?.institutionId) return false;
   return user.institutionId === otherInstitutionId;
 }
 
-function canSubmitEdit(user) {
-  return user && user.status === 'active' && hasRole(user, 'student');
+function isActiveUser(user) {
+  if (user?.status !== 'active') return false;
+  // accountStatus may be absent on legacy session objects; default to active.
+  if (user.accountStatus && user.accountStatus !== 'active') return false;
+  return true;
 }
 
-function canReviewEdit(user, editInstitutionId) {
-  if (!user || user.status !== 'active') return false;
-  if (isCurator(user)) return true;
+function isActiveSponsorship(institution) {
+  return institution && institution.sponsorship_status === 'active';
+}
+
+function isFrozenTarget(target) {
+  return target && (target.is_frozen === 1 || target.is_frozen === true);
+}
+
+/**
+ * Check whether a user can submit an edit for a temple or section.
+ *
+ * Requirements:
+ * - User account is active (status + account_status).
+ * - Institution sponsorship is active.
+ * - User's department is in the institution allowlist (when configured).
+ * - Target temple/section is not frozen.
+ *
+ * Backward-compatible overload: `canSubmitEdit(user)` performs the legacy
+ * active-student check used by older callers.
+ */
+function canSubmitEdit(user, institution, target) {
+  if (user?.status !== 'active' || user?.accountStatus === 'disabled') return false;
+  if (!hasRole(user, 'student')) return false;
+
+  // Legacy single-argument call path.
+  if (!institution && !target) {
+    return user.accountStatus !== 'disabled';
+  }
+
+  const resolvedInstitution =
+    institution ?? (user.institutionId ? getInstitutionById(user.institutionId) : null);
+  if (!isActiveSponsorship(resolvedInstitution)) return false;
+  if (!isDepartmentAllowed(user.department, resolvedInstitution)) return false;
+  if (isFrozenTarget(target)) return false;
+  return true;
+}
+
+/**
+ * Check whether a user can review an edit.
+ *
+ * Requirements:
+ * - User account is active.
+ * - Institution sponsorship is active (for the edit's institution).
+ * - User's department is in the institution allowlist (when configured).
+ * - Reviewer is in the same institution, or is a curator.
+ *
+ * `editContext` may be an institution id, an institution object, or an edit
+ * object containing `institution_id` / `institutionId`.
+ */
+function canReviewEdit(user, editContext, editAuthor) {
+  if (!isActiveUser(user)) return false;
+
+  let institution = null;
+  if (editContext && typeof editContext === 'object') {
+    // If the object looks like an institution row, use it directly.
+    if (editContext.sponsorship_status !== undefined) {
+      institution = editContext;
+    } else {
+      institution =
+        editContext.institution ??
+        getInstitutionById(editContext.institution_id ?? editContext.institutionId);
+    }
+  } else if (editContext !== undefined && editContext !== null) {
+    institution = getInstitutionById(editContext);
+  }
+
+  if (isCurator(user)) {
+    // Curators still need the target institution sponsorship to be in good standing.
+    if (institution && !isActiveSponsorship(institution)) return false;
+    return true;
+  }
   if (!hasRole(user, 'reviewer')) return false;
-  // Reviewers can review edits from their own institution or any if they are curator.
-  return sameInstitution(user, editInstitutionId) || isCurator(user);
+  if (!isActiveSponsorship(institution)) return false;
+  if (!isDepartmentAllowed(user.department, institution)) return false;
+  if (editAuthor && user.id === editAuthor.id) return false;
+  return sameInstitution(user, institution?.id);
 }
 
 function canApproveAny(user) {
@@ -51,10 +133,27 @@ function canApproveAny(user) {
 }
 
 function canManageInstitution(user, institutionId) {
-  if (!user || user.status !== 'active') return false;
+  if (!isActiveUser(user)) return false;
   if (isCurator(user)) return true;
   if (!isInstitutionAdmin(user)) return false;
   return sameInstitution(user, institutionId);
+}
+
+/**
+ * Check whether an institution admin can manage a student account.
+ * Admins may manage only students within their own institution.
+ *
+ * `studentUser` may be a normalized user object (institutionId) or a raw DB
+ * row (institution_id).
+ */
+function canManageStudent(admin, studentUser) {
+  if (!admin || !studentUser) return false;
+  if (!isActiveUser(admin)) return false;
+  if (!isInstitutionAdmin(admin)) return false;
+  const studentInstitutionId = studentUser.institutionId ?? studentUser.institution_id;
+  if (!sameInstitution(admin, studentInstitutionId)) return false;
+  const studentRole = studentUser.role;
+  return ROLE_RANK[studentRole] <= ROLE_RANK.student;
 }
 
 function canFreezeTemple(user) {
@@ -81,6 +180,14 @@ function requireCurator(req, res, next) {
   next();
 }
 
+function requireInstitutionAdmin(req, res, next) {
+  if (!req.user) return res.status(401).json({ error: 'Unauthorized' });
+  if (!isInstitutionAdmin(req.user)) {
+    return res.status(403).json({ error: 'Institution admin access required' });
+  }
+  next();
+}
+
 module.exports = {
   ROLES,
   ROLE_RANK,
@@ -89,12 +196,16 @@ module.exports = {
   isReviewerOrHigher,
   isInstitutionAdmin,
   sameInstitution,
+  isActiveUser,
+  isActiveSponsorship,
   canSubmitEdit,
   canReviewEdit,
   canApproveAny,
   canManageInstitution,
+  canManageStudent,
   canFreezeTemple,
   canRevertSection,
   requireRole,
   requireCurator,
+  requireInstitutionAdmin,
 };

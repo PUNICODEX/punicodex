@@ -18,6 +18,7 @@ process.env.PUNYCODEX_SCHOLARS_UPLOAD_DIR = uploadDir;
 
 const { getDb, closeDb } = require('../db/connection');
 const dbLayer = require('../db/scholars');
+const { hashPassword } = require('./auth');
 const express = require('express');
 const scholarsApi = require('./router');
 
@@ -209,30 +210,47 @@ async function setup() {
     accreditation: 'test',
   });
   const institutionId = institution.lastInsertRowid;
+  dbLayer.updateInstitutionSponsorship(institutionId, { sponsorshipStatus: 'active' });
 
   const student = dbLayer.createUser({
     email: 'student@academy.test',
     institutionId,
     role: 'student',
     displayName: 'Student User',
+    department: 'Classics',
   });
   const studentId = student.lastInsertRowid;
+  dbLayer.updateUserPassword(studentId, hashPassword('student-pass'));
 
   const reviewer = dbLayer.createUser({
     email: 'reviewer@academy.test',
     institutionId,
     role: 'reviewer',
     displayName: 'Reviewer User',
+    department: 'Classics',
   });
   const reviewerId = reviewer.lastInsertRowid;
+  dbLayer.updateUserPassword(reviewerId, hashPassword('reviewer-pass'));
+
+  const admin = dbLayer.createUser({
+    email: 'admin@academy.test',
+    institutionId,
+    role: 'inst_admin',
+    displayName: 'Admin User',
+    department: 'Classics',
+  });
+  const adminId = admin.lastInsertRowid;
+  dbLayer.updateUserPassword(adminId, hashPassword('admin-pass'));
 
   const curator = dbLayer.createUser({
     email: 'curator@academy.test',
     institutionId,
     role: 'curator',
     displayName: 'Curator User',
+    department: 'Classics',
   });
   const curatorId = curator.lastInsertRowid;
+  dbLayer.updateUserPassword(curatorId, hashPassword('curator-pass'));
 
   const temple = dbLayer.createTemple({
     entryId: 'zeus',
@@ -264,11 +282,13 @@ async function setup() {
 
   const studentSessionId = `student-session-${Date.now()}`;
   const reviewerSessionId = `reviewer-session-${Date.now()}`;
+  const adminSessionId = `admin-session-${Date.now()}`;
   const curatorSessionId = `curator-session-${Date.now()}`;
   const farFuture = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
 
   dbLayer.createSession({ id: studentSessionId, userId: studentId, expiresAt: farFuture });
   dbLayer.createSession({ id: reviewerSessionId, userId: reviewerId, expiresAt: farFuture });
+  dbLayer.createSession({ id: adminSessionId, userId: adminId, expiresAt: farFuture });
   dbLayer.createSession({ id: curatorSessionId, userId: curatorId, expiresAt: farFuture });
 
   await startServer();
@@ -277,11 +297,13 @@ async function setup() {
     institutionId,
     studentId,
     reviewerId,
+    adminId,
     curatorId,
     templeId,
     sectionId,
     studentSessionId,
     reviewerSessionId,
+    adminSessionId,
     curatorSessionId,
   };
 }
@@ -562,9 +584,80 @@ async function main() {
     if (res.body.data.user.role !== 'reviewer') throw new Error('session role mismatch');
   });
 
-  test('reviewer can fetch institution dashboard', async () => {
+  // ─── Password auth ───
+
+  test('user can log in with email and password', async () => {
+    const res = await request('POST', '/api/v1/scholars/auth/login', {
+      body: { email: 'student@academy.test', password: 'student-pass' },
+    });
+    if (res.status !== 200)
+      throw new Error(`expected 200, got ${res.status}: ${JSON.stringify(res.body)}`);
+    if (!res.body.success) throw new Error('expected success=true');
+    if (!res.body.data.token) throw new Error('missing token');
+    if (res.body.data.user.email !== 'student@academy.test') throw new Error('user email mismatch');
+    if (res.body.data.user.role !== 'student') throw new Error('user role mismatch');
+  });
+
+  test('login rejects invalid credentials', async () => {
+    const res = await request('POST', '/api/v1/scholars/auth/login', {
+      body: { email: 'student@academy.test', password: 'wrong-pass' },
+    });
+    if (res.status !== 401) throw new Error(`expected 401, got ${res.status}`);
+    if (res.body.success !== false) throw new Error('expected success=false');
+  });
+
+  test('user can change own password', async () => {
+    const changeRes = await request('POST', '/api/v1/scholars/auth/password', {
+      body: { currentPassword: 'student-pass', newPassword: 'new-student-pass' },
+      headers: sessionHeader(ctx.studentSessionId),
+    });
+    if (changeRes.status !== 200)
+      throw new Error(`expected 200, got ${changeRes.status}: ${JSON.stringify(changeRes.body)}`);
+    if (!changeRes.body.data.changed) throw new Error('expected changed=true');
+
+    const loginRes = await request('POST', '/api/v1/scholars/auth/login', {
+      body: { email: 'student@academy.test', password: 'new-student-pass' },
+    });
+    if (loginRes.status !== 200)
+      throw new Error(`expected 200 after password change, got ${loginRes.status}`);
+
+    // Restore original password so subsequent tests can use it.
+    dbLayer.updateUserPassword(ctx.studentId, hashPassword('student-pass'));
+  });
+
+  test('change password rejects incorrect current password', async () => {
+    const res = await request('POST', '/api/v1/scholars/auth/password', {
+      body: { currentPassword: 'wrong-pass', newPassword: 'new-pass' },
+      headers: sessionHeader(ctx.studentSessionId),
+    });
+    if (res.status !== 401) throw new Error(`expected 401, got ${res.status}`);
+  });
+
+  test('logout invalidates session', async () => {
+    const loginRes = await request('POST', '/api/v1/scholars/auth/login', {
+      body: { email: 'reviewer@academy.test', password: 'reviewer-pass' },
+    });
+    if (loginRes.status !== 200) throw new Error(`expected 200, got ${loginRes.status}`);
+    const token = loginRes.body.data.token;
+
+    const logoutRes = await request('POST', '/api/v1/scholars/auth/logout', {
+      headers: sessionHeader(token),
+    });
+    if (logoutRes.status !== 200)
+      throw new Error(`expected 200, got ${logoutRes.status}: ${JSON.stringify(logoutRes.body)}`);
+
+    const sessionRes = await request('GET', '/api/v1/scholars/auth/session', {
+      headers: sessionHeader(token),
+    });
+    if (sessionRes.body.data.user !== null)
+      throw new Error('expected logged-out session to be null');
+  });
+
+  // ─── Institution admin ───
+
+  test('institution admin can fetch institution dashboard', async () => {
     const res = await request('GET', '/api/v1/scholars/institution', {
-      headers: sessionHeader(ctx.reviewerSessionId),
+      headers: sessionHeader(ctx.adminSessionId),
     });
     if (res.status !== 200)
       throw new Error(`expected 200, got ${res.status}: ${JSON.stringify(res.body)}`);
@@ -573,7 +666,10 @@ async function main() {
       throw new Error('unexpected institution name');
     }
     const stats = res.body.data.stats;
-    if (stats.memberCount !== 3) throw new Error(`expected 3 members, got ${stats.memberCount}`);
+    if (stats.memberCount !== 4) throw new Error(`expected 4 members, got ${stats.memberCount}`);
+    if (stats.studentCount !== 1) throw new Error(`expected 1 student, got ${stats.studentCount}`);
+    if (stats.reviewerCount !== 3)
+      throw new Error(`expected 3 reviewers, got ${stats.reviewerCount}`);
     if (stats.totalSubmitted < 1) throw new Error('expected at least 1 submitted edit');
     if (stats.attributedSections < 1) throw new Error('expected at least 1 attributed section');
     if (!Array.isArray(res.body.data.users)) throw new Error('expected users array');
@@ -597,7 +693,7 @@ async function main() {
     if (stats.totalTemples !== 1) throw new Error(`expected 1 temple, got ${stats.totalTemples}`);
     if (stats.totalSections !== 1)
       throw new Error(`expected 1 section, got ${stats.totalSections}`);
-    if (stats.totalUsers !== 3) throw new Error(`expected 3 users, got ${stats.totalUsers}`);
+    if (stats.totalUsers !== 4) throw new Error(`expected 4 users, got ${stats.totalUsers}`);
     if (stats.totalInstitutions !== 1)
       throw new Error(`expected 1 institution, got ${stats.totalInstitutions}`);
   });
@@ -615,10 +711,11 @@ async function main() {
     });
     if (res.status !== 200) throw new Error(`expected 200, got ${res.status}`);
     if (!Array.isArray(res.body.data)) throw new Error('expected data array');
-    if (res.body.data.length !== 3)
-      throw new Error(`expected 3 users, got ${res.body.data.length}`);
+    if (res.body.data.length !== 4)
+      throw new Error(`expected 4 users, got ${res.body.data.length}`);
     const emails = res.body.data.map((u) => u.email).sort();
     const expected = [
+      'admin@academy.test',
       'curator@academy.test',
       'reviewer@academy.test',
       'student@academy.test',
@@ -660,6 +757,217 @@ async function main() {
     });
     if (unfreezeRes.status !== 200) throw new Error(`expected 200, got ${unfreezeRes.status}`);
     if (unfreezeRes.body.data.frozen) throw new Error('expected frozen=false');
+  });
+
+  // ─── Curator institution management ───
+
+  test('curator can create institution with admin', async () => {
+    const res = await request('POST', '/api/v1/scholars/institutions', {
+      body: {
+        name: 'New College',
+        slug: 'new-college',
+        domain: 'newcollege.edu',
+        accreditation: 'Regional',
+        adminEmail: 'newadmin@newcollege.edu',
+        adminDisplayName: 'New Admin',
+        adminDepartment: 'Classics',
+      },
+      headers: sessionHeader(ctx.curatorSessionId),
+    });
+    if (res.status !== 201)
+      throw new Error(`expected 201, got ${res.status}: ${JSON.stringify(res.body)}`);
+    if (!res.body.data.institutionId) throw new Error('missing institutionId');
+    if (!res.body.data.adminId) throw new Error('missing adminId');
+    if (!res.body.data.adminPassword) throw new Error('expected generated adminPassword');
+  });
+
+  test('curator can update institution sponsorship', async () => {
+    const res = await request(
+      'PATCH',
+      `/api/v1/scholars/institutions/${ctx.institutionId}/sponsorship`,
+      {
+        body: { sponsorshipStatus: 'expired', sponsorshipExpiresAt: '2025-01-01T00:00:00.000Z' },
+        headers: sessionHeader(ctx.curatorSessionId),
+      }
+    );
+    if (res.status !== 200)
+      throw new Error(`expected 200, got ${res.status}: ${JSON.stringify(res.body)}`);
+    if (!res.body.data.updated) throw new Error('expected updated=true');
+
+    // Restore active sponsorship so subsequent tests are not affected.
+    await request('PATCH', `/api/v1/scholars/institutions/${ctx.institutionId}/sponsorship`, {
+      body: { sponsorshipStatus: 'active' },
+      headers: sessionHeader(ctx.curatorSessionId),
+    });
+  });
+
+  test('curator can update institution allowlist', async () => {
+    const res = await request(
+      'PATCH',
+      `/api/v1/scholars/institutions/${ctx.institutionId}/allowlist`,
+      {
+        body: { departmentAllowlist: ['Classics', 'History'] },
+        headers: sessionHeader(ctx.curatorSessionId),
+      }
+    );
+    if (res.status !== 200)
+      throw new Error(`expected 200, got ${res.status}: ${JSON.stringify(res.body)}`);
+    if (!res.body.data.updated) throw new Error('expected updated=true');
+    if (!Array.isArray(res.body.data.departmentAllowlist))
+      throw new Error('expected allowlist array');
+  });
+
+  test('curator can change user role', async () => {
+    const res = await request('PATCH', `/api/v1/scholars/users/${ctx.studentId}/role`, {
+      body: { role: 'reviewer' },
+      headers: sessionHeader(ctx.curatorSessionId),
+    });
+    if (res.status !== 200)
+      throw new Error(`expected 200, got ${res.status}: ${JSON.stringify(res.body)}`);
+    if (!res.body.data.changed) throw new Error('expected changed=true');
+    if (res.body.data.role !== 'reviewer') throw new Error('role mismatch');
+
+    // Restore student role.
+    await request('PATCH', `/api/v1/scholars/users/${ctx.studentId}/role`, {
+      body: { role: 'student' },
+      headers: sessionHeader(ctx.curatorSessionId),
+    });
+  });
+
+  test('curator can change user account status', async () => {
+    const res = await request('PATCH', `/api/v1/scholars/users/${ctx.studentId}/status`, {
+      body: { accountStatus: 'disabled' },
+      headers: sessionHeader(ctx.curatorSessionId),
+    });
+    if (res.status !== 200)
+      throw new Error(`expected 200, got ${res.status}: ${JSON.stringify(res.body)}`);
+    if (!res.body.data.changed) throw new Error('expected changed=true');
+
+    // Restore active status.
+    await request('PATCH', `/api/v1/scholars/users/${ctx.studentId}/status`, {
+      body: { accountStatus: 'active' },
+      headers: sessionHeader(ctx.curatorSessionId),
+    });
+  });
+
+  test('curator users endpoint supports filters', async () => {
+    const res = await request('GET', '/api/v1/scholars/users?role=student', {
+      headers: sessionHeader(ctx.curatorSessionId),
+    });
+    if (res.status !== 200) throw new Error(`expected 200, got ${res.status}`);
+    if (!Array.isArray(res.body.data)) throw new Error('expected data array');
+    if (!res.body.data.every((u) => u.role === 'student'))
+      throw new Error('expected only students');
+  });
+
+  // ─── Institution admin student/reviewer management ───
+
+  test('institution admin can list students', async () => {
+    const res = await request('GET', '/api/v1/scholars/institution/students', {
+      headers: sessionHeader(ctx.adminSessionId),
+    });
+    if (res.status !== 200)
+      throw new Error(`expected 200, got ${res.status}: ${JSON.stringify(res.body)}`);
+    if (!Array.isArray(res.body.data)) throw new Error('expected data array');
+    if (!res.body.data.some((u) => u.email === 'student@academy.test'))
+      throw new Error('missing student');
+    if (res.body.data.some((u) => u.password_hash))
+      throw new Error('password_hash should not be exposed');
+  });
+
+  test('institution admin can create student with temp password', async () => {
+    const res = await request('POST', '/api/v1/scholars/institution/students', {
+      body: {
+        email: 'newstudent@academy.test',
+        displayName: 'New Student',
+        department: 'Classics',
+      },
+      headers: sessionHeader(ctx.adminSessionId),
+    });
+    if (res.status !== 201)
+      throw new Error(`expected 201, got ${res.status}: ${JSON.stringify(res.body)}`);
+    if (!res.body.data.userId) throw new Error('missing userId');
+    if (!res.body.data.tempPassword) throw new Error('missing tempPassword');
+    ctx.newStudentId = res.body.data.userId;
+  });
+
+  test('institution admin can update student profile', async () => {
+    const res = await request(
+      'PATCH',
+      `/api/v1/scholars/institution/students/${ctx.newStudentId}`,
+      {
+        body: { displayName: 'Updated Student', department: 'History' },
+        headers: sessionHeader(ctx.adminSessionId),
+      }
+    );
+    if (res.status !== 200)
+      throw new Error(`expected 200, got ${res.status}: ${JSON.stringify(res.body)}`);
+    if (!res.body.data.updated) throw new Error('expected updated=true');
+
+    const user = dbLayer.getUserById(ctx.newStudentId);
+    if (user.display_name !== 'Updated Student') throw new Error('displayName not updated');
+    if (user.department !== 'History') throw new Error('department not updated');
+  });
+
+  test('institution admin can reset student password', async () => {
+    const res = await request(
+      'POST',
+      `/api/v1/scholars/institution/students/${ctx.newStudentId}/reset-password`,
+      {
+        headers: sessionHeader(ctx.adminSessionId),
+      }
+    );
+    if (res.status !== 200)
+      throw new Error(`expected 200, got ${res.status}: ${JSON.stringify(res.body)}`);
+    if (!res.body.data.reset) throw new Error('expected reset=true');
+    if (!res.body.data.tempPassword) throw new Error('missing tempPassword');
+  });
+
+  test('institution admin can disable student', async () => {
+    const res = await request(
+      'DELETE',
+      `/api/v1/scholars/institution/students/${ctx.newStudentId}`,
+      {
+        headers: sessionHeader(ctx.adminSessionId),
+      }
+    );
+    if (res.status !== 200)
+      throw new Error(`expected 200, got ${res.status}: ${JSON.stringify(res.body)}`);
+    if (!res.body.data.disabled) throw new Error('expected disabled=true');
+
+    const user = dbLayer.getUserById(ctx.newStudentId);
+    if (user.account_status !== 'disabled') throw new Error('expected account_status disabled');
+  });
+
+  test('institution admin can promote student to reviewer', async () => {
+    const promoteRes = await request('POST', '/api/v1/scholars/institution/reviewers', {
+      body: { userId: ctx.studentId },
+      headers: sessionHeader(ctx.adminSessionId),
+    });
+    if (promoteRes.status !== 200)
+      throw new Error(`expected 200, got ${promoteRes.status}: ${JSON.stringify(promoteRes.body)}`);
+    if (!promoteRes.body.data.promoted) throw new Error('expected promoted=true');
+
+    const user = dbLayer.getUserById(ctx.studentId);
+    if (user.role !== 'reviewer') throw new Error('expected role reviewer');
+
+    // Restore student role.
+    dbLayer.updateUserRole(ctx.studentId, 'student');
+  });
+
+  test('reviewer cannot access institution admin endpoints', async () => {
+    const res = await request('GET', '/api/v1/scholars/institution/students', {
+      headers: sessionHeader(ctx.reviewerSessionId),
+    });
+    if (res.status !== 403) throw new Error(`expected 403, got ${res.status}`);
+  });
+
+  test('institution admin password reset endpoint rejects non-student targets', async () => {
+    const res = await request('POST', '/api/v1/scholars/auth/password/reset', {
+      body: { userId: ctx.adminId },
+      headers: sessionHeader(ctx.adminSessionId),
+    });
+    if (res.status !== 403) throw new Error(`expected 403, got ${res.status}`);
   });
 
   test('analytics view endpoint records a temple view', async () => {
@@ -996,18 +1304,17 @@ async function main() {
     }
   });
 
-  test('audit log records magic link request', async () => {
-    const before = dbLayer.listAuditLog({ action: 'auth_magic_link_sent' }).length;
-    const res = await request('POST', '/api/v1/scholars/auth/magic-link', {
-      body: { email: 'audit-test@academy.test' },
+  test('audit log records password login', async () => {
+    const before = dbLayer.listAuditLog({ action: 'auth_login' }).length;
+    const res = await request('POST', '/api/v1/scholars/auth/login', {
+      body: { email: 'student@academy.test', password: 'student-pass' },
     });
     if (res.status !== 200) throw new Error(`expected 200, got ${res.status}`);
-    const after = dbLayer.listAuditLog({ action: 'auth_magic_link_sent' });
-    if (after.length <= before) throw new Error('expected audit log entry for magic link request');
-    const entry = after[0];
-    if (entry.action !== 'auth_magic_link_sent') throw new Error('unexpected audit action');
-    if (entry.details.email !== 'audit-test@academy.test')
-      throw new Error('unexpected audit email');
+    const after = dbLayer.listAuditLog({ action: 'auth_login' });
+    if (after.length <= before) throw new Error('expected audit log entry for login');
+    const entry = after.find((e) => e.details.email === 'student@academy.test');
+    if (!entry) throw new Error('expected auth_login entry for student@academy.test');
+    if (entry.action !== 'auth_login') throw new Error('unexpected audit action');
   });
 
   await runAllTests();

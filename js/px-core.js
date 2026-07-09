@@ -129,7 +129,8 @@
 
       toggle.addEventListener('click', (e) => {
         e.preventDefault();
-        e.stopPropagation();
+        // Stop any legacy per-page nav handlers from double-toggling the menu.
+        e.stopImmediatePropagation();
         const active = toggle.classList.toggle('active');
         if (mobileMenu) mobileMenu.classList.toggle('active', active);
         if (navLinks) navLinks.classList.toggle('active', active);

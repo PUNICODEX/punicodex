@@ -67,10 +67,6 @@
     // Mobile Nav Toggle
     // ============================
     if (navToggle && navLinks) {
-        navToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            navToggle.classList.toggle('active');
-        });
 
         // Close mobile nav on link click
         navLinks.querySelectorAll('a').forEach(link => {

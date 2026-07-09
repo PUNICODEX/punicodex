@@ -86,7 +86,15 @@ function resolveLink(fromFile, href) {
   // API routes are serverless functions, not static HTML files
   const isApiRoute = cleanHref.startsWith('/api/') && isKnownApiRoute(cleanHref);
 
-  const exists = isApiRoute || fs.existsSync(target);
+  // Public routes are served from platform/public/ (Vercel public directory).
+  const publicTarget = path.join(ROOT, 'platform', 'public', cleanHref.slice(1));
+  let publicFileTarget = publicTarget;
+  if (!path.extname(publicFileTarget) || publicFileTarget.endsWith('/')) {
+    publicFileTarget = path.join(publicFileTarget, 'index.html');
+  }
+  const isPublicRoute = cleanHref.startsWith('/') && fs.existsSync(publicFileTarget);
+
+  const exists = isApiRoute || isPublicRoute || fs.existsSync(target);
   return { internal: true, exists, target };
 }
 
@@ -106,6 +114,7 @@ HTML_FILES.forEach((file) => {
     const href = match[1];
     if (href.startsWith('about:')) continue; // Browser-internal URLs
     if (href.includes('${')) continue; // JS template literal placeholders
+    if (/\+\s*['"]|["']\s*\+/.test(href)) continue; // JS string concatenation fragments
     checked++;
     const result = resolveLink(file, href);
     if (result.internal && !result.exists) {

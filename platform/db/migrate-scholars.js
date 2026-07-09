@@ -19,6 +19,9 @@ const SCHOLARS_SCHEMA = `
     domain TEXT,
     accreditation TEXT,
     status TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('pending', 'active', 'suspended')),
+    sponsorship_status TEXT NOT NULL DEFAULT 'pending' CHECK (sponsorship_status IN ('active', 'pending', 'expired')),
+    sponsorship_expires_at DATETIME,
+    department_allowlist TEXT NOT NULL DEFAULT '[]',
     metadata TEXT NOT NULL DEFAULT '{}',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
   );
@@ -35,7 +38,12 @@ const SCHOLARS_SCHEMA = `
     department TEXT,
     orcid TEXT,
     display_name TEXT,
+    password_hash TEXT,
+    password_changed_at DATETIME,
     status TEXT NOT NULL DEFAULT 'active' CHECK (status IN ('active', 'suspended', 'banned')),
+    account_status TEXT NOT NULL DEFAULT 'pending' CHECK (account_status IN ('active', 'disabled', 'pending')),
+    login_attempts INTEGER NOT NULL DEFAULT 0,
+    locked_until DATETIME,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     last_seen_at DATETIME,
     FOREIGN KEY (institution_id) REFERENCES scholars_institutions(id)
@@ -219,12 +227,82 @@ const SCHOLARS_SCHEMA = `
   CREATE INDEX IF NOT EXISTS idx_scholars_audit_created ON scholars_audit_log(created_at);
 `;
 
+const IDEMPOTENT_ALTERATIONS = [
+  {
+    table: 'scholars_institutions',
+    column: 'sponsorship_status',
+    definition:
+      "TEXT NOT NULL DEFAULT 'pending' CHECK (sponsorship_status IN ('active', 'pending', 'expired'))",
+  },
+  {
+    table: 'scholars_institutions',
+    column: 'sponsorship_expires_at',
+    definition: 'DATETIME',
+  },
+  {
+    table: 'scholars_institutions',
+    column: 'department_allowlist',
+    definition: "TEXT NOT NULL DEFAULT '[]'",
+  },
+  {
+    table: 'scholars_users',
+    column: 'password_hash',
+    definition: 'TEXT',
+  },
+  {
+    table: 'scholars_users',
+    column: 'password_changed_at',
+    definition: 'DATETIME',
+  },
+  {
+    table: 'scholars_users',
+    column: 'account_status',
+    definition:
+      "TEXT NOT NULL DEFAULT 'pending' CHECK (account_status IN ('active', 'disabled', 'pending'))",
+  },
+  {
+    table: 'scholars_users',
+    column: 'login_attempts',
+    definition: 'INTEGER NOT NULL DEFAULT 0',
+  },
+  {
+    table: 'scholars_users',
+    column: 'locked_until',
+    definition: 'DATETIME',
+  },
+];
+
+function listColumns(db, table) {
+  return db.prepare(`PRAGMA table_info(${table})`).all();
+}
+
+function addColumnIfMissing(db, table, column, definition) {
+  const columns = listColumns(db, table);
+  const hasColumn = columns.some((col) => col.name === column);
+  if (!hasColumn) {
+    db.exec(`ALTER TABLE ${table} ADD COLUMN ${column} ${definition}`);
+  }
+}
+
+function createIndexes(db) {
+  db.exec(`
+    CREATE INDEX IF NOT EXISTS idx_scholars_institutions_sponsorship ON scholars_institutions(sponsorship_status);
+    CREATE INDEX IF NOT EXISTS idx_scholars_users_account_status ON scholars_users(account_status);
+  `);
+}
+
 function migrate(db) {
   db.exec(SCHOLARS_SCHEMA);
+  for (const { table, column, definition } of IDEMPOTENT_ALTERATIONS) {
+    addColumnIfMissing(db, table, column, definition);
+  }
+  createIndexes(db);
 }
 
 function runStandalone() {
   const db = new Database(DB_PATH);
+  db.pragma('journal_mode = WAL');
+  db.pragma('busy_timeout = 5000');
   migrate(db);
   db.close();
   console.log('Scholarly Edition migration complete.');
@@ -234,4 +312,4 @@ if (require.main === module) {
   runStandalone();
 }
 
-module.exports = { migrate, SCHOLARS_SCHEMA };
+module.exports = { migrate, SCHOLARS_SCHEMA, IDEMPOTENT_ALTERATIONS };

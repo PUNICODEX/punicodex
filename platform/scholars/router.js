@@ -8,12 +8,21 @@ const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
 const express = require('express');
-const { requestMagicLink, verifyMagicToken, getSession, logout, requireAuth } = require('./auth');
+const {
+  hashPassword,
+  verifyPassword,
+  login,
+  logout,
+  requireAuth,
+  validateSession,
+} = require('./auth');
 const {
   requireRole,
   requireCurator,
+  requireInstitutionAdmin,
   canSubmitEdit,
   canReviewEdit,
+  canManageStudent,
   isReviewerOrHigher,
 } = require('./authz');
 const {
@@ -42,6 +51,7 @@ const {
   updateMediaStatus,
   audit,
   getUserById,
+  getUserByEmail,
   listUsers,
   countUsers,
   listInstitutions,
@@ -62,12 +72,20 @@ const {
   markNotificationRead,
   dismissNotification,
   listReviewersForInstitution,
+  createInstitutionWithAdmin,
+  updateInstitutionSponsorship,
+  updateInstitutionAllowlist,
+  createUserWithPassword,
+  updateUserPassword,
+  updateUserStatus,
+  updateUserRole,
+  updateUserProfile,
+  listStudentsByInstitution,
 } = require('../db/scholars');
 const { generateBlankManifest } = require('./taxonomy');
 const { scoreEdit, validateEdit, buildQualityReason, MIN_SCORE } = require('./quality');
 const {
   securityHeaders,
-  createPublicRateLimit,
   createScholarsRateLimit,
   validateInputLength,
   auditLog,
@@ -87,7 +105,7 @@ function cacheMiddleware(namespace, ttlSeconds = 60) {
     res.set('X-Scholars-Cache', 'MISS');
     const originalJson = res.json.bind(res);
     res.json = (body) => {
-      if (body && body.success) {
+      if (body?.success) {
         cacheSet(key, body, ttlSeconds).catch(() => {});
       }
       return originalJson(body);
@@ -119,6 +137,17 @@ function asyncHandler(fn) {
   return (req, res, next) => {
     Promise.resolve(fn(req, res, next)).catch(next);
   };
+}
+
+function generateTempPassword(length = 16) {
+  return crypto.randomBytes(length).toString('base64url').slice(0, length);
+}
+
+function sanitizeUser(row) {
+  if (!row) return null;
+  const user = { ...row };
+  delete user.password_hash;
+  return user;
 }
 
 function notifyReviewersOfSubmission(edit, section, temple) {
@@ -183,48 +212,43 @@ router.get('/health', createScholarsRateLimit('health', { tier: 'public' }), (_r
 // ─────────────────────────────────────────────────────────────
 
 router.post(
-  '/auth/magic-link',
-  createPublicRateLimit('auth:magic-link'),
-  validateInputLength([{ key: 'email', max: 254 }]),
-  auditLog('auth_magic_link_sent', {
+  '/auth/login',
+  createScholarsRateLimit('auth:login', { tier: 'strict' }),
+  validateInputLength([
+    { key: 'email', max: 254 },
+    { key: 'password', max: 128 },
+  ]),
+  auditLog('auth_login', {
     getResourceType: () => 'auth',
-    getResourceId: (req) => req.body?.email || 'magic-link',
+    getResourceId: (req) => req.body?.email || 'login',
     getDetails: (req, res) => ({ email: req.body?.email, statusCode: res.statusCode }),
   }),
   asyncHandler(async (req, res) => {
-    const { email } = req.body || {};
+    const { email, password } = req.body || {};
     if (!email || typeof email !== 'string' || !email.includes('@')) {
       return res.status(400).json(error('A valid email is required'));
     }
-    const result = await requestMagicLink(email);
-    res.json(
-      success({
-        email: result.email,
-        note: 'Magic link generated; in development it is logged to stdout.',
-      })
-    );
-  })
-);
+    if (!password || typeof password !== 'string') {
+      return res.status(400).json(error('Password is required'));
+    }
 
-router.get(
-  '/auth/verify',
-  createScholarsRateLimit('auth:verify', { tier: 'public' }),
-  asyncHandler(async (req, res) => {
-    const { token } = req.query;
-    if (!token || typeof token !== 'string') {
-      return res.status(400).json(error('Token is required'));
+    const result = await login(email, password, {
+      ipHash: null,
+      userAgent: req.headers['user-agent'],
+    });
+
+    if (!result.success) {
+      return res.status(401).json(error(result.error, 401));
     }
-    const result = verifyMagicToken(token);
-    if (!result) {
-      return res.status(401).json(error('Invalid or expired token'));
-    }
+
     res.cookie('scholars_session', result.sessionId, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
-    res.json(success({ sessionId: result.sessionId, user: result.user }));
+
+    res.json(success({ token: result.sessionId, user: result.user }));
   })
 );
 
@@ -234,7 +258,7 @@ router.get(
   asyncHandler(async (req, res) => {
     const sessionId = req.cookies?.scholars_session || req.headers['x-scholars-session'];
     if (!sessionId) return res.json(success({ user: null }));
-    const session = getSession(sessionId);
+    const session = validateSession(sessionId);
     if (!session) return res.json(success({ user: null }));
     res.json(
       success({
@@ -265,6 +289,71 @@ router.post(
     if (sessionId) logout(sessionId);
     res.clearCookie('scholars_session');
     res.json(success({ loggedOut: true }));
+  })
+);
+
+router.post(
+  '/auth/password',
+  requireAuth,
+  createScholarsRateLimit('auth:password', { tier: 'strict' }),
+  validateInputLength([
+    { key: 'currentPassword', max: 128 },
+    { key: 'newPassword', max: 128 },
+  ]),
+  auditLog('auth_password_changed', {
+    getResourceType: () => 'user',
+    getResourceId: (req) => req.user?.id || 'self',
+    getDetails: (_req, res) => ({ statusCode: res.statusCode }),
+  }),
+  asyncHandler(async (req, res) => {
+    const { currentPassword, newPassword } = req.body || {};
+    if (!currentPassword || typeof currentPassword !== 'string') {
+      return res.status(400).json(error('Current password is required'));
+    }
+    if (!newPassword || typeof newPassword !== 'string' || newPassword.length < 8) {
+      return res.status(400).json(error('New password must be at least 8 characters'));
+    }
+
+    const user = getUserById(req.user.id);
+    if (!user) return res.status(404).json(error('User not found', 404));
+    if (!verifyPassword(currentPassword, user.password_hash)) {
+      return res.status(401).json(error('Current password is incorrect', 401));
+    }
+
+    updateUserPassword(user.id, hashPassword(newPassword));
+    res.json(success({ changed: true }));
+  })
+);
+
+router.post(
+  '/auth/password/reset',
+  requireAuth,
+  requireInstitutionAdmin,
+  createScholarsRateLimit('auth:password:reset', { tier: 'strict' }),
+  validateInputLength([{ key: 'userId', max: 50 }]),
+  auditLog('auth_password_reset', {
+    getResourceType: () => 'user',
+    getResourceId: (req) => req.body?.userId || 'reset',
+    getDetails: (req, res) => ({ targetUserId: req.body?.userId, statusCode: res.statusCode }),
+  }),
+  asyncHandler(async (req, res) => {
+    const { userId } = req.body || {};
+    const targetId = Number(userId);
+    if (!Number.isFinite(targetId)) {
+      return res.status(400).json(error('userId is required'));
+    }
+
+    const target = getUserById(targetId);
+    if (!target) return res.status(404).json(error('User not found', 404));
+
+    if (!canManageStudent(req.user, target)) {
+      return res.status(403).json(error("You cannot reset this user's password"));
+    }
+
+    const tempPassword = generateTempPassword();
+    updateUserPassword(target.id, hashPassword(tempPassword));
+
+    res.json(success({ reset: true, tempPassword }));
   })
 );
 
@@ -426,15 +515,17 @@ router.post(
     { key: 'proposedMedia', max: 50 },
   ]),
   asyncHandler(async (req, res) => {
-    if (!canSubmitEdit(req.user)) {
-      return res.status(403).json(error('You do not have permission to submit edits'));
-    }
     const temple = getTempleByEntryId(req.params.id);
     if (!temple) return res.status(404).json(error('Temple not found', 404));
-    if (temple.is_frozen) return res.status(403).json(error('This temple is currently frozen'));
 
     const section = getSectionByTempleAndKey(temple.id, req.params.key);
     if (!section) return res.status(404).json(error('Section not found', 404));
+
+    const institution = req.user.institutionId ? getInstitutionById(req.user.institutionId) : null;
+
+    if (!canSubmitEdit(req.user, institution, temple)) {
+      return res.status(403).json(error('You do not have permission to submit edits'));
+    }
 
     const {
       proposedBody = '',
@@ -538,6 +629,9 @@ router.get(
 // Reviews
 // ─────────────────────────────────────────────────────────────
 
+class EditNoLongerPendingError extends Error {}
+class DuplicateEmailError extends Error {}
+
 router.post(
   '/edits/:id/approve',
   requireAuth,
@@ -553,48 +647,63 @@ router.post(
 
     const section = getSectionById(edit.section_id);
     const author = getUserById(edit.user_id);
-    const editInstitutionId = author ? author.institution_id : null;
-    if (!canReviewEdit(req.user, editInstitutionId)) {
+    const editInstitution = author?.institution_id
+      ? getInstitutionById(author.institution_id)
+      : null;
+
+    if (!canReviewEdit(req.user, editInstitution, author)) {
       return res.status(403).json(error('You cannot review edits from this institution'));
     }
 
     const { comment = '' } = req.body || {};
 
-    withTransaction(() => {
-      createReview({ editId: edit.id, reviewerId: req.user.id, decision: 'approved', comment });
-      updateEditStatus(edit.id, 'approved', comment);
+    try {
+      withTransaction(() => {
+        const currentEdit = getEditById(edit.id);
+        if (currentEdit.status !== 'pending') {
+          throw new EditNoLongerPendingError();
+        }
 
-      const previousBody = section.body;
-      const previousSources = section.sources;
-      const previousMedia = section.media;
+        createReview({ editId: edit.id, reviewerId: req.user.id, decision: 'approved', comment });
+        updateEditStatus(edit.id, 'approved', comment);
 
-      updateSection({
-        id: section.id,
-        body: edit.proposed_body,
-        sources: edit.proposed_sources,
-        media: edit.proposed_media,
-        status: 'published',
-        updatedBy: edit.user_id,
+        const previousBody = section.body;
+        const previousSources = section.sources;
+        const previousMedia = section.media;
+
+        updateSection({
+          id: section.id,
+          body: edit.proposed_body,
+          sources: edit.proposed_sources,
+          media: edit.proposed_media,
+          status: 'published',
+          updatedBy: edit.user_id,
+        });
+
+        createHistoryRecord({
+          sectionId: section.id,
+          editId: edit.id,
+          body: edit.proposed_body,
+          sources: edit.proposed_sources,
+          media: edit.proposed_media,
+          attribution: {
+            userId: edit.user_id,
+            institutionId: author ? author.institution_id : null,
+            reviewerId: req.user.id,
+          },
+          diff: JSON.stringify({
+            previousBody,
+            previousSources,
+            previousMedia,
+          }),
+        });
       });
-
-      createHistoryRecord({
-        sectionId: section.id,
-        editId: edit.id,
-        body: edit.proposed_body,
-        sources: edit.proposed_sources,
-        media: edit.proposed_media,
-        attribution: {
-          userId: edit.user_id,
-          institutionId: editInstitutionId,
-          reviewerId: req.user.id,
-        },
-        diff: JSON.stringify({
-          previousBody,
-          previousSources,
-          previousMedia,
-        }),
-      });
-    });
+    } catch (err) {
+      if (err instanceof EditNoLongerPendingError) {
+        return res.status(400).json(error('Edit is not pending'));
+      }
+      throw err;
+    }
 
     audit({
       actorId: req.user.id,
@@ -632,16 +741,33 @@ router.post(
 
     const section = getSectionById(edit.section_id);
     const author = getUserById(edit.user_id);
-    const editInstitutionId = author ? author.institution_id : null;
-    if (!canReviewEdit(req.user, editInstitutionId)) {
+    const editInstitution = author?.institution_id
+      ? getInstitutionById(author.institution_id)
+      : null;
+
+    if (!canReviewEdit(req.user, editInstitution, author)) {
       return res.status(403).json(error('You cannot review edits from this institution'));
     }
 
     const { comment = '', status = 'rejected' } = req.body || {};
     const finalStatus = status === 'needs_revision' ? 'needs_revision' : 'rejected';
 
-    createReview({ editId: edit.id, reviewerId: req.user.id, decision: finalStatus, comment });
-    updateEditStatus(edit.id, finalStatus, comment);
+    try {
+      withTransaction(() => {
+        const currentEdit = getEditById(edit.id);
+        if (currentEdit.status !== 'pending') {
+          throw new EditNoLongerPendingError();
+        }
+
+        createReview({ editId: edit.id, reviewerId: req.user.id, decision: finalStatus, comment });
+        updateEditStatus(edit.id, finalStatus, comment);
+      });
+    } catch (err) {
+      if (err instanceof EditNoLongerPendingError) {
+        return res.status(400).json(error('Edit is not pending'));
+      }
+      throw err;
+    }
 
     audit({
       actorId: req.user.id,
@@ -725,13 +851,13 @@ router.get(
 );
 
 // ─────────────────────────────────────────────────────────────
-// Institution dashboard
+// Institution admin dashboard
 // ─────────────────────────────────────────────────────────────
 
 router.get(
   '/institution',
   requireAuth,
-  requireRole('reviewer'),
+  requireInstitutionAdmin,
   createScholarsRateLimit('institution:dashboard'),
   asyncHandler(async (req, res) => {
     const institutionId = req.user.institutionId;
@@ -744,22 +870,276 @@ router.get(
 
     const stats = {
       memberCount: countUsersByInstitution(institutionId),
+      studentCount: listStudentsByInstitution(institutionId).length,
+      reviewerCount: listReviewersForInstitution(institutionId).length,
       totalSubmitted: countEditsByInstitution(institutionId),
       approved: countEditsByInstitution(institutionId, { status: 'approved' }),
       pending: countEditsByInstitution(institutionId, { status: 'pending' }),
       attributedSections: countAttributedSectionsByInstitution(institutionId),
     };
 
-    const users = listUsersByInstitution(institutionId).map((u) => ({
-      id: u.id,
-      email: u.email,
-      displayName: u.display_name,
-      role: u.role,
-      department: u.department,
-      status: u.status,
-    }));
+    const users = listUsersByInstitution(institutionId).map((u) => sanitizeUser(u));
 
     res.json(success({ institution, stats, users }));
+  })
+);
+
+router.get(
+  '/institution/students',
+  requireAuth,
+  requireInstitutionAdmin,
+  createScholarsRateLimit('institution:students:list'),
+  asyncHandler(async (req, res) => {
+    const institutionId = req.user.institutionId;
+    if (!institutionId) return res.status(400).json(error('No institution associated'));
+    const students = listStudentsByInstitution(institutionId).map((u) => sanitizeUser(u));
+    res.json(success(students));
+  })
+);
+
+router.post(
+  '/institution/students',
+  requireAuth,
+  requireInstitutionAdmin,
+  createScholarsRateLimit('institution:students:create'),
+  validateInputLength([
+    { key: 'email', max: 254 },
+    { key: 'displayName', max: 200 },
+    { key: 'department', max: 100 },
+    { key: 'password', max: 128 },
+  ]),
+  auditLog('institution_student_created', {
+    getResourceType: () => 'user',
+    getResourceId: (_req, res) => res.locals?.createdUserId || 'new',
+    getDetails: (req, res) => ({ email: req.body?.email, statusCode: res.statusCode }),
+  }),
+  asyncHandler(async (req, res) => {
+    const institutionId = req.user.institutionId;
+    if (!institutionId) return res.status(400).json(error('No institution associated'));
+
+    const { email, displayName, department, password } = req.body || {};
+    if (!email || typeof email !== 'string' || !email.includes('@')) {
+      return res.status(400).json(error('A valid email is required'));
+    }
+    if (password !== undefined && (typeof password !== 'string' || password.length < 8)) {
+      return res.status(400).json(error('Password must be at least 8 characters'));
+    }
+
+    const institution = getInstitutionById(institutionId);
+    if (!institution) return res.status(404).json(error('Institution not found', 404));
+    if (department && !institution.department_allowlist.includes(department)) {
+      return res.status(400).json(error('Department is not in the institution allowlist'));
+    }
+
+    const normalizedEmail = email.toLowerCase().trim();
+    const tempPassword = password || generateTempPassword();
+
+    let result;
+    try {
+      result = withTransaction(() => {
+        const existing = getUserByEmail(normalizedEmail);
+        if (existing) {
+          throw new DuplicateEmailError();
+        }
+        return createUserWithPassword({
+          email: normalizedEmail,
+          institutionId,
+          role: 'student',
+          displayName,
+          department,
+          passwordHash: hashPassword(tempPassword),
+          accountStatus: 'active',
+        });
+      });
+    } catch (err) {
+      if (err instanceof DuplicateEmailError) {
+        return res.status(409).json(error('A user with this email already exists', 409));
+      }
+      throw err;
+    }
+
+    res.locals.createdUserId = result.lastInsertRowid;
+
+    audit({
+      actorId: req.user.id,
+      action: 'student_created',
+      resourceType: 'user',
+      resourceId: result.lastInsertRowid,
+      details: { email: email.toLowerCase().trim(), institutionId },
+      ipHash: null,
+    });
+
+    res.status(201).json(
+      success({
+        userId: result.lastInsertRowid,
+        tempPassword,
+      })
+    );
+  })
+);
+
+router.get(
+  '/institution/reviewers',
+  requireAuth,
+  requireInstitutionAdmin,
+  createScholarsRateLimit('institution:reviewers:list'),
+  asyncHandler(async (req, res) => {
+    const institutionId = req.user.institutionId;
+    if (!institutionId) return res.status(400).json(error('No institution associated'));
+    const reviewers = listReviewersForInstitution(institutionId).map((u) => sanitizeUser(u));
+    res.json(success(reviewers));
+  })
+);
+
+router.post(
+  '/institution/reviewers',
+  requireAuth,
+  requireInstitutionAdmin,
+  createScholarsRateLimit('institution:reviewers:promote'),
+  validateInputLength([{ key: 'userId', max: 50 }]),
+  auditLog('institution_reviewer_promoted', {
+    getResourceType: () => 'user',
+    getResourceId: (req) => req.body?.userId || 'promote',
+  }),
+  asyncHandler(async (req, res) => {
+    const institutionId = req.user.institutionId;
+    if (!institutionId) return res.status(400).json(error('No institution associated'));
+
+    const { userId } = req.body || {};
+    const targetId = Number(userId);
+    if (!Number.isFinite(targetId)) {
+      return res.status(400).json(error('userId is required'));
+    }
+
+    const target = getUserById(targetId);
+    if (!target) return res.status(404).json(error('User not found', 404));
+    if (!canManageStudent(req.user, target)) {
+      return res.status(403).json(error('Only students in your institution can be promoted'));
+    }
+
+    updateUserRole(target.id, 'reviewer');
+
+    audit({
+      actorId: req.user.id,
+      action: 'reviewer_promoted',
+      resourceType: 'user',
+      resourceId: target.id,
+      details: { previousRole: target.role },
+      ipHash: null,
+    });
+
+    res.json(success({ promoted: true, userId: target.id }));
+  })
+);
+
+router.patch(
+  '/institution/students/:id',
+  requireAuth,
+  requireInstitutionAdmin,
+  createScholarsRateLimit('institution:students:update'),
+  validateInputLength([
+    { key: 'displayName', max: 200 },
+    { key: 'department', max: 100 },
+    { key: 'accountStatus', max: 50 },
+  ]),
+  auditLog('institution_student_updated', {
+    getResourceType: () => 'user',
+    getResourceId: (req) => req.params.id,
+  }),
+  asyncHandler(async (req, res) => {
+    const targetId = Number(req.params.id);
+    const target = getUserById(targetId);
+    if (!target) return res.status(404).json(error('User not found', 404));
+    if (!canManageStudent(req.user, target)) {
+      return res.status(403).json(error('You cannot update this user'));
+    }
+
+    const { displayName, department, accountStatus } = req.body || {};
+    if (department !== undefined) {
+      const institution = getInstitutionById(req.user.institutionId);
+      if (department && !institution.department_allowlist.includes(department)) {
+        return res.status(400).json(error('Department is not in the institution allowlist'));
+      }
+    }
+
+    updateUserProfile(target.id, { displayName, department });
+    if (accountStatus !== undefined) {
+      updateUserStatus(target.id, accountStatus);
+    }
+
+    audit({
+      actorId: req.user.id,
+      action: 'student_updated',
+      resourceType: 'user',
+      resourceId: target.id,
+      details: { displayName, department, accountStatus },
+      ipHash: null,
+    });
+
+    res.json(success({ updated: true, userId: target.id }));
+  })
+);
+
+router.post(
+  '/institution/students/:id/reset-password',
+  requireAuth,
+  requireInstitutionAdmin,
+  createScholarsRateLimit('institution:students:reset-password', { tier: 'strict' }),
+  auditLog('institution_student_password_reset', {
+    getResourceType: () => 'user',
+    getResourceId: (req) => req.params.id,
+  }),
+  asyncHandler(async (req, res) => {
+    const targetId = Number(req.params.id);
+    const target = getUserById(targetId);
+    if (!target) return res.status(404).json(error('User not found', 404));
+    if (!canManageStudent(req.user, target)) {
+      return res.status(403).json(error("You cannot reset this user's password"));
+    }
+
+    const tempPassword = generateTempPassword();
+    updateUserPassword(target.id, hashPassword(tempPassword));
+
+    audit({
+      actorId: req.user.id,
+      action: 'student_password_reset',
+      resourceType: 'user',
+      resourceId: target.id,
+      ipHash: null,
+    });
+
+    res.json(success({ reset: true, tempPassword }));
+  })
+);
+
+router.delete(
+  '/institution/students/:id',
+  requireAuth,
+  requireInstitutionAdmin,
+  createScholarsRateLimit('institution:students:delete'),
+  auditLog('institution_student_disabled', {
+    getResourceType: () => 'user',
+    getResourceId: (req) => req.params.id,
+  }),
+  asyncHandler(async (req, res) => {
+    const targetId = Number(req.params.id);
+    const target = getUserById(targetId);
+    if (!target) return res.status(404).json(error('User not found', 404));
+    if (!canManageStudent(req.user, target)) {
+      return res.status(403).json(error('You cannot disable this user'));
+    }
+
+    updateUserStatus(target.id, 'disabled');
+
+    audit({
+      actorId: req.user.id,
+      action: 'student_disabled',
+      resourceType: 'user',
+      resourceId: target.id,
+      ipHash: null,
+    });
+
+    res.json(success({ disabled: true, userId: target.id }));
   })
 );
 
@@ -896,7 +1276,8 @@ router.post(
   requireAuth,
   createScholarsRateLimit('media:upload'),
   asyncHandler(async (req, res) => {
-    if (!canSubmitEdit(req.user)) {
+    const institution = req.user.institutionId ? getInstitutionById(req.user.institutionId) : null;
+    if (!canSubmitEdit(req.user, institution, null)) {
       return res.status(403).json(error('You do not have permission to upload media'));
     }
 
@@ -1092,9 +1473,90 @@ router.get(
   requireAuth,
   requireCurator,
   createScholarsRateLimit('curator:users'),
-  asyncHandler(async (_req, res) => {
-    const users = listUsers();
+  asyncHandler(async (req, res) => {
+    const filters = {};
+    if (req.query.role) filters.role = req.query.role;
+    if (req.query.institutionId !== undefined)
+      filters.institutionId = Number(req.query.institutionId);
+    if (req.query.accountStatus) filters.accountStatus = req.query.accountStatus;
+    if (req.query.q) filters.q = req.query.q;
+    const users = listUsers(filters).map((u) => sanitizeUser(u));
     res.json(success(users));
+  })
+);
+
+router.patch(
+  '/users/:id/role',
+  requireAuth,
+  requireCurator,
+  createScholarsRateLimit('curator:users:role'),
+  validateInputLength([
+    { key: 'role', max: 50 },
+    { key: 'userId', max: 50 },
+  ]),
+  auditLog('curator_user_role_changed', {
+    getResourceType: () => 'user',
+    getResourceId: (req) => req.params.id,
+  }),
+  asyncHandler(async (req, res) => {
+    const userId = Number(req.params.id);
+    const { role } = req.body || {};
+    const validRoles = ['student', 'reviewer', 'dept_admin', 'inst_admin', 'curator'];
+    if (!role || !validRoles.includes(role)) {
+      return res.status(400).json(error('A valid role is required'));
+    }
+
+    const target = getUserById(userId);
+    if (!target) return res.status(404).json(error('User not found', 404));
+
+    updateUserRole(userId, role);
+
+    audit({
+      actorId: req.user.id,
+      action: 'user_role_changed',
+      resourceType: 'user',
+      resourceId: userId,
+      details: { previousRole: target.role, newRole: role },
+      ipHash: null,
+    });
+
+    res.json(success({ changed: true, userId, role }));
+  })
+);
+
+router.patch(
+  '/users/:id/status',
+  requireAuth,
+  requireCurator,
+  createScholarsRateLimit('curator:users:status'),
+  validateInputLength([{ key: 'accountStatus', max: 50 }]),
+  auditLog('curator_user_status_changed', {
+    getResourceType: () => 'user',
+    getResourceId: (req) => req.params.id,
+  }),
+  asyncHandler(async (req, res) => {
+    const userId = Number(req.params.id);
+    const { accountStatus } = req.body || {};
+    const validStatuses = ['active', 'disabled', 'pending'];
+    if (!accountStatus || !validStatuses.includes(accountStatus)) {
+      return res.status(400).json(error('A valid accountStatus is required'));
+    }
+
+    const target = getUserById(userId);
+    if (!target) return res.status(404).json(error('User not found', 404));
+
+    updateUserStatus(userId, accountStatus);
+
+    audit({
+      actorId: req.user.id,
+      action: 'user_status_changed',
+      resourceType: 'user',
+      resourceId: userId,
+      details: { previousStatus: target.account_status, newStatus: accountStatus },
+      ipHash: null,
+    });
+
+    res.json(success({ changed: true, userId, accountStatus }));
   })
 );
 
@@ -1103,9 +1565,168 @@ router.get(
   requireAuth,
   requireCurator,
   createScholarsRateLimit('curator:institutions'),
-  asyncHandler(async (_req, res) => {
-    const institutions = listInstitutions();
+  asyncHandler(async (req, res) => {
+    const institutions = listInstitutions({
+      status: req.query.status,
+      sponsorshipStatus: req.query.sponsorshipStatus,
+    });
     res.json(success(institutions));
+  })
+);
+
+router.post(
+  '/institutions',
+  requireAuth,
+  requireCurator,
+  createScholarsRateLimit('curator:institutions:create'),
+  validateInputLength([
+    { key: 'name', max: 200 },
+    { key: 'slug', max: 120 },
+    { key: 'domain', max: 120 },
+    { key: 'accreditation', max: 100 },
+    { key: 'adminEmail', max: 254 },
+    { key: 'adminPassword', max: 128 },
+    { key: 'adminDisplayName', max: 200 },
+    { key: 'adminDepartment', max: 100 },
+  ]),
+  auditLog('curator_institution_created', {
+    getResourceType: () => 'institution',
+    getResourceId: (_req, res) => res.locals?.institutionId || 'new',
+  }),
+  asyncHandler(async (req, res) => {
+    const {
+      name,
+      slug,
+      domain,
+      accreditation,
+      adminEmail,
+      adminPassword,
+      adminDisplayName,
+      adminDepartment,
+      sponsorshipStatus,
+      sponsorshipExpiresAt,
+      departmentAllowlist,
+    } = req.body || {};
+
+    if (!name || !slug || !adminEmail) {
+      return res.status(400).json(error('name, slug, and adminEmail are required'));
+    }
+    if (!adminEmail.includes('@')) {
+      return res.status(400).json(error('A valid adminEmail is required'));
+    }
+
+    const password = adminPassword || generateTempPassword(20);
+
+    const result = createInstitutionWithAdmin({
+      name,
+      slug,
+      domain,
+      accreditation,
+      sponsorshipStatus: sponsorshipStatus || 'pending',
+      sponsorshipExpiresAt: sponsorshipExpiresAt || null,
+      departmentAllowlist: Array.isArray(departmentAllowlist) ? departmentAllowlist : [],
+      adminEmail: adminEmail.toLowerCase().trim(),
+      adminPasswordHash: hashPassword(password),
+      adminDisplayName,
+      adminDepartment,
+    });
+
+    res.locals.institutionId = result.institutionId;
+
+    audit({
+      actorId: req.user.id,
+      action: 'institution_created',
+      resourceType: 'institution',
+      resourceId: result.institutionId,
+      details: { slug, adminId: result.adminId },
+      ipHash: null,
+    });
+
+    res.status(201).json(
+      success({
+        institutionId: result.institutionId,
+        adminId: result.adminId,
+        adminPassword: adminPassword ? undefined : password,
+      })
+    );
+  })
+);
+
+router.patch(
+  '/institutions/:id/sponsorship',
+  requireAuth,
+  requireCurator,
+  createScholarsRateLimit('curator:institutions:sponsorship'),
+  validateInputLength([
+    { key: 'sponsorshipStatus', max: 50 },
+    { key: 'sponsorshipExpiresAt', max: 50 },
+  ]),
+  auditLog('curator_institution_sponsorship_updated', {
+    getResourceType: () => 'institution',
+    getResourceId: (req) => req.params.id,
+  }),
+  asyncHandler(async (req, res) => {
+    const institutionId = Number(req.params.id);
+    const { sponsorshipStatus, sponsorshipExpiresAt } = req.body || {};
+    const validStatuses = ['active', 'pending', 'expired'];
+
+    if (sponsorshipStatus !== undefined && !validStatuses.includes(sponsorshipStatus)) {
+      return res.status(400).json(error('Invalid sponsorshipStatus'));
+    }
+
+    const institution = getInstitutionById(institutionId);
+    if (!institution) return res.status(404).json(error('Institution not found', 404));
+
+    updateInstitutionSponsorship(institutionId, {
+      sponsorshipStatus,
+      sponsorshipExpiresAt,
+    });
+
+    audit({
+      actorId: req.user.id,
+      action: 'institution_sponsorship_updated',
+      resourceType: 'institution',
+      resourceId: institutionId,
+      details: { sponsorshipStatus, sponsorshipExpiresAt },
+      ipHash: null,
+    });
+
+    res.json(success({ updated: true, institutionId }));
+  })
+);
+
+router.patch(
+  '/institutions/:id/allowlist',
+  requireAuth,
+  requireCurator,
+  createScholarsRateLimit('curator:institutions:allowlist'),
+  validateInputLength([{ key: 'departmentAllowlist', max: 2000 }]),
+  auditLog('curator_institution_allowlist_updated', {
+    getResourceType: () => 'institution',
+    getResourceId: (req) => req.params.id,
+  }),
+  asyncHandler(async (req, res) => {
+    const institutionId = Number(req.params.id);
+    const { departmentAllowlist } = req.body || {};
+    if (!Array.isArray(departmentAllowlist)) {
+      return res.status(400).json(error('departmentAllowlist must be an array'));
+    }
+
+    const institution = getInstitutionById(institutionId);
+    if (!institution) return res.status(404).json(error('Institution not found', 404));
+
+    updateInstitutionAllowlist(institutionId, departmentAllowlist);
+
+    audit({
+      actorId: req.user.id,
+      action: 'institution_allowlist_updated',
+      resourceType: 'institution',
+      resourceId: institutionId,
+      details: { departmentAllowlist },
+      ipHash: null,
+    });
+
+    res.json(success({ updated: true, institutionId, departmentAllowlist }));
   })
 );
 

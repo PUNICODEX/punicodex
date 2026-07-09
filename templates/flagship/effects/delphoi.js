@@ -245,10 +245,6 @@
     });
 
     if (navToggle && navLinks) {
-        navToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            navToggle.classList.toggle('active');
-        });
     }
 
     // Smooth scroll for nav links

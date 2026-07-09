@@ -35,23 +35,32 @@ function createInstitution({ name, slug, domain, accreditation, metadata = {} })
 
 function getInstitutionById(id) {
   const db = getDb();
-  const row = db.prepare('SELECT * FROM scholars_institutions WHERE id = ?').get(id);
-  if (row) row.metadata = parseJson(row.metadata, {});
-  return row || null;
+  return normalizeInstitution(
+    db.prepare('SELECT * FROM scholars_institutions WHERE id = ?').get(id)
+  );
 }
 
 function getInstitutionBySlug(slug) {
   const db = getDb();
-  const row = db.prepare('SELECT * FROM scholars_institutions WHERE slug = ?').get(slug);
-  if (row) row.metadata = parseJson(row.metadata, {});
-  return row || null;
+  return normalizeInstitution(
+    db.prepare('SELECT * FROM scholars_institutions WHERE slug = ?').get(slug)
+  );
 }
 
 function getInstitutionByDomain(domain) {
   const db = getDb();
-  const row = db.prepare('SELECT * FROM scholars_institutions WHERE domain = ?').get(domain);
-  if (row) row.metadata = parseJson(row.metadata, {});
-  return row || null;
+  return normalizeInstitution(
+    db.prepare('SELECT * FROM scholars_institutions WHERE domain = ?').get(domain)
+  );
+}
+
+function normalizeInstitution(row) {
+  if (!row) return null;
+  return {
+    ...row,
+    metadata: parseJson(row.metadata, {}),
+    department_allowlist: parseJson(row.department_allowlist, []),
+  };
 }
 
 function countInstitutions() {
@@ -59,17 +68,101 @@ function countInstitutions() {
   return db.prepare('SELECT COUNT(*) AS count FROM scholars_institutions').get().count;
 }
 
-function listInstitutions({ status } = {}) {
+function listInstitutions({ status, sponsorshipStatus } = {}) {
   const db = getDb();
-  let sql = 'SELECT * FROM scholars_institutions';
+  const conditions = [];
   const params = [];
   if (status) {
-    sql += ' WHERE status = ?';
+    conditions.push('status = ?');
     params.push(status);
   }
-  sql += ' ORDER BY name';
-  const rows = db.prepare(sql).all(...params);
-  return rows.map((r) => ({ ...r, metadata: parseJson(r.metadata, {}) }));
+  if (sponsorshipStatus) {
+    conditions.push('sponsorship_status = ?');
+    params.push(sponsorshipStatus);
+  }
+  const where = conditions.length ? `WHERE ${conditions.join(' AND ')}` : '';
+  const rows = db
+    .prepare(`SELECT * FROM scholars_institutions ${where} ORDER BY name`)
+    .all(...params);
+  return rows.map((r) => normalizeInstitution(r));
+}
+
+function updateInstitutionSponsorship(id, { sponsorshipStatus, sponsorshipExpiresAt }) {
+  const db = getDb();
+  const fields = [];
+  const params = [];
+  if (sponsorshipStatus !== undefined) {
+    fields.push('sponsorship_status = ?');
+    params.push(sponsorshipStatus);
+  }
+  if (sponsorshipExpiresAt !== undefined) {
+    fields.push('sponsorship_expires_at = ?');
+    params.push(sponsorshipExpiresAt);
+  }
+  if (fields.length === 0) return { changes: 0 };
+  return db
+    .prepare(`UPDATE scholars_institutions SET ${fields.join(', ')} WHERE id = ?`)
+    .run(...params, id);
+}
+
+function updateInstitutionAllowlist(id, departmentAllowlist) {
+  const db = getDb();
+  return db
+    .prepare('UPDATE scholars_institutions SET department_allowlist = ? WHERE id = ?')
+    .run(json(departmentAllowlist), id);
+}
+
+function createInstitutionWithAdmin({
+  name,
+  slug,
+  domain,
+  accreditation,
+  metadata = {},
+  sponsorshipStatus = 'pending',
+  sponsorshipExpiresAt = null,
+  departmentAllowlist = [],
+  adminEmail,
+  adminPasswordHash,
+  adminDisplayName,
+  adminDepartment,
+}) {
+  const db = getDb();
+  return db.transaction(() => {
+    const institutionStmt = db.prepare(`
+      INSERT INTO scholars_institutions
+        (name, slug, domain, accreditation, metadata, sponsorship_status, sponsorship_expires_at, department_allowlist)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    `);
+    const institutionResult = institutionStmt.run(
+      name,
+      slug,
+      domain,
+      accreditation,
+      json(metadata),
+      sponsorshipStatus,
+      sponsorshipExpiresAt,
+      json(departmentAllowlist)
+    );
+    const institutionId = institutionResult.lastInsertRowid;
+
+    const adminStmt = db.prepare(`
+      INSERT INTO scholars_users
+        (email, institution_id, role, department, display_name, password_hash, account_status)
+      VALUES (?, ?, 'inst_admin', ?, ?, ?, 'active')
+    `);
+    const adminResult = adminStmt.run(
+      adminEmail,
+      institutionId,
+      adminDepartment,
+      adminDisplayName,
+      adminPasswordHash
+    );
+
+    return {
+      institutionId,
+      adminId: adminResult.lastInsertRowid,
+    };
+  })();
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -81,25 +174,166 @@ function countUsers() {
   return db.prepare('SELECT COUNT(*) AS count FROM scholars_users').get().count;
 }
 
-function listUsers() {
+function listUsers({ role, institutionId, accountStatus, q } = {}) {
   const db = getDb();
+  const conditions = [];
+  const params = [];
+  if (role) {
+    conditions.push('u.role = ?');
+    params.push(role);
+  }
+  if (institutionId !== undefined) {
+    conditions.push('u.institution_id = ?');
+    params.push(institutionId);
+  }
+  if (accountStatus) {
+    conditions.push('u.account_status = ?');
+    params.push(accountStatus);
+  }
+  if (q) {
+    conditions.push('(u.email LIKE ? OR u.display_name LIKE ?)');
+    params.push(`%${q}%`, `%${q}%`);
+  }
+  const where = conditions.length ? `WHERE ${conditions.join(' AND ')}` : '';
   return db
     .prepare(`
     SELECT u.*, i.name AS institution_name
     FROM scholars_users u
     LEFT JOIN scholars_institutions i ON u.institution_id = i.id
+    ${where}
     ORDER BY u.created_at DESC
   `)
-    .all();
+    .all(...params);
 }
 
 function createUser({ email, institutionId, role = 'student', department, orcid, displayName }) {
   const db = getDb();
   const stmt = db.prepare(`
-    INSERT INTO scholars_users (email, institution_id, role, department, orcid, display_name)
-    VALUES (?, ?, ?, ?, ?, ?)
+    INSERT INTO scholars_users (email, institution_id, role, department, orcid, display_name, account_status)
+    VALUES (?, ?, ?, ?, ?, ?, 'active')
   `);
   return stmt.run(email, institutionId, role, department, orcid, displayName);
+}
+
+function createUserWithPassword({
+  email,
+  institutionId,
+  role = 'student',
+  department,
+  orcid,
+  displayName,
+  passwordHash,
+  accountStatus = 'pending',
+}) {
+  const db = getDb();
+  const stmt = db.prepare(`
+    INSERT INTO scholars_users
+      (email, institution_id, role, department, orcid, display_name, password_hash, account_status)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+  `);
+  return stmt.run(
+    email,
+    institutionId,
+    role,
+    department,
+    orcid,
+    displayName,
+    passwordHash,
+    accountStatus
+  );
+}
+
+function updateUserPassword(id, passwordHash) {
+  const db = getDb();
+  return db
+    .prepare(`
+      UPDATE scholars_users
+      SET password_hash = ?, password_changed_at = CURRENT_TIMESTAMP
+      WHERE id = ?
+    `)
+    .run(passwordHash, id);
+}
+
+function updateUserStatus(id, accountStatus) {
+  const db = getDb();
+  return db
+    .prepare('UPDATE scholars_users SET account_status = ? WHERE id = ?')
+    .run(accountStatus, id);
+}
+
+function updateUserRole(id, role) {
+  const db = getDb();
+  return db.prepare('UPDATE scholars_users SET role = ? WHERE id = ?').run(role, id);
+}
+
+function updateUserProfile(id, { displayName, department }) {
+  const db = getDb();
+  const fields = [];
+  const params = [];
+  if (displayName !== undefined) {
+    fields.push('display_name = ?');
+    params.push(displayName);
+  }
+  if (department !== undefined) {
+    fields.push('department = ?');
+    params.push(department);
+  }
+  if (fields.length === 0) return { changes: 0 };
+  return db
+    .prepare(`UPDATE scholars_users SET ${fields.join(', ')} WHERE id = ?`)
+    .run(...params, id);
+}
+
+function incrementLoginAttempts(id, { maxAttempts = 5, lockoutMinutes = 15 } = {}) {
+  const db = getDb();
+  const user = getUserById(id);
+  if (!user) return null;
+  const attempts = (user.login_attempts || 0) + 1;
+  const lockedUntil =
+    attempts >= maxAttempts
+      ? new Date(Date.now() + lockoutMinutes * 60 * 1000).toISOString()
+      : user.locked_until;
+  return db
+    .prepare('UPDATE scholars_users SET login_attempts = ?, locked_until = ? WHERE id = ?')
+    .run(attempts, lockedUntil, id);
+}
+
+function resetLoginAttempts(id) {
+  const db = getDb();
+  return db
+    .prepare('UPDATE scholars_users SET login_attempts = 0, locked_until = NULL WHERE id = ?')
+    .run(id);
+}
+
+function isUserLocked(user) {
+  if (!user?.locked_until) return false;
+  return new Date(user.locked_until) > new Date();
+}
+
+function getUserWithInstitutionByEmail(email) {
+  const db = getDb();
+  const row = db
+    .prepare(`
+      SELECT u.*, i.name AS institution_name, i.slug AS institution_slug,
+             i.domain AS institution_domain, i.sponsorship_status,
+             i.sponsorship_expires_at, i.department_allowlist
+      FROM scholars_users u
+      LEFT JOIN scholars_institutions i ON u.institution_id = i.id
+      WHERE u.email = ?
+    `)
+    .get(email);
+  if (!row) return null;
+  row.department_allowlist = parseJson(row.department_allowlist, []);
+  return row;
+}
+
+function isDepartmentAllowed(department, institution) {
+  if (!institution?.department_allowlist) return true;
+  const allowlist = Array.isArray(institution.department_allowlist)
+    ? institution.department_allowlist
+    : parseJson(institution.department_allowlist, []);
+  if (allowlist.length === 0) return true;
+  return allowlist.includes(department);
 }
 
 function getUserById(id) {
@@ -122,6 +356,30 @@ function listUsersByInstitution(institutionId) {
   return db
     .prepare('SELECT * FROM scholars_users WHERE institution_id = ? ORDER BY created_at')
     .all(institutionId);
+}
+
+function listStudentsByInstitution(institutionId, { status, accountStatus } = {}) {
+  const db = getDb();
+  const conditions = ['u.institution_id = ?', "u.role = 'student'"];
+  const params = [institutionId];
+  if (status) {
+    conditions.push('u.status = ?');
+    params.push(status);
+  }
+  if (accountStatus) {
+    conditions.push('u.account_status = ?');
+    params.push(accountStatus);
+  }
+  const where = conditions.join(' AND ');
+  return db
+    .prepare(`
+      SELECT u.*, i.name AS institution_name
+      FROM scholars_users u
+      LEFT JOIN scholars_institutions i ON u.institution_id = i.id
+      WHERE ${where}
+      ORDER BY u.created_at DESC
+    `)
+    .all(...params);
 }
 
 function countUsersByInstitution(institutionId) {
@@ -186,7 +444,8 @@ function getSessionWithUser(id) {
   const db = getDb();
   const row = db
     .prepare(`
-    SELECT s.*, u.email, u.role, u.institution_id, u.display_name, u.status AS user_status
+    SELECT s.*, u.email, u.role, u.institution_id, u.display_name, u.status AS user_status,
+           u.account_status AS user_account_status, u.department
     FROM scholars_sessions s
     JOIN scholars_users u ON s.user_id = u.id
     WHERE s.id = ?
@@ -539,11 +798,12 @@ function listReviewersForInstitution(institutionId) {
   const db = getDb();
   return db
     .prepare(`
-      SELECT id, email, display_name, role
+      SELECT id, email, display_name, role, department
       FROM scholars_users
       WHERE institution_id = ?
         AND role IN ('reviewer', 'dept_admin', 'inst_admin', 'curator')
         AND status = 'active'
+        AND account_status = 'active'
     `)
     .all(institutionId);
 }
@@ -801,20 +1061,34 @@ module.exports = {
   parseJson,
   // Institutions
   createInstitution,
+  createInstitutionWithAdmin,
   getInstitutionById,
   getInstitutionBySlug,
   getInstitutionByDomain,
   listInstitutions,
   countInstitutions,
+  updateInstitutionSponsorship,
+  updateInstitutionAllowlist,
+  isDepartmentAllowed,
   // Users
   createUser,
+  createUserWithPassword,
+  updateUserPassword,
+  updateUserStatus,
+  updateUserRole,
+  updateUserProfile,
   getUserById,
   getUserByEmail,
+  getUserWithInstitutionByEmail,
   updateUserLastSeen,
   listUsersByInstitution,
+  listStudentsByInstitution,
   countUsersByInstitution,
   listUsers,
   countUsers,
+  incrementLoginAttempts,
+  resetLoginAttempts,
+  isUserLocked,
   // Sessions
   createSession,
   getSessionById,

@@ -498,10 +498,6 @@ const canvas = document.getElementById('beauty-canvas');
     const navLinks = document.querySelector('.nav-links');
 
     if (navToggle && navLinks) {
-        navToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            navToggle.classList.toggle('active');
-        });
 
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
@@ -910,6 +906,23 @@ function resetUpload() {
   if (warn) warn.remove();
 }
 
+function buildSlotFromDom(slotEl) {
+  const nameEl = slotEl.querySelector('.space-name');
+  const dimsEl = slotEl.querySelector('.space-dims');
+  const dimsMatch = dimsEl ? dimsEl.textContent.match(/(\d+)\s*×\s*(\d+)/) : null;
+  const isBundle = slotEl.dataset.bundle === '1';
+  const sortOrder = parseInt(slotEl.dataset.space, 10) || 0;
+  return {
+    id: isBundle ? 'bundle' : sortOrder,
+    name: nameEl ? nameEl.textContent.trim() : 'Ad Space',
+    width: dimsMatch ? parseInt(dimsMatch[1], 10) : 0,
+    height: dimsMatch ? parseInt(dimsMatch[2], 10) : 0,
+    price_cents: parseInt(slotEl.dataset.priceCents, 10) || 0,
+    is_bundle: isBundle ? 1 : 0,
+    sort_order: sortOrder,
+  };
+}
+
 // Event: Click anywhere on an available frame to open booking
 document.addEventListener('click', (e) => {
   const slotEl = e.target.closest('.space-slot');
@@ -925,7 +938,11 @@ document.addEventListener('click', (e) => {
     const sortOrder = parseInt(slotEl.dataset.space, 10);
     slot = slotsData.find(s => s.sort_order === sortOrder);
   }
-  if (!slot) return;
+
+  // Fallback to DOM data when API slots are not loaded/available.
+  if (!slot) {
+    slot = buildSlotFromDom(slotEl);
+  }
 
   openModal(slot);
 });

@@ -58,6 +58,53 @@ test('list institutions filters by status', () => {
   assert.ok(rows.every((r) => r.status === 'pending'));
 });
 
+test('create institution with admin in transaction', () => {
+  const result = db.createInstitutionWithAdmin({
+    name: 'Sponsored College',
+    slug: 'sponsored-college',
+    domain: 'sponsored.edu',
+    sponsorshipStatus: 'active',
+    sponsorshipExpiresAt: '2027-01-01T00:00:00.000Z',
+    departmentAllowlist: ['Classics', 'History'],
+    adminEmail: 'admin@sponsored.edu',
+    adminPasswordHash: 'admin-hash',
+    adminDisplayName: 'Admin User',
+    adminDepartment: 'Classics',
+  });
+  assert.ok(result.institutionId > 0);
+  assert.ok(result.adminId > 0);
+
+  const institution = db.getInstitutionBySlug('sponsored-college');
+  assert.strictEqual(institution.sponsorship_status, 'active');
+  assert.strictEqual(institution.sponsorship_expires_at, '2027-01-01T00:00:00.000Z');
+  assert.deepStrictEqual(institution.department_allowlist, ['Classics', 'History']);
+
+  const admin = db.getUserById(result.adminId);
+  assert.strictEqual(admin.role, 'inst_admin');
+  assert.strictEqual(admin.account_status, 'active');
+});
+
+test('update institution sponsorship and allowlist', () => {
+  const institution = db.getInstitutionBySlug('sponsored-college');
+  db.updateInstitutionSponsorship(institution.id, {
+    sponsorshipStatus: 'expired',
+    sponsorshipExpiresAt: '2025-01-01T00:00:00.000Z',
+  });
+  db.updateInstitutionAllowlist(institution.id, ['Classics', 'History', 'Anthropology']);
+
+  const updated = db.getInstitutionById(institution.id);
+  assert.strictEqual(updated.sponsorship_status, 'expired');
+  assert.deepStrictEqual(updated.department_allowlist, ['Classics', 'History', 'Anthropology']);
+});
+
+test('department allowlist validation', () => {
+  const institution = db.getInstitutionBySlug('sponsored-college');
+  assert.ok(db.isDepartmentAllowed('Classics', institution));
+  assert.ok(!db.isDepartmentAllowed('Physics', institution));
+  assert.ok(db.isDepartmentAllowed('Anything', { department_allowlist: [] }));
+  assert.ok(db.isDepartmentAllowed('Anything', null));
+});
+
 // ─── Users ───
 let institutionId;
 let studentId;
@@ -85,8 +132,68 @@ test('create and retrieve users', () => {
 
   const student = db.getUserByEmail('student@test.edu');
   assert.strictEqual(student.role, 'student');
+  assert.strictEqual(student.account_status, 'active');
   const reviewer = db.getUserById(reviewerId);
   assert.strictEqual(reviewer.role, 'reviewer');
+});
+
+test('create user with password and update password', () => {
+  const result = db.createUserWithPassword({
+    email: 'password-user@test.edu',
+    institutionId,
+    role: 'student',
+    displayName: 'Password User',
+    passwordHash: 'hash-v1',
+    accountStatus: 'pending',
+  });
+  assert.ok(result.lastInsertRowid > 0);
+
+  const user = db.getUserByEmail('password-user@test.edu');
+  assert.strictEqual(user.password_hash, 'hash-v1');
+  assert.strictEqual(user.account_status, 'pending');
+
+  db.updateUserPassword(user.id, 'hash-v2');
+  const updated = db.getUserById(user.id);
+  assert.strictEqual(updated.password_hash, 'hash-v2');
+  assert.ok(updated.password_changed_at);
+});
+
+test('update user account status', () => {
+  const user = db.getUserByEmail('password-user@test.edu');
+  db.updateUserStatus(user.id, 'disabled');
+  const updated = db.getUserById(user.id);
+  assert.strictEqual(updated.account_status, 'disabled');
+});
+
+test('login attempt lockout', () => {
+  const user = db.getUserByEmail('password-user@test.edu');
+  db.updateUserStatus(user.id, 'active');
+  db.resetLoginAttempts(user.id);
+  for (let i = 0; i < 5; i += 1) {
+    db.incrementLoginAttempts(user.id);
+  }
+  const locked = db.getUserById(user.id);
+  assert.strictEqual(locked.login_attempts, 5);
+  assert.ok(db.isUserLocked(locked));
+
+  db.resetLoginAttempts(user.id);
+  const reset = db.getUserById(user.id);
+  assert.strictEqual(reset.login_attempts, 0);
+  assert.ok(!db.isUserLocked(reset));
+});
+
+test('get user with institution by email', () => {
+  const row = db.getUserWithInstitutionByEmail('student@test.edu');
+  assert.ok(row);
+  assert.strictEqual(row.email, 'student@test.edu');
+  assert.strictEqual(row.institution_name, 'Test University');
+  assert.ok(Array.isArray(row.department_allowlist));
+});
+
+test('list students by institution', () => {
+  const students = db.listStudentsByInstitution(institutionId);
+  assert.ok(students.some((u) => u.email === 'student@test.edu'));
+  assert.ok(students.every((u) => u.role === 'student'));
 });
 
 // ─── Sessions ───

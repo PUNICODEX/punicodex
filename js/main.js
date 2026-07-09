@@ -94,7 +94,7 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('revealed');
-                    revealObserver.unobserve(entry.target);
+                    window.revealObserver.unobserve(entry.target);
                 }
             });
         }, {
@@ -111,7 +111,7 @@
                 const index = siblings.indexOf(el);
                 el.style.setProperty('--stagger-index', index);
             }
-            revealObserver.observe(el);
+            window.revealObserver.observe(el);
         });
     }
 

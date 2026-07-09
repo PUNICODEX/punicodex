@@ -1,8 +1,8 @@
 /**
  * PÚNYCODEX — Scholarly Edition Security Middleware
  *
- * Security headers, rate limiting, input validation, and audit logging
- * helpers for the Scholars API. No external dependencies.
+ * Security headers, rate limiting, input validation, password-strength
+ * validation, and audit logging helpers for the Scholars API.
  */
 
 const { createPublicRateLimit } = require('../api/public-rate-limiter');
@@ -28,7 +28,7 @@ const SECURITY_HEADERS = {
 /**
  * Set baseline security headers on every Scholars API response.
  */
-function securityHeaders(req, res, next) {
+function securityHeaders(_req, res, next) {
   for (const [key, value] of Object.entries(SECURITY_HEADERS)) {
     res.setHeader(key, value);
   }
@@ -95,6 +95,7 @@ class ScholarsRateLimiter {
 const publicLimiter = new ScholarsRateLimiter({ windowMs: 60 * 1000, maxRequests: 120 });
 const authLimiter = new ScholarsRateLimiter({ windowMs: 60 * 1000, maxRequests: 60 });
 const strictLimiter = new ScholarsRateLimiter({ windowMs: 60 * 1000, maxRequests: 10 });
+const loginLimiter = new ScholarsRateLimiter({ windowMs: 15 * 60 * 1000, maxRequests: 10 });
 
 /**
  * Factory for Scholars-specific in-memory rate limit middleware.
@@ -104,6 +105,11 @@ const strictLimiter = new ScholarsRateLimiter({ windowMs: 60 * 1000, maxRequests
  * @param {'public'|'auth'|'strict'} [options.tier='auth'] - Which limit bucket to use.
  */
 function createScholarsRateLimit(endpointName, { tier = 'auth' } = {}) {
+  if (process.env.PUNYCODEX_SCHOLARS_DISABLE_RATE_LIMIT === '1') {
+    return function noOpRateLimit(_req, _res, next) {
+      next();
+    };
+  }
   const limiter =
     tier === 'public' ? publicLimiter : tier === 'strict' ? strictLimiter : authLimiter;
   return function scholarsRateLimitMiddleware(req, res, next) {
@@ -171,6 +177,75 @@ function validateInputLength(fields) {
 }
 
 /**
+ * Stricter rate limiter for the password login endpoint.
+ * Tracks attempts by IP + email to slow down credential stuffing.
+ */
+function createLoginRateLimit() {
+  if (process.env.PUNYCODEX_SCHOLARS_DISABLE_RATE_LIMIT === '1') {
+    return function noOpLoginRateLimit(_req, _res, next) {
+      next();
+    };
+  }
+  return function loginRateLimitMiddleware(req, res, next) {
+    const ip = getClientIp(req);
+    const email = (req.body?.email || 'unknown').toLowerCase().trim();
+    const key = `${ip}:${email}`;
+    const result = loginLimiter.check(key);
+
+    res.setHeader('X-RateLimit-Limit', String(result.limit));
+    res.setHeader('X-RateLimit-Remaining', String(result.remaining));
+    res.setHeader('X-RateLimit-Reset', String(Math.floor(result.resetAt / 1000)));
+
+    if (!result.allowed) {
+      const retryAfter = Math.ceil((result.resetAt - Date.now()) / 1000);
+      res.setHeader('Retry-After', String(retryAfter));
+      return res.status(429).json({
+        success: false,
+        error: 'Too many login attempts. Please slow down.',
+        retryAfter,
+      });
+    }
+
+    next();
+  };
+}
+
+/**
+ * Password-strength requirements:
+ * - Minimum 10 characters
+ * - At least one uppercase letter
+ * - At least one lowercase letter
+ * - At least one digit
+ * - At least one symbol (any non-alphanumeric character)
+ */
+const PASSWORD_MIN_LENGTH = 10;
+const PASSWORD_REQUIREMENTS = [
+  { name: 'uppercase', regex: /[A-Z]/, message: 'one uppercase letter' },
+  { name: 'lowercase', regex: /[a-z]/, message: 'one lowercase letter' },
+  { name: 'digit', regex: /\d/, message: 'one number' },
+  { name: 'symbol', regex: /[^A-Za-z0-9]/, message: 'one symbol' },
+];
+
+function validatePassword(password) {
+  if (typeof password !== 'string') {
+    return { valid: false, errors: ['Password must be a string'] };
+  }
+
+  const errors = [];
+  if (password.length < PASSWORD_MIN_LENGTH) {
+    errors.push(`Password must be at least ${PASSWORD_MIN_LENGTH} characters long`);
+  }
+
+  for (const requirement of PASSWORD_REQUIREMENTS) {
+    if (!requirement.regex.test(password)) {
+      errors.push(`Password must contain at least ${requirement.message}`);
+    }
+  }
+
+  return { valid: errors.length === 0, errors };
+}
+
+/**
  * Audit-log middleware for POST/PUT/DELETE endpoints.
  *
  * Logs after the response finishes so it never blocks the request. If the
@@ -217,6 +292,9 @@ module.exports = {
   securityHeaders,
   createPublicRateLimit,
   createScholarsRateLimit,
+  createLoginRateLimit,
   validateInputLength,
+  validatePassword,
+  PASSWORD_MIN_LENGTH,
   auditLog,
 };

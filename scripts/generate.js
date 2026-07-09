@@ -41,6 +41,7 @@ const scripts = [
   'scripts/create-flagship.js --regenerate-all',
   'scripts/generate-scholars-manifests.js',
   'scripts/generate-scholars.js',
+  'scripts/sync-scholars-portal.js',
   'scripts/gen-sitemap.js',
   'scripts/inject-analytics.js',
   'scripts/update-data-version.js',

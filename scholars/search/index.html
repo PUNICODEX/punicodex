@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarly Edition — Search | PUNYCODEX</title>
+    <meta name="description" content="Search the PÚNYCODEX Scholarly Edition across temple sections and scholarly labels.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf7">
+
+    <style>
+        :root {
+            --review-primary: #D4AF37;
+            --review-primary-dim: #8B7355;
+            --review-void: #0A0A0A;
+            --review-void-raised: #111111;
+            --review-white: #F5F5F5;
+            --review-white-dim: #A0A0A0;
+            --review-white-faint: rgba(255, 255, 255, 0.06);
+            --review-success: #7fd67f;
+            --review-danger: #ff7f7f;
+            --review-warn: #f0d878;
+            --review-border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            background: var(--review-void);
+            color: var(--review-white);
+            font-family: var(--font-body);
+            min-height: 100vh;
+        }
+
+        .global-strip {
+            background: rgba(0, 0, 0, 0.6);
+            border-bottom: 1px solid var(--review-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+        }
+
+        .global-strip-inner {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0.75rem clamp(1rem, 5vw, 3rem);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .global-brand {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            letter-spacing: 0.18em;
+            color: var(--review-white);
+            text-decoration: none;
+        }
+
+        .global-brand span {
+            color: var(--review-primary);
+        }
+
+        .global-links {
+            display: flex;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .global-links a {
+            color: var(--review-white-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+
+        .global-links a:hover {
+            color: var(--review-primary);
+        }
+
+        .search-hero {
+            padding: 4rem 0 2.5rem;
+            text-align: center;
+            border-bottom: 1px solid var(--review-border);
+        }
+
+        .search-eyebrow {
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--review-primary);
+            margin-bottom: 1rem;
+        }
+
+        .search-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--review-white);
+            letter-spacing: 0.03em;
+            margin-bottom: 0.75rem;
+        }
+
+        .search-subtitle {
+            color: var(--review-white-dim);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .search-container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 2.5rem clamp(1rem, 5vw, 3rem) 5rem;
+        }
+
+        .search-form {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 1 1 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--review-border);
+            border-radius: 8px;
+            padding: 0.85rem 1rem;
+            color: var(--review-white);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--review-primary);
+        }
+
+        .search-select {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--review-border);
+            border-radius: 8px;
+            padding: 0.85rem 1rem;
+            color: var(--review-white);
+            font-family: inherit;
+            font-size: 1rem;
+            min-width: 160px;
+        }
+
+        .search-select:focus {
+            outline: none;
+            border-color: var(--review-primary);
+        }
+
+        .search-btn {
+            padding: 0.85rem 1.5rem;
+            border-radius: 8px;
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid var(--review-primary);
+            background: var(--review-primary);
+            color: #000;
+            transition: all 0.2s;
+        }
+
+        .search-btn:hover {
+            background: var(--review-warn);
+            border-color: var(--review-warn);
+        }
+
+        .search-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            color: var(--review-white-dim);
+            font-size: 0.95rem;
+        }
+
+        .search-meta strong {
+            color: var(--review-primary);
+        }
+
+        .search-empty {
+            text-align: center;
+            padding: 4rem 1rem;
+            border: 1px dashed var(--review-border);
+            border-radius: 12px;
+        }
+
+        .search-empty h2 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            color: var(--review-white);
+            margin-bottom: 0.5rem;
+        }
+
+        .search-empty p {
+            color: var(--review-white-dim);
+        }
+
+        .temple-result {
+            background: var(--review-void-raised);
+            border: 1px solid var(--review-border);
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .temple-result-header {
+            padding: 1.25rem;
+            border-bottom: 1px solid var(--review-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .temple-result-name {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            color: var(--review-white);
+        }
+
+        .temple-result-name a {
+            color: var(--review-white);
+            text-decoration: none;
+        }
+
+        .temple-result-name a:hover {
+            color: var(--review-primary);
+        }
+
+        .temple-result-meta {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .temple-badge {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.2rem 0.55rem;
+            border-radius: 999px;
+            background: rgba(212, 175, 55, 0.12);
+            color: var(--review-primary);
+        }
+
+        .temple-badge.pantheon {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--review-white-dim);
+        }
+
+        .temple-badge.frozen {
+            background: rgba(255, 127, 127, 0.12);
+            color: var(--review-danger);
+        }
+
+        .section-match {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--review-border);
+        }
+
+        .section-match:last-child {
+            border-bottom: none;
+        }
+
+        .section-match-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .section-match-label {
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            color: var(--review-primary);
+            letter-spacing: 0.05em;
+        }
+
+        .section-match-status {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.15rem 0.45rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--review-white-dim);
+        }
+
+        .section-match-status.published {
+            background: rgba(127, 214, 127, 0.12);
+            color: var(--review-success);
+        }
+
+        .section-match-status.draft {
+            background: rgba(240, 216, 120, 0.12);
+            color: var(--review-warn);
+        }
+
+        .section-match-snippet {
+            color: var(--review-white-dim);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .section-match-snippet mark {
+            background: rgba(212, 175, 55, 0.25);
+            color: var(--review-white);
+            padding: 0 0.15rem;
+            border-radius: 2px;
+        }
+
+        .search-pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 2rem;
+        }
+
+        .search-page-btn {
+            padding: 0.55rem 1rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid var(--review-border);
+            background: transparent;
+            color: var(--review-white);
+            transition: all 0.2s;
+        }
+
+        .search-page-btn:hover:not(:disabled) {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .search-page-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .search-error {
+            max-width: var(--container-max);
+            margin: 2rem auto 0;
+            padding: 0 clamp(1rem, 5vw, 3rem);
+            color: var(--review-danger);
+            background: rgba(255, 127, 127, 0.08);
+            border: 1px solid rgba(255, 127, 127, 0.25);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        @media (max-width: 640px) {
+            .search-form {
+                flex-direction: column;
+            }
+
+            .search-input, .search-select, .search-btn {
+                width: 100%;
+            }
+
+            .temple-result-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .global-strip-inner {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="/" class="global-brand">P<span>U</span>NYCODEX</a>
+            <div class="global-links">
+                <a href="/pantheon/">Pantheon</a>
+                <a href="/lexicon/">Lexicon</a>
+                <a href="/type/">Type</a>
+                <a href="/search.html">Search</a>
+                <a href="/tiers/">Tiers</a>
+                <a href="/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <header class="search-hero">
+        <div class="search-eyebrow">PUNYCODEX Scholarly Edition</div>
+        <h1 class="search-title">Search the Editions</h1>
+        <p class="search-subtitle">Find scholarly content across all temple sections. Search section bodies and labels, filter by pantheon, and jump directly to the source.</p>
+    </header>
+
+    <main class="search-container" id="app">
+        <noscript>
+            <div class="search-error">This search interface requires JavaScript to query the Scholarly Edition API.</div>
+        </noscript>
+
+        <form class="search-form" id="search-form">
+            <input type="search" class="search-input" id="search-input" placeholder="Search sections and labels…" autocomplete="off">
+            <select class="search-select" id="pantheon-select">
+                <option value="">All pantheons</option>
+                <option value="olympian">Olympian</option>
+                <option value="egyptian">Egyptian</option>
+                <option value="norse">Norse</option>
+                <option value="hindu">Hindu</option>
+                <option value="japanese">Japanese</option>
+                <option value="chinese">Chinese</option>
+                <option value="canaanite">Canaanite</option>
+                <option value="mesopotamian">Mesopotamian</option>
+                <option value="judeo-christian">Judeo-Christian</option>
+                <option value="gnostic">Gnostic</option>
+                <option value="celtic">Celtic</option>
+                <option value="aztec">Aztec</option>
+                <option value="buddhist">Buddhist</option>
+                <option value="jain">Jain</option>
+                <option value="sikh">Sikh</option>
+                <option value="slavic">Slavic</option>
+                <option value="finnic">Finnic</option>
+                <option value="romani">Romani</option>
+                <option value="yoruba">Yoruba</option>
+                <option value="zoroastrian">Zoroastrian</option>
+            </select>
+            <button type="submit" class="search-btn">Search</button>
+        </form>
+
+        <div class="search-meta" id="search-meta" style="display: none;">
+            <div>Results: <strong id="result-count">0</strong></div>
+            <div id="query-display"></div>
+        </div>
+
+        <div id="results"></div>
+        <div class="search-pagination" id="pagination" style="display: none;"></div>
+    </main>
+
+    <script>
+    (function() {
+        const apiBase = '/api/v1/scholars';
+        const container = document.getElementById('results');
+        const meta = document.getElementById('search-meta');
+        const pagination = document.getElementById('pagination');
+        const form = document.getElementById('search-form');
+        const input = document.getElementById('search-input');
+        const pantheonSelect = document.getElementById('pantheon-select');
+
+        const state = {
+            q: '',
+            pantheon: '',
+            limit: 20,
+            offset: 0,
+            total: 0,
+        };
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        function highlight(text, q) {
+            if (!q) return escapeHtml(text);
+            const escapedQ = escapeRegExp(q);
+            const regex = new RegExp(`(${escapedQ})`, 'gi');
+            return escapeHtml(text).replace(regex, '<mark>$1</mark>');
+        }
+
+        function escapeRegExp(str) {
+            return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        function renderError(message) {
+            container.innerHTML = `<div class="search-error">${escapeHtml(message)}</div>`;
+            meta.style.display = 'none';
+            pagination.style.display = 'none';
+        }
+
+        function renderEmpty(message) {
+            container.innerHTML = `
+                <div class="search-empty">
+                    <h2>No matches</h2>
+                    <p>${escapeHtml(message || 'Try a different query or remove filters.')}</p>
+                </div>
+            `;
+        }
+
+        function renderStatus(status) {
+            return `<span class="section-match-status ${escapeHtml(status)}">${escapeHtml(status)}</span>`;
+        }
+
+        function renderSection(section, q) {
+            return `
+                <div class="section-match">
+                    <div class="section-match-header">
+                        <div class="section-match-label">${escapeHtml(section.label)}</div>
+                        ${renderStatus(section.status)}
+                    </div>
+                    <div class="section-match-snippet">${highlight(section.snippet, q)}</div>
+                </div>
+            `;
+        }
+
+        function renderResult(result, q) {
+            const temple = result.temple;
+            const frozenBadge = temple.isFrozen ? '<span class="temple-badge frozen">Frozen</span>' : '';
+            return `
+                <article class="temple-result">
+                    <div class="temple-result-header">
+                        <div class="temple-result-name">
+                            <a href="/sites/${escapeHtml(temple.entryId)}/scholars/">${escapeHtml(temple.name)}</a>
+                        </div>
+                        <div class="temple-result-meta">
+                            <span class="temple-badge pantheon">${escapeHtml(temple.pantheon)}</span>
+                            <span class="temple-badge">${escapeHtml(temple.tier)}</span>
+                            ${frozenBadge}
+                        </div>
+                    </div>
+                    ${result.sections.map((s) => renderSection(s, q)).join('')}
+                </article>
+            `;
+        }
+
+        function renderPagination() {
+            const currentPage = Math.floor(state.offset / state.limit) + 1;
+            const totalPages = Math.max(1, Math.ceil(state.total / state.limit));
+            const hasPrev = state.offset > 0;
+            const hasNext = state.offset + state.limit < state.total;
+
+            pagination.innerHTML = `
+                <button class="search-page-btn" id="prev-page" ${hasPrev ? '' : 'disabled'}>Previous</button>
+                <span style="color: var(--review-white-dim); font-size: 0.9rem;">Page ${currentPage} of ${totalPages}</span>
+                <button class="search-page-btn" id="next-page" ${hasNext ? '' : 'disabled'}>Next</button>
+            `;
+            pagination.style.display = totalPages > 1 ? 'flex' : 'none';
+
+            document.getElementById('prev-page')?.addEventListener('click', () => {
+                if (state.offset >= state.limit) {
+                    state.offset -= state.limit;
+                    runSearch();
+                }
+            });
+
+            document.getElementById('next-page')?.addEventListener('click', () => {
+                if (state.offset + state.limit < state.total) {
+                    state.offset += state.limit;
+                    runSearch();
+                }
+            });
+        }
+
+        function renderMeta() {
+            document.getElementById('result-count').textContent = state.total.toLocaleString();
+            document.getElementById('query-display').textContent = state.pantheon
+                ? `query: “${escapeHtml(state.q)}” · pantheon: ${escapeHtml(state.pantheon)}`
+                : `query: “${escapeHtml(state.q)}”`;
+            meta.style.display = 'flex';
+        }
+
+        async function runSearch() {
+            container.innerHTML = '<div class="search-empty"><p>Searching…</p></div>';
+            meta.style.display = 'none';
+            pagination.style.display = 'none';
+
+            const params = new URLSearchParams();
+            params.set('q', state.q);
+            if (state.pantheon) params.set('pantheon', state.pantheon);
+            params.set('limit', String(state.limit));
+            params.set('offset', String(state.offset));
+
+            try {
+                const res = await fetch(`${apiBase}/search?${params.toString()}`);
+                const data = await res.json().catch(() => ({ success: false, error: 'Invalid response' }));
+
+                if (!res.ok || !data.success) {
+                    renderError(data.error || `Search failed (HTTP ${res.status}).`);
+                    return;
+                }
+
+                state.total = data.data.total || 0;
+                const results = data.data.results || [];
+
+                renderMeta();
+
+                if (results.length === 0) {
+                    renderEmpty('No sections matched your query.');
+                    pagination.style.display = 'none';
+                    return;
+                }
+
+                container.innerHTML = results.map((r) => renderResult(r, data.data.query)).join('');
+                renderPagination();
+            } catch (err) {
+                renderError(err.message || 'Network error while searching.');
+            }
+        }
+
+        function syncFromUrl() {
+            const url = new URL(window.location.href);
+            state.q = url.searchParams.get('q') || '';
+            state.pantheon = url.searchParams.get('pantheon') || '';
+            state.offset = Math.max(0, Number(url.searchParams.get('offset')) || 0);
+            input.value = state.q;
+            pantheonSelect.value = state.pantheon;
+        }
+
+        function updateUrl() {
+            const url = new URL(window.location.href);
+            url.searchParams.set('q', state.q);
+            if (state.pantheon) url.searchParams.set('pantheon', state.pantheon);
+            else url.searchParams.delete('pantheon');
+            if (state.offset > 0) url.searchParams.set('offset', String(state.offset));
+            else url.searchParams.delete('offset');
+            window.history.replaceState({}, '', url.toString());
+        }
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            state.q = input.value.trim();
+            state.pantheon = pantheonSelect.value;
+            state.offset = 0;
+            updateUrl();
+            if (!state.q) {
+                renderEmpty('Enter a search query to begin.');
+                meta.style.display = 'none';
+                pagination.style.display = 'none';
+                return;
+            }
+            runSearch();
+        });
+
+        syncFromUrl();
+        if (state.q) {
+            runSearch();
+        } else {
+            renderEmpty('Enter a search query to begin.');
+        }
+    })();
+    </script>
+</body>
+</html>

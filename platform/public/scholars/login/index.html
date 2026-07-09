@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarly Edition — Sign In | PUNYCODEX</title>
+    <meta name="description" content="Sign in to the PÚNYCODEX Scholarly Edition. University students, reviewers, and institution admins contribute to the Unicode pantheon.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf7">
+
+    <style>
+        :root {
+            --login-primary: #D4AF37;
+            --login-primary-dim: #8B7355;
+            --login-primary-bright: #F0D878;
+            --login-void: #0A0A0A;
+            --login-void-raised: #111111;
+            --login-white: #F5F5F5;
+            --login-white-dim: #A0A0A0;
+            --login-border: rgba(255, 255, 255, 0.08);
+            --login-success: #7fd67f;
+            --login-danger: #ff7f7f;
+        }
+
+        body {
+            background: var(--login-void);
+            color: var(--login-white);
+            font-family: var(--font-body);
+            min-height: 100vh;
+        }
+
+        .global-strip {
+            background: rgba(0, 0, 0, 0.6);
+            border-bottom: 1px solid var(--login-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+        }
+
+        .global-strip-inner {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0.75rem clamp(1rem, 5vw, 3rem);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .global-brand {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            letter-spacing: 0.18em;
+            color: var(--login-white);
+            text-decoration: none;
+        }
+
+        .global-brand span {
+            color: var(--login-primary);
+        }
+
+        .global-links {
+            display: flex;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .global-links a {
+            color: var(--login-white-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+
+        .global-links a:hover {
+            color: var(--login-primary);
+        }
+
+        .login-page {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 60px);
+            padding: 3rem 1rem;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 440px;
+            background: var(--login-void-raised);
+            border: 1px solid var(--login-border);
+            border-radius: 12px;
+            padding: clamp(2rem, 6vw, 3rem);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--login-primary), transparent);
+        }
+
+        .login-eyebrow {
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--login-primary);
+            margin-bottom: 1rem;
+        }
+
+        .login-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.6rem, 5vw, 2.25rem);
+            color: var(--login-white);
+            letter-spacing: 0.03em;
+            margin-bottom: 0.75rem;
+        }
+
+        .login-subtitle {
+            color: var(--login-white-dim);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            text-align: left;
+        }
+
+        .login-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+        }
+
+        .login-field label {
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--login-primary-dim);
+        }
+
+        .login-field input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--login-border);
+            border-radius: 6px;
+            padding: 0.75rem 0.9rem;
+            color: var(--login-white);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .login-field input:focus {
+            outline: none;
+            border-color: var(--login-primary);
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.12);
+        }
+
+        .login-submit {
+            width: 100%;
+            padding: 0.85rem 1.25rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid var(--login-primary);
+            background: var(--login-primary);
+            color: #000;
+            transition: all 0.2s;
+            margin-top: 0.5rem;
+        }
+
+        .login-submit:hover {
+            background: var(--login-primary-bright);
+            border-color: var(--login-primary-bright);
+        }
+
+        .login-submit:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .login-message {
+            margin-top: 1rem;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            display: none;
+        }
+
+        .login-message.visible {
+            display: block;
+        }
+
+        .login-message.error {
+            color: var(--login-danger);
+            background: rgba(255, 127, 127, 0.08);
+            border: 1px solid rgba(255, 127, 127, 0.25);
+        }
+
+        .login-message.success {
+            color: var(--login-success);
+            background: rgba(127, 214, 127, 0.08);
+            border: 1px solid rgba(127, 214, 127, 0.25);
+        }
+
+        .login-help {
+            margin-top: 1.75rem;
+            padding-top: 1.75rem;
+            border-top: 1px solid var(--login-border);
+            color: var(--login-white-dim);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .login-help a {
+            color: var(--login-primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-help a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 640px) {
+            .global-strip-inner {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .global-links {
+                gap: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="/" class="global-brand">P<span>U</span>NYCODEX</a>
+            <div class="global-links">
+                <a href="/pantheon/">Pantheon</a>
+                <a href="/lexicon/">Lexicon</a>
+                <a href="/type/">Type</a>
+                <a href="/search.html">Search</a>
+                <a href="/tiers/">Tiers</a>
+                <a href="/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <main class="login-page">
+        <div class="login-card">
+            <p class="login-eyebrow">PUNYCODEX Scholarly Edition</p>
+            <h1 class="login-title">Sign In</h1>
+            <p class="login-subtitle">Enter your university email and password to contribute to the Unicode pantheon.</p>
+
+            <form class="login-form" id="login-form" novalidate>
+                <div class="login-field">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="you@university.edu" autocomplete="email" required>
+                </div>
+                <div class="login-field">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••" autocomplete="current-password" required>
+                </div>
+                <button type="submit" class="login-submit" id="login-submit">Sign In</button>
+            </form>
+
+            <div class="login-message" id="login-message" role="alert" aria-live="polite"></div>
+
+            <div class="login-help">
+                <p>Need access for your university or department? <a href="/contact/">Request sponsorship</a>.</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+    (function() {
+        const apiBase = '/api/v1/scholars';
+        const form = document.getElementById('login-form');
+        const submitBtn = document.getElementById('login-submit');
+        const messageEl = document.getElementById('login-message');
+
+        function getRedirect() {
+            const params = new URLSearchParams(window.location.search);
+            const redirect = params.get('redirect');
+            if (!redirect) return '/scholars/institution/';
+            // Reject absolute URLs or protocol-relative URLs to prevent open redirects.
+            if (/^[a-z][a-z0-9+.-]*:/i.test(redirect) || redirect.startsWith('//')) {
+                return '/scholars/institution/';
+            }
+            return redirect;
+        }
+
+        function showMessage(text, type) {
+            messageEl.textContent = text;
+            messageEl.className = 'login-message visible ' + (type === 'success' ? 'success' : 'error');
+        }
+
+        function clearMessage() {
+            messageEl.textContent = '';
+            messageEl.className = 'login-message';
+        }
+
+        async function login(email, password) {
+            const res = await fetch(apiBase + '/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password }),
+            });
+            const data = await res.json().catch(() => ({ success: false, error: 'Invalid response from server' }));
+            return { ok: res.ok, status: res.status, data };
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            clearMessage();
+
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+
+            if (!email || !password) {
+                showMessage('Please enter both email and password.', 'error');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Signing in…';
+
+            const { ok, data } = await login(email, password);
+
+            if (ok && data?.data?.token) {
+                localStorage.setItem('scholars_session', data.data.token);
+                showMessage('Sign-in successful. Redirecting…', 'success');
+                window.location.href = getRedirect();
+                return;
+            }
+
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Sign In';
+            showMessage(data?.error || 'Sign in failed. Please check your credentials and try again.', 'error');
+        });
+    })();
+    </script>
+</body>
+</html>
