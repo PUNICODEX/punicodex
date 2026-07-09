@@ -2015,3 +2015,440 @@ a.source-badge {
         font-size: clamp(1.75rem, 6vw, 2.6rem);
     }
 }
+
+
+/* =====================================================
+   Original Script Provenance Section
+   ===================================================== */
+
+.section-provenance {
+    position: relative;
+    background: linear-gradient(180deg, rgba(212, 175, 55, 0.03) 0%, transparent 100%);
+}
+
+.section-provenance .section-bg-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.08), transparent 60%);
+    pointer-events: none;
+}
+
+.section-provenance .section-title {
+    color: var(--primary-bright);
+}
+
+.provenance-panel {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: clamp(1.5rem, 4vw, 3rem);
+    backdrop-filter: blur(8px);
+}
+
+/* Script altar / hero specimen */
+.script-altar {
+    text-align: center;
+    padding: clamp(1.5rem, 4vw, 3rem);
+    margin-bottom: 2rem;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    border-radius: 12px;
+}
+
+.script-altar-placeholder {
+    background: rgba(255, 255, 255, 0.02);
+    border-style: dashed;
+}
+
+.script-specimen {
+    font-size: clamp(3rem, 10vw, 6rem);
+    line-height: 1.2;
+    color: var(--primary-bright);
+    margin-bottom: 1rem;
+    word-break: break-word;
+    font-family: 'Noto Sans', 'Segoe UI Historic', 'Arial Unicode MS', sans-serif;
+}
+
+.script-name {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    color: var(--white);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.script-transliteration {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    color: var(--secondary-glow);
+    margin-bottom: 0.75rem;
+}
+
+.script-reading,
+.script-phonetic {
+    font-size: 0.95rem;
+    color: var(--white-dim);
+    margin-bottom: 0.5rem;
+}
+
+.script-reading strong,
+.script-phonetic strong {
+    color: var(--white);
+    font-weight: 600;
+}
+
+.script-meta {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: var(--white-dim);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.script-placeholder-note {
+    max-width: 60ch;
+    margin: 1rem auto 1.5rem;
+    color: var(--white-dim);
+    line-height: 1.7;
+}
+
+/* Sign grid */
+.sign-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.sign-card {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 1.25rem 1rem;
+    text-align: center;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.sign-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary-dim);
+}
+
+.sign-glyph {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    line-height: 1.2;
+    color: var(--primary-bright);
+    margin-bottom: 0.75rem;
+}
+
+.sign-name {
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    color: var(--white);
+    margin-bottom: 0.25rem;
+}
+
+.sign-value {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--secondary-glow);
+    margin-bottom: 0.75rem;
+}
+
+.sign-function {
+    margin-bottom: 0.75rem;
+}
+
+.function-badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--void);
+    background: var(--primary);
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    font-weight: 700;
+}
+
+.sign-note {
+    font-size: 0.8rem;
+    color: var(--white-dim);
+    line-height: 1.55;
+}
+
+/* Transmission chain */
+.transmission-chain {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+}
+
+.transmission-node {
+    flex: 1 1 140px;
+    max-width: 180px;
+    text-align: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+}
+
+.transmission-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--primary-dim);
+    margin-bottom: 0.5rem;
+}
+
+.transmission-value {
+    font-family: var(--font-mono);
+    font-size: clamp(0.85rem, 2vw, 1rem);
+    color: var(--white);
+    word-break: break-word;
+    margin-bottom: 0.5rem;
+}
+
+.transmission-note {
+    font-size: 0.75rem;
+    color: var(--white-dim);
+}
+
+.transmission-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-dim);
+    font-size: 1.25rem;
+    padding: 0.25rem;
+}
+
+@media (max-width: 640px) {
+    .transmission-arrow {
+        width: 100%;
+        transform: rotate(90deg);
+    }
+}
+
+/* Two-column reading / scholarly layout */
+.provenance-columns {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 900px) {
+    .provenance-columns {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.provenance-reading,
+.provenance-scholarly {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.provenance-block h4 {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    color: var(--primary-bright);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+}
+
+.provenance-block p,
+.provenance-block li {
+    font-size: 0.95rem;
+    color: var(--white-dim);
+    line-height: 1.7;
+}
+
+.provenance-block p {
+    margin-bottom: 0.75rem;
+}
+
+.provenance-block p:last-child {
+    margin-bottom: 0;
+}
+
+.provenance-steps {
+    list-style: decimal;
+    padding-left: 1.25rem;
+}
+
+.provenance-steps li {
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+}
+
+.provenance-steps li:last-child {
+    margin-bottom: 0;
+}
+
+/* Variants, attestations, sources */
+.provenance-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.variant-item,
+.attestation-item {
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+}
+
+.variant-form {
+    display: block;
+    font-family: var(--font-mono);
+    color: var(--white);
+    font-size: 1rem;
+    margin-bottom: 0.35rem;
+}
+
+.variant-context {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--white-dim);
+}
+
+.attestation-text {
+    font-style: italic;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.attestation-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--white-dim);
+}
+
+.attestation-meta span:not(:last-child)::after {
+    content: '·';
+    margin-left: 0.5rem;
+    color: var(--primary-dim);
+}
+
+.source-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.source-item {
+    padding: 0.9rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 3px solid var(--primary-dim);
+    border-radius: 0 10px 10px 0;
+}
+
+.source-title {
+    font-size: 0.95rem;
+    color: var(--white);
+    margin-bottom: 0.25rem;
+}
+
+.source-link {
+    color: var(--secondary-glow);
+    text-decoration: none;
+    margin-left: 0.35rem;
+}
+
+.source-link:hover {
+    text-decoration: underline;
+}
+
+.source-tier {
+    display: inline-block;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-left: 0.5rem;
+    padding: 0.15rem 0.4rem;
+    border-radius: 999px;
+    font-weight: 700;
+    color: var(--void);
+    background: var(--primary);
+}
+
+.source-meta {
+    font-size: 0.8rem;
+    color: var(--white-dim);
+}
+
+/* DNS notes and uncertainties */
+.dns-block {
+    background: rgba(65, 105, 225, 0.08);
+    border: 1px solid rgba(65, 105, 225, 0.15);
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.uncertainty-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.uncertainty-list li {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    font-size: 0.9rem;
+    color: var(--white-dim);
+    line-height: 1.6;
+}
+
+.uncertainty-marker {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background: rgba(220, 20, 60, 0.15);
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+/* Placeholder CTA */
+.section-provenance-placeholder .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border: 1px solid var(--primary-dim);
+    border-radius: 999px;
+    color: var(--primary-bright);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.section-provenance-placeholder .btn-secondary:hover {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: var(--primary-bright);
+}

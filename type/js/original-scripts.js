@@ -2251,6 +2251,118 @@ function getNoScriptNote(entry) {
 }
 
 // ═════════════════════════════════════════════════════════════════════════════
+// Enriched provenance helpers (Phase A provenance overhaul)
+// ═════════════════════════════════════════════════════════════════════════════
+
+function getScriptSpecimen(entry) {
+  return getOriginalScript(entry) || '—';
+}
+
+function getScriptMeta(entry) {
+  const mapped = getMapped(entry);
+  return {
+    scriptName: getScriptName(entry),
+    scriptFamily: mapped?.scriptFamily || '',
+    writingDirection: mapped?.writingDirection || '',
+    timePeriod: mapped?.timePeriod || '',
+    region: mapped?.region || '',
+  };
+}
+
+function getProvenance(entry) {
+  if (!entry) return null;
+  const mapped = getMapped(entry);
+  if (mapped?.provenance) return mapped.provenance;
+  return null;
+}
+
+function getRichProvenance(entry) {
+  if (!entry) return null;
+  const mapped = getMapped(entry);
+  const provenance = mapped?.provenance || null;
+  if (!provenance) return null;
+
+  const scriptSpecimen = getScriptSpecimen(entry);
+  const scriptMeta = getScriptMeta(entry);
+
+  return {
+    scriptSpecimen,
+    scriptName: scriptMeta.scriptName,
+    scriptFamily: scriptMeta.scriptFamily,
+    writingDirection: scriptMeta.writingDirection,
+    timePeriod: scriptMeta.timePeriod,
+    region: scriptMeta.region,
+    transliteration: provenance.transliteration || entry.unicode || '',
+    transliterationScheme: provenance.transliterationScheme || '',
+    normalizedReading: provenance.normalizedReading || '',
+    phoneticReconstruction: provenance.phoneticReconstruction || '',
+    signs: getSigns(entry),
+    steps: provenance.steps || [],
+    etymology: provenance.etymology || '',
+    semantics: provenance.semantics || '',
+    variants: provenance.variants || [],
+    attestations: provenance.attestations || [],
+    uncertainties: provenance.uncertainties || [],
+    dnsNotes: provenance.dnsNotes || '',
+    punycodeReflection: provenance.punycodeReflection || '',
+    sources: normalizeSources(provenance.sources),
+    editorsNote: provenance.editorsNote || '',
+    curationDate: provenance.curationDate || '',
+    reviewStatus: provenance.reviewStatus || 'draft',
+  };
+}
+
+function getSigns(entry) {
+  const mapped = getMapped(entry);
+  const provenance = mapped?.provenance;
+  if (Array.isArray(provenance?.signs) && provenance.signs.length > 0) {
+    return provenance.signs;
+  }
+  const specimen = getOriginalScript(entry);
+  if (!specimen || specimen === '—') return [];
+  // Fallback: one card per Unicode scalar. This is intentionally naive; curated
+  // sign arrays should be provided for logographic/abjad scripts.
+  return Array.from(specimen).map((sign) => ({
+    sign,
+    name: '',
+    value: '',
+    function: 'letter',
+    reading: '',
+    note: '',
+  }));
+}
+
+function getAttestations(entry) {
+  const provenance = getProvenance(entry);
+  return provenance?.attestations || [];
+}
+
+function getEtymology(entry) {
+  const provenance = getProvenance(entry);
+  return provenance?.etymology || '';
+}
+
+function getDnsNotes(entry) {
+  const provenance = getProvenance(entry);
+  return provenance?.dnsNotes || '';
+}
+
+function normalizeSources(raw) {
+  if (!Array.isArray(raw) || raw.length === 0) return [];
+  return raw.map((s) => {
+    if (typeof s === 'string') return { title: s, tier: 2 };
+    return {
+      title: s.title || '',
+      author: s.author || '',
+      year: s.year || '',
+      pages: s.pages || '',
+      url: s.url || '',
+      tier: s.tier || 2,
+    };
+  });
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
 // Sanskrit / Buddhist IAST → Devanagari converter
 // ═════════════════════════════════════════════════════════════════════════════
 
@@ -2423,9 +2535,9 @@ try {
   const extra = JSON.parse(fs.readFileSync(extraPath, 'utf8'));
   for (const [id, data] of Object.entries(extra)) {
     if (id.startsWith('_')) continue;
-    if (!ORIGINAL_SCRIPTS[id]) {
-      ORIGINAL_SCRIPTS[id] = data;
-    }
+    // Curated extra data overrides the in-file defaults so the canonical
+    // source can evolve without touching this module.
+    ORIGINAL_SCRIPTS[id] = data;
   }
 } catch (err) {
   // Extra file is optional during development
@@ -2476,6 +2588,11 @@ module.exports = {
   hasOriginalScript,
   getOriginalScriptLabel,
   getProvenance,
+  getRichProvenance,
+  getSigns,
+  getAttestations,
+  getEtymology,
+  getDnsNotes,
   getNoScriptNote,
   populateFromLexicon,
 };

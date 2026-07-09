@@ -25,9 +25,12 @@ const {
   getOriginalScript,
   hasOriginalScript,
   getOriginalScriptLabel,
-  getProvenance,
   getNoScriptNote,
 } = require(path.join(ROOT, 'type', 'js', 'original-scripts.js'));
+const { buildRichProvenanceSection } = require(path.join(
+  __dirname,
+  'build-provenance-section.js'
+));
 
 const LORE_STUBS = require(path.join(__dirname, 'lore-stubs.js'));
 const GALLERY_DATA = require(path.join(__dirname, 'gallery-data.json'));
@@ -1209,63 +1212,7 @@ function buildOriginalScriptCardNote(entry) {
 }
 
 function buildOriginalScriptProvenanceSection(entry) {
-  const provenance = getProvenance(entry);
-  if (!provenance || !Array.isArray(provenance.steps) || provenance.steps.length === 0) {
-    return '';
-  }
-
-  const steps = provenance.steps.map((s) => `<li>${escapeHtml(s)}</li>`).join('');
-  const sources = (provenance.sources || []).map((s) => `<li>${escapeHtml(s)}</li>`).join('');
-  const stepCount = provenance.steps.length;
-  const sourceCount = (provenance.sources || []).length;
-  const hintParts = [
-    `${stepCount} ${stepCount === 1 ? 'step' : 'steps'}`,
-    sourceCount > 0 ? `${sourceCount} ${sourceCount === 1 ? 'source' : 'sources'}` : '',
-  ]
-    .filter(Boolean)
-    .join(' · ');
-
-  const sourcesColumn = sources
-    ? `                    <div class="provenance-column provenance-sources-column">
-                        <h3 class="provenance-column-title">Sources</h3>
-                        <ul class="provenance-sources">${sources}</ul>
-                    </div>`
-    : '';
-
-  return `<section class="section section-provenance" id="provenance">
-    <div class="section-bg-glow"></div>
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">02</span>
-            <h2 class="section-title">Original Script Provenance</h2>
-            <p class="section-subtitle">How ${entry.unicode} travels from ancient script to scholarly transliteration</p>
-        </div>
-        <div class="provenance-panel reveal-up">
-            <button class="provenance-toggle" id="provenance-toggle" aria-expanded="false" aria-controls="provenance-content" type="button">
-                <span class="provenance-toggle-text">
-                    <span class="provenance-toggle-label">Show scholarly provenance</span>
-                    <span class="provenance-toggle-hint">${hintParts}</span>
-                </span>
-                <span class="provenance-toggle-icon" aria-hidden="true">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
-                </span>
-            </button>
-            <div class="provenance-content" id="provenance-content" role="region" aria-labelledby="provenance-toggle" hidden>
-                <div class="provenance-content-inner">
-                    <div class="provenance-columns">
-                        <div class="provenance-column provenance-steps-column${sources ? '' : ' provenance-column-full'}">
-                            <h3 class="provenance-column-title">From original to transliteration</h3>
-                            <ol class="provenance-steps">${steps}</ol>
-                        </div>
-                        ${sourcesColumn}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>`;
+  return buildRichProvenanceSection(entry);
 }
 
 function _buildTierSection(entry, _sectionNumber) {
@@ -2534,10 +2481,8 @@ function generateLorePage(entry, palette, loreSections, templateDir, catalog) {
   let html = fs.readFileSync(path.join(templateDir, 'lore', 'index.html'), 'utf8');
   const templeId = entry.id;
   const nameProse = buildNameProse(entry);
-  const provenance = getProvenance(entry);
-  const hasProvenance =
-    provenance && Array.isArray(provenance.steps) && provenance.steps.length > 0;
-  const sectionOffset = hasProvenance ? 1 : 0;
+  // The rich provenance builder always emits section 02 (placeholder or curated).
+  const sectionOffset = 1;
   const vars = {
     UNICODE: entry.unicode,
     ASCII: entry.ascii,

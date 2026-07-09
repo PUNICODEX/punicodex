@@ -115,6 +115,7 @@ const SUITES = [
   { name: 'SEO Validator', cmd: 'node scripts/validate-seo.js' },
   { name: 'Philological Accuracy', cmd: 'node scripts/validate-accuracy.js' },
   { name: 'Flywheel Integrity', cmd: 'node scripts/validate-flywheel.js' },
+  { name: 'Original Script Provenance', cmd: 'node scripts/validate-provenance.js' },
 ];
 
 const results = [];
