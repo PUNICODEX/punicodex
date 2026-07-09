@@ -21,16 +21,10 @@ const ROOT = path.join(__dirname, '..');
 const TEMPLATE_DIR = path.join(ROOT, 'templates', 'flagship');
 const SITES_DIR = path.join(ROOT, 'sites');
 const FLAGSHIP_DATA = require(path.join(__dirname, 'flagship-data.json'));
-const {
-  getOriginalScript,
-  hasOriginalScript,
-  getOriginalScriptLabel,
-  getNoScriptNote,
-} = require(path.join(ROOT, 'type', 'js', 'original-scripts.js'));
-const { buildRichProvenanceSection } = require(path.join(
-  __dirname,
-  'build-provenance-section.js'
-));
+const { getOriginalScript, hasOriginalScript, getOriginalScriptLabel, getNoScriptNote } = require(
+  path.join(ROOT, 'type', 'js', 'original-scripts.js')
+);
+const { buildRichProvenanceSection } = require(path.join(__dirname, 'build-provenance-section.js'));
 
 const LORE_STUBS = require(path.join(__dirname, 'lore-stubs.js'));
 const GALLERY_DATA = require(path.join(__dirname, 'gallery-data.json'));
