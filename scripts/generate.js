@@ -45,6 +45,9 @@ const scripts = [
   'scripts/gen-sitemap.js',
   'scripts/inject-analytics.js',
   'scripts/update-data-version.js',
+  'scripts/export-model-corpus.js',
+  'scripts/generate-synthetic-qa.js',
+  'scripts/generate-eval-benchmark.js',
 ];
 
 function run(script) {

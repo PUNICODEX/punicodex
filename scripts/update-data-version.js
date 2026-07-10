@@ -14,6 +14,8 @@ const CANONICAL_FILES = {
   lexicon: 'type/js/lexicon.js',
   originalScripts: 'type/js/original-scripts.js',
   sourceCatalog: 'type/js/source-catalog.js',
+  pronunciationAtlas: 'type/js/pronunciation-atlas.js',
+  glyphAtlas: 'type/js/glyph-atlas.js',
   archetypes: 'js/archetypes-v2.js',
   ownedDomains: 'platform/db/owned-domains.json',
   loreCatalog: 'scripts/lore-catalog.json',
@@ -57,6 +59,16 @@ function countSourceCatalog() {
   return Object.keys(SOURCE_CATALOG).length;
 }
 
+function countPronunciationAtlas() {
+  const { getAllPronunciationIds } = require(path.join(root, 'type/js/pronunciation-atlas.js'));
+  return getAllPronunciationIds().length;
+}
+
+function countGlyphAtlas() {
+  const { getAllGlyphAtlasIds } = require(path.join(root, 'type/js/glyph-atlas.js'));
+  return getAllGlyphAtlasIds().length;
+}
+
 const lexicon = loadLexicon();
 const archetypes = loadArchetypes();
 const flagshipIds = new Set(archetypes.filter((a) => a.built).map((a) => a.id));
@@ -92,6 +104,8 @@ const counts = {
   flagships: flagshipIds.size,
   originalScripts: countOriginalScripts(),
   sourceCatalogEntries: countSourceCatalog(),
+  pronunciationAtlasEntries: countPronunciationAtlas(),
+  glyphAtlasEntries: countGlyphAtlas(),
 };
 const countsChanged = JSON.stringify(existing.counts) !== JSON.stringify(counts);
 

@@ -127,6 +127,7 @@ const SUITES = [
   { name: 'iOS SDK Contract Tests', cmd: 'node sdk/ios/Tests/contract.test.js' },
   { name: 'Android SDK Contract Tests', cmd: 'node sdk/android/app/src/test/contract.test.js' },
   { name: 'Codex Export Tests', cmd: 'node test/codex-export.test.js' },
+  { name: 'Model Corpus Tests', cmd: 'node test/model-corpus.test.js' },
   { name: 'Link Checker', cmd: 'node test/links.js' },
   { name: 'SEO Validator', cmd: 'node scripts/validate-seo.js' },
   { name: 'Philological Accuracy', cmd: 'node scripts/validate-accuracy.js' },
