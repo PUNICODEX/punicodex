@@ -924,10 +924,6 @@ function replacePlaceholders(html, vars) {
   return html;
 }
 
-function hasHeroVideo(templeId) {
-  return fs.existsSync(path.join(SITES_DIR, templeId, 'assets', `${templeId}_hero_video.webm`));
-}
-
 function buildHeroVisual(templeId, unicode, domain) {
   return `<div class="patron-mascot">
     <picture><source srcset="assets/${templeId}_mascot.webp" type="image/webp"><img src="assets/${templeId}_mascot.png" alt="${unicode} — ${domain}" class="patron-mascot-img"></picture>
@@ -1555,19 +1551,7 @@ function buildZeusFooter(entry, assetPrefix) {
 }
 
 function buildHeroVisualExtended(entry, assetPrefix) {
-  const videoBase = `${assetPrefix}assets/${entry.id}_hero_video`;
-  const poster = `${assetPrefix}assets/${entry.id}_hero_poster.jpg`;
   const mascot = `${assetPrefix}assets/${entry.id}_mascot`;
-  if (hasHeroVideo(entry.id)) {
-    return `<figure class="patron-mascot patron-mascot--video" style="margin:0;">
-      <video autoplay muted loop playsinline poster="${poster}" aria-label="Animated portrait of ${entry.unicode}, ${entry.domain}">
-        <source src="${videoBase}.webm" type="video/webm">
-        <source src="${videoBase}.mp4" type="video/mp4">
-        <img src="${mascot}.png" alt="${entry.unicode} — ${entry.domain}">
-      </video>
-      <button class="video-pause" aria-label="Pause animation">❚❚</button>
-    </figure>`;
-  }
   return `<picture><source srcset="${mascot}.webp" type="image/webp"><img src="${mascot}.png" alt="${entry.unicode} — ${entry.domain}" class="mascot-img"></picture>`;
 }
 
