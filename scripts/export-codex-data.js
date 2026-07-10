@@ -7,6 +7,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { domainToASCII } = require('node:url');
 
 const ROOT = path.resolve(__dirname, '..');
 const OUT_DIR = path.join(ROOT, 'codex', 'data');
@@ -192,7 +193,7 @@ function main() {
   // Slim lexicon for the atlas
   const entries = LEXICON.map((entry) => {
     const displayDomain = `${entry.unicode.toLowerCase()}.com`;
-    const punyDomain = `${entry.punycode || entry.unicode.toLowerCase()}.com`;
+    const punyDomain = domainToASCII(displayDomain);
     const isOwned = ownedSet.has(displayDomain) || ownedSet.has(punyDomain);
     return {
       id: entry.id,
@@ -204,9 +205,11 @@ function main() {
       tierLabel: entry.tierLabel,
       meaning: entry.meaning,
       domain: entry.domain,
+      domainUnicode: displayDomain,
+      domainPunycode: punyDomain,
       hasFlagship: flagshipIds.has(entry.id) ? 1 : 0,
       isOwned: isOwned ? 1 : 0,
-      punycode: entry.punycode,
+      punycode: punyDomain.startsWith('xn--') ? punyDomain.replace('.com', '') : entry.ascii,
       variants: (entry.variants || []).map((v) => ({ unicode: v.unicode, type: v.type })),
       sources: entry.sources || [],
       protoLanguage: entry.etymology?.protoLanguage || null,

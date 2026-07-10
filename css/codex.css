@@ -54,6 +54,23 @@
 .restore-variant { padding: 6px 12px; border: 1px solid rgba(212, 175, 55, 0.12); border-radius: var(--radius-sm); font-family: var(--font-display); font-size: 0.9rem; color: var(--text-secondary); background: rgba(0, 0, 0, 0.2); }
 .restore-variant-none { color: var(--text-dim); border-style: dashed; }
 .restore-actions { display: flex; gap: var(--space-2); margin-top: var(--space-4); flex-wrap: wrap; }
+.restore-script-wide { grid-column: 1 / -1; }
+.restore-script-note { display: block; font-size: 0.75rem; color: var(--text-dim); margin-top: 6px; line-height: 1.4; }
+.restore-sources { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+.restore-source-chip { display: inline-flex; align-items: center; padding: 5px 10px; border: 1px solid rgba(212, 175, 55, 0.12); border-radius: var(--radius-sm); background: rgba(0, 0, 0, 0.2); color: var(--text-secondary); font-size: 0.8rem; text-decoration: none; transition: all var(--duration-fast) var(--ease-smooth); }
+.restore-source-chip:hover { background: rgba(212, 175, 55, 0.12); color: var(--text-primary); border-color: rgba(212, 175, 55, 0.3); }
+.restore-source-chip-none { border-style: dashed; color: var(--text-dim); }
+.restore-related { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+.restore-related-chip { display: inline-flex; align-items: center; padding: 5px 10px; border: 1px solid rgba(212, 175, 55, 0.12); border-radius: var(--radius-sm); background: rgba(0, 0, 0, 0.2); color: var(--text-secondary); font-family: var(--font-display); font-size: 0.85rem; text-decoration: none; transition: all var(--duration-fast) var(--ease-smooth); }
+.restore-related-chip:hover { background: rgba(212, 175, 55, 0.12); color: var(--text-primary); border-color: rgba(212, 175, 55, 0.3); }
+.restore-related-chip-none { border-style: dashed; color: var(--text-dim); font-family: var(--font-body); }
+.flagship-badge { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: var(--radius-sm); background: rgba(212, 175, 55, 0.12); color: var(--primary); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+.owned-badge { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: var(--radius-sm); background: rgba(107, 158, 117, 0.15); color: var(--green, #6b9e75); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+.tier-badge { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: var(--radius-sm); background: rgba(255, 255, 255, 0.06); color: var(--text-secondary); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+.tier-badge.tier-dual { background: rgba(212, 175, 55, 0.15); color: var(--primary); }
+.tier-badge.tier-1 { background: rgba(232, 228, 220, 0.1); color: var(--text-primary); }
+.tier-badge.tier-2 { background: rgba(255, 255, 255, 0.05); color: var(--text-dim); }
+.pantheon-badge { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: var(--radius-sm); border: 1px solid rgba(212, 175, 55, 0.12); color: var(--text-secondary); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
 .restore-empty { text-align: center; padding: var(--space-4) 0; }
 .restore-empty-title { font-family: var(--font-display); font-size: 1.25rem; color: var(--text-primary); margin-bottom: var(--space-2); }
 .restore-empty-body { color: var(--text-secondary); margin-bottom: var(--space-3); }
@@ -68,14 +85,12 @@
 .constellation-filter-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); }
 .constellation-filter { padding: 5px 12px; border: 1px solid rgba(212, 175, 55, 0.12); border-radius: var(--radius-sm); background: rgba(255, 255, 255, 0.03); color: var(--text-secondary); font-family: var(--font-body); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.05em; text-transform: capitalize; cursor: pointer; transition: all var(--duration-fast) var(--ease-smooth); border-left: 2px solid var(--filter-color, var(--primary)); }
 .constellation-filter:hover, .constellation-filter.active { background: color-mix(in srgb, var(--filter-color, var(--primary)) 15%, transparent); color: var(--text-primary); border-color: var(--filter-color, var(--primary)); }
-.constellation-container { position: relative; width: 100%; height: 640px; border: 1px solid rgba(212, 175, 55, 0.1); border-radius: var(--radius-lg); background: rgba(0, 0, 0, 0.35); overflow: hidden; }
-.constellation-svg { width: 100%; height: 100%; display: block; }
-.constellation-edge { stroke: rgba(212, 175, 55, 0.04); stroke-width: 1; }
-.constellation-node { fill: var(--text-dim); cursor: pointer; transition: fill var(--duration-fast) var(--ease-smooth), r var(--duration-fast) var(--ease-smooth); }
-.constellation-node:hover { fill: var(--primary); filter: drop-shadow(0 0 6px var(--primary)); }
-.constellation-node[data-tier="dual"] { fill: var(--primary); }
-.constellation-node[data-tier="1"] { fill: color-mix(in srgb, var(--primary) 75%, white); }
-.constellation-node[data-owned="1"] { fill: var(--green, #6b9e75); }
+.constellation-container { position: relative; width: 100%; height: 640px; border: 1px solid rgba(212, 175, 55, 0.1); border-radius: var(--radius-lg); background: rgba(0, 0, 0, 0.35); overflow: hidden; touch-action: none; }
+.constellation-canvas { display: block; width: 100%; height: 100%; cursor: grab; }
+.constellation-canvas:active { cursor: grabbing; }
+.constellation-controls { position: absolute; bottom: 12px; right: 12px; display: flex; gap: 6px; z-index: 5; }
+.constellation-control { width: 32px; height: 32px; border-radius: var(--radius-sm); border: 1px solid rgba(212, 175, 55, 0.2); background: rgba(5, 5, 5, 0.8); color: var(--text-secondary); font-size: 1rem; line-height: 1; cursor: pointer; transition: all var(--duration-fast) var(--ease-smooth); display: flex; align-items: center; justify-content: center; }
+.constellation-control:hover { background: rgba(212, 175, 55, 0.15); color: var(--text-primary); border-color: var(--primary); }
 .constellation-tooltip { position: absolute; pointer-events: none; background: rgba(5, 5, 5, 0.92); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: var(--radius-sm); padding: 8px 12px; font-size: 0.8rem; color: var(--text-primary); opacity: 0; transition: opacity var(--duration-fast) var(--ease-smooth); z-index: 10; backdrop-filter: blur(4px); }
 .constellation-tooltip strong { display: block; font-family: var(--font-display); font-size: 1rem; color: var(--primary); margin-bottom: 2px; }
 .constellation-tooltip span { display: block; font-size: 0.7rem; color: var(--text-dim); }
