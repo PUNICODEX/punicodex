@@ -28,8 +28,20 @@ const {
   setCreativeAssetTags,
   createCreativePurchase,
   getCreativePurchaseById,
+  getCreativePurchaseByStripeSessionId,
   updateCreativePurchaseStatus,
   createCreativeReview,
+  listCreativeReviewsByCreator,
+  createCreativePayout,
+  listCreativePayouts,
+  markCreativePayoutPaid,
+  listCreativePayoutsForInstitution,
+  getActiveAllAccessPass,
+  recordCreativeAnalyticsEvent,
+  getCreativeAnalyticsSummary,
+  getCreatorAnalyticsSummary,
+  getInstitutionCreativeAnalytics,
+  getPublicCreatorProfile,
   getCreativeDashboardForCreator,
   getCreativeDashboardForInstitution,
   getInstitutionById,
@@ -41,6 +53,7 @@ const { createCreativeCheckoutSession } = require('./stripe');
 
 const PLATFORM_FEE_PERCENT = 0.3;
 const CREATOR_PERCENT = 0.7;
+const ALL_ACCESS_PASS_PRICE_CENTS = 99900; // $999.00
 
 const router = express.Router();
 
@@ -74,6 +87,8 @@ function sanitizeAsset(asset) {
     previewPath: asset.preview_path,
     thumbnailPath: asset.thumbnail_path,
     metadata: asset.metadata,
+    tags: Array.isArray(asset.tags) ? asset.tags : [],
+    creatorId: asset.creator_id,
     creatorName: asset.creator_name,
     institutionName: asset.institution_name,
     createdAt: asset.created_at,
@@ -163,6 +178,25 @@ router.get(
 );
 
 router.get(
+  '/reviews',
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const reviews = listCreativeReviewsByCreator(req.user.id);
+    res.json(success({ reviews }));
+  })
+);
+
+router.get(
+  '/departments',
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const institution = req.user.institutionId ? getInstitutionById(req.user.institutionId) : null;
+    const allowlist = institution?.department_allowlist || [];
+    res.json(success({ departments: allowlist }));
+  })
+);
+
+router.get(
   '/institution/dashboard',
   requireAuth,
   asyncHandler(async (req, res) => {
@@ -186,6 +220,7 @@ router.get(
     if (asset.status !== 'approved') {
       return res.status(404).json(error('Asset not found', 404));
     }
+    recordCreativeAnalyticsEvent({ assetId: asset.id, eventType: 'view' });
     res.json(success(sanitizeAssetDetail(asset)));
   })
 );
@@ -348,7 +383,7 @@ router.post(
   '/:id/purchase',
   asyncHandler(async (req, res) => {
     const asset = getCreativeAssetWithCreator(Number(req.params.id));
-    if (!asset || asset.status !== 'approved') {
+    if (asset?.status !== 'approved') {
       return res.status(404).json(error('Asset not available for purchase', 404));
     }
 
@@ -384,6 +419,100 @@ router.post(
   })
 );
 
+router.post(
+  '/all-access',
+  asyncHandler(async (req, res) => {
+    const { email } = req.body || {};
+    if (!email || typeof email !== 'string' || !email.includes('@')) {
+      return res.status(400).json(error('A valid licensee email is required'));
+    }
+
+    const priceCents = ALL_ACCESS_PASS_PRICE_CENTS;
+    const { platformFeeCents, creatorPayoutCents } = calculatePayouts(priceCents);
+
+    const purchaseResult = createCreativePurchase({
+      assetId: null,
+      licenseeBookingId: null,
+      licenseeEmail: email.toLowerCase().trim(),
+      licenseType: 'all_access_pass',
+      priceCents,
+      platformFeeCents,
+      creatorPayoutCents,
+      universityCreditCents: creatorPayoutCents,
+    });
+    const purchaseId = purchaseResult.lastInsertRowid;
+
+    const checkout = await createCreativeCheckoutSession({
+      purchaseId,
+      email: email.toLowerCase().trim(),
+      assetTitle: 'All-Access Sponsorship Pass',
+      amountCents: priceCents,
+    });
+
+    updateCreativePurchaseStatus(purchaseId, { stripeSessionId: checkout.sessionId });
+
+    res.json(success({ purchaseId, checkoutUrl: checkout.sessionUrl }));
+  })
+);
+
+router.get(
+  '/purchases/verify',
+  asyncHandler(async (req, res) => {
+    const { sessionId } = req.query;
+    if (!sessionId || typeof sessionId !== 'string') {
+      return res.status(400).json(error('sessionId is required'));
+    }
+    const purchase = getCreativePurchaseByStripeSessionId(sessionId);
+    if (purchase?.status !== 'paid') {
+      return res.status(404).json(error('Purchase not found or not paid', 404));
+    }
+
+    if (purchase.license_type === 'all_access_pass') {
+      return res.json(
+        success({
+          purchaseId: purchase.id,
+          passType: 'all_access',
+          email: purchase.licensee_email,
+          message: 'Your all-access pass is active. Browse any asset and download with your email.',
+        })
+      );
+    }
+
+    const asset = getCreativeAssetById(purchase.asset_id);
+    if (asset?.status !== 'approved') {
+      return res.status(404).json(error('Asset not found', 404));
+    }
+
+    const existingPayouts = listCreativePayouts(asset.creator_id).filter(
+      (p) => p.purchase_id === purchase.id
+    );
+    if (existingPayouts.length === 0 && purchase.creator_payout_cents > 0) {
+      createCreativePayout({
+        assetId: asset.id,
+        creatorId: asset.creator_id,
+        purchaseId: purchase.id,
+        amountCents: purchase.creator_payout_cents,
+        metadata: { licenseeEmail: purchase.licensee_email },
+      });
+    }
+    recordCreativeAnalyticsEvent({
+      assetId: asset.id,
+      eventType: 'purchase',
+      licenseeEmail: purchase.licensee_email,
+      metadata: { purchaseId: purchase.id, priceCents: purchase.price_cents },
+    });
+
+    res.json(
+      success({
+        purchaseId: purchase.id,
+        assetId: asset.id,
+        title: asset.title,
+        downloadUrl: `/api/v1/creatives/${asset.id}/download?purchaseId=${purchase.id}&email=${encodeURIComponent(purchase.licensee_email || '')}`,
+      })
+    );
+  })
+);
+
 // ─────────────────────────────────────────────────────────────
 // Download original (gated)
 // ─────────────────────────────────────────────────────────────
@@ -392,7 +521,7 @@ router.get(
   '/:id/download',
   asyncHandler(async (req, res) => {
     const asset = getCreativeAssetById(Number(req.params.id));
-    if (!asset || asset.status !== 'approved') {
+    if (asset?.status !== 'approved') {
       return res.status(404).json(error('Asset not found', 404));
     }
     if (!asset.original_path) {
@@ -414,6 +543,11 @@ router.get(
       ) {
         hasAccess = true;
       }
+    } else if (email) {
+      const pass = getActiveAllAccessPass(email);
+      if (pass) {
+        hasAccess = true;
+      }
     }
 
     if (!hasAccess) {
@@ -426,6 +560,106 @@ router.get(
     }
 
     res.sendFile(path.resolve(filePath));
+  })
+);
+
+// ─────────────────────────────────────────────────────────────
+// Payouts
+// ─────────────────────────────────────────────────────────────
+
+router.get(
+  '/payouts',
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const payouts = listCreativePayouts(req.user.id);
+    res.json(success({ payouts }));
+  })
+);
+
+router.get(
+  '/institution/payouts',
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    if (!req.user.institutionId) {
+      return res.status(400).json(error('No institution associated'));
+    }
+    if (!isInstitutionAdmin(req.user) && !isCurator(req.user)) {
+      return res.status(403).json(error('Institution admin or curator access required'));
+    }
+    const payouts = listCreativePayoutsForInstitution(req.user.institutionId);
+    res.json(success({ payouts }));
+  })
+);
+
+router.post(
+  '/payouts/:id/pay',
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    if (!req.user.institutionId) {
+      return res.status(400).json(error('No institution associated'));
+    }
+    if (!isInstitutionAdmin(req.user) && !isCurator(req.user)) {
+      return res.status(403).json(error('Institution admin or curator access required'));
+    }
+    markCreativePayoutPaid(Number(req.params.id));
+    res.json(success({ paid: true }));
+  })
+);
+
+// ─────────────────────────────────────────────────────────────
+// Analytics
+// ─────────────────────────────────────────────────────────────
+
+router.get(
+  '/:id/analytics',
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const asset = getCreativeAssetById(Number(req.params.id));
+    if (!asset) return res.status(404).json(error('Asset not found', 404));
+    if (!canManageCreative(req.user, asset) && !isCurator(req.user)) {
+      return res.status(403).json(error('Access denied'));
+    }
+    const summary = getCreativeAnalyticsSummary(asset.id, { days: Number(req.query.days) || 30 });
+    res.json(success(summary));
+  })
+);
+
+router.get(
+  '/analytics/creator',
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const summary = getCreatorAnalyticsSummary(req.user.id, { days: Number(req.query.days) || 30 });
+    res.json(success(summary));
+  })
+);
+
+router.get(
+  '/institution/analytics',
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    if (!req.user.institutionId) {
+      return res.status(400).json(error('No institution associated'));
+    }
+    if (!isInstitutionAdmin(req.user) && !isCurator(req.user)) {
+      return res.status(403).json(error('Institution admin or curator access required'));
+    }
+    const summary = getInstitutionCreativeAnalytics(req.user.institutionId, {
+      days: Number(req.query.days) || 30,
+    });
+    res.json(success(summary));
+  })
+);
+
+// ─────────────────────────────────────────────────────────────
+// Public creator profiles
+// ─────────────────────────────────────────────────────────────
+
+router.get(
+  '/creators/:id',
+  asyncHandler(async (req, res) => {
+    const profile = getPublicCreatorProfile(Number(req.params.id));
+    if (!profile) return res.status(404).json(error('Creator not found', 404));
+    res.json(success(profile));
   })
 );
 

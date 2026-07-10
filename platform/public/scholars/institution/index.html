@@ -1058,7 +1058,69 @@
             `;
         }
 
-        function renderDashboard(user, dashboard, students, reviewers, creativeDashboard) {
+        function renderCreativeAnalyticsSection(analytics) {
+            if (!analytics) return '';
+            const topAssets = analytics.topAssets || [];
+            const topRows = topAssets.map((a) => `
+                <tr>
+                    <td>${escapeHtml(a.title)}</td>
+                    <td>${Number(a.views).toLocaleString()}</td>
+                </tr>
+            `).join('');
+            return `
+                <h2 class="section-title">Creative Marketplace Analytics</h2>
+                <div class="card">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-label">Views (30d)</div>
+                            <div class="stat-value">${Number(analytics.views).toLocaleString()}</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Purchases (30d)</div>
+                            <div class="stat-value">${Number(analytics.purchases).toLocaleString()}</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Revenue (30d)</div>
+                            <div class="stat-value">${formatCents(analytics.revenueCents)}</div>
+                        </div>
+                    </div>
+                    ${topRows ? `
+                        <table class="members-table" style="margin-top:1.5rem;">
+                            <thead>
+                                <tr><th>Asset</th><th>Views</th></tr>
+                            </thead>
+                            <tbody>${topRows}</tbody>
+                        </table>
+                    ` : '<div class="empty-state" style="margin-top:1.5rem;">No views yet.</div>'}
+                </div>
+            `;
+        }
+
+        function renderCreativePayoutsSection(payouts) {
+            if (!payouts || payouts.length === 0) return '';
+            const rows = payouts.map((p) => `
+                <tr>
+                    <td>${escapeHtml(p.creator_name || '—')}</td>
+                    <td>${escapeHtml(p.asset_title || '—')}</td>
+                    <td>${formatCents(p.amount_cents)}</td>
+                    <td><span class="role-badge ${p.status}">${escapeHtml(p.status)}</span></td>
+                    <td>${escapeHtml(p.created_at ? new Date(p.created_at).toLocaleDateString() : '—')}</td>
+                </tr>
+            `).join('');
+            return `
+                <h2 class="section-title">Creator Payouts</h2>
+                <div class="card" style="overflow-x: auto;">
+                    <table class="members-table">
+                        <thead>
+                            <tr><th>Creator</th><th>Asset</th><th>Amount</th><th>Status</th><th>Created</th></tr>
+                        </thead>
+                        <tbody>${rows}</tbody>
+                    </table>
+                </div>
+            `;
+        }
+
+        function renderDashboard(user, dashboard, students, reviewers, creativeDashboard, analytics, payouts) {
             const { institution, stats } = dashboard;
 
             container.innerHTML = `
@@ -1080,6 +1142,8 @@
                 ${renderStudentsSection(students, institution)}
                 ${renderReviewersSection(reviewers, students)}
                 ${renderCreativeContributionsSection(creativeDashboard)}
+                ${renderCreativeAnalyticsSection(analytics)}
+                ${renderCreativePayoutsSection(payouts)}
             `;
 
             document.getElementById('logout-btn').addEventListener('click', async () => {
@@ -1290,10 +1354,16 @@
 
             const { institution, stats } = dashboardRes.data.data;
 
-            const [studentsRes, reviewersRes, creativeRes] = await Promise.all([
+            const [studentsRes, reviewersRes, creativeRes, analyticsRes, payoutsRes] = await Promise.all([
                 api('/institution/students'),
                 api('/institution/reviewers'),
                 fetch('/api/v1/creatives/institution/dashboard', {
+                    headers: getSessionId() ? { 'x-scholars-session': getSessionId() } : {},
+                }).then((r) => r.json().catch(() => ({ success: false }))).then((data) => ({ ok: data?.success === true, data })),
+                fetch('/api/v1/creatives/institution/analytics', {
+                    headers: getSessionId() ? { 'x-scholars-session': getSessionId() } : {},
+                }).then((r) => r.json().catch(() => ({ success: false }))).then((data) => ({ ok: data?.success === true, data })),
+                fetch('/api/v1/creatives/institution/payouts', {
                     headers: getSessionId() ? { 'x-scholars-session': getSessionId() } : {},
                 }).then((r) => r.json().catch(() => ({ success: false }))).then((data) => ({ ok: data?.success === true, data })),
             ]);
@@ -1301,8 +1371,10 @@
             const students = studentsRes.ok ? (studentsRes.data?.data || []) : [];
             const reviewers = reviewersRes.ok ? (reviewersRes.data?.data || []) : [];
             const creativeDashboard = creativeRes.ok ? creativeRes.data.data : null;
+            const analytics = analyticsRes.ok ? analyticsRes.data.data : null;
+            const payouts = payoutsRes.ok ? payoutsRes.data.data.payouts : null;
 
-            renderDashboard(user, dashboardRes.data.data, students, reviewers, creativeDashboard);
+            renderDashboard(user, dashboardRes.data.data, students, reviewers, creativeDashboard, analytics, payouts);
         }
 
         async function init() {

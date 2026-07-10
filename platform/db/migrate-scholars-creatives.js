@@ -54,7 +54,7 @@ const CREATIVE_SCHEMA = `
   -- Purchases / licenses of creative assets
   CREATE TABLE IF NOT EXISTS creative_purchases (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    asset_id INTEGER NOT NULL,
+    asset_id INTEGER,
     licensee_booking_id INTEGER,
     licensee_email TEXT,
     license_type TEXT NOT NULL DEFAULT 'single_use' CHECK (license_type IN ('single_use', 'all_access_pass')),
@@ -108,10 +108,67 @@ const CREATIVE_SCHEMA = `
 
   CREATE INDEX IF NOT EXISTS idx_creative_payouts_creator ON creative_payouts(creator_id);
   CREATE INDEX IF NOT EXISTS idx_creative_payouts_status ON creative_payouts(status);
+
+  -- Analytics events for creative assets (views, purchases)
+  CREATE TABLE IF NOT EXISTS creative_analytics_events (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    asset_id INTEGER,
+    event_type TEXT NOT NULL CHECK (event_type IN ('view', 'purchase')),
+    licensee_email TEXT,
+    metadata TEXT NOT NULL DEFAULT '{}',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (asset_id) REFERENCES creative_assets(id)
+  );
+
+  CREATE INDEX IF NOT EXISTS idx_creative_analytics_asset ON creative_analytics_events(asset_id);
+  CREATE INDEX IF NOT EXISTS idx_creative_analytics_type ON creative_analytics_events(event_type);
+  CREATE INDEX IF NOT EXISTS idx_creative_analytics_created ON creative_analytics_events(created_at);
 `;
 
 function migrate(db) {
   db.exec(CREATIVE_SCHEMA);
+  makeCreativePurchaseAssetNullable(db);
+}
+
+function makeCreativePurchaseAssetNullable(db) {
+  const info = db.prepare('PRAGMA table_info(creative_purchases)').all();
+  const assetCol = info.find((c) => c.name === 'asset_id');
+  if (!assetCol || assetCol.notnull === 0) return;
+
+  db.exec(`
+    PRAGMA foreign_keys = OFF;
+    BEGIN TRANSACTION;
+    CREATE TABLE creative_purchases_new (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      asset_id INTEGER,
+      licensee_booking_id INTEGER,
+      licensee_email TEXT,
+      license_type TEXT NOT NULL DEFAULT 'single_use' CHECK (license_type IN ('single_use', 'all_access_pass')),
+      price_cents INTEGER NOT NULL DEFAULT 0,
+      platform_fee_cents INTEGER NOT NULL DEFAULT 0,
+      creator_payout_cents INTEGER NOT NULL DEFAULT 0,
+      university_credit_cents INTEGER NOT NULL DEFAULT 0,
+      stripe_session_id TEXT,
+      status TEXT NOT NULL DEFAULT 'pending_payment' CHECK (status IN ('pending_payment', 'paid', 'refunded', 'disputed')),
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY (asset_id) REFERENCES creative_assets(id),
+      FOREIGN KEY (licensee_booking_id) REFERENCES bookings(id)
+    );
+    INSERT INTO creative_purchases_new
+      SELECT id, asset_id, licensee_booking_id, licensee_email, license_type, price_cents,
+             platform_fee_cents, creator_payout_cents, university_credit_cents, stripe_session_id,
+             status, created_at, updated_at
+      FROM creative_purchases;
+    DROP TABLE creative_purchases;
+    ALTER TABLE creative_purchases_new RENAME TO creative_purchases;
+    CREATE INDEX IF NOT EXISTS idx_creative_purchases_asset ON creative_purchases(asset_id);
+    CREATE INDEX IF NOT EXISTS idx_creative_purchases_email ON creative_purchases(licensee_email);
+    CREATE INDEX IF NOT EXISTS idx_creative_purchases_status ON creative_purchases(status);
+    CREATE INDEX IF NOT EXISTS idx_creative_purchases_stripe ON creative_purchases(stripe_session_id);
+    COMMIT;
+    PRAGMA foreign_keys = ON;
+  `);
 }
 
 function runStandalone() {

@@ -2,21 +2,14 @@
  * Creative Marketplace integration tests
  */
 
-const fs = require('node:fs');
-const path = require('node:path');
 const http = require('node:http');
 const assert = require('node:assert');
 const express = require('express');
 const { Jimp } = require('jimp');
-const {
-  setupTestDb,
-  startScholarsServer,
-  createStudentBatch,
-  createSessions,
-} = require('../platform/scholars/test-helpers');
+const { setupTestDb, startScholarsServer } = require('../platform/scholars/test-helpers');
 const creativeRouter = require('../platform/api/creative-marketplace');
 const { moderateAsset } = require('../platform/api/creative-moderation');
-const { parseBase64Image, validateImage } = require('../platform/api/creative-watermark');
+const { parseBase64Image } = require('../platform/api/creative-watermark');
 
 async function generateTestImage({ width = 400, height = 400, color = 0xff6b35ff }) {
   const image = new Jimp({ width, height, color });
@@ -29,7 +22,6 @@ async function startCreativeServer() {
   const {
     dbLayer,
     hashPassword,
-    request: scholarsRequest,
     sessionHeader,
     ctx,
     cleanup: scholarsCleanup,
@@ -158,7 +150,7 @@ async function runTests() {
   }
 
   // ── Integration: upload and review flow ──
-  const { request, cleanup, ctx } = await startCreativeServer();
+  const { dbLayer, request, cleanup, ctx } = await startCreativeServer();
   try {
     const image = await generateTestImage({ width: 400, height: 400 });
 
@@ -226,6 +218,100 @@ async function runTests() {
     assert.strictEqual(instDashboardRes.status, 200);
     assert.strictEqual(instDashboardRes.body.data.approvedCount, 1);
     console.log('  ✓ institution dashboard reports approved count');
+
+    // Tags are persisted and returned in public listings.
+    const taggedList = await request('GET', '/api/v1/creatives');
+    assert.strictEqual(taggedList.status, 200);
+    assert.ok(Array.isArray(taggedList.body.data.assets[0]?.tags), 'tags array present');
+    assert.ok(
+      taggedList.body.data.assets[0].tags.includes('pattern'),
+      'uploaded tag appears in listing'
+    );
+    console.log('  ✓ tags appear in public marketplace listing');
+
+    // Departments endpoint returns the institution allowlist.
+    const departmentsRes = await request('GET', '/api/v1/creatives/departments', {
+      headers: { 'x-scholars-session': ctx.studentSessionId },
+    });
+    assert.strictEqual(departmentsRes.status, 200);
+    assert.ok(
+      departmentsRes.body.data.departments.includes('graphic_design'),
+      'allowlist contains creative department'
+    );
+    console.log('  ✓ creator studio fetches institution departments dynamically');
+
+    // Reviewer feedback is visible to the creator.
+    const feedbackRes = await request('GET', '/api/v1/creatives/reviews', {
+      headers: { 'x-scholars-session': ctx.studentSessionId },
+    });
+    assert.strictEqual(feedbackRes.status, 200);
+    assert.strictEqual(feedbackRes.body.data.reviews.length, 1);
+    assert.strictEqual(feedbackRes.body.data.reviews[0].decision, 'approved');
+    console.log('  ✓ creator sees reviewer feedback');
+
+    // Purchase verify returns a download link after payment and accrues a payout.
+    const purchaseResult = dbLayer.createCreativePurchase({
+      assetId,
+      licenseeBookingId: null,
+      licenseeEmail: 'buyer@example.com',
+      licenseType: 'single_use',
+      priceCents: 2500,
+      platformFeeCents: 750,
+      creatorPayoutCents: 1750,
+      universityCreditCents: 1750,
+    });
+    const purchaseId = purchaseResult.lastInsertRowid;
+    const stripeSessionId = `cs_test_${Date.now()}`;
+    dbLayer.updateCreativePurchaseStatus(purchaseId, { status: 'paid', stripeSessionId });
+    const verifyRes = await request(
+      'GET',
+      `/api/v1/creatives/purchases/verify?sessionId=${encodeURIComponent(stripeSessionId)}`
+    );
+    assert.strictEqual(verifyRes.status, 200);
+    assert.ok(verifyRes.body.data.downloadUrl, 'verify response includes download url');
+    assert.strictEqual(verifyRes.body.data.assetId, assetId);
+    const payouts = dbLayer.listCreativePayouts(ctx.studentId);
+    assert.ok(
+      payouts.some((p) => p.purchase_id === purchaseId),
+      'payout accrued for creator'
+    );
+    console.log('  ✓ paid purchase verify returns download url and accrues payout');
+
+    // All-access pass grants download access to any approved asset.
+    const passResult = dbLayer.createCreativePurchase({
+      assetId: null,
+      licenseeBookingId: null,
+      licenseeEmail: 'sponsor@brand.com',
+      licenseType: 'all_access_pass',
+      priceCents: 99900,
+      platformFeeCents: 29970,
+      creatorPayoutCents: 69930,
+      universityCreditCents: 69930,
+    });
+    const passId = passResult.lastInsertRowid;
+    dbLayer.updateCreativePurchaseStatus(passId, { status: 'paid' });
+    const downloadRes = await request(
+      'GET',
+      `/api/v1/creatives/${assetId}/download?email=${encodeURIComponent('sponsor@brand.com')}`
+    );
+    assert.strictEqual(downloadRes.status, 200);
+    console.log('  ✓ all-access pass grants download access');
+
+    // Public creator profile endpoint returns approved assets.
+    const profileRes = await request('GET', `/api/v1/creatives/creators/${ctx.studentId}`);
+    assert.strictEqual(profileRes.status, 200);
+    assert.strictEqual(profileRes.body.data.assets.length, 1);
+    assert.strictEqual(profileRes.body.data.id, ctx.studentId);
+    console.log('  ✓ public creator profile lists approved assets');
+
+    // Creator analytics endpoint returns view and purchase counts.
+    const analyticsRes = await request('GET', '/api/v1/creatives/analytics/creator', {
+      headers: { 'x-scholars-session': ctx.studentSessionId },
+    });
+    assert.strictEqual(analyticsRes.status, 200);
+    assert.strictEqual(analyticsRes.body.data.purchases, 1);
+    assert.ok(analyticsRes.body.data.views >= 1, 'analytics includes views');
+    console.log('  ✓ creator analytics reflects views and purchases');
   } finally {
     await cleanup();
   }

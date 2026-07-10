@@ -298,6 +298,154 @@ body {
     color: var(--cre-white-dim);
 }
 
+.cre-review-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.cre-review-card {
+    background: var(--cre-void-raised);
+    border: 1px solid var(--cre-border);
+    border-radius: 12px;
+    padding: 1.25rem;
+}
+
+.cre-review-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.cre-review-title {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    color: var(--cre-white);
+    line-height: 1.4;
+}
+
+.cre-review-comment {
+    color: var(--cre-white-dim);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+}
+
+.cre-review-comment:empty::before {
+    content: 'No comment provided.';
+    opacity: 0.6;
+}
+
+.cre-payout-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.cre-payout-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cre-primary-dim);
+    margin-bottom: 0.25rem;
+}
+
+.cre-payout-value {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--cre-white);
+}
+
+.cre-payout-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.cre-payout-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+}
+
+.cre-payout-amount {
+    font-family: var(--font-display);
+    color: var(--cre-primary);
+}
+
+.global-strip {
+    background: rgba(0, 0, 0, 0.6);
+    border-bottom: 1px solid var(--cre-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+}
+
+.global-strip-inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0.75rem clamp(1rem, 5vw, 3rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.global-brand {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    letter-spacing: 0.18em;
+    color: var(--cre-white);
+    text-decoration: none;
+}
+
+.global-brand span {
+    color: var(--cre-primary);
+}
+
+.global-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.global-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--cre-white);
+    transition: 0.2s;
+}
+
+.global-links {
+    display: flex;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+}
+
+.global-links a {
+    color: var(--cre-white-dim);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s;
+}
+
+.global-links a:hover {
+    color: var(--cre-primary);
+}
+
 .cre-login-box {
     max-width: 420px;
     margin: 4rem auto;
@@ -325,5 +473,47 @@ body {
     .cre-toolbar {
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    .global-strip-inner {
+        flex-wrap: wrap;
+    }
+
+    .global-toggle {
+        display: flex;
+        margin-left: auto;
+    }
+
+    .global-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 0.75rem;
+        padding-top: 0.75rem;
+    }
+
+    .global-links.open {
+        display: flex;
+    }
+
+    .cre-hero {
+        padding: 2.5rem 1rem 1.5rem;
+    }
+
+    .cre-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cre-dropzone {
+        padding: 1.25rem;
+    }
+
+    .cre-asset-grid,
+    .cre-review-list {
+        grid-template-columns: 1fr;
+    }
+
+    .cre-card {
+        padding: 1.25rem;
     }
 }

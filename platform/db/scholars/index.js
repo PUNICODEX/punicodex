@@ -936,6 +936,7 @@ function normalizeCreativeAsset(row) {
   return {
     ...row,
     metadata: parseJson(row.metadata, {}),
+    tags: row.tags ? row.tags.split(',').filter(Boolean) : [],
   };
 }
 
@@ -1096,11 +1097,14 @@ function listCreativeAssets(filters = {}, { limit = 20, offset = 0 } = {}) {
   const { where, params } = buildAssetWhereClause(filters);
   const rows = db
     .prepare(`
-      SELECT a.*, u.display_name AS creator_name, i.name AS institution_name
+      SELECT a.*, u.display_name AS creator_name, i.name AS institution_name,
+             GROUP_CONCAT(t.tag, ',') AS tags
       FROM creative_assets a
       JOIN scholars_users u ON a.creator_id = u.id
       LEFT JOIN scholars_institutions i ON a.institution_id = i.id
+      LEFT JOIN creative_asset_tags t ON t.asset_id = a.id
       ${where}
+      GROUP BY a.id
       ORDER BY a.created_at DESC
       LIMIT ? OFFSET ?
     `)
@@ -1138,6 +1142,21 @@ function listCreativeAssetTags(assetId) {
     .map((r) => r.tag);
 }
 
+function listCreativeReviewsByCreator(creatorId) {
+  const db = getDb();
+  return db
+    .prepare(`
+      SELECT r.id, r.asset_id, r.decision, r.comment, r.reviewed_at,
+             a.title AS asset_title, u.display_name AS reviewer_name
+      FROM creative_reviews r
+      JOIN creative_assets a ON r.asset_id = a.id
+      JOIN scholars_users u ON r.reviewer_id = u.id
+      WHERE a.creator_id = ?
+      ORDER BY r.reviewed_at DESC
+    `)
+    .all(creatorId);
+}
+
 function createCreativePurchase({
   assetId,
   licenseeBookingId,
@@ -1157,7 +1176,7 @@ function createCreativePurchase({
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
   `);
   return stmt.run(
-    assetId,
+    assetId || null,
     licenseeBookingId || null,
     licenseeEmail || null,
     licenseType || 'single_use',
@@ -1279,7 +1298,7 @@ function listCreativePayouts(creatorId, { status } = {}) {
 }
 
 function getCreativeDashboardForCreator(creatorId) {
-  const db = getDb();
+  getDb();
   const assets = listCreativeAssets({ creatorId }, { limit: 1000, offset: 0 });
   const purchases = listCreativePurchasesByCreator(creatorId);
   const payouts = listCreativePayouts(creatorId);
@@ -1304,6 +1323,177 @@ function getCreativeDashboardForInstitution(institutionId) {
   const pendingReviewCount = assets.filter((a) => a.status === 'pending_review').length;
   const approvedCount = assets.filter((a) => a.status === 'approved').length;
   return { assets, totalEarningsCents, pendingReviewCount, approvedCount };
+}
+
+function getActiveAllAccessPass(licenseeEmail) {
+  const db = getDb();
+  return normalizeCreativePurchase(
+    db
+      .prepare(`
+        SELECT * FROM creative_purchases
+        WHERE licensee_email = ?
+          AND license_type = 'all_access_pass'
+          AND status = 'paid'
+        ORDER BY created_at DESC
+        LIMIT 1
+      `)
+      .get(licenseeEmail.toLowerCase().trim())
+  );
+}
+
+function markCreativePayoutPaid(id) {
+  const db = getDb();
+  return db
+    .prepare(
+      `UPDATE creative_payouts SET status = 'paid', paid_at = CURRENT_TIMESTAMP WHERE id = ?`
+    )
+    .run(id);
+}
+
+function listCreativePayoutsForInstitution(institutionId, { status } = {}) {
+  const db = getDb();
+  let sql = `
+    SELECT p.*, u.display_name AS creator_name, u.email AS creator_email, a.title AS asset_title
+    FROM creative_payouts p
+    JOIN scholars_users u ON p.creator_id = u.id
+    LEFT JOIN creative_assets a ON p.asset_id = a.id
+    WHERE a.institution_id = ?
+  `;
+  const params = [institutionId];
+  if (status) {
+    sql += ' AND p.status = ?';
+    params.push(status);
+  }
+  sql += ' ORDER BY p.created_at DESC';
+  return db
+    .prepare(sql)
+    .all(...params)
+    .map((r) => normalizeCreativePayout(r));
+}
+
+function recordCreativeAnalyticsEvent({ assetId, eventType, licenseeEmail, metadata = {} }) {
+  const db = getDb();
+  const stmt = db.prepare(`
+    INSERT INTO creative_analytics_events (asset_id, event_type, licensee_email, metadata)
+    VALUES (?, ?, ?, ?)
+  `);
+  return stmt.run(assetId || null, eventType, licenseeEmail || null, json(metadata));
+}
+
+function getCreativeAnalyticsSummary(assetId, { days = 30 } = {}) {
+  const db = getDb();
+  const views = db
+    .prepare(`
+      SELECT COUNT(*) AS count FROM creative_analytics_events
+      WHERE asset_id = ? AND event_type = 'view' AND created_at >= DATE('now', ?)
+    `)
+    .get(assetId, `-${days} days`).count;
+  const purchases = db
+    .prepare(`
+      SELECT COUNT(*) AS count, COALESCE(SUM(price_cents), 0) AS revenue_cents
+      FROM creative_purchases
+      WHERE asset_id = ? AND status = 'paid' AND created_at >= DATE('now', ?)
+    `)
+    .get(assetId, `-${days} days`);
+  const dailyViews = db
+    .prepare(`
+      SELECT DATE(created_at) AS day, COUNT(*) AS count
+      FROM creative_analytics_events
+      WHERE asset_id = ? AND event_type = 'view' AND created_at >= DATE('now', ?)
+      GROUP BY DATE(created_at)
+      ORDER BY day ASC
+    `)
+    .all(assetId, `-${days} days`);
+  return {
+    views,
+    purchases: purchases.count,
+    revenueCents: purchases.revenue_cents,
+    dailyViews,
+  };
+}
+
+function getCreatorAnalyticsSummary(creatorId, { days = 30 } = {}) {
+  const db = getDb();
+  const views = db
+    .prepare(`
+      SELECT COUNT(*) AS count FROM creative_analytics_events e
+      JOIN creative_assets a ON e.asset_id = a.id
+      WHERE a.creator_id = ? AND e.event_type = 'view' AND e.created_at >= DATE('now', ?)
+    `)
+    .get(creatorId, `-${days} days`).count;
+  const purchases = db
+    .prepare(`
+      SELECT COUNT(*) AS count, COALESCE(SUM(p.price_cents), 0) AS revenue_cents
+      FROM creative_purchases p
+      JOIN creative_assets a ON p.asset_id = a.id
+      WHERE a.creator_id = ? AND p.status = 'paid' AND p.created_at >= DATE('now', ?)
+    `)
+    .get(creatorId, `-${days} days`);
+  const payouts = db
+    .prepare(`
+      SELECT COALESCE(SUM(amount_cents), 0) AS total_cents
+      FROM creative_payouts
+      WHERE creator_id = ? AND status = 'paid'
+    `)
+    .get(creatorId).total_cents;
+  return {
+    views,
+    purchases: purchases.count,
+    revenueCents: purchases.revenue_cents,
+    payoutsCents: payouts,
+  };
+}
+
+function getInstitutionCreativeAnalytics(institutionId, { days = 30 } = {}) {
+  const db = getDb();
+  const views = db
+    .prepare(`
+      SELECT COUNT(*) AS count FROM creative_analytics_events e
+      JOIN creative_assets a ON e.asset_id = a.id
+      WHERE a.institution_id = ? AND e.event_type = 'view' AND e.created_at >= DATE('now', ?)
+    `)
+    .get(institutionId, `-${days} days`).count;
+  const purchases = db
+    .prepare(`
+      SELECT COUNT(*) AS count, COALESCE(SUM(p.price_cents), 0) AS revenue_cents
+      FROM creative_purchases p
+      JOIN creative_assets a ON p.asset_id = a.id
+      WHERE a.institution_id = ? AND p.status = 'paid' AND p.created_at >= DATE('now', ?)
+    `)
+    .get(institutionId, `-${days} days`);
+  const topAssets = db
+    .prepare(`
+      SELECT a.id, a.title, COUNT(e.id) AS views
+      FROM creative_assets a
+      LEFT JOIN creative_analytics_events e ON a.id = e.asset_id AND e.event_type = 'view'
+        AND e.created_at >= DATE('now', ?)
+      WHERE a.institution_id = ?
+      GROUP BY a.id
+      ORDER BY views DESC
+      LIMIT 10
+    `)
+    .all(`-${days} days`, institutionId);
+  return {
+    views,
+    purchases: purchases.count,
+    revenueCents: purchases.revenue_cents,
+    topAssets,
+  };
+}
+
+function getPublicCreatorProfile(creatorId) {
+  const db = getDb();
+  const user = db
+    .prepare(`
+      SELECT u.id, u.display_name, u.email, u.department, i.name AS institution_name
+      FROM scholars_users u
+      LEFT JOIN scholars_institutions i ON u.institution_id = i.id
+      WHERE u.id = ? AND u.role = 'student' AND u.account_status = 'active'
+    `)
+    .get(creatorId);
+  if (!user) return null;
+  const assets = listCreativeAssets({ creatorId, status: 'approved' }, { limit: 100, offset: 0 });
+  return { ...user, assets };
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -1535,8 +1725,17 @@ module.exports = {
   listCreativePurchasesByCreator,
   createCreativeReview,
   listCreativeReviews,
+  listCreativeReviewsByCreator,
   createCreativePayout,
   listCreativePayouts,
+  markCreativePayoutPaid,
+  listCreativePayoutsForInstitution,
+  getActiveAllAccessPass,
+  recordCreativeAnalyticsEvent,
+  getCreativeAnalyticsSummary,
+  getCreatorAnalyticsSummary,
+  getInstitutionCreativeAnalytics,
+  getPublicCreatorProfile,
   getCreativeDashboardForCreator,
   getCreativeDashboardForInstitution,
   // Audit

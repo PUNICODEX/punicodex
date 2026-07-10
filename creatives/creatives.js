@@ -14,6 +14,8 @@
   const modalBody = document.getElementById('creatives-modal-body');
   const globalToggle = document.getElementById('global-toggle');
   const globalLinks = document.getElementById('global-links');
+  const sponsorshipForm = document.getElementById('sponsorship-form');
+  const sponsorshipMessage = document.getElementById('sponsorship-message');
 
   let state = {
     assets: [],
@@ -125,8 +127,9 @@
             <span class="creatives-card-price">${formatPrice(asset.priceCents)}</span>
           </div>
           <div class="creatives-card-tags">
-            ${(asset.metadata?.tags || []).slice(0, 4).map((tag) => `<span class="creatives-card-tag">${escapeHtml(tag)}</span>`).join('')}
+            ${(asset.tags || []).slice(0, 4).map((tag) => `<span class="creatives-card-tag">${escapeHtml(tag)}</span>`).join('')}
           </div>
+          ${asset.creatorId ? `<a href="/scholars/creatives/creator.html?id=${encodeURIComponent(asset.creatorId)}" class="creatives-card-creator" onclick="event.stopPropagation();">${escapeHtml(asset.creatorName || 'Student creator')}</a>` : ''}
         </div>
       `;
       card.addEventListener('click', () => openModal(asset));
@@ -161,6 +164,13 @@
         <input type="email" id="purchase-email" placeholder="Your email address" required>
         <button type="submit" class="creatives-btn primary">License This Asset</button>
       </form>
+      <div class="creatives-pass-form">
+        <p class="creatives-modal-note">Have an all-access sponsorship pass?</p>
+        <form class="creatives-modal-form" id="pass-form">
+          <input type="email" id="pass-email" placeholder="Your pass email address" required>
+          <button type="submit" class="creatives-btn">Download with Pass</button>
+        </form>
+      </div>
       <p class="creatives-modal-note">
         <strong>Single-use license</strong> for myth-inspired student creative work.
         You will receive a secure download link after payment. Watermarked previews protect the artist's work.
@@ -172,6 +182,38 @@
     document.body.style.overflow = 'hidden';
 
     const form = document.getElementById('purchase-form');
+    const passForm = document.getElementById('pass-form');
+
+    passForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('pass-email').value.trim();
+      const messageEl = document.getElementById('purchase-message');
+      const submitBtn = passForm.querySelector('button');
+      messageEl.textContent = '';
+      messageEl.className = 'creatives-status';
+      submitBtn.disabled = true;
+
+      try {
+        const res = await fetch(`${API_BASE}/${asset.id}/download?email=${encodeURIComponent(email)}`);
+        if (!res.ok) {
+          const json = await res.json().catch(() => ({}));
+          throw new Error(json.error || 'Pass check failed');
+        }
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = asset.title.replace(/\s+/g, '_');
+        a.click();
+        URL.revokeObjectURL(url);
+        messageEl.textContent = 'Download started.';
+      } catch (err) {
+        messageEl.textContent = err.message;
+        messageEl.classList.add('error');
+      }
+      submitBtn.disabled = false;
+    });
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const email = document.getElementById('purchase-email').value.trim();
@@ -237,6 +279,34 @@
     globalLinks.classList.toggle('open');
   });
 
+  if (sponsorshipForm) {
+    sponsorshipForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('sponsorship-email').value.trim();
+      const btn = sponsorshipForm.querySelector('button');
+      btn.disabled = true;
+      sponsorshipMessage.textContent = '';
+      sponsorshipMessage.className = 'creatives-message';
+
+      try {
+        const res = await fetch(`${API_BASE}/all-access`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+        const json = await res.json();
+        if (!json.success) {
+          throw new Error(json.error || 'Reservation failed');
+        }
+        window.location.href = json.data.checkoutUrl;
+      } catch (err) {
+        sponsorshipMessage.textContent = err.message;
+        sponsorshipMessage.className = 'creatives-message error';
+        btn.disabled = false;
+      }
+    });
+  }
+
   function debounce(fn, ms) {
     let timer;
     return (...args) => {
@@ -245,6 +315,71 @@
     };
   }
 
+  async function checkPurchaseReturn() {
+    const params = new URLSearchParams(window.location.search);
+    const sessionId = params.get('purchase');
+    const paid = params.get('paid');
+    const canceled = params.get('canceled');
+    if (!sessionId) return;
+
+    if (canceled) {
+      showStatus('Payment canceled. You can try again anytime.', true);
+      return;
+    }
+
+    if (paid) {
+      showStatus('Confirming payment…');
+      try {
+        const res = await fetch(`/api/v1/creatives/purchases/verify?sessionId=${encodeURIComponent(sessionId)}`);
+        const json = await res.json();
+        if (!json.success) {
+          throw new Error(json.error || 'Payment confirmation failed');
+        }
+        if (json.data.passType === 'all_access') {
+          openAllAccessSuccessModal(json.data);
+        } else {
+          openPurchaseSuccessModal(json.data);
+        }
+      } catch (err) {
+        showStatus(err.message, true);
+      }
+    }
+  }
+
+  function openPurchaseSuccessModal(data) {
+    modalBody.innerHTML = `
+      <div class="creatives-success-icon">✓</div>
+      <h2 class="creatives-modal-title" id="modal-title">Payment Successful</h2>
+      <p class="creatives-modal-description">
+        Thank you for licensing <strong>${escapeHtml(data.title)}</strong>. Your download link is ready below.
+      </p>
+      <a href="${escapeHtml(data.downloadUrl)}" class="creatives-btn primary" download>Download Original</a>
+      <p class="creatives-modal-note">
+        This link grants access to the unwatermarked original file. Keep your purchase confirmation email for your records.
+      </p>
+    `;
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+
+  function openAllAccessSuccessModal(data) {
+    modalBody.innerHTML = `
+      <div class="creatives-success-icon">✓</div>
+      <h2 class="creatives-modal-title" id="modal-title">All-Access Pass Active</h2>
+      <p class="creatives-modal-description">
+        Your sponsorship pass is now active for <strong>${escapeHtml(data.email)}</strong>.
+        Browse any asset and click <strong>License with Pass</strong> to download the unwatermarked original.
+      </p>
+      <a href="#marketplace" class="creatives-btn primary" onclick="closeModal();">Browse Assets</a>
+      <p class="creatives-modal-note">
+        This pass supports student creators across every partner institution. Welcome to the program.
+      </p>
+    `;
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+
   // Initial load
+  checkPurchaseReturn();
   fetchAssets({ append: false });
 })();

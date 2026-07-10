@@ -98,7 +98,16 @@
     `;
   }
 
-  function renderUploadForm() {
+  function renderDepartmentOptions(departments) {
+    if (!departments || departments.length === 0) {
+      return '<option value="">No departments configured</option>';
+    }
+    return departments
+      .map((d) => `<option value="${escapeHtml(d)}">${escapeHtml(d.replace(/_/g, ' '))}</option>`)
+      .join('');
+  }
+
+  function renderUploadForm(departments = []) {
     return `
       <h2 class="cre-section-title">Upload New Work</h2>
       <div class="cre-card">
@@ -112,12 +121,7 @@
               <label for="asset-department">Department</label>
               <select id="asset-department" required>
                 <option value="">Select department</option>
-                <option value="graphic_design">Graphic Design</option>
-                <option value="marketing">Marketing</option>
-                <option value="business">Business</option>
-                <option value="photography">Photography</option>
-                <option value="illustration">Illustration</option>
-                <option value="typography">Typography</option>
+                ${renderDepartmentOptions(departments)}
               </select>
             </div>
             <div class="cre-field">
@@ -179,11 +183,101 @@
     `;
   }
 
-  function renderDashboard() {
+  function renderReviews(reviews) {
+    if (!reviews || reviews.length === 0) return '';
+    const rows = reviews
+      .map((r) => {
+        const decisionClass =
+          r.decision === 'approved'
+            ? 'approved'
+            : r.decision === 'rejected'
+              ? 'disabled'
+              : 'pending';
+        return `
+        <div class="cre-review-card">
+          <div class="cre-review-header">
+            <span class="cre-review-title">${escapeHtml(r.asset_title)}</span>
+            <span class="cre-status ${decisionClass}">${escapeHtml(r.decision.replace('_', ' '))}</span>
+          </div>
+          <p class="cre-review-comment">${escapeHtml(r.comment || 'No comment provided.')}</p>
+          <div class="cre-asset-meta">Reviewer: ${escapeHtml(r.reviewer_name || '—')} · ${formatDate(r.reviewed_at)}</div>
+        </div>
+      `;
+      })
+      .join('');
+
+    return `
+      <h2 class="cre-section-title">Reviewer Feedback</h2>
+      <div class="cre-review-list">${rows}</div>
+    `;
+  }
+
+  function renderPayouts(payouts, summary) {
+    if (!payouts || payouts.length === 0) {
+      return '';
+    }
+    const rows = payouts
+      .map(
+        (p) => `
+      <div class="cre-payout-row">
+        <span class="cre-payout-amount">${formatCents(p.amount_cents)}</span>
+        <span class="cre-status ${p.status}">${escapeHtml(p.status)}</span>
+        <span class="cre-asset-meta">${formatDate(p.created_at)}</span>
+      </div>
+    `
+      )
+      .join('');
+
+    return `
+      <h2 class="cre-section-title">Payouts</h2>
+      <div class="cre-card">
+        <div class="cre-payout-summary">
+          <div>
+            <div class="cre-payout-label">Total Earnings</div>
+            <div class="cre-payout-value">${formatCents(summary.totalEarningsCents)}</div>
+          </div>
+          <div>
+            <div class="cre-payout-label">Pending</div>
+            <div class="cre-payout-value">${formatCents(summary.pendingEarningsCents)}</div>
+          </div>
+        </div>
+        <div class="cre-payout-list">${rows}</div>
+      </div>
+    `;
+  }
+
+  function renderAnalytics(analytics) {
+    if (!analytics) return '';
+    return `
+      <h2 class="cre-section-title">Analytics</h2>
+      <div class="cre-card">
+        <div class="cre-payout-summary">
+          <div>
+            <div class="cre-payout-label">Views (30d)</div>
+            <div class="cre-payout-value">${Number(analytics.views).toLocaleString()}</div>
+          </div>
+          <div>
+            <div class="cre-payout-label">Purchases (30d)</div>
+            <div class="cre-payout-value">${Number(analytics.purchases).toLocaleString()}</div>
+          </div>
+          <div>
+            <div class="cre-payout-label">Revenue (30d)</div>
+            <div class="cre-payout-value">${formatCents(analytics.revenueCents)}</div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderDashboard(departments = [], reviews = [], payouts = [], analytics = []) {
+    const summary = currentDashboard || { totalEarningsCents: 0, pendingEarningsCents: 0 };
     container.innerHTML = `
       ${renderToolbar()}
-      ${renderUploadForm()}
+      ${renderUploadForm(departments)}
       ${renderAssetList()}
+      ${renderReviews(reviews)}
+      ${renderPayouts(payouts, summary)}
+      ${renderAnalytics(analytics)}
     `;
 
     document.getElementById('logout-btn').addEventListener('click', () => {
@@ -316,13 +410,34 @@
     }
     currentUser = user;
 
-    const dashboardRes = await api('/creatives/dashboard');
+    const [dashboardRes, departmentsRes, reviewsRes, payoutsRes, analyticsRes] = await Promise.all([
+      api('/creatives/dashboard'),
+      api('/creatives/departments'),
+      api('/creatives/reviews'),
+      api('/creatives/payouts'),
+      api('/creatives/analytics/creator'),
+    ]);
     currentDashboard = dashboardRes.ok ? dashboardRes.data.data : { assets: [] };
+    const departments = departmentsRes.ok ? departmentsRes.data.data.departments : [];
+    const reviews = reviewsRes.ok ? reviewsRes.data.data.reviews : [];
+    const payouts = payoutsRes.ok ? payoutsRes.data.data.payouts : [];
+    const analytics = analyticsRes.ok ? analyticsRes.data.data : null;
 
-    renderDashboard();
+    renderDashboard(departments, reviews, payouts, analytics);
+  }
+
+  function bindGlobalNav() {
+    const toggle = document.getElementById('global-toggle');
+    const links = document.getElementById('global-links');
+    if (toggle && links) {
+      toggle.addEventListener('click', () => {
+        links.classList.toggle('open');
+      });
+    }
   }
 
   async function init() {
+    bindGlobalNav();
     if (!getSessionId()) {
       renderLoginPrompt();
       return;

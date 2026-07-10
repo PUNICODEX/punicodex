@@ -18,6 +18,9 @@ function runScholarsMigrations(db) {
   const { migrate: migrateCreatives } = require('../db/migrate-scholars-creatives.js');
   migrateScholars(db);
   migrateQuality(db);
+  // The creatives schema has a foreign key to the bookings table. Create a
+  // minimal stub so scholars-only tests can still exercise purchases.
+  db.exec(`CREATE TABLE IF NOT EXISTS bookings (id INTEGER PRIMARY KEY AUTOINCREMENT)`);
   migrateCreatives(db);
 }
 
