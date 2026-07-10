@@ -3,7 +3,7 @@
  * Cache-first strategy for offline-first experience.
  */
 
-const CACHE_NAME = 'punycodex-mobile-v3';
+const CACHE_NAME = 'punycodex-mobile-v4';
 const ASSETS = [
     './',
     './index.html',

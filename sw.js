@@ -1,17 +1,17 @@
 /**
  * PUNYCODEX — Service Worker
- * Lightweight: precache shell, stale-while-revalidate for assets
+ * Lightweight: precache shell pages, stale-while-revalidate for assets.
+ * Cache-bust revision: v2-2026-07-10
  */
 
-const SHELL_CACHE = 'punycodex-shell-v1';
-const ASSET_CACHE = 'punycodex-assets-v1';
+const SHELL_CACHE = 'punycodex-shell-v2';
+const ASSET_CACHE = 'punycodex-assets-v2';
 
-// Precache critical shell files on install
+// Precache critical shell HTML pages only.
+// Versioned JS/CSS are fetched on demand and will update when their query
+// strings change; precaching unversioned asset URLs caused stale data.
 const SHELL_URLS = [
   '/',
-  '/css/main.css',
-  '/js/main.js',
-  '/js/archetypes-v2.js',
   '/pantheon/',
   '/type/',
   '/lexicon/',
@@ -35,7 +35,8 @@ self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then(keys =>
       Promise.all(
-        keys.filter(key => key !== SHELL_CACHE && key !== ASSET_CACHE)
+        keys
+          .filter(key => key !== SHELL_CACHE && key !== ASSET_CACHE)
           .map(key => caches.delete(key))
       )
     ).then(() => self.clients.claim())
