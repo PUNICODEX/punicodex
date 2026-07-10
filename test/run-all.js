@@ -108,6 +108,10 @@ const SUITES = [
     name: 'Global Strip Mobile Regression',
     cmd: 'node test/global-strip-mobile-regression.test.js',
   },
+  {
+    name: 'Provenance Mobile Regression',
+    cmd: 'node test/provenance-mobile-regression.test.js',
+  },
   { name: 'Mobile Share Extension Tests', cmd: 'node test/mobile-share-extension.test.js' },
   { name: 'iOS SDK Contract Tests', cmd: 'node sdk/ios/Tests/contract.test.js' },
   { name: 'Android SDK Contract Tests', cmd: 'node sdk/android/app/src/test/contract.test.js' },
