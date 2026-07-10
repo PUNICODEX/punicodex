@@ -283,3 +283,195 @@
 .codex-article-cta { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-7); padding-top: var(--space-5); border-top: 1px solid rgba(212, 175, 55, 0.08); }
 @media (max-width: 640px) { .codex-article-hero { padding: var(--space-6) 0 var(--space-4); } .codex-article-body { padding-top: var(--space-4); padding-bottom: var(--space-6); } .codex-article-cta { flex-direction: column; } .codex-article-cta .btn { width: 100%; } }
 
+/* ═══════════════════════════════════════════════════════════
+   Global Codex Search
+   ═══════════════════════════════════════════════════════════ */
+.codex-global-search-wrap { position: relative; max-width: 720px; margin: 0 auto var(--space-4); }
+.codex-global-search-wrap svg { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
+.codex-global-search-wrap input { width: 100%; padding: 16px 16px 16px 48px; background: rgba(10, 10, 10, 0.7); border: 1px solid rgba(212, 175, 55, 0.12); border-radius: var(--radius-md); color: var(--text-primary); font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.02em; outline: none; transition: all var(--duration-normal) var(--ease-smooth); }
+.codex-global-search-wrap input:focus { border-color: rgba(212, 175, 55, 0.35); box-shadow: 0 0 24px rgba(212, 175, 55, 0.12); }
+.codex-global-results { max-width: 720px; margin: 0 auto; display: grid; gap: var(--space-2); }
+.global-search-result { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); padding: var(--space-3) var(--space-4); background: rgba(0, 0, 0, 0.25); border: 1px solid rgba(212, 175, 55, 0.08); border-radius: var(--radius-md); text-decoration: none; transition: all var(--duration-fast) var(--ease-smooth); }
+.global-search-result:hover { background: rgba(212, 175, 55, 0.08); border-color: rgba(212, 175, 55, 0.2); }
+.global-search-name { font-family: var(--font-display); font-size: 1.25rem; color: var(--primary); }
+.global-search-meta { font-size: 0.8rem; color: var(--text-dim); }
+.global-search-empty { text-align: center; color: var(--text-dim); padding: var(--space-4); }
+
+/* ═══════════════════════════════════════════════════════════
+   Restoration Engine v2 — Etymology, Provenance, Lore, Variants
+   ═══════════════════════════════════════════════════════════ */
+.etymology-card { background: rgba(0, 0, 0, 0.25); border: 1px solid rgba(212, 175, 55, 0.08); border-radius: var(--radius-md); padding: var(--space-3); margin-bottom: var(--space-4); }
+.etymology-row { display: flex; justify-content: space-between; gap: var(--space-3); padding: 8px 0; border-bottom: 1px solid rgba(212, 175, 55, 0.06); font-size: 0.9rem; }
+.etymology-row:last-child { border-bottom: none; }
+.etymology-label { color: var(--text-dim); }
+.etymology-value { color: var(--text-primary); font-weight: 500; }
+.etymology-value.mono { font-family: var(--font-mono); }
+.etymology-certainty-certain { color: var(--green, #6b9e75); }
+.etymology-certainty-probable { color: var(--primary); }
+.etymology-certainty-possible { color: #b89b6b; }
+.etymology-certainty-unknown { color: var(--text-dim); }
+.etymology-derivation { color: var(--text-secondary); line-height: 1.7; margin: var(--space-2) 0 0; }
+.etymology-subtitle { display: block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); margin: var(--space-3) 0 var(--space-1); }
+.etymology-cognates { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.etymology-cognate { padding: 5px 10px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(212, 175, 55, 0.08); border-radius: var(--radius-sm); font-size: 0.85rem; color: var(--text-secondary); }
+.etymology-cognate strong { color: var(--text-primary); }
+.etymology-cognate em { color: var(--text-dim); font-style: normal; }
+
+.provenance-details { margin-top: var(--space-2); color: var(--text-secondary); }
+.provenance-details summary { cursor: pointer; font-size: 0.8rem; font-weight: 600; color: var(--primary); }
+.provenance-details summary:hover { color: var(--gold-bright); }
+.provenance-steps { margin: var(--space-2) 0; padding-left: var(--space-3); font-size: 0.85rem; line-height: 1.7; color: var(--text-secondary); }
+.provenance-steps li { margin-bottom: var(--space-1); }
+.provenance-sources { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+.script-original { font-size: 1.75rem; color: var(--primary); }
+
+.variant-group { margin-bottom: var(--space-3); }
+.variant-group-label { display: block; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); margin-bottom: var(--space-1); }
+.variant-group-chips { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+.variant-sources { display: inline-flex; gap: 4px; margin-left: 6px; }
+.variant-sources .restore-source-chip { padding: 2px 6px; font-size: 0.65rem; }
+
+.lore-card { background: rgba(0, 0, 0, 0.25); border: 1px solid rgba(212, 175, 55, 0.08); border-radius: var(--radius-md); padding: var(--space-3); margin-bottom: var(--space-4); }
+.lore-pronunciation { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2); margin-bottom: var(--space-3); padding-bottom: var(--space-2); border-bottom: 1px solid rgba(212, 175, 55, 0.08); }
+.lore-ipa { font-family: var(--font-mono); font-size: 1.25rem; color: var(--primary); }
+.lore-ipa-label { font-size: 0.75rem; color: var(--text-dim); }
+.lore-approximation { flex-basis: 100%; font-size: 0.85rem; color: var(--text-secondary); margin: 0; }
+.lore-subsection h4, .lore-legacy h4 { font-family: var(--font-display); font-size: 1rem; color: var(--text-primary); margin-bottom: var(--space-2); }
+.lore-symbols { list-style: none; margin: 0; padding: 0; }
+.lore-symbols li { position: relative; padding-left: var(--space-3); margin-bottom: var(--space-2); color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; }
+.lore-symbols li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 6px; height: 6px; border-radius: 50%; background: var(--primary); opacity: 0.7; }
+.lore-lead { color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--space-3); }
+.lore-myths { display: grid; gap: var(--space-3); }
+.lore-myth { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(212, 175, 55, 0.06); border-radius: var(--radius-md); padding: var(--space-3); }
+.lore-myth-tag { display: inline-block; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary); margin-bottom: var(--space-1); }
+.lore-myth-title { font-family: var(--font-display); font-size: 1.1rem; color: var(--text-primary); margin-bottom: var(--space-1); }
+.lore-myth-text { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; }
+.lore-legacy-text { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; }
+
+.availability-badge { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: var(--radius-sm); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+.availability-live { background: rgba(107, 158, 117, 0.15); color: var(--green, #6b9e75); }
+.availability-registered { background: rgba(212, 106, 106, 0.15); color: #d46a6a; }
+.availability-available { background: rgba(74, 144, 164, 0.15); color: #4a90a4; }
+
+/* ═══════════════════════════════════════════════════════════
+   Pantheon Constellation v2 — modes, search, detail card
+   ═══════════════════════════════════════════════════════════ */
+.constellation-modes { position: absolute; top: 12px; left: 12px; display: flex; gap: 6px; z-index: 5; }
+.constellation-mode { padding: 5px 10px; border-radius: var(--radius-sm); border: 1px solid rgba(212, 175, 55, 0.2); background: rgba(5, 5, 5, 0.8); color: var(--text-secondary); font-family: var(--font-body); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; transition: all var(--duration-fast) var(--ease-smooth); }
+.constellation-mode:hover, .constellation-mode.active { background: rgba(212, 175, 55, 0.15); color: var(--text-primary); border-color: var(--primary); }
+.constellation-search { position: absolute; top: 12px; right: 12px; left: auto; z-index: 5; }
+.constellation-search input { width: 180px; padding: 7px 10px; background: rgba(5, 5, 5, 0.8); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: var(--radius-sm); color: var(--text-primary); font-family: var(--font-body); font-size: 0.75rem; outline: none; transition: all var(--duration-fast) var(--ease-smooth); }
+.constellation-search input:focus { width: 220px; border-color: var(--primary); }
+.constellation-detail { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: min(320px, 90%); background: rgba(8, 8, 8, 0.96); border: 1px solid rgba(212, 175, 55, 0.25); border-radius: var(--radius-lg); padding: var(--space-4); z-index: 20; box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6); }
+.constellation-detail.hidden { display: none; }
+.constellation-detail-close { position: absolute; top: 8px; right: 12px; background: none; border: none; color: var(--text-dim); font-size: 1.5rem; cursor: pointer; }
+.constellation-detail-close:hover { color: var(--text-primary); }
+.constellation-detail h4 { font-family: var(--font-display); font-size: 1.75rem; color: var(--primary); margin-bottom: 4px; }
+.constellation-detail-sub { font-size: 0.8rem; color: var(--text-dim); margin-bottom: var(--space-2); }
+.constellation-detail-meaning { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: var(--space-2); }
+.constellation-detail-script { font-size: 1.5rem; color: var(--primary); margin-bottom: var(--space-2); }
+.constellation-detail-meta { display: flex; gap: var(--space-2); flex-wrap: wrap; margin-bottom: var(--space-3); }
+.constellation-detail-actions { display: flex; gap: var(--space-2); }
+.constellation-detail-actions .btn { flex: 1; }
+
+/* ═══════════════════════════════════════════════════════════
+   Script Atlas v2
+   ═══════════════════════════════════════════════════════════ */
+.script-atlas-header { display: flex; flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-4); }
+.script-atlas-counts { display: flex; gap: var(--space-4); flex-wrap: wrap; font-size: 0.85rem; color: var(--text-dim); }
+.script-atlas-counts strong { color: var(--primary); }
+.script-atlas-filters { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+.script-atlas-search { flex: 1 1 240px; padding: 10px 12px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(212, 175, 55, 0.1); border-radius: var(--radius-md); color: var(--text-primary); font-family: var(--font-body); font-size: 0.9rem; outline: none; transition: all var(--duration-normal) var(--ease-smooth); }
+.script-atlas-search:focus { border-color: rgba(212, 175, 55, 0.3); }
+.script-atlas-filter { padding: 10px 12px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(212, 175, 55, 0.1); border-radius: var(--radius-md); color: var(--text-primary); font-family: var(--font-body); font-size: 0.9rem; }
+.script-atlas-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--space-3); }
+.script-atlas-transliteration { text-align: center; font-size: 0.8rem; color: var(--text-dim); margin: 0; }
+.script-atlas-provenance { margin-top: var(--space-2); color: var(--text-secondary); }
+.script-atlas-provenance summary { cursor: pointer; font-size: 0.75rem; font-weight: 600; color: var(--primary); }
+.script-atlas-steps { margin: var(--space-2) 0; padding-left: var(--space-3); font-size: 0.8rem; line-height: 1.6; color: var(--text-secondary); }
+.script-atlas-sources { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+
+/* ═══════════════════════════════════════════════════════════
+   Tier System Panel
+   ═══════════════════════════════════════════════════════════ */
+.tier-system-panel { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
+@media (max-width: 1024px) { .tier-system-panel { grid-template-columns: 1fr; max-width: 640px; margin: 0 auto; } }
+.tier-doc { background: rgba(0, 0, 0, 0.25); border: 1px solid rgba(212, 175, 55, 0.1); border-radius: var(--radius-lg); padding: var(--space-4); transition: all var(--duration-normal) var(--ease-smooth); }
+.tier-doc:hover { border-color: rgba(212, 175, 55, 0.2); transform: translateY(-4px); }
+.tier-doc-dual { border-top: 3px solid var(--primary); }
+.tier-doc-1 { border-top: 3px solid #e8e4dc; }
+.tier-doc-2 { border-top: 3px solid rgba(232, 228, 220, 0.4); }
+.tier-doc-title { font-family: var(--font-display); font-size: 1.5rem; color: var(--text-primary); margin-bottom: var(--space-2); }
+.tier-doc-summary { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: var(--space-3); }
+.tier-doc-rules, .tier-doc-subtypes { list-style: none; padding: 0; margin: 0 0 var(--space-3); font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7; }
+.tier-doc-rules li, .tier-doc-subtypes li { position: relative; padding-left: var(--space-3); margin-bottom: var(--space-1); }
+.tier-doc-rules li::before { content: '•'; position: absolute; left: 0; color: var(--primary); }
+.tier-doc-subtypes li::before { content: '→'; position: absolute; left: 0; color: var(--text-dim); font-size: 0.7rem; }
+.tier-doc-subtypes strong { color: var(--text-primary); }
+.tier-doc-examples { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.tier-example { padding: 5px 10px; border: 1px solid rgba(212, 175, 55, 0.12); border-radius: var(--radius-sm); background: rgba(255, 255, 255, 0.04); color: var(--text-secondary); font-family: var(--font-display); font-size: 0.9rem; text-decoration: none; transition: all var(--duration-fast) var(--ease-smooth); }
+.tier-example:hover { background: rgba(212, 175, 55, 0.12); color: var(--text-primary); border-color: rgba(212, 175, 55, 0.3); }
+
+/* ═══════════════════════════════════════════════════════════
+   Availability Dashboard
+   ═══════════════════════════════════════════════════════════ */
+.availability-dashboard { max-width: 900px; margin: 0 auto; }
+.availability-header { display: flex; flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-4); }
+.availability-stats { display: flex; gap: var(--space-4); flex-wrap: wrap; }
+.availability-stat { padding: 10px 16px; border-radius: var(--radius-md); background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(212, 175, 55, 0.08); font-size: 0.85rem; color: var(--text-dim); }
+.availability-stat strong { color: var(--text-primary); font-size: 1.1rem; }
+.availability-stat.available strong { color: var(--green, #6b9e75); }
+.availability-stat.live strong { color: #d46a6a; }
+.availability-stat.registered strong { color: #4a90a4; }
+.availability-filters { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+.availability-search { flex: 1 1 240px; padding: 10px 12px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(212, 175, 55, 0.1); border-radius: var(--radius-md); color: var(--text-primary); font-family: var(--font-body); font-size: 0.9rem; outline: none; }
+.availability-filter-status { padding: 10px 12px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(212, 175, 55, 0.1); border-radius: var(--radius-md); color: var(--text-primary); font-family: var(--font-body); font-size: 0.9rem; }
+.availability-list { display: grid; gap: var(--space-2); max-height: 560px; overflow-y: auto; padding-right: var(--space-1); }
+.availability-row { display: grid; grid-template-columns: 1.2fr 1.8fr auto auto; align-items: center; gap: var(--space-3); padding: var(--space-2) var(--space-3); background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(212, 175, 55, 0.06); border-radius: var(--radius-md); text-decoration: none; transition: all var(--duration-fast) var(--ease-smooth); }
+.availability-row:hover { background: rgba(255, 255, 255, 0.03); border-color: rgba(212, 175, 55, 0.15); }
+.availability-row-name { font-family: var(--font-display); font-size: 1.1rem; color: var(--text-primary); }
+.availability-row-domain { font-size: 0.8rem; color: var(--text-dim); }
+.availability-row-status { text-transform: capitalize; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; padding: 4px 8px; border-radius: var(--radius-sm); }
+.availability-row.availability-available .availability-row-status { background: rgba(74, 144, 164, 0.15); color: #4a90a4; }
+.availability-row.availability-live .availability-row-status { background: rgba(107, 158, 117, 0.15); color: var(--green, #6b9e75); }
+.availability-row.availability-registered .availability-row-status { background: rgba(212, 106, 106, 0.15); color: #d46a6a; }
+.availability-row-pantheon { font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* ═══════════════════════════════════════════════════════════
+   Owned Domains Gallery
+   ═══════════════════════════════════════════════════════════ */
+.owned-domains-gallery { max-width: 1100px; margin: 0 auto; }
+.owned-count { text-align: center; font-size: 0.85rem; color: var(--text-dim); margin-bottom: var(--space-4); }
+.owned-count::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--green, #6b9e75); margin-right: 8px; }
+.owned-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: var(--space-3); }
+.owned-card { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-1); padding: var(--space-3); background: rgba(0, 0, 0, 0.25); border: 1px solid rgba(212, 175, 55, 0.08); border-radius: var(--radius-lg); text-decoration: none; transition: all var(--duration-fast) var(--ease-smooth); }
+.owned-card:hover { border-color: rgba(212, 175, 55, 0.2); transform: translateY(-3px); background: rgba(255, 255, 255, 0.03); }
+.owned-name { font-family: var(--font-display); font-size: 1.25rem; color: var(--text-primary); }
+.owned-domain { font-size: 0.75rem; color: var(--text-dim); word-break: break-all; }
+.owned-pantheon { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary); }
+
+/* ═══════════════════════════════════════════════════════════
+   Responsive adjustments for new Codex sections
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .constellation-modes { top: 8px; left: 8px; gap: 4px; }
+  .constellation-mode { padding: 4px 7px; font-size: 0.55rem; }
+  .constellation-search { top: 8px; right: 8px; }
+  .constellation-search input { width: 120px; padding: 6px 8px; font-size: 0.7rem; }
+  .constellation-search input:focus { width: 150px; }
+  .constellation-detail { width: min(280px, 90%); padding: var(--space-3); }
+  .constellation-detail h4 { font-size: 1.5rem; }
+  .script-atlas-filters { flex-direction: column; }
+  .script-atlas-filter { width: 100%; }
+  .availability-header { gap: var(--space-2); }
+  .availability-row { grid-template-columns: 1fr auto; gap: var(--space-2); }
+  .availability-row-domain, .availability-row-pantheon { display: none; }
+}
+
+@media (max-width: 480px) {
+  .global-search-result { flex-direction: column; align-items: flex-start; gap: var(--space-1); }
+  .owned-grid { grid-template-columns: repeat(2, 1fr); }
+  .owned-card { padding: var(--space-2); }
+  .owned-name { font-size: 1rem; }
+}
+

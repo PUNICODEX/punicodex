@@ -17,8 +17,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/css/main.css?v=perf9">
-    <link rel="stylesheet" href="/css/codex.css?v=perf10">
+    <link rel="stylesheet" href="/css/main.css?v=perf10">
+    <link rel="stylesheet" href="/css/codex.css?v=perf11">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%CE%A8%3C/text%3E%3C/svg%3E">
     <link rel="apple-touch-icon" sizes="128x128" href="/assets/images/apple-touch-icon.png">
     <link rel="manifest" href="/manifest.json">
@@ -90,6 +90,26 @@
             </div>
         </section>
 
+        <!-- Global Codex Search -->
+        <section class="codex-section" id="codex-global-search-section">
+            <div class="container">
+                <div class="section-header section-header-center">
+                    <p class="section-eyebrow reveal-up">Search the Codex</p>
+                    <h2 class="section-title reveal-up">Find any name, pantheon, or source</h2>
+                    <p class="section-subtitle reveal-up">Instant lookup across all 860 restorations, original scripts, and scholarly sources.</p>
+                </div>
+
+                <div class="codex-global-search-wrap reveal-up">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="M21 21l-4.35-4.35"/>
+                    </svg>
+                    <input type="text" id="codex-global-search" placeholder="Search names, pantheons, sources…" autocomplete="off" aria-label="Search the Codex">
+                </div>
+                <div class="codex-global-results" id="codex-global-results"></div>
+            </div>
+        </section>
+
         <!-- Restoration Engine -->
         <section class="codex-section codex-section-dark" id="restoration-engine">
             <div class="container">
@@ -110,6 +130,21 @@
                     <div class="restore-output" id="codex-restore-output">
                         <p class="restore-hint">Type an ASCII name above to see its Unicode restoration.</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tier System -->
+        <section class="codex-section" id="tier-system-section">
+            <div class="container">
+                <div class="section-header section-header-center">
+                    <p class="section-eyebrow reveal-up">The Definitive Tier System</p>
+                    <h2 class="section-title reveal-up">How every name is classified</h2>
+                    <p class="section-subtitle reveal-up">Dual-Tier, Tier 1, and Tier 2 are not marketing labels. They are philological rules derived from the Greek original.</p>
+                </div>
+
+                <div class="tier-system-panel" id="tier-system-panel">
+                    <!-- populated by codex-atlas.js -->
                 </div>
             </div>
         </section>
@@ -135,6 +170,36 @@
                 </div>
 
                 <div class="constellation-container" id="constellation-container" aria-label="Interactive pantheon constellation graph"></div>
+            </div>
+        </section>
+
+        <!-- Availability Dashboard -->
+        <section class="codex-section codex-section-dark" id="availability-section">
+            <div class="container">
+                <div class="section-header section-header-center">
+                    <p class="section-eyebrow reveal-up">Availability Dashboard</p>
+                    <h2 class="section-title reveal-up">Which names still wait in the wild?</h2>
+                    <p class="section-subtitle reveal-up">Live, registered, and available Unicode domain statuses across the entire lexicon.</p>
+                </div>
+
+                <div class="availability-dashboard" id="availability-dashboard">
+                    <!-- populated by codex-atlas.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Owned Domains Gallery -->
+        <section class="codex-section" id="owned-domains-section">
+            <div class="container">
+                <div class="section-header section-header-center">
+                    <p class="section-eyebrow reveal-up">The PÚNYCODEX Collection</p>
+                    <h2 class="section-title reveal-up">Owned domains</h2>
+                    <p class="section-subtitle reveal-up">Every Unicode domain secured and restored by PÚNYCODEX, mapped to its flagship temple.</p>
+                </div>
+
+                <div class="owned-domains-gallery" id="owned-domains-gallery">
+                    <!-- populated by codex-atlas.js -->
+                </div>
             </div>
         </section>
 
@@ -1734,7 +1799,7 @@
         </div>
     </footer>
 
-    <script src="/js/px-core.js?v=perf9"></script>
-    <script src="/codex/js/codex-atlas.js?v=perf10" defer></script>
+    <script src="/js/px-core.js?v=perf10"></script>
+    <script src="/codex/js/codex-atlas.js?v=perf11" defer></script>
 </body>
 </html>

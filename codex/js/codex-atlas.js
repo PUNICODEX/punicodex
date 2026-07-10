@@ -11,6 +11,7 @@
   let lexiconData = null;
   let scriptsData = null;
   let sourcesData = null;
+  let availabilityData = null;
 
   // ═══════════════════════════════════════════════════════════════════════════
   // Utilities
@@ -57,15 +58,17 @@
   // ═══════════════════════════════════════════════════════════════════════════
 
   async function loadData() {
-    const [lexRes, scriptsRes, sourcesRes] = await Promise.all([
+    const [lexRes, scriptsRes, sourcesRes, availRes] = await Promise.all([
       fetch(`${BASE_PATH}codex-lexicon.json`),
       fetch(`${BASE_PATH}original-scripts.json`),
       fetch(`${BASE_PATH}source-catalog.json`),
+      fetch(`${BASE_PATH}availability.json`),
     ]);
 
     lexiconData = await lexRes.json();
     scriptsData = await scriptsRes.json();
     sourcesData = await sourcesRes.json();
+    availabilityData = await availRes.json();
 
     // Build lookup maps
     lexiconData.entryById = {};
@@ -75,7 +78,7 @@
       lexiconData.entryByAscii[entry.ascii.toLowerCase()] = entry;
     }
 
-    return { lexicon: lexiconData, scripts: scriptsData, sources: sourcesData };
+    return { lexicon: lexiconData, scripts: scriptsData, sources: sourcesData, availability: availabilityData };
   }
 
   // ═══════════════════════════════════════════════════════════════════════════
@@ -114,12 +117,295 @@
   // Restoration Engine
   // ═══════════════════════════════════════════════════════════════════════════
 
+  function getSourceChip(key) {
+    const src = sourcesData.sources.find((s) => s.key === key);
+    if (!src) return `<span class="restore-source-chip">${escapeHtml(key)}</span>`;
+    return src.url
+      ? `<a href="${escapeHtml(src.url)}" target="_blank" rel="noopener" class="restore-source-chip" title="${escapeHtml(src.full)}">${escapeHtml(key)}</a>`
+      : `<span class="restore-source-chip" title="${escapeHtml(src.full)}">${escapeHtml(key)}</span>`;
+  }
+
+  function getAvailabilityBadge(entry) {
+    if (!entry.availability) return '';
+    const status = entry.availability.status;
+    const label = status === 'live' ? 'Live Site' : status === 'registered' ? 'Registered' : 'Available';
+    return `<span class="availability-badge availability-${status}" title="${escapeHtml(entry.availability.domain || '')}">${label}</span>`;
+  }
+
+  function getTierTooltip(entry) {
+    const docs = lexiconData.tierDocs[entry.tier];
+    if (!docs) return '';
+    return docs.summary;
+  }
+
+  function renderOriginalScript(entry) {
+    if (!entry.originalScript || !entry.originalScript.originalScript) {
+      return `
+        <div class="restore-script restore-script-wide">
+          <span class="restore-script-label">Greek / Original</span>
+          <span class="restore-script-value">${escapeHtml(entry.greek || '—')}</span>
+        </div>`;
+    }
+
+    const os = entry.originalScript;
+    const stepsHtml = os.steps && os.steps.length
+      ? `<ol class="provenance-steps">${os.steps.map((s) => `<li>${escapeHtml(s)}</li>`).join('')}</ol>`
+      : '';
+    const provSources = os.provenanceSources && os.provenanceSources.length
+      ? `<div class="provenance-sources">${os.provenanceSources.map(getSourceChip).join('')}</div>`
+      : '';
+
+    return `
+      <div class="restore-script restore-script-wide restore-script-provenance">
+        <span class="restore-script-label">${escapeHtml(os.scriptName)}</span>
+        <span class="restore-script-value script-original">${escapeHtml(os.originalScript)}</span>
+        ${os.transliteration ? `<span class="restore-script-note mono">${escapeHtml(os.transliteration)}</span>` : ''}
+        <details class="provenance-details">
+          <summary>Original script provenance</summary>
+          ${stepsHtml}
+          ${provSources}
+        </details>
+      </div>`;
+  }
+
+  function renderEtymology(entry) {
+    const et = entry.etymology;
+    if (!et) return '';
+
+    const cognates = et.cognates && et.cognates.length
+      ? `<div class="etymology-cognates">
+          <span class="etymology-subtitle">Cognates & Kin</span>
+          ${et.cognates.map((c) => `
+            <span class="etymology-cognate" title="${escapeHtml(c.note || '')}">
+              ${escapeHtml(c.language)}: <strong>${escapeHtml(c.form)}</strong> <em>(${escapeHtml(c.relationship || 'cognate')})</em>
+            </span>
+          `).join('')}
+        </div>`
+      : '';
+
+    return `
+      <div class="restore-section-title">Etymology</div>
+      <div class="etymology-card">
+        <div class="etymology-row">
+          <span class="etymology-label">Proto-Language</span>
+          <span class="etymology-value">${escapeHtml(et.protoLanguage || '—')}</span>
+        </div>
+        <div class="etymology-row">
+          <span class="etymology-label">Reconstructed Form</span>
+          <span class="etymology-value mono">${escapeHtml(et.protoForm || '—')}</span>
+        </div>
+        <div class="etymology-row">
+          <span class="etymology-label">Gloss</span>
+          <span class="etymology-value">${escapeHtml(et.protoGloss || '—')}</span>
+        </div>
+        <div class="etymology-row">
+          <span class="etymology-label">Certainty</span>
+          <span class="etymology-value etymology-certainty-${escapeHtml(et.certainty || 'unknown')}">${escapeHtml(et.certainty || 'unknown')}</span>
+        </div>
+        ${et.derivation ? `<p class="etymology-derivation">${escapeHtml(et.derivation)}</p>` : ''}
+        ${cognates}
+      </div>`;
+  }
+
+  function renderVariants(entry) {
+    if (!entry.variants || !entry.variants.length) {
+      return '<span class="restore-variant restore-variant-none">—</span>';
+    }
+
+    const groups = {};
+    for (const v of entry.variants) {
+      if (!groups[v.type]) groups[v.type] = [];
+      groups[v.type].push(v);
+    }
+
+    const order = ['ideal', 'macron-only', 'alt-stress', 'alt', 'ascii', 'other'];
+    const labels = {
+      ideal: 'Ideal (fully marked)',
+      'macron-only': 'Macron-only (LSJ convention)',
+      'alt-stress': 'Alternate stress',
+      alt: 'Alternate form',
+      ascii: 'ASCII fallback',
+      other: 'Other',
+    };
+
+    return order
+      .filter((type) => groups[type])
+      .map((type) => {
+        const chips = groups[type]
+          .map((v) => {
+            const sources = v.sources && v.sources.length
+              ? `<span class="variant-sources">${v.sources.map(getSourceChip).join('')}</span>`
+              : '';
+            return `
+              <span class="restore-variant" title="${escapeHtml(v.note || labels[type] || type)}">
+                ${escapeHtml(v.unicode)}
+                ${sources}
+              </span>`;
+          })
+          .join('');
+        return `
+          <div class="variant-group">
+            <span class="variant-group-label">${labels[type] || type}</span>
+            <div class="variant-group-chips">${chips}</div>
+          </div>`;
+      })
+      .join('');
+  }
+
+  function renderLore(entry) {
+    if (!entry.lore) return '';
+    const lore = entry.lore;
+
+    const pronunciation = lore.pronunciation
+      ? `<div class="lore-pronunciation">
+          <span class="lore-ipa">${escapeHtml(lore.pronunciation.ipa || '')}</span>
+          <span class="lore-ipa-label">${escapeHtml(lore.pronunciation.ipaLabel || '')}</span>
+          ${lore.pronunciation.approximation ? `<p class="lore-approximation">${escapeHtml(lore.pronunciation.approximation)}</p>` : ''}
+        </div>`
+      : '';
+
+    const symbols = lore.symbols && lore.symbols.length
+      ? `<ul class="lore-symbols">
+          ${lore.symbols.map((s) => `<li><strong>${escapeHtml(s.name)}</strong> — ${escapeHtml(s.meaning)}</li>`).join('')}
+        </ul>`
+      : '';
+
+    const myths = lore.mythology && lore.mythology.myths && lore.mythology.myths.length
+      ? `<div class="lore-myths">
+          ${lore.mythology.myths
+            .map(
+              (m) => `
+            <div class="lore-myth">
+              <span class="lore-myth-tag">${escapeHtml(m.tag || '')}</span>
+              <h4 class="lore-myth-title">${escapeHtml(m.title || '')}</h4>
+              <div class="lore-myth-text">${m.text || ''}</div>
+            </div>`,
+            )
+            .join('')}
+        </div>`
+      : '';
+
+    return `
+      <div class="restore-section-title">Temple Lore</div>
+      <div class="lore-card">
+        ${pronunciation}
+        ${symbols ? `<div class="lore-subsection"><h4>Symbols</h4>${symbols}</div>` : ''}
+        ${lore.mythology && lore.mythology.lead ? `<div class="lore-lead">${lore.mythology.lead}</div>` : ''}
+        ${myths}
+        ${lore.culturalLegacy ? `<div class="lore-legacy"><h4>Cultural Legacy</h4><div class="lore-legacy-text">${lore.culturalLegacy}</div></div>` : ''}
+      </div>`;
+  }
+
+  function buildRestorationResult(entry) {
+    const breakdown = (lexiconData.breakdowns[entry.id] || [])
+      .map((b) => {
+        const typeClass = `breakdown-type-${b.type}`;
+        return `
+          <div class="breakdown-row">
+            <span class="breakdown-char">${escapeHtml(b.char)}</span>
+            <span class="breakdown-arrow">→</span>
+            <span class="breakdown-char breakdown-char-to">${escapeHtml(b.to)}</span>
+            <span class="breakdown-type ${typeClass}">${escapeHtml(b.type)}</span>
+            <span class="breakdown-note">${escapeHtml(b.note)}</span>
+          </div>
+        `;
+      })
+      .join('');
+
+    const sourceLinks = entry.sources && entry.sources.length
+      ? entry.sources.map(getSourceChip).join('')
+      : '<span class="restore-source-chip restore-source-chip-none">—</span>';
+
+    const related = lexiconData.entries
+      .filter((e) => e.pantheon === entry.pantheon && e.id !== entry.id)
+      .sort((a, b) => a.unicode.localeCompare(b.unicode))
+      .slice(0, 10);
+    const relatedHtml = related.length
+      ? related.map((e) => `<a href="/sites/${e.id}/" class="restore-related-chip">${escapeHtml(e.unicode)}</a>`).join('')
+      : '<span class="restore-related-chip restore-related-chip-none">—</span>';
+
+    const tierClass = `tier-badge tier-${entry.tier}`;
+    const availabilityBadge = getAvailabilityBadge(entry);
+    const tierTooltip = getTierTooltip(entry);
+
+    return `
+      <div class="restore-result">
+        <div class="restore-header">
+          <div class="restore-name">
+            <span class="restore-unicode">${escapeHtml(entry.unicode)}</span>
+            <span class="restore-ascii">${escapeHtml(entry.ascii)}</span>
+          </div>
+          <div class="restore-meta">
+            <span class="${tierClass}" title="${escapeHtml(tierTooltip)}">${escapeHtml(entry.tierLabel)}</span>
+            <span class="pantheon-badge pantheon-${entry.pantheon}">${escapeHtml(entry.pantheon)}</span>
+            ${availabilityBadge}
+            ${entry.isOwned ? '<span class="owned-badge">PUNYCODEX Domain</span>' : ''}
+            ${entry.hasFlagship ? '<span class="flagship-badge">Flagship Temple</span>' : ''}
+          </div>
+        </div>
+        <p class="restore-meaning">${escapeHtml(entry.meaning || entry.domain)}</p>
+
+        <div class="restore-section-title">Writing & Encoding</div>
+        <div class="restore-scripts">
+          ${renderOriginalScript(entry)}
+          <div class="restore-script">
+            <span class="restore-script-label">Unicode Restoration</span>
+            <span class="restore-script-value mono">${escapeHtml(entry.unicode)}</span>
+          </div>
+          <div class="restore-script">
+            <span class="restore-script-label">Punycode</span>
+            <span class="restore-script-value mono">${escapeHtml(entry.punycode)}</span>
+          </div>
+          ${entry.domainUnicode ? `
+          <div class="restore-script">
+            <span class="restore-script-label">Domain (Unicode)</span>
+            <span class="restore-script-value mono">${escapeHtml(entry.domainUnicode)}</span>
+          </div>
+          <div class="restore-script">
+            <span class="restore-script-label">Domain (Punycode)</span>
+            <span class="restore-script-value mono">${escapeHtml(entry.domainPunycode || '—')}</span>
+          </div>` : ''}
+        </div>
+
+        ${renderEtymology(entry)}
+
+        <div class="restore-section-title">ASCII → Unicode Breakdown</div>
+        <div class="breakdown-grid">
+          ${breakdown || '<p class="restore-hint">No character breakdown available.</p>'}
+        </div>
+
+        <div class="restore-section-title">Documented Variants</div>
+        <div class="restore-variants">
+          ${renderVariants(entry)}
+        </div>
+
+        ${renderLore(entry)}
+
+        <div class="restore-section-title">Scholarly Sources</div>
+        <div class="restore-sources">
+          ${sourceLinks}
+        </div>
+
+        <div class="restore-section-title">Kindred Names in ${escapeHtml(entry.pantheon)}</div>
+        <div class="restore-related">
+          ${relatedHtml}
+        </div>
+
+        <div class="restore-actions">
+          <a href="/sites/${entry.id}/" class="btn btn-primary btn-sm">Enter the Temple</a>
+          <a href="/sites/${entry.id}/lore/extended/" class="btn btn-ghost btn-sm">Extended Lore</a>
+          <a href="/type/#${entry.id}" class="btn btn-ghost btn-sm">Open in Type Tool</a>
+        </div>
+      </div>
+    `;
+  }
+
   function initRestorationEngine() {
     const input = $('#codex-restore-input');
     const output = $('#codex-restore-output');
     if (!input || !output) return;
 
-    const render = debounce(() => {
+    function render() {
       const raw = input.value.trim().toLowerCase();
       if (!raw) {
         output.innerHTML = '<p class="restore-hint">Type an ASCII name above to see its Unicode restoration.</p>';
@@ -139,154 +425,28 @@
       }
 
       output.innerHTML = buildRestorationResult(entry);
-    }, 150);
+      if (window.location.hash !== `#${entry.id}`) {
+        history.replaceState(null, '', `#${entry.id}`);
+      }
+    }
 
-    input.addEventListener('input', render);
+    const debouncedRender = debounce(render, 150);
+    input.addEventListener('input', debouncedRender);
     input.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') render();
     });
 
-    // Seed with a rotating featured name
-    const seeds = ['apollon', 'zeus', 'nike', 'thor', 'anubis', 'freyja', 'ra', 'shiva'];
-    const seed = seeds[Math.floor(Math.random() * seeds.length)];
-    input.value = seed;
+    // Seed from URL hash, then rotating featured flagship, then fallback list
+    const fallbackSeeds = ['apollon', 'zeus', 'nike', 'thor', 'anubis', 'freyja', 'ra', 'shiva'];
+    let seed = fallbackSeeds[Math.floor(Math.random() * fallbackSeeds.length)];
+    const featured = lexiconData.entries.filter((e) => e.hasFlagship);
+    if (featured.length) {
+      seed = featured[Math.floor(Math.random() * featured.length)].ascii.toLowerCase();
+    }
+
+    const hash = window.location.hash.replace('#', '').trim().toLowerCase();
+    input.value = hash || seed;
     render();
-  }
-
-  function buildRestorationResult(entry) {
-    const breakdown = (lexiconData.breakdowns[entry.id] || [])
-      .map((b) => {
-        const typeClass = `breakdown-type-${b.type}`;
-        return `
-          <div class="breakdown-row">
-            <span class="breakdown-char">${escapeHtml(b.char)}</span>
-            <span class="breakdown-arrow">→</span>
-            <span class="breakdown-char breakdown-char-to">${escapeHtml(b.to)}</span>
-            <span class="breakdown-type ${typeClass}">${escapeHtml(b.type)}</span>
-            <span class="breakdown-note">${escapeHtml(b.note)}</span>
-          </div>
-        `;
-      })
-      .join('');
-
-    const variants = entry.variants && entry.variants.length
-      ? entry.variants
-          .map((v) => `<span class="restore-variant" title="${escapeHtml(v.type)}">${escapeHtml(v.unicode)}</span>`)
-          .join('')
-      : '<span class="restore-variant restore-variant-none">—</span>';
-
-    // Source catalog references
-    const sourceLinks = entry.sources && entry.sources.length
-      ? entry.sources.map((key) => {
-          const src = sourcesData.sources.find((s) => s.key === key);
-          if (!src) return `<span class="restore-source-chip">${escapeHtml(key)}</span>`;
-          return src.url
-            ? `<a href="${escapeHtml(src.url)}" target="_blank" rel="noopener" class="restore-source-chip" title="${escapeHtml(src.full)}">${escapeHtml(key)}</a>`
-            : `<span class="restore-source-chip" title="${escapeHtml(src.full)}">${escapeHtml(key)}</span>`;
-        }).join('')
-      : '<span class="restore-source-chip restore-source-chip-none">—</span>';
-
-    // Original script lookup
-    const scriptItem = scriptsData && scriptsData.atlas
-      ? scriptsData.atlas.find((s) => s.id === entry.id)
-      : null;
-    const originalScript = scriptItem
-      ? { label: scriptItem.scriptName, value: scriptItem.originalScript, note: scriptItem.note }
-      : { label: 'Greek / Original', value: entry.greek || '—', note: null };
-
-    // Related names (same pantheon, excluding self)
-    const related = lexiconData.entries
-      .filter((e) => e.pantheon === entry.pantheon && e.id !== entry.id)
-      .sort((a, b) => a.name.localeCompare(b.name))
-      .slice(0, 8);
-    const relatedHtml = related.length
-      ? related.map((e) => `<a href="/sites/${e.id}/" class="restore-related-chip">${escapeHtml(e.unicode)}</a>`).join('')
-      : '<span class="restore-related-chip restore-related-chip-none">—</span>';
-
-    // Proto info
-    const protoHtml = entry.protoLanguage
-      ? `<div class="restore-script">
-          <span class="restore-script-label">Proto-Language</span>
-          <span class="restore-script-value">${escapeHtml(entry.protoLanguage)}</span>
-        </div>
-        <div class="restore-script">
-          <span class="restore-script-label">Reconstructed Form</span>
-          <span class="restore-script-value mono">${escapeHtml(entry.protoForm || '—')}</span>
-        </div>`
-      : '';
-
-    const tierClass = `tier-badge tier-${entry.tier}`;
-
-    return `
-      <div class="restore-result">
-        <div class="restore-header">
-          <div class="restore-name">
-            <span class="restore-unicode">${escapeHtml(entry.unicode)}</span>
-            <span class="restore-ascii">${escapeHtml(entry.ascii)}</span>
-          </div>
-          <div class="restore-meta">
-            <span class="${tierClass}">${escapeHtml(entry.tierLabel)}</span>
-            <span class="pantheon-badge pantheon-${entry.pantheon}">${escapeHtml(entry.pantheon)}</span>
-            ${entry.isOwned ? '<span class="owned-badge">PUNYCODEX Domain</span>' : ''}
-            ${entry.hasFlagship ? '<span class="flagship-badge">Flagship Temple</span>' : ''}
-          </div>
-        </div>
-        <p class="restore-meaning">${escapeHtml(entry.meaning || entry.domain)}</p>
-
-        <div class="restore-section-title">Writing & Encoding</div>
-        <div class="restore-scripts">
-          <div class="restore-script restore-script-wide">
-            <span class="restore-script-label">${escapeHtml(originalScript.label)}</span>
-            <span class="restore-script-value">${escapeHtml(originalScript.value)}</span>
-            ${originalScript.note ? `<span class="restore-script-note">${escapeHtml(originalScript.note)}</span>` : ''}
-          </div>
-          <div class="restore-script">
-            <span class="restore-script-label">Unicode Restoration</span>
-            <span class="restore-script-value mono">${escapeHtml(entry.unicode)}</span>
-          </div>
-          <div class="restore-script">
-            <span class="restore-script-label">Punycode</span>
-            <span class="restore-script-value mono">${escapeHtml(entry.punycode)}</span>
-          </div>
-          ${entry.domainUnicode ? `
-          <div class="restore-script">
-            <span class="restore-script-label">Domain (Unicode)</span>
-            <span class="restore-script-value mono">${escapeHtml(entry.domainUnicode)}</span>
-          </div>
-          <div class="restore-script">
-            <span class="restore-script-label">Domain (Punycode)</span>
-            <span class="restore-script-value mono">${escapeHtml(entry.domainPunycode || '—')}</span>
-          </div>` : ''}
-          ${protoHtml}
-        </div>
-
-        <div class="restore-section-title">ASCII → Unicode Breakdown</div>
-        <div class="breakdown-grid">
-          ${breakdown || '<p class="restore-hint">No character breakdown available.</p>'}
-        </div>
-
-        <div class="restore-section-title">Documented Variants</div>
-        <div class="restore-variants">
-          ${variants}
-        </div>
-
-        <div class="restore-section-title">Scholarly Sources</div>
-        <div class="restore-sources">
-          ${sourceLinks}
-        </div>
-
-        <div class="restore-section-title">Kindred Names in ${escapeHtml(entry.pantheon)}</div>
-        <div class="restore-related">
-          ${relatedHtml}
-        </div>
-
-        <div class="restore-actions">
-          <a href="/sites/${entry.id}/" class="btn btn-primary btn-sm">Enter the Temple</a>
-          <a href="/sites/${entry.id}/lore/extended/" class="btn btn-ghost btn-sm">Extended Lore</a>
-          <a href="/type/#${entry.id}" class="btn btn-ghost btn-sm">Open in Type Tool</a>
-        </div>
-      </div>
-    `;
   }
 
   // ═══════════════════════════════════════════════════════════════════════════
@@ -316,7 +476,9 @@
     let dragStart = { x: 0, y: 0 };
     let lastPan = { x: 0, y: 0 };
     let hoveredNode = null;
+    let selectedNode = null;
     let isSimulationRunning = true;
+    let colorMode = 'pantheon';
 
     // Build nodes
     const pantheonList = Object.keys(lexiconData.pantheonColors);
@@ -335,6 +497,8 @@
         tier: entry.tier,
         isOwned: entry.isOwned,
         hasFlagship: entry.hasFlagship,
+        availability: entry.availability ? entry.availability.status : null,
+        entry,
         radius: entry.tier === 'dual' ? 7 : entry.tier === '1' ? 5 : 3.5,
         x: width / 2 + Math.cos(angle) * ringRadius + (Math.random() - 0.5) * 20,
         y: height / 2 + Math.sin(angle) * ringRadius + (Math.random() - 0.5) * 20,
@@ -556,30 +720,92 @@
 
         ctx.beginPath();
         ctx.arc(s.x, s.y, r, 0, Math.PI * 2);
-        if (node.isOwned) {
-          ctx.fillStyle = '#6b9e75';
-        } else if (node.tier === 'dual') {
-          ctx.fillStyle = lexiconData.pantheonColors[node.pantheon] || '#d4af37';
-        } else if (node.tier === '1') {
-          ctx.fillStyle = '#e8e4dc';
-        } else {
-          ctx.fillStyle = 'rgba(232,228,220,0.5)';
-        }
+        ctx.fillStyle = nodeColor(node);
         ctx.fill();
 
-        if (hoveredNode === node || node.tier === 'dual') {
-          ctx.strokeStyle = hoveredNode === node ? '#fff' : 'rgba(212,175,55,0.5)';
-          ctx.lineWidth = hoveredNode === node ? 2 : 1;
+        if (hoveredNode === node || selectedNode === node || node.tier === 'dual') {
+          ctx.strokeStyle = selectedNode === node ? '#d4af37' : hoveredNode === node ? '#fff' : 'rgba(212,175,55,0.5)';
+          ctx.lineWidth = hoveredNode === node || selectedNode === node ? 2 : 1;
           ctx.stroke();
+        }
+      }
+
+      // Pantheon center labels (when zoomed out enough)
+      if (colorMode === 'pantheon' && view.k > 0.5) {
+        ctx.font = `${Math.max(10, 11 * view.k)}px Montserrat, sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        for (const [pantheon, center] of Object.entries(pantheonCenters)) {
+          const s = worldToScreen(center.x, center.y);
+          if (s.x < 0 || s.x > width || s.y < 0 || s.y > height) continue;
+          ctx.fillStyle = 'rgba(212,175,55,0.25)';
+          ctx.fillText(pantheon, s.x, s.y);
         }
       }
 
       ctx.restore();
     }
 
+    function nodeColor(node) {
+      if (colorMode === 'pantheon') {
+        return lexiconData.pantheonColors[node.pantheon] || '#d4af37';
+      }
+      if (colorMode === 'tier') {
+        if (node.tier === 'dual') return '#d4af37';
+        if (node.tier === '1') return '#e8e4dc';
+        return 'rgba(232,228,220,0.45)';
+      }
+      if (colorMode === 'ownership') {
+        return node.isOwned ? '#6b9e75' : node.hasFlagship ? '#4a90a4' : 'rgba(232,228,220,0.35)';
+      }
+      if (colorMode === 'availability') {
+        const status = node.availability;
+        if (status === 'live') return '#6b9e75';
+        if (status === 'registered') return '#d46a6a';
+        if (status === 'available') return '#4a90a4';
+        return 'rgba(232,228,220,0.35)';
+      }
+      return lexiconData.pantheonColors[node.pantheon] || '#d4af37';
+    }
+
     // Tooltip
     const tooltip = createEl('div', 'constellation-tooltip');
     container.appendChild(tooltip);
+
+    // Detail card overlay
+    const detailCard = createEl('div', 'constellation-detail hidden');
+    container.appendChild(detailCard);
+
+    function hideDetailCard() {
+      detailCard.classList.add('hidden');
+      selectedNode = null;
+      render();
+    }
+
+    function showDetailCard(node) {
+      selectedNode = node;
+      const entry = node.entry;
+      const os = entry.originalScript;
+      detailCard.innerHTML = `
+        <button class="constellation-detail-close" aria-label="Close">×</button>
+        <h4>${escapeHtml(entry.unicode)}</h4>
+        <p class="constellation-detail-sub">${escapeHtml(entry.ascii)} · ${escapeHtml(entry.pantheon)} · ${escapeHtml(entry.tierLabel)}</p>
+        <p class="constellation-detail-meaning">${escapeHtml(entry.meaning || entry.domain)}</p>
+        ${os ? `<p class="constellation-detail-script" title="${escapeHtml(os.scriptName)}">${escapeHtml(os.originalScript)}</p>` : ''}
+        <div class="constellation-detail-meta">
+          ${entry.availability ? `<span class="availability-badge availability-${entry.availability.status}">${escapeHtml(entry.availability.status)}</span>` : ''}
+          ${entry.isOwned ? '<span class="owned-badge">Owned</span>' : ''}
+          ${entry.hasFlagship ? '<span class="flagship-badge">Flagship</span>' : ''}
+        </div>
+        <div class="constellation-detail-actions">
+          <a href="/sites/${entry.id}/" class="btn btn-primary btn-sm">Temple</a>
+          <a href="/type/#${entry.id}" class="btn btn-ghost btn-sm">Type Tool</a>
+        </div>
+      `;
+      detailCard.classList.remove('hidden');
+      detailCard.querySelector('.constellation-detail-close').addEventListener('click', hideDetailCard);
+      render();
+    }
 
     function updateTooltip(x, y, node) {
       if (!node) {
@@ -638,7 +864,9 @@
       if (isDragging) return;
       const node = findNodeAt(e.clientX, e.clientY);
       if (node) {
-        window.location.href = `/sites/${node.id}/`;
+        showDetailCard(node);
+      } else if (selectedNode) {
+        hideDetailCard();
       }
     });
 
@@ -729,7 +957,9 @@
     canvas.addEventListener('touchend', (e) => {
       if (e.touches.length === 0) {
         if (hoveredNode && !isDragging) {
-          window.location.href = `/sites/${hoveredNode.id}/`;
+          showDetailCard(hoveredNode);
+        } else if (selectedNode && !hoveredNode) {
+          hideDetailCard();
         }
         isDragging = false;
         hoveredNode = null;
@@ -762,6 +992,58 @@
       }
       render();
     });
+
+    // Color mode toolbar
+    const modeBar = createEl('div', 'constellation-modes');
+    modeBar.innerHTML = `
+      <button class="constellation-mode active" data-mode="pantheon">Pantheon</button>
+      <button class="constellation-mode" data-mode="tier">Tier</button>
+      <button class="constellation-mode" data-mode="ownership">Ownership</button>
+      <button class="constellation-mode" data-mode="availability">Availability</button>
+    `;
+    container.appendChild(modeBar);
+    modeBar.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-mode]');
+      if (!btn) return;
+      modeBar.querySelectorAll('.constellation-mode').forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      colorMode = btn.dataset.mode;
+      render();
+    });
+
+    // Search
+    const searchWrap = createEl('div', 'constellation-search');
+    searchWrap.innerHTML = `<input type="text" placeholder="Find a name…" aria-label="Find a name">`;
+    container.appendChild(searchWrap);
+    const searchInput = searchWrap.querySelector('input');
+    searchInput.addEventListener(
+      'input',
+      debounce(() => {
+        const term = searchInput.value.trim().toLowerCase();
+        if (!term) {
+          nodes.forEach((n) => (n.visible = true));
+          render();
+          return;
+        }
+        let matched = null;
+        for (const node of nodes) {
+          const entry = node.entry;
+          const match =
+            entry.ascii.toLowerCase().includes(term) ||
+            entry.unicode.toLowerCase().includes(term) ||
+            entry.id.toLowerCase().includes(term);
+          node.visible = match;
+          if (match && !matched) matched = node;
+        }
+        if (matched) {
+          selectedNode = matched;
+          view.x = width / 2 - matched.x * view.k;
+          view.y = height / 2 - matched.y * view.k;
+          showDetailCard(matched);
+        }
+        render();
+      }, 250),
+    );
 
     // Filter controls
     const filterContainer = $('#constellation-filters');
@@ -815,19 +1097,267 @@
     const container = $('#script-atlas');
     if (!container) return;
 
-    for (const item of scriptsData.atlas) {
+    const items = scriptsData.atlas || [];
+    const scriptFamilies = [...new Set(items.map((i) => i.scriptName))].sort();
+    const pantheons = [...new Set(items.map((i) => i.pantheon))].sort();
+
+    // Header with counts and filters
+    const header = createEl('div', 'script-atlas-header');
+    header.innerHTML = `
+      <div class="script-atlas-counts">
+        <span><strong>${items.length}</strong> attested scripts</span>
+        <span><strong>${scriptFamilies.length}</strong> families</span>
+        <span><strong>${pantheons.length}</strong> pantheons</span>
+      </div>
+      <div class="script-atlas-filters">
+        <input type="text" class="script-atlas-search" placeholder="Search scripts or names…">
+        <select class="script-atlas-filter" data-filter="family">
+          <option value="">All families</option>
+          ${scriptFamilies.map((f) => `<option value="${escapeHtml(f)}">${escapeHtml(f)}</option>`).join('')}
+        </select>
+        <select class="script-atlas-filter" data-filter="pantheon">
+          <option value="">All pantheons</option>
+          ${pantheons.map((p) => `<option value="${escapeHtml(p)}">${escapeHtml(p)}</option>`).join('')}
+        </select>
+      </div>
+    `;
+    container.appendChild(header);
+
+    const grid = createEl('div', 'script-atlas-grid');
+    container.appendChild(grid);
+
+    function renderCard(item) {
+      const steps = item.steps && item.steps.length
+        ? `<ol class="script-atlas-steps">${item.steps.map((s) => `<li>${escapeHtml(s)}</li>`).join('')}</ol>`
+        : '';
+      const sources = item.sources && item.sources.length
+        ? `<div class="script-atlas-sources">${item.sources.map(getSourceChip).join('')}</div>`
+        : '';
       const card = createEl('div', 'script-atlas-card');
+      card.dataset.family = item.scriptName;
+      card.dataset.pantheon = item.pantheon;
+      card.dataset.search = `${item.name} ${item.ascii} ${item.scriptName} ${item.pantheon}`.toLowerCase();
       card.innerHTML = `
         <div class="script-atlas-script" title="${escapeHtml(item.scriptName)}">${escapeHtml(item.originalScript)}</div>
         <div class="script-atlas-meta">
           <span class="script-atlas-name">${escapeHtml(item.name)}</span>
-          <span class="script-atlas-family">${escapeHtml(item.scriptName)}</span>
+          <span class="script-atlas-family">${escapeHtml(item.scriptName)} · ${escapeHtml(item.pantheon)}</span>
         </div>
-        <p class="script-atlas-note">${escapeHtml(item.note)}</p>
+        ${item.transliteration ? `<p class="script-atlas-transliteration mono">${escapeHtml(item.transliteration)}</p>` : ''}
+        <details class="script-atlas-provenance">
+          <summary>Provenance</summary>
+          ${steps}
+          ${sources}
+        </details>
         <a href="/sites/${item.id}/" class="script-atlas-link">View temple →</a>
       `;
-      container.appendChild(card);
+      return card;
     }
+
+    function render() {
+      const term = (header.querySelector('.script-atlas-search').value || '').trim().toLowerCase();
+      const family = header.querySelector('[data-filter="family"]').value;
+      const pantheon = header.querySelector('[data-filter="pantheon"]').value;
+
+      grid.innerHTML = '';
+      let count = 0;
+      for (const item of items) {
+        if (term && !`${item.name} ${item.ascii} ${item.scriptName} ${item.pantheon}`.toLowerCase().includes(term)) continue;
+        if (family && item.scriptName !== family) continue;
+        if (pantheon && item.pantheon !== pantheon) continue;
+        count++;
+        grid.appendChild(renderCard(item));
+      }
+
+      const countEl = header.querySelector('.script-atlas-counts strong');
+      if (countEl) countEl.textContent = count;
+    }
+
+    header.querySelector('.script-atlas-search').addEventListener('input', debounce(render, 200));
+    header.querySelector('[data-filter="family"]').addEventListener('change', render);
+    header.querySelector('[data-filter="pantheon"]').addEventListener('change', render);
+
+    render();
+  }
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // Tier System Panel
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  function initTierSystem() {
+    const container = $('#tier-system-panel');
+    if (!container) return;
+
+    const docs = lexiconData.tierDocs;
+    const order = ['dual', '1', '2'];
+    const titles = { dual: 'Dual-Tier', 1: 'Tier 1', 2: 'Tier 2' };
+
+    container.innerHTML = order
+      .map((key) => {
+        const doc = docs[key];
+        const examples = doc.examples
+          .map((id) => {
+            const entry = lexiconData.entryById[id] || lexiconData.entryByAscii[id];
+            if (!entry) return '';
+            return `<a href="/sites/${entry.id}/" class="tier-example">${escapeHtml(entry.unicode)}</a>`;
+          })
+          .join('');
+        const rules = doc.rules.map((r) => `<li>${escapeHtml(r)}</li>`).join('');
+        const subtypes = doc.subtypes
+          ? Object.entries(doc.subtypes)
+              .map(([k, v]) => `<li><strong>${escapeHtml(k)}</strong>: ${escapeHtml(v)}</li>`)
+              .join('')
+          : '';
+        return `
+          <div class="tier-doc tier-doc-${key}">
+            <h4 class="tier-doc-title">${escapeHtml(titles[key])}</h4>
+            <p class="tier-doc-summary">${escapeHtml(doc.summary)}</p>
+            <ul class="tier-doc-rules">${rules}</ul>
+            ${subtypes ? `<ul class="tier-doc-subtypes">${subtypes}</ul>` : ''}
+            <div class="tier-doc-examples">${examples}</div>
+          </div>`;
+      })
+      .join('');
+  }
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // Availability Dashboard
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  function initAvailabilityDashboard() {
+    const container = $('#availability-dashboard');
+    if (!container) return;
+
+    const entries = lexiconData.entries.filter((e) => e.availability);
+    const stats = {
+      available: entries.filter((e) => e.availability.status === 'available').length,
+      live: entries.filter((e) => e.availability.status === 'live').length,
+      registered: entries.filter((e) => e.availability.status === 'registered').length,
+    };
+
+    const header = createEl('div', 'availability-header');
+    header.innerHTML = `
+      <div class="availability-stats">
+        <span class="availability-stat available"><strong>${stats.available}</strong> Available</span>
+        <span class="availability-stat live"><strong>${stats.live}</strong> Live</span>
+        <span class="availability-stat registered"><strong>${stats.registered}</strong> Registered</span>
+      </div>
+      <div class="availability-filters">
+        <input type="text" class="availability-search" placeholder="Search domains…">
+        <select class="availability-filter-status">
+          <option value="">All statuses</option>
+          <option value="available">Available</option>
+          <option value="live">Live</option>
+          <option value="registered">Registered</option>
+        </select>
+      </div>
+    `;
+    container.appendChild(header);
+
+    const list = createEl('div', 'availability-list');
+    container.appendChild(list);
+
+    function render() {
+      const term = (header.querySelector('.availability-search').value || '').trim().toLowerCase();
+      const status = header.querySelector('.availability-filter-status').value;
+      list.innerHTML = '';
+
+      for (const entry of entries) {
+        if (status && entry.availability.status !== status) continue;
+        if (term && !`${entry.ascii} ${entry.unicode} ${entry.pantheon}`.toLowerCase().includes(term)) continue;
+
+        const row = createEl('a', `availability-row availability-${entry.availability.status}`);
+        row.href = `/sites/${entry.id}/`;
+        row.innerHTML = `
+          <span class="availability-row-name">${escapeHtml(entry.unicode)}</span>
+          <span class="availability-row-domain mono">${escapeHtml(entry.availability.domain)}</span>
+          <span class="availability-row-status">${escapeHtml(entry.availability.status)}</span>
+          <span class="availability-row-pantheon">${escapeHtml(entry.pantheon)}</span>
+        `;
+        list.appendChild(row);
+      }
+    }
+
+    header.querySelector('.availability-search').addEventListener('input', debounce(render, 200));
+    header.querySelector('.availability-filter-status').addEventListener('change', render);
+
+    render();
+  }
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // Owned Domains Gallery
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  function initOwnedDomains() {
+    const container = $('#owned-domains-gallery');
+    if (!container) return;
+
+    const owned = lexiconData.entries.filter((e) => e.isOwned);
+    container.innerHTML = `
+      <div class="owned-count">${owned.length} PÚNYCODEX-owned domains</div>
+      <div class="owned-grid">
+        ${owned
+          .map(
+            (e) => `
+          <a href="/sites/${e.id}/" class="owned-card">
+            <span class="owned-name">${escapeHtml(e.unicode)}</span>
+            <span class="owned-domain mono">${escapeHtml(e.domainUnicode)}</span>
+            <span class="owned-pantheon">${escapeHtml(e.pantheon)}</span>
+          </a>`,
+          )
+          .join('')}
+      </div>
+    `;
+  }
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // Global Codex Search
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  function initGlobalSearch() {
+    const input = $('#codex-global-search');
+    const output = $('#codex-global-results');
+    if (!input || !output) return;
+
+    input.addEventListener(
+      'input',
+      debounce(() => {
+        const term = input.value.trim().toLowerCase();
+        if (!term) {
+          output.innerHTML = '';
+          return;
+        }
+
+        const matches = lexiconData.entries
+          .filter((e) => {
+            return (
+              e.ascii.toLowerCase().includes(term) ||
+              e.unicode.toLowerCase().includes(term) ||
+              e.id.toLowerCase().includes(term) ||
+              (e.greek && e.greek.toLowerCase().includes(term)) ||
+              (e.meaning && e.meaning.toLowerCase().includes(term)) ||
+              e.pantheon.toLowerCase().includes(term) ||
+              e.sources.some((s) => s.toLowerCase().includes(term))
+            );
+          })
+          .slice(0, 12);
+
+        if (!matches.length) {
+          output.innerHTML = '<p class="global-search-empty">No matches found.</p>';
+          return;
+        }
+
+        output.innerHTML = matches
+          .map(
+            (e) => `
+          <a href="/sites/${e.id}/" class="global-search-result">
+            <span class="global-search-name">${escapeHtml(e.unicode)}</span>
+            <span class="global-search-meta">${escapeHtml(e.ascii)} · ${escapeHtml(e.pantheon)} · ${escapeHtml(e.tierLabel)}</span>
+          </a>`,
+          )
+          .join('');
+      }, 250),
+    );
   }
 
   // ═══════════════════════════════════════════════════════════════════════════
@@ -887,6 +1417,10 @@
       initRestorationEngine();
       initConstellation();
       initScriptAtlas();
+      initTierSystem();
+      initAvailabilityDashboard();
+      initOwnedDomains();
+      initGlobalSearch();
       initSourceCodex();
     } catch (err) {
       console.error('Codex Atlas failed to load:', err);
