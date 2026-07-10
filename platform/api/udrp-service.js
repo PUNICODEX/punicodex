@@ -1,7 +1,7 @@
 /**
- * PUNYCODEX — Trademark & UDRP Evidence Service (Phase 16)
+ * PUNYCODEX — Domain Dispute Research Helper
  *
- * WIPO / UDRP case tracking and automated evidence-package generation.
+ * Neutral case tracking and evidence-package generation for internal review.
  */
 
 const crypto = require('node:crypto');

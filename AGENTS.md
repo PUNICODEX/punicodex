@@ -313,7 +313,7 @@ These temples **must** display:
 A name is single‑tier Tier‑1 **if and only if** all of the following are true:
 - The Greek original contains **BOTH** stress (acute/circumflex) **AND** at least one long vowel
 - There is **ONLY ONE** historically valid Unicode restoration
-- The ASCII fallback is **NOT** ancient canonical (it is merely modern English or a brand collision)
+- The ASCII fallback is **NOT** ancient canonical (it is merely a modern English homograph)
 - You do **NOT** own multiple canonical variants that represent distinct spellings
 
 These temples **must** display:

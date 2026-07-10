@@ -1176,10 +1176,10 @@ function buildNameProse(entry) {
   const featureList = joinFeatures(features);
   const meaningClause = entry.meaning ? ` — “${entry.meaning}”` : '';
   const original = hasOriginal
-    ? `The name in its original ${label} form. <strong>${entry.unicode}</strong> (${source}) is attested as ${entry.domain.toLowerCase()}${meaningClause}. Its ${featureList} carry the full phonetic and orthographic weight of the source tradition.`
+    ? `The name in its original ${label} form. <strong>${entry.unicode}</strong> (${source}) is attested in the source tradition${meaningClause}. Its ${featureList} carry the full phonetic and orthographic weight of the source tradition.`
     : isAsciiOnlyUnicode(entry)
-      ? `The name survives in scholarly transliteration. <strong>${entry.unicode}</strong> is the standard ${label} romanisation, attested as ${entry.domain.toLowerCase()}${meaningClause}. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.`
-      : `The name survives only in scholarly transliteration. <strong>${entry.unicode}</strong> is the standard ${label} romanisation, attested as ${entry.domain.toLowerCase()}${meaningClause}. Its ${featureList} preserve distinctions lost in plain ASCII.`;
+      ? `The name survives in scholarly transliteration. <strong>${entry.unicode}</strong> is the standard ${label} romanisation, documented in academic sources${meaningClause}. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.`
+      : `The name survives only in scholarly transliteration. <strong>${entry.unicode}</strong> is the standard ${label} romanisation, documented in academic sources${meaningClause}. Its ${featureList} preserve distinctions lost in plain ASCII.`;
   const ascii = isAsciiOnlyUnicode(entry)
     ? `The plain <strong>${entry.ascii}</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.`
     : `Reduced to plain <strong>${entry.ascii}</strong>, the name loses everything that made it specific: ${featureList}. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.`;
@@ -2467,7 +2467,7 @@ function _buildSyncretismContent(entry, catalogEntry) {
 function _buildCulturalLegacyContent(entry, catalogEntry) {
   if (catalogEntry?.culturalLegacy) return catalogEntry.culturalLegacy;
   return `<p class="lead-text"><strong>${entry.unicode}</strong> survives in languages, place names, academic vocabulary, and contemporary media.</p>
-<p>From classical scholarship to modern fantasy, gaming, and brand language, the name remains a marker of primal force. Its Unicode restoration makes that legacy addressable on the internet itself.</p>`;
+<p>From classical scholarship to modern translation and popular retellings, the name remains a marker of cultural continuity. Unicode restoration preserves that legacy in digital text.</p>`;
 }
 
 function generateLorePage(entry, palette, loreSections, templateDir, catalog) {

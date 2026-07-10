@@ -501,7 +501,7 @@ function estimateAsciiValue(name, tld, entry = null, domain = null) {
     {
       name: 'brandRisk',
       impact: brandFactor,
-      note: brand ? `brand collision: ${brand.id || brand.name}` : 'none detected',
+      note: brand ? `brand proximity: ${brand.id || brand.name}` : 'none detected',
     },
   ];
 

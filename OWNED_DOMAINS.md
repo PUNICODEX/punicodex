@@ -16,7 +16,7 @@ A name is dual-tier if and only if the Greek original contains BOTH stress AND l
 | hekate | hekátē.com | hekatē.com | — | greek |
 | nike | níkē.com | nikē.com | níkê.com | greek |
 
-**Níkê** — *circumflex-for-length variant (French/Continental philological tradition).* Not canonical IAST, but historically attested in older European academic systems. Acquired as the high-risk defensive third point in the Nike constellation — prevents brand dilution, squatting, and corporate interference.
+**Níkê** — *circumflex-for-length variant (French/Continental philological tradition).* Not canonical IAST, but historically attested in older European academic systems; retained as a scholarly alternate form.
 
 ### Ideal + Fallback Pairs (single spelling, multiple mark densities)
 
