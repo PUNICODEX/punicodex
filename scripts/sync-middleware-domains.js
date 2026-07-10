@@ -92,7 +92,7 @@ const generatedNotice = `
 
 const newMiddleware = original.replace(mapMatch[0], `${mapMatch[1]}${generatedNotice}\n${mapBody}\n};`);
 
-fs.writeFileSync(MIDDLEWARE_PATH, newMiddleware);
+fs.writeFileSync(MIDDLEWARE_PATH, newMiddleware.replace(/\r\n/g, '\n'));
 console.log(`✓ middleware.js synced`);
 console.log(`  Previous domains: ${Object.keys(currentMap).length}`);
 console.log(`  Desired domains:  ${desired.size}`);

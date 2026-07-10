@@ -830,7 +830,7 @@ function buildCss(palette) {
 
   // Inject full-height hero behaviour directly into the existing rule
   css = css.replace(
-    /(\.endorsement-hero\s*\{)(\s*)/,
+    /(\.patron-hero\s*\{)(\s*)/,
     `$1$2    min-height: 100vh;$2    min-height: 100svh;$2    display: flex;$2    align-items: center;$2    justify-content: center;$2`
   );
 
@@ -929,8 +929,8 @@ function hasHeroVideo(templeId) {
 }
 
 function buildHeroVisual(templeId, unicode, domain) {
-  return `<div class="endorsement-mascot">
-    <picture><source srcset="assets/${templeId}_mascot.webp" type="image/webp"><img src="assets/${templeId}_mascot.png" alt="${unicode} — ${domain}" class="endorsement-mascot-img"></picture>
+  return `<div class="patron-mascot">
+    <picture><source srcset="assets/${templeId}_mascot.webp" type="image/webp"><img src="assets/${templeId}_mascot.png" alt="${unicode} — ${domain}" class="patron-mascot-img"></picture>
 </div>`;
 }
 
@@ -1559,7 +1559,7 @@ function buildHeroVisualExtended(entry, assetPrefix) {
   const poster = `${assetPrefix}assets/${entry.id}_hero_poster.jpg`;
   const mascot = `${assetPrefix}assets/${entry.id}_mascot`;
   if (hasHeroVideo(entry.id)) {
-    return `<figure class="endorsement-mascot endorsement-mascot--video" style="margin:0;">
+    return `<figure class="patron-mascot patron-mascot--video" style="margin:0;">
       <video autoplay muted loop playsinline poster="${poster}" aria-label="Animated portrait of ${entry.unicode}, ${entry.domain}">
         <source src="${videoBase}.webm" type="video/webm">
         <source src="${videoBase}.mp4" type="video/mp4">
@@ -2316,15 +2316,15 @@ function generateHomePage(entry, palette, slotNames, templateDir, rentalTier = '
   );
   if (fs.existsSync(phenomenonPng)) {
     const phenomenonHtml = `
-        <div class="endorsement-hero-phenomenon" aria-hidden="true">
+        <div class="patron-hero-phenomenon" aria-hidden="true">
             <picture>
                 <source srcset="assets/${templeId}_mascot_phenomenon.webp" type="image/webp">
-                <img src="assets/${templeId}_mascot_phenomenon.png" alt="" class="endorsement-hero-phenomenon-img">
+                <img src="assets/${templeId}_mascot_phenomenon.png" alt="" class="patron-hero-phenomenon-img">
             </picture>
         </div>`;
     html = html.replace(
-      /<header class="endorsement-hero" id="hero">\n\s*<div class="container">/,
-      `<header class="endorsement-hero" id="hero">${phenomenonHtml}\n        <div class="container">`
+      /<header class="patron-hero" id="hero">\n\s*<div class="container">/,
+      `<header class="patron-hero" id="hero">${phenomenonHtml}\n        <div class="container">`
     );
   }
 

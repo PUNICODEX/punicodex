@@ -45,16 +45,20 @@ const REPLACEMENTS = [
   },
   // Hero section
   {
-    pattern: /<p class="endorsement-eyebrow">In alignment with<\/p>/g,
-    replacement: '<p class="endorsement-eyebrow">PUNYCODEX entry for</p>',
+    pattern: /<p class="patron-eyebrow">In alignment with<\/p>/g,
+    replacement: '<p class="patron-eyebrow">PUNYCODEX entry for</p>',
+  },
+  {
+    pattern: /<p class="patron-eyebrow">Endorsed by<\/p>/g,
+    replacement: '<p class="patron-eyebrow">PUNYCODEX entry for</p>',
   },
   {
     pattern: /<span class="meta-badge">Premium Ad Spaces Available<\/span>/g,
     replacement: '<span class="meta-badge">Sponsorship Spaces Available</span>',
   },
   {
-    pattern: /<p class="endorsement-lead">Thirteen sacred frames\. One temple\. Claim your place\.<\/p>/g,
-    replacement: '<p class="endorsement-lead">Thirteen frames. One temple. Become a patron.</p>',
+    pattern: /<p class="patron-lead">Thirteen sacred frames\. One temple\. Claim your place\.<\/p>/g,
+    replacement: '<p class="patron-lead">Thirteen frames. One temple. Become a patron.</p>',
   },
   {
     pattern: /<a href="#spaces" class="btn-primary">Reserve Your Space<\/a>/g,
@@ -95,6 +99,14 @@ const REPLACEMENTS = [
   {
     pattern: /<h3 class="booking-modal-title">Reserve <span id="booking-slot-name"><\/span><\/h3>/g,
     replacement: '<h3 class="booking-modal-title">Sponsor <span id="booking-slot-name"></span></h3>',
+  },
+  {
+    pattern: /advertiser dashboard/g,
+    replacement: 'temple dashboard',
+  },
+  {
+    pattern: /\$\{b\.company_name \|\| 'Advertiser'\} Dashboard/g,
+    replacement: "${b.company_name || 'Temple'} Dashboard",
   },
   {
     pattern: /placeholder="https:\/\/yourbrand\.com"/g,
@@ -154,10 +166,14 @@ const LORE_REPLACEMENTS = [
 ];
 
 const EXTENDED_LORE_REPLACEMENTS = [
-  // Direct brand references on Nike page
+  // Direct brand references on Nike page — keep only scholarly disambiguation.
   {
-    pattern: /The modern sports brand Nike, Inc\. takes its name and 'swoosh' logo from the goddess[^<]*<\/p>/g,
-    replacement: 'The goddess\'s name survives in modern English "victory" and in the branding of Nike, Inc. This page documents the ancient name only.</p>',
+    pattern: /The modern sports brand Nike, Inc\. takes its name and 'swoosh' logo from the goddess, though the logo more closely resembles a wing than a foot\./g,
+    replacement: 'The winged figure of Victory became a secular emblem of human achievement and later inspired countless modern marks of excellence.',
+  },
+  {
+    pattern: /Níkē is perhaps the most commercially successful Greek goddess\. The Nike 'swoosh' is one of the most recognized logos in the world\./g,
+    replacement: 'Níkē is perhaps the most widely recognized Greek goddess in the modern world. Her winged image has inspired countless marks of excellence, from athletic victory to artistic achievement.',
   },
   {
     pattern: /The idea that victory can be personified, worshipped, and commercialized stretches unbroken from ancient Greece to the present\./g,

@@ -43,7 +43,7 @@
 }
 
 /* =====================================================
-   PUNYCODEX — Flagship Ad / Endorsement Styles
+   PUNYCODEX — Flagship Patronage Styles
    Per-deity theme variables are injected by create-flagship.js.
    Load css/temple-base.css before this file.
    ===================================================== */
@@ -145,8 +145,8 @@
     height: 2px;
     background: var(--classic-gold);
 }
-/* ===== ENDORSEMENT HERO ===== */
-.endorsement-hero {
+/* ===== PATRON HERO ===== */
+.patron-hero {
         min-height: 100vh;
         min-height: 100svh;
         display: flex;
@@ -160,7 +160,7 @@
     position: relative;
     overflow: hidden;
 }
-.endorsement-hero::before {
+.patron-hero::before {
     content: '';
     position: absolute;
     top: -50%;
@@ -171,7 +171,7 @@
     pointer-events: none;
     z-index: 1;
 }
-.endorsement-hero::after {
+.patron-hero::after {
     content: '';
     position: absolute;
     inset: 0;
@@ -179,35 +179,35 @@
     pointer-events: none;
     z-index: 1;
 }
-.endorsement-hero-phenomenon {
+.patron-hero-phenomenon {
     position: absolute;
     inset: 0;
     z-index: 0;
     pointer-events: none;
 }
-.endorsement-hero-phenomenon picture,
-.endorsement-hero-phenomenon img {
+.patron-hero-phenomenon picture,
+.patron-hero-phenomenon img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
 }
-.endorsement-hero-phenomenon-img {
+.patron-hero-phenomenon-img {
     opacity: 0.3;
     filter: saturate(1.1) contrast(1.05);
 }
-.endorsement-hero-content {
+.patron-hero-content {
     position: relative;
     z-index: 1;
 }
-.endorsement-mascot {
+.patron-mascot {
     margin-bottom: 1.25rem;
     animation: mascot-float 6s ease-in-out infinite;
 }
 .endorsesement-mascot picture {
     display: block;
 }
-.endorsement-mascot-img {
+.patron-mascot-img {
     width: clamp(160px, 22vw, 260px);
     height: auto;
     filter: brightness(1.15) contrast(1.05) saturate(1.05)
@@ -217,7 +217,7 @@
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-12px); }
 }
-.endorsement-eyebrow {
+.patron-eyebrow {
     font-family: var(--font-display);
     font-size: 0.75rem;
     font-weight: 500;
@@ -226,7 +226,7 @@
     color: var(--text-muted);
     margin-bottom: 0.75rem;
 }
-.endorsement-title {
+.patron-title {
     font-family: var(--font-display);
     font-size: clamp(2.6rem, 7vw, 5rem);
     font-weight: 400;
@@ -236,10 +236,10 @@
     margin-bottom: 1rem;
     text-shadow: 0 0 70px color-mix(in srgb, var(--primary) 18%, transparent);
 }
-.endorsement-greek {
+.patron-greek {
     color: var(--classic-gold);
 }
-.endorsement-domain-pill {
+.patron-domain-pill {
     display: flex;
     gap: 0.75rem;
     flex-wrap: wrap;
@@ -247,7 +247,7 @@
     align-items: center;
     margin-bottom: 1.25rem;
 }
-.endorsement-lead {
+.patron-lead {
     font-size: clamp(1rem, 1.8vw, 1.25rem);
     color: var(--text-secondary);
     font-weight: 300;
@@ -255,7 +255,7 @@
     max-width: 520px;
     margin: 0 auto 1.75rem;
 }
-.endorsement-cta {
+.patron-cta {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
@@ -1395,13 +1395,13 @@
     line-height: 1.7;
 }
 /* Asset brightness fix for dark generated PNGs */
-.endorsement-mascot-img,
+.patron-mascot-img,
 .gallery-img {
     filter: brightness(1.5) contrast(1.1) saturate(1.05);
     transition: filter 0.3s ease;
 }
 
-.endorsement-mascot-img:hover,
+.patron-mascot-img:hover,
 .gallery-item:hover .gallery-img {
     filter: brightness(1.7) contrast(1.15) saturate(1.1);
 }

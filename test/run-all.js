@@ -103,6 +103,16 @@ const SUITES = [
   { name: 'LTR Tests', cmd: 'node test/ltr.test.js' },
   { name: 'Generated Artifacts Tests', cmd: 'node test/generated-artifacts.test.js' },
   { name: 'Generator Idempotency Tests', cmd: 'node test/generator-idempotency.test.js' },
+  {
+    name: 'Divergence Gate',
+    cmd: 'node test/divergence-gate.test.js',
+    timeout: 600000,
+  },
+  {
+    name: 'Brand Risk Language',
+    cmd: 'node test/brand-risk-language.test.js',
+    timeout: 120000,
+  },
   { name: 'Frontend Smoke Tests', cmd: 'node test/frontend-smoke.test.js' },
   {
     name: 'Global Strip Mobile Regression',
@@ -137,7 +147,7 @@ for (const suite of SUITES) {
       cwd: path.resolve(__dirname, '..'),
       encoding: 'utf8',
       stdio: ['pipe', 'pipe', 'pipe'],
-      timeout: 30000,
+      timeout: suite.timeout || 30000,
     });
     console.log(output.trimEnd());
     results.push({ name: suite.name, ok: true });

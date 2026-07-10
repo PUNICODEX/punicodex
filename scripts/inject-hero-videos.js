@@ -69,7 +69,7 @@ const sites = [
 const cssBlock = `
 
 /* ===== HERO VIDEO PORTRAIT ===== */
-.endorsement-mascot--video {
+.patron-mascot--video {
     position: relative;
     display: inline-block;
     margin: 0 auto 1.25rem;
@@ -80,8 +80,8 @@ const cssBlock = `
     max-width: 220px;
 }
 
-.endorsement-mascot--video video,
-.endorsement-mascot--video img {
+.patron-mascot--video video,
+.patron-mascot--video img {
     display: block;
     width: 100%;
     height: auto;
@@ -126,13 +126,13 @@ const cssBlock = `
 }
 
 @media (max-width: 480px) {
-    .endorsement-mascot--video {
+    .patron-mascot--video {
         max-width: 160px;
         border-radius: 18px;
     }
 
-    .endorsement-mascot--video video,
-    .endorsement-mascot--video img {
+    .patron-mascot--video video,
+    .patron-mascot--video img {
         border-radius: 18px;
     }
 }
@@ -142,7 +142,7 @@ const jsBlock = `
 
 // ===== HERO VIDEO PAUSE/PLAY TOGGLE =====
 (function() {
-  const figure = document.querySelector('.endorsement-mascot--video');
+  const figure = document.querySelector('.patron-mascot--video');
   if (!figure) return;
   const video = figure.querySelector('video');
   const btn = figure.querySelector('.video-pause');
@@ -170,8 +170,8 @@ for (const site of sites) {
 
   // Inject video into hero
   let html = fs.readFileSync(htmlPath, 'utf8');
-  const mascotRegex = /<div class="endorsement-mascot">\s*<picture>.*?<\/picture>\s*<\/div>/s;
-  const replacement = `<figure class="endorsement-mascot endorsement-mascot--video">
+  const mascotRegex = /<div class="patron-mascot">\s*<picture>.*?<\/picture>\s*<\/div>/s;
+  const replacement = `<figure class="patron-mascot patron-mascot--video">
                     <video autoplay muted loop playsinline
                            poster="assets/${site.id}_hero_poster.jpg"
                            aria-label="Animated portrait of ${site.label}">

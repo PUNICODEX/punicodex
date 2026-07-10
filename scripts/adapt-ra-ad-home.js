@@ -11,7 +11,7 @@ c = c.replace(/"description": "Your brand, endorsed by Rꜥ — the Greek Messen
 c = c.replace(/Messenger, Travel, Commerce, Thieves, Boundaries/g, 'Sun, Creation, Kingship');
 
 // Hero
-c = c.replace(/The Messenger of the Gods, <span class="endorsement-greek">Rꜥ<\/span>/g, 'The Sun God, <span class="endorsement-greek">Rꜥ</span>');
+c = c.replace(/The Messenger of the Gods, <span class="patron-greek">Rꜥ<\/span>/g, 'The Sun God, <span class="patron-greek">Rꜥ</span>');
 c = c.replace(/Twelve sacred frames\. One temple\. Deliver your message\./g, 'Twelve sacred frames. One temple. Rise with the sun.');
 
 // Slot names — Egyptian themed

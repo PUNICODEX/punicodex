@@ -6,9 +6,9 @@ console.log('APHRODITE css:', (a.match(/styles\.css[^"']*/) || ['none'])[0]);
 console.log('ZEUS script:', (z.match(/script\.js[^"']*/) || ['none'])[0]);
 console.log('APHRODITE script:', (a.match(/script\.js[^"']*/) || ['none'])[0]);
 
-// Check if zeus has the endorsement-hero vs regular hero
-console.log('ZEUS has endorsement-hero:', z.includes('endorsement-hero'));
-console.log('APHRODITE has endorsement-hero:', a.includes('endorsement-hero'));
+// Check if zeus has the patron-hero vs regular hero
+console.log('ZEUS has patron-hero:', z.includes('patron-hero'));
+console.log('APHRODITE has patron-hero:', a.includes('patron-hero'));
 console.log('ZEUS has spaces-layout:', z.includes('spaces-layout'));
 console.log('APHRODITE has spaces-layout:', a.includes('spaces-layout'));
 

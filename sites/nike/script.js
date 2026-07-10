@@ -7,7 +7,7 @@
  * 5. Laurel leaves falling
  * 6. Wing silhouettes
  * 7. Star bursts
- * 8. Swoosh arcs
+ * 8. Victory arcs
  */
 
 const canvas = document.getElementById('victory-canvas');
@@ -360,8 +360,8 @@ class StarBurst {
     }
 }
 
-// --- Swoosh Arc ---
-class SwooshArc {
+// --- Victory Arc ---
+class VictoryArc {
     constructor() {
         this.reset();
     }
@@ -412,7 +412,7 @@ let streaks = [];
 let leaves = [];
 let wings = [];
 let stars = [];
-let swooshes = [];
+let arcs = [];
 
 function initElements() {
     // Ascending rays
@@ -445,10 +445,10 @@ function initElements() {
     const starCount = Math.min(15, Math.floor(width * height / 50000));
     for (let i = 0; i < starCount; i++) stars.push(new StarBurst());
 
-    // Swoosh arcs
-    swooshes = [];
-    const swooshCount = Math.min(6, Math.floor(width / 180));
-    for (let i = 0; i < swooshCount; i++) swooshes.push(new SwooshArc());
+    // Victory arcs
+    arcs = [];
+    const arcCount = Math.min(6, Math.floor(width / 180));
+    for (let i = 0; i < arcCount; i++) arcs.push(new VictoryArc());
 }
 
 // ========== DRAW BACKGROUND ==========
@@ -485,8 +485,8 @@ function animate() {
         r.draw();
     }
 
-    // Swoosh arcs
-    for (let s of swooshes) {
+    // Victory arcs
+    for (let s of arcs) {
         s.update();
         s.draw();
     }
