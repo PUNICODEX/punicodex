@@ -100,3 +100,86 @@
     color: var(--text-dim, #A0A0A0);
     margin-bottom: 1.5rem;
 }
+
+.temple-creatives-sponsor {
+    padding-top: 2rem;
+}
+
+.temple-creatives-sponsor-card {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2.5rem;
+    align-items: center;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid var(--border, rgba(255, 255, 255, 0.08));
+    border-radius: 16px;
+    padding: 2.5rem clamp(1.5rem, 4vw, 3rem);
+}
+
+.temple-creatives-sponsor-content {
+    text-align: left;
+}
+
+.temple-creatives-sponsor-content .section-eyebrow {
+    text-align: left;
+}
+
+.temple-creatives-sponsor-content .section-title {
+    text-align: left;
+}
+
+.temple-creatives-sponsor-content .section-lead {
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.temple-creatives-sponsor-benefits {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    min-width: 220px;
+}
+
+.temple-creatives-sponsor-benefit {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-dim, #A0A0A0);
+    font-size: 0.9rem;
+}
+
+.temple-creatives-sponsor-check {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(127, 214, 127, 0.12);
+    color: #7fd67f;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+}
+
+@media (max-width: 720px) {
+    .temple-creatives-sponsor-card {
+        grid-template-columns: 1fr;
+        gap: 1.75rem;
+    }
+
+    .temple-creatives-sponsor-content {
+        text-align: center;
+    }
+
+    .temple-creatives-sponsor-content .section-eyebrow,
+    .temple-creatives-sponsor-content .section-title,
+    .temple-creatives-sponsor-content .section-lead {
+        text-align: center;
+    }
+
+    .temple-creatives-sponsor-content .section-lead {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
