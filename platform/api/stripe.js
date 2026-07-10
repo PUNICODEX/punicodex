@@ -150,6 +150,35 @@ async function createRenewalCheckoutSession({
   return { sessionUrl: session.url, sessionId: session.id };
 }
 
+async function createCreativeCheckoutSession({ purchaseId, email, assetTitle, amountCents }) {
+  const session = await getStripe().checkout.sessions.create({
+    payment_method_types: ['card'],
+    line_items: [
+      {
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: `PÚNYCODEX Creative Asset: ${assetTitle}`,
+            description: 'Single-use license for myth-inspired student creative work',
+          },
+          unit_amount: amountCents,
+        },
+        quantity: 1,
+      },
+    ],
+    mode: 'payment',
+    success_url: `${process.env.PLATFORM_URL || 'http://localhost:3456'}/creatives/?purchase={CHECKOUT_SESSION_ID}&paid=1`,
+    cancel_url: `${process.env.PLATFORM_URL || 'http://localhost:3456'}/creatives/?purchase={CHECKOUT_SESSION_ID}&canceled=1`,
+    customer_email: email,
+    metadata: {
+      type: 'creative_purchase',
+      creative_purchase_id: String(purchaseId),
+    },
+  });
+
+  return { sessionUrl: session.url, sessionId: session.id };
+}
+
 async function handleWebhook(payload, signature) {
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
   if (!webhookSecret) {
@@ -182,6 +211,15 @@ async function handleWebhook(payload, signature) {
       const booking = await extendBooking(bookingId, extensionMonths, session.amount_total || 0);
       return { event: 'payment.success', type: 'booking_renewal', booking };
     }
+    if (metadata.type === 'creative_purchase') {
+      const { markCreativePurchasePaid } = require('./creative-marketplace-db');
+      const purchase = await markCreativePurchasePaid(
+        session.id,
+        session.payment_intent,
+        session.amount_total || 0
+      );
+      return { event: 'payment.success', type: 'creative_purchase', purchase };
+    }
     const claim = await markClaimPaid(session.id, session.payment_intent);
     return { event: 'payment.success', type: 'claim', claim };
   }
@@ -193,6 +231,7 @@ module.exports = {
   createCheckoutSession,
   createBookingCheckoutSession,
   createRenewalCheckoutSession,
+  createCreativeCheckoutSession,
   handleWebhook,
   PRICE_BASE,
   PRICE_PREMIUM,

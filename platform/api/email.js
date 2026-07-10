@@ -349,6 +349,23 @@ async function notifyTrialEnding({
   });
 }
 
+async function notifyCreativePurchaseReady({ email, assetId, purchaseId }) {
+  const downloadUrl = `${PLATFORM_URL}/api/v1/creatives/${assetId}/download?purchaseId=${purchaseId}&email=${encodeURIComponent(email)}`;
+  return sendEmail({
+    to: email,
+    subject: `Your PÚNYCODEX creative asset is ready for download`,
+    html: `
+      <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
+        <h2 style="color:#d4af37;">PÚNYCODEX Marketplace — Purchase Confirmed</h2>
+        <p>Hi there,</p>
+        <p>Thank you for licensing a student creative asset. Your purchase is confirmed and the unwatermarked original is ready for download.</p>
+        <p><a href="${escapeHtml(downloadUrl)}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">Download Asset</a></p>
+        <p style="color:#666;font-size:13px;">This link is tied to your email address. Do not share it publicly.</p>
+      </div>
+    `,
+  });
+}
+
 async function sendAnalyticsReport({ email, booking, metrics }) {
   const dashboardUrl = getDashboardUrl(booking.analytics_token);
   const days = metrics.daily
@@ -411,6 +428,7 @@ module.exports = {
   sendVerificationCode,
   sendBookingConfirmation,
   sendAnalyticsReport,
+  notifyCreativePurchaseReady,
   getDashboardUrl,
   escapeHtml,
 };

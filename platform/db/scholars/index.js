@@ -928,6 +928,385 @@ function updateMediaStatus(id, status) {
 }
 
 // ─────────────────────────────────────────────────────────────
+// Creative Marketplace
+// ─────────────────────────────────────────────────────────────
+
+function normalizeCreativeAsset(row) {
+  if (!row) return null;
+  return {
+    ...row,
+    metadata: parseJson(row.metadata, {}),
+  };
+}
+
+function normalizeCreativePurchase(row) {
+  if (!row) return null;
+  return {
+    ...row,
+    metadata: parseJson(row.metadata, {}),
+  };
+}
+
+function normalizeCreativePayout(row) {
+  if (!row) return null;
+  return {
+    ...row,
+    metadata: parseJson(row.metadata, {}),
+  };
+}
+
+function createCreativeAsset({
+  creatorId,
+  institutionId,
+  title,
+  description,
+  department,
+  inspirationEntryId,
+  licenseType,
+  priceCents,
+  previewPath,
+  originalPath,
+  thumbnailPath,
+  metadata = {},
+}) {
+  const db = getDb();
+  const stmt = db.prepare(`
+    INSERT INTO creative_assets
+      (creator_id, institution_id, title, description, department, inspiration_entry_id,
+       license_type, price_cents, preview_path, original_path, thumbnail_path, metadata)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `);
+  return stmt.run(
+    creatorId,
+    institutionId,
+    title,
+    description,
+    department,
+    inspirationEntryId || null,
+    licenseType || 'single_use',
+    priceCents || 0,
+    previewPath || null,
+    originalPath || null,
+    thumbnailPath || null,
+    json(metadata)
+  );
+}
+
+function getCreativeAssetById(id) {
+  const db = getDb();
+  return normalizeCreativeAsset(db.prepare('SELECT * FROM creative_assets WHERE id = ?').get(id));
+}
+
+function getCreativeAssetWithCreator(id) {
+  const db = getDb();
+  return normalizeCreativeAsset(
+    db
+      .prepare(`
+        SELECT a.*, u.display_name AS creator_name, u.email AS creator_email,
+               i.name AS institution_name
+        FROM creative_assets a
+        JOIN scholars_users u ON a.creator_id = u.id
+        LEFT JOIN scholars_institutions i ON a.institution_id = i.id
+        WHERE a.id = ?
+      `)
+      .get(id)
+  );
+}
+
+function updateCreativeAsset(id, fields) {
+  const db = getDb();
+  const allowed = [
+    'title',
+    'description',
+    'department',
+    'inspiration_entry_id',
+    'license_type',
+    'price_cents',
+    'preview_path',
+    'original_path',
+    'thumbnail_path',
+    'metadata',
+  ];
+  const setFields = [];
+  const params = [];
+  for (const key of allowed) {
+    if (fields[key] !== undefined) {
+      setFields.push(`${key} = ?`);
+      params.push(key === 'metadata' ? json(fields[key]) : fields[key]);
+    }
+  }
+  if (setFields.length === 0) return { changes: 0 };
+  setFields.push('updated_at = CURRENT_TIMESTAMP');
+  params.push(id);
+  return db
+    .prepare(`UPDATE creative_assets SET ${setFields.join(', ')} WHERE id = ?`)
+    .run(...params);
+}
+
+function updateCreativeAssetStatus(id, status) {
+  const db = getDb();
+  return db
+    .prepare('UPDATE creative_assets SET status = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?')
+    .run(status, id);
+}
+
+function deleteCreativeAsset(id) {
+  const db = getDb();
+  return db.prepare('DELETE FROM creative_assets WHERE id = ?').run(id);
+}
+
+function buildAssetWhereClause(filters) {
+  const conditions = [];
+  const params = [];
+  if (filters.status) {
+    conditions.push('a.status = ?');
+    params.push(filters.status);
+  }
+  if (filters.creatorId !== undefined) {
+    conditions.push('a.creator_id = ?');
+    params.push(filters.creatorId);
+  }
+  if (filters.institutionId !== undefined) {
+    conditions.push('a.institution_id = ?');
+    params.push(filters.institutionId);
+  }
+  if (filters.department) {
+    conditions.push('a.department = ?');
+    params.push(filters.department);
+  }
+  if (filters.inspirationEntryId) {
+    conditions.push('a.inspiration_entry_id = ?');
+    params.push(filters.inspirationEntryId);
+  }
+  if (filters.tag) {
+    conditions.push(
+      'EXISTS (SELECT 1 FROM creative_asset_tags t WHERE t.asset_id = a.id AND t.tag = ?)'
+    );
+    params.push(filters.tag);
+  }
+  if (filters.q) {
+    conditions.push('(a.title LIKE ? OR a.description LIKE ?)');
+    params.push(`%${filters.q}%`, `%${filters.q}%`);
+  }
+  return { where: conditions.length ? `WHERE ${conditions.join(' AND ')}` : '', params };
+}
+
+function listCreativeAssets(filters = {}, { limit = 20, offset = 0 } = {}) {
+  const db = getDb();
+  const { where, params } = buildAssetWhereClause(filters);
+  const rows = db
+    .prepare(`
+      SELECT a.*, u.display_name AS creator_name, i.name AS institution_name
+      FROM creative_assets a
+      JOIN scholars_users u ON a.creator_id = u.id
+      LEFT JOIN scholars_institutions i ON a.institution_id = i.id
+      ${where}
+      ORDER BY a.created_at DESC
+      LIMIT ? OFFSET ?
+    `)
+    .all(...params, limit, offset);
+  return rows.map((r) => normalizeCreativeAsset(r));
+}
+
+function countCreativeAssets(filters = {}) {
+  const db = getDb();
+  const { where, params } = buildAssetWhereClause(filters);
+  return db
+    .prepare(`
+      SELECT COUNT(*) AS count FROM creative_assets a
+      ${where}
+    `)
+    .get(...params).count;
+}
+
+function setCreativeAssetTags(assetId, tags) {
+  const db = getDb();
+  return db.transaction(() => {
+    db.prepare('DELETE FROM creative_asset_tags WHERE asset_id = ?').run(assetId);
+    const stmt = db.prepare('INSERT INTO creative_asset_tags (asset_id, tag) VALUES (?, ?)');
+    for (const tag of tags) {
+      stmt.run(assetId, String(tag).trim().toLowerCase());
+    }
+  })();
+}
+
+function listCreativeAssetTags(assetId) {
+  const db = getDb();
+  return db
+    .prepare('SELECT tag FROM creative_asset_tags WHERE asset_id = ? ORDER BY tag')
+    .all(assetId)
+    .map((r) => r.tag);
+}
+
+function createCreativePurchase({
+  assetId,
+  licenseeBookingId,
+  licenseeEmail,
+  licenseType,
+  priceCents,
+  platformFeeCents,
+  creatorPayoutCents,
+  universityCreditCents,
+  stripeSessionId,
+}) {
+  const db = getDb();
+  const stmt = db.prepare(`
+    INSERT INTO creative_purchases
+      (asset_id, licensee_booking_id, licensee_email, license_type, price_cents,
+       platform_fee_cents, creator_payout_cents, university_credit_cents, stripe_session_id)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `);
+  return stmt.run(
+    assetId,
+    licenseeBookingId || null,
+    licenseeEmail || null,
+    licenseType || 'single_use',
+    priceCents || 0,
+    platformFeeCents || 0,
+    creatorPayoutCents || 0,
+    universityCreditCents || 0,
+    stripeSessionId || null
+  );
+}
+
+function getCreativePurchaseById(id) {
+  const db = getDb();
+  return normalizeCreativePurchase(
+    db.prepare('SELECT * FROM creative_purchases WHERE id = ?').get(id)
+  );
+}
+
+function getCreativePurchaseByStripeSessionId(stripeSessionId) {
+  const db = getDb();
+  return normalizeCreativePurchase(
+    db.prepare('SELECT * FROM creative_purchases WHERE stripe_session_id = ?').get(stripeSessionId)
+  );
+}
+
+function updateCreativePurchaseStatus(id, { status, stripeSessionId }) {
+  const db = getDb();
+  const fields = [];
+  const params = [];
+  if (status !== undefined) {
+    fields.push('status = ?');
+    params.push(status);
+  }
+  if (stripeSessionId !== undefined) {
+    fields.push('stripe_session_id = ?');
+    params.push(stripeSessionId);
+  }
+  if (fields.length === 0) return { changes: 0 };
+  fields.push('updated_at = CURRENT_TIMESTAMP');
+  params.push(id);
+  return db
+    .prepare(`UPDATE creative_purchases SET ${fields.join(', ')} WHERE id = ?`)
+    .run(...params);
+}
+
+function listCreativePurchasesByAsset(assetId) {
+  const db = getDb();
+  return db
+    .prepare('SELECT * FROM creative_purchases WHERE asset_id = ? ORDER BY created_at DESC')
+    .all(assetId)
+    .map((r) => normalizeCreativePurchase(r));
+}
+
+function listCreativePurchasesByLicensee(licenseeEmail) {
+  const db = getDb();
+  return db
+    .prepare('SELECT * FROM creative_purchases WHERE licensee_email = ? ORDER BY created_at DESC')
+    .all(licenseeEmail)
+    .map((r) => normalizeCreativePurchase(r));
+}
+
+function listCreativePurchasesByCreator(creatorId) {
+  const db = getDb();
+  return db
+    .prepare(`
+      SELECT p.* FROM creative_purchases p
+      JOIN creative_assets a ON p.asset_id = a.id
+      WHERE a.creator_id = ?
+      ORDER BY p.created_at DESC
+    `)
+    .all(creatorId)
+    .map((r) => normalizeCreativePurchase(r));
+}
+
+function createCreativeReview({ assetId, reviewerId, decision, comment }) {
+  const db = getDb();
+  const stmt = db.prepare(`
+    INSERT INTO creative_reviews (asset_id, reviewer_id, decision, comment)
+    VALUES (?, ?, ?, ?)
+  `);
+  return stmt.run(assetId, reviewerId, decision, comment || null);
+}
+
+function listCreativeReviews(assetId) {
+  const db = getDb();
+  return db
+    .prepare(`
+      SELECT r.*, u.display_name AS reviewer_name
+      FROM creative_reviews r
+      JOIN scholars_users u ON r.reviewer_id = u.id
+      WHERE r.asset_id = ?
+      ORDER BY r.reviewed_at DESC
+    `)
+    .all(assetId);
+}
+
+function createCreativePayout({ assetId, creatorId, purchaseId, amountCents, metadata = {} }) {
+  const db = getDb();
+  const stmt = db.prepare(`
+    INSERT INTO creative_payouts (asset_id, creator_id, purchase_id, amount_cents, metadata)
+    VALUES (?, ?, ?, ?, ?)
+  `);
+  return stmt.run(assetId, creatorId, purchaseId || null, amountCents, json(metadata));
+}
+
+function listCreativePayouts(creatorId, { status } = {}) {
+  const db = getDb();
+  let sql = 'SELECT * FROM creative_payouts WHERE creator_id = ?';
+  const params = [creatorId];
+  if (status) {
+    sql += ' AND status = ?';
+    params.push(status);
+  }
+  sql += ' ORDER BY created_at DESC';
+  return db
+    .prepare(sql)
+    .all(...params)
+    .map((r) => normalizeCreativePayout(r));
+}
+
+function getCreativeDashboardForCreator(creatorId) {
+  const db = getDb();
+  const assets = listCreativeAssets({ creatorId }, { limit: 1000, offset: 0 });
+  const purchases = listCreativePurchasesByCreator(creatorId);
+  const payouts = listCreativePayouts(creatorId);
+  const totalEarningsCents = payouts.reduce((sum, p) => sum + p.amount_cents, 0);
+  const pendingEarningsCents = payouts
+    .filter((p) => p.status === 'pending')
+    .reduce((sum, p) => sum + p.amount_cents, 0);
+  return { assets, purchases, payouts, totalEarningsCents, pendingEarningsCents };
+}
+
+function getCreativeDashboardForInstitution(institutionId) {
+  const db = getDb();
+  const assets = listCreativeAssets({ institutionId }, { limit: 1000, offset: 0 });
+  const totalEarningsCents = db
+    .prepare(`
+      SELECT COALESCE(SUM(p.creator_payout_cents), 0) AS total
+      FROM creative_purchases p
+      JOIN creative_assets a ON p.asset_id = a.id
+      WHERE a.institution_id = ? AND p.status = 'paid'
+    `)
+    .get(institutionId).total;
+  const pendingReviewCount = assets.filter((a) => a.status === 'pending_review').length;
+  const approvedCount = assets.filter((a) => a.status === 'approved').length;
+  return { assets, totalEarningsCents, pendingReviewCount, approvedCount };
+}
+
+// ─────────────────────────────────────────────────────────────
 // Audit log
 // ─────────────────────────────────────────────────────────────
 
@@ -1136,6 +1515,30 @@ module.exports = {
   listMedia,
   countMedia,
   updateMediaStatus,
+  // Creative Marketplace
+  createCreativeAsset,
+  getCreativeAssetById,
+  getCreativeAssetWithCreator,
+  updateCreativeAsset,
+  updateCreativeAssetStatus,
+  deleteCreativeAsset,
+  listCreativeAssets,
+  countCreativeAssets,
+  setCreativeAssetTags,
+  listCreativeAssetTags,
+  createCreativePurchase,
+  getCreativePurchaseById,
+  getCreativePurchaseByStripeSessionId,
+  updateCreativePurchaseStatus,
+  listCreativePurchasesByAsset,
+  listCreativePurchasesByLicensee,
+  listCreativePurchasesByCreator,
+  createCreativeReview,
+  listCreativeReviews,
+  createCreativePayout,
+  listCreativePayouts,
+  getCreativeDashboardForCreator,
+  getCreativeDashboardForInstitution,
   // Audit
   audit,
   listAuditLog,

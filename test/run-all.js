@@ -33,6 +33,7 @@ const SUITES = [
   { name: 'Workspace Tests', cmd: 'node test/workspaces.test.js' },
   { name: 'Gamification Tests', cmd: 'node test/gamification.test.js' },
   { name: 'Marketplace Tests', cmd: 'node test/marketplace.test.js' },
+  { name: 'Creative Marketplace Tests', cmd: 'node test/creative-marketplace.test.js' },
   { name: 'Agents Tests', cmd: 'node test/agents.test.js' },
   { name: 'Multimodal Tests', cmd: 'node test/multimodal.test.js' },
   { name: 'Partner Tests', cmd: 'node test/partners.test.js' },

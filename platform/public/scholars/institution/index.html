@@ -565,6 +565,26 @@
             box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
         }
 
+        .creative-thumb {
+            width: 48px;
+            height: 48px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid var(--inst-border);
+            background: var(--inst-void);
+        }
+
+        .creative-review-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .creative-review-actions .institution-btn {
+            padding: 0.35rem 0.65rem;
+            font-size: 0.65rem;
+        }
+
         @media (max-width: 640px) {
             .global-strip-inner {
                 flex-direction: column;
@@ -606,7 +626,7 @@
     <header class="institution-hero">
         <div class="institution-eyebrow">PUNYCODEX Scholarly Edition</div>
         <h1 class="institution-title">Institution Dashboard</h1>
-        <p class="institution-subtitle">Manage your institution’s students and reviewers, monitor scholarly contributions, and oversee sponsorship status.</p>
+        <p class="institution-subtitle">Manage your institution’s students and reviewers, monitor scholarly and creative contributions, and oversee sponsorship status.</p>
     </header>
 
     <main class="institution-container" id="app">
@@ -811,6 +831,39 @@
             `;
         }
 
+        function formatCents(cents) {
+            const value = Number(cents) || 0;
+            return '$' + (value / 100).toFixed(2);
+        }
+
+        function renderCreativeStats(creativeDashboard) {
+            if (!creativeDashboard) return '';
+            const total = creativeDashboard.assets?.length || 0;
+            const pending = creativeDashboard.pendingReviewCount || 0;
+            const approved = creativeDashboard.approvedCount || 0;
+            const earnings = creativeDashboard.totalEarningsCents || 0;
+            return `
+                <div class="stats-grid" style="margin-top: 1.5rem;">
+                    <div class="stat-card">
+                        <div class="stat-label">Creative Assets</div>
+                        <div class="stat-value">${total}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Approved Assets</div>
+                        <div class="stat-value">${approved}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Pending Review</div>
+                        <div class="stat-value">${pending}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Creator Earnings</div>
+                        <div class="stat-value">${formatCents(earnings)}</div>
+                    </div>
+                </div>
+            `;
+        }
+
         function departmentSelectHtml(allowlist, id, placeholder) {
             if (!allowlist || allowlist.length === 0) {
                 return `<input type="text" id="${id}" placeholder="Department">`;
@@ -948,7 +1001,64 @@
             `;
         }
 
-        function renderDashboard(user, dashboard, students, reviewers) {
+        function renderCreativeContributionsSection(creativeDashboard) {
+            if (!creativeDashboard) {
+                return '';
+            }
+            const assets = creativeDashboard.assets || [];
+            const pending = assets.filter((a) => a.status === 'pending_review');
+            const pendingRows = pending.map((a) => {
+                const thumb = a.thumbnail_path ? escapeHtml(a.thumbnail_path) : '';
+                return `
+                    <tr data-creative-id="${a.id}">
+                        <td>
+                            ${thumb ? `<img src="${thumb}" alt="" class="creative-thumb" loading="lazy">` : '<span class="creative-thumb" style="display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;color:var(--inst-white-dim);">—</span>'}
+                        </td>
+                        <td>${escapeHtml(a.title)}</td>
+                        <td>${escapeHtml(a.creator_name || '—')}</td>
+                        <td>${escapeHtml(a.department || '—')}</td>
+                        <td>${formatCents(a.price_cents)}</td>
+                        <td class="creative-review-actions">
+                            <button class="institution-btn success" data-action="creative-approve" data-id="${a.id}">Approve</button>
+                            <button class="institution-btn" data-action="creative-revision" data-id="${a.id}">Needs Revision</button>
+                            <button class="institution-btn danger" data-action="creative-reject" data-id="${a.id}">Reject</button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+
+            return `
+                <h2 class="section-title">Creative Contributions</h2>
+                <div class="card">
+                    <p class="section-subtitle">Student-submitted creative assets for sponsor licensing. Review pending submissions before they appear on the public marketplace.</p>
+                    <div class="institution-actions" style="margin-bottom: 1rem;">
+                        <a href="/creatives/index.html" class="institution-btn">Public Marketplace</a>
+                        <a href="/scholars/creatives/index.html" class="institution-btn">Creator Studio</a>
+                    </div>
+                    ${renderCreativeStats(creativeDashboard)}
+                </div>
+
+                <div class="card" style="overflow-x: auto;">
+                    ${pendingRows ? `
+                        <table class="members-table">
+                            <thead>
+                                <tr>
+                                    <th>Preview</th>
+                                    <th>Title</th>
+                                    <th>Creator</th>
+                                    <th>Department</th>
+                                    <th>Price</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>${pendingRows}</tbody>
+                        </table>
+                    ` : '<div class="empty-state">No creative assets pending review.</div>'}
+                </div>
+            `;
+        }
+
+        function renderDashboard(user, dashboard, students, reviewers, creativeDashboard) {
             const { institution, stats } = dashboard;
 
             container.innerHTML = `
@@ -969,6 +1079,7 @@
 
                 ${renderStudentsSection(students, institution)}
                 ${renderReviewersSection(reviewers, students)}
+                ${renderCreativeContributionsSection(creativeDashboard)}
             `;
 
             document.getElementById('logout-btn').addEventListener('click', async () => {
@@ -984,6 +1095,7 @@
             bindStudentForm();
             bindStudentActions();
             bindReviewerForm(students);
+            bindCreativeReviewActions();
         }
 
         function bindStudentForm() {
@@ -1116,6 +1228,43 @@
             });
         }
 
+        function bindCreativeReviewActions() {
+            const table = document.querySelector('.members-table tbody');
+            if (!table) return;
+            table.addEventListener('click', async (e) => {
+                const btn = e.target.closest('button[data-action^="creative-"]');
+                if (!btn) return;
+                const id = Number(btn.dataset.id);
+                const actionMap = {
+                    'creative-approve': 'approved',
+                    'creative-reject': 'rejected',
+                    'creative-revision': 'needs_revision',
+                };
+                const decision = actionMap[btn.dataset.action];
+                if (!decision) return;
+
+                const label = btn.dataset.action === 'creative-approve' ? 'approve' : btn.dataset.action === 'creative-reject' ? 'reject' : 'mark as needs revision';
+                if (!confirm(`Are you sure you want to ${label} this creative asset?`)) return;
+
+                btn.disabled = true;
+                const res = await fetch('/api/v1/creatives/' + id + '/review', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        ...(getSessionId() ? { 'x-scholars-session': getSessionId() } : {}),
+                    },
+                    body: JSON.stringify({ decision }),
+                });
+                const data = await res.json().catch(() => ({ success: false, error: 'Invalid response' }));
+                if (res.ok && data?.success) {
+                    await loadDashboard();
+                } else {
+                    alert(data?.error || 'Review action failed.');
+                    btn.disabled = false;
+                }
+            });
+        }
+
         async function loadDashboard() {
             container.innerHTML = '<div class="empty-state">Loading institution dashboard…</div>';
 
@@ -1141,15 +1290,19 @@
 
             const { institution, stats } = dashboardRes.data.data;
 
-            const [studentsRes, reviewersRes] = await Promise.all([
+            const [studentsRes, reviewersRes, creativeRes] = await Promise.all([
                 api('/institution/students'),
                 api('/institution/reviewers'),
+                fetch('/api/v1/creatives/institution/dashboard', {
+                    headers: getSessionId() ? { 'x-scholars-session': getSessionId() } : {},
+                }).then((r) => r.json().catch(() => ({ success: false }))).then((data) => ({ ok: data?.success === true, data })),
             ]);
 
             const students = studentsRes.ok ? (studentsRes.data?.data || []) : [];
             const reviewers = reviewersRes.ok ? (reviewersRes.data?.data || []) : [];
+            const creativeDashboard = creativeRes.ok ? creativeRes.data.data : null;
 
-            renderDashboard(user, dashboardRes.data.data, students, reviewers);
+            renderDashboard(user, dashboardRes.data.data, students, reviewers, creativeDashboard);
         }
 
         async function init() {

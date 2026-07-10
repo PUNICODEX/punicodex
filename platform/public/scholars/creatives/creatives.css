@@ -1,0 +1,329 @@
+:root {
+    --cre-primary: #D4AF37;
+    --cre-primary-dim: #8B7355;
+    --cre-void: #0A0A0A;
+    --cre-void-raised: #111111;
+    --cre-white: #F5F5F5;
+    --cre-white-dim: #A0A0A0;
+    --cre-border: rgba(255, 255, 255, 0.08);
+    --cre-success: #7fd67f;
+    --cre-danger: #ff7f7f;
+    --cre-warn: #f0d878;
+    --cre-info: #7fb8d6;
+}
+
+body {
+    background: var(--cre-void);
+    color: var(--cre-white);
+    font-family: var(--font-body);
+    min-height: 100vh;
+}
+
+.cre-hero {
+    padding: 4rem 0 2.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--cre-border);
+}
+
+.cre-eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--cre-primary);
+    margin-bottom: 1rem;
+}
+
+.cre-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--cre-white);
+    letter-spacing: 0.03em;
+    margin-bottom: 0.75rem;
+}
+
+.cre-subtitle {
+    color: var(--cre-white-dim);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+.cre-container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 2.5rem clamp(1rem, 5vw, 3rem) 5rem;
+}
+
+.cre-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.cre-toolbar-info {
+    color: var(--cre-white-dim);
+    font-size: 0.95rem;
+}
+
+.cre-toolbar-info strong {
+    color: var(--cre-primary);
+}
+
+.cre-actions {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.cre-btn {
+    padding: 0.55rem 1rem;
+    border-radius: 6px;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 1px solid var(--cre-border);
+    background: transparent;
+    color: var(--cre-white);
+    transition: all 0.2s;
+    text-decoration: none;
+}
+
+.cre-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.cre-btn.primary {
+    background: var(--cre-primary);
+    color: #000;
+    border-color: var(--cre-primary);
+}
+
+.cre-btn.primary:hover {
+    background: var(--cre-warn);
+    border-color: var(--cre-warn);
+}
+
+.cre-btn.danger {
+    background: rgba(255, 127, 127, 0.12);
+    color: var(--cre-danger);
+    border-color: rgba(255, 127, 127, 0.35);
+}
+
+.cre-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.cre-card {
+    background: var(--cre-void-raised);
+    border: 1px solid var(--cre-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.cre-section-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cre-primary);
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--cre-border);
+}
+
+.cre-form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.cre-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.cre-field label {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cre-primary-dim);
+}
+
+.cre-field input,
+.cre-field select,
+.cre-field textarea {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--cre-border);
+    border-radius: 6px;
+    padding: 0.65rem 0.75rem;
+    color: var(--cre-white);
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+.cre-field input:focus,
+.cre-field select:focus,
+.cre-field textarea:focus {
+    outline: none;
+    border-color: var(--cre-primary);
+}
+
+.cre-field textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.cre-dropzone {
+    border: 2px dashed var(--cre-border);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    margin-bottom: 1rem;
+}
+
+.cre-dropzone:hover,
+.cre-dropzone.dragover {
+    border-color: var(--cre-primary);
+}
+
+.cre-dropzone input {
+    display: none;
+}
+
+.cre-preview {
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 8px;
+    border: 1px solid var(--cre-border);
+    margin-top: 1rem;
+}
+
+.cre-message {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.cre-message.success {
+    color: var(--cre-success);
+}
+
+.cre-message.error {
+    color: var(--cre-danger);
+}
+
+.cre-asset-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.25rem;
+}
+
+.cre-asset-card {
+    background: var(--cre-void-raised);
+    border: 1px solid var(--cre-border);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.cre-asset-thumb {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    background: var(--cre-void);
+}
+
+.cre-asset-body {
+    padding: 1rem;
+}
+
+.cre-asset-title {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    margin-bottom: 0.35rem;
+    color: var(--cre-white);
+}
+
+.cre-asset-meta {
+    font-size: 0.8rem;
+    color: var(--cre-white-dim);
+    margin-bottom: 0.75rem;
+}
+
+.cre-status {
+    display: inline-block;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--cre-white-dim);
+}
+
+.cre-status.pending {
+    background: rgba(240, 216, 120, 0.12);
+    color: var(--cre-warn);
+}
+
+.cre-status.approved {
+    background: rgba(127, 214, 127, 0.12);
+    color: var(--cre-success);
+}
+
+.cre-status.rejected,
+.cre-status.delisted {
+    background: rgba(255, 127, 127, 0.12);
+    color: var(--cre-danger);
+}
+
+.cre-empty {
+    text-align: center;
+    padding: 3rem 1rem;
+    border: 1px dashed var(--cre-border);
+    border-radius: 12px;
+    color: var(--cre-white-dim);
+}
+
+.cre-login-box {
+    max-width: 420px;
+    margin: 4rem auto;
+    background: var(--cre-void-raised);
+    border: 1px solid var(--cre-border);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.cre-login-box h2 {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    color: var(--cre-white);
+    margin-bottom: 0.75rem;
+}
+
+.cre-login-box p {
+    color: var(--cre-white-dim);
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+    .cre-toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

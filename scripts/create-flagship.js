@@ -2646,6 +2646,17 @@ function generateGalleryPage(entry, palette, templateDir) {
   return html;
 }
 
+function copyCreativesTemplate(siteDir, templateDir) {
+  const srcDir = path.join(templateDir, 'creatives');
+  const destDir = path.join(siteDir, 'creatives');
+  if (!fs.existsSync(srcDir)) return;
+  fs.mkdirSync(destDir, { recursive: true });
+  for (const entry of fs.readdirSync(srcDir, { withFileTypes: true })) {
+    if (!entry.isFile()) continue;
+    fs.copyFileSync(path.join(srcDir, entry.name), path.join(destDir, entry.name));
+  }
+}
+
 function generateExtendedPage(entry, palette, templateDir, catalog) {
   let html = fs.readFileSync(path.join(templateDir, 'lore', 'extended', 'index.html'), 'utf8');
   const templeId = entry.id;
@@ -2862,6 +2873,8 @@ function createFlagship(templeId, options = {}) {
 
     fs.writeFileSync(outPath, content, 'utf8');
   }
+
+  copyCreativesTemplate(siteDir, TEMPLATE_DIR);
 
   console.log(`✓ ${templeId}: wrote ${Object.keys(outputs).length} files (backup: ${backupDir})`);
   return outputs;

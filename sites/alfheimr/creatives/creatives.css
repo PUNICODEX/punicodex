@@ -1,0 +1,102 @@
+.temple-creatives-page {
+    padding-top: 2rem;
+    padding-bottom: 5rem;
+}
+
+.temple-creatives-page .section-eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--primary, #D4AF37);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.temple-creatives-page .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.75rem);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.temple-creatives-page .section-lead {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 3rem;
+    color: var(--text-dim, #A0A0A0);
+    line-height: 1.7;
+}
+
+.temple-creatives-page .section-lead a {
+    color: var(--primary, #D4AF37);
+    text-decoration: none;
+}
+
+.temple-creatives-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.temple-creative-card {
+    background: var(--card-bg, rgba(255, 255, 255, 0.04));
+    border: 1px solid var(--border, rgba(255, 255, 255, 0.08));
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.temple-creative-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary-dim, #8B7355);
+}
+
+.temple-creative-card img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+}
+
+.temple-creative-card-body {
+    padding: 1rem 1.25rem 1.25rem;
+}
+
+.temple-creative-card-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    margin-bottom: 0.35rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.temple-creative-card-meta {
+    font-size: 0.85rem;
+    color: var(--text-dim, #A0A0A0);
+    margin-bottom: 0.75rem;
+}
+
+.temple-creative-card-price {
+    font-family: var(--font-display);
+    color: var(--primary, #D4AF37);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.temple-creative-card .btn-primary {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+.temple-creatives-empty {
+    text-align: center;
+    padding: 4rem 1rem;
+}
+
+.temple-creatives-empty p {
+    color: var(--text-dim, #A0A0A0);
+    margin-bottom: 1.5rem;
+}

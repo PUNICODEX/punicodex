@@ -368,6 +368,7 @@ const v1ThreatFeedIngest = require('../api/v1/threat-feed/ingest/index.js');
 const v1ThreatFeedClusterReview = require('../api/v1/threat-feed/cluster/[clusterId]/review/index.js');
 const v1ThreatFeedCampaigns = require('../api/v1/threat-feed/campaigns/[identityId]/index.js');
 const scholarsApi = require('../platform/scholars/router');
+const creativeMarketplaceApi = require('../platform/api/creative-marketplace');
 
 app.get('/api/v1/threat-feed', v1ThreatFeed);
 app.get('/api/v1/threat-feed/stats', v1ThreatFeedStats);
@@ -376,6 +377,7 @@ app.post('/api/v1/threat-feed/cluster/:clusterId/review', v1ThreatFeedClusterRev
 app.get('/api/v1/threat-feed/campaigns/:identityId', v1ThreatFeedCampaigns);
 
 app.use('/api/v1/scholars', scholarsApi);
+app.use('/api/v1/creatives', creativeMarketplaceApi);
 
 app.get('/api/domain-status/:domain', domainCheckLimit, async (req, res) => {
   try {

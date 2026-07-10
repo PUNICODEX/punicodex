@@ -15,8 +15,10 @@ let currentTmpDir = null;
 function runScholarsMigrations(db) {
   const { migrate: migrateScholars } = require('../db/migrate-scholars.js');
   const { migrate: migrateQuality } = require('../db/migrate-scholars-quality.js');
+  const { migrate: migrateCreatives } = require('../db/migrate-scholars-creatives.js');
   migrateScholars(db);
   migrateQuality(db);
+  migrateCreatives(db);
 }
 
 /**

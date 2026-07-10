@@ -164,6 +164,36 @@ function canRevertSection(user) {
   return isCurator(user);
 }
 
+// ─────────────────────────────────────────────────────────────
+// Creative Marketplace permissions
+// ─────────────────────────────────────────────────────────────
+
+function canSubmitCreative(user, institution) {
+  if (!isActiveUser(user)) return false;
+  if (!hasRole(user, 'student')) return false;
+  const resolvedInstitution =
+    institution ?? (user.institutionId ? getInstitutionById(user.institutionId) : null);
+  if (!isActiveSponsorship(resolvedInstitution)) return false;
+  if (!isDepartmentAllowed(user.department, resolvedInstitution)) return false;
+  return true;
+}
+
+function canReviewCreative(user, assetInstitutionId) {
+  if (!isActiveUser(user)) return false;
+  if (isCurator(user)) return true;
+  if (!hasRole(user, 'reviewer')) return false;
+  if (!sameInstitution(user, assetInstitutionId)) return false;
+  return true;
+}
+
+function canManageCreative(user, asset) {
+  if (!user || !asset) return false;
+  if (isCurator(user)) return true;
+  if (user.id === asset.creator_id) return true;
+  if (isInstitutionAdmin(user) && sameInstitution(user, asset.institution_id)) return true;
+  return false;
+}
+
 function requireRole(minRole) {
   return (req, res, next) => {
     if (!req.user) return res.status(401).json({ error: 'Unauthorized' });
@@ -205,6 +235,9 @@ module.exports = {
   canManageStudent,
   canFreezeTemple,
   canRevertSection,
+  canSubmitCreative,
+  canReviewCreative,
+  canManageCreative,
   requireRole,
   requireCurator,
   requireInstitutionAdmin,
