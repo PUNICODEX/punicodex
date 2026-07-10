@@ -531,12 +531,12 @@
         count++;
         const tr = createEl('tr');
         tr.innerHTML = `
-          <td><code>${escapeHtml(source.key)}</code></td>
-          <td>${escapeHtml(source.full)}</td>
-          <td>${escapeHtml(source.scope)}</td>
-          <td>${escapeHtml(source.year || '—')}</td>
-          <td>${escapeHtml(source.edition || '—')}</td>
-          <td>${source.url ? `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener">Link</a>` : '—'}</td>
+          <td data-label="Code"><code>${escapeHtml(source.key)}</code></td>
+          <td data-label="Full Title">${escapeHtml(source.full)}</td>
+          <td data-label="Scope">${escapeHtml(source.scope)}</td>
+          <td data-label="Year">${escapeHtml(source.year || '—')}</td>
+          <td data-label="Edition">${escapeHtml(source.edition || '—')}</td>
+          <td data-label="Link">${source.url ? `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener">Link</a>` : '—'}</td>
         `;
         tbody.appendChild(tr);
       }

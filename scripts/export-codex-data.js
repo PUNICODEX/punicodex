@@ -54,6 +54,66 @@ function writeJson(name, data, ignorePaths = ['meta.generatedAt']) {
   console.log(`✓ codex/data/${name}`);
 }
 
+function escapeHtml(str) {
+  return String(str == null ? '' : str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function buildSourceCatalogRows(sources) {
+  return sources
+    .map(
+      (source) => `
+          <tr>
+            <td data-label="Code"><code>${escapeHtml(source.key)}</code></td>
+            <td data-label="Full Title">${escapeHtml(source.full)}</td>
+            <td data-label="Scope">${escapeHtml(source.scope)}</td>
+            <td data-label="Year">${escapeHtml(source.year || '—')}</td>
+            <td data-label="Edition">${escapeHtml(source.edition || '—')}</td>
+            <td data-label="Link">${source.url ? `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener">Link</a>` : '—'}</td>
+          </tr>`,
+    )
+    .join('');
+}
+
+function updateCodexSourceTable(sources) {
+  const htmlPath = path.join(ROOT, 'codex', 'index.html');
+  if (!fs.existsSync(htmlPath)) {
+    console.log('⚠ codex/index.html not found, skipping source table pre-render');
+    return;
+  }
+
+  let html = fs.readFileSync(htmlPath, 'utf-8');
+  const markerStart = '<tbody id="source-codex-body">';
+  const markerEnd = '</tbody>';
+  const startIdx = html.indexOf(markerStart);
+  if (startIdx === -1) {
+    console.log('⚠ source-codex-body not found in codex/index.html');
+    return;
+  }
+  const endIdx = html.indexOf(markerEnd, startIdx + markerStart.length);
+  if (endIdx === -1) {
+    console.log('⚠ source-codex-body closing tag not found in codex/index.html');
+    return;
+  }
+
+  const rows = buildSourceCatalogRows(sources);
+  const newBody = `${markerStart}\n                            <!-- Auto-generated from type/js/source-catalog.js -->${rows}\n                        ${markerEnd}`;
+  const before = html.slice(0, startIdx);
+  const after = html.slice(endIdx + markerEnd.length);
+  const newHtml = before + newBody + after;
+
+  if (newHtml === html) {
+    console.log('✓ codex/index.html source table (unchanged)');
+    return;
+  }
+  fs.writeFileSync(htmlPath, newHtml);
+  console.log('✓ codex/index.html source table updated');
+}
+
 function loadLexicon() {
   const lexiconPath = path.join(ROOT, 'type', 'js', 'lexicon.js');
   const source = fs.readFileSync(lexiconPath, 'utf-8');
@@ -230,6 +290,8 @@ function main() {
     meta: { generatedAt: new Date().toISOString(), source: 'type/js/source-catalog.js' },
     sources,
   });
+
+  updateCodexSourceTable(sources);
 
   writeJson('owned-domains.json', {
     meta: { generatedAt: new Date().toISOString(), source: 'platform/db/owned-domains.json' },
