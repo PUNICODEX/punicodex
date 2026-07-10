@@ -9,7 +9,7 @@ const path = require('path');
 const { globSync } = require('glob');
 
 const ROOT = path.resolve(__dirname, '..');
-const PX_CORE_TAG = '<script src="/js/px-core.js?v=perf7"></script>';
+const PX_CORE_TAG = '<script src="/js/px-core.js?v=perf8"></script>';
 
 function findHtmlFiles() {
   return globSync('**/*.html', {
