@@ -184,6 +184,58 @@
     color: var(--white);
 }
 
+.filter-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    user-select: none;
+    color: var(--white-dim);
+    font-size: 0.8rem;
+}
+
+.filter-toggle input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.filter-toggle-track {
+    position: relative;
+    width: 38px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--white-faint);
+    border-radius: 999px;
+    transition: all 0.3s ease;
+}
+
+.filter-toggle-knob {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 14px;
+    height: 14px;
+    background: var(--white);
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.filter-toggle input:checked + .filter-toggle-track {
+    background: color-mix(in srgb, var(--primary) 25%, transparent);
+    border-color: color-mix(in srgb, var(--primary) 60%, transparent);
+}
+
+.filter-toggle input:checked + .filter-toggle-track .filter-toggle-knob {
+    transform: translateX(18px);
+    background: var(--primary);
+}
+
+.filter-toggle-text {
+    white-space: nowrap;
+}
+
 /* ─── Grid ─── */
 .lexicon-grid {
     display: grid;
@@ -302,5 +354,9 @@
     .filter-row { gap: 1rem; }
     .filter-label { min-width: auto; width: 100%; }
     .filter-search { max-width: 100%; min-width: 100%; }
+    .filter-toggle {
+        flex: 1 1 100%;
+        justify-content: space-between;
+    }
     .lexicon-grid { grid-template-columns: 1fr; }
 }

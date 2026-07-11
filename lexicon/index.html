@@ -74,7 +74,7 @@
     <section class="lexicon-hero">
         <div class="lexicon-hero-content">
             <h1 class="lexicon-hero-title">The Lexicon</h1>
-            <p class="lexicon-hero-subtitle">873 names across 21 pantheons. Every entry is a Unicode restoration.</p>
+            <p class="lexicon-hero-subtitle">873 scholarly restorations across 21 pantheons. The default view shows only entries with a visible Unicode restoration or an owned domain.</p>
             <div class="lexicon-stats">
                 <div class="lexicon-stat">
                     <span class="lexicon-stat-value">873</span>
@@ -146,6 +146,13 @@
                         <option value="tier">Tier</option>
                     </select>
                 </div>
+                <label class="filter-toggle" id="filter-show-all-label" title="Show all 873 entries including plain-ASCII names without owned domains">
+                    <input type="checkbox" id="filter-show-all">
+                    <span class="filter-toggle-track">
+                        <span class="filter-toggle-knob"></span>
+                    </span>
+                    <span class="filter-toggle-text">Show all 873</span>
+                </label>
             </div>
         </div>
     </section>
@@ -190,6 +197,7 @@
     </footer>
 
     <script src="/type/js/lexicon.js?v=perf7" defer></script>
+    <script src="/js/owned-entries.js?v=perf8" defer></script>
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf7" defer></script>
     <script src="/lexicon/js/lexicon-browse.js?v=perf8" defer></script>

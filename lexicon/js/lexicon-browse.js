@@ -1,6 +1,6 @@
 /**
  * PUNYCODEX — Lexicon Browse Page
- * Filterable, searchable, sortable grid of all 255 entries.
+ * Filterable, searchable, sortable grid of all 873 entries.
  */
 
 (function() {
@@ -16,6 +16,16 @@
     let currentTier = 'all';
     let currentSearch = '';
     let currentSort = 'alpha';
+    let showAll = false;
+
+    // ─── Owned-entry lookup (populated by /js/owned-entries.js) ───
+    const ownedEntryIds = (typeof OWNED_ENTRY_IDS !== 'undefined' && OWNED_ENTRY_IDS instanceof Set)
+        ? OWNED_ENTRY_IDS
+        : new Set(['helheimr', 'muspellheimr', 'trengtreng']);
+
+    function isAsciiOnly(str) {
+        return !/[^\x00-\x7F]/.test(String(str));
+    }
 
     // ─── DOM refs ───
     const gridEl = document.getElementById('lexicon-grid');
@@ -76,6 +86,12 @@
                               entry.domain.toLowerCase().includes(q);
                 if (!match) return false;
             }
+            // Default public view: show only entries with a visible Unicode
+            // restoration or an owned domain. Plain-ASCII entries without an
+            // owned domain are hidden unless the user toggles the full lexicon.
+            if (!showAll && isAsciiOnly(entry.unicode) && !ownedEntryIds.has(entry.id)) {
+                return false;
+            }
             return true;
         });
     }
@@ -113,7 +129,8 @@
         const filtered = getFilteredEntries();
         const sorted = sortEntries(filtered);
 
-        countEl.textContent = `Showing ${sorted.length} of ${LEXICON.length}`;
+        const viewLabel = showAll ? 'full lexicon' : 'restored + owned';
+        countEl.textContent = `Showing ${sorted.length} of ${LEXICON.length} (${viewLabel})`;
 
         if (sorted.length === 0) {
             gridEl.innerHTML = `
@@ -197,6 +214,15 @@
         currentSort = sortSelect.value;
         render();
     });
+
+    // Show-all toggle (reveals plain-ASCII entries without owned domains)
+    const showAllInput = document.getElementById('filter-show-all');
+    if (showAllInput) {
+        showAllInput.addEventListener('change', () => {
+            showAll = showAllInput.checked;
+            render();
+        });
+    }
 
     // ─── Init ───
     render();

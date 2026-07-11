@@ -14,6 +14,7 @@
  *   - android/app/src/main/assets/shared/lexicon.json
  *   - android/app/src/main/assets/shared/keyboard-palette.json
  *   - platform/browser/renderer/lexicon.json
+ *   - js/owned-entries.js
  *   - middleware.js (DOMAIN_MAP)
  *   - sites/{id}/ base temples (skipped if they already exist)
  *   - sites/{id}/ flagship temples (regenerated if --regenerate-all)
@@ -32,6 +33,7 @@ const scripts = [
   'scripts/sync-shared-engine.js',
   'scripts/build-android-assets.js',
   'scripts/export-platform-lexicon.js',
+  'scripts/generate-owned-entries.js',
   'scripts/export-codex-data.js',
   'scripts/build-original-script-lookup.js',
   'scripts/export-lore-catalog.js',
