@@ -205,6 +205,7 @@ function buildEntryRecord(entry, context) {
     loreCatalog,
     lexiconById,
     version,
+    generatedAt,
   } = context;
 
   const unicodeDomain = `${entry.unicode.toLowerCase()}.com`;
@@ -275,7 +276,7 @@ function buildEntryRecord(entry, context) {
     related,
 
     metadata: {
-      generatedAt: new Date().toISOString(),
+      generatedAt,
       dataVersion: version,
     },
   };
@@ -308,6 +309,8 @@ function main() {
   // Owned-domain punycode set for fast lookup
   const ownedPunySet = new Set(ownedDomains.map(toPunycode).filter(Boolean));
 
+  const generatedAt = dataVersion.releasedAt || new Date().toISOString();
+
   const context = {
     lexicon,
     availabilityMap,
@@ -317,6 +320,7 @@ function main() {
     loreCatalog,
     lexiconById,
     version: dataVersion.version,
+    generatedAt,
   };
 
   const records = lexicon.map((entry) => buildEntryRecord(entry, context));
@@ -363,7 +367,7 @@ function main() {
 
   const manifest = {
     version: dataVersion.version,
-    generatedAt: new Date().toISOString(),
+    generatedAt,
     counts: {
       entries: records.length,
       withOriginalScript: records.filter((r) => r.originalScript.specimen).length,

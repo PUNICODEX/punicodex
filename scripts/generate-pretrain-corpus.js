@@ -300,9 +300,10 @@ function main() {
     totalTokens += doc.tokens;
   }
 
+  const dataVersion = JSON.parse(fs.readFileSync(path.join(ROOT, 'data-version.json'), 'utf8'));
   const manifest = {
-    version: JSON.parse(fs.readFileSync(path.join(ROOT, 'data-version.json'), 'utf8')).version || 'unknown',
-    generatedAt: new Date().toISOString(),
+    version: dataVersion.version || 'unknown',
+    generatedAt: dataVersion.releasedAt || new Date().toISOString(),
     counts: {
       totalDocuments: docs.length,
       trainDocuments: train.length,

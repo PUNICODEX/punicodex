@@ -250,9 +250,10 @@ function main() {
   writeJsonl(train, OUT_TRAIN);
   writeJsonl(evalSet, OUT_EVAL);
 
+  const dataVersion = JSON.parse(fs.readFileSync(path.join(ROOT, 'data-version.json'), 'utf8'));
   const manifest = {
-    version: JSON.parse(fs.readFileSync(path.join(ROOT, 'data-version.json'), 'utf8')).version || 'unknown',
-    generatedAt: new Date().toISOString(),
+    version: dataVersion.version || 'unknown',
+    generatedAt: dataVersion.releasedAt || new Date().toISOString(),
     counts: {
       total,
       train: train.length,

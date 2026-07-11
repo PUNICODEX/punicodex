@@ -37,7 +37,7 @@
     // ─── Pantheon labels ───
     const PANTHEON_LABELS = {
         greek: 'Greek',
-        'greek-location': 'Greek Location',
+        'greek-location': 'Greek Locations',
         norse: 'Norse',
         egyptian: 'Egyptian',
         sanskrit: 'Sanskrit',
@@ -51,6 +51,12 @@
         zoroastrian: 'Zoroastrian',
         incan: 'Incan',
         canaanite: 'Canaanite',
+        chinese: 'Chinese',
+        buddhist: 'Buddhist',
+        taoist: 'Taoist',
+        korean: 'Korean',
+        phoenician: 'Phoenician',
+        hittite: 'Hittite',
     };
 
     // ─── Tier subtype helper (mirrors generator logic) ───
@@ -124,14 +130,47 @@
         return sorted;
     }
 
+function escapeHtml(str) {
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+    }
+
+    // ─── Card template ───
+    function cardHtml(entry) {
+        const subtype = getTierSubtype(entry);
+        const hasOriginal = entry.greek && entry.greek !== '—';
+        return `
+            <a href="/sites/${entry.id}${entry.hasAdSite ? '/lore/' : '/'}" class="lexicon-card reveal-up">
+                <span class="lexicon-card-unicode">${escapeHtml(entry.unicode)}</span>
+                <span class="lexicon-card-greek">${hasOriginal ? escapeHtml(entry.greek) : '&nbsp;'}</span>
+                <span class="lexicon-card-domain">${escapeHtml(entry.domain)}</span>
+                <div class="lexicon-card-meta">
+                    <span class="lexicon-card-tier">${escapeHtml(subtype)}</span>
+                    <span class="lexicon-card-pantheon">${escapeHtml(PANTHEON_LABELS[entry.pantheon] || entry.pantheon)}</span>
+                </div>
+            </a>
+        `;
+    }
+
     // ─── Render ───
+    const BATCH_SIZE = 60;
+    let renderGeneration = 0;
+
     function render() {
         const filtered = getFilteredEntries();
         const sorted = sortEntries(filtered);
 
         const viewLabel = showAll ? 'full lexicon' : 'restored + owned';
-        countEl.textContent = `Showing ${sorted.length} of ${LEXICON.length} (${viewLabel})`;
+        countEl.textContent = `Showing ${sorted.length.toLocaleString()} of ${LEXICON.length.toLocaleString()} (${viewLabel})`;
 
+        // Cancel any in-progress batched render so rapid filter changes feel snappy.
+        renderGeneration++;
+        const gen = renderGeneration;
+
+        gridEl.innerHTML = '';
         if (sorted.length === 0) {
             gridEl.innerHTML = `
                 <div class="lexicon-empty">
@@ -142,50 +181,51 @@
             return;
         }
 
-        gridEl.innerHTML = sorted.map(entry => {
-            const subtype = getTierSubtype(entry);
-            const hasOriginal = entry.greek && entry.greek !== '—';
-            return `
-                <a href="/sites/${entry.id}${entry.hasAdSite ? '/lore/' : '/'}" class="lexicon-card reveal-up">
-                    <span class="lexicon-card-unicode">${escapeHtml(entry.unicode)}</span>
-                    <span class="lexicon-card-greek">${hasOriginal ? escapeHtml(entry.greek) : '&nbsp;'}</span>
-                    <span class="lexicon-card-domain">${escapeHtml(entry.domain)}</span>
-                    <div class="lexicon-card-meta">
-                        <span class="lexicon-card-tier">${escapeHtml(subtype)}</span>
-                        <span class="lexicon-card-pantheon">${escapeHtml(PANTHEON_LABELS[entry.pantheon] || entry.pantheon)}</span>
-                    </div>
-                </a>
-            `;
-        }).join('');
-
-        // Trigger reveal animation for new elements
-        requestAnimationFrame(() => {
-            document.querySelectorAll('.lexicon-card.reveal-up').forEach(el => {
-                el.classList.add('revealed');
-            });
-        });
-    }
-
-    function escapeHtml(str) {
-        return String(str)
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;');
+        let i = 0;
+        function nextBatch() {
+            if (gen !== renderGeneration) return;
+            const batch = sorted.slice(i, i + BATCH_SIZE);
+            if (batch.length === 0) {
+                requestAnimationFrame(() => {
+                    document.querySelectorAll('.lexicon-card.reveal-up').forEach(el => {
+                        el.classList.add('revealed');
+                    });
+                });
+                return;
+            }
+            const html = batch.map(cardHtml).join('');
+            gridEl.insertAdjacentHTML('beforeend', html);
+            i += BATCH_SIZE;
+            requestAnimationFrame(nextBatch);
+        }
+        nextBatch();
     }
 
     // ─── Event handlers ───
 
-    // Pantheon dropdown
-    const pantheonSelect = document.getElementById('filter-pantheon');
-    if (pantheonSelect) {
-        pantheonSelect.addEventListener('change', () => {
-            currentPantheon = pantheonSelect.value;
+    // Pantheon chips
+    const pantheonChipsEl = document.getElementById('pantheon-chips');
+    function renderPantheonChips() {
+        if (!pantheonChipsEl) return;
+        const allActive = currentPantheon === 'all' ? ' active' : '';
+        const chips = Object.entries(PANTHEON_LABELS).map(([key, label]) => {
+            const active = currentPantheon === key ? ' active' : '';
+            return `<button type="button" class="filter-chip${active}" data-filter="pantheon" data-value="${escapeHtml(key)}">${escapeHtml(label)}</button>`;
+        }).join('');
+        pantheonChipsEl.innerHTML = `<button type="button" class="filter-chip${allActive}" data-filter="pantheon" data-value="all">All Pantheons</button>${chips}`;
+    }
+    if (pantheonChipsEl) {
+        renderPantheonChips();
+        pantheonChipsEl.addEventListener('click', (e) => {
+            const btn = e.target.closest('[data-filter="pantheon"]');
+            if (!btn) return;
+            currentPantheon = btn.dataset.value;
+            renderPantheonChips();
             render();
         });
     }
 
-    // Tier segmented control
+    // Tier chips
     const tierSegment = document.getElementById('tier-segment');
     if (tierSegment) {
         tierSegment.querySelectorAll('[data-filter="tier"]').forEach(btn => {
@@ -197,7 +237,6 @@
             });
         });
     }
-
 
     // Search (debounced)
     let searchTimeout;
@@ -216,10 +255,16 @@
     });
 
     // Show-all toggle (reveals plain-ASCII entries without owned domains)
-    const showAllInput = document.getElementById('filter-show-all');
-    if (showAllInput) {
-        showAllInput.addEventListener('change', () => {
-            showAll = showAllInput.checked;
+    const showAllBtn = document.getElementById('filter-show-all');
+    function updateShowAllButton() {
+        if (!showAllBtn) return;
+        showAllBtn.classList.toggle('active', showAll);
+        showAllBtn.setAttribute('aria-pressed', String(showAll));
+    }
+    if (showAllBtn) {
+        showAllBtn.addEventListener('click', () => {
+            showAll = !showAll;
+            updateShowAllButton();
             render();
         });
     }

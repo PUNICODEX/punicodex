@@ -1,7 +1,7 @@
 # PÚNYCODEX AI Training Corpus — Data Card
 
 **Data version:** 2.0.34  
-**Generated:** 2026-07-11T18:18:35.697Z  
+**Generated:** 2026-07-10T17:52:33.218Z  
 **License:** CC BY 4.0 for dataset; ISC for software (see root LICENSE).
 
 ## Purpose
