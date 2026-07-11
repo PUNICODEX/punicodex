@@ -78,6 +78,22 @@ function loadSafetyExamples() {
     .map((line) => JSON.parse(line));
 }
 
+function loadJsonlCounts(fileName) {
+  const p = path.join(ROOT, 'data', 'corpus', fileName);
+  if (!fs.existsSync(p)) return { count: 0, byTask: {} };
+  const text = fs.readFileSync(p, 'utf8');
+  const examples = text
+    .trim()
+    .split('\n')
+    .filter(Boolean)
+    .map((line) => JSON.parse(line));
+  const byTask = {};
+  for (const ex of examples) {
+    byTask[ex.task] = (byTask[ex.task] || 0) + 1;
+  }
+  return { count: examples.length, byTask };
+}
+
 function hashFile(rel) {
   const full = path.join(ROOT, rel);
   const content = fs.readFileSync(full, 'utf8').replace(/\r\n/g, '\n');
@@ -325,6 +341,14 @@ function main() {
     safetyByTask[ex.task] = (safetyByTask[ex.task] || 0) + 1;
   }
 
+  const dialogue = loadJsonlCounts('dialogue-examples.jsonl');
+  const toolUse = loadJsonlCounts('tool-use-examples.jsonl');
+  const multimodal = loadJsonlCounts('multimodal-examples.jsonl');
+  const preference = loadJsonlCounts('preference-examples.jsonl');
+  const reasoning = loadJsonlCounts('reasoning-examples.jsonl');
+  const benchmark = loadJsonlCounts('benchmark.jsonl');
+  const instructions = loadJsonlCounts('instructions.jsonl');
+
   const manifest = {
     version: dataVersion.version,
     generatedAt: new Date().toISOString(),
@@ -336,8 +360,22 @@ function main() {
       withEtymology: records.filter((r) => r.etymology).length,
       flagships: records.filter((r) => r.flagship.isFlagship).length,
       owned: records.filter((r) => r.ownership.isOwned).length,
+      instructions: instructions.count,
+      instructionsByTask: instructions.byTask,
       safetyExamples: safetyExamples.length,
       safetyByTask,
+      dialogueExamples: dialogue.count,
+      dialogueByTask: dialogue.byTask,
+      toolUseExamples: toolUse.count,
+      toolUseByTask: toolUse.byTask,
+      multimodalExamples: multimodal.count,
+      multimodalByTask: multimodal.byTask,
+      preferenceExamples: preference.count,
+      preferenceByTask: preference.byTask,
+      reasoningExamples: reasoning.count,
+      reasoningByTask: reasoning.byTask,
+      benchmarkExamples: benchmark.count,
+      benchmarkByTask: benchmark.byTask,
     },
     canonicalSources: canonicalFiles,
     canonicalHashes: Object.fromEntries(

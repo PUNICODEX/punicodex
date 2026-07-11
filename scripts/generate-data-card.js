@@ -1,0 +1,131 @@
+#!/usr/bin/env node
+/**
+ * PÚNYCODEX — Data Card & Training Manifest Generator (Phase 9)
+ *
+ * Produces a human-readable DATA_CARD.md summarizing every corpus file,
+ * intended use, schema, and provenance. This is the final artifact of the
+ * AI training corpus build.
+ *
+ * Output: data/corpus/DATA_CARD.md
+ */
+
+'use strict';
+
+const fs = require('node:fs');
+const path = require('node:path');
+
+const ROOT = path.join(__dirname, '..');
+const CORPUS_DIR = path.join(ROOT, 'data', 'corpus');
+const OUT_PATH = path.join(CORPUS_DIR, 'DATA_CARD.md');
+const MANIFEST_PATH = path.join(CORPUS_DIR, 'manifest.json');
+
+function countLines(filePath) {
+  if (!fs.existsSync(filePath)) return 0;
+  const text = fs.readFileSync(filePath, 'utf8').trim();
+  if (!text) return 0;
+  return text.split('\n').length;
+}
+
+function fileSize(filePath) {
+  if (!fs.existsSync(filePath)) return '0 B';
+  const bytes = fs.statSync(filePath).size;
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / 1024 / 1024).toFixed(2)} MB`;
+}
+
+function loadManifest() {
+  if (!fs.existsSync(MANIFEST_PATH)) return null;
+  return JSON.parse(fs.readFileSync(MANIFEST_PATH, 'utf8'));
+}
+
+function main() {
+  const manifest = loadManifest();
+  const version = manifest?.version || 'unknown';
+  const generatedAt = manifest?.generatedAt || new Date().toISOString();
+
+  const files = [
+    { name: 'entries.jsonl', desc: 'Rich structured record for every lexicon entry.' },
+    { name: 'instructions.jsonl', desc: 'Scholarly question/answer pairs (Phase 1).' },
+    { name: 'instructions-train.jsonl', desc: 'Training split (80%) of scholarly + safety examples.' },
+    { name: 'eval.jsonl', desc: 'Held-out evaluation split (20%) of scholarly + safety examples.' },
+    { name: 'safety-examples.jsonl', desc: 'Adversarial safety examples (Phase 2).' },
+    { name: 'dialogue-examples.jsonl', desc: 'Multi-turn conversation examples (Phase 3).' },
+    { name: 'tool-use-examples.jsonl', desc: 'Function-calling / tool-use examples (Phase 4).' },
+    { name: 'multimodal-examples.jsonl', desc: 'Vision-language pairs for mascots, logomarks, scripts (Phase 5).' },
+    { name: 'preference-examples.jsonl', desc: 'Chosen/rejected pairs for RLHF (Phase 6).' },
+    { name: 'reasoning-examples.jsonl', desc: 'Chain-of-thought reasoning traces (Phase 7).' },
+    { name: 'benchmark.jsonl', desc: 'Held-out evaluation benchmark with known answers (Phase 8).' },
+    { name: 'manifest.json', desc: 'Machine-readable corpus manifest.' },
+  ];
+
+  const rows = files.map((f) => {
+    const p = path.join(CORPUS_DIR, f.name);
+    return `| ${f.name} | ${countLines(p).toLocaleString()} | ${fileSize(p)} | ${f.desc} |`;
+  });
+
+  const md = `# PÚNYCODEX AI Training Corpus — Data Card
+
+**Data version:** ${version}  
+**Generated:** ${generatedAt}  
+**License:** CC BY 4.0 for dataset; ISC for software (see root LICENSE).
+
+## Purpose
+
+This corpus is the foundational training and evaluation data for a specialized AI that understands mythological names, Unicode restorations, original scripts, pronunciation, etymology, punycode, and homograph safety. Every example is grounded in the PÚNYCODEX canonical sources.
+
+## Files
+
+| File | Examples | Size | Description |
+|------|----------|------|-------------|
+${rows.join('\n')}
+
+## Phase Summary
+
+- **Phase 1 — Scholarly Instructions:** Question/answer pairs covering restoration, punycode, original script, pronunciation, etymology, meaning, tier, mythology, breakdown, variants, and sources.
+- **Phase 2 — Safety & Adversarial:** Homograph spoof, mixed-script, normalization, invisible-injection, lookalike-domain, URL, and brand-disambiguation examples derived from the red-team adversarial generator.
+- **Phase 3 — Dialogue:** Multi-turn conversations that teach the model to hold context, ask clarifying questions, and cite canonical fields.
+- **Phase 4 — Tool Use:** Function-calling examples for punycode conversion, authenticity checks, lexicon search, entry retrieval, and URL analysis.
+- **Phase 5 — Multimodal:** Vision-language pairs for flagship mascots, logomarks, original-script specimens, and glyph code points.
+- **Phase 6 — Preference:** Chosen/rejected response pairs for RLHF, emphasizing grounded, source-aware, safe answers.
+- **Phase 7 — Reasoning:** Step-by-step chain-of-thought traces for breakdowns, tier classification, etymology, safety verdicts, and original-script provenance.
+- **Phase 8 — Benchmark:** Held-out evaluation questions with exact-match and contains-match answers for reproducible model scoring.
+- **Phase 9 — Data Card:** This document and the machine-readable manifest.
+
+## Schema Notes
+
+- Every example includes a unique \`id\`, \`entryId\` where applicable, \`task\`, \`instruction\` or \`question\`, \`input\`, and \`output\` / \`answer\`.
+- Dialogue and tool-use examples use an OpenAI-compatible \`messages\` array.
+- Tool-use examples include a \`tools\` array and \`tool_calls\` / \`tool\` roles.
+- Preference examples use \`chosen\` and \`rejected\` strings with a human-readable reason.
+- Multimodal examples reference \`image\` URLs relative to the site root; \`null\` images indicate text-only glyph/script tasks.
+
+## Provenance & Governance
+
+- Canonical sources: \`type/js/lexicon.js\`, \`type/js/original-scripts.js\`, \`type/js/source-catalog.js\`, \`type/js/pronunciation-atlas.js\`, \`type/js/glyph-atlas.js\`, \`js/archetypes-v2.js\`, \`platform/db/owned-domains.json\`, \`scripts/lore-catalog.json\`.
+- Generated artifacts are validated by \`npm test\`, including a divergence gate that fails if any generated file is out of sync.
+- No external knowledge is invented; all outputs are derived from canonical fields.
+
+## Usage Recommendations
+
+- **Instruction tuning:** Use \`instructions-train.jsonl\` as the primary SFT dataset.
+- **Safety tuning:** Mix \`safety-examples.jsonl\` heavily during the final SFT epochs.
+- **Chat tuning:** Add \`dialogue-examples.jsonl\` for conversational capability.
+- **Function calling:** Fine-tune on \`tool-use-examples.jsonl\` after base SFT.
+- **RLHF:** Train a reward model on \`preference-examples.jsonl\`.
+- **CoT:** Use \`reasoning-examples.jsonl\` for chain-of-thought distillation.
+- **Multimodal:** Pair \`multimodal-examples.jsonl\` with the referenced image assets.
+- **Evaluation:** Score against \`eval.jsonl\` and \`benchmark.jsonl\` before each release.
+
+## Known Limitations
+
+- Pronunciation and etymology data are reconstructed where primary attestations are sparse; confidence levels are explicit.
+- Original-script coverage is strongest for Greek, CJK, Devanagari, and major Near-Eastern scripts; some traditions rely on transliteration.
+- Safety examples are generated heuristically; they should be reviewed before deployment in high-stakes classifications.
+`;
+
+  fs.writeFileSync(OUT_PATH, md);
+  console.log(`✓ Generated data card at ${OUT_PATH}`);
+}
+
+main();

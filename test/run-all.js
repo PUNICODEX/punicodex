@@ -129,6 +129,7 @@ const SUITES = [
   { name: 'Codex Export Tests', cmd: 'node test/codex-export.test.js' },
   { name: 'Model Corpus Tests', cmd: 'node test/model-corpus.test.js' },
   { name: 'Safety Corpus Tests', cmd: 'node test/safety-corpus.test.js' },
+  { name: 'AI Corpus Phases Tests', cmd: 'node test/ai-corpus-phases.test.js' },
   { name: 'Link Checker', cmd: 'node test/links.js' },
   { name: 'SEO Validator', cmd: 'node scripts/validate-seo.js' },
   { name: 'Philological Accuracy', cmd: 'node scripts/validate-accuracy.js' },

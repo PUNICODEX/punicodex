@@ -47,8 +47,15 @@ const scripts = [
   'scripts/update-data-version.js',
   'scripts/generate-synthetic-qa.js',
   'scripts/generate-safety-corpus.js',
+  'scripts/generate-dialogue-corpus.js',
+  'scripts/generate-tool-use-corpus.js',
+  'scripts/generate-multimodal-corpus.js',
+  'scripts/generate-preference-corpus.js',
+  'scripts/generate-reasoning-corpus.js',
+  'scripts/generate-benchmark-suite.js',
   'scripts/export-model-corpus.js',
   'scripts/generate-eval-benchmark.js',
+  'scripts/generate-data-card.js',
 ];
 
 function run(script) {
