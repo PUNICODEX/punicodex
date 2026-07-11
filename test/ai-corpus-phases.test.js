@@ -540,6 +540,59 @@ test('model card exists and documents chat-train/chat-eval splits and hardware g
   assert.ok(md.includes('Ethical Use'), 'model card has ethical use section');
 });
 
+test('pretrain.jsonl exists and is valid JSONL', () => {
+  const docs = readJsonl(path.join(CORPUS_DIR, 'pretrain.jsonl'));
+  assert.ok(docs.length > 0, 'pretrain.jsonl should not be empty');
+});
+
+test('pretrain-validation.jsonl exists and is valid JSONL', () => {
+  const docs = readJsonl(path.join(CORPUS_DIR, 'pretrain-validation.jsonl'));
+  assert.ok(docs.length > 0, 'pretrain-validation.jsonl should not be empty');
+});
+
+test('pretrain documents have required fields', () => {
+  const docs = readJsonl(path.join(CORPUS_DIR, 'pretrain.jsonl'));
+  for (const doc of docs.slice(0, 50)) {
+    assert.ok(doc.id, 'pretrain doc has id');
+    assert.ok(doc.source, 'pretrain doc has source');
+    assert.ok(typeof doc.text === 'string' && doc.text.length > 0, 'pretrain doc has text');
+    assert.ok(Number.isFinite(doc.tokens), 'pretrain doc has token count');
+  }
+});
+
+test('pretrain split sums to total documents in manifest', () => {
+  const train = readJsonl(path.join(CORPUS_DIR, 'pretrain.jsonl'));
+  const validation = readJsonl(path.join(CORPUS_DIR, 'pretrain-validation.jsonl'));
+  const manifest = JSON.parse(
+    fs.readFileSync(path.join(CORPUS_DIR, 'pretrain-manifest.json'), 'utf8')
+  );
+  assert.strictEqual(train.length, manifest.counts.trainDocuments, 'train count matches manifest');
+  assert.strictEqual(
+    validation.length,
+    manifest.counts.validationDocuments,
+    'validation count matches manifest'
+  );
+  assert.strictEqual(
+    train.length + validation.length,
+    manifest.counts.totalDocuments,
+    'total count matches manifest'
+  );
+});
+
+test('huggingface pretraining splits exist', () => {
+  const train = readJsonl(path.join(CORPUS_DIR, 'huggingface', 'train.jsonl'));
+  const validation = readJsonl(path.join(CORPUS_DIR, 'huggingface', 'validation.jsonl'));
+  assert.ok(train.length > 0, 'huggingface train split exists');
+  assert.ok(validation.length > 0, 'huggingface validation split exists');
+  assert.ok(train[0].text, 'huggingface train record has text field');
+});
+
+test('model card documents continual pretraining phase', () => {
+  const md = fs.readFileSync(path.join(CORPUS_DIR, 'MODEL_CARD.md'), 'utf8');
+  assert.ok(md.includes('Continual Pretraining'), 'model card mentions continual pretraining');
+  assert.ok(md.includes('pretrain.jsonl'), 'model card mentions pretrain.jsonl');
+});
+
 async function runSuite() {
   let passed = 0;
   let failed = 0;

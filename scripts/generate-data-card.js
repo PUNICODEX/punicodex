@@ -62,7 +62,11 @@ function main() {
     { name: 'scientific-analogies.jsonl', desc: 'Scientific and philosophical analogies bridging ancient myth and modern thought (Phase 13).' },
     { name: 'chat-train.jsonl', desc: 'Unified chat-format training corpus, 80% deterministic split (Phase 14).' },
     { name: 'chat-eval.jsonl', desc: 'Held-out chat-format evaluation split, 20% (Phase 14).' },
-    { name: 'MODEL_CARD.md', desc: 'Model card with training recipe, evaluation plan, and hardware guidance (Phase 14).' },
+    { name: 'MODEL_CARD.md', desc: 'Model card with training recipe, evaluation plan, and hardware guidance (Phases 14-15).' },
+    { name: 'pretrain.jsonl', desc: 'Raw-text continual pretraining corpus, 95% split (Phase 15).' },
+    { name: 'pretrain-validation.jsonl', desc: 'Held-out raw-text validation split, 5% (Phase 15).' },
+    { name: 'huggingface/train.jsonl', desc: 'HuggingFace-compatible continual pretraining split (Phase 15).' },
+    { name: 'huggingface/validation.jsonl', desc: 'HuggingFace-compatible validation split (Phase 15).' },
     { name: 'manifest.json', desc: 'Machine-readable corpus manifest.' },
   ];
 
@@ -103,6 +107,7 @@ ${rows.join('\n')}
 - **Phase 12 — Symbolic Correspondences:** Planetary, elemental, alchemical, tarot, chakra, sefirot, runic, wuxing, directional, metal, gemstone, color, and animal mappings for entries, with explicit confidence levels and cultural provenance.
 - **Phase 13 — Scientific & Philosophical Analogies:** Dense mappings of mythological figures to modern concepts in physics, biology, neuroscience, systems science, philosophy, and technology, emphasizing analogy over equivalence.
 - **Phase 14 — Unified Training Corpus:** Every Phase 1-13 example converted into a single OpenAI-compatible chat format with a consistent Oracle system persona, deterministic 80/20 train/eval split, and a model card with training recipe and hardware guidance.
+- **Phase 15 — Continual Pretraining Corpus:** Raw-text scholarly documents drawn from structured entry records, flagship lore, original-script provenance, pronunciation notes, the source catalog, mythology synthesis, oracle reflections, symbolic correspondences, and scientific analogies. Provided as plain JSONL and HuggingFace-compatible splits for domain-adapting the base model before chat-format SFT.
 
 ## Schema Notes
 
@@ -131,6 +136,7 @@ ${rows.join('\n')}
 - **Mythological depth:** Add \`mythology-synthesis.jsonl\` when training for comparative religion, esoteric dialogue, and modern-mythic bridging.
 - **Unified SFT:** Use \`chat-train.jsonl\` as the single chat-format supervised-fine-tuning dataset; it already mixes all phases with the Oracle persona.
 - **Held-out evaluation:** Score against \`chat-eval.jsonl\` (chat format) and \`benchmark.jsonl\` (exact/contains answers) before each release.
+- **Continual pretraining:** Before SFT, domain-adapt the base model on \`pretrain.jsonl\` (or \`huggingface/train.jsonl\`) to learn scripts, diacritics, scholarly vocabulary, and canonical style.
 - **Model card:** Read \`MODEL_CARD.md\` for the recommended training recipe, hardware sizing, and ethical-use boundaries.
 
 ## Known Limitations

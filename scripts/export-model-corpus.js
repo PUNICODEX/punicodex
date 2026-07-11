@@ -354,6 +354,12 @@ function main() {
   const instructions = loadJsonlCounts('instructions.jsonl');
   const chatTrain = loadJsonlCounts('chat-train.jsonl');
   const chatEval = loadJsonlCounts('chat-eval.jsonl');
+  function loadPretrainManifest() {
+    const p = path.join(ROOT, 'data', 'corpus', 'pretrain-manifest.json');
+    if (!fs.existsSync(p)) return null;
+    return JSON.parse(fs.readFileSync(p, 'utf8'));
+  }
+  const pretrainManifest = loadPretrainManifest();
 
   const manifest = {
     version: dataVersion.version,
@@ -394,6 +400,10 @@ function main() {
       chatTrainByTask: chatTrain.byTask,
       chatEvalExamples: chatEval.count,
       chatEvalByTask: chatEval.byTask,
+      pretrainDocuments: pretrainManifest ? pretrainManifest.counts.totalDocuments : 0,
+      pretrainDocumentsBySource: pretrainManifest ? pretrainManifest.counts.bySource : {},
+      pretrainValidationDocuments: pretrainManifest ? pretrainManifest.counts.validationDocuments : 0,
+      pretrainTokens: pretrainManifest ? pretrainManifest.counts.totalTokens : 0,
     },
     canonicalSources: canonicalFiles,
     canonicalHashes: Object.fromEntries(

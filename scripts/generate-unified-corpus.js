@@ -206,6 +206,21 @@ function writeJsonl(records, filePath) {
   fs.writeFileSync(filePath, lines.join('\n') + '\n');
 }
 
+function buildPretrainSection() {
+  const p = path.join(CORPUS_DIR, 'pretrain-manifest.json');
+  if (!fs.existsSync(p)) return '';
+  const m = JSON.parse(fs.readFileSync(p, 'utf8'));
+  return `## Continual Pretraining (Phase 15)
+
+Before supervised fine-tuning, domain-adapt the base model on the raw scholarly corpus:
+
+- \`data/corpus/pretrain.jsonl\` — ${m.counts.trainDocuments.toLocaleString()} training documents (${m.counts.trainTokens.toLocaleString()} whitespace tokens).
+- \`data/corpus/pretrain-validation.jsonl\` — ${m.counts.validationDocuments.toLocaleString()} validation documents (${m.counts.validationTokens.toLocaleString()} whitespace tokens).
+- HuggingFace-compatible splits in \`data/corpus/huggingface/\`.
+
+Documents are drawn from structured entry records, flagship lore, original-script provenance, pronunciation notes, the source catalog, mythology synthesis, oracle reflections, symbolic correspondences, and scientific analogies. Strip HTML and normalize whitespace before tokenization. This step teaches the model the domain's scripts, diacritics, scholarly vocabulary, and canonical source style before chat-format SFT.`;
+}
+
 function main() {
   fs.mkdirSync(CORPUS_DIR, { recursive: true });
 
@@ -313,6 +328,8 @@ ${Object.entries(bySource)
 ## Ethical Use
 
 Do not use this model to generate deceptive domains, impersonate brands, or evade security controls. The PÚNYCODEX Oracle is designed to illuminate names, not to weaponize them.
+
+${buildPretrainSection()}
 `;
   fs.writeFileSync(OUT_MODEL_CARD, modelCard);
 
