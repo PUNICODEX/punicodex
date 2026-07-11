@@ -49,6 +49,7 @@ const CORPORA = [
   { file: 'mythology-synthesis.jsonl', key: 'mythologySynthesisExamples' },
   { file: 'oracle-examples.jsonl', key: 'oracleExamples' },
   { file: 'symbolic-correspondences.jsonl', key: 'symbolicCorrespondenceExamples' },
+  { file: 'scientific-analogies.jsonl', key: 'scientificAnalogyExamples' },
 ];
 
 for (const { file, key } of CORPORA) {
@@ -348,6 +349,7 @@ test('manifest includes by-task breakdowns for all new corpora', () => {
     manifest.counts.symbolicCorrespondenceByTask,
     'manifest has symbolicCorrespondenceByTask'
   );
+  assert.ok(manifest.counts.scientificAnalogyByTask, 'manifest has scientificAnalogyByTask');
 });
 
 test('oracle examples have OpenAI-compatible messages', () => {
@@ -410,6 +412,56 @@ test('oracle examples include the canonical persona preamble', () => {
     /canonical sources|spoofing|impersonation/i.test(system.content),
     'system message states principles'
   );
+});
+
+test('scientific analogy tasks cover expected categories', () => {
+  const examples = readJsonl(path.join(CORPUS_DIR, 'scientific-analogies.jsonl'));
+  const tasks = new Set(examples.map((e) => e.task));
+  const expected = [
+    'science_analogy_lookup',
+    'science_analogy_explain',
+    'science_analogy_compare',
+    'science_analogy_synthesize',
+    'science_analogy_caution',
+    'science_pattern_bridge',
+  ];
+  for (const task of expected) {
+    assert.ok(tasks.has(task), `scientific corpus missing task: ${task}`);
+  }
+});
+
+test('scientific analogy examples cover multiple disciplines', () => {
+  const examples = readJsonl(path.join(CORPUS_DIR, 'scientific-analogies.jsonl'));
+  const lookup = examples.filter((e) => e.task === 'science_analogy_lookup');
+  assert.ok(lookup.length >= 10, 'expected at least 10 lookup examples');
+  const disciplines = new Set();
+  for (const ex of lookup.slice(0, 50)) {
+    for (const d of ex.metadata.disciplines || []) disciplines.add(d);
+  }
+  assert.ok(disciplines.size >= 3, 'scientific corpus spans at least 3 disciplines');
+});
+
+test('scientific analogy examples emphasize analogy over equivalence', () => {
+  const examples = readJsonl(path.join(CORPUS_DIR, 'scientific-analogies.jsonl'));
+  const caution = examples.filter((e) => e.task === 'science_analogy_caution');
+  assert.ok(caution.length >= 5, 'expected at least 5 caution examples');
+  for (const ex of caution) {
+    assert.ok(
+      /not.*same|false equivalence|category error|analogy|not.*scientific evidence/i.test(
+        ex.output
+      ),
+      'caution output warns against false equivalence'
+    );
+  }
+});
+
+test('scientific pattern bridge examples connect ancient and modern patterns', () => {
+  const examples = readJsonl(path.join(CORPUS_DIR, 'scientific-analogies.jsonl'));
+  const bridges = examples.filter((e) => e.task === 'science_pattern_bridge');
+  assert.ok(bridges.length >= 5, 'expected at least 5 pattern bridge examples');
+  const sample = bridges[0];
+  assert.ok(sample.metadata.discipline, 'bridge has discipline metadata');
+  assert.ok(sample.metadata.concept, 'bridge has concept metadata');
 });
 
 async function runSuite() {

@@ -59,6 +59,7 @@ function main() {
     { name: 'mythology-synthesis.jsonl', desc: 'Comparative, esoteric, and modern-parallel mythology synthesis (Phase 10).' },
     { name: 'oracle-examples.jsonl', desc: 'Conversational Oracle training examples with system/user/assistant turns (Phase 11).' },
     { name: 'symbolic-correspondences.jsonl', desc: 'Symbolic and hermetic correspondences with confidence and provenance (Phase 12).' },
+    { name: 'scientific-analogies.jsonl', desc: 'Scientific and philosophical analogies bridging ancient myth and modern thought (Phase 13).' },
     { name: 'manifest.json', desc: 'Machine-readable corpus manifest.' },
   ];
 
@@ -97,6 +98,7 @@ ${rows.join('\n')}
 - **Phase 10 — Mythology Synthesis:** Comparative mythology, archetype mapping, esoteric synthesis, modern scientific/philosophical parallels, and biblical-to-ancient bridges. Teaches the model to recognize universal patterns across traditions and to converse with symbolic depth.
 - **Phase 11 — Oracle Conversations:** Multi-turn system/user/assistant examples that train the PÚNYCODEX Oracle persona for restoration, pronunciation, mythology, pattern-weaving, modern bridges, contemplative reflection, translation, safety refusal, domain advice, and scholarly citation.
 - **Phase 12 — Symbolic Correspondences:** Planetary, elemental, alchemical, tarot, chakra, sefirot, runic, wuxing, directional, metal, gemstone, color, and animal mappings for entries, with explicit confidence levels and cultural provenance.
+- **Phase 13 — Scientific & Philosophical Analogies:** Dense mappings of mythological figures to modern concepts in physics, biology, neuroscience, systems science, philosophy, and technology, emphasizing analogy over equivalence.
 
 ## Schema Notes
 

@@ -1,7 +1,7 @@
 # PÚNYCODEX AI Training Corpus — Data Card
 
 **Data version:** 2.0.34  
-**Generated:** 2026-07-11T09:14:06.504Z  
+**Generated:** 2026-07-11T09:31:21.410Z  
 **License:** CC BY 4.0 for dataset; ISC for software (see root LICENSE).
 
 ## Purpose
@@ -23,10 +23,11 @@ This corpus is the foundational training and evaluation data for a specialized A
 | preference-examples.jsonl | 3,528 | 1.93 MB | Chosen/rejected pairs for RLHF (Phase 6). |
 | reasoning-examples.jsonl | 3,395 | 1.90 MB | Chain-of-thought reasoning traces (Phase 7). |
 | benchmark.jsonl | 6,037 | 2.07 MB | Held-out evaluation benchmark with known answers (Phase 8). |
-| mythology-synthesis.jsonl | 388 | 256.8 KB | Comparative, esoteric, and modern-parallel mythology synthesis (Phase 10). |
+| mythology-synthesis.jsonl | 388 | 256.6 KB | Comparative, esoteric, and modern-parallel mythology synthesis (Phase 10). |
 | oracle-examples.jsonl | 1,780 | 2.03 MB | Conversational Oracle training examples with system/user/assistant turns (Phase 11). |
-| symbolic-correspondences.jsonl | 1,233 | 745.8 KB | Symbolic and hermetic correspondences with confidence and provenance (Phase 12). |
-| manifest.json | 142 | 4.4 KB | Machine-readable corpus manifest. |
+| symbolic-correspondences.jsonl | 1,233 | 748.3 KB | Symbolic and hermetic correspondences with confidence and provenance (Phase 12). |
+| scientific-analogies.jsonl | 1,438 | 985.8 KB | Scientific and philosophical analogies bridging ancient myth and modern thought (Phase 13). |
+| manifest.json | 151 | 4.7 KB | Machine-readable corpus manifest. |
 
 ## Phase Summary
 
@@ -42,6 +43,7 @@ This corpus is the foundational training and evaluation data for a specialized A
 - **Phase 10 — Mythology Synthesis:** Comparative mythology, archetype mapping, esoteric synthesis, modern scientific/philosophical parallels, and biblical-to-ancient bridges. Teaches the model to recognize universal patterns across traditions and to converse with symbolic depth.
 - **Phase 11 — Oracle Conversations:** Multi-turn system/user/assistant examples that train the PÚNYCODEX Oracle persona for restoration, pronunciation, mythology, pattern-weaving, modern bridges, contemplative reflection, translation, safety refusal, domain advice, and scholarly citation.
 - **Phase 12 — Symbolic Correspondences:** Planetary, elemental, alchemical, tarot, chakra, sefirot, runic, wuxing, directional, metal, gemstone, color, and animal mappings for entries, with explicit confidence levels and cultural provenance.
+- **Phase 13 — Scientific & Philosophical Analogies:** Dense mappings of mythological figures to modern concepts in physics, biology, neuroscience, systems science, philosophy, and technology, emphasizing analogy over equivalence.
 
 ## Schema Notes
 
