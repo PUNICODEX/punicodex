@@ -97,8 +97,10 @@ test('instructions.jsonl exists and is valid JSONL', () => {
   assert.ok(instructions.length > 0, 'instructions.jsonl should not be empty');
 });
 
-test('instructions-train.jsonl and eval.jsonl split from instructions.jsonl', () => {
-  const all = readJsonl(path.join(CORPUS_DIR, 'instructions.jsonl'));
+test('instructions-train.jsonl and eval.jsonl split from full corpus', () => {
+  const scholarly = readJsonl(path.join(CORPUS_DIR, 'instructions.jsonl'));
+  const safety = readJsonl(path.join(CORPUS_DIR, 'safety-examples.jsonl'));
+  const all = [...scholarly, ...safety];
   const train = readJsonl(path.join(CORPUS_DIR, 'instructions-train.jsonl'));
   const evalSet = readJsonl(path.join(CORPUS_DIR, 'eval.jsonl'));
 

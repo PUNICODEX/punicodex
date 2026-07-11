@@ -67,6 +67,17 @@ function loadDataVersion() {
   return JSON.parse(fs.readFileSync(p, 'utf8'));
 }
 
+function loadSafetyExamples() {
+  const p = path.join(ROOT, 'data', 'corpus', 'safety-examples.jsonl');
+  if (!fs.existsSync(p)) return [];
+  const text = fs.readFileSync(p, 'utf8');
+  return text
+    .trim()
+    .split('\n')
+    .filter(Boolean)
+    .map((line) => JSON.parse(line));
+}
+
 function hashFile(rel) {
   const full = path.join(ROOT, rel);
   const content = fs.readFileSync(full, 'utf8').replace(/\r\n/g, '\n');
@@ -308,6 +319,12 @@ function main() {
     loreCatalog: 'scripts/lore-catalog.json',
   };
 
+  const safetyExamples = loadSafetyExamples();
+  const safetyByTask = {};
+  for (const ex of safetyExamples) {
+    safetyByTask[ex.task] = (safetyByTask[ex.task] || 0) + 1;
+  }
+
   const manifest = {
     version: dataVersion.version,
     generatedAt: new Date().toISOString(),
@@ -319,6 +336,8 @@ function main() {
       withEtymology: records.filter((r) => r.etymology).length,
       flagships: records.filter((r) => r.flagship.isFlagship).length,
       owned: records.filter((r) => r.ownership.isOwned).length,
+      safetyExamples: safetyExamples.length,
+      safetyByTask,
     },
     canonicalSources: canonicalFiles,
     canonicalHashes: Object.fromEntries(

@@ -25,6 +25,7 @@ const crypto = require('node:crypto');
 
 const ROOT = path.join(__dirname, '..');
 const INSTRUCTIONS_PATH = path.join(ROOT, 'data', 'corpus', 'instructions.jsonl');
+const SAFETY_PATH = path.join(ROOT, 'data', 'corpus', 'safety-examples.jsonl');
 const TRAIN_PATH = path.join(ROOT, 'data', 'corpus', 'instructions-train.jsonl');
 const EVAL_PATH = path.join(ROOT, 'data', 'corpus', 'eval.jsonl');
 
@@ -33,9 +34,10 @@ function hashString(str) {
   return parseInt(hex.slice(0, 8), 16);
 }
 
-function loadExamples() {
+function loadJsonl(filePath) {
+  if (!fs.existsSync(filePath)) return [];
   return fs
-    .readFileSync(INSTRUCTIONS_PATH, 'utf8')
+    .readFileSync(filePath, 'utf8')
     .trim()
     .split('\n')
     .filter(Boolean)
@@ -43,7 +45,10 @@ function loadExamples() {
 }
 
 function main() {
-  const examples = loadExamples();
+  const scholarly = loadJsonl(INSTRUCTIONS_PATH);
+  const safety = loadJsonl(SAFETY_PATH);
+  const examples = [...scholarly, ...safety];
+
   const train = [];
   const evalSet = [];
 
@@ -59,9 +64,12 @@ function main() {
   fs.writeFileSync(TRAIN_PATH, train.map((ex) => JSON.stringify(ex)).join('\n') + '\n');
   fs.writeFileSync(EVAL_PATH, evalSet.map((ex) => JSON.stringify(ex)).join('\n') + '\n');
 
-  console.log(`✓ Split ${examples.length} examples:`);
-  console.log(`  train: ${train.length} → ${TRAIN_PATH}`);
-  console.log(`  eval:  ${evalSet.length} → ${EVAL_PATH}`);
+  const countScholarly = (set) => set.filter((ex) => !String(ex.task).startsWith('safety_')).length;
+  const countSafety = (set) => set.filter((ex) => String(ex.task).startsWith('safety_')).length;
+
+  console.log(`✓ Split ${examples.length} examples from ${scholarly.length} scholarly + ${safety.length} safety:`);
+  console.log(`  train: ${train.length} (scholarly ${countScholarly(train)}, safety ${countSafety(train)}) → ${TRAIN_PATH}`);
+  console.log(`  eval:  ${evalSet.length} (scholarly ${countScholarly(evalSet)}, safety ${countSafety(evalSet)}) → ${EVAL_PATH}`);
 }
 
 main();
