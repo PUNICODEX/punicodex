@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Íris — Gallery | Rainbow, Messenger | PUNYCODEX</title>
+    <meta name="description" content="A curated gallery of Íris, Rainbow, Messenger, through history.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf16">
+    <link rel="stylesheet" href="../styles.css?v=perf4">
+
+    <link rel="canonical" href="https://punycodex.com/sites/iris/gallery/">
+
+    <meta property="og:title" content="Íris — Gallery | Rainbow, Messenger | PUNYCODEX">
+    <meta property="og:description" content="A curated gallery of Íris, Rainbow, Messenger, through history.">
+    <meta property="og:url" content="https://punycodex.com/sites/iris/gallery/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PUNYCODEX">
+    <meta property="og:image" content="https://punycodex.com/sites/iris/assets/iris_mascot.webp">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punycodex.com/sites/iris/assets/iris_mascot.webp">
+    <meta name="twitter:title" content="Íris — Gallery | Rainbow, Messenger | PUNYCODEX">
+    <meta name="twitter:description" content="A curated gallery of Íris, Rainbow, Messenger, through history.">
+
+  <style>
+/* Gallery lightbox */
+.gallery-figure {
+    cursor: zoom-in;
+    margin: 0;
+}
+.gallery-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: rgba(5,5,8,0.92);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.gallery-lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+.gallery-lightbox-content {
+    position: relative;
+    max-width: min(1200px, 95vw);
+    max-height: min(900px, 90vh);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.gallery-lightbox-img {
+    max-width: 100%;
+    max-height: min(820px, 82vh);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+}
+.gallery-lightbox-caption {
+    font-size: 0.95rem;
+    color: #E0E0E0;
+    text-align: center;
+    max-width: 80ch;
+    line-height: 1.6;
+    padding: 0 1rem;
+}
+.gallery-lightbox-close {
+    position: absolute;
+    top: -3rem;
+    right: 0;
+    background: none;
+    border: none;
+    color: #D4AF37;
+    font-size: 2.5rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+.gallery-lightbox-close:hover,
+.gallery-lightbox-close:focus {
+    color: #F5F5F5;
+    transform: scale(1.1);
+}
+@media (max-width: 640px) {
+    .gallery-lightbox {
+        padding: 1rem;
+    }
+    .gallery-lightbox-close {
+        top: -2.5rem;
+        font-size: 2rem;
+    }
+}
+  </style>
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punycodex.com/" class="global-brand">P<span>U</span>NYCODEX</a>
+            <div class="global-links">
+                <a href="https://punycodex.com/pantheon/">Pantheon</a>
+                <a href="https://punycodex.com/lexicon/">Lexicon</a>
+                <a href="https://punycodex.com/type/">Type</a>
+                <a href="https://punycodex.com/search.html">Search</a>
+                <a href="https://punycodex.com/tiers/">Tiers</a>
+                <a href="https://punycodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="iris-canvas" data-effect="light" data-primary="#D4AF37" data-secondary="#4169E1" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/iris_logolockup.webp" type="image/webp"><img src="../assets/iris_logolockup.png" alt="Íris" class="nav-logo-img"></picture>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="./index.html" class="nav-link active">Gallery</a>
+                <a href="../lore/extended/" class="nav-link">Extended</a>
+                <a href="../scholars/index.html" class="nav-link">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow reveal-up">Visual Legacy</p>
+                <h1 class="hero-title reveal-up">
+                    <span class="title-greek">Ἶρις</span>
+                    <span class="title-divider"></span>
+                    <span class="title-trans">Gallery</span>
+                </h1>
+                <p class="hero-subtitle reveal-up">Rainbow, Messenger</p>
+                <div class="hero-cta reveal-up">
+                    <a href="#gallery-grid" class="btn-primary">
+                        <span>Explore the Collection</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <picture><source srcset="../assets/iris_mascot.webp" type="image/webp"><img src="../assets/iris_mascot.png" alt="Íris — Rainbow, Messenger" class="mascot-img"></picture>
+                <div class="mascot-glow"></div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="section section-name" id="gallery-grid">
+        <div class="section-bg-glow"></div>
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">01</span>
+                <h2 class="section-title">The Collection</h2>
+                <p class="section-subtitle">Íris through the eyes of sculptors, painters, and craftsmen across the ages</p>
+            </div>
+
+            <div class="gallery-grid">
+                
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Iris_Louvre_L43_n2.jpg/960px-Iris_Louvre_L43_n2.jpg" data-caption="<strong>Iris Louvre L43 n2</strong> — Iris, Attic lekythos in Six's technique (superposed colours). From Tanagra. <em>(Diosphos Painter, CC BY 3.0)</em>">
+                        <img class="gallery-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Iris_Louvre_L43_n2.jpg/960px-Iris_Louvre_L43_n2.jpg" alt="Iris Louvre L43 n2" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="gallery-caption"><strong>Iris Louvre L43 n2</strong> — Iris, Attic lekythos in Six's technique (superposed colours). From Tanagra. <em>(Diosphos Painter, CC BY 3.0)</em></p>
+                </div>
+
+                <div class="gallery-item reveal-up" data-delay="100">
+                    <figure class="gallery-figure" data-full-src="https://upload.wikimedia.org/wikipedia/commons/7/71/HistoireDesM%C3%A9t%C3%A9ores_-_p301.jpg" data-caption="<strong>HistoireDesMétéores - p301</strong> — Iris (tiré d'un vase antique). Illustration de &quot;Histoires des météores&quot;, p. 301 <em>(Jean-Édouard Dargent, Public domain)</em>">
+                        <img class="gallery-img" src="https://upload.wikimedia.org/wikipedia/commons/7/71/HistoireDesM%C3%A9t%C3%A9ores_-_p301.jpg" alt="HistoireDesMétéores - p301" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="gallery-caption"><strong>HistoireDesMétéores - p301</strong> — Iris (tiré d'un vase antique). Illustration de "Histoires des météores", p. 301 <em>(Jean-Édouard Dargent, Public domain)</em></p>
+                </div>
+
+                <div class="gallery-item reveal-up" data-delay="200">
+                    <figure class="gallery-figure" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Iris_ensata_Thunb.jpg/960px-Iris_ensata_Thunb.jpg" data-caption="<strong>Iris ensata Thunb</strong> — Japanese iris (Edo-nishiki) <em>(Laitche, CC BY-SA 3.0)</em>">
+                        <img class="gallery-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Iris_ensata_Thunb.jpg/960px-Iris_ensata_Thunb.jpg" alt="Iris ensata Thunb" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="gallery-caption"><strong>Iris ensata Thunb</strong> — Japanese iris (Edo-nishiki) <em>(Laitche, CC BY-SA 3.0)</em></p>
+                </div>
+
+                <div class="gallery-item reveal-up" data-delay="300">
+                    <figure class="gallery-figure" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Verschiedenfarbige_Schwertlilie_%28Iris_versicolor%29-20200603-RM-100257.jpg/960px-Verschiedenfarbige_Schwertlilie_%28Iris_versicolor%29-20200603-RM-100257.jpg" data-caption="<strong>Verschiedenfarbige Schwertlilie (Iris versicolor)-20200603-RM-100257</strong> — Purple Iris (Iris versicolor) in a garden in Bamberg. Focus stack of 17 images. <em>(Ermell, CC BY-SA 4.0)</em>">
+                        <img class="gallery-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Verschiedenfarbige_Schwertlilie_%28Iris_versicolor%29-20200603-RM-100257.jpg/960px-Verschiedenfarbige_Schwertlilie_%28Iris_versicolor%29-20200603-RM-100257.jpg" alt="Verschiedenfarbige Schwertlilie (Iris versicolor)-20200603-RM-100257" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="gallery-caption"><strong>Verschiedenfarbige Schwertlilie (Iris versicolor)-20200603-RM-100257</strong> — Purple Iris (Iris versicolor) in a garden in Bamberg. Focus stack of 17 images. <em>(Ermell, CC BY-SA 4.0)</em></p>
+                </div>
+
+                <div class="gallery-item reveal-up" data-delay="0">
+                    <figure class="gallery-figure" data-full-src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Iris_-_the_Greek_goddess_of_the_rainbow_and_messenger_of_the_gods.jpg" data-caption="<strong>Iris - the Greek goddess of the rainbow and messenger of the gods</strong> — Iris - the Greek goddess of the rainbow and messenger of the gods. Wood engraving, published in 1878. <em>(Illustrated by Engravings on Wood., Public domain)</em>">
+                        <img class="gallery-img" src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Iris_-_the_Greek_goddess_of_the_rainbow_and_messenger_of_the_gods.jpg" alt="Iris - the Greek goddess of the rainbow and messenger of the gods" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="gallery-caption"><strong>Iris - the Greek goddess of the rainbow and messenger of the gods</strong> — Iris - the Greek goddess of the rainbow and messenger of the gods. Wood engraving, published in 1878. <em>(Illustrated by Engravings on Wood., Public domain)</em></p>
+                </div>
+
+                <div class="gallery-item reveal-up" data-delay="100">
+                    <figure class="gallery-figure" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/The_iris_1904_illustration_%28cropped%29.jpg/960px-The_iris_1904_illustration_%28cropped%29.jpg" data-caption="<strong>The iris 1904 illustration (cropped)</strong> — Plate from Iris , yearbook of Ward Seminary, Nashville, Tennessee, USA <em>(Unknown author Unknown author, Public domain)</em>">
+                        <img class="gallery-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/The_iris_1904_illustration_%28cropped%29.jpg/960px-The_iris_1904_illustration_%28cropped%29.jpg" alt="The iris 1904 illustration (cropped)" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="gallery-caption"><strong>The iris 1904 illustration (cropped)</strong> — Plate from Iris , yearbook of Ward Seminary, Nashville, Tennessee, USA <em>(Unknown author Unknown author, Public domain)</em></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="https://punycodex.com/" class="footer-logo">PUNYCODEX</a>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Owned Domains</span>
+                        <span class="footer-value">íris.com</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier 2</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Original Script</span>
+                        <span class="footer-value">Ἶρις</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <picture><source srcset="../assets/iris_logomark.webp" type="image/webp"><img src="../assets/iris_logomark.png" alt="Íris logomark" class="footer-logomark"></picture>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    
+
+<script>window.PUNYCODEX_API_BASE = "";</script>
+    <script src="/js/px-core.js?v=perf8"></script>
+    <script src="/js/temple-base.js?v=perf5"></script>
+    <script src="../script.js?v=perf4"></script>
+
+<div class="gallery-lightbox" id="gallery-lightbox" aria-modal="true" role="dialog" aria-label="Image preview">
+  <div class="gallery-lightbox-content">
+    <button class="gallery-lightbox-close" id="gallery-lightbox-close" aria-label="Close" type="button">&times;</button>
+    <img class="gallery-lightbox-img" id="gallery-lightbox-img" src="" alt="">
+    <p class="gallery-lightbox-caption" id="gallery-lightbox-caption"></p>
+  </div>
+</div>
+<script>
+(function(){
+  const lb = document.getElementById('gallery-lightbox');
+  const img = document.getElementById('gallery-lightbox-img');
+  const cap = document.getElementById('gallery-lightbox-caption');
+  const close = document.getElementById('gallery-lightbox-close');
+  if (!lb || !img || !close) return;
+  function open(src, caption) {
+    img.src = src;
+    img.alt = caption || '';
+    cap.textContent = caption || '';
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    close.focus();
+  }
+  function closeLb() {
+    lb.classList.remove('active');
+    img.src = '';
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('.gallery-figure[data-full-src]').forEach(item => {
+    item.addEventListener('click', () => open(item.dataset.fullSrc, item.dataset.caption));
+    item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(item.dataset.fullSrc, item.dataset.caption); } });
+  });
+  close.addEventListener('click', closeLb);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && lb.classList.contains('active')) closeLb(); });
+})();
+</script>
+</body>
+</html>

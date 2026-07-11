@@ -2855,7 +2855,10 @@ function createFlagship(templeId, options = {}) {
       }
     }
 
-    fs.writeFileSync(outPath, content, 'utf8');
+    // Atomic write to avoid transient Windows file-lock failures.
+    const tmpPath = `${outPath}.tmp.${process.pid}`;
+    fs.writeFileSync(tmpPath, content, 'utf8');
+    fs.renameSync(tmpPath, outPath);
   }
 
   copyCreativesTemplate(siteDir, TEMPLATE_DIR);

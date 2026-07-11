@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tāne — Gallery | Forests, Birds, First Man | PUNYCODEX</title>
+    <meta name="description" content="A curated gallery of Tāne, Forests, Birds, First Man, through history.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf16">
+    <link rel="stylesheet" href="../styles.css?v=perf4">
+
+    <link rel="canonical" href="https://punycodex.com/sites/tane/gallery/">
+
+    <meta property="og:title" content="Tāne — Gallery | Forests, Birds, First Man | PUNYCODEX">
+    <meta property="og:description" content="A curated gallery of Tāne, Forests, Birds, First Man, through history.">
+    <meta property="og:url" content="https://punycodex.com/sites/tane/gallery/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PUNYCODEX">
+    <meta property="og:image" content="https://punycodex.com/sites/tane/assets/tane_mascot.webp">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punycodex.com/sites/tane/assets/tane_mascot.webp">
+    <meta name="twitter:title" content="Tāne — Gallery | Forests, Birds, First Man | PUNYCODEX">
+    <meta name="twitter:description" content="A curated gallery of Tāne, Forests, Birds, First Man, through history.">
+
+  <style>
+/* Gallery lightbox */
+.gallery-figure {
+    cursor: zoom-in;
+    margin: 0;
+}
+.gallery-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: rgba(5,5,8,0.92);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.gallery-lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+.gallery-lightbox-content {
+    position: relative;
+    max-width: min(1200px, 95vw);
+    max-height: min(900px, 90vh);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.gallery-lightbox-img {
+    max-width: 100%;
+    max-height: min(820px, 82vh);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+}
+.gallery-lightbox-caption {
+    font-size: 0.95rem;
+    color: #E0E0E0;
+    text-align: center;
+    max-width: 80ch;
+    line-height: 1.6;
+    padding: 0 1rem;
+}
+.gallery-lightbox-close {
+    position: absolute;
+    top: -3rem;
+    right: 0;
+    background: none;
+    border: none;
+    color: #D4AF37;
+    font-size: 2.5rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+.gallery-lightbox-close:hover,
+.gallery-lightbox-close:focus {
+    color: #F5F5F5;
+    transform: scale(1.1);
+}
+@media (max-width: 640px) {
+    .gallery-lightbox {
+        padding: 1rem;
+    }
+    .gallery-lightbox-close {
+        top: -2.5rem;
+        font-size: 2rem;
+    }
+}
+  </style>
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punycodex.com/" class="global-brand">P<span>U</span>NYCODEX</a>
+            <div class="global-links">
+                <a href="https://punycodex.com/pantheon/">Pantheon</a>
+                <a href="https://punycodex.com/lexicon/">Lexicon</a>
+                <a href="https://punycodex.com/type/">Type</a>
+                <a href="https://punycodex.com/search.html">Search</a>
+                <a href="https://punycodex.com/tiers/">Tiers</a>
+                <a href="https://punycodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="tane-canvas" data-effect="tree" data-primary="#1E90FF" data-secondary="#FF7F50" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/tane_logolockup.webp" type="image/webp"><img src="../assets/tane_logolockup.png" alt="Tāne" class="nav-logo-img"></picture>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="./index.html" class="nav-link active">Gallery</a>
+                <a href="../lore/extended/" class="nav-link">Extended</a>
+                <a href="../scholars/index.html" class="nav-link">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow reveal-up">Visual Legacy</p>
+                <h1 class="hero-title reveal-up">
+                    
+                    <span class="title-trans">Gallery</span>
+                </h1>
+                <p class="hero-subtitle reveal-up">Forests, Birds, First Man</p>
+                <div class="hero-cta reveal-up">
+                    <a href="#gallery-grid" class="btn-primary">
+                        <span>Explore the Collection</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <picture><source srcset="../assets/tane_mascot.webp" type="image/webp"><img src="../assets/tane_mascot.png" alt="Tāne — Forests, Birds, First Man" class="mascot-img"></picture>
+                <div class="mascot-glow"></div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="section section-name" id="gallery-grid">
+        <div class="section-bg-glow"></div>
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">01</span>
+                <h2 class="section-title">The Collection</h2>
+                <p class="section-subtitle">Tāne through the eyes of sculptors, painters, and craftsmen across the ages</p>
+            </div>
+
+            <div class="gallery-grid">
+                
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Tane_mahuta.JPG/960px-Tane_mahuta.JPG" data-caption="<strong>Tane mahuta</strong> — Tane Mahuta in the Waipoua Kauri Forest. It is the named after Tāne Mahuta, the Māori god of the forest. The tree is 50 metres high and about 2000 years old. <em>(No machine-readable author provided. Webgoddess~commonswiki assumed (based on copyright claims)., Public domain)</em>">
+                        <img class="gallery-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Tane_mahuta.JPG/960px-Tane_mahuta.JPG" alt="Tane mahuta" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="gallery-caption"><strong>Tane mahuta</strong> — Tane Mahuta in the Waipoua Kauri Forest. It is the named after Tāne Mahuta, the Māori god of the forest. The tree is 50 metres high and about 2000 years old. <em>(No machine-readable author provided. Webgoddess~commonswiki assumed (based on copyright claims)., Public domain)</em></p>
+                </div>
+
+                <div class="gallery-item reveal-up" data-delay="100">
+                    <figure class="gallery-figure" data-full-src="https://upload.wikimedia.org/wikipedia/commons/8/82/Waitakere_Forest_n.jpg" data-caption="<strong>Waitakere Forest n</strong> <em>(CC BY 2.5)</em>">
+                        <img class="gallery-img" src="https://upload.wikimedia.org/wikipedia/commons/8/82/Waitakere_Forest_n.jpg" alt="Waitakere Forest n" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="gallery-caption"><strong>Waitakere Forest n</strong> <em>(CC BY 2.5)</em></p>
+                </div>
+
+                <div class="gallery-item reveal-up" data-delay="200">
+                    <figure class="gallery-figure" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Tane_Mahuta.jpg/960px-Tane_Mahuta.jpg" data-caption="<strong>Tane Mahuta</strong> — Tane Mahuta, &quot;God of the Forest&quot;, largest living Kauri tree in New Zealand. Waipoua Forest, Northland, New Zealand. <em>(User:gadfium, Public domain)</em>">
+                        <img class="gallery-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Tane_Mahuta.jpg/960px-Tane_Mahuta.jpg" alt="Tane Mahuta" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="gallery-caption"><strong>Tane Mahuta</strong> — Tane Mahuta, "God of the Forest", largest living Kauri tree in New Zealand. Waipoua Forest, Northland, New Zealand. <em>(User:gadfium, Public domain)</em></p>
+                </div>
+
+                <div class="gallery-item reveal-up" data-delay="300">
+                    <figure class="gallery-figure" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Agathis_australis_Tane_Mahuta1.jpg/960px-Agathis_australis_Tane_Mahuta1.jpg" data-caption="<strong>Agathis australis Tane Mahuta1</strong> — Agathis australis &quot;Tāne Mahuta&quot; in Waipoua Forest. <em>(ja:User:NEON / User:NEON_ja, CC BY-SA 3.0)</em>">
+                        <img class="gallery-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Agathis_australis_Tane_Mahuta1.jpg/960px-Agathis_australis_Tane_Mahuta1.jpg" alt="Agathis australis Tane Mahuta1" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="gallery-caption"><strong>Agathis australis Tane Mahuta1</strong> — Agathis australis "Tāne Mahuta" in Waipoua Forest. <em>(ja:User:NEON / User:NEON_ja, CC BY-SA 3.0)</em></p>
+                </div>
+
+                <div class="gallery-item reveal-up" data-delay="0">
+                    <figure class="gallery-figure" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Agathis_australis_Tane_Mahuta2.jpg/960px-Agathis_australis_Tane_Mahuta2.jpg" data-caption="<strong>Agathis australis Tane Mahuta2</strong> — Agathis australis &quot;Tāne Mahuta&quot; in Waipoua Forest. <em>(ja:User:NEON / User:NEON_ja, CC BY-SA 3.0)</em>">
+                        <img class="gallery-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Agathis_australis_Tane_Mahuta2.jpg/960px-Agathis_australis_Tane_Mahuta2.jpg" alt="Agathis australis Tane Mahuta2" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="gallery-caption"><strong>Agathis australis Tane Mahuta2</strong> — Agathis australis "Tāne Mahuta" in Waipoua Forest. <em>(ja:User:NEON / User:NEON_ja, CC BY-SA 3.0)</em></p>
+                </div>
+
+                <div class="gallery-item reveal-up" data-delay="100">
+                    <figure class="gallery-figure" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Tane_Mahuta_-_201106_%281%29.jpg/960px-Tane_Mahuta_-_201106_%281%29.jpg" data-caption="<strong>Tane Mahuta - 201106 (1)</strong> — Tane Mahuta <em>(Sylvain Machefert / Symac, CC BY-SA 3.0)</em>">
+                        <img class="gallery-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Tane_Mahuta_-_201106_%281%29.jpg/960px-Tane_Mahuta_-_201106_%281%29.jpg" alt="Tane Mahuta - 201106 (1)" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="gallery-caption"><strong>Tane Mahuta - 201106 (1)</strong> — Tane Mahuta <em>(Sylvain Machefert / Symac, CC BY-SA 3.0)</em></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="https://punycodex.com/" class="footer-logo">PUNYCODEX</a>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Owned Domains</span>
+                        <span class="footer-value">tāne.com</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier 1</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Scholarly Transliteration</span>
+                        <span class="footer-value">Tāne</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <picture><source srcset="../assets/tane_logomark.webp" type="image/webp"><img src="../assets/tane_logomark.png" alt="Tāne logomark" class="footer-logomark"></picture>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    
+
+<script>window.PUNYCODEX_API_BASE = "";</script>
+    <script src="/js/px-core.js?v=perf8"></script>
+    <script src="/js/temple-base.js?v=perf5"></script>
+    <script src="../script.js?v=perf4"></script>
+
+<div class="gallery-lightbox" id="gallery-lightbox" aria-modal="true" role="dialog" aria-label="Image preview">
+  <div class="gallery-lightbox-content">
+    <button class="gallery-lightbox-close" id="gallery-lightbox-close" aria-label="Close" type="button">&times;</button>
+    <img class="gallery-lightbox-img" id="gallery-lightbox-img" src="" alt="">
+    <p class="gallery-lightbox-caption" id="gallery-lightbox-caption"></p>
+  </div>
+</div>
+<script>
+(function(){
+  const lb = document.getElementById('gallery-lightbox');
+  const img = document.getElementById('gallery-lightbox-img');
+  const cap = document.getElementById('gallery-lightbox-caption');
+  const close = document.getElementById('gallery-lightbox-close');
+  if (!lb || !img || !close) return;
+  function open(src, caption) {
+    img.src = src;
+    img.alt = caption || '';
+    cap.textContent = caption || '';
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    close.focus();
+  }
+  function closeLb() {
+    lb.classList.remove('active');
+    img.src = '';
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('.gallery-figure[data-full-src]').forEach(item => {
+    item.addEventListener('click', () => open(item.dataset.fullSrc, item.dataset.caption));
+    item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(item.dataset.fullSrc, item.dataset.caption); } });
+  });
+  close.addEventListener('click', closeLb);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && lb.classList.contains('active')) closeLb(); });
+})();
+</script>
+</body>
+</html>

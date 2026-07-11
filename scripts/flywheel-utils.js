@@ -47,11 +47,17 @@ function loadOwnedDomains() {
 }
 
 function saveOwnedDomains(domains) {
-  fs.writeFileSync(PATHS.ownedDomains, JSON.stringify(domains, null, 2) + '\n', 'utf8');
+  atomicWrite(PATHS.ownedDomains, JSON.stringify(domains, null, 2) + '\n');
+}
+
+function atomicWrite(filePath, data) {
+  const tmp = `${filePath}.tmp.${process.pid}`;
+  fs.writeFileSync(tmp, data, 'utf8');
+  fs.renameSync(tmp, filePath);
 }
 
 function saveArchetypes(src) {
-  fs.writeFileSync(PATHS.archetypes, src, 'utf8');
+  atomicWrite(PATHS.archetypes, src);
 }
 
 function findArchetypeBlock(src, id) {
@@ -171,7 +177,7 @@ function loadLexiconSource() {
 }
 
 function saveLexicon(src) {
-  fs.writeFileSync(PATHS.lexicon, src, 'utf8');
+  atomicWrite(PATHS.lexicon, src);
 }
 
 function setLexiconField(src, id, field, value) {
@@ -229,31 +235,31 @@ function formatArchetype(a) {
   const colors = a.colors || defaultColors(a.pantheon);
   const lines = [
     '    {',
-    `        id: "${a.id}",`,
-    `        name: "${a.name}",`,
-    `        greek: "${a.greek ?? '—'}",`,
-    `        domain: "${a.domain}",`,
-    `        tagline: "${a.tagline}",`,
-    `        tier: "${a.tier}",`,
-    `        tierDetail: "${a.tierDetail}",`,
-    `        pantheon: "${a.pantheon}",`,
-    `        folder: "${a.folder}",`,
+    `        id: ${JSON.stringify(a.id)},`,
+    `        name: ${JSON.stringify(a.name)},`,
+    `        greek: ${JSON.stringify(a.greek ?? '—')},`,
+    `        domain: ${JSON.stringify(a.domain)},`,
+    `        tagline: ${JSON.stringify(a.tagline)},`,
+    `        tier: ${JSON.stringify(a.tier)},`,
+    `        tierDetail: ${JSON.stringify(a.tierDetail)},`,
+    `        pantheon: ${JSON.stringify(a.pantheon)},`,
+    `        folder: ${JSON.stringify(a.folder)},`,
   ];
   if (a.domainUnicode) {
-    lines.push(`        domainUnicode: "${a.domainUnicode}",`);
+    lines.push(`        domainUnicode: ${JSON.stringify(a.domainUnicode)},`);
   }
   if (a.domainPunycode) {
-    lines.push(`        domainPunycode: "${a.domainPunycode}",`);
+    lines.push(`        domainPunycode: ${JSON.stringify(a.domainPunycode)},`);
   }
   if (a.domainAlt && a.domainAlt.length) {
-    const alt = a.domainAlt.map(d => `"${d}"`).join(', ');
+    const alt = a.domainAlt.map(d => JSON.stringify(d)).join(', ');
     lines.push(`        domainAlt: [${alt}],`);
   }
   lines.push(
-    `        colors: { primary: "${colors.primary}", secondary: "${colors.secondary}", glow: "${colors.glow}" },`,
-    `        mascotPath: "${a.mascotPath}",`,
-    `        mascotFallback: "${a.mascotFallback}",`,
-    `        logomarkPath: "${a.logomarkPath}",`,
+    `        colors: { primary: ${JSON.stringify(colors.primary)}, secondary: ${JSON.stringify(colors.secondary)}, glow: ${JSON.stringify(colors.glow)} },`,
+    `        mascotPath: ${JSON.stringify(a.mascotPath)},`,
+    `        mascotFallback: ${JSON.stringify(a.mascotFallback)},`,
+    `        logomarkPath: ${JSON.stringify(a.logomarkPath)},`,
     `        built: ${a.built},`,
     `        hasAdSite: ${a.hasAdSite},`,
     `        darkPunchline: ${a.darkPunchline}`

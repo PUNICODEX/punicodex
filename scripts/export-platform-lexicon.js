@@ -75,5 +75,7 @@ const output = {
 };
 
 const outPath = path.join(__dirname, '..', 'platform', 'browser', 'renderer', 'lexicon.json');
-fs.writeFileSync(outPath, JSON.stringify(output, null, 2), 'utf8');
+const tmpPath = `${outPath}.tmp.${process.pid}`;
+fs.writeFileSync(tmpPath, JSON.stringify(output, null, 2), 'utf8');
+fs.renameSync(tmpPath, outPath);
 console.log(`✓ Exported ${entries.length} entries, ${breakdowns.length} breakdowns to lexicon.json`);

@@ -4388,6 +4388,7 @@ const LEXICON = [
   },
   {
     "id": "jormungandr",
+    hasAdSite: true,
     "ascii": "jormungandr",
     "unicode": "Jǫrmungandr",
     "greek": "—",
@@ -5689,6 +5690,7 @@ const LEXICON = [
   },
   {
     "id": "thoth",
+    hasAdSite: true,
     "ascii": "thoth",
     "unicode": "Ḏḥwty",
     "greek": "—",
@@ -5746,6 +5748,7 @@ const LEXICON = [
   },
   {
     "id": "amun",
+    hasAdSite: true,
     "ascii": "amun",
     "unicode": "Ꜣmun",
     "greek": "—",
@@ -42282,6 +42285,7 @@ const LEXICON = [
   },
   {
     "id": "amitabha",
+    hasAdSite: true,
     "ascii": "amitabha",
     "unicode": "Amitābha",
     "greek": "—",

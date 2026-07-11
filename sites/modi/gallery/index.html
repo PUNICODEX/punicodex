@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Móði — Gallery | Wrath, Son of Thor | PUNYCODEX</title>
+    <meta name="description" content="A curated gallery of Móði, Wrath, Son of Thor, through history.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf16">
+    <link rel="stylesheet" href="../styles.css?v=perf4">
+
+    <link rel="canonical" href="https://punycodex.com/sites/modi/gallery/">
+
+    <meta property="og:title" content="Móði — Gallery | Wrath, Son of Thor | PUNYCODEX">
+    <meta property="og:description" content="A curated gallery of Móði, Wrath, Son of Thor, through history.">
+    <meta property="og:url" content="https://punycodex.com/sites/modi/gallery/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PUNYCODEX">
+    <meta property="og:image" content="https://punycodex.com/sites/modi/assets/modi_mascot.webp">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punycodex.com/sites/modi/assets/modi_mascot.webp">
+    <meta name="twitter:title" content="Móði — Gallery | Wrath, Son of Thor | PUNYCODEX">
+    <meta name="twitter:description" content="A curated gallery of Móði, Wrath, Son of Thor, through history.">
+
+  <style>
+/* Gallery lightbox */
+.gallery-figure {
+    cursor: zoom-in;
+    margin: 0;
+}
+.gallery-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: rgba(5,5,8,0.92);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.gallery-lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+.gallery-lightbox-content {
+    position: relative;
+    max-width: min(1200px, 95vw);
+    max-height: min(900px, 90vh);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.gallery-lightbox-img {
+    max-width: 100%;
+    max-height: min(820px, 82vh);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+}
+.gallery-lightbox-caption {
+    font-size: 0.95rem;
+    color: #E0E0E0;
+    text-align: center;
+    max-width: 80ch;
+    line-height: 1.6;
+    padding: 0 1rem;
+}
+.gallery-lightbox-close {
+    position: absolute;
+    top: -3rem;
+    right: 0;
+    background: none;
+    border: none;
+    color: #D4AF37;
+    font-size: 2.5rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+.gallery-lightbox-close:hover,
+.gallery-lightbox-close:focus {
+    color: #F5F5F5;
+    transform: scale(1.1);
+}
+@media (max-width: 640px) {
+    .gallery-lightbox {
+        padding: 1rem;
+    }
+    .gallery-lightbox-close {
+        top: -2.5rem;
+        font-size: 2rem;
+    }
+}
+  </style>
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punycodex.com/" class="global-brand">P<span>U</span>NYCODEX</a>
+            <div class="global-links">
+                <a href="https://punycodex.com/pantheon/">Pantheon</a>
+                <a href="https://punycodex.com/lexicon/">Lexicon</a>
+                <a href="https://punycodex.com/type/">Type</a>
+                <a href="https://punycodex.com/search.html">Search</a>
+                <a href="https://punycodex.com/tiers/">Tiers</a>
+                <a href="https://punycodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="modi-canvas" data-effect="stars" data-primary="#C0C0C0" data-secondary="#5C9BD1" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/modi_logolockup.webp" type="image/webp"><img src="../assets/modi_logolockup.png" alt="Móði" class="nav-logo-img"></picture>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="./index.html" class="nav-link active">Gallery</a>
+                <a href="../lore/extended/" class="nav-link">Extended</a>
+                <a href="../scholars/index.html" class="nav-link">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow reveal-up">Visual Legacy</p>
+                <h1 class="hero-title reveal-up">
+                    <span class="title-greek">ᛘᚢᚦᛁ</span>
+                    <span class="title-divider"></span>
+                    <span class="title-trans">Gallery</span>
+                </h1>
+                <p class="hero-subtitle reveal-up">Wrath, Son of Thor</p>
+                <div class="hero-cta reveal-up">
+                    <a href="#gallery-grid" class="btn-primary">
+                        <span>Explore the Collection</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <picture><source srcset="../assets/modi_mascot.webp" type="image/webp"><img src="../assets/modi_mascot.png" alt="Móði — Wrath, Son of Thor" class="mascot-img"></picture>
+                <div class="mascot-glow"></div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="section section-name" id="gallery-grid">
+        <div class="section-bg-glow"></div>
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">01</span>
+                <h2 class="section-title">The Collection</h2>
+                <p class="section-subtitle">Móði through the eyes of sculptors, painters, and craftsmen across the ages</p>
+            </div>
+
+            <div class="gallery-grid">
+                
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Scandinavia.TMO2003050.jpg/960px-Scandinavia.TMO2003050.jpg" data-caption="<strong>Scandinavia.TMO2003050</strong> — Scandinavia from space in winter. The Moderate Resolution Imaging Spectroradiometer (MODIS) instrument aboard NASA’s Terra satellite captured the above image of the Scandinavian Peninsula on February 19, 2003. With a landscape largely shaped by glaciers over the last ice age, the Scandinavian Peninsula is as picturesque in the winter as it is cold. Along the left side of the peninsula, one can see the jagged inlets, known as fjords, lining Norway’s coast. Many of these fjords are well over 2,000 feet (610 meters) deep and were carved out by extremely heavy, thick glaciers that formed during the last ice age. The glaciers ran off the mountains and scoured troughs into Norway’s coastline with depths that reached well below sea level. When the glaciers melted, the seawater rushed into these deep troughs to form the fjords. The deepest fjord on Norway’s coast, known as Sogn Fjord, lies in southwest Norway and is 4,291 feet (1,308 m) deep. Glaciers also carved the mountains in Norway and northernmost Sweden. South of this mountainous region, however, Sweden consists mostly of flat, heavily forested land dotted with lakes. Lake Vänern and Lake Vättern, the largest of Sweden’s lakes, do not freeze completely during the winter months and can be seen clearly at the bottom of the peninsula. Lake Vättern, the smaller of the two lakes, was connected to the Baltic Sea during the last ice age. After the ice melted, a tremendous weight was lifted off of the peninsula, and the landmass rose up to separate the lake from the Baltic Sea. To the northeast of the peninsula lies Finland with more than 55,000 lakes, most of which were also created by glacial deposits. <em>(Jacques Descloitres, MODIS Land Rapid Response Team at NASA GSFC, Public domain)</em>">
+                        <img class="gallery-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Scandinavia.TMO2003050.jpg/960px-Scandinavia.TMO2003050.jpg" alt="Scandinavia.TMO2003050" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="gallery-caption"><strong>Scandinavia.TMO2003050</strong> — Scandinavia from space in winter. The Moderate Resolution Imaging Spectroradiometer (MODIS) instrument aboard NASA’s Terra satellite captured the above image of the Scandinavian Peninsula on February 19, 2003. With a landscape largely shaped by glaciers over the last ice age, the Scandinavian Peninsula is as picturesque in the winter as it is cold. Along the left side of the peninsula, one can see the jagged inlets, known as fjords, lining Norway’s coast. Many of these fjords are well over 2,000 feet (610 meters) deep and were carved out by extremely heavy, thick glaciers that formed during the last ice age. The glaciers ran off the mountains and scoured troughs into Norway’s coastline with depths that reached well below sea level. When the glaciers melted, the seawater rushed into these deep troughs to form the fjords. The deepest fjord on Norway’s coast, known as Sogn Fjord, lies in southwest Norway and is 4,291 feet (1,308 m) deep. Glaciers also carved the mountains in Norway and northernmost Sweden. South of this mountainous region, however, Sweden consists mostly of flat, heavily forested land dotted with lakes. Lake Vänern and Lake Vättern, the largest of Sweden’s lakes, do not freeze completely during the winter months and can be seen clearly at the bottom of the peninsula. Lake Vättern, the smaller of the two lakes, was connected to the Baltic Sea during the last ice age. After the ice melted, a tremendous weight was lifted off of the peninsula, and the landmass rose up to separate the lake from the Baltic Sea. To the northeast of the peninsula lies Finland with more than 55,000 lakes, most of which were also created by glacial deposits. <em>(Jacques Descloitres, MODIS Land Rapid Response Team at NASA GSFC, Public domain)</em></p>
+                </div>
+
+                <div class="gallery-item reveal-up" data-delay="100">
+                    <figure class="gallery-figure" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Satellite_image_of_Madagascar_in_September_2003.jpg/960px-Satellite_image_of_Madagascar_in_September_2003.jpg" data-caption="<strong>Satellite image of Madagascar in September 2003</strong> — Satellite image of Madagascar in September 2003. Slightly cropped, original taken from NASA's Visible Earth: [1] . Original description: The world's fourth largest island, Madagascar, is featured in this Moderate Resolution Imaging Spectroradiometer (MODIS) image taken by the Terra satellite on September 10, 2003. Several active fires, marked with red dots, burn in the central highlands, which are primarily covered with rice fields. The fires are probably controlled burns to clear farmland. The narrow strip of green along the east coast of the island is a rain forest. The west coast is lined with baobabs, a desert tree with a fat trunk, and thorny forest. <em>(Unknown author Unknown author, Public domain)</em>">
+                        <img class="gallery-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Satellite_image_of_Madagascar_in_September_2003.jpg/960px-Satellite_image_of_Madagascar_in_September_2003.jpg" alt="Satellite image of Madagascar in September 2003" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="gallery-caption"><strong>Satellite image of Madagascar in September 2003</strong> — Satellite image of Madagascar in September 2003. Slightly cropped, original taken from NASA's Visible Earth: [1] . Original description: The world's fourth largest island, Madagascar, is featured in this Moderate Resolution Imaging Spectroradiometer (MODIS) image taken by the Terra satellite on September 10, 2003. Several active fires, marked with red dots, burn in the central highlands, which are primarily covered with rice fields. The fires are probably controlled burns to clear farmland. The narrow strip of green along the east coast of the island is a rain forest. The west coast is lined with baobabs, a desert tree with a fat trunk, and thorny forest. <em>(Unknown author Unknown author, Public domain)</em></p>
+                </div>
+
+                <div class="gallery-item reveal-up" data-delay="200">
+                    <figure class="gallery-figure" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Satellite_image_of_France_in_August_2002.jpg/960px-Satellite_image_of_France_in_August_2002.jpg" data-caption="<strong>Satellite image of France in August 2002</strong> — Satellite image of France acquired August 14, 2002, by the Terra satellite. An unusually cloud-free France shows green and tan in this true-color Moderate Resolution Imaging Spectroradiometer (MODIS) image acquired August 14, 2002, by the Terra satellite. The great city of Paris is visible in the upper center of the image as a gray smudge against the landscape, and is even clearer in the higher resolutions of this image. To the north, clouds mostly obscure the English Channel, but the Bay of Biscay to the west is clear, as is the Mediterranean Sea to the south. The northernmost portion of Spain is clearly visible at the bottom of the image, and is separated from France by the Pyrenees Mountain Range. <em>(Jacques Descloitres, MODIS Rapid Response Team, NASA/GSFC, Public domain)</em>">
+                        <img class="gallery-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Satellite_image_of_France_in_August_2002.jpg/960px-Satellite_image_of_France_in_August_2002.jpg" alt="Satellite image of France in August 2002" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="gallery-caption"><strong>Satellite image of France in August 2002</strong> — Satellite image of France acquired August 14, 2002, by the Terra satellite. An unusually cloud-free France shows green and tan in this true-color Moderate Resolution Imaging Spectroradiometer (MODIS) image acquired August 14, 2002, by the Terra satellite. The great city of Paris is visible in the upper center of the image as a gray smudge against the landscape, and is even clearer in the higher resolutions of this image. To the north, clouds mostly obscure the English Channel, but the Bay of Biscay to the west is clear, as is the Mediterranean Sea to the south. The northernmost portion of Spain is clearly visible at the bottom of the image, and is separated from France by the Pyrenees Mountain Range. <em>(Jacques Descloitres, MODIS Rapid Response Team, NASA/GSFC, Public domain)</em></p>
+                </div>
+
+                <div class="gallery-item reveal-up" data-delay="300">
+                    <figure class="gallery-figure" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Satellite_image_of_New_Zealand_in_December_2002.jpg/960px-Satellite_image_of_New_Zealand_in_December_2002.jpg" data-caption="<strong>Satellite image of New Zealand in December 2002</strong> — Satellite image of New Zealand in December 2002. NASA's description: These stunning true-color images provide a rare, cloud-free look at the island nation of New Zealand, including most of its North and South Islands. This scene was acquired by the Moderate Resolution Imaging Spectroradiometer (MODIS), flying aboard NASA’s Terra satellite, on October 23, and December 31, 2002. New Zealand is situated in the South Pacific Ocean, roughly 2,000 km (1,250 miles) southeast of Australia. Wellington, the capital of New Zealand, is located on the southern tip of the North Island, looking across Cook Strait toward South Island. <em>(Jacques Descloitres, MODIS Land Rapid Response Team at NASA GSFC, Public domain)</em>">
+                        <img class="gallery-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Satellite_image_of_New_Zealand_in_December_2002.jpg/960px-Satellite_image_of_New_Zealand_in_December_2002.jpg" alt="Satellite image of New Zealand in December 2002" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="gallery-caption"><strong>Satellite image of New Zealand in December 2002</strong> — Satellite image of New Zealand in December 2002. NASA's description: These stunning true-color images provide a rare, cloud-free look at the island nation of New Zealand, including most of its North and South Islands. This scene was acquired by the Moderate Resolution Imaging Spectroradiometer (MODIS), flying aboard NASA’s Terra satellite, on October 23, and December 31, 2002. New Zealand is situated in the South Pacific Ocean, roughly 2,000 km (1,250 miles) southeast of Australia. Wellington, the capital of New Zealand, is located on the southern tip of the North Island, looking across Cook Strait toward South Island. <em>(Jacques Descloitres, MODIS Land Rapid Response Team at NASA GSFC, Public domain)</em></p>
+                </div>
+
+                <div class="gallery-item reveal-up" data-delay="0">
+                    <figure class="gallery-figure" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Dennis_2005-07-07_1550Z.jpg/960px-Dennis_2005-07-07_1550Z.jpg" data-caption="<strong>Dennis 2005-07-07 1550Z</strong> — Hurricane Dennis threaded its way between Jamaica and Haiti on a direct course for Cuba on July 7, 2005. The storm now has the distinctive hurricane form, with a well-defined eye surrounded by bands of swirling clouds. At 10:50 a.m. local time (15:50 UTC), when the Moderate Resolution Imaging Spectroradiometer (MODIS) on NASA's Terra satellite took this image, Dennis was just below a Category 3 hurricane, with winds of 175 kilometers per hour (110 miles per hour) and stronger gusts. Less than an hour before this image was taken, the storm's small dark eye was about 105 kilometers (65 miles) northeast of Kingston, Jamaica, and 170 kilometers (105 miles) south-southeast of Guantanamo, Cuba. The National Hurricane Center reports that Dennis is traveling northwest at about 24 kilometers per hour (15 mph). A storm of this size is a threat not just because of its powerful winds: Dennis is expected to produce heavy rain and coastal and inland flooding. Five to ten inches of rain may fall over Haiti, the Dominican Republic, Jamaica, Cuba, and the Cayman Islands, with as much as 15 inches falling in parts of Jamaica. Heavy rainfall can trigger flash floods and mudslides in mountainous regions. The storm will probably also raise tide levels by five to seven feet and generate large and dangerous waves. Dennis is expected to strengthen as it moves north towards the Gulf Coast of the United States. For official storm warnings and additional information, please visit the National Hurricane Center. The image is available in additional resolutions from the MODIS Rapid Response Team. <em>(NASA image courtesy Jeff Schmaltz, MODIS Land Rapid Response Team at NASA GSFC, Public domain)</em>">
+                        <img class="gallery-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Dennis_2005-07-07_1550Z.jpg/960px-Dennis_2005-07-07_1550Z.jpg" alt="Dennis 2005-07-07 1550Z" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="gallery-caption"><strong>Dennis 2005-07-07 1550Z</strong> — Hurricane Dennis threaded its way between Jamaica and Haiti on a direct course for Cuba on July 7, 2005. The storm now has the distinctive hurricane form, with a well-defined eye surrounded by bands of swirling clouds. At 10:50 a.m. local time (15:50 UTC), when the Moderate Resolution Imaging Spectroradiometer (MODIS) on NASA's Terra satellite took this image, Dennis was just below a Category 3 hurricane, with winds of 175 kilometers per hour (110 miles per hour) and stronger gusts. Less than an hour before this image was taken, the storm's small dark eye was about 105 kilometers (65 miles) northeast of Kingston, Jamaica, and 170 kilometers (105 miles) south-southeast of Guantanamo, Cuba. The National Hurricane Center reports that Dennis is traveling northwest at about 24 kilometers per hour (15 mph). A storm of this size is a threat not just because of its powerful winds: Dennis is expected to produce heavy rain and coastal and inland flooding. Five to ten inches of rain may fall over Haiti, the Dominican Republic, Jamaica, Cuba, and the Cayman Islands, with as much as 15 inches falling in parts of Jamaica. Heavy rainfall can trigger flash floods and mudslides in mountainous regions. The storm will probably also raise tide levels by five to seven feet and generate large and dangerous waves. Dennis is expected to strengthen as it moves north towards the Gulf Coast of the United States. For official storm warnings and additional information, please visit the National Hurricane Center. The image is available in additional resolutions from the MODIS Rapid Response Team. <em>(NASA image courtesy Jeff Schmaltz, MODIS Land Rapid Response Team at NASA GSFC, Public domain)</em></p>
+                </div>
+
+                <div class="gallery-item reveal-up" data-delay="100">
+                    <figure class="gallery-figure" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Antarctica_6400px_from_Blue_Marble.jpg/960px-Antarctica_6400px_from_Blue_Marble.jpg" data-caption="<strong>Antarctica 6400px from Blue Marble</strong> — Antarctica . An orthographic projection of NASA's Blue Marble data set (1 km resolution global satellite composite). &quot;MODIS observations of polar sea ice were combined with observations of Antarctica made by the National Oceanic and Atmospheric Administration’s AVHRR sensor—the Advanced Very High Resolution Radiometer.&quot; Image was generated using a custom C program for handling the Blue Marble files, with orthographic projection formulas from MathWorld . Note: this image has been manually modified to fill in an area of black pixels in the ocean, in the upper right quadrant. The black pixels are presumed to be due to missing data in the land/sea mask used in making the original Blue Marble image. <em>(Dave Pape, Public domain)</em>">
+                        <img class="gallery-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Antarctica_6400px_from_Blue_Marble.jpg/960px-Antarctica_6400px_from_Blue_Marble.jpg" alt="Antarctica 6400px from Blue Marble" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="gallery-caption"><strong>Antarctica 6400px from Blue Marble</strong> — Antarctica . An orthographic projection of NASA's Blue Marble data set (1 km resolution global satellite composite). "MODIS observations of polar sea ice were combined with observations of Antarctica made by the National Oceanic and Atmospheric Administration’s AVHRR sensor—the Advanced Very High Resolution Radiometer." Image was generated using a custom C program for handling the Blue Marble files, with orthographic projection formulas from MathWorld . Note: this image has been manually modified to fill in an area of black pixels in the ocean, in the upper right quadrant. The black pixels are presumed to be due to missing data in the land/sea mask used in making the original Blue Marble image. <em>(Dave Pape, Public domain)</em></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="https://punycodex.com/" class="footer-logo">PUNYCODEX</a>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Owned Domains</span>
+                        <span class="footer-value">móði.com</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier 2</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Original Script</span>
+                        <span class="footer-value">ᛘᚢᚦᛁ</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <picture><source srcset="../assets/modi_logomark.webp" type="image/webp"><img src="../assets/modi_logomark.png" alt="Móði logomark" class="footer-logomark"></picture>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    
+
+<script>window.PUNYCODEX_API_BASE = "";</script>
+    <script src="/js/px-core.js?v=perf8"></script>
+    <script src="/js/temple-base.js?v=perf5"></script>
+    <script src="../script.js?v=perf4"></script>
+
+<div class="gallery-lightbox" id="gallery-lightbox" aria-modal="true" role="dialog" aria-label="Image preview">
+  <div class="gallery-lightbox-content">
+    <button class="gallery-lightbox-close" id="gallery-lightbox-close" aria-label="Close" type="button">&times;</button>
+    <img class="gallery-lightbox-img" id="gallery-lightbox-img" src="" alt="">
+    <p class="gallery-lightbox-caption" id="gallery-lightbox-caption"></p>
+  </div>
+</div>
+<script>
+(function(){
+  const lb = document.getElementById('gallery-lightbox');
+  const img = document.getElementById('gallery-lightbox-img');
+  const cap = document.getElementById('gallery-lightbox-caption');
+  const close = document.getElementById('gallery-lightbox-close');
+  if (!lb || !img || !close) return;
+  function open(src, caption) {
+    img.src = src;
+    img.alt = caption || '';
+    cap.textContent = caption || '';
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    close.focus();
+  }
+  function closeLb() {
+    lb.classList.remove('active');
+    img.src = '';
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('.gallery-figure[data-full-src]').forEach(item => {
+    item.addEventListener('click', () => open(item.dataset.fullSrc, item.dataset.caption));
+    item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(item.dataset.fullSrc, item.dataset.caption); } });
+  });
+  close.addEventListener('click', closeLb);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && lb.classList.contains('active')) closeLb(); });
+})();
+</script>
+</body>
+</html>
