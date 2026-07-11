@@ -3,69 +3,159 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PUNYCODEX — Mythic Duel</title>
+  <title>PÚNYCODEX — Mythic Duel</title>
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/game/game.css">
   <link rel="canonical" href="/game/">
-  <meta name="description" content="A playable mythology trading-card prototype built from the PUNYCODEX lexicon.">
+  <meta name="description" content="A scholarly trading-card game built from the PÚNYCODEX Unicode restoration lexicon. Collect deities, concepts, realms, and celestial bodies.">
+  <meta property="og:title" content="PÚNYCODEX — Mythic Duel">
+  <meta property="og:description" content="Collect and battle with cards drawn from the Unicode restoration of mythological names.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://punycodex.com/game/">
+  <meta property="og:site_name" content="PÚNYCODEX">
 </head>
-<body>
-  <nav class="global-nav" id="main-nav">
-    <a href="/" class="nav-logo">PÚNYCODEX</a>
-    <div class="nav-links">
-      <a href="/pantheon/" class="nav-link">Pantheon</a>
-      <a href="/lexicon/" class="nav-link">Lexicon</a>
-      <a href="/type/" class="nav-link">Type</a>
-      <a href="/tiers/" class="nav-link">Tiers</a>
-      <a href="/game/" class="nav-link active">Game</a>
-    </div>
-  </nav>
-
-  <main class="game-container">
-    <header class="game-header">
-      <h1>Mythic Duel <span class="badge prototype">Prototype</span></h1>
-      <p>Battle with cards drawn from the PUNYCODEX scholarly lexicon.</p>
-      <button id="new-game" class="btn primary">New Duel</button>
-    </header>
-
-    <section class="battlefield">
-      <div class="hero-row enemy-hero">
-        <div class="hero-card">
-          <span class="hero-label">AI Oracle</span>
-          <span class="hero-health" id="enemy-health">30</span>
-        </div>
-        <div class="deck-count">Deck: <span id="enemy-deck">0</span></div>
+<body class="game-body">
+  <div class="game-layout">
+    <nav class="game-nav">
+      <a href="/" class="brand">PÚNYCODEX</a>
+      <div class="nav-tabs">
+        <button class="nav-tab active" data-section="lobby">Lobby</button>
+        <button class="nav-tab" data-section="collection">Collection</button>
+        <button class="nav-tab" data-section="deck">Deck</button>
+        <button class="nav-tab" data-section="battle">Battle</button>
+        <button class="nav-tab" data-section="packs">Packs</button>
       </div>
-
-      <div class="board-row" id="enemy-board"></div>
-
-      <div class="turn-banner" id="turn-banner">Your Turn</div>
-
-      <div class="board-row" id="player-board"></div>
-
-      <div class="hero-row player-hero">
-        <div class="hero-card">
-          <span class="hero-label">You</span>
-          <span class="hero-health" id="player-health">30</span>
-        </div>
-        <div class="mana-pool">Ink: <span id="player-mana">0</span> / <span id="player-max-mana">1</span></div>
-        <div class="deck-count">Deck: <span id="player-deck">0</span></div>
+      <div class="currencies">
+        <span class="currency-pill ink"><span class="icon">✦</span> <span id="ink-count">0</span></span>
+        <span class="currency-pill dust"><span class="icon">◈</span> <span id="dust-count">0</span></span>
+        <span class="currency-pill gold"><span class="icon">◎</span> <span id="gold-count">0</span></span>
       </div>
-    </section>
+    </nav>
 
-    <section class="hand-row" id="player-hand"></section>
+    <main class="game-main">
+      <!-- Lobby -->
+      <section id="lobby" class="game-section active">
+        <div class="section-header">
+          <h1>Mythic Duel <span class="badge prototype">Beta</span></h1>
+          <p>Collect cards forged from the Unicode restoration of mythological names, concepts, realms, and celestial bodies.</p>
+        </div>
 
-    <section class="controls">
-      <button id="end-turn" class="btn secondary" disabled>End Turn</button>
-      <div class="log" id="game-log"></div>
-    </section>
-  </main>
+        <div class="card-grid" id="featured-cards"></div>
+      </section>
 
-  <footer class="site-footer">
-    <p>PUNYCODEX Mythic Duel — prototype. Card stats are auto-generated from lexicon tiers and domains.</p>
-  </footer>
+      <!-- Collection -->
+      <section id="collection" class="game-section">
+        <div class="section-header">
+          <h1>Collection</h1>
+          <p>Browse every card in your scholarly archive.</p>
+        </div>
+
+        <div class="filter-bar">
+          <input type="text" class="search-input" id="collection-search" placeholder="Search cards…">
+          <div class="filter-group" id="category-filters"></div>
+          <div class="filter-group" id="rarity-filters"></div>
+        </div>
+
+        <div class="card-grid" id="collection-grid"></div>
+      </section>
+
+      <!-- Deck -->
+      <section id="deck" class="game-section">
+        <div class="section-header">
+          <h1>Deck Builder</h1>
+          <p>Assemble a 30-card deck for battle.</p>
+        </div>
+
+        <div class="deck-builder">
+          <div class="deck-panel">
+            <h3>Available Cards</h3>
+            <div class="filter-bar">
+              <input type="text" class="search-input" id="deck-search" placeholder="Search cards to add…">
+            </div>
+            <div class="card-grid" id="deck-pool-grid"></div>
+          </div>
+          <div class="deck-panel">
+            <h3>Current Deck <span id="deck-size">0 / 30</span></h3>
+            <div class="deck-slots" id="deck-slots"></div>
+            <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+              <button class="btn primary" id="save-deck">Save Deck</button>
+              <button class="btn secondary" id="clear-deck">Clear</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Battle -->
+      <section id="battle" class="game-section">
+        <div class="section-header">
+          <h1>Battle</h1>
+          <p>Face the AI Oracle in a duel of mythic cards.</p>
+        </div>
+
+        <div class="battlefield">
+          <div class="hero-row enemy-hero">
+            <div class="hero-card">
+              <span>AI Oracle</span>
+              <span class="hero-health" id="enemy-health">30</span>
+            </div>
+            <div class="deck-count">Deck: <span id="enemy-deck">0</span></div>
+          </div>
+
+          <div class="board-row" id="enemy-board"></div>
+
+          <div class="turn-banner" id="turn-banner">Your Turn</div>
+
+          <div class="board-row" id="player-board"></div>
+
+          <div class="hero-row player-hero">
+            <div class="hero-card">
+              <span>You</span>
+              <span class="hero-health" id="player-health">30</span>
+            </div>
+            <div class="mana-pool">Ink: <span id="player-mana">0</span> / <span id="player-max-mana">1</span></div>
+            <div class="deck-count">Deck: <span id="player-deck">0</span></div>
+          </div>
+        </div>
+
+        <div class="hand-row" id="player-hand"></div>
+
+        <div class="controls">
+          <button id="new-game" class="btn primary">New Duel</button>
+          <button id="end-turn" class="btn secondary" disabled>End Turn</button>
+          <div class="game-log" id="game-log"></div>
+        </div>
+      </section>
+
+      <!-- Packs -->
+      <section id="packs" class="game-section">
+        <div class="section-header">
+          <h1>Open Packs</h1>
+          <p>Expand your collection with scholarly booster packs.</p>
+        </div>
+
+        <div class="pack-stage" id="pack-stage">
+          <div class="pack" id="pack-item">
+            <div class="pack-seal">✦</div>
+          </div>
+          <button class="btn primary" id="open-pack">Open Common Pack (100 ✦)</button>
+        </div>
+
+        <div class="pack-reveal" id="pack-reveal"></div>
+      </section>
+    </main>
+
+    <footer class="game-footer">
+      <p>PÚNYCODEX Mythic Duel — card stats are auto-generated from lexicon tiers, domains, and categories.</p>
+    </footer>
+  </div>
+
+  <!-- Card detail modal -->
+  <div class="modal-overlay" id="card-modal">
+    <div class="modal-card" id="modal-content"></div>
+  </div>
 
   <script src="/type/js/lexicon.js"></script>
+  <script src="/js/art-marketplace-data.js"></script>
   <script src="/js/card-game-data.js"></script>
   <script src="/game/game.js"></script>
 </body>

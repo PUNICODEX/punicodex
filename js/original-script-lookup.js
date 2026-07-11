@@ -2690,6 +2690,62 @@ const ORIGINAL_SCRIPT_LOOKUP = {
   "yinyang": {
     "originalScript": "陰陽",
     "scriptName": "Chinese characters"
+  },
+  "hygieia": {
+    "originalScript": "Ὑγίεια",
+    "scriptName": "Greek"
+  },
+  "tiandi": {
+    "originalScript": "天地",
+    "scriptName": "Chinese characters"
+  },
+  "adamas": {
+    "originalScript": "ἀδάμας",
+    "scriptName": "Greek"
+  },
+  "khaos": {
+    "originalScript": "Χάος",
+    "scriptName": "Greek"
+  },
+  "narke": {
+    "originalScript": "Νάρκη",
+    "scriptName": "Greek"
+  },
+  "eirene": {
+    "originalScript": "Εἰρήνη",
+    "scriptName": "Greek"
+  },
+  "atlantis": {
+    "originalScript": "Ἀτλαντίς",
+    "scriptName": "Greek"
+  },
+  "elysion": {
+    "originalScript": "Ἠλύσιον",
+    "scriptName": "Greek"
+  },
+  "hyperborea": {
+    "originalScript": "Ὑπερβόρεα",
+    "scriptName": "Greek"
+  },
+  "phaethon": {
+    "originalScript": "Φαέθων",
+    "scriptName": "Greek"
+  },
+  "smaragdos": {
+    "originalScript": "Σμάραγδος",
+    "scriptName": "Greek"
+  },
+  "hyakinthos": {
+    "originalScript": "Ὑάκινθος",
+    "scriptName": "Greek"
+  },
+  "amethystos": {
+    "originalScript": "Ἀμέθυστος",
+    "scriptName": "Greek"
+  },
+  "thalassa": {
+    "originalScript": "Θάλασσα",
+    "scriptName": "Greek"
   }
 };
 

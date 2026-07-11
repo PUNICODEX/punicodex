@@ -1,8 +1,8 @@
 # PÚNYCODEX Oracle — Model Card
 
 **Model family:** PÚNYCODEX Oracle (specialized language model)  
-**Data version:** 2.0.34  
-**Generated:** 2026-07-10T17:52:33.218Z  
+**Data version:** 2.0.36  
+**Generated:** 2026-07-11T19:40:29.074Z  
 **License:** CC BY 4.0 for dataset; ISC for software (see root LICENSE).
 
 ## Intended Use
@@ -17,22 +17,22 @@
 
 | Split | Examples | File |
 |-------|----------|------|
-| Train | 55,460 | `data/corpus/chat-train.jsonl` |
-| Evaluation | 13,675 | `data/corpus/chat-eval.jsonl` |
-| **Total** | **69,135** | — |
+| Train | 56,245 | `data/corpus/chat-train.jsonl` |
+| Evaluation | 13,976 | `data/corpus/chat-eval.jsonl` |
+| **Total** | **70,221** | — |
 
 Source corpora:
-- `instructions.jsonl`: 7,907 examples
-- `safety-examples.jsonl`: 40,641 examples
-- `dialogue-examples.jsonl`: 2,870 examples
-- `tool-use-examples.jsonl`: 4,365 examples
-- `multimodal-examples.jsonl`: 1,590 examples
-- `preference-examples.jsonl`: 3,528 examples
-- `reasoning-examples.jsonl`: 3,395 examples
-- `mythology-synthesis.jsonl`: 388 examples
+- `instructions.jsonl`: 8,053 examples
+- `safety-examples.jsonl`: 41,300 examples
+- `dialogue-examples.jsonl`: 2,922 examples
+- `tool-use-examples.jsonl`: 4,445 examples
+- `multimodal-examples.jsonl`: 1,604 examples
+- `preference-examples.jsonl`: 3,580 examples
+- `reasoning-examples.jsonl`: 3,473 examples
+- `mythology-synthesis.jsonl`: 390 examples
 - `oracle-examples.jsonl`: 1,780 examples
 - `symbolic-correspondences.jsonl`: 1,233 examples
-- `scientific-analogies.jsonl`: 1,438 examples
+- `scientific-analogies.jsonl`: 1,441 examples
 
 ## Training Recipe (recommended)
 
@@ -71,8 +71,8 @@ Do not use this model to generate deceptive domains, impersonate brands, or evad
 
 Before supervised fine-tuning, domain-adapt the base model on the raw scholarly corpus:
 
-- `data/corpus/pretrain.jsonl` — 5,188 training documents (382,348 whitespace tokens).
-- `data/corpus/pretrain-validation.jsonl` — 276 validation documents (21,226 whitespace tokens).
+- `data/corpus/pretrain.jsonl` — 5,213 training documents (383,933 whitespace tokens).
+- `data/corpus/pretrain-validation.jsonl` — 272 validation documents (20,586 whitespace tokens).
 - HuggingFace-compatible splits in `data/corpus/huggingface/`.
 
 Documents are drawn from structured entry records, flagship lore, original-script provenance, pronunciation notes, the source catalog, mythology synthesis, oracle reflections, symbolic correspondences, and scientific analogies. Strip HTML and normalize whitespace before tokenization. This step teaches the model the domain's scripts, diacritics, scholarly vocabulary, and canonical source style before chat-format SFT.

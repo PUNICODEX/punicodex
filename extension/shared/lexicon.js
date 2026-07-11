@@ -4,7 +4,7 @@
 //
 /*
  * PUNYCODEX Lexicon
- * 873 validated entries across multiple pantheons
+ * 889 validated entries across multiple pantheons
  */
 
 const LEXICON = [
@@ -52182,6 +52182,1510 @@ const LEXICON = [
         "to": "g",
         "type": "same",
         "note": "Same"
+      }
+    ]
+  },
+  {
+    "id": "hygieia",
+    "ascii": "hygieia",
+    "unicode": "Hygíeia",
+    "greek": "Ὑγίεια",
+    "pantheon": "greek",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Health, Hygiene, Wellness",
+    "meaning": "Health, soundness; personified as the goddess of health and cleanliness",
+    "sources": [
+      "LSJ",
+      "Pausanias",
+      "Hesiod"
+    ],
+    "variants": [
+      {
+        "unicode": "Hygeía",
+        "type": "alt-stress",
+        "note": "Alternate stress position found in later Greek usage",
+        "sources": [
+          "LSJ"
+        ]
+      }
+    ],
+    "breakdown": [
+      {
+        "char": "h",
+        "to": "H",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "y",
+        "to": "y",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "g",
+        "to": "g",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "i",
+        "to": "í",
+        "type": "stress",
+        "note": "Acute on iota"
+      },
+      {
+        "char": "e",
+        "to": "e",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      }
+    ],
+    "etymology": {
+      "protoForm": "*h₂ǵ-",
+      "protoLanguage": "proto-indo-european",
+      "protoGloss": "to be healthy, vigorous",
+      "derivation": "From ὑγιής \"healthy\" + abstract suffix -εια. The goddess Hygíeia was worshipped alongside Asclepius as the personification of health.",
+      "certainty": "attested",
+      "cognates": [
+        {
+          "language": "sanskrit",
+          "form": "yóga-",
+          "relationship": "cognate",
+          "note": "Yoke, union; from the same PIE root *h₂yug-om"
+        }
+      ]
+    },
+    "senses": [
+      {
+        "type": "primary",
+        "text": "The goddess of health, cleanliness, and hygiene in Greek religion."
+      },
+      {
+        "type": "etymology",
+        "text": "The English word \"hygiene\" derives directly from her name via Latin hygīena."
+      }
+    ]
+  },
+  {
+    "id": "papatuanuku",
+    "ascii": "papatuanuku",
+    "unicode": "Papatūānuku",
+    "greek": "—",
+    "pantheon": "polynesian",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Earth, Creation, Fertility",
+    "meaning": "Earth Mother; the land that gives birth to all living things",
+    "sources": [
+      "Tregear",
+      "Grey",
+      "Best"
+    ],
+    "variants": [
+      {
+        "unicode": "Papa-tū-ā-nuku",
+        "type": "alt",
+        "note": "Hyphenated analytical spelling emphasizing the components",
+        "sources": [
+          "Tregear"
+        ]
+      }
+    ],
+    "breakdown": [
+      {
+        "char": "p",
+        "to": "P",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "p",
+        "to": "p",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "t",
+        "to": "t",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "u",
+        "to": "ū",
+        "type": "length",
+        "note": "Macron: long u"
+      },
+      {
+        "char": "a",
+        "to": "ā",
+        "type": "length",
+        "note": "Macron: long a"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "u",
+        "to": "u",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "k",
+        "to": "k",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "u",
+        "to": "u",
+        "type": "same",
+        "note": "Same"
+      }
+    ],
+    "etymology": {
+      "protoForm": "*papa",
+      "protoLanguage": "proto-polynesian",
+      "protoGloss": "earth, rock, foundation",
+      "derivation": "Māori Papa (earth) + tū (to stand) + ā (emphatic) + nuku (extended, far-reaching). The name describes the broad earth standing firm.",
+      "certainty": "attested",
+      "cognates": [
+        {
+          "language": "polynesian",
+          "form": "Papa",
+          "relationship": "variant",
+          "note": "Short form used across Polynesia"
+        },
+        {
+          "language": "hawaiian",
+          "form": "Papa",
+          "relationship": "cognate",
+          "note": "Earth mother in Hawaiian tradition"
+        }
+      ]
+    },
+    "senses": [
+      {
+        "type": "primary",
+        "text": "The Māori Earth Mother, partner of Ranginui the Sky Father."
+      },
+      {
+        "type": "scholarly",
+        "text": "In Māori cosmology, the separation of Papa and Rangi by their children created the world of light."
+      }
+    ]
+  },
+  {
+    "id": "tiandi",
+    "ascii": "tiandi",
+    "unicode": "Tiāndì",
+    "greek": "天地",
+    "pantheon": "chinese",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Cosmology, Heaven and Earth, Order",
+    "meaning": "Heaven and Earth; the natural order of the cosmos",
+    "sources": [
+      "I Ching",
+      "Chinese classics",
+      "Dao De Jing"
+    ],
+    "breakdown": [
+      {
+        "char": "t",
+        "to": "T",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "ā",
+        "type": "length",
+        "note": "Macron: first tone"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "d",
+        "to": "d",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "i",
+        "to": "ì",
+        "type": "stress",
+        "note": "Grave: fourth tone"
+      }
+    ],
+    "etymology": {
+      "protoForm": "*l̥ˤin",
+      "protoLanguage": "proto-sino-tibetan",
+      "protoGloss": "heaven, sky",
+      "derivation": "Tiān 天 (heaven/sky) + dì 地 (earth/ground). The compound expresses the dyad that frames Chinese cosmology.",
+      "certainty": "attested",
+      "cognates": [
+        {
+          "language": "chinese",
+          "form": "Tiān",
+          "relationship": "derivative",
+          "note": "Heaven as a standalone concept"
+        },
+        {
+          "language": "chinese",
+          "form": "Dì",
+          "relationship": "derivative",
+          "note": "Earth as a standalone concept"
+        }
+      ]
+    },
+    "senses": [
+      {
+        "type": "primary",
+        "text": "The pairing of Heaven and Earth that structures traditional Chinese cosmology."
+      },
+      {
+        "type": "scholarly",
+        "text": "Often used to describe the natural order, the emperor's mandate, or the relationship between macrocosm and microcosm."
+      }
+    ]
+  },
+  {
+    "id": "yam",
+    "ascii": "yam",
+    "unicode": "Yām",
+    "greek": "—",
+    "pantheon": "canaanite",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Sea, Primordial Waters, Chaos",
+    "meaning": "Sea; the deified primordial ocean in Ugaritic and Canaanite myth",
+    "sources": [
+      "KTU",
+      "Coogan",
+      "De Moor"
+    ],
+    "variants": [
+      {
+        "unicode": "Yammu",
+        "type": "alt",
+        "note": "Nominative case form in Ugaritic scholarly transliteration",
+        "sources": [
+          "KTU"
+        ]
+      }
+    ],
+    "breakdown": [
+      {
+        "char": "y",
+        "to": "Y",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "a",
+        "to": "ā",
+        "type": "length",
+        "note": "Macron: long a"
+      },
+      {
+        "char": "m",
+        "to": "m",
+        "type": "same",
+        "note": "Same"
+      }
+    ],
+    "etymology": {
+      "protoForm": "*yamm-",
+      "protoLanguage": "proto-semitic",
+      "protoGloss": "sea, ocean",
+      "derivation": "From Proto-Semitic *yamm- \"sea\"; cognate with Hebrew yām יָם. In Ugaritic myth Yām is a chaotic sea deity defeated by Baal.",
+      "certainty": "attested",
+      "cognates": [
+        {
+          "language": "hebrew",
+          "form": "yām",
+          "relationship": "cognate",
+          "note": "Sea in Biblical Hebrew"
+        },
+        {
+          "language": "arabic",
+          "form": "yamm",
+          "relationship": "cognate",
+          "note": "Sea in Arabic"
+        }
+      ]
+    },
+    "senses": [
+      {
+        "type": "primary",
+        "text": "The Ugaritic sea god, opponent of Baal in the Baal Cycle."
+      },
+      {
+        "type": "mythological",
+        "text": "Represents the chaotic, untamable primordial waters surrounding the ordered world."
+      }
+    ]
+  },
+  {
+    "id": "adamas",
+    "ascii": "adamas",
+    "unicode": "Adámas",
+    "greek": "ἀδάμας",
+    "pantheon": "greek",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Gem, Concept, Invincibility",
+    "meaning": "Unbreakable; the adamant; the hardest substance; origin of \"diamond\"",
+    "sources": [
+      "LSJ",
+      "Beekes",
+      "Homer"
+    ],
+    "variants": [
+      {
+        "unicode": "Adamas",
+        "type": "ascii",
+        "note": "Plain ASCII form used in English etymological discussion"
+      }
+    ],
+    "breakdown": [
+      {
+        "char": "a",
+        "to": "A",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "d",
+        "to": "d",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "á",
+        "type": "stress",
+        "note": "Acute on alpha"
+      },
+      {
+        "char": "m",
+        "to": "m",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "s",
+        "to": "s",
+        "type": "same",
+        "note": "Same"
+      }
+    ],
+    "etymology": {
+      "protoForm": "*n̥-dméh₂-​",
+      "protoLanguage": "proto-indo-european",
+      "protoGloss": "unbreakable, untamable",
+      "derivation": "Privative ἀ- \"not\" + δάμ- (root of δαμάζω \"to tame, subdue\"). The word denotes anything unbreakable, especially hardened steel or diamond.",
+      "certainty": "attested",
+      "cognates": [
+        {
+          "language": "latin",
+          "form": "domāre",
+          "relationship": "cognate",
+          "note": "To tame, from the same PIE root *demh₂-"
+        },
+        {
+          "language": "english",
+          "form": "diamond",
+          "relationship": "derivative",
+          "note": "Via Old French diamant and Vulgar Latin *diamantem"
+        },
+        {
+          "language": "english",
+          "form": "adamant",
+          "relationship": "derivative",
+          "note": "Direct borrowing of Greek adámas via Latin"
+        }
+      ]
+    },
+    "senses": [
+      {
+        "type": "primary",
+        "text": "A poetic and philosophical term for the hardest, most unyielding substance."
+      },
+      {
+        "type": "etymology",
+        "text": "The ancestor of English \"diamond\" and \"adamant,\" it came to mean any indestructible material."
+      },
+      {
+        "type": "encyclopedic",
+        "text": "In Homer the adamant binds the Titans; in later Greek philosophy it becomes a metaphor for unshakeable truth."
+      }
+    ]
+  },
+  {
+    "id": "khaos",
+    "ascii": "khaos",
+    "unicode": "Khaos",
+    "greek": "Χάος",
+    "pantheon": "greek",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Primordial Void, Chaos, Origin",
+    "meaning": "Chasm, yawning void; the first state of existence",
+    "sources": [
+      "LSJ",
+      "Hesiod",
+      "Beekes"
+    ],
+    "breakdown": [
+      {
+        "char": "k",
+        "to": "K",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "h",
+        "to": "h",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "o",
+        "to": "o",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "s",
+        "to": "s",
+        "type": "same",
+        "note": "Same"
+      }
+    ],
+    "etymology": {
+      "protoForm": "*ǵʰeh₂w-",
+      "protoLanguage": "proto-indo-european",
+      "protoGloss": "to gape, yawn",
+      "derivation": "From the root *ǵʰeh₂w- \"to yawn, gape\"; related to χαίνω \"to gape open.\" In Hesiod, Khaos is the first thing to come into existence.",
+      "certainty": "attested",
+      "cognates": [
+        {
+          "language": "english",
+          "form": "gap",
+          "relationship": "cognate",
+          "note": "From a Germanic root related to the same PIE *ǵʰeh₂w-"
+        },
+        {
+          "language": "english",
+          "form": "chaos",
+          "relationship": "derivative",
+          "note": "Borrowed via Latin from Greek Khaos"
+        }
+      ]
+    },
+    "senses": [
+      {
+        "type": "primary",
+        "text": "In Hesiod's Theogony, the primordial gap or void from which all else arises."
+      },
+      {
+        "type": "etymology",
+        "text": "The modern word \"chaos\" descends from this, though its meaning shifted from \"void\" to \"disorder.\""
+      }
+    ]
+  },
+  {
+    "id": "narke",
+    "ascii": "narke",
+    "unicode": "Nárkē",
+    "greek": "Νάρκη",
+    "pantheon": "greek",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Numbness, Sleep, Root Word",
+    "meaning": "Numbness, stiffness, torpor; root of \"narcotic\"",
+    "sources": [
+      "LSJ",
+      "Beekes"
+    ],
+    "breakdown": [
+      {
+        "char": "n",
+        "to": "N",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "a",
+        "to": "á",
+        "type": "stress",
+        "note": "Acute on alpha"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "k",
+        "to": "k",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "e",
+        "to": "ē",
+        "type": "length",
+        "note": "Macron: long eta"
+      }
+    ],
+    "etymology": {
+      "protoForm": "*nark-",
+      "protoLanguage": "proto-indo-european",
+      "protoGloss": "to become numb",
+      "derivation": "Probably from a Pre-Greek or Mediterranean substrate; the root is associated with numbness and sleep-inducing substances.",
+      "certainty": "disputed",
+      "cognates": [
+        {
+          "language": "english",
+          "form": "narcotic",
+          "relationship": "derivative",
+          "note": "Via Greek narkōtikós"
+        },
+        {
+          "language": "english",
+          "form": "narcolepsy",
+          "relationship": "derivative",
+          "note": "Seizure of numbness/sleep"
+        }
+      ]
+    },
+    "senses": [
+      {
+        "type": "primary",
+        "text": "Numbness or torpor, often associated with sleep or drugs."
+      },
+      {
+        "type": "etymology",
+        "text": "The root survives in English \"narcotic,\" \"narcolepsy,\" and the mythological Narcissus."
+      }
+    ]
+  },
+  {
+    "id": "eirene",
+    "ascii": "eirene",
+    "unicode": "Eirḗnē",
+    "greek": "Εἰρήνη",
+    "pantheon": "greek",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Peace, Order, Seasons",
+    "meaning": "Peace; personified as a goddess",
+    "sources": [
+      "LSJ",
+      "Hesiod",
+      "Pindar"
+    ],
+    "breakdown": [
+      {
+        "char": "e",
+        "to": "E",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "e",
+        "to": "ḗ",
+        "type": "dual",
+        "note": "Acute + macron: long eta with stress"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "e",
+        "to": "ē",
+        "type": "length",
+        "note": "Macron: long eta"
+      }
+    ],
+    "etymology": {
+      "protoForm": "*h₁er-",
+      "protoLanguage": "proto-indo-european",
+      "protoGloss": "to fit together, join",
+      "derivation": "From a root meaning \"to fit, join\"; peace as the state of things properly joined together.",
+      "certainty": "attested",
+      "cognates": [
+        {
+          "language": "english",
+          "form": "irenic",
+          "relationship": "derivative",
+          "note": "Promoting peace"
+        },
+        {
+          "language": "latin",
+          "form": "pax",
+          "relationship": "cognate",
+          "note": "Peace (via a different PIE root *pak-)"
+        }
+      ]
+    },
+    "senses": [
+      {
+        "type": "primary",
+        "text": "Goddess of peace and one of the Horae."
+      },
+      {
+        "type": "etymology",
+        "text": "The root survives in \"irenic\" and is cognate with the name Irene."
+      }
+    ]
+  },
+  {
+    "id": "atlantis",
+    "ascii": "atlantis",
+    "unicode": "Atlantís",
+    "greek": "Ἀτλαντίς",
+    "pantheon": "greek-location",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Lost Island, Legendary Realm, Sea",
+    "meaning": "Daughter of Atlas; the legendary lost island civilization",
+    "sources": [
+      "LSJ",
+      "Plato"
+    ],
+    "breakdown": [
+      {
+        "char": "a",
+        "to": "A",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "t",
+        "to": "t",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "l",
+        "to": "l",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "t",
+        "to": "t",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "i",
+        "to": "í",
+        "type": "stress",
+        "note": "Acute on iota"
+      },
+      {
+        "char": "s",
+        "to": "s",
+        "type": "same",
+        "note": "Same"
+      }
+    ],
+    "etymology": {
+      "protoForm": "*tl̥-n-h₂",
+      "protoLanguage": "proto-indo-european",
+      "protoGloss": "to bear, uphold",
+      "derivation": "From Atlas (Ἄτλας), the Titan who holds up the heavens; Atlantis is \"the island of Atlas.\"",
+      "certainty": "attested",
+      "cognates": [
+        {
+          "language": "greek",
+          "form": "Atlas",
+          "relationship": "derivative",
+          "note": "The Titan after whom the island is named"
+        }
+      ]
+    },
+    "senses": [
+      {
+        "type": "primary",
+        "text": "A legendary island kingdom described by Plato, said to have sunk into the Atlantic Ocean."
+      },
+      {
+        "type": "encyclopedic",
+        "text": "Plato's Atlantis has inspired centuries of speculation, exploration, and utopian literature."
+      }
+    ]
+  },
+  {
+    "id": "elysion",
+    "ascii": "elysion",
+    "unicode": "Ēlysion",
+    "greek": "Ἠλύσιον",
+    "pantheon": "greek-location",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Afterlife, Paradise, Blessed Realm",
+    "meaning": "Elysian plain; abode of the blessed dead",
+    "sources": [
+      "LSJ",
+      "Homer",
+      "Pindar"
+    ],
+    "breakdown": [
+      {
+        "char": "e",
+        "to": "Ē",
+        "type": "length",
+        "note": "Macron: long eta, capitalized"
+      },
+      {
+        "char": "l",
+        "to": "l",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "y",
+        "to": "y",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "s",
+        "to": "s",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "o",
+        "to": "o",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      }
+    ],
+    "etymology": {
+      "protoForm": "*h₁élyū-",
+      "protoLanguage": "proto-indo-european",
+      "protoGloss": "deep, concealed",
+      "derivation": "Possibly from a root meaning \"concealed\" or \"deep\"; Elysion was imagined as a hidden paradise at the ends of the earth.",
+      "certainty": "disputed",
+      "cognates": [
+        {
+          "language": "english",
+          "form": "Elysian",
+          "relationship": "derivative",
+          "note": "Elysian Fields, blissful"
+        }
+      ]
+    },
+    "senses": [
+      {
+        "type": "primary",
+        "text": "The Elysian Fields, paradise for the blessed dead in Greek afterlife belief."
+      },
+      {
+        "type": "encyclopedic",
+        "text": "By Roman times Elysium became the generic word for heaven or any place of perfect happiness."
+      }
+    ]
+  },
+  {
+    "id": "hyperborea",
+    "ascii": "hyperborea",
+    "unicode": "Hyperbórea",
+    "greek": "Ὑπερβόρεα",
+    "pantheon": "greek-location",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Far North, Legendary Land, Sun",
+    "meaning": "Beyond the north wind; a legendary northern paradise",
+    "sources": [
+      "LSJ",
+      "Herodotus",
+      "Pindar"
+    ],
+    "breakdown": [
+      {
+        "char": "h",
+        "to": "H",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "y",
+        "to": "y",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "p",
+        "to": "p",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "e",
+        "to": "e",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "b",
+        "to": "b",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "o",
+        "to": "ó",
+        "type": "stress",
+        "note": "Acute on omicron"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "e",
+        "to": "e",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      }
+    ],
+    "etymology": {
+      "protoForm": "*uper-boreh₂-",
+      "protoLanguage": "proto-indo-european",
+      "protoGloss": "above the north wind",
+      "derivation": "From ὑπέρ \"over, beyond\" + Βορέας \"the North Wind.\" Hyperborea is the land beyond the north wind.",
+      "certainty": "attested",
+      "cognates": [
+        {
+          "language": "english",
+          "form": "hyperborean",
+          "relationship": "derivative",
+          "note": "Of or relating to the far north"
+        }
+      ]
+    },
+    "senses": [
+      {
+        "type": "primary",
+        "text": "A legendary land beyond the north wind, blessed with eternal spring."
+      },
+      {
+        "type": "scholarly",
+        "text": "Pindar placed Apollo there for part of the year; Herodotus treated it as a geographical legend."
+      }
+    ]
+  },
+  {
+    "id": "phaethon",
+    "ascii": "phaethon",
+    "unicode": "Phaethōn",
+    "greek": "Φαέθων",
+    "pantheon": "greek",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Sun, Chariot, Light, Fall",
+    "meaning": "Shining one; son of Helios",
+    "sources": [
+      "LSJ",
+      "Hesiod",
+      "Ovid"
+    ],
+    "breakdown": [
+      {
+        "char": "p",
+        "to": "P",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "h",
+        "to": "h",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "e",
+        "to": "e",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "t",
+        "to": "t",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "h",
+        "to": "h",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "o",
+        "to": "ō",
+        "type": "length",
+        "note": "Macron: long omega"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      }
+    ],
+    "etymology": {
+      "protoForm": "*bʰeh₂-",
+      "protoLanguage": "proto-indo-european",
+      "protoGloss": "to shine, appear",
+      "derivation": "From φαέθω \"to shine\"; an epithet of Helios and the name of his ill-fated son.",
+      "certainty": "attested",
+      "cognates": [
+        {
+          "language": "english",
+          "form": "Phaethon",
+          "relationship": "derivative",
+          "note": "Used poetically for the sun and for the mythological figure"
+        }
+      ]
+    },
+    "senses": [
+      {
+        "type": "primary",
+        "text": "An epithet \"Shining\" of Helios; also the son who crashed the sun-chariot."
+      },
+      {
+        "type": "encyclopedic",
+        "text": "His failed ride gave Ovid the origin myth for the Milky Way and the Sahara."
+      }
+    ]
+  },
+  {
+    "id": "smaragdos",
+    "ascii": "smaragdos",
+    "unicode": "Smáragdos",
+    "greek": "Σμάραγδος",
+    "pantheon": "greek",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Gem, Green Stone, Jewel",
+    "meaning": "Emerald; any green precious stone",
+    "sources": [
+      "LSJ",
+      "Beekes"
+    ],
+    "breakdown": [
+      {
+        "char": "s",
+        "to": "S",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "m",
+        "to": "m",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "á",
+        "type": "stress",
+        "note": "Acute on alpha"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "g",
+        "to": "g",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "d",
+        "to": "d",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "o",
+        "to": "o",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "s",
+        "to": "s",
+        "type": "same",
+        "note": "Same"
+      }
+    ],
+    "etymology": {
+      "protoForm": "*smaragd-",
+      "protoLanguage": "isolate",
+      "protoGloss": "green gem",
+      "derivation": "Probably a Semitic loanword into Greek; related to Akkadian barraqtu and Hebrew bareqet. The word passed into Latin as smaragdus and into Romance languages.",
+      "certainty": "disputed",
+      "cognates": [
+        {
+          "language": "latin",
+          "form": "smaragdus",
+          "relationship": "loan",
+          "note": "Emerald"
+        },
+        {
+          "language": "english",
+          "form": "emerald",
+          "relationship": "derivative",
+          "note": "Via Old French esmeraude and Latin smaragdus"
+        }
+      ]
+    },
+    "senses": [
+      {
+        "type": "primary",
+        "text": "The Greek word for emerald and other green precious stones."
+      },
+      {
+        "type": "etymology",
+        "text": "The ancestor of English \"emerald\" through Latin smaragdus."
+      }
+    ]
+  },
+  {
+    "id": "hyakinthos",
+    "ascii": "hyakinthos",
+    "unicode": "Hýakinthos",
+    "greek": "Ὑάκινθος",
+    "pantheon": "greek",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Gem, Flower, Root Word, Apotheosis",
+    "meaning": "Hyacinth; blue gem or flower; youth loved by Apollo",
+    "sources": [
+      "LSJ",
+      "Pausanias",
+      "Homer"
+    ],
+    "breakdown": [
+      {
+        "char": "h",
+        "to": "H",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "y",
+        "to": "ý",
+        "type": "stress",
+        "note": "Acute on upsilon"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "k",
+        "to": "k",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "t",
+        "to": "t",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "h",
+        "to": "h",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "o",
+        "to": "o",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "s",
+        "to": "s",
+        "type": "same",
+        "note": "Same"
+      }
+    ],
+    "etymology": {
+      "protoForm": "*h₂yuh₁-",
+      "protoLanguage": "proto-indo-european",
+      "protoGloss": "violet-blue, violet flower",
+      "derivation": "Possibly from a Mediterranean or Pre-Greek word for a blue/violet flower; later applied to the blue sapphire-like gem.",
+      "certainty": "disputed",
+      "cognates": [
+        {
+          "language": "english",
+          "form": "hyacinth",
+          "relationship": "derivative",
+          "note": "Flower and given name"
+        },
+        {
+          "language": "english",
+          "form": "jacinth",
+          "relationship": "derivative",
+          "note": "Orange-red gem via Latin hyacinthus"
+        }
+      ]
+    },
+    "senses": [
+      {
+        "type": "primary",
+        "text": "A blue gem or the flower into which the dying youth Hyacinthus was transformed."
+      },
+      {
+        "type": "mythological",
+        "text": "Apollo loved Hyacinthus; his blood stained the flower with the letters AI AI."
+      }
+    ]
+  },
+  {
+    "id": "amethystos",
+    "ascii": "amethystos",
+    "unicode": "Ámethystos",
+    "greek": "Ἀμέθυστος",
+    "pantheon": "greek",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Gem, Stone, Sobriety",
+    "meaning": "Amethyst; literally \"not drunk\"",
+    "sources": [
+      "LSJ",
+      "Beekes"
+    ],
+    "breakdown": [
+      {
+        "char": "a",
+        "to": "Á",
+        "type": "stress",
+        "note": "Initial alpha carries an acute accent in the restored capital form"
+      },
+      {
+        "char": "m",
+        "to": "m",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "e",
+        "to": "e",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "t",
+        "to": "t",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "h",
+        "to": "h",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "y",
+        "to": "y",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "s",
+        "to": "s",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "t",
+        "to": "t",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "o",
+        "to": "o",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "s",
+        "to": "s",
+        "type": "same",
+        "note": "Same"
+      }
+    ],
+    "etymology": {
+      "protoForm": "*methu-",
+      "protoLanguage": "proto-indo-european",
+      "protoGloss": "honey, mead, wine",
+      "derivation": "From ἀ- \"not\" + μέθυ \"wine.\" The Greeks believed amethyst prevented intoxication.",
+      "certainty": "attested",
+      "cognates": [
+        {
+          "language": "english",
+          "form": "amethyst",
+          "relationship": "derivative",
+          "note": "Purple quartz"
+        },
+        {
+          "language": "english",
+          "form": "mead",
+          "relationship": "cognate",
+          "note": "Honey wine from the same PIE root *médu-"
+        }
+      ]
+    },
+    "senses": [
+      {
+        "type": "primary",
+        "text": "A purple quartz; the Greeks named it \"not drunken\" for its supposed sobering property."
+      },
+      {
+        "type": "etymology",
+        "text": "The name preserves the ancient belief that the stone protected against drunkenness."
+      }
+    ]
+  },
+  {
+    "id": "thalassa",
+    "ascii": "thalassa",
+    "unicode": "Thálassa",
+    "greek": "Θάλασσα",
+    "pantheon": "greek",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Sea, Salt Water, Primordial",
+    "meaning": "Sea; the salt sea",
+    "sources": [
+      "LSJ",
+      "Homer"
+    ],
+    "breakdown": [
+      {
+        "char": "t",
+        "to": "T",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "h",
+        "to": "h",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "á",
+        "type": "stress",
+        "note": "Acute on alpha"
+      },
+      {
+        "char": "l",
+        "to": "l",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "s",
+        "to": "s",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "s",
+        "to": "s",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      }
+    ],
+    "etymology": {
+      "protoForm": "*thal-",
+      "protoLanguage": "isolate",
+      "protoGloss": "sea",
+      "derivation": "Probably a Pre-Greek Mediterranean loanword; the origin is disputed. Thálassa is the ordinary word for the sea in Greek.",
+      "certainty": "disputed",
+      "cognates": [
+        {
+          "language": "greek",
+          "form": "Thalatta",
+          "relationship": "variant",
+          "note": "Ionic dialect form"
+        }
+      ]
+    },
+    "senses": [
+      {
+        "type": "primary",
+        "text": "The personification of the sea, often paired with Pontos."
+      },
+      {
+        "type": "encyclopedic",
+        "text": "The word thálassa became the default Greek term for the Mediterranean and beyond."
       }
     ]
   }

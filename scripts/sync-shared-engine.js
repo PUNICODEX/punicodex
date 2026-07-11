@@ -21,6 +21,11 @@ const destinations = [
 const content = fs.readFileSync(canonical, 'utf8');
 
 for (const dest of destinations) {
+  // Unlink first so we never write through an existing hard link;
+  // this keeps the two destinations as independent files on all platforms.
+  if (fs.existsSync(dest)) {
+    fs.unlinkSync(dest);
+  }
   fs.writeFileSync(dest, content, 'utf8');
   console.log(`Synced ${path.relative(root, dest)}`);
 }
