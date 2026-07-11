@@ -338,6 +338,35 @@
     box-shadow: 0 0 16px rgba(212, 175, 55, 0.08);
 }
 
+/* Pantheon expand button */
+.filter-expand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 0.5rem;
+    padding: 0.3rem 0;
+    background: transparent;
+    border: none;
+    color: var(--primary-dim);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.filter-expand:hover {
+    color: var(--primary);
+}
+
+.filter-expand svg {
+    transition: transform 0.25s var(--ease-out-expo);
+}
+
+.filter-expand.expanded svg {
+    transform: rotate(180deg);
+}
+
 /* Meta bar */
 .filter-panel-meta {
     padding-top: 1rem;
@@ -488,6 +517,19 @@
 @media (max-width: 768px) {
     .lexicon-stats { gap: 1.25rem; }
     .lexicon-stat-value { font-size: 1.5rem; }
+
+    /* Prevent page-level horizontal overflow */
+    .lexicon-filters,
+    .filter-panel,
+    .filter-groups,
+    .filter-group,
+    .filter-command-bar,
+    .filter-command-group,
+    .filter-search--large,
+    .filter-chip-group--pantheon {
+        min-width: 0;
+    }
+
     .filter-panel { padding: 1.1rem; }
     .filter-command-bar {
         flex-direction: column;
@@ -496,7 +538,8 @@
         margin-bottom: 1.25rem;
     }
     .filter-search--large {
-        min-width: 100%;
+        width: 100%;
+        min-width: 0;
         flex-basis: auto;
     }
     .filter-command-group {
@@ -511,8 +554,12 @@
         gap: 1rem;
     }
     .filter-group {
+        width: 100%;
         flex-direction: column;
         gap: 0.5rem;
+    }
+    .filter-group--pantheon {
+        position: relative;
     }
     .filter-group__label {
         padding-top: 0;
@@ -532,17 +579,20 @@
         padding: 0.35rem 0.7rem;
         font-size: 0.75rem;
     }
+
+    /* Pantheon chips: wrapped grid with expand on mobile */
     .filter-chip-group--pantheon {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        max-height: none;
-        padding-bottom: 0.25rem;
-        mask-image: linear-gradient(90deg, black 85%, transparent 100%);
-        -webkit-mask-image: linear-gradient(90deg, black 85%, transparent 100%);
+        flex-wrap: wrap;
+        overflow: hidden;
+        max-height: 74px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        transition: max-height 0.35s var(--ease-out-expo);
     }
-    .filter-chip-group--pantheon::-webkit-scrollbar { display: none; }
+    .filter-chip-group--pantheon.expanded {
+        max-height: 600px;
+    }
     .filter-panel-meta {
         font-size: 0.75rem;
     }

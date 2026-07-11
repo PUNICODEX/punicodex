@@ -224,6 +224,16 @@ function escapeHtml(str) {
             renderPantheonChips();
             render();
         });
+
+        const pantheonExpand = document.getElementById('pantheon-expand');
+        if (pantheonExpand) {
+            pantheonExpand.addEventListener('click', () => {
+                const expanded = pantheonChipsEl.classList.toggle('expanded');
+                pantheonExpand.setAttribute('aria-expanded', String(expanded));
+                pantheonExpand.querySelector('span').textContent = expanded ? 'Show fewer traditions' : 'Show all traditions';
+                pantheonExpand.classList.toggle('expanded', expanded);
+            });
+        }
     }
 
     // Tier segment
