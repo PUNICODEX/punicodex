@@ -164,7 +164,8 @@ function escapeHtml(str) {
         const sorted = sortEntries(filtered);
 
         const viewLabel = showAll ? 'full lexicon' : 'restored + owned';
-        countEl.textContent = `Showing ${sorted.length.toLocaleString()} of ${LEXICON.length.toLocaleString()} (${viewLabel})`;
+        countEl.textContent = `${sorted.length.toLocaleString()} of ${LEXICON.length.toLocaleString()} shown · ${viewLabel}`;
+        updateResetButton();
 
         // Cancel any in-progress batched render so rapid filter changes feel snappy.
         renderGeneration++;
@@ -205,15 +206,15 @@ function escapeHtml(str) {
 
     // Pantheon chips
     const pantheonChipsEl = document.getElementById('pantheon-chips');
-    function renderPantheonChips() {
+    const renderPantheonChips = () => {
         if (!pantheonChipsEl) return;
         const allActive = currentPantheon === 'all' ? ' active' : '';
         const chips = Object.entries(PANTHEON_LABELS).map(([key, label]) => {
             const active = currentPantheon === key ? ' active' : '';
             return `<button type="button" class="filter-chip${active}" data-filter="pantheon" data-value="${escapeHtml(key)}">${escapeHtml(label)}</button>`;
         }).join('');
-        pantheonChipsEl.innerHTML = `<button type="button" class="filter-chip${allActive}" data-filter="pantheon" data-value="all">All Pantheons</button>${chips}`;
-    }
+        pantheonChipsEl.innerHTML = `<button type="button" class="filter-chip${allActive}" data-filter="pantheon" data-value="all">All</button>${chips}`;
+    };
     if (pantheonChipsEl) {
         renderPantheonChips();
         pantheonChipsEl.addEventListener('click', (e) => {
@@ -225,7 +226,7 @@ function escapeHtml(str) {
         });
     }
 
-    // Tier chips
+    // Tier segment
     const tierSegment = document.getElementById('tier-segment');
     if (tierSegment) {
         tierSegment.querySelectorAll('[data-filter="tier"]').forEach(btn => {
@@ -255,15 +256,39 @@ function escapeHtml(str) {
     });
 
     // Show-all toggle (reveals plain-ASCII entries without owned domains)
-    const showAllBtn = document.getElementById('filter-show-all');
+    const showAllToggle = document.getElementById('filter-show-all');
     function updateShowAllButton() {
-        if (!showAllBtn) return;
-        showAllBtn.classList.toggle('active', showAll);
-        showAllBtn.setAttribute('aria-pressed', String(showAll));
+        if (!showAllToggle) return;
+        showAllToggle.classList.toggle('active', showAll);
+        showAllToggle.setAttribute('aria-pressed', String(showAll));
     }
-    if (showAllBtn) {
-        showAllBtn.addEventListener('click', () => {
+    if (showAllToggle) {
+        showAllToggle.addEventListener('click', () => {
             showAll = !showAll;
+            updateShowAllButton();
+            render();
+        });
+    }
+
+    // Reset filters
+    const resetBtn = document.getElementById('filter-reset');
+    function updateResetButton() {
+        if (!resetBtn) return;
+        const isDefault = currentPantheon === 'all' && currentTier === 'all' && currentSearch === '' && currentSort === 'alpha' && !showAll;
+        resetBtn.hidden = isDefault;
+    }
+    if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+            currentPantheon = 'all';
+            currentTier = 'all';
+            currentSearch = '';
+            currentSort = 'alpha';
+            showAll = false;
+            searchInput.value = '';
+            sortSelect.value = 'alpha';
+            renderPantheonChips();
+            tierSegment.querySelectorAll('[data-filter="tier"]').forEach(b => b.classList.remove('active'));
+            tierSegment.querySelector('[data-value="all"]').classList.add('active');
             updateShowAllButton();
             render();
         });
