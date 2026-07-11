@@ -14,6 +14,9 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
+const { createRng } = require('./rng');
+
+Math.random = createRng();
 
 const ROOT = path.join(__dirname, '..');
 const ENTRIES_PATH = path.join(ROOT, 'data', 'corpus', 'entries.jsonl');

@@ -2,7 +2,7 @@
 
 **Model family:** PÚNYCODEX Oracle (specialized language model)  
 **Data version:** 2.0.34  
-**Generated:** 2026-07-11T13:08:03.347Z  
+**Generated:** 2026-07-11T13:36:53.212Z  
 **License:** CC BY 4.0 for dataset; ISC for software (see root LICENSE).
 
 ## Intended Use
@@ -17,8 +17,8 @@
 
 | Split | Examples | File |
 |-------|----------|------|
-| Train | 55,431 | `data/corpus/chat-train.jsonl` |
-| Evaluation | 13,704 | `data/corpus/chat-eval.jsonl` |
+| Train | 55,460 | `data/corpus/chat-train.jsonl` |
+| Evaluation | 13,675 | `data/corpus/chat-eval.jsonl` |
 | **Total** | **69,135** | — |
 
 Source corpora:
@@ -71,8 +71,8 @@ Do not use this model to generate deceptive domains, impersonate brands, or evad
 
 Before supervised fine-tuning, domain-adapt the base model on the raw scholarly corpus:
 
-- `data/corpus/pretrain.jsonl` — 5,188 training documents (382,701 whitespace tokens).
-- `data/corpus/pretrain-validation.jsonl` — 276 validation documents (21,115 whitespace tokens).
+- `data/corpus/pretrain.jsonl` — 5,188 training documents (382,348 whitespace tokens).
+- `data/corpus/pretrain-validation.jsonl` — 276 validation documents (21,226 whitespace tokens).
 - HuggingFace-compatible splits in `data/corpus/huggingface/`.
 
 Documents are drawn from structured entry records, flagship lore, original-script provenance, pronunciation notes, the source catalog, mythology synthesis, oracle reflections, symbolic correspondences, and scientific analogies. Strip HTML and normalize whitespace before tokenization. This step teaches the model the domain's scripts, diacritics, scholarly vocabulary, and canonical source style before chat-format SFT.

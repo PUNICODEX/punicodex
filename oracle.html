@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ask the Oracle — PUNYCODEX</title>
-  <meta name="description" content="Ask the Oracle about mythological names, Unicode domains, and the PUNYCODEX knowledge base.">
+  <title>The PÚNYCODEX Oracle — Coming Soon</title>
+  <meta name="description" content="The PÚNYCODEX Oracle is a specialized AI for mythological names, Unicode restorations, original scripts, pronunciation, and homograph safety.">
   <meta name="theme-color" content="#D4AF37">
   <meta name="color-scheme" content="dark">
   <link rel="canonical" href="https://punycodex.com/oracle.html">
-  <meta property="og:title" content="Ask the Oracle — PUNYCODEX">
-  <meta property="og:description" content="Conversational answers drawn from the PUNYCODEX lexicon, indexed sites, and tenant keywords.">
+  <meta property="og:title" content="The PÚNYCODEX Oracle — Coming Soon">
+  <meta property="og:description" content="A specialized intelligence for mythological names, Unicode, punycode, original scripts, and the stories behind them.">
   <meta property="og:url" content="https://punycodex.com/oracle.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PUNYCODEX">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Ask the Oracle — PUNYCODEX">
-  <meta name="twitter:description" content="Conversational answers drawn from the PUNYCODEX lexicon, indexed sites, and tenant keywords.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The PÚNYCODEX Oracle — Coming Soon">
+  <meta name="twitter:description" content="A specialized intelligence for mythological names, Unicode, punycode, original scripts, and the stories behind them.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -24,417 +24,762 @@
     :root {
       --oracle-bg: var(--void);
       --oracle-surface: var(--surface-raised);
-      --oracle-surface-2: var(--surface);
-      --oracle-surface-hover: var(--hover);
       --oracle-border: var(--border);
       --oracle-accent: var(--gold);
       --oracle-accent-dim: var(--gold-dim);
       --oracle-text: var(--text-primary);
       --oracle-text-dim: var(--text-secondary);
       --oracle-text-muted: var(--text-dim);
-      --oracle-link-blue: var(--blue);
+      --oracle-blue: var(--blue);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: var(--font-body);
       background: var(--oracle-bg);
       color: var(--oracle-text);
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      overflow-x: hidden;
     }
 
-    /* Utility header */
-    .px-utility-header {
-      padding: var(--space-5) var(--space-6);
+    /* Header / Nav */
+    .oracle-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
       border-bottom: 1px solid var(--oracle-border);
-      background: var(--oracle-bg);
+      background: rgba(var(--void-rgb), 0.85);
+      backdrop-filter: blur(12px);
     }
-    .px-utility-header-inner {
-      max-width: var(--container-narrow);
+    .oracle-header-inner {
+      max-width: var(--container-wide);
       margin: 0 auto;
+      padding: var(--space-4) var(--space-6);
       display: flex;
       align-items: center;
-      gap: var(--space-4);
+      justify-content: space-between;
     }
-    .px-utility-wordmark {
+    .oracle-wordmark {
       font-family: var(--font-display);
       font-size: var(--text-xl);
       font-weight: 600;
       color: var(--oracle-accent);
       letter-spacing: 0.05em;
+      text-decoration: none;
     }
-    .px-utility-wordmark:hover { color: var(--gold-bright); }
-    .px-utility-back {
-      margin-left: auto;
-      font-size: var(--text-sm);
-      color: var(--oracle-text-dim);
-    }
-    .px-utility-back:hover { color: var(--oracle-accent); }
-
-    main {
-      flex: 1;
-      max-width: 760px;
-      width: 100%;
-      margin: 0 auto;
-      padding: var(--space-5) var(--space-4);
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-4);
-    }
-
-    .intro {
-      text-align: center;
-      padding: var(--space-5) var(--space-4);
-    }
-    .intro h1 {
-      font-family: var(--font-display);
-      color: var(--oracle-accent);
-      font-size: var(--text-3xl);
-      margin-bottom: var(--space-3);
-    }
-    .intro p { color: var(--oracle-text-dim); font-size: var(--text-base); }
-
-    .oracle-panel {
-      flex: 1;
-      background: linear-gradient(180deg, var(--oracle-surface) 0%, var(--oracle-surface-2) 100%);
-      border: 1px solid var(--oracle-border);
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      min-height: 420px;
-    }
-    .oracle-header {
+    .oracle-wordmark:hover { color: var(--gold-bright); }
+    .oracle-nav {
       display: flex;
       align-items: center;
-      gap: var(--space-2);
-      padding: var(--space-3) var(--space-4);
-      border-bottom: 1px solid var(--oracle-border);
-      user-select: none;
+      gap: var(--space-5);
     }
-    .oracle-icon { font-size: var(--text-xl); }
-    .oracle-title { font-weight: 600; font-size: var(--text-base); color: var(--oracle-accent); }
-    .oracle-body {
-      padding: var(--space-4);
-      overflow-y: auto;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-3);
-    }
-    .oracle-message {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-1);
-      max-width: 90%;
-    }
-    .oracle-message.user { align-self: flex-end; }
-    .oracle-message.oracle { align-self: flex-start; }
-    .oracle-bubble {
-      padding: var(--space-3) var(--space-4);
-      border-radius: var(--radius-xl);
-      font-size: var(--text-base);
-      line-height: 1.55;
-      color: var(--oracle-text);
-    }
-    .oracle-message.user .oracle-bubble {
-      background: var(--oracle-accent);
-      color: var(--void);
-      border-bottom-right-radius: var(--radius-sm);
-    }
-    .oracle-message.oracle .oracle-bubble {
-      background: var(--oracle-bg);
-      border: 1px solid var(--oracle-border);
-      border-bottom-left-radius: var(--radius-sm);
-    }
-    .oracle-bubble a { color: var(--oracle-link-blue); text-decoration: none; }
-    .oracle-bubble a:hover { text-decoration: underline; }
-    .oracle-meta {
-      font-size: var(--text-xs);
-      color: var(--oracle-text-muted);
-      padding: 0 var(--space-1);
-    }
-    .oracle-citations-title {
-      font-size: var(--text-xs);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--oracle-text-muted);
-      margin: var(--space-2) 0 var(--space-1);
-    }
-    .oracle-citations {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-2);
-    }
-    .oracle-citation {
-      font-size: var(--text-xs);
-      padding: var(--space-1) var(--space-3);
-      background: var(--oracle-bg);
-      border: 1px solid var(--oracle-border);
-      border-radius: var(--radius-full);
+    .oracle-nav a {
+      font-size: var(--text-sm);
+      font-weight: 500;
       color: var(--oracle-text-dim);
       text-decoration: none;
-      transition: border-color 0.2s, color 0.2s;
+      transition: color 0.2s;
     }
-    .oracle-citation:hover {
-      border-color: var(--oracle-accent);
-      color: var(--oracle-accent);
-    }
-    .oracle-citation:focus-visible {
-      outline: 2px solid var(--gold);
-      outline-offset: 2px;
-    }
-    .oracle-followups {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-2);
-      margin-top: var(--space-2);
-    }
-    .oracle-followup {
-      font-size: var(--text-sm);
-      padding: var(--space-1) var(--space-3);
-      background: var(--gold-dim);
-      border: 1px solid rgba(var(--gold-rgb), 0.25);
+    .oracle-nav a:hover,
+    .oracle-nav a.active { color: var(--oracle-accent); }
+    .oracle-nav-cta {
+      background: var(--oracle-accent);
+      color: var(--void) !important;
+      padding: var(--space-2) var(--space-4);
       border-radius: var(--radius-full);
-      color: var(--oracle-accent);
+      font-weight: 600;
+    }
+    .oracle-nav-cta:hover { background: var(--gold-bright); }
+    .oracle-menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
       cursor: pointer;
-      transition: background 0.2s, border-color 0.2s;
+      padding: var(--space-2);
     }
-    .oracle-followup:hover {
-      background: rgba(var(--gold-rgb), 0.18);
-      border-color: var(--oracle-accent);
+    .oracle-menu-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--oracle-text);
+      transition: transform 0.2s, opacity 0.2s;
     }
-    .oracle-followup:focus-visible {
-      outline: 2px solid var(--gold);
-      outline-offset: 2px;
+    .oracle-mobile-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(var(--void-rgb), 0.96);
+      border-bottom: 1px solid var(--oracle-border);
+      flex-direction: column;
+      padding: var(--space-4) var(--space-6);
+      gap: var(--space-4);
     }
-    .oracle-empty {
-      color: var(--oracle-text-muted);
-      font-size: var(--text-sm);
-      text-align: center;
-      padding: var(--space-8) 0;
+    .oracle-mobile-menu.open { display: flex; }
+    .oracle-mobile-menu a {
+      color: var(--oracle-text);
+      text-decoration: none;
+      font-size: var(--text-lg);
+      font-weight: 500;
     }
-    .oracle-loading {
-      color: var(--oracle-text-muted);
-      font-size: var(--text-sm);
+    .oracle-mobile-menu a.active { color: var(--oracle-accent); }
+
+    /* Hero */
+    .oracle-hero {
+      position: relative;
+      min-height: 100vh;
       display: flex;
       align-items: center;
-      gap: var(--space-2);
+      justify-content: center;
+      text-align: center;
+      padding: var(--space-10) var(--space-6) var(--space-8);
+      overflow: hidden;
     }
-    .oracle-error { color: var(--crimson); font-size: var(--text-sm); }
-    .oracle-input-row {
-      display: flex;
-      gap: var(--space-2);
-      padding: var(--space-3) var(--space-4);
-      border-top: 1px solid var(--oracle-border);
-      background: var(--oracle-surface);
+    #oracle-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 1.2s ease;
     }
-    .oracle-input {
-      flex: 1;
-      background: var(--oracle-bg);
-      border: 1px solid var(--oracle-border);
-      border-radius: var(--radius-full);
+    #oracle-canvas.ready { opacity: 1; }
+    .oracle-hero-fallback {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 45%, rgba(var(--gold-rgb), 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 20% 80%, rgba(var(--blue-rgb), 0.10) 0%, transparent 35%),
+        radial-gradient(circle at 80% 20%, rgba(var(--emerald-rgb), 0.08) 0%, transparent 30%);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .oracle-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+    .oracle-hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
       padding: var(--space-2) var(--space-4);
-      color: var(--oracle-text);
-      font-size: var(--text-base);
-      outline: none;
+      border: 1px solid rgba(var(--gold-rgb), 0.35);
+      border-radius: var(--radius-full);
+      color: var(--oracle-accent);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-5);
     }
-    .oracle-input:focus {
-      border-color: var(--oracle-accent);
-      box-shadow: 0 0 0 2px var(--gold-dim);
+    .oracle-hero-eyebrow::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--oracle-accent);
+      box-shadow: 0 0 12px var(--gold-glow-strong);
+      animation: pulse-dot 2s infinite;
     }
-    .oracle-send {
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.85); }
+    }
+    .oracle-hero h1 {
+      font-family: var(--font-display);
+      font-size: var(--text-7xl);
+      line-height: 1.05;
+      margin-bottom: var(--space-5);
+      background: linear-gradient(180deg, #fff 0%, var(--gold-bright) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .oracle-hero-lead {
+      font-size: var(--text-xl);
+      color: var(--oracle-text-dim);
+      max-width: 680px;
+      margin: 0 auto var(--space-7);
+      line-height: 1.6;
+    }
+    .oracle-hero-actions {
+      display: flex;
+      gap: var(--space-4);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-oracle {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-3) var(--space-6);
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+    .btn-oracle:hover { transform: translateY(-2px); }
+    .btn-primary-oracle {
       background: var(--oracle-accent);
       color: var(--void);
-      border: none;
-      border-radius: var(--radius-full);
-      padding: 0 var(--space-5);
-      font-weight: 600;
-      cursor: pointer;
-      transition: opacity 0.2s;
+      box-shadow: 0 8px 32px rgba(var(--gold-rgb), 0.25);
     }
-    .oracle-send:hover { opacity: 0.85; }
-    .oracle-send:disabled { opacity: 0.5; cursor: not-allowed; }
-    .oracle-send:focus-visible {
-      outline: 2px solid var(--gold);
-      outline-offset: 2px;
+    .btn-primary-oracle:hover { background: var(--gold-bright); }
+    .btn-ghost-oracle {
+      background: transparent;
+      color: var(--oracle-text);
+      border: 1px solid var(--oracle-border);
     }
+    .btn-ghost-oracle:hover { border-color: var(--oracle-accent); color: var(--oracle-accent); }
 
-    .px-utility-footer {
+    /* Sections */
+    .oracle-section {
+      position: relative;
+      z-index: 2;
+      padding: var(--space-10) var(--space-6);
+      background: var(--oracle-bg);
+    }
+    .oracle-section-alt {
+      background: linear-gradient(180deg, var(--oracle-bg) 0%, var(--surface) 50%, var(--oracle-bg) 100%);
+    }
+    .oracle-container {
+      max-width: var(--container-wide);
+      margin: 0 auto;
+    }
+    .oracle-section-header {
       text-align: center;
-      padding: var(--space-6) var(--space-5);
-      font-size: var(--text-xs);
-      color: var(--oracle-text-muted);
-      border-top: 1px solid var(--oracle-border);
+      max-width: 760px;
+      margin: 0 auto var(--space-9);
     }
-    .px-utility-footer a { color: var(--oracle-accent); text-decoration: none; }
-    .px-utility-footer a:hover { text-decoration: underline; }
+    .oracle-section-header h2 {
+      font-family: var(--font-display);
+      font-size: var(--text-5xl);
+      margin-bottom: var(--space-4);
+      color: var(--oracle-text);
+    }
+    .oracle-section-header p {
+      font-size: var(--text-lg);
+      color: var(--oracle-text-dim);
+      line-height: 1.6;
+    }
 
-    @media (max-width: 600px) {
-      .px-utility-header { padding: var(--space-4) var(--space-5); }
-      main { padding: var(--space-4) var(--space-3); }
-      .intro h1 { font-size: var(--text-2xl); }
+    /* Difference grid */
+    .difference-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-5);
+    }
+    .difference-card {
+      background: linear-gradient(180deg, var(--oracle-surface) 0%, rgba(var(--surface-raised-rgb), 0.4) 100%);
+      border: 1px solid var(--oracle-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .difference-card:hover {
+      border-color: rgba(var(--gold-rgb), 0.35);
+      transform: translateY(-4px);
+    }
+    .difference-card h3 {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      color: var(--oracle-accent);
+      margin-bottom: var(--space-3);
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+    .difference-card h3 .icon {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius-lg);
+      background: var(--oracle-accent-dim);
+      font-size: var(--text-lg);
+    }
+    .difference-card p {
+      color: var(--oracle-text-dim);
+      line-height: 1.6;
+      font-size: var(--text-base);
+    }
+
+    /* Stats */
+    .oracle-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: var(--space-5);
+      text-align: center;
+    }
+    .oracle-stat {
+      padding: var(--space-6);
+      border: 1px solid var(--oracle-border);
+      border-radius: var(--radius-xl);
+      background: var(--oracle-surface);
+    }
+    .oracle-stat-number {
+      font-family: var(--font-display);
+      font-size: var(--text-4xl);
+      color: var(--oracle-accent);
+      display: block;
+    }
+    .oracle-stat-label {
+      font-size: var(--text-sm);
+      color: var(--oracle-text-dim);
+      margin-top: var(--space-2);
+    }
+
+    /* Use cases */
+    .usecase-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-4);
+    }
+    .usecase-item {
+      display: flex;
+      gap: var(--space-4);
+      padding: var(--space-5);
+      border: 1px solid var(--oracle-border);
+      border-radius: var(--radius-xl);
+      background: var(--oracle-surface);
+    }
+    .usecase-item .number {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      color: var(--oracle-accent);
+      line-height: 1;
+    }
+    .usecase-item h4 {
+      font-size: var(--text-base);
+      font-weight: 600;
+      margin-bottom: var(--space-1);
+    }
+    .usecase-item p {
+      font-size: var(--text-sm);
+      color: var(--oracle-text-dim);
+      line-height: 1.55;
+    }
+
+    /* CTA banner */
+    .oracle-cta-banner {
+      text-align: center;
+      padding: var(--space-9) var(--space-6);
+      border-top: 1px solid var(--oracle-border);
+      border-bottom: 1px solid var(--oracle-border);
+      background:
+        radial-gradient(circle at 50% 50%, rgba(var(--gold-rgb), 0.10) 0%, transparent 60%);
+    }
+    .oracle-cta-banner h2 {
+      font-family: var(--font-display);
+      font-size: var(--text-4xl);
+      margin-bottom: var(--space-4);
+    }
+    .oracle-cta-banner p {
+      color: var(--oracle-text-dim);
+      max-width: 560px;
+      margin: 0 auto var(--space-6);
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    .oracle-footer {
+      padding: var(--space-8) var(--space-6);
+      border-top: 1px solid var(--oracle-border);
+      text-align: center;
+      color: var(--oracle-text-muted);
+      font-size: var(--text-sm);
+    }
+    .oracle-footer a { color: var(--oracle-accent); text-decoration: none; }
+    .oracle-footer a:hover { text-decoration: underline; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .oracle-nav { display: none; }
+      .oracle-menu-toggle { display: flex; }
+      .oracle-hero h1 { font-size: var(--text-5xl); }
+      .oracle-hero-lead { font-size: var(--text-lg); }
+      .difference-grid,
+      .usecase-list { grid-template-columns: 1fr; }
+      .oracle-section-header h2 { font-size: var(--text-3xl); }
     }
   </style>
 </head>
 <body>
-  <header class="px-utility-header">
-    <div class="px-utility-header-inner">
-      <a href="/" class="px-utility-wordmark">PUNYCODEX</a>
-      <a href="search.html" class="px-utility-back">← Back to Search</a>
+
+  <header class="oracle-header">
+    <div class="oracle-header-inner">
+      <a href="/" class="oracle-wordmark">P<span>U</span>NYCODEX</a>
+      <nav class="oracle-nav" aria-label="Main">
+        <a href="/pantheon/">Pantheon</a>
+        <a href="/lexicon/">Lexicon</a>
+        <a href="/type/">Type</a>
+        <a href="/tiers/">Tiers</a>
+        <a href="/oracle.html" class="active">Oracle</a>
+        <a href="/about/">About</a>
+        <a href="/contact/" class="oracle-nav-cta">Contact</a>
+      </nav>
+      <button class="oracle-menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="oracle-mobile-menu" id="mobileMenu">
+      <a href="/pantheon/">Pantheon</a>
+      <a href="/lexicon/">Lexicon</a>
+      <a href="/type/">Type</a>
+      <a href="/tiers/">Tiers</a>
+      <a href="/oracle.html" class="active">Oracle</a>
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
     </div>
   </header>
 
-  <main>
-    <div class="intro">
-      <h1>🔮 Ask the Oracle</h1>
-      <p>Conversational answers drawn from the PUNYCODEX lexicon, indexed sites, and tenant keywords.</p>
-    </div>
-
-    <section class="oracle-panel">
-      <div class="oracle-header">
-        <span class="oracle-icon">🔮</span>
-        <span class="oracle-title">Oracle</span>
+  <section class="oracle-hero" id="hero">
+    <canvas id="oracle-canvas"></canvas>
+    <div class="oracle-hero-fallback" id="heroFallback"></div>
+    <div class="oracle-hero-content">
+      <div class="oracle-hero-eyebrow">Launching Soon</div>
+      <h1>The PÚNYCODEX Oracle</h1>
+      <p class="oracle-hero-lead">
+        A specialized intelligence for mythological names, Unicode restorations, original scripts,
+        pronunciation, etymology, punycode, and homograph safety — grounded in the PÚNYCODEX canon,
+        not the generic web.
+      </p>
+      <div class="oracle-hero-actions">
+        <a href="/contact/" class="btn-oracle btn-primary-oracle">Join the Waitlist</a>
+        <a href="/codex/" class="btn-oracle btn-ghost-oracle">Explore the Corpus</a>
       </div>
-      <div class="oracle-body" id="oracleBody">
-        <div class="oracle-message oracle">
-          <div class="oracle-bubble">Greetings. Ask me about a deity, realm, symbol, or business on PUNYCODEX.</div>
-          <div class="oracle-meta">Oracle · just now</div>
+    </div>
+  </section>
+
+  <section class="oracle-section oracle-section-alt">
+    <div class="oracle-container">
+      <div class="oracle-section-header">
+        <h2>What makes the Oracle different?</h2>
+        <p>General-purpose models know names as words. The Oracle knows them as restorations — with stress, length, script, source, and safety context.</p>
+      </div>
+      <div class="difference-grid">
+        <article class="difference-card">
+          <h3><span class="icon">📜</span> Canonical, not generic</h3>
+          <p>Every answer is grounded in the PÚNYCODEX canonical sources — LSJ, Beekes, Faulkner, KTU, the Avesta, the Kojiki, and 170+ scholarly references — not scraped forum posts or Wikipedia summaries.</p>
+        </article>
+        <article class="difference-card">
+          <h3><span class="icon">🔣</span> Unicode &amp; punycode native</h3>
+          <p>The Oracle reads, writes, and converts between Unicode restorations and their punycode domain forms. It understands why <em>Apóllōn</em> is not the same as <em>apollon</em>.</p>
+        </article>
+        <article class="difference-card">
+          <h3><span class="icon">🛡️</span> Homograph defense</h3>
+          <p>It detects mixed-script deception, normalization tricks, invisible characters, and lookalike domains — and refuses to help with spoofing, impersonation, or trademark abuse.</p>
+        </article>
+        <article class="difference-card">
+          <h3><span class="icon">🗣️</span> Pronunciation &amp; original script</h3>
+          <p>Ask for IPA, phoneme breakdowns, or the original hieroglyphic, cuneiform, runic, Greek, Devanagari, or CJK form — with provenance for every step.</p>
+        </article>
+        <article class="difference-card">
+          <h3><span class="icon">🜁</span> Symbolic &amp; scientific depth</h3>
+          <p>It maps planetary, elemental, alchemical, and tarot correspondences, and draws careful analogies to physics, biology, neuroscience, and philosophy — always labeling confidence.</p>
+        </article>
+        <article class="difference-card">
+          <h3><span class="icon">🌉</span> Pattern recognition across traditions</h3>
+          <p>It can trace how chaos echoes the Big Bang, how Apollo and Ra speak to light, and how biblical figures connect to older mythic patterns — without flattening their differences.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="oracle-section">
+    <div class="oracle-container">
+      <div class="oracle-section-header">
+        <h2>Trained on the PÚNYCODEX flywheel</h2>
+        <p>The model is being built from the same canonical sources that power the website, API, browser extension, and mobile app.</p>
+      </div>
+      <div class="oracle-stats">
+        <div class="oracle-stat">
+          <span class="oracle-stat-number">873</span>
+          <div class="oracle-stat-label">Lexicon entries</div>
+        </div>
+        <div class="oracle-stat">
+          <span class="oracle-stat-number">69k+</span>
+          <div class="oracle-stat-label">Chat-format examples</div>
+        </div>
+        <div class="oracle-stat">
+          <span class="oracle-stat-number">5.4k+</span>
+          <div class="oracle-stat-label">Pretraining documents</div>
+        </div>
+        <div class="oracle-stat">
+          <span class="oracle-stat-number">181</span>
+          <div class="oracle-stat-label">Source works cited</div>
         </div>
       </div>
-      <div class="oracle-input-row">
-        <input type="text" class="oracle-input" id="oracleInput" placeholder="Ask a question..." onkeydown="if(event.key==='Enter')sendOracleMessage()">
-        <button class="oracle-send" id="oracleSend" onclick="sendOracleMessage()">Ask</button>
-      </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <footer class="px-utility-footer">
-    <a href="search.html">Back to Search</a> · Answers are grounded in PUNYCODEX data only. · © 2026 PÚNYCODEX
+  <section class="oracle-section oracle-section-alt">
+    <div class="oracle-container">
+      <div class="oracle-section-header">
+        <h2>What you will be able to ask</h2>
+      </div>
+      <div class="usecase-list">
+        <div class="usecase-item">
+          <span class="number">01</span>
+          <div>
+            <h4>Restore a name</h4>
+            <p>"What is the scholarly Unicode form of apollon, and why is it dual-tier?"</p>
+          </div>
+        </div>
+        <div class="usecase-item">
+          <span class="number">02</span>
+          <div>
+            <h4>Check a domain</h4>
+            <p>"Is this punycode domain a canonical PÚNYCODEX name or a spoof?"</p>
+          </div>
+        </div>
+        <div class="usecase-item">
+          <span class="number">03</span>
+          <div>
+            <h4>Hear it aloud</h4>
+            <p>"How do I pronounce Hádēs in Attic Greek, and what does each sound signify?"</p>
+          </div>
+        </div>
+        <div class="usecase-item">
+          <span class="number">04</span>
+          <div>
+            <h4>Read the original script</h4>
+            <p>"Show me the hieroglyphic or cuneiform original for this name."</p>
+          </div>
+        </div>
+        <div class="usecase-item">
+          <span class="number">05</span>
+          <div>
+            <h4>Compare myths</h4>
+            <p>"How does the Babylonian Tiamat relate to the Greek Kháos and modern cosmology?"</p>
+          </div>
+        </div>
+        <div class="usecase-item">
+          <span class="number">06</span>
+          <div>
+            <h4>Map correspondences</h4>
+            <p>"What are the planetary, elemental, and alchemical associations of Venus/Aphrodítē?"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="oracle-cta-banner">
+    <h2>Be the first to consult the Oracle</h2>
+    <p>We are preparing the model for training on dedicated hardware. If you want early access, research collaboration, or API notifications, reach out.</p>
+    <a href="/contact/" class="btn-oracle btn-primary-oracle">Join the Waitlist</a>
+  </section>
+
+  <footer class="oracle-footer">
+    <p>
+      <a href="/">PÚNYCODEX</a> &middot;
+      <a href="/codex/">Source Codex</a> &middot;
+      <a href="/api/v1/docs/">API</a> &middot;
+      <a href="/privacy/">Privacy</a>
+    </p>
+    <p style="margin-top: var(--space-3);">© 2026 PÚNYCODEX. All rites reserved.</p>
   </footer>
 
-  <script>
-    const API_BASE = window.location.origin;
-    let oracleHistory = [];
-
-    async function sendOracleMessage(overrideText) {
-      const input = document.getElementById('oracleInput');
-      const sendBtn = document.getElementById('oracleSend');
-      const text = overrideText || (input ? input.value.trim() : '');
-      if (!text) return;
-
-      if (input) input.value = '';
-      sendBtn.disabled = true;
-
-      addOracleMessage('user', text);
-      addOracleLoading();
-
-      try {
-        const historyParam = encodeURIComponent(JSON.stringify(oracleHistory));
-        const res = await fetch(`${API_BASE}/api/oracle/?q=${encodeURIComponent(text)}&history=${historyParam}`);
-        if (!res.ok) throw new Error('Oracle unavailable');
-        const data = await res.json();
-        removeOracleLoading();
-        addOracleMessage('oracle', data.answer, data.citations, data.followUps, data.primaryId);
-      } catch (err) {
-        removeOracleLoading();
-        addOracleMessage('oracle', `The Oracle is resting: ${escapeHtml(err.message)}`, [], []);
-      } finally {
-        sendBtn.disabled = false;
-        if (input) input.focus();
-      }
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
     }
+  }
+  </script>
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-    function addOracleMessage(role, text, citations = [], followUps = [], primaryId = null) {
-      const body = document.getElementById('oracleBody');
-      const empty = body.querySelector('.oracle-empty');
-      if (empty) empty.remove();
+    const canvas = document.getElementById('oracle-canvas');
+    const fallback = document.getElementById('heroFallback');
+    const isMobile = window.matchMedia('(pointer: coarse)').matches;
 
-      const wrapper = document.createElement('div');
-      wrapper.className = `oracle-message ${role}`;
+    try {
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 200);
+      camera.position.set(0, 0, 18);
 
-      const bubble = document.createElement('div');
-      bubble.className = 'oracle-bubble';
-      bubble.innerHTML = role === 'oracle' ? linkifyOracleAnswer(escapeHtml(text)) : escapeHtml(text);
-      wrapper.appendChild(bubble);
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'high-performance' });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
 
-      const meta = document.createElement('div');
-      meta.className = 'oracle-meta';
-      meta.textContent = role === 'oracle' ? 'Oracle · just now' : 'You · just now';
-      wrapper.appendChild(meta);
+      // Lights
+      const ambient = new THREE.AmbientLight(0xffffff, 0.25);
+      scene.add(ambient);
 
-      if (role === 'oracle' && citations && citations.length) {
-        const citeTitle = document.createElement('div');
-        citeTitle.className = 'oracle-citations-title';
-        citeTitle.textContent = 'Sources';
-        wrapper.appendChild(citeTitle);
-        const citeWrap = document.createElement('div');
-        citeWrap.className = 'oracle-citations';
-        for (const c of citations) {
-          const a = document.createElement('a');
-          a.className = 'oracle-citation';
-          a.href = c.url;
-          a.textContent = c.label;
-          if (c.url.startsWith('http')) { a.target = '_blank'; a.rel = 'noopener'; }
-          citeWrap.appendChild(a);
-        }
-        wrapper.appendChild(citeWrap);
+      const coreLight = new THREE.PointLight(0xD4AF37, 2.5, 60);
+      scene.add(coreLight);
+
+      const rimLight = new THREE.DirectionalLight(0x5B7FFF, 1.2);
+      rimLight.position.set(5, 5, 8);
+      scene.add(rimLight);
+
+      // Core sphere
+      const coreGeo = new THREE.IcosahedronGeometry(1.8, 16);
+      const coreMat = new THREE.MeshStandardMaterial({
+        color: 0x111111,
+        emissive: 0xD4AF37,
+        emissiveIntensity: 0.35,
+        metalness: 0.9,
+        roughness: 0.35,
+      });
+      const core = new THREE.Mesh(coreGeo, coreMat);
+      scene.add(core);
+
+      // Orbital rings
+      const ringGroup = new THREE.Group();
+      scene.add(ringGroup);
+
+      function createRing(radius, tube, color, tiltX, tiltY) {
+        const geo = new THREE.TorusGeometry(radius, tube, 24, 120);
+        const mat = new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0.22, side: THREE.DoubleSide });
+        const ring = new THREE.Mesh(geo, mat);
+        ring.rotation.x = tiltX;
+        ring.rotation.y = tiltY;
+        return ring;
       }
 
-      if (role === 'oracle' && followUps && followUps.length) {
-        const fuWrap = document.createElement('div');
-        fuWrap.className = 'oracle-followups';
-        for (const fu of followUps) {
-          const chip = document.createElement('button');
-          chip.className = 'oracle-followup';
-          chip.textContent = fu;
-          chip.onclick = () => sendOracleMessage(fu);
-          fuWrap.appendChild(chip);
-        }
-        wrapper.appendChild(fuWrap);
+      ringGroup.add(createRing(3.2, 0.015, 0xD4AF37, Math.PI / 2.4, 0.4));
+      ringGroup.add(createRing(4.4, 0.012, 0x5B7FFF, Math.PI / 3.2, -0.5));
+      ringGroup.add(createRing(5.6, 0.010, 0x3EB489, Math.PI / 5, 0.7));
+      ringGroup.add(createRing(7.0, 0.008, 0xC0C0C0, -Math.PI / 6, -0.3));
+
+      // Particles
+      const particleCount = isMobile ? 700 : 1800;
+      const positions = new Float32Array(particleCount * 3);
+      const colors = new Float32Array(particleCount * 3);
+      const palette = [new THREE.Color(0xD4AF37), new THREE.Color(0x5B7FFF), new THREE.Color(0xFFFFFF), new THREE.Color(0x3EB489)];
+
+      for (let i = 0; i < particleCount; i++) {
+        const r = 4 + Math.random() * 10;
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos(2 * Math.random() - 1);
+        positions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+        positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+        positions[i * 3 + 2] = r * Math.cos(phi);
+        const c = palette[Math.floor(Math.random() * palette.length)];
+        colors[i * 3] = c.r;
+        colors[i * 3 + 1] = c.g;
+        colors[i * 3 + 2] = c.b;
       }
 
-      body.appendChild(wrapper);
-      body.scrollTop = body.scrollHeight;
+      const particleGeo = new THREE.BufferGeometry();
+      particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      particleGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+      const particleMat = new THREE.PointsMaterial({ size: 0.055, vertexColors: true, transparent: true, opacity: 0.85, sizeAttenuation: true });
+      const particles = new THREE.Points(particleGeo, particleMat);
+      scene.add(particles);
 
-      oracleHistory.push({ role, text, primaryId });
-      if (oracleHistory.length > 20) oracleHistory = oracleHistory.slice(-20);
+      // Floating name labels
+      const names = ['Apóllōn', 'Zeus', 'Thór', 'Śiva', 'Ra', 'Anat', 'Quetzalcoatl', 'Amaterasu', 'Chaos', 'Yīnyáng'];
+      const labelGroup = new THREE.Group();
+      scene.add(labelGroup);
+
+      function createLabel(text, radius, angle) {
+        const cvs = document.createElement('canvas');
+        const ctx = cvs.getContext('2d');
+        const fontSize = 28;
+        ctx.font = `600 ${fontSize}px Montserrat, sans-serif`;
+        const metrics = ctx.measureText(text);
+        cvs.width = Math.ceil(metrics.width) + 24;
+        cvs.height = fontSize + 16;
+        ctx.font = `600 ${fontSize}px Montserrat, sans-serif`;
+        ctx.fillStyle = 'rgba(212, 175, 55, 0.92)';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(text, cvs.width / 2, cvs.height / 2);
+        const tex = new THREE.CanvasTexture(cvs);
+        const mat = new THREE.SpriteMaterial({ map: tex, transparent: true, opacity: 0.85 });
+        const sprite = new THREE.Sprite(mat);
+        sprite.scale.set(cvs.width / 45, cvs.height / 45, 1);
+        sprite.userData = { radius, angle, speed: 0.15 + Math.random() * 0.25 };
+        return sprite;
+      }
+
+      names.forEach((name, i) => {
+        const radius = 5.5 + (i % 3) * 1.3;
+        const angle = (i / names.length) * Math.PI * 2;
+        const label = createLabel(name, radius, angle);
+        labelGroup.add(label);
+      });
+
+      // Controls
+      const controls = new OrbitControls(camera, renderer.domElement);
+      controls.enableZoom = false;
+      controls.enablePan = false;
+      controls.autoRotate = true;
+      controls.autoRotateSpeed = 0.4;
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.05;
+
+      // Animation
+      let time = 0;
+      function animate() {
+        requestAnimationFrame(animate);
+        time += 0.005;
+
+        core.rotation.y += 0.002;
+        core.rotation.x += 0.001;
+
+        ringGroup.rotation.y += 0.0015;
+        ringGroup.rotation.z += 0.0008;
+
+        particles.rotation.y += 0.0003;
+        particles.rotation.x += 0.0001;
+
+        labelGroup.children.forEach((sprite) => {
+          sprite.userData.angle += sprite.userData.speed * 0.005;
+          const r = sprite.userData.radius;
+          sprite.position.set(
+            r * Math.cos(sprite.userData.angle),
+            r * Math.sin(sprite.userData.angle) * 0.35,
+            r * Math.sin(sprite.userData.angle)
+          );
+          sprite.material.rotation = -sprite.userData.angle * 0.2;
+        });
+
+        // Subtle camera float
+        camera.position.y = Math.sin(time) * 0.35;
+
+        controls.update();
+        renderer.render(scene, camera);
+      }
+
+      canvas.classList.add('ready');
+      fallback.style.opacity = '0.3';
+      animate();
+
+      // Resize
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    } catch (err) {
+      console.warn('Oracle 3D scene unavailable; fallback active.', err);
+      fallback.style.opacity = '1';
     }
 
-    function addOracleLoading() {
-      const body = document.getElementById('oracleBody');
-      const wrapper = document.createElement('div');
-      wrapper.className = 'oracle-message oracle';
-      wrapper.id = 'oracleLoadingMessage';
-      wrapper.innerHTML = '<div class="oracle-bubble oracle-loading"><span>🔮</span><span>The Oracle is consulting the archives...</span></div>';
-      body.appendChild(wrapper);
-      body.scrollTop = body.scrollHeight;
-    }
-
-    function removeOracleLoading() {
-      const el = document.getElementById('oracleLoadingMessage');
-      if (el) el.remove();
-    }
-
-    function linkifyOracleAnswer(text) {
-      let out = text.replace(/\*\*(.+?)\*\*/g, (_, m) => `<strong>${m}</strong>`);
-      out = out.replace(/\[(.+?)\]\((.+?)\)/g, (_, label, url) => `<a href="${url}" target="_blank" rel="noopener">${label}</a>`);
-      return out;
-    }
-
-    function escapeHtml(str) {
-      if (!str) return '';
-      const div = document.createElement('div');
-      div.textContent = str;
-      return div.innerHTML;
-    }
-
-    // Optional pre-seed from URL query
-    const seed = new URLSearchParams(window.location.search).get('q');
-    if (seed) sendOracleMessage(seed);
+    // Mobile menu
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuToggle.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
   </script>
 </body>
 </html>
