@@ -57,6 +57,7 @@ function main() {
     { name: 'reasoning-examples.jsonl', desc: 'Chain-of-thought reasoning traces (Phase 7).' },
     { name: 'benchmark.jsonl', desc: 'Held-out evaluation benchmark with known answers (Phase 8).' },
     { name: 'mythology-synthesis.jsonl', desc: 'Comparative, esoteric, and modern-parallel mythology synthesis (Phase 10).' },
+    { name: 'oracle-examples.jsonl', desc: 'Conversational Oracle training examples with system/user/assistant turns (Phase 11).' },
     { name: 'manifest.json', desc: 'Machine-readable corpus manifest.' },
   ];
 
@@ -93,6 +94,7 @@ ${rows.join('\n')}
 - **Phase 8 — Benchmark:** Held-out evaluation questions with exact-match and contains-match answers for reproducible model scoring.
 - **Phase 9 — Data Card:** This document and the machine-readable manifest.
 - **Phase 10 — Mythology Synthesis:** Comparative mythology, archetype mapping, esoteric synthesis, modern scientific/philosophical parallels, and biblical-to-ancient bridges. Teaches the model to recognize universal patterns across traditions and to converse with symbolic depth.
+- **Phase 11 — Oracle Conversations:** Multi-turn system/user/assistant examples that train the PÚNYCODEX Oracle persona for restoration, pronunciation, mythology, pattern-weaving, modern bridges, contemplative reflection, translation, safety refusal, domain advice, and scholarly citation.
 
 ## Schema Notes
 

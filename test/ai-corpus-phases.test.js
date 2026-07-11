@@ -47,6 +47,7 @@ const CORPORA = [
   { file: 'reasoning-examples.jsonl', key: 'reasoningExamples' },
   { file: 'benchmark.jsonl', key: 'benchmarkExamples' },
   { file: 'mythology-synthesis.jsonl', key: 'mythologySynthesisExamples' },
+  { file: 'oracle-examples.jsonl', key: 'oracleExamples' },
 ];
 
 for (const { file, key } of CORPORA) {
@@ -294,6 +295,69 @@ test('manifest includes by-task breakdowns for all new corpora', () => {
   assert.ok(manifest.counts.reasoningByTask, 'manifest has reasoningByTask');
   assert.ok(manifest.counts.benchmarkByTask, 'manifest has benchmarkByTask');
   assert.ok(manifest.counts.mythologySynthesisByTask, 'manifest has mythologySynthesisByTask');
+  assert.ok(manifest.counts.oracleByTask, 'manifest has oracleByTask');
+});
+
+test('oracle examples have OpenAI-compatible messages', () => {
+  const examples = readJsonl(path.join(CORPUS_DIR, 'oracle-examples.jsonl'));
+  assert.ok(examples.length > 0, 'oracle corpus is not empty');
+  const sample = examples[0];
+  assert.ok(Array.isArray(sample.messages), 'oracle example has messages array');
+  assert.ok(sample.messages.length >= 2, 'oracle example has at least two turns');
+  assert.strictEqual(sample.messages[0].role, 'system', 'first message is system');
+  assert.strictEqual(sample.messages[1].role, 'user', 'second message is user');
+  assert.strictEqual(sample.messages[2].role, 'assistant', 'third message is assistant');
+  for (const m of sample.messages) {
+    assert.ok(typeof m.content === 'string', 'message content is a string');
+  }
+});
+
+test('oracle tasks cover expected categories', () => {
+  const examples = readJsonl(path.join(CORPUS_DIR, 'oracle-examples.jsonl'));
+  const tasks = new Set(examples.map((e) => e.task));
+  const expected = [
+    'oracle_greeting',
+    'oracle_restoration',
+    'oracle_pronunciation',
+    'oracle_mythology',
+    'oracle_pattern_weaving',
+    'oracle_modern_bridge',
+    'oracle_biblical_bridge',
+    'oracle_contemplative',
+    'oracle_translation',
+    'oracle_safety',
+    'oracle_domain_advice',
+    'oracle_citation',
+  ];
+  for (const task of expected) {
+    assert.ok(tasks.has(task), `oracle corpus missing task: ${task}`);
+  }
+});
+
+test('oracle safety examples refuse harmful requests', () => {
+  const examples = readJsonl(path.join(CORPUS_DIR, 'oracle-examples.jsonl'));
+  const safety = examples.filter((e) => e.task === 'oracle_safety');
+  assert.ok(safety.length >= 5, 'expected at least 5 oracle safety examples');
+  for (const ex of safety) {
+    const assistant = ex.messages.find((m) => m.role === 'assistant');
+    assert.ok(assistant, 'safety example has assistant message');
+    assert.ok(
+      /cannot help|refuse|not help|spoofing|impersonation/i.test(assistant.content),
+      'safety assistant refuses or redirects harmful request'
+    );
+  }
+});
+
+test('oracle examples include the canonical persona preamble', () => {
+  const examples = readJsonl(path.join(CORPUS_DIR, 'oracle-examples.jsonl'));
+  const sample = examples.find((e) => e.task === 'oracle_greeting') || examples[0];
+  const system = sample.messages.find((m) => m.role === 'system');
+  assert.ok(system, 'oracle example has system message');
+  assert.ok(/PÚNYCODEX Oracle/i.test(system.content), 'system message names the Oracle');
+  assert.ok(
+    /canonical sources|spoofing|impersonation/i.test(system.content),
+    'system message states principles'
+  );
 });
 
 async function runSuite() {
