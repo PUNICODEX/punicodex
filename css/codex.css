@@ -94,7 +94,7 @@
 .constellation-tooltip { position: absolute; pointer-events: none; background: rgba(5, 5, 5, 0.92); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: var(--radius-sm); padding: 8px 12px; font-size: 0.8rem; color: var(--text-primary); opacity: 0; transition: opacity var(--duration-fast) var(--ease-smooth); z-index: 10; backdrop-filter: blur(4px); }
 .constellation-tooltip strong { display: block; font-family: var(--font-display); font-size: 1rem; color: var(--primary); margin-bottom: 2px; }
 .constellation-tooltip span { display: block; font-size: 0.7rem; color: var(--text-dim); }
-.script-atlas { display: flex; gap: var(--space-3); overflow-x: auto; padding-bottom: var(--space-2); scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
+.script-atlas { display: block; }
 .script-atlas::-webkit-scrollbar { height: 6px; }
 .script-atlas::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.03); border-radius: var(--radius-sm); }
 .script-atlas::-webkit-scrollbar-thumb { background: rgba(212, 175, 55, 0.2); border-radius: var(--radius-sm); }
@@ -384,7 +384,10 @@
 .script-atlas-search { flex: 1 1 240px; padding: 10px 12px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(212, 175, 55, 0.1); border-radius: var(--radius-md); color: var(--text-primary); font-family: var(--font-body); font-size: 0.9rem; outline: none; transition: all var(--duration-normal) var(--ease-smooth); }
 .script-atlas-search:focus { border-color: rgba(212, 175, 55, 0.3); }
 .script-atlas-filter { padding: 10px 12px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(212, 175, 55, 0.1); border-radius: var(--radius-md); color: var(--text-primary); font-family: var(--font-body); font-size: 0.9rem; }
-.script-atlas-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--space-3); }
+.script-atlas-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); }
+@media (max-width: 1200px) { .script-atlas-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 768px) { .script-atlas-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .script-atlas-grid { grid-template-columns: 1fr; } }
 .script-atlas-transliteration { text-align: center; font-size: 0.8rem; color: var(--text-dim); margin: 0; }
 .script-atlas-provenance { margin-top: var(--space-2); color: var(--text-secondary); }
 .script-atlas-provenance summary { cursor: pointer; font-size: 0.75rem; font-weight: 600; color: var(--primary); }
