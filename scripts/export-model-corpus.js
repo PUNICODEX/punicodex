@@ -349,6 +349,7 @@ function main() {
   const benchmark = loadJsonlCounts('benchmark.jsonl');
   const mythologySynthesis = loadJsonlCounts('mythology-synthesis.jsonl');
   const oracle = loadJsonlCounts('oracle-examples.jsonl');
+  const symbolic = loadJsonlCounts('symbolic-correspondences.jsonl');
   const instructions = loadJsonlCounts('instructions.jsonl');
 
   const manifest = {
@@ -382,6 +383,8 @@ function main() {
       mythologySynthesisByTask: mythologySynthesis.byTask,
       oracleExamples: oracle.count,
       oracleByTask: oracle.byTask,
+      symbolicCorrespondenceExamples: symbolic.count,
+      symbolicCorrespondenceByTask: symbolic.byTask,
     },
     canonicalSources: canonicalFiles,
     canonicalHashes: Object.fromEntries(

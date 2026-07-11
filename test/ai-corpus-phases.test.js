@@ -48,6 +48,7 @@ const CORPORA = [
   { file: 'benchmark.jsonl', key: 'benchmarkExamples' },
   { file: 'mythology-synthesis.jsonl', key: 'mythologySynthesisExamples' },
   { file: 'oracle-examples.jsonl', key: 'oracleExamples' },
+  { file: 'symbolic-correspondences.jsonl', key: 'symbolicCorrespondenceExamples' },
 ];
 
 for (const { file, key } of CORPORA) {
@@ -286,6 +287,53 @@ test('data card exists and documents all corpora', () => {
   }
 });
 
+test('symbolic correspondence tasks cover expected categories', () => {
+  const examples = readJsonl(path.join(CORPUS_DIR, 'symbolic-correspondences.jsonl'));
+  const tasks = new Set(examples.map((e) => e.task));
+  const expected = [
+    'symbolic_lookup',
+    'symbolic_compare',
+    'symbolic_explain',
+    'symbolic_synthesize',
+    'symbolic_caution',
+  ];
+  for (const task of expected) {
+    assert.ok(tasks.has(task), `symbolic corpus missing task: ${task}`);
+  }
+});
+
+test('symbolic correspondence examples include confidence markers', () => {
+  const examples = readJsonl(path.join(CORPUS_DIR, 'symbolic-correspondences.jsonl'));
+  const explain = examples.filter((e) => e.task === 'symbolic_explain');
+  assert.ok(explain.length >= 5, 'expected at least 5 explain examples');
+  for (const ex of explain) {
+    assert.ok(
+      /confidence|low|medium|high/i.test(ex.output),
+      'symbolic explain output mentions confidence'
+    );
+  }
+});
+
+test('symbolic correspondence examples include multiple systems', () => {
+  const examples = readJsonl(path.join(CORPUS_DIR, 'symbolic-correspondences.jsonl'));
+  const synthesize = examples.filter((e) => e.task === 'symbolic_synthesize');
+  assert.ok(synthesize.length >= 5, 'expected at least 5 synthesize examples');
+  const sample = synthesize[0];
+  assert.ok(sample.metadata.systemCount >= 1, 'synthesize example has at least one system');
+});
+
+test('symbolic caution examples warn against speculative mappings', () => {
+  const examples = readJsonl(path.join(CORPUS_DIR, 'symbolic-correspondences.jsonl'));
+  const caution = examples.filter((e) => e.task === 'symbolic_caution');
+  assert.ok(caution.length >= 5, 'expected at least 5 caution examples');
+  for (const ex of caution) {
+    assert.ok(
+      /low confidence|speculative|suggestive analogy|not.*historical fact/i.test(ex.output),
+      'caution output warns about speculative mapping'
+    );
+  }
+});
+
 test('manifest includes by-task breakdowns for all new corpora', () => {
   const manifest = loadManifest();
   assert.ok(manifest.counts.dialogueByTask, 'manifest has dialogueByTask');
@@ -296,6 +344,10 @@ test('manifest includes by-task breakdowns for all new corpora', () => {
   assert.ok(manifest.counts.benchmarkByTask, 'manifest has benchmarkByTask');
   assert.ok(manifest.counts.mythologySynthesisByTask, 'manifest has mythologySynthesisByTask');
   assert.ok(manifest.counts.oracleByTask, 'manifest has oracleByTask');
+  assert.ok(
+    manifest.counts.symbolicCorrespondenceByTask,
+    'manifest has symbolicCorrespondenceByTask'
+  );
 });
 
 test('oracle examples have OpenAI-compatible messages', () => {

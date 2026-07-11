@@ -1,0 +1,277 @@
+{
+  "version": "1.0.0",
+  "description": "Canonical symbolic and hermetic correspondences for PÚNYCODEX entries. Maps mythological names to planetary, elemental, alchemical, tarot, chakra, sefirot, and other symbolic systems with explicit confidence and provenance.",
+  "systems": {
+    "classical_element": {
+      "label": "Classical Element",
+      "tradition": "Greco-Roman / Western esoteric",
+      "symbols": ["Fire", "Water", "Air", "Earth", "Aether", "Void"]
+    },
+    "planet": {
+      "label": "Planet",
+      "tradition": "Greco-Roman / Western astrology",
+      "symbols": ["Sun", "Moon", "Mercury", "Venus", "Mars", "Jupiter", "Saturn"]
+    },
+    "zodiac": {
+      "label": "Zodiac Sign",
+      "tradition": "Western astrology",
+      "symbols": ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
+    },
+    "alchemical_stage": {
+      "label": "Alchemical Stage",
+      "tradition": "Western alchemy",
+      "symbols": ["Nigredo", "Albedo", "Citrinitas", "Rubedo", "Solve", "Coagula", "Putrefactio", "Sublimatio"]
+    },
+    "tarot_major": {
+      "label": "Tarot Major Arcana",
+      "tradition": "Western esoteric",
+      "symbols": [
+        "0 The Fool", "I The Magician", "II The High Priestess", "III The Empress",
+        "IV The Emperor", "V The Hierophant", "VI The Lovers", "VII The Chariot",
+        "VIII Strength", "IX The Hermit", "X Wheel of Fortune", "XI Justice",
+        "XII The Hanged Man", "XIII Death", "XIV Temperance", "XV The Devil",
+        "XVI The Tower", "XVII The Star", "XVIII The Moon", "XIX The Sun",
+        "XX Judgement", "XXI The World"
+      ]
+    },
+    "chakra": {
+      "label": "Chakra",
+      "tradition": "Hindu / Yoga",
+      "symbols": ["Muladhara", "Svadhisthana", "Manipura", "Anahata", "Vishuddha", "Ajna", "Sahasrara"]
+    },
+    "sefirah": {
+      "label": "Kabbalistic Sefirah",
+      "tradition": "Jewish Kabbalah",
+      "symbols": ["Keter", "Chokhmah", "Binah", "Chesed", "Gevurah", "Tiferet", "Netzach", "Hod", "Yesod", "Malkhut"]
+    },
+    "rune": {
+      "label": "Elder Futhark Rune",
+      "tradition": "Germanic / Norse",
+      "symbols": ["Fehu", "Uruz", "Thurisaz", "Ansuz", "Raido", "Kenaz", "Gebo", "Wunjo", "Hagalaz", "Naudiz", "Isa", "Jera", "Eihwaz", "Perthro", "Algiz", "Sowilo", "Tiwaz", "Berkano", "Ehwaz", "Mannaz", "Laguz", "Ingwaz", "Dagaz", "Othala"]
+    },
+    "wuxing": {
+      "label": "Wuxing (Five Phases)",
+      "tradition": "Chinese",
+      "symbols": ["Wood", "Fire", "Earth", "Metal", "Water"]
+    },
+    "direction": {
+      "label": "Direction",
+      "tradition": "Cross-cultural",
+      "symbols": ["North", "South", "East", "West", "Center", "Above", "Below"]
+    },
+    "metal": {
+      "label": "Metal",
+      "tradition": "Alchemical / Planetary",
+      "symbols": ["Gold", "Silver", "Copper", "Iron", "Tin", "Lead", "Mercury (quicksilver)", "Antimony"]
+    },
+    "gemstone": {
+      "label": "Gemstone",
+      "tradition": "Cross-cultural lapidary",
+      "symbols": ["Ruby", "Sapphire", "Emerald", "Diamond", "Amethyst", "Obsidian", "Lapis lazuli", "Carnelian", "Turquoise", "Moonstone", "Jet", "Bloodstone"]
+    },
+    "color": {
+      "label": "Color",
+      "tradition": "Cross-cultural",
+      "symbols": ["Red", "Blue", "Green", "Yellow", "White", "Black", "Purple", "Gold", "Silver", "Crimson", "Azure", "Indigo"]
+    },
+    "animal": {
+      "label": "Animal",
+      "tradition": "Cross-cultural zoomorphic",
+      "symbols": ["Eagle", "Lion", "Bull", "Serpent", "Owl", "Raven", "Wolf", "Stag", "Dolphin", "Horse", "Ram", "Scorpion", "Peacock", "Phoenix", "Dragon"]
+    }
+  },
+  "explicitMappings": [
+    { "entryId": "zeus", "system": "planet", "symbol": "Jupiter", "confidence": "high", "rationale": "Zeus and Jupiter are identified as the same deity in Greco-Roman interpretatio; the planet Jupiter is named after the Roman king of gods." },
+    { "entryId": "zeus", "system": "classical_element", "symbol": "Aether", "confidence": "high", "rationale": "Zeus rules the sky and the celestial fire of lightning." },
+    { "entryId": "zeus", "system": "tarot_major", "symbol": "IV The Emperor", "confidence": "medium", "rationale": "The Emperor archetype maps onto kingship, authority, and cosmic order." },
+    { "entryId": "zeus", "system": "metal", "symbol": "Tin", "confidence": "medium", "rationale": "Tin is the planetary metal of Jupiter in Western alchemy." },
+    { "entryId": "hera", "system": "planet", "symbol": "Juno", "confidence": "medium", "rationale": "Hera's Roman counterpart is Juno; Juno is associated with the air and sovereignty." },
+    { "entryId": "aphrodite", "system": "planet", "symbol": "Venus", "confidence": "high", "rationale": "Aphrodite is identified with Venus; the planet is named after her Roman form." },
+    { "entryId": "aphrodite", "system": "classical_element", "symbol": "Water", "confidence": "high", "rationale": "Aphrodite is born from sea-foam and governs erotic and generative waters." },
+    { "entryId": "aphrodite", "system": "metal", "symbol": "Copper", "confidence": "high", "rationale": "Copper is the planetary metal of Venus in alchemy." },
+    { "entryId": "aphrodite", "system": "tarot_major", "symbol": "III The Empress", "confidence": "medium", "rationale": "The Empress embodies fertility, beauty, and sensual generativity." },
+    { "entryId": "ares", "system": "planet", "symbol": "Mars", "confidence": "high", "rationale": "Ares is identified with Mars; the planet is named after his Roman form." },
+    { "entryId": "ares", "system": "classical_element", "symbol": "Fire", "confidence": "high", "rationale": "Ares governs martial fire, blood, and the heat of conflict." },
+    { "entryId": "ares", "system": "metal", "symbol": "Iron", "confidence": "high", "rationale": "Iron is the planetary metal of Mars." },
+    { "entryId": "ares", "system": "tarot_major", "symbol": "VII The Chariot", "confidence": "medium", "rationale": "The Chariot represents martial will and conquest." },
+    { "entryId": "hermes", "system": "planet", "symbol": "Mercury", "confidence": "high", "rationale": "Hermes is identified with Mercury; the planet is named after his Roman form." },
+    { "entryId": "hermes", "system": "classical_element", "symbol": "Air", "confidence": "high", "rationale": "Hermes moves between realms as messenger; air is the medium of speech and travel." },
+    { "entryId": "hermes", "system": "tarot_major", "symbol": "I The Magician", "confidence": "high", "rationale": "The Magician is the tarot expression of Mercury/Hermes as psychopomp and trickster." },
+    { "entryId": "apollo", "system": "planet", "symbol": "Sun", "confidence": "high", "rationale": "Apollo is the Greek solar deity par excellence." },
+    { "entryId": "apollo", "system": "classical_element", "symbol": "Fire", "confidence": "high", "rationale": "Apollo is associated with the fiery sun, prophecy, and purification." },
+    { "entryId": "apollo", "system": "tarot_major", "symbol": "XIX The Sun", "confidence": "high", "rationale": "The Sun card expresses clarity, illumination, and Apollonian order." },
+    { "entryId": "artemis", "system": "planet", "symbol": "Moon", "confidence": "high", "rationale": "Artemis is the Greek lunar huntress." },
+    { "entryId": "artemis", "system": "classical_element", "symbol": "Water", "confidence": "medium", "rationale": "The moon governs tides, dew, and nocturnal moisture." },
+    { "entryId": "artemis", "system": "tarot_major", "symbol": "XVIII The Moon", "confidence": "high", "rationale": "The Moon card reflects Artemis's nocturnal, liminal, and animal domains." },
+    { "entryId": "poseidon", "system": "planet", "symbol": "Neptune", "confidence": "medium", "rationale": "Poseidon is identified with Neptune; the sea-god maps to the modern planet." },
+    { "entryId": "poseidon", "system": "classical_element", "symbol": "Water", "confidence": "high", "rationale": "Poseidon rules the sea, earthquakes, and waters beneath the earth." },
+    { "entryId": "hades", "system": "planet", "symbol": "Pluto", "confidence": "medium", "rationale": "Hades is identified with Pluto; both rule the underworld and hidden wealth." },
+    { "entryId": "hades", "system": "classical_element", "symbol": "Earth", "confidence": "high", "rationale": "Hades rules the subterranean earth and the mineral wealth within it." },
+    { "entryId": "hades", "system": "tarot_major", "symbol": "XIII Death", "confidence": "medium", "rationale": "Death in tarot signifies transformation and the threshold to the underworld." },
+    { "entryId": "demeter", "system": "planet", "symbol": "Ceres", "confidence": "medium", "rationale": "Demeter is identified with Ceres, the grain goddess." },
+    { "entryId": "demeter", "system": "classical_element", "symbol": "Earth", "confidence": "high", "rationale": "Demeter governs grain, agriculture, and the fertile soil." },
+    { "entryId": "demeter", "system": "tarot_major", "symbol": "III The Empress", "confidence": "medium", "rationale": "The Empress also represents maternal abundance and the harvest." },
+    { "entryId": "hestia", "system": "classical_element", "symbol": "Fire", "confidence": "high", "rationale": "Hestia is the hearth-fire and domestic altar flame." },
+    { "entryId": "athena", "system": "classical_element", "symbol": "Air", "confidence": "high", "rationale": "Athena is associated with clear thought, strategy, and the breath of intellect." },
+    { "entryId": "athena", "system": "tarot_major", "symbol": "XI Justice", "confidence": "medium", "rationale": "Justice reflects Athena's role as goddess of law, strategy, and measured warfare." },
+    { "entryId": "hephaistos", "system": "classical_element", "symbol": "Fire", "confidence": "high", "rationale": "Hephaistos is the divine smith; his domain is the forge and volcanic fire." },
+    { "entryId": "hephaistos", "system": "metal", "symbol": "Iron", "confidence": "high", "rationale": "The smith works iron and transformative metals." },
+    { "entryId": "dionysos", "system": "classical_element", "symbol": "Water", "confidence": "medium", "rationale": "Dionysos is associated with wine, intoxication, and the dissolution of boundaries." },
+    { "entryId": "dionysos", "system": "tarot_major", "symbol": "XV The Devil", "confidence": "medium", "rationale": "The Devil card expresses ecstatic dissolution and the danger of excess." },
+    { "entryId": "persephone", "system": "tarot_major", "symbol": "XIII Death", "confidence": "medium", "rationale": "Persephone's seasonal descent and return embody death-rebirth cyclicity." },
+    { "entryId": "gaia", "system": "classical_element", "symbol": "Earth", "confidence": "high", "rationale": "Gaia is the Earth itself." },
+    { "entryId": "ouranos", "system": "classical_element", "symbol": "Aether", "confidence": "high", "rationale": "Ouranos is the sky and the starry heavens." },
+    { "entryId": "chaos", "system": "classical_element", "symbol": "Void", "confidence": "high", "rationale": "Chaos is the primordial void from which order emerges." },
+    { "entryId": "chaos", "system": "alchemical_stage", "symbol": "Nigredo", "confidence": "medium", "rationale": "Nigredo is the black prima materia stage, the chaotic beginning of the work." },
+    { "entryId": "eros", "system": "planet", "symbol": "Venus", "confidence": "medium", "rationale": "Eros is the cosmogonic principle of attraction and is later identified with desire." },
+    { "entryId": "eros", "system": "tarot_major", "symbol": "VI The Lovers", "confidence": "high", "rationale": "The Lovers card expresses erotic choice and cosmic attraction." },
+    { "entryId": "kronos", "system": "planet", "symbol": "Saturn", "confidence": "high", "rationale": "Kronos is identified with Saturn; the planet and day are named after him." },
+    { "entryId": "kronos", "system": "classical_element", "symbol": "Earth", "confidence": "medium", "rationale": "Saturn is associated with time, heaviness, and the dense material realm." },
+    { "entryId": "kronos", "system": "tarot_major", "symbol": "IX The Hermit", "confidence": "medium", "rationale": "The Hermit reflects Saturnian time, withdrawal, and wisdom." },
+    { "entryId": "kronos", "system": "metal", "symbol": "Lead", "confidence": "high", "rationale": "Lead is the planetary metal of Saturn in alchemy." },
+    { "entryId": "hekate", "system": "classical_element", "symbol": "Void", "confidence": "medium", "rationale": "Hekate presides over crossroads, ghosts, and the liminal dark." },
+    { "entryId": "hekate", "system": "tarot_major", "symbol": "II The High Priestess", "confidence": "medium", "rationale": "The High Priestess governs hidden knowledge, thresholds, and lunar magic." },
+    { "entryId": "nike", "system": "tarot_major", "symbol": "VII The Chariot", "confidence": "medium", "rationale": "Victory and triumph align with the Chariot's martial success." },
+    { "entryId": "prometheus", "system": "classical_element", "symbol": "Fire", "confidence": "high", "rationale": "Prometheus steals fire and gives it to humanity." },
+    { "entryId": "prometheus", "system": "tarot_major", "symbol": "XVI The Tower", "confidence": "medium", "rationale": "The Tower represents the disruptive gift of knowledge and its consequences." },
+    { "entryId": "helios", "system": "planet", "symbol": "Sun", "confidence": "high", "rationale": "Helios is the solar charioteer." },
+    { "entryId": "selene", "system": "planet", "symbol": "Moon", "confidence": "high", "rationale": "Selene is the lunar charioteer." },
+    { "entryId": "nyx", "system": "classical_element", "symbol": "Void", "confidence": "high", "rationale": "Nyx is Night, the primordial darkness." },
+    { "entryId": "nyx", "system": "tarot_major", "symbol": "XVIII The Moon", "confidence": "medium", "rationale": "Night, intuition, and hidden things echo the Moon card." },
+    { "entryId": "moirai", "system": "tarot_major", "symbol": "X Wheel of Fortune", "confidence": "high", "rationale": "The Fates spin destiny; the Wheel of Fortune is the tarot expression of fate." },
+    { "entryId": "thoth", "system": "planet", "symbol": "Mercury", "confidence": "medium", "rationale": "Thoth is the Egyptian scribe and measurer, later identified with Hermes/Mercury as Hermes Trismegistus." },
+    { "entryId": "thoth", "system": "tarot_major", "symbol": "I The Magician", "confidence": "medium", "rationale": "Thoth as divine scribe and magician maps onto the Magician." },
+    { "entryId": "ra", "system": "planet", "symbol": "Sun", "confidence": "high", "rationale": "Rꜥ is the Egyptian sun god." },
+    { "entryId": "ra", "system": "classical_element", "symbol": "Fire", "confidence": "high", "rationale": "The sun disk and solar barque are fiery." },
+    { "entryId": "osiris", "system": "tarot_major", "symbol": "XIII Death", "confidence": "medium", "rationale": "Osiris's death, dismemberment, and resurrection map onto the death-rebirth motif." },
+    { "entryId": "isis", "system": "tarot_major", "symbol": "II The High Priestess", "confidence": "medium", "rationale": "Isis is the great magical mother and keeper of hidden names." },
+    { "entryId": "anubis", "system": "tarot_major", "symbol": "XIII Death", "confidence": "medium", "rationale": "Anubis guides the dead, making him a natural death-card correspondence." },
+    { "entryId": "anubis", "system": "classical_element", "symbol": "Earth", "confidence": "medium", "rationale": "Anubis is associated with embalming, mummification, and the earth of the tomb." },
+    { "entryId": "horus", "system": "planet", "symbol": "Sun", "confidence": "high", "rationale": "Horus is the Egyptian solar falcon." },
+    { "entryId": "horus", "system": "tarot_major", "symbol": "XIX The Sun", "confidence": "medium", "rationale": "Horus as sky/sun deity maps onto the Sun card." },
+    { "entryId": "bastet", "system": "planet", "symbol": "Moon", "confidence": "medium", "rationale": "Bastet's lunar associations and nocturnal feline domain." },
+    { "entryId": "sekhmet", "system": "classical_element", "symbol": "Fire", "confidence": "high", "rationale": "Sekhmet is the fiery solar eye and goddess of destruction." },
+    { "entryId": "maat", "system": "tarot_major", "symbol": "XI Justice", "confidence": "high", "rationale": "Maat is cosmic truth, balance, and justice." },
+    { "entryId": "anubis", "system": "tarot_major", "symbol": "XX Judgement", "confidence": "medium", "rationale": "Anubis weighs the heart in the Egyptian judgement scene." },
+    { "entryId": "shiva", "system": "classical_element", "symbol": "Fire", "confidence": "high", "rationale": "Shiva is the cosmic dancer and destroyer, associated with the fire of dissolution." },
+    { "entryId": "shiva", "system": "chakra", "symbol": "Sahasrara", "confidence": "medium", "rationale": "Shiva consciousness is often identified with the crown chakra and transcendence." },
+    { "entryId": "shakti", "system": "chakra", "symbol": "Muladhara", "confidence": "medium", "rationale": "Shakti as dormant kundalini energy rests at the root chakra." },
+    { "entryId": "vishnu", "system": "classical_element", "symbol": "Water", "confidence": "medium", "rationale": "Vishnu rests upon the cosmic waters and descends as avatars to preserve order." },
+    { "entryId": "vishnu", "system": "chakra", "symbol": "Anahata", "confidence": "medium", "rationale": "Vishnu's preserving, sustaining love maps onto the heart chakra." },
+    { "entryId": "kali", "system": "classical_element", "symbol": "Fire", "confidence": "high", "rationale": "Kali is the devouring fire of time and transformation." },
+    { "entryId": "kali", "system": "tarot_major", "symbol": "XIII Death", "confidence": "medium", "rationale": "Kali embodies transformative death and the dissolution of ego." },
+    { "entryId": "ganesha", "system": "chakra", "symbol": "Muladhara", "confidence": "high", "rationale": "Ganesha is traditionally invoked at the root chakra to remove obstacles." },
+    { "entryId": "saraswati", "system": "chakra", "symbol": "Vishuddha", "confidence": "high", "rationale": "Saraswati governs speech, music, and the throat chakra." },
+    { "entryId": "lakshmi", "system": "chakra", "symbol": "Anahata", "confidence": "medium", "rationale": "Lakshmi's abundance and generosity resonate with the heart chakra." },
+    { "entryId": "indra", "system": "classical_element", "symbol": "Air", "confidence": "high", "rationale": "Indra wields the thunderbolt and governs storms and the atmospheric realm." },
+    { "entryId": "agni", "system": "classical_element", "symbol": "Fire", "confidence": "high", "rationale": "Agni is the Vedic fire god." },
+    { "entryId": "varuna", "system": "classical_element", "symbol": "Water", "confidence": "high", "rationale": "Varuna is the Vedic lord of cosmic waters and order." },
+    { "entryId": "surya", "system": "planet", "symbol": "Sun", "confidence": "high", "rationale": "Sūrya is the Hindu sun god." },
+    { "entryId": "chandra", "system": "planet", "symbol": "Moon", "confidence": "high", "rationale": "Chandra is the Hindu moon god." },
+    { "entryId": "brahma", "system": "chakra", "symbol": "Sahasrara", "confidence": "medium", "rationale": "Brahma as creator maps onto the crown and creative source." },
+    { "entryId": "odinn", "system": "rune", "symbol": "Ansuz", "confidence": "high", "rationale": "Ansuz is Óðinn's rune, associated with breath, speech, and divine inspiration." },
+    { "entryId": "odinn", "system": "rune", "symbol": "Sowilo", "confidence": "medium", "rationale": "Sowilo represents solar victory and Óðinn's quest for wisdom." },
+    { "entryId": "thor", "system": "rune", "symbol": "Thurisaz", "confidence": "high", "rationale": "Thurisaz is the thorn/giant rune associated with Þórr's thunderous force." },
+    { "entryId": "freyr", "system": "rune", "symbol": "Fehu", "confidence": "high", "rationale": "Fehu is wealth and cattle, central to Freyr's fertility domain." },
+    { "entryId": "freyja", "system": "rune", "symbol": "Berkano", "confidence": "medium", "rationale": "Berkano is the birch/rune of feminine fertility and growth." },
+    { "entryId": "hel", "system": "rune", "symbol": "Hagalaz", "confidence": "medium", "rationale": "Hagalaz is hail, disruption, and the underworld's cold." },
+    { "entryId": "tyr", "system": "rune", "symbol": "Tiwaz", "confidence": "high", "rationale": "Tiwaz is the rune of Týr, law, and sacrifice." },
+    { "entryId": "loki", "system": "rune", "symbol": "Perthro", "confidence": "medium", "rationale": "Perthro is thelot cup, fate, and trickster uncertainty." },
+    { "entryId": "baldr", "system": "rune", "symbol": "Sowilo", "confidence": "medium", "rationale": "Baldr is the bright, innocent solar god; Sowilo is the sun rune." },
+    { "entryId": "heimdallr", "system": "rune", "symbol": "Algiz", "confidence": "medium", "rationale": "Algiz is protection and the guardian; Heimdallr watches the rainbow bridge." },
+    { "entryId": "fenrir", "system": "rune", "symbol": "Fehu", "confidence": "low", "rationale": "Fenrir's devouring hunger loosely connects to Fehu's cattle/wealth being consumed." },
+    { "entryId": "jormungandr", "system": "rune", "symbol": "Laguz", "confidence": "high", "rationale": "Laguz is water and the serpent of the world-encircling ocean." },
+    { "entryId": "long", "system": "wuxing", "symbol": "Wood", "confidence": "high", "rationale": "The Chinese dragon (Lóng) is associated with spring, wood, and vegetative power." },
+    { "entryId": "long", "system": "direction", "symbol": "East", "confidence": "high", "rationale": "The Azure Dragon of the East is one of the four symbols." },
+    { "entryId": "feng-huang", "system": "wuxing", "symbol": "Fire", "confidence": "high", "rationale": "The Fenghuang is associated with fire and the south." },
+    { "entryId": "feng-huang", "system": "direction", "symbol": "South", "confidence": "high", "rationale": "The Vermilion Bird of the South." },
+    { "entryId": "xuan-wu", "system": "wuxing", "symbol": "Water", "confidence": "high", "rationale": "The Black Tortoise is associated with water and the north." },
+    { "entryId": "xuan-wu", "system": "direction", "symbol": "North", "confidence": "high", "rationale": "The Black Tortoise of the North." },
+    { "entryId": "bai-hu", "system": "wuxing", "symbol": "Metal", "confidence": "high", "rationale": "The White Tiger is associated with metal and the west." },
+    { "entryId": "bai-hu", "system": "direction", "symbol": "West", "confidence": "high", "rationale": "The White Tiger of the West." },
+    { "entryId": "huang-di", "system": "wuxing", "symbol": "Earth", "confidence": "high", "rationale": "The Yellow Emperor is associated with the center and earth phase." },
+    { "entryId": "huang-di", "system": "direction", "symbol": "Center", "confidence": "high", "rationale": "The Yellow Emperor occupies the center." },
+    { "entryId": "quetzalcoatl", "system": "classical_element", "symbol": "Air", "confidence": "medium", "rationale": "Quetzalcōātl is the feathered serpent of wind and dawn." },
+    { "entryId": "quetzalcoatl", "system": "tarot_major", "symbol": "I The Magician", "confidence": "medium", "rationale": "As culture-bringer and magician, Quetzalcōātl maps onto the Magician." },
+    { "entryId": "tezcatlipoca", "system": "classical_element", "symbol": "Void", "confidence": "medium", "rationale": "Tezcatlipoca is the smoking mirror, night, and obsidian darkness." },
+    { "entryId": "tlaloc", "system": "classical_element", "symbol": "Water", "confidence": "high", "rationale": "Tlāloc is the rain and storm god." },
+    { "entryId": "xipe-totec", "system": "alchemical_stage", "symbol": "Rubedo", "confidence": "medium", "rationale": "Xipe Totec's flayed-skin renewal maps onto the reddening, renewal stage." },
+    { "entryId": "huitzilopochtli", "system": "classical_element", "symbol": "Fire", "confidence": "high", "rationale": "Huitzilopochtli is the solar and martial fire of the Aztec patron." },
+    { "entryId": "enlil", "system": "classical_element", "symbol": "Air", "confidence": "high", "rationale": "Enlil is the Mesopotamian lord of wind, breath, and command." },
+    { "entryId": "ea", "system": "classical_element", "symbol": "Water", "confidence": "high", "rationale": "Ea/Enki is the god of fresh water, the abyss, and wisdom." },
+    { "entryId": "ishtar", "system": "planet", "symbol": "Venus", "confidence": "high", "rationale": "Ishtar/Inanna is the Mesopotamian Venus goddess." },
+    { "entryId": "shamash", "system": "planet", "symbol": "Sun", "confidence": "high", "rationale": "Shamash is the Mesopotamian sun god." },
+    { "entryId": "sin", "system": "planet", "symbol": "Moon", "confidence": "high", "rationale": "Sîn is the Mesopotamian moon god." },
+    { "entryId": "tiamat", "system": "classical_element", "symbol": "Water", "confidence": "high", "rationale": "Tiamat is the primordial salt water personified." },
+    { "entryId": "apsu", "system": "classical_element", "symbol": "Water", "confidence": "high", "rationale": "Apsu is the primordial fresh water." },
+    { "entryId": "mithra", "system": "classical_element", "symbol": "Fire", "confidence": "high", "rationale": "Mithra is the Zoroastrian/Mithraic fire and solar deity of contracts." },
+    { "entryId": "ahuramazda", "system": "classical_element", "symbol": "Fire", "confidence": "medium", "rationale": "Ahura Mazda is approached through fire in Zoroastrian worship." },
+    { "entryId": "yahweh", "system": "sefirah", "symbol": "Keter", "confidence": "low", "rationale": "The Tetragrammaton is sometimes mapped to Keter as the unknowable crown; this is a late kabbalistic convention, not biblical." },
+    { "entryId": "sophia", "system": "sefirah", "symbol": "Binah", "confidence": "medium", "rationale": "Sophia (Wisdom) maps onto Binah, the divine understanding, in later Kabbalah and Gnosticism." },
+    { "entryId": "adam", "system": "sefirah", "symbol": "Tiferet", "confidence": "low", "rationale": "Adam Kadmon maps onto the primordial human and the sefirah of beauty/harmony in Lurianic Kabbalah." },
+    { "entryId": "lilith", "system": "sefirah", "symbol": "Malkhut", "confidence": "low", "rationale": "Lilith is associated with the dark side of Malkhut in late kabbalistic folklore." },
+    { "entryId": "michael", "system": "sefirah", "symbol": "Chesed", "confidence": "medium", "rationale": "Archangel Michael is often associated with Chesed (mercy) in Christian Kabbalah." },
+    { "entryId": "gabriel", "system": "sefirah", "symbol": "Gevurah", "confidence": "medium", "rationale": "Archangel Gabriel is associated with Gevurah (severity/judgement) in Christian Kabbalah." },
+    { "entryId": "raphael", "system": "sefirah", "symbol": "Tiferet", "confidence": "medium", "rationale": "Archangel Raphael is associated with Tiferet (healing/harmony) in Christian Kabbalah." },
+    { "entryId": "uriel", "system": "sefirah", "symbol": "Hod", "confidence": "medium", "rationale": "Archangel Uriel is associated with Hod (splendor/revelation) in Christian Kabbalah." }
+  ],
+  "heuristicRules": {
+    "greek": {
+      "byDomain": {
+        "sky|thunder|lightning|king": { "system": "classical_element", "symbol": "Aether", "confidence": "medium" },
+        "sea|water|river|ocean": { "system": "classical_element", "symbol": "Water", "confidence": "high" },
+        "underworld|death|dead": { "system": "classical_element", "symbol": "Earth", "confidence": "medium" },
+        "war|battle|strife": { "system": "classical_element", "symbol": "Fire", "confidence": "medium" },
+        "wisdom|craft|weaving|law": { "system": "classical_element", "symbol": "Air", "confidence": "medium" },
+        "love|beauty|desire": { "system": "classical_element", "symbol": "Water", "confidence": "medium" },
+        "earth|grain|harvest": { "system": "classical_element", "symbol": "Earth", "confidence": "high" },
+        "fire|forge|sun": { "system": "classical_element", "symbol": "Fire", "confidence": "high" },
+        "night|darkness|sleep|dream": { "system": "classical_element", "symbol": "Void", "confidence": "medium" }
+      }
+    },
+    "norse": {
+      "byDomain": {
+        "war|battle|death": { "system": "rune", "symbol": "Tiwaz", "confidence": "low" },
+        "sea|storm|wind": { "system": "rune", "symbol": "Laguz", "confidence": "low" },
+        "wealth|fertility|harvest": { "system": "rune", "symbol": "Fehu", "confidence": "low" },
+        "wisdom|poetry|magic": { "system": "rune", "symbol": "Ansuz", "confidence": "low" },
+        "sun|light": { "system": "rune", "symbol": "Sowilo", "confidence": "low" },
+        "underworld|cold|frost": { "system": "rune", "symbol": "Isa", "confidence": "low" }
+      }
+    },
+    "egyptian": {
+      "byDomain": {
+        "sun|light": { "system": "classical_element", "symbol": "Fire", "confidence": "high" },
+        "moon|night": { "system": "classical_element", "symbol": "Void", "confidence": "medium" },
+        "underworld|death": { "system": "classical_element", "symbol": "Earth", "confidence": "medium" },
+        "water|river|flood": { "system": "classical_element", "symbol": "Water", "confidence": "high" },
+        "justice|truth|order": { "system": "tarot_major", "symbol": "XI Justice", "confidence": "low" }
+      }
+    },
+    "sanskrit": {
+      "byDomain": {
+        "fire|sacrifice": { "system": "classical_element", "symbol": "Fire", "confidence": "high" },
+        "water|ocean|river": { "system": "classical_element", "symbol": "Water", "confidence": "high" },
+        "storm|thunder|wind": { "system": "classical_element", "symbol": "Air", "confidence": "high" },
+        "earth|mountain": { "system": "classical_element", "symbol": "Earth", "confidence": "high" },
+        "sun|light": { "system": "classical_element", "symbol": "Fire", "confidence": "medium" }
+      }
+    },
+    "chinese": {
+      "byDomain": {
+        "dragon|east|spring": { "system": "wuxing", "symbol": "Wood", "confidence": "high" },
+        "phoenix|south|summer": { "system": "wuxing", "symbol": "Fire", "confidence": "high" },
+        "tiger|west|autumn": { "system": "wuxing", "symbol": "Metal", "confidence": "high" },
+        "tortoise|north|winter": { "system": "wuxing", "symbol": "Water", "confidence": "high" },
+        "earth|center|yellow": { "system": "wuxing", "symbol": "Earth", "confidence": "high" }
+      }
+    }
+  },
+  "tasks": {
+    "symbolic_lookup": "Given a figure, list its symbolic correspondences and explain each.",
+    "symbolic_compare": "Compare the symbolic correspondences of two figures.",
+    "symbolic_explain": "Explain why a figure maps to a particular symbol.",
+    "symbolic_synthesize": "Synthesize a figure's correspondences into a unified symbolic profile.",
+    "symbolic_caution": "Warn when a correspondence is speculative or culturally borrowed."
+  }
+}

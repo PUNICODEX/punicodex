@@ -55,6 +55,7 @@ const scripts = [
   'scripts/generate-benchmark-suite.js',
   'scripts/generate-mythology-synthesis-corpus.js',
   'scripts/generate-oracle-corpus.js',
+  'scripts/generate-symbolic-corpus.js',
   'scripts/export-model-corpus.js',
   'scripts/generate-eval-benchmark.js',
   'scripts/generate-data-card.js',
