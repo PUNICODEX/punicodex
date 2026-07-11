@@ -1,7 +1,7 @@
 # PÚNYCODEX AI Training Corpus — Data Card
 
 **Data version:** 2.0.34  
-**Generated:** 2026-07-11T08:33:46.142Z  
+**Generated:** 2026-07-11T08:47:30.645Z  
 **License:** CC BY 4.0 for dataset; ISC for software (see root LICENSE).
 
 ## Purpose
@@ -23,7 +23,8 @@ This corpus is the foundational training and evaluation data for a specialized A
 | preference-examples.jsonl | 3,528 | 1.93 MB | Chosen/rejected pairs for RLHF (Phase 6). |
 | reasoning-examples.jsonl | 3,395 | 1.90 MB | Chain-of-thought reasoning traces (Phase 7). |
 | benchmark.jsonl | 6,037 | 2.07 MB | Held-out evaluation benchmark with known answers (Phase 8). |
-| manifest.json | 108 | 3.4 KB | Machine-readable corpus manifest. |
+| mythology-synthesis.jsonl | 388 | 256.7 KB | Comparative, esoteric, and modern-parallel mythology synthesis (Phase 10). |
+| manifest.json | 119 | 3.8 KB | Machine-readable corpus manifest. |
 
 ## Phase Summary
 
@@ -36,6 +37,7 @@ This corpus is the foundational training and evaluation data for a specialized A
 - **Phase 7 — Reasoning:** Step-by-step chain-of-thought traces for breakdowns, tier classification, etymology, safety verdicts, and original-script provenance.
 - **Phase 8 — Benchmark:** Held-out evaluation questions with exact-match and contains-match answers for reproducible model scoring.
 - **Phase 9 — Data Card:** This document and the machine-readable manifest.
+- **Phase 10 — Mythology Synthesis:** Comparative mythology, archetype mapping, esoteric synthesis, modern scientific/philosophical parallels, and biblical-to-ancient bridges. Teaches the model to recognize universal patterns across traditions and to converse with symbolic depth.
 
 ## Schema Notes
 
@@ -61,6 +63,7 @@ This corpus is the foundational training and evaluation data for a specialized A
 - **CoT:** Use `reasoning-examples.jsonl` for chain-of-thought distillation.
 - **Multimodal:** Pair `multimodal-examples.jsonl` with the referenced image assets.
 - **Evaluation:** Score against `eval.jsonl` and `benchmark.jsonl` before each release.
+- **Mythological depth:** Add `mythology-synthesis.jsonl` when training for comparative religion, esoteric dialogue, and modern-mythic bridging.
 
 ## Known Limitations
 

@@ -46,6 +46,7 @@ const CORPORA = [
   { file: 'preference-examples.jsonl', key: 'preferenceExamples' },
   { file: 'reasoning-examples.jsonl', key: 'reasoningExamples' },
   { file: 'benchmark.jsonl', key: 'benchmarkExamples' },
+  { file: 'mythology-synthesis.jsonl', key: 'mythologySynthesisExamples' },
 ];
 
 for (const { file, key } of CORPORA) {
@@ -229,6 +230,52 @@ test('benchmark covers scholarly and safety tasks', () => {
   }
 });
 
+test('mythology synthesis tasks cover expected categories', () => {
+  const examples = readJsonl(path.join(CORPUS_DIR, 'mythology-synthesis.jsonl'));
+  const tasks = new Set(examples.map((e) => e.task));
+  const expected = [
+    'myth_comparative_analysis',
+    'myth_pattern_recognition',
+    'myth_esoteric_synthesis',
+    'myth_archetype_mapping',
+    'myth_cross_tradition_syncretism',
+    'myth_modern_parallel',
+    'myth_biblical_bridge',
+    'myth_thematic_connection',
+  ];
+  for (const task of expected) {
+    assert.ok(tasks.has(task), `mythology synthesis corpus missing task: ${task}`);
+  }
+});
+
+test('mythology synthesis includes cross-pantheon comparisons', () => {
+  const examples = readJsonl(path.join(CORPUS_DIR, 'mythology-synthesis.jsonl'));
+  const comp = examples.find((e) => e.task === 'myth_comparative_analysis');
+  assert.ok(comp, 'has a comparative analysis example');
+  assert.ok(comp.metadata.theme, 'comparative example has theme');
+  assert.ok(comp.metadata.sampleIds.length >= 2, 'compares at least two figures');
+});
+
+test('mythology synthesis includes biblical bridges', () => {
+  const examples = readJsonl(path.join(CORPUS_DIR, 'mythology-synthesis.jsonl'));
+  const bridges = examples.filter((e) => e.task === 'myth_biblical_bridge');
+  assert.ok(bridges.length >= 5, 'expected at least 5 biblical bridge examples');
+  const figureSet = new Set(bridges.map((b) => b.metadata.biblicalFigure));
+  assert.ok(
+    figureSet.has('Jesus') || figureSet.has('Adam') || figureSet.has('Noah'),
+    'covers major biblical figures'
+  );
+});
+
+test('mythology synthesis includes modern parallels', () => {
+  const examples = readJsonl(path.join(CORPUS_DIR, 'mythology-synthesis.jsonl'));
+  const modern = examples.filter((e) => e.task === 'myth_modern_parallel');
+  assert.ok(modern.length >= 10, 'expected at least 10 modern parallel examples');
+  const sample = modern.find((e) => e.entryId === 'chaos');
+  assert.ok(sample, 'has a modern parallel for chaos');
+  assert.ok(/big bang|quantum|cosmolog/i.test(sample.output), 'chaos maps to modern cosmology');
+});
+
 test('data card exists and documents all corpora', () => {
   const md = fs.readFileSync(path.join(CORPUS_DIR, 'DATA_CARD.md'), 'utf8');
   assert.ok(md.includes('Phase 1'), 'data card mentions Phase 1');
@@ -246,6 +293,7 @@ test('manifest includes by-task breakdowns for all new corpora', () => {
   assert.ok(manifest.counts.preferenceByTask, 'manifest has preferenceByTask');
   assert.ok(manifest.counts.reasoningByTask, 'manifest has reasoningByTask');
   assert.ok(manifest.counts.benchmarkByTask, 'manifest has benchmarkByTask');
+  assert.ok(manifest.counts.mythologySynthesisByTask, 'manifest has mythologySynthesisByTask');
 });
 
 async function runSuite() {

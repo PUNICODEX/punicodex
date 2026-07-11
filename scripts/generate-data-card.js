@@ -56,6 +56,7 @@ function main() {
     { name: 'preference-examples.jsonl', desc: 'Chosen/rejected pairs for RLHF (Phase 6).' },
     { name: 'reasoning-examples.jsonl', desc: 'Chain-of-thought reasoning traces (Phase 7).' },
     { name: 'benchmark.jsonl', desc: 'Held-out evaluation benchmark with known answers (Phase 8).' },
+    { name: 'mythology-synthesis.jsonl', desc: 'Comparative, esoteric, and modern-parallel mythology synthesis (Phase 10).' },
     { name: 'manifest.json', desc: 'Machine-readable corpus manifest.' },
   ];
 
@@ -91,6 +92,7 @@ ${rows.join('\n')}
 - **Phase 7 — Reasoning:** Step-by-step chain-of-thought traces for breakdowns, tier classification, etymology, safety verdicts, and original-script provenance.
 - **Phase 8 — Benchmark:** Held-out evaluation questions with exact-match and contains-match answers for reproducible model scoring.
 - **Phase 9 — Data Card:** This document and the machine-readable manifest.
+- **Phase 10 — Mythology Synthesis:** Comparative mythology, archetype mapping, esoteric synthesis, modern scientific/philosophical parallels, and biblical-to-ancient bridges. Teaches the model to recognize universal patterns across traditions and to converse with symbolic depth.
 
 ## Schema Notes
 
@@ -116,6 +118,7 @@ ${rows.join('\n')}
 - **CoT:** Use \`reasoning-examples.jsonl\` for chain-of-thought distillation.
 - **Multimodal:** Pair \`multimodal-examples.jsonl\` with the referenced image assets.
 - **Evaluation:** Score against \`eval.jsonl\` and \`benchmark.jsonl\` before each release.
+- **Mythological depth:** Add \`mythology-synthesis.jsonl\` when training for comparative religion, esoteric dialogue, and modern-mythic bridging.
 
 ## Known Limitations
 

@@ -347,6 +347,7 @@ function main() {
   const preference = loadJsonlCounts('preference-examples.jsonl');
   const reasoning = loadJsonlCounts('reasoning-examples.jsonl');
   const benchmark = loadJsonlCounts('benchmark.jsonl');
+  const mythologySynthesis = loadJsonlCounts('mythology-synthesis.jsonl');
   const instructions = loadJsonlCounts('instructions.jsonl');
 
   const manifest = {
@@ -376,6 +377,8 @@ function main() {
       reasoningByTask: reasoning.byTask,
       benchmarkExamples: benchmark.count,
       benchmarkByTask: benchmark.byTask,
+      mythologySynthesisExamples: mythologySynthesis.count,
+      mythologySynthesisByTask: mythologySynthesis.byTask,
     },
     canonicalSources: canonicalFiles,
     canonicalHashes: Object.fromEntries(
