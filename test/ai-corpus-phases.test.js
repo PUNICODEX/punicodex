@@ -40,6 +40,8 @@ function loadManifest() {
 }
 
 const CORPORA = [
+  { file: 'instructions.jsonl', key: 'instructions' },
+  { file: 'safety-examples.jsonl', key: 'safetyExamples' },
   { file: 'dialogue-examples.jsonl', key: 'dialogueExamples' },
   { file: 'tool-use-examples.jsonl', key: 'toolUseExamples' },
   { file: 'multimodal-examples.jsonl', key: 'multimodalExamples' },
@@ -462,6 +464,80 @@ test('scientific pattern bridge examples connect ancient and modern patterns', (
   const sample = bridges[0];
   assert.ok(sample.metadata.discipline, 'bridge has discipline metadata');
   assert.ok(sample.metadata.concept, 'bridge has concept metadata');
+});
+
+test('unified chat-train.jsonl exists and is valid JSONL', () => {
+  const examples = readJsonl(path.join(CORPUS_DIR, 'chat-train.jsonl'));
+  assert.ok(examples.length > 0, 'chat-train.jsonl should not be empty');
+});
+
+test('unified chat-eval.jsonl exists and is valid JSONL', () => {
+  const examples = readJsonl(path.join(CORPUS_DIR, 'chat-eval.jsonl'));
+  assert.ok(examples.length > 0, 'chat-eval.jsonl should not be empty');
+});
+
+test('unified corpus starts every record with a system message', () => {
+  const train = readJsonl(path.join(CORPUS_DIR, 'chat-train.jsonl'));
+  const evalSet = readJsonl(path.join(CORPUS_DIR, 'chat-eval.jsonl'));
+  for (const ex of train.slice(0, 50).concat(evalSet.slice(0, 50))) {
+    assert.ok(Array.isArray(ex.messages), `${ex.id} has messages array`);
+    assert.strictEqual(ex.messages[0].role, 'system', `${ex.id} first message is system`);
+    assert.ok(/PÚNYCODEX Oracle/i.test(ex.messages[0].content), `${ex.id} system names the Oracle`);
+  }
+});
+
+test('unified corpus messages have valid roles and content', () => {
+  const train = readJsonl(path.join(CORPUS_DIR, 'chat-train.jsonl'));
+  const evalSet = readJsonl(path.join(CORPUS_DIR, 'chat-eval.jsonl'));
+  for (const ex of train.slice(0, 100).concat(evalSet.slice(0, 100))) {
+    for (const m of ex.messages) {
+      assert.ok(['system', 'user', 'assistant', 'tool'].includes(m.role), `${ex.id} valid role`);
+      assert.ok(typeof m.content === 'string', `${ex.id} content is string`);
+    }
+  }
+});
+
+test('unified corpus chat-train/chat-eval split sums to total source examples', () => {
+  const train = readJsonl(path.join(CORPUS_DIR, 'chat-train.jsonl'));
+  const evalSet = readJsonl(path.join(CORPUS_DIR, 'chat-eval.jsonl'));
+  const unifiedTotal = train.length + evalSet.length;
+
+  let sourceTotal = 0;
+  for (const { file } of CORPORA) {
+    if (file === 'benchmark.jsonl') continue;
+    const examples = readJsonl(path.join(CORPUS_DIR, file));
+    sourceTotal += examples.length;
+  }
+  assert.strictEqual(
+    unifiedTotal,
+    sourceTotal,
+    'chat-train + chat-eval equals sum of source corpora'
+  );
+});
+
+test('unified corpus counts are reflected in manifest', () => {
+  const manifest = loadManifest();
+  const train = readJsonl(path.join(CORPUS_DIR, 'chat-train.jsonl'));
+  const evalSet = readJsonl(path.join(CORPUS_DIR, 'chat-eval.jsonl'));
+  assert.strictEqual(
+    manifest.counts.chatTrainExamples,
+    train.length,
+    'manifest chat train count matches'
+  );
+  assert.strictEqual(
+    manifest.counts.chatEvalExamples,
+    evalSet.length,
+    'manifest chat eval count matches'
+  );
+});
+
+test('model card exists and documents chat-train/chat-eval splits and hardware guidance', () => {
+  const md = fs.readFileSync(path.join(CORPUS_DIR, 'MODEL_CARD.md'), 'utf8');
+  assert.ok(md.includes('chat-train.jsonl'), 'model card mentions chat-train.jsonl');
+  assert.ok(md.includes('chat-eval.jsonl'), 'model card mentions chat-eval.jsonl');
+  assert.ok(md.includes('Training Recipe'), 'model card has training recipe');
+  assert.ok(md.includes('Hardware Guidance'), 'model card has hardware guidance');
+  assert.ok(md.includes('Ethical Use'), 'model card has ethical use section');
 });
 
 async function runSuite() {

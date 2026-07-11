@@ -352,6 +352,8 @@ function main() {
   const symbolic = loadJsonlCounts('symbolic-correspondences.jsonl');
   const scientific = loadJsonlCounts('scientific-analogies.jsonl');
   const instructions = loadJsonlCounts('instructions.jsonl');
+  const chatTrain = loadJsonlCounts('chat-train.jsonl');
+  const chatEval = loadJsonlCounts('chat-eval.jsonl');
 
   const manifest = {
     version: dataVersion.version,
@@ -388,6 +390,10 @@ function main() {
       symbolicCorrespondenceByTask: symbolic.byTask,
       scientificAnalogyExamples: scientific.count,
       scientificAnalogyByTask: scientific.byTask,
+      chatTrainExamples: chatTrain.count,
+      chatTrainByTask: chatTrain.byTask,
+      chatEvalExamples: chatEval.count,
+      chatEvalByTask: chatEval.byTask,
     },
     canonicalSources: canonicalFiles,
     canonicalHashes: Object.fromEntries(

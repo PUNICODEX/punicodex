@@ -1,7 +1,7 @@
 # PÚNYCODEX AI Training Corpus — Data Card
 
 **Data version:** 2.0.34  
-**Generated:** 2026-07-11T09:31:21.410Z  
+**Generated:** 2026-07-11T09:53:52.539Z  
 **License:** CC BY 4.0 for dataset; ISC for software (see root LICENSE).
 
 ## Purpose
@@ -23,11 +23,14 @@ This corpus is the foundational training and evaluation data for a specialized A
 | preference-examples.jsonl | 3,528 | 1.93 MB | Chosen/rejected pairs for RLHF (Phase 6). |
 | reasoning-examples.jsonl | 3,395 | 1.90 MB | Chain-of-thought reasoning traces (Phase 7). |
 | benchmark.jsonl | 6,037 | 2.07 MB | Held-out evaluation benchmark with known answers (Phase 8). |
-| mythology-synthesis.jsonl | 388 | 256.6 KB | Comparative, esoteric, and modern-parallel mythology synthesis (Phase 10). |
+| mythology-synthesis.jsonl | 388 | 256.2 KB | Comparative, esoteric, and modern-parallel mythology synthesis (Phase 10). |
 | oracle-examples.jsonl | 1,780 | 2.03 MB | Conversational Oracle training examples with system/user/assistant turns (Phase 11). |
-| symbolic-correspondences.jsonl | 1,233 | 748.3 KB | Symbolic and hermetic correspondences with confidence and provenance (Phase 12). |
-| scientific-analogies.jsonl | 1,438 | 985.8 KB | Scientific and philosophical analogies bridging ancient myth and modern thought (Phase 13). |
-| manifest.json | 151 | 4.7 KB | Machine-readable corpus manifest. |
+| symbolic-correspondences.jsonl | 1,233 | 745.6 KB | Symbolic and hermetic correspondences with confidence and provenance (Phase 12). |
+| scientific-analogies.jsonl | 1,438 | 982.0 KB | Scientific and philosophical analogies bridging ancient myth and modern thought (Phase 13). |
+| chat-train.jsonl | 55,447 | 75.11 MB | Unified chat-format training corpus, 80% deterministic split (Phase 14). |
+| chat-eval.jsonl | 13,688 | 18.54 MB | Held-out chat-format evaluation split, 20% (Phase 14). |
+| MODEL_CARD.md | 68 | 3.6 KB | Model card with training recipe, evaluation plan, and hardware guidance (Phase 14). |
+| manifest.json | 307 | 9.6 KB | Machine-readable corpus manifest. |
 
 ## Phase Summary
 
@@ -44,6 +47,7 @@ This corpus is the foundational training and evaluation data for a specialized A
 - **Phase 11 — Oracle Conversations:** Multi-turn system/user/assistant examples that train the PÚNYCODEX Oracle persona for restoration, pronunciation, mythology, pattern-weaving, modern bridges, contemplative reflection, translation, safety refusal, domain advice, and scholarly citation.
 - **Phase 12 — Symbolic Correspondences:** Planetary, elemental, alchemical, tarot, chakra, sefirot, runic, wuxing, directional, metal, gemstone, color, and animal mappings for entries, with explicit confidence levels and cultural provenance.
 - **Phase 13 — Scientific & Philosophical Analogies:** Dense mappings of mythological figures to modern concepts in physics, biology, neuroscience, systems science, philosophy, and technology, emphasizing analogy over equivalence.
+- **Phase 14 — Unified Training Corpus:** Every Phase 1-13 example converted into a single OpenAI-compatible chat format with a consistent Oracle system persona, deterministic 80/20 train/eval split, and a model card with training recipe and hardware guidance.
 
 ## Schema Notes
 
@@ -70,6 +74,9 @@ This corpus is the foundational training and evaluation data for a specialized A
 - **Multimodal:** Pair `multimodal-examples.jsonl` with the referenced image assets.
 - **Evaluation:** Score against `eval.jsonl` and `benchmark.jsonl` before each release.
 - **Mythological depth:** Add `mythology-synthesis.jsonl` when training for comparative religion, esoteric dialogue, and modern-mythic bridging.
+- **Unified SFT:** Use `chat-train.jsonl` as the single chat-format supervised-fine-tuning dataset; it already mixes all phases with the Oracle persona.
+- **Held-out evaluation:** Score against `chat-eval.jsonl` (chat format) and `benchmark.jsonl` (exact/contains answers) before each release.
+- **Model card:** Read `MODEL_CARD.md` for the recommended training recipe, hardware sizing, and ethical-use boundaries.
 
 ## Known Limitations
 
