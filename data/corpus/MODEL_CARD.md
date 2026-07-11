@@ -2,7 +2,7 @@
 
 **Model family:** PÚNYCODEX Oracle (specialized language model)  
 **Data version:** 2.0.34  
-**Generated:** 2026-07-11T13:36:53.212Z  
+**Generated:** 2026-07-11T13:46:21.443Z  
 **License:** CC BY 4.0 for dataset; ISC for software (see root LICENSE).
 
 ## Intended Use
