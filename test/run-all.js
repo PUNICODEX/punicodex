@@ -28,6 +28,7 @@ const SUITES = [
   { name: 'Scholars Load Tests', cmd: 'node platform/scholars/load.test.js' },
   { name: 'Scholars Concurrency Tests', cmd: 'node platform/scholars/concurrency.test.js' },
   { name: 'Oracle Tests', cmd: 'node test/oracle.test.js' },
+  { name: 'Oracle Page Tests', cmd: 'node test/oracle-page.test.js' },
   { name: 'Search v2 Tests', cmd: 'node test/search-v2.test.js' },
   { name: 'Browser Shell Tests', cmd: 'node test/browser-shell.test.js' },
   { name: 'Workspace Tests', cmd: 'node test/workspaces.test.js' },
