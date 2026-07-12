@@ -1741,3 +1741,160 @@
     z-index: 0;
     pointer-events: none;
 }
+
+/* ===== PATRON CIRCLE ===== */
+.patron-section {
+    background: linear-gradient(180deg, #070707 0%, var(--bg-primary) 100%);
+    border-top: 1px solid rgba(205,127,50,0.06);
+}
+.patron-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.25rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.patron-card {
+    position: relative;
+    background: var(--gradient-card);
+    border: 1px solid rgba(205,127,50,0.12);
+    border-radius: 14px;
+    padding: 1.75rem 1.5rem;
+    text-align: center;
+    transition: all 0.35s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+.patron-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(205,127,50,0.28);
+    box-shadow: var(--shadow-card), var(--shadow-gold);
+}
+.patron-card--join {
+    background: linear-gradient(145deg, rgba(205,127,50,0.08), rgba(205,127,50,0.02));
+    border-color: rgba(205,127,50,0.22);
+}
+.patron-join-icon {
+    font-size: 1.8rem;
+    color: var(--classic-gold);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+}
+.patron-join-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+.patron-join-body {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+.patron-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.25rem;
+    margin: 0.5rem 0;
+}
+.patron-price {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--classic-gold);
+}
+.patron-price-period {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+.patron-badge-name {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+    word-break: break-word;
+}
+.patron-badge-title {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--classic-gold);
+    margin: 0;
+}
+.patron-badge-message {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0.5rem 0 0;
+    font-style: italic;
+}
+.patron-badge-seal {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--gradient-gold);
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 4px 20px rgba(205,127,50,0.25);
+}
+.patron-amount-toggle {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+.patron-amount-btn {
+    flex: 1;
+    padding: 0.7rem 0.5rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(205,127,50,0.2);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.patron-amount-btn:hover,
+.patron-amount-btn.active {
+    background: rgba(205,127,50,0.12);
+    border-color: var(--classic-gold);
+    color: var(--text-primary);
+}
+.patron-modal-panel {
+    max-width: 440px;
+}
+.patron-empty-state {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    padding: 2rem 1rem;
+}
+
+@media (max-width: 640px) {
+    .patron-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    .patron-card {
+        padding: 1.25rem 1rem;
+    }
+    .patron-price {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .patron-grid {
+        grid-template-columns: 1fr;
+    }
+}

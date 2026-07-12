@@ -838,9 +838,11 @@ function buildCss(palette) {
   return `${rootVars}\n${css}`;
 }
 
-function buildScript(templeId) {
+function buildScript(templeId, entry) {
   let js = fs.readFileSync(path.join(TEMPLATE_DIR, 'flagship.js'), 'utf8');
   js = js.replace(/\{\{TEMPLE_ID\}\}/g, templeId);
+  js = js.replace(/\{\{UNICODE\}\}/g, escapeHtml(entry.unicode || templeId));
+  js = js.replace(/\{\{ASCII\}\}/g, escapeHtml(entry.ascii || templeId));
   const bespoke = getBespokeEffectJs(templeId);
   if (bespoke) {
     js = `${bespoke.trimEnd()}\n\n${js}`;
@@ -2797,7 +2799,7 @@ function createFlagship(templeId, options = {}) {
     'dashboard/index.html': generateDashboardPage(entry, palette, TEMPLATE_DIR, archetype),
     'lore.json': buildLoreJson(entry, catalog[entry.id] || {}),
     'styles.css': buildCss(palette),
-    'script.js': buildScript(templeId),
+    'script.js': buildScript(templeId, entry),
   };
   const extended = generateExtendedPage(entry, palette, TEMPLATE_DIR, catalog);
   if (extended) outputs['lore/extended/index.html'] = extended;

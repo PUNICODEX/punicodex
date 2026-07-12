@@ -995,6 +995,184 @@ handleReturnFromStripe();
 
 } // end else (booking modal exists)
 
+// ─── PATRON SYSTEM ───
+(function initPatronSystem() {
+  const modal = document.getElementById('patron-modal');
+  const grid = document.getElementById('patron-grid');
+  const joinCard = document.getElementById('patron-join-card');
+  const ctaBtn = document.getElementById('patron-cta-btn');
+  if (!modal || !grid) return;
+
+  const templeId = 'eggther';
+  const siteName = 'Eggþér';
+  let selectedCents = 700;
+
+  const els = {
+    close: document.getElementById('patron-modal-close'),
+    backdrop: document.getElementById('patron-modal-backdrop'),
+    stepForm: document.getElementById('patron-step-form'),
+    stepLoading: document.getElementById('patron-step-loading'),
+    stepSuccess: document.getElementById('patron-step-success'),
+    displayName: document.getElementById('patron-display-name'),
+    title: document.getElementById('patron-title'),
+    message: document.getElementById('patron-message'),
+    email: document.getElementById('patron-email'),
+    error: document.getElementById('patron-error'),
+    submit: document.getElementById('patron-submit'),
+    successClose: document.getElementById('patron-success-close'),
+    amountToggle: document.getElementById('patron-amount-toggle'),
+  };
+
+  function showStep(name) {
+    if (els.stepForm) els.stepForm.style.display = name === 'form' ? 'block' : 'none';
+    if (els.stepLoading) els.stepLoading.style.display = name === 'loading' ? 'block' : 'none';
+    if (els.stepSuccess) els.stepSuccess.style.display = name === 'success' ? 'block' : 'none';
+  }
+
+  function showError(msg) {
+    if (els.error) {
+      els.error.textContent = msg;
+      els.error.style.display = 'block';
+    }
+  }
+
+  function clearError() {
+    if (els.error) {
+      els.error.textContent = '';
+      els.error.style.display = 'none';
+    }
+  }
+
+  function openModal() {
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    showStep('form');
+    clearError();
+  }
+
+  function closeModal() {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  if (ctaBtn) ctaBtn.addEventListener('click', openModal);
+  if (joinCard) joinCard.addEventListener('click', openModal);
+  if (els.close) els.close.addEventListener('click', closeModal);
+  if (els.backdrop) els.backdrop.addEventListener('click', closeModal);
+  if (els.successClose) els.successClose.addEventListener('click', closeModal);
+
+  if (els.amountToggle) {
+    els.amountToggle.addEventListener('click', (e) => {
+      const btn = e.target.closest('.patron-amount-btn');
+      if (!btn) return;
+      selectedCents = parseInt(btn.dataset.cents, 10);
+      els.amountToggle.querySelectorAll('.patron-amount-btn').forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  }
+
+  if (els.submit) {
+    els.submit.addEventListener('click', async () => {
+      clearError();
+      const displayName = els.displayName?.value.trim();
+      const title = els.title?.value.trim() || null;
+      const message = els.message?.value.trim() || null;
+      const email = els.email?.value.trim().toLowerCase();
+
+      if (!displayName) return showError('Please enter the name or title to display.');
+      if (!email || !email.includes('@')) return showError('Please enter a valid email address.');
+
+      showStep('loading');
+      try {
+        const res = await fetch(`${API_BASE}/api/patrons/checkout`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            templeId,
+            email,
+            displayName,
+            title,
+            message,
+            amountCents: selectedCents,
+          }),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Checkout failed');
+        if (data.sessionUrl) {
+          window.location.href = data.sessionUrl;
+        } else {
+          throw new Error('No checkout URL returned');
+        }
+      } catch (err) {
+        showStep('form');
+        showError(err.message || 'Unable to start checkout. Please try again.');
+      }
+    });
+  }
+
+  function renderPatron(patron) {
+    const card = document.createElement('div');
+    card.className = 'patron-card';
+    card.innerHTML = `
+      <div class="patron-badge-seal">&#10022;</div>
+      <h3 class="patron-badge-name">${escapeHtml(patron.display_name)}</h3>
+      ${patron.title ? `<p class="patron-badge-title">${escapeHtml(patron.title)}</p>` : ''}
+      ${patron.message ? `<p class="patron-badge-message">“${escapeHtml(patron.message)}”</p>` : ''}
+    `;
+    return card;
+  }
+
+  function escapeHtml(text) {
+    return String(text)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  async function loadPatrons() {
+    try {
+      const res = await fetch(`${API_BASE}/api/patrons/${encodeURIComponent(templeId)}`);
+      const data = await res.json();
+      const patrons = data.patrons || [];
+
+      // Remove existing patron cards except the join card
+      grid.querySelectorAll('.patron-card:not(.patron-card--join)').forEach((el) => el.remove());
+
+      patrons.forEach((patron) => {
+        grid.insertBefore(renderPatron(patron), joinCard);
+      });
+    } catch (err) {
+      console.error('[PUNYCODEX] loadPatrons failed:', err);
+    }
+  }
+
+  function handleReturnFromPatronStripe() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('patron') === 'success') {
+      openModal();
+      showStep('success');
+      loadPatrons();
+      // Clean URL without reload
+      const url = new URL(window.location.href);
+      url.searchParams.delete('patron');
+      url.searchParams.delete('session_id');
+      window.history.replaceState({}, '', url.toString());
+    } else if (params.get('patron') === 'canceled') {
+      openModal();
+      showStep('form');
+      showError('Checkout was canceled. You can try again whenever you like.');
+      const url = new URL(window.location.href);
+      url.searchParams.delete('patron');
+      window.history.replaceState({}, '', url.toString());
+    }
+  }
+
+  loadPatrons();
+  handleReturnFromPatronStripe();
+})();
+
 // ─── Original Script Provenance Toggle (lore pages) ───
 (function initProvenanceToggle() {
   const toggle = document.getElementById('provenance-toggle');

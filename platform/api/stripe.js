@@ -1,5 +1,10 @@
 const { updateClaimStripeSession, markClaimPaid } = require('./claims');
 const { extendBooking } = require('./bookings');
+const {
+  createPatronCheckoutRecord,
+  markPatronPaid,
+  cancelPatronBySubscriptionId,
+} = require('./patron-service');
 
 function getStripeSecretKey() {
   const key = process.env.STRIPE_SECRET_KEY;
@@ -150,6 +155,61 @@ async function createRenewalCheckoutSession({
   return { sessionUrl: session.url, sessionId: session.id };
 }
 
+async function createPatronCheckoutSession({
+  templeId,
+  email,
+  displayName,
+  title,
+  message,
+  amountCents,
+  siteName = 'PUNYCODEX',
+}) {
+  const patron = await createPatronCheckoutRecord({
+    templeId,
+    email,
+    displayName,
+    title,
+    message,
+    amountCents,
+  });
+
+  const amount = patron.amountCents;
+  const session = await getStripe().checkout.sessions.create({
+    payment_method_types: ['card'],
+    line_items: [
+      {
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: `${siteName} Temple Patron`,
+            description: `Monthly patronage of ${patron.displayName} on the ${siteName} temple`,
+          },
+          unit_amount: amount,
+          recurring: { interval: 'month' },
+        },
+        quantity: 1,
+      },
+    ],
+    mode: 'subscription',
+    success_url: `${process.env.PLATFORM_URL || 'http://localhost:3456'}/sites/${templeId}/?patron=success&session_id={CHECKOUT_SESSION_ID}`,
+    cancel_url: `${process.env.PLATFORM_URL || 'http://localhost:3456'}/sites/${templeId}/?patron=canceled`,
+    customer_email: patron.email,
+    metadata: {
+      type: 'patron',
+      patron_id: String(patron.id),
+      temple_id: String(patron.templeId),
+    },
+    subscription_data: {
+      metadata: {
+        patron_id: String(patron.id),
+        temple_id: String(patron.templeId),
+      },
+    },
+  });
+
+  return { sessionUrl: session.url, sessionId: session.id, patronId: patron.id };
+}
+
 async function createCreativeCheckoutSession({ purchaseId, email, assetTitle, amountCents }) {
   const session = await getStripe().checkout.sessions.create({
     payment_method_types: ['card'],
@@ -196,6 +256,15 @@ async function handleWebhook(payload, signature) {
     const session = event.data.object;
     const metadata = session.metadata || {};
 
+    if (metadata.type === 'patron') {
+      const patronId = parseInt(metadata.patron_id, 10);
+      const subscriptionId = session.subscription;
+      const customerId = session.customer;
+      const amountTotal = session.amount_total || 0;
+      const patron = await markPatronPaid(patronId, subscriptionId, customerId, amountTotal);
+      return { event: 'payment.success', type: 'patron', patron };
+    }
+
     if (metadata.type === 'booking') {
       const { markBookingPaid } = require('./bookings');
       const isSubscription = session.mode === 'subscription';
@@ -224,7 +293,15 @@ async function handleWebhook(payload, signature) {
     return { event: 'payment.success', type: 'claim', claim };
   }
 
-  return { event: event.type, claim: null, booking: null };
+  if (event.type === 'customer.subscription.deleted') {
+    const subscription = event.data.object;
+    const patron = await cancelPatronBySubscriptionId(subscription.id);
+    if (patron) {
+      return { event: 'subscription.cancelled', type: 'patron', patron };
+    }
+  }
+
+  return { event: event.type, claim: null, booking: null, patron: null };
 }
 
 module.exports = {
@@ -232,6 +309,7 @@ module.exports = {
   createBookingCheckoutSession,
   createRenewalCheckoutSession,
   createCreativeCheckoutSession,
+  createPatronCheckoutSession,
   handleWebhook,
   PRICE_BASE,
   PRICE_PREMIUM,

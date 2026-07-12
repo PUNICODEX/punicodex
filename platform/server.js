@@ -93,8 +93,13 @@ const {
   getKeyUsage,
   getKeyStats,
 } = require('./api/api-key-admin');
-const { createBookingCheckoutSession, createRenewalCheckoutSession } = require('./api/stripe');
+const {
+  createBookingCheckoutSession,
+  createRenewalCheckoutSession,
+  createPatronCheckoutSession,
+} = require('./api/stripe');
 const { processWebhook } = require('./api/webhook-handler');
+const { listActivePatronsByTemple } = require('./api/patron-service');
 const {
   proposeTenant,
   createTenant,
@@ -1603,6 +1608,33 @@ app.post('/api/bookings/recover', bookingsRecoverLimit, async (req, res) => {
     }
     await sendDashboardLinks({ email, bookings });
     res.json({ sent: true, message: 'Dashboard links sent to your email.' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/api/patrons/checkout', publicWriteLimit, async (req, res) => {
+  try {
+    const { templeId, email, displayName, title, message, amountCents } = req.body;
+    const result = await createPatronCheckoutSession({
+      templeId,
+      email,
+      displayName,
+      title,
+      message,
+      amountCents,
+    });
+    res.json(result);
+  } catch (err) {
+    const status = err.status || 500;
+    res.status(status).json({ error: err.message });
+  }
+});
+
+app.get('/api/patrons/:templeId', publicReadLimit, async (req, res) => {
+  try {
+    const patrons = await listActivePatronsByTemple(req.params.templeId);
+    res.json({ patrons });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

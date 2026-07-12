@@ -446,6 +446,75 @@
         </div>
     </section>
 
+    <!-- Patron Circle -->
+    <section class="section patron-section" id="patrons">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">03</span>
+                <h2 class="section-title">Patron Circle</h2>
+                <p class="section-subtitle">Join a circle of supporters who keep this temple alive. Your name appears here as a digital patron certificate.</p>
+            </div>
+            <div class="patron-grid reveal-up" id="patron-grid">
+                <div class="patron-card patron-card--join" id="patron-join-card">
+                    <span class="patron-join-icon">&#10022;</span>
+                    <h3 class="patron-join-title">Become a Patron</h3>
+                    <p class="patron-join-body">From $5–$10/month. Cancel anytime. Your chosen name or title is displayed on this temple.</p>
+                    <div class="patron-price-row">
+                        <span class="patron-price">$7</span>
+                        <span class="patron-price-period">/month</span>
+                    </div>
+                    <button type="button" class="btn-primary" id="patron-cta-btn">Join the Circle</button>
+                </div>
+            </div>
+            <div class="patron-trust-bar reveal-up">
+                <span class="trust-pill"><span class="trust-dot"></span>Cancel anytime</span>
+                <span class="trust-pill"><span class="trust-dot"></span>Secure Stripe billing</span>
+                <span class="trust-pill"><span class="trust-dot"></span>Supports Unicode restoration</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Patron Modal -->
+    <div class="booking-modal" id="patron-modal" style="display:none;">
+        <div class="booking-modal-backdrop" id="patron-modal-backdrop"></div>
+        <div class="booking-modal-panel patron-modal-panel">
+            <button type="button" class="booking-modal-close" id="patron-modal-close" aria-label="Close">&times;</button>
+            <div class="booking-step" id="patron-step-form">
+                <h3 class="booking-modal-title">Join the Patron Circle</h3>
+                <p class="booking-modal-subtitle">Support Ḥkꜣ and have your name displayed on this temple.</p>
+                <div class="booking-form">
+                    <div class="booking-error" id="patron-error" style="display:none;"></div>
+                    <label class="booking-label">Name or Title <span class="booking-char-limit">(as it appears)</span></label>
+                    <input type="text" class="booking-input" id="patron-display-name" placeholder="e.g. Alexandra, The Cartographer" maxlength="48">
+                    <label class="booking-label">Optional Subtitle</label>
+                    <input type="text" class="booking-input" id="patron-title" placeholder="e.g. Friend of the Temple" maxlength="48">
+                    <label class="booking-label">Optional Message</label>
+                    <textarea class="booking-input" id="patron-message" rows="2" placeholder="A short dedication (optional)" maxlength="200"></textarea>
+                    <label class="booking-label">Email</label>
+                    <input type="email" class="booking-input" id="patron-email" placeholder="you@example.com" required>
+                    <label class="booking-label">Monthly Amount</label>
+                    <div class="patron-amount-toggle" id="patron-amount-toggle">
+                        <button type="button" class="patron-amount-btn" data-cents="500">$5</button>
+                        <button type="button" class="patron-amount-btn active" data-cents="700">$7</button>
+                        <button type="button" class="patron-amount-btn" data-cents="1000">$10</button>
+                    </div>
+                    <button type="button" class="booking-submit" id="patron-submit">Continue to Secure Checkout</button>
+                    <p class="booking-note">Billed monthly via Stripe. You can cancel anytime from your email receipt.</p>
+                </div>
+            </div>
+            <div class="booking-step" id="patron-step-loading" style="display:none;">
+                <div class="booking-spinner"></div>
+                <p class="booking-modal-subtitle">Redirecting to Stripe...</p>
+            </div>
+            <div class="booking-step" id="patron-step-success" style="display:none;">
+                <div class="booking-status-icon">&#10003;</div>
+                <h3 class="booking-modal-title">Thank You</h3>
+                <p class="booking-modal-subtitle">Your patronage has been confirmed. Your certificate will appear on this temple shortly.</p>
+                <button type="button" class="booking-submit" id="patron-success-close">Close</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Booking Modal -->
     <div class="booking-modal" id="booking-modal" style="display:none;">
         <div class="booking-modal-backdrop"></div>

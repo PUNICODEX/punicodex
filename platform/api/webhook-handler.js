@@ -1,6 +1,7 @@
 const { handleWebhook } = require('./stripe');
 const { getBookingByToken } = require('./bookings');
 const { getCreativePurchaseByStripeSessionId } = require('../db/scholars');
+const { getPatronById } = require('./patron-service');
 
 async function processWebhook(rawBody, signature) {
   const result = await handleWebhook(rawBody, signature);
@@ -27,6 +28,18 @@ async function processWebhook(rawBody, signature) {
         email: purchase.licensee_email,
         assetId: purchase.asset_id,
         purchaseId: purchase.id,
+      }).catch(() => {});
+    }
+  }
+
+  if (result && result.type === 'patron' && result.patron) {
+    const patron = await getPatronById(result.patron.id);
+    if (patron?.email) {
+      const { notifyPatronWelcome } = require('./email');
+      await notifyPatronWelcome({
+        email: patron.email,
+        displayName: patron.display_name,
+        templeId: patron.temple_id,
       }).catch(() => {});
     }
   }

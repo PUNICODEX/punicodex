@@ -412,6 +412,22 @@ async function sendAnalyticsReport({ email, booking, metrics }) {
   });
 }
 
+async function notifyPatronWelcome({ email, displayName, templeId }) {
+  const templeUrl = `${PLATFORM_URL}/sites/${templeId}/`;
+  return sendEmail({
+    to: email,
+    subject: `Welcome to the ${displayName} patron circle`,
+    html: `
+      <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
+        <h2 style="color:#d4af37;">PUNYCODEX — Patron Confirmed</h2>
+        <p>Hi ${escapeHtml(displayName || 'there')},</p>
+        <p>Thank you for becoming a patron. Your name will appear on the temple page, and your support helps keep these Unicode restorations alive.</p>
+        <p><a href="${escapeHtml(templeUrl)}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">View Temple</a></p>
+      </div>
+    `,
+  });
+}
+
 module.exports = {
   sendEmail,
   notifyPaymentPending,
@@ -429,6 +445,7 @@ module.exports = {
   sendBookingConfirmation,
   sendAnalyticsReport,
   notifyCreativePurchaseReady,
+  notifyPatronWelcome,
   getDashboardUrl,
   escapeHtml,
 };
