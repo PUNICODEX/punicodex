@@ -223,4 +223,124 @@ test('invalid email is rejected', async () => {
   }
 });
 
+test('valid X social link is stored', async () => {
+  const patron = await createPatronCheckoutRecord({
+    templeId: 'zeus',
+    email: 'x@example.com',
+    displayName: 'X Patron',
+    socialPlatform: 'x',
+    socialUrl: 'https://x.com/punycodex',
+  });
+  assert.strictEqual(patron.socialPlatform, 'x');
+  assert.strictEqual(patron.socialUrl, 'https://x.com/punycodex');
+});
+
+test('valid Instagram social link is stored', async () => {
+  const patron = await createPatronCheckoutRecord({
+    templeId: 'zeus',
+    email: 'ig@example.com',
+    displayName: 'IG Patron',
+    socialPlatform: 'instagram',
+    socialUrl: 'https://www.instagram.com/punycodex/',
+  });
+  assert.strictEqual(patron.socialPlatform, 'instagram');
+  assert.strictEqual(patron.socialUrl, 'https://www.instagram.com/punycodex/');
+});
+
+test('valid LinkedIn social link is stored', async () => {
+  const patron = await createPatronCheckoutRecord({
+    templeId: 'zeus',
+    email: 'linkedin@example.com',
+    displayName: 'LinkedIn Patron',
+    socialPlatform: 'linkedin',
+    socialUrl: 'https://www.linkedin.com/in/punycodex/',
+  });
+  assert.strictEqual(patron.socialPlatform, 'linkedin');
+  assert.strictEqual(patron.socialUrl, 'https://www.linkedin.com/in/punycodex/');
+});
+
+test('valid TikTok social link is stored', async () => {
+  const patron = await createPatronCheckoutRecord({
+    templeId: 'zeus',
+    email: 'tiktok@example.com',
+    displayName: 'TikTok Patron',
+    socialPlatform: 'tiktok',
+    socialUrl: 'https://www.tiktok.com/@punycodex',
+  });
+  assert.strictEqual(patron.socialPlatform, 'tiktok');
+  assert.strictEqual(patron.socialUrl, 'https://www.tiktok.com/@punycodex');
+});
+
+test('valid YouTube social link is stored', async () => {
+  const patron = await createPatronCheckoutRecord({
+    templeId: 'zeus',
+    email: 'youtube@example.com',
+    displayName: 'YouTube Patron',
+    socialPlatform: 'youtube',
+    socialUrl: 'https://www.youtube.com/@punycodex',
+  });
+  assert.strictEqual(patron.socialPlatform, 'youtube');
+  assert.strictEqual(patron.socialUrl, 'https://www.youtube.com/@punycodex');
+});
+
+test('valid GitHub social link is stored', async () => {
+  const patron = await createPatronCheckoutRecord({
+    templeId: 'zeus',
+    email: 'github@example.com',
+    displayName: 'GitHub Patron',
+    socialPlatform: 'github',
+    socialUrl: 'https://github.com/punycodex',
+  });
+  assert.strictEqual(patron.socialPlatform, 'github');
+  assert.strictEqual(patron.socialUrl, 'https://github.com/punycodex');
+});
+
+test('valid website social link is stored', async () => {
+  const patron = await createPatronCheckoutRecord({
+    templeId: 'zeus',
+    email: 'web@example.com',
+    displayName: 'Web Patron',
+    socialPlatform: 'website',
+    socialUrl: 'https://punycodex.com/',
+  });
+  assert.strictEqual(patron.socialPlatform, 'website');
+  assert.strictEqual(patron.socialUrl, 'https://punycodex.com/');
+});
+
+test('non-https social URL is rejected', async () => {
+  const patron = await createPatronCheckoutRecord({
+    templeId: 'zeus',
+    email: 'http@example.com',
+    displayName: 'HTTP Patron',
+    socialPlatform: 'x',
+    socialUrl: 'http://x.com/punycodex',
+  });
+  assert.strictEqual(patron.socialPlatform, 'x');
+  assert.strictEqual(patron.socialUrl, null);
+});
+
+test('malformed social URL is rejected', async () => {
+  const patron = await createPatronCheckoutRecord({
+    templeId: 'zeus',
+    email: 'bad@example.com',
+    displayName: 'Bad URL Patron',
+    socialPlatform: 'x',
+    socialUrl: 'https://example.com/punycodex',
+  });
+  assert.strictEqual(patron.socialPlatform, 'x');
+  assert.strictEqual(patron.socialUrl, null);
+});
+
+test('unsupported social platform is rejected', async () => {
+  const patron = await createPatronCheckoutRecord({
+    templeId: 'zeus',
+    email: 'unknown@example.com',
+    displayName: 'Unknown Platform Patron',
+    socialPlatform: 'myspace',
+    socialUrl: 'https://myspace.com/punycodex',
+  });
+  assert.strictEqual(patron.socialPlatform, null);
+  assert.strictEqual(patron.socialUrl, null);
+});
+
 run();

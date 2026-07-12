@@ -25,6 +25,43 @@ function sanitizeEmail(email) {
   return email.trim().toLowerCase().slice(0, 254);
 }
 
+const SOCIAL_PLATFORMS = {
+  x: { label: 'X / Twitter', host: 'x.com' },
+  instagram: { label: 'Instagram', host: 'instagram.com' },
+  linkedin: { label: 'LinkedIn', host: 'linkedin.com' },
+  tiktok: { label: 'TikTok', host: 'tiktok.com' },
+  youtube: { label: 'YouTube', host: 'youtube.com' },
+  github: { label: 'GitHub', host: 'github.com' },
+  website: { label: 'Website', host: null },
+};
+
+const SOCIAL_PATTERNS = {
+  x: /^https:\/\/x\.com\/[A-Za-z0-9_]{1,15}\/?$/,
+  instagram: /^https:\/\/www\.instagram\.com\/[A-Za-z0-9_.]{1,30}\/?$/,
+  linkedin: /^https:\/\/www\.linkedin\.com\/in\/[A-Za-z0-9-]{3,100}\/?$/,
+  tiktok: /^https:\/\/www\.tiktok\.com\/@?[A-Za-z0-9_.]{1,24}\/?$/,
+  youtube:
+    /^https:\/\/(www\.)?(youtube\.com\/(channel\/|c\/|@)[A-Za-z0-9_-]+|youtu\.be\/[A-Za-z0-9_-]+)\/?$/,
+  github: /^https:\/\/github\.com\/[A-Za-z0-9-]{1,39}\/?$/,
+  website: /^https:\/\/([A-Za-z0-9-]+\.)+[A-Za-z]{2,}(\/[A-Za-z0-9-._~:/?#[\]@!$&'()*+,;=]*)?$/,
+};
+
+function sanitizeSocialPlatform(platform) {
+  if (!platform || typeof platform !== 'string') return null;
+  const key = platform.trim().toLowerCase();
+  return SOCIAL_PLATFORMS[key] ? key : null;
+}
+
+function sanitizeSocialUrl(platform, url) {
+  if (!platform || !url || typeof url !== 'string') return null;
+  const trimmed = url.trim().slice(0, 500);
+  if (!trimmed.startsWith('https://')) return null;
+  const pattern = SOCIAL_PATTERNS[platform];
+  if (!pattern) return null;
+  if (!pattern.test(trimmed)) return null;
+  return trimmed;
+}
+
 function validateAmountCents(amountCents) {
   const cents = Number(amountCents) || PATRON_TIER_DEFAULT_CENTS;
   return Math.max(PATRON_TIER_MIN_CENTS, Math.min(PATRON_TIER_MAX_CENTS, cents));
@@ -37,7 +74,12 @@ async function createPatronCheckoutRecord({
   title,
   message,
   amountCents,
+  socialPlatform,
+  socialUrl,
 }) {
+  const platform = sanitizeSocialPlatform(socialPlatform);
+  const url = sanitizeSocialUrl(platform, socialUrl);
+
   const normalized = {
     templeId: String(templeId || '')
       .trim()
@@ -47,6 +89,8 @@ async function createPatronCheckoutRecord({
     title: sanitizeTitle(title),
     message: sanitizeMessage(message),
     amountCents: validateAmountCents(amountCents),
+    socialPlatform: platform,
+    socialUrl: url,
   };
 
   if (!normalized.templeId) {
@@ -57,8 +101,8 @@ async function createPatronCheckoutRecord({
   }
 
   const id = await insert(
-    `INSERT INTO patrons (temple_id, email, display_name, title, message, amount_cents, status)
-     VALUES ($1, $2, $3, $4, $5, $6, 'pending_payment')
+    `INSERT INTO patrons (temple_id, email, display_name, title, message, amount_cents, social_platform, social_url, status)
+     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, 'pending_payment')
      RETURNING id`,
     [
       normalized.templeId,
@@ -67,6 +111,8 @@ async function createPatronCheckoutRecord({
       normalized.title,
       normalized.message,
       normalized.amountCents,
+      normalized.socialPlatform,
+      normalized.socialUrl,
     ]
   );
 
@@ -83,7 +129,7 @@ async function getPatronByStripeSubscriptionId(stripeSubscriptionId) {
 
 async function listActivePatronsByTemple(templeId) {
   return all(
-    `SELECT id, temple_id, display_name, title, message, amount_cents, started_at, created_at
+    `SELECT id, temple_id, display_name, title, message, amount_cents, social_platform, social_url, started_at, created_at
      FROM patrons
      WHERE temple_id = $1 AND status = 'active'
      ORDER BY amount_cents DESC, started_at ASC`,

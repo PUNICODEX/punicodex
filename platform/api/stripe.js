@@ -162,6 +162,8 @@ async function createPatronCheckoutSession({
   title,
   message,
   amountCents,
+  socialPlatform,
+  socialUrl,
   siteName = 'PUNYCODEX',
 }) {
   const patron = await createPatronCheckoutRecord({
@@ -171,6 +173,8 @@ async function createPatronCheckoutSession({
     title,
     message,
     amountCents,
+    socialPlatform,
+    socialUrl,
   });
 
   const amount = patron.amountCents;

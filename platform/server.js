@@ -1615,7 +1615,8 @@ app.post('/api/bookings/recover', bookingsRecoverLimit, async (req, res) => {
 
 app.post('/api/patrons/checkout', publicWriteLimit, async (req, res) => {
   try {
-    const { templeId, email, displayName, title, message, amountCents } = req.body;
+    const { templeId, email, displayName, title, message, amountCents, socialPlatform, socialUrl } =
+      req.body;
     const result = await createPatronCheckoutSession({
       templeId,
       email,
@@ -1623,6 +1624,8 @@ app.post('/api/patrons/checkout', publicWriteLimit, async (req, res) => {
       title,
       message,
       amountCents,
+      socialPlatform,
+      socialUrl,
     });
     res.json(result);
   } catch (err) {

@@ -22,7 +22,23 @@ db.exec(`
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
   );
+`);
 
+// Idempotently add social link columns for verified patron profiles.
+const columns = [
+  ['social_platform', 'TEXT'],
+  ['social_url', 'TEXT'],
+];
+for (const [col, type] of columns) {
+  try {
+    db.exec(`ALTER TABLE patrons ADD COLUMN ${col} ${type}`);
+    console.log(`  + Added patrons.${col} column`);
+  } catch (_e) {
+    // Column already exists.
+  }
+}
+
+db.exec(`
   CREATE INDEX IF NOT EXISTS idx_patrons_temple ON patrons(temple_id);
   CREATE INDEX IF NOT EXISTS idx_patrons_status ON patrons(status);
   CREATE INDEX IF NOT EXISTS idx_patrons_email ON patrons(email);
