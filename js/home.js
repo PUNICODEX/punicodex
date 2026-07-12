@@ -358,6 +358,7 @@
                 pts.push(project(world));
             }
 
+            // Main glowing ring
             ctx.beginPath();
             pts.forEach((p, i) => {
                 if (i === 0) ctx.moveTo(p.x, p.y);
@@ -370,6 +371,40 @@
             ctx.shadowBlur = lineWidth * 4;
             ctx.stroke();
             ctx.shadowBlur = 0;
+
+            // Holographic wireframe dashes
+            ctx.save();
+            ctx.globalCompositeOperation = 'screen';
+            ctx.beginPath();
+            const dashLen = 6;
+            const gapLen = 12;
+            let draw = true;
+            let acc = 0;
+            pts.forEach((p, i) => {
+                if (i === 0) {
+                    ctx.moveTo(p.x, p.y);
+                    return;
+                }
+                const prev = pts[i - 1];
+                const seg = Math.hypot(p.x - prev.x, p.y - prev.y);
+                while (acc + seg > (draw ? dashLen : gapLen)) {
+                    const remain = (draw ? dashLen : gapLen) - acc;
+                    const ratio = remain / seg;
+                    const mx = prev.x + (p.x - prev.x) * ratio;
+                    const my = prev.y + (p.y - prev.y) * ratio;
+                    if (draw) ctx.lineTo(mx, my);
+                    else ctx.moveTo(mx, my);
+                    draw = !draw;
+                    acc = 0;
+                }
+                acc += seg;
+                if (draw) ctx.lineTo(p.x, p.y);
+                else ctx.moveTo(p.x, p.y);
+            });
+            ctx.strokeStyle = `hsla(${hue + 180}, 60%, 65%, ${alpha * 0.45})`;
+            ctx.lineWidth = lineWidth * 0.5;
+            ctx.stroke();
+            ctx.restore();
         }
 
         function drawGlyphOrbits(base) {
@@ -549,6 +584,131 @@
             ctx.restore();
         }
 
+        function drawHolographicFloor(base) {
+            const gridSize = 24;
+            const horizon = cy + base * 0.45;
+            const rows = isMobile ? 10 : 18;
+            const cols = isMobile ? 20 : 36;
+
+            ctx.save();
+            ctx.globalCompositeOperation = 'screen';
+            ctx.strokeStyle = 'rgba(212,175,55,0.08)';
+            ctx.lineWidth = 0.6;
+
+            // Perspective grid radiating from center base
+            for (let r = 1; r <= rows; r++) {
+                const t = r / rows;
+                const y = horizon + (height - horizon) * (t * t);
+                const wave = Math.sin(frame * 0.02 + r * 0.5) * 2;
+                ctx.beginPath();
+                ctx.moveTo(0, y + wave);
+                ctx.lineTo(width, y + wave);
+                ctx.strokeStyle = `rgba(212,175,55,${0.04 * (1 - t)})`;
+                ctx.stroke();
+            }
+
+            for (let c = -cols / 2; c <= cols / 2; c++) {
+                const x = cx + c * gridSize * 1.5;
+                const angle = (c / cols) * Math.PI * 0.5;
+                const x2 = cx + Math.sin(angle) * width * 0.6;
+                ctx.beginPath();
+                ctx.moveTo(x, horizon);
+                ctx.lineTo(x2, height);
+                ctx.strokeStyle = `rgba(212,175,55,${0.035 * (1 - Math.abs(c) / (cols / 2))})`;
+                ctx.stroke();
+            }
+
+            // Reflection of the Ψ core
+            const grad = ctx.createLinearGradient(cx, horizon, cx, height);
+            grad.addColorStop(0, 'rgba(212,175,55,0.12)');
+            grad.addColorStop(0.4, 'rgba(212,175,55,0.03)');
+            grad.addColorStop(1, 'rgba(212,175,55,0)');
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            ctx.ellipse(cx, horizon + base * 0.25, base * 0.35, base * 0.08, 0, 0, TAU);
+            ctx.fill();
+
+            ctx.restore();
+        }
+
+        function drawProjectionCone(base) {
+            // Faint cone rising from floor to the Ψ core, suggesting a holographic projector
+            ctx.save();
+            ctx.globalCompositeOperation = 'screen';
+            const grad = ctx.createLinearGradient(cx, cy + base * 0.45, cx, cy);
+            grad.addColorStop(0, 'rgba(212,175,55,0)');
+            grad.addColorStop(0.5, 'rgba(212,175,55,0.025)');
+            grad.addColorStop(1, 'rgba(212,175,55,0)');
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            ctx.moveTo(cx - base * 0.5, cy + base * 0.55);
+            ctx.lineTo(cx, cy - base * 0.15);
+            ctx.lineTo(cx + base * 0.5, cy + base * 0.55);
+            ctx.closePath();
+            ctx.fill();
+            ctx.restore();
+        }
+
+        function drawHolographicGlitch() {
+            // Occasional chromatic slice shifts
+            if (Math.random() > 0.92) {
+                const sliceY = Math.random() * height;
+                const sliceH = Math.random() * 4 + 1;
+                const offset = (Math.random() - 0.5) * 8;
+                ctx.save();
+                ctx.globalCompositeOperation = 'screen';
+                ctx.drawImage(heroCanvas, 0, sliceY, width, sliceH, offset, sliceY, width, sliceH);
+                ctx.restore();
+            }
+        }
+
+        function drawScanlines() {
+            ctx.save();
+            ctx.globalCompositeOperation = 'overlay';
+            const scanH = 2;
+            const gap = 4;
+            const offset = (frame * 0.5) % gap;
+            for (let y = offset; y < height; y += gap) {
+                ctx.fillStyle = 'rgba(0,0,0,0.12)';
+                ctx.fillRect(0, y, width, scanH);
+            }
+            // Moving data bar
+            const barY = (frame * 0.8) % (height + 200) - 100;
+            const barGrad = ctx.createLinearGradient(0, barY, 0, barY + 60);
+            barGrad.addColorStop(0, 'rgba(212,175,55,0)');
+            barGrad.addColorStop(0.5, 'rgba(212,175,55,0.04)');
+            barGrad.addColorStop(1, 'rgba(212,175,55,0)');
+            ctx.fillStyle = barGrad;
+            ctx.fillRect(0, barY, width, 60);
+            ctx.restore();
+        }
+
+        function drawHolographicNoise() {
+            ctx.save();
+            ctx.globalCompositeOperation = 'overlay';
+            const count = isMobile ? 120 : 300;
+            for (let i = 0; i < count; i++) {
+                const x = Math.random() * width;
+                const y = Math.random() * height;
+                const s = Math.random() * 1.5;
+                ctx.fillStyle = `rgba(255,255,255,${Math.random() * 0.04})`;
+                ctx.fillRect(x, y, s, s);
+            }
+            ctx.restore();
+        }
+
+        function drawChromaticSeparation(base) {
+            // Split RGB channels slightly around the central object
+            const shift = 2.5 + Math.sin(frame * 0.05) * 0.5;
+            ctx.save();
+            ctx.globalCompositeOperation = 'screen';
+            ctx.globalAlpha = 0.35;
+            ctx.drawImage(heroCanvas, -shift, 0, width + shift, height);
+            ctx.globalCompositeOperation = 'multiply';
+            ctx.drawImage(heroCanvas, shift, 0, width - shift, height);
+            ctx.restore();
+        }
+
         function drawVignette() {
             const g = ctx.createRadialGradient(cx, cy, baseScale() * 0.4, cx, cy, Math.max(width, height) * 0.75);
             g.addColorStop(0, 'rgba(0,0,0,0)');
@@ -588,6 +748,14 @@
 
             // Bloom & vignette
             compositeGlow();
+
+            // Holographic layers
+            drawHolographicFloor(base);
+            drawProjectionCone(base);
+            drawChromaticSeparation(base);
+            drawHolographicGlitch();
+            drawScanlines();
+            drawHolographicNoise();
             drawVignette();
 
             updateHeroTransform();
