@@ -171,6 +171,25 @@ function run() {
     ad.cleanup();
   });
 
+  test('golden DB contains every built flagship id', () => {
+    const { ARCHETYPES: archetypes } = require('../js/archetypes-v2.js');
+    const expectedIds = new Set(archetypes.filter((a) => a.built).map((a) => a.id));
+    const Database = require('better-sqlite3');
+    const db = new Database(path.join(__dirname, '..', 'platform', 'db', 'punycodex.db'));
+    const rows = db.prepare('SELECT id FROM entries WHERE has_flagship = 1').all();
+    const actualIds = new Set(rows.map((r) => r.id));
+    db.close();
+
+    const missing = [...expectedIds].filter((id) => !actualIds.has(id));
+    const unexpected = [...actualIds].filter((id) => !expectedIds.has(id));
+    assert.strictEqual(missing.length, 0, `Golden DB missing flagship ids: ${missing.join(', ')}`);
+    assert.strictEqual(
+      unexpected.length,
+      0,
+      `Golden DB has unexpected flagship ids: ${unexpected.join(', ')}`
+    );
+  });
+
   console.log(`\nFoundations: ${passed} passed, ${failed} failed`);
   if (failed > 0) process.exit(1);
 }

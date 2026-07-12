@@ -12,6 +12,10 @@ const { URL } = require('node:url');
 // Set admin password so admin endpoints are testable
 process.env.ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'test-admin-password-for-ci';
 
+// Dynamic canonical data so counts stay in sync with the flywheel
+const { LEXICON } = require('../type/js/lexicon.js');
+const EXPECTED_PANTHEON_COUNT = new Set(LEXICON.map((e) => e.pantheon)).size;
+
 // Reset rate limiters before each run so tests are deterministic
 const { resetLimiters } = require('../platform/api/api-rate-limiter.js');
 resetLimiters();
@@ -237,7 +241,7 @@ async function runTests() {
     assert.strictEqual(status, 200);
     assertEnvelope(body);
     assert.ok(Array.isArray(body.data.items), 'must have items array');
-    assert.strictEqual(body.data.count, 22);
+    assert.strictEqual(body.data.count, EXPECTED_PANTHEON_COUNT);
     assert.ok(
       body.data.items.some((p) => p.id === 'greek'),
       'must include greek'
