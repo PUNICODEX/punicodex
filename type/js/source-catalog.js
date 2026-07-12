@@ -892,6 +892,13 @@ const SOURCE_CATALOG = {
         edition: 'Loeb Classical Library / Oxford Classical Texts',
         url: 'https://catalog.perseus.org/catalog/urn:cts:greekLit:tlg0059'
     },
+    'Plotinus': {
+        full: 'Plotinus, Enneads',
+        scope: 'Neoplatonic philosophy',
+        year: '270',
+        edition: 'Loeb Classical Library / Oxford Classical Texts',
+        url: 'https://catalog.perseus.org/catalog/urn:cts:greekLit:tlg0538'
+    },
     'Plutarch': {
         full: 'Plutarch, Parallel Lives / Moralia',
         scope: 'Greek biography and essay',

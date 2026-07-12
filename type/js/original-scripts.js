@@ -41,6 +41,7 @@ const SCRIPT_NAMES = {
   slavic: 'Slavic transcription',
   zoroastrian: 'Avestan / Old Persian',
   incan: 'Incan transcription',
+  baltic: 'Lithuanian / Baltic',
 };
 
 // Pantheons for which no indigenous per-name script is attested. The page will
@@ -53,6 +54,7 @@ const SCRIPTLESS_PANTHEONS = new Set([
   'slavic',
   'incan',
   'korean',
+  'baltic',
 ]);
 
 // ═════════════════════════════════════════════════════════════════════════════

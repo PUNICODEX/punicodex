@@ -92,6 +92,7 @@ const ALLOWED_PANTHEONS = [
   'phoenician',
   'hittite',
   'canaanite',
+  'baltic',
 ];
 const ALLOWED_TIERS = ['dual', '1', '2'];
 const ASCII_REGEX = /^[a-z]+$/;

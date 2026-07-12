@@ -2746,6 +2746,14 @@ const ORIGINAL_SCRIPT_LOOKUP = {
   "thalassa": {
     "originalScript": "Θάλασσα",
     "scriptName": "Greek"
+  },
+  "he": {
+    "originalScript": "ἡ",
+    "scriptName": "Greek"
+  },
+  "buri": {
+    "originalScript": "ᛒᚢᚱᛁ",
+    "scriptName": "Younger Futhark"
   }
 };
 

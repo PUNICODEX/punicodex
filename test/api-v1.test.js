@@ -237,7 +237,7 @@ async function runTests() {
     assert.strictEqual(status, 200);
     assertEnvelope(body);
     assert.ok(Array.isArray(body.data.items), 'must have items array');
-    assert.strictEqual(body.data.count, 21);
+    assert.strictEqual(body.data.count, 22);
     assert.ok(
       body.data.items.some((p) => p.id === 'greek'),
       'must include greek'

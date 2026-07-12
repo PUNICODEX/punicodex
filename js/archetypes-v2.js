@@ -3280,6 +3280,69 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
+    {
+        id: "he",
+        name: "Hē",
+        greek: "ἡ",
+        domain: "The Divine Feminine Principle, She Who Is",
+        tagline: "The Divine Feminine Principle, She Who Is · Feminine nominative singular article in Ancient Greek; in Orphic and Neoplatonic thought, the receptacle of divine overflow and counterpart to τὸ ἕν (Hén).",
+        tier: "tier-2",
+        tierDetail: "single-tier",
+        pantheon: "greek",
+        folder: "he",
+        domainUnicode: "hē.com",
+        domainPunycode: "xn--h-pia.com",
+        colors: { primary: "#D4AF37", secondary: "#4169E1", glow: "rgba(212,175,55,0.3)" },
+        mascotPath: "/sites/he/assets/he_mascot.webp",
+        mascotFallback: "/sites/he/assets/he_mascot.webp",
+        logomarkPath: "/sites/he/assets/he_logomark.webp",
+        built: true,
+        hasAdSite: true,
+        darkPunchline: false
+    },
+
+    {
+        id: "perkunas",
+        name: "Perkūnas",
+        greek: "—",
+        domain: "God of Thunder, Lightning and Storms",
+        tagline: "God of Thunder, Lightning and Storms · Lithuanian/Baltic thunder deity, cognate with Slavic Perun and Indo-Iranian Parjanya.",
+        tier: "tier-2",
+        tierDetail: "single-tier",
+        pantheon: "baltic",
+        folder: "perkunas",
+        domainUnicode: "perkūnas.com",
+        domainPunycode: "xn--perknas-3sb.com",
+        colors: { primary: "#D4AF37", secondary: "#4169E1", glow: "rgba(212,175,55,0.3)" },
+        mascotPath: "/sites/perkunas/assets/perkunas_mascot.webp",
+        mascotFallback: "/sites/perkunas/assets/perkunas_mascot.webp",
+        logomarkPath: "/sites/perkunas/assets/perkunas_logomark.webp",
+        built: true,
+        hasAdSite: true,
+        darkPunchline: false
+    },
+
+    {
+        id: "buri",
+        name: "Búri",
+        greek: "—",
+        domain: "First God of the Norse Pantheon, Progenitor of the Æsir",
+        tagline: "First God of the Norse Pantheon, Progenitor of the Æsir · In the Prose Edda, Búri is the primeval ancestor born from the salty rime, father of Borr and grandfather of Óðinn.",
+        tier: "tier-2",
+        tierDetail: "single-tier",
+        pantheon: "norse",
+        folder: "buri",
+        domainUnicode: "búri.com",
+        domainPunycode: "xn--bri-8na.com",
+        colors: { primary: "#C0C0C0", secondary: "#5C9BD1", glow: "rgba(192,192,192,0.3)" },
+        mascotPath: "/sites/buri/assets/buri_mascot.webp",
+        mascotFallback: "/sites/buri/assets/buri_mascot.webp",
+        logomarkPath: "/sites/buri/assets/buri_logomark.webp",
+        built: true,
+        hasAdSite: true,
+        darkPunchline: false
+    },
+
 ];
 
 if (typeof module !== 'undefined' && module.exports) {

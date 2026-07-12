@@ -53688,6 +53688,246 @@ const LEXICON = [
         "text": "The word thálassa became the default Greek term for the Mediterranean and beyond."
       }
     ]
+  },
+  {
+    "id": "he",
+    "hasAdSite": true,
+    "ascii": "he",
+    "unicode": "Hē",
+    "greek": "ἡ",
+    "pantheon": "greek",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "The Divine Feminine Principle, She Who Is",
+    "meaning": "Feminine nominative singular article in Ancient Greek; in Orphic and Neoplatonic thought, the receptacle of divine overflow and counterpart to τὸ ἕν (Hén).",
+    "sources": [
+      "LSJ",
+      "Beekes",
+      "Plato",
+      "Plotinus"
+    ],
+    "variants": [
+      {
+        "unicode": "hē",
+        "type": "owned",
+        "note": "Lowercase owned domain form"
+      },
+      {
+        "unicode": "he",
+        "type": "ascii",
+        "note": "Plain ASCII form"
+      }
+    ],
+    "etymology": {
+      "protoForm": "*so-",
+      "protoLanguage": "proto-indo-european",
+      "protoGloss": "this, the",
+      "derivation": "Ancient Greek definite article ἡ, feminine nominative singular of ὁ. Philosophically reinterpreted in later Platonism as the feminine principle of manifestation.",
+      "certainty": "attested",
+      "cognates": [
+        {
+          "language": "greek",
+          "form": "ὁ, ἡ, τό",
+          "relationship": "cognate",
+          "note": "definite article"
+        },
+        {
+          "language": "sanskrit",
+          "form": "sā",
+          "relationship": "cognate",
+          "note": "feminine demonstrative"
+        }
+      ]
+    },
+    "breakdown": [
+      {
+        "char": "h",
+        "to": "H",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "e",
+        "to": "ē",
+        "type": "length",
+        "note": "Macron marks long e"
+      }
+    ]
+  },
+  {
+    "id": "perkunas",
+    "hasAdSite": true,
+    "ascii": "perkunas",
+    "unicode": "Perkūnas",
+    "greek": "—",
+    "pantheon": "baltic",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "God of Thunder, Lightning and Storms",
+    "meaning": "Lithuanian/Baltic thunder deity, cognate with Slavic Perun and Indo-Iranian Parjanya.",
+    "sources": [
+      "Folklore",
+      "Ivanov-Toporov"
+    ],
+    "variants": [
+      {
+        "unicode": "perkūnas.com",
+        "type": "owned",
+        "note": "Owned domain form"
+      },
+      {
+        "unicode": "perkunas",
+        "type": "ascii",
+        "note": "Plain ASCII form"
+      }
+    ],
+    "etymology": {
+      "protoForm": "*perkʷu-",
+      "protoLanguage": "proto-indo-european",
+      "protoGloss": "oak, thunder",
+      "derivation": "From Proto-Baltic *Perkūnas, from PIE *perkʷu- \"oak; thunderer\", also reflected in Slavic Perun and Vedic Parjanya.",
+      "certainty": "attested",
+      "cognates": [
+        {
+          "language": "slavic",
+          "form": "Perun",
+          "relationship": "cognate",
+          "note": "Slavic thunder god"
+        },
+        {
+          "language": "sanskrit",
+          "form": "Parjanya",
+          "relationship": "cognate",
+          "note": "Vedic thunder/storm deity"
+        }
+      ]
+    },
+    "breakdown": [
+      {
+        "char": "p",
+        "to": "P",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "e",
+        "to": "e",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "k",
+        "to": "k",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "u",
+        "to": "ū",
+        "type": "length",
+        "note": "Macron marks long u"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "s",
+        "to": "s",
+        "type": "same",
+        "note": "Same"
+      }
+    ]
+  },
+  {
+    "id": "buri",
+    "hasAdSite": true,
+    "ascii": "buri",
+    "unicode": "Búri",
+    "greek": "—",
+    "pantheon": "norse",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "First God of the Norse Pantheon, Progenitor of the Æsir",
+    "meaning": "In the Prose Edda, Búri is the primeval ancestor born from the salty rime, father of Borr and grandfather of Óðinn.",
+    "sources": [
+      "Poetic Edda",
+      "Prose Edda",
+      "Zoëga"
+    ],
+    "variants": [
+      {
+        "unicode": "búri.com",
+        "type": "owned",
+        "note": "Owned domain form"
+      },
+      {
+        "unicode": "buri",
+        "type": "ascii",
+        "note": "Plain ASCII form"
+      }
+    ],
+    "etymology": {
+      "protoForm": "*bʰew-",
+      "protoLanguage": "proto-indo-european",
+      "protoGloss": "to be, become",
+      "derivation": "Old Norse Búri, possibly from a root meaning \"producer, begetter\" (compare Old Norse búa \"to dwell, to be\").",
+      "certainty": "speculative",
+      "cognates": [
+        {
+          "language": "norse",
+          "form": "búa",
+          "relationship": "cognate",
+          "note": "to dwell, to be"
+        },
+        {
+          "language": "english",
+          "form": "be",
+          "relationship": "cognate",
+          "note": "to exist"
+        }
+      ]
+    },
+    "breakdown": [
+      {
+        "char": "b",
+        "to": "B",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "u",
+        "to": "ú",
+        "type": "stress",
+        "note": "Acute marks stress on u"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Same"
+      }
+    ]
   }
 ];
 

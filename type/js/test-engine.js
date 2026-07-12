@@ -334,9 +334,9 @@ test('Correct pantheon counts', () => {
   LEXICON.forEach((e) => {
     counts[e.pantheon] = (counts[e.pantheon] || 0) + 1;
   });
-  assert.strictEqual(counts.greek, 262, 'Greek count');
+  assert.strictEqual(counts.greek, 263, 'Greek count');
   assert.strictEqual(counts['greek-location'], 24, 'Greek-location count');
-  assert.strictEqual(counts.norse, 85, 'Norse count');
+  assert.strictEqual(counts.norse, 86, 'Norse count');
   assert.strictEqual(counts.egyptian, 66, 'Egyptian count');
   assert.strictEqual(counts.sanskrit, 88, 'Sanskrit count');
   assert.strictEqual(counts.celtic, 47, 'Celtic count');
@@ -355,6 +355,7 @@ test('Correct pantheon counts', () => {
   assert.strictEqual(counts.phoenician, 8, 'Phoenician count');
   assert.strictEqual(counts.hittite, 8, 'Hittite count');
   assert.strictEqual(counts.canaanite, 12, 'Canaanite count');
+  assert.strictEqual(counts.baltic, 1, 'Baltic count');
 });
 
 section('Unicode & Normalization');

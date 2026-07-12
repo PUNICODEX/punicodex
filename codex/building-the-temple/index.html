@@ -76,11 +76,11 @@
         </header>
 
         <article class="codex-article-body container">
-            <p class="lead">PÚNYCODEX now serves 860 individual temple pages, one for every entry in the lexicon. Eighty-three of those are flagships: hand-expanded pages with custom canvases, lore galleries, pronunciation guides, and domain ownership badges. The rest are generated from a single canonical source. This article is the story of how we learned to build at that scale without losing the detail that makes each name feel sacred.</p>
+            <p class="lead">PÚNYCODEX now serves 892 individual temple pages, one for every entry in the lexicon. One hundred fifty-four of those are flagships: hand-expanded pages with custom canvases, lore galleries, pronunciation guides, and domain ownership badges. The rest are generated from a single canonical source. This article is the story of how we learned to build at that scale without losing the detail that makes each name feel sacred.</p>
 
             <h2>The Source of Truth Problem</h2>
             <p>The first mistake was storing the same data in more than one place. We had a lexicon for the type tool, a separate catalog for temple generation, and a spreadsheet for domain ownership. When a single accent moved — when <code>Apóllōn</code> became <code>Apollōn</code>, for example — the change had to be chased through three files, two build scripts, and a middleware router.</p>
-            <p>The fix was ruthless canonicalization. Today the single source of truth for all 860 names is <code>type/js/lexicon.js</code>. Archetype data lives in <code>js/archetypes-v2.js</code>. Owned domains live in <code>platform/db/owned-domains.json</code>. Everything else — the extension lexicon, the mobile lexicon, the Android JSON assets, the middleware domain map, the browser renderer catalog — is generated.</p>
+            <p>The fix was ruthless canonicalization. Today the single source of truth for all 892 names is <code>type/js/lexicon.js</code>. Archetype data lives in <code>js/archetypes-v2.js</code>. Owned domains live in <code>platform/db/owned-domains.json</code>. Everything else — the extension lexicon, the mobile lexicon, the Android JSON assets, the middleware domain map, the browser renderer catalog — is generated.</p>
             <p>That generation is enforced by a divergence gate in CI: after tests pass, the pipeline runs <code>npm run generate</code> and fails if any generated file differs from what is committed. If the gate fails, you forgot to regenerate.</p>
 
             <h2>From Spreadsheet to Temple</h2>
