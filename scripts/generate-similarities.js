@@ -154,7 +154,6 @@ function main() {
 
   const output = {
     meta: {
-      generatedAt: new Date().toISOString(),
       nodeCount: nodes.length,
       edgeCount: edgeList.length,
       relationships,
