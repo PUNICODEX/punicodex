@@ -153,39 +153,18 @@
             }
         }, { passive: true });
 
-        // Mouse / touch driven perspective tilt
-        function onPointerMove(x, y, rect) {
-            const nx = (x / rect.width) * 2 - 1;
-            const ny = (y / rect.height) * 2 - 1;
-            targetRotateY = nx * 6;   // left/right tilt
-            targetRotateX = -ny * 5;  // up/down tilt
-        }
-
-        if (heroContent) {
-            heroContent.addEventListener('mousemove', (e) => {
-                const rect = heroContent.getBoundingClientRect();
-                onPointerMove(e.clientX - rect.left, e.clientY - rect.top, rect);
-            }, { passive: true });
-
-            heroContent.addEventListener('touchmove', (e) => {
-                if (!e.touches[0]) return;
-                const rect = heroContent.getBoundingClientRect();
-                onPointerMove(e.touches[0].clientX - rect.left, e.touches[0].clientY - rect.top, rect);
-            }, { passive: true });
-
-            heroContent.addEventListener('mouseleave', () => {
-                targetRotateX = 0;
-                targetRotateY = 0;
-            });
-        }
-
         window.addEventListener('resize', () => {
             heroWidth = window.innerWidth;
             heroHeight = window.innerHeight;
         });
     }
 
-    // 3D starfield canvas
+    // ═══════════════════════════════════════════════════════════
+    // HERO 3D GEOMETRIC VISUAL — The Unicode Pantheon Atom
+    // A crystalline Ψ monogram suspended inside a rotating
+    // icosahedral temple, orbited by the diacritics and scripts
+    // that PÚNYCODEX restores.
+    // ═══════════════════════════════════════════════════════════
     function initHeroCanvas() {
         const ctx = heroCanvas.getContext('2d');
         if (!ctx) return;
@@ -204,100 +183,276 @@
         window.addEventListener('resize', resize);
 
         const isMobile = window.matchMedia('(pointer: coarse)').matches;
-        const particleCount = isMobile ? 90 : 220;
-        const glyphCount = isMobile ? 6 : 14;
-        const depth = 1200;
-        const fov = 300;
-        const glyphs = ['Ψ', 'ψ', '΄', 'ῑ', 'ā', 'ō', 'þ', 'ð', 'ś', 'ṇ', 'ꜥ', 'xn--'];
+        const scaleBase = () => Math.min(width, height) * 0.5;
+        const fov = 900;
 
-        function createParticle() {
-            return {
-                x: Math.random() * width,
-                y: Math.random() * height,
-                z: Math.random() * depth,
-                size: Math.random() * 1.8 + 0.4,
-                speed: Math.random() * 1.2 + 0.3,
-                alpha: Math.random() * 0.6 + 0.2,
-                color: Math.random() > 0.8 ? '212, 175, 55' : '245, 245, 245'
-            };
+        // ── 3D math ──────────────────────────────────────────────
+        function rotateX(p, a) {
+            const c = Math.cos(a), s = Math.sin(a);
+            return { x: p.x, y: p.y * c - p.z * s, z: p.y * s + p.z * c };
+        }
+        function rotateY(p, a) {
+            const c = Math.cos(a), s = Math.sin(a);
+            return { x: p.x * c + p.z * s, y: p.y, z: -p.x * s + p.z * c };
+        }
+        function rotateZ(p, a) {
+            const c = Math.cos(a), s = Math.sin(a);
+            return { x: p.x * c - p.y * s, y: p.x * s + p.y * c, z: p.z };
+        }
+        function project(p) {
+            const d = fov / (fov + p.z);
+            return { x: p.x * d + width / 2, y: p.y * d + height / 2, scale: d, z: p.z };
         }
 
-        const particles = Array.from({ length: particleCount }, createParticle);
-        const floatingGlyphs = Array.from({ length: glyphCount }, () => ({
-            x: Math.random() * width,
-            y: Math.random() * height,
-            z: Math.random() * depth * 0.7 + depth * 0.2,
-            size: Math.random() * 14 + 10,
-            speed: Math.random() * 0.6 + 0.2,
-            glyph: glyphs[Math.floor(Math.random() * glyphs.length)],
-            alpha: Math.random() * 0.2 + 0.05
-        }));
-
-        function project(x, y, z) {
-            const scale = fov / (fov + z);
-            return {
-                x: (x - width / 2) * scale + width / 2,
-                y: (y - height / 2) * scale + height / 2,
-                scale: scale
-            };
+        // ── Icosahedron (the Pantheon lattice) ───────────────────
+        const phi = (1 + Math.sqrt(5)) / 2;
+        const icoRaw = [
+            { x: 0, y: 1, z: phi }, { x: 0, y: -1, z: phi }, { x: 0, y: 1, z: -phi }, { x: 0, y: -1, z: -phi },
+            { x: 1, y: phi, z: 0 }, { x: -1, y: phi, z: 0 }, { x: 1, y: -phi, z: 0 }, { x: -1, y: -phi, z: 0 },
+            { x: phi, y: 0, z: 1 }, { x: phi, y: 0, z: -1 }, { x: -phi, y: 0, z: 1 }, { x: -phi, y: 0, z: -1 }
+        ];
+        const icoEdges = [];
+        for (let i = 0; i < icoRaw.length; i++) {
+            for (let j = i + 1; j < icoRaw.length; j++) {
+                const dx = icoRaw[i].x - icoRaw[j].x;
+                const dy = icoRaw[i].y - icoRaw[j].y;
+                const dz = icoRaw[i].z - icoRaw[j].z;
+                if (Math.sqrt(dx * dx + dy * dy + dz * dz) < 2.1) icoEdges.push([i, j]);
+            }
         }
+
+        // ── Ψ monogram geometry ──────────────────────────────────
+        function lineSamples(a, b, n) {
+            const pts = [];
+            for (let i = 1; i < n; i++) {
+                const t = i / n;
+                pts.push({ x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t, z: 0 });
+            }
+            return pts;
+        }
+        function quadBezier(p0, p1, p2, n) {
+            const pts = [];
+            for (let i = 1; i < n; i++) {
+                const t = i / n, mt = 1 - t;
+                pts.push({
+                    x: mt * mt * p0.x + 2 * mt * t * p1.x + t * t * p2.x,
+                    y: mt * mt * p0.y + 2 * mt * t * p1.y + t * t * p2.y,
+                    z: 0
+                });
+            }
+            return pts;
+        }
+
+        // Normalised Ψ path (y up); extrude in z for a crystalline solid.
+        const staffTop = { x: 0, y: 1.05, z: 0 };
+        const loopTop = { x: 0, y: 0.55, z: 0 };
+        const loopBottom = { x: 0, y: -0.45, z: 0 };
+        const staffBottom = { x: 0, y: -0.9, z: 0 };
+        const baseTip = { x: 0, y: -0.72, z: 0 };
+
+        const psiFrontPath = [
+            staffTop,
+            ...lineSamples(staffTop, loopTop, 5),
+            ...quadBezier(loopTop, { x: -0.5, y: 0.55, z: 0 }, { x: -0.6, y: 0.05, z: 0 }, 7),
+            ...quadBezier({ x: -0.6, y: 0.05, z: 0 }, { x: -0.5, y: -0.45, z: 0 }, loopBottom, 7),
+            ...quadBezier(loopBottom, { x: 0.5, y: -0.45, z: 0 }, { x: 0.6, y: 0.05, z: 0 }, 7),
+            ...quadBezier({ x: 0.6, y: 0.05, z: 0 }, { x: 0.5, y: 0.55, z: 0 }, loopTop, 7),
+            ...lineSamples(loopTop, loopBottom, 2).slice(1),
+            ...lineSamples(loopBottom, staffBottom, 8),
+            ...lineSamples(staffBottom, baseTip, 4),
+            { x: -0.18, y: -0.62, z: 0 },
+            { x: 0.18, y: -0.62, z: 0 }
+        ];
+        const extrude = 0.14;
+        const psiPoints = [];
+        const psiEdges = [];
+        psiFrontPath.forEach((p) => {
+            psiPoints.push({ x: p.x, y: p.y, z: extrude });
+            psiPoints.push({ x: p.x, y: p.y, z: -extrude });
+        });
+        for (let i = 0; i < psiFrontPath.length - 1; i++) {
+            const f0 = i * 2, f1 = f0 + 2;
+            const b0 = f0 + 1, b1 = f1 + 1;
+            psiEdges.push([f0, f1], [b0, b1], [f0, b0]);
+        }
+        // Close the loop seam manually
+        psiEdges.push([0, 1]);
+
+        // ── Orbital rings (diacritics / scripts in orbit) ────────
+        const orbitGlyphs = ['Ψ', 'ψ', '´', 'ˉ', 'þ', 'ð', 'ś', 'ṇ', 'ꜥ', 'xn--', 'ō', 'Ω', 'א', 'ॐ'];
+        const orbits = [
+            { axis: { x: 0.6, y: 1.0, z: 0.3 }, radius: 0.78, speed: 0.004, count: isMobile ? 7 : 13 },
+            { axis: { x: 1.0, y: -0.4, z: 0.6 }, radius: 0.92, speed: -0.003, count: isMobile ? 6 : 11 },
+            { axis: { x: -0.3, y: 0.7, z: 1.0 }, radius: 1.06, speed: 0.002, count: isMobile ? 5 : 9 }
+        ].map((o) => {
+            // Normalise ring axis
+            const len = Math.sqrt(o.axis.x * o.axis.x + o.axis.y * o.axis.y + o.axis.z * o.axis.z);
+            o.axis = { x: o.axis.x / len, y: o.axis.y / len, z: o.axis.z / len };
+            o.glyphs = [];
+            for (let i = 0; i < o.count; i++) {
+                o.glyphs.push({
+                    phase: (i / o.count) * Math.PI * 2,
+                    glyph: orbitGlyphs[(i * 3) % orbitGlyphs.length],
+                    size: Math.random() * 5 + 9
+                });
+            }
+            return o;
+        });
+
+        // Pointer-driven scene rotation
+        let pointerTargetX = 0, pointerTargetY = 0;
+        let pointerX = 0, pointerY = 0;
+        function onPointerMove(clientX, clientY) {
+            pointerTargetY = ((clientX / width) * 2 - 1) * 0.35;
+            pointerTargetX = ((clientY / height) * 2 - 1) * 0.25;
+        }
+        heroCanvas.addEventListener('mousemove', (e) => onPointerMove(e.clientX, e.clientY), { passive: true });
+        heroCanvas.addEventListener('touchmove', (e) => {
+            if (e.touches[0]) onPointerMove(e.touches[0].clientX, e.touches[0].clientY);
+        }, { passive: true });
+        heroCanvas.addEventListener('mouseleave', () => { pointerTargetX = 0; pointerTargetY = 0; });
 
         let frame = 0;
+        const gold = '212, 175, 55';
+        const dimGold = '140, 115, 50';
+
         function loop() {
             frame++;
-            // Long trails for a cinematic streak effect
-            ctx.fillStyle = 'rgba(5, 5, 5, 0.28)';
+            ctx.fillStyle = '#050505';
             ctx.fillRect(0, 0, width, height);
 
-            // Stars
-            for (const p of particles) {
-                p.z -= p.speed;
-                if (p.z <= 0) {
-                    p.z = depth;
-                    p.x = Math.random() * width;
-                    p.y = Math.random() * height;
-                }
-                const proj = project(p.x, p.y, p.z);
-                const r = Math.max(0.3, p.size * proj.scale);
-                const a = p.alpha * proj.scale;
-                if (a < 0.02 || proj.x < -50 || proj.x > width + 50 || proj.y < -50 || proj.y > height + 50) continue;
+            const base = scaleBase();
+            const time = frame * 0.003;
+
+            // Smooth pointer inertia
+            pointerX += (pointerTargetX - pointerX) * 0.06;
+            pointerY += (pointerTargetY - pointerY) * 0.06;
+
+            // Camera/scene rotation
+            const camRotX = 0.25 + Math.sin(time * 0.4) * 0.08 + pointerX;
+            const camRotY = time * 0.15 + pointerY;
+
+            function transformWorld(p, s) {
+                let q = { x: p.x * s, y: p.y * s, z: p.z * s };
+                q = rotateY(q, camRotY);
+                q = rotateX(q, camRotX);
+                return q;
+            }
+
+            // ── Icosahedron edges (back to front) ─────────────────
+            const icoProj = icoRaw.map((p) => project(transformWorld(p, base * 1.35)));
+            const icoLines = icoEdges.map(([a, b]) => {
+                const za = icoProj[a].z, zb = icoProj[b].z;
+                return { a: icoProj[a], b: icoProj[b], z: (za + zb) / 2 };
+            }).sort((u, v) => u.z - v.z);
+
+            ctx.lineCap = 'round';
+            for (const ln of icoLines) {
+                const depthAlpha = Math.max(0.06, 0.32 * (1 - (ln.z + base) / (base * 3)));
                 ctx.beginPath();
-                ctx.arc(proj.x, proj.y, r, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(${p.color}, ${a})`;
+                ctx.moveTo(ln.a.x, ln.a.y);
+                ctx.lineTo(ln.b.x, ln.b.y);
+                ctx.strokeStyle = `rgba(${dimGold}, ${depthAlpha})`;
+                ctx.lineWidth = 0.8 * ((ln.a.scale + ln.b.scale) / 2);
+                ctx.stroke();
+            }
+
+            // ── Icosahedron vertices ───────────────────────────────
+            for (const v of icoProj) {
+                const a = Math.max(0.1, 0.45 * v.scale);
+                ctx.beginPath();
+                ctx.arc(v.x, v.y, a, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${gold}, ${a * 0.5})`;
                 ctx.fill();
             }
 
-            // Floating glyphs
+            // ── Orbital rings ──────────────────────────────────────
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
-            for (const g of floatingGlyphs) {
-                g.z -= g.speed;
-                if (g.z <= 0) {
-                    g.z = depth;
-                    g.x = Math.random() * width;
-                    g.y = Math.random() * height;
-                    g.glyph = glyphs[Math.floor(Math.random() * glyphs.length)];
-                }
-                const proj = project(g.x, g.y, g.z);
-                const size = Math.max(4, g.size * proj.scale);
-                const a = g.alpha * proj.scale;
-                if (a < 0.01 || proj.x < -80 || proj.x > width + 80 || proj.y < -80 || proj.y > height + 80) continue;
-                ctx.font = `300 ${size}px var(--font-display, Cinzel, serif)`;
-                ctx.fillStyle = `rgba(212, 175, 55, ${a})`;
-                ctx.fillText(g.glyph, proj.x, proj.y);
+            const orbitItems = [];
+            orbits.forEach((ring, ri) => {
+                // Build an orthonormal basis for the ring plane
+                const n = ring.axis;
+                let tmp = Math.abs(n.x) < 0.9 ? { x: 1, y: 0, z: 0 } : { x: 0, y: 1, z: 0 };
+                const u = normalize(cross(tmp, n));
+                const v = normalize(cross(n, u));
+                ring.glyphs.forEach((g) => {
+                    const theta = g.phase + frame * ring.speed;
+                    const r = ring.radius * base;
+                    const local = {
+                        x: u.x * Math.cos(theta) * r + v.x * Math.sin(theta) * r,
+                        y: u.y * Math.cos(theta) * r + v.y * Math.sin(theta) * r,
+                        z: u.z * Math.cos(theta) * r + v.z * Math.sin(theta) * r
+                    };
+                    const world = rotateY(rotateX(local, camRotX), camRotY);
+                    const proj = project(world);
+                    orbitItems.push({ proj, glyph: g.glyph, size: g.size, z: world.z });
+                });
+            });
+            orbitItems.sort((a, b) => a.z - b.z);
+            for (const item of orbitItems) {
+                const a = Math.max(0.15, 0.55 * item.proj.scale);
+                const size = Math.max(7, item.size * item.proj.scale);
+                ctx.font = `300 ${size}px Cinzel, serif`;
+                ctx.shadowColor = `rgba(${gold}, 0.5)`;
+                ctx.shadowBlur = 12 * a;
+                ctx.fillStyle = `rgba(${gold}, ${a})`;
+                ctx.fillText(item.glyph, item.proj.x, item.proj.y);
+            }
+            ctx.shadowBlur = 0;
+
+            // ── Ψ monogram (extruded wireframe) ────────────────────
+            const psiProj = psiPoints.map((p) => project(transformWorld(p, base * 0.85)));
+            const psiLines = psiEdges.map(([a, b]) => {
+                return { a: psiProj[a], b: psiProj[b], z: (psiProj[a].z + psiProj[b].z) / 2 };
+            }).sort((u, v) => u.z - v.z);
+
+            for (const ln of psiLines) {
+                const a = Math.max(0.25, 0.95 * (1 - (ln.z + base * 0.3) / (base * 1.2)));
+                ctx.beginPath();
+                ctx.moveTo(ln.a.x, ln.a.y);
+                ctx.lineTo(ln.b.x, ln.b.y);
+                ctx.strokeStyle = `rgba(${gold}, ${a})`;
+                ctx.lineWidth = 2.2 * ((ln.a.scale + ln.b.scale) / 2);
+                ctx.shadowColor = `rgba(${gold}, 0.6)`;
+                ctx.shadowBlur = 14 * a;
+                ctx.stroke();
+            }
+            ctx.shadowBlur = 0;
+
+            // Ψ vertices as luminous nodes
+            for (const v of psiProj) {
+                const a = Math.max(0.15, 0.7 * v.scale);
+                ctx.beginPath();
+                ctx.arc(v.x, v.y, a * 1.8, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${gold}, ${a})`;
+                ctx.fill();
             }
 
-            // Subtle radial light pulse at the center
-            const pulse = 0.04 + Math.sin(frame * 0.01) * 0.015;
-            const grad = ctx.createRadialGradient(width / 2, height / 2, 0, width / 2, height / 2, Math.min(width, height) * 0.45);
-            grad.addColorStop(0, `rgba(212, 175, 55, ${pulse})`);
-            grad.addColorStop(1, 'rgba(212, 175, 55, 0)');
-            ctx.fillStyle = grad;
+            // Central glow behind the Ψ
+            const glow = ctx.createRadialGradient(width / 2, height / 2, 0, width / 2, height / 2, base * 0.6);
+            glow.addColorStop(0, `rgba(${gold}, 0.14)`);
+            glow.addColorStop(0.5, `rgba(${gold}, 0.04)`);
+            glow.addColorStop(1, 'rgba(212, 175, 55, 0)');
+            ctx.fillStyle = glow;
             ctx.fillRect(0, 0, width, height);
 
             updateHeroTransform();
             requestAnimationFrame(loop);
         }
+
+        function cross(a, b) {
+            return {
+                x: a.y * b.z - a.z * b.y,
+                y: a.z * b.x - a.x * b.z,
+                z: a.x * b.y - a.y * b.x
+            };
+        }
+        function normalize(v) {
+            const len = Math.sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
+            return len === 0 ? { x: 0, y: 0, z: 0 } : { x: v.x / len, y: v.y / len, z: v.z / len };
+        }
+
         requestAnimationFrame(loop);
     }
 
