@@ -27,6 +27,7 @@ const searchApi = require('./search.js');
 const crawlerDb = require('./crawler-db.js');
 const bookings = require('./bookings.js');
 const { classifyTerm, classifyDomain } = require('./homograph-service.js');
+const { getSimilarityCount } = require('./similarity-service.js');
 
 // Load clean flagship lore catalog (generated from scripts/lore-catalog.json)
 let LORE_CATALOG = {};
@@ -200,6 +201,7 @@ function transformEntryDetail(row) {
     hasFlagship: Boolean(row.has_flagship),
     links: buildLinks(row.id),
     lore: LORE_CATALOG[row.id] || null,
+    similaritiesCount: getSimilarityCount(row.id),
   };
 }
 

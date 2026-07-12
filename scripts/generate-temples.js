@@ -354,6 +354,33 @@ function getTierExplanation(entry, subtype) {
   return '';
 }
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function safeWriteFile(targetPath, data, retries = 5) {
+  const tmpPath = `${targetPath}.tmp`;
+  fs.writeFileSync(tmpPath, data, 'utf8');
+  let lastError;
+  for (let attempt = 0; attempt < retries; attempt++) {
+    try {
+      fs.renameSync(tmpPath, targetPath);
+      return;
+    } catch (err) {
+      lastError = err;
+      if (err.code === 'EPERM' || err.code === 'EBUSY') {
+        await sleep(50 * (attempt + 1));
+        continue;
+      }
+      break;
+    }
+  }
+  try {
+    fs.unlinkSync(tmpPath);
+  } catch (_e) {}
+  throw lastError;
+}
+
 function getBreakdownTypeClass(type) {
   const map = {
     stress: 'breakdown-type--stress',
@@ -566,6 +593,7 @@ ${JSON.stringify(
             <div class="nav-links">
                 <a href="https://punycodex.com/pantheon/" class="nav-link">Pantheon</a>
                 <a href="https://punycodex.com/lexicon/" class="nav-link">Lexicon</a>
+                <a href="https://punycodex.com/connections/" class="nav-link">Connections</a>
                 <a href="https://punycodex.com/type/#${entry.id}" class="nav-link">Type</a>
                 <a href="https://punycodex.com/tiers/" class="nav-link">Tiers</a>
                 <a href="https://punycodex.com/api/v1/docs/" class="nav-link">API</a>
@@ -1003,7 +1031,7 @@ ${JSON.stringify(
 
 // ─── Main ───
 
-function main() {
+async function main() {
   const rootDir = path.join(__dirname, '..');
   const sitesDir = path.join(rootDir, 'sites');
 
@@ -1041,11 +1069,9 @@ function main() {
       const html = generateTempleHTML(entry, related);
 
       fs.mkdirSync(dir, { recursive: true });
-      // Atomic write: avoid Windows file-lock issues by writing to a temp
-      // file and renaming it into place.
-      const tmpPath = `${indexPath}.tmp`;
-      fs.writeFileSync(tmpPath, html, 'utf8');
-      fs.renameSync(tmpPath, indexPath);
+      // Atomic write with retry: avoid Windows file-lock issues by writing to
+      // a temp file and renaming it into place.
+      await safeWriteFile(indexPath, html);
       generated++;
 
       if (generated % 50 === 0) {
@@ -1072,7 +1098,10 @@ function main() {
 }
 
 if (require.main === module) {
-  main();
+  main().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
 }
 
 module.exports = {

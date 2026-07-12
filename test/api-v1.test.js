@@ -119,6 +119,9 @@ async function runTests() {
   const v1PolicyEvaluate = require('../api/v1/policy/evaluate/index.js');
   const v1Appraise = require('../api/v1/appraise/index.js');
   const v1AppraiseBatch = require('../api/v1/appraise/batch/index.js');
+  const nameSimilarities = require('../api/v1/names/[id]/similarities.js');
+  const nameGraph = require('../api/v1/names/[id]/graph.js');
+  const similaritiesRelationships = require('../api/v1/similarities/relationships.js');
   const openapi = require('../api/v1/openapi.json.js');
   const docs = require('../api/v1/docs/index.js');
   const version = require('../api/v1/version/index.js');
@@ -531,6 +534,61 @@ async function runTests() {
     assert.strictEqual(body.data.length, 3);
     const homograph = body.data.find((d) => d.safety.tier === 'suspicious');
     assert.ok(homograph, 'batch should flag a homograph');
+  });
+
+  await test('GET /api/v1/names/:id/similarities returns cross-cultural edges', async () => {
+    const { status, body } = await invoke(
+      nameSimilarities,
+      'GET',
+      '/api/v1/names/zeus/similarities',
+      { params: { id: 'zeus' } }
+    );
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+    assert.strictEqual(body.data.id, 'zeus');
+    assert.ok(body.data.count >= 0, 'count must be present');
+    assert.ok(Array.isArray(body.data.items), 'items must be an array');
+  });
+
+  await test('GET /api/v1/names/:id/graph returns ego-network payload', async () => {
+    const { status, body } = await invoke(nameGraph, 'GET', '/api/v1/names/zeus/graph', {
+      params: { id: 'zeus' },
+    });
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+    assert.strictEqual(body.data.id, 'zeus');
+    assert.ok(Array.isArray(body.data.nodes), 'nodes must be an array');
+    assert.ok(Array.isArray(body.data.edges), 'edges must be an array');
+    assert.ok(
+      body.data.nodes.some((n) => n.id === 'zeus'),
+      'graph must include center node'
+    );
+  });
+
+  await test('GET /api/v1/similarities/relationships lists relationship types', async () => {
+    const { status, body } = await invoke(
+      similaritiesRelationships,
+      'GET',
+      '/api/v1/similarities/relationships'
+    );
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+    assert.ok(Number.isInteger(body.data.count), 'must include count');
+    assert.ok(Array.isArray(body.data.items), 'items must be an array');
+    assert.ok(body.data.items.length > 0, 'must have at least one relationship type');
+  });
+
+  await test('GET /api/v1/names/:id includes similaritiesCount', async () => {
+    const { status, body } = await invoke(nameDetail, 'GET', '/api/v1/names/zeus', {
+      params: { id: 'zeus' },
+    });
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+    assert.ok(
+      Number.isInteger(body.data.similaritiesCount),
+      'must include integer similaritiesCount'
+    );
+    assert.ok(body.data.similaritiesCount >= 0, 'similaritiesCount must be non-negative');
   });
 
   console.log(`\n  ${passed} passed, ${failed} failed`);

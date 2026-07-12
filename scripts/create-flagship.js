@@ -2632,6 +2632,53 @@ function generateGalleryPage(entry, palette, templateDir) {
   return html;
 }
 
+function sleepSync(ms) {
+  try {
+    const buffer = new SharedArrayBuffer(4);
+    const view = new Int32Array(buffer);
+    Atomics.wait(view, 0, 0, ms);
+  } catch {
+    const start = Date.now();
+    while (Date.now() - start < ms) {}
+  }
+}
+
+function safeCopyFileSync(src, dest, retries = 5) {
+  let lastError;
+  for (let i = 0; i < retries; i++) {
+    try {
+      fs.copyFileSync(src, dest);
+      return;
+    } catch (err) {
+      lastError = err;
+      if (err.code === 'EPERM' || err.code === 'EBUSY' || err.code === 'UNKNOWN') {
+        sleepSync(50 * (i + 1));
+        continue;
+      }
+      throw err;
+    }
+  }
+  throw lastError;
+}
+
+function safeRenameSync(src, dest, retries = 5) {
+  let lastError;
+  for (let i = 0; i < retries; i++) {
+    try {
+      fs.renameSync(src, dest);
+      return;
+    } catch (err) {
+      lastError = err;
+      if (err.code === 'EPERM' || err.code === 'EBUSY' || err.code === 'UNKNOWN') {
+        sleepSync(50 * (i + 1));
+        continue;
+      }
+      throw err;
+    }
+  }
+  throw lastError;
+}
+
 function copyCreativesTemplate(siteDir, templateDir) {
   const srcDir = path.join(templateDir, 'creatives');
   const destDir = path.join(siteDir, 'creatives');
@@ -2639,7 +2686,7 @@ function copyCreativesTemplate(siteDir, templateDir) {
   fs.mkdirSync(destDir, { recursive: true });
   for (const entry of fs.readdirSync(srcDir, { withFileTypes: true })) {
     if (!entry.isFile()) continue;
-    fs.copyFileSync(path.join(srcDir, entry.name), path.join(destDir, entry.name));
+    safeCopyFileSync(path.join(srcDir, entry.name), path.join(destDir, entry.name));
   }
 }
 
@@ -2650,7 +2697,7 @@ function copyPatronTemplate(siteDir, templateDir) {
   fs.mkdirSync(destDir, { recursive: true });
   for (const entry of fs.readdirSync(srcDir, { withFileTypes: true })) {
     if (!entry.isFile()) continue;
-    fs.copyFileSync(path.join(srcDir, entry.name), path.join(destDir, entry.name));
+    safeCopyFileSync(path.join(srcDir, entry.name), path.join(destDir, entry.name));
   }
 }
 
@@ -2843,7 +2890,7 @@ function createFlagship(templeId, options = {}) {
     const p = path.join(siteDir, f);
     if (fs.existsSync(p)) {
       fs.mkdirSync(path.join(backupDir, path.dirname(f)), { recursive: true });
-      fs.copyFileSync(p, path.join(backupDir, f));
+      safeCopyFileSync(p, path.join(backupDir, f));
     }
   }
 
@@ -2871,7 +2918,7 @@ function createFlagship(templeId, options = {}) {
     // Atomic write to avoid transient Windows file-lock failures.
     const tmpPath = `${outPath}.tmp.${process.pid}`;
     fs.writeFileSync(tmpPath, content, 'utf8');
-    fs.renameSync(tmpPath, outPath);
+    safeRenameSync(tmpPath, outPath);
   }
 
   copyCreativesTemplate(siteDir, TEMPLATE_DIR);

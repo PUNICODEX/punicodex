@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connections — Cross-Cultural Similarities | PUNYCODEX</title>
+    <meta name="description" content="Explore cross-cultural connections between restored Unicode names. Thunder gods, sun deities, underworld guides, and tricksters linked across pantheons.">
+    <meta name="theme-color" content="#050505">
+    <meta name="color-scheme" content="dark">
+
+    <link rel="canonical" href="https://punycodex.com/connections/">
+    <meta property="og:title" content="Connections — Cross-Cultural Similarities | PUNYCODEX">
+    <meta property="og:description" content="Visualize how thunder gods, solar deities, psychopomps, and tricksters echo across cultures.">
+    <meta property="og:image" content="https://punycodex.com/assets/images/og-default.svg">
+    <meta property="og:url" content="https://punycodex.com/connections/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PUNYCODEX">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main.css?v=perf8">
+    <link rel="stylesheet" href="/css/connections.css?v=1">
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%CE%A8%3C/text%3E%3C/svg%3E">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="main-nav" id="main-nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-wordmark">P<span class="accent">U</span>NYCODEX</a>
+            <div class="nav-links">
+                <a href="/pantheon/" class="nav-link">Pantheon</a>
+                <a href="/realms/" class="nav-link">Realms</a>
+                <a href="/lexicon/" class="nav-link">Lexicon</a>
+                <a href="/connections/" class="nav-link active">Connections</a>
+                <a href="/tiers/" class="nav-link">Tier System</a>
+                <a href="/type/" class="nav-link">Type</a>
+                <a href="/search.html" class="nav-link">Search</a>
+                <a href="/oracle.html" class="nav-link">Oracle</a>
+                <a href="/codex/" class="nav-link">Codex</a>
+                <a href="/api/v1/docs/" class="nav-link">API</a>
+                <a href="/about/" class="nav-link">About</a>
+                <a href="/contact/" class="nav-link">Contact</a>
+            </div>
+            <a href="/pantheon/" class="nav-cta"><span>Enter</span></a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="/pantheon/">Pantheon</a>
+        <a href="/realms/">Realms</a>
+        <a href="/lexicon/">Lexicon</a>
+        <a href="/connections/">Connections</a>
+        <a href="/tiers/">Tier System</a>
+        <a href="/type/">Type</a>
+        <a href="/search.html">Search</a>
+        <a href="/oracle.html">Oracle</a>
+        <a href="/codex/">Codex</a>
+        <a href="/api/v1/docs/">API</a>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="connections-hero">
+        <div class="container">
+            <p class="section-eyebrow reveal-up">The Mythweb</p>
+            <h1 class="display-lg reveal-up">CONNECTIONS</h1>
+            <p class="hero-subtitle body-lg text-center reveal-up">
+                Thunder repeats itself. So does the sun, the sea, the underworld, and the trickster.
+                Explore how the restored Unicode names echo across cultures.
+            </p>
+        </div>
+    </section>
+
+    <!-- Graph Interface -->
+    <main class="connections-interface">
+        <div class="connections-toolbar">
+            <div class="container toolbar-inner">
+                <div class="search-wrap">
+                    <input type="text" id="node-search" class="node-search" placeholder="Find a name — Zeus, Thor, Amaterasu..." autocomplete="off" aria-label="Search names">
+                    <div class="search-results" id="search-results" role="listbox" aria-label="Search results"></div>
+                </div>
+                <div class="toolbar-actions">
+                    <button class="btn btn-outline btn-sm" id="reset-view">Reset view</button>
+                    <button class="btn btn-outline btn-sm" id="random-node">Surprise me</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="connections-stage">
+            <div class="graph-wrap" id="graph-wrap">
+                <svg id="graph-svg" aria-label="Cross-cultural similarity graph"></svg>
+                <div class="graph-overlay" id="graph-overlay">
+                    <div class="graph-loading" id="graph-loading">Weaving the mythweb...</div>
+                    <div class="graph-error" id="graph-error" hidden></div>
+                </div>
+                <div class="graph-legend" id="graph-legend" aria-hidden="true">
+                    <span class="legend-title">Pantheons</span>
+                </div>
+            </div>
+
+            <aside class="connections-sidebar" id="connections-sidebar">
+                <div class="sidebar-empty" id="sidebar-empty">
+                    <div class="sidebar-icon">&#x2964;</div>
+                    <p class="body-md">Select a node to see its cross-cultural echoes.</p>
+                </div>
+                <div class="sidebar-content" id="sidebar-content" hidden>
+                    <div class="sidebar-header">
+                        <span class="sidebar-pantheon" id="sidebar-pantheon">Pantheon</span>
+                        <h2 class="sidebar-title" id="sidebar-title">Name</h2>
+                        <p class="sidebar-domain body-sm" id="sidebar-domain">Domain</p>
+                    </div>
+                    <div class="sidebar-actions">
+                        <a href="#" class="btn btn-primary btn-sm" id="sidebar-temple-link">Enter Temple</a>
+                        <a href="#" class="btn btn-outline btn-sm" id="sidebar-api-link">API Record</a>
+                    </div>
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-section-title">Connections</h3>
+                        <ul class="connection-list" id="connection-list"></ul>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <div class="connections-filters">
+            <div class="container filters-inner">
+                <div class="filter-group">
+                    <span class="filter-label">Strength</span>
+                    <input type="range" id="strength-slider" min="1" max="3" value="1" step="1" aria-label="Minimum connection strength">
+                    <div class="filter-range-labels">
+                        <span>All</span>
+                        <span>Strong</span>
+                        <span>Canonical</span>
+                    </div>
+                </div>
+                <div class="filter-group" id="category-filters">
+                    <span class="filter-label">Categories</span>
+                    <label class="filter-chip active"><input type="checkbox" value="function" checked><span>Function</span></label>
+                    <label class="filter-chip active"><input type="checkbox" value="phenomenon" checked><span>Phenomenon</span></label>
+                    <label class="filter-chip active"><input type="checkbox" value="narrative-role" checked><span>Narrative Role</span></label>
+                </div>
+                <div class="filter-group" id="pantheon-filters">
+                    <span class="filter-label">Pantheons</span>
+                    <!-- populated by JS -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Data / API Section -->
+    <section class="section-cta" id="developers">
+        <div class="cta-rule"></div>
+        <div class="container">
+            <h2 class="display-md text-center reveal-up">Powered by structured similarity data</h2>
+            <p class="body-lg text-center reveal-up">
+                Every edge is exposed through the API as training material for researchers, apps, and the Oracle AI.
+            </p>
+            <div class="text-center mt-5 reveal-up">
+                <a href="/api/v1/docs/" class="btn btn-outline btn-lg"><span>Browse API Documentation &rarr;</span></a>
+            </div>
+        </div>
+        <div class="cta-rule"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="footer-wordmark">P<span class="accent">U</span>NYCODEX</a>
+                    <p class="footer-tagline">Restoring the original names of the gods to the digital realm.</p>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-heading">Explore</h4>
+                    <a href="/pantheon/">Pantheon</a>
+                    <a href="/realms/">Realms</a>
+                    <a href="/lexicon/">Lexicon</a>
+                    <a href="/connections/">Connections</a>
+                    <a href="/tiers/">Tier System</a>
+                    <a href="/type/">Type</a>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-heading">Resources</h4>
+                    <a href="/codex/">Codex</a>
+                    <a href="/api/v1/docs/">API</a>
+                    <a href="/appraise/">Appraise</a>
+                    <a href="/oracle.html">Oracle</a>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-heading">Connect</h4>
+                    <a href="/about/">About</a>
+                    <a href="/contact/">Contact</a>
+                    <a href="/privacy/">Privacy</a>
+                    <a href="/terms/">Terms</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 PÚNYCODEX. All rites reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/px-core.js?v=perf8"></script>
+    <script src="/js/main.js?v=perf8" defer></script>
+    <script src="/js/connections.js?v=1" defer></script>
+</body>
+</html>

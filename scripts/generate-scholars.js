@@ -266,9 +266,31 @@ function generateScholarsPage(templeId) {
   return html;
 }
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function safeWriteFile(targetPath, data, retries = 5) {
+  let lastError;
+  for (let attempt = 0; attempt < retries; attempt++) {
+    try {
+      fs.writeFileSync(targetPath, data, 'utf8');
+      return;
+    } catch (err) {
+      lastError = err;
+      if (err.code === 'EPERM' || err.code === 'EBUSY' || err.code === 'UNKNOWN') {
+        await sleep(50 * (attempt + 1));
+        continue;
+      }
+      break;
+    }
+  }
+  throw lastError;
+}
+
 module.exports = { generateScholarsPage };
 
-function main() {
+async function main() {
   const built = ARCHETYPES.filter((a) => a.built);
   let generated = 0;
   let errors = 0;
@@ -278,7 +300,7 @@ function main() {
       const html = generateScholarsPage(archetype.id);
       const outDir = path.join(SITES_DIR, archetype.id, 'scholars');
       fs.mkdirSync(outDir, { recursive: true });
-      fs.writeFileSync(path.join(outDir, 'index.html'), html);
+      await safeWriteFile(path.join(outDir, 'index.html'), html);
       generated += 1;
     } catch (err) {
       console.error(`Failed to generate Scholars page for ${archetype.id}:`, err.message);
@@ -294,5 +316,8 @@ function main() {
 }
 
 if (require.main === module) {
-  main();
+  main().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
 }

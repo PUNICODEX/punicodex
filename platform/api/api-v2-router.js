@@ -11,6 +11,7 @@
 
 const { success, error } = require('./api-response.js');
 const namesService = require('./names-service.js');
+const similarityService = require('./similarity-service.js');
 const { appraise, appraiseBatch } = require('./appraise.js');
 const { searchWeb, getSites, getSiteByPunycode } = require('./crawler-db.js');
 const { validateListNamesQuery } = require('./api-validation.js');
@@ -37,6 +38,8 @@ const VALID_NAME_SUBRESOURCES = new Set([
   'pronunciation',
   'mythology',
   'archaeology',
+  'similarities',
+  'graph',
 ]);
 
 function rewriteLinks(value) {
@@ -158,6 +161,23 @@ async function handleNameSubresource(_req, res, id, subresource) {
       break;
     case 'archaeology':
       result = namesService.getArchaeology(id);
+      break;
+    case 'similarities':
+      result = similarityService.getSimilarities(id, {
+        limit: Math.min(parseInt(req.query.limit || '50', 10), 200),
+        minStrength: Math.max(1, Math.min(3, parseInt(req.query.minStrength || '1', 10))),
+        relationship: req.query.relationship || undefined,
+        category: req.query.category || undefined,
+      });
+      break;
+    case 'graph':
+      result = similarityService.getGraph(id, {
+        depth: Math.max(1, Math.min(2, parseInt(req.query.depth || '1', 10))),
+        limit: Math.min(parseInt(req.query.limit || '80', 10), 200),
+        minStrength: Math.max(1, Math.min(3, parseInt(req.query.minStrength || '1', 10))),
+        relationship: req.query.relationship || undefined,
+        category: req.query.category || undefined,
+      });
       break;
   }
   if (!result) {
@@ -595,6 +615,22 @@ async function route(req, res) {
     }
     if (method === 'GET') return handleNameDetail(req, res, identifier);
     error(res, 'METHOD_NOT_ALLOWED', 'Only GET is allowed.', { status: 405 });
+    return;
+  }
+
+  if (resource === 'similarities') {
+    if (identifier === 'relationships' && !subresource) {
+      if (method === 'GET') {
+        const items = similarityService.listRelationshipTypes();
+        return success(res, rewriteLinks(items), {
+          meta: { count: items.length },
+          links: { self: '/api/v2/similarities/relationships' },
+        });
+      }
+      error(res, 'METHOD_NOT_ALLOWED', 'Only GET is allowed.', { status: 405 });
+      return;
+    }
+    error(res, 'NOT_FOUND', `Unknown similarities resource '${identifier}'.`, { status: 404 });
     return;
   }
 
