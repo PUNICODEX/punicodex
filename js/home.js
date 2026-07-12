@@ -117,30 +117,199 @@
     }
 
     // ═══════════════════════════════════════════════════════════
-    // HERO PARALLAX ON SCROLL (throttled via rAF)
+    // HERO 3D STARFIELD + PERSPECTIVE TILT
     // ═══════════════════════════════════════════════════════════
 
     const heroContent = document.querySelector('.hero-content');
     const heroCanvas = document.getElementById('hero-canvas');
 
-    if (heroContent && !prefersReducedMotion) {
-        let scrollTicking = false;
+    // Shared animation state
+    let scrollTranslateY = 0;
+    let contentOpacity = 1;
+    let targetRotateX = 0;
+    let targetRotateY = 0;
+    let currentRotateX = 0;
+    let currentRotateY = 0;
+    let heroWidth = window.innerWidth;
+    let heroHeight = window.innerHeight;
+
+    function updateHeroTransform() {
+        if (!heroContent) return;
+        const ease = 0.08;
+        currentRotateX += (targetRotateX - currentRotateX) * ease;
+        currentRotateY += (targetRotateY - currentRotateY) * ease;
+        heroContent.style.opacity = contentOpacity;
+        heroContent.style.transform = `translateY(${scrollTranslateY}px) rotateX(${currentRotateX.toFixed(2)}deg) rotateY(${currentRotateY.toFixed(2)}deg) translateZ(24px)`;
+    }
+
+    if (!prefersReducedMotion) {
         window.addEventListener('scroll', () => {
-            if (!scrollTicking) {
-                requestAnimationFrame(() => {
-                    const scrollY = window.scrollY;
-                    const heroHeight = window.innerHeight;
-                    const progress = Math.min(scrollY / heroHeight, 1);
-                    heroContent.style.opacity = 1 - progress * 1.5;
-                    heroContent.style.transform = `translateY(${scrollY * 0.3}px)`;
-                    if (heroCanvas) {
-                        heroCanvas.style.transform = `translateY(${scrollY * 0.1}px)`;
-                    }
-                    scrollTicking = false;
-                });
-                scrollTicking = true;
+            const scrollY = window.scrollY;
+            const progress = Math.min(scrollY / heroHeight, 1);
+            scrollTranslateY = scrollY * 0.3;
+            contentOpacity = Math.max(0, 1 - progress * 1.5);
+            if (heroCanvas) {
+                heroCanvas.style.transform = `translateY(${scrollY * 0.1}px)`;
             }
         }, { passive: true });
+
+        // Mouse / touch driven perspective tilt
+        function onPointerMove(x, y, rect) {
+            const nx = (x / rect.width) * 2 - 1;
+            const ny = (y / rect.height) * 2 - 1;
+            targetRotateY = nx * 6;   // left/right tilt
+            targetRotateX = -ny * 5;  // up/down tilt
+        }
+
+        if (heroContent) {
+            heroContent.addEventListener('mousemove', (e) => {
+                const rect = heroContent.getBoundingClientRect();
+                onPointerMove(e.clientX - rect.left, e.clientY - rect.top, rect);
+            }, { passive: true });
+
+            heroContent.addEventListener('touchmove', (e) => {
+                if (!e.touches[0]) return;
+                const rect = heroContent.getBoundingClientRect();
+                onPointerMove(e.touches[0].clientX - rect.left, e.touches[0].clientY - rect.top, rect);
+            }, { passive: true });
+
+            heroContent.addEventListener('mouseleave', () => {
+                targetRotateX = 0;
+                targetRotateY = 0;
+            });
+        }
+
+        window.addEventListener('resize', () => {
+            heroWidth = window.innerWidth;
+            heroHeight = window.innerHeight;
+        });
+    }
+
+    // 3D starfield canvas
+    function initHeroCanvas() {
+        const ctx = heroCanvas.getContext('2d');
+        if (!ctx) return;
+
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        let width, height;
+
+        function resize() {
+            width = heroCanvas.clientWidth || window.innerWidth;
+            height = heroCanvas.clientHeight || window.innerHeight;
+            heroCanvas.width = Math.floor(width * dpr);
+            heroCanvas.height = Math.floor(height * dpr);
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        const isMobile = window.matchMedia('(pointer: coarse)').matches;
+        const particleCount = isMobile ? 90 : 220;
+        const glyphCount = isMobile ? 6 : 14;
+        const depth = 1200;
+        const fov = 300;
+        const glyphs = ['Ψ', 'ψ', '΄', 'ῑ', 'ā', 'ō', 'þ', 'ð', 'ś', 'ṇ', 'ꜥ', 'xn--'];
+
+        function createParticle() {
+            return {
+                x: Math.random() * width,
+                y: Math.random() * height,
+                z: Math.random() * depth,
+                size: Math.random() * 1.8 + 0.4,
+                speed: Math.random() * 1.2 + 0.3,
+                alpha: Math.random() * 0.6 + 0.2,
+                color: Math.random() > 0.8 ? '212, 175, 55' : '245, 245, 245'
+            };
+        }
+
+        const particles = Array.from({ length: particleCount }, createParticle);
+        const floatingGlyphs = Array.from({ length: glyphCount }, () => ({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            z: Math.random() * depth * 0.7 + depth * 0.2,
+            size: Math.random() * 14 + 10,
+            speed: Math.random() * 0.6 + 0.2,
+            glyph: glyphs[Math.floor(Math.random() * glyphs.length)],
+            alpha: Math.random() * 0.2 + 0.05
+        }));
+
+        function project(x, y, z) {
+            const scale = fov / (fov + z);
+            return {
+                x: (x - width / 2) * scale + width / 2,
+                y: (y - height / 2) * scale + height / 2,
+                scale: scale
+            };
+        }
+
+        let frame = 0;
+        function loop() {
+            frame++;
+            // Long trails for a cinematic streak effect
+            ctx.fillStyle = 'rgba(5, 5, 5, 0.28)';
+            ctx.fillRect(0, 0, width, height);
+
+            // Stars
+            for (const p of particles) {
+                p.z -= p.speed;
+                if (p.z <= 0) {
+                    p.z = depth;
+                    p.x = Math.random() * width;
+                    p.y = Math.random() * height;
+                }
+                const proj = project(p.x, p.y, p.z);
+                const r = Math.max(0.3, p.size * proj.scale);
+                const a = p.alpha * proj.scale;
+                if (a < 0.02 || proj.x < -50 || proj.x > width + 50 || proj.y < -50 || proj.y > height + 50) continue;
+                ctx.beginPath();
+                ctx.arc(proj.x, proj.y, r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${p.color}, ${a})`;
+                ctx.fill();
+            }
+
+            // Floating glyphs
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            for (const g of floatingGlyphs) {
+                g.z -= g.speed;
+                if (g.z <= 0) {
+                    g.z = depth;
+                    g.x = Math.random() * width;
+                    g.y = Math.random() * height;
+                    g.glyph = glyphs[Math.floor(Math.random() * glyphs.length)];
+                }
+                const proj = project(g.x, g.y, g.z);
+                const size = Math.max(4, g.size * proj.scale);
+                const a = g.alpha * proj.scale;
+                if (a < 0.01 || proj.x < -80 || proj.x > width + 80 || proj.y < -80 || proj.y > height + 80) continue;
+                ctx.font = `300 ${size}px var(--font-display, Cinzel, serif)`;
+                ctx.fillStyle = `rgba(212, 175, 55, ${a})`;
+                ctx.fillText(g.glyph, proj.x, proj.y);
+            }
+
+            // Subtle radial light pulse at the center
+            const pulse = 0.04 + Math.sin(frame * 0.01) * 0.015;
+            const grad = ctx.createRadialGradient(width / 2, height / 2, 0, width / 2, height / 2, Math.min(width, height) * 0.45);
+            grad.addColorStop(0, `rgba(212, 175, 55, ${pulse})`);
+            grad.addColorStop(1, 'rgba(212, 175, 55, 0)');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, width, height);
+
+            updateHeroTransform();
+            requestAnimationFrame(loop);
+        }
+        requestAnimationFrame(loop);
+    }
+
+    if (heroCanvas && !prefersReducedMotion) {
+        initHeroCanvas();
+    } else if (!prefersReducedMotion) {
+        // No canvas: still run the transform lerp
+        function loopTransform() {
+            updateHeroTransform();
+            requestAnimationFrame(loopTransform);
+        }
+        requestAnimationFrame(loopTransform);
     }
 
 })();

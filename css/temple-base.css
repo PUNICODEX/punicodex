@@ -238,6 +238,57 @@ canvas[data-effect] {
     transition: all 0.3s ease;
 }
 
+
+.nav-toggle.active span:nth-child(1) {
+    transform: translateY(3.5px) rotate(45deg);
+}
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+.nav-toggle.active span:nth-child(3) {
+    transform: translateY(-3.5px) rotate(-45deg);
+}
+
+/* ─── Mobile Menu Overlay ─── */
+.mobile-menu {
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    height: calc(100vh - var(--nav-height));
+    background: rgba(5, 5, 5, 0.98);
+    z-index: 1009;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    padding: 2.5rem 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.mobile-menu.active {
+    opacity: 1;
+    pointer-events: all;
+}
+body.menu-open {
+    overflow: hidden;
+}
+.mobile-menu a {
+    font-family: var(--font-display);
+    font-size: clamp(24px, 6vw, 32px);
+    color: var(--white);
+    transition: color 0.2s ease;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+    text-decoration: none;
+}
+.mobile-menu a:hover {
+    color: var(--primary);
+}
 /* ─── Global Strip (top bar above tab nav) ─── */
 .global-strip {
     position: relative;

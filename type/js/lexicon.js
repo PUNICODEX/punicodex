@@ -1997,6 +1997,7 @@ const LEXICON = [
   },
   {
     "id": "eos",
+    hasAdSite: true,
     "ascii": "eos",
     "unicode": "Ēōs",
     "greek": "Ἠώς",

@@ -3343,6 +3343,46 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
+    {
+        id: "eos",
+        name: "Ēōs",
+        greek: "Ἠώς",
+        domain: "Dawn, Morning Red",
+        tagline: "Dawn, Morning Red · Dawn (from ἠώς)",
+        tier: "tier-1",
+        tierDetail: "single-tier",
+        pantheon: "greek",
+        folder: "eos",
+        domainUnicode: "eos.com",
+        colors: { primary: "#D4AF37", secondary: "#4169E1", glow: "rgba(212,175,55,0.3)" },
+        mascotPath: "/sites/eos/assets/eos_mascot.webp",
+        mascotFallback: "/sites/eos/assets/eos_mascot.webp",
+        logomarkPath: "/sites/eos/assets/eos_logomark.webp",
+        built: true,
+        hasAdSite: true,
+        darkPunchline: false
+    },
+
+    {
+        id: "xian",
+        name: "Xiān",
+        greek: "仙",
+        domain: "Immortal, Transcendent",
+        tagline: "Immortal, Transcendent · Immortal",
+        tier: "tier-2",
+        tierDetail: "single-tier",
+        pantheon: "chinese",
+        folder: "xian",
+        domainUnicode: "xian.com",
+        colors: { primary: "#DC143C", secondary: "#FFD700", glow: "rgba(220,20,60,0.3)" },
+        mascotPath: "/sites/xian/assets/xian_mascot.webp",
+        mascotFallback: "/sites/xian/assets/xian_mascot.webp",
+        logomarkPath: "/sites/xian/assets/xian_logomark.webp",
+        built: true,
+        hasAdSite: true,
+        darkPunchline: false
+    },
+
 ];
 
 if (typeof module !== 'undefined' && module.exports) {

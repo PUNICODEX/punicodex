@@ -1,7 +1,7 @@
 /**
  * PUNYCODEX — Service Worker
  * Lightweight: precache shell pages, stale-while-revalidate for assets.
- * Cache-bust revision: v2-2026-07-10
+ * Cache-bust revision: v2-2026-07-12
  */
 
 const SHELL_CACHE = 'punycodex-shell-v2';

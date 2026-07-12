@@ -1,7 +1,7 @@
 # PÚNYCODEX AI Training Corpus — Data Card
 
-**Data version:** 2.0.41  
-**Generated:** 2026-07-12T19:36:12.645Z  
+**Data version:** 2.0.43  
+**Generated:** 2026-07-12T20:12:54.801Z  
 **License:** CC BY 4.0 for dataset; ISC for software (see root LICENSE).
 
 ## Purpose
@@ -19,7 +19,7 @@ This corpus is the foundational training and evaluation data for a specialized A
 | safety-examples.jsonl | 41,378 | 26.14 MB | Adversarial safety examples (Phase 2). |
 | dialogue-examples.jsonl | 2,934 | 1.94 MB | Multi-turn conversation examples (Phase 3). |
 | tool-use-examples.jsonl | 4,460 | 9.50 MB | Function-calling / tool-use examples (Phase 4). |
-| multimodal-examples.jsonl | 1,668 | 776.0 KB | Vision-language pairs for mascots, logomarks, scripts (Phase 5). |
+| multimodal-examples.jsonl | 1,672 | 777.8 KB | Vision-language pairs for mascots, logomarks, scripts (Phase 5). |
 | preference-examples.jsonl | 3,592 | 1.96 MB | Chosen/rejected pairs for RLHF (Phase 6). |
 | reasoning-examples.jsonl | 3,487 | 1.95 MB | Chain-of-thought reasoning traces (Phase 7). |
 | benchmark.jsonl | 6,129 | 2.09 MB | Held-out evaluation benchmark with known answers (Phase 8). |
@@ -27,8 +27,8 @@ This corpus is the foundational training and evaluation data for a specialized A
 | oracle-examples.jsonl | 1,780 | 2.03 MB | Conversational Oracle training examples with system/user/assistant turns (Phase 11). |
 | symbolic-correspondences.jsonl | 1,233 | 743.3 KB | Symbolic and hermetic correspondences with confidence and provenance (Phase 12). |
 | scientific-analogies.jsonl | 1,441 | 984.1 KB | Scientific and philosophical analogies bridging ancient myth and modern thought (Phase 13). |
-| chat-train.jsonl | 56,408 | 76.38 MB | Unified chat-format training corpus, 80% deterministic split (Phase 14). |
-| chat-eval.jsonl | 14,037 | 19.03 MB | Held-out chat-format evaluation split, 20% (Phase 14). |
+| chat-train.jsonl | 56,410 | 76.38 MB | Unified chat-format training corpus, 80% deterministic split (Phase 14). |
+| chat-eval.jsonl | 14,039 | 19.03 MB | Held-out chat-format evaluation split, 20% (Phase 14). |
 | MODEL_CARD.md | 78 | 4.4 KB | Model card with training recipe, evaluation plan, and hardware guidance (Phases 14-15). |
 | pretrain.jsonl | 5,228 | 3.34 MB | Raw-text continual pretraining corpus, 95% split (Phase 15). |
 | pretrain-validation.jsonl | 262 | 176.7 KB | Held-out raw-text validation split, 5% (Phase 15). |

@@ -477,7 +477,8 @@
     let lastPan = { x: 0, y: 0 };
     let hoveredNode = null;
     let selectedNode = null;
-    let isSimulationRunning = true;
+    let isSimulationRunning = false;
+    let hasStarted = false;
     let colorMode = 'pantheon';
 
     // Build nodes
@@ -489,7 +490,11 @@
     const nodes = lexiconData.entries.map((entry, idx) => {
       const pIdx = pantheonIndex[entry.pantheon] || 0;
       const ringRadius = Math.min(width, height) * (0.28 + (pIdx % 3) * 0.05);
-      const angle = pIdx * pantheonAngleStep + (idx % 17) * 0.15;
+      // deterministic angle so the layout is stable across reloads
+      const angle = pIdx * pantheonAngleStep + ((idx * 0.6180339887) % (Math.PI / 3));
+      // deterministic micro-jitter based on id so nodes never overlap at birth
+      const hash = entry.id.split('').reduce((h, c) => ((h << 5) - h + c.charCodeAt(0)) | 0, 0);
+      const jitter = (Math.abs(hash) % 20) - 10;
       return {
         id: entry.id,
         name: entry.unicode,
@@ -500,8 +505,8 @@
         availability: entry.availability ? entry.availability.status : null,
         entry,
         radius: entry.tier === 'dual' ? 7 : entry.tier === '1' ? 5 : 3.5,
-        x: width / 2 + Math.cos(angle) * ringRadius + (Math.random() - 0.5) * 20,
-        y: height / 2 + Math.sin(angle) * ringRadius + (Math.random() - 0.5) * 20,
+        x: width / 2 + Math.cos(angle) * ringRadius + jitter,
+        y: height / 2 + Math.sin(angle) * ringRadius + jitter,
         vx: 0,
         vy: 0,
         visible: true,
@@ -520,7 +525,7 @@
     }
     for (const group of Object.values(protoGroups)) {
       if (group.length < 2) continue;
-      group.sort(() => Math.random() - 0.5);
+      group.sort((a, b) => a.localeCompare(b));
       for (let i = 0; i < Math.min(group.length, 12); i++) {
         const next = (i + 1) % group.length;
         edges.push({ source: group[i], target: group[next], type: 'etymology' });
@@ -534,7 +539,7 @@
     }
     for (const group of Object.values(pantheonGroups)) {
       if (group.length < 2) continue;
-      group.sort(() => Math.random() - 0.5);
+      group.sort((a, b) => a.localeCompare(b));
       const limit = Math.min(group.length, 30);
       for (let i = 0; i < limit; i++) {
         const next = (i + 1) % limit;
@@ -583,9 +588,7 @@
     const maxIterations = 250;
     let energy = Infinity;
 
-    function tick() {
-      if (!isSimulationRunning) return;
-
+    function physicsStep() {
       gridState = updateGrid();
       const { grid, cols, rows, cellSize } = gridState;
       let totalEnergy = 0;
@@ -608,7 +611,7 @@
                 let dist = Math.sqrt(ox * ox + oy * oy) || 1;
                 const minDist = node.radius + other.radius + 3;
                 if (dist < minDist) dist = minDist;
-                const force = (120 * (node.radius + other.radius)) / (dist * dist);
+                const force = Math.min((120 * (node.radius + other.radius)) / (dist * dist), 0.5);
                 const fx = (ox / dist) * force;
                 const fy = (oy / dist) * force;
                 node.vx += fx;
@@ -676,12 +679,18 @@
 
       energy = totalEnergy;
       iteration++;
+      return energy;
+    }
+
+    function tick() {
+      if (!isSimulationRunning) return;
+      physicsStep();
+      render();
       if (iteration < maxIterations && energy > 0.05) {
         requestAnimationFrame(tick);
       } else {
         isSimulationRunning = false;
       }
-      render();
     }
 
     function worldToScreen(x, y) {
@@ -1086,7 +1095,27 @@
     });
     resizeObserver.observe(container);
 
-    tick();
+    // Initial static render so the canvas is not blank while off-screen.
+    render();
+
+    // Defer the physics simulation until the constellation scrolls into view;
+    // pre-warm ~50 ticks deterministically so it lands in a calm state.
+    const startObserver = new IntersectionObserver(
+      (entries) => {
+        if (hasStarted) return;
+        if (entries[0] && entries[0].isIntersecting) {
+          hasStarted = true;
+          isSimulationRunning = true;
+          for (let i = 0; i < 50 && isSimulationRunning; i++) {
+            physicsStep();
+          }
+          tick();
+          startObserver.disconnect();
+        }
+      },
+      { threshold: 0.05 }
+    );
+    startObserver.observe(container);
   }
 
   // ═══════════════════════════════════════════════════════════════════════════
