@@ -286,6 +286,10 @@ function getRelationshipStats() {
   };
 }
 
+function getFullGraph() {
+  return graph;
+}
+
 module.exports = {
   getSimilarities,
   getGraph,
@@ -294,4 +298,5 @@ module.exports = {
   getSimilarityCount,
   getTaxonomy,
   getConceptForRelationship,
+  getFullGraph,
 };

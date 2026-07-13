@@ -121,6 +121,7 @@ async function runTests() {
   const v1AppraiseBatch = require('../api/v1/appraise/batch/index.js');
   const nameSimilarities = require('../api/v1/names/[id]/similarities.js');
   const nameGraph = require('../api/v1/names/[id]/graph.js');
+  const similarities = require('../api/v1/similarities/index.js');
   const similaritiesRelationships = require('../api/v1/similarities/relationships.js');
   const openapi = require('../api/v1/openapi.json.js');
   const docs = require('../api/v1/docs/index.js');
@@ -576,6 +577,23 @@ async function runTests() {
     assert.ok(Number.isInteger(body.data.count), 'must include count');
     assert.ok(Array.isArray(body.data.items), 'items must be an array');
     assert.ok(body.data.items.length > 0, 'must have at least one relationship type');
+  });
+
+  await test('GET /api/v1/similarities returns full similarity graph', async () => {
+    const { status, body } = await invoke(similarities, 'GET', '/api/v1/similarities');
+    assert.strictEqual(status, 200);
+    assertEnvelope(body);
+    assert.ok(Array.isArray(body.data.nodes), 'must have nodes array');
+    assert.ok(Array.isArray(body.data.edges), 'must have edges array');
+    assert.ok(body.data.meta, 'must have meta object');
+    assert.ok(
+      body.data.meta.relationships && body.data.meta.relationships.length > 0,
+      'must list relationships'
+    );
+    assert.ok(
+      body.data.nodes.some((n) => n.id === 'zeus'),
+      'graph must include zeus node'
+    );
   });
 
   await test('GET /api/v1/names/:id includes similaritiesCount', async () => {

@@ -46,6 +46,7 @@
 
   const els = {
     svg: d3.select('#graph-svg'),
+    stage: document.getElementById('connections-stage'),
     graphWrap: document.getElementById('graph-wrap'),
     loading: document.getElementById('graph-loading'),
     error: document.getElementById('graph-error'),
@@ -62,6 +63,9 @@
     legend: document.getElementById('graph-legend'),
     domainDrawer: document.getElementById('domain-drawer'),
     domainGrid: document.getElementById('domain-grid'),
+    stageHeader: document.getElementById('stage-header'),
+    stageBack: document.getElementById('stage-back'),
+    stageDomain: document.getElementById('stage-domain'),
   };
 
   function setError(message) {
@@ -143,6 +147,16 @@
     return deities.length;
   }
 
+  function showStage() {
+    els.stage.classList.remove('is-hidden');
+    els.domainDrawer.classList.add('is-hidden');
+  }
+
+  function showDrawer() {
+    els.stage.classList.add('is-hidden');
+    els.domainDrawer.classList.remove('is-hidden');
+  }
+
   function selectDomain(domainId) {
     if (!domainId || !state.taxonomy?.domains?.[domainId]) return;
     state.selectedDomain = domainId;
@@ -150,7 +164,9 @@
     state.pieTree = buildDomainPieTree(domainId, state.similarities.edges, state.nodesById, state.taxonomy);
     state.pieLayout = state.pieTree ? layoutPie(state.pieTree, state.radius) : [];
 
-    els.domainDrawer.classList.add('is-hidden');
+    const domain = state.taxonomy.domains[domainId];
+    if (els.stageDomain) els.stageDomain.textContent = domain?.label || '';
+    showStage();
     renderGraph();
     renderDetailPanel();
     updateURL();
@@ -161,7 +177,7 @@
     state.selectedDeity = null;
     state.pieTree = null;
     state.pieLayout = [];
-    els.domainDrawer.classList.remove('is-hidden');
+    showDrawer();
     els.svg.selectAll('*').remove();
     renderDetailPanel();
     updateURL();
@@ -467,10 +483,10 @@
       <div class="detail-card">
         <h3 class="detail-section-title">Details</h3>
         <ul class="detail-meta-list">
-          ${script.value ? `
+          ${script.script ? `
             <li class="detail-meta-item">
               <span class="detail-meta-label">Original Script</span>
-              <span class="detail-meta-value detail-script">${escapeHtml(script.value)}</span>
+              <span class="detail-meta-value detail-script">${escapeHtml(script.script)}</span>
               ${script.label ? `<span class="detail-meta-value" style="font-size:0.8rem; color:var(--text-dim)">${escapeHtml(script.label)}</span>` : ''}
             </li>
           ` : ''}
@@ -644,6 +660,7 @@
 
   // ─── Toolbar actions ───
   els.resetBtn.addEventListener('click', clearDomain);
+  if (els.stageBack) els.stageBack.addEventListener('click', clearDomain);
 
   els.randomBtn.addEventListener('click', () => {
     const deities = state.similarities.nodes.filter((n) => n.id);

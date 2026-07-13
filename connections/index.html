@@ -123,8 +123,13 @@
             </div>
         </div>
 
-        <div class="connections-stage" id="connections-stage">
+        <div class="connections-stage is-hidden" id="connections-stage">
             <div class="graph-wrap" id="graph-wrap">
+                <div class="stage-header" id="stage-header">
+                    <button class="stage-back" id="stage-back" type="button">← All domains</button>
+                    <span class="stage-domain" id="stage-domain"></span>
+                </div>
+
                 <svg id="graph-svg" aria-label="Domain correspondence pie chart"></svg>
 
                 <div class="graph-tooltip" id="graph-tooltip" hidden>
@@ -151,7 +156,7 @@
         <div class="domain-drawer" id="domain-drawer">
             <div class="container">
                 <h2 class="domain-drawer-title">Choose a domain</h2>
-                <p class="domain-drawer-subtitle">Each domain gathers beings linked by the same underlying force.</p>
+                <p class="domain-drawer-subtitle">Each domain gathers beings linked by the same underlying force. Pick one to reveal the pie.</p>
                 <div class="domain-grid" id="domain-grid"></div>
             </div>
         </div>

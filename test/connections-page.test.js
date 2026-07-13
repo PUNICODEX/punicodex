@@ -58,6 +58,18 @@ test('connections page has domain selector', () => {
   assert.ok(html.includes('Choose a domain'), 'must prompt user to choose domain');
 });
 
+test('connections stage is hidden by default and drawer is visible', () => {
+  const html = read('connections/index.html');
+  assert.ok(html.includes('id="connections-stage"'), 'must have connections stage');
+  assert.ok(html.includes('connections-stage is-hidden'), 'stage must be hidden initially');
+  assert.ok(!html.includes('domain-drawer is-hidden'), 'drawer must be visible initially');
+});
+
+test('connections stage has a back button', () => {
+  const html = read('connections/index.html');
+  assert.ok(html.includes('id="stage-back"'), 'must have stage back button');
+});
+
 test('connections page links to global nav', () => {
   const html = read('connections/index.html');
   assert.ok(html.includes('href="/connections/"'), 'must self-link in nav');

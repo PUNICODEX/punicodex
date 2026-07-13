@@ -197,6 +197,17 @@
         }
       }
     },
+    "/similarities": {
+      "get": {
+        "summary": "Get full cross-cultural similarity graph",
+        "operationId": "getSimilarityGraph",
+        "responses": {
+          "200": { "$ref": "#/components/responses/SimilarityGraphResponse" },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "429": { "$ref": "#/components/responses/RateLimitError" }
+        }
+      }
+    },
     "/pantheons": {
       "get": {
         "summary": "List pantheons",
@@ -580,6 +591,10 @@
       },
       "SlotsResponse": {
         "description": "Ad slot inventory",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+      },
+      "SimilarityGraphResponse": {
+        "description": "Full cross-cultural similarity graph",
         "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
       },
       "LoreResponse": {
