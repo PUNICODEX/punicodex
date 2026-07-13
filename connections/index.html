@@ -108,7 +108,7 @@
         </div>
     </section>
 
-    <!-- Atlas Interface -->
+    <!-- Domain Explorer -->
     <main class="connections-interface" id="connections-interface">
         <div class="connections-toolbar">
             <div class="container toolbar-inner">
@@ -116,36 +116,16 @@
                     <input type="text" id="node-search" class="node-search" placeholder="Find a name — Zeus, Thor, Amaterasu…" autocomplete="off" aria-label="Search names">
                     <div class="search-results" id="search-results" role="listbox" aria-label="Search results"></div>
                 </div>
-
-                <div class="filter-bar" id="filter-bar">
-                    <div class="filter-group" id="domain-filters">
-                        <span class="filter-label">Domains</span>
-                    </div>
-                    <div class="filter-group" id="pantheon-filters">
-                        <span class="filter-label">Pantheons</span>
-                    </div>
-                    <div class="filter-group strength-group">
-                        <span class="filter-label">Minimum strength</span>
-                        <input type="range" id="strength-slider" min="1" max="3" value="1" step="1" aria-label="Minimum connection strength">
-                        <div class="filter-range-labels">
-                            <span>All</span>
-                            <span>Strong</span>
-                            <span>Canonical</span>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="toolbar-actions">
-                    <button class="btn btn-outline btn-sm" id="reset-view">Reset</button>
-                    <button class="btn btn-outline btn-sm" id="random-node">Surprise</button>
-                    <button class="btn btn-primary btn-sm" id="compare-toggle">Compare</button>
+                    <button class="btn btn-outline btn-sm" id="reset-view">Start over</button>
+                    <button class="btn btn-primary btn-sm" id="random-deity">Random being</button>
                 </div>
             </div>
         </div>
 
         <div class="connections-stage" id="connections-stage">
             <div class="graph-wrap" id="graph-wrap">
-                <svg id="graph-svg" aria-label="Cross-cultural correspondence atlas"></svg>
+                <svg id="graph-svg" aria-label="Domain correspondence pie chart"></svg>
 
                 <div class="graph-tooltip" id="graph-tooltip" hidden>
                     <div class="tooltip-title" id="tooltip-title"></div>
@@ -154,31 +134,8 @@
                 </div>
 
                 <div class="graph-overlay" id="graph-overlay">
-                    <div class="graph-loading" id="graph-loading">Weaving the atlas…</div>
+                    <div class="graph-loading" id="graph-loading">Loading the atlas…</div>
                     <div class="graph-error" id="graph-error" hidden></div>
-                </div>
-
-                <div class="compare-panel" id="compare-panel" hidden>
-                    <div class="compare-header">
-                        <h3>Compare echoes</h3>
-                        <button class="compare-close" id="compare-close" aria-label="Close comparison">&times;</button>
-                    </div>
-                    <div class="compare-search-wrap">
-                        <input type="text" id="compare-search" class="node-search" placeholder="Select a second name…" autocomplete="off" aria-label="Compare with">
-                        <div class="search-results" id="compare-search-results" role="listbox"></div>
-                    </div>
-                    <div class="compare-results" id="compare-results"></div>
-                </div>
-
-                <div class="graph-guide" id="graph-guide">
-                    <button class="guide-close" id="guide-close" aria-label="Dismiss guide">&times;</button>
-                    <strong>How to explore</strong>
-                    <ol>
-                        <li>The glowing center is your chosen name.</li>
-                        <li>Each arm is a shared concept — thunder, sun, sea, trickster.</li>
-                        <li>Deities farther out are stronger echoes.</li>
-                        <li>Click any deity to make them the new center.</li>
-                    </ol>
                 </div>
 
                 <div class="graph-legend" id="graph-legend" aria-hidden="true">
@@ -189,6 +146,14 @@
             <aside class="detail-panel" id="detail-panel">
                 <div class="detail-panel-inner" id="detail-panel-inner"></div>
             </aside>
+        </div>
+
+        <div class="domain-drawer" id="domain-drawer">
+            <div class="container">
+                <h2 class="domain-drawer-title">Choose a domain</h2>
+                <p class="domain-drawer-subtitle">Each domain gathers beings linked by the same underlying force.</p>
+                <div class="domain-grid" id="domain-grid"></div>
+            </div>
         </div>
     </main>
 

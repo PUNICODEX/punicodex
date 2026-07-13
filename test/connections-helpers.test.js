@@ -13,6 +13,8 @@ const {
   buildSunburstTree,
   layoutSunburst,
   buildRadialHubLayout,
+  buildDomainPieTree,
+  getDomainDeities,
   getSharedConcepts,
 } = require('../js/connections-helpers.js');
 
@@ -267,6 +269,27 @@ test('buildRadialHubLayout is deterministic', () => {
 test('buildRadialHubLayout returns null for unknown center', () => {
   const layout = buildRadialHubLayout('unknown', edges, sunburstNodes, taxonomy, { radius: 200 });
   assert.strictEqual(layout, null);
+});
+
+test('buildDomainPieTree groups deities by pantheon for a domain', () => {
+  const tree = buildDomainPieTree('celestial', edges, sunburstNodes, taxonomy);
+  assert.ok(tree, 'tree should exist');
+  assert.strictEqual(tree.children[0].type, 'domain');
+  assert.ok(tree.children[0].children.length > 0, 'should have pantheon children');
+  assert.ok(tree.children[0].children.every((p) => p.type === 'pantheon'));
+  assert.ok(tree.children[0].children.some((p) => p.children.some((d) => d.type === 'deity')));
+});
+
+test('buildDomainPieTree returns null for empty domain', () => {
+  const tree = buildDomainPieTree('cosmic-time', edges, sunburstNodes, taxonomy);
+  assert.strictEqual(tree, null);
+});
+
+test('getDomainDeities returns unique deities in domain', () => {
+  const deities = getDomainDeities('celestial', edges, sunburstNodes, taxonomy);
+  assert.ok(deities.length > 0);
+  const ids = deities.map((d) => d.id);
+  assert.strictEqual(new Set(ids).size, ids.length, 'deities should be unique');
 });
 
 test('getSharedConcepts finds common concepts between two nodes', () => {

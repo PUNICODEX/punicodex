@@ -1,12 +1,7 @@
 (function () {
   'use strict';
 
-  const {
-    buildRadialHubLayout,
-    getSharedConcepts,
-    escapeHtml,
-    capitalize,
-  } =
+  const { buildDomainPieTree, getDomainDeities, escapeHtml, capitalize } =
     typeof PX_CONNECTIONS_HELPERS !== 'undefined'
       ? PX_CONNECTIONS_HELPERS
       : require('./connections-helpers.js');
@@ -36,25 +31,14 @@
     baltic: '#00CED1',
   };
 
-  const DEFAULT_CENTER = 'zeus';
-  const GUIDE_DISMISSED_KEY = 'px_connections_guide_dismissed';
-
   const state = {
-    centerId: null,
-    graphData: { nodes: [], edges: [] },
-    nodesById: new Map(),
     taxonomy: null,
-    hub: null,
-    branches: [],
-    selectedId: null,
-    selectedType: 'center',
-    minStrength: 1,
-    activeCategories: new Set(['function', 'phenomenon', 'narrative-role']),
-    activePantheons: new Set(),
-    activeDomains: new Set(),
-    compareTarget: null,
-    compareGraph: null,
-    history: [],
+    similarities: { nodes: [], edges: [] },
+    nodesById: new Map(),
+    selectedDomain: null,
+    selectedDeity: null,
+    pieTree: null,
+    pieLayout: [],
     width: 0,
     height: 0,
     radius: 0,
@@ -73,21 +57,11 @@
     searchResults: document.getElementById('search-results'),
     searchWrap: document.querySelector('.search-wrap'),
     resetBtn: document.getElementById('reset-view'),
-    randomBtn: document.getElementById('random-node'),
-    compareToggle: document.getElementById('compare-toggle'),
-    comparePanel: document.getElementById('compare-panel'),
-    compareClose: document.getElementById('compare-close'),
-    compareSearch: document.getElementById('compare-search'),
-    compareSearchResults: document.getElementById('compare-search-results'),
-    compareResults: document.getElementById('compare-results'),
-    strengthSlider: document.getElementById('strength-slider'),
-    domainFilters: document.getElementById('domain-filters'),
-    pantheonFilters: document.getElementById('pantheon-filters'),
+    randomBtn: document.getElementById('random-deity'),
     detailPanel: document.getElementById('detail-panel-inner'),
     legend: document.getElementById('graph-legend'),
-    guide: document.getElementById('graph-guide'),
-    guideClose: document.getElementById('guide-close'),
-    stage: document.getElementById('connections-stage'),
+    domainDrawer: document.getElementById('domain-drawer'),
+    domainGrid: document.getElementById('domain-grid'),
   };
 
   function setError(message) {
@@ -114,286 +88,280 @@
     const rect = els.graphWrap.getBoundingClientRect();
     state.width = Math.max(300, rect.width);
     state.height = Math.max(320, rect.height);
+    state.radius = Math.min(state.width, state.height) / 2 - 48;
     els.svg.attr('width', state.width).attr('height', state.height);
   }
 
-  function getInitialCenter() {
-    const hash = window.location.hash.replace('#', '').trim();
-    if (hash) return hash.split(':')[0];
-    return DEFAULT_CENTER;
-  }
-
-  async function loadTaxonomy() {
-    try {
-      const data = await fetchJSON('/api/v1/connections/taxonomy/');
-      state.taxonomy = data?.data || data;
-      if (state.taxonomy?.domains) {
-        Object.values(state.taxonomy.domains).forEach((d) => state.activeDomains.add(d.id));
-      }
-      renderDomainFilters();
-    } catch (err) {
-      console.error('Failed to load taxonomy:', err);
-      state.taxonomy = { domains: {}, concepts: {} };
-    }
-  }
-
-  async function loadGraph(centerId, options = {}) {
+  async function loadData() {
     clearError();
     els.loading.hidden = false;
-    state.centerId = centerId;
-    state.selectedId = centerId;
-    state.selectedType = 'center';
-    state.compareTarget = null;
-    state.compareGraph = null;
-
     try {
-      const data = await fetchJSON(
-        `/api/v1/names/${encodeURIComponent(centerId)}/graph?limit=120&minStrength=1&depth=1`,
-      );
-      const payload = data?.data || data;
-      state.graphData.nodes = payload.nodes || [];
-      state.graphData.edges = payload.edges || [];
-      state.nodesById = new Map(state.graphData.nodes.map((n) => [n.id, n]));
-
-      if (!state.nodesById.has(centerId)) {
-        throw new Error(`Center node "${centerId}" was not returned by the graph API.`);
-      }
-
-      if (!options.skipHistory) {
-        pushHistory(centerId);
-      }
-
-      if (state.activePantheons.size === 0) {
-        const pantheons = Array.from(new Set(state.graphData.nodes.map((n) => n.pantheon))).sort();
-        pantheons.forEach((p) => state.activePantheons.add(p));
-      }
-
+      const [taxData, simData] = await Promise.all([
+        fetchJSON('/api/v1/connections/taxonomy/'),
+        fetchJSON('/api/v1/similarities/'),
+      ]);
+      state.taxonomy = taxData?.data || taxData;
+      state.similarities = simData?.data || simData;
+      state.nodesById = new Map(state.similarities.nodes.map((n) => [n.id, n]));
       els.loading.hidden = true;
-      updatePantheonFilters();
-      recomputeAndRender();
-      updateURL();
+      renderDomainDrawer();
+      selectDomainFromHash();
     } catch (err) {
-      console.error('Failed to load graph:', err);
-      setError(`Could not load connections: ${err.message}`);
+      console.error('Failed to load connection data:', err);
+      setError(`Could not load the atlas: ${err.message}`);
     }
-  }
-
-  function pushHistory(id) {
-    if (state.history[state.history.length - 1] === id) return;
-    state.history.push(id);
-    if (state.history.length > 12) state.history.shift();
-  }
-
-  function updateURL() {
-    if (state.centerId && state.centerId !== DEFAULT_CENTER) {
-      history.replaceState(null, '', `#${state.centerId}`);
-    } else {
-      history.replaceState(null, '', window.location.pathname);
-    }
-  }
-
-  function recomputeAndRender() {
-    const center = state.nodesById.get(state.centerId);
-    if (!center) return;
-
-    measureGraph();
-
-    const isMobile = state.width < 760;
-    state.radius = Math.min(state.width, state.height) / 2 - (isMobile ? 48 : 64);
-
-    state.hub = buildRadialHubLayout(state.centerId, state.graphData.edges, state.nodesById, state.taxonomy, {
-      minStrength: state.minStrength,
-      activeCategories: state.activeCategories,
-      activePantheons: state.activePantheons,
-      radius: state.radius,
-      centerRadius: isMobile ? 32 : 44,
-    });
-
-    if (!state.hub) return;
-
-    state.branches = state.hub.spokes.map((s) => ({
-      conceptId: s.concept.id,
-      label: s.concept.label,
-      domain: s.concept.domain,
-      concept: s.concept,
-      category: s.concept.category,
-      items: state.hub.nodes
-        .filter((n) => n.branchId === s.concept.id)
-        .map((n) => ({
-          targetId: n.id,
-          target: n,
-          strength: n.strength,
-          relationship: n.relationship,
-          note: n.note,
-        }))
-        .sort((a, b) => b.strength - a.strength),
-    }));
-
-    renderGraph();
-    renderDetailPanel();
   }
 
   function pantheonColor(p) {
     return PANTHEON_COLORS[p] || '#999';
   }
 
-  function domainColor(d) {
-    return d?.color || '#D4AF37';
+  function renderDomainDrawer() {
+    if (!state.taxonomy?.domains) return;
+    const domains = Object.values(state.taxonomy.domains).sort((a, b) => a.order - b.order);
+
+    els.domainGrid.innerHTML = domains
+      .map((d) => {
+        const count = getDomainDeityCount(d.id);
+        return `
+          <article class="domain-card" data-domain="${d.id}" style="--domain-color: ${d.color}">
+            <h3 class="domain-card-title">${escapeHtml(d.label)}</h3>
+            <p class="domain-card-count">${count} being${count === 1 ? '' : 's'}</p>
+            <p class="domain-card-description">${escapeHtml(d.description || '')}</p>
+          </article>
+        `;
+      })
+      .join('');
+
+    els.domainGrid.querySelectorAll('.domain-card').forEach((card) => {
+      card.addEventListener('click', () => selectDomain(card.dataset.domain));
+    });
+  }
+
+  function getDomainDeityCount(domainId) {
+    const deities = getDomainDeities(domainId, state.similarities.edges, state.nodesById, state.taxonomy);
+    return deities.length;
+  }
+
+  function selectDomain(domainId) {
+    if (!domainId || !state.taxonomy?.domains?.[domainId]) return;
+    state.selectedDomain = domainId;
+    state.selectedDeity = null;
+    state.pieTree = buildDomainPieTree(domainId, state.similarities.edges, state.nodesById, state.taxonomy);
+    state.pieLayout = state.pieTree ? layoutPie(state.pieTree, state.radius) : [];
+
+    els.domainDrawer.classList.add('is-hidden');
+    renderGraph();
+    renderDetailPanel();
+    updateURL();
+  }
+
+  function clearDomain() {
+    state.selectedDomain = null;
+    state.selectedDeity = null;
+    state.pieTree = null;
+    state.pieLayout = [];
+    els.domainDrawer.classList.remove('is-hidden');
+    els.svg.selectAll('*').remove();
+    renderDetailPanel();
+    updateURL();
+  }
+
+  function selectDeity(deityId) {
+    if (!state.nodesById.has(deityId)) return;
+    state.selectedDeity = deityId;
+    renderGraph();
+    renderDetailPanel();
+  }
+
+  function updateURL() {
+    if (state.selectedDeity) {
+      history.replaceState(null, '', `#${state.selectedDomain}/${state.selectedDeity}`);
+    } else if (state.selectedDomain) {
+      history.replaceState(null, '', `#${state.selectedDomain}`);
+    } else {
+      history.replaceState(null, '', window.location.pathname);
+    }
+  }
+
+  function selectDomainFromHash() {
+    const hash = window.location.hash.replace('#', '').trim();
+    if (!hash) return;
+    const [domainId, deityId] = hash.split('/');
+    if (domainId && state.taxonomy?.domains?.[domainId]) {
+      selectDomain(domainId);
+      if (deityId && state.nodesById.has(deityId)) {
+        selectDeity(deityId);
+      }
+    }
+  }
+
+  function layoutPie(tree, radius) {
+    if (!tree) return [];
+    const nodes = [];
+    const totalAngle = 2 * Math.PI;
+
+    function addNode(node, depth, ancestors, x0, x1, y0, y1) {
+      nodes.push({ ...node, depth, ancestors, x0, x1, y0, y1 });
+    }
+
+    addNode(tree, 0, [], 0, totalAngle, 0, 0);
+
+    const domain = tree.children[0];
+    addNode(domain, 1, [tree.id], 0, totalAngle, 0, radius * 0.22);
+
+    const pantheons = domain.children || [];
+    const pantheonCount = pantheons.length;
+    const pantheonSector = totalAngle / pantheonCount;
+    const pantheonInner = radius * 0.24;
+    const pantheonOuter = radius * 0.48;
+
+    pantheons.forEach((p, i) => {
+      const start = i * pantheonSector + 0.01;
+      const end = (i + 1) * pantheonSector - 0.01;
+      addNode(p, 2, [tree.id, domain.id], start, end, pantheonInner, pantheonOuter);
+
+      const deities = p.children || [];
+      const deitySector = (end - start) / Math.max(1, deities.length);
+      const deityInner = radius * 0.5;
+      const deityOuter = radius * 0.9;
+
+      deities.forEach((d, j) => {
+        const dStart = start + j * deitySector + 0.005;
+        const dEnd = start + (j + 1) * deitySector - 0.005;
+        addNode(d, 3, [tree.id, domain.id, p.id], dStart, dEnd, deityInner, deityOuter);
+      });
+    });
+
+    return nodes;
   }
 
   function renderGraph() {
-    if (!state.hub) return;
-
-    const { center, spokes, nodes, links, radius } = state.hub;
-    const cx = state.width / 2;
-    const cy = state.height / 2;
-
+    measureGraph();
     els.svg.selectAll('*').remove();
 
+    if (!state.pieTree) return;
+
+    // Re-layout with current radius.
+    state.pieLayout = layoutPie(state.pieTree, state.radius);
+
+    const cx = state.width / 2;
+    const cy = state.height / 2;
     const g = els.svg.append('g').attr('transform', `translate(${cx},${cy})`);
 
-    // Background concept arcs near outer edge.
-    const arcGen = d3.arc().innerRadius(radius * 0.82).outerRadius(radius);
-    g.selectAll('path.hub-concept-arc')
-      .data(spokes)
+    const arcGen = d3
+      .arc()
+      .startAngle((d) => d.x0)
+      .endAngle((d) => d.x1)
+      .innerRadius((d) => d.y0)
+      .outerRadius((d) => d.y1)
+      .cornerRadius(2);
+
+    const layout = state.pieLayout;
+
+    // Arcs.
+    g.selectAll('path.sunburst-arc')
+      .data(layout.filter((d) => d.type !== 'root' && d.type !== 'domain'), (d) => d.id)
       .join('path')
-      .attr('class', 'hub-concept-arc')
-      .attr('d', (d) => arcGen({ startAngle: d.concept.startAngle, endAngle: d.concept.endAngle }))
-      .attr('stroke', (d) => domainColor(d.concept.domain))
-      .on('click', (_event, d) => selectConcept(d.concept.id))
+      .attr('class', (d) => `sunburst-arc ${d.type}-arc`)
+      .attr('d', arcGen)
+      .attr('fill', (d) => (d.type === 'pantheon' ? pantheonColor(d.pantheon) : pantheonColor(d.pantheon)))
+      .attr('fill-opacity', (d) => (d.type === 'pantheon' ? 0.45 : 0.85))
+      .attr('data-id', (d) => d.id)
+      .attr('data-type', (d) => d.type)
       .on('mouseenter', (event, d) => {
-        highlightConcept(d.concept.id);
-        showTooltip(event, { type: 'concept', ...d.concept, count: d.concept.count });
+        showTooltip(event, d);
+        highlightPie(d);
       })
       .on('mousemove', moveTooltip)
       .on('mouseleave', () => {
-        clearHighlight();
         hideTooltip();
+        clearHighlight();
+      })
+      .on('click', (_event, d) => {
+        if (d.type === 'deity') selectDeity(d.id);
       });
 
-    // Spoke dashed lines.
-    g.selectAll('line.hub-spoke')
-      .data(spokes)
-      .join('line')
-      .attr('class', 'hub-spoke')
-      .attr('x1', 0)
-      .attr('y1', 0)
-      .attr('x2', (d) => Math.cos(d.angle) * radius)
-      .attr('y2', (d) => Math.sin(d.angle) * radius);
-
-    // Links from center to each deity.
-    g.selectAll('line.hub-link')
-      .data(links)
-      .join('line')
-      .attr('class', 'hub-link')
-      .attr('x1', 0)
-      .attr('y1', 0)
-      .attr('x2', (d) => d.target.x)
-      .attr('y2', (d) => d.target.y)
-      .attr('stroke', (d) => domainColor(d.concept.domain))
-      .attr('stroke-width', (d) => 0.8 + d.strength * 0.7);
-
-    // Deity nodes.
-    const nodeGroups = g
-      .selectAll('g.hub-node')
-      .data(nodes.filter((n) => n.id !== center.id), (d) => d.id)
-      .join('g')
-      .attr('class', 'hub-node')
-      .attr('transform', (d) => `translate(${d.x},${d.y})`)
-      .on('click', (_event, d) => loadGraph(d.id))
-      .on('mouseenter', (event, d) => {
-        highlightNode(d);
-        showTooltip(event, { type: 'deity', ...d });
-      })
-      .on('mousemove', moveTooltip)
-      .on('mouseleave', () => {
-        clearHighlight();
-        hideTooltip();
-      });
-
-    nodeGroups
-      .append('circle')
-      .attr('class', 'hub-node-circle')
-      .attr('r', (d) => 5 + d.strength * 2.5)
-      .attr('fill', (d) => pantheonColor(d.pantheon));
-
-    nodeGroups
-      .append('text')
-      .attr('class', 'hub-node-label')
-      .attr('y', (d) => 14 + d.strength * 2)
-      .text((d) => d.unicode);
-
-    // Concept labels at outer edge.
-    g.selectAll('text.hub-concept-label')
-      .data(spokes)
+    // Labels for pantheon arcs.
+    g.selectAll('text.pantheon-label')
+      .data(layout.filter((d) => d.type === 'pantheon' && d.x1 - d.x0 > 0.15), (d) => d.id)
       .join('text')
-      .attr('class', 'hub-concept-label')
-      .attr('x', (d) => Math.cos(d.angle) * (radius + 18))
-      .attr('y', (d) => Math.sin(d.angle) * (radius + 18))
-      .text((d) => d.concept.label);
+      .attr('class', 'sunburst-label pantheon-label')
+      .attr('transform', (d) => {
+        const centroid = arcGen.centroid(d);
+        return `translate(${centroid[0]},${centroid[1]})`;
+      })
+      .attr('text-anchor', 'middle')
+      .attr('dominant-baseline', 'middle')
+      .text((d) => d.name);
 
-    g.selectAll('text.hub-concept-count')
-      .data(spokes)
+    // Labels for deity arcs.
+    g.selectAll('text.deity-label')
+      .data(layout.filter((d) => d.type === 'deity' && d.x1 - d.x0 > 0.08), (d) => d.id)
       .join('text')
-      .attr('class', 'hub-concept-count')
-      .attr('x', (d) => Math.cos(d.angle) * (radius + 30))
-      .attr('y', (d) => Math.sin(d.angle) * (radius + 30))
-      .text((d) => `${d.concept.count}`);
-
-    // Center node.
-    const centerGroup = g
-      .append('g')
-      .attr('class', 'hub-center')
-      .on('click', () => {
-        state.selectedId = center.id;
-        state.selectedType = 'center';
-        renderDetailPanel();
+      .attr('class', 'sunburst-label deity-label')
+      .attr('transform', (d) => {
+        const centroid = arcGen.centroid(d);
+        const angle = (d.x0 + d.x1) / 2;
+        const deg = (angle * 180) / Math.PI - 90;
+        return `translate(${centroid[0]},${centroid[1]}) rotate(${deg > 90 || deg < -90 ? deg + 180 : deg})`;
       })
-      .on('mouseenter', (event) => {
-        showTooltip(event, { type: 'center', ...center });
-      })
-      .on('mousemove', moveTooltip)
-      .on('mouseleave', hideTooltip);
+      .attr('text-anchor', 'middle')
+      .attr('dominant-baseline', 'middle')
+      .text((d) => d.name);
 
-    centerGroup.append('circle').attr('class', 'hub-center-circle').attr('r', state.hub.centerRadius);
-    centerGroup
-      .append('text')
-      .attr('class', 'hub-center-label')
-      .text(center.unicode);
+    // Center label.
+    const domainNode = state.taxonomy.domains[state.selectedDomain];
+    g.append('text').attr('class', 'pie-center-label').attr('x', 0).attr('y', -6).text(domainNode?.label || '');
+    g.append('text')
+      .attr('class', 'pie-center-sublabel')
+      .attr('x', 0)
+      .attr('y', 10)
+      .text('select a being');
+
+    // Highlight selected deity.
+    if (state.selectedDeity) {
+      els.svg
+        .selectAll('.sunburst-arc')
+        .classed('dimmed', (d) => d.type === 'deity' && d.id !== state.selectedDeity)
+        .classed('highlight', (d) => d.type === 'deity' && d.id === state.selectedDeity);
+    }
 
     renderLegend();
   }
 
-  function highlightNode(d) {
-    els.svg.selectAll('.hub-node').classed('dimmed', (n) => n.id !== d.id);
-    els.svg.selectAll('.hub-link').classed('dimmed', (l) => l.target.id !== d.id);
-    els.svg.selectAll('.hub-node').classed('highlight', (n) => n.id === d.id);
-    els.svg.selectAll('.hub-link').classed('highlight', (l) => l.target.id === d.id);
-  }
-
-  function highlightConcept(conceptId) {
-    els.svg.selectAll('.hub-node').classed('dimmed', (n) => n.branchId !== conceptId);
-    els.svg.selectAll('.hub-link').classed('dimmed', (l) => l.concept.id !== conceptId);
-    els.svg.selectAll('.hub-node').classed('highlight', (n) => n.branchId === conceptId);
-    els.svg.selectAll('.hub-link').classed('highlight', (l) => l.concept.id === conceptId);
+  function highlightPie(d) {
+    if (d.type === 'pantheon') {
+      els.svg.selectAll('.sunburst-arc').classed('dimmed', (n) => n.pantheon !== d.pantheon);
+      els.svg.selectAll('.sunburst-arc').classed('highlight', (n) => n.pantheon === d.pantheon);
+    } else if (d.type === 'deity') {
+      els.svg.selectAll('.sunburst-arc').classed('dimmed', (n) => n.id !== d.id);
+      els.svg.selectAll('.sunburst-arc').classed('highlight', (n) => n.id === d.id);
+    }
   }
 
   function clearHighlight() {
-    els.svg.selectAll('.hub-node, .hub-link').classed('dimmed', false).classed('highlight', false);
+    if (state.selectedDeity) {
+      els.svg
+        .selectAll('.sunburst-arc')
+        .classed('dimmed', (d) => d.type === 'deity' && d.id !== state.selectedDeity)
+        .classed('highlight', (d) => d.type === 'deity' && d.id === state.selectedDeity);
+    } else {
+      els.svg.selectAll('.sunburst-arc').classed('dimmed', false).classed('highlight', false);
+    }
   }
 
   function showTooltip(event, d) {
     els.tooltip.hidden = false;
-    els.tooltipTitle.textContent = d.unicode || d.label || d.name || d.id;
-    if (d.type === 'center') {
-      els.tooltipMeta.textContent = d.pantheonLabel || capitalize(d.pantheon);
-      els.tooltipRel.textContent = 'Click to view details';
-    } else if (d.type === 'concept') {
-      els.tooltipMeta.textContent = d.domain?.label || 'Concept';
-      els.tooltipRel.textContent = `${d.count || 0} echo${d.count === 1 ? '' : 'es'} · click to focus`;
+    if (d.type === 'pantheon') {
+      els.tooltipTitle.textContent = d.name;
+      const count = d.children?.length || 0;
+      els.tooltipMeta.textContent = `${count} being${count === 1 ? '' : 's'}`;
+      els.tooltipRel.textContent = 'Click a being to view details';
     } else {
-      els.tooltipMeta.textContent = d.pantheonLabel || capitalize(d.pantheon);
-      els.tooltipRel.textContent = `${d.relationship || ''} · strength ${d.strength || 1}`;
+      els.tooltipTitle.textContent = d.name;
+      els.tooltipMeta.textContent = d.data?.pantheonLabel || capitalize(d.pantheon);
+      els.tooltipRel.textContent = 'Click to view details';
     }
     moveTooltip(event);
   }
@@ -410,154 +378,12 @@
     els.tooltip.hidden = true;
   }
 
-  function selectConcept(conceptId) {
-    state.selectedId = conceptId;
-    state.selectedType = 'concept';
-    renderDetailPanel();
-  }
-
-  function renderDetailPanel() {
-    if (!state.hub) return;
-
-    const center = state.nodesById.get(state.centerId);
-    if (!center) return;
-
-    let html = '';
-
-    // Breadcrumbs.
-    if (state.history.length > 1) {
-      html += '<nav class="breadcrumb-trail" aria-label="Exploration history">';
-      state.history.slice(-6).forEach((id, idx) => {
-        const isLast = idx === Math.min(state.history.length, 6) - 1;
-        const node = state.nodesById.get(id) || { unicode: capitalize(id) };
-        if (isLast) {
-          html += `<span class="breadcrumb-item">${escapeHtml(node.unicode)}</span>`;
-        } else {
-          html += `<span class="breadcrumb-item"><button type="button" data-history-id="${id}">${escapeHtml(node.unicode)}</button></span>`;
-        }
-      });
-      html += '</nav>';
-    }
-
-    if (state.selectedType === 'concept') {
-      html += renderConceptDetail(state.selectedId);
-    } else {
-      html += renderDeityDetail(center);
-    }
-
-    els.detailPanel.innerHTML = html;
-
-    // Wire deity chips.
-    els.detailPanel.querySelectorAll('[data-deity-id]').forEach((chip) => {
-      chip.addEventListener('click', () => loadGraph(chip.dataset.deityId));
-    });
-
-    // Wire concept headers.
-    els.detailPanel.querySelectorAll('[data-concept-id]').forEach((el) => {
-      el.addEventListener('click', () => selectConcept(el.dataset.conceptId));
-    });
-
-    // Wire history breadcrumbs.
-    els.detailPanel.querySelectorAll('[data-history-id]').forEach((btn) => {
-      btn.addEventListener('click', () => loadGraph(btn.dataset.historyId, { skipHistory: true }));
-    });
-  }
-
-  function renderDeityDetail(center) {
-    const pantheonColorValue = pantheonColor(center.pantheon);
-
-    let html = `
-      <div class="detail-card">
-        <div class="detail-header">
-          <span class="detail-pantheon" style="color:${pantheonColorValue}">${escapeHtml(center.pantheonLabel || capitalize(center.pantheon))}</span>
-          <h2 class="detail-title">${escapeHtml(center.unicode)}</h2>
-          <p class="detail-domain">${escapeHtml(center.domain || '')}</p>
-        </div>
-        <div class="detail-actions">
-          <a href="/sites/${center.id}/" class="btn btn-primary btn-sm">Enter Temple</a>
-          <a href="/api/v1/names/${center.id}" class="btn btn-outline btn-sm">API Record</a>
-          <button class="btn btn-outline btn-sm" id="detail-compare-btn" data-id="${center.id}" type="button">Compare</button>
-        </div>
-        <p class="detail-description">
-          ${escapeHtml(center.meaning || `Explore the echoes of ${center.unicode} across pantheons and concepts.`)}
-        </p>
-      </div>
-    `;
-
-    if (!state.branches.length) {
-      html += `<div class="detail-card"><p class="body-sm" style="color:var(--text-dim)">No connections match the current filters.</p></div>`;
-      return html;
-    }
-
-    html += '<h3 class="detail-section-title">Echoes</h3>';
-
-    for (const branch of state.branches) {
-      const color = domainColor(branch.domain);
-      html += `
-        <article class="concept-group" style="--concept-color: ${color}">
-          <div class="concept-group-header" data-concept-id="${branch.conceptId}" style="cursor:pointer">
-            <h4 class="concept-group-title">${escapeHtml(branch.label)}</h4>
-            <span class="concept-group-domain">${escapeHtml(branch.domain?.label || branch.category)}</span>
-          </div>
-          <p class="concept-group-description">${escapeHtml(branch.concept?.description || '')}</p>
-          <div class="deity-chips">
-            ${branch.items
-              .map(
-                (item) => `
-              <button class="deity-chip" data-deity-id="${item.targetId}" type="button">
-                <span class="deity-chip-swatch" style="background:${pantheonColor(item.target.pantheon)}"></span>
-                <span>${escapeHtml(item.target.unicode)}</span>
-                <span class="deity-chip-strength">${'·'.repeat(item.strength)}</span>
-              </button>
-            `,
-              )
-              .join('')}
-          </div>
-        </article>
-      `;
-    }
-
-    return html;
-  }
-
-  function renderConceptDetail(conceptId) {
-    const branch = state.branches.find((b) => b.conceptId === conceptId);
-    if (!branch) return '';
-
-    const center = state.nodesById.get(state.centerId);
-    const color = domainColor(branch.domain);
-
-    return `
-      <div class="detail-card" style="border-left: 4px solid ${color}">
-        <div class="detail-header">
-          <span class="detail-pantheon" style="color:${color}">${escapeHtml(branch.domain?.label || branch.category)}</span>
-          <h2 class="detail-title" style="font-size:1.6rem">${escapeHtml(branch.label)}</h2>
-          <p class="detail-domain">${branch.items.length} echo${branch.items.length === 1 ? '' : 'es'} across traditions</p>
-        </div>
-        <p class="detail-description">${escapeHtml(branch.concept?.description || '')}</p>
-        <button class="btn btn-outline btn-sm" id="concept-back-btn" type="button">← Back to ${escapeHtml(center.unicode)}</button>
-      </div>
-      <h3 class="detail-section-title">Connected to ${escapeHtml(center.unicode)}</h3>
-      <div class="concept-group" style="--concept-color: ${color}">
-        <div class="deity-chips">
-          ${branch.items
-            .map(
-              (item) => `
-            <button class="deity-chip" data-deity-id="${item.targetId}" type="button">
-              <span class="deity-chip-swatch" style="background:${pantheonColor(item.target.pantheon)}"></span>
-              <span>${escapeHtml(item.target.unicode)}</span>
-              <span class="deity-chip-strength">${'·'.repeat(item.strength)}</span>
-            </button>
-          `,
-            )
-            .join('')}
-        </div>
-      </div>
-    `;
-  }
-
   function renderLegend() {
-    const pantheons = Array.from(new Set(state.graphData.nodes.map((n) => n.pantheon))).sort();
+    if (!state.pieTree) {
+      els.legend.innerHTML = '<span class="legend-title">Pantheons</span>';
+      return;
+    }
+    const pantheons = state.pieTree.children[0].children.map((p) => p.pantheon).sort();
     els.legend.innerHTML =
       '<span class="legend-title">Pantheons</span>' +
       pantheons
@@ -568,53 +394,166 @@
         .join('');
   }
 
-  function renderDomainFilters() {
-    if (!state.taxonomy?.domains) return;
-    const domains = Object.values(state.taxonomy.domains).sort((a, b) => a.order - b.order);
-    els.domainFilters.innerHTML =
-      '<span class="filter-label">Domains</span>' +
-      domains
-        .map(
-          (d) =>
-            `<label class="filter-chip active" data-domain="${d.id}"><input type="checkbox" value="${d.id}" checked><span style="color:${d.color}">${escapeHtml(d.label)}</span></label>`,
-        )
-        .join('');
-
-    els.domainFilters.querySelectorAll('input').forEach((input) => {
-      input.addEventListener('change', () => {
-        if (input.checked) state.activeDomains.add(input.value);
-        else state.activeDomains.delete(input.value);
-        input.parentElement.classList.toggle('active', input.checked);
-        recomputeAndRender();
-      });
-    });
-  }
-
-  function updatePantheonFilters() {
-    const pantheons = Array.from(new Set(state.graphData.nodes.map((n) => n.pantheon))).sort();
-    if (state.activePantheons.size === 0) {
-      pantheons.forEach((p) => state.activePantheons.add(p));
+  async function renderDetailPanel() {
+    if (!state.selectedDeity) {
+      if (!state.selectedDomain) {
+        els.detailPanel.innerHTML = `
+          <div class="detail-empty">
+            <div class="detail-empty-icon">&#x2964;</div>
+            <p class="body-md">Select a domain to begin exploring cross-cultural connections.</p>
+          </div>
+        `;
+      } else {
+        const domain = state.taxonomy.domains[state.selectedDomain];
+        const deities = getDomainDeities(state.selectedDomain, state.similarities.edges, state.nodesById, state.taxonomy);
+        els.detailPanel.innerHTML = `
+          <div class="detail-card">
+            <button class="domain-back" id="domain-back" type="button">← Choose another domain</button>
+            <div class="detail-header" style="border-bottom:none; padding-bottom:0; margin-bottom:0">
+              <h2 class="detail-title" style="font-size:1.8rem">${escapeHtml(domain.label)}</h2>
+              <p class="detail-domain">${escapeHtml(domain.description || '')}</p>
+            </div>
+          </div>
+          <h3 class="detail-section-title">Beings in this domain</h3>
+          <div class="deity-chips">
+            ${deities
+              .map(
+                (d) => `
+              <button class="deity-chip" data-deity-id="${d.id}" type="button">
+                <span class="deity-chip-swatch" style="background:${pantheonColor(d.pantheon)}"></span>
+                <span>${escapeHtml(d.unicode)}</span>
+              </button>
+            `,
+              )
+              .join('')}
+          </div>
+        `;
+      }
+      wireDetailClicks();
+      return;
     }
 
-    els.pantheonFilters.innerHTML =
-      '<span class="filter-label">Pantheons</span>' +
-      pantheons
-        .map(
-          (p) =>
-            `<label class="filter-chip ${state.activePantheons.has(p) ? 'active' : ''}"><input type="checkbox" value="${p}" ${
-              state.activePantheons.has(p) ? 'checked' : ''
-            }><span style="color:${pantheonColor(p)}">${capitalize(p)}</span></label>`,
-        )
-        .join('');
+    const node = state.nodesById.get(state.selectedDeity);
+    if (!node) return;
 
-    els.pantheonFilters.querySelectorAll('input').forEach((input) => {
-      input.addEventListener('change', () => {
-        if (input.checked) state.activePantheons.add(input.value);
-        else state.activePantheons.delete(input.value);
-        input.parentElement.classList.toggle('active', input.checked);
-        recomputeAndRender();
-      });
+    let entry = null;
+    try {
+      const res = await fetchJSON(`/api/v1/names/${encodeURIComponent(node.id)}`);
+      entry = res?.data || res;
+    } catch (err) {
+      console.error('Failed to load entry detail:', err);
+    }
+
+    const script = entry?.originalScript || {};
+    const variants = (entry?.variants || []).slice(0, 4);
+    const relatedConcepts = getDeityConcepts(node.id);
+
+    els.detailPanel.innerHTML = `
+      <button class="domain-back" id="domain-back" type="button">← ${escapeHtml(state.taxonomy.domains[state.selectedDomain]?.label || 'Domain')}</button>
+      <div class="detail-card">
+        <div class="detail-header">
+          <span class="detail-pantheon" style="color:${pantheonColor(node.pantheon)}">${escapeHtml(node.pantheonLabel || capitalize(node.pantheon))}</span>
+          <h2 class="detail-title">${escapeHtml(node.unicode)}</h2>
+          <p class="detail-domain">${escapeHtml(node.domain || entry?.domain || '')}</p>
+        </div>
+        <div class="detail-actions">
+          <a href="/sites/${node.id}/" class="btn btn-primary btn-sm">Enter Temple</a>
+          <a href="/type/#${node.id}" class="btn btn-outline btn-sm">Type Tool</a>
+          <a href="/api/v1/names/${node.id}" class="btn btn-outline btn-sm">API Record</a>
+        </div>
+        <p class="detail-description">${escapeHtml(entry?.meaning || `Explore ${node.unicode} across traditions.`)}</p>
+      </div>
+
+      <div class="detail-card">
+        <h3 class="detail-section-title">Details</h3>
+        <ul class="detail-meta-list">
+          ${script.value ? `
+            <li class="detail-meta-item">
+              <span class="detail-meta-label">Original Script</span>
+              <span class="detail-meta-value detail-script">${escapeHtml(script.value)}</span>
+              ${script.label ? `<span class="detail-meta-value" style="font-size:0.8rem; color:var(--text-dim)">${escapeHtml(script.label)}</span>` : ''}
+            </li>
+          ` : ''}
+          ${entry?.tier ? `
+            <li class="detail-meta-item">
+              <span class="detail-meta-label">Tier</span>
+              <span class="detail-meta-value">${escapeHtml(String(entry.tier))}</span>
+            </li>
+          ` : ''}
+          ${entry?.pantheon ? `
+            <li class="detail-meta-item">
+              <span class="detail-meta-label">Pantheon</span>
+              <span class="detail-meta-value">${escapeHtml(entry.pantheonLabel || capitalize(entry.pantheon))}</span>
+            </li>
+          ` : ''}
+          ${variants.length ? `
+            <li class="detail-meta-item">
+              <span class="detail-meta-label">Variants</span>
+              <span class="detail-meta-value">${variants.map((v) => escapeHtml(v.unicode || v)).join(' · ')}</span>
+            </li>
+          ` : ''}
+        </ul>
+      </div>
+
+      ${relatedConcepts.length ? `
+        <div class="detail-card">
+          <h3 class="detail-section-title">Related concepts in ${escapeHtml(state.taxonomy.domains[state.selectedDomain]?.label || 'this domain')}</h3>
+          <div>
+            ${relatedConcepts
+              .map(
+                (c) => `
+              <span class="concept-chip" style="border-color:${state.taxonomy.domains[state.selectedDomain]?.color || 'var(--gold)'}">${escapeHtml(c.label)}</span>
+            `,
+              )
+              .join('')}
+          </div>
+        </div>
+      ` : ''}
+    `;
+
+    wireDetailClicks();
+  }
+
+  function getDeityConcepts(deityId) {
+    if (!state.selectedDomain) return [];
+    const conceptIds = new Set();
+    const concepts = [];
+    for (const e of state.similarities.edges) {
+      if (e.source !== deityId && e.target !== deityId) continue;
+      const concept = e.concept || getConceptFromHelpers(e.relationship);
+      if (!concept || concept.domain !== state.selectedDomain) continue;
+      if (conceptIds.has(concept.id)) continue;
+      conceptIds.add(concept.id);
+      concepts.push(concept);
+    }
+    return concepts.sort((a, b) => (a.order || 0) - (b.order || 0));
+  }
+
+  function getConceptFromHelpers(relationship) {
+    if (!state.taxonomy) return null;
+    for (const c of Object.values(state.taxonomy.concepts || {})) {
+      if ((c.relationships || []).includes(relationship)) return c;
+    }
+    return null;
+  }
+
+  function wireDetailClicks() {
+    els.detailPanel.querySelectorAll('[data-deity-id]').forEach((chip) => {
+      chip.addEventListener('click', () => selectDeity(chip.dataset.deityId));
     });
+    const backBtn = els.detailPanel.querySelector('#domain-back');
+    if (backBtn) {
+      backBtn.addEventListener('click', () => {
+        if (state.selectedDeity) {
+          state.selectedDeity = null;
+          renderGraph();
+          renderDetailPanel();
+          updateURL();
+        } else {
+          clearDomain();
+        }
+      });
+    }
   }
 
   // ─── Search ───
@@ -624,10 +563,9 @@
     els.searchResults.innerHTML = '';
   }
 
-  async function performSearch(q, resultsEl, onSelect) {
+  async function performSearch(q) {
     if (!q || q.length < 2) {
-      resultsEl.classList.remove('is-open');
-      resultsEl.innerHTML = '';
+      closeSearch();
       return;
     }
     if (searchAbort) searchAbort.abort();
@@ -637,19 +575,18 @@
         signal: searchAbort.signal,
       }).then((r) => r.json());
       const items = data?.data?.items || data?.items || [];
-      renderSearchResults(items, resultsEl, onSelect);
+      renderSearchResults(items);
     } catch (err) {
       if (err.name !== 'AbortError') console.error('Search error:', err);
     }
   }
 
-  function renderSearchResults(items, resultsEl, onSelect) {
+  function renderSearchResults(items) {
     if (!items.length) {
-      resultsEl.classList.remove('is-open');
-      resultsEl.innerHTML = '';
+      closeSearch();
       return;
     }
-    resultsEl.innerHTML = items
+    els.searchResults.innerHTML = items
       .map(
         (item) => `
       <div class="search-result-item" data-id="${item.id}" role="option">
@@ -659,30 +596,42 @@
     `,
       )
       .join('');
-    resultsEl.classList.add('is-open');
+    els.searchResults.classList.add('is-open');
 
-    resultsEl.querySelectorAll('.search-result-item').forEach((el) => {
+    els.searchResults.querySelectorAll('.search-result-item').forEach((el) => {
       el.addEventListener('click', () => {
-        onSelect(el.dataset.id);
+        const id = el.dataset.id;
+        els.searchInput.value = '';
+        closeSearch();
+        openDeityBySearch(id);
       });
     });
   }
 
-  const debouncedSearch = debounce((q) => performSearch(q, els.searchResults, (id) => {
-    els.searchInput.value = '';
-    closeSearch();
-    loadGraph(id);
-  }), 180);
+  async function openDeityBySearch(id) {
+    // Find which domain(s) this deity belongs to.
+    const domains = new Set();
+    for (const e of state.similarities.edges) {
+      if (e.source !== id && e.target !== id) continue;
+      const concept = e.concept || getConceptFromHelpers(e.relationship);
+      if (concept) domains.add(concept.domain);
+    }
+    const domainId = domains.size ? Array.from(domains)[0] : state.selectedDomain;
+    if (domainId && state.taxonomy?.domains?.[domainId]) {
+      selectDomain(domainId);
+    }
+    selectDeity(id);
+  }
+
+  const debouncedSearch = debounce((q) => performSearch(q), 180);
 
   els.searchInput.addEventListener('input', (e) => debouncedSearch(e.target.value.trim()));
   els.searchInput.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeSearch();
   });
   document.addEventListener('click', (e) => {
-    if (e.target.closest('.search-wrap') || e.target.closest('.compare-search-wrap')) return;
+    if (e.target.closest('.search-wrap')) return;
     closeSearch();
-    els.compareSearchResults.classList.remove('is-open');
-    els.compareSearchResults.innerHTML = '';
   });
 
   function debounce(fn, wait) {
@@ -693,214 +642,25 @@
     };
   }
 
-  // ─── Filters ───
-  els.strengthSlider.addEventListener('input', (e) => {
-    state.minStrength = Number(e.target.value);
-    recomputeAndRender();
-  });
-
-  els.resetBtn.addEventListener('click', () => {
-    state.minStrength = 1;
-    els.strengthSlider.value = 1;
-    state.activeCategories = new Set(['function', 'phenomenon', 'narrative-role']);
-    state.activePantheons.clear();
-    state.activeDomains.clear();
-    state.history = [];
-    if (state.taxonomy?.domains) {
-      Object.values(state.taxonomy.domains).forEach((d) => state.activeDomains.add(d.id));
-    }
-    renderDomainFilters();
-    loadGraph(DEFAULT_CENTER);
-  });
+  // ─── Toolbar actions ───
+  els.resetBtn.addEventListener('click', clearDomain);
 
   els.randomBtn.addEventListener('click', () => {
-    const deities = state.graphData.nodes.filter((n) => n.id !== state.centerId);
+    const deities = state.similarities.nodes.filter((n) => n.id);
     if (!deities.length) return;
     const idx = Math.floor(Math.random() * deities.length);
-    loadGraph(deities[idx].id);
-  });
-
-  // ─── Guide ───
-  function initGuide() {
-    if (localStorage.getItem(GUIDE_DISMISSED_KEY)) {
-      els.guide.classList.add('is-dismissed');
-    }
-    els.guideClose.addEventListener('click', () => {
-      els.guide.classList.add('is-dismissed');
-      try {
-        localStorage.setItem(GUIDE_DISMISSED_KEY, '1');
-      } catch {}
-    });
-  }
-
-  // ─── Compare ───
-  function openCompare() {
-    els.comparePanel.hidden = false;
-    els.compareResults.innerHTML = '<div class="compare-empty">Search for a second name to compare echoes.</div>';
-  }
-
-  function closeCompare() {
-    els.comparePanel.hidden = true;
-    state.compareTarget = null;
-    state.compareGraph = null;
-    els.compareSearch.value = '';
-    els.compareSearchResults.classList.remove('is-open');
-    els.compareSearchResults.innerHTML = '';
-    clearHighlight();
-  }
-
-  async function setCompareTarget(id) {
-    state.compareTarget = id;
-    try {
-      const data = await fetchJSON(
-        `/api/v1/names/${encodeURIComponent(id)}/graph?limit=120&minStrength=1&depth=1`,
-      );
-      state.compareGraph = data?.data || data;
-      renderCompareResults();
-    } catch (err) {
-      console.error('Failed to load compare graph:', err);
-      els.compareResults.innerHTML = `<div class="compare-empty">Could not load ${escapeHtml(id)}: ${escapeHtml(err.message)}</div>`;
-    }
-  }
-
-  function renderCompareResults() {
-    if (!state.compareGraph) return;
-    const targetNode = state.compareGraph.nodes.find((n) => n.id === state.compareTarget);
-    const centerNode = state.nodesById.get(state.centerId);
-    const allEdges = [...state.graphData.edges, ...(state.compareGraph.edges || [])];
-    const sharedIds = getSharedConcepts(state.centerId, state.compareTarget, allEdges);
-    const sharedConcepts = sharedIds
-      .map((cid) => {
-        const concept = Object.values(state.taxonomy?.concepts || {}).find((c) => c.id === cid);
-        return concept || { id: cid, label: capitalize(cid.replace(/-/g, ' ')), domain: 'unknown' };
-      })
-      .sort((a, b) => (a.order || 0) - (b.order || 0));
-
-    const centerBranches = state.branches.map((b) => b.concept).filter(Boolean);
-    const targetBranches =
-      buildRadialHubLayout(
-        state.compareTarget,
-        state.compareGraph.edges,
-        new Map(state.compareGraph.nodes.map((n) => [n.id, n])),
-        state.taxonomy,
-        { minStrength: 1, activeCategories: state.activeCategories, activePantheons: state.activePantheons },
-      )?.spokes.map((s) => s.concept) || [];
-
-    const centerOnly = centerBranches.filter((c) => !sharedIds.includes(c.id)).sort((a, b) => (a.order || 0) - (b.order || 0));
-    const targetOnly = targetBranches.filter((c) => !sharedIds.includes(c.id)).sort((a, b) => (a.order || 0) - (b.order || 0));
-
-    const section = (title, concepts) => {
-      if (!concepts.length) return '';
-      return `
-        <div class="compare-section-title">${escapeHtml(title)}</div>
-        <div class="compare-chips">
-          ${concepts
-            .map((c) => {
-              const domain = state.taxonomy?.domains?.[c.domain];
-              return `<button class="compare-chip" data-concept="${c.id}" type="button"><span class="compare-chip-swatch" style="background:${domain?.color || '#999'}"></span><span>${escapeHtml(c.label)}</span></button>`;
-            })
-            .join('')}
-        </div>
-      `;
-    };
-
-    els.compareResults.innerHTML = `
-      <div class="compare-section-title">Comparing</div>
-      <p class="body-sm"><strong>${escapeHtml(centerNode?.unicode || state.centerId)}</strong> ↔ <strong>${escapeHtml(targetNode?.unicode || state.compareTarget)}</strong></p>
-      ${section('Shared echoes', sharedConcepts)}
-      ${section(`Only ${escapeHtml(centerNode?.unicode || 'center')}`, centerOnly)}
-      ${section(`Only ${escapeHtml(targetNode?.unicode || 'target')}`, targetOnly)}
-    `;
-
-    els.compareResults.querySelectorAll('.compare-chip').forEach((chip) => {
-      chip.addEventListener('click', () => {
-        const cid = chip.dataset.concept;
-        if (state.branches.some((b) => b.conceptId === cid)) {
-          closeCompare();
-          selectConcept(cid);
-        }
-      });
-    });
-
-    // Highlight shared concept links in the main graph.
-    if (sharedIds.length) {
-      els.svg.selectAll('.hub-link').classed('dimmed', (l) => !sharedIds.includes(l.concept.id));
-      els.svg.selectAll('.hub-node').classed('dimmed', (n) => {
-        if (n.id === state.compareTarget) return false;
-        return !state.graphData.edges.some(
-          (e) =>
-            (e.source === state.centerId || e.source === state.compareTarget) &&
-            (e.target === n.id || e.source === n.id) &&
-            sharedIds.includes(e.concept?.id || e.relationship),
-        );
-      });
-      els.svg.selectAll('.hub-link').classed('highlight', (l) => sharedIds.includes(l.concept.id));
-    }
-  }
-
-  els.compareToggle.addEventListener('click', openCompare);
-  els.compareClose.addEventListener('click', closeCompare);
-
-  const debouncedCompareSearch = debounce((q) => performSearch(q, els.compareSearchResults, (id) => {
-    els.compareSearch.value = '';
-    els.compareSearchResults.classList.remove('is-open');
-    els.compareSearchResults.innerHTML = '';
-    setCompareTarget(id);
-  }), 180);
-
-  els.compareSearch.addEventListener('input', (e) => debouncedCompareSearch(e.target.value.trim()));
-  els.compareSearch.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      els.compareSearchResults.classList.remove('is-open');
-      els.compareSearchResults.innerHTML = '';
-    }
-  });
-
-  // Delegate detail panel clicks.
-  els.detailPanel.addEventListener('click', (e) => {
-    const deityChip = e.target.closest('[data-deity-id]');
-    if (deityChip) {
-      loadGraph(deityChip.dataset.deityId);
-      return;
-    }
-    const conceptHeader = e.target.closest('[data-concept-id]');
-    if (conceptHeader) {
-      selectConcept(conceptHeader.dataset.conceptId);
-      return;
-    }
-    const backBtn = e.target.closest('#concept-back-btn');
-    if (backBtn) {
-      state.selectedId = state.centerId;
-      state.selectedType = 'center';
-      renderDetailPanel();
-      return;
-    }
-    const compareBtn = e.target.closest('#detail-compare-btn');
-    if (compareBtn) {
-      openCompare();
-      return;
-    }
-    const historyBtn = e.target.closest('[data-history-id]');
-    if (historyBtn) {
-      loadGraph(historyBtn.dataset.historyId, { skipHistory: true });
-    }
+    openDeityBySearch(deities[idx].id);
   });
 
   // ─── Resize ───
   const resizeObserver = new ResizeObserver(() => {
-    if (state.hub) recomputeAndRender();
+    if (state.pieTree) renderGraph();
   });
   resizeObserver.observe(els.graphWrap);
 
   // ─── Init ───
-  async function init() {
-    initGuide();
-    await loadTaxonomy();
-    await loadGraph(getInitialCenter());
-  }
-
-  init();
+  loadData();
 
   // Expose for tests/debug.
-  window.PX_CONNECTIONS = { state, loadGraph, selectConcept };
+  window.PX_CONNECTIONS = { state, selectDomain, selectDeity, clearDomain };
 })();

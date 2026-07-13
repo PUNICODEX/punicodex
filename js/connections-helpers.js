@@ -392,6 +392,95 @@
     };
   }
 
+  /**
+   * Build a two-ring sunburst tree for a selected domain:
+   * root → domain → pantheon → deity.
+   * Only edges whose relationship maps to a concept in the domain are included.
+   */
+  function buildDomainPieTree(domainId, edges, nodesById, taxonomy) {
+    if (!taxonomy?.domains?.[domainId]) return null;
+
+    const domain = taxonomy.domains[domainId];
+    const conceptIds = new Set(
+      Object.values(taxonomy.concepts || {})
+        .filter((c) => c.domain === domainId)
+        .map((c) => c.id),
+    );
+
+    const pantheons = new Map();
+
+    for (const e of edges) {
+      const concept = e.concept || getConceptForRelationship(e.relationship, taxonomy);
+      if (!concept || !conceptIds.has(concept.id)) continue;
+
+      for (const targetId of [e.source, e.target]) {
+        const target = nodesById ? nodesById.get(targetId) : null;
+        if (!target || target.type === 'concept') continue;
+        if (!pantheons.has(target.pantheon)) {
+          pantheons.set(target.pantheon, {
+            id: target.pantheon,
+            name: target.pantheonLabel || capitalize(target.pantheon),
+            type: 'pantheon',
+            pantheon: target.pantheon,
+            children: new Map(),
+          });
+        }
+        const p = pantheons.get(target.pantheon);
+        if (!p.children.has(target.id)) {
+          p.children.set(target.id, {
+            id: target.id,
+            name: target.unicode,
+            type: 'deity',
+            pantheon: target.pantheon,
+            data: target,
+            concept,
+            strength: e.strength || 1,
+          });
+        } else {
+          const d = p.children.get(target.id);
+          d.strength = Math.max(d.strength, e.strength || 1);
+        }
+      }
+    }
+
+    const pantheonNodes = Array.from(pantheons.values())
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .map((p) => ({
+        ...p,
+        children: Array.from(p.children.values()).sort((a, b) => a.name.localeCompare(b.name)),
+      }));
+
+    if (!pantheonNodes.length) return null;
+
+    return {
+      id: '__root__',
+      name: domain.label,
+      type: 'root',
+      domain,
+      children: [
+        {
+          id: domainId,
+          name: domain.label,
+          type: 'domain',
+          domain,
+          children: pantheonNodes,
+        },
+      ],
+    };
+  }
+
+  function getDomainDeities(domainId, edges, nodesById, taxonomy) {
+    const tree = buildDomainPieTree(domainId, edges, nodesById, taxonomy);
+    if (!tree) return [];
+    const deities = [];
+    for (const pantheon of tree.children[0].children) {
+      for (const deity of pantheon.children) {
+        deities.push({ ...deity.data, concept: deity.concept, strength: deity.strength });
+      }
+    }
+    return deities;
+  }
+
   function getConceptMembers(conceptId, edges, nodesById) {
     const seen = new Set();
     const members = [];
@@ -472,6 +561,8 @@
     buildSunburstTree,
     layoutSunburst,
     buildRadialHubLayout,
+    buildDomainPieTree,
+    getDomainDeities,
     getConceptMembers,
     getSharedConcepts,
     findShortestPath,

@@ -49,13 +49,13 @@ test('connections page has graph container and search', () => {
   assert.ok(html.includes('id="graph-svg"'), 'must have graph svg');
   assert.ok(html.includes('id="node-search"'), 'must have node search input');
   assert.ok(html.includes('id="detail-panel"'), 'must have detail panel');
-  assert.ok(html.includes('id="strength-slider"'), 'must have strength slider');
+  assert.ok(html.includes('id="domain-grid"'), 'must have domain grid');
 });
 
-test('connections page includes an onboarding guide', () => {
+test('connections page has domain selector', () => {
   const html = read('connections/index.html');
-  assert.ok(html.includes('id="graph-guide"'), 'must have guide overlay');
-  assert.ok(html.includes('How to explore'), 'guide must explain how to explore');
+  assert.ok(html.includes('id="domain-drawer"'), 'must have domain drawer');
+  assert.ok(html.includes('Choose a domain'), 'must prompt user to choose domain');
 });
 
 test('connections page links to global nav', () => {
