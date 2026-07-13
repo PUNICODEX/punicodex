@@ -73,20 +73,64 @@
     <!-- Navigation -->
     <nav class="main-nav" id="main-nav">
         <div class="nav-inner">
-            <a href="https://punycodex.com/" class="nav-logo">PUNYCODEX</a>
+            <a href="https://punycodex.com/" class="nav-wordmark">P<span>U</span>NYCODEX</a>
             <div class="nav-links">
                 <a href="https://punycodex.com/pantheon/" class="nav-link">Pantheon</a>
                 <a href="https://punycodex.com/lexicon/" class="nav-link">Lexicon</a>
                 <a href="https://punycodex.com/connections/" class="nav-link">Connections</a>
                 <a href="https://punycodex.com/type/#baekdusan" class="nav-link">Type</a>
-                <a href="https://punycodex.com/tiers/" class="nav-link">Tiers</a>
-                <a href="https://punycodex.com/api/v1/docs/" class="nav-link">API</a>
+                <div class="nav-more">
+                    <button class="nav-more-toggle" aria-haspopup="true" aria-expanded="false">More</button>
+                    <div class="nav-more-menu">
+                        <a href="https://punycodex.com/tiers/" class="nav-link">Tiers</a>
+                        <a href="https://punycodex.com/search.html" class="nav-link">Search</a>
+                        <a href="https://punycodex.com/oracle.html" class="nav-link">Oracle</a>
+                        <a href="https://punycodex.com/codex/" class="nav-link">Codex</a>
+                        <a href="https://punycodex.com/api/v1/docs/" class="nav-link">API</a>
+                        <a href="https://punycodex.com/about/" class="nav-link">About</a>
+                    </div>
+                </div>
             </div>
-            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+            <a href="https://punycodex.com/pantheon/" class="nav-cta"><span>Enter</span></a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="mobile-menu">
                 <span></span><span></span><span></span>
             </button>
         </div>
     </nav>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-section">
+            <span class="mobile-menu-title">Explore</span>
+            <div class="mobile-menu-group">
+                <a href="https://punycodex.com/pantheon/">Pantheon</a>
+                <a href="https://punycodex.com/lexicon/">Lexicon</a>
+                <a href="https://punycodex.com/connections/">Connections</a>
+            </div>
+        </div>
+        <div class="mobile-menu-section">
+            <span class="mobile-menu-title">Tools</span>
+            <div class="mobile-menu-group">
+                <a href="https://punycodex.com/type/#baekdusan">Type</a>
+                <a href="https://punycodex.com/search.html">Search</a>
+                <a href="https://punycodex.com/tiers/">Tiers</a>
+                <a href="https://punycodex.com/oracle.html">Oracle</a>
+            </div>
+        </div>
+        <div class="mobile-menu-section">
+            <span class="mobile-menu-title">Resources</span>
+            <div class="mobile-menu-group">
+                <a href="https://punycodex.com/codex/">Codex</a>
+                <a href="https://punycodex.com/api/v1/docs/">API</a>
+            </div>
+        </div>
+        <div class="mobile-menu-section">
+            <span class="mobile-menu-title">About</span>
+            <div class="mobile-menu-group">
+                <a href="https://punycodex.com/about/">About</a>
+                <a href="https://punycodex.com/contact/">Contact</a>
+            </div>
+        </div>
+    </div>
 
     <!-- Hero -->
     <section class="hero" id="hero">

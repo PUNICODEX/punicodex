@@ -526,3 +526,137 @@
         font-size: 1.6rem;
     }
 }
+
+/* ─── Elite Graph Enhancements ─── */
+.graph-wrap {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.04) 0%, transparent 35%),
+        radial-gradient(circle at 80% 80%, rgba(65, 105, 225, 0.04) 0%, transparent 35%),
+        radial-gradient(circle at 50% 50%, rgba(20, 20, 25, 1) 0%, var(--deep) 100%);
+}
+
+.nebula {
+    filter: blur(40px);
+    mix-blend-mode: screen;
+    animation: nebulaPulse 8s ease-in-out infinite;
+}
+
+@keyframes nebulaPulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.55; transform: scale(1.08); }
+}
+
+.graph-node {
+    cursor: pointer;
+    transition: filter var(--duration-fast);
+}
+
+.graph-node .node-glow {
+    animation: nodeGlow 3s ease-in-out infinite;
+}
+
+@keyframes nodeGlow {
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 0.45; transform: scale(1.15); }
+}
+
+.graph-node:hover .node-glow {
+    opacity: 0.7;
+    transform: scale(1.25);
+}
+
+.graph-node:hover circle,
+.graph-node:hover polygon {
+    filter: drop-shadow(0 0 8px currentColor);
+}
+
+.graph-node.selected .node-shape {
+    stroke: var(--gold);
+    stroke-width: 3px;
+    filter: drop-shadow(0 0 12px var(--gold-glow));
+}
+
+.graph-node.selected .node-glow {
+    opacity: 0.8;
+    animation: none;
+}
+
+.graph-node.concept .node-shape {
+    filter: drop-shadow(0 0 6px currentColor);
+}
+
+.graph-node.concept:hover .node-shape {
+    filter: drop-shadow(0 0 14px currentColor);
+}
+
+.graph-link {
+    stroke-linecap: round;
+    transition: stroke-opacity var(--duration-fast);
+}
+
+.graph-link.concept-deity {
+    animation: dashFlow 30s linear infinite;
+}
+
+@keyframes dashFlow {
+    to { stroke-dashoffset: -100; }
+}
+
+.graph-node.dimmed,
+.graph-link.dimmed {
+    opacity: 0.08 !important;
+}
+
+.legend-swatch--hex {
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    border-radius: 0;
+}
+
+/* Sidebar concept sections */
+.connection-section {
+    grid-column: 1 / -1;
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding: 1rem 0 0.35rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    margin-top: 0.5rem;
+}
+
+.connection-section:first-child {
+    border-top: none;
+    padding-top: 0;
+    margin-top: 0;
+}
+
+.connection-item--concept .connection-target {
+    color: var(--gold-bright);
+}
+
+.connection-empty {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    padding: 1rem 0;
+}
+
+/* Loading shimmer */
+.graph-loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.graph-loading::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.08), transparent);
+    animation: loadingShimmer 1.8s infinite;
+}
+
+@keyframes loadingShimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}

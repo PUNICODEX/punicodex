@@ -153,6 +153,37 @@
       });
     });
 
+    // Desktop "More" dropdown toggles
+    document.querySelectorAll('.nav-more-toggle').forEach((toggle) => {
+      const menu = toggle.nextElementSibling;
+      if (!menu || !menu.classList.contains('nav-more-menu')) return;
+
+      const setOpen = (open) => {
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      };
+
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const open = toggle.getAttribute('aria-expanded') !== 'true';
+        // Close other open dropdowns
+        document.querySelectorAll('.nav-more-toggle[aria-expanded="true"]').forEach((t) => {
+          if (t !== toggle) t.setAttribute('aria-expanded', 'false');
+        });
+        setOpen(open);
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!toggle.closest('.nav-more').contains(e.target)) {
+          setOpen(false);
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') setOpen(false);
+      });
+    });
+
     // Highlight current page in nav
     const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
     document.querySelectorAll('.nav-links a, .mobile-menu a').forEach((link) => {

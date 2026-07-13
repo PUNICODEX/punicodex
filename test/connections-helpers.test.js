@@ -4,7 +4,13 @@
  */
 
 const assert = require('node:assert');
-const { filterEdgesForNode, isNeighbor } = require('../js/connections-helpers.js');
+const {
+  filterEdgesForNode,
+  isNeighbor,
+  deriveConcepts,
+  buildConceptEdges,
+  getRelatedConcepts,
+} = require('../js/connections-helpers.js');
 
 let passed = 0;
 let failed = 0;
@@ -107,6 +113,31 @@ test('isNeighbor returns false for unconnected nodes', () => {
 test('isNeighbor works regardless of edge direction', () => {
   assert.strictEqual(isNeighbor(edges, 'thor', 'indra'), true);
   assert.strictEqual(isNeighbor(edges, 'indra', 'thor'), true);
+});
+
+test('deriveConcepts creates one concept per unique relationship', () => {
+  const concepts = deriveConcepts(edges);
+  assert.strictEqual(concepts.length, 3);
+  assert.ok(concepts.every((c) => c.type === 'concept'));
+  assert.ok(concepts.some((c) => c.relationship === 'Thunder'));
+});
+
+test('buildConceptEdges links concepts to both deities', () => {
+  const concepts = deriveConcepts(edges);
+  const conceptEdges = buildConceptEdges(edges);
+  assert.strictEqual(conceptEdges.length, 6);
+  assert.ok(conceptEdges.every((e) => e.type === 'concept-deity'));
+  const thunder = concepts.find((c) => c.relationship === 'Thunder');
+  assert.ok(conceptEdges.some((e) => e.source === thunder.id && e.target === 'zeus'));
+  assert.ok(conceptEdges.some((e) => e.source === thunder.id && e.target === 'thor'));
+});
+
+test('getRelatedConcepts returns concepts for a deity', () => {
+  const conceptEdges = buildConceptEdges(edges);
+  const related = getRelatedConcepts(conceptEdges, 'zeus');
+  assert.strictEqual(related.length, 2);
+  assert.ok(related.some((r) => r.relationship === 'Thunder'));
+  assert.ok(related.some((r) => r.relationship === 'Sky sovereign'));
 });
 
 console.log(`\n  ${passed} passed, ${failed} failed`);
