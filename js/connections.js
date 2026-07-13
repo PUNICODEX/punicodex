@@ -242,6 +242,7 @@
       .call(
         d3
           .drag()
+          .clickDistance(5)
           .on('start', (event, d) => {
             if (!event.active) simulation.alphaTarget(0.3).restart();
             d.fx = d.x;
@@ -326,13 +327,6 @@
         .join('');
   }
 
-  function nodeVisible(d) {
-    return (
-      (d.strength || 1) >= state.minStrength &&
-      state.activeCategories.has(d.category)
-    );
-  }
-
   function updateVisibility() {
     const selectedId = state.selectedId;
 
@@ -354,17 +348,20 @@
   }
 
   function highlightNeighbors(id) {
-    els.svg.selectAll('.graph-node').classed('dimmed', (d) => d.id !== id && !isNeighbor(d.id, id));
-    els.svg.selectAll('.graph-link').classed('dimmed', (d) => d.source.id !== id && d.target.id !== id);
+    els.svg
+      .selectAll('.graph-node')
+      .classed('dimmed', (d) => d.id !== id && !isNeighbor(state.graphData.edges, d.id, id));
+    els.svg.selectAll('.graph-link').classed('dimmed', (d) => {
+      const sourceId = typeof d.source === 'object' ? d.source.id : d.source;
+      const targetId = typeof d.target === 'object' ? d.target.id : d.target;
+      return sourceId !== id && targetId !== id;
+    });
   }
 
-  function isNeighbor(nodeId, centerId) {
-    return state.graphData.edges.some(
-      (e) =>
-        (e.source.id === centerId && e.target.id === nodeId) ||
-        (e.source.id === nodeId && e.target.id === centerId)
-    );
-  }
+  const { filterEdgesForNode, isNeighbor } =
+    typeof PX_CONNECTIONS_HELPERS !== 'undefined'
+      ? PX_CONNECTIONS_HELPERS
+      : require('./connections-helpers.js');
 
   function selectNode(id, { scroll = true } = {}) {
     state.selectedId = id;
@@ -380,15 +377,13 @@
     els.sidebarTempleLink.href = `/sites/${id}/`;
     els.sidebarApiLink.href = `/api/v1/names/${id}`;
 
-    const edges = state.graphData.edges
-      .filter((e) => e.source.id === id || e.target.id === id)
-      .map((e) => {
-        const targetId = e.source.id === id ? e.target.id : e.source.id;
-        const target = state.nodesById.get(targetId);
-        return { ...e, targetId, target };
-      })
-      .filter((e) => state.activeCategories.has(e.category) && (e.strength || 1) >= state.minStrength)
-      .sort((a, b) => (b.strength || 1) - (a.strength || 1));
+    const edges = filterEdgesForNode(
+      state.graphData.edges,
+      id,
+      state.nodesById,
+      state.activeCategories,
+      state.minStrength,
+    );
 
     els.connectionList.innerHTML = edges
       .map(
