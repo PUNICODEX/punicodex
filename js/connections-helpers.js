@@ -280,6 +280,118 @@
     return nodes;
   }
 
+  /**
+   * Build a radial "constellation atlas" layout.
+   *
+   * Center deity sits at (0,0). Each concept becomes a radial spoke.
+   * Connected deities are placed along their concept spoke at a distance
+   * derived from connection strength. The result is deterministic and
+   * easy to read: one angle per concept, one radius per deity strength.
+   */
+  function buildRadialHubLayout(centerId, edges, nodesById, taxonomy, options = {}) {
+    const center = nodesById ? nodesById.get(centerId) : null;
+    if (!center) return null;
+
+    const branches = buildBranches(centerId, edges, nodesById, taxonomy, options);
+    if (!branches.length) {
+      return {
+        center,
+        spokes: [],
+        nodes: [{ ...center, x: 0, y: 0 }],
+        links: [],
+        radius: options.radius || 300,
+      };
+    }
+
+    const radius = options.radius || 300;
+    const centerRadius = options.centerRadius || 44;
+    const minConceptGap = (options.minConceptGap || 18) * (Math.PI / 180);
+    const totalAngle = 2 * Math.PI;
+    const availableAngle = totalAngle - branches.length * minConceptGap;
+    const sector = availableAngle / branches.length;
+
+    // Apply pantheon filter to branches so empty spokes do not consume space.
+    const visibleBranches = branches
+      .map((branch) => ({
+        ...branch,
+        items: branch.items.filter((item) => {
+          const p = item.target?.pantheon;
+          return !options.activePantheons || options.activePantheons.size === 0 || options.activePantheons.has(p);
+        }),
+      }))
+      .filter((branch) => branch.items.length > 0);
+
+    const spokeCount = visibleBranches.length;
+    const adjustedSector = (totalAngle - spokeCount * minConceptGap) / Math.max(1, spokeCount);
+
+    const spokes = [];
+    const nodes = [{ ...center, x: 0, y: 0 }];
+    const links = [];
+
+    visibleBranches.forEach((branch, i) => {
+      const startAngle = -Math.PI / 2 + i * (adjustedSector + minConceptGap) + minConceptGap / 2;
+      const endAngle = startAngle + adjustedSector;
+      const midAngle = (startAngle + endAngle) / 2;
+
+      const concept = {
+        ...branch.concept,
+        id: branch.conceptId,
+        label: branch.label,
+        domain: branch.domain,
+        category: branch.category,
+        startAngle,
+        endAngle,
+        midAngle,
+        count: branch.items.length,
+      };
+
+      spokes.push({
+        concept,
+        angle: midAngle,
+        innerR: centerRadius + 10,
+        outerR: radius,
+      });
+
+      branch.items.forEach((item, j) => {
+        const strength = item.strength || 1;
+        // Strength 3 → closest to outer edge; strength 1 → closer to center.
+        const ratio = 0.35 + (strength / 3) * 0.55;
+        // Slight jitter per item so overlapping same-strength deities are visible.
+        const jitter = (j % 2 === 0 ? 1 : -1) * (Math.floor(j / 2) * 0.018);
+        const distance = radius * Math.max(0.32, Math.min(0.96, ratio + jitter));
+
+        const node = {
+          ...item.target,
+          branchId: branch.conceptId,
+          concept,
+          relationship: item.relationship,
+          strength,
+          note: item.note,
+          angle: midAngle,
+          distance,
+          x: Math.cos(midAngle) * distance,
+          y: Math.sin(midAngle) * distance,
+        };
+        nodes.push(node);
+        links.push({
+          source: center,
+          target: node,
+          concept,
+          strength,
+        });
+      });
+    });
+
+    return {
+      center,
+      spokes,
+      nodes,
+      links,
+      radius,
+      centerRadius,
+    };
+  }
+
   function getConceptMembers(conceptId, edges, nodesById) {
     const seen = new Set();
     const members = [];
@@ -359,6 +471,7 @@
     buildBranches,
     buildSunburstTree,
     layoutSunburst,
+    buildRadialHubLayout,
     getConceptMembers,
     getSharedConcepts,
     findShortestPath,

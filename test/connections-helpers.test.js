@@ -12,6 +12,7 @@ const {
   getRelatedConcepts,
   buildSunburstTree,
   layoutSunburst,
+  buildRadialHubLayout,
   getSharedConcepts,
 } = require('../js/connections-helpers.js');
 
@@ -215,6 +216,57 @@ test('layoutSunburst is deterministic', () => {
     .map((n) => `${n.id}:${n.x0.toFixed(4)}:${n.y0.toFixed(4)}`)
     .join('|');
   assert.strictEqual(a, b);
+});
+
+test('buildRadialHubLayout places center and one spoke per concept', () => {
+  const layout = buildRadialHubLayout('zeus', edges, sunburstNodes, taxonomy, { radius: 200 });
+  assert.ok(layout, 'layout should exist');
+  assert.strictEqual(layout.center.id, 'zeus');
+  assert.strictEqual(layout.nodes.length, 3, 'center + 2 connected deities');
+  assert.strictEqual(layout.links.length, 2);
+  assert.strictEqual(layout.spokes.length, 2);
+  assert.ok(layout.spokes.every((s) => s.concept.startAngle < s.concept.endAngle));
+});
+
+test('buildRadialHubLayout respects pantheon filter', () => {
+  const activePantheons = new Set(['greek', 'norse']);
+  const layout = buildRadialHubLayout('zeus', edges, sunburstNodes, taxonomy, {
+    radius: 200,
+    activePantheons,
+  });
+  assert.strictEqual(
+    layout.nodes.some((n) => n.id === 'indra'),
+    false
+  );
+  assert.strictEqual(layout.spokes.length, 1);
+});
+
+test('buildRadialHubLayout respects strength filter', () => {
+  const layout = buildRadialHubLayout('zeus', edges, sunburstNodes, taxonomy, {
+    radius: 200,
+    minStrength: 3,
+  });
+  assert.strictEqual(
+    layout.nodes.some((n) => n.id === 'indra'),
+    false
+  );
+  assert.strictEqual(
+    layout.nodes.some((n) => n.id === 'thor'),
+    true
+  );
+});
+
+test('buildRadialHubLayout is deterministic', () => {
+  const a = buildRadialHubLayout('zeus', edges, sunburstNodes, taxonomy, { radius: 200 });
+  const b = buildRadialHubLayout('zeus', edges, sunburstNodes, taxonomy, { radius: 200 });
+  const coordsA = a.nodes.map((n) => `${n.id}:${n.x.toFixed(4)}:${n.y.toFixed(4)}`).join('|');
+  const coordsB = b.nodes.map((n) => `${n.id}:${n.x.toFixed(4)}:${n.y.toFixed(4)}`).join('|');
+  assert.strictEqual(coordsA, coordsB);
+});
+
+test('buildRadialHubLayout returns null for unknown center', () => {
+  const layout = buildRadialHubLayout('unknown', edges, sunburstNodes, taxonomy, { radius: 200 });
+  assert.strictEqual(layout, null);
 });
 
 test('getSharedConcepts finds common concepts between two nodes', () => {

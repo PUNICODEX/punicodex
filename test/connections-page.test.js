@@ -48,8 +48,14 @@ test('connections page has graph container and search', () => {
   const html = read('connections/index.html');
   assert.ok(html.includes('id="graph-svg"'), 'must have graph svg');
   assert.ok(html.includes('id="node-search"'), 'must have node search input');
-  assert.ok(html.includes('id="connections-sidebar"'), 'must have sidebar');
+  assert.ok(html.includes('id="detail-panel"'), 'must have detail panel');
   assert.ok(html.includes('id="strength-slider"'), 'must have strength slider');
+});
+
+test('connections page includes an onboarding guide', () => {
+  const html = read('connections/index.html');
+  assert.ok(html.includes('id="graph-guide"'), 'must have guide overlay');
+  assert.ok(html.includes('How to explore'), 'guide must explain how to explore');
 });
 
 test('connections page links to global nav', () => {

@@ -22,7 +22,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/main.css?v=perf8">
-    <link rel="stylesheet" href="/css/connections.css?v=sunburst">
+    <link rel="stylesheet" href="/css/connections.css?v=atlas">
 
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%CE%A8%3C/text%3E%3C/svg%3E">
     <script src="https://d3js.org/d3.v7.min.js"></script>
@@ -99,7 +99,7 @@
     <!-- Hero -->
     <section class="connections-hero">
         <div class="container">
-            <p class="section-eyebrow reveal-up">The Correspondence Mandala</p>
+            <p class="section-eyebrow reveal-up">The Correspondence Atlas</p>
             <h1 class="display-lg reveal-up">CONNECTIONS</h1>
             <p class="hero-subtitle body-lg text-center reveal-up">
                 Thunder repeats itself. So does the sun, the sea, the underworld, and the trickster.
@@ -108,25 +108,44 @@
         </div>
     </section>
 
-    <!-- Graph Interface -->
+    <!-- Atlas Interface -->
     <main class="connections-interface" id="connections-interface">
         <div class="connections-toolbar">
             <div class="container toolbar-inner">
                 <div class="search-wrap">
-                    <input type="text" id="node-search" class="node-search" placeholder="Find a name — Zeus, Thor, Amaterasu..." autocomplete="off" aria-label="Search names">
+                    <input type="text" id="node-search" class="node-search" placeholder="Find a name — Zeus, Thor, Amaterasu…" autocomplete="off" aria-label="Search names">
                     <div class="search-results" id="search-results" role="listbox" aria-label="Search results"></div>
                 </div>
+
+                <div class="filter-bar" id="filter-bar">
+                    <div class="filter-group" id="domain-filters">
+                        <span class="filter-label">Domains</span>
+                    </div>
+                    <div class="filter-group" id="pantheon-filters">
+                        <span class="filter-label">Pantheons</span>
+                    </div>
+                    <div class="filter-group strength-group">
+                        <span class="filter-label">Minimum strength</span>
+                        <input type="range" id="strength-slider" min="1" max="3" value="1" step="1" aria-label="Minimum connection strength">
+                        <div class="filter-range-labels">
+                            <span>All</span>
+                            <span>Strong</span>
+                            <span>Canonical</span>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="toolbar-actions">
-                    <button class="btn btn-outline btn-sm" id="reset-view">Reset view</button>
-                    <button class="btn btn-outline btn-sm" id="random-node">Surprise me</button>
+                    <button class="btn btn-outline btn-sm" id="reset-view">Reset</button>
+                    <button class="btn btn-outline btn-sm" id="random-node">Surprise</button>
                     <button class="btn btn-primary btn-sm" id="compare-toggle">Compare</button>
                 </div>
             </div>
         </div>
 
-        <div class="connections-stage">
+        <div class="connections-stage" id="connections-stage">
             <div class="graph-wrap" id="graph-wrap">
-                <svg id="graph-svg" aria-label="Cross-cultural correspondence sunburst"></svg>
+                <svg id="graph-svg" aria-label="Cross-cultural correspondence atlas"></svg>
 
                 <div class="graph-tooltip" id="graph-tooltip" hidden>
                     <div class="tooltip-title" id="tooltip-title"></div>
@@ -135,7 +154,7 @@
                 </div>
 
                 <div class="graph-overlay" id="graph-overlay">
-                    <div class="graph-loading" id="graph-loading">Weaving the mandala...</div>
+                    <div class="graph-loading" id="graph-loading">Weaving the atlas…</div>
                     <div class="graph-error" id="graph-error" hidden></div>
                 </div>
 
@@ -145,72 +164,31 @@
                         <button class="compare-close" id="compare-close" aria-label="Close comparison">&times;</button>
                     </div>
                     <div class="compare-search-wrap">
-                        <input type="text" id="compare-search" class="node-search" placeholder="Select a second name..." autocomplete="off" aria-label="Compare with">
+                        <input type="text" id="compare-search" class="node-search" placeholder="Select a second name…" autocomplete="off" aria-label="Compare with">
                         <div class="search-results" id="compare-search-results" role="listbox"></div>
                     </div>
                     <div class="compare-results" id="compare-results"></div>
                 </div>
 
+                <div class="graph-guide" id="graph-guide">
+                    <button class="guide-close" id="guide-close" aria-label="Dismiss guide">&times;</button>
+                    <strong>How to explore</strong>
+                    <ol>
+                        <li>The glowing center is your chosen name.</li>
+                        <li>Each arm is a shared concept — thunder, sun, sea, trickster.</li>
+                        <li>Deities farther out are stronger echoes.</li>
+                        <li>Click any deity to make them the new center.</li>
+                    </ol>
+                </div>
+
                 <div class="graph-legend" id="graph-legend" aria-hidden="true">
-                    <span class="legend-title">Domains</span>
+                    <span class="legend-title">Pantheons</span>
                 </div>
             </div>
 
-            <aside class="connections-sidebar" id="connections-sidebar">
-                <div class="sidebar-empty" id="sidebar-empty">
-                    <div class="sidebar-icon">&#x2964;</div>
-                    <p class="body-md">Select a concept or deity to explore its echoes.</p>
-                </div>
-                <div class="sidebar-content" id="sidebar-content" hidden>
-                    <div class="sidebar-header">
-                        <span class="sidebar-pantheon" id="sidebar-pantheon">Pantheon</span>
-                        <h2 class="sidebar-title" id="sidebar-title">Name</h2>
-                        <p class="sidebar-domain body-sm" id="sidebar-domain">Domain</p>
-                    </div>
-                    <div class="sidebar-actions">
-                        <a href="#" class="btn btn-primary btn-sm" id="sidebar-temple-link">Enter Temple</a>
-                        <a href="#" class="btn btn-outline btn-sm" id="sidebar-api-link">API Record</a>
-                    </div>
-                    <div class="sidebar-section" id="sidebar-concept-section" hidden>
-                        <h3 class="sidebar-section-title">About this concept</h3>
-                        <p class="sidebar-concept-description body-sm" id="sidebar-concept-description"></p>
-                    </div>
-                    <div class="sidebar-section">
-                        <h3 class="sidebar-section-title">Echoes</h3>
-                        <ul class="connection-list" id="connection-list"></ul>
-                    </div>
-                </div>
+            <aside class="detail-panel" id="detail-panel">
+                <div class="detail-panel-inner" id="detail-panel-inner"></div>
             </aside>
-        </div>
-
-        <!-- Mobile branch explorer -->
-        <div class="mobile-explorer" id="mobile-explorer" aria-label="Concept branch explorer">
-            <div class="container">
-                <div class="explorer-empty" id="explorer-empty">
-                    <p class="body-md">Loading concept branches...</p>
-                </div>
-                <div class="explorer-content" id="explorer-content"></div>
-            </div>
-        </div>
-
-        <div class="connections-filters">
-            <div class="container filters-inner">
-                <div class="filter-group">
-                    <span class="filter-label">Minimum strength</span>
-                    <input type="range" id="strength-slider" min="1" max="3" value="1" step="1" aria-label="Minimum connection strength">
-                    <div class="filter-range-labels">
-                        <span>All</span>
-                        <span>Strong</span>
-                        <span>Canonical</span>
-                    </div>
-                </div>
-                <div class="filter-group" id="domain-filters">
-                    <span class="filter-label">Domains</span>
-                </div>
-                <div class="filter-group" id="pantheon-filters">
-                    <span class="filter-label">Pantheons</span>
-                </div>
-            </div>
         </div>
     </main>
 
@@ -269,7 +247,7 @@
 
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/main.js?v=perf8" defer></script>
-    <script src="/js/connections-helpers.js?v=sunburst" defer></script>
-    <script src="/js/connections.js?v=sunburst" defer></script>
+    <script src="/js/connections-helpers.js?v=atlas" defer></script>
+    <script src="/js/connections.js?v=atlas" defer></script>
 </body>
 </html>

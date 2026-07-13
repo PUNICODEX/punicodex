@@ -2,8 +2,7 @@
   'use strict';
 
   const {
-    buildSunburstTree,
-    layoutSunburst,
+    buildRadialHubLayout,
     getSharedConcepts,
     escapeHtml,
     capitalize,
@@ -27,7 +26,7 @@
     slavic: '#4682B4',
     zoroastrian: '#FF4500',
     incan: '#CD853F',
-    chinese: '#DC143C',
+    chinese: '#F08080',
     buddhist: '#9932CC',
     taoist: '#4169E1',
     korean: '#FF69B4',
@@ -38,25 +37,27 @@
   };
 
   const DEFAULT_CENTER = 'zeus';
+  const GUIDE_DISMISSED_KEY = 'px_connections_guide_dismissed';
 
   const state = {
     centerId: null,
     graphData: { nodes: [], edges: [] },
     nodesById: new Map(),
     taxonomy: null,
-    tree: null,
-    layout: [],
+    hub: null,
     branches: [],
     selectedId: null,
-    selectedType: null,
+    selectedType: 'center',
     minStrength: 1,
     activeCategories: new Set(['function', 'phenomenon', 'narrative-role']),
     activePantheons: new Set(),
     activeDomains: new Set(),
     compareTarget: null,
     compareGraph: null,
+    history: [],
     width: 0,
     height: 0,
+    radius: 0,
   };
 
   const els = {
@@ -82,20 +83,11 @@
     strengthSlider: document.getElementById('strength-slider'),
     domainFilters: document.getElementById('domain-filters'),
     pantheonFilters: document.getElementById('pantheon-filters'),
-    sidebarEmpty: document.getElementById('sidebar-empty'),
-    sidebarContent: document.getElementById('sidebar-content'),
-    sidebarPantheon: document.getElementById('sidebar-pantheon'),
-    sidebarTitle: document.getElementById('sidebar-title'),
-    sidebarDomain: document.getElementById('sidebar-domain'),
-    sidebarTempleLink: document.getElementById('sidebar-temple-link'),
-    sidebarApiLink: document.getElementById('sidebar-api-link'),
-    sidebarConceptSection: document.getElementById('sidebar-concept-section'),
-    sidebarConceptDescription: document.getElementById('sidebar-concept-description'),
-    connectionList: document.getElementById('connection-list'),
+    detailPanel: document.getElementById('detail-panel-inner'),
     legend: document.getElementById('graph-legend'),
-    mobileExplorer: document.getElementById('mobile-explorer'),
-    explorerEmpty: document.getElementById('explorer-empty'),
-    explorerContent: document.getElementById('explorer-content'),
+    guide: document.getElementById('graph-guide'),
+    guideClose: document.getElementById('guide-close'),
+    stage: document.getElementById('connections-stage'),
   };
 
   function setError(message) {
@@ -120,8 +112,8 @@
 
   function measureGraph() {
     const rect = els.graphWrap.getBoundingClientRect();
-    state.width = Math.max(320, rect.width);
-    state.height = Math.max(420, rect.height);
+    state.width = Math.max(300, rect.width);
+    state.height = Math.max(320, rect.height);
     els.svg.attr('width', state.width).attr('height', state.height);
   }
 
@@ -145,12 +137,12 @@
     }
   }
 
-  async function loadGraph(centerId) {
+  async function loadGraph(centerId, options = {}) {
     clearError();
     els.loading.hidden = false;
     state.centerId = centerId;
-    state.selectedId = null;
-    state.selectedType = null;
+    state.selectedId = centerId;
+    state.selectedType = 'center';
     state.compareTarget = null;
     state.compareGraph = null;
 
@@ -167,6 +159,10 @@
         throw new Error(`Center node "${centerId}" was not returned by the graph API.`);
       }
 
+      if (!options.skipHistory) {
+        pushHistory(centerId);
+      }
+
       if (state.activePantheons.size === 0) {
         const pantheons = Array.from(new Set(state.graphData.nodes.map((n) => n.pantheon))).sort();
         pantheons.forEach((p) => state.activePantheons.add(p));
@@ -175,9 +171,24 @@
       els.loading.hidden = true;
       updatePantheonFilters();
       recomputeAndRender();
+      updateURL();
     } catch (err) {
       console.error('Failed to load graph:', err);
       setError(`Could not load connections: ${err.message}`);
+    }
+  }
+
+  function pushHistory(id) {
+    if (state.history[state.history.length - 1] === id) return;
+    state.history.push(id);
+    if (state.history.length > 12) state.history.shift();
+  }
+
+  function updateURL() {
+    if (state.centerId && state.centerId !== DEFAULT_CENTER) {
+      history.replaceState(null, '', `#${state.centerId}`);
+    } else {
+      history.replaceState(null, '', window.location.pathname);
     }
   }
 
@@ -185,27 +196,41 @@
     const center = state.nodesById.get(state.centerId);
     if (!center) return;
 
-    state.tree = buildSunburstTree(state.centerId, state.graphData.edges, state.nodesById, state.taxonomy, {
+    measureGraph();
+
+    const isMobile = state.width < 760;
+    state.radius = Math.min(state.width, state.height) / 2 - (isMobile ? 48 : 64);
+
+    state.hub = buildRadialHubLayout(state.centerId, state.graphData.edges, state.nodesById, state.taxonomy, {
       minStrength: state.minStrength,
       activeCategories: state.activeCategories,
+      activePantheons: state.activePantheons,
+      radius: state.radius,
+      centerRadius: isMobile ? 32 : 44,
     });
 
-    if (!state.tree) return;
+    if (!state.hub) return;
 
-    // Filter domains and pantheons by mutating tree children.
-    const centerNode = state.tree.children[0];
-    centerNode.children = (centerNode.children || []).filter((branch) => {
-      if (!state.activeDomains.has(branch.domain?.id)) return false;
-      branch.children = (branch.children || []).filter((deity) => state.activePantheons.has(deity.pantheon));
-      return branch.children.length > 0;
-    });
-
-    state.branches = centerNode.children.map((b) => b.data);
-    state.layout = layoutSunburst(state.tree, Math.min(state.width, state.height) / 2 - 24);
+    state.branches = state.hub.spokes.map((s) => ({
+      conceptId: s.concept.id,
+      label: s.concept.label,
+      domain: s.concept.domain,
+      concept: s.concept,
+      category: s.concept.category,
+      items: state.hub.nodes
+        .filter((n) => n.branchId === s.concept.id)
+        .map((n) => ({
+          targetId: n.id,
+          target: n,
+          strength: n.strength,
+          relationship: n.relationship,
+          note: n.note,
+        }))
+        .sort((a, b) => b.strength - a.strength),
+    }));
 
     renderGraph();
-    renderMobileExplorer();
-    renderSidebar();
+    renderDetailPanel();
   }
 
   function pantheonColor(p) {
@@ -216,156 +241,159 @@
     return d?.color || '#D4AF37';
   }
 
-  function arcFill(d) {
-    if (d.type === 'root') return 'none';
-    if (d.type === 'center') {
-      return pantheonColor(d.pantheon);
-    }
-    if (d.type === 'concept') {
-      return d.domain?.color || '#D4AF37';
-    }
-    return pantheonColor(d.pantheon);
-  }
-
-  function arcOpacity(d) {
-    if (d.type === 'root') return 0;
-    if (d.type === 'center') return 0.35;
-    if (d.type === 'concept') return 0.75;
-    return 0.9;
-  }
-
   function renderGraph() {
-    measureGraph();
-    els.svg.selectAll('*').remove();
+    if (!state.hub) return;
 
-    if (!state.layout.length) {
-      return;
-    }
-
-    const radius = Math.min(state.width, state.height) / 2 - 24;
+    const { center, spokes, nodes, links, radius } = state.hub;
     const cx = state.width / 2;
     const cy = state.height / 2;
 
+    els.svg.selectAll('*').remove();
+
     const g = els.svg.append('g').attr('transform', `translate(${cx},${cy})`);
 
-    const arcGen = d3
-      .arc()
-      .startAngle((d) => d.x0)
-      .endAngle((d) => d.x1)
-      .innerRadius((d) => d.y0)
-      .outerRadius((d) => d.y1)
-      .cornerRadius(2);
-
-    const nodes = state.layout;
-
-    // Render arcs
-    const arcs = g
-      .selectAll('path.sunburst-arc')
-      .data(nodes, (d) => d.id)
+    // Background concept arcs near outer edge.
+    const arcGen = d3.arc().innerRadius(radius * 0.82).outerRadius(radius);
+    g.selectAll('path.hub-concept-arc')
+      .data(spokes)
       .join('path')
-      .attr('class', (d) => `sunburst-arc ${d.type}-arc`)
-      .attr('d', arcGen)
-      .attr('fill', arcFill)
-      .attr('fill-opacity', arcOpacity)
-      .attr('data-id', (d) => d.id)
-      .attr('data-type', (d) => d.type)
+      .attr('class', 'hub-concept-arc')
+      .attr('d', (d) => arcGen({ startAngle: d.concept.startAngle, endAngle: d.concept.endAngle }))
+      .attr('stroke', (d) => domainColor(d.concept.domain))
+      .on('click', (_event, d) => selectConcept(d.concept.id))
       .on('mouseenter', (event, d) => {
-        showTooltip(event, d);
-        highlightSunburst(d);
+        highlightConcept(d.concept.id);
+        showTooltip(event, { type: 'concept', ...d.concept, count: d.concept.count });
       })
-      .on('mousemove', (event, d) => moveTooltip(event))
+      .on('mousemove', moveTooltip)
       .on('mouseleave', () => {
-        hideTooltip();
         clearHighlight();
+        hideTooltip();
+      });
+
+    // Spoke dashed lines.
+    g.selectAll('line.hub-spoke')
+      .data(spokes)
+      .join('line')
+      .attr('class', 'hub-spoke')
+      .attr('x1', 0)
+      .attr('y1', 0)
+      .attr('x2', (d) => Math.cos(d.angle) * radius)
+      .attr('y2', (d) => Math.sin(d.angle) * radius);
+
+    // Links from center to each deity.
+    g.selectAll('line.hub-link')
+      .data(links)
+      .join('line')
+      .attr('class', 'hub-link')
+      .attr('x1', 0)
+      .attr('y1', 0)
+      .attr('x2', (d) => d.target.x)
+      .attr('y2', (d) => d.target.y)
+      .attr('stroke', (d) => domainColor(d.concept.domain))
+      .attr('stroke-width', (d) => 0.8 + d.strength * 0.7);
+
+    // Deity nodes.
+    const nodeGroups = g
+      .selectAll('g.hub-node')
+      .data(nodes.filter((n) => n.id !== center.id), (d) => d.id)
+      .join('g')
+      .attr('class', 'hub-node')
+      .attr('transform', (d) => `translate(${d.x},${d.y})`)
+      .on('click', (_event, d) => loadGraph(d.id))
+      .on('mouseenter', (event, d) => {
+        highlightNode(d);
+        showTooltip(event, { type: 'deity', ...d });
       })
-      .on('click', (_event, d) => handleArcClick(d));
+      .on('mousemove', moveTooltip)
+      .on('mouseleave', () => {
+        clearHighlight();
+        hideTooltip();
+      });
 
-    // Center label
-    const centerNode = nodes.find((n) => n.type === 'center');
-    if (centerNode) {
-      g.append('text')
-        .attr('class', 'sunburst-label center-label')
-        .attr('x', 0)
-        .attr('y', 0)
-        .text(centerNode.name);
-    }
+    nodeGroups
+      .append('circle')
+      .attr('class', 'hub-node-circle')
+      .attr('r', (d) => 5 + d.strength * 2.5)
+      .attr('fill', (d) => pantheonColor(d.pantheon));
 
-    // Concept labels along arc centroid
-    g.selectAll('text.concept-label')
-      .data(nodes.filter((d) => d.type === 'concept' && d.x1 - d.x0 > 0.18), (d) => d.id)
+    nodeGroups
+      .append('text')
+      .attr('class', 'hub-node-label')
+      .attr('y', (d) => 14 + d.strength * 2)
+      .text((d) => d.unicode);
+
+    // Concept labels at outer edge.
+    g.selectAll('text.hub-concept-label')
+      .data(spokes)
       .join('text')
-      .attr('class', 'sunburst-label concept-label')
-      .attr('transform', (d) => {
-        const centroid = arcGen.centroid(d);
-        const angle = (d.x0 + d.x1) / 2;
-        const deg = (angle * 180) / Math.PI - 90;
-        return `translate(${centroid[0]},${centroid[1]}) rotate(${deg > 90 || deg < -90 ? deg + 180 : deg})`;
-      })
-      .attr('text-anchor', 'middle')
-      .attr('dominant-baseline', 'middle')
-      .text((d) => d.name);
+      .attr('class', 'hub-concept-label')
+      .attr('x', (d) => Math.cos(d.angle) * (radius + 18))
+      .attr('y', (d) => Math.sin(d.angle) * (radius + 18))
+      .text((d) => d.concept.label);
 
-    // Deity labels for large arcs
-    g.selectAll('text.deity-label')
-      .data(nodes.filter((d) => d.type === 'deity' && d.x1 - d.x0 > 0.12), (d) => d.id)
+    g.selectAll('text.hub-concept-count')
+      .data(spokes)
       .join('text')
-      .attr('class', 'sunburst-label deity-label')
-      .attr('transform', (d) => {
-        const centroid = arcGen.centroid(d);
-        const angle = (d.x0 + d.x1) / 2;
-        const deg = (angle * 180) / Math.PI - 90;
-        return `translate(${centroid[0]},${centroid[1]}) rotate(${deg > 90 || deg < -90 ? deg + 180 : deg})`;
+      .attr('class', 'hub-concept-count')
+      .attr('x', (d) => Math.cos(d.angle) * (radius + 30))
+      .attr('y', (d) => Math.sin(d.angle) * (radius + 30))
+      .text((d) => `${d.concept.count}`);
+
+    // Center node.
+    const centerGroup = g
+      .append('g')
+      .attr('class', 'hub-center')
+      .on('click', () => {
+        state.selectedId = center.id;
+        state.selectedType = 'center';
+        renderDetailPanel();
       })
-      .attr('text-anchor', 'middle')
-      .attr('dominant-baseline', 'middle')
-      .style('font-size', '7px')
-      .text((d) => d.name);
+      .on('mouseenter', (event) => {
+        showTooltip(event, { type: 'center', ...center });
+      })
+      .on('mousemove', moveTooltip)
+      .on('mouseleave', hideTooltip);
+
+    centerGroup.append('circle').attr('class', 'hub-center-circle').attr('r', state.hub.centerRadius);
+    centerGroup
+      .append('text')
+      .attr('class', 'hub-center-label')
+      .text(center.unicode);
 
     renderLegend();
   }
 
-  function handleArcClick(d) {
-    if (d.type === 'deity') {
-      loadGraph(d.id);
-    } else if (d.type === 'concept') {
-      selectConcept(d.id);
-    } else if (d.type === 'center') {
-      renderSidebarForCenter();
-    }
+  function highlightNode(d) {
+    els.svg.selectAll('.hub-node').classed('dimmed', (n) => n.id !== d.id);
+    els.svg.selectAll('.hub-link').classed('dimmed', (l) => l.target.id !== d.id);
+    els.svg.selectAll('.hub-node').classed('highlight', (n) => n.id === d.id);
+    els.svg.selectAll('.hub-link').classed('highlight', (l) => l.target.id === d.id);
   }
 
-  function highlightSunburst(d) {
-    const hovered = d;
-    els.svg.selectAll('.sunburst-arc').classed('dimmed', function (node) {
-      if (node.id === hovered.id) return false;
-      if (node.ancestors.includes(hovered.id)) return false;
-      if (hovered.ancestors.includes(node.id)) return false;
-      return true;
-    });
-    els.svg.selectAll('.sunburst-arc').classed('highlight', function (node) {
-      return node.id === hovered.id || node.ancestors.includes(hovered.id) || hovered.ancestors.includes(node.id);
-    });
+  function highlightConcept(conceptId) {
+    els.svg.selectAll('.hub-node').classed('dimmed', (n) => n.branchId !== conceptId);
+    els.svg.selectAll('.hub-link').classed('dimmed', (l) => l.concept.id !== conceptId);
+    els.svg.selectAll('.hub-node').classed('highlight', (n) => n.branchId === conceptId);
+    els.svg.selectAll('.hub-link').classed('highlight', (l) => l.concept.id === conceptId);
   }
 
   function clearHighlight() {
-    els.svg.selectAll('.sunburst-arc').classed('dimmed', false).classed('highlight', false);
+    els.svg.selectAll('.hub-node, .hub-link').classed('dimmed', false).classed('highlight', false);
   }
 
   function showTooltip(event, d) {
     els.tooltip.hidden = false;
-    els.tooltipTitle.textContent = d.name;
+    els.tooltipTitle.textContent = d.unicode || d.label || d.name || d.id;
     if (d.type === 'center') {
-      els.tooltipMeta.textContent = d.data?.pantheonLabel || capitalize(d.pantheon);
-      els.tooltipRel.textContent = d.data?.domain || '';
+      els.tooltipMeta.textContent = d.pantheonLabel || capitalize(d.pantheon);
+      els.tooltipRel.textContent = 'Click to view details';
     } else if (d.type === 'concept') {
       els.tooltipMeta.textContent = d.domain?.label || 'Concept';
-      els.tooltipRel.textContent = `${d.children?.length || 0} echo${d.children?.length === 1 ? '' : 'es'}`;
-    } else if (d.type === 'deity') {
-      els.tooltipMeta.textContent = d.data?.pantheonLabel || capitalize(d.pantheon);
-      els.tooltipRel.textContent = `${d.relationship || ''} · strength ${d.strength || 1}`;
+      els.tooltipRel.textContent = `${d.count || 0} echo${d.count === 1 ? '' : 'es'} · click to focus`;
     } else {
-      els.tooltipMeta.textContent = '';
-      els.tooltipRel.textContent = '';
+      els.tooltipMeta.textContent = d.pantheonLabel || capitalize(d.pantheon);
+      els.tooltipRel.textContent = `${d.relationship || ''} · strength ${d.strength || 1}`;
     }
     moveTooltip(event);
   }
@@ -374,187 +402,170 @@
     const rect = els.graphWrap.getBoundingClientRect();
     const x = event.clientX - rect.left + 14;
     const y = event.clientY - rect.top + 14;
-    els.tooltip.style.left = `${x}px`;
-    els.tooltip.style.top = `${y}px`;
+    els.tooltip.style.left = `${Math.min(x, rect.width - 220)}px`;
+    els.tooltip.style.top = `${Math.min(y, rect.height - 100)}px`;
   }
 
   function hideTooltip() {
     els.tooltip.hidden = true;
   }
 
+  function selectConcept(conceptId) {
+    state.selectedId = conceptId;
+    state.selectedType = 'concept';
+    renderDetailPanel();
+  }
+
+  function renderDetailPanel() {
+    if (!state.hub) return;
+
+    const center = state.nodesById.get(state.centerId);
+    if (!center) return;
+
+    let html = '';
+
+    // Breadcrumbs.
+    if (state.history.length > 1) {
+      html += '<nav class="breadcrumb-trail" aria-label="Exploration history">';
+      state.history.slice(-6).forEach((id, idx) => {
+        const isLast = idx === Math.min(state.history.length, 6) - 1;
+        const node = state.nodesById.get(id) || { unicode: capitalize(id) };
+        if (isLast) {
+          html += `<span class="breadcrumb-item">${escapeHtml(node.unicode)}</span>`;
+        } else {
+          html += `<span class="breadcrumb-item"><button type="button" data-history-id="${id}">${escapeHtml(node.unicode)}</button></span>`;
+        }
+      });
+      html += '</nav>';
+    }
+
+    if (state.selectedType === 'concept') {
+      html += renderConceptDetail(state.selectedId);
+    } else {
+      html += renderDeityDetail(center);
+    }
+
+    els.detailPanel.innerHTML = html;
+
+    // Wire deity chips.
+    els.detailPanel.querySelectorAll('[data-deity-id]').forEach((chip) => {
+      chip.addEventListener('click', () => loadGraph(chip.dataset.deityId));
+    });
+
+    // Wire concept headers.
+    els.detailPanel.querySelectorAll('[data-concept-id]').forEach((el) => {
+      el.addEventListener('click', () => selectConcept(el.dataset.conceptId));
+    });
+
+    // Wire history breadcrumbs.
+    els.detailPanel.querySelectorAll('[data-history-id]').forEach((btn) => {
+      btn.addEventListener('click', () => loadGraph(btn.dataset.historyId, { skipHistory: true }));
+    });
+  }
+
+  function renderDeityDetail(center) {
+    const pantheonColorValue = pantheonColor(center.pantheon);
+
+    let html = `
+      <div class="detail-card">
+        <div class="detail-header">
+          <span class="detail-pantheon" style="color:${pantheonColorValue}">${escapeHtml(center.pantheonLabel || capitalize(center.pantheon))}</span>
+          <h2 class="detail-title">${escapeHtml(center.unicode)}</h2>
+          <p class="detail-domain">${escapeHtml(center.domain || '')}</p>
+        </div>
+        <div class="detail-actions">
+          <a href="/sites/${center.id}/" class="btn btn-primary btn-sm">Enter Temple</a>
+          <a href="/api/v1/names/${center.id}" class="btn btn-outline btn-sm">API Record</a>
+          <button class="btn btn-outline btn-sm" id="detail-compare-btn" data-id="${center.id}" type="button">Compare</button>
+        </div>
+        <p class="detail-description">
+          ${escapeHtml(center.meaning || `Explore the echoes of ${center.unicode} across pantheons and concepts.`)}
+        </p>
+      </div>
+    `;
+
+    if (!state.branches.length) {
+      html += `<div class="detail-card"><p class="body-sm" style="color:var(--text-dim)">No connections match the current filters.</p></div>`;
+      return html;
+    }
+
+    html += '<h3 class="detail-section-title">Echoes</h3>';
+
+    for (const branch of state.branches) {
+      const color = domainColor(branch.domain);
+      html += `
+        <article class="concept-group" style="--concept-color: ${color}">
+          <div class="concept-group-header" data-concept-id="${branch.conceptId}" style="cursor:pointer">
+            <h4 class="concept-group-title">${escapeHtml(branch.label)}</h4>
+            <span class="concept-group-domain">${escapeHtml(branch.domain?.label || branch.category)}</span>
+          </div>
+          <p class="concept-group-description">${escapeHtml(branch.concept?.description || '')}</p>
+          <div class="deity-chips">
+            ${branch.items
+              .map(
+                (item) => `
+              <button class="deity-chip" data-deity-id="${item.targetId}" type="button">
+                <span class="deity-chip-swatch" style="background:${pantheonColor(item.target.pantheon)}"></span>
+                <span>${escapeHtml(item.target.unicode)}</span>
+                <span class="deity-chip-strength">${'·'.repeat(item.strength)}</span>
+              </button>
+            `,
+              )
+              .join('')}
+          </div>
+        </article>
+      `;
+    }
+
+    return html;
+  }
+
+  function renderConceptDetail(conceptId) {
+    const branch = state.branches.find((b) => b.conceptId === conceptId);
+    if (!branch) return '';
+
+    const center = state.nodesById.get(state.centerId);
+    const color = domainColor(branch.domain);
+
+    return `
+      <div class="detail-card" style="border-left: 4px solid ${color}">
+        <div class="detail-header">
+          <span class="detail-pantheon" style="color:${color}">${escapeHtml(branch.domain?.label || branch.category)}</span>
+          <h2 class="detail-title" style="font-size:1.6rem">${escapeHtml(branch.label)}</h2>
+          <p class="detail-domain">${branch.items.length} echo${branch.items.length === 1 ? '' : 'es'} across traditions</p>
+        </div>
+        <p class="detail-description">${escapeHtml(branch.concept?.description || '')}</p>
+        <button class="btn btn-outline btn-sm" id="concept-back-btn" type="button">← Back to ${escapeHtml(center.unicode)}</button>
+      </div>
+      <h3 class="detail-section-title">Connected to ${escapeHtml(center.unicode)}</h3>
+      <div class="concept-group" style="--concept-color: ${color}">
+        <div class="deity-chips">
+          ${branch.items
+            .map(
+              (item) => `
+            <button class="deity-chip" data-deity-id="${item.targetId}" type="button">
+              <span class="deity-chip-swatch" style="background:${pantheonColor(item.target.pantheon)}"></span>
+              <span>${escapeHtml(item.target.unicode)}</span>
+              <span class="deity-chip-strength">${'·'.repeat(item.strength)}</span>
+            </button>
+          `,
+            )
+            .join('')}
+        </div>
+      </div>
+    `;
+  }
+
   function renderLegend() {
     const pantheons = Array.from(new Set(state.graphData.nodes.map((n) => n.pantheon))).sort();
-    const domains = state.taxonomy?.domains ? Object.values(state.taxonomy.domains).sort((a, b) => a.order - b.order) : [];
-
     els.legend.innerHTML =
-      '<span class="legend-title">Domains</span>' +
-      domains
-        .map(
-          (d) =>
-            `<div class="legend-item"><span class="legend-swatch" style="background:${d.color}"></span><span>${escapeHtml(d.label)}</span></div>`,
-        )
-        .join('') +
-      '<span class="legend-title" style="margin-top:10px">Pantheons</span>' +
+      '<span class="legend-title">Pantheons</span>' +
       pantheons
         .map(
           (p) =>
             `<div class="legend-item"><span class="legend-swatch" style="background:${pantheonColor(p)}"></span><span>${capitalize(p)}</span></div>`,
         )
         .join('');
-  }
-
-  function selectConcept(conceptId) {
-    state.selectedId = conceptId;
-    state.selectedType = 'concept';
-    renderSidebar();
-  }
-
-  function renderSidebarForCenter() {
-    state.selectedId = state.centerId;
-    state.selectedType = 'center';
-    renderSidebar();
-  }
-
-  function renderSidebar() {
-    if (!state.selectedId) {
-      els.sidebarEmpty.hidden = false;
-      els.sidebarContent.hidden = true;
-      return;
-    }
-
-    if (state.selectedType === 'concept') {
-      renderConceptSidebar(state.selectedId);
-    } else {
-      renderDeitySidebar(state.selectedId);
-    }
-  }
-
-  function renderDeitySidebar(deityId) {
-    const node = state.nodesById.get(deityId);
-    if (!node) return;
-
-    els.sidebarEmpty.hidden = true;
-    els.sidebarContent.hidden = false;
-    els.sidebarConceptSection.hidden = true;
-
-    els.sidebarPantheon.textContent = node.pantheonLabel || capitalize(node.pantheon);
-    els.sidebarPantheon.style.color = pantheonColor(node.pantheon);
-    els.sidebarTitle.textContent = node.unicode;
-    els.sidebarDomain.textContent = node.domain || '';
-    els.sidebarTempleLink.href = `/sites/${deityId}/`;
-    els.sidebarTempleLink.textContent = 'Enter Temple';
-    els.sidebarApiLink.href = `/api/v1/names/${deityId}`;
-
-    const branchesForNode = state.branches.filter((b) => b.items.some((i) => i.targetId === deityId));
-    let html = '';
-    if (!branchesForNode.length) {
-      html = '<li class="connection-empty">No visible connections for this filter set.</li>';
-    } else {
-      for (const branch of branchesForNode) {
-        const item = branch.items.find((i) => i.targetId === deityId);
-        html += `
-          <li class="connection-item" data-concept="${branch.conceptId}">
-            <span class="connection-strength s${item.strength}">${item.strength}</span>
-            <div class="connection-body">
-              <div class="connection-target">${escapeHtml(branch.label)}</div>
-              <div class="connection-rel">${escapeHtml(branch.domain?.label || branch.category)}${item.note ? ` · ${escapeHtml(item.note)}` : ''}</div>
-            </div>
-          </li>
-        `;
-      }
-    }
-    els.connectionList.innerHTML = html;
-    wireSidebarClicks();
-  }
-
-  function renderConceptSidebar(conceptId) {
-    const branch = state.branches.find((b) => b.conceptId === conceptId);
-    if (!branch) return;
-
-    els.sidebarEmpty.hidden = true;
-    els.sidebarContent.hidden = false;
-    els.sidebarConceptSection.hidden = false;
-
-    els.sidebarPantheon.textContent = branch.domain?.label || 'Concept';
-    els.sidebarPantheon.style.color = domainColor(branch.domain);
-    els.sidebarTitle.textContent = branch.label;
-    els.sidebarDomain.textContent = `${branch.items.length} echo${branch.items.length === 1 ? '' : 'es'} across traditions`;
-    els.sidebarTempleLink.href = '/connections/';
-    els.sidebarTempleLink.textContent = 'Browse all';
-    els.sidebarApiLink.href = '/api/v1/connections/taxonomy/';
-    els.sidebarConceptDescription.textContent = branch.concept?.description || '';
-
-    const html =
-      branch.items
-        .map(
-          (item) => `
-        <li class="connection-item" data-target="${item.targetId}">
-          <span class="connection-strength" style="background:${pantheonColor(item.target.pantheon)}"></span>
-          <div class="connection-body">
-            <div class="connection-target">${escapeHtml(item.target.unicode)}</div>
-            <div class="connection-rel">${escapeHtml(item.target.pantheonLabel || capitalize(item.target.pantheon))}${item.target.domain ? ` · ${escapeHtml(item.target.domain)}` : ''}</div>
-          </div>
-        </li>
-      `,
-        )
-        .join('') || '<li class="connection-empty">No deities match the current filters.</li>';
-    els.connectionList.innerHTML = html;
-    wireSidebarClicks();
-  }
-
-  function wireSidebarClicks() {
-    els.connectionList.querySelectorAll('.connection-item').forEach((item) => {
-      item.addEventListener('click', () => {
-        const targetId = item.dataset.target;
-        const conceptId = item.dataset.concept;
-        if (targetId) {
-          loadGraph(targetId);
-        } else if (conceptId) {
-          selectConcept(conceptId);
-        }
-      });
-    });
-  }
-
-  function renderMobileExplorer() {
-    if (!state.branches.length) {
-      els.explorerEmpty.hidden = false;
-      els.explorerContent.innerHTML = '';
-      return;
-    }
-    els.explorerEmpty.hidden = true;
-
-    els.explorerContent.innerHTML = state.branches
-      .map((branch) => {
-        const chips = branch.items
-          .map(
-            (item) => `
-            <button class="branch-deity-chip" data-id="${item.targetId}" type="button">
-              <span class="branch-deity-swatch" style="background:${pantheonColor(item.target.pantheon)}"></span>
-              <span>${escapeHtml(item.target.unicode)}</span>
-            </button>
-          `,
-          )
-          .join('');
-        return `
-          <article class="branch-card" style="--domain-color: ${domainColor(branch.domain)}">
-            <div class="branch-header">
-              <h3 class="branch-title">${escapeHtml(branch.label)}</h3>
-              <span class="branch-domain">${escapeHtml(branch.domain?.label || branch.category)}</span>
-            </div>
-            <p class="branch-description">${escapeHtml(branch.concept?.description || '')}</p>
-            <div class="branch-deities">${chips}</div>
-          </article>
-        `;
-      })
-      .join('');
-
-    els.explorerContent.querySelectorAll('.branch-deity-chip').forEach((chip) => {
-      chip.addEventListener('click', () => {
-        loadGraph(chip.dataset.id);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-    });
   }
 
   function renderDomainFilters() {
@@ -668,8 +679,10 @@
     if (e.key === 'Escape') closeSearch();
   });
   document.addEventListener('click', (e) => {
-    if (e.target.closest('.search-wrap')) return;
+    if (e.target.closest('.search-wrap') || e.target.closest('.compare-search-wrap')) return;
     closeSearch();
+    els.compareSearchResults.classList.remove('is-open');
+    els.compareSearchResults.innerHTML = '';
   });
 
   function debounce(fn, wait) {
@@ -692,11 +705,12 @@
     state.activeCategories = new Set(['function', 'phenomenon', 'narrative-role']);
     state.activePantheons.clear();
     state.activeDomains.clear();
+    state.history = [];
     if (state.taxonomy?.domains) {
       Object.values(state.taxonomy.domains).forEach((d) => state.activeDomains.add(d.id));
     }
     renderDomainFilters();
-    loadGraph(state.centerId || DEFAULT_CENTER);
+    loadGraph(DEFAULT_CENTER);
   });
 
   els.randomBtn.addEventListener('click', () => {
@@ -705,6 +719,19 @@
     const idx = Math.floor(Math.random() * deities.length);
     loadGraph(deities[idx].id);
   });
+
+  // ─── Guide ───
+  function initGuide() {
+    if (localStorage.getItem(GUIDE_DISMISSED_KEY)) {
+      els.guide.classList.add('is-dismissed');
+    }
+    els.guideClose.addEventListener('click', () => {
+      els.guide.classList.add('is-dismissed');
+      try {
+        localStorage.setItem(GUIDE_DISMISSED_KEY, '1');
+      } catch {}
+    });
+  }
 
   // ─── Compare ───
   function openCompare() {
@@ -750,13 +777,14 @@
       .sort((a, b) => (a.order || 0) - (b.order || 0));
 
     const centerBranches = state.branches.map((b) => b.concept).filter(Boolean);
-    const targetBranches = buildSunburstTree(
-      state.compareTarget,
-      state.compareGraph.edges,
-      new Map(state.compareGraph.nodes.map((n) => [n.id, n])),
-      state.taxonomy,
-      { minStrength: 1, activeCategories: state.activeCategories },
-    )?.children[0].children.map((b) => b.concept).filter(Boolean) || [];
+    const targetBranches =
+      buildRadialHubLayout(
+        state.compareTarget,
+        state.compareGraph.edges,
+        new Map(state.compareGraph.nodes.map((n) => [n.id, n])),
+        state.taxonomy,
+        { minStrength: 1, activeCategories: state.activeCategories, activePantheons: state.activePantheons },
+      )?.spokes.map((s) => s.concept) || [];
 
     const centerOnly = centerBranches.filter((c) => !sharedIds.includes(c.id)).sort((a, b) => (a.order || 0) - (b.order || 0));
     const targetOnly = targetBranches.filter((c) => !sharedIds.includes(c.id)).sort((a, b) => (a.order || 0) - (b.order || 0));
@@ -794,10 +822,19 @@
       });
     });
 
-    // Highlight shared concept arcs in the main sunburst.
+    // Highlight shared concept links in the main graph.
     if (sharedIds.length) {
-      els.svg.selectAll('.sunburst-arc').classed('dimmed', (d) => d.type === 'concept' && !sharedIds.includes(d.id));
-      els.svg.selectAll('.sunburst-arc').classed('highlight', (d) => d.type === 'concept' && sharedIds.includes(d.id));
+      els.svg.selectAll('.hub-link').classed('dimmed', (l) => !sharedIds.includes(l.concept.id));
+      els.svg.selectAll('.hub-node').classed('dimmed', (n) => {
+        if (n.id === state.compareTarget) return false;
+        return !state.graphData.edges.some(
+          (e) =>
+            (e.source === state.centerId || e.source === state.compareTarget) &&
+            (e.target === n.id || e.source === n.id) &&
+            sharedIds.includes(e.concept?.id || e.relationship),
+        );
+      });
+      els.svg.selectAll('.hub-link').classed('highlight', (l) => sharedIds.includes(l.concept.id));
     }
   }
 
@@ -819,14 +856,45 @@
     }
   });
 
+  // Delegate detail panel clicks.
+  els.detailPanel.addEventListener('click', (e) => {
+    const deityChip = e.target.closest('[data-deity-id]');
+    if (deityChip) {
+      loadGraph(deityChip.dataset.deityId);
+      return;
+    }
+    const conceptHeader = e.target.closest('[data-concept-id]');
+    if (conceptHeader) {
+      selectConcept(conceptHeader.dataset.conceptId);
+      return;
+    }
+    const backBtn = e.target.closest('#concept-back-btn');
+    if (backBtn) {
+      state.selectedId = state.centerId;
+      state.selectedType = 'center';
+      renderDetailPanel();
+      return;
+    }
+    const compareBtn = e.target.closest('#detail-compare-btn');
+    if (compareBtn) {
+      openCompare();
+      return;
+    }
+    const historyBtn = e.target.closest('[data-history-id]');
+    if (historyBtn) {
+      loadGraph(historyBtn.dataset.historyId, { skipHistory: true });
+    }
+  });
+
   // ─── Resize ───
   const resizeObserver = new ResizeObserver(() => {
-    if (state.tree) recomputeAndRender();
+    if (state.hub) recomputeAndRender();
   });
   resizeObserver.observe(els.graphWrap);
 
   // ─── Init ───
   async function init() {
+    initGuide();
     await loadTaxonomy();
     await loadGraph(getInitialCenter());
   }
