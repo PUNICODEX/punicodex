@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf17">
     <link rel="stylesheet" href="../styles.css?v=perf4">
-    <link rel="stylesheet" href="patron.css?v=2">
+    <link rel="stylesheet" href="patron.css?v=3">
 </head>
 <body>
     <!-- Global Strip -->
@@ -44,166 +44,166 @@
                 <a href="../creatives/index.html" class="nav-link">Creatives</a>
                 <a href="./" class="nav-link active">Patrons</a>
             </div>
-            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
             </button>
         </div>
     </nav>
 
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true">
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../scholars/index.html" class="nav-link">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="./" class="nav-link active">Patrons</a>
+    </div>
+
     <main class="temple-patron-page">
         <!-- Hero -->
-        <section class="patron-hero-section">
+        <section class="patron-hero-section" id="patron-hero">
             <div class="container">
+                <div class="patron-hero-seal" aria-hidden="true">
+                    <svg viewBox="0 0 200 200" class="patron-seal-svg">
+                        <circle cx="100" cy="100" r="94" fill="none" stroke="rgba(212,175,55,0.12)" stroke-width="1"/>
+                        <circle cx="100" cy="100" r="84" fill="none" stroke="rgba(212,175,55,0.18)" stroke-width="1" stroke-dasharray="4 6"/>
+                        <circle cx="100" cy="100" r="74" fill="none" stroke="rgba(212,175,55,0.10)" stroke-width="1"/>
+                    </svg>
+                    <span class="patron-seal-icon">✦</span>
+                </div>
                 <p class="section-eyebrow" id="patron-eyebrow">PUNYCODEX Patronage</p>
-                <h1 class="section-title display-lg" id="patron-title">Honor This Temple</h1>
+                <h1 class="section-title display-lg" id="patron-title">The Patron Wall</h1>
                 <p class="patron-hero-lead">
-                    Become a monthly patron and keep the original Unicode name of this archetype alive on the open web.
-                    Your name, title, and chosen link will be displayed on the temple wall for as long as your patronage is active.
+                    Twenty permanent plaques commemorate the supporters who keep this temple’s original Unicode name alive.
+                    Each patron is engraved with their chosen name, title, and verified link.
                 </p>
                 <div class="patron-hero-stats" id="patron-hero-stats">
                     <div class="patron-stat">
                         <span class="patron-stat-value" id="active-patron-count">—</span>
-                        <span class="patron-stat-label">Active Patrons</span>
-                    </div>
-                    <div class="patron-stat patron-stat--scarcity">
-                        <span class="patron-stat-value" id="spots-remaining">—</span>
-                        <span class="patron-stat-label">Spots Remaining</span>
+                        <span class="patron-stat-label">Claimed Plaques</span>
                     </div>
                     <div class="patron-stat">
-                        <span class="patron-stat-value">$5–$10</span>
-                        <span class="patron-stat-label">Per Month</span>
+                        <span class="patron-stat-value" id="spots-remaining">—</span>
+                        <span class="patron-stat-label">Available Plaques</span>
                     </div>
-                </div>
-                <div class="patron-hero-scarcity" id="patron-hero-scarcity" hidden>
-                    <span class="scarcity-dot"></span>
-                    <span id="scarcity-message">Only a few spots left on this temple wall.</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Benefits -->
-        <section class="section patron-benefits-section">
-            <div class="container">
-                <div class="patron-benefits-grid">
-                    <div class="patron-benefit-card reveal-up">
-                        <div class="patron-benefit-icon">◈</div>
-                        <h3 class="patron-benefit-title">Name on the Wall</h3>
-                        <p>Your display name and chosen title are carved into the patron wall of this temple.</p>
-                    </div>
-                    <div class="patron-benefit-card reveal-up">
-                        <div class="patron-benefit-icon">↗</div>
-                        <h3 class="patron-benefit-title">Verified Link</h3>
-                        <p>Link your name to X, Instagram, LinkedIn, TikTok, YouTube, GitHub, or your own website.</p>
-                    </div>
-                    <div class="patron-benefit-card reveal-up">
-                        <div class="patron-benefit-icon">✦</div>
-                        <h3 class="patron-benefit-title">Support Restoration</h3>
-                        <p>Every dollar sustains the scholarly restoration of Unicode names across the pantheon.</p>
-                    </div>
-                    <div class="patron-benefit-card reveal-up">
-                        <div class="patron-benefit-icon">✉</div>
-                        <h3 class="patron-benefit-title">Leave a Message</h3>
-                        <p>Share a short dedication that appears alongside your name on the temple wall.</p>
+                    <div class="patron-stat">
+                        <span class="patron-stat-value">20</span>
+                        <span class="patron-stat-label">Total Plaques</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Checkout Form -->
-        <section class="section patron-form-section" id="join">
+        <!-- The Wall -->
+        <section class="section patron-wall-section" id="wall">
             <div class="container">
-                <div class="patron-form-card">
-                    <div class="patron-form-header">
-                        <p class="section-eyebrow">Join the Wall</p>
-                        <h2 class="section-title">Become a Patron</h2>
-                        <p class="patron-form-subtitle">Set your monthly amount, add your details, and complete secure checkout.</p>
-                    </div>
+                <div class="patron-wall-header">
+                    <p class="section-eyebrow">In Honor Of</p>
+                    <h2 class="section-title">Twenty Plaques</h2>
+                    <p class="patron-wall-subtitle">Active patrons appear in gold. Available plaques await the next supporter.</p>
+                </div>
+                <div class="patron-wall" id="patron-wall">
+                    <!-- Plaques injected here -->
+                </div>
+            </div>
+        </section>
 
-                    <div class="patron-sold-out" id="patron-sold-out" hidden>
-                        <div class="patron-sold-out-icon">✦</div>
-                        <h3 class="patron-sold-out-title">This Temple Wall Is Full</h3>
-                        <p class="patron-sold-out-body">All 20 patron spots have been claimed. Check back later, or explore another temple to support.</p>
-                        <a href="https://punycodex.com/pantheon/" class="btn btn-primary btn-lg">Explore the Pantheon</a>
-                    </div>
-
-                    <form class="patron-form" id="patron-form" novalidate>
-                        <div class="patron-form-row">
-                            <div class="patron-field">
-                                <label for="patron-name">Display Name</label>
-                                <input type="text" id="patron-name" name="displayName" maxlength="48" placeholder="Your name or alias" required>
-                            </div>
-                            <div class="patron-field">
-                                <label for="patron-title">Title <span class="patron-field-hint">(optional)</span></label>
-                                <input type="text" id="patron-title-input" name="title" maxlength="48" placeholder="e.g. Lexicon Keeper">
-                            </div>
+        <!-- Reservation Form -->
+        <section class="section patron-form-section" id="reserve">
+            <div class="container">
+                <div class="patron-form-layout">
+                    <div class="patron-form-card">
+                        <div class="patron-form-header">
+                            <p class="section-eyebrow">Reserve a Plaque</p>
+                            <h2 class="section-title">Join the Wall</h2>
+                            <p class="patron-form-subtitle">Choose your monthly amount, add your details, and complete secure checkout.</p>
                         </div>
 
-                        <div class="patron-field">
-                            <label for="patron-email">Email</label>
-                            <input type="email" id="patron-email" name="email" maxlength="254" placeholder="you@example.com" required>
+                        <div class="patron-sold-out" id="patron-sold-out" hidden>
+                            <div class="patron-sold-out-icon">✦</div>
+                            <h3 class="patron-sold-out-title">The Wall Is Complete</h3>
+                            <p class="patron-sold-out-body">All 20 plaques have been claimed. Thank you for your interest — explore another temple to support.</p>
+                            <a href="https://punycodex.com/pantheon/" class="btn btn-primary btn-lg">Explore the Pantheon</a>
                         </div>
 
-                        <div class="patron-field">
-                            <label for="patron-message">Dedication <span class="patron-field-hint">(optional, 200 chars)</span></label>
-                            <textarea id="patron-message" name="message" maxlength="200" rows="3" placeholder="A short dedication to this archetype..."></textarea>
-                        </div>
-
-                        <div class="patron-amount-field">
-                            <label for="patron-amount">Monthly Amount</label>
-                            <div class="patron-amount-slider-wrap">
-                                <input type="range" id="patron-amount" name="amountCents" min="500" max="1000" step="50" value="700">
-                                <div class="patron-amount-display">
-                                    <span id="patron-amount-value">$7.00</span>
-                                    <span class="patron-amount-period">/month</span>
+                        <form class="patron-form" id="patron-form" novalidate>
+                            <div class="patron-form-row">
+                                <div class="patron-field">
+                                    <label for="patron-name">Display Name</label>
+                                    <input type="text" id="patron-name" name="displayName" maxlength="48" placeholder="Your name or alias" required>
+                                </div>
+                                <div class="patron-field">
+                                    <label for="patron-title-input">Title <span class="patron-field-hint">(optional)</span></label>
+                                    <input type="text" id="patron-title-input" name="title" maxlength="48" placeholder="e.g. Lexicon Keeper">
                                 </div>
                             </div>
-                            <div class="patron-amount-presets">
-                                <button type="button" data-cents="500">$5</button>
-                                <button type="button" data-cents="700" class="active">$7</button>
-                                <button type="button" data-cents="1000">$10</button>
+
+                            <div class="patron-field">
+                                <label for="patron-email">Email</label>
+                                <input type="email" id="patron-email" name="email" maxlength="254" placeholder="you@example.com" required>
+                            </div>
+
+                            <div class="patron-field">
+                                <label for="patron-message">Subtext <span class="patron-field-hint">(optional, 120 chars)</span></label>
+                                <textarea id="patron-message" name="message" maxlength="120" rows="2" placeholder="A short dedication or motto to engrave beneath your name..."></textarea>
+                            </div>
+
+                            <div class="patron-fixed-price">
+                                <div class="patron-price-mark">
+                                    <span class="patron-price-amount">$5</span>
+                                    <span class="patron-price-period">/month per plaque</span>
+                                </div>
+                                <p class="patron-price-note">One fixed price. Cancel anytime.</p>
+                            </div>
+
+                            <div class="patron-social-field">
+                                <label>Verified Social Link <span class="patron-field-hint">(optional)</span></label>
+                                <div class="patron-social-tabs" id="patron-social-tabs">
+                                    <button type="button" data-platform="x" class="active">X</button>
+                                    <button type="button" data-platform="instagram">Instagram</button>
+                                    <button type="button" data-platform="linkedin">LinkedIn</button>
+                                    <button type="button" data-platform="tiktok">TikTok</button>
+                                    <button type="button" data-platform="youtube">YouTube</button>
+                                    <button type="button" data-platform="github">GitHub</button>
+                                    <button type="button" data-platform="website">Website</button>
+                                </div>
+                                <div class="patron-social-input-wrap">
+                                    <span class="patron-social-prefix" id="patron-social-prefix">https://x.com/</span>
+                                    <input type="url" id="patron-social-url" name="socialUrl" maxlength="500" placeholder="yourhandle">
+                                </div>
+                                <p class="patron-social-help" id="patron-social-help">Your public profile URL on X.</p>
+                                <p class="patron-social-error" id="patron-social-error" hidden></p>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-lg patron-submit" id="patron-submit">
+                                <span>Proceed to Secure Checkout</span>
+                            </button>
+                            <p class="patron-form-note">Payments are processed by Stripe. Cancel anytime.</p>
+                            <p class="patron-form-error" id="patron-form-error" hidden></p>
+                        </form>
+                    </div>
+
+                    <aside class="patron-preview-card" id="patron-preview-card" aria-label="Plaque preview">
+                        <div class="patron-preview-header">
+                            <span class="patron-preview-seal">✦</span>
+                            <span class="patron-preview-label">Plaque Preview</span>
+                        </div>
+                        <div class="patron-preview-plaque">
+                            <span class="patron-preview-number">01</span>
+                            <div class="patron-preview-content">
+                                <div class="patron-preview-avatar" id="preview-avatar">?</div>
+                                <h3 class="patron-preview-name" id="preview-name">Your Name</h3>
+                                <p class="patron-preview-title" id="preview-title"></p>
+                                <p class="patron-preview-message" id="preview-message">Your dedication will be engraved here.</p>
+                                <div class="patron-preview-footer">
+                                    <span class="patron-preview-platform" id="preview-platform"></span>
+                                    <span class="patron-preview-amount" id="preview-amount">$5.00/mo</span>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="patron-social-field">
-                            <label>Verified Social Link <span class="patron-field-hint">(optional)</span></label>
-                            <div class="patron-social-tabs" id="patron-social-tabs">
-                                <button type="button" data-platform="x" class="active">X</button>
-                                <button type="button" data-platform="instagram">Instagram</button>
-                                <button type="button" data-platform="linkedin">LinkedIn</button>
-                                <button type="button" data-platform="tiktok">TikTok</button>
-                                <button type="button" data-platform="youtube">YouTube</button>
-                                <button type="button" data-platform="github">GitHub</button>
-                                <button type="button" data-platform="website">Website</button>
-                            </div>
-                            <div class="patron-social-input-wrap">
-                                <span class="patron-social-prefix" id="patron-social-prefix">https://x.com/</span>
-                                <input type="url" id="patron-social-url" name="socialUrl" maxlength="500" placeholder="yourhandle">
-                            </div>
-                            <p class="patron-social-help" id="patron-social-help">Your public profile URL on X.</p>
-                            <p class="patron-social-error" id="patron-social-error" hidden></p>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary btn-lg patron-submit" id="patron-submit">
-                            <span>Proceed to Secure Checkout</span>
-                        </button>
-                        <p class="patron-form-note">Payments are processed by Stripe. Cancel anytime.</p>
-                        <p class="patron-form-error" id="patron-form-error" hidden></p>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-        <!-- Patron Wall -->
-        <section class="section patron-wall-section">
-            <div class="container">
-                <p class="section-eyebrow">The Temple Wall</p>
-                <h2 class="section-title">Current Patrons</h2>
-                <div class="patron-wall" id="patron-wall">
-                    <!-- Patron cards injected here -->
-                </div>
-                <div class="patron-wall-empty" id="patron-wall-empty" hidden>
-                    <p>No active patrons yet. Be the first to honor this temple.</p>
-                    <a href="#join" class="btn-primary">Become the First Patron</a>
+                        <p class="patron-preview-hint">This is how your plaque will appear on the wall.</p>
+                    </aside>
                 </div>
             </div>
         </section>
@@ -238,6 +238,6 @@
         </div>
     </footer>
 
-    <script src="patron.js?v=2"></script>
+    <script src="patron.js?v=3"></script>
 </body>
 </html>

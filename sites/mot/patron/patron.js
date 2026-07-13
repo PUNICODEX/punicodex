@@ -11,20 +11,23 @@
     heroScarcity: document.getElementById('patron-hero-scarcity'),
     scarcityMessage: document.getElementById('scarcity-message'),
     soldOut: document.getElementById('patron-sold-out'),
-    formHeader: document.querySelector('.patron-form-header'),
     wall: document.getElementById('patron-wall'),
     wallEmpty: document.getElementById('patron-wall-empty'),
     form: document.getElementById('patron-form'),
     formError: document.getElementById('patron-form-error'),
     submit: document.getElementById('patron-submit'),
-    amountInput: document.getElementById('patron-amount'),
-    amountValue: document.getElementById('patron-amount-value'),
-    amountPresets: document.querySelectorAll('.patron-amount-presets button'),
     socialTabs: document.getElementById('patron-social-tabs'),
     socialPrefix: document.getElementById('patron-social-prefix'),
     socialUrl: document.getElementById('patron-social-url'),
     socialHelp: document.getElementById('patron-social-help'),
     socialError: document.getElementById('patron-social-error'),
+    previewCard: document.getElementById('patron-preview-card'),
+    previewAvatar: document.getElementById('preview-avatar'),
+    previewName: document.getElementById('preview-name'),
+    previewTitle: document.getElementById('preview-title'),
+    previewMessage: document.getElementById('preview-message'),
+    previewPlatform: document.getElementById('preview-platform'),
+    previewAmount: document.getElementById('preview-amount'),
   };
 
   const SOCIAL_CONFIG = {
@@ -80,7 +83,7 @@
   };
 
   let selectedPlatform = 'x';
-  let selectedCents = 700;
+  let selectedCents = 500;
 
   function escapeHtml(text) {
     const div = document.createElement('div');
@@ -121,9 +124,27 @@
     return icons[platform] || '↗';
   }
 
-  function renderPatron(patron) {
-    const card = document.createElement('article');
-    card.className = 'patron-card';
+  function renderPlaque(slotNumber, patron) {
+    const article = document.createElement('article');
+    const isClaimed = !!patron;
+    article.className = `patron-plaque ${isClaimed ? 'patron-plaque--claimed' : 'patron-plaque--available'}`;
+    article.setAttribute('data-slot', String(slotNumber));
+
+    if (!isClaimed) {
+      article.addEventListener('click', () => {
+        document.getElementById('reserve')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.getElementById('patron-name')?.focus();
+      });
+      article.innerHTML = `
+        <span class="plaque-number">${String(slotNumber).padStart(2, '0')}</span>
+        <div class="plaque-content">
+          <span class="plaque-available-icon">+</span>
+          <h3 class="plaque-name">Available</h3>
+          <p class="plaque-title">Reserve this plaque</p>
+        </div>
+      `;
+      return article;
+    }
 
     const displayName = patron.display_name || 'Anonymous Patron';
     const title = patron.title || '';
@@ -136,24 +157,23 @@
       : escapeHtml(displayName);
 
     const platformHtml = platform && url
-      ? `<span class="patron-card-platform"><span>${platformIcon(platform)}</span> ${escapeHtml(platform)}</span>`
+      ? `<span class="plaque-platform"><span>${platformIcon(platform)}</span> ${escapeHtml(platform)}</span>`
       : '<span></span>';
 
-    card.innerHTML = `
-      <div class="patron-card-header">
-        <div class="patron-avatar" aria-hidden="true">${escapeHtml(displayName.charAt(0).toUpperCase())}</div>
-        <div>
-          <h3 class="patron-card-name">${nameHtml}</h3>
-          ${title ? `<p class="patron-card-title">${escapeHtml(title)}</p>` : ''}
+    article.innerHTML = `
+      <span class="plaque-number">${String(slotNumber).padStart(2, '0')}</span>
+      <div class="plaque-content">
+        <div class="plaque-avatar" aria-hidden="true">${escapeHtml(displayName.charAt(0).toUpperCase())}</div>
+        <h3 class="plaque-name">${nameHtml}</h3>
+        ${title ? `<p class="plaque-title">${escapeHtml(title)}</p>` : '<p class="plaque-title">Patron</p>'}
+        ${message ? `<p class="plaque-message">“${escapeHtml(message)}”</p>` : ''}
+        <div class="plaque-footer">
+          ${platformHtml}
+          <span>${formatDollars(patron.amount_cents || selectedCents)}/mo</span>
         </div>
       </div>
-      ${message ? `<p class="patron-card-message">“${escapeHtml(message)}”</p>` : ''}
-      <div class="patron-card-meta">
-        ${platformHtml}
-        <span>${formatDollars(patron.amount_cents || 700)}/mo</span>
-      </div>
     `;
-    return card;
+    return article;
   }
 
   function updateLimitUI(data) {
@@ -164,24 +184,12 @@
     if (els.activeCount) els.activeCount.textContent = String(activeCount);
     if (els.spotsRemaining) els.spotsRemaining.textContent = String(remaining);
 
-    if (els.heroScarcity) {
-      els.heroScarcity.hidden = remaining > 5 || remaining === 0;
-    }
-    if (els.scarcityMessage) {
-      if (remaining <= 3 && remaining > 0) {
-        els.scarcityMessage.textContent = `Only ${remaining} spot${remaining === 1 ? '' : 's'} left — claim yours before the wall is full.`;
-      } else {
-        els.scarcityMessage.textContent = 'Only a few spots left on this temple wall.';
-      }
-    }
-
     if (data.isFull) {
       if (els.form) els.form.hidden = true;
       if (els.soldOut) els.soldOut.hidden = false;
-      if (els.formHeader) {
-        const subtitle = els.formHeader.querySelector('.patron-form-subtitle');
-        if (subtitle) subtitle.textContent = 'This temple has reached its limit of 20 patrons.';
-      }
+      const subtitle = document.querySelector('.patron-form-subtitle');
+      if (subtitle) subtitle.textContent = 'This temple has reached its limit of 20 plaques.';
+      if (els.previewCard) els.previewCard.hidden = true;
     }
   }
 
@@ -192,14 +200,13 @@
       const res = await fetch(`${API_BASE}/api/patrons/${encodeURIComponent(templeId)}`);
       if (!res.ok) throw new Error('Unable to load patrons');
       const data = await res.json();
-      const patrons = data.patrons || [];
+      const patrons = (data.patrons || []).slice(0, 20);
+      const limit = Number(data.limit) || 20;
 
       els.wall.innerHTML = '';
-      if (patrons.length === 0) {
-        if (els.wallEmpty) els.wallEmpty.hidden = false;
-      } else {
-        if (els.wallEmpty) els.wallEmpty.hidden = true;
-        patrons.forEach((patron) => els.wall.appendChild(renderPatron(patron)));
+      for (let slot = 1; slot <= limit; slot += 1) {
+        const patron = patrons[slot - 1] || null;
+        els.wall.appendChild(renderPlaque(slot, patron));
       }
 
       updateLimitUI(data);
@@ -210,24 +217,34 @@
     }
   }
 
-  function updateAmountDisplay(cents) {
-    selectedCents = Number(cents);
-    if (els.amountInput) els.amountInput.value = selectedCents;
-    if (els.amountValue) els.amountValue.textContent = formatDollars(selectedCents);
+  function updatePreview() {
+    if (!els.previewCard) return;
 
-    els.amountPresets.forEach((btn) => {
-      btn.classList.toggle('active', Number(btn.dataset.cents) === selectedCents);
-    });
-  }
+    const name = (document.getElementById('patron-name')?.value || '').trim();
+    const title = (document.getElementById('patron-title-input')?.value || '').trim();
+    const message = (document.getElementById('patron-message')?.value || '').trim();
+    const socialRaw = (els.socialUrl?.value || '').trim();
+    const config = SOCIAL_CONFIG[selectedPlatform];
 
-  function bindAmountControls() {
-    if (els.amountInput) {
-      els.amountInput.addEventListener('input', (e) => updateAmountDisplay(e.target.value));
+    if (els.previewAvatar) els.previewAvatar.textContent = name ? name.charAt(0).toUpperCase() : '?';
+    if (els.previewName) els.previewName.textContent = name || 'Your Name';
+    if (els.previewTitle) {
+      els.previewTitle.textContent = title;
+      els.previewTitle.style.display = title ? 'block' : 'none';
     }
-
-    els.amountPresets.forEach((btn) => {
-      btn.addEventListener('click', () => updateAmountDisplay(btn.dataset.cents));
-    });
+    if (els.previewMessage) {
+      els.previewMessage.textContent = message || 'Your dedication will appear here.';
+      els.previewMessage.classList.toggle('is-placeholder', !message);
+    }
+    if (els.previewAmount) els.previewAmount.textContent = `${formatDollars(selectedCents)}/mo`;
+    if (els.previewPlatform) {
+      if (socialRaw) {
+        els.previewPlatform.innerHTML = `<span>${platformIcon(selectedPlatform)}</span> ${escapeHtml(config.label)}`;
+        els.previewPlatform.style.display = 'inline-flex';
+      } else {
+        els.previewPlatform.style.display = 'none';
+      }
+    }
   }
 
   function setActivePlatform(platform) {
@@ -245,6 +262,7 @@
 
     const tabs = els.socialTabs?.querySelectorAll('button');
     tabs?.forEach((btn) => btn.classList.toggle('active', btn.dataset.platform === platform));
+    updatePreview();
   }
 
   function bindSocialTabs() {
@@ -254,6 +272,17 @@
       if (!btn) return;
       setActivePlatform(btn.dataset.platform);
     });
+  }
+
+  function bindPreview() {
+    const nameInput = document.getElementById('patron-name');
+    const titleInput = document.getElementById('patron-title-input');
+    const messageInput = document.getElementById('patron-message');
+
+    nameInput?.addEventListener('input', updatePreview);
+    titleInput?.addEventListener('input', updatePreview);
+    messageInput?.addEventListener('input', updatePreview);
+    els.socialUrl?.addEventListener('input', updatePreview);
   }
 
   function showSocialError(message) {
@@ -393,9 +422,10 @@
     if (!templeId) return;
     setLogo();
     setPageTitle();
-    bindAmountControls();
     bindSocialTabs();
+    bindPreview();
     setActivePlatform('x');
+    updatePreview();
     if (els.form) els.form.addEventListener('submit', handleSubmit);
     loadPatrons();
     handleReturnFromStripe();

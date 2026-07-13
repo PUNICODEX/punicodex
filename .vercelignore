@@ -18,3 +18,23 @@ desktop.ini
 *~
 dist
 build
+
+# Dev / build-only directories (not needed in the production deployment)
+docs/
+test/
+scripts/
+data/corpus/
+data/authoritative/
+data/benchmarks/
+branding/
+extended flagship materials/
+android/
+extension/
+extension-v2/
+
+# Database artifacts and large generated corpora not served at runtime
+platform/db/*.backup
+platform/db/*.db-journal
+platform/db/*.db-wal
+platform/db/*.db-shm
+*.db.backup

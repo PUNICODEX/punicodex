@@ -25,10 +25,17 @@
     --section-pad: clamp(6rem, 12vh, 10rem);
     --container-max: 1200px;
     --nav-height: 110px;
+    --global-strip-height: 54px;
     --font-display: 'Cinzel', 'Trajan Pro', 'Times New Roman', serif;
     --font-body: 'Lato', 'Helvetica Neue', sans-serif;
     --font-mono: 'Fira Code', 'Courier New', monospace;
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (max-width: 768px) {
+    :root {
+        --global-strip-height: 72px;
+    }
 }
 
 /* ─── Reset & Base ─── */
@@ -173,19 +180,35 @@ canvas[data-effect] {
 
     /* Flagship tab nav: balanced mobile lockup */
     .tab-nav {
-        --nav-height: 104px;
+        --nav-height: 80px;
     }
     .tab-nav .nav-inner {
         height: var(--nav-height);
-        padding: 0 1rem;
+        padding: 0 0.875rem;
+        gap: 0.5rem;
+        min-width: 0;
+        overflow: hidden;
+    }
+    .tab-nav .nav-logo {
+        min-width: 0;
     }
     .tab-nav .nav-logo-img,
     .tab-nav .nav-logo picture {
-        height: 100px;
-        max-height: 100px;
-        max-width: min(170px, 42vw);
+        height: 72px;
+        max-height: 72px;
+        max-width: min(140px, 38vw);
         width: auto;
+        flex-shrink: 1;
+    }
+    .tab-nav .nav-toggle {
+        display: flex;
         flex-shrink: 0;
+        padding: 0.5rem;
+        margin-right: -0.25rem;
+    }
+    .tab-nav .nav-toggle span {
+        width: 22px;
+        height: 2px;
     }
 }
 
@@ -337,6 +360,15 @@ body.menu-open {
 .mobile-menu a:hover {
     color: var(--primary);
 }
+
+/* Temple mobile menu: accounts for global strip + fixed tab nav */
+.mobile-menu.temple-mobile-menu {
+    top: calc(var(--global-strip-height) + var(--nav-height));
+    height: calc(100vh - var(--global-strip-height) - var(--nav-height));
+    background: rgba(5, 5, 5, 0.98);
+    z-index: 1009;
+}
+
 /* ─── Global Strip (top bar above tab nav) ─── */
 .global-strip {
     position: relative;
@@ -1467,6 +1499,10 @@ a.source-badge {
     }
     .nav-links.active { display: flex; }
     .nav-toggle {
+        display: flex;
+        flex-shrink: 0;
+    }
+    .tab-nav .nav-toggle {
         display: flex;
         flex-shrink: 0;
     }
