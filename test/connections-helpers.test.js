@@ -10,6 +10,9 @@ const {
   deriveConcepts,
   buildConceptEdges,
   getRelatedConcepts,
+  buildSunburstTree,
+  layoutSunburst,
+  getSharedConcepts,
 } = require('../js/connections-helpers.js');
 
 let passed = 0;
@@ -138,6 +141,88 @@ test('getRelatedConcepts returns concepts for a deity', () => {
   assert.strictEqual(related.length, 2);
   assert.ok(related.some((r) => r.relationship === 'Thunder'));
   assert.ok(related.some((r) => r.relationship === 'Sky sovereign'));
+});
+
+const taxonomy = {
+  domains: {
+    celestial: { id: 'celestial', label: 'Celestial', color: '#D4AF37', order: 1 },
+    society: { id: 'society', label: 'Society', color: '#4169E1', order: 2 },
+  },
+  concepts: {
+    thunder: {
+      id: 'thunder',
+      label: 'Thunder',
+      domain: 'celestial',
+      order: 1,
+      relationships: ['Thunder'],
+    },
+    'sky-sovereign': {
+      id: 'sky-sovereign',
+      label: 'Sky Sovereign',
+      domain: 'society',
+      order: 2,
+      relationships: ['Sky sovereign'],
+    },
+    'warrior-storm': {
+      id: 'warrior-storm',
+      label: 'Warrior Storm',
+      domain: 'society',
+      order: 3,
+      relationships: ['Warrior storm'],
+    },
+  },
+};
+
+const sunburstNodes = new Map([
+  ['zeus', { id: 'zeus', unicode: 'Zeús', pantheon: 'greek' }],
+  ['thor', { id: 'thor', unicode: 'Þórr', pantheon: 'norse' }],
+  ['indra', { id: 'indra', unicode: 'Indra', pantheon: 'sanskrit' }],
+]);
+
+test('buildSunburstTree produces a root → center → concept → deity hierarchy', () => {
+  const tree = buildSunburstTree('zeus', edges, sunburstNodes, taxonomy);
+  assert.ok(tree, 'tree should exist');
+  assert.strictEqual(tree.type, 'root');
+  assert.strictEqual(tree.children[0].type, 'center');
+  // Only edges touching zeus become branches.
+  assert.strictEqual(tree.children[0].children.length, 2);
+  assert.ok(tree.children[0].children.every((c) => c.type === 'concept'));
+  const thunderBranch = tree.children[0].children.find((c) => c.id === 'thunder');
+  assert.ok(thunderBranch);
+  assert.strictEqual(thunderBranch.children.length, 1);
+  assert.strictEqual(thunderBranch.children[0].type, 'deity');
+});
+
+test('layoutSunburst assigns deterministic angles and radii', () => {
+  const tree = buildSunburstTree('zeus', edges, sunburstNodes, taxonomy);
+  const layout = layoutSunburst(tree, 200);
+  assert.ok(layout.length > 0);
+  const center = layout.find((n) => n.type === 'center');
+  assert.ok(center);
+  assert.strictEqual(center.x0, 0);
+  assert.ok(center.x1 > center.x0);
+  const concepts = layout.filter((n) => n.type === 'concept');
+  assert.strictEqual(concepts.length, 2);
+  assert.ok(concepts.every((c) => c.x1 > c.x0 && c.y1 > c.y0));
+});
+
+test('layoutSunburst is deterministic', () => {
+  const tree = buildSunburstTree('zeus', edges, sunburstNodes, taxonomy);
+  const a = layoutSunburst(tree, 200)
+    .map((n) => `${n.id}:${n.x0.toFixed(4)}:${n.y0.toFixed(4)}`)
+    .join('|');
+  const b = layoutSunburst(tree, 200)
+    .map((n) => `${n.id}:${n.x0.toFixed(4)}:${n.y0.toFixed(4)}`)
+    .join('|');
+  assert.strictEqual(a, b);
+});
+
+test('getSharedConcepts finds common concepts between two nodes', () => {
+  const conceptEdges = buildConceptEdges(edges, taxonomy);
+  const shared = getSharedConcepts('zeus', 'thor', conceptEdges);
+  assert.ok(shared.includes('thunder'));
+  const notShared = getSharedConcepts('zeus', 'indra', conceptEdges);
+  assert.ok(!notShared.includes('warrior-storm'));
 });
 
 console.log(`\n  ${passed} passed, ${failed} failed`);

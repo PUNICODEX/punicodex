@@ -22,7 +22,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/main.css?v=perf8">
-    <link rel="stylesheet" href="/css/connections.css?v=mandala">
+    <link rel="stylesheet" href="/css/connections.css?v=sunburst">
 
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%CE%A8%3C/text%3E%3C/svg%3E">
     <script src="https://d3js.org/d3.v7.min.js"></script>
@@ -126,18 +126,17 @@
 
         <div class="connections-stage">
             <div class="graph-wrap" id="graph-wrap">
-                <svg id="graph-svg" aria-label="Cross-cultural similarity mandala"></svg>
+                <svg id="graph-svg" aria-label="Cross-cultural correspondence sunburst"></svg>
+
+                <div class="graph-tooltip" id="graph-tooltip" hidden>
+                    <div class="tooltip-title" id="tooltip-title"></div>
+                    <div class="tooltip-meta" id="tooltip-meta"></div>
+                    <div class="tooltip-rel" id="tooltip-rel"></div>
+                </div>
 
                 <div class="graph-overlay" id="graph-overlay">
                     <div class="graph-loading" id="graph-loading">Weaving the mandala...</div>
                     <div class="graph-error" id="graph-error" hidden></div>
-                </div>
-
-                <div class="mandala-center-card" id="mandala-center-card" aria-live="polite">
-                    <span class="center-pantheon" id="center-pantheon">Pantheon</span>
-                    <h2 class="center-name" id="center-name">Name</h2>
-                    <p class="center-domain" id="center-domain">Domain</p>
-                    <a href="#" class="center-temple-link" id="center-temple-link">Enter temple &rarr;</a>
                 </div>
 
                 <div class="compare-panel" id="compare-panel" hidden>
@@ -153,14 +152,14 @@
                 </div>
 
                 <div class="graph-legend" id="graph-legend" aria-hidden="true">
-                    <span class="legend-title">Pantheons</span>
+                    <span class="legend-title">Domains</span>
                 </div>
             </div>
 
             <aside class="connections-sidebar" id="connections-sidebar">
                 <div class="sidebar-empty" id="sidebar-empty">
                     <div class="sidebar-icon">&#x2964;</div>
-                    <p class="body-md">Select a node or concept arm to explore its echoes.</p>
+                    <p class="body-md">Select a concept or deity to explore its echoes.</p>
                 </div>
                 <div class="sidebar-content" id="sidebar-content" hidden>
                     <div class="sidebar-header">
@@ -207,11 +206,9 @@
                 </div>
                 <div class="filter-group" id="domain-filters">
                     <span class="filter-label">Domains</span>
-                    <!-- populated by JS -->
                 </div>
                 <div class="filter-group" id="pantheon-filters">
                     <span class="filter-label">Pantheons</span>
-                    <!-- populated by JS -->
                 </div>
             </div>
         </div>
@@ -272,7 +269,7 @@
 
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/main.js?v=perf8" defer></script>
-    <script src="/js/connections-helpers.js?v=mandala" defer></script>
-    <script src="/js/connections.js?v=mandala" defer></script>
+    <script src="/js/connections-helpers.js?v=sunburst" defer></script>
+    <script src="/js/connections.js?v=sunburst" defer></script>
 </body>
 </html>

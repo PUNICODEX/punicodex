@@ -1,7 +1,7 @@
 /**
  * PÚNYCODEX — Connections graph helpers
  * Pure functions for filtering edges, resolving neighbours, building concept branches,
- * and finding paths. Works in the browser (global) and Node (CommonJS).
+ * sunburst trees, and finding paths. Works in the browser (global) and Node (CommonJS).
  */
 
 (function (root, factory) {
@@ -143,22 +143,22 @@
       if (!target) continue;
 
       const concept = e.concept || getConceptForRelationship(e.relationship, taxonomy);
-      const conceptId = concept ? concept.id : conceptId(e.relationship);
-      const conceptLabel = concept ? concept.label : e.relationship;
+      const cid = concept ? concept.id : conceptId(e.relationship);
+      const label = concept ? concept.label : e.relationship;
       const domain = concept ? taxonomy.domains[concept.domain] : null;
 
-      if (!branches.has(conceptId)) {
-        branches.set(conceptId, {
-          conceptId,
+      if (!branches.has(cid)) {
+        branches.set(cid, {
+          conceptId: cid,
           concept,
-          label: conceptLabel,
+          label,
           domain,
           category: e.category,
           strength: e.strength || 1,
           items: [],
         });
       }
-      const branch = branches.get(conceptId);
+      const branch = branches.get(cid);
       branch.items.push({
         targetId,
         target,
@@ -174,6 +174,110 @@
       if (a.domain && b.domain) return (a.domain.order || 0) - (b.domain.order || 0);
       return a.label.localeCompare(b.label);
     });
+  }
+
+  function buildSunburstTree(centerId, edges, nodesById, taxonomy, options = {}) {
+    const center = nodesById ? nodesById.get(centerId) : null;
+    if (!center) return null;
+
+    const branches = buildBranches(centerId, edges, nodesById, taxonomy, options);
+
+    return {
+      id: '__root__',
+      name: 'Root',
+      type: 'root',
+      children: [
+        {
+          id: centerId,
+          name: center.unicode,
+          type: 'center',
+          pantheon: center.pantheon,
+          data: center,
+          children: branches.map((branch) => ({
+            id: branch.conceptId,
+            name: branch.label,
+            type: 'concept',
+            domain: branch.domain,
+            concept: branch.concept,
+            data: branch,
+            children: branch.items.map((item) => ({
+              id: item.targetId,
+              name: item.target.unicode,
+              type: 'deity',
+              pantheon: item.target.pantheon,
+              strength: item.strength,
+              relationship: item.relationship,
+              note: item.note,
+              data: item.target,
+            })),
+          })),
+        },
+      ],
+    };
+  }
+
+  function layoutSunburst(tree, radius, options = {}) {
+    if (!tree) return [];
+    const { gap = 0.02, centerRing = 0.18, conceptRing = 0.22, deityRing = 0.38 } = options;
+
+    const totalAngle = 2 * Math.PI;
+    const nodes = [];
+
+    function addNode(node, depth, ancestors, x0, x1, y0, y1) {
+      const entry = {
+        ...node,
+        depth,
+        ancestors,
+        x0,
+        x1,
+        y0,
+        y1,
+      };
+      nodes.push(entry);
+      return entry;
+    }
+
+    function layoutChildren(children, ancestors, startAngle, endAngle, innerR, outerR) {
+      if (!children || children.length === 0) return;
+      const sector = endAngle - startAngle;
+      const perChild = sector / children.length;
+      children.forEach((child, i) => {
+        const cStart = startAngle + i * perChild + gap / 2;
+        const cEnd = startAngle + (i + 1) * perChild - gap / 2;
+        addNode(child, ancestors.length + 1, ancestors, cStart, cEnd, innerR, outerR);
+      });
+    }
+
+    // Root
+    addNode(tree, 0, [], 0, totalAngle, 0, 0);
+
+    const center = tree.children[0];
+    // Center ring
+    addNode(center, 1, [tree.id], 0, totalAngle, 0, radius * centerRing);
+
+    const branches = center.children || [];
+    const branchSector = totalAngle / Math.max(1, branches.length);
+
+    branches.forEach((branch, i) => {
+      const start = i * branchSector + gap / 2;
+      const end = (i + 1) * branchSector - gap / 2;
+      const conceptInner = radius * (centerRing + 0.02);
+      const conceptOuter = radius * (centerRing + 0.02 + conceptRing);
+      addNode(branch, 2, [tree.id, center.id], start, end, conceptInner, conceptOuter);
+
+      const deities = branch.children || [];
+      const deitySector = (end - start) / Math.max(1, deities.length);
+      deities.forEach((deity, j) => {
+        const dStart = start + j * deitySector + gap / 2;
+        const dEnd = start + (j + 1) * deitySector - gap / 2;
+        const strength = deity.strength || 1;
+        const outer = radius * (centerRing + 0.02 + conceptRing + deityRing);
+        const inner = radius * (centerRing + 0.02 + conceptRing + (deityRing * (4 - strength)) / 4);
+        addNode(deity, 3, [tree.id, center.id, branch.id], dStart, dEnd, inner, outer);
+      });
+    });
+
+    return nodes;
   }
 
   function getConceptMembers(conceptId, edges, nodesById) {
@@ -253,6 +357,8 @@
     isNeighbor,
     getRelatedConcepts,
     buildBranches,
+    buildSunburstTree,
+    layoutSunburst,
     getConceptMembers,
     getSharedConcepts,
     findShortestPath,

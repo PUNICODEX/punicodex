@@ -2,8 +2,8 @@
   'use strict';
 
   const {
-    buildBranches,
-    findShortestPath,
+    buildSunburstTree,
+    layoutSunburst,
     getSharedConcepts,
     escapeHtml,
     capitalize,
@@ -44,6 +44,8 @@
     graphData: { nodes: [], edges: [] },
     nodesById: new Map(),
     taxonomy: null,
+    tree: null,
+    layout: [],
     branches: [],
     selectedId: null,
     selectedType: null,
@@ -55,7 +57,6 @@
     compareGraph: null,
     width: 0,
     height: 0,
-    currentTransform: d3.zoomIdentity,
   };
 
   const els = {
@@ -63,6 +64,10 @@
     graphWrap: document.getElementById('graph-wrap'),
     loading: document.getElementById('graph-loading'),
     error: document.getElementById('graph-error'),
+    tooltip: document.getElementById('graph-tooltip'),
+    tooltipTitle: document.getElementById('tooltip-title'),
+    tooltipMeta: document.getElementById('tooltip-meta'),
+    tooltipRel: document.getElementById('tooltip-rel'),
     searchInput: document.getElementById('node-search'),
     searchResults: document.getElementById('search-results'),
     searchWrap: document.querySelector('.search-wrap'),
@@ -88,11 +93,6 @@
     sidebarConceptDescription: document.getElementById('sidebar-concept-description'),
     connectionList: document.getElementById('connection-list'),
     legend: document.getElementById('graph-legend'),
-    centerCard: document.getElementById('mandala-center-card'),
-    centerPantheon: document.getElementById('center-pantheon'),
-    centerName: document.getElementById('center-name'),
-    centerDomain: document.getElementById('center-domain'),
-    centerTempleLink: document.getElementById('center-temple-link'),
     mobileExplorer: document.getElementById('mobile-explorer'),
     explorerEmpty: document.getElementById('explorer-empty'),
     explorerContent: document.getElementById('explorer-content'),
@@ -133,7 +133,7 @@
 
   async function loadTaxonomy() {
     try {
-      const data = await fetchJSON('/api/v1/connections/taxonomy');
+      const data = await fetchJSON('/api/v1/connections/taxonomy/');
       state.taxonomy = data?.data || data;
       if (state.taxonomy?.domains) {
         Object.values(state.taxonomy.domains).forEach((d) => state.activeDomains.add(d.id));
@@ -173,7 +173,6 @@
       }
 
       els.loading.hidden = true;
-      updateCenterCard();
       updatePantheonFilters();
       recomputeAndRender();
     } catch (err) {
@@ -186,28 +185,27 @@
     const center = state.nodesById.get(state.centerId);
     if (!center) return;
 
-    state.branches = buildBranches(state.centerId, state.graphData.edges, state.nodesById, state.taxonomy, {
+    state.tree = buildSunburstTree(state.centerId, state.graphData.edges, state.nodesById, state.taxonomy, {
       minStrength: state.minStrength,
       activeCategories: state.activeCategories,
-    }).filter((branch) => {
-      if (!state.activeDomains.has(branch.domain?.id)) return false;
-      branch.items = branch.items.filter((item) => state.activePantheons.has(item.target.pantheon));
-      return branch.items.length > 0;
     });
+
+    if (!state.tree) return;
+
+    // Filter domains and pantheons by mutating tree children.
+    const centerNode = state.tree.children[0];
+    centerNode.children = (centerNode.children || []).filter((branch) => {
+      if (!state.activeDomains.has(branch.domain?.id)) return false;
+      branch.children = (branch.children || []).filter((deity) => state.activePantheons.has(deity.pantheon));
+      return branch.children.length > 0;
+    });
+
+    state.branches = centerNode.children.map((b) => b.data);
+    state.layout = layoutSunburst(state.tree, Math.min(state.width, state.height) / 2 - 24);
 
     renderGraph();
     renderMobileExplorer();
     renderSidebar();
-    updateVisibility();
-  }
-
-  function updateCenterCard() {
-    const center = state.nodesById.get(state.centerId);
-    if (!center) return;
-    els.centerPantheon.textContent = center.pantheonLabel || capitalize(center.pantheon);
-    els.centerName.textContent = center.unicode;
-    els.centerDomain.textContent = center.domain || '';
-    els.centerTempleLink.href = `/sites/${center.id}/`;
   }
 
   function pantheonColor(p) {
@@ -218,238 +216,174 @@
     return d?.color || '#D4AF37';
   }
 
-  function layoutMandala() {
-    const cx = state.width / 2;
-    const cy = state.height / 2;
-    const minDim = Math.min(state.width, state.height);
-    const rConcept = minDim * 0.36;
-    const rMin = minDim * 0.14;
-    const n = Math.max(1, state.branches.length);
-    const startAngle = -Math.PI / 2;
-    const step = (2 * Math.PI) / n;
+  function arcFill(d) {
+    if (d.type === 'root') return 'none';
+    if (d.type === 'center') {
+      return pantheonColor(d.pantheon);
+    }
+    if (d.type === 'concept') {
+      return d.domain?.color || '#D4AF37';
+    }
+    return pantheonColor(d.pantheon);
+  }
 
-    const nodes = [];
-    const arms = [];
-
-    const centerNode = {
-      id: state.centerId,
-      type: 'center',
-      x: cx,
-      y: cy,
-      radius: 0,
-      data: state.nodesById.get(state.centerId),
-    };
-    nodes.push(centerNode);
-
-    state.branches.forEach((branch, i) => {
-      const angle = startAngle + i * step;
-      const conceptX = cx + Math.cos(angle) * rConcept;
-      const conceptY = cy + Math.sin(angle) * rConcept;
-
-      const concept = {
-        id: branch.conceptId,
-        type: 'concept',
-        x: conceptX,
-        y: conceptY,
-        radius: 18,
-        angle,
-        color: domainColor(branch.domain),
-        glow: branch.domain?.glow,
-        label: branch.label,
-        domain: branch.domain,
-        data: branch,
-      };
-      nodes.push(concept);
-
-      const arm = {
-        id: `arm-${branch.conceptId}`,
-        conceptId: branch.conceptId,
-        angle,
-        color: concept.color,
-        glow: concept.glow,
-        x1: cx,
-        y1: cy,
-        x2: conceptX,
-        y2: conceptY,
-      };
-      arms.push(arm);
-
-      const count = branch.items.length;
-      const spread = Math.min(0.18, count * 0.02);
-      branch.items.forEach((item, idx) => {
-        const strength = item.strength || 1;
-        const r = rMin + (rConcept - rMin - 30) * ((4 - strength) / 3);
-        const offset = count === 1 ? 0 : (idx - (count - 1) / 2) * spread;
-        const itemAngle = angle + offset;
-        const deity = {
-          id: item.targetId,
-          type: 'deity',
-          x: cx + Math.cos(itemAngle) * r,
-          y: cy + Math.sin(itemAngle) * r,
-          radius: 6 + strength * 2,
-          color: pantheonColor(item.target.pantheon),
-          angle: itemAngle,
-          armAngle: angle,
-          conceptId: branch.conceptId,
-          strength,
-          label: item.target.unicode,
-          data: item.target,
-        };
-        nodes.push(deity);
-      });
-    });
-
-    return { nodes, arms };
+  function arcOpacity(d) {
+    if (d.type === 'root') return 0;
+    if (d.type === 'center') return 0.35;
+    if (d.type === 'concept') return 0.75;
+    return 0.9;
   }
 
   function renderGraph() {
-    if (!state.branches.length) {
-      els.svg.selectAll('*').remove();
-      return;
-    }
-
     measureGraph();
     els.svg.selectAll('*').remove();
 
-    const { nodes, arms } = layoutMandala();
+    if (!state.layout.length) {
+      return;
+    }
 
-    const g = els.svg.append('g').attr('class', 'mandala-root');
+    const radius = Math.min(state.width, state.height) / 2 - 24;
+    const cx = state.width / 2;
+    const cy = state.height / 2;
 
-    const zoom = d3
-      .zoom()
-      .scaleExtent([0.3, 3])
-      .on('zoom', (event) => {
-        state.currentTransform = event.transform;
-        g.attr('transform', event.transform);
-      });
+    const g = els.svg.append('g').attr('transform', `translate(${cx},${cy})`);
 
-    els.svg.call(zoom).on('dblclick.zoom', null);
+    const arcGen = d3
+      .arc()
+      .startAngle((d) => d.x0)
+      .endAngle((d) => d.x1)
+      .innerRadius((d) => d.y0)
+      .outerRadius((d) => d.y1)
+      .cornerRadius(2);
 
-    // Background domain rings
-    const ringGroup = g.append('g').attr('class', 'mandala-rings');
-    const minDim = Math.min(state.width, state.height);
-    [0.18, 0.36].forEach((f, i) => {
-      ringGroup
-        .append('circle')
-        .attr('cx', state.width / 2)
-        .attr('cy', state.height / 2)
-        .attr('r', minDim * f)
-        .attr('fill', 'none')
-        .attr('stroke', 'rgba(212,175,55,0.08)')
-        .attr('stroke-width', 1)
-        .attr('stroke-dasharray', i === 0 ? '4 4' : '0');
-    });
+    const nodes = state.layout;
 
-    // Arms
-    const armGroup = g.append('g').attr('class', 'mandala-arms');
-    armGroup
-      .selectAll('path')
-      .data(arms)
+    // Render arcs
+    const arcs = g
+      .selectAll('path.sunburst-arc')
+      .data(nodes, (d) => d.id)
       .join('path')
-      .attr('class', 'mandala-arm-glow')
-      .attr('d', (d) => `M${d.x1},${d.y1} L${d.x2},${d.y2}`)
-      .attr('stroke', (d) => d.color);
-
-    armGroup
-      .selectAll('path.arm-main')
-      .data(arms)
-      .join('path')
-      .attr('class', 'mandala-arm')
-      .attr('data-concept', (d) => d.conceptId)
-      .attr('d', (d) => `M${d.x1},${d.y1} L${d.x2},${d.y2}`)
-      .attr('stroke', (d) => d.color)
-      .on('mouseenter', (_event, d) => highlightArm(d.conceptId))
-      .on('mouseleave', clearHighlight)
-      .on('click', (_event, d) => selectConcept(d.conceptId));
-
-    // Concept labels at outer edge
-    g.append('g')
-      .attr('class', 'mandala-arm-labels')
-      .selectAll('text')
-      .data(arms)
-      .join('text')
-      .attr('class', 'mandala-arm-label')
-      .attr('x', (d) => d.x2 + Math.cos(d.angle) * 26)
-      .attr('y', (d) => d.y2 + Math.sin(d.angle) * 26)
-      .attr('transform', (d) => {
-        let deg = (d.angle * 180) / Math.PI;
-        if (deg > 90 || deg < -90) deg += 180;
-        return `rotate(${deg}, ${d.x2 + Math.cos(d.angle) * 26}, ${d.y2 + Math.sin(d.angle) * 26})`;
-      })
-      .text((d) => d.conceptId.split('-').slice(0, 2).map(capitalize).join(' / '));
-
-    // Nodes
-    const nodeGroup = g.append('g').attr('class', 'mandala-nodes');
-    const nodeSel = nodeGroup
-      .selectAll('g')
-      .data(nodes.filter((n) => n.type !== 'center'), (d) => d.id)
-      .join('g')
-      .attr('class', (d) => `mandala-group ${d.type === 'concept' ? 'mandala-concept' : 'mandala-deity'}`)
+      .attr('class', (d) => `sunburst-arc ${d.type}-arc`)
+      .attr('d', arcGen)
+      .attr('fill', arcFill)
+      .attr('fill-opacity', arcOpacity)
       .attr('data-id', (d) => d.id)
-      .attr('data-concept', (d) => d.conceptId || d.id)
-      .attr('transform', (d) => `translate(${d.x}, ${d.y})`)
-      .on('mouseenter', (_event, d) => {
-        if (d.type === 'concept') highlightArm(d.id);
-        else highlightDeity(d.id);
+      .attr('data-type', (d) => d.type)
+      .on('mouseenter', (event, d) => {
+        showTooltip(event, d);
+        highlightSunburst(d);
       })
-      .on('mouseleave', clearHighlight)
-      .on('click', (_event, d) => {
-        if (d.type === 'concept') selectConcept(d.id);
-        else loadGraph(d.id);
-      });
+      .on('mousemove', (event, d) => moveTooltip(event))
+      .on('mouseleave', () => {
+        hideTooltip();
+        clearHighlight();
+      })
+      .on('click', (_event, d) => handleArcClick(d));
 
-    nodeSel.each(function (d) {
-      const sel = d3.select(this);
-      if (d.type === 'concept') {
-        const r = d.radius;
-        const points = [
-          `${0},${-r}`,
-          `${r},${0}`,
-          `${0},${r}`,
-          `${-r},${0}`,
-        ].join(' ');
-        sel
-          .append('polygon')
-          .attr('class', 'mandala-concept-shape')
-          .attr('points', points)
-          .attr('stroke', d.color);
-      } else {
-        sel
-          .append('circle')
-          .attr('class', 'mandala-deity-shape')
-          .attr('r', d.radius)
-          .attr('fill', d.color);
-      }
-    });
+    // Center label
+    const centerNode = nodes.find((n) => n.type === 'center');
+    if (centerNode) {
+      g.append('text')
+        .attr('class', 'sunburst-label center-label')
+        .attr('x', 0)
+        .attr('y', 0)
+        .text(centerNode.name);
+    }
 
-    nodeSel
-      .append('text')
-      .attr('class', 'mandala-node-label')
-      .attr('dy', (d) => d.radius + 13)
-      .text((d) => d.label)
-      .style('opacity', (d) => (d.type === 'concept' || d.strength >= 2 || state.branches.length <= 8 ? 1 : 0.55));
+    // Concept labels along arc centroid
+    g.selectAll('text.concept-label')
+      .data(nodes.filter((d) => d.type === 'concept' && d.x1 - d.x0 > 0.18), (d) => d.id)
+      .join('text')
+      .attr('class', 'sunburst-label concept-label')
+      .attr('transform', (d) => {
+        const centroid = arcGen.centroid(d);
+        const angle = (d.x0 + d.x1) / 2;
+        const deg = (angle * 180) / Math.PI - 90;
+        return `translate(${centroid[0]},${centroid[1]}) rotate(${deg > 90 || deg < -90 ? deg + 180 : deg})`;
+      })
+      .attr('text-anchor', 'middle')
+      .attr('dominant-baseline', 'middle')
+      .text((d) => d.name);
+
+    // Deity labels for large arcs
+    g.selectAll('text.deity-label')
+      .data(nodes.filter((d) => d.type === 'deity' && d.x1 - d.x0 > 0.12), (d) => d.id)
+      .join('text')
+      .attr('class', 'sunburst-label deity-label')
+      .attr('transform', (d) => {
+        const centroid = arcGen.centroid(d);
+        const angle = (d.x0 + d.x1) / 2;
+        const deg = (angle * 180) / Math.PI - 90;
+        return `translate(${centroid[0]},${centroid[1]}) rotate(${deg > 90 || deg < -90 ? deg + 180 : deg})`;
+      })
+      .attr('text-anchor', 'middle')
+      .attr('dominant-baseline', 'middle')
+      .style('font-size', '7px')
+      .text((d) => d.name);
 
     renderLegend();
+  }
 
-    // Initial zoom fit
-    const bounds = g.node().getBBox();
-    const fullWidth = state.width;
-    const fullHeight = state.height;
-    const midX = bounds.x + bounds.width / 2;
-    const midY = bounds.y + bounds.height / 2;
-    const scale = Math.min(0.9, 0.9 * Math.min(fullWidth / bounds.width, fullHeight / bounds.height));
-    const transform = d3.zoomIdentity
-      .translate(fullWidth / 2, fullHeight / 2)
-      .scale(scale)
-      .translate(-midX, -midY);
-    els.svg.call(zoom.transform, transform);
+  function handleArcClick(d) {
+    if (d.type === 'deity') {
+      loadGraph(d.id);
+    } else if (d.type === 'concept') {
+      selectConcept(d.id);
+    } else if (d.type === 'center') {
+      renderSidebarForCenter();
+    }
+  }
+
+  function highlightSunburst(d) {
+    const hovered = d;
+    els.svg.selectAll('.sunburst-arc').classed('dimmed', function (node) {
+      if (node.id === hovered.id) return false;
+      if (node.ancestors.includes(hovered.id)) return false;
+      if (hovered.ancestors.includes(node.id)) return false;
+      return true;
+    });
+    els.svg.selectAll('.sunburst-arc').classed('highlight', function (node) {
+      return node.id === hovered.id || node.ancestors.includes(hovered.id) || hovered.ancestors.includes(node.id);
+    });
+  }
+
+  function clearHighlight() {
+    els.svg.selectAll('.sunburst-arc').classed('dimmed', false).classed('highlight', false);
+  }
+
+  function showTooltip(event, d) {
+    els.tooltip.hidden = false;
+    els.tooltipTitle.textContent = d.name;
+    if (d.type === 'center') {
+      els.tooltipMeta.textContent = d.data?.pantheonLabel || capitalize(d.pantheon);
+      els.tooltipRel.textContent = d.data?.domain || '';
+    } else if (d.type === 'concept') {
+      els.tooltipMeta.textContent = d.domain?.label || 'Concept';
+      els.tooltipRel.textContent = `${d.children?.length || 0} echo${d.children?.length === 1 ? '' : 'es'}`;
+    } else if (d.type === 'deity') {
+      els.tooltipMeta.textContent = d.data?.pantheonLabel || capitalize(d.pantheon);
+      els.tooltipRel.textContent = `${d.relationship || ''} · strength ${d.strength || 1}`;
+    } else {
+      els.tooltipMeta.textContent = '';
+      els.tooltipRel.textContent = '';
+    }
+    moveTooltip(event);
+  }
+
+  function moveTooltip(event) {
+    const rect = els.graphWrap.getBoundingClientRect();
+    const x = event.clientX - rect.left + 14;
+    const y = event.clientY - rect.top + 14;
+    els.tooltip.style.left = `${x}px`;
+    els.tooltip.style.top = `${y}px`;
+  }
+
+  function hideTooltip() {
+    els.tooltip.hidden = true;
   }
 
   function renderLegend() {
-    const pantheons = Array.from(
-      new Set(state.graphData.nodes.map((n) => n.pantheon)),
-    ).sort();
-
+    const pantheons = Array.from(new Set(state.graphData.nodes.map((n) => n.pantheon))).sort();
     const domains = state.taxonomy?.domains ? Object.values(state.taxonomy.domains).sort((a, b) => a.order - b.order) : [];
 
     els.legend.innerHTML =
@@ -469,58 +403,16 @@
         .join('');
   }
 
-  function highlightArm(conceptId) {
-    const root = els.svg.select('.mandala-root');
-    if (root.empty()) return;
-    root.classed('dimmed', true);
-    root.selectAll(`[data-concept="${conceptId}"]`).classed('dimmed', false).classed('highlight', true);
-    root.selectAll('.mandala-deity').filter((d) => d.conceptId === conceptId).classed('dimmed', false);
-  }
-
-  function highlightDeity(deityId) {
-    const root = els.svg.select('.mandala-root');
-    if (root.empty()) return;
-    root.classed('dimmed', true);
-    root.selectAll(`[data-id="${deityId}"]`).classed('dimmed', false).classed('highlight', true);
-    const deity = root.selectAll('.mandala-deity').filter((d) => d.id === deityId).datum();
-    if (deity) {
-      root.selectAll(`[data-concept="${deity.conceptId}"]`).classed('dimmed', false).classed('highlight', true);
-    }
-  }
-
-  function clearHighlight() {
-    const root = els.svg.select('.mandala-root');
-    if (root.empty()) return;
-    root.classed('dimmed', false);
-    root.selectAll('.highlight').classed('highlight', false);
-  }
-
-  function updateVisibility() {
-    const root = els.svg.select('.mandala-root');
-    if (root.empty()) return;
-    const selectedId = state.selectedId;
-    root.selectAll('.mandala-deity').classed('selected', (d) => d.id === selectedId);
-    root.selectAll('.mandala-concept').classed('selected', (d) => d.id === selectedId);
-  }
-
   function selectConcept(conceptId) {
     state.selectedId = conceptId;
     state.selectedType = 'concept';
     renderSidebar();
-    updateVisibility();
-    if (window.innerWidth < 900) {
-      document.getElementById('connections-sidebar').scrollIntoView({ behavior: 'smooth' });
-    }
   }
 
-  function selectDeity(deityId) {
-    state.selectedId = deityId;
-    state.selectedType = 'deity';
+  function renderSidebarForCenter() {
+    state.selectedId = state.centerId;
+    state.selectedType = 'center';
     renderSidebar();
-    updateVisibility();
-    if (window.innerWidth < 900) {
-      document.getElementById('connections-sidebar').scrollIntoView({ behavior: 'smooth' });
-    }
   }
 
   function renderSidebar() {
@@ -550,6 +442,7 @@
     els.sidebarTitle.textContent = node.unicode;
     els.sidebarDomain.textContent = node.domain || '';
     els.sidebarTempleLink.href = `/sites/${deityId}/`;
+    els.sidebarTempleLink.textContent = 'Enter Temple';
     els.sidebarApiLink.href = `/api/v1/names/${deityId}`;
 
     const branchesForNode = state.branches.filter((b) => b.items.some((i) => i.targetId === deityId));
@@ -560,7 +453,7 @@
       for (const branch of branchesForNode) {
         const item = branch.items.find((i) => i.targetId === deityId);
         html += `
-          <li class="connection-item" data-target="${deityId}" data-concept="${branch.conceptId}">
+          <li class="connection-item" data-concept="${branch.conceptId}">
             <span class="connection-strength s${item.strength}">${item.strength}</span>
             <div class="connection-body">
               <div class="connection-target">${escapeHtml(branch.label)}</div>
@@ -588,7 +481,7 @@
     els.sidebarDomain.textContent = `${branch.items.length} echo${branch.items.length === 1 ? '' : 'es'} across traditions`;
     els.sidebarTempleLink.href = '/connections/';
     els.sidebarTempleLink.textContent = 'Browse all';
-    els.sidebarApiLink.href = '/api/v1/connections/taxonomy';
+    els.sidebarApiLink.href = '/api/v1/connections/taxonomy/';
     els.sidebarConceptDescription.textContent = branch.concept?.description || '';
 
     const html =
@@ -614,10 +507,10 @@
       item.addEventListener('click', () => {
         const targetId = item.dataset.target;
         const conceptId = item.dataset.concept;
-        if (conceptId) {
-          selectConcept(conceptId);
-        } else if (targetId) {
+        if (targetId) {
           loadGraph(targetId);
+        } else if (conceptId) {
+          selectConcept(conceptId);
         }
       });
     });
@@ -657,7 +550,10 @@
       .join('');
 
     els.explorerContent.querySelectorAll('.branch-deity-chip').forEach((chip) => {
-      chip.addEventListener('click', () => loadGraph(chip.dataset.id));
+      chip.addEventListener('click', () => {
+        loadGraph(chip.dataset.id);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
     });
   }
 
@@ -756,8 +652,7 @@
 
     resultsEl.querySelectorAll('.search-result-item').forEach((el) => {
       el.addEventListener('click', () => {
-        const id = el.dataset.id;
-        onSelect(id);
+        onSelect(el.dataset.id);
       });
     });
   }
@@ -822,8 +717,9 @@
     state.compareTarget = null;
     state.compareGraph = null;
     els.compareSearch.value = '';
-    document.getElementById('compare-search-results').classList.remove('is-open');
-    document.getElementById('compare-search-results').innerHTML = '';
+    els.compareSearchResults.classList.remove('is-open');
+    els.compareSearchResults.innerHTML = '';
+    clearHighlight();
   }
 
   async function setCompareTarget(id) {
@@ -853,24 +749,17 @@
       })
       .sort((a, b) => (a.order || 0) - (b.order || 0));
 
-    const centerOnly = state.branches
-      .filter((b) => !sharedIds.includes(b.conceptId))
-      .map((b) => b.concept)
-      .filter(Boolean)
-      .sort((a, b) => (a.order || 0) - (b.order || 0));
-
-    const targetBranches = buildBranches(
+    const centerBranches = state.branches.map((b) => b.concept).filter(Boolean);
+    const targetBranches = buildSunburstTree(
       state.compareTarget,
       state.compareGraph.edges,
       new Map(state.compareGraph.nodes.map((n) => [n.id, n])),
       state.taxonomy,
       { minStrength: 1, activeCategories: state.activeCategories },
-    );
-    const targetOnly = targetBranches
-      .filter((b) => !sharedIds.includes(b.conceptId))
-      .map((b) => b.concept)
-      .filter(Boolean)
-      .sort((a, b) => (a.order || 0) - (b.order || 0));
+    )?.children[0].children.map((b) => b.concept).filter(Boolean) || [];
+
+    const centerOnly = centerBranches.filter((c) => !sharedIds.includes(c.id)).sort((a, b) => (a.order || 0) - (b.order || 0));
+    const targetOnly = targetBranches.filter((c) => !sharedIds.includes(c.id)).sort((a, b) => (a.order || 0) - (b.order || 0));
 
     const section = (title, concepts) => {
       if (!concepts.length) return '';
@@ -898,10 +787,18 @@
     els.compareResults.querySelectorAll('.compare-chip').forEach((chip) => {
       chip.addEventListener('click', () => {
         const cid = chip.dataset.concept;
-        closeCompare();
-        selectConcept(cid);
+        if (state.branches.some((b) => b.conceptId === cid)) {
+          closeCompare();
+          selectConcept(cid);
+        }
       });
     });
+
+    // Highlight shared concept arcs in the main sunburst.
+    if (sharedIds.length) {
+      els.svg.selectAll('.sunburst-arc').classed('dimmed', (d) => d.type === 'concept' && !sharedIds.includes(d.id));
+      els.svg.selectAll('.sunburst-arc').classed('highlight', (d) => d.type === 'concept' && sharedIds.includes(d.id));
+    }
   }
 
   els.compareToggle.addEventListener('click', openCompare);
@@ -924,7 +821,7 @@
 
   // ─── Resize ───
   const resizeObserver = new ResizeObserver(() => {
-    if (state.branches.length) renderGraph();
+    if (state.tree) recomputeAndRender();
   });
   resizeObserver.observe(els.graphWrap);
 
@@ -937,5 +834,5 @@
   init();
 
   // Expose for tests/debug.
-  window.PX_CONNECTIONS = { state, loadGraph, selectConcept, selectDeity };
+  window.PX_CONNECTIONS = { state, loadGraph, selectConcept };
 })();

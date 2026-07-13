@@ -1,9 +1,9 @@
 :root {
     --connections-sidebar-width: 380px;
-    --mandala-gold: #D4AF37;
-    --mandala-gold-dim: rgba(212, 175, 55, 0.15);
-    --mandala-void: #050505;
-    --mandala-deep: #08080a;
+    --sunburst-gold: #D4AF37;
+    --sunburst-gold-dim: rgba(212, 175, 55, 0.12);
+    --sunburst-void: #050505;
+    --sunburst-deep: #08080a;
 }
 
 /* ─── Hero ─── */
@@ -149,7 +149,7 @@
     display: grid;
     grid-template-columns: 1fr var(--connections-sidebar-width);
     min-height: calc(100vh - var(--nav-height));
-    background: var(--mandala-deep);
+    background: var(--sunburst-deep);
     position: relative;
 }
 
@@ -158,8 +158,8 @@
     min-height: 600px;
     overflow: hidden;
     background:
-        radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 45%),
-        radial-gradient(circle at 50% 50%, rgba(20, 20, 25, 1) 0%, var(--mandala-deep) 100%);
+        radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.04) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(20, 20, 25, 1) 0%, var(--sunburst-deep) 100%);
 }
 
 #graph-svg {
@@ -199,166 +199,101 @@
     border-color: rgba(255, 100, 100, 0.3);
 }
 
-/* ─── Center card ─── */
-.mandala-center-card {
+/* ─── Tooltip ─── */
+.graph-tooltip {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: min(220px, 38vw);
-    text-align: center;
-    padding: var(--space-3);
-    background: rgba(8, 8, 10, 0.85);
+    pointer-events: none;
+    background: rgba(8, 8, 10, 0.95);
     border: 1px solid rgba(212, 175, 55, 0.25);
-    border-radius: var(--radius-lg);
-    box-shadow: 0 0 40px rgba(212, 175, 55, 0.12), inset 0 0 30px rgba(212, 175, 55, 0.05);
+    border-radius: var(--radius-md);
+    padding: 10px 12px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(8px);
-    pointer-events: auto;
-    z-index: 20;
-    transition: box-shadow var(--duration-fast);
+    z-index: 80;
+    max-width: 240px;
+    transition: opacity 0.15s ease;
 }
 
-.mandala-center-card:hover {
-    box-shadow: 0 0 60px rgba(212, 175, 55, 0.2), inset 0 0 30px rgba(212, 175, 55, 0.08);
-}
-
-.center-pantheon {
-    display: inline-block;
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--gold);
-    margin-bottom: 6px;
-}
-
-.center-name {
+.tooltip-title {
     font-family: var(--font-display);
-    font-size: clamp(1.6rem, 3vw, 2.4rem);
-    line-height: 1.05;
-    margin-bottom: 6px;
+    font-size: 1rem;
     color: var(--text-primary);
+    margin-bottom: 2px;
 }
 
-.center-domain {
-    font-size: 0.8rem;
+.tooltip-meta {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    margin-bottom: 4px;
+}
+
+.tooltip-rel {
+    font-size: 0.75rem;
     color: var(--text-secondary);
-    margin-bottom: var(--space-2);
     line-height: 1.3;
 }
 
-.center-temple-link {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--gold);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    text-decoration: none;
-}
-
-.center-temple-link:hover {
-    color: var(--gold-bright);
-}
-
-/* ─── Mandala SVG elements ─── */
-.mandala-arm {
-    fill: none;
-    stroke-linecap: round;
-    stroke-width: 1.5px;
-    opacity: 0.45;
-    transition: opacity var(--duration-fast), stroke-width var(--duration-fast);
-}
-
-.mandala-arm-glow {
-    fill: none;
-    stroke-linecap: round;
-    stroke-width: 6px;
-    opacity: 0.12;
-    filter: blur(3px);
-    pointer-events: none;
-}
-
-.mandala-arm-label {
-    font-family: var(--font-body);
-    font-size: 10px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    fill: rgba(255, 255, 255, 0.75);
-    text-anchor: middle;
-    dominant-baseline: middle;
-    pointer-events: none;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
-}
-
-.mandala-concept {
+/* ─── Sunburst arcs ─── */
+.sunburst-arc {
     cursor: pointer;
+    stroke: rgba(0, 0, 0, 0.6);
+    stroke-width: 1px;
+    transition: opacity 0.15s ease, filter 0.15s ease;
 }
 
-.mandala-concept-shape {
-    fill: rgba(8, 8, 10, 0.95);
+.sunburst-arc:hover {
+    filter: brightness(1.25);
+}
+
+.sunburst-arc.root-arc {
+    display: none;
+}
+
+.sunburst-arc.center-arc {
+    stroke: rgba(212, 175, 55, 0.5);
     stroke-width: 2px;
-    transition: filter var(--duration-fast), transform var(--duration-fast);
 }
 
-.mandala-concept:hover .mandala-concept-shape {
-    filter: drop-shadow(0 0 10px currentColor);
+.sunburst-arc.concept-arc {
+    stroke: rgba(255, 255, 255, 0.1);
 }
 
-.mandala-concept.selected .mandala-concept-shape {
-    stroke: var(--gold);
-    stroke-width: 3px;
-    filter: drop-shadow(0 0 14px var(--gold));
+.sunburst-arc.deity-arc {
+    stroke: rgba(0, 0, 0, 0.7);
+    stroke-width: 0.5px;
 }
 
-.mandala-deity {
-    cursor: pointer;
+.sunburst-arc.dimmed {
+    opacity: 0.12;
 }
 
-.mandala-deity-shape {
-    stroke: rgba(255, 255, 255, 0.85);
-    stroke-width: 1.2px;
-    transition: filter var(--duration-fast), r var(--duration-fast);
-}
-
-.mandala-deity:hover .mandala-deity-shape {
+.sunburst-arc.highlight {
+    opacity: 1 !important;
     filter: drop-shadow(0 0 8px currentColor);
-    stroke: var(--gold);
+    stroke: rgba(255, 255, 255, 0.6);
 }
 
-.mandala-deity.selected .mandala-deity-shape {
-    stroke: var(--gold);
-    stroke-width: 3px;
-    filter: drop-shadow(0 0 12px var(--gold));
-}
-
-.mandala-node-label {
+.sunburst-label {
     font-family: var(--font-body);
-    font-size: 10px;
-    fill: rgba(255, 255, 255, 0.78);
-    text-anchor: middle;
-    dominant-baseline: middle;
+    font-size: 9px;
+    fill: rgba(255, 255, 255, 0.82);
     pointer-events: none;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
 }
 
-.mandala-node-label.hidden-label {
+.sunburst-label.center-label {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 600;
+    fill: var(--text-primary);
+    text-anchor: middle;
+    dominant-baseline: middle;
+}
+
+.sunburst-label.hidden-label {
     opacity: 0;
-}
-
-.mandala-group.dimmed .mandala-arm,
-.mandala-group.dimmed .mandala-arm-glow,
-.mandala-group.dimmed .mandala-concept,
-.mandala-group.dimmed .mandala-deity,
-.mandala-group.dimmed .mandala-node-label,
-.mandala-group.dimmed .mandala-arm-label {
-    opacity: 0.1;
-}
-
-.mandala-group.dimmed .mandala-concept.selected,
-.mandala-group.dimmed .mandala-deity.selected,
-.mandala-group.dimmed .mandala-arm.highlight,
-.mandala-group.dimmed .mandala-arm-glow.highlight {
-    opacity: 1;
 }
 
 /* ─── Compare panel ─── */
@@ -441,6 +376,7 @@
     border: 1px solid rgba(255, 255, 255, 0.08);
     cursor: pointer;
     transition: border-color var(--duration-fast);
+    margin: 0 6px 6px 0;
 }
 
 .compare-chip:hover {
@@ -465,7 +401,7 @@
     font-size: 0.75rem;
     color: var(--text-secondary);
     backdrop-filter: blur(8px);
-    max-width: 180px;
+    max-width: 200px;
 }
 
 .legend-title {
@@ -708,7 +644,7 @@
 /* ─── Mobile branch explorer ─── */
 .mobile-explorer {
     display: none;
-    background: var(--mandala-deep);
+    background: var(--sunburst-deep);
     border-top: 1px solid rgba(255, 255, 255, 0.06);
     padding: var(--space-3) 0;
 }
@@ -805,7 +741,6 @@
 @media (max-width: 900px) {
     .connections-stage {
         grid-template-columns: 1fr;
-        grid-template-rows: auto auto;
     }
 
     .graph-wrap {
@@ -817,22 +752,24 @@
     }
 
     .connections-sidebar {
-        border-left: none;
-        border-top: 1px solid rgba(255, 255, 255, 0.06);
-        max-height: none;
-        position: static;
-        order: -1;
+        display: none;
+    }
+
+    .connections-filters {
+        position: sticky;
+        bottom: 0;
+        z-index: 90;
+    }
+
+    .filters-inner {
+        flex-direction: column;
+        gap: var(--space-3);
     }
 
     .compare-panel {
         top: var(--space-2);
         right: var(--space-2);
         width: calc(100% - var(--space-2) * 2);
-    }
-
-    .filters-inner {
-        flex-direction: column;
-        gap: var(--space-3);
     }
 }
 
@@ -852,10 +789,6 @@
 
     .toolbar-actions {
         justify-content: flex-end;
-    }
-
-    .sidebar-title {
-        font-size: 1.6rem;
     }
 }
 
