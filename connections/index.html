@@ -22,7 +22,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/main.css?v=perf8">
-    <link rel="stylesheet" href="/css/connections.css?v=1">
+    <link rel="stylesheet" href="/css/connections.css?v=mandala">
 
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%CE%A8%3C/text%3E%3C/svg%3E">
     <script src="https://d3js.org/d3.v7.min.js"></script>
@@ -99,7 +99,7 @@
     <!-- Hero -->
     <section class="connections-hero">
         <div class="container">
-            <p class="section-eyebrow reveal-up">The Mythweb</p>
+            <p class="section-eyebrow reveal-up">The Correspondence Mandala</p>
             <h1 class="display-lg reveal-up">CONNECTIONS</h1>
             <p class="hero-subtitle body-lg text-center reveal-up">
                 Thunder repeats itself. So does the sun, the sea, the underworld, and the trickster.
@@ -109,7 +109,7 @@
     </section>
 
     <!-- Graph Interface -->
-    <main class="connections-interface">
+    <main class="connections-interface" id="connections-interface">
         <div class="connections-toolbar">
             <div class="container toolbar-inner">
                 <div class="search-wrap">
@@ -119,17 +119,39 @@
                 <div class="toolbar-actions">
                     <button class="btn btn-outline btn-sm" id="reset-view">Reset view</button>
                     <button class="btn btn-outline btn-sm" id="random-node">Surprise me</button>
+                    <button class="btn btn-primary btn-sm" id="compare-toggle">Compare</button>
                 </div>
             </div>
         </div>
 
         <div class="connections-stage">
             <div class="graph-wrap" id="graph-wrap">
-                <svg id="graph-svg" aria-label="Cross-cultural similarity graph"></svg>
+                <svg id="graph-svg" aria-label="Cross-cultural similarity mandala"></svg>
+
                 <div class="graph-overlay" id="graph-overlay">
-                    <div class="graph-loading" id="graph-loading">Weaving the mythweb...</div>
+                    <div class="graph-loading" id="graph-loading">Weaving the mandala...</div>
                     <div class="graph-error" id="graph-error" hidden></div>
                 </div>
+
+                <div class="mandala-center-card" id="mandala-center-card" aria-live="polite">
+                    <span class="center-pantheon" id="center-pantheon">Pantheon</span>
+                    <h2 class="center-name" id="center-name">Name</h2>
+                    <p class="center-domain" id="center-domain">Domain</p>
+                    <a href="#" class="center-temple-link" id="center-temple-link">Enter temple &rarr;</a>
+                </div>
+
+                <div class="compare-panel" id="compare-panel" hidden>
+                    <div class="compare-header">
+                        <h3>Compare echoes</h3>
+                        <button class="compare-close" id="compare-close" aria-label="Close comparison">&times;</button>
+                    </div>
+                    <div class="compare-search-wrap">
+                        <input type="text" id="compare-search" class="node-search" placeholder="Select a second name..." autocomplete="off" aria-label="Compare with">
+                        <div class="search-results" id="compare-search-results" role="listbox"></div>
+                    </div>
+                    <div class="compare-results" id="compare-results"></div>
+                </div>
+
                 <div class="graph-legend" id="graph-legend" aria-hidden="true">
                     <span class="legend-title">Pantheons</span>
                 </div>
@@ -138,7 +160,7 @@
             <aside class="connections-sidebar" id="connections-sidebar">
                 <div class="sidebar-empty" id="sidebar-empty">
                     <div class="sidebar-icon">&#x2964;</div>
-                    <p class="body-md">Select a node to see its cross-cultural echoes.</p>
+                    <p class="body-md">Select a node or concept arm to explore its echoes.</p>
                 </div>
                 <div class="sidebar-content" id="sidebar-content" hidden>
                     <div class="sidebar-header">
@@ -150,18 +172,32 @@
                         <a href="#" class="btn btn-primary btn-sm" id="sidebar-temple-link">Enter Temple</a>
                         <a href="#" class="btn btn-outline btn-sm" id="sidebar-api-link">API Record</a>
                     </div>
+                    <div class="sidebar-section" id="sidebar-concept-section" hidden>
+                        <h3 class="sidebar-section-title">About this concept</h3>
+                        <p class="sidebar-concept-description body-sm" id="sidebar-concept-description"></p>
+                    </div>
                     <div class="sidebar-section">
-                        <h3 class="sidebar-section-title">Connections</h3>
+                        <h3 class="sidebar-section-title">Echoes</h3>
                         <ul class="connection-list" id="connection-list"></ul>
                     </div>
                 </div>
             </aside>
         </div>
 
+        <!-- Mobile branch explorer -->
+        <div class="mobile-explorer" id="mobile-explorer" aria-label="Concept branch explorer">
+            <div class="container">
+                <div class="explorer-empty" id="explorer-empty">
+                    <p class="body-md">Loading concept branches...</p>
+                </div>
+                <div class="explorer-content" id="explorer-content"></div>
+            </div>
+        </div>
+
         <div class="connections-filters">
             <div class="container filters-inner">
                 <div class="filter-group">
-                    <span class="filter-label">Strength</span>
+                    <span class="filter-label">Minimum strength</span>
                     <input type="range" id="strength-slider" min="1" max="3" value="1" step="1" aria-label="Minimum connection strength">
                     <div class="filter-range-labels">
                         <span>All</span>
@@ -169,15 +205,9 @@
                         <span>Canonical</span>
                     </div>
                 </div>
-                <div class="filter-group" id="category-filters">
-                    <span class="filter-label">Categories</span>
-                    <label class="filter-chip active"><input type="checkbox" value="function" checked><span>Function</span></label>
-                    <label class="filter-chip active"><input type="checkbox" value="phenomenon" checked><span>Phenomenon</span></label>
-                    <label class="filter-chip active"><input type="checkbox" value="narrative-role" checked><span>Narrative Role</span></label>
-                </div>
-                <div class="filter-group" id="view-filters">
-                    <span class="filter-label">View</span>
-                    <label class="filter-chip active"><input type="checkbox" id="toggle-concepts" value="concepts" checked><span>Show Concepts</span></label>
+                <div class="filter-group" id="domain-filters">
+                    <span class="filter-label">Domains</span>
+                    <!-- populated by JS -->
                 </div>
                 <div class="filter-group" id="pantheon-filters">
                     <span class="filter-label">Pantheons</span>
@@ -193,7 +223,7 @@
         <div class="container">
             <h2 class="display-md text-center reveal-up">Powered by structured similarity data</h2>
             <p class="body-lg text-center reveal-up">
-                Every edge is exposed through the API as training material for researchers, apps, and the Oracle AI.
+                Every correspondence is exposed through the API as training material for researchers, apps, and the Oracle AI.
             </p>
             <div class="text-center mt-5 reveal-up">
                 <a href="/api/v1/docs/" class="btn btn-outline btn-lg"><span>Browse API Documentation &rarr;</span></a>
@@ -242,7 +272,7 @@
 
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/main.js?v=perf8" defer></script>
-    <script src="/js/connections-helpers.js?v=2" defer></script>
-    <script src="/js/connections.js?v=3" defer></script>
+    <script src="/js/connections-helpers.js?v=mandala" defer></script>
+    <script src="/js/connections.js?v=mandala" defer></script>
 </body>
 </html>

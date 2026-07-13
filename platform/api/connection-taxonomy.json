@@ -1,0 +1,227 @@
+{
+  "version": "1.0.0",
+  "description": "Canonical concept taxonomy for the PÚNYCODEX cross-cultural similarity graph. Maps raw relationship strings to clean, non-overlapping concept arms grouped by domain.",
+  "domains": {
+    "celestial": {
+      "id": "celestial",
+      "label": "Celestial & Elemental",
+      "color": "#D4AF37",
+      "glow": "rgba(212, 175, 55, 0.35)",
+      "order": 1
+    },
+    "life-earth": {
+      "id": "life-earth",
+      "label": "Life & Earth",
+      "color": "#4CAF50",
+      "glow": "rgba(76, 175, 80, 0.30)",
+      "order": 2
+    },
+    "passion-conflict": {
+      "id": "passion-conflict",
+      "label": "Passion & Conflict",
+      "color": "#DC143C",
+      "glow": "rgba(220, 20, 60, 0.30)",
+      "order": 3
+    },
+    "society-order": {
+      "id": "society-order",
+      "label": "Society & Order",
+      "color": "#4169E1",
+      "glow": "rgba(65, 105, 225, 0.30)",
+      "order": 4
+    },
+    "cosmic-time": {
+      "id": "cosmic-time",
+      "label": "Cosmic & Time",
+      "color": "#9932CC",
+      "glow": "rgba(153, 50, 204, 0.30)",
+      "order": 5
+    }
+  },
+  "concepts": {
+    "thunder-storm-sovereignty": {
+      "id": "thunder-storm-sovereignty",
+      "label": "Thunder / Storm Sovereignty",
+      "domain": "celestial",
+      "description": "Sky and storm sovereigns who command thunder, lightning, and the celestial order.",
+      "order": 1,
+      "relationships": [
+        "Thunder / storm sovereignty",
+        "Thunder sovereignty",
+        "Sky father / sovereign"
+      ]
+    },
+    "sun-light": {
+      "id": "sun-light",
+      "label": "Sun / Light",
+      "domain": "celestial",
+      "description": "Solar deities and bringers of light, clarity, and cosmic radiance.",
+      "order": 2,
+      "relationships": ["Sun / light"]
+    },
+    "moon-lunar": {
+      "id": "moon-lunar",
+      "label": "Moon / Lunar",
+      "domain": "celestial",
+      "description": "Lunar powers that govern cycles, tides, night-vision, and monthly rhythm.",
+      "order": 3,
+      "relationships": ["Moon / lunar"]
+    },
+    "sea-water": {
+      "id": "sea-water",
+      "label": "Sea / Water",
+      "domain": "celestial",
+      "description": "Rulers of oceans, rivers, and the primordial waters that precede creation.",
+      "order": 4,
+      "relationships": ["Sea / water", "Sea / cosmic water"]
+    },
+    "fire-craft-inspiration": {
+      "id": "fire-craft-inspiration",
+      "label": "Fire / Craft / Inspiration",
+      "domain": "celestial",
+      "description": "Fire-bearers, smiths, poets, and illuminators of sacred knowledge.",
+      "order": 5,
+      "relationships": ["Fire / forge / craft", "Fire / poetry / inspiration"]
+    },
+    "earth-fertility": {
+      "id": "earth-fertility",
+      "label": "Earth / Fertility",
+      "domain": "life-earth",
+      "description": "Earth mothers, fertility powers, and regenerative forces of vegetation.",
+      "order": 6,
+      "relationships": [
+        "Earth / mother / fertility",
+        "Earth mother",
+        "Rebirth / vegetation"
+      ]
+    },
+    "death-underworld-rebirth": {
+      "id": "death-underworld-rebirth",
+      "label": "Death / Underworld / Rebirth",
+      "domain": "life-earth",
+      "description": "Guides of souls, rulers of the dead, and powers of cyclical return.",
+      "order": 7,
+      "relationships": [
+        "Underworld / death",
+        "Death / rebirth",
+        "Psychopomp",
+        "Psychopomp / soul guide"
+      ]
+    },
+    "healing-medicine": {
+      "id": "healing-medicine",
+      "label": "Healing / Medicine",
+      "domain": "life-earth",
+      "description": "Physicians of the divine, masters of herbs, incantations, and restorative arts.",
+      "order": 8,
+      "relationships": ["Healing / medicine"]
+    },
+    "war-battle": {
+      "id": "war-battle",
+      "label": "War / Battle",
+      "domain": "passion-conflict",
+      "description": "Warriors, battle-frenzies, and protective destroyers who decide the fate of armies.",
+      "order": 9,
+      "relationships": ["War / battle", "War / destruction", "War / protection"]
+    },
+    "hunt-wilderness": {
+      "id": "hunt-wilderness",
+      "label": "Hunt / Wilderness",
+      "domain": "passion-conflict",
+      "description": "Masters of beasts, forests, and the untamed margins of the known world.",
+      "order": 10,
+      "relationships": ["Hunt / wild", "Hunt / wilderness"]
+    },
+    "love-beauty-desire": {
+      "id": "love-beauty-desire",
+      "label": "Love / Beauty / Desire",
+      "domain": "passion-conflict",
+      "description": "Powers of attraction, eros, beauty, and the longing that moves gods and mortals.",
+      "order": 11,
+      "relationships": ["Love / beauty / desire"]
+    },
+    "trickster-mischief": {
+      "id": "trickster-mischief",
+      "label": "Trickster / Mischief",
+      "domain": "passion-conflict",
+      "description": "Boundary-breakers, shape-shifters, and sacred fools who upset cosmic order.",
+      "order": 12,
+      "relationships": ["Trickster / mischief", "Trickster / shape-shifter"]
+    },
+    "wisdom-knowledge": {
+      "id": "wisdom-knowledge",
+      "label": "Wisdom / Knowledge",
+      "domain": "society-order",
+      "description": "Keepers of lore, writing, secret speech, and the architecture of understanding.",
+      "order": 13,
+      "relationships": ["Wisdom / knowledge", "Wisdom / writing", "Wisdom / psychopomp"]
+    },
+    "justice-law-truth": {
+      "id": "justice-law-truth",
+      "label": "Justice / Law / Truth",
+      "domain": "society-order",
+      "description": "Arbiters of cosmic law, moral order, and the binding truth beneath custom.",
+      "order": 14,
+      "relationships": ["Justice / law / truth"]
+    },
+    "messenger-travel-commerce": {
+      "id": "messenger-travel-commerce",
+      "label": "Messenger / Travel / Commerce",
+      "domain": "society-order",
+      "description": "Divine messengers, psychopomps, travelers, and negotiators of exchange.",
+      "order": 15,
+      "relationships": [
+        "Messenger / travel / commerce",
+        "Messenger / travel / wisdom"
+      ]
+    },
+    "guardian-protector": {
+      "id": "guardian-protector",
+      "label": "Guardian / Protector",
+      "domain": "society-order",
+      "description": "Watchers at the threshold who defend cities, souls, and sacred boundaries.",
+      "order": 16,
+      "relationships": ["Guardian / protector"]
+    },
+    "creator-cosmogonic": {
+      "id": "creator-cosmogonic",
+      "label": "Creator / Cosmogonic",
+      "domain": "society-order",
+      "description": "Architects of worlds, weavers of the first matter, and originators of being.",
+      "order": 17,
+      "relationships": ["Creator / cosmogonic"]
+    },
+    "chaos-primordial": {
+      "id": "chaos-primordial",
+      "label": "Chaos / Primordial",
+      "domain": "cosmic-time",
+      "description": "Forces of pre-creation chaos, primordial monsters, and the disorder that precedes form.",
+      "order": 18,
+      "relationships": ["Chaos / monster", "Chaos / primordial / world serpent"]
+    },
+    "fate-time": {
+      "id": "fate-time",
+      "label": "Fate / Time",
+      "domain": "cosmic-time",
+      "description": "Weavers of destiny, measurers of age, and powers that bind past to future.",
+      "order": 19,
+      "relationships": ["Fate / time"]
+    },
+    "dawn-morning": {
+      "id": "dawn-morning",
+      "label": "Dawn / Morning",
+      "domain": "cosmic-time",
+      "description": "Heralds of the returning sun, dawn-dancers, and bringers of first light.",
+      "order": 20,
+      "relationships": ["Dawn / morning"]
+    },
+    "divine-kinship": {
+      "id": "divine-kinship",
+      "label": "Divine Kinship",
+      "domain": "cosmic-time",
+      "description": "Sacred pairs, divine fathers and sons, twins, and the lineage of immortals.",
+      "order": 21,
+      "relationships": ["Divine father / son", "Divine twins / fertility"]
+    }
+  }
+}

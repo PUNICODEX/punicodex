@@ -46,7 +46,37 @@ function loadGraph() {
   }
 }
 
+function loadTaxonomy() {
+  try {
+    return require('./connection-taxonomy.json');
+  } catch (_e) {
+    return null;
+  }
+}
+
 const graph = loadGraph();
+const taxonomy = loadTaxonomy();
+const relationshipToConcept = new Map();
+
+function buildConceptIndex() {
+  if (!taxonomy || !taxonomy.concepts) return;
+  for (const concept of Object.values(taxonomy.concepts)) {
+    for (const rel of concept.relationships || []) {
+      relationshipToConcept.set(rel, concept);
+    }
+  }
+}
+
+buildConceptIndex();
+
+function getConceptForRelationship(relationship) {
+  if (!relationship) return null;
+  return relationshipToConcept.get(relationship) || null;
+}
+
+function getTaxonomy() {
+  return taxonomy;
+}
 
 // Adjacency map: id -> array of connected edge records (undirected).
 const adjacency = new Map();
@@ -124,6 +154,7 @@ function getSimilarities(rawId, options = {}) {
       bidirectional: edge.bidirectional,
       note: edge.note,
       targetEntry: nodeForId(edge.target),
+      concept: getConceptForRelationship(edge.relationship),
     }))
     .sort((a, b) => {
       if (b.strength !== a.strength) return b.strength - a.strength;
@@ -194,9 +225,19 @@ function getGraph(rawId, options = {}) {
   const returnedIdSet = new Set(returnedIds);
   const nodes = returnedIds.map((nodeId) => nodeForId(nodeId));
 
-  const edges = (graph?.edges || []).filter(
-    (edge) => returnedIdSet.has(edge.source) && returnedIdSet.has(edge.target)
-  );
+  const edges = (graph?.edges || [])
+    .filter((edge) => returnedIdSet.has(edge.source) && returnedIdSet.has(edge.target))
+    .map((edge) => ({
+      ...edge,
+      concept: getConceptForRelationship(edge.relationship),
+    }));
+
+  const conceptsInGraph = new Map();
+  for (const edge of edges) {
+    if (edge.concept) {
+      conceptsInGraph.set(edge.concept.id, edge.concept);
+    }
+  }
 
   return {
     id,
@@ -205,6 +246,9 @@ function getGraph(rawId, options = {}) {
       nodeLimit: maxNodes,
       nodeCount: nodes.length,
       edgeCount: edges.length,
+      concepts: Array.from(conceptsInGraph.values()).sort(
+        (a, b) => (a.order || 0) - (b.order || 0)
+      ),
     },
     nodes,
     edges,
@@ -248,4 +292,6 @@ module.exports = {
   listRelationshipTypes,
   getRelationshipStats,
   getSimilarityCount,
+  getTaxonomy,
+  getConceptForRelationship,
 };
