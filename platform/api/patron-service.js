@@ -3,6 +3,7 @@ const { get, all, run, insert } = require('../db/operational');
 const PATRON_TIER_DEFAULT_CENTS = 700; // $7.00 USD / month
 const PATRON_TIER_MIN_CENTS = 500; // $5.00
 const PATRON_TIER_MAX_CENTS = 1000; // $10.00
+const PATRON_LIMIT_PER_TEMPLE = 20; // limited number of patrons per temple wall
 
 function sanitizeDisplayName(name) {
   if (!name || typeof name !== 'string') return 'Anonymous Patron';
@@ -67,6 +68,11 @@ function validateAmountCents(amountCents) {
   return Math.max(PATRON_TIER_MIN_CENTS, Math.min(PATRON_TIER_MAX_CENTS, cents));
 }
 
+async function isPatronLimitReached(templeId) {
+  const count = await countActivePatronsByTemple(templeId);
+  return count >= PATRON_LIMIT_PER_TEMPLE;
+}
+
 async function createPatronCheckoutRecord({
   templeId,
   email,
@@ -98,6 +104,16 @@ async function createPatronCheckoutRecord({
   }
   if (!normalized.email?.includes('@')) {
     throw Object.assign(new Error('valid email is required'), { status: 400 });
+  }
+
+  const limitReached = await isPatronLimitReached(normalized.templeId);
+  if (limitReached) {
+    throw Object.assign(
+      new Error(
+        `This temple has reached its limit of ${PATRON_LIMIT_PER_TEMPLE} patrons. Please check again later.`
+      ),
+      { status: 409 }
+    );
   }
 
   const id = await insert(
@@ -178,6 +194,7 @@ module.exports = {
   PATRON_TIER_DEFAULT_CENTS,
   PATRON_TIER_MIN_CENTS,
   PATRON_TIER_MAX_CENTS,
+  PATRON_LIMIT_PER_TEMPLE,
   createPatronCheckoutRecord,
   getPatronById,
   getPatronByStripeSubscriptionId,
@@ -185,4 +202,5 @@ module.exports = {
   markPatronPaid,
   cancelPatronBySubscriptionId,
   countActivePatronsByTemple,
+  isPatronLimitReached,
 };

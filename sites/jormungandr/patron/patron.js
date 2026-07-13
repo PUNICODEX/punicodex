@@ -7,6 +7,11 @@
     eyebrow: document.getElementById('patron-eyebrow'),
     title: document.getElementById('patron-title'),
     activeCount: document.getElementById('active-patron-count'),
+    spotsRemaining: document.getElementById('spots-remaining'),
+    heroScarcity: document.getElementById('patron-hero-scarcity'),
+    scarcityMessage: document.getElementById('scarcity-message'),
+    soldOut: document.getElementById('patron-sold-out'),
+    formHeader: document.querySelector('.patron-form-header'),
     wall: document.getElementById('patron-wall'),
     wallEmpty: document.getElementById('patron-wall-empty'),
     form: document.getElementById('patron-form'),
@@ -151,6 +156,35 @@
     return card;
   }
 
+  function updateLimitUI(data) {
+    const activeCount = Number(data.activeCount) || 0;
+    const limit = Number(data.limit) || 20;
+    const remaining = Math.max(0, limit - activeCount);
+
+    if (els.activeCount) els.activeCount.textContent = String(activeCount);
+    if (els.spotsRemaining) els.spotsRemaining.textContent = String(remaining);
+
+    if (els.heroScarcity) {
+      els.heroScarcity.hidden = remaining > 5 || remaining === 0;
+    }
+    if (els.scarcityMessage) {
+      if (remaining <= 3 && remaining > 0) {
+        els.scarcityMessage.textContent = `Only ${remaining} spot${remaining === 1 ? '' : 's'} left — claim yours before the wall is full.`;
+      } else {
+        els.scarcityMessage.textContent = 'Only a few spots left on this temple wall.';
+      }
+    }
+
+    if (data.isFull) {
+      if (els.form) els.form.hidden = true;
+      if (els.soldOut) els.soldOut.hidden = false;
+      if (els.formHeader) {
+        const subtitle = els.formHeader.querySelector('.patron-form-subtitle');
+        if (subtitle) subtitle.textContent = 'This temple has reached its limit of 20 patrons.';
+      }
+    }
+  }
+
   async function loadPatrons() {
     if (!templeId || !els.wall) return;
 
@@ -168,9 +202,10 @@
         patrons.forEach((patron) => els.wall.appendChild(renderPatron(patron)));
       }
 
-      if (els.activeCount) els.activeCount.textContent = String(patrons.length);
+      updateLimitUI(data);
     } catch (err) {
       if (els.activeCount) els.activeCount.textContent = '—';
+      if (els.spotsRemaining) els.spotsRemaining.textContent = '—';
       if (els.wall) els.wall.innerHTML = `<p class="patron-form-error" style="text-align:center;">Unable to load patron wall. Please refresh the page.</p>`;
     }
   }

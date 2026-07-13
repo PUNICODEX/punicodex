@@ -99,7 +99,11 @@ const {
   createPatronCheckoutSession,
 } = require('./api/stripe');
 const { processWebhook } = require('./api/webhook-handler');
-const { listActivePatronsByTemple } = require('./api/patron-service');
+const {
+  listActivePatronsByTemple,
+  countActivePatronsByTemple,
+  PATRON_LIMIT_PER_TEMPLE,
+} = require('./api/patron-service');
 const {
   proposeTenant,
   createTenant,
@@ -1644,8 +1648,17 @@ app.post('/api/patrons/checkout', publicWriteLimit, async (req, res) => {
 
 app.get('/api/patrons/:templeId', publicReadLimit, async (req, res) => {
   try {
-    const patrons = await listActivePatronsByTemple(req.params.templeId);
-    res.json({ patrons });
+    const [patrons, activeCount] = await Promise.all([
+      listActivePatronsByTemple(req.params.templeId),
+      countActivePatronsByTemple(req.params.templeId),
+    ]);
+    res.json({
+      patrons,
+      limit: PATRON_LIMIT_PER_TEMPLE,
+      activeCount,
+      remaining: Math.max(0, PATRON_LIMIT_PER_TEMPLE - activeCount),
+      isFull: activeCount >= PATRON_LIMIT_PER_TEMPLE,
+    });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

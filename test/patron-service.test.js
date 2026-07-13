@@ -51,6 +51,8 @@ const {
   PATRON_TIER_DEFAULT_CENTS,
   PATRON_TIER_MIN_CENTS,
   PATRON_TIER_MAX_CENTS,
+  PATRON_LIMIT_PER_TEMPLE,
+  isPatronLimitReached,
 } = require('../platform/api/patron-service.js');
 const { createPatronCheckoutSession, handleWebhook } = require('../platform/api/stripe.js');
 
@@ -341,6 +343,55 @@ test('unsupported social platform is rejected', async () => {
   });
   assert.strictEqual(patron.socialPlatform, null);
   assert.strictEqual(patron.socialUrl, null);
+});
+
+test('PATRON_LIMIT_PER_TEMPLE is 20', () => {
+  assert.strictEqual(PATRON_LIMIT_PER_TEMPLE, 20);
+});
+
+test('isPatronLimitReached returns true when 20 active patrons exist', async () => {
+  const templeId = 'limit-test-temple';
+  for (let i = 0; i < PATRON_LIMIT_PER_TEMPLE; i++) {
+    const patron = await createPatronCheckoutRecord({
+      templeId,
+      email: `limit${i}@example.com`,
+      displayName: `Limit Patron ${i}`,
+      amountCents: 700,
+    });
+    await markPatronPaid(patron.id, `sub_limit_${i}`, `cus_limit_${i}`, 700);
+  }
+
+  const full = await isPatronLimitReached(templeId);
+  assert.strictEqual(full, true);
+
+  const active = await listActivePatronsByTemple(templeId);
+  assert.strictEqual(active.length, PATRON_LIMIT_PER_TEMPLE);
+});
+
+test('createPatronCheckoutRecord rejects new patrons when limit is reached', async () => {
+  const templeId = 'limit-reject-temple';
+  for (let i = 0; i < PATRON_LIMIT_PER_TEMPLE; i++) {
+    const patron = await createPatronCheckoutRecord({
+      templeId,
+      email: `reject${i}@example.com`,
+      displayName: `Reject Patron ${i}`,
+      amountCents: 700,
+    });
+    await markPatronPaid(patron.id, `sub_reject_${i}`, `cus_reject_${i}`, 700);
+  }
+
+  try {
+    await createPatronCheckoutRecord({
+      templeId,
+      email: 'too-many@example.com',
+      displayName: 'Too Many',
+      amountCents: 700,
+    });
+    assert.fail('expected 409 limit error');
+  } catch (err) {
+    assert.strictEqual(err.status, 409);
+    assert.ok(err.message.includes('20'), 'error message should mention the limit');
+  }
 });
 
 run();

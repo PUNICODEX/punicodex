@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf17">
     <link rel="stylesheet" href="../styles.css?v=perf4">
-    <link rel="stylesheet" href="patron.css?v=1">
+    <link rel="stylesheet" href="patron.css?v=2">
 </head>
 <body>
     <!-- Global Strip -->
@@ -40,7 +40,6 @@
                 <a href="../" class="nav-link">Home</a>
                 <a href="../lore/index.html" class="nav-link">Lore</a>
                 <a href="../gallery/index.html" class="nav-link">Gallery</a>
-                <a href="https://punycodex.com/connections/#{{TEMPLE_ID}}" class="nav-link">Connections</a>
                 <a href="../scholars/index.html" class="nav-link">Scholars</a>
                 <a href="../creatives/index.html" class="nav-link">Creatives</a>
                 <a href="./" class="nav-link active">Patrons</a>
@@ -66,10 +65,18 @@
                         <span class="patron-stat-value" id="active-patron-count">—</span>
                         <span class="patron-stat-label">Active Patrons</span>
                     </div>
+                    <div class="patron-stat patron-stat--scarcity">
+                        <span class="patron-stat-value" id="spots-remaining">—</span>
+                        <span class="patron-stat-label">Spots Remaining</span>
+                    </div>
                     <div class="patron-stat">
                         <span class="patron-stat-value">$5–$10</span>
                         <span class="patron-stat-label">Per Month</span>
                     </div>
+                </div>
+                <div class="patron-hero-scarcity" id="patron-hero-scarcity" hidden>
+                    <span class="scarcity-dot"></span>
+                    <span id="scarcity-message">Only a few spots left on this temple wall.</span>
                 </div>
             </div>
         </section>
@@ -110,6 +117,13 @@
                         <p class="section-eyebrow">Join the Wall</p>
                         <h2 class="section-title">Become a Patron</h2>
                         <p class="patron-form-subtitle">Set your monthly amount, add your details, and complete secure checkout.</p>
+                    </div>
+
+                    <div class="patron-sold-out" id="patron-sold-out" hidden>
+                        <div class="patron-sold-out-icon">✦</div>
+                        <h3 class="patron-sold-out-title">This Temple Wall Is Full</h3>
+                        <p class="patron-sold-out-body">All 20 patron spots have been claimed. Check back later, or explore another temple to support.</p>
+                        <a href="https://punycodex.com/pantheon/" class="btn btn-primary btn-lg">Explore the Pantheon</a>
                     </div>
 
                     <form class="patron-form" id="patron-form" novalidate>
@@ -224,6 +238,6 @@
         </div>
     </footer>
 
-    <script src="patron.js?v=1"></script>
+    <script src="patron.js?v=2"></script>
 </body>
 </html>
