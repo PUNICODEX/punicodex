@@ -66,6 +66,8 @@
     stageHeader: document.getElementById('stage-header'),
     stageBack: document.getElementById('stage-back'),
     stageDomain: document.getElementById('stage-domain'),
+    downloadGraph: document.getElementById('download-graph'),
+    graphMeta: document.getElementById('graph-meta'),
   };
 
   function setError(message) {
@@ -109,6 +111,7 @@
       state.nodesById = new Map(state.similarities.nodes.map((n) => [n.id, n]));
       els.loading.hidden = true;
       renderDomainDrawer();
+      renderDataMeta();
       selectDomainFromHash();
     } catch (err) {
       console.error('Failed to load connection data:', err);
@@ -377,7 +380,9 @@
     } else {
       els.tooltipTitle.textContent = d.name;
       els.tooltipMeta.textContent = d.data?.pantheonLabel || capitalize(d.pantheon);
-      els.tooltipRel.textContent = 'Click to view details';
+      const concept = d.concept || state.taxonomy?.concepts?.[getConceptFromHelpers(d.data?.relationship)?.id];
+      const conceptLabel = concept?.label || d.data?.relationship;
+      els.tooltipRel.textContent = conceptLabel ? `Linked via ${conceptLabel}` : 'Click to view details';
     }
     moveTooltip(event);
   }
@@ -408,6 +413,38 @@
             `<div class="legend-item"><span class="legend-swatch" style="background:${pantheonColor(p)}"></span><span>${capitalize(p)}</span></div>`,
         )
         .join('');
+  }
+
+  function renderDataMeta() {
+    if (!els.graphMeta) return;
+    const meta = state.similarities?.meta || {};
+    const nodeCount = state.similarities?.nodes?.length || meta.nodeCount || 0;
+    const edgeCount = state.similarities?.edges?.length || meta.edgeCount || 0;
+    const generated = meta.generatedAt ? new Date(meta.generatedAt).toLocaleDateString() : null;
+    const parts = [
+      `${nodeCount.toLocaleString()} nodes`,
+      `${edgeCount.toLocaleString()} edges`,
+      generated ? `last generated ${generated}` : null,
+    ].filter(Boolean);
+    els.graphMeta.textContent = parts.join(' · ');
+  }
+
+  async function downloadGraphJSON() {
+    try {
+      const data = await fetchJSON('/api/v1/similarities/');
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'punycodex-similarities.json';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error('Failed to download graph:', err);
+      alert('Could not download graph. Please try again.');
+    }
   }
 
   async function renderDetailPanel() {
@@ -478,6 +515,24 @@
           <a href="/api/v1/names/${node.id}" class="btn btn-outline btn-sm">API Record</a>
         </div>
         <p class="detail-description">${escapeHtml(entry?.meaning || `Explore ${node.unicode} across traditions.`)}</p>
+
+        <div class="detail-explore">
+          <span class="detail-section-title">Explore</span>
+          <div class="detail-explore-links">
+            <a href="/oracle.html?q=${encodeURIComponent(node.unicode)}" class="detail-explore-link">
+              <span class="detail-explore-icon">&#x25C8;</span>
+              <span>Ask the Oracle</span>
+            </a>
+            <a href="/sites/${node.id}/scholars/" class="detail-explore-link">
+              <span class="detail-explore-icon">&#x270E;</span>
+              <span>Scholarly Edition</span>
+            </a>
+            <a href="/game/" class="detail-explore-link">
+              <span class="detail-explore-icon">&#x2618;</span>
+              <span>Card Game</span>
+            </a>
+          </div>
+        </div>
       </div>
 
       <div class="detail-card">
@@ -661,6 +716,21 @@
   // ─── Toolbar actions ───
   els.resetBtn.addEventListener('click', clearDomain);
   if (els.stageBack) els.stageBack.addEventListener('click', clearDomain);
+  if (els.downloadGraph) els.downloadGraph.addEventListener('click', downloadGraphJSON);
+
+  // ─── Keyboard shortcuts ───
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    if (e.target.matches('input, textarea, select')) return;
+    if (els.searchResults.classList.contains('is-open')) {
+      closeSearch();
+      return;
+    }
+    if (state.selectedDomain) {
+      e.preventDefault();
+      clearDomain();
+    }
+  });
 
   els.randomBtn.addEventListener('click', () => {
     const deities = state.similarities.nodes.filter((n) => n.id);

@@ -22,7 +22,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/main.css?v=perf8">
-    <link rel="stylesheet" href="/css/connections.css?v=atlas2">
+    <link rel="stylesheet" href="/css/connections.css?v=atlas3">
 
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%CE%A8%3C/text%3E%3C/svg%3E">
     <script src="https://d3js.org/d3.v7.min.js"></script>
@@ -163,18 +163,54 @@
     </main>
 
     <!-- Data / API Section -->
-    <section class="section-cta" id="developers">
-        <div class="cta-rule"></div>
+    <section class="connections-data" id="developers">
         <div class="container">
-            <h2 class="display-md text-center reveal-up">Powered by structured similarity data</h2>
-            <p class="body-lg text-center reveal-up">
-                Every correspondence is exposed through the API as training material for researchers, apps, and the Oracle AI.
-            </p>
-            <div class="text-center mt-5 reveal-up">
-                <a href="/api/v1/docs/" class="btn btn-outline btn-lg"><span>Browse API Documentation &rarr;</span></a>
+            <div class="connections-data-header reveal-up">
+                <span class="section-eyebrow">The Correspondence Graph</span>
+                <h2 class="display-md">Powered by the flywheel</h2>
+                <p class="body-lg">
+                    Every cross-cultural link is generated from the canonical lexicon and taxonomy, then exposed as structured training data for the Oracle AI, Scholars, the card game, and third-party apps.
+                </p>
             </div>
+
+            <div class="connections-data-grid">
+                <a href="/api/v1/docs/" class="data-card reveal-up">
+                    <span class="data-card-icon">&#x276F;&#x276F;</span>
+                    <h3>API</h3>
+                    <p>Query nodes, edges, ego-networks, and relationship types programmatically.</p>
+                    <span class="data-card-link">Browse docs &rarr;</span>
+                </a>
+                <a href="/oracle.html" class="data-card reveal-up">
+                    <span class="data-card-icon">&#x25C8;</span>
+                    <h3>Oracle AI</h3>
+                    <p>The graph trains the Oracle to answer cross-cultural pattern questions.</p>
+                    <span class="data-card-link">Ask the Oracle &rarr;</span>
+                </a>
+                <a href="/scholars/search/" class="data-card reveal-up">
+                    <span class="data-card-icon">&#x270E;</span>
+                    <h3>Scholars</h3>
+                    <p>University editors can expand provenance and cite new correspondences.</p>
+                    <span class="data-card-link">Search editions &rarr;</span>
+                </a>
+                <a href="/game/" class="data-card reveal-up">
+                    <span class="data-card-icon">&#x2618;</span>
+                    <h3>Card Game</h3>
+                    <p>Rarity, pantheon bonuses, and deck synergy all draw from the same graph.</p>
+                    <span class="data-card-link">Play &rarr;</span>
+                </a>
+            </div>
+
+            <div class="connections-data-actions reveal-up">
+                <button class="btn btn-outline btn-lg" id="download-graph" type="button">
+                    <span>Download graph JSON</span>
+                </button>
+                <a href="/api/v1/similarities/" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+                    <span>View raw endpoint</span>
+                </a>
+            </div>
+
+            <p class="connections-data-meta reveal-up" id="graph-meta"></p>
         </div>
-        <div class="cta-rule"></div>
     </section>
 
     <!-- Footer -->
@@ -217,7 +253,7 @@
 
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/main.js?v=perf8" defer></script>
-    <script src="/js/connections-helpers.js?v=atlas2" defer></script>
-    <script src="/js/connections.js?v=atlas2" defer></script>
+    <script src="/js/connections-helpers.js?v=atlas3" defer></script>
+    <script src="/js/connections.js?v=atlas3" defer></script>
 </body>
 </html>

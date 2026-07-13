@@ -70,6 +70,15 @@ test('connections stage has a back button', () => {
   assert.ok(html.includes('id="stage-back"'), 'must have stage back button');
 });
 
+test('connections page has data/flywheel section', () => {
+  const html = read('connections/index.html');
+  assert.ok(html.includes('class="connections-data"'), 'must have connections-data section');
+  assert.ok(html.includes('id="download-graph"'), 'must have download graph button');
+  assert.ok(html.includes('id="graph-meta"'), 'must have graph meta line');
+  assert.ok(html.includes('/api/v1/docs/'), 'must link to API docs');
+  assert.ok(html.includes('/oracle.html'), 'must link to Oracle');
+});
+
 test('connections page links to global nav', () => {
   const html = read('connections/index.html');
   assert.ok(html.includes('href="/connections/"'), 'must self-link in nav');
