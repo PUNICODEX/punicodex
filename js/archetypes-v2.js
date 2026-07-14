@@ -3383,6 +3383,27 @@ const ARCHETYPES = [
         darkPunchline: false
     },
 
+    {
+        id: "ouranos",
+        name: "Ouranós",
+        greek: "Οὐρανός",
+        domain: "Sky",
+        tagline: "Sky · Heaven, sky",
+        tier: "tier-1",
+        tierDetail: "single-tier",
+        pantheon: "greek",
+        folder: "ouranos",
+        domainUnicode: "ouranós.com",
+        domainPunycode: "xn--ourans-fxa.com",
+        colors: { primary: "#D4AF37", secondary: "#4169E1", glow: "rgba(212,175,55,0.3)" },
+        mascotPath: "/sites/ouranos/assets/ouranos_mascot.webp",
+        mascotFallback: "/sites/ouranos/assets/ouranos_mascot.webp",
+        logomarkPath: "/sites/ouranos/assets/ouranos_logomark.webp",
+        built: true,
+        hasAdSite: true,
+        darkPunchline: false
+    },
+
 ];
 
 if (typeof module !== 'undefined' && module.exports) {

@@ -206,6 +206,7 @@ const flagshipIds = new Set([
   'olympos',
   'om',
   'osaka',
+  'ouranos',
   'parvati',
   'persephone',
   'perkunas',

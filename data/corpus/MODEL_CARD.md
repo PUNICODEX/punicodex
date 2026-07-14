@@ -1,8 +1,8 @@
 # PÚNYCODEX Oracle — Model Card
 
 **Model family:** PÚNYCODEX Oracle (specialized language model)  
-**Data version:** 2.0.43  
-**Generated:** 2026-07-12T20:12:54.801Z  
+**Data version:** 2.0.44  
+**Generated:** 2026-07-14T06:05:54.719Z  
 **License:** CC BY 4.0 for dataset; ISC for software (see root LICENSE).
 
 ## Intended Use
@@ -17,16 +17,16 @@
 
 | Split | Examples | File |
 |-------|----------|------|
-| Train | 56,410 | `data/corpus/chat-train.jsonl` |
-| Evaluation | 14,039 | `data/corpus/chat-eval.jsonl` |
-| **Total** | **70,449** | — |
+| Train | 56,411 | `data/corpus/chat-train.jsonl` |
+| Evaluation | 14,040 | `data/corpus/chat-eval.jsonl` |
+| **Total** | **70,451** | — |
 
 Source corpora:
 - `instructions.jsonl`: 8,082 examples
 - `safety-examples.jsonl`: 41,378 examples
 - `dialogue-examples.jsonl`: 2,934 examples
 - `tool-use-examples.jsonl`: 4,460 examples
-- `multimodal-examples.jsonl`: 1,672 examples
+- `multimodal-examples.jsonl`: 1,674 examples
 - `preference-examples.jsonl`: 3,592 examples
 - `reasoning-examples.jsonl`: 3,487 examples
 - `mythology-synthesis.jsonl`: 390 examples
