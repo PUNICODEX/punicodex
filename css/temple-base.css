@@ -111,7 +111,7 @@ canvas[data-effect] {
 /* ─── Navigation ─── */
 .main-nav {
     position: fixed;
-    top: 0;
+    top: var(--global-strip-height);
     left: 0;
     width: 100%;
     z-index: 1000;
@@ -323,10 +323,10 @@ canvas[data-effect] {
 /* ─── Mobile Menu Overlay ─── */
 .mobile-menu {
     position: fixed;
-    top: var(--nav-height);
+    top: calc(var(--global-strip-height) + var(--nav-height));
     left: 0;
     right: 0;
-    height: calc(100vh - var(--nav-height));
+    height: calc(100vh - var(--global-strip-height) - var(--nav-height));
     background: rgba(5, 5, 5, 0.98);
     z-index: 1009;
     display: flex;
@@ -371,7 +371,7 @@ body.menu-open {
 
 /* ─── Global Strip (top bar above tab nav) ─── */
 .global-strip {
-    position: relative;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -483,7 +483,7 @@ body.menu-open {
     align-items: center;
     position: relative;
     overflow: hidden;
-    padding-top: 6rem;
+    padding-top: calc(var(--global-strip-height) + var(--nav-height) + 2rem);
 }
 
 .hero-content {
