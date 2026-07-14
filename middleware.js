@@ -174,7 +174,7 @@ const DOMAIN_MAP = {
   'sḫmt.com':                       '/sites/sekhmet',
   'śiva.com':                       '/sites/shiva',
   'spártē.com':                     '/sites/sparte',
-  'sphĭnx.com':                     '/sites/sphinx',
+  'sphigx.com':                     '/sites/sphinx',
   'sūrya.com':                      '/sites/surya',
   'šw.com':                         '/sites/shu',
   'sꜥ.com':                         '/sites/sia',
@@ -368,7 +368,7 @@ const DOMAIN_MAP = {
   'www.sḫmt.com':                   '/sites/sekhmet',
   'www.śiva.com':                   '/sites/shiva',
   'www.spártē.com':                 '/sites/sparte',
-  'www.sphĭnx.com':                 '/sites/sphinx',
+  'www.sphigx.com':                 '/sites/sphinx',
   'www.sūrya.com':                  '/sites/surya',
   'www.šw.com':                     '/sites/shu',
   'www.sꜥ.com':                     '/sites/sia',
@@ -444,6 +444,7 @@ const DOMAIN_MAP = {
   'www.xn--ers-rxa.com':            '/sites/eros',
   'www.xn--eurp-eva0406b.com':      '/sites/europe',
   'www.xn--eurp-eva06a.com':        '/sites/europe',
+  'www.xn--fe4dmg.com':             '/sites/ea',
   'www.xn--g-pia.com':              '/sites/ge',
   'www.xn--gaa-wma.com':            '/sites/gaia',
   'www.xn--gaea-n5a6355b.com':      '/sites/ganesha',
@@ -480,6 +481,7 @@ const DOMAIN_MAP = {
   'www.xn--koos-1pa.com':           '/sites/coeus',
   'www.xn--kr-wma.com':             '/sites/ker',
   'www.xn--krnos-1ta.com':          '/sites/kronos',
+  'www.xn--kxaqik.com':             '/sites/nike',
   'www.xn--kyto-m3a.com':           '/sites/kyoto',
   'www.xn--l-oia.com':              '/sites/el',
   'www.xn--lakm-tya2995b.com':      '/sites/lakshmi',
@@ -548,7 +550,6 @@ const DOMAIN_MAP = {
   'www.xn--sat-wta.com':            '/sites/sati',
   'www.xn--seln-dvab.com':          '/sites/selene',
   'www.xn--smt-b2y.com':            '/sites/sekhmet',
-  'www.xn--sphnx-03a.com':          '/sites/sphinx',
   'www.xn--sprt-6na61a.com':        '/sites/sparte',
   'www.xn--srya-v7a.com':           '/sites/surya',
   'www.xn--st-rq8h.com':            '/sites/isis',
@@ -597,6 +598,8 @@ const DOMAIN_MAP = {
   'www.ꜥasherah.com':               '/sites/asherah',
   'www.ꜥnḫ.com':                    '/sites/ankh',
   'www.ꜥpp.com':                    '/sites/apep',
+  'www.νίκη.com':                   '/sites/nike',
+  'www.𒀭𒂍.com':                   '/sites/ea',
   'wꜣḏ.com':                        '/sites/wadjet',
   'xian.com':                       '/sites/xian',
   'xn--9gg9559c.com':               '/sites/akh',
@@ -646,6 +649,7 @@ const DOMAIN_MAP = {
   'xn--ers-rxa.com':                '/sites/eros',
   'xn--eurp-eva0406b.com':          '/sites/europe',
   'xn--eurp-eva06a.com':            '/sites/europe',
+  'xn--fe4dmg.com':                 '/sites/ea',
   'xn--g-pia.com':                  '/sites/ge',
   'xn--gaa-wma.com':                '/sites/gaia',
   'xn--gaea-n5a6355b.com':          '/sites/ganesha',
@@ -682,6 +686,7 @@ const DOMAIN_MAP = {
   'xn--koos-1pa.com':               '/sites/coeus',
   'xn--kr-wma.com':                 '/sites/ker',
   'xn--krnos-1ta.com':              '/sites/kronos',
+  'xn--kxaqik.com':                 '/sites/nike',
   'xn--kyto-m3a.com':               '/sites/kyoto',
   'xn--l-oia.com':                  '/sites/el',
   'xn--lakm-tya2995b.com':          '/sites/lakshmi',
@@ -750,7 +755,6 @@ const DOMAIN_MAP = {
   'xn--sat-wta.com':                '/sites/sati',
   'xn--seln-dvab.com':              '/sites/selene',
   'xn--smt-b2y.com':                '/sites/sekhmet',
-  'xn--sphnx-03a.com':              '/sites/sphinx',
   'xn--sprt-6na61a.com':            '/sites/sparte',
   'xn--srya-v7a.com':               '/sites/surya',
   'xn--st-rq8h.com':                '/sites/isis',
@@ -799,6 +803,8 @@ const DOMAIN_MAP = {
   'ꜥasherah.com':                   '/sites/asherah',
   'ꜥnḫ.com':                        '/sites/ankh',
   'ꜥpp.com':                        '/sites/apep',
+  'νίκη.com':                       '/sites/nike',
+  '𒀭𒂍.com':                       '/sites/ea',
 };
 
 // Build reverse map: domain → archetype id
@@ -881,7 +887,31 @@ export default function middleware(request) {
     return fetch(url);
   }
 
-  // ─── 1. Domain redirect ────────────────────────────────────────────
+  // ─── 1. External-domain redirects ──────────────────────────────────
+  // Some owned Unicode domains should redirect to another canonical domain
+  // rather than serve the temple directly.
+  const EXTERNAL_REDIRECT_DOMAINS = {
+    '𒀭𒂍.com': 'https://ēa.com/',
+    'xn--fe4dmg.com': 'https://ēa.com/',
+    'www.𒀭𒂍.com': 'https://ēa.com/',
+    'www.xn--fe4dmg.com': 'https://ēa.com/',
+    'νίκη.com': 'https://punycodex.com/nike',
+    'xn--kxaqik.com': 'https://punycodex.com/nike',
+    'www.νίκη.com': 'https://punycodex.com/nike',
+    'www.xn--kxaqik.com': 'https://punycodex.com/nike',
+  };
+  const externalTarget = EXTERNAL_REDIRECT_DOMAINS[host];
+  if (externalTarget) {
+    return new Response(null, {
+      status: 301,
+      headers: {
+        'Location': externalTarget,
+        'Cache-Control': 'public, max-age=0, must-revalidate',
+      },
+    });
+  }
+
+  // ─── 2. Domain redirect ────────────────────────────────────────────
   // Unicode/punycode domains → 301 redirect to punycodex.com/{id}
   const id = DOMAIN_TO_ID[host];
   if (id) {
@@ -896,7 +926,7 @@ export default function middleware(request) {
     });
   }
 
-  // ─── 2. Legacy path redirects ──────────────────────────────────────
+  // ─── 3. Legacy path redirects ──────────────────────────────────────
   // Superseded canonical paths → 301 redirect to the current canonical
   for (const [legacyPath, newPath] of Object.entries(LEGACY_REDIRECTS)) {
     if (url.pathname === legacyPath || url.pathname.startsWith(legacyPath + '/')) {
@@ -911,7 +941,7 @@ export default function middleware(request) {
     }
   }
 
-  // ─── 3. Archetype path rewrite ─────────────────────────────────────
+  // ─── 4. Archetype path rewrite ─────────────────────────────────────
   // punycodex.com/{id}/* → internally serves /sites/{id}/*
   // URL stays as /{id}/* for clean SEO and UX
   const pathParts = url.pathname.split('/').filter(Boolean);

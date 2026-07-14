@@ -18982,11 +18982,11 @@ const LEXICON = [
       {
         "unicode": "Sphinx",
         "type": "ascii",
-        "note": "Plain ASCII form"
+        "note": "Common English form"
       }
     ],
-    "ascii": "sphinx",
-    "unicode": "Sphĭnx",
+    "ascii": "sphigx",
+    "unicode": "Sphigx",
     "greek": "Σφίγξ",
     "pantheon": "greek",
     "tier": "2",
@@ -19018,15 +19018,15 @@ const LEXICON = [
       },
       {
         "char": "i",
-        "to": "ĭ",
-        "type": "special",
-        "note": "Breve: short iota"
+        "to": "i",
+        "type": "same",
+        "note": "i same"
       },
       {
-        "char": "n",
-        "to": "n",
+        "char": "g",
+        "to": "g",
         "type": "same",
-        "note": "n same"
+        "note": "g same — restores Greek gamma [ŋg] cluster"
       },
       {
         "char": "x",

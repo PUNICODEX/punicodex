@@ -1,8 +1,8 @@
 # PÚNYCODEX Oracle — Model Card
 
 **Model family:** PÚNYCODEX Oracle (specialized language model)  
-**Data version:** 2.0.53  
-**Generated:** 2026-07-14T12:36:28.550Z  
+**Data version:** 2.0.54  
+**Generated:** 2026-07-14T13:14:00.864Z  
 **License:** CC BY 4.0 for dataset; ISC for software (see root LICENSE).
 
 ## Intended Use
@@ -71,7 +71,7 @@ Do not use this model to generate deceptive domains, impersonate brands, or evad
 
 Before supervised fine-tuning, domain-adapt the base model on the raw scholarly corpus:
 
-- `data/corpus/pretrain.jsonl` — 5,248 training documents (396,768 whitespace tokens).
+- `data/corpus/pretrain.jsonl` — 5,248 training documents (396,767 whitespace tokens).
 - `data/corpus/pretrain-validation.jsonl` — 271 validation documents (21,114 whitespace tokens).
 - HuggingFace-compatible splits in `data/corpus/huggingface/`.
 
