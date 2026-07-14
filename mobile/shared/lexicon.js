@@ -7814,8 +7814,8 @@ const LEXICON = [
     "pantheon": "mesopotamian",
     "tier": "2",
     "tierLabel": "Tier 2",
-    "domain": "Wind, Air, Storms, Kingship",
-    "meaning": "Lord of the Wind; the supreme Sumerian and Akkadian god of air, storms, and sovereign command, later known as Ellil",
+    "domain": "Phonological Reconstruction, Wind, Air, Storms, Kingship",
+    "meaning": "Reconstruction node for the Sumerian/Akkadian deity Enlil: the macron marks a discussable vowel length, not a canonical spelling claim.",
     "sources": [
       "CAD",
       "AHw",
@@ -7827,6 +7827,11 @@ const LEXICON = [
         "unicode": "enlīl",
         "type": "owned",
         "note": "Lowercase owned domain form"
+      },
+      {
+        "unicode": "Enlil",
+        "type": "ascii",
+        "note": "Standard unmarked Assyriological transliteration"
       },
       {
         "unicode": "Ellil",
@@ -7842,8 +7847,8 @@ const LEXICON = [
       "protoForm": "EN.LIL",
       "protoLanguage": "isolate",
       "protoGloss": "lord of the wind / air",
-      "derivation": "From Sumerian 𒂗𒇸 (EN.LIL), \"lord wind\"; in Akkadian the name was pronounced as Ellil and became the chief deity of the Mesopotamian pantheon",
-      "certainty": "attested",
+      "derivation": "Standard Assyriology transliterates the god as Enlil (𒀭𒂗𒇸). The Sumerian signs EN.LIL mean 'lord wind/air,' and the Akkadian rendering is Ellil. The length of the second vowel is reconstructed from comparative and orthographic evidence, not explicitly encoded in the cuneiform; the macron on Enlīl is a pedagogical mark that makes that open question visible, not a claim of canonical spelling.",
+      "certainty": "disputed",
       "cognates": [
         {
           "language": "Sumerian",
@@ -7880,7 +7885,7 @@ const LEXICON = [
         "char": "i",
         "to": "ī",
         "type": "length",
-        "note": "Macron marks the long /ī/ vowel"
+        "note": "Macron: a visible question mark — the length of Enlil's second vowel is discussable, not certain"
       },
       {
         "char": "l",
@@ -22601,8 +22606,8 @@ const LEXICON = [
     "pantheon": "mesopotamian",
     "tier": "2",
     "tierLabel": "Tier 2",
-    "domain": "Sky, Heaven, Kingship",
-    "meaning": "The Sumerian/Akkadian sky god; king of the Mesopotamian pantheon; name means \"heaven, sky\".",
+    "domain": "Phonological Reconstruction, Sky, Heaven, Kingship",
+    "meaning": "Reconstruction node for the Sumerian/Akkadian sky god Anu: the circumflex marks a discussable vowel length, not a canonical spelling claim.",
     "sources": [
       "ETCSL",
       "Black-Green",
@@ -22616,8 +22621,8 @@ const LEXICON = [
       },
       {
         "unicode": "Anu",
-        "type": "alt",
-        "note": "Unmarked scholarly transliteration",
+        "type": "ascii",
+        "note": "Standard unmarked Assyriological transliteration",
         "sources": [
           "ETCSL",
           "Black-Green"
@@ -22628,8 +22633,8 @@ const LEXICON = [
       "protoForm": "Anu",
       "protoLanguage": "sumerian",
       "protoGloss": "sky, heaven",
-      "derivation": "From Sumerian 𒀭𒀀𒉡 (Anu), the sky god whose name means \"sky, heaven\"; in Akkadian tradition Anu remained king of the gods, father of Enlil.",
-      "certainty": "attested",
+      "derivation": "Standard Assyriology transliterates the sky god as Anu (𒀭𒀀𒉡). The Sumerian sign sequence means 'sky, heaven,' and Anu remained king of the gods in Akkadian tradition. The length of the final vowel in the Akkadian/Sumerian romanization is reconstructed, not sign-given; the circumflex on Anû is a pedagogical mark that makes that open question visible, not a claim of canonical spelling.",
+      "certainty": "disputed",
       "cognates": [
         {
           "language": "Sumerian",
@@ -22662,7 +22667,7 @@ const LEXICON = [
         "char": "u",
         "to": "û",
         "type": "length",
-        "note": "Circumflex marks long ū"
+        "note": "Circumflex: a visible question mark — the length of Anu's final vowel is discussable, not certain"
       }
     ]
   },
@@ -23036,13 +23041,18 @@ const LEXICON = [
     "pantheon": "mesopotamian",
     "tier": "2",
     "tierLabel": "Tier 2",
-    "domain": "Fresh Water, Abyss",
-    "meaning": "Abyss",
+    "domain": "Phonological Reconstruction, Fresh Water, Abyss",
+    "meaning": "Reconstruction node for the Mesopotamian abyss Apsu (Sumerian Abzu): the circumflex marks a discussable vowel length, not a canonical spelling claim.",
     "sources": [
       "Enuma Elish",
       "Black-Green"
     ],
     "variants": [
+      {
+        "unicode": "Apsu",
+        "type": "ascii",
+        "note": "Standard unmarked Assyriological transliteration"
+      },
       {
         "unicode": "Abzu",
         "type": "alt",
@@ -23058,8 +23068,8 @@ const LEXICON = [
       "protoForm": "",
       "protoLanguage": "sumerian",
       "protoGloss": "primeval freshwater abyss",
-      "derivation": "Akkadian Apsû is the Akkadian reading of Sumerian abzu (AB.ZU), the primeval freshwater abyss beneath the earth; the cuneiform signs are logographic.",
-      "certainty": "attested",
+      "derivation": "Standard Assyriology transliterates the primordial freshwater abyss as Apsu (Akkadian) or Abzu (Sumerian 𒀊𒍪). The length of the final vowel in Akkadian Apsû is reconstructed from linguistic convention, not from the cuneiform signs themselves; the circumflex on Apsû is a pedagogical mark that makes that open question visible, not a claim of canonical spelling.",
+      "certainty": "disputed",
       "cognates": [
         {
           "language": "sumerian",
@@ -23092,7 +23102,7 @@ const LEXICON = [
         "char": "u",
         "to": "û",
         "type": "length",
-        "note": "Circumflex marks Akkadian long /û/ (vowel-contraction length), not Greek-style stress"
+        "note": "Circumflex: a visible question mark — the length of Apsu's final vowel is discussable, not certain"
       }
     ]
   },

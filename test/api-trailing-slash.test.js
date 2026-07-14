@@ -4,8 +4,8 @@
  * for bare /api/v1/foo paths, which breaks CORS preflight and fetch clients that
  * do not follow redirects.
  */
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
 const { test } = require('node:test');
 const assert = require('node:assert');
 
@@ -15,7 +15,11 @@ function walk(dir, files = []) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) {
-      if (['node_modules', '.git', '.backup', '.vercel', 'api', 'test', '__tests__'].includes(entry.name)) {
+      if (
+        ['node_modules', '.git', '.backup', '.vercel', 'api', 'test', '__tests__'].includes(
+          entry.name
+        )
+      ) {
         continue;
       }
       walk(full, files);
@@ -26,16 +30,11 @@ function walk(dir, files = []) {
   return files;
 }
 
-const EXCLUDED_FILES = new Set([
-  path.join(ROOT, 'platform', 'server.js'),
-]);
+const EXCLUDED_FILES = new Set([path.join(ROOT, 'platform', 'server.js')]);
 
 // Match a /api/ URL that does NOT end with a slash and is followed by
 // a query string, quote, comma, closing paren, or end of line.
 const BARE_API_URL = /(\/api\/[a-zA-Z0-9_\-./]+[^\s?"'`',)>/])(\?|["'`'`,)>]|$)/;
-
-// Match require()/import() paths so we don't confuse them with API calls.
-const REQUIRE_OR_IMPORT = /(require|import)\s*\(\s*['"]/;
 
 test('frontend API references use trailing slash', () => {
   const files = walk(ROOT).filter((fp) => {
@@ -52,7 +51,12 @@ test('frontend API references use trailing slash', () => {
       const line = lines[i];
       if (!line.includes('/api/')) continue;
       // Only care about runtime URLs in fetch, href, window.open, or data attributes.
-      if (!line.includes('fetch(') && !line.includes('href=') && !line.includes('window.open(') && !line.includes('data-api-endpoint')) {
+      if (
+        !line.includes('fetch(') &&
+        !line.includes('href=') &&
+        !line.includes('window.open(') &&
+        !line.includes('data-api-endpoint')
+      ) {
         continue;
       }
       if (BARE_API_URL.test(line)) {
@@ -61,5 +65,9 @@ test('frontend API references use trailing slash', () => {
     }
   }
 
-  assert.strictEqual(bad.length, 0, `Found API references without trailing slash:\n${bad.join('\n')}`);
+  assert.strictEqual(
+    bad.length,
+    0,
+    `Found API references without trailing slash:\n${bad.join('\n')}`
+  );
 });
