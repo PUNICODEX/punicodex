@@ -1,8 +1,8 @@
 # PÚNYCODEX Oracle — Model Card
 
 **Model family:** PÚNYCODEX Oracle (specialized language model)  
-**Data version:** 2.0.54  
-**Generated:** 2026-07-14T13:14:00.864Z  
+**Data version:** 2.0.55  
+**Generated:** 2026-07-14T13:30:24.582Z  
 **License:** CC BY 4.0 for dataset; ISC for software (see root LICENSE).
 
 ## Intended Use
