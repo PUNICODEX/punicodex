@@ -98,8 +98,8 @@
 
         // Deep red radial ground
         const bg = ctx.createRadialGradient(width * 0.5, height * 0.55, 0, width * 0.5, height * 0.55, Math.max(width, height) * 0.75);
-        bg.addColorStop(0, `rgba(${P.r}, ${P.g}, ${P.b}, 0.55)`);
-        bg.addColorStop(0.6, `rgba(${P.r}, ${P.g}, ${P.b}, 0.82)`);
+        bg.addColorStop(0, `rgba(${Math.max(P.r - 80, 20)}, ${Math.max(P.g - 80, 0)}, ${Math.max(P.b - 80, 0)}, 0.22)`);
+        bg.addColorStop(0.6, `rgba(${Math.max(P.r - 60, 30)}, ${Math.max(P.g - 60, 0)}, ${Math.max(P.b - 60, 0)}, 0.35)`);
         bg.addColorStop(1, `rgba(40, 0, 10, 0.95)`);
         ctx.fillStyle = bg;
         ctx.fillRect(0, 0, width, height);

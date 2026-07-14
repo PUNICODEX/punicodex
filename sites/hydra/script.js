@@ -131,8 +131,8 @@
         ctx.clearRect(0, 0, width, height);
 
         const grad = ctx.createLinearGradient(0, 0, 0, height);
-        grad.addColorStop(0, `rgba(${P.r}, ${P.g}, ${P.b}, 0.12)`);
-        grad.addColorStop(1, `rgba(${P.r}, ${P.g}, ${P.b}, 0.45)`);
+        grad.addColorStop(0, `rgba(${P.r}, ${P.g}, ${P.b}, 0.05)`);
+        grad.addColorStop(1, `rgba(${P.r}, ${P.g}, ${P.b}, 0.18)`);
         ctx.fillStyle = grad;
         ctx.fillRect(0, 0, width, height);
 

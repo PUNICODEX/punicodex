@@ -152,8 +152,8 @@
         ctx.clearRect(0, 0, width, height);
 
         const bg = ctx.createRadialGradient(width * 0.5, height * 0.5, 0, width * 0.5, height * 0.5, Math.max(width, height) * 0.7);
-        bg.addColorStop(0, `rgba(${S.r}, ${S.g}, ${S.b}, 0.07)`);
-        bg.addColorStop(1, `rgba(${P.r}, ${P.g}, ${P.b}, 0.22)`);
+        bg.addColorStop(0, `rgba(${S.r}, ${S.g}, ${S.b}, 0.04)`);
+        bg.addColorStop(1, `rgba(${P.r}, ${P.g}, ${P.b}, 0.10)`);
         ctx.fillStyle = bg;
         ctx.fillRect(0, 0, width, height);
 

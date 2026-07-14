@@ -125,7 +125,7 @@
 
         // Deep space gradient
         const bg = ctx.createRadialGradient(width * 0.5, height * 0.5, 0, width * 0.5, height * 0.5, Math.max(width, height) * 0.7);
-        bg.addColorStop(0, `rgba(${P.r}, ${P.g}, ${P.b}, 0.55)`);
+        bg.addColorStop(0, `rgba(${P.r}, ${P.g}, ${P.b}, 0.16)`);
         bg.addColorStop(0.6, `rgba(10, 5, 22, 0.92)`);
         bg.addColorStop(1, `rgba(4, 2, 10, 0.98)`);
         ctx.fillStyle = bg;

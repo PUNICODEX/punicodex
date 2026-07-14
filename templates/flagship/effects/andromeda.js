@@ -82,9 +82,9 @@
 
         // Sea gradient
         const grad = ctx.createLinearGradient(0, 0, 0, height);
-        grad.addColorStop(0, `rgba(${P.r}, ${P.g}, ${P.b}, 0.12)`);
-        grad.addColorStop(0.55, `rgba(${P.r}, ${P.g}, ${P.b}, 0.32)`);
-        grad.addColorStop(1, `rgba(${P.r}, ${P.g}, ${P.b}, 0.58)`);
+        grad.addColorStop(0, `rgba(${P.r}, ${P.g}, ${P.b}, 0.05)`);
+        grad.addColorStop(0.55, `rgba(${P.r}, ${P.g}, ${P.b}, 0.12)`);
+        grad.addColorStop(1, `rgba(${P.r}, ${P.g}, ${P.b}, 0.22)`);
         ctx.fillStyle = grad;
         ctx.fillRect(0, 0, width, height);
 

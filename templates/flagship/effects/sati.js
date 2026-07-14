@@ -95,9 +95,9 @@
 
         // Sacred fire background
         const bg = ctx.createLinearGradient(0, 0, 0, height);
-        bg.addColorStop(0, `rgba(${S.r}, ${S.g}, ${S.b}, 0.55)`);
-        bg.addColorStop(0.4, `rgba(${P.r * 0.6}, ${P.g * 0.3}, ${P.b * 0.1}, 0.75)`);
-        bg.addColorStop(1, `rgba(${S.r}, ${S.g}, ${S.b}, 0.92)`);
+        bg.addColorStop(0, `rgba(${S.r}, ${S.g}, ${S.b}, 0.12)`);
+        bg.addColorStop(0.4, `rgba(${P.r * 0.6}, ${P.g * 0.3}, ${P.b * 0.1}, 0.22)`);
+        bg.addColorStop(1, `rgba(${S.r}, ${S.g}, ${S.b}, 0.28)`);
         ctx.fillStyle = bg;
         ctx.fillRect(0, 0, width, height);
 

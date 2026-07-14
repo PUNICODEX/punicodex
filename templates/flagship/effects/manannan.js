@@ -136,7 +136,8 @@
     }
 
     function draw() {
-        ctx.fillStyle = `rgba(${P.r}, ${P.g}, ${P.b}, 0.22)`;
+        // Dark void base with only a whisper of the primary tint.
+        ctx.fillStyle = `rgba(${Math.max(P.r - 60, 5)}, ${Math.max(P.g - 60, 5)}, ${Math.max(P.b - 60, 5)}, 0.18)`;
         ctx.fillRect(0, 0, width, height);
 
         drawPortal();

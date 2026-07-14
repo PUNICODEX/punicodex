@@ -106,11 +106,12 @@
     }
 
     function draw() {
-        ctx.fillStyle = `rgb(${P.r}, ${P.g}, ${P.b})`;
+        // Dark void base, matching the rest of the flagship temples.
+        ctx.fillStyle = '#0A0A0A';
         ctx.fillRect(0, 0, width, height);
 
         const bg = ctx.createLinearGradient(0, 0, 0, height);
-        bg.addColorStop(0, `rgba(${S.r}, ${S.g}, ${S.b}, 0.04)`);
+        bg.addColorStop(0, `rgba(${S.r}, ${S.g}, ${S.b}, 0.06)`);
         bg.addColorStop(1, `rgba(${S.r}, ${S.g}, ${S.b}, 0)`);
         ctx.fillStyle = bg;
         ctx.fillRect(0, 0, width, height);

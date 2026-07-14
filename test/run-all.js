@@ -137,6 +137,10 @@ const SUITES = [
     name: 'Provenance Mobile Regression',
     cmd: 'node test/provenance-mobile-regression.test.js',
   },
+  {
+    name: 'Hero Canvas Background Regression',
+    cmd: 'node test/hero-canvas-background-regression.test.js',
+  },
   { name: 'Mobile Share Extension Tests', cmd: 'node test/mobile-share-extension.test.js' },
   { name: 'iOS SDK Contract Tests', cmd: 'node sdk/ios/Tests/contract.test.js' },
   { name: 'Android SDK Contract Tests', cmd: 'node sdk/android/app/src/test/contract.test.js' },
