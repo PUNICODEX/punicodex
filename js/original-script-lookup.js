@@ -2754,6 +2754,10 @@ const ORIGINAL_SCRIPT_LOOKUP = {
   "buri": {
     "originalScript": "ᛒᚢᚱᛁ",
     "scriptName": "Younger Futhark"
+  },
+  "tian": {
+    "originalScript": "天",
+    "scriptName": "Chinese characters"
   }
 };
 

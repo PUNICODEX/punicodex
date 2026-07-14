@@ -1,46 +1,229 @@
 const fs = require('fs');
-const { generateBreakdown } = require('./generate-entries');
+const path = require('path');
 
-const FIXES = [
-  { id: 'diancecht', ascii: 'diancecht', unicode: 'DiánCécht', pantheon: 'celtic' },
-  { id: 'hiiaka', ascii: 'hiiaka', unicode: 'Hiiaka', pantheon: 'polynesian' },
-  { id: 'babayaga', ascii: 'babayaga', unicode: 'BabaJagá', pantheon: 'slavic' },
-  { id: 'zmeygorynych', ascii: 'zmeygorynych', unicode: 'ZméjGorynýč', pantheon: 'slavic' },
-  { id: 'spentamainyu', ascii: 'spentamainyu', unicode: 'SpəntaMainyu', pantheon: 'zoroastrian' },
-  { id: 'vohumanah', ascii: 'vohumanah', unicode: 'VohuManah', pantheon: 'zoroastrian' },
-  { id: 'ashavahishta', ascii: 'ashavahishta', unicode: 'AšaVahišta', pantheon: 'zoroastrian' },
-  { id: 'khshathravairya', ascii: 'khshathravairya', unicode: 'XšaθraVairya', pantheon: 'zoroastrian' },
-  { id: 'spentaarmaiti', ascii: 'spentaarmaiti', unicode: 'SpəntaĀrmaiti', pantheon: 'zoroastrian' },
-];
+const file = path.join(__dirname, '..', 'type', 'js', 'lexicon.js');
+let content = fs.readFileSync(file, 'utf8');
 
-let content = fs.readFileSync('type/js/lexicon.js', 'utf8');
-
-for (const fix of FIXES) {
-  const bd = generateBreakdown(fix.ascii, fix.unicode, fix.pantheon);
-  const bdJson = bd.map(b => `      { char: '${b.char}', to: '${b.to}', type: '${b.type}', note: '${b.note.replace(/'/g, "\\'")}' }`).join(',\n');
-  
-  // Find the entry by id
-  const idMarker = `id: '${fix.id}',`;
-  const idIdx = content.indexOf(idMarker);
-  if (idIdx === -1) {
-    console.log(`SKIP: ${fix.id} not found`);
-    continue;
+function replaceOnce(oldStr, newStr) {
+  if (!content.includes(oldStr)) {
+    console.warn('Pattern not found:', oldStr.slice(0, 80));
+    return false;
   }
-  
-  // Find breakdown start and end within this entry
-  const bdStart = content.indexOf('breakdown: [', idIdx);
-  const bdEnd = content.indexOf('\n  }', bdStart);
-  if (bdStart === -1 || bdEnd === -1) {
-    console.log(`SKIP: ${fix.id} breakdown not found`);
-    continue;
-  }
-  
-  const oldBlock = content.substring(bdStart, bdEnd);
-  const newBlock = `breakdown: [\n${bdJson}`;
-  
-  content = content.replace(oldBlock, newBlock);
-  console.log(`Fixed ${fix.id}`);
+  content = content.replace(oldStr, newStr);
+  return true;
 }
 
-fs.writeFileSync('type/js/lexicon.js', content);
-console.log('Done');
+const letoOld = `      {
+        "char": "e",
+        "to": "e",
+        "type": "same",
+        "note": "Short epsilon"
+      },
+      {
+        "char": "t",
+        "to": "t",
+        "type": "same",
+        "note": "Tau"
+      },
+      {
+        "char": "o",
+        "to": "ō",
+        "type": "length",
+        "note": "Omega: long omicron"
+      }
+    ]
+  },
+  {
+    "id": "epimetheus"`;
+
+const letoNew = `      {
+        "char": "e",
+        "to": "ē",
+        "type": "length",
+        "note": "Eta: long epsilon"
+      },
+      {
+        "char": "t",
+        "to": "t",
+        "type": "same",
+        "note": "Tau"
+      },
+      {
+        "char": "o",
+        "to": "ō",
+        "type": "length",
+        "note": "Omega: long omicron"
+      }
+    ]
+  },
+  {
+    "id": "epimetheus"`;
+
+replaceOnce(letoOld, letoNew);
+
+const mnemosyneYOld = `      {
+        "char": "y",
+        "to": "y",
+        "type": "same",
+        "note": "Upsilon"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Nu"
+      },
+      {
+        "char": "e",
+        "to": "ē",
+        "type": "length",
+        "note": "Eta: long epsilon"
+      }
+    ],
+    "etymology":`;
+
+const mnemosyneYNew = `      {
+        "char": "y",
+        "to": "ý",
+        "type": "stress",
+        "note": "Acute on upsilon"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Nu"
+      },
+      {
+        "char": "e",
+        "to": "ē",
+        "type": "length",
+        "note": "Eta: long epsilon"
+      }
+    ],
+    "etymology":`;
+
+replaceOnce(mnemosyneYOld, mnemosyneYNew);
+
+const pythonYOld = `      {
+        "char": "y",
+        "to": "y",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "t",
+        "to": "t",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "h",
+        "to": "h",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "o",
+        "to": "ō",
+        "type": "length",
+        "note": "Macron: long omega"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      }
+    ]
+  },
+  {
+    "id": "calypso"`;
+
+const pythonYNew = `      {
+        "char": "y",
+        "to": "ý",
+        "type": "stress",
+        "note": "Acute on upsilon"
+      },
+      {
+        "char": "t",
+        "to": "t",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "h",
+        "to": "h",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "o",
+        "to": "ō",
+        "type": "length",
+        "note": "Macron: long omega"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      }
+    ]
+  },
+  {
+    "id": "calypso"`;
+
+replaceOnce(pythonYOld, pythonYNew);
+
+const sphinxIOld = `      {
+        "char": "i",
+        "to": "í",
+        "type": "stress",
+        "note": "Acute on i"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "n same"
+      },
+      {
+        "char": "x",
+        "to": "x",
+        "type": "same",
+        "note": "x same"
+      }
+    ]
+  },
+  {
+    "id": "pegasus"`;
+
+const sphinxINew = `      {
+        "char": "i",
+        "to": "ĭ",
+        "type": "length",
+        "note": "Breve: short iota"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "n same"
+      },
+      {
+        "char": "x",
+        "to": "x",
+        "type": "same",
+        "note": "x same"
+      }
+    ]
+  },
+  {
+    "id": "pegasus"`;
+
+replaceOnce(sphinxIOld, sphinxINew);
+
+fs.writeFileSync(file, content);
+console.log('Breakdown fixes applied.');

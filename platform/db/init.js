@@ -273,6 +273,22 @@ const flagshipIds = new Set([
   'yam',
   'yinyang',
   'zeus',
+  'tian',
+  'mictlantecutli',
+  'itzpapalotl',
+  'ourania',
+  'oya',
+  'tlaloc',
+  'python',
+  'thanatos',
+  'jizo',
+  'kanaloa',
+  'leto',
+  'coeus',
+  'vali',
+  'sati',
+  'sphinx',
+  'mnemosyne',
 ]);
 
 const insertEntryTxn = db.transaction((entries) => {

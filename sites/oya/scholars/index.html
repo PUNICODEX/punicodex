@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ọya — Scholarly Edition | PUNYCODEX</title>
+    <meta name="description" content="The Scholarly Edition of Ọya: a living, university-curated reference on Wind, Storms, Change. Editable by verified scholars, with full revision history and attribution.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf17">
+    <link rel="stylesheet" href="../styles.css?v=perf4">
+
+    <style>
+        .scholars-hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: calc(var(--nav-height) + 4rem); padding-bottom: 3rem; position: relative; }
+        .scholars-hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 1.5rem; }
+        .scholars-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--white); letter-spacing: 0.03em; line-height: 1.1; margin-bottom: 1rem; }
+        .scholars-subtitle { font-size: clamp(1rem, 1.8vw, 1.25rem); color: var(--white-dim); max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.7; }
+        .scholars-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+        .scholars-toc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; text-align: left; }
+        .scholars-toc-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-toc-list { columns: 2; column-gap: 2rem; list-style: none; padding: 0; margin: 0; }
+        .scholars-toc-list li { break-inside: avoid; margin-bottom: 0.5rem; }
+        .scholars-toc-list a { color: var(--white-dim); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+        .scholars-toc-list a:hover { color: var(--primary); }
+        @media (max-width: 640px) { .scholars-toc-list { columns: 1; } }
+        @media (max-width: 768px) {
+            .scholars-hero { padding-top: calc(var(--nav-height) + 5rem); }
+            .scholars-title { font-size: clamp(1.75rem, 8vw, 2.5rem); word-break: break-word; }
+            .scholars-subtitle { font-size: 0.95rem; }
+            .scholars-section-header { flex-wrap: wrap; gap: 0.5rem; }
+            .scholars-section-status { margin-left: 0; }
+            .scholars-edit-btn { margin-left: 0; }
+            .scholars-toc { padding: 1rem; }
+        }
+
+        .scholars-section { padding: 4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .scholars-section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+        .scholars-section-number { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.15em; color: var(--primary); }
+        .scholars-section-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--white); margin: 0; }
+        .scholars-section-status { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.6rem; border-radius: 999px; background: rgba(255,255,255,0.08); color: var(--white-dim); margin-left: auto; }
+        .scholars-section-status.empty { background: rgba(212,175,55,0.12); color: var(--primary); }
+        .scholars-section-body { color: var(--white-dim); line-height: 1.8; font-size: 1.05rem; }
+        .scholars-empty-state { background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem; text-align: center; }
+        .scholars-empty-state p { margin: 0 0 0.75rem; color: var(--white-dim); }
+        .scholars-empty-state .contribute-cta { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; }
+        .scholars-empty-state .contribute-cta:hover { text-decoration: underline; }
+
+        .scholars-attribution { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+        .scholars-attribution-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-attribution-list { list-style: none; padding: 0; margin: 0; color: var(--white-dim); }
+        .scholars-attribution-list li { margin-bottom: 0.5rem; }
+
+        .scholars-edit-history { margin-top: 4rem; }
+
+        .scholars-edit-btn { margin-left: auto; background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 0.4rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s; }
+        .scholars-edit-btn:hover { background: var(--primary); color: #000; }
+        .scholars-editor { margin-top: 1.5rem; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.25rem; }
+        .scholars-editor label { display: block; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; }
+        .scholars-editor textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 0.75rem; color: var(--white); font-family: inherit; font-size: 0.95rem; margin-bottom: 1rem; resize: vertical; }
+        .scholars-editor textarea:focus { outline: none; border-color: var(--primary); }
+        .scholars-editor-actions { display: flex; gap: 0.75rem; }
+        .scholars-editor-actions button { padding: 0.55rem 1rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: none; }
+        .scholars-editor-actions .submit-edit { background: var(--primary); color: #000; }
+        .scholars-editor-actions .cancel-edit { background: rgba(255,255,255,0.1); color: var(--white); }
+        .editor-message { margin-top: 0.75rem; font-size: 0.9rem; }
+        .editor-message.success { color: #7fd67f; }
+        .editor-message.error { color: #ff7f7f; }
+        .scholars-sources { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
+        .scholars-sources li { margin-bottom: 0.35rem; }
+        .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
+        .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
+        .scholars-media-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem; }
+        .scholars-media-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(255,255,255,0.12); }
+        .scholars-media-item { position: relative; }
+        .scholars-media-item .media-status { position: absolute; bottom: 4px; left: 4px; font-size: 0.6rem; text-transform: uppercase; padding: 0.1rem 0.35rem; border-radius: 4px; background: rgba(0,0,0,0.7); color: var(--primary); }
+        .upload-status { font-size: 0.85rem; margin-top: 0.5rem; }
+        .upload-status.success { color: #7fd67f; }
+        .upload-status.error { color: #ff7f7f; }
+        .scholars-history-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .scholars-history-item { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.75rem 1rem; color: var(--white-dim); font-size: 0.95rem; }
+
+        .scholars-auth-banner {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .scholars-auth-banner.logged-in { border-color: rgba(212,175,55,0.2); }
+        .scholars-auth-message { color: var(--white-dim); font-size: 0.95rem; }
+        .scholars-auth-message strong { color: var(--primary); }
+        .scholars-auth-actions { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+        .scholars-auth-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .scholars-auth-btn:hover { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary:hover { background: var(--primary-bright); border-color: var(--primary-bright); }
+        .scholars-role-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            background: rgba(212,175,55,0.12);
+            color: var(--primary);
+            vertical-align: middle;
+        }
+        .scholars-expired-note {
+            color: #ff7f7f;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+        @media (max-width: 640px) {
+            .scholars-auth-banner { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "name": "Ọya — Scholarly Edition",
+    "headline": "Ọya — Scholarly Edition",
+    "description": "University-curated scholarly reference for Ọya (Wind, Storms, Change).",
+    "url": "https://punycodex.com/sites/oya/scholars/",
+    "about": {
+        "@type": "Thing",
+        "name": "Ọya",
+        "alternateName": ["oya", "Ọya"],
+        "description": "Wind, Storms, Change"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNYCODEX",
+        "url": "https://punycodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punycodex.com/sites/oya/assets/oya_mascot.png"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punycodex.com/sites/oya/scholars/">
+
+    <meta property="og:title" content="Ọya — Scholarly Edition | PUNYCODEX">
+    <meta property="og:description" content="University-curated scholarly reference for Ọya (Wind, Storms, Change).">
+    <meta property="og:url" content="https://punycodex.com/sites/oya/scholars/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PUNYCODEX">
+    <meta property="og:image" content="https://punycodex.com/sites/oya/assets/oya_mascot.webp">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punycodex.com/sites/oya/assets/oya_mascot.webp">
+    <meta name="twitter:title" content="Ọya — Scholarly Edition | PUNYCODEX">
+    <meta name="twitter:description" content="University-curated scholarly reference for Ọya (Wind, Storms, Change).">
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punycodex.com/" class="global-brand">P<span>U</span>NYCODEX</a>
+            <div class="global-links">
+                <a href="https://punycodex.com/pantheon/">Pantheon</a>
+                <a href="https://punycodex.com/lexicon/">Lexicon</a>
+                <a href="https://punycodex.com/connections/">Connections</a>
+                <a href="https://punycodex.com/type/">Type</a>
+                <a href="https://punycodex.com/search.html">Search</a>
+                <a href="https://punycodex.com/tiers/">Tiers</a>
+                <a href="https://punycodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="oya-canvas" data-effect="oya-hero-canvas" data-primary="#D4AF37" data-secondary="#4B0082" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/oya_logolockup.webp" type="image/webp"><img src="../assets/oya_logolockup.png" alt="Ọya" class="nav-logo-img"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="./" class="nav-link active">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true">
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="./" class="nav-link active">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Scholars Hero -->
+    <header class="scholars-hero" id="hero">
+        <div class="scholars-hero-content">
+            <p class="scholars-eyebrow reveal-up">PUNYCODEX Scholarly Edition</p>
+            <h1 class="scholars-title reveal-up">Ọya</h1>
+            <p class="scholars-subtitle reveal-up">Wind, Storms, Change · A living, university-curated reference. Verified scholars contribute; every edit is attributed, reviewed, and preserved.</p>
+            <div class="scholars-meta reveal-up">
+                <span class="meta-badge">Tier-2</span>
+                <span class="meta-domain">Ọya.com</span>
+            </div>
+            <nav class="scholars-toc reveal-up" aria-label="Scholarly sections">
+                <div class="scholars-toc-title">Table of Contents</div>
+                <ol class="scholars-toc-list">
+                    <li><a href="#overview">01 &mdash; Overview</a></li>
+<li><a href="#the-name">02 &mdash; The Name</a></li>
+<li><a href="#pronunciation">03 &mdash; Pronunciation</a></li>
+<li><a href="#original-script">04 &mdash; Original Script & Provenance</a></li>
+<li><a href="#domains">05 &mdash; Domains & Attributes</a></li>
+<li><a href="#symbols">06 &mdash; Symbols</a></li>
+<li><a href="#mythology">07 &mdash; Mythology</a></li>
+<li><a href="#syncretism">08 &mdash; Syncretism & Reception</a></li>
+<li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
+<li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
+<li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
+<li><a href="#edit-history">12 &mdash; Edit History</a></li>
+<li><a href="#attribution">13 &mdash; Attribution</a></li>
+<li><a href="#ifa">14 &mdash; Ifá Corpus</a></li>
+<li><a href="#oral-tradition">15 &mdash; Oral Tradition</a></li>
+<li><a href="#diaspora">16 &mdash; Diaspora Traditions</a></li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Scholarly Sections -->
+    <main class="container">
+        <section class="scholars-section" id="overview">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">01</span>
+        <h2 class="scholars-section-title">Overview</h2>
+        <span class="scholars-section-status empty">Awaiting Contribution</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
+        <div class="scholars-empty-state">
+            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
+            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="the-name">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">02</span>
+        <h2 class="scholars-section-title">The Name</h2>
+        <span class="scholars-section-status empty">Awaiting Contribution</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
+        <div class="scholars-empty-state">
+            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
+            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pronunciation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">03</span>
+        <h2 class="scholars-section-title">Pronunciation</h2>
+        <span class="scholars-section-status empty">Awaiting Contribution</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
+        <div class="scholars-empty-state">
+            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
+            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="original-script">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">04</span>
+        <h2 class="scholars-section-title">Original Script & Provenance</h2>
+        <span class="scholars-section-status empty">Awaiting Contribution</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
+        <div class="scholars-empty-state">
+            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
+            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="domains">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">05</span>
+        <h2 class="scholars-section-title">Domains & Attributes</h2>
+        <span class="scholars-section-status empty">Awaiting Contribution</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
+        <div class="scholars-empty-state">
+            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
+            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="symbols">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">06</span>
+        <h2 class="scholars-section-title">Symbols</h2>
+        <span class="scholars-section-status empty">Awaiting Contribution</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
+        <div class="scholars-empty-state">
+            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
+            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="mythology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">07</span>
+        <h2 class="scholars-section-title">Mythology</h2>
+        <span class="scholars-section-status empty">Awaiting Contribution</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
+        <div class="scholars-empty-state">
+            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
+            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="syncretism">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">08</span>
+        <h2 class="scholars-section-title">Syncretism & Reception</h2>
+        <span class="scholars-section-status empty">Awaiting Contribution</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
+        <div class="scholars-empty-state">
+            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
+            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="cultural-legacy">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">09</span>
+        <h2 class="scholars-section-title">Cultural Legacy</h2>
+        <span class="scholars-section-status empty">Awaiting Contribution</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
+        <div class="scholars-empty-state">
+            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
+            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="archaeology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">10</span>
+        <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
+        <span class="scholars-section-status empty">Awaiting Contribution</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
+        <div class="scholars-empty-state">
+            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
+            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="scholarly-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">11</span>
+        <h2 class="scholars-section-title">Scholarly Sources</h2>
+        <span class="scholars-section-status empty">Awaiting Contribution</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
+        <div class="scholars-empty-state">
+            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
+            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Edit History</h2>
+        <span class="scholars-section-status empty">Awaiting Contribution</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
+        <div class="scholars-empty-state">
+            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
+            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="attribution">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Attribution</h2>
+        <span class="scholars-section-status empty">Awaiting Contribution</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
+        <div class="scholars-empty-state">
+            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
+            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="ifa">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Ifá Corpus</h2>
+        <span class="scholars-section-status empty">Awaiting Contribution</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <div class="scholars-empty-state">
+            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
+            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Ifá Corpus →</a>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="oral-tradition">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Oral Tradition</h2>
+        <span class="scholars-section-status empty">Awaiting Contribution</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <div class="scholars-empty-state">
+            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
+            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Oral Tradition →</a>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="diaspora">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Diaspora Traditions</h2>
+        <span class="scholars-section-status empty">Awaiting Contribution</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <div class="scholars-empty-state">
+            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
+            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Diaspora Traditions →</a>
+        </div>
+    </div>
+</section>
+
+        <!-- Attribution -->
+        <section class="scholars-section" id="attribution">
+            <div class="scholars-section-header">
+                <span class="scholars-section-number">17</span>
+                <h2 class="scholars-section-title">Attribution</h2>
+                <span class="scholars-section-status empty">Awaiting Contributors</span>
+            </div>
+            <div class="scholars-section-body">
+                <div class="scholars-empty-state">
+                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
+                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Edit History -->
+        <section class="scholars-section scholars-edit-history" id="edit-history">
+            <div class="scholars-section-header">
+                <span class="scholars-section-number">18</span>
+                <h2 class="scholars-section-title">Edit History</h2>
+                <span class="scholars-section-status empty">No Revisions</span>
+            </div>
+            <div class="scholars-section-body">
+                <div class="scholars-empty-state">
+                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+<footer class="section footer-section">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-block">
+                <span class="footer-label">Unicode Restoration</span>
+                <span class="footer-value">Ọya</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Scholarly Transliteration</span>
+                <span class="footer-value">—</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Pantheon</span>
+                <span class="footer-value">yoruba</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Classification</span>
+                <span class="footer-value">Tier-2</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-credit">Part of the <a href="https://punycodex.com/">PUNYCODEX</a> temple network.</p>
+            <p class="footer-legal">Scholarly Edition content is contributed under CC BY 4.0 and reviewed by PUNYCODEX curators.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf8"></script>
+    <script src="/js/temple-base.js?v=perf5"></script>
+    <script src="../script.js?v=perf4"></script>
+    <script>
+    (function() {
+        const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'oya';
+        const apiBase = '/api/v1/scholars';
+        let currentUser = null;
+        let sessionExpired = false;
+
+        function getSessionId() {
+            return localStorage.getItem('scholars_session');
+        }
+
+        async function api(path, options = {}) {
+            const sessionId = getSessionId();
+            const res = await fetch(apiBase + path, {
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(sessionId ? { 'x-scholars-session': sessionId } : {}),
+                    ...(options.headers || {}),
+                },
+            });
+            const data = await res.json().catch(() => ({ success: false, error: 'Invalid response' }));
+            if (res.status === 401 && getSessionId()) {
+                localStorage.removeItem('scholars_session');
+                currentUser = null;
+                sessionExpired = true;
+                renderAuthState();
+            }
+            return { ok: res.ok, status: res.status, data };
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        function renderMarkdown(text) {
+            // Minimal scholarly markup: paragraphs and citations.
+            return escapeHtml(text)
+                .split(/\n\n+/)
+                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
+                .join('');
+        }
+
+        function getLoginUrl() {
+            const redirect = encodeURIComponent(window.location.href);
+            return `/scholars/login/?redirect=${redirect}`;
+        }
+
+        async function loadSession() {
+            const { data } = await api('/auth/session');
+            currentUser = data?.data?.user || null;
+            if (currentUser) {
+                document.body.classList.add('scholars-logged-in');
+                document.body.dataset.scholarsRole = currentUser.role;
+            }
+            renderAuthState();
+        }
+
+        function renderAuthState() {
+            const existing = document.getElementById('scholars-auth-banner');
+            if (existing) existing.remove();
+
+            const main = document.querySelector('main.container');
+            if (!main) return;
+
+            const banner = document.createElement('div');
+            banner.id = 'scholars-auth-banner';
+            banner.className = 'scholars-auth-banner' + (currentUser ? ' logged-in' : '');
+
+            if (currentUser) {
+                const actions = [];
+                if (currentUser.role === 'curator') {
+                    actions.push('<a href="/scholars/admin/index.html" class="scholars-auth-btn">Curator Admin</a>');
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                } else if (currentUser.role === 'reviewer') {
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                }
+                if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                    actions.push('<a href="/scholars/institution/index.html" class="scholars-auth-btn">Institution Dashboard</a>');
+                    if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                        actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                    }
+                }
+                actions.push('<button type="button" class="scholars-auth-btn" id="scholars-sign-out">Sign Out</button>');
+
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        Signed in as <strong>${escapeHtml(currentUser.displayName || currentUser.email)}</strong>
+                        <span class="scholars-role-badge">${escapeHtml(currentUser.role)}</span>
+                        ${sessionExpired ? '<div class="scholars-expired-note">Your session expired. Please sign in again.</div>' : ''}
+                    </div>
+                    <div class="scholars-auth-actions">${actions.join('')}</div>
+                `;
+            } else {
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        ${sessionExpired ? '<strong>Session expired.</strong> Sign in again to propose edits.' : 'Sign in to propose scholarly edits to this temple.'}
+                    </div>
+                    <div class="scholars-auth-actions">
+                        <a href="${escapeHtml(getLoginUrl())}" class="scholars-auth-btn primary">Sign In</a>
+                    </div>
+                `;
+            }
+
+            main.insertBefore(banner, main.firstChild);
+
+            const signOutBtn = document.getElementById('scholars-sign-out');
+            if (signOutBtn) {
+                signOutBtn.addEventListener('click', async () => {
+                    await api('/auth/logout', { method: 'POST' });
+                    localStorage.removeItem('scholars_session');
+                    currentUser = null;
+                    sessionExpired = false;
+                    renderAuthState();
+                    document.querySelectorAll('.scholars-edit-btn').forEach((btn) => btn.remove());
+                });
+            }
+        }
+
+        function canProposeEdit() {
+            if (!currentUser) return false;
+            return ['student', 'reviewer', 'dept_admin', 'inst_admin', 'curator'].includes(currentUser.role);
+        }
+
+        function formatDate(iso) {
+            if (!iso) return '';
+            return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        async function loadTemple() {
+            const { ok, data } = await api(`/temples/${templeId}`);
+            if (!ok || !data?.data) return;
+            const temple = data.data;
+            const sections = temple.sections || [];
+
+            for (const section of sections) {
+                const el = document.getElementById(section.key);
+                if (!el) continue;
+                const statusEl = el.querySelector('.scholars-section-status');
+                const bodyEl = el.querySelector('.scholars-section-body');
+                if (statusEl) {
+                    statusEl.textContent = section.status === 'published' ? 'Published' : 'Awaiting Contribution';
+                    statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
+                }
+                if (section.status === 'published' && section.body) {
+                    bodyEl.innerHTML = renderMarkdown(section.body);
+                    if (section.sources && section.sources.length > 0) {
+                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
+                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
+                    }
+                    const history = await loadSectionHistory(section.id);
+                    if (history.length > 0) {
+                        const latest = history[0];
+                        const attr = latest.attribution || {};
+                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
+                        addHistoryEntries(section, history);
+                    }
+                }
+                if (canProposeEdit()) {
+                    const editBtn = document.createElement('button');
+                    editBtn.className = 'scholars-edit-btn';
+                    editBtn.textContent = 'Propose Edit';
+                    editBtn.onclick = () => openEditor(section, el);
+                    const header = el.querySelector('.scholars-section-header');
+                    if (header) header.appendChild(editBtn);
+                }
+            }
+
+            document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (!currentUser) {
+                        window.location.href = getLoginUrl();
+                        return;
+                    }
+                    const sectionEl = link.closest('.scholars-section');
+                    if (!sectionEl) return;
+                    const section = sections.find((s) => s.key === sectionEl.id);
+                    if (section) openEditor(section, sectionEl);
+                });
+            });
+        }
+
+        async function loadSectionHistory(sectionId) {
+            const { ok, data } = await api(`/sections/${sectionId}/history?limit=20`);
+            if (!ok || !data?.data) return [];
+            return data.data;
+        }
+
+        function addHistoryEntries(section, history) {
+            const historySection = document.getElementById('edit-history');
+            if (!historySection) return;
+            const statusEl = historySection.querySelector('.scholars-section-status');
+            const bodyEl = historySection.querySelector('.scholars-section-body');
+            if (statusEl) {
+                statusEl.textContent = 'Revisions';
+                statusEl.className = 'scholars-section-status';
+            }
+            // Clear empty state on first populated section.
+            if (!historySection.dataset.initialized) {
+                bodyEl.innerHTML = '<div class="scholars-history-list"></div>';
+                historySection.dataset.initialized = 'true';
+            }
+            const list = historySection.querySelector('.scholars-history-list');
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const author = escapeHtml(h.display_name || h.email || 'Unknown');
+                const item = document.createElement('div');
+                item.className = 'scholars-history-item';
+                item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
+                list.appendChild(item);
+            }
+        }
+
+        function openEditor(section, el) {
+            const existing = el.querySelector('.scholars-editor');
+            if (existing) return;
+            const editor = document.createElement('div');
+            editor.className = 'scholars-editor';
+            editor.innerHTML = `
+                <label>Scholarly content</label>
+                <textarea rows="8" placeholder="Write the ${escapeHtml(section.label)} section here. Cite sources.">${escapeHtml(section.body || '')}</textarea>
+                <label>Sources (one per line)</label>
+                <textarea rows="3" class="sources-input" placeholder="Author, Title, Year, URL/DOI">${escapeHtml((section.sources || []).map((s) => typeof s === 'string' ? s : s.citation || '').join('\n'))}</textarea>
+                <div class="scholars-media-upload">
+                    <label>Media attachments</label>
+                    <input type="file" accept="image/webp,image/png,image/jpeg" class="media-file-input">
+                    <button type="button" class="upload-media-btn" style="background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.2); padding: 0.45rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;">Upload Image</button>
+                    <div class="upload-status"></div>
+                    <div class="scholars-media-list"></div>
+                </div>
+                <div class="scholars-editor-actions">
+                    <button class="submit-edit">Submit for Review</button>
+                    <button class="cancel-edit">Cancel</button>
+                </div>
+                <div class="editor-message"></div>
+            `;
+            el.appendChild(editor);
+
+            const uploadedMedia = [];
+            const mediaList = editor.querySelector('.scholars-media-list');
+            const uploadStatus = editor.querySelector('.upload-status');
+
+            function renderMediaItem(item) {
+                const div = document.createElement('div');
+                div.className = 'scholars-media-item';
+                div.innerHTML = `
+                    <img src="${escapeHtml(item.url)}" alt="" class="scholars-media-thumb">
+                    <span class="media-status">${escapeHtml(item.status)}</span>
+                `;
+                mediaList.appendChild(div);
+            }
+
+            editor.querySelector('.upload-media-btn').onclick = async () => {
+                const input = editor.querySelector('.media-file-input');
+                const file = input.files[0];
+                if (!file) {
+                    uploadStatus.textContent = 'Select an image first.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                if (!['image/webp', 'image/png', 'image/jpeg'].includes(file.type)) {
+                    uploadStatus.textContent = 'Only WebP, PNG, and JPEG images are allowed.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                uploadStatus.textContent = 'Uploading…';
+                uploadStatus.className = 'upload-status';
+                const reader = new FileReader();
+                reader.onload = async () => {
+                    const base64 = reader.result;
+                    const { ok, data } = await api('/media', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            data: base64,
+                            filename: file.name,
+                            mimeType: file.type,
+                        }),
+                    });
+                    if (ok && data?.data) {
+                        uploadStatus.textContent = 'Image uploaded and awaiting review.';
+                        uploadStatus.className = 'upload-status success';
+                        const item = { mediaId: data.data.mediaId, url: data.data.url, status: data.data.status };
+                        uploadedMedia.push(item);
+                        renderMediaItem(item);
+                        input.value = '';
+                    } else {
+                        uploadStatus.textContent = data?.error || 'Upload failed.';
+                        uploadStatus.className = 'upload-status error';
+                    }
+                };
+                reader.onerror = () => {
+                    uploadStatus.textContent = 'Could not read file.';
+                    uploadStatus.className = 'upload-status error';
+                };
+                reader.readAsDataURL(file);
+            };
+
+            editor.querySelector('.cancel-edit').onclick = () => editor.remove();
+            editor.querySelector('.submit-edit').onclick = async () => {
+                const body = editor.querySelector('textarea').value.trim();
+                const sourcesText = editor.querySelector('.sources-input').value.trim();
+                const sources = sourcesText ? sourcesText.split('\n').map((s) => s.trim()).filter(Boolean).map((citation) => ({ citation })) : [];
+                const { ok, data } = await api(`/temples/${templeId}/sections/${section.key}/edits`, {
+                    method: 'POST',
+                    body: JSON.stringify({ proposedBody: body, proposedSources: sources, proposedMedia: uploadedMedia }),
+                });
+                const msg = editor.querySelector('.editor-message');
+                if (ok) {
+                    msg.textContent = 'Edit submitted for review.';
+                    msg.className = 'editor-message success';
+                    setTimeout(() => editor.remove(), 1500);
+                } else if (data?.code === 401 || data?.error?.toLowerCase().includes('session') || data?.error?.toLowerCase().includes('unauthorized')) {
+                    msg.textContent = 'Your session expired. Redirecting to sign in…';
+                    msg.className = 'editor-message error';
+                    setTimeout(() => { window.location.href = getLoginUrl(); }, 1200);
+                } else {
+                    msg.textContent = data?.error || 'Failed to submit edit.';
+                    msg.className = 'editor-message error';
+                }
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadSession();
+            await loadTemple();
+        });
+    })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sphĭnx — Gallery | Riddling Monster | PUNYCODEX</title>
+    <meta name="description" content="A curated gallery of Sphĭnx, Riddling Monster, through history.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf17">
+    <link rel="stylesheet" href="../styles.css?v=perf4">
+
+    <link rel="canonical" href="https://punycodex.com/sites/sphinx/gallery/">
+
+    <meta property="og:title" content="Sphĭnx — Gallery | Riddling Monster | PUNYCODEX">
+    <meta property="og:description" content="A curated gallery of Sphĭnx, Riddling Monster, through history.">
+    <meta property="og:url" content="https://punycodex.com/sites/sphinx/gallery/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PUNYCODEX">
+    <meta property="og:image" content="https://punycodex.com/sites/sphinx/assets/sphinx_mascot.webp">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punycodex.com/sites/sphinx/assets/sphinx_mascot.webp">
+    <meta name="twitter:title" content="Sphĭnx — Gallery | Riddling Monster | PUNYCODEX">
+    <meta name="twitter:description" content="A curated gallery of Sphĭnx, Riddling Monster, through history.">
+
+  <style>
+/* Gallery lightbox */
+.gallery-figure {
+    cursor: zoom-in;
+    margin: 0;
+}
+.gallery-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: rgba(5,5,8,0.92);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.gallery-lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+.gallery-lightbox-content {
+    position: relative;
+    max-width: min(1200px, 95vw);
+    max-height: min(900px, 90vh);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.gallery-lightbox-img {
+    max-width: 100%;
+    max-height: min(820px, 82vh);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+}
+.gallery-lightbox-caption {
+    font-size: 0.95rem;
+    color: #E0E0E0;
+    text-align: center;
+    max-width: 80ch;
+    line-height: 1.6;
+    padding: 0 1rem;
+}
+.gallery-lightbox-close {
+    position: absolute;
+    top: -3rem;
+    right: 0;
+    background: none;
+    border: none;
+    color: #D4AF37;
+    font-size: 2.5rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+.gallery-lightbox-close:hover,
+.gallery-lightbox-close:focus {
+    color: #F5F5F5;
+    transform: scale(1.1);
+}
+@media (max-width: 640px) {
+    .gallery-lightbox {
+        padding: 1rem;
+    }
+    .gallery-lightbox-close {
+        top: -2.5rem;
+        font-size: 2rem;
+    }
+}
+  </style>
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punycodex.com/" class="global-brand">P<span>U</span>NYCODEX</a>
+            <div class="global-links">
+                <a href="https://punycodex.com/pantheon/">Pantheon</a>
+                <a href="https://punycodex.com/lexicon/">Lexicon</a>
+                <a href="https://punycodex.com/connections/">Connections</a>
+                <a href="https://punycodex.com/type/">Type</a>
+                <a href="https://punycodex.com/search.html">Search</a>
+                <a href="https://punycodex.com/tiers/">Tiers</a>
+                <a href="https://punycodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="sphinx-hero-canvas" class="hero-canvas" data-primary="#D4AF37" data-secondary="#4169E1"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/sphinx_logolockup.webp" type="image/webp"><img src="../assets/sphinx_logolockup.png" alt="Sphĭnx" class="nav-logo-img"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="./index.html" class="nav-link active">Gallery</a>
+                <a href="../lore/extended/" class="nav-link">Extended</a>
+                <a href="../scholars/index.html" class="nav-link">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true">
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="./index.html" class="nav-link active">Gallery</a>
+        <a href="../lore/extended/" class="nav-link">Extended</a>
+        <a href="../scholars/index.html" class="nav-link">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow reveal-up">Visual Legacy</p>
+                <h1 class="hero-title reveal-up">
+                    <span class="title-greek">Σφίγξ</span>
+                    <span class="title-divider"></span>
+                    <span class="title-trans">Gallery</span>
+                </h1>
+                <p class="hero-subtitle reveal-up">Riddling Monster</p>
+                <div class="hero-cta reveal-up">
+                    <a href="#gallery-grid" class="btn-primary">
+                        <span>Explore the Collection</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <picture><source srcset="../assets/sphinx_mascot.webp" type="image/webp"><img src="../assets/sphinx_mascot.png" alt="Sphĭnx — Riddling Monster" class="mascot-img"></picture>
+                <div class="mascot-glow"></div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="section section-name" id="gallery-grid">
+        <div class="section-bg-glow"></div>
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">01</span>
+                <h2 class="section-title">The Collection</h2>
+                <p class="section-subtitle">Sphĭnx through the eyes of sculptors, painters, and craftsmen across the ages</p>
+            </div>
+
+            <div class="gallery-grid">
+                
+                <div class="gallery-item reveal-up">
+                    <figure class="gallery-figure" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Greek_-_Sphinx_-_Walters_571490_-_View_A.jpg/960px-Greek_-_Sphinx_-_Walters_571490_-_View_A.jpg" data-caption="<strong>Sphinx</strong> — The elaborate earring depicts a Sphinx with a female head, pronounced breasts, and a bird's body with raised wings seated on a trapezoidal base. <em>(Anonymous (Greece)Unknown author, Public domain)</em>">
+                        <img class="gallery-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Greek_-_Sphinx_-_Walters_571490_-_View_A.jpg/960px-Greek_-_Sphinx_-_Walters_571490_-_View_A.jpg" alt="Sphinx" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="gallery-caption"><strong>Sphinx</strong> — The elaborate earring depicts a Sphinx with a female head, pronounced breasts, and a bird's body with raised wings seated on a trapezoidal base. <em>(Anonymous (Greece)Unknown author, Public domain)</em></p>
+                </div>
+
+                <div class="gallery-item reveal-up" data-delay="100">
+                    <figure class="gallery-figure" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Marathon_museum_-_Sanctuary_of_Egyptian_Gods%2C_Statue_of_a_sphinx_%282%29.jpg/960px-Marathon_museum_-_Sanctuary_of_Egyptian_Gods%2C_Statue_of_a_sphinx_%282%29.jpg" data-caption="<strong>Marathon museum - Sanctuary of Egyptian Gods, Statue of a sphinx (2)</strong> — Marathon, Attica, Greece: Archaeological Museum of Marathon. Marble statue of a sphinx, from the Sanctuary of the Egyptian Gods at Marathon. 2nd century AD. <em>(C. de Lisle, CC BY-SA 4.0)</em>">
+                        <img class="gallery-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Marathon_museum_-_Sanctuary_of_Egyptian_Gods%2C_Statue_of_a_sphinx_%282%29.jpg/960px-Marathon_museum_-_Sanctuary_of_Egyptian_Gods%2C_Statue_of_a_sphinx_%282%29.jpg" alt="Marathon museum - Sanctuary of Egyptian Gods, Statue of a sphinx (2)" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="gallery-caption"><strong>Marathon museum - Sanctuary of Egyptian Gods, Statue of a sphinx (2)</strong> — Marathon, Attica, Greece: Archaeological Museum of Marathon. Marble statue of a sphinx, from the Sanctuary of the Egyptian Gods at Marathon. 2nd century AD. <em>(C. de Lisle, CC BY-SA 4.0)</em></p>
+                </div>
+
+                <div class="gallery-item reveal-up" data-delay="200">
+                    <figure class="gallery-figure" data-full-src="https://upload.wikimedia.org/wikipedia/commons/3/37/Marble_sphinx_on_a_cavetto_capital.jpg" data-caption="<strong>Marble sphinx on a cavetto capital</strong> — Marble sphinx on a cavetto capital Greek, Attic, ca. <em>(Ori.livneh, CC0)</em>">
+                        <img class="gallery-img" src="https://upload.wikimedia.org/wikipedia/commons/3/37/Marble_sphinx_on_a_cavetto_capital.jpg" alt="Marble sphinx on a cavetto capital" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="gallery-caption"><strong>Marble sphinx on a cavetto capital</strong> — Marble sphinx on a cavetto capital Greek, Attic, ca. <em>(Ori.livneh, CC0)</em></p>
+                </div>
+
+                <div class="gallery-item reveal-up" data-delay="300">
+                    <figure class="gallery-figure" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Sphinx_-_Allan_John_H_-_1843.jpg/960px-Sphinx_-_Allan_John_H_-_1843.jpg" data-caption="<strong>Sphinx - Allan John H - 1843</strong> — John Harrison Allan. <em>(John Harrison Allan, Public domain)</em>">
+                        <img class="gallery-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Sphinx_-_Allan_John_H_-_1843.jpg/960px-Sphinx_-_Allan_John_H_-_1843.jpg" alt="Sphinx - Allan John H - 1843" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="gallery-caption"><strong>Sphinx - Allan John H - 1843</strong> — John Harrison Allan. <em>(John Harrison Allan, Public domain)</em></p>
+                </div>
+
+                <div class="gallery-item reveal-up" data-delay="0">
+                    <figure class="gallery-figure" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Plate_sphinx_BM_GR1965.9-30.705.jpg/960px-Plate_sphinx_BM_GR1965.9-30.705.jpg" data-caption="<strong>Plate sphinx BM GR1965.9-30.705</strong> — Seated sphinx. Plate, Eastern Greek Orientalizing, 6th century BC. From Naukratis in Egypt. <em>(Unknown, Public domain)</em>">
+                        <img class="gallery-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Plate_sphinx_BM_GR1965.9-30.705.jpg/960px-Plate_sphinx_BM_GR1965.9-30.705.jpg" alt="Plate sphinx BM GR1965.9-30.705" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="gallery-caption"><strong>Plate sphinx BM GR1965.9-30.705</strong> — Seated sphinx. Plate, Eastern Greek Orientalizing, 6th century BC. From Naukratis in Egypt. <em>(Unknown, Public domain)</em></p>
+                </div>
+
+                <div class="gallery-item reveal-up" data-delay="100">
+                    <figure class="gallery-figure" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/The_Great_Sphinx%2C_Giza%2C_GG%2C_EGY_%2847113253734%29.jpg/960px-The_Great_Sphinx%2C_Giza%2C_GG%2C_EGY_%2847113253734%29.jpg" data-caption="<strong>The Great Sphinx, Giza, GG, EGY (47113253734)</strong> — This is the Great Sphinx of Giza, carved out of the solid limestone of the Giza Plateau, which sits between the Pyramids of Giza and the Nile River. <em>(Warren LeMay from Chicago, IL, United States, CC0)</em>">
+                        <img class="gallery-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/The_Great_Sphinx%2C_Giza%2C_GG%2C_EGY_%2847113253734%29.jpg/960px-The_Great_Sphinx%2C_Giza%2C_GG%2C_EGY_%2847113253734%29.jpg" alt="The Great Sphinx, Giza, GG, EGY (47113253734)" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="gallery-caption"><strong>The Great Sphinx, Giza, GG, EGY (47113253734)</strong> — This is the Great Sphinx of Giza, carved out of the solid limestone of the Giza Plateau, which sits between the Pyramids of Giza and the Nile River. <em>(Warren LeMay from Chicago, IL, United States, CC0)</em></p>
+                </div>
+
+                <div class="gallery-item reveal-up" data-delay="200">
+                    <figure class="gallery-figure" data-full-src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Female_sphinx_%2853500431852%29.jpg/960px-Female_sphinx_%2853500431852%29.jpg" data-caption="<strong>Female sphinx (53500431852)</strong> — Limestone statue of a seated female sphinx which may have been placed (along with 1604) at the entrance to the tomb of a Greek inhabitant of Egypt. <em>(Dale Cruse from San Francisco, CA, USA, CC BY 2.0)</em>">
+                        <img class="gallery-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Female_sphinx_%2853500431852%29.jpg/960px-Female_sphinx_%2853500431852%29.jpg" alt="Female sphinx (53500431852)" loading="lazy" decoding="async">
+                    </figure>
+                    <p class="gallery-caption"><strong>Female sphinx (53500431852)</strong> — Limestone statue of a seated female sphinx which may have been placed (along with 1604) at the entrance to the tomb of a Greek inhabitant of Egypt. <em>(Dale Cruse from San Francisco, CA, USA, CC BY 2.0)</em></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="https://punycodex.com/" class="footer-logo">PUNYCODEX</a>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Owned Domains</span>
+                        <span class="footer-value">sphĭnx.com</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier 2</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Original Script</span>
+                        <span class="footer-value">Σφίγξ</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <picture><source srcset="../assets/sphinx_logomark.webp" type="image/webp"><img src="../assets/sphinx_logomark.png" alt="Sphĭnx logomark" class="footer-logomark"></picture>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    
+
+<script>window.PUNYCODEX_API_BASE = "";</script>
+    <script src="/js/px-core.js?v=perf8"></script>
+    <script src="/js/temple-base.js?v=perf5"></script>
+    <script src="../script.js?v=perf4"></script>
+
+<div class="gallery-lightbox" id="gallery-lightbox" aria-modal="true" role="dialog" aria-label="Image preview">
+  <div class="gallery-lightbox-content">
+    <button class="gallery-lightbox-close" id="gallery-lightbox-close" aria-label="Close" type="button">&times;</button>
+    <img class="gallery-lightbox-img" id="gallery-lightbox-img" src="" alt="">
+    <p class="gallery-lightbox-caption" id="gallery-lightbox-caption"></p>
+  </div>
+</div>
+<script>
+(function(){
+  const lb = document.getElementById('gallery-lightbox');
+  const img = document.getElementById('gallery-lightbox-img');
+  const cap = document.getElementById('gallery-lightbox-caption');
+  const close = document.getElementById('gallery-lightbox-close');
+  if (!lb || !img || !close) return;
+  function open(src, caption) {
+    img.src = src;
+    img.alt = caption || '';
+    cap.textContent = caption || '';
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    close.focus();
+  }
+  function closeLb() {
+    lb.classList.remove('active');
+    img.src = '';
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('.gallery-figure[data-full-src]').forEach(item => {
+    item.addEventListener('click', () => open(item.dataset.fullSrc, item.dataset.caption));
+    item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(item.dataset.fullSrc, item.dataset.caption); } });
+  });
+  close.addEventListener('click', closeLb);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && lb.classList.contains('active')) closeLb(); });
+})();
+</script>
+</body>
+</html>

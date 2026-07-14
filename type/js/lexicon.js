@@ -1,6 +1,6 @@
 /*
  * PUNYCODEX Lexicon
- * 889 validated entries across multiple pantheons
+ * 894 validated entries across multiple pantheons
  */
 
 const LEXICON = [
@@ -1614,8 +1614,16 @@ const LEXICON = [
   },
   {
     "id": "leto",
+    "variants": [
+      {
+        "unicode": "Leto",
+        "type": "ascii",
+        "note": "Plain ASCII form"
+      }
+    ],
+    "hasAdSite": true,
     "ascii": "leto",
-    "unicode": "Letō",
+    "unicode": "Lētō",
     "greek": "Λητώ",
     "pantheon": "greek",
     "tier": "1",
@@ -1636,9 +1644,9 @@ const LEXICON = [
       },
       {
         "char": "e",
-        "to": "e",
-        "type": "same",
-        "note": "Short epsilon"
+        "to": "ē",
+        "type": "length",
+        "note": "Eta: long epsilon"
       },
       {
         "char": "t",
@@ -1997,7 +2005,7 @@ const LEXICON = [
   },
   {
     "id": "eos",
-    hasAdSite: true,
+    "hasAdSite": true,
     "ascii": "eos",
     "unicode": "Ēōs",
     "greek": "Ἠώς",
@@ -2184,8 +2192,16 @@ const LEXICON = [
   },
   {
     "id": "mnemosyne",
+    "hasAdSite": true,
+    "variants": [
+      {
+        "unicode": "Mnemosyne",
+        "type": "ascii",
+        "note": "Plain ASCII form"
+      }
+    ],
     "ascii": "mnemosyne",
-    "unicode": "Mnēmosynē",
+    "unicode": "Mnēmosýnē",
     "greek": "Μνημοσύνη",
     "pantheon": "greek",
     "tier": "1",
@@ -2236,9 +2252,9 @@ const LEXICON = [
       },
       {
         "char": "y",
-        "to": "y",
-        "type": "same",
-        "note": "Upsilon"
+        "to": "ý",
+        "type": "stress",
+        "note": "Acute on upsilon"
       },
       {
         "char": "n",
@@ -4389,7 +4405,7 @@ const LEXICON = [
   },
   {
     "id": "jormungandr",
-    hasAdSite: true,
+    "hasAdSite": true,
     "ascii": "jormungandr",
     "unicode": "Jǫrmungandr",
     "greek": "—",
@@ -5691,7 +5707,7 @@ const LEXICON = [
   },
   {
     "id": "thoth",
-    hasAdSite: true,
+    "hasAdSite": true,
     "ascii": "thoth",
     "unicode": "Ḏḥwty",
     "greek": "—",
@@ -5749,7 +5765,7 @@ const LEXICON = [
   },
   {
     "id": "amun",
-    hasAdSite: true,
+    "hasAdSite": true,
     "ascii": "amun",
     "unicode": "Ꜣmun",
     "greek": "—",
@@ -9262,6 +9278,14 @@ const LEXICON = [
   },
   {
     "id": "tlaloc",
+    "hasAdSite": true,
+    "variants": [
+      {
+        "unicode": "Tlaloc",
+        "type": "ascii",
+        "note": "Plain ASCII form"
+      }
+    ],
     "ascii": "tlaloc",
     "unicode": "Tlāloc",
     "greek": "—",
@@ -9904,6 +9928,14 @@ const LEXICON = [
   },
   {
     "id": "oya",
+    "hasAdSite": true,
+    "variants": [
+      {
+        "unicode": "Oya",
+        "type": "ascii",
+        "note": "Plain ASCII form"
+      }
+    ],
     "ascii": "oya",
     "unicode": "Ọya",
     "greek": "—",
@@ -14662,8 +14694,16 @@ const LEXICON = [
   },
   {
     "id": "python",
+    "hasAdSite": true,
+    "variants": [
+      {
+        "unicode": "Python",
+        "type": "ascii",
+        "note": "Plain ASCII form"
+      }
+    ],
     "ascii": "python",
-    "unicode": "Pythōn",
+    "unicode": "Pýthōn",
     "greek": "Πύθων",
     "pantheon": "greek",
     "tier": "1",
@@ -14684,9 +14724,9 @@ const LEXICON = [
       },
       {
         "char": "y",
-        "to": "y",
-        "type": "same",
-        "note": "Same"
+        "to": "ý",
+        "type": "stress",
+        "note": "Acute on upsilon"
       },
       {
         "char": "t",
@@ -16085,6 +16125,14 @@ const LEXICON = [
   },
   {
     "id": "coeus",
+    "hasAdSite": true,
+    "variants": [
+      {
+        "unicode": "Coeus",
+        "type": "ascii",
+        "note": "Plain ASCII form"
+      }
+    ],
     "ascii": "coeus",
     "unicode": "Koîos",
     "greek": "Κοῖος",
@@ -17901,6 +17949,14 @@ const LEXICON = [
   },
   {
     "id": "ourania",
+    "hasAdSite": true,
+    "variants": [
+      {
+        "unicode": "Ourania",
+        "type": "ascii",
+        "note": "Plain ASCII form"
+      }
+    ],
     "ascii": "ourania",
     "unicode": "Ouranía",
     "greek": "Οὐρανία",
@@ -18331,6 +18387,14 @@ const LEXICON = [
   },
   {
     "id": "thanatos",
+    "hasAdSite": true,
+    "variants": [
+      {
+        "unicode": "Thanatos",
+        "type": "ascii",
+        "note": "Plain ASCII form"
+      }
+    ],
     "ascii": "thanatos",
     "unicode": "Thánatos",
     "greek": "Θάνατος",
@@ -18897,8 +18961,16 @@ const LEXICON = [
   },
   {
     "id": "sphinx",
+    "hasAdSite": true,
+    "variants": [
+      {
+        "unicode": "Sphinx",
+        "type": "ascii",
+        "note": "Plain ASCII form"
+      }
+    ],
     "ascii": "sphinx",
-    "unicode": "Sphínx",
+    "unicode": "Sphĭnx",
     "greek": "Σφίγξ",
     "pantheon": "greek",
     "tier": "2",
@@ -18930,9 +19002,9 @@ const LEXICON = [
       },
       {
         "char": "i",
-        "to": "í",
-        "type": "stress",
-        "note": "Acute on i"
+        "to": "ĭ",
+        "type": "special",
+        "note": "Breve: short iota"
       },
       {
         "char": "n",
@@ -23493,6 +23565,14 @@ const LEXICON = [
   },
   {
     "id": "sati",
+    "hasAdSite": true,
+    "variants": [
+      {
+        "unicode": "Sati",
+        "type": "ascii",
+        "note": "Plain ASCII form"
+      }
+    ],
     "ascii": "sati",
     "unicode": "Satī",
     "greek": "—",
@@ -26203,6 +26283,14 @@ const LEXICON = [
   },
   {
     "id": "jizo",
+    "hasAdSite": true,
+    "variants": [
+      {
+        "unicode": "Jizo",
+        "type": "ascii",
+        "note": "Plain ASCII form"
+      }
+    ],
     "ascii": "jizo",
     "unicode": "Jizō",
     "greek": "地蔵",
@@ -26810,6 +26898,14 @@ const LEXICON = [
   },
   {
     "id": "kanaloa",
+    "hasAdSite": true,
+    "variants": [
+      {
+        "unicode": "Kanaloa",
+        "type": "ascii",
+        "note": "Plain ASCII form"
+      }
+    ],
     "ascii": "kanaloa",
     "unicode": "Kānāloa",
     "greek": "—",
@@ -29476,6 +29572,14 @@ const LEXICON = [
   },
   {
     "id": "itzpapalotl",
+    "hasAdSite": true,
+    "variants": [
+      {
+        "unicode": "Itzpapalotl",
+        "type": "ascii",
+        "note": "Plain ASCII form"
+      }
+    ],
     "ascii": "itzpapalotl",
     "unicode": "Itzpapālōtl",
     "greek": "—",
@@ -38554,6 +38658,14 @@ const LEXICON = [
   },
   {
     "id": "vali",
+    "hasAdSite": true,
+    "variants": [
+      {
+        "unicode": "Vali",
+        "type": "ascii",
+        "note": "Plain ASCII form"
+      }
+    ],
     "ascii": "vali",
     "unicode": "Váli",
     "greek": "—",
@@ -42286,7 +42398,7 @@ const LEXICON = [
   },
   {
     "id": "amitabha",
-    hasAdSite: true,
+    "hasAdSite": true,
     "ascii": "amitabha",
     "unicode": "Amitābha",
     "greek": "—",
@@ -51704,7 +51816,7 @@ const LEXICON = [
   },
   {
     "id": "nht",
-    hasAdSite: true,
+    "hasAdSite": true,
     "ascii": "nekhet",
     "unicode": "Nḫt",
     "greek": "—",
@@ -53929,8 +54041,168 @@ const LEXICON = [
         "note": "Same"
       }
     ]
+  },
+  {
+    "id": "tian",
+    "hasAdSite": true,
+    "ascii": "tian",
+    "unicode": "Tiān",
+    "greek": "天",
+    "pantheon": "chinese",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Heaven, Sky, Cosmic Order",
+    "meaning": "The supreme celestial force and moral order of the cosmos",
+    "sources": [
+      "I Ching",
+      "Shiji",
+      "Chinese classics"
+    ],
+    "variants": [
+      {
+        "unicode": "Tian",
+        "type": "ascii",
+        "note": "Plain ASCII form"
+      }
+    ],
+    "breakdown": [
+      {
+        "char": "t",
+        "to": "T",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "ā",
+        "type": "length",
+        "note": "Macron: first tone"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      }
+    ]
+  },
+  {
+    "id": "mictlantecutli",
+    "hasAdSite": true,
+    "ascii": "mictlantecutli",
+    "unicode": "Mictlāntēcutli",
+    "greek": "—",
+    "pantheon": "nahuatl",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Lord of Mictlān, Death, Underworld",
+    "meaning": "Lord of the Land of the Dead",
+    "sources": [
+      "Karttunen",
+      "Sahagún",
+      "Florentine Codex"
+    ],
+    "variants": [
+      {
+        "unicode": "Mictlantecutli",
+        "type": "ascii",
+        "note": "Plain ASCII form"
+      }
+    ],
+    "breakdown": [
+      {
+        "char": "m",
+        "to": "M",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "c",
+        "to": "c",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "t",
+        "to": "t",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "l",
+        "to": "l",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "ā",
+        "type": "length",
+        "note": "Macron: long vowel"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "t",
+        "to": "t",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "e",
+        "to": "ē",
+        "type": "length",
+        "note": "Macron: long vowel"
+      },
+      {
+        "char": "c",
+        "to": "c",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "u",
+        "to": "u",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "t",
+        "to": "t",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "l",
+        "to": "l",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Same"
+      }
+    ]
   }
-];
+]
 
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { LEXICON };
