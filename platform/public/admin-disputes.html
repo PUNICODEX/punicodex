@@ -184,7 +184,7 @@
       nextBtn.addEventListener('click', () => { if (offset + limit < total) { offset += limit; load(); } });
 
       async function login() {
-        const res = await fetch('/api/admin/login', {
+        const res = await fetch('/api/admin/login/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ password: passwordInput.value }),
@@ -212,7 +212,7 @@
         if (decisionFilter.value) params.set('decision', decisionFilter.value);
         if (identityFilter.value.trim()) params.set('identityId', identityFilter.value.trim());
 
-        const res = await fetch(`/api/admin/disputes?${params.toString()}`, {
+        const res = await fetch(`/api/admin/disputes/?${params.toString()}`, {
           headers: { 'x-admin-token': token },
         });
         const data = await res.json();

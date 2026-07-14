@@ -4,7 +4,7 @@
 (function (global) {
   'use strict';
 
-  const API = '/api/gamification';
+  const API = '/api/gamification/';
 
   async function award(sessionToken, eventType, payload) {
     const res = await fetch(API, {

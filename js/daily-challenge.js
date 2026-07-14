@@ -4,7 +4,7 @@
 (function (global) {
   'use strict';
 
-  const API = '/api/gamification';
+  const API = '/api/gamification/';
 
   async function load(sessionToken) {
     const res = await fetch(`${API}?type=challenge`, { headers: { 'x-session-token': sessionToken } });

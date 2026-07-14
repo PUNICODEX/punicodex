@@ -46,12 +46,12 @@
     let pantheons = [];
 
     async function init() {
-      const res = await fetch('/api/v1/pantheons');
+      const res = await fetch('/api/v1/pantheons/');
       pantheons = await res.json();
       select.innerHTML = pantheons.map(p => `<option value="${p}">${p}</option>`).join('');
       select.addEventListener('change', () => loadPantheon(select.value));
 
-      const entriesRes = await fetch('/api/v1/names?limit=1000');
+      const entriesRes = await fetch('/api/v1/names/?limit=1000');
       const data = await entriesRes.json();
       allEntries = data.entries || data.data || [];
       loadPantheon(pantheons[0]);

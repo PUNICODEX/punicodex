@@ -30,6 +30,6 @@ module.exports = createApiHandler(async (req, res) => {
   }
 
   success(res, result, {
-    links: { self: `/api/v1/appraise?q=${encodeURIComponent(params.q)}` },
+    links: { self: `/api/v1/appraise/?q=${encodeURIComponent(params.q)}` },
   });
 });

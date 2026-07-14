@@ -180,10 +180,10 @@
       try {
         const token = localStorage.getItem('nike_admin_token') || '';
         const [disputesRes, spoofsRes, healthRes, rawRes] = await Promise.all([
-          fetch(`${API_BASE}/api/admin/disputes?limit=1`, { headers: { 'x-admin-token': token } }).catch(() => null),
-          fetch(`${API_BASE}/api/v1/threat-feed/stats`, { headers: { 'x-admin-token': token } }).catch(() => null),
-          fetch(`${API_BASE}/api/health`).catch(() => null),
-          fetch(`${API_BASE}/api/v1/tenants/default/audit?action=tenant.retention.purge&limit=1`, { headers: { 'x-admin-token': token } }).catch(() => null)
+          fetch(`${API_BASE}/api/admin/disputes/?limit=1`, { headers: { 'x-admin-token': token } }).catch(() => null),
+          fetch(`${API_BASE}/api/v1/threat-feed/stats/`, { headers: { 'x-admin-token': token } }).catch(() => null),
+          fetch(`${API_BASE}/api/health/`).catch(() => null),
+          fetch(`${API_BASE}/api/v1/tenants/default/audit/?action=tenant.retention.purge&limit=1`, { headers: { 'x-admin-token': token } }).catch(() => null)
         ]);
 
         // False-positive rate
@@ -217,7 +217,7 @@
 
     async function generateEvidence() {
       try {
-        const res = await fetch(`${API_BASE}/api/admin/soc2-evidence`, { method: 'POST', headers: { 'x-admin-token': localStorage.getItem('nike_admin_token') || '' } });
+        const res = await fetch(`${API_BASE}/api/admin/soc2-evidence/`, { method: 'POST', headers: { 'x-admin-token': localStorage.getItem('nike_admin_token') || '' } });
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || 'Failed');
         showToast(`Evidence generated: ${data.path}`);
@@ -229,7 +229,7 @@
 
     async function purgeRetention() {
       try {
-        const res = await fetch(`${API_BASE}/api/v1/tenants/default/retention/purge`, {
+        const res = await fetch(`${API_BASE}/api/v1/tenants/default/retention/purge/`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -32,7 +32,7 @@ module.exports = createApiHandler(async (req, res) => {
         offset: result.offset,
         next:
           result.offset + result.limit < result.total
-            ? `/api/v1/names?limit=${result.limit}&offset=${result.offset + result.limit}`
+            ? `/api/v1/names/?limit=${result.limit}&offset=${result.offset + result.limit}`
             : null,
       },
     },

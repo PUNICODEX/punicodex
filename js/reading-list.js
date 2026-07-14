@@ -4,7 +4,7 @@
 (function (global) {
   'use strict';
 
-  const API = '/api/workspace';
+  const API = '/api/workspace/';
 
   async function add(item, sessionToken) {
     const res = await fetch(API, {

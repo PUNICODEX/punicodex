@@ -241,7 +241,7 @@
     async function checkPageAuthenticity() {
         try {
             if (settings.authenticityWarnings === false) return;
-            const apiUrl = `https://punycodex.com/api/v2/authenticity/check?input=${encodeURIComponent(window.location.href)}&type=url`;
+            const apiUrl = `https://punycodex.com/api/v2/authenticity/check/?input=${encodeURIComponent(window.location.href)}&type=url`;
             const res = await fetch(apiUrl, { cache: 'no-store' });
             if (!res.ok) return;
             const payload = await res.json();

@@ -1,5 +1,5 @@
 (function () {
-  const API_BASE = '/api/v1/creatives';
+  const API_BASE = '/api/v1/creatives/';
   const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || '';
   const grid = document.getElementById('temple-creatives-grid');
   const emptyEl = document.getElementById('temple-creatives-empty');

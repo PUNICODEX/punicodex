@@ -147,7 +147,7 @@
 
         async function doLogin() {
             const pass = document.getElementById('admin-pass').value;
-            const data = await api('/api/admin/login', { method: 'POST', body: JSON.stringify({ password: pass }) });
+            const data = await api('/api/admin/login/', { method: 'POST', body: JSON.stringify({ password: pass }) });
             if (data.success) {
                 adminToken = data.token;
                 localStorage.setItem('nike_admin_token', adminToken);
@@ -159,8 +159,8 @@
 
         async function loadEntries() {
             const [data, stats] = await Promise.all([
-                api(`/api/admin/ai-review?status=${currentFilter}`),
-                api('/api/admin/ai-review/stats')
+                api(`/api/admin/ai-review/?status=${currentFilter}`),
+                api('/api/admin/ai-review/stats/')
             ]);
             if (data.error) {
                 localStorage.removeItem('nike_admin_token');
@@ -250,7 +250,7 @@
                     const idx = allEntries.findIndex(x => x.id === id);
                     if (idx >= 0) {
                         allEntries[idx] = data.entry;
-                        renderDashboard(allEntries, await api('/api/admin/ai-review/stats'));
+                        renderDashboard(allEntries, await api('/api/admin/ai-review/stats/'));
                     }
                 }
                 setTimeout(() => {

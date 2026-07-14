@@ -1,5 +1,5 @@
 (function () {
-  const API_BASE = '/api/v1/creatives';
+  const API_BASE = '/api/v1/creatives/';
   const grid = document.getElementById('creatives-grid');
   const statusEl = document.getElementById('creatives-status');
   const emptyEl = document.getElementById('creatives-empty');
@@ -330,7 +330,7 @@
     if (paid) {
       showStatus('Confirming payment…');
       try {
-        const res = await fetch(`/api/v1/creatives/purchases/verify?sessionId=${encodeURIComponent(sessionId)}`);
+        const res = await fetch(`/api/v1/creatives/purchases/verify/?sessionId=${encodeURIComponent(sessionId)}`);
         const json = await res.json();
         if (!json.success) {
           throw new Error(json.error || 'Payment confirmation failed');

@@ -333,7 +333,7 @@
         if (!pathMatch) return;
         const entryId = pathMatch[1];
 
-        fetch(`/api/tenant-ads?entryId=${encodeURIComponent(entryId)}&limit=3`)
+        fetch(`/api/tenant-ads/?entryId=${encodeURIComponent(entryId)}&limit=3`)
             .then(r => r.ok ? r.json() : null)
             .then(ads => {
                 if (!Array.isArray(ads) || ads.length === 0) return;

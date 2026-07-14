@@ -190,7 +190,7 @@
 
     async function loadDefaultPolicy() {
       try {
-        const res = await fetch(`${API_BASE}/api/v2/policy`);
+        const res = await fetch(`${API_BASE}/api/v2/policy/`);
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || 'Failed');
         document.getElementById('policyJson').value = JSON.stringify(data, null, 2);
@@ -204,7 +204,7 @@
         const policy = JSON.parse(document.getElementById('policyJson').value);
         const input = document.getElementById('testInput').value.trim();
         const type = document.getElementById('testType').value;
-        const res = await fetch(`${API_BASE}/api/v2/policy/evaluate`, {
+        const res = await fetch(`${API_BASE}/api/v2/policy/evaluate/`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ input, type, policy })

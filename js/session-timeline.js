@@ -4,7 +4,7 @@
 (function (global) {
   'use strict';
 
-  const API = '/api/workspace';
+  const API = '/api/workspace/';
 
   async function record(sessionToken, eventType, payload) {
     try {

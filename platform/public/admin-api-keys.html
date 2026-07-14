@@ -375,7 +375,7 @@
 
         async function doLogin() {
             const pass = document.getElementById('admin-pass').value;
-            const data = await api('/api/admin/login', {
+            const data = await api('/api/admin/login/', {
                 method: 'POST',
                 body: JSON.stringify({ password: pass }),
             });
@@ -389,7 +389,7 @@
         }
 
         async function loadKeys() {
-            const data = await api('/api/admin/api-keys');
+            const data = await api('/api/admin/api-keys/');
             if (data.error) {
                 localStorage.removeItem('nike_admin_token');
                 renderLogin();
@@ -626,7 +626,7 @@
             const btn = event.target;
             btn.textContent = 'Creating…';
             try {
-                const data = await api('/api/admin/api-keys', {
+                const data = await api('/api/admin/api-keys/', {
                     method: 'POST',
                     body: JSON.stringify({ name, tier, scopes, rateLimit }),
                 });

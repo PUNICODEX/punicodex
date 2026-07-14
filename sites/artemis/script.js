@@ -693,7 +693,7 @@ function trackViewability(container, token) {
       if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
         if (timer) return;
         timer = setTimeout(() => {
-          fetch(`${API_BASE}/api/analytics/viewability`, {
+          fetch(`${API_BASE}/api/analytics/viewability/`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -768,8 +768,8 @@ function updateSlotUI() {
 
     if (slot.status === 'live' && hasOwnCreative) {
       // LIVE: render actual creative with click tracking
-      const pixelUrl = `${API_BASE}/api/analytics/pixel.gif?b=${slot.analytics_token}`;
-      const clickUrl = `${API_BASE}/api/analytics/click?b=${slot.analytics_token}&url=${encodeURIComponent(slot.website_url || '#')}`;
+      const pixelUrl = `${API_BASE}/api/analytics/pixel.gif/?b=${slot.analytics_token}`;
+      const clickUrl = `${API_BASE}/api/analytics/click/?b=${slot.analytics_token}&url=${encodeURIComponent(slot.website_url || '#')}`;
       frame.innerHTML = `
         <a href="${clickUrl}" target="_blank" rel="noopener" class="space-live-ad" style="display:block;width:100%;height:100%;position:relative;z-index:2;">
           <img src="${API_BASE}${slot.creative_path}" alt="${slot.company_name || 'Advertisement'}" style="width:100%;height:100%;object-fit:cover;display:block;">
@@ -1055,7 +1055,7 @@ async function sendVerificationCode() {
   clearBookingError();
   showStep('loading');
   try {
-    const res = await fetch(`${API_BASE}/api/verify/send`, {
+    const res = await fetch(`${API_BASE}/api/verify/send/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email }),
@@ -1082,7 +1082,7 @@ els.submitApplication.addEventListener('click', async () => {
   const note = els.applicationNote ? els.applicationNote.value.trim() : '';
   showStep('loading');
   try {
-    const res = await fetch(`${API_BASE}/api/bookings/apply`, {
+    const res = await fetch(`${API_BASE}/api/bookings/apply/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -1126,7 +1126,7 @@ els.verifyBtn.addEventListener('click', async () => {
   if (els.verifyError) els.verifyError.style.display = 'none';
   showStep('loading');
   try {
-    const verifyRes = await fetch(`${API_BASE}/api/verify/check`, {
+    const verifyRes = await fetch(`${API_BASE}/api/verify/check/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, code }),
@@ -1152,7 +1152,7 @@ els.verifyBtn.addEventListener('click', async () => {
     }
 
     // Code verified — create booking and redirect to Stripe
-    const res = await fetch(`${API_BASE}/api/bookings`, {
+    const res = await fetch(`${API_BASE}/api/bookings/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -1416,7 +1416,7 @@ if (myBookingsSubmit) {
     }
     myBookingsSubmit.textContent = 'Sending...';
     try {
-      const res = await fetch(`${API_BASE}/api/bookings/recover`, {
+      const res = await fetch(`${API_BASE}/api/bookings/recover/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
@@ -1526,7 +1526,7 @@ handleReturnFromStripe();
 
       showStep('loading');
       try {
-        const res = await fetch(`${API_BASE}/api/patrons/checkout`, {
+        const res = await fetch(`${API_BASE}/api/patrons/checkout/`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

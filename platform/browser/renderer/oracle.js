@@ -50,7 +50,7 @@ const _Oracle = (function () {
     // Question-shaped queries go to the /api/oracle RAG endpoint.
     if (looksLikeQuestion(query)) {
       try {
-        const apiRes = await window.punycodex.apiGet(`/api/oracle?q=${encodeURIComponent(query)}`);
+        const apiRes = await window.punycodex.apiGet(`/api/oracle/?q=${encodeURIComponent(query)}`);
         if (apiRes.ok && apiRes.data) {
           lastResults = [];
           renderOracleAnswer(apiRes.data);
@@ -69,7 +69,7 @@ const _Oracle = (function () {
       let enriched = local;
       try {
         const apiRes = await window.punycodex.apiGet(
-          `/api/search?q=${encodeURIComponent(query)}&limit=20`
+          `/api/search/?q=${encodeURIComponent(query)}&limit=20`
         );
         if (apiRes.ok && apiRes.data.entries) {
           // Merge server data into local results

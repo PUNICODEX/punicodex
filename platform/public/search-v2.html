@@ -366,7 +366,7 @@
           <a href="/lexicon/">Lexicon</a>
           <a href="/type/">Type</a>
           <a href="/tiers/">Tiers</a>
-          <a href="/api/v1/docs">API</a>
+          <a href="/api/v1/docs/">API</a>
         </nav>
         <button class="cn-mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">☰</button>
       </div>
@@ -658,7 +658,7 @@
     }
 
     function loadFacets() {
-      fetch(`${API_BASE}/api/search/facets`)
+      fetch(`${API_BASE}/api/search/facets/`)
         .then(r => r.json())
         .then(data => {
           if (data.success) {
@@ -698,7 +698,7 @@
 
     async function fetchAutocomplete(q) {
       try {
-        const res = await fetch(`${API_BASE}/api/v1/autocomplete?q=${encodeURIComponent(q)}&limit=8`);
+        const res = await fetch(`${API_BASE}/api/v1/autocomplete/?q=${encodeURIComponent(q)}&limit=8`);
         const data = await res.json();
         const items = data.data?.items || [];
         autocompleteItems = items;
@@ -829,7 +829,7 @@
       try {
         const headers = { 'Content-Type': 'application/json' };
         if (sessionToken) headers['x-session-token'] = sessionToken;
-        const res = await fetch(`${API_BASE}/api/search/v2?${params}`, {
+        const res = await fetch(`${API_BASE}/api/search/v2/?${params}`, {
           headers,
           signal: abortController.signal,
         });
@@ -1086,7 +1086,7 @@
         <div class="cn-api-method">${escapeHtml(r.method)}</div>
         <div class="cn-api-path">${escapeHtml(r.path)}</div>
         <div class="cn-result-snippet">${escapeHtml(r.description)}</div>
-        <a href="/api/v1/docs" class="cn-domain-temple">API Docs →</a>
+        <a href="/api/v1/docs/" class="cn-domain-temple">API Docs →</a>
       </article>`;
     }
 

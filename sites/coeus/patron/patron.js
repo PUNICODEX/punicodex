@@ -366,7 +366,7 @@
     }
 
     try {
-      const res = await fetch(`${API_BASE}/api/patrons/checkout`, {
+      const res = await fetch(`${API_BASE}/api/patrons/checkout/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),

@@ -1,5 +1,5 @@
 (function () {
-  const apiBase = '/api/v1';
+  const apiBase = '/api/v1/';
   const container = document.getElementById('app');
   const params = new URLSearchParams(window.location.search);
   const creatorId = params.get('id');

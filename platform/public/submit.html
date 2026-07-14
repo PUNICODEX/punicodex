@@ -192,7 +192,7 @@
 
     async function loadStats() {
       try {
-        const res = await fetch(`${API_BASE}/api/crawler/stats`);
+        const res = await fetch(`${API_BASE}/api/crawler/stats/`);
         const data = await res.json();
         document.getElementById('activeCount').textContent = data.active_sites;
         document.getElementById('pantheonCount').textContent = data.by_pantheon?.filter(p => p.pantheon).length || '—';
@@ -217,7 +217,7 @@
       box.textContent = '';
 
       try {
-        const res = await fetch(`${API_BASE}/api/submit`, {
+        const res = await fetch(`${API_BASE}/api/submit/`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ domain, email })

@@ -334,7 +334,7 @@
                 return;
             }
             try {
-                const res = await fetch(`${API_BASE}/api/analytics/dashboard?token=${token}`);
+                const res = await fetch(`${API_BASE}/api/analytics/dashboard/?token=${token}`);
                 const data = await res.json();
                 if (data.error) {
                     renderError(data.error);

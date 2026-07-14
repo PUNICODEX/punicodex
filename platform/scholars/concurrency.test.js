@@ -86,11 +86,11 @@ test('two institution admins creating a student with the same email: one succeed
   const targetEmail = 'duplicate-student@loadtest.academy';
 
   const [res1, res2] = await Promise.all([
-    request('POST', '/api/v1/scholars/institution/students', {
+    request('POST', '/api/v1/scholars/institution/students/', {
       body: { email: targetEmail, displayName: 'Duplicate Student', department: 'Classics' },
       headers: sessionHeader(ctx.adminSessionId),
     }),
-    request('POST', '/api/v1/scholars/institution/students', {
+    request('POST', '/api/v1/scholars/institution/students/', {
       body: { email: targetEmail, displayName: 'Duplicate Student', department: 'Classics' },
       headers: sessionHeader(secondAdminSession),
     }),
@@ -128,7 +128,7 @@ test('student password reset during login does not crash or corrupt the account'
   const studentId = student.lastInsertRowid;
 
   const [loginRes, resetRes] = await Promise.all([
-    request('POST', '/api/v1/scholars/auth/login', {
+    request('POST', '/api/v1/scholars/auth/login/', {
       body: { email: 'reset-race@loadtest.academy', password: 'OldPass123!' },
     }),
     request('POST', `/api/v1/scholars/institution/students/${studentId}/reset-password`, {
@@ -185,7 +185,7 @@ test('reviewer approving and rejecting the same edit simultaneously: one succeed
 
   const submitRes = await request(
     'POST',
-    '/api/v1/scholars/temples/zeus/sections/mythology/edits',
+    '/api/v1/scholars/temples/zeus/sections/mythology/edits/',
     {
       body: {
         proposedBody:
@@ -264,7 +264,7 @@ test('edit submission is rejected after institution sponsorship expires', async 
     sponsorshipExpiresAt: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
   });
 
-  const res = await request('POST', '/api/v1/scholars/temples/zeus/sections/mythology/edits', {
+  const res = await request('POST', '/api/v1/scholars/temples/zeus/sections/mythology/edits/', {
     body: {
       proposedBody: 'This should be rejected because sponsorship expired.',
       proposedSources: [{ citation: 'Hesiod, Theogony', url: 'https://example.com/hesiod' }],

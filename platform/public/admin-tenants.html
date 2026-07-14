@@ -430,7 +430,7 @@
 
     async function doLogin() {
       const pass = document.getElementById('admin-pass').value;
-      const data = await api('/api/admin/login', {
+      const data = await api('/api/admin/login/', {
         method: 'POST',
         body: JSON.stringify({ password: pass }),
       });
@@ -446,7 +446,7 @@
     async function loadTenants() {
       const status = document.getElementById('statusFilter')?.value || '';
       const q = document.getElementById('searchInput')?.value.trim() || '';
-      const data = await api(`/api/tenants?status=${encodeURIComponent(status)}&limit=200`);
+      const data = await api(`/api/tenants/?status=${encodeURIComponent(status)}&limit=200`);
       if (data.error) {
         localStorage.removeItem('nike_admin_token');
         renderLogin();
@@ -640,7 +640,7 @@
       if (!q || q.length < 2) { list.style.display = 'none'; return; }
       clearTimeout(entrySearchTimer);
       entrySearchTimer = setTimeout(async () => {
-        const data = await fetch(`${API_BASE}/api/search?q=${encodeURIComponent(q)}&limit=8`).then(r => r.json());
+        const data = await fetch(`${API_BASE}/api/search/?q=${encodeURIComponent(q)}&limit=8`).then(r => r.json());
         entrySearchResults = data.entries || [];
         if (!entrySearchResults.length) { list.style.display = 'none'; return; }
         list.innerHTML = entrySearchResults.map(e => `
@@ -667,7 +667,7 @@
         showToast('Entry, company name, and front URL are required for preview.', 'error');
         return;
       }
-      const data = await api('/api/tenants/preview', {
+      const data = await api('/api/tenants/preview/', {
         method: 'POST',
         body: JSON.stringify({ entryId, companyName, category, frontUrl }),
       });
@@ -706,7 +706,7 @@
       const frontUrl = document.getElementById('front-url').value.trim();
       const email = document.getElementById('contact-email').value.trim();
       const notes = document.getElementById('tenant-notes').value.trim();
-      const data = await api('/api/tenants', {
+      const data = await api('/api/tenants/', {
         method: 'POST',
         body: JSON.stringify({ entryId, companyName, category, frontUrl, email, notes }),
       });

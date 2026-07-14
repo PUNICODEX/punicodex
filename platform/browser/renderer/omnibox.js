@@ -117,7 +117,7 @@ const _Omnibox = (function () {
     // Query the sacred Index (indexed sites only)
     try {
       const apiRes = await window.punycodex.apiGet(
-        `/api/sites/search?q=${encodeURIComponent(query)}&limit=6`
+        `/api/sites/search/?q=${encodeURIComponent(query)}&limit=6`
       );
       if (apiRes.ok && Array.isArray(apiRes.data)) {
         apiRes.data.forEach((site) => {

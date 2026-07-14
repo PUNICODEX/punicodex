@@ -134,7 +134,7 @@ async function startScholarsServer() {
   });
 
   const app = express();
-  app.use('/api/v1/scholars', scholarsApi);
+  app.use('/api/v1/scholars/', scholarsApi);
 
   const server = await new Promise((resolve) => {
     const s = app.listen(0, '127.0.0.1', () => resolve(s));

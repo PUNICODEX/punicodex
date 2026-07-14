@@ -4,7 +4,7 @@
 (function (global) {
   'use strict';
 
-  const API = '/api/gamification?type=leaderboards';
+  const API = '/api/gamification/?type=leaderboards';
 
   async function load() {
     const res = await fetch(API);

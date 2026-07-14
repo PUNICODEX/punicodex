@@ -28,7 +28,7 @@
           <a href="/lexicon/index.html">Lexicon</a>
           <a href="/type/index.html">Type</a>
           <a href="/pantheon/index.html">Pantheon</a>
-          <a href="/api/v1/docs">API</a>
+          <a href="/api/v1/docs/">API</a>
         </nav>
       </div>
       <div class="search-box">
@@ -435,7 +435,7 @@
     async function fetchAutocomplete(q) {
       if (!q || q.length < 1) { hideAutocomplete(); return; }
       try {
-        const res = await fetch(`${API_BASE}/api/search/suggest?q=${encodeURIComponent(q)}&limit=8`);
+        const res = await fetch(`${API_BASE}/api/search/suggest/?q=${encodeURIComponent(q)}&limit=8`);
         const data = await res.json();
         renderAutocomplete(data.suggestions);
       } catch { hideAutocomplete(); }
@@ -484,7 +484,7 @@
     let pendingClickTimer = null;
 
     function sendClickEvent(query, siteId, position, dwellTimeMs) {
-      fetch('/api/search/click', {
+      fetch('/api/search/click/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query, siteId, position, dwellTimeMs })
@@ -693,14 +693,14 @@
 
       try {
         const requests = [
-          fetch(`${API_BASE}/api/search/web?${params}`),
-          fetch(`${API_BASE}/api/search/didyoumean?q=${encodeURIComponent(q)}&limit=3`),
-          fetch(`${API_BASE}/api/search/related?q=${encodeURIComponent(q)}&limit=6`),
+          fetch(`${API_BASE}/api/search/web/?${params}`),
+          fetch(`${API_BASE}/api/search/didyoumean/?q=${encodeURIComponent(q)}&limit=3`),
+          fetch(`${API_BASE}/api/search/related/?q=${encodeURIComponent(q)}&limit=6`),
         ];
         if (!append) {
           requests.push(
-            fetch(`${API_BASE}/api/search/knowledge?q=${encodeURIComponent(q)}`).catch(() => ({ ok: false })),
-            fetch(`${API_BASE}/api/search/paa?q=${encodeURIComponent(q)}&limit=4`).catch(() => ({ ok: false }))
+            fetch(`${API_BASE}/api/search/knowledge/?q=${encodeURIComponent(q)}`).catch(() => ({ ok: false })),
+            fetch(`${API_BASE}/api/search/paa/?q=${encodeURIComponent(q)}&limit=4`).catch(() => ({ ok: false }))
           );
         }
         const [searchRes, dymRes, relatedRes, knowledgeRes, paaRes] = await Promise.all(requests);
@@ -999,7 +999,7 @@
 
     async function showSimilar(punycode) {
       try {
-        const res = await fetch(`${API_BASE}/api/sites/duplicates?threshold=3`);
+        const res = await fetch(`${API_BASE}/api/sites/duplicates/?threshold=3`);
         const data = await res.json();
         const cluster = data.clusters.find(c => c.sites.some(s => s.punycode === punycode));
         if (cluster && cluster.sites.length > 1) {
@@ -1027,7 +1027,7 @@
         if (currentTier) params.set('tier', currentTier);
         if (currentPantheon) params.set('pantheon', currentPantheon);
         if (currentSort) params.set('sort', currentSort);
-        const res = await fetch(`${API_BASE}/api/search?${params}`);
+        const res = await fetch(`${API_BASE}/api/search/?${params}`);
         const data = await res.json();
         renderDomainResults(data);
       } catch (e) {
@@ -1141,7 +1141,7 @@
       }
       answerEl.innerHTML = '<div class="oracle-loading"><span>🔮</span><span>The Oracle is consulting the archives...</span></div>';
       try {
-        const res = await fetch(`${API_BASE}/api/oracle?q=${encodeURIComponent(q)}`);
+        const res = await fetch(`${API_BASE}/api/oracle/?q=${encodeURIComponent(q)}`);
         if (!res.ok) throw new Error('Oracle unavailable');
         const data = await res.json();
         renderOracle(data);

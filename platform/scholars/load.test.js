@@ -92,7 +92,7 @@ test('100 concurrent student logins succeed and return valid tokens', async () =
   const start = process.hrtime.bigint();
   const responses = await Promise.all(
     students.map((s) =>
-      request('POST', '/api/v1/scholars/auth/login', {
+      request('POST', '/api/v1/scholars/auth/login/', {
         body: { email: s.email, password: s.password },
       })
     )
@@ -150,7 +150,7 @@ test('1000 sequential student logins succeed without rate-limit errors', async (
   let successCount = 0;
   let rateLimitedCount = 0;
   for (const attempt of attempts) {
-    const res = await request('POST', '/api/v1/scholars/auth/login', {
+    const res = await request('POST', '/api/v1/scholars/auth/login/', {
       body: attempt,
     });
     if (res.status === 200 && res.body.success) {
@@ -187,7 +187,7 @@ test('concurrent edit submissions for the same section create one edit per stude
   const start = process.hrtime.bigint();
   const responses = await Promise.all(
     sessions.map((s, i) =>
-      request('POST', '/api/v1/scholars/temples/zeus/sections/mythology/edits', {
+      request('POST', '/api/v1/scholars/temples/zeus/sections/mythology/edits/', {
         body: {
           proposedBody: `Concurrent mythology contribution ${i} with citation to Hesiod, Theogony.`,
           proposedSources: [{ citation: 'Hesiod, Theogony', url: 'https://example.com/hesiod' }],

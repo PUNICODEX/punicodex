@@ -642,7 +642,7 @@
     if (searchAbort) searchAbort.abort();
     searchAbort = new AbortController();
     try {
-      const data = await fetch(`/api/v1/autocomplete?q=${encodeURIComponent(q)}&limit=8`, {
+      const data = await fetch(`/api/v1/autocomplete/?q=${encodeURIComponent(q)}&limit=8`, {
         signal: searchAbort.signal,
       }).then((r) => r.json());
       const items = data?.data?.items || data?.items || [];

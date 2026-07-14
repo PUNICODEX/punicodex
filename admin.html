@@ -385,7 +385,7 @@
 
     async function loadStats() {
       try {
-        const res = await fetch(`${API_BASE}/api/crawler/stats`);
+        const res = await fetch(`${API_BASE}/api/crawler/stats/`);
         const s = await res.json();
         const grid = document.getElementById('statsGrid');
         grid.innerHTML = `
@@ -419,7 +419,7 @@
 
     async function loadPantheons() {
       try {
-        const res = await fetch(`${API_BASE}/api/pantheons`);
+        const res = await fetch(`${API_BASE}/api/pantheons/`);
         const pantheons = await res.json();
         const select = document.getElementById('pantheonFilter');
         pantheons.forEach(p => {
@@ -443,7 +443,7 @@
         if (status) params.set('status', status);
         if (pantheon) params.set('pantheon', pantheon);
 
-        const res = await fetch(`${API_BASE}/api/sites?${params}`);
+        const res = await fetch(`${API_BASE}/api/sites/?${params}`);
         const data = await res.json();
         renderSites(data.sites, data.total);
       } catch (e) {
@@ -517,7 +517,7 @@
 
       showToast(`Crawling ${domain}...`, 'success');
       try {
-        const res = await fetch(`${API_BASE}/api/crawl`, {
+        const res = await fetch(`${API_BASE}/api/crawl/`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ domain })
@@ -535,7 +535,7 @@
     async function recrawlAll() {
       showToast('Re-crawling all active sites...', 'success');
       try {
-        const res = await fetch(`${API_BASE}/api/crawl/recrawl`, { method: 'POST' });
+        const res = await fetch(`${API_BASE}/api/crawl/recrawl/`, { method: 'POST' });
         const data = await res.json();
         showToast(`Re-crawled ${data.total} sites`, 'success');
         loadStats();
@@ -555,7 +555,7 @@
         params.set('limit', '50');
         if (status) params.set('status', status);
 
-        const res = await fetch(`${API_BASE}/api/crawler/queue?${params}`);
+        const res = await fetch(`${API_BASE}/api/crawler/queue/?${params}`);
         const data = await res.json();
         renderQueue(data.items, data.total);
       } catch (e) {
@@ -619,7 +619,7 @@
       const domains = input.split(',').map(d => d.trim()).filter(Boolean);
       showToast(`Adding ${domains.length} domains to queue...`, 'success');
       try {
-        const res = await fetch(`${API_BASE}/api/crawler/queue`, {
+        const res = await fetch(`${API_BASE}/api/crawler/queue/`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ domains, source: 'manual', priority: 5 })
@@ -637,7 +637,7 @@
     async function processQueue() {
       showToast('Processing crawl queue...', 'success');
       try {
-        const res = await fetch(`${API_BASE}/api/crawler/queue/process`, {
+        const res = await fetch(`${API_BASE}/api/crawler/queue/process/`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ batchSize: 10, concurrency: 3 })
@@ -658,7 +658,7 @@
       const domains = input.split(',').map(d => d.trim()).filter(Boolean);
       showToast(`Discovering ${domains.length} domains...`, 'success');
       try {
-        const res = await fetch(`${API_BASE}/api/crawler/discover`, {
+        const res = await fetch(`${API_BASE}/api/crawler/discover/`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ domains, source: 'bulk' })

@@ -111,7 +111,7 @@
 
     async function ensureSession() {
       if (sessionToken) return;
-      const res = await fetch('/api/search/v2?q=zeus&limit=1');
+      const res = await fetch('/api/search/v2/?q=zeus&limit=1');
       const data = await res.json();
       if (data.sessionToken) {
         sessionToken = data.sessionToken;
@@ -169,7 +169,7 @@
         el.innerHTML = '<div class="empty">No domain available.</div>';
         return;
       }
-      const res = await fetch(`/api/marketplace?action=registrars&domain=${encodeURIComponent(domain)}`);
+      const res = await fetch(`/api/marketplace/?action=registrars&domain=${encodeURIComponent(domain)}`);
       const data = await res.json();
       el.innerHTML = data.length
         ? data.map(r => `
@@ -183,7 +183,7 @@
 
     async function loadReviews() {
       const el = document.getElementById('reviews');
-      const res = await fetch(`/api/marketplace?action=reviews&entryId=${entryId}`);
+      const res = await fetch(`/api/marketplace/?action=reviews&entryId=${entryId}`);
       const data = await res.json();
       el.innerHTML = data.reviews.length
         ? data.reviews.map(r => `
@@ -200,7 +200,7 @@
       if (!sessionToken) await ensureSession();
       const email = document.getElementById('email').value;
       const message = document.getElementById('message').value;
-      const res = await fetch('/api/marketplace', {
+      const res = await fetch('/api/marketplace/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-session-token': sessionToken },
         body: JSON.stringify({ action: 'inquiry', entryId, email, message }),
@@ -218,7 +218,7 @@
       if (!sessionToken) await ensureSession();
       const rating = parseInt(document.getElementById('rating').value, 10);
       const review = document.getElementById('reviewText').value;
-      const res = await fetch('/api/marketplace', {
+      const res = await fetch('/api/marketplace/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-session-token': sessionToken },
         body: JSON.stringify({ action: 'review', entryId, rating, review }),

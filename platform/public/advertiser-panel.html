@@ -471,7 +471,7 @@
 
             // Enrich with dashboard metrics and slot creatives for bundles
             for (let b of bookings) {
-                const metrics = await api(`/api/analytics/dashboard?token=${b.token}`);
+                const metrics = await api(`/api/analytics/dashboard/?token=${b.token}`);
                 b.metrics = metrics ? metrics.metrics : null;
                 b.booking = metrics ? metrics.booking : null;
                 // Merge server-side details into booking object for rendering

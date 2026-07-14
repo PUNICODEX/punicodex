@@ -62,6 +62,6 @@ module.exports = createApiHandler(async (req, res) => {
     }
   );
   success(res, result, {
-    links: { self: `/api/v1/authenticity/check?input=${encodeURIComponent(input)}&type=${type}` },
+    links: { self: `/api/v1/authenticity/check/?input=${encodeURIComponent(input)}&type=${type}` },
   });
 });

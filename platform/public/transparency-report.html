@@ -97,7 +97,7 @@
       async function loadReport() {
         const pre = document.getElementById('report-json');
         try {
-          const response = await fetch('/api/v1/transparency-report');
+          const response = await fetch('/api/v1/transparency-report/');
           if (!response.ok) throw new Error(`HTTP ${response.status}`);
           const payload = await response.json();
           const report = payload.data || payload;

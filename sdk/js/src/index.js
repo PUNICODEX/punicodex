@@ -27,7 +27,7 @@ function mergePolicy(policy, base = DEFAULT_POLICY) {
 
 class AuthenticitySDK {
   constructor(options = {}) {
-    this.apiBaseUrl = options.apiBaseUrl || 'https://punycodex.com/api/v2';
+    this.apiBaseUrl = options.apiBaseUrl || 'https://punycodex.com/api/v2/';
     this.apiKey = options.apiKey || null;
     this.offlineFirst = options.offlineFirst === true;
     this.policy = mergePolicy(options.policy);

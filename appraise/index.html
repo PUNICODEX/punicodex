@@ -293,7 +293,7 @@
                 btn.disabled = true;
                 btn.textContent = 'Appraising…';
                 try {
-                    const res = await fetch(`/api/v1/appraise?q=${encodeURIComponent(domain)}`);
+                    const res = await fetch(`/api/v1/appraise/?q=${encodeURIComponent(domain)}`);
                     const json = await res.json();
                     if (!json.success || json.error) {
                         throw new Error(json.error?.message || 'Appraisal failed');

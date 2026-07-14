@@ -37,7 +37,7 @@
           <a href="/lexicon/">Lexicon</a>
           <a href="/type/">Type</a>
           <a href="/tiers/">Tiers</a>
-          <a href="/api/v1/docs">API</a>
+          <a href="/api/v1/docs/">API</a>
         </nav>
       </div>
       <div class="cn-search-wrap">
@@ -166,7 +166,7 @@
       try {
         const headers = { 'Content-Type': 'application/json' };
         if (sessionToken) headers['x-session-token'] = sessionToken;
-        const res = await fetch(`${API_BASE}/api/search/v2?${params}`, { headers });
+        const res = await fetch(`${API_BASE}/api/search/v2/?${params}`, { headers });
         const data = await res.json();
         if (data.sessionToken) {
           sessionToken = data.sessionToken;
@@ -416,7 +416,7 @@
     async function sendFeedback(siteId, helpful) {
       if (!sessionToken || !currentQ) return;
       try {
-        await fetch('/api/search/feedback', {
+        await fetch('/api/search/feedback/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'x-session-token': sessionToken },
           body: JSON.stringify({ query: currentQ, siteId, helpful }),

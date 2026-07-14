@@ -639,7 +639,7 @@
 
     <script>
     (function() {
-        const apiBase = '/api/v1/scholars';
+        const apiBase = '/api/v1/scholars/';
         const container = document.getElementById('app');
         const passwordToasts = document.getElementById('password-toasts');
 
@@ -1357,13 +1357,13 @@
             const [studentsRes, reviewersRes, creativeRes, analyticsRes, payoutsRes] = await Promise.all([
                 api('/institution/students'),
                 api('/institution/reviewers'),
-                fetch('/api/v1/creatives/institution/dashboard', {
+                fetch('/api/v1/creatives/institution/dashboard/', {
                     headers: getSessionId() ? { 'x-scholars-session': getSessionId() } : {},
                 }).then((r) => r.json().catch(() => ({ success: false }))).then((data) => ({ ok: data?.success === true, data })),
-                fetch('/api/v1/creatives/institution/analytics', {
+                fetch('/api/v1/creatives/institution/analytics/', {
                     headers: getSessionId() ? { 'x-scholars-session': getSessionId() } : {},
                 }).then((r) => r.json().catch(() => ({ success: false }))).then((data) => ({ ok: data?.success === true, data })),
-                fetch('/api/v1/creatives/institution/payouts', {
+                fetch('/api/v1/creatives/institution/payouts/', {
                     headers: getSessionId() ? { 'x-scholars-session': getSessionId() } : {},
                 }).then((r) => r.json().catch(() => ({ success: false }))).then((data) => ({ ok: data?.success === true, data })),
             ]);

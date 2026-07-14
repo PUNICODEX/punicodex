@@ -209,7 +209,7 @@
       msg.textContent = 'Processing...';
 
       try {
-        const res = await fetch(`${API_BASE}/api/claim`, {
+        const res = await fetch(`${API_BASE}/api/claim/`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

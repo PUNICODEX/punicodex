@@ -70,7 +70,7 @@ let baseUrl;
 function startServer() {
   return new Promise((resolve) => {
     const app = express();
-    app.use('/api/v1/scholars', scholarsApi);
+    app.use('/api/v1/scholars/', scholarsApi);
     server = app.listen(0, '127.0.0.1', () => {
       const addr = server.address();
       baseUrl = `http://127.0.0.1:${addr.port}`;
@@ -339,7 +339,7 @@ async function main() {
   const ctx = await setup();
 
   test('health endpoint returns ok', async () => {
-    const res = await request('GET', '/api/v1/scholars/health');
+    const res = await request('GET', '/api/v1/scholars/health/');
     if (res.status !== 200) throw new Error(`expected 200, got ${res.status}`);
     if (!res.body.success) throw new Error('expected success=true');
     if (res.body.data.status !== 'ok') throw new Error('expected status ok');
@@ -347,7 +347,7 @@ async function main() {
   });
 
   test('lists temples', async () => {
-    const res = await request('GET', '/api/v1/scholars/temples');
+    const res = await request('GET', '/api/v1/scholars/temples/');
     if (res.status !== 200) throw new Error(`expected 200, got ${res.status}`);
     if (!Array.isArray(res.body.data)) throw new Error('expected data array');
     if (res.body.data.length !== 1)
@@ -355,13 +355,13 @@ async function main() {
   });
 
   test('filters temples by pantheon', async () => {
-    const res = await request('GET', '/api/v1/scholars/temples?pantheon=greek');
+    const res = await request('GET', '/api/v1/scholars/temples/?pantheon=greek');
     if (res.status !== 200) throw new Error(`expected 200, got ${res.status}`);
     if (res.body.data.length !== 0) throw new Error('expected 0 greek temples');
   });
 
   test('returns temple detail with sections', async () => {
-    const res = await request('GET', '/api/v1/scholars/temples/zeus');
+    const res = await request('GET', '/api/v1/scholars/temples/zeus/');
     if (res.status !== 200) throw new Error(`expected 200, got ${res.status}`);
     if (res.body.data.entry_id !== 'zeus') throw new Error('unexpected entry_id');
     if (!Array.isArray(res.body.data.sections)) throw new Error('expected sections array');
@@ -370,18 +370,18 @@ async function main() {
   });
 
   test('returns 404 for unknown temple', async () => {
-    const res = await request('GET', '/api/v1/scholars/temples/unknown');
+    const res = await request('GET', '/api/v1/scholars/temples/unknown/');
     if (res.status !== 404) throw new Error(`expected 404, got ${res.status}`);
   });
 
   test('search rejects empty query', async () => {
-    const res = await request('GET', '/api/v1/scholars/search?q=');
+    const res = await request('GET', '/api/v1/scholars/search/?q=');
     if (res.status !== 400) throw new Error(`expected 400, got ${res.status}`);
     if (res.body.success !== false) throw new Error('expected success=false');
   });
 
   test('search returns empty results for missing term', async () => {
-    const res = await request('GET', '/api/v1/scholars/search?q=xyznonexistent');
+    const res = await request('GET', '/api/v1/scholars/search/?q=xyznonexistent');
     if (res.status !== 200) throw new Error(`expected 200, got ${res.status}`);
     if (!res.body.success) throw new Error('expected success=true');
     if (res.body.data.total !== 0) throw new Error('expected 0 total results');
@@ -389,14 +389,14 @@ async function main() {
   });
 
   test('rejects edit submission without auth', async () => {
-    const res = await request('POST', '/api/v1/scholars/temples/zeus/sections/mythology/edits', {
+    const res = await request('POST', '/api/v1/scholars/temples/zeus/sections/mythology/edits/', {
       body: { proposedBody: 'No auth' },
     });
     if (res.status !== 401) throw new Error(`expected 401, got ${res.status}`);
   });
 
   test('student can submit an edit', async () => {
-    const res = await request('POST', '/api/v1/scholars/temples/zeus/sections/mythology/edits', {
+    const res = await request('POST', '/api/v1/scholars/temples/zeus/sections/mythology/edits/', {
       body: {
         proposedBody: 'Zeus is king of the Olympian gods and ruler of the sky in Greek mythology.',
         proposedSources: [{ citation: 'Hesiod, Theogony', url: 'https://example.com/hesiod' }],
@@ -414,7 +414,7 @@ async function main() {
   });
 
   test('rejects edit with empty body and no sources', async () => {
-    const res = await request('POST', '/api/v1/scholars/temples/zeus/sections/mythology/edits', {
+    const res = await request('POST', '/api/v1/scholars/temples/zeus/sections/mythology/edits/', {
       body: { proposedBody: '', proposedSources: [] },
       headers: sessionHeader(ctx.studentSessionId),
     });
@@ -425,7 +425,7 @@ async function main() {
   });
 
   test('rejects edit below minimum quality score', async () => {
-    const res = await request('POST', '/api/v1/scholars/temples/zeus/sections/mythology/edits', {
+    const res = await request('POST', '/api/v1/scholars/temples/zeus/sections/mythology/edits/', {
       body: {
         proposedBody: 'Short text with no real citation.',
         proposedSources: [{ citation: 'Some random blog' }],
@@ -439,7 +439,7 @@ async function main() {
   });
 
   test('reviewer can list pending edits', async () => {
-    const res = await request('GET', '/api/v1/scholars/edits/pending', {
+    const res = await request('GET', '/api/v1/scholars/edits/pending/', {
       headers: sessionHeader(ctx.reviewerSessionId),
     });
     if (res.status !== 200) throw new Error(`expected 200, got ${res.status}`);
@@ -453,7 +453,7 @@ async function main() {
   });
 
   test('non-reviewer cannot list pending edits', async () => {
-    const res = await request('GET', '/api/v1/scholars/edits/pending', {
+    const res = await request('GET', '/api/v1/scholars/edits/pending/', {
       headers: sessionHeader(ctx.studentSessionId),
     });
     if (res.status !== 403) throw new Error(`expected 403, got ${res.status}`);
@@ -488,7 +488,7 @@ async function main() {
   });
 
   test('search finds published section body and groups by temple', async () => {
-    const res = await request('GET', '/api/v1/scholars/search?q=king+of+the+Olympian');
+    const res = await request('GET', '/api/v1/scholars/search/?q=king+of+the+Olympian');
     if (res.status !== 200) throw new Error(`expected 200, got ${res.status}`);
     if (!res.body.success) throw new Error('expected success=true');
     if (res.body.data.total < 1) throw new Error('expected at least one match');
@@ -505,10 +505,10 @@ async function main() {
   });
 
   test('search filters by pantheon', async () => {
-    const res = await request('GET', '/api/v1/scholars/search?q=Zeus&pantheon=olympian');
+    const res = await request('GET', '/api/v1/scholars/search/?q=Zeus&pantheon=olympian');
     if (res.status !== 200) throw new Error(`expected 200, got ${res.status}`);
     if (res.body.data.total < 1) throw new Error('expected matching olympian result');
-    const otherRes = await request('GET', '/api/v1/scholars/search?q=Zeus&pantheon=egyptian');
+    const otherRes = await request('GET', '/api/v1/scholars/search/?q=Zeus&pantheon=egyptian');
     if (otherRes.status !== 200) throw new Error(`expected 200, got ${otherRes.status}`);
     if (otherRes.body.data.total !== 0) throw new Error('expected 0 egyptian results');
   });
@@ -516,7 +516,7 @@ async function main() {
   test('reviewer can reject an edit', async () => {
     const submitRes = await request(
       'POST',
-      '/api/v1/scholars/temples/zeus/sections/mythology/edits',
+      '/api/v1/scholars/temples/zeus/sections/mythology/edits/',
       {
         body: {
           proposedBody:
@@ -541,7 +541,7 @@ async function main() {
   test('author cannot approve their own edit', async () => {
     const submitRes = await request(
       'POST',
-      '/api/v1/scholars/temples/zeus/sections/mythology/edits',
+      '/api/v1/scholars/temples/zeus/sections/mythology/edits/',
       {
         body: {
           proposedBody: 'Self-approval is forbidden by the scholarly review policy.',
@@ -562,7 +562,7 @@ async function main() {
 
   test('frozen temple rejects edits', async () => {
     dbLayer.setTempleFrozen('zeus', true);
-    const res = await request('POST', '/api/v1/scholars/temples/zeus/sections/mythology/edits', {
+    const res = await request('POST', '/api/v1/scholars/temples/zeus/sections/mythology/edits/', {
       body: {
         proposedBody: 'This edit is submitted while the temple is frozen and should be rejected.',
         proposedSources: [{ citation: 'Hesiod, Theogony' }],
@@ -574,7 +574,7 @@ async function main() {
   });
 
   test('session endpoint returns current user', async () => {
-    const res = await request('GET', '/api/v1/scholars/auth/session', {
+    const res = await request('GET', '/api/v1/scholars/auth/session/', {
       headers: sessionHeader(ctx.reviewerSessionId),
     });
     if (res.status !== 200) throw new Error(`expected 200, got ${res.status}`);
@@ -587,7 +587,7 @@ async function main() {
   // ─── Password auth ───
 
   test('user can log in with email and password', async () => {
-    const res = await request('POST', '/api/v1/scholars/auth/login', {
+    const res = await request('POST', '/api/v1/scholars/auth/login/', {
       body: { email: 'student@academy.test', password: 'student-pass' },
     });
     if (res.status !== 200)
@@ -599,7 +599,7 @@ async function main() {
   });
 
   test('login rejects invalid credentials', async () => {
-    const res = await request('POST', '/api/v1/scholars/auth/login', {
+    const res = await request('POST', '/api/v1/scholars/auth/login/', {
       body: { email: 'student@academy.test', password: 'wrong-pass' },
     });
     if (res.status !== 401) throw new Error(`expected 401, got ${res.status}`);
@@ -607,7 +607,7 @@ async function main() {
   });
 
   test('user can change own password', async () => {
-    const changeRes = await request('POST', '/api/v1/scholars/auth/password', {
+    const changeRes = await request('POST', '/api/v1/scholars/auth/password/', {
       body: { currentPassword: 'student-pass', newPassword: 'new-student-pass' },
       headers: sessionHeader(ctx.studentSessionId),
     });
@@ -615,7 +615,7 @@ async function main() {
       throw new Error(`expected 200, got ${changeRes.status}: ${JSON.stringify(changeRes.body)}`);
     if (!changeRes.body.data.changed) throw new Error('expected changed=true');
 
-    const loginRes = await request('POST', '/api/v1/scholars/auth/login', {
+    const loginRes = await request('POST', '/api/v1/scholars/auth/login/', {
       body: { email: 'student@academy.test', password: 'new-student-pass' },
     });
     if (loginRes.status !== 200)
@@ -626,7 +626,7 @@ async function main() {
   });
 
   test('change password rejects incorrect current password', async () => {
-    const res = await request('POST', '/api/v1/scholars/auth/password', {
+    const res = await request('POST', '/api/v1/scholars/auth/password/', {
       body: { currentPassword: 'wrong-pass', newPassword: 'new-pass' },
       headers: sessionHeader(ctx.studentSessionId),
     });
@@ -634,19 +634,19 @@ async function main() {
   });
 
   test('logout invalidates session', async () => {
-    const loginRes = await request('POST', '/api/v1/scholars/auth/login', {
+    const loginRes = await request('POST', '/api/v1/scholars/auth/login/', {
       body: { email: 'reviewer@academy.test', password: 'reviewer-pass' },
     });
     if (loginRes.status !== 200) throw new Error(`expected 200, got ${loginRes.status}`);
     const token = loginRes.body.data.token;
 
-    const logoutRes = await request('POST', '/api/v1/scholars/auth/logout', {
+    const logoutRes = await request('POST', '/api/v1/scholars/auth/logout/', {
       headers: sessionHeader(token),
     });
     if (logoutRes.status !== 200)
       throw new Error(`expected 200, got ${logoutRes.status}: ${JSON.stringify(logoutRes.body)}`);
 
-    const sessionRes = await request('GET', '/api/v1/scholars/auth/session', {
+    const sessionRes = await request('GET', '/api/v1/scholars/auth/session/', {
       headers: sessionHeader(token),
     });
     if (sessionRes.body.data.user !== null)
@@ -656,7 +656,7 @@ async function main() {
   // ─── Institution admin ───
 
   test('institution admin can fetch institution dashboard', async () => {
-    const res = await request('GET', '/api/v1/scholars/institution', {
+    const res = await request('GET', '/api/v1/scholars/institution/', {
       headers: sessionHeader(ctx.adminSessionId),
     });
     if (res.status !== 200)
@@ -676,14 +676,14 @@ async function main() {
   });
 
   test('student cannot fetch institution dashboard', async () => {
-    const res = await request('GET', '/api/v1/scholars/institution', {
+    const res = await request('GET', '/api/v1/scholars/institution/', {
       headers: sessionHeader(ctx.studentSessionId),
     });
     if (res.status !== 403) throw new Error(`expected 403, got ${res.status}`);
   });
 
   test('curator can fetch admin stats', async () => {
-    const res = await request('GET', '/api/v1/scholars/stats', {
+    const res = await request('GET', '/api/v1/scholars/stats/', {
       headers: sessionHeader(ctx.curatorSessionId),
     });
     if (res.status !== 200)
@@ -699,14 +699,14 @@ async function main() {
   });
 
   test('non-curator cannot fetch admin stats', async () => {
-    const res = await request('GET', '/api/v1/scholars/stats', {
+    const res = await request('GET', '/api/v1/scholars/stats/', {
       headers: sessionHeader(ctx.reviewerSessionId),
     });
     if (res.status !== 403) throw new Error(`expected 403, got ${res.status}`);
   });
 
   test('curator can list all users', async () => {
-    const res = await request('GET', '/api/v1/scholars/users', {
+    const res = await request('GET', '/api/v1/scholars/users/', {
       headers: sessionHeader(ctx.curatorSessionId),
     });
     if (res.status !== 200) throw new Error(`expected 200, got ${res.status}`);
@@ -725,14 +725,14 @@ async function main() {
   });
 
   test('non-curator cannot list users', async () => {
-    const res = await request('GET', '/api/v1/scholars/users', {
+    const res = await request('GET', '/api/v1/scholars/users/', {
       headers: sessionHeader(ctx.reviewerSessionId),
     });
     if (res.status !== 403) throw new Error(`expected 403, got ${res.status}`);
   });
 
   test('curator can list all institutions', async () => {
-    const res = await request('GET', '/api/v1/scholars/institutions', {
+    const res = await request('GET', '/api/v1/scholars/institutions/', {
       headers: sessionHeader(ctx.curatorSessionId),
     });
     if (res.status !== 200) throw new Error(`expected 200, got ${res.status}`);
@@ -743,7 +743,7 @@ async function main() {
   });
 
   test('curator can freeze and unfreeze a temple', async () => {
-    const freezeRes = await request('POST', '/api/v1/scholars/temples/zeus/freeze', {
+    const freezeRes = await request('POST', '/api/v1/scholars/temples/zeus/freeze/', {
       body: { isFrozen: true },
       headers: sessionHeader(ctx.curatorSessionId),
     });
@@ -751,7 +751,7 @@ async function main() {
       throw new Error(`expected 200, got ${freezeRes.status}: ${JSON.stringify(freezeRes.body)}`);
     if (!freezeRes.body.data.frozen) throw new Error('expected frozen=true');
 
-    const unfreezeRes = await request('POST', '/api/v1/scholars/temples/zeus/freeze', {
+    const unfreezeRes = await request('POST', '/api/v1/scholars/temples/zeus/freeze/', {
       body: { isFrozen: false },
       headers: sessionHeader(ctx.curatorSessionId),
     });
@@ -762,7 +762,7 @@ async function main() {
   // ─── Curator institution management ───
 
   test('curator can create institution with admin', async () => {
-    const res = await request('POST', '/api/v1/scholars/institutions', {
+    const res = await request('POST', '/api/v1/scholars/institutions/', {
       body: {
         name: 'New College',
         slug: 'new-college',
@@ -851,7 +851,7 @@ async function main() {
   });
 
   test('curator users endpoint supports filters', async () => {
-    const res = await request('GET', '/api/v1/scholars/users?role=student', {
+    const res = await request('GET', '/api/v1/scholars/users/?role=student', {
       headers: sessionHeader(ctx.curatorSessionId),
     });
     if (res.status !== 200) throw new Error(`expected 200, got ${res.status}`);
@@ -863,7 +863,7 @@ async function main() {
   // ─── Institution admin student/reviewer management ───
 
   test('institution admin can list students', async () => {
-    const res = await request('GET', '/api/v1/scholars/institution/students', {
+    const res = await request('GET', '/api/v1/scholars/institution/students/', {
       headers: sessionHeader(ctx.adminSessionId),
     });
     if (res.status !== 200)
@@ -876,7 +876,7 @@ async function main() {
   });
 
   test('institution admin can create student with temp password', async () => {
-    const res = await request('POST', '/api/v1/scholars/institution/students', {
+    const res = await request('POST', '/api/v1/scholars/institution/students/', {
       body: {
         email: 'newstudent@academy.test',
         displayName: 'New Student',
@@ -940,7 +940,7 @@ async function main() {
   });
 
   test('institution admin can promote student to reviewer', async () => {
-    const promoteRes = await request('POST', '/api/v1/scholars/institution/reviewers', {
+    const promoteRes = await request('POST', '/api/v1/scholars/institution/reviewers/', {
       body: { userId: ctx.studentId },
       headers: sessionHeader(ctx.adminSessionId),
     });
@@ -956,14 +956,14 @@ async function main() {
   });
 
   test('reviewer cannot access institution admin endpoints', async () => {
-    const res = await request('GET', '/api/v1/scholars/institution/students', {
+    const res = await request('GET', '/api/v1/scholars/institution/students/', {
       headers: sessionHeader(ctx.reviewerSessionId),
     });
     if (res.status !== 403) throw new Error(`expected 403, got ${res.status}`);
   });
 
   test('institution admin password reset endpoint rejects non-student targets', async () => {
-    const res = await request('POST', '/api/v1/scholars/auth/password/reset', {
+    const res = await request('POST', '/api/v1/scholars/auth/password/reset/', {
       body: { userId: ctx.adminId },
       headers: sessionHeader(ctx.adminSessionId),
     });
@@ -971,7 +971,7 @@ async function main() {
   });
 
   test('analytics view endpoint records a temple view', async () => {
-    const res = await request('POST', '/api/v1/scholars/analytics/view', {
+    const res = await request('POST', '/api/v1/scholars/analytics/view/', {
       body: { templeId: 'zeus' },
     });
     if (res.status !== 200) throw new Error(`expected 200, got ${res.status}`);
@@ -980,14 +980,14 @@ async function main() {
   });
 
   test('analytics view endpoint rejects missing templeId', async () => {
-    const res = await request('POST', '/api/v1/scholars/analytics/view', {
+    const res = await request('POST', '/api/v1/scholars/analytics/view/', {
       body: {},
     });
     if (res.status !== 400) throw new Error(`expected 400, got ${res.status}`);
   });
 
   test('curator can fetch analytics', async () => {
-    const res = await request('GET', '/api/v1/scholars/analytics?days=30', {
+    const res = await request('GET', '/api/v1/scholars/analytics/?days=30', {
       headers: sessionHeader(ctx.curatorSessionId),
     });
     if (res.status !== 200)
@@ -1003,14 +1003,14 @@ async function main() {
   });
 
   test('non-curator cannot fetch analytics', async () => {
-    const res = await request('GET', '/api/v1/scholars/analytics', {
+    const res = await request('GET', '/api/v1/scholars/analytics/', {
       headers: sessionHeader(ctx.reviewerSessionId),
     });
     if (res.status !== 403) throw new Error(`expected 403, got ${res.status}`);
   });
 
   test('unauthenticated cannot fetch analytics', async () => {
-    const res = await request('GET', '/api/v1/scholars/analytics');
+    const res = await request('GET', '/api/v1/scholars/analytics/');
     if (res.status !== 401) throw new Error(`expected 401, got ${res.status}`);
   });
 
@@ -1019,7 +1019,7 @@ async function main() {
   test('student can upload base64 media', async () => {
     const image = Buffer.from('fake-image-png-data');
     const base64 = `data:image/png;base64,${image.toString('base64')}`;
-    const res = await request('POST', '/api/v1/scholars/media', {
+    const res = await request('POST', '/api/v1/scholars/media/', {
       body: { data: base64, filename: 'artifact.png', caption: 'A test artifact' },
       headers: sessionHeader(ctx.studentSessionId),
     });
@@ -1036,7 +1036,7 @@ async function main() {
   });
 
   test('rejects media upload without auth', async () => {
-    const res = await request('POST', '/api/v1/scholars/media', {
+    const res = await request('POST', '/api/v1/scholars/media/', {
       body: { data: 'data:image/png;base64,abc', filename: 'x.png' },
     });
     if (res.status !== 401) throw new Error(`expected 401, got ${res.status}`);
@@ -1044,7 +1044,7 @@ async function main() {
 
   test('student can upload multipart media', async () => {
     const fileBuffer = Buffer.from('fake-webp-image-bytes');
-    const res = await requestMultipart('POST', '/api/v1/scholars/media', {
+    const res = await requestMultipart('POST', '/api/v1/scholars/media/', {
       file: {
         fieldname: 'file',
         filename: 'artifact.webp',
@@ -1061,7 +1061,7 @@ async function main() {
   });
 
   test('rejects unsupported media type', async () => {
-    const res = await request('POST', '/api/v1/scholars/media', {
+    const res = await request('POST', '/api/v1/scholars/media/', {
       body: { data: 'data:image/gif;base64,abc', filename: 'x.gif' },
       headers: sessionHeader(ctx.studentSessionId),
     });
@@ -1069,7 +1069,7 @@ async function main() {
   });
 
   test('reviewer can list pending media', async () => {
-    const res = await request('GET', '/api/v1/scholars/media?status=pending', {
+    const res = await request('GET', '/api/v1/scholars/media/?status=pending', {
       headers: sessionHeader(ctx.reviewerSessionId),
     });
     if (res.status !== 200)
@@ -1081,7 +1081,7 @@ async function main() {
   });
 
   test('student cannot list pending media', async () => {
-    const res = await request('GET', '/api/v1/scholars/media?status=pending', {
+    const res = await request('GET', '/api/v1/scholars/media/?status=pending', {
       headers: sessionHeader(ctx.studentSessionId),
     });
     if (res.status !== 403) throw new Error(`expected 403, got ${res.status}`);
@@ -1098,7 +1098,7 @@ async function main() {
 
   test('reviewer can reject media', async () => {
     const image = Buffer.from('another-fake-image');
-    const uploadRes = await request('POST', '/api/v1/scholars/media', {
+    const uploadRes = await request('POST', '/api/v1/scholars/media/', {
       body: {
         data: `data:image/jpeg;base64,${image.toString('base64')}`,
         filename: 'rejected.jpg',
@@ -1119,7 +1119,7 @@ async function main() {
   // ─── Notifications ───
 
   test('notifications list returns valid shape', async () => {
-    const res = await request('GET', '/api/v1/scholars/notifications', {
+    const res = await request('GET', '/api/v1/scholars/notifications/', {
       headers: sessionHeader(ctx.reviewerSessionId),
     });
     if (res.status !== 200)
@@ -1132,14 +1132,14 @@ async function main() {
   });
 
   test('submitting edit notifies reviewers', async () => {
-    const beforeRes = await request('GET', '/api/v1/scholars/notifications', {
+    const beforeRes = await request('GET', '/api/v1/scholars/notifications/', {
       headers: sessionHeader(ctx.reviewerSessionId),
     });
     const beforeCount = beforeRes.body.data.notifications.length;
 
     const submitRes = await request(
       'POST',
-      '/api/v1/scholars/temples/zeus/sections/mythology/edits',
+      '/api/v1/scholars/temples/zeus/sections/mythology/edits/',
       {
         body: {
           proposedBody:
@@ -1152,7 +1152,7 @@ async function main() {
     if (submitRes.status !== 201) throw new Error(`expected 201, got ${submitRes.status}`);
     ctx.notificationEditId = submitRes.body.data.editId;
 
-    const notifRes = await request('GET', '/api/v1/scholars/notifications', {
+    const notifRes = await request('GET', '/api/v1/scholars/notifications/', {
       headers: sessionHeader(ctx.reviewerSessionId),
     });
     if (notifRes.status !== 200) throw new Error(`expected 200, got ${notifRes.status}`);
@@ -1175,7 +1175,7 @@ async function main() {
     );
     if (approveRes.status !== 200) throw new Error(`expected 200, got ${approveRes.status}`);
 
-    const notifRes = await request('GET', '/api/v1/scholars/notifications', {
+    const notifRes = await request('GET', '/api/v1/scholars/notifications/', {
       headers: sessionHeader(ctx.studentSessionId),
     });
     if (notifRes.status !== 200) throw new Error(`expected 200, got ${notifRes.status}`);
@@ -1186,7 +1186,7 @@ async function main() {
   test('rejecting edit notifies author', async () => {
     const submitRes = await request(
       'POST',
-      '/api/v1/scholars/temples/zeus/sections/mythology/edits',
+      '/api/v1/scholars/temples/zeus/sections/mythology/edits/',
       {
         body: {
           proposedBody:
@@ -1205,7 +1205,7 @@ async function main() {
     });
     if (rejectRes.status !== 200) throw new Error(`expected 200, got ${rejectRes.status}`);
 
-    const notifRes = await request('GET', '/api/v1/scholars/notifications', {
+    const notifRes = await request('GET', '/api/v1/scholars/notifications/', {
       headers: sessionHeader(ctx.studentSessionId),
     });
     if (notifRes.status !== 200) throw new Error(`expected 200, got ${notifRes.status}`);
@@ -1214,7 +1214,7 @@ async function main() {
   });
 
   test('user can mark notification as read', async () => {
-    const listRes = await request('GET', '/api/v1/scholars/notifications', {
+    const listRes = await request('GET', '/api/v1/scholars/notifications/', {
       headers: sessionHeader(ctx.studentSessionId),
     });
     const unread = listRes.body.data.notifications.find((n) => !n.is_read);
@@ -1227,7 +1227,7 @@ async function main() {
       throw new Error(`expected 200, got ${readRes.status}: ${JSON.stringify(readRes.body)}`);
     if (!readRes.body.data.read) throw new Error('expected read=true');
 
-    const refreshed = await request('GET', '/api/v1/scholars/notifications', {
+    const refreshed = await request('GET', '/api/v1/scholars/notifications/', {
       headers: sessionHeader(ctx.studentSessionId),
     });
     const updated = refreshed.body.data.notifications.find((n) => n.id === unread.id);
@@ -1235,7 +1235,7 @@ async function main() {
   });
 
   test('user can dismiss notification', async () => {
-    const listRes = await request('GET', '/api/v1/scholars/notifications', {
+    const listRes = await request('GET', '/api/v1/scholars/notifications/', {
       headers: sessionHeader(ctx.studentSessionId),
     });
     const toDismiss = listRes.body.data.notifications[0];
@@ -1252,7 +1252,7 @@ async function main() {
       throw new Error(`expected 200, got ${dismissRes.status}: ${JSON.stringify(dismissRes.body)}`);
     if (!dismissRes.body.data.dismissed) throw new Error('expected dismissed=true');
 
-    const refreshed = await request('GET', '/api/v1/scholars/notifications', {
+    const refreshed = await request('GET', '/api/v1/scholars/notifications/', {
       headers: sessionHeader(ctx.studentSessionId),
     });
     if (refreshed.body.data.notifications.some((n) => n.id === toDismiss.id))
@@ -1260,14 +1260,14 @@ async function main() {
   });
 
   test('unauthenticated cannot access notifications', async () => {
-    const res = await request('GET', '/api/v1/scholars/notifications');
+    const res = await request('GET', '/api/v1/scholars/notifications/');
     if (res.status !== 401) throw new Error(`expected 401, got ${res.status}`);
   });
 
   // ─── Security headers & rate limiting ───
 
   test('security headers are present on responses', async () => {
-    const res = await request('GET', '/api/v1/scholars/health');
+    const res = await request('GET', '/api/v1/scholars/health/');
     if (res.status !== 200) throw new Error(`expected 200, got ${res.status}`);
     if (res.headers['x-content-type-options'] !== 'nosniff') {
       throw new Error('missing X-Content-Type-Options: nosniff');
@@ -1281,7 +1281,7 @@ async function main() {
   });
 
   test('rate limit headers are present', async () => {
-    const res = await request('GET', '/api/v1/scholars/health');
+    const res = await request('GET', '/api/v1/scholars/health/');
     if (res.status !== 200) throw new Error(`expected 200, got ${res.status}`);
     if (!res.headers['x-ratelimit-limit']) throw new Error('missing X-RateLimit-Limit header');
     if (!res.headers['x-ratelimit-remaining'])
@@ -1291,7 +1291,7 @@ async function main() {
 
   test('input length validation rejects oversized body', async () => {
     const oversizedBody = 'a'.repeat(50001);
-    const res = await request('POST', '/api/v1/scholars/temples/zeus/sections/mythology/edits', {
+    const res = await request('POST', '/api/v1/scholars/temples/zeus/sections/mythology/edits/', {
       body: {
         proposedBody: oversizedBody,
         proposedSources: [{ citation: 'Hesiod, Theogony', url: 'https://example.com/hesiod' }],
@@ -1306,7 +1306,7 @@ async function main() {
 
   test('audit log records password login', async () => {
     const before = dbLayer.listAuditLog({ action: 'auth_login' }).length;
-    const res = await request('POST', '/api/v1/scholars/auth/login', {
+    const res = await request('POST', '/api/v1/scholars/auth/login/', {
       body: { email: 'student@academy.test', password: 'student-pass' },
     });
     if (res.status !== 200) throw new Error(`expected 200, got ${res.status}`);

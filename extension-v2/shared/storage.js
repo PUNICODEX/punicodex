@@ -5,7 +5,7 @@
 const DEFAULTS = Object.freeze({
   enabled: true,
   warnings: true,
-  apiEndpoint: 'https://punycodex.com/api/v2',
+  apiEndpoint: 'https://punycodex.com/api/v2/',
   apiKey: '',
   defaultAction: 'warn',
   uiTheme: 'inline',

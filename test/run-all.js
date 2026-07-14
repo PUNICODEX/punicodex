@@ -124,6 +124,7 @@ const SUITES = [
     timeout: 120000,
   },
   { name: 'Frontend Smoke Tests', cmd: 'node test/frontend-smoke.test.js' },
+  { name: 'API Trailing Slash Regression', cmd: 'node test/api-trailing-slash.test.js' },
   {
     name: 'Global Strip Mobile Regression',
     cmd: 'node test/global-strip-mobile-regression.test.js',

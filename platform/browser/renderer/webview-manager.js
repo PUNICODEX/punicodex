@@ -242,7 +242,7 @@ const _WebviewManager = (function () {
     try {
       const nameWithoutTld = domain.replace(/\.[^.]+$/, '');
       const searchRes = await window.punycodex.apiGet(
-        `/api/search?q=${encodeURIComponent(nameWithoutTld)}&limit=5`
+        `/api/search/?q=${encodeURIComponent(nameWithoutTld)}&limit=5`
       );
       if (searchRes.ok && searchRes.data.entries && searchRes.data.entries.length > 0) {
         const match = searchRes.data.entries.find((e) => {
@@ -263,7 +263,7 @@ const _WebviewManager = (function () {
       try {
         const asciiCore = domain.replace(/\.[^.]+$/, '');
         const asciiRes = await window.punycodex.apiGet(
-          `/api/search?q=${encodeURIComponent(asciiCore)}&limit=1`
+          `/api/search/?q=${encodeURIComponent(asciiCore)}&limit=1`
         );
         if (asciiRes.ok && asciiRes.data.entries && asciiRes.data.entries.length > 0) {
           const entry = asciiRes.data.entries[0];

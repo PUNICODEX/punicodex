@@ -216,7 +216,7 @@ async function requestMagicLink(email) {
     expiresAt: Date.now() + MAGIC_TOKEN_TTL_MS,
   });
 
-  const loginUrl = `/api/v1/scholars/auth/verify?token=${token}`;
+  const loginUrl = `/api/v1/scholars/auth/verify/?token=${token}`;
 
   console.log(`[Scholars Auth] Magic link for ${normalized}: ${loginUrl}`);
 

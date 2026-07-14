@@ -162,7 +162,7 @@
       [severityFilter, verdictFilter, sourceFilter].forEach((el) => el.addEventListener('change', load));
 
       async function login() {
-        const res = await fetch('/api/admin/login', {
+        const res = await fetch('/api/admin/login/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ password: passwordInput.value }),
@@ -189,7 +189,7 @@
         if (verdictFilter.value) params.set('verdict', verdictFilter.value);
         if (sourceFilter.value.trim()) params.set('source', sourceFilter.value.trim());
 
-        const res = await fetch(`/api/admin/authenticity/spoofs?${params.toString()}`, {
+        const res = await fetch(`/api/admin/authenticity/spoofs/?${params.toString()}`, {
           headers: { 'x-admin-token': token },
         });
         const data = await res.json();

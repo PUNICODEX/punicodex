@@ -143,7 +143,7 @@
       document.getElementById('claimsList').innerHTML = '<div class="loading">Loading...</div>';
 
       try {
-        const res = await fetch(`${API_BASE}/api/my-claims?email=${encodeURIComponent(email)}`);
+        const res = await fetch(`${API_BASE}/api/my-claims/?email=${encodeURIComponent(email)}`);
         const claims = await res.json();
 
         if (claims.length === 0) {
