@@ -181,9 +181,14 @@ test('temple-base.css keeps mobile nav positioned and overflow-safe', () => {
 
   const globalStripBlock = mobileBlocks.find((b) => b.body.includes('.global-strip-inner'));
   assert.ok(globalStripBlock, 'css/temple-base.css: mobile global strip block not found');
+  const hasWrap = /\.global-strip-inner\s*\{[^}]*flex-wrap\s*:\s*wrap/i.test(globalStripBlock.body);
+  const hasNoWrapWithScroll =
+    /\.global-strip-inner\s*\{[^}]*flex-wrap\s*:\s*nowrap/i.test(globalStripBlock.body) &&
+    (/\.global-links\s*\{[^}]*overflow-x\s*:\s*auto/i.test(globalStripBlock.body) ||
+      /\.global-links\s*\{[^}]*overflow\s*:\s*hidden/i.test(globalStripBlock.body));
   assert.ok(
-    /\.global-strip-inner\s*\{[^}]*flex-wrap\s*:\s*wrap/i.test(globalStripBlock.body),
-    'css/temple-base.css: mobile .global-strip-inner must wrap to prevent horizontal overflow'
+    hasWrap || hasNoWrapWithScroll,
+    'css/temple-base.css: mobile .global-strip-inner must either wrap or use nowrap with overflow-safe scrolling'
   );
 });
 

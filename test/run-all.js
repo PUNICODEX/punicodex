@@ -130,6 +130,10 @@ const SUITES = [
     cmd: 'node test/global-strip-mobile-regression.test.js',
   },
   {
+    name: 'Base Temple Mobile Nav',
+    cmd: 'node test/base-temple-mobile-nav.test.js',
+  },
+  {
     name: 'Provenance Mobile Regression',
     cmd: 'node test/provenance-mobile-regression.test.js',
   },
