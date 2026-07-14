@@ -22980,9 +22980,9 @@ const LEXICON = [
     "unicode": "Tiāmat",
     "greek": "—",
     "pantheon": "mesopotamian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
-    "domain": "Salt Water, Chaos",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Phonological Reconstruction, Salt Water, Chaos",
     "meaning": "Sea",
     "sources": [
       "Enuma Elish",
