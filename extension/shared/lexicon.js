@@ -7893,14 +7893,21 @@ const LEXICON = [
   {
     "id": "ea",
     "hasAdSite": true,
+    "variants": [
+      {
+        "unicode": "Ea",
+        "type": "ascii",
+        "note": "Standard Assyriological transliteration"
+      }
+    ],
     "ascii": "ea",
     "unicode": "Ēa",
     "greek": "—",
     "pantheon": "mesopotamian",
     "tier": "2",
     "tierLabel": "Tier 2",
-    "domain": "Water, Wisdom, Crafts, Creation",
-    "meaning": "Lord of the Earth (Sumerian Enki)",
+    "domain": "Phonological Reconstruction, Water, Wisdom",
+    "meaning": "Reconstruction node for the Akkadian deity Ea (Sumerian Enki): the macron marks a discussable vowel length, not a canonical spelling.",
     "sources": [
       "CAD",
       "AHw"
@@ -7909,7 +7916,7 @@ const LEXICON = [
       "protoForm": "",
       "protoLanguage": "sumerian",
       "protoGloss": "lord of the earth",
-      "derivation": "Akkadian Ea is the phonetic reading of the Sumerian god Enki (EN.KI), 'lord of the earth'; the name's independent Akkadian etymology, if any, is unknown.",
+      "derivation": "Standard Assyriology transliterates the god as Ea (𒀭𒂍𒀀). The Sumerian counterpart is Enki (EN.KI), 'lord of the earth.' The length of the first vowel in Akkadian Ea is an open phonological question; the macron on Ēa is a pedagogical mark that makes that question visible, not a claim of canonical spelling.",
       "certainty": "disputed",
       "cognates": [
         {
@@ -7925,7 +7932,7 @@ const LEXICON = [
         "char": "e",
         "to": "Ē",
         "type": "length",
-        "note": "Macron: length preserved"
+        "note": "Macron: a visible question mark — the length of Ea's first vowel is discussable, not certain"
       },
       {
         "char": "a",
