@@ -70,6 +70,11 @@ const SUITES = [
   { name: 'Connection Taxonomy Tests', cmd: 'node test/connection-taxonomy.test.js' },
   { name: 'Connections Page Tests', cmd: 'node test/connections-page.test.js' },
   { name: 'Connections Helpers Tests', cmd: 'node test/connections-helpers.test.js' },
+  {
+    name: 'Flagship Patterns Tests',
+    cmd: 'node test/flagship-patterns.test.js',
+    timeout: 120000,
+  },
   { name: 'Cron Single-Flight Tests', cmd: 'node test/cron-single-flight.test.js' },
   { name: 'Email Safety Tests', cmd: 'node test/email.test.js' },
   { name: 'Lexicon Entry Cases', cmd: 'node test/lexicon-entry-cases.test.js' },

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css">
+<script src="/js/university-collaborators.js" defer></script>
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gē — Industry Patterns | PUNYCODEX</title>
+    <meta name="description" content="The real-world industries aligned with Gē (Earth) and the sister temples that share each pattern. A map for advertisers, patrons, and researchers.">
+    <link rel="canonical" href="https://punycodex.com/sites/ge/patterns/">
+    <meta property="og:title" content="Gē — Industry Patterns | PUNYCODEX">
+    <meta property="og:description" content="The industries that repeat the pattern of Gē, cross-linked to every aligned temple.">
+    <meta property="og:url" content="https://punycodex.com/sites/ge/patterns/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PUNYCODEX">
+    <meta name="twitter:card" content="summary">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf17">
+    <link rel="stylesheet" href="../styles.css?v=perf4">
+    <link rel="stylesheet" href="patterns.css?v=1">
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punycodex.com/" class="global-brand">P<span>U</span>NYCODEX</a>
+            <div class="global-links">
+                <a href="https://punycodex.com/pantheon/">Pantheon</a>
+                <a href="https://punycodex.com/lexicon/">Lexicon</a>
+                <a href="https://punycodex.com/connections/">Connections</a>
+                <a href="https://punycodex.com/type/">Type</a>
+                <a href="https://punycodex.com/search.html">Search</a>
+                <a href="https://punycodex.com/tiers/">Tiers</a>
+                <a href="https://punycodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo" id="nav-logo">
+                <!-- Logo injected by JS -->
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="./" class="nav-link active">Patterns</a>
+                <a href="../scholars/index.html" class="nav-link">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true">
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="./" class="nav-link active">Patterns</a>
+        <a href="../scholars/index.html" class="nav-link">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <main class="temple-patterns-page">
+        <!-- Hero -->
+        <section class="patterns-hero" id="patterns-hero">
+            <div class="container">
+                <p class="section-eyebrow">Industry Patterns</p>
+                <h1 class="section-title display-lg">The Gē Pattern</h1>
+                <p class="patterns-hero-lead">
+                    Gē governs <strong>Earth</strong>. Those same domains are industries today.
+                    This map shows the sectors of the modern economy that repeat the pattern of this temple —
+                    and every sister temple whose deity shares the current. Choose an arc to see the alignment.
+                </p>
+            </div>
+        </section>
+
+        <!-- Graph + Detail -->
+        <section class="patterns-graph-section" id="patterns-graph-section">
+            <div class="container">
+                <div class="patterns-layout">
+                    <div class="patterns-chart-col">
+                        <div class="patterns-chart-frame">
+                            <svg id="patterns-donut" viewBox="0 0 420 420" role="img"
+                                 aria-label="Industry pattern wheel for Gē"></svg>
+                            <div class="patterns-chart-center" id="patterns-chart-center">
+                                <span class="patterns-center-name">Gē</span>
+                                <span class="patterns-center-count" id="patterns-center-count"></span>
+                            </div>
+                        </div>
+                        <div class="patterns-sector-legend" id="patterns-sector-legend"></div>
+                    </div>
+                    <div class="patterns-detail-col">
+                        <div class="patterns-detail-panel" id="patterns-detail-panel" aria-live="polite"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Industry Index -->
+        <section class="patterns-index-section" id="patterns-index-section">
+            <div class="container">
+                <div class="section-header reveal-up">
+                    <span class="section-number">02</span>
+                    <h2 class="section-title">Every Aligned Industry</h2>
+                    <p class="section-subtitle">The complete pattern register for this temple</p>
+                </div>
+                <div class="patterns-index-grid" id="patterns-index-grid"></div>
+            </div>
+        </section>
+
+        <!-- Advertiser / Patron Note -->
+        <section class="patterns-cta-section">
+            <div class="container">
+                <div class="patterns-cta-card reveal-up">
+                    <h3 class="patterns-cta-title">Why this map exists</h3>
+                    <p>
+                        Advertisers and patrons do not buy space on a single temple — they join a constellation.
+                        Every industry arc above lists the sister temples that share its current, so a placement
+                        can be chosen by the whole pattern it belongs to. Researchers and the PUNYCODEX API
+                        consume the same map as structured data.
+                    </p>
+                    <div class="patterns-cta-links">
+                        <a href="../patron/index.html" class="patterns-cta-link">Become a Patron</a>
+                        <a href="https://punycodex.com/connections/" class="patterns-cta-link patterns-cta-link-ghost">Cross-Pantheon Connections</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+        
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="https://punycodex.com/" class="footer-logo">PUNYCODEX</a>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Owned Domains</span>
+                        <span class="footer-value">gē.com</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier 2</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Original Script</span>
+                        <span class="footer-value">Γῆ</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <picture><source srcset="../assets/ge_logomark.webp" type="image/webp"><img src="../assets/ge_logomark.png" alt="Gē logomark" class="footer-logomark"></picture>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>window.TEMPLE_PATTERNS = {"id":"ge","unicode":"Gē","ascii":"ge","pantheon":"greek","sectors":[{"id":"energy-earth","name":"Energy & Natural World","color":"#e8b34b"}],"industries":[{"industry":"environment-climate","name":"Environmental & Climate Services","sector":"energy-earth","tagline":"Climate science, ecology, and sustainability consulting.","note":"Earth personified is the sector’s founding insight — the Gaia hypothesis literally named planetary ecology after her.","weight":2,"members":[{"id":"gaia","unicode":"Gaîa","pantheon":"greek","pantheonLabel":"Greek","weight":2,"why":"Lovelock’s Gaia hypothesis named Earth-system science after her.","hasFlagship":true},{"id":"ge","unicode":"Gē","pantheon":"greek","pantheonLabel":"Greek","weight":2,"why":"The same Earth in her shortest name.","hasFlagship":true},{"id":"papatuanuku","unicode":"Papatūānuku","pantheon":"polynesian","pantheonLabel":"Polynesian","weight":2,"why":"The land that gives birth to all living things; stewardship personified.","hasFlagship":true},{"id":"coatlicue","unicode":"Cōātlīcue","pantheon":"nahuatl","pantheonLabel":"Nahuatl","weight":1,"why":"The living earth that sustains and reclaims.","hasFlagship":true},{"id":"tane","unicode":"Tāne","pantheon":"polynesian","pantheonLabel":"Polynesian","weight":1,"why":"Forests as climate infrastructure.","hasFlagship":true},{"id":"tiandi","unicode":"Tiāndì","pantheon":"chinese","pantheonLabel":"Chinese","weight":1,"why":"Heaven and Earth as one natural order; ecology as cosmology.","hasFlagship":true},{"id":"tlaltecuhtli","unicode":"Tlāltēcuhtli","pantheon":"nahuatl","pantheonLabel":"Nahuatl","weight":1,"why":"The earth as a living being demanding balance.","hasFlagship":true}]},{"industry":"agriculture-food","name":"Agriculture, Food & Harvest","sector":"energy-earth","tagline":"Farming, grain, food production, and agtech.","note":"Harvest deities feed civilizations; grain gods and earth mothers are the founding brand of every food economy.","weight":1,"members":[{"id":"dagan","unicode":"Dāgan","pantheon":"phoenician","pantheonLabel":"Phoenician","weight":2,"why":"His name is the word for grain itself.","hasFlagship":true},{"id":"demeter","unicode":"Dēmētēr","pantheon":"greek","pantheonLabel":"Greek","weight":2,"why":"Harvest deities feed civilizations; grain gods and earth mothers are the founding brand of every food economy.","hasFlagship":true},{"id":"papatuanuku","unicode":"Papatūānuku","pantheon":"polynesian","pantheonLabel":"Polynesian","weight":2,"why":"The earth mother from whom all food comes.","hasFlagship":true},{"id":"persephone","unicode":"Persephonē","pantheon":"greek","pantheonLabel":"Greek","weight":2,"why":"Spring’s return is the growing season; her cycle is the crop calendar.","hasFlagship":true},{"id":"tlaloc","unicode":"Tlāloc","pantheon":"nahuatl","pantheonLabel":"Nahuatl","weight":2,"why":"Rain decides the harvest; the most propitiated farmer’s god of Mesoamerica.","hasFlagship":true},{"id":"tlaltecuhtli","unicode":"Tlāltēcuhtli","pantheon":"nahuatl","pantheonLabel":"Nahuatl","weight":2,"why":"The earth lord who must be fed to give food.","hasFlagship":true},{"id":"ameretat","unicode":"Amərətāt","pantheon":"zoroastrian","pantheonLabel":"Zoroastrian","weight":1,"why":"Immortality dwelling in plants; the Zoroastrian patron of vegetation.","hasFlagship":true},{"id":"coatlicue","unicode":"Cōātlīcue","pantheon":"nahuatl","pantheonLabel":"Nahuatl","weight":1,"why":"The earth mother who feeds and devours.","hasFlagship":true},{"id":"gaia","unicode":"Gaîa","pantheon":"greek","pantheonLabel":"Greek","weight":1,"why":"Earth herself; the field before it was a farm.","hasFlagship":true},{"id":"ge","unicode":"Gē","pantheon":"greek","pantheonLabel":"Greek","weight":1,"why":"The same earth under a shorter name.","hasFlagship":true},{"id":"kobe","unicode":"Kōbe","pantheon":"japanese","pantheonLabel":"Japanese","weight":1,"why":"Kobe beef made the city a global food brand.","hasFlagship":true},{"id":"kronos","unicode":"Krónos","pantheon":"greek","pantheonLabel":"Greek","weight":1,"why":"The sickle-bearing Titan of the harvest.","hasFlagship":true},{"id":"osaka","unicode":"Ōsaka","pantheon":"japanese","pantheonLabel":"Japanese","weight":1,"why":"Historically “the nation’s kitchen”; Japan’s food and merchant capital.","hasFlagship":true},{"id":"oshun","unicode":"Ọṣun","pantheon":"yoruba","pantheonLabel":"Yoruba","weight":1,"why":"Freshwater fertility; the river that sweetens the crop.","hasFlagship":true},{"id":"parvati","unicode":"Pārvatī","pantheon":"sanskrit","pantheonLabel":"Sanskrit","weight":1,"why":"Fertility of field and family; the mountain’s daughter who nourishes.","hasFlagship":true},{"id":"rhea","unicode":"Rhéā","pantheon":"greek","pantheonLabel":"Greek","weight":1,"why":"Motherhood and fertility of the Titan generation.","hasFlagship":true}]}]};</script>
+    <script src="/js/temple-base.js?v=perf17"></script>
+    <script src="patterns.js?v=1"></script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css">
+<script src="/js/university-collaborators.js" defer></script>
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achérōn — Industry Patterns | PUNYCODEX</title>
+    <meta name="description" content="The real-world industries aligned with Achérōn (River of Woe) and the sister temples that share each pattern. A map for advertisers, patrons, and researchers.">
+    <link rel="canonical" href="https://punycodex.com/sites/acheron/patterns/">
+    <meta property="og:title" content="Achérōn — Industry Patterns | PUNYCODEX">
+    <meta property="og:description" content="The industries that repeat the pattern of Achérōn, cross-linked to every aligned temple.">
+    <meta property="og:url" content="https://punycodex.com/sites/acheron/patterns/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PUNYCODEX">
+    <meta name="twitter:card" content="summary">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf17">
+    <link rel="stylesheet" href="../styles.css?v=perf4">
+    <link rel="stylesheet" href="patterns.css?v=1">
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punycodex.com/" class="global-brand">P<span>U</span>NYCODEX</a>
+            <div class="global-links">
+                <a href="https://punycodex.com/pantheon/">Pantheon</a>
+                <a href="https://punycodex.com/lexicon/">Lexicon</a>
+                <a href="https://punycodex.com/connections/">Connections</a>
+                <a href="https://punycodex.com/type/">Type</a>
+                <a href="https://punycodex.com/search.html">Search</a>
+                <a href="https://punycodex.com/tiers/">Tiers</a>
+                <a href="https://punycodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo" id="nav-logo">
+                <!-- Logo injected by JS -->
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="./" class="nav-link active">Patterns</a>
+                <a href="../scholars/index.html" class="nav-link">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true">
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="./" class="nav-link active">Patterns</a>
+        <a href="../scholars/index.html" class="nav-link">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <main class="temple-patterns-page">
+        <!-- Hero -->
+        <section class="patterns-hero" id="patterns-hero">
+            <div class="container">
+                <p class="section-eyebrow">Industry Patterns</p>
+                <h1 class="section-title display-lg">The Achérōn Pattern</h1>
+                <p class="patterns-hero-lead">
+                    Achérōn governs <strong>River of Woe</strong>. Those same domains are industries today.
+                    This map shows the sectors of the modern economy that repeat the pattern of this temple —
+                    and every sister temple whose deity shares the current. Choose an arc to see the alignment.
+                </p>
+            </div>
+        </section>
+
+        <!-- Graph + Detail -->
+        <section class="patterns-graph-section" id="patterns-graph-section">
+            <div class="container">
+                <div class="patterns-layout">
+                    <div class="patterns-chart-col">
+                        <div class="patterns-chart-frame">
+                            <svg id="patterns-donut" viewBox="0 0 420 420" role="img"
+                                 aria-label="Industry pattern wheel for Achérōn"></svg>
+                            <div class="patterns-chart-center" id="patterns-chart-center">
+                                <span class="patterns-center-name">Achérōn</span>
+                                <span class="patterns-center-count" id="patterns-center-count"></span>
+                            </div>
+                        </div>
+                        <div class="patterns-sector-legend" id="patterns-sector-legend"></div>
+                    </div>
+                    <div class="patterns-detail-col">
+                        <div class="patterns-detail-panel" id="patterns-detail-panel" aria-live="polite"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Industry Index -->
+        <section class="patterns-index-section" id="patterns-index-section">
+            <div class="container">
+                <div class="section-header reveal-up">
+                    <span class="section-number">02</span>
+                    <h2 class="section-title">Every Aligned Industry</h2>
+                    <p class="section-subtitle">The complete pattern register for this temple</p>
+                </div>
+                <div class="patterns-index-grid" id="patterns-index-grid"></div>
+            </div>
+        </section>
+
+        <!-- Advertiser / Patron Note -->
+        <section class="patterns-cta-section">
+            <div class="container">
+                <div class="patterns-cta-card reveal-up">
+                    <h3 class="patterns-cta-title">Why this map exists</h3>
+                    <p>
+                        Advertisers and patrons do not buy space on a single temple — they join a constellation.
+                        Every industry arc above lists the sister temples that share its current, so a placement
+                        can be chosen by the whole pattern it belongs to. Researchers and the PUNYCODEX API
+                        consume the same map as structured data.
+                    </p>
+                    <div class="patterns-cta-links">
+                        <a href="../patron/index.html" class="patterns-cta-link">Become a Patron</a>
+                        <a href="https://punycodex.com/connections/" class="patterns-cta-link patterns-cta-link-ghost">Cross-Pantheon Connections</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+        
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="https://punycodex.com/" class="footer-logo">PUNYCODEX</a>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Owned Domains</span>
+                        <span class="footer-value">achérōn.com</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier 1</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Original Script</span>
+                        <span class="footer-value">Ἀχέρων</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <picture><source srcset="../assets/acheron_logomark.webp" type="image/webp"><img src="../assets/acheron_logomark.png" alt="Achérōn logomark" class="footer-logomark"></picture>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>window.TEMPLE_PATTERNS = {"id":"acheron","unicode":"Achérōn","ascii":"acheron","pantheon":"greek","sectors":[{"id":"energy-earth","name":"Energy & Natural World","color":"#e8b34b"},{"id":"society-spirit","name":"Society & Spirit","color":"#79c0ff"}],"industries":[{"industry":"water-utilities","name":"Freshwater & Hydrology","sector":"energy-earth","tagline":"Water supply, irrigation, and watershed management.","note":"Freshwater powers sustain cities and crops; rivers, abysses, and rain-bringers map directly onto the utility sector.","weight":2,"members":[{"id":"acheron","unicode":"Achérōn","pantheon":"greek","pantheonLabel":"Greek","weight":2,"why":"A real river in Epirus before it was a mythic boundary.","hasFlagship":true},{"id":"apsu","unicode":"Apsû","pantheon":"mesopotamian","pantheonLabel":"Mesopotamian","weight":2,"why":"Freshwater powers sustain cities and crops; rivers, abysses, and rain-bringers map directly onto the utility sector.","hasFlagship":true},{"id":"ea","unicode":"Ēa","pantheon":"mesopotamian","pantheonLabel":"Mesopotamian","weight":2,"why":"Lord of the freshwater abyss that feeds springs and wells.","hasFlagship":true},{"id":"haurvatat","unicode":"Haurvatāt","pantheon":"zoroastrian","pantheonLabel":"Zoroastrian","weight":2,"why":"Wholeness and health carried by water in Zoroastrian rite.","hasFlagship":true},{"id":"oshun","unicode":"Ọṣun","pantheon":"yoruba","pantheonLabel":"Yoruba","weight":2,"why":"The sweet river itself; freshwater as love, fertility, and livelihood.","hasFlagship":true},{"id":"varuna","unicode":"Varuṇa","pantheon":"sanskrit","pantheonLabel":"Sanskrit","weight":2,"why":"Freshwater powers sustain cities and crops; rivers, abysses, and rain-bringers map directly onto the utility sector.","hasFlagship":true},{"id":"okeanos","unicode":"Ōkeanós","pantheon":"greek","pantheonLabel":"Greek","weight":1,"why":"The encircling river that ancients blamed for every spring.","hasFlagship":true},{"id":"tlaloc","unicode":"Tlāloc","pantheon":"nahuatl","pantheonLabel":"Nahuatl","weight":1,"why":"Rain is the supply side of every water system.","hasFlagship":true}]},{"industry":"funerary-memorial","name":"Funerary & Memorial Services","sector":"society-spirit","tagline":"Funeral care, memorials, and legacy services.","note":"The dead have lords and the living have duties; the underworld’s geography is the industry’s oldest map.","weight":1,"members":[{"id":"akh","unicode":"Ꜣḫ","pantheon":"egyptian","pantheonLabel":"Egyptian","weight":2,"why":"The transfigured spirit; the afterlife’s highest form.","hasFlagship":true},{"id":"ba","unicode":"Bꜣ","pantheon":"egyptian","pantheonLabel":"Egyptian","weight":2,"why":"The soul’s journey; personality beyond the tomb.","hasFlagship":true},{"id":"hades","unicode":"Hádēs","pantheon":"greek","pantheonLabel":"Greek","weight":2,"why":"Lord of the underworld; the destination administered.","hasFlagship":true},{"id":"ker","unicode":"Kēr","pantheon":"greek","pantheonLabel":"Greek","weight":2,"why":"Doom at the battlefield’s edge.","hasFlagship":true},{"id":"mictlantecutli","unicode":"Mictlāntēcutli","pantheon":"nahuatl","pantheonLabel":"Nahuatl","weight":2,"why":"Lord of the land of the dead; the Mexica afterlife’s keeper.","hasFlagship":true},{"id":"mot","unicode":"Mōt","pantheon":"phoenician","pantheonLabel":"Phoenician","weight":2,"why":"Death itself in the Ugaritic cycle.","hasFlagship":true},{"id":"thanatos","unicode":"Thánatos","pantheon":"greek","pantheonLabel":"Greek","weight":2,"why":"Death personified, gentle-twin of sleep.","hasFlagship":true},{"id":"acheron","unicode":"Achérōn","pantheon":"greek","pantheonLabel":"Greek","weight":1,"why":"The river crossed once, in one direction.","hasFlagship":true},{"id":"helheimr","unicode":"Helheimr","pantheon":"norse","pantheonLabel":"Norse","weight":1,"why":"The realm of the dead; the Norse hereafter.","hasFlagship":true},{"id":"kanaloa","unicode":"Kānāloa","pantheon":"polynesian","pantheonLabel":"Polynesian","weight":1,"why":"Ocean and underworld; the deep as final home.","hasFlagship":true},{"id":"persephone","unicode":"Persephonē","pantheon":"greek","pantheonLabel":"Greek","weight":1,"why":"Queen of the underworld; the return ticket no one uses.","hasFlagship":true},{"id":"valholl","unicode":"Valhǫll","pantheon":"norse","pantheonLabel":"Norse","weight":1,"why":"The hall of the slain; the warrior’s memorial.","hasFlagship":true}]}]};</script>
+    <script src="/js/temple-base.js?v=perf17"></script>
+    <script src="patterns.js?v=1"></script>
+</body>
+</html>

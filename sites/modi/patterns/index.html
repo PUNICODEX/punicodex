@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css">
+<script src="/js/university-collaborators.js" defer></script>
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Móði — Industry Patterns | PUNYCODEX</title>
+    <meta name="description" content="The real-world industries aligned with Móði (Wrath, Son of Thor) and the sister temples that share each pattern. A map for advertisers, patrons, and researchers.">
+    <link rel="canonical" href="https://punycodex.com/sites/modi/patterns/">
+    <meta property="og:title" content="Móði — Industry Patterns | PUNYCODEX">
+    <meta property="og:description" content="The industries that repeat the pattern of Móði, cross-linked to every aligned temple.">
+    <meta property="og:url" content="https://punycodex.com/sites/modi/patterns/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PUNYCODEX">
+    <meta name="twitter:card" content="summary">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf17">
+    <link rel="stylesheet" href="../styles.css?v=perf4">
+    <link rel="stylesheet" href="patterns.css?v=1">
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punycodex.com/" class="global-brand">P<span>U</span>NYCODEX</a>
+            <div class="global-links">
+                <a href="https://punycodex.com/pantheon/">Pantheon</a>
+                <a href="https://punycodex.com/lexicon/">Lexicon</a>
+                <a href="https://punycodex.com/connections/">Connections</a>
+                <a href="https://punycodex.com/type/">Type</a>
+                <a href="https://punycodex.com/search.html">Search</a>
+                <a href="https://punycodex.com/tiers/">Tiers</a>
+                <a href="https://punycodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo" id="nav-logo">
+                <!-- Logo injected by JS -->
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="./" class="nav-link active">Patterns</a>
+                <a href="../scholars/index.html" class="nav-link">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true">
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="./" class="nav-link active">Patterns</a>
+        <a href="../scholars/index.html" class="nav-link">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <main class="temple-patterns-page">
+        <!-- Hero -->
+        <section class="patterns-hero" id="patterns-hero">
+            <div class="container">
+                <p class="section-eyebrow">Industry Patterns</p>
+                <h1 class="section-title display-lg">The Móði Pattern</h1>
+                <p class="patterns-hero-lead">
+                    Móði governs <strong>Wrath, Son of Thor</strong>. Those same domains are industries today.
+                    This map shows the sectors of the modern economy that repeat the pattern of this temple —
+                    and every sister temple whose deity shares the current. Choose an arc to see the alignment.
+                </p>
+            </div>
+        </section>
+
+        <!-- Graph + Detail -->
+        <section class="patterns-graph-section" id="patterns-graph-section">
+            <div class="container">
+                <div class="patterns-layout">
+                    <div class="patterns-chart-col">
+                        <div class="patterns-chart-frame">
+                            <svg id="patterns-donut" viewBox="0 0 420 420" role="img"
+                                 aria-label="Industry pattern wheel for Móði"></svg>
+                            <div class="patterns-chart-center" id="patterns-chart-center">
+                                <span class="patterns-center-name">Móði</span>
+                                <span class="patterns-center-count" id="patterns-center-count"></span>
+                            </div>
+                        </div>
+                        <div class="patterns-sector-legend" id="patterns-sector-legend"></div>
+                    </div>
+                    <div class="patterns-detail-col">
+                        <div class="patterns-detail-panel" id="patterns-detail-panel" aria-live="polite"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Industry Index -->
+        <section class="patterns-index-section" id="patterns-index-section">
+            <div class="container">
+                <div class="section-header reveal-up">
+                    <span class="section-number">02</span>
+                    <h2 class="section-title">Every Aligned Industry</h2>
+                    <p class="section-subtitle">The complete pattern register for this temple</p>
+                </div>
+                <div class="patterns-index-grid" id="patterns-index-grid"></div>
+            </div>
+        </section>
+
+        <!-- Advertiser / Patron Note -->
+        <section class="patterns-cta-section">
+            <div class="container">
+                <div class="patterns-cta-card reveal-up">
+                    <h3 class="patterns-cta-title">Why this map exists</h3>
+                    <p>
+                        Advertisers and patrons do not buy space on a single temple — they join a constellation.
+                        Every industry arc above lists the sister temples that share its current, so a placement
+                        can be chosen by the whole pattern it belongs to. Researchers and the PUNYCODEX API
+                        consume the same map as structured data.
+                    </p>
+                    <div class="patterns-cta-links">
+                        <a href="../patron/index.html" class="patterns-cta-link">Become a Patron</a>
+                        <a href="https://punycodex.com/connections/" class="patterns-cta-link patterns-cta-link-ghost">Cross-Pantheon Connections</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+        
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="https://punycodex.com/" class="footer-logo">PUNYCODEX</a>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Owned Domains</span>
+                        <span class="footer-value">móði.com</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier 2</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Original Script</span>
+                        <span class="footer-value">ᛘᚢᚦᛁ</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <picture><source srcset="../assets/modi_logomark.webp" type="image/webp"><img src="../assets/modi_logomark.png" alt="Móði logomark" class="footer-logomark"></picture>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>window.TEMPLE_PATTERNS = {"id":"modi","unicode":"Móði","ascii":"modi","pantheon":"norse","sectors":[{"id":"commerce-governance","name":"Commerce & Governance","color":"#bc8cff"}],"industries":[{"industry":"defense","name":"Defense, Military & Security","sector":"commerce-governance","tagline":"Defense contracting, security services, and strategic studies.","note":"War gods and watchmen define the oldest security market; their strategies and warnings are still taught in war colleges.","weight":2,"members":[{"id":"anat","unicode":"ꜥAnat","pantheon":"canaanite","pantheonLabel":"Canaanite","weight":2,"why":"War gods and watchmen define the oldest security market; their strategies and warnings are still taught in war colleges.","hasFlagship":true},{"id":"ares","unicode":"Árēs","pantheon":"greek","pantheonLabel":"Greek","weight":2,"why":"War gods and watchmen define the oldest security market; their strategies and warnings are still taught in war colleges.","hasFlagship":true},{"id":"ashur","unicode":"Aššur","pantheon":"mesopotamian","pantheonLabel":"Mesopotamian","weight":2,"why":"War gods and watchmen define the oldest security market; their strategies and warnings are still taught in war colleges.","hasFlagship":true},{"id":"durga","unicode":"Durgā","pantheon":"sanskrit","pantheonLabel":"Sanskrit","weight":2,"why":"War gods and watchmen define the oldest security market; their strategies and warnings are still taught in war colleges.","hasFlagship":true},{"id":"eggther","unicode":"Eggþér","pantheon":"norse","pantheonLabel":"Norse","weight":2,"why":"The watchman who heralds Ragnarök — the original early-warning system.","hasFlagship":true},{"id":"kali","unicode":"Kālī","pantheon":"sanskrit","pantheonLabel":"Sanskrit","weight":2,"why":"War gods and watchmen define the oldest security market; their strategies and warnings are still taught in war colleges.","hasFlagship":true},{"id":"modi","unicode":"Móði","pantheon":"norse","pantheonLabel":"Norse","weight":2,"why":"Wrath embodied; the son who inherits the hammer and the fight.","hasFlagship":true},{"id":"sekhmet","unicode":"Sḫmt","pantheon":"egyptian","pantheonLabel":"Egyptian","weight":2,"why":"War gods and watchmen define the oldest security market; their strategies and warnings are still taught in war colleges.","hasFlagship":true},{"id":"sparte","unicode":"Spártē","pantheon":"greek-location","pantheonLabel":"Greek Location","weight":2,"why":"The warrior city; the adjective “spartan” still brands discipline.","hasFlagship":true},{"id":"astart","unicode":"Aštart","pantheon":"phoenician","pantheonLabel":"Phoenician","weight":1,"why":"War goddess of the Phoenician city-states.","hasFlagship":true},{"id":"athena","unicode":"Athénā","pantheon":"greek","pantheonLabel":"Greek","weight":1,"why":"Strategy rather than fury; the general’s goddess.","hasFlagship":true},{"id":"huitzilopochtli","unicode":"Huitzilopōchtli","pantheon":"nahuatl","pantheonLabel":"Nahuatl","weight":1,"why":"The hummingbird warrior who led the Mexica campaigns.","hasFlagship":true},{"id":"ishtar","unicode":"Ištar","pantheon":"mesopotamian","pantheonLabel":"Mesopotamian","weight":1,"why":"Love and war in one figure; the Mesopotamian front line.","hasFlagship":true},{"id":"odinn","unicode":"Óðinn","pantheon":"norse","pantheonLabel":"Norse","weight":1,"why":"War as wisdom; intelligence-gathering before the battle.","hasFlagship":true},{"id":"rama","unicode":"Rāma","pantheon":"sanskrit","pantheonLabel":"Sanskrit","weight":1,"why":"The righteous warrior-king of the Rāmāyaṇa.","hasFlagship":true},{"id":"tartaros","unicode":"Tártaros","pantheon":"greek","pantheonLabel":"Greek","weight":1,"why":"The prison that held the Titans; the logic of containment.","hasFlagship":true},{"id":"trengtreng","unicode":"Trengtreng","pantheon":"incan","pantheonLabel":"Incan","weight":1,"why":"Thunder and war together in the Mapuche resistance.","hasFlagship":true},{"id":"tyr","unicode":"Týr","pantheon":"norse","pantheonLabel":"Norse","weight":1,"why":"War bound by law; the just-war tradition.","hasFlagship":true},{"id":"vali","unicode":"Váli","pantheon":"norse","pantheonLabel":"Norse","weight":1,"why":"Vengeance as doctrine; retribution personified.","hasFlagship":true}]}]};</script>
+    <script src="/js/temple-base.js?v=perf17"></script>
+    <script src="patterns.js?v=1"></script>
+</body>
+</html>

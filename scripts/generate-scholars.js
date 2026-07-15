@@ -163,6 +163,10 @@ function buildExtendedTab() {
   return `<a href="../lore/extended/index.html" class="nav-link">Extended</a>`;
 }
 
+function buildPatternsTab() {
+  return `<a href="../patterns/index.html" class="nav-link">Patterns</a>`;
+}
+
 function buildTocItems(manifest) {
   return manifest.sections
     .map((section, index) => {
@@ -250,6 +254,7 @@ function generateScholarsPage(templeId) {
     DOMAINS_TEXT: getDomainsText(entry),
     PUNYCODE: getPunycodeExplainer(entry),
     EXTENDED_TAB: buildExtendedTab(),
+    PATTERNS_TAB: buildPatternsTab(),
     TOC_ITEMS: buildTocItems(manifest),
     SECTIONS_HTML: buildSectionsHtml(manifest),
     ATTRIBUTION_NUMBER: String(manifest.sections.length + 1).padStart(2, '0'),

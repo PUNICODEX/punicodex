@@ -945,6 +945,18 @@ function buildExtendedTab(page, _templeId) {
   return `<a href="${href}" class="${activeClass}">Extended</a>`;
 }
 
+function buildPatternsTab(page) {
+  const paths = {
+    index: 'patterns/',
+    lore: '../patterns/',
+    gallery: '../patterns/',
+    patterns: './',
+  };
+  const href = paths[page] || paths.index;
+  const activeClass = page === 'patterns' ? 'nav-link active' : 'nav-link';
+  return `<a href="${href}" class="${activeClass}">Patterns</a>`;
+}
+
 function hasRealGreek(entry) {
   return hasOriginalScript(entry);
 }
@@ -1947,7 +1959,8 @@ function buildSourcesSection(entry, catalogEntry) {
       'The <em>Larger Sukhāvatī-vyūha Sūtra</em>; the <em>Smaller Sukhāvatī-vyūha Sūtra</em>; the <em>Amitāyurdhyāna Sūtra</em>; the <em>Lotus Sūtra</em>.',
     nahuatl:
       'The <em>Florentine Codex</em> (Sahagún); the <em>Anales de Cuauhtitlan</em>; colonial Nahuatl testimonies and pictorial manuscripts.',
-    yoruba: 'The Ifá divination corpus; <em>ọ̀rọ̀ àṣà</em> and <em>oríkì</em> traditions; Abraham’s <em>Dictionary of Modern Yoruba</em>.',
+    yoruba:
+      'The Ifá divination corpus; <em>ọ̀rọ̀ àṣà</em> and <em>oríkì</em> traditions; Abraham’s <em>Dictionary of Modern Yoruba</em>.',
     celtic:
       'The <em>Immram Brain</em> (Voyage of Bran); <em>Tochmarc Étaíne</em>; <em>Cóir Anmann</em>; medieval Irish saga literature.',
     slavic:
@@ -2553,6 +2566,7 @@ function generateLorePage(entry, palette, loreSections, templateDir, catalog) {
   vars.EXTENDED_LORE_CTA = buildExtendedLoreCTA(entry, catalogEntry);
   vars.FOOTER = buildZeusFooter(entry, '../');
   vars.EXTENDED_TAB = buildExtendedTab('lore', entry.id);
+  vars.PATTERNS_TAB = buildPatternsTab('lore');
 
   html = replacePlaceholders(html, vars);
   html = applyBespokeCanvas(html, entry.id, palette.primary, palette.secondary);
@@ -2637,6 +2651,7 @@ function generateGalleryPage(entry, palette, templateDir) {
     GALLERY_GRID: buildGalleryGrid(entry),
     FOOTER: buildZeusFooter(entry, '../'),
     EXTENDED_TAB: buildExtendedTab('gallery', entry.id),
+    PATTERNS_TAB: buildPatternsTab('gallery'),
   };
   html = replacePlaceholders(html, vars);
   html = applyBespokeCanvas(html, templeId, palette.primary, palette.secondary);
@@ -2711,6 +2726,74 @@ function copyPatronTemplate(siteDir, templateDir) {
     if (!entry.isFile()) continue;
     safeCopyFileSync(path.join(srcDir, entry.name), path.join(destDir, entry.name));
   }
+}
+
+function copyPatternsAssets(siteDir, templateDir) {
+  const srcDir = path.join(templateDir, 'patterns');
+  const destDir = path.join(siteDir, 'patterns');
+  if (!fs.existsSync(srcDir)) return;
+  fs.mkdirSync(destDir, { recursive: true });
+  for (const name of ['patterns.css', 'patterns.js']) {
+    const src = path.join(srcDir, name);
+    if (fs.existsSync(src)) safeCopyFileSync(src, path.join(destDir, name));
+  }
+}
+
+function loadIndustryPatterns() {
+  const file = path.join(ROOT, 'platform', 'browser', 'renderer', 'industry-patterns.json');
+  return JSON.parse(fs.readFileSync(file, 'utf8'));
+}
+
+function buildPatternsPayload(entry) {
+  const data = loadIndustryPatterns();
+  const ARCHETYPES = loadArchetypes();
+  const flagshipIds = new Set(ARCHETYPES.filter((a) => a.built).map((a) => a.id));
+  const mine = data.byEntry[entry.id] || [];
+  const sectorsById = new Map(data.sectors.map((sec) => [sec.id, sec]));
+  const usedSectors = new Map();
+  const industries = mine.map((pat) => {
+    const group = data.industries.find((g) => g.industry === pat.industry);
+    usedSectors.set(pat.sector, sectorsById.get(pat.sector));
+    return {
+      industry: pat.industry,
+      name: pat.name,
+      sector: pat.sector,
+      tagline: pat.tagline,
+      note: group.note,
+      weight: pat.weight,
+      members: group.members.map((m) => ({
+        id: m.id,
+        unicode: m.unicode,
+        pantheon: m.pantheon,
+        pantheonLabel: m.pantheonLabel,
+        weight: m.weight,
+        why: m.why,
+        hasFlagship: flagshipIds.has(m.id),
+      })),
+    };
+  });
+  return {
+    id: entry.id,
+    unicode: entry.unicode,
+    ascii: entry.ascii,
+    pantheon: entry.pantheon,
+    sectors: [...usedSectors.values()],
+    industries,
+  };
+}
+
+function generatePatternsPage(entry, palette, templateDir) {
+  const html0 = fs.readFileSync(path.join(templateDir, 'patterns', 'index.html'), 'utf8');
+  const payload = buildPatternsPayload(entry);
+  const vars = {
+    UNICODE: entry.unicode,
+    ASCII: entry.ascii,
+    TEMPLE_ID: entry.id,
+    DOMAIN: entry.domain || '',
+    PATTERNS_JSON: JSON.stringify(payload).replace(/<\//g, '<\\/'),
+    FOOTER: buildZeusFooter(entry, '../'),
+  };
+  return replacePlaceholders(html0, vars);
 }
 
 function generateExtendedPage(entry, palette, templateDir, catalog) {
@@ -2866,6 +2949,7 @@ function createFlagship(templeId, options = {}) {
     'lore/index.html': generateLorePage(entry, palette, loreSections, TEMPLATE_DIR, catalog),
     'gallery/index.html': generateGalleryPage(entry, palette, TEMPLATE_DIR),
     'scholars/index.html': generateScholarsPage(templeId),
+    'patterns/index.html': generatePatternsPage(entry, palette, TEMPLATE_DIR),
     'dashboard/index.html': generateDashboardPage(entry, palette, TEMPLATE_DIR, archetype),
     'lore.json': buildLoreJson(entry, catalog[entry.id] || {}),
     'styles.css': buildCss(palette),
@@ -2897,6 +2981,7 @@ function createFlagship(templeId, options = {}) {
     'scholars/index.html',
     'dashboard/index.html',
     'lore/extended/index.html',
+    'patterns/index.html',
   ];
   for (const f of filesToBackup) {
     const p = path.join(siteDir, f);
@@ -2935,6 +3020,7 @@ function createFlagship(templeId, options = {}) {
 
   copyCreativesTemplate(siteDir, TEMPLATE_DIR);
   copyPatronTemplate(siteDir, TEMPLATE_DIR);
+  copyPatternsAssets(siteDir, TEMPLATE_DIR);
 
   console.log(`✓ ${templeId}: wrote ${Object.keys(outputs).length} files (backup: ${backupDir})`);
   return outputs;
@@ -2954,7 +3040,12 @@ function main() {
     for (const id of EXTENDED_IDS) {
       const child = spawnSync(
         process.execPath,
-        [__filename, id, ...(dryRun ? ['--dry-run'] : []), ...(skipValidation ? ['--skip-validation'] : [])],
+        [
+          __filename,
+          id,
+          ...(dryRun ? ['--dry-run'] : []),
+          ...(skipValidation ? ['--skip-validation'] : []),
+        ],
         { cwd: path.dirname(__dirname), stdio: 'inherit' }
       );
       if (child.status !== 0) {

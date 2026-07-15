@@ -36,6 +36,7 @@ const scripts = [
   'scripts/build-android-assets.js',
   'scripts/export-platform-lexicon.js',
   'scripts/generate-similarities.js',
+  'scripts/generate-industry-patterns.js',
   'scripts/generate-owned-entries.js',
   'scripts/export-codex-data.js',
   'scripts/build-original-script-lookup.js',

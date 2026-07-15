@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css">
+<script src="/js/university-collaborators.js" defer></script>
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ọṣun — Industry Patterns | PUNYCODEX</title>
+    <meta name="description" content="The real-world industries aligned with Ọṣun (Love, Freshwater, Fertility) and the sister temples that share each pattern. A map for advertisers, patrons, and researchers.">
+    <link rel="canonical" href="https://punycodex.com/sites/oshun/patterns/">
+    <meta property="og:title" content="Ọṣun — Industry Patterns | PUNYCODEX">
+    <meta property="og:description" content="The industries that repeat the pattern of Ọṣun, cross-linked to every aligned temple.">
+    <meta property="og:url" content="https://punycodex.com/sites/oshun/patterns/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PUNYCODEX">
+    <meta name="twitter:card" content="summary">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf17">
+    <link rel="stylesheet" href="../styles.css?v=perf4">
+    <link rel="stylesheet" href="patterns.css?v=1">
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punycodex.com/" class="global-brand">P<span>U</span>NYCODEX</a>
+            <div class="global-links">
+                <a href="https://punycodex.com/pantheon/">Pantheon</a>
+                <a href="https://punycodex.com/lexicon/">Lexicon</a>
+                <a href="https://punycodex.com/connections/">Connections</a>
+                <a href="https://punycodex.com/type/">Type</a>
+                <a href="https://punycodex.com/search.html">Search</a>
+                <a href="https://punycodex.com/tiers/">Tiers</a>
+                <a href="https://punycodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo" id="nav-logo">
+                <!-- Logo injected by JS -->
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="./" class="nav-link active">Patterns</a>
+                <a href="../scholars/index.html" class="nav-link">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true">
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="./" class="nav-link active">Patterns</a>
+        <a href="../scholars/index.html" class="nav-link">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <main class="temple-patterns-page">
+        <!-- Hero -->
+        <section class="patterns-hero" id="patterns-hero">
+            <div class="container">
+                <p class="section-eyebrow">Industry Patterns</p>
+                <h1 class="section-title display-lg">The Ọṣun Pattern</h1>
+                <p class="patterns-hero-lead">
+                    Ọṣun governs <strong>Love, Freshwater, Fertility</strong>. Those same domains are industries today.
+                    This map shows the sectors of the modern economy that repeat the pattern of this temple —
+                    and every sister temple whose deity shares the current. Choose an arc to see the alignment.
+                </p>
+            </div>
+        </section>
+
+        <!-- Graph + Detail -->
+        <section class="patterns-graph-section" id="patterns-graph-section">
+            <div class="container">
+                <div class="patterns-layout">
+                    <div class="patterns-chart-col">
+                        <div class="patterns-chart-frame">
+                            <svg id="patterns-donut" viewBox="0 0 420 420" role="img"
+                                 aria-label="Industry pattern wheel for Ọṣun"></svg>
+                            <div class="patterns-chart-center" id="patterns-chart-center">
+                                <span class="patterns-center-name">Ọṣun</span>
+                                <span class="patterns-center-count" id="patterns-center-count"></span>
+                            </div>
+                        </div>
+                        <div class="patterns-sector-legend" id="patterns-sector-legend"></div>
+                    </div>
+                    <div class="patterns-detail-col">
+                        <div class="patterns-detail-panel" id="patterns-detail-panel" aria-live="polite"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Industry Index -->
+        <section class="patterns-index-section" id="patterns-index-section">
+            <div class="container">
+                <div class="section-header reveal-up">
+                    <span class="section-number">02</span>
+                    <h2 class="section-title">Every Aligned Industry</h2>
+                    <p class="section-subtitle">The complete pattern register for this temple</p>
+                </div>
+                <div class="patterns-index-grid" id="patterns-index-grid"></div>
+            </div>
+        </section>
+
+        <!-- Advertiser / Patron Note -->
+        <section class="patterns-cta-section">
+            <div class="container">
+                <div class="patterns-cta-card reveal-up">
+                    <h3 class="patterns-cta-title">Why this map exists</h3>
+                    <p>
+                        Advertisers and patrons do not buy space on a single temple — they join a constellation.
+                        Every industry arc above lists the sister temples that share its current, so a placement
+                        can be chosen by the whole pattern it belongs to. Researchers and the PUNYCODEX API
+                        consume the same map as structured data.
+                    </p>
+                    <div class="patterns-cta-links">
+                        <a href="../patron/index.html" class="patterns-cta-link">Become a Patron</a>
+                        <a href="https://punycodex.com/connections/" class="patterns-cta-link patterns-cta-link-ghost">Cross-Pantheon Connections</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+        
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="https://punycodex.com/" class="footer-logo">PUNYCODEX</a>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Owned Domains</span>
+                        <span class="footer-value">ọṣun.com</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier 2</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Original Script</span>
+                        <span class="footer-value">Ọ̀ṣun</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <picture><source srcset="../assets/oshun_logomark.webp" type="image/webp"><img src="../assets/oshun_logomark.png" alt="Ọṣun logomark" class="footer-logomark"></picture>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>window.TEMPLE_PATTERNS = {"id":"oshun","unicode":"Ọṣun","ascii":"oshun","pantheon":"yoruba","sectors":[{"id":"home-lifestyle","name":"Home & Lifestyle","color":"#ffa657"},{"id":"energy-earth","name":"Energy & Natural World","color":"#e8b34b"},{"id":"society-spirit","name":"Society & Spirit","color":"#79c0ff"},{"id":"health-wellbeing","name":"Health & Wellbeing","color":"#3fb950"},{"id":"culture-entertainment","name":"Culture & Entertainment","color":"#f778ba"}],"industries":[{"industry":"beauty-fashion","name":"Beauty, Fashion & Cosmetics","sector":"home-lifestyle","tagline":"Cosmetics, fashion, and personal care.","note":"Love and beauty goddesses anchor the industry’s oldest brand story; an ointment jar names one of them.","weight":2,"members":[{"id":"aphrodite","unicode":"Aphrodítē","pantheon":"greek","pantheonLabel":"Greek","weight":2,"why":"Love and beauty goddesses anchor the industry’s oldest brand story; an ointment jar names one of them.","hasFlagship":true},{"id":"lakshmi","unicode":"Lakṣmī","pantheon":"sanskrit","pantheonLabel":"Sanskrit","weight":2,"why":"Beauty and fortune together; auspicious adornment.","hasFlagship":true},{"id":"oshun","unicode":"Ọṣun","pantheon":"yoruba","pantheonLabel":"Yoruba","weight":2,"why":"Beauty, sweetness, and adornment; the river that gilds.","hasFlagship":true},{"id":"astart","unicode":"Aštart","pantheon":"phoenician","pantheonLabel":"Phoenician","weight":1,"why":"The Phoenician face of beauty and desire.","hasFlagship":true},{"id":"bastet","unicode":"Bꜣstt","pantheon":"egyptian","pantheonLabel":"Egyptian","weight":1,"why":"She of the ointment jar; perfume and cosmetics are in her name.","hasFlagship":true},{"id":"eros","unicode":"Érōs","pantheon":"greek","pantheonLabel":"Greek","weight":1,"why":"Desire as the engine of attraction marketing.","hasFlagship":true},{"id":"ishtar","unicode":"Ištar","pantheon":"mesopotamian","pantheonLabel":"Mesopotamian","weight":1,"why":"Love and glory; the adorned queen of heaven.","hasFlagship":true}]},{"industry":"dating-relationships","name":"Love, Dating & Relationships","sector":"home-lifestyle","tagline":"Dating apps, relationship services, and romance.","note":"Love and desire have names in every tradition; the industry sells what these figures cause.","weight":2,"members":[{"id":"aphrodite","unicode":"Aphrodítē","pantheon":"greek","pantheonLabel":"Greek","weight":2,"why":"Love and beauty; the industry’s founding goddess.","hasFlagship":true},{"id":"astart","unicode":"Aštart","pantheon":"phoenician","pantheonLabel":"Phoenician","weight":2,"why":"The Levant’s lady of love.","hasFlagship":true},{"id":"eros","unicode":"Érōs","pantheon":"greek","pantheonLabel":"Greek","weight":2,"why":"Desire itself; the arrow in every match.","hasFlagship":true},{"id":"ishtar","unicode":"Ištar","pantheon":"mesopotamian","pantheonLabel":"Mesopotamian","weight":2,"why":"Love and war together; Mesopotamia’s queen of hearts.","hasFlagship":true},{"id":"oshun","unicode":"Ọṣun","pantheon":"yoruba","pantheonLabel":"Yoruba","weight":2,"why":"The sweet river of love; attraction as fresh water.","hasFlagship":true}]},{"industry":"water-utilities","name":"Freshwater & Hydrology","sector":"energy-earth","tagline":"Water supply, irrigation, and watershed management.","note":"Freshwater powers sustain cities and crops; rivers, abysses, and rain-bringers map directly onto the utility sector.","weight":2,"members":[{"id":"acheron","unicode":"Achérōn","pantheon":"greek","pantheonLabel":"Greek","weight":2,"why":"A real river in Epirus before it was a mythic boundary.","hasFlagship":true},{"id":"apsu","unicode":"Apsû","pantheon":"mesopotamian","pantheonLabel":"Mesopotamian","weight":2,"why":"Freshwater powers sustain cities and crops; rivers, abysses, and rain-bringers map directly onto the utility sector.","hasFlagship":true},{"id":"ea","unicode":"Ēa","pantheon":"mesopotamian","pantheonLabel":"Mesopotamian","weight":2,"why":"Lord of the freshwater abyss that feeds springs and wells.","hasFlagship":true},{"id":"haurvatat","unicode":"Haurvatāt","pantheon":"zoroastrian","pantheonLabel":"Zoroastrian","weight":2,"why":"Wholeness and health carried by water in Zoroastrian rite.","hasFlagship":true},{"id":"oshun","unicode":"Ọṣun","pantheon":"yoruba","pantheonLabel":"Yoruba","weight":2,"why":"The sweet river itself; freshwater as love, fertility, and livelihood.","hasFlagship":true},{"id":"varuna","unicode":"Varuṇa","pantheon":"sanskrit","pantheonLabel":"Sanskrit","weight":2,"why":"Freshwater powers sustain cities and crops; rivers, abysses, and rain-bringers map directly onto the utility sector.","hasFlagship":true},{"id":"okeanos","unicode":"Ōkeanós","pantheon":"greek","pantheonLabel":"Greek","weight":1,"why":"The encircling river that ancients blamed for every spring.","hasFlagship":true},{"id":"tlaloc","unicode":"Tlāloc","pantheon":"nahuatl","pantheonLabel":"Nahuatl","weight":1,"why":"Rain is the supply side of every water system.","hasFlagship":true}]},{"industry":"agriculture-food","name":"Agriculture, Food & Harvest","sector":"energy-earth","tagline":"Farming, grain, food production, and agtech.","note":"Harvest deities feed civilizations; grain gods and earth mothers are the founding brand of every food economy.","weight":1,"members":[{"id":"dagan","unicode":"Dāgan","pantheon":"phoenician","pantheonLabel":"Phoenician","weight":2,"why":"His name is the word for grain itself.","hasFlagship":true},{"id":"demeter","unicode":"Dēmētēr","pantheon":"greek","pantheonLabel":"Greek","weight":2,"why":"Harvest deities feed civilizations; grain gods and earth mothers are the founding brand of every food economy.","hasFlagship":true},{"id":"papatuanuku","unicode":"Papatūānuku","pantheon":"polynesian","pantheonLabel":"Polynesian","weight":2,"why":"The earth mother from whom all food comes.","hasFlagship":true},{"id":"persephone","unicode":"Persephonē","pantheon":"greek","pantheonLabel":"Greek","weight":2,"why":"Spring’s return is the growing season; her cycle is the crop calendar.","hasFlagship":true},{"id":"tlaloc","unicode":"Tlāloc","pantheon":"nahuatl","pantheonLabel":"Nahuatl","weight":2,"why":"Rain decides the harvest; the most propitiated farmer’s god of Mesoamerica.","hasFlagship":true},{"id":"tlaltecuhtli","unicode":"Tlāltēcuhtli","pantheon":"nahuatl","pantheonLabel":"Nahuatl","weight":2,"why":"The earth lord who must be fed to give food.","hasFlagship":true},{"id":"ameretat","unicode":"Amərətāt","pantheon":"zoroastrian","pantheonLabel":"Zoroastrian","weight":1,"why":"Immortality dwelling in plants; the Zoroastrian patron of vegetation.","hasFlagship":true},{"id":"coatlicue","unicode":"Cōātlīcue","pantheon":"nahuatl","pantheonLabel":"Nahuatl","weight":1,"why":"The earth mother who feeds and devours.","hasFlagship":true},{"id":"gaia","unicode":"Gaîa","pantheon":"greek","pantheonLabel":"Greek","weight":1,"why":"Earth herself; the field before it was a farm.","hasFlagship":true},{"id":"ge","unicode":"Gē","pantheon":"greek","pantheonLabel":"Greek","weight":1,"why":"The same earth under a shorter name.","hasFlagship":true},{"id":"kobe","unicode":"Kōbe","pantheon":"japanese","pantheonLabel":"Japanese","weight":1,"why":"Kobe beef made the city a global food brand.","hasFlagship":true},{"id":"kronos","unicode":"Krónos","pantheon":"greek","pantheonLabel":"Greek","weight":1,"why":"The sickle-bearing Titan of the harvest.","hasFlagship":true},{"id":"osaka","unicode":"Ōsaka","pantheon":"japanese","pantheonLabel":"Japanese","weight":1,"why":"Historically “the nation’s kitchen”; Japan’s food and merchant capital.","hasFlagship":true},{"id":"oshun","unicode":"Ọṣun","pantheon":"yoruba","pantheonLabel":"Yoruba","weight":1,"why":"Freshwater fertility; the river that sweetens the crop.","hasFlagship":true},{"id":"parvati","unicode":"Pārvatī","pantheon":"sanskrit","pantheonLabel":"Sanskrit","weight":1,"why":"Fertility of field and family; the mountain’s daughter who nourishes.","hasFlagship":true},{"id":"rhea","unicode":"Rhéā","pantheon":"greek","pantheonLabel":"Greek","weight":1,"why":"Motherhood and fertility of the Titan generation.","hasFlagship":true}]},{"industry":"faith","name":"Faith & Spiritual Organizations","sector":"society-spirit","tagline":"Religious institutions, faith media, and devotional services.","note":"These figures anchor living practice today — temples still fill, scriptures still sell, and founders still define traditions.","weight":1,"members":[{"id":"abel","unicode":"Hāḇel","pantheon":"canaanite","pantheonLabel":"Canaanite","weight":2,"why":"The accepted offering; faith’s first martyr.","hasFlagship":true},{"id":"ahuramazda","unicode":"AhuraMazdā","pantheon":"zoroastrian","pantheonLabel":"Zoroastrian","weight":2,"why":"The Wise Lord at the center of living Zoroastrian devotion.","hasFlagship":true},{"id":"amitabha","unicode":"Amitābha","pantheon":"buddhist","pantheonLabel":"Buddhist","weight":2,"why":"Pure Land is the most practiced form of Buddhism on earth.","hasFlagship":true},{"id":"cain","unicode":"Qāyīn","pantheon":"canaanite","pantheonLabel":"Canaanite","weight":2,"why":"The first transgression; every sermon on conscience knows his name.","hasFlagship":true},{"id":"david","unicode":"Dāwîḏ","pantheon":"canaanite","pantheonLabel":"Canaanite","weight":2,"why":"These figures anchor living practice today — temples still fill, scriptures still sell, and founders still define traditions.","hasFlagship":true},{"id":"laozi","unicode":"Lǎozǐ","pantheon":"taoist","pantheonLabel":"Taoist","weight":2,"why":"The founder of Daoism; the tradition still begins with him.","hasFlagship":true},{"id":"moses","unicode":"Mōšeh","pantheon":"canaanite","pantheonLabel":"Canaanite","weight":2,"why":"These figures anchor living practice today — temples still fill, scriptures still sell, and founders still define traditions.","hasFlagship":true},{"id":"noah","unicode":"Nōaḥ","pantheon":"canaanite","pantheonLabel":"Canaanite","weight":2,"why":"These figures anchor living practice today — temples still fill, scriptures still sell, and founders still define traditions.","hasFlagship":true},{"id":"obatala","unicode":"Ọbatálá","pantheon":"yoruba","pantheonLabel":"Yoruba","weight":2,"why":"The king of white cloth; purity worshipped in living Orisha tradition.","hasFlagship":true},{"id":"olodumare","unicode":"Olódùmarè","pantheon":"yoruba","pantheonLabel":"Yoruba","weight":2,"why":"The supreme creator of a living world religion.","hasFlagship":true},{"id":"solomon","unicode":"Šəlōmōh","pantheon":"canaanite","pantheonLabel":"Canaanite","weight":2,"why":"These figures anchor living practice today — temples still fill, scriptures still sell, and founders still define traditions.","hasFlagship":true},{"id":"taishang","unicode":"Tàishàng","pantheon":"chinese","pantheonLabel":"Chinese","weight":2,"why":"The Supreme Lord Lao, worshipped as the deified Laozi.","hasFlagship":true},{"id":"babaluaye","unicode":"Ọbalúayé","pantheon":"yoruba","pantheonLabel":"Yoruba","weight":1,"why":"Venerated across the Americas as healer of the sick.","hasFlagship":true},{"id":"el","unicode":"Ēl","pantheon":"canaanite","pantheonLabel":"Canaanite","weight":1,"why":"The ancient Semitic god-name still embedded in living liturgy.","hasFlagship":true},{"id":"eshu","unicode":"Ẹṣu","pantheon":"yoruba","pantheonLabel":"Yoruba","weight":1,"why":"The indispensable messenger of Orisha devotion.","hasFlagship":true},{"id":"jizo","unicode":"Jizō","pantheon":"japanese","pantheonLabel":"Japanese","weight":1,"why":"Roadside devotion across Japan; offerings still pile at his statues.","hasFlagship":true},{"id":"om","unicode":"Oṃ","pantheon":"sanskrit","pantheonLabel":"Sanskrit","weight":1,"why":"The syllable at the start of a billion prayers.","hasFlagship":true},{"id":"orunmila","unicode":"Ọrúnmìlà","pantheon":"yoruba","pantheonLabel":"Yoruba","weight":1,"why":"Ifá practice thrives across West Africa and the diaspora.","hasFlagship":true},{"id":"oshun","unicode":"Ọṣun","pantheon":"yoruba","pantheonLabel":"Yoruba","weight":1,"why":"Her festivals still draw rivers of devotees.","hasFlagship":true},{"id":"oya","unicode":"Ọya","pantheon":"yoruba","pantheonLabel":"Yoruba","weight":1,"why":"Storm devotion across Yoruba and diaspora practice.","hasFlagship":true},{"id":"rama","unicode":"Rāma","pantheon":"sanskrit","pantheonLabel":"Sanskrit","weight":1,"why":"The avatar whose name is still sung in every temple.","hasFlagship":true},{"id":"shango","unicode":"Ṣàngó","pantheon":"yoruba","pantheonLabel":"Yoruba","weight":1,"why":"The deified king at the heart of Santería and Candomblé.","hasFlagship":true},{"id":"vishnu","unicode":"Viṣṇu","pantheon":"sanskrit","pantheonLabel":"Sanskrit","weight":1,"why":"The preserver at the center of living Hindu devotion.","hasFlagship":true},{"id":"xian","unicode":"Xiān","pantheon":"chinese","pantheonLabel":"Chinese","weight":1,"why":"Immortality cultivation as a living Taoist path.","hasFlagship":true}]},{"industry":"femtech","name":"Women's Health & Femtech","sector":"health-wellbeing","tagline":"Women's health, wellness, and femtech platforms.","note":"The divine feminine has a name and an address; the industry serving women is her modern portfolio.","weight":1,"members":[{"id":"he","unicode":"Hē","pantheon":"greek","pantheonLabel":"Greek","weight":2,"why":"She Who Is; the divine feminine principle itself.","hasFlagship":true},{"id":"asherah","unicode":"ꜥAsherah","pantheon":"canaanite","pantheonLabel":"Canaanite","weight":1,"why":"Patroness of childbirth; the ancient mother goddess.","hasFlagship":true},{"id":"isis","unicode":"Ꜣst","pantheon":"egyptian","pantheonLabel":"Egyptian","weight":1,"why":"Motherhood and magic; the complete feminine archetype.","hasFlagship":true},{"id":"oshun","unicode":"Ọṣun","pantheon":"yoruba","pantheonLabel":"Yoruba","weight":1,"why":"Feminine sweetness, fertility, and power.","hasFlagship":true},{"id":"parvati","unicode":"Pārvatī","pantheon":"sanskrit","pantheonLabel":"Sanskrit","weight":1,"why":"Devotion and strength; the goddess as partner and mother.","hasFlagship":true}]},{"industry":"wine-hospitality","name":"Wine, Brewing & Hospitality","sector":"culture-entertainment","tagline":"Vineyards, craft beverage, and hospitality venues.","note":"One god owns the vine outright, but brewing and hospitality are older than any single cult — grain, hearth, and guest-law all pour into it.","weight":1,"members":[{"id":"dionysos","unicode":"Diónysos","pantheon":"greek","pantheonLabel":"Greek","weight":2,"why":"Wine, ecstasy, and the vine; the hospitality industry’s founding deity.","hasFlagship":true},{"id":"demeter","unicode":"Dēmētēr","pantheon":"greek","pantheonLabel":"Greek","weight":1,"why":"Beer is liquid bread; every mash begins in her grain.","hasFlagship":true},{"id":"hestia","unicode":"Hestía","pantheon":"greek","pantheonLabel":"Greek","weight":1,"why":"The hearth where every guest is received; hospitality’s oldest seat.","hasFlagship":true},{"id":"oshun","unicode":"Ọṣun","pantheon":"yoruba","pantheonLabel":"Yoruba","weight":1,"why":"Honey is her signature offering, and fermented honey — mead — is the oldest brewed drink.","hasFlagship":true},{"id":"sekhmet","unicode":"Sḫmt","pantheon":"egyptian","pantheonLabel":"Egyptian","weight":1,"why":"Pacified by jars of red-dyed beer in the Destruction of Mankind; brewing literally saved the world.","hasFlagship":true},{"id":"zeus","unicode":"Zeús","pantheon":"greek","pantheonLabel":"Greek","weight":1,"why":"Zeus Xenios, protector of guest-friendship; hospitality to strangers is his sacred law.","hasFlagship":true}]}]};</script>
+    <script src="/js/temple-base.js?v=perf17"></script>
+    <script src="patterns.js?v=1"></script>
+</body>
+</html>

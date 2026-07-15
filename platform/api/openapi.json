@@ -197,12 +197,46 @@
         }
       }
     },
+    "/names/{id}/patterns": {
+      "get": {
+        "summary": "Get industry-pattern profile for an entry",
+        "operationId": "getNamePatterns",
+        "parameters": [{ "$ref": "#/components/parameters/PathId" }],
+        "responses": {
+          "200": { "$ref": "#/components/responses/IndustryPatternProfileResponse" },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "429": { "$ref": "#/components/responses/RateLimitError" }
+        }
+      }
+    },
     "/similarities": {
       "get": {
         "summary": "Get full cross-cultural similarity graph",
         "operationId": "getSimilarityGraph",
         "responses": {
           "200": { "$ref": "#/components/responses/SimilarityGraphResponse" },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "429": { "$ref": "#/components/responses/RateLimitError" }
+        }
+      }
+    },
+    "/industry-patterns": {
+      "get": {
+        "summary": "Get full industry-pattern map",
+        "operationId": "getIndustryPatterns",
+        "responses": {
+          "200": { "$ref": "#/components/responses/IndustryPatternsResponse" },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "429": { "$ref": "#/components/responses/RateLimitError" }
+        }
+      }
+    },
+    "/industry-patterns/industries": {
+      "get": {
+        "summary": "List industries with member counts",
+        "operationId": "listIndustries",
+        "responses": {
+          "200": { "$ref": "#/components/responses/IndustryDirectoryResponse" },
           "404": { "$ref": "#/components/responses/NotFound" },
           "429": { "$ref": "#/components/responses/RateLimitError" }
         }
@@ -595,6 +629,18 @@
       },
       "SimilarityGraphResponse": {
         "description": "Full cross-cultural similarity graph",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+      },
+      "IndustryPatternsResponse": {
+        "description": "Full industry-pattern map: sectors, industries, members, and per-entry profiles",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+      },
+      "IndustryPatternProfileResponse": {
+        "description": "Industry-pattern profile for a single entry with aligned temples",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+      },
+      "IndustryDirectoryResponse": {
+        "description": "Directory of industries with member counts",
         "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
       },
       "LoreResponse": {
