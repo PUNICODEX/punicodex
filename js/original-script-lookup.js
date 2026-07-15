@@ -463,6 +463,10 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "originalScript": "हनुमत्",
     "scriptName": "Devanagari"
   },
+  "manannan": {
+    "originalScript": "Manannán mac Lir",
+    "scriptName": "Medieval Irish (Latin script)"
+  },
   "ishtar": {
     "originalScript": "𒀭𒀹𒁯",
     "scriptName": "Cuneiform"
@@ -546,6 +550,18 @@ const ORIGINAL_SCRIPT_LOOKUP = {
   "benzaiten": {
     "originalScript": "弁財天",
     "scriptName": "Japanese characters"
+  },
+  "quetzalcoatl": {
+    "originalScript": "Quetzalcōātl",
+    "scriptName": "Colonial Nahuatl (Latin script)"
+  },
+  "oshun": {
+    "originalScript": "Ọ̀ṣun",
+    "scriptName": "Yoruba (modern Latin orthography)"
+  },
+  "dazhbog": {
+    "originalScript": "Дажбог",
+    "scriptName": "Church Slavonic / East Slavic Cyrillic"
   },
   "jason": {
     "originalScript": "Ἰάσων",
@@ -1517,7 +1533,7 @@ const ORIGINAL_SCRIPT_LOOKUP = {
   },
   "jizo": {
     "originalScript": "地蔵",
-    "scriptName": "Japanese characters"
+    "scriptName": "Japanese Kanji (Jinmeiyō)"
   },
   "amida": {
     "originalScript": "阿弥陀",

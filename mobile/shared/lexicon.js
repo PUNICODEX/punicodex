@@ -6414,7 +6414,7 @@ const LEXICON = [
     "tier": "2",
     "tierLabel": "Tier 2",
     "domain": "Destruction, Transformation, Dance",
-    "meaning": "‘The Auspicious one’, N. of the disintegrating or destroying and reproducing deity (who constitutes the third god of the Hindū Trimūrti or Triad, the other two being Brahmā ‘the",
+    "meaning": "The auspicious one; the deity of destruction, transformation, and regeneration, the third member of the Hindu Trimūrti alongside Brahmā and Viṣṇu.",
     "senses": [
       {
         "type": "etymology",
@@ -42432,7 +42432,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Infinite Light, Pure Land",
-    "meaning": ", (As), m. pl. ‘of unmeasured splendour’, N. of certain deities in the eighth Manvantara, VP.",
+    "meaning": "Of unmeasured splendour; infinite light; the Buddha of the Pure Land Sukhāvatī.",
     "senses": [
       {
         "type": "etymology",

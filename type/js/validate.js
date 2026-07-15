@@ -175,6 +175,10 @@ LEXICON.forEach((entry, i) => {
         '\\u{10B00}-\\u{10B3F}' + // Avestan
         '\\u{14400}-\\u{1467F}' + // Anatolian hieroglyphs
         '\\u{0590}-\\u{05FF}' + // Hebrew
+        '\\u{0080}-\\u{00FF}' + // Latin-1 Supplement (colonial/vernacular sources)
+        '\\u{0100}-\\u{017F}' + // Latin Extended-A
+        '\\u{1E00}-\\u{1EFF}' + // Latin Extended Additional
+        '\\u{0400}-\\u{04FF}' + // Cyrillic (medieval Slavic sources)
         ']',
       'u'
     );

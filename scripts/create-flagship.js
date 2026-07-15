@@ -1940,6 +1940,17 @@ function buildSourcesSection(entry, catalogEntry) {
     norse: 'The <em>Poetic Edda</em>; The <em>Prose Edda</em> of Snorri Sturluson.',
     mesopotamian: 'The Epic of Gilgamesh; Sumerian temple hymns and Akkadian ritual texts.',
     canaanite: 'The Ugaritic Baal Cycle; ritual texts from Ugarit and Phoenician inscriptions.',
+    sanskrit:
+      'The <em>Ṛgveda</em>; the <em>Śatapatha Brāhmaṇa</em>; the early Upaniṣads; the <em>Śiva Purāṇa</em> and <em>Liṅga Purāṇa</em>.',
+    buddhist:
+      'The <em>Larger Sukhāvatī-vyūha Sūtra</em>; the <em>Smaller Sukhāvatī-vyūha Sūtra</em>; the <em>Amitāyurdhyāna Sūtra</em>; the <em>Lotus Sūtra</em>.',
+    nahuatl:
+      'The <em>Florentine Codex</em> (Sahagún); the <em>Anales de Cuauhtitlan</em>; colonial Nahuatl testimonies and pictorial manuscripts.',
+    yoruba: 'The Ifá divination corpus; <em>ọ̀rọ̀ àṣà</em> and <em>oríkì</em> traditions; Abraham’s <em>Dictionary of Modern Yoruba</em>.',
+    celtic:
+      'The <em>Immram Brain</em> (Voyage of Bran); <em>Tochmarc Étaíne</em>; <em>Cóir Anmann</em>; medieval Irish saga literature.',
+    slavic:
+      'The <em>Primary Chronicle</em> (<em>Povest’ vremennykh let</em>); the <em>Hypatian Codex</em>; East Slavic chronicle tradition and South Slavic folk invocations.',
     hindu: 'The <em>Ṛgveda</em>; the <em>Brāhmaṇas</em>; early Upaniṣadic literature.',
     japanese: 'The <em>Kojiki</em>; the <em>Nihon Shoki</em>; shrine ritual records.',
   };

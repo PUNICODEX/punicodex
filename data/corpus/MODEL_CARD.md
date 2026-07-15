@@ -1,8 +1,8 @@
 # PÚNYCODEX Oracle — Model Card
 
 **Model family:** PÚNYCODEX Oracle (specialized language model)  
-**Data version:** 2.0.62  
-**Generated:** 2026-07-15T12:01:05.037Z  
+**Data version:** 2.0.63  
+**Generated:** 2026-07-15T12:25:50.299Z  
 **License:** CC BY 4.0 for dataset; ISC for software (see root LICENSE).
 
 ## Intended Use
@@ -17,18 +17,18 @@
 
 | Split | Examples | File |
 |-------|----------|------|
-| Train | 56,853 | `data/corpus/chat-train.jsonl` |
-| Evaluation | 14,208 | `data/corpus/chat-eval.jsonl` |
-| **Total** | **71,061** | — |
+| Train | 56,855 | `data/corpus/chat-train.jsonl` |
+| Evaluation | 14,218 | `data/corpus/chat-eval.jsonl` |
+| **Total** | **71,073** | — |
 
 Source corpora:
-- `instructions.jsonl`: 8,206 examples
+- `instructions.jsonl`: 8,210 examples
 - `safety-examples.jsonl`: 41,481 examples
 - `dialogue-examples.jsonl`: 3,042 examples
 - `tool-use-examples.jsonl`: 4,475 examples
-- `multimodal-examples.jsonl`: 1,753 examples
+- `multimodal-examples.jsonl`: 1,757 examples
 - `preference-examples.jsonl`: 3,618 examples
-- `reasoning-examples.jsonl`: 3,497 examples
+- `reasoning-examples.jsonl`: 3,501 examples
 - `mythology-synthesis.jsonl`: 391 examples
 - `oracle-examples.jsonl`: 1,865 examples
 - `symbolic-correspondences.jsonl`: 1,233 examples
@@ -71,7 +71,7 @@ Do not use this model to generate deceptive domains, impersonate brands, or evad
 
 Before supervised fine-tuning, domain-adapt the base model on the raw scholarly corpus:
 
-- `data/corpus/pretrain.jsonl` — 5,347 training documents (449,079 whitespace tokens).
+- `data/corpus/pretrain.jsonl` — 5,353 training documents (450,115 whitespace tokens).
 - `data/corpus/pretrain-validation.jsonl` — 291 validation documents (24,511 whitespace tokens).
 - HuggingFace-compatible splits in `data/corpus/huggingface/`.
 
