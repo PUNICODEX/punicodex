@@ -2643,8 +2643,9 @@ const LEXICON = [
   },
   {
     "id": "rhea",
+    hasAdSite: true,
     "ascii": "rhea",
-    "unicode": "Rhea",
+    "unicode": "Rhéā",
     "greek": "Ῥέα",
     "pantheon": "greek",
     "tier": "2",
@@ -2661,25 +2662,25 @@ const LEXICON = [
         "char": "r",
         "to": "R",
         "type": "same",
-        "note": "Rho"
+        "note": "Same, capitalized"
       },
       {
         "char": "h",
         "to": "h",
         "type": "same",
-        "note": "Rough breathing"
+        "note": "Same"
       },
       {
         "char": "e",
-        "to": "e",
-        "type": "same",
-        "note": "Short epsilon"
+        "to": "é",
+        "type": "stress",
+        "note": "Acute on e"
       },
       {
         "char": "a",
-        "to": "a",
-        "type": "same",
-        "note": "Short alpha"
+        "to": "ā",
+        "type": "length",
+        "note": "Macron on a"
       }
     ]
   },
@@ -9689,7 +9690,7 @@ const LEXICON = [
   {
     "id": "huitzilopochtli",
     "ascii": "huitzilopochtli",
-    "unicode": "Huitzilopochtli",
+    "unicode": "Huitzilopōchtli",
     "greek": "—",
     "pantheon": "nahuatl",
     "tier": "2",
@@ -9756,9 +9757,9 @@ const LEXICON = [
       },
       {
         "char": "o",
-        "to": "o",
-        "type": "same",
-        "note": "Same"
+        "to": "ō",
+        "type": "length",
+        "note": "Macron on o"
       },
       {
         "char": "c",
@@ -9892,8 +9893,9 @@ const LEXICON = [
   },
   {
     "id": "shango",
+    hasAdSite: true,
     "ascii": "shango",
-    "unicode": "Ṣango",
+    "unicode": "Ṣàngó",
     "greek": "—",
     "pantheon": "yoruba",
     "tier": "2",
@@ -9918,9 +9920,9 @@ const LEXICON = [
       },
       {
         "char": "a",
-        "to": "a",
-        "type": "same",
-        "note": "Same"
+        "to": "à",
+        "type": "stress",
+        "note": "Grave on a"
       },
       {
         "char": "n",
@@ -9936,9 +9938,9 @@ const LEXICON = [
       },
       {
         "char": "o",
-        "to": "o",
-        "type": "same",
-        "note": "Same"
+        "to": "ó",
+        "type": "stress",
+        "note": "Acute on o"
       }
     ]
   },
@@ -10164,8 +10166,9 @@ const LEXICON = [
   },
   {
     "id": "obatala",
+    hasAdSite: true,
     "ascii": "obatala",
-    "unicode": "Obatala",
+    "unicode": "Ọbatálá",
     "greek": "—",
     "pantheon": "yoruba",
     "tier": "2",
@@ -10178,9 +10181,9 @@ const LEXICON = [
     "breakdown": [
       {
         "char": "o",
-        "to": "O",
-        "type": "same",
-        "note": "Same"
+        "to": "Ọ",
+        "type": "special",
+        "note": "O with dot below"
       },
       {
         "char": "b",
@@ -10202,9 +10205,9 @@ const LEXICON = [
       },
       {
         "char": "a",
-        "to": "a",
-        "type": "same",
-        "note": "Same"
+        "to": "á",
+        "type": "stress",
+        "note": "Acute on a"
       },
       {
         "char": "l",
@@ -10214,16 +10217,16 @@ const LEXICON = [
       },
       {
         "char": "a",
-        "to": "a",
-        "type": "same",
-        "note": "Same"
+        "to": "á",
+        "type": "stress",
+        "note": "Acute on a"
       }
     ]
   },
   {
     "id": "olodumare",
     "ascii": "olodumare",
-    "unicode": "Olodumare",
+    "unicode": "Olódùmarè",
     "greek": "—",
     "pantheon": "yoruba",
     "tier": "2",
@@ -10238,7 +10241,7 @@ const LEXICON = [
         "char": "o",
         "to": "O",
         "type": "same",
-        "note": "Same"
+        "note": "Same, capitalized"
       },
       {
         "char": "l",
@@ -10248,9 +10251,9 @@ const LEXICON = [
       },
       {
         "char": "o",
-        "to": "o",
-        "type": "same",
-        "note": "Same"
+        "to": "ó",
+        "type": "stress",
+        "note": "Acute on o"
       },
       {
         "char": "d",
@@ -10260,9 +10263,9 @@ const LEXICON = [
       },
       {
         "char": "u",
-        "to": "u",
-        "type": "same",
-        "note": "Same"
+        "to": "ù",
+        "type": "stress",
+        "note": "Grave on u"
       },
       {
         "char": "m",
@@ -10284,9 +10287,9 @@ const LEXICON = [
       },
       {
         "char": "e",
-        "to": "e",
-        "type": "same",
-        "note": "Same"
+        "to": "è",
+        "type": "stress",
+        "note": "Grave on e"
       }
     ]
   },
@@ -30145,6 +30148,7 @@ const LEXICON = [
   },
   {
     "id": "aganju",
+    hasAdSite: true,
     "ascii": "aganju",
     "unicode": "Aganjú",
     "greek": "—",
@@ -30199,7 +30203,7 @@ const LEXICON = [
   {
     "id": "babaluaye",
     "ascii": "babaluaye",
-    "unicode": "Babalúayé",
+    "unicode": "Ọbalúayé",
     "greek": "—",
     "pantheon": "yoruba",
     "tier": "2",
@@ -30213,57 +30217,57 @@ const LEXICON = [
     "breakdown": [
       {
         "char": "b",
-        "to": "B",
-        "type": "same",
-        "note": "Same, capitalized"
+        "to": "Ọ",
+        "type": "special",
+        "note": "Initial b becomes Ọ"
       },
       {
         "char": "a",
-        "to": "a",
-        "type": "same",
-        "note": "Same"
+        "to": "b",
+        "type": "special",
+        "note": "Shifted consonant"
       },
       {
         "char": "b",
-        "to": "b",
-        "type": "same",
-        "note": "Same"
+        "to": "a",
+        "type": "special",
+        "note": "Shifted vowel"
       },
       {
         "char": "a",
-        "to": "a",
-        "type": "same",
-        "note": "Same"
+        "to": "l",
+        "type": "special",
+        "note": "Shifted consonant"
       },
       {
         "char": "l",
-        "to": "l",
-        "type": "same",
-        "note": "Same"
+        "to": "ú",
+        "type": "stress",
+        "note": "Acute on u"
       },
       {
         "char": "u",
-        "to": "ú",
-        "type": "stress",
-        "note": "Stress on u"
+        "to": "a",
+        "type": "special",
+        "note": "Shifted vowel"
       },
       {
         "char": "a",
-        "to": "a",
-        "type": "same",
-        "note": "Same"
+        "to": "y",
+        "type": "special",
+        "note": "Shifted consonant"
       },
       {
         "char": "y",
-        "to": "y",
-        "type": "same",
-        "note": "Same"
+        "to": "é",
+        "type": "stress",
+        "note": "Acute on e"
       },
       {
         "char": "e",
-        "to": "é",
-        "type": "stress",
-        "note": "Stress on e"
+        "to": "",
+        "type": "drop",
+        "note": "Not written"
       }
     ]
   },
@@ -33168,6 +33172,7 @@ const LEXICON = [
   },
   {
     "id": "aer",
+    hasAdSite: true,
     "ascii": "aer",
     "unicode": "Aḗr",
     "greek": "Ἀήρ",
@@ -54222,8 +54227,84 @@ const LEXICON = [
         "note": "Same"
       }
     ]
+  },
+  {
+    "id": "cihuacoatl",
+    "ascii": "cihuacoatl",
+    "unicode": "Cihuacōātl",
+    "greek": "—",
+    "pantheon": "nahuatl",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Childbirth, Motherhood, Earth",
+    "meaning": "Snake Woman",
+    "sources": [
+      "Sahagún"
+    ],
+    "breakdown": [
+      {
+        "char": "c",
+        "to": "C",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "h",
+        "to": "h",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "u",
+        "to": "u",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "c",
+        "to": "c",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "o",
+        "to": "ō",
+        "type": "length",
+        "note": "Macron on o"
+      },
+      {
+        "char": "a",
+        "to": "ā",
+        "type": "length",
+        "note": "Macron on a"
+      },
+      {
+        "char": "t",
+        "to": "t",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "l",
+        "to": "l",
+        "type": "same",
+        "note": "Same"
+      }
+    ]
   }
-]
+];
 
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { LEXICON };

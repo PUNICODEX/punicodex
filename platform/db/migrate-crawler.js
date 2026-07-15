@@ -469,7 +469,7 @@ for (const f of flagships) {
   const desc = `Scholarly restoration of ${f.id} with full Unicode orthography.`;
   insertSite.run(
     f.domain,
-    f.punycode,
+    f.punycode || f.domain,
     f.id,
     f.pantheon,
     f.tier,

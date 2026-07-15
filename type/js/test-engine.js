@@ -343,7 +343,7 @@ test('Correct pantheon counts', () => {
   assert.strictEqual(counts.mesopotamian, 30, 'Mesopotamian count');
   assert.strictEqual(counts.polynesian, 22, 'Polynesian count');
   assert.strictEqual(counts.japanese, 43, 'Japanese count');
-  assert.strictEqual(counts.nahuatl, 27, 'Nahuatl count');
+  assert.strictEqual(counts.nahuatl, 28, 'Nahuatl count');
   assert.strictEqual(counts.yoruba, 30, 'Yoruba count');
   assert.strictEqual(counts.slavic, 21, 'Slavic count');
   assert.strictEqual(counts.zoroastrian, 18, 'Zoroastrian count');
@@ -515,7 +515,7 @@ test('Japanese entries with long vowels are reachable', () => {
 test('Yoruba underdot entries are reachable', () => {
   const shango = findExactMatch(trie, 'shango');
   assert.ok(shango);
-  assert.strictEqual(shango.unicode, 'Ṣango');
+  assert.strictEqual(shango.unicode, 'Ṣàngó');
 });
 
 test('Nahuatl macron entries are reachable', () => {
