@@ -3,6 +3,7 @@
  */
 
 const crypto = require('node:crypto');
+const { setLicenseHeaders, addLicenseToPayload } = require('./license-headers.js');
 
 const CORS_HEADERS = {
   'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
@@ -36,7 +37,7 @@ function setCors(req, res) {
 function success(res, data, options = {}) {
   const { status = 200, meta = {}, links } = options;
   const requestId = res.locals?.requestId || generateRequestId();
-  const payload = {
+  let payload = {
     success: true,
     data,
     meta: {
@@ -47,6 +48,8 @@ function success(res, data, options = {}) {
     },
   };
   if (links !== undefined) payload.links = links;
+  payload = addLicenseToPayload(payload);
+  setLicenseHeaders(res);
   res.status(status).json(payload);
 }
 
@@ -66,7 +69,7 @@ function error(res, code, message, options = {}) {
               ? 429
               : 500);
 
-  res.status(statusCode).json({
+  let payload = {
     success: false,
     error: {
       code,
@@ -78,7 +81,10 @@ function error(res, code, message, options = {}) {
       version: res.locals?.apiVersion || 'v1',
       timestamp: new Date().toISOString(),
     },
-  });
+  };
+  payload = addLicenseToPayload(payload);
+  setLicenseHeaders(res);
+  res.status(statusCode).json(payload);
 }
 
 function handleApiError(res, err) {

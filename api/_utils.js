@@ -1,9 +1,11 @@
 const crypto = require('node:crypto');
 const { validateAdminToken } = require('../platform/api/admin');
+const { setLicenseHeaders, addLicenseToPayload } = require('../platform/api/license-headers.js');
 
 function handleError(res, err) {
   console.error('API error:', err);
-  res.status(500).json({ error: err.message || 'Internal server error' });
+  setLicenseHeaders(res);
+  res.status(500).json(addLicenseToPayload({ error: err.message || 'Internal server error' }));
 }
 
 const ALLOWED_ORIGINS = new Set(
@@ -25,6 +27,7 @@ function setCors(req, res) {
     'Content-Type, x-session-token, Authorization, x-admin-token, x-cron-secret'
   );
   res.setHeader('Vary', 'Origin');
+  setLicenseHeaders(res);
 }
 
 async function requireAdmin(req, res) {

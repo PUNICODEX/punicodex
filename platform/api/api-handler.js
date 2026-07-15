@@ -8,6 +8,7 @@ const crypto = require('node:crypto');
 const { setCors, error, handleApiError } = require('./api-response.js');
 const { authenticate, getClientIp } = require('./api-auth.js');
 const { checkRateLimit } = require('./api-rate-limiter.js');
+const { setLicenseHeaders } = require('./license-headers.js');
 const { run } = require('../db/operational.js');
 
 function hashIp(ip) {
@@ -37,6 +38,7 @@ function createApiHandler(handler, options = {}) {
 
     // CORS preflight
     setCors(req, res);
+    setLicenseHeaders(res);
     if (req.method === 'OPTIONS') {
       res.status(200).end();
       return;

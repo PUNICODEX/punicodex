@@ -1,5 +1,6 @@
 const { askOracle } = require('../../platform/api/oracle');
 const { handleError, setCors } = require('../_utils');
+const { checkPublicRateLimitByReq } = require('../../platform/api/public-rate-limiter');
 
 function safeParseHistory(raw) {
   if (!raw) return [];
@@ -15,6 +16,9 @@ function safeParseHistory(raw) {
 module.exports = async (req, res) => {
   setCors(req, res);
   if (req.method === 'OPTIONS') return res.status(200).end();
+
+  const allowed = await checkPublicRateLimitByReq(req, res, 'api-oracle');
+  if (!allowed) return;
 
   try {
     const q = req.query.q || '';
