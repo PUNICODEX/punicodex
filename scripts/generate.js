@@ -49,6 +49,7 @@ const scripts = [
   'scripts/sync-scholars-portal.js',
   'scripts/gen-sitemap.js',
   'scripts/inject-analytics.js',
+  'scripts/inject-university-collaborators.js',
   'scripts/update-data-version.js',
   'scripts/generate-synthetic-qa.js',
   'scripts/generate-safety-corpus.js',

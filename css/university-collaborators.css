@@ -1,0 +1,305 @@
+/* ═══════════════════════════════════════════════════════════
+   PÚNYCODEX — Academic Collaborators Strip
+   Universal pre-footer section for university partners.
+   ═══════════════════════════════════════════════════════════ */
+
+#university-collaborators-strip {
+  --uc-bg: #0b0b12;
+  --uc-surface: rgba(20, 20, 28, 0.72);
+  --uc-border: rgba(212, 175, 55, 0.14);
+  --uc-gold: #D4AF37;
+  --uc-gold-dim: rgba(212, 175, 55, 0.18);
+  --uc-text: #f0eef6;
+  --uc-muted: #9a95a8;
+  --uc-card-hover: rgba(212, 175, 55, 0.08);
+
+  position: relative;
+  width: 100%;
+  background: var(--uc-bg);
+  overflow: hidden;
+  border-top: 1px solid var(--uc-border);
+  padding: 4.5rem 0 4rem;
+}
+
+#university-collaborators-strip::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--uc-gold), #fff8e1, var(--uc-gold), transparent);
+  background-size: 200% 100%;
+  animation: uc-gold-shimmer 5s linear infinite;
+  opacity: 0.8;
+}
+
+#university-collaborators-strip .uc-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#university-collaborators-strip .uc-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+#university-collaborators-strip .uc-header {
+  text-align: center;
+  margin-bottom: 2.75rem;
+}
+
+#university-collaborators-strip .uc-eyebrow {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--uc-gold);
+  margin-bottom: 0.75rem;
+  padding: 0.25rem 0.7rem;
+  border: 1px solid var(--uc-border);
+  border-radius: 999px;
+  background: var(--uc-gold-dim);
+}
+
+#university-collaborators-strip .uc-title {
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: clamp(1.8rem, 4vw, 2.7rem);
+  font-weight: 700;
+  color: var(--uc-text);
+  line-height: 1.15;
+  margin-bottom: 0.85rem;
+  letter-spacing: 0.02em;
+}
+
+#university-collaborators-strip .uc-title .accent {
+  color: var(--uc-gold);
+}
+
+#university-collaborators-strip .uc-subtitle {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+  color: var(--uc-muted);
+  line-height: 1.7;
+}
+
+#university-collaborators-strip .uc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+#university-collaborators-strip .uc-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  padding: 1.5rem 1.25rem;
+  background: var(--uc-surface);
+  border: 1px solid var(--uc-border);
+  border-radius: 14px;
+  text-align: center;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+  overflow: hidden;
+}
+
+#university-collaborators-strip .uc-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, var(--uc-card-hover), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+#university-collaborators-strip .uc-card:hover {
+  transform: translateY(-5px) scale(1.015);
+  border-color: rgba(212, 175, 55, 0.35);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35), 0 0 30px rgba(212, 175, 55, 0.08);
+}
+
+#university-collaborators-strip .uc-card:hover::before {
+  opacity: 1;
+}
+
+#university-collaborators-strip .uc-card-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+  filter: grayscale(20%) brightness(1.05);
+  transition: filter 0.35s ease;
+}
+
+#university-collaborators-strip .uc-card:hover .uc-card-logo {
+  filter: grayscale(0%) brightness(1.1);
+}
+
+#university-collaborators-strip .uc-card-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--uc-text);
+  margin-bottom: 0.35rem;
+}
+
+#university-collaborators-strip .uc-card-tagline {
+  font-size: 0.8rem;
+  color: var(--uc-muted);
+  line-height: 1.45;
+}
+
+#university-collaborators-strip .uc-card-empty {
+  border-style: dashed;
+  cursor: pointer;
+}
+
+#university-collaborators-strip .uc-card-empty .uc-empty-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px dashed var(--uc-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  color: var(--uc-gold);
+  margin-bottom: 1rem;
+  transition: all 0.35s ease;
+}
+
+#university-collaborators-strip .uc-card-empty:hover .uc-empty-icon {
+  border-color: var(--uc-gold);
+  background: var(--uc-gold-dim);
+  transform: rotate(90deg) scale(1.05);
+}
+
+#university-collaborators-strip .uc-card-empty .uc-card-name {
+  color: var(--uc-gold);
+}
+
+#university-collaborators-strip .uc-card-empty .uc-card-tagline {
+  font-size: 0.78rem;
+}
+
+#university-collaborators-strip .uc-marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 1.5rem;
+  mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+}
+
+#university-collaborators-strip .uc-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 3rem;
+  animation: uc-marquee 40s linear infinite;
+}
+
+#university-collaborators-strip .uc-marquee:hover .uc-marquee-track {
+  animation-play-state: paused;
+}
+
+#university-collaborators-strip .uc-marquee-logo {
+  height: 38px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  opacity: 0.7;
+  filter: grayscale(100%) brightness(1.2);
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+#university-collaborators-strip .uc-marquee-logo:hover {
+  opacity: 1;
+  filter: grayscale(0%) brightness(1.1);
+}
+
+#university-collaborators-strip .uc-cta {
+  text-align: center;
+  margin-top: 2.25rem;
+}
+
+#university-collaborators-strip .uc-cta a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  border: 1px solid var(--uc-gold);
+  color: var(--uc-gold);
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+#university-collaborators-strip .uc-cta a:hover {
+  background: var(--uc-gold);
+  color: var(--uc-bg);
+  text-decoration: none;
+}
+
+@keyframes uc-gold-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes uc-marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@media (max-width: 1024px) {
+  #university-collaborators-strip .uc-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  #university-collaborators-strip {
+    padding: 3rem 0 2.5rem;
+  }
+  #university-collaborators-strip .uc-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  #university-collaborators-strip .uc-card {
+    min-height: 180px;
+  }
+  #university-collaborators-strip .uc-marquee-track {
+    animation-duration: 28s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #university-collaborators-strip::before,
+  #university-collaborators-strip .uc-marquee-track {
+    animation: none;
+  }
+}
+
+/* Ensure the strip does not inherit conflicting footer margins */
+#university-collaborators-strip + footer,
+#university-collaborators-strip + .site-footer,
+#university-collaborators-strip + .main-footer {
+  margin-top: 0;
+}
