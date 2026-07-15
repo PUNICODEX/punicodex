@@ -96,4 +96,24 @@ test('domain appraiser page exists and calls appraisal api', () => {
   assert.ok(html.includes('appraise-form'));
 });
 
+test('pantheon page exists and references archetype data', () => {
+  const html = readHtml('pantheon/index.html');
+  assert.ok(html.includes('<title>'));
+  assert.ok(html.includes('archetypes-v2.js'), 'pantheon should load archetypes-v2.js');
+  assert.ok(html.includes('pantheon.js'), 'pantheon should load pantheon.js');
+});
+
+test('pantheon metadata count matches archetype data', () => {
+  const { ARCHETYPES } = require(path.join(root, 'js', 'archetypes-v2.js'));
+  const html = readHtml('pantheon/index.html');
+  const count = ARCHETYPES.length;
+  const descriptionMatch = html.match(/Pantheon of (\d+) archetypes/);
+  assert.ok(descriptionMatch, 'pantheon meta description should contain archetype count');
+  assert.strictEqual(
+    parseInt(descriptionMatch[1], 10),
+    count,
+    `pantheon meta count (${descriptionMatch[1]}) must match archetypes-v2.js (${count})`
+  );
+});
+
 run();
