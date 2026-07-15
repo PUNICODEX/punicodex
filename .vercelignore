@@ -38,3 +38,10 @@ platform/db/*.db-journal
 platform/db/*.db-wal
 platform/db/*.db-shm
 *.db.backup
+
+# Image deployment optimization:
+# Every temple ships WebP as the primary <picture> source. PNG fallbacks are
+# kept in the repo for older browsers / structured data, but uploading both
+# formats pushes the deployment well over Vercel's CLI buffer limit.
+# Modern browsers (96%+ market share) support WebP, so we deploy WebP only.
+sites/**/*.png
