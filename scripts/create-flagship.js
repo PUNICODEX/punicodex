@@ -13,6 +13,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { spawnSync } = require('node:child_process');
 const cheerio = require('cheerio');
 const url = require('node:url');
 const { unicodeName } = require('unicode-name');
@@ -2654,7 +2655,7 @@ function sleepSync(ms) {
   }
 }
 
-function safeCopyFileSync(src, dest, retries = 5) {
+function safeCopyFileSync(src, dest, retries = 10) {
   let lastError;
   for (let i = 0; i < retries; i++) {
     try {
@@ -2663,7 +2664,7 @@ function safeCopyFileSync(src, dest, retries = 5) {
     } catch (err) {
       lastError = err;
       if (err.code === 'EPERM' || err.code === 'EBUSY' || err.code === 'UNKNOWN') {
-        sleepSync(50 * (i + 1));
+        sleepSync(100 * (i + 1));
         continue;
       }
       throw err;
@@ -2951,10 +2952,12 @@ function main() {
   if (regenerateAll) {
     let failed = 0;
     for (const id of EXTENDED_IDS) {
-      try {
-        createFlagship(id, { dryRun, skipValidation });
-      } catch (err) {
-        console.error(`✗ ${id}: ${err.message}`);
+      const child = spawnSync(
+        process.execPath,
+        [__filename, id, ...(dryRun ? ['--dry-run'] : []), ...(skipValidation ? ['--skip-validation'] : [])],
+        { cwd: path.dirname(__dirname), stdio: 'inherit' }
+      );
+      if (child.status !== 0) {
         failed++;
       }
     }

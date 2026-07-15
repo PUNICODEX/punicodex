@@ -75,9 +75,7 @@ function run(script) {
   const scriptPath = path.join(root, parts[0]);
   const args = parts.slice(1);
   console.log(`\n▸ ${script}`);
-  const memoryHeavy = /corpus|benchmark|data-card/.test(scriptPath);
-  const nodeArgs = memoryHeavy ? ['--max-old-space-size=4096', scriptPath, ...args] : [scriptPath, ...args];
-  const result = spawnSync(process.execPath, nodeArgs, {
+  const result = spawnSync(process.execPath, [scriptPath, ...args], {
     cwd: root,
     stdio: 'inherit',
   });
