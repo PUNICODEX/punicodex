@@ -202,8 +202,14 @@ function assert(condition, message) {
 }
 
 function writeJsonl(records, filePath) {
-  const lines = records.map((r) => JSON.stringify(r));
-  fs.writeFileSync(filePath, lines.join('\n') + '\n');
+  const fd = fs.openSync(filePath, 'w');
+  try {
+    for (const r of records) {
+      fs.writeSync(fd, JSON.stringify(r) + '\n');
+    }
+  } finally {
+    fs.closeSync(fd);
+  }
 }
 
 function buildPretrainSection() {
