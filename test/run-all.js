@@ -61,6 +61,7 @@ const SUITES = [
   { name: 'Patron Service Tests', cmd: 'node test/patron-service.test.js' },
   { name: 'Patron Page Tests', cmd: 'node test/patron-page.test.js' },
   { name: 'Flagship Mobile Nav Tests', cmd: 'node test/flagship-mobile-nav.test.js' },
+  { name: 'Realms Page Tests', cmd: 'node test/realms-page.test.js' },
   {
     name: 'Flagship Content Quality Audit',
     cmd: 'node test/flagship-content-quality.test.js',

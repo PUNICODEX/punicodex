@@ -14,7 +14,7 @@ const assert = require('node:assert');
 const SITES_DIR = path.join(__dirname, '..', 'sites');
 const BASE_CSS = path.join(__dirname, '..', 'css', 'temple-base.css');
 
-const SUB_PAGES = ['', 'lore/', 'gallery/', 'scholars/', 'creatives/', 'patron/'];
+const SUB_PAGES = ['', 'lore/', 'gallery/', 'scholars/', 'creatives/', 'patron/', 'patterns/'];
 
 function getFlagshipDirs() {
   return fs
@@ -140,6 +140,23 @@ test('hamburger is always the last visible item in the tab nav inner', () => {
       last.is('#nav-toggle') || last.find('#nav-toggle').length === 1,
       `${id}: expected hamburger to be the last child of nav-inner`
     );
+  }
+});
+
+test('every flagship tabbed page loads px-core.js so the hamburger actually works', () => {
+  // px-core.js owns the .nav-toggle click handler (PX.initNavigation). A page
+  // can carry perfect hamburger markup and still be dead on mobile if this
+  // script is missing — this is the regression that broke patron/patterns.
+  for (const id of ids) {
+    for (const subPath of SUB_PAGES) {
+      const filePath = path.join(SITES_DIR, id, subPath, 'index.html');
+      if (!fs.existsSync(filePath)) continue;
+      const html = fs.readFileSync(filePath, 'utf8');
+      assert.ok(
+        html.includes('/js/px-core.js'),
+        `${id}/${subPath || 'index.html'}: missing px-core.js — hamburger would be non-functional`
+      );
+    }
   }
 });
 
