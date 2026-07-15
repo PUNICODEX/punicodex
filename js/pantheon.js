@@ -53,7 +53,7 @@
             return `
                 <${tag} ${hrefAttr} class="archetype-card reveal-up ${unbuiltClass}" data-id="${a.id}" data-tier="${a.tier}" data-pantheon="${a.pantheon}" data-built="${a.built}" data-name="${(a.name || "").toLowerCase()}" data-greek="${(a.greek || "").toLowerCase()}" data-domain="${(a.domain || "").toLowerCase()}" style="--stagger-index:${index % 4}">
                     <div class="card-portrait">
-                        <img src="${a.mascotPath}" alt="${a.name} — ${a.domain}" data-fallback="${a.mascotFallback || a.mascotPath}" loading="lazy" decoding="async" style="opacity:1; display:block;">
+                        <img src="${a.mascotPath}" alt="${a.name} — ${a.domain}" data-fallback="${a.mascotFallback || a.mascotPath}" loading="lazy" decoding="async" class="card-portrait-img">
                     </div>
                     <p class="card-name">${a.name}</p>
                     <p class="card-greek">${scriptLabel}</p>
@@ -70,25 +70,32 @@
             allCards.forEach(el => revealObserver.observe(el));
         }
 
-        // Handle image loading errors programmatically (more reliable than inline onerror)
+        // Handle image loading: reveal on success, swap to fallback or skeleton on error.
+        // NOTE: We do NOT eagerly check img.complete/naturalWidth here because lazy-loaded
+        // images below the fold report complete=true and naturalWidth=0 before the browser
+        // has even started fetching them. That caused us to hide valid images and leave
+        // skeleton placeholders in their place.
         grid.querySelectorAll('.card-portrait img').forEach(img => {
-            if (img.complete && img.naturalWidth === 0) {
-                handleImgError(img);
-            } else {
-                img.addEventListener('error', function() { handleImgError(this); });
-            }
+            img.classList.add('is-loading');
+            img.addEventListener('load', function() { this.classList.remove('is-loading'); this.classList.add('is-loaded'); });
+            img.addEventListener('error', function() { handleImgError(this); });
         });
     }
 
     function handleImgError(img) {
-        img.style.opacity = '0';
-        img.style.display = 'none';
-        const portrait = img.closest('.card-portrait');
-        if (portrait) {
-            portrait.style.background = 'linear-gradient(90deg, rgba(255,255,255,0.02) 25%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.02) 75%)';
-            portrait.style.backgroundSize = '200% 100%';
-            portrait.style.animation = 'skeletonShimmer 1.5s infinite';
+        img.classList.remove('is-loading');
+        const fallback = img.dataset.fallback;
+        // If the current src is already the fallback, give up and show skeleton.
+        if (!fallback || img.src.endsWith(fallback)) {
+            img.classList.add('is-error');
+            img.style.opacity = '0';
+            img.style.display = 'none';
+            const portrait = img.closest('.card-portrait');
+            if (portrait) portrait.classList.add('is-skeleton');
+            return;
         }
+        // Try the fallback once (e.g. .png if .webp fails).
+        img.src = fallback;
     }
 
     function applyFilter() {
