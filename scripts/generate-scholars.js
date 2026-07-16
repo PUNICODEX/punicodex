@@ -6,7 +6,7 @@
  * using the canonical section taxonomy. When a merged manifest exists at
  * `platform/scholars/manifests/{id}.json`, published section content is
  * baked statically into the HTML (SEO / no-flash path); otherwise the page
- * falls back to a blank manifest with "Awaiting Contribution" states. The
+ * falls back to a blank manifest with "Open for Contribution" states. The
  * same markdown renderer is inlined into the page so the browser runtime
  * re-renders API content with byte-identical logic. Idempotent: safe to
  * re-run without touching existing lore/gallery/home content.
@@ -238,8 +238,10 @@ function buildSectionsHtml(manifest) {
         typeof section.body === 'string' &&
         section.body.trim() !== '';
       const statusHtml = published
-        ? '<span class="scholars-section-status">Published</span>'
-        : '<span class="scholars-section-status empty">Awaiting Contribution</span>';
+        ? `<span class="scholars-section-status">Contributed by ${section.lastModifiedBy || 'PÚNYCODEX Team'}</span>`
+        : META_SECTION_KEYS.has(section.key)
+          ? '<span class="scholars-section-status meta">Live Record</span>'
+          : '<span class="scholars-section-status empty">Open for Contribution</span>';
       const extraClass = section.key === 'edit-history' ? ' scholars-edit-history' : '';
       return `<section class="scholars-section${extraClass}" id="${section.key}">
     <div class="scholars-section-header">

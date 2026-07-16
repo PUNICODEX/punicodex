@@ -14,8 +14,8 @@
  *   5. re-seeding never clobbers scholar-approved content
  *   6. hostile markdown (<script>, <img onerror>) is stored raw but ALWAYS
  *      rendered escaped — both by markdown.js and by the baked page
- *   7. the "PÚNYCODEX Admin" identity exists but can never authenticate
- *   8. first-run history attribution names PÚNYCODEX Admin + admin userId
+ *   7. the "PÚNYCODEX Team" identity exists but can never authenticate
+ *   8. first-run history attribution names PÚNYCODEX Team + admin userId
  *
  * Run: node test/scholars-api-flow.test.js
  */
@@ -510,7 +510,7 @@ test('seeded admin institution exists and admin login always fails', async () =>
   const institution = dbLayer.getInstitutionBySlug('punycodex-admin');
   assert(institution, 'punycodex-admin institution missing after seed');
   assert(
-    institution.name === 'PÚNYCODEX Admin',
+    institution.name === 'PÚNYCODEX Team',
     `unexpected admin institution name: ${institution.name}`
   );
 
@@ -536,7 +536,7 @@ test('seeded admin institution exists and admin login always fails', async () =>
 // 9. First-run attribution
 // ─────────────────────────────────────────────────────────────
 
-test('earliest zeus mythology history record is attributed to PÚNYCODEX Admin', async () => {
+test('earliest zeus mythology history record is attributed to PÚNYCODEX Team', async () => {
   const res = await request('GET', `/api/v1/scholars/sections/${ctx.mythologySectionId}/history`);
   assert(res.status === 200, `expected 200, got ${res.status}`);
   const records = res.body.data;
@@ -547,8 +547,8 @@ test('earliest zeus mythology history record is attributed to PÚNYCODEX Admin',
   })[0];
   assert(
     typeof earliest.attribution.note === 'string' &&
-      earliest.attribution.note.includes('PÚNYCODEX Admin'),
-    `earliest attribution note missing 'PÚNYCODEX Admin': ${JSON.stringify(earliest.attribution)}`
+      earliest.attribution.note.includes('PÚNYCODEX Team'),
+    `earliest attribution note missing 'PÚNYCODEX Team': ${JSON.stringify(earliest.attribution)}`
   );
   assert(
     earliest.attribution.userId === ctx.adminUserId,

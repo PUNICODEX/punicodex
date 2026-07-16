@@ -31,15 +31,21 @@ function walk(dir, files = []) {
 }
 
 const EXCLUDED_FILES = new Set([path.join(ROOT, 'platform', 'server.js')]);
+const EXCLUDED_DIRS = new Set([path.join(ROOT, 'docs', 'lighthouse')]);
 
-// Match a /api/ URL that does NOT end with a slash and is followed by
+// Match an internal /api/ URL that does NOT end with a slash and is followed by
 // a query string, quote, comma, closing paren, or end of line.
-const BARE_API_URL = /(\/api\/[a-zA-Z0-9_\-./]+[^\s?"'`',)>/])(\?|["'`'`,)>]|$)/;
+// The negative lookbehind ensures we do not flag /api/ paths that are part of an
+// external URL (e.g. https://example.org/server/api/core/...).
+const BARE_API_URL = /(?<![a-zA-Z0-9.:/])(\/api\/[a-zA-Z0-9_\-./]+[^\s?"`'',)>/])(\?|["`'',)>]|$)/;
 
 test('frontend API references use trailing slash', () => {
   const files = walk(ROOT).filter((fp) => {
     if (EXCLUDED_FILES.has(fp)) return false;
     if (fp.startsWith(path.join(ROOT, 'api') + path.sep)) return false;
+    for (const excludedDir of EXCLUDED_DIRS) {
+      if (fp.startsWith(excludedDir + path.sep)) return false;
+    }
     return true;
   });
 

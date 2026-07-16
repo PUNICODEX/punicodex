@@ -30,6 +30,7 @@ const SUITES = [
   { name: 'Scholars API Tests', cmd: 'node platform/scholars/router.test.js' },
   { name: 'Scholars Content Regression', cmd: 'node test/scholars-content.test.js' },
   { name: 'Scholars API Flow Regression', cmd: 'node test/scholars-api-flow.test.js' },
+  { name: 'Flagship Blog Tests', cmd: 'node --test test/blog.test.js' },
   {
     name: 'Scholars Session Revocation Tests',
     cmd: 'node platform/scholars/session-revocation.test.js',
@@ -64,6 +65,11 @@ const SUITES = [
   { name: 'Admin Tests', cmd: 'node test/admin.test.js' },
   { name: 'Admin Booking Routes', cmd: 'node test/admin-bookings.test.js' },
   { name: 'Ad Analytics Tests', cmd: 'node test/ad-analytics.test.js' },
+  {
+    name: 'Site Analytics Tests',
+    cmd: 'node test/site-analytics.test.js',
+    timeout: 600000,
+  },
   { name: 'Booking Service Tests', cmd: 'node test/booking-service.test.js' },
   { name: 'Booking Validation Tests', cmd: 'node test/booking-validation.test.js' },
   { name: 'Patron Service Tests', cmd: 'node test/patron-service.test.js' },
@@ -171,6 +177,7 @@ const SUITES = [
   { name: 'Model Corpus Tests', cmd: 'node test/model-corpus.test.js' },
   { name: 'Safety Corpus Tests', cmd: 'node test/safety-corpus.test.js' },
   { name: 'AI Corpus Phases Tests', cmd: 'node test/ai-corpus-phases.test.js' },
+  { name: 'Lighthouse Thresholds', cmd: 'node --test test/lighthouse.test.js' },
   { name: 'Link Checker', cmd: 'node test/links.js' },
   { name: 'SEO Validator', cmd: 'node scripts/validate-seo.js' },
   { name: 'Philological Accuracy', cmd: 'node scripts/validate-accuracy.js' },

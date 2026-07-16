@@ -1,0 +1,318 @@
+#!/usr/bin/env node
+/**
+ * PÚNYCODEX — Blog page generator
+ *
+ * Reads platform/blog/content/{id}.json and templates/flagship/blog/index.html,
+ * then writes sites/{id}/blog/index.html for every built flagship.
+ *
+ * Usage:
+ *   node scripts/generate-blog-pages.js
+ */
+
+'use strict';
+
+const fs = require('node:fs');
+const path = require('node:path');
+const vm = require('node:vm');
+
+const ROOT = path.join(__dirname, '..');
+const BLOG_DIR = path.join(ROOT, 'platform', 'blog', 'content');
+const TEMPLATE_PATH = path.join(ROOT, 'templates', 'flagship', 'blog', 'index.html');
+const SITES_DIR = path.join(ROOT, 'sites');
+
+const { LEXICON } = require(path.join(ROOT, 'type', 'js', 'lexicon.js'));
+const { getOriginalScript } = require(path.join(ROOT, 'type', 'js', 'original-scripts.js'));
+
+const archetypeSrc = fs.readFileSync(path.join(ROOT, 'js', 'archetypes-v2.js'), 'utf8');
+const ARCHETYPES = vm.runInNewContext(
+  `(function(){\n${archetypeSrc}\nreturn ARCHETYPES;\n})()`
+);
+const BUILT_IDS = ARCHETYPES.filter((a) => a.built).map((a) => a.id).sort();
+const LEXICON_BY_ID = new Map(LEXICON.map((e) => [e.id, e]));
+
+const FLAGSHIP_DATA = (() => {
+  try {
+    return require(path.join(ROOT, 'scripts', 'flagship-data.json'));
+  } catch {
+    return {};
+  }
+})();
+
+const TEMPLATE = fs.readFileSync(TEMPLATE_PATH, 'utf8');
+
+// ── Deterministic canvas-effect fallback ────────────────────────────────────
+
+function getCanvasEffect(entry) {
+  const id = entry.id;
+  if (FLAGSHIP_DATA.effectMap?.[id]) return FLAGSHIP_DATA.effectMap[id];
+
+  const pantheon = entry.pantheon || '';
+  const domain = (entry.domain || '').toLowerCase();
+  const meaning = (entry.meaning || '').toLowerCase();
+  const combined = `${domain} ${meaning}`;
+  const has = (words) => words.some((w) => combined.includes(w));
+
+  if (
+    id === 'aither' || id === 'ouranos' || id === 'uranus' || has(['aether', 'upper air', 'bright upper'])
+  )
+    return 'aurora';
+  if (['varuna', 'praajapati', 'prajapati', 'rta', 'maat', 'vishnu'].includes(id)) return 'cosmicNet';
+  if (id === 'anat' || id === 'baal' || id === 'enlil' || has(['desert storm', 'sumerian wind']))
+    return 'sandstorm';
+  if (
+    ['apsu', 'ea', 'okeanos', 'pontos'].includes(id) ||
+    has(['abyss', 'freshwater abyss', 'fresh water', 'primordial water'])
+  )
+    return 'abyssal';
+  if (['ka', 'ba', 'akh'].includes(id) || has(['soul', 'life force', 'vital essence', 'double']))
+    return 'soul';
+  if (['trengtreng', 'typhon', 'ishtar', 'astart'].includes(id) || has(['volcanic', 'thunder war']))
+    return 'volcanic';
+  if (id === 'eros' || has(['desire', 'love', 'passion'])) return 'light';
+  if (id === 'asherah' || id === 'inanna') return 'tree';
+  if (
+    ['zeus', 'thor', 'jupiter', 'perun', 'adad', 'shu'].includes(id) ||
+    has(['thunder', 'storm', 'lightning'])
+  )
+    return 'storm';
+  if (
+    ['kronos', 'cronus', 'chronos', 'saturn'].includes(id) ||
+    has(['time', 'harvest', 'golden age'])
+  )
+    return 'time';
+  if (
+    ['hades', 'nott', 'hekate', 'kali', 'tartaros', 'chaos'].includes(id) ||
+    has(['dark', 'void', 'night', 'death', 'underworld'])
+  )
+    return 'void';
+  if (
+    ['apollo', 'ra', 'helios', 'surya', 'savitr', 'amaterasu', 'int'].includes(id) ||
+    has(['sun', 'light', 'dawn'])
+  )
+    return 'sun';
+  if (
+    ['poseidon', 'aphrodite', 'loki', 'njor'].includes(id) ||
+    has(['water', 'sea', 'ocean', 'wave', 'river'])
+  )
+    return 'water';
+  if (
+    ['gaia', 'rhea', 'demeter', 'cybele', 'inanna', 'asherah', 'anu', 'nut', 'geb'].includes(id) ||
+    has(['earth', 'mountain', 'fertility', 'mother'])
+  )
+    return 'mountain';
+  if (
+    ['artemis', 'diana', 'selene', 'chandra', 'tsukuyomi'].includes(id) ||
+    has(['moon', 'hunt', 'stars'])
+  )
+    return 'stars';
+  if (
+    ['odin', 'thoth', 'bragi', 'saraswati', 'ganesha', 'hanuman', 'hermes'].includes(id) ||
+    has(['wisdom', 'knowledge', 'word', 'poetry', 'messenger'])
+  )
+    return 'light';
+  if (
+    ['prometheus', 'hephaistos', 'logi', 'aguni', 'kali'].includes(id) ||
+    has(['fire', 'flame', 'forge'])
+  )
+    return 'flame';
+  if (['yggdrasil', 'silvanus', 'dionysos'].includes(id) || has(['tree', 'vine', 'forest']))
+    return 'tree';
+  if (pantheon === 'norse' || pantheon === 'celtic' || pantheon === 'slavic') return 'stars';
+  if (pantheon === 'egyptian') return 'sun';
+  if (pantheon === 'mesopotamian') return 'sandstorm';
+  return 'particles';
+}
+
+function extractFromHomePage(id, entry) {
+  const defaults = {
+    effect: getCanvasEffect(entry),
+    primary: '#D4AF37',
+    secondary: '#4169E1',
+    domainsText: entry.unicode,
+  };
+  const homePath = path.join(SITES_DIR, id, 'index.html');
+  if (!fs.existsSync(homePath)) return defaults;
+  try {
+    const html = fs.readFileSync(homePath, 'utf8');
+
+    const effectMatch = html.match(/<canvas[^>]*data-effect="([^"]*)"[^>]*>/);
+    if (effectMatch) defaults.effect = effectMatch[1];
+
+    const primaryMatch = html.match(/<canvas[^>]*data-primary="([^"]*)"[^>]*>/);
+    if (primaryMatch) defaults.primary = primaryMatch[1];
+
+    const secondaryMatch = html.match(/<canvas[^>]*data-secondary="([^"]*)"[^>]*>/);
+    if (secondaryMatch) defaults.secondary = secondaryMatch[1];
+
+    const ownedMatch = html.match(
+      /<span class="footer-label">Owned Domains<\/span>\s*<span class="footer-value">([^<]+)<\/span>/
+    );
+    if (ownedMatch) defaults.domainsText = ownedMatch[1].trim();
+  } catch {
+    // fall back to defaults
+  }
+  return defaults;
+}
+
+// ── HTML helpers ────────────────────────────────────────────────────────────
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function mdToHtml(md) {
+  let html = escapeHtml(md);
+
+  // Inline links before formatting so escaped brackets are not an issue.
+  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+  html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+
+  html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+  html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+  html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+
+  const lines = html.split('\n');
+  const out = [];
+  let inList = false;
+
+  for (const rawLine of lines) {
+    const line = rawLine.trimEnd();
+    if (line.startsWith('- ')) {
+      if (!inList) {
+        out.push('<ul>');
+        inList = true;
+      }
+      out.push(`  <li>${line.slice(2)}</li>`);
+    } else {
+      if (inList) {
+        out.push('</ul>');
+        inList = false;
+      }
+      if (line.trim() === '') {
+        continue;
+      }
+      if (/^<h[123]/.test(line)) {
+        out.push(line);
+      } else {
+        out.push(`<p>${line}</p>`);
+      }
+    }
+  }
+  if (inList) out.push('</ul>');
+
+  return out.join('\n');
+}
+
+function buildFooter(id, entry, domainsText, tierLabel) {
+  const script = getOriginalScript(entry) || entry?.greek || '—';
+  return `<footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="https://punycodex.com/" class="footer-logo">PUNYCODEX</a>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Owned Domains</span>
+                        <span class="footer-value">${escapeHtml(domainsText)}</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">${escapeHtml(tierLabel)}</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Original Script</span>
+                        <span class="footer-value">${escapeHtml(script)}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <picture><source srcset="../assets/${id}_logomark.webp" type="image/webp"><img src="../assets/${id}_logomark.png" alt="${escapeHtml(entry?.unicode || id)} logomark" class="footer-logomark"></picture>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>`;
+}
+
+function buildExtendedTab(id, hasExtended) {
+  if (!hasExtended) return '';
+  return `<a href="../lore/extended/index.html" class="nav-link">Extended</a>`;
+}
+
+function buildPatternsTab(id, hasPatterns) {
+  if (!hasPatterns) return '';
+  return `<a href="../patterns/index.html" class="nav-link">Patterns</a>`;
+}
+
+// ── Main loop ───────────────────────────────────────────────────────────────
+
+let created = 0;
+let skipped = 0;
+
+for (const id of BUILT_IDS) {
+  const contentPath = path.join(BLOG_DIR, `${id}.json`);
+  if (!fs.existsSync(contentPath)) {
+    console.warn(`  skipping ${id}: no blog content JSON`);
+    continue;
+  }
+
+  const post = JSON.parse(fs.readFileSync(contentPath, 'utf8'));
+  const entry = LEXICON_BY_ID.get(id);
+  const archetype = ARCHETYPES.find((a) => a.id === id);
+  const home = extractFromHomePage(id, entry);
+
+  const unicode = entry?.unicode || id;
+  const greek = entry?.greek || '';
+  const domain = entry?.domain || archetype?.domain || '';
+  const tierLabel = entry?.tierLabel || `Tier ${entry?.tier || '2'}`;
+
+  const outDir = path.join(SITES_DIR, id, 'blog');
+  fs.mkdirSync(outDir, { recursive: true });
+
+  const hasExtended = fs.existsSync(path.join(SITES_DIR, id, 'lore', 'extended', 'index.html'));
+  const hasPatterns = fs.existsSync(path.join(SITES_DIR, id, 'patterns', 'index.html'));
+
+  let html = TEMPLATE;
+
+  const replacements = {
+    TEMPLE_ID: id,
+    UNICODE: escapeHtml(unicode),
+    GREEK: escapeHtml(greek),
+    ASCII: escapeHtml(entry?.ascii || id),
+    DOMAIN: escapeHtml(domain),
+    TIER_LABEL: escapeHtml(tierLabel),
+    DOMAINS_TEXT: escapeHtml(home.domainsText),
+    EFFECT: escapeHtml(home.effect),
+    PRIMARY: escapeHtml(home.primary),
+    SECONDARY: escapeHtml(home.secondary),
+    POST_TITLE: escapeHtml(post.title),
+    POST_DESCRIPTION: escapeHtml(post.description),
+    POST_BODY_HTML: mdToHtml(post.body),
+    POST_KEYWORDS_JSON: post.keywords.map((k) => `"${escapeHtml(k)}"`).join(', '),
+    POST_TAGS_HTML: post.tags.map((t) => `<span class="blog-tag">${escapeHtml(t)}</span>`).join(''),
+    READING_TIME: escapeHtml(post.readingTime),
+    PUBLISHED_AT: escapeHtml(post.publishedAt),
+    AUTHOR: escapeHtml(post.author),
+    EXTENDED_TAB: buildExtendedTab(id, hasExtended),
+    PATTERNS_TAB: buildPatternsTab(id, hasPatterns),
+    FOOTER: buildFooter(id, entry, home.domainsText, tierLabel),
+  };
+
+  for (const [key, value] of Object.entries(replacements)) {
+    html = html.split(`{{${key}}}`).join(value);
+  }
+
+  fs.writeFileSync(path.join(outDir, 'index.html'), html, 'utf8');
+  created++;
+}
+
+console.log(`Blog pages: ${created} written (${skipped} skipped)`);

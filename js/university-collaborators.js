@@ -39,7 +39,7 @@
     const isEmpty = !sponsor;
     if (isEmpty) {
       return `
-        <a href="${SPONSORSHIP_URL}" class="uc-card uc-card-empty" aria-label="Reserve a university collaborator slot">
+        <a href="${SPONSORSHIP_URL}" class="uc-card uc-card-empty">
           <div class="uc-empty-icon">+</div>
           <p class="uc-card-name">Reserve Your Place</p>
           <p class="uc-card-tagline">Join partner institutions empowering student scholars and creators.</p>

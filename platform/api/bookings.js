@@ -2,6 +2,7 @@ const crypto = require('node:crypto');
 const { insert, get, all, run, transaction } = require('../db/operational');
 const { getDb } = require('../db/connection');
 const { extractAndSave } = require('./keyword-extractor');
+const { isBotBasic } = require('./bot-detection');
 
 function generateToken() {
   return crypto.randomBytes(24).toString('hex');
@@ -24,32 +25,6 @@ function withSlotLock(slotId, fn) {
     run.catch(() => {})
   );
   return run;
-}
-
-const BOT_PATTERNS = [
-  /bot/i,
-  /crawler/i,
-  /spider/i,
-  /scrape/i,
-  /slurp/i,
-  /facebookexternalhit/i,
-  /whatsapp/i,
-  /linkedinbot/i,
-  /pingdom/i,
-  /gtmetrix/i,
-  /chrome-lighthouse/i,
-  /googlebot/i,
-  /bingbot/i,
-  /yandex/i,
-  /baiduspider/i,
-  /duckduckbot/i,
-  /ahrefs/i,
-  /semrush/i,
-];
-
-function isBot(userAgent) {
-  if (!userAgent || typeof userAgent !== 'string') return false;
-  return BOT_PATTERNS.some((pattern) => pattern.test(userAgent));
 }
 
 class BookingConflictError extends Error {
@@ -608,7 +583,7 @@ async function recordEvent({
   visiblePercent,
 }) {
   const ipHash = hashIp(ip || 'unknown');
-  const botFlag = isBot(userAgent) ? 1 : 0;
+  const botFlag = isBotBasic(userAgent) ? 1 : 0;
   await insert(
     `
       INSERT INTO analytics_events (booking_id, event_type, ip_hash, user_agent, referrer, is_bot, visible_seconds, visible_percent)

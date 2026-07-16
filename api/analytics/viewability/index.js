@@ -1,6 +1,6 @@
-const { trackViewability } = require('../../../../platform/api/ad-analytics');
-const { handleError, setCors } = require('../../../_utils');
-const { checkPublicRateLimitByReq } = require('../../../../platform/api/public-rate-limiter');
+const { trackViewability } = require('../../../platform/api/ad-analytics');
+const { handleError, setCors } = require('../../_utils');
+const { checkPublicRateLimitByReq } = require('../../../platform/api/public-rate-limiter');
 
 module.exports = async (req, res) => {
   setCors(req, res);

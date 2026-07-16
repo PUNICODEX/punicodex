@@ -34,6 +34,7 @@ const scripts = [
   'platform/generate-unicode-dir-v2.js',
   'scripts/sync-shared-lexicon.js',
   'scripts/sync-shared-engine.js',
+  'scripts/convert-images-to-webp.js',
   'scripts/build-android-assets.js',
   'scripts/export-platform-lexicon.js',
   'scripts/generate-similarities.js',
@@ -51,6 +52,8 @@ const scripts = [
   'scripts/generate-scholars-content.js',
   'scripts/generate-scholars-manifests.js',
   'scripts/generate-scholars.js',
+  'scripts/generate-blog-content.js',
+  'scripts/generate-blog-pages.js',
   'scripts/sync-scholars-portal.js',
   'scripts/gen-sitemap.js',
   'scripts/inject-analytics.js',
@@ -81,7 +84,7 @@ function run(script) {
   const scriptPath = path.join(root, parts[0]);
   const args = parts.slice(1);
   console.log(`\n▸ ${script}`);
-  const result = spawnSync(process.execPath, [scriptPath, ...args], {
+  const result = spawnSync(process.execPath, ['--max-old-space-size=8192', scriptPath, ...args], {
     cwd: root,
     stdio: 'inherit',
   });

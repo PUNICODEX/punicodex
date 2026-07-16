@@ -14,6 +14,24 @@ const path = require('path');
 const vm = require('vm');
 
 const ROOT = path.join(__dirname, '..');
+
+function writeFileWithRetry(filePath, data, encoding = 'utf8', retries = 5, delay = 100) {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      fs.writeFileSync(filePath, data, encoding);
+      return;
+    } catch (err) {
+      const isTransient =
+        err.code === 'EBUSY' || err.code === 'EAGAIN' || err.code === 'UNKNOWN' || err.code === 'EPERM';
+      if (attempt === retries || !isTransient) {
+        throw err;
+      }
+      const ms = delay * attempt;
+      console.warn(`  transient write error for ${filePath} (${err.code}), retrying in ${ms}ms...`);
+      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
+    }
+  }
+}
 const { LEXICON } = require(path.join(ROOT, 'type', 'js', 'lexicon.js'));
 
 const archetypeSrc = fs.readFileSync(path.join(ROOT, 'js', 'archetypes-v2.js'), 'utf8');
@@ -75,12 +93,13 @@ for (const entry of LEXICON) {
     xml += urlEntry(`/sites/${entry.id}/lore/`, '0.7', 'monthly');
     xml += urlEntry(`/sites/${entry.id}/lore/extended/`, '0.6', 'monthly');
     xml += urlEntry(`/sites/${entry.id}/gallery/`, '0.5', 'monthly');
+    xml += urlEntry(`/sites/${entry.id}/blog/`, '0.6', 'monthly');
   }
 }
 
 xml += '</urlset>\n';
 
-fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), xml, 'utf8');
+writeFileWithRetry(path.join(ROOT, 'sitemap.xml'), xml, 'utf8');
 
-const urlCount = mainPages.length + LEXICON.length + flagshipIds.size * 3;
+const urlCount = mainPages.length + LEXICON.length + flagshipIds.size * 4;
 console.log(`Sitemap generated: ${urlCount} URLs`);

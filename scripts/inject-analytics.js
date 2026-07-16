@@ -1,13 +1,16 @@
 #!/usr/bin/env node
 /**
- * Inject analytics (GA4) and Google Search Console verification tags.
+ * Inject analytics (GA4), Google Search Console verification tags, and the
+ * first-party site analytics beacon.
  *
  * Reads:
  *   GA_MEASUREMENT_ID   — e.g. G-XXXXXXXXXX
  *   GSC_VERIFICATION    — e.g. abcdefg123456
  *
- * If the env vars are not set, the script leaves existing markers in place
- * but does not inject new ones, so local builds remain clean.
+ * The first-party beacon (<script src="/js/analytics-beacon.js" defer>) is
+ * ALWAYS injected. GA4/GSC tags are only added when the env vars are set.
+ * Injection is idempotent: the previously injected block (between the
+ * PUNYCODEX-ANALYTICS markers) is stripped before re-injecting.
  */
 
 const fs = require('fs');
@@ -19,6 +22,7 @@ const GSC = process.env.GSC_VERIFICATION;
 
 const MARKER_START = '<!-- PUNYCODEX-ANALYTICS-START -->';
 const MARKER_END = '<!-- PUNYCODEX-ANALYTICS-END -->';
+const BEACON_TAG = '<script src="/js/analytics-beacon.js" defer></script>';
 
 function buildSnippet() {
   const parts = [];
@@ -36,7 +40,7 @@ function buildSnippet() {
       `</script>`
     );
   }
-  if (parts.length === 0) return '';
+  parts.push(BEACON_TAG);
   return `\n${MARKER_START}\n${parts.join('\n')}\n${MARKER_END}\n`;
 }
 
@@ -52,10 +56,6 @@ function walk(dir, callback) {
 }
 
 const snippet = buildSnippet();
-if (!snippet) {
-  console.log('No analytics env vars set (GA_MEASUREMENT_ID / GSC_VERIFICATION); skipping injection.');
-  process.exit(0);
-}
 
 const targets = [];
 walk(path.join(ROOT, 'sites'), (p) => targets.push(p));
@@ -85,9 +85,31 @@ for (const p of rootPages) {
   if (fs.existsSync(full)) targets.push(full);
 }
 
-let injected = 0;
-for (const filePath of targets) {
-  let html = fs.readFileSync(filePath, 'utf8');
+function withRetry(fn, attempts = 5, delayMs = 100) {
+  let lastErr;
+  for (let i = 0; i < attempts; i++) {
+    try {
+      return fn();
+    } catch (err) {
+      lastErr = err;
+      if (i < attempts - 1) {
+        // Busy-wait to avoid setTimeout in the synchronous path. Windows
+        // file locks (AV/indexer) on freshly written files are transient.
+        const start = Date.now();
+        while (Date.now() - start < delayMs) {}
+      }
+    }
+  }
+  throw lastErr;
+}
+
+function busyWait(ms) {
+  const start = Date.now();
+  while (Date.now() - start < ms) {}
+}
+
+function injectIntoFile(filePath) {
+  let html = withRetry(() => fs.readFileSync(filePath, 'utf8'));
 
   // Remove any previously injected snippet.
   const startIdx = html.indexOf(MARKER_START);
@@ -98,12 +120,42 @@ for (const filePath of targets) {
 
   // Inject immediately after <head>.
   const headMatch = html.match(/<head[^>]*>/i);
-  if (!headMatch) continue;
+  if (!headMatch) return false;
   const insertPos = headMatch.index + headMatch[0].length;
   html = html.slice(0, insertPos) + snippet + html.slice(insertPos);
 
-  fs.writeFileSync(filePath, html, 'utf8');
-  injected++;
+  withRetry(() => fs.writeFileSync(filePath, html, 'utf8'));
+  return true;
 }
 
-console.log(`Injected analytics snippet into ${injected} HTML files.`);
+let injected = 0;
+let pending = [];
+for (const filePath of targets) {
+  try {
+    if (injectIntoFile(filePath)) injected++;
+  } catch {
+    pending.push(filePath);
+  }
+}
+
+// Files locked by the OS (AV/indexer) during the main pass usually free up
+// by the time it finishes — sweep them in a few extra passes.
+for (let pass = 0; pass < 3 && pending.length > 0; pass++) {
+  busyWait(500);
+  const retry = pending;
+  pending = [];
+  for (const filePath of retry) {
+    try {
+      if (injectIntoFile(filePath)) injected++;
+    } catch {
+      pending.push(filePath);
+    }
+  }
+}
+
+for (const filePath of pending) {
+  console.error(`Failed to inject into ${filePath}`);
+}
+
+console.log(`Injected analytics snippet into ${injected} HTML files (failed ${pending.length}).`);
+if (pending.length > 0) process.exit(1);

@@ -209,7 +209,6 @@
     function renderCompletions() {
         const completions = getCompletions(currentInput, CONFIG.maxCompletions);
         activeCompletionIndex = -1;
-        inputField.setAttribute('aria-expanded', completions.length > 0 && currentInput ? 'true' : 'false');
 
         if (completions.length === 0 || !currentInput) {
             completionsEl.innerHTML = '';

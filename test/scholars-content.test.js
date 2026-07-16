@@ -524,10 +524,10 @@ test('baked scholars pages have sound structure (no file writes)', () => {
       );
     }
     assertions += 1;
-    const badges = count(html, '<span class="scholars-section-status">Published</span>');
+    const badges = count(html, '<span class="scholars-section-status">Contributed by ');
     if (badges !== publishedCount) {
       failures.push(
-        `${id}: 'Published' badge count ${badges} !== published sections ${publishedCount}`
+        `${id}: 'Contributed by' badge count ${badges} !== published sections ${publishedCount}`
       );
     }
     assertions += 1;

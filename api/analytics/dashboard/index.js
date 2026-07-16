@@ -1,5 +1,5 @@
-const { getDashboard } = require('../../../../platform/api/ad-analytics');
-const { handleError, setCors } = require('../../../_utils');
+const { getDashboard } = require('../../../platform/api/ad-analytics');
+const { handleError, setCors } = require('../../_utils');
 
 module.exports = async (req, res) => {
   setCors(req, res);

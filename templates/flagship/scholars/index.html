@@ -220,7 +220,7 @@
     <nav class="main-nav tab-nav" id="tab-nav">
         <div class="nav-inner">
             <a href="../" class="nav-logo">
-                <picture><source srcset="../assets/{{TEMPLE_ID}}_logolockup.webp" type="image/webp"><img src="../assets/{{TEMPLE_ID}}_logolockup.png" alt="{{UNICODE}}" class="nav-logo-img"></picture>
+                <picture><source srcset="../assets/{{TEMPLE_ID}}_logolockup.webp" type="image/webp"><img src="../assets/{{TEMPLE_ID}}_logolockup.png" alt="{{UNICODE}}" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links tab-nav-links">
                 <a href="../" class="nav-link">Home</a>
@@ -228,6 +228,7 @@
                 <a href="../gallery/index.html" class="nav-link">Gallery</a>
                 {{EXTENDED_TAB}}
                 {{PATTERNS_TAB}}
+                <a href="../blog/index.html" class="nav-link">Blog</a>
                 <a href="./" class="nav-link active">Scholars</a>
                 <a href="../creatives/index.html" class="nav-link">Creatives</a>
                 <a href="../patron/index.html" class="nav-link">Patrons</a>
@@ -245,6 +246,7 @@
         <a href="../gallery/index.html" class="nav-link">Gallery</a>
         {{EXTENDED_TAB}}
         {{PATTERNS_TAB}}
+        <a href="../blog/index.html" class="nav-link">Blog</a>
         <a href="./" class="nav-link active">Scholars</a>
         <a href="../creatives/index.html" class="nav-link">Creatives</a>
         <a href="../patron/index.html" class="nav-link">Patrons</a>
@@ -415,7 +417,9 @@
                 const statusEl = el.querySelector('.scholars-section-status');
                 const bodyEl = el.querySelector('.scholars-section-body');
                 if (statusEl) {
-                    statusEl.textContent = section.status === 'published' ? 'Published' : 'Awaiting Contribution';
+                    statusEl.textContent = section.status === 'published'
+                        ? `Contributed by ${section.lastModifiedBy || 'PÚNYCODEX Team'}`
+                        : 'Open for Contribution';
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {

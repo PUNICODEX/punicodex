@@ -50,10 +50,13 @@
                 ? `<span class="card-script-name">${escapeHtml(scriptName)}</span>${escapeHtml(originalScript)}`
                 : '<span class="card-script-name">Scholarly transliteration</span>';
 
+            const thumbPath = `/assets/images/mascots/thumbs/small/${a.id}_thumb.webp`;
+            const loadingAttr = index < 8 ? 'loading="eager"' : 'loading="lazy"';
+
             return `
                 <${tag} ${hrefAttr} class="archetype-card reveal-up ${unbuiltClass}" data-id="${a.id}" data-tier="${a.tier}" data-pantheon="${a.pantheon}" data-built="${a.built}" data-name="${(a.name || "").toLowerCase()}" data-greek="${(a.greek || "").toLowerCase()}" data-domain="${(a.domain || "").toLowerCase()}" style="--stagger-index:${index % 4}">
                     <div class="card-portrait">
-                        <img src="${a.mascotPath}" alt="${a.name} — ${a.domain}" data-fallback="${a.mascotFallback || a.mascotPath}" loading="lazy" decoding="async" class="card-portrait-img">
+                        <img src="${thumbPath}" alt="${a.name} — ${a.domain}" data-fallback="${a.mascotFallback || a.mascotPath}" width="150" height="150" ${loadingAttr} decoding="async" class="card-portrait-img">
                     </div>
                     <p class="card-name">${a.name}</p>
                     <p class="card-greek">${scriptLabel}</p>
