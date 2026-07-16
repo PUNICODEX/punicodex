@@ -68,7 +68,15 @@ function createSession(user, { ipHash = null, userAgent = null } = {}) {
 
 function validateSession(token) {
   if (!token || typeof token !== 'string') return null;
-  return getSessionWithUser(token);
+  const session = getSessionWithUser(token);
+  if (!session) return null;
+  // Immediate revocation: sessions belonging to non-active accounts are
+  // destroyed on sight so /auth/session agrees with requireAuth.
+  if (session.user_account_status && session.user_account_status !== 'active') {
+    deleteSession(token);
+    return null;
+  }
+  return session;
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -172,6 +180,18 @@ function requireAuth(req, res, next) {
   const session = getSessionWithUser(sessionId);
   if (!session) {
     return res.status(401).json({ error: 'Session expired or invalid' });
+  }
+  // Immediate revocation enforcement: a disabled (or otherwise non-active)
+  // account loses access the moment the next request arrives, regardless of
+  // session expiry. The session itself is destroyed so it cannot be reused.
+  if (session.user_account_status && session.user_account_status !== 'active') {
+    deleteSession(sessionId);
+    return res
+      .status(403)
+      .json({
+        error: 'Account is not active. Contact your institution admin.',
+        code: 'account_inactive',
+      });
   }
   req.scholarsSession = session;
   req.user = {

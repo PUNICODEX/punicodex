@@ -148,6 +148,10 @@
             text-align: left;
         }
 
+        .login-form[hidden] {
+            display: none;
+        }
+
         .login-field {
             display: flex;
             flex-direction: column;
@@ -279,8 +283,8 @@
     <main class="login-page">
         <div class="login-card">
             <p class="login-eyebrow">PUNYCODEX Scholarly Edition</p>
-            <h1 class="login-title">Sign In</h1>
-            <p class="login-subtitle">Enter your university email and password to contribute to the Unicode pantheon.</p>
+            <h1 class="login-title" id="login-title">Sign In</h1>
+            <p class="login-subtitle" id="login-subtitle">Enter your university email and password to contribute to the Unicode pantheon.</p>
 
             <form class="login-form" id="login-form" novalidate>
                 <div class="login-field">
@@ -292,6 +296,22 @@
                     <input type="password" id="password" name="password" placeholder="••••••••" autocomplete="current-password" required>
                 </div>
                 <button type="submit" class="login-submit" id="login-submit">Sign In</button>
+            </form>
+
+            <form class="login-form" id="password-form" novalidate hidden>
+                <div class="login-field">
+                    <label for="current-password">Current (Temporary) Password</label>
+                    <input type="password" id="current-password" name="current-password" placeholder="••••••••" autocomplete="current-password" required>
+                </div>
+                <div class="login-field">
+                    <label for="new-password">New Password</label>
+                    <input type="password" id="new-password" name="new-password" placeholder="At least 10 characters" autocomplete="new-password" required>
+                </div>
+                <div class="login-field">
+                    <label for="confirm-password">Confirm New Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Repeat the new password" autocomplete="new-password" required>
+                </div>
+                <button type="submit" class="login-submit" id="password-submit">Set Password</button>
             </form>
 
             <div class="login-message" id="login-message" role="alert" aria-live="polite"></div>
@@ -359,6 +379,12 @@
 
             if (ok && data?.data?.token) {
                 localStorage.setItem('scholars_session', data.data.token);
+                if (data.data.requirePasswordChange === true) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Sign In';
+                    showPasswordChangeForm();
+                    return;
+                }
                 showMessage('Sign-in successful. Redirecting…', 'success');
                 window.location.href = getRedirect();
                 return;
@@ -367,6 +393,85 @@
             submitBtn.disabled = false;
             submitBtn.textContent = 'Sign In';
             showMessage(data?.error || 'Sign in failed. Please check your credentials and try again.', 'error');
+        });
+
+        const passwordForm = document.getElementById('password-form');
+        const passwordSubmitBtn = document.getElementById('password-submit');
+
+        function showPasswordChangeForm() {
+            form.hidden = true;
+            passwordForm.hidden = false;
+            document.getElementById('login-title').textContent = 'Set Your Password';
+            document.getElementById('login-subtitle').textContent = 'Your account is using a temporary provisioned password. Choose a permanent password to continue.';
+            clearMessage();
+            document.getElementById('current-password').focus();
+        }
+
+        function validateNewPassword(password) {
+            if (password.length < 10) return 'New password must be at least 10 characters long.';
+            if (!/[A-Z]/.test(password)) return 'New password must include at least one uppercase letter.';
+            if (!/[0-9]/.test(password)) return 'New password must include at least one digit.';
+            return null;
+        }
+
+        async function changePassword(currentPassword, newPassword) {
+            const res = await fetch(apiBase + '/auth/password', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-scholars-session': localStorage.getItem('scholars_session') || '',
+                },
+                body: JSON.stringify({ currentPassword, newPassword }),
+            });
+            const data = await res.json().catch(() => ({ success: false, error: 'Invalid response from server' }));
+            return { ok: res.ok, status: res.status, data };
+        }
+
+        passwordForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            clearMessage();
+
+            const currentPassword = document.getElementById('current-password').value;
+            const newPassword = document.getElementById('new-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            if (!currentPassword) {
+                showMessage('Please enter your current (temporary) password.', 'error');
+                return;
+            }
+
+            const weakError = validateNewPassword(newPassword);
+            if (weakError) {
+                showMessage(weakError, 'error');
+                return;
+            }
+
+            if (newPassword !== confirmPassword) {
+                showMessage('New passwords do not match.', 'error');
+                return;
+            }
+
+            passwordSubmitBtn.disabled = true;
+            passwordSubmitBtn.textContent = 'Updating…';
+
+            const { ok, status, data } = await changePassword(currentPassword, newPassword);
+
+            if (ok && data?.data?.changed) {
+                showMessage('Password updated. Redirecting…', 'success');
+                setTimeout(() => { window.location.href = getRedirect(); }, 1200);
+                return;
+            }
+
+            passwordSubmitBtn.disabled = false;
+            passwordSubmitBtn.textContent = 'Set Password';
+
+            if (status === 401) {
+                showMessage('Current password is incorrect.', 'error');
+            } else if (status === 400) {
+                showMessage(data?.error || 'The new password does not meet the requirements.', 'error');
+            } else {
+                showMessage(data?.error || 'Password change failed. Please try again.', 'error');
+            }
         });
     })();
     </script>

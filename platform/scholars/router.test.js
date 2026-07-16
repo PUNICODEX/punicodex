@@ -438,6 +438,48 @@ async function main() {
       throw new Error('expected minimum score error');
   });
 
+  test('author can withdraw own pending edit', async () => {
+    const submitRes = await request(
+      'POST',
+      '/api/v1/scholars/temples/zeus/sections/mythology/edits/',
+      {
+        body: {
+          proposedBody: 'A draft the author decides to retract before review.',
+          proposedSources: [{ citation: 'Homer, Iliad', url: 'https://example.com/iliad' }],
+        },
+        headers: sessionHeader(ctx.studentSessionId),
+      }
+    );
+    if (submitRes.status !== 201)
+      throw new Error(`expected 201, got ${submitRes.status}: ${JSON.stringify(submitRes.body)}`);
+    const withdrawId = submitRes.body.data.editId;
+
+    const res = await request('POST', `/api/v1/scholars/edits/${withdrawId}/withdraw/`, {
+      headers: sessionHeader(ctx.studentSessionId),
+    });
+    if (res.status !== 200)
+      throw new Error(`expected 200, got ${res.status}: ${JSON.stringify(res.body)}`);
+    if (!res.body.data.withdrawn) throw new Error('expected withdrawn=true');
+
+    const detail = await request('GET', `/api/v1/scholars/edits/${withdrawId}/`, {
+      headers: sessionHeader(ctx.studentSessionId),
+    });
+    if (detail.body.data.status !== 'withdrawn')
+      throw new Error(`expected status withdrawn, got ${detail.body.data.status}`);
+  });
+
+  test('non-author cannot withdraw an edit', async () => {
+    const res = await request('POST', `/api/v1/scholars/edits/${ctx.editId}/withdraw/`, {
+      headers: sessionHeader(ctx.reviewerSessionId),
+    });
+    if (res.status !== 403) throw new Error(`expected 403, got ${res.status}`);
+  });
+
+  test('unauthenticated cannot withdraw an edit', async () => {
+    const res = await request('POST', `/api/v1/scholars/edits/${ctx.editId}/withdraw/`, {});
+    if (res.status !== 401) throw new Error(`expected 401, got ${res.status}`);
+  });
+
   test('reviewer can list pending edits', async () => {
     const res = await request('GET', '/api/v1/scholars/edits/pending/', {
       headers: sessionHeader(ctx.reviewerSessionId),
@@ -467,6 +509,47 @@ async function main() {
     if (res.status !== 200)
       throw new Error(`expected 200, got ${res.status}: ${JSON.stringify(res.body)}`);
     if (!res.body.data.approved) throw new Error('expected approved=true');
+  });
+
+  test('author cannot withdraw an already-approved edit', async () => {
+    const res = await request('POST', `/api/v1/scholars/edits/${ctx.editId}/withdraw/`, {
+      headers: sessionHeader(ctx.studentSessionId),
+    });
+    if (res.status !== 400) throw new Error(`expected 400, got ${res.status}`);
+  });
+
+  test('student can list own submissions via /edits/mine', async () => {
+    const res = await request('GET', '/api/v1/scholars/edits/mine/', {
+      headers: sessionHeader(ctx.studentSessionId),
+    });
+    if (res.status !== 200) throw new Error(`expected 200, got ${res.status}`);
+    if (!Array.isArray(res.body.data)) throw new Error('expected data array');
+    // The student has authored three edits so far: approved, withdrawn, rejected-quality rejections don't persist.
+    if (res.body.data.length < 2)
+      throw new Error(`expected at least 2 own edits, got ${res.body.data.length}`);
+    const first = res.body.data[0];
+    if (!first.section_key || !first.entry_id) throw new Error('missing section/temple context');
+    if (
+      !res.body.data.every((e) =>
+        ['approved', 'withdrawn', 'pending', 'rejected', 'needs_revision'].includes(e.status)
+      )
+    )
+      throw new Error('unexpected status value');
+  });
+
+  test('/edits/mine does not leak other users submissions', async () => {
+    const res = await request('GET', '/api/v1/scholars/edits/mine/', {
+      headers: sessionHeader(ctx.reviewerSessionId),
+    });
+    if (res.status !== 200) throw new Error(`expected 200, got ${res.status}`);
+    if (!Array.isArray(res.body.data)) throw new Error('expected data array');
+    if (res.body.data.length !== 0)
+      throw new Error(`expected 0 reviewer-authored edits, got ${res.body.data.length}`);
+  });
+
+  test('unauthenticated cannot list own submissions', async () => {
+    const res = await request('GET', '/api/v1/scholars/edits/mine/', {});
+    if (res.status !== 401) throw new Error(`expected 401, got ${res.status}`);
   });
 
   test('approval publishes the section and creates history', async () => {
@@ -608,7 +691,7 @@ async function main() {
 
   test('user can change own password', async () => {
     const changeRes = await request('POST', '/api/v1/scholars/auth/password/', {
-      body: { currentPassword: 'student-pass', newPassword: 'new-student-pass' },
+      body: { currentPassword: 'student-pass', newPassword: 'New-Student-Pass1' },
       headers: sessionHeader(ctx.studentSessionId),
     });
     if (changeRes.status !== 200)
@@ -616,7 +699,7 @@ async function main() {
     if (!changeRes.body.data.changed) throw new Error('expected changed=true');
 
     const loginRes = await request('POST', '/api/v1/scholars/auth/login/', {
-      body: { email: 'student@academy.test', password: 'new-student-pass' },
+      body: { email: 'student@academy.test', password: 'New-Student-Pass1' },
     });
     if (loginRes.status !== 200)
       throw new Error(`expected 200 after password change, got ${loginRes.status}`);
@@ -677,6 +760,30 @@ async function main() {
 
   test('student cannot fetch institution dashboard', async () => {
     const res = await request('GET', '/api/v1/scholars/institution/', {
+      headers: sessionHeader(ctx.studentSessionId),
+    });
+    if (res.status !== 403) throw new Error(`expected 403, got ${res.status}`);
+  });
+
+  test('institution admin can fetch institution analytics', async () => {
+    const res = await request('GET', '/api/v1/scholars/institution/analytics/?days=30', {
+      headers: sessionHeader(ctx.adminSessionId),
+    });
+    if (res.status !== 200)
+      throw new Error(`expected 200, got ${res.status}: ${JSON.stringify(res.body)}`);
+    const data = res.body.data;
+    if (data.periodDays !== 30) throw new Error('expected periodDays=30');
+    if (!Array.isArray(data.editsByDay)) throw new Error('expected editsByDay array');
+    if (!Array.isArray(data.approvalsByDay)) throw new Error('expected approvalsByDay array');
+    if (!Array.isArray(data.topTemples)) throw new Error('expected topTemples array');
+    if (data.editsByDay.length < 1) throw new Error('expected at least 1 edit day');
+    if (data.topTemples.length < 1) throw new Error('expected at least 1 top temple');
+    if (data.topTemples[0].entry_id !== 'zeus')
+      throw new Error(`expected zeus top temple, got ${data.topTemples[0].entry_id}`);
+  });
+
+  test('student cannot fetch institution analytics', async () => {
+    const res = await request('GET', '/api/v1/scholars/institution/analytics/', {
       headers: sessionHeader(ctx.studentSessionId),
     });
     if (res.status !== 403) throw new Error(`expected 403, got ${res.status}`);
@@ -794,9 +901,11 @@ async function main() {
       throw new Error(`expected 200, got ${res.status}: ${JSON.stringify(res.body)}`);
     if (!res.body.data.updated) throw new Error('expected updated=true');
 
-    // Restore active sponsorship so subsequent tests are not affected.
+    // Restore active sponsorship (and clear the expiry) so subsequent tests
+    // are not affected — read-time expiry enforcement treats an active
+    // sponsorship with a past expiry as lapsed.
     await request('PATCH', `/api/v1/scholars/institutions/${ctx.institutionId}/sponsorship`, {
-      body: { sponsorshipStatus: 'active' },
+      body: { sponsorshipStatus: 'active', sponsorshipExpiresAt: null },
       headers: sessionHeader(ctx.curatorSessionId),
     });
   });
@@ -848,6 +957,15 @@ async function main() {
       body: { accountStatus: 'active' },
       headers: sessionHeader(ctx.curatorSessionId),
     });
+
+    // Disabling an account revokes its sessions, so sign the student back in
+    // and refresh the shared session id for subsequent tests.
+    const reloginRes = await request('POST', '/api/v1/scholars/auth/login/', {
+      body: { email: 'student@academy.test', password: 'student-pass' },
+    });
+    if (reloginRes.status !== 200)
+      throw new Error(`expected 200 re-login, got ${reloginRes.status}`);
+    ctx.studentSessionId = reloginRes.body.data.token;
   });
 
   test('curator users endpoint supports filters', async () => {
@@ -1012,6 +1130,170 @@ async function main() {
   test('unauthenticated cannot fetch analytics', async () => {
     const res = await request('GET', '/api/v1/scholars/analytics/');
     if (res.status !== 401) throw new Error(`expected 401, got ${res.status}`);
+  });
+
+  // ─── Sponsorship applications ───
+
+  test('anyone can submit a sponsorship application', async () => {
+    const res = await request('POST', '/api/v1/scholars/sponsorship/apply/', {
+      body: {
+        institutionName: 'Applied University',
+        domain: 'applied.edu',
+        contactName: 'Dean Classics',
+        contactEmail: 'dean@applied.edu',
+        departmentFocus: 'Classics, History',
+        message: 'We would like to sponsor PÚNYCODEX for our students.',
+      },
+    });
+    if (res.status !== 201)
+      throw new Error(`expected 201, got ${res.status}: ${JSON.stringify(res.body)}`);
+    if (!res.body.data.received) throw new Error('expected received=true');
+    if (!res.body.data.applicationId) throw new Error('missing applicationId');
+    ctx.applicationId = res.body.data.applicationId;
+  });
+
+  test('sponsorship application rejects missing fields', async () => {
+    const res = await request('POST', '/api/v1/scholars/sponsorship/apply/', {
+      body: { institutionName: 'Incomplete University' },
+    });
+    if (res.status !== 400) throw new Error(`expected 400, got ${res.status}`);
+  });
+
+  test('sponsorship application rejects invalid email and domain', async () => {
+    const badEmail = await request('POST', '/api/v1/scholars/sponsorship/apply/', {
+      body: {
+        institutionName: 'Bad Email University',
+        domain: 'bademail.edu',
+        contactName: 'Contact',
+        contactEmail: 'not-an-email',
+      },
+    });
+    if (badEmail.status !== 400) throw new Error(`expected 400, got ${badEmail.status}`);
+
+    const badDomain = await request('POST', '/api/v1/scholars/sponsorship/apply/', {
+      body: {
+        institutionName: 'Bad Domain University',
+        domain: 'not a domain!!',
+        contactName: 'Contact',
+        contactEmail: 'contact@baddomain.edu',
+      },
+    });
+    if (badDomain.status !== 400) throw new Error(`expected 400, got ${badDomain.status}`);
+  });
+
+  test('sponsorship honeypot silently accepts bot submissions', async () => {
+    const res = await request('POST', '/api/v1/scholars/sponsorship/apply/', {
+      body: {
+        institutionName: 'Bot University',
+        domain: 'bot.edu',
+        contactName: 'Bot',
+        contactEmail: 'bot@bot.edu',
+        website: 'http://spam.example',
+      },
+    });
+    if (res.status !== 201) throw new Error(`expected 201 honeypot, got ${res.status}`);
+  });
+
+  test('curator can list sponsorship applications', async () => {
+    const res = await request('GET', '/api/v1/scholars/sponsorship/applications/?status=pending', {
+      headers: sessionHeader(ctx.curatorSessionId),
+    });
+    if (res.status !== 200)
+      throw new Error(`expected 200, got ${res.status}: ${JSON.stringify(res.body)}`);
+    if (!Array.isArray(res.body.data.items)) throw new Error('expected items array');
+    // The honeypot submission must NOT be stored; exactly one real pending application.
+    if (res.body.data.items.length !== 1)
+      throw new Error(`expected 1 pending application, got ${res.body.data.items.length}`);
+    const item = res.body.data.items[0];
+    if (item.institution_name !== 'Applied University') throw new Error('unexpected application');
+    if (res.body.data.pendingCount !== 1)
+      throw new Error(`expected pendingCount 1, got ${res.body.data.pendingCount}`);
+  });
+
+  test('non-curator cannot list sponsorship applications', async () => {
+    const res = await request('GET', '/api/v1/scholars/sponsorship/applications/', {
+      headers: sessionHeader(ctx.studentSessionId),
+    });
+    if (res.status !== 403) throw new Error(`expected 403, got ${res.status}`);
+  });
+
+  test('curator can approve application: institution + admin created with temp password', async () => {
+    const res = await request(
+      'POST',
+      `/api/v1/scholars/sponsorship/applications/${ctx.applicationId}/approve/`,
+      {
+        body: { reviewComment: 'Welcome aboard' },
+        headers: sessionHeader(ctx.curatorSessionId),
+      }
+    );
+    if (res.status !== 200)
+      throw new Error(`expected 200, got ${res.status}: ${JSON.stringify(res.body)}`);
+    const data = res.body.data;
+    if (!data.approved) throw new Error('expected approved=true');
+    if (!data.institutionId || !data.adminId) throw new Error('missing institution/admin ids');
+    if (!data.adminPassword) throw new Error('expected one-time adminPassword');
+
+    // The provisioned admin can log in immediately with the temp password.
+    const loginRes = await request('POST', '/api/v1/scholars/auth/login/', {
+      body: { email: 'dean@applied.edu', password: data.adminPassword },
+    });
+    if (loginRes.status !== 200)
+      throw new Error(`expected 200 admin login, got ${loginRes.status}`);
+    if (loginRes.body.data.user.role !== 'inst_admin') throw new Error('expected inst_admin role');
+
+    // Institution sponsorship is active.
+    const instRes = await request('GET', '/api/v1/scholars/institutions/', {
+      headers: sessionHeader(ctx.curatorSessionId),
+    });
+    const applied = instRes.body.data.find((i) => i.id === data.institutionId);
+    if (!applied) throw new Error('approved institution not listed');
+    if (applied.sponsorship_status !== 'active')
+      throw new Error(`expected active sponsorship, got ${applied.sponsorship_status}`);
+  });
+
+  test('approving an already-approved application returns 400', async () => {
+    const res = await request(
+      'POST',
+      `/api/v1/scholars/sponsorship/applications/${ctx.applicationId}/approve/`,
+      {
+        body: {},
+        headers: sessionHeader(ctx.curatorSessionId),
+      }
+    );
+    if (res.status !== 400) throw new Error(`expected 400, got ${res.status}`);
+  });
+
+  test('curator can reject a pending application', async () => {
+    const applyRes = await request('POST', '/api/v1/scholars/sponsorship/apply/', {
+      body: {
+        institutionName: 'Rejected College',
+        domain: 'rejected.edu',
+        contactName: 'Contact',
+        contactEmail: 'contact@rejected.edu',
+      },
+    });
+    if (applyRes.status !== 201) throw new Error(`expected 201, got ${applyRes.status}`);
+    const rejectId = applyRes.body.data.applicationId;
+
+    const res = await request(
+      'POST',
+      `/api/v1/scholars/sponsorship/applications/${rejectId}/reject/`,
+      {
+        body: { reviewComment: 'Not a fit at this time' },
+        headers: sessionHeader(ctx.curatorSessionId),
+      }
+    );
+    if (res.status !== 200)
+      throw new Error(`expected 200, got ${res.status}: ${JSON.stringify(res.body)}`);
+    if (!res.body.data.rejected) throw new Error('expected rejected=true');
+  });
+
+  test('application endpoints reject unknown ids with 404', async () => {
+    const res = await request('POST', '/api/v1/scholars/sponsorship/applications/99999/approve/', {
+      body: {},
+      headers: sessionHeader(ctx.curatorSessionId),
+    });
+    if (res.status !== 404) throw new Error(`expected 404, got ${res.status}`);
   });
 
   // ─── Media ───

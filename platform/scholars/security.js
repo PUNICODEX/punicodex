@@ -7,6 +7,7 @@
 
 const { createPublicRateLimit } = require('../api/public-rate-limiter');
 const { getClientIp } = require('../api/client-ip');
+const { getRedisClient, disableRedis } = require('../api/redis-client');
 const { audit } = require('../db/scholars');
 
 const SECURITY_HEADERS = {
@@ -36,11 +37,26 @@ function securityHeaders(_req, res, next) {
 }
 
 /**
- * Simple in-memory fixed-window rate limiter for authenticated Scholars endpoints.
- * Sweeps stale windows periodically to prevent unbounded growth.
+ * Fixed-window rate limiter for Scholars endpoints.
+ *
+ * When `REDIS_URL` is configured, `checkAsync` uses an atomic Redis
+ * INCR+EXPIRE counter so limits are global across Vercel serverless
+ * invocations; otherwise (or when Redis fails) it falls back to the
+ * per-process in-memory windows from `check`. Stale in-memory windows are
+ * swept periodically to prevent unbounded growth.
  */
+// Atomic INCR + EXPIRE for fixed-window counters.
+const SCHOLARS_INCR_EXPIRE_SCRIPT = `
+  local c = redis.call('incr', KEYS[1])
+  if c == 1 then
+    redis.call('expire', KEYS[1], ARGV[1])
+  end
+  return c
+`;
+
 class ScholarsRateLimiter {
   constructor(options = {}) {
+    this.name = options.name || 'auth';
     this.windowMs = options.windowMs || 60 * 1000;
     this.maxRequests = options.maxRequests || 60;
     this.windows = new Map();
@@ -72,6 +88,35 @@ class ScholarsRateLimiter {
     };
   }
 
+  async checkAsync(key) {
+    const client = getRedisClient();
+    if (!client) {
+      return this.check(key);
+    }
+
+    const now = Date.now();
+    const windowStart = Math.floor(now / this.windowMs) * this.windowMs;
+    const redisKey = `punycodex:rl:scholars:${this.name}:${key}:${windowStart}`;
+    const ttlSeconds = Math.ceil(this.windowMs / 1000);
+
+    try {
+      const count = await client.eval(SCHOLARS_INCR_EXPIRE_SCRIPT, 1, redisKey, ttlSeconds);
+      const allowed = count <= this.maxRequests;
+      return {
+        allowed,
+        remaining: Math.max(0, this.maxRequests - count),
+        resetAt: windowStart + this.windowMs,
+        limit: this.maxRequests,
+      };
+    } catch (err) {
+      // Redis command failed — disable Redis and fall back to memory so
+      // requests continue to be rate-limited instead of failing.
+      console.error(`[scholars rate-limiter] Redis command failed for ${this.name}:`, err.message);
+      disableRedis();
+      return this.check(key);
+    }
+  }
+
   sweep() {
     const cutoff = Date.now() - this.windowMs * 2;
     for (const [key, _count] of this.windows) {
@@ -92,10 +137,22 @@ class ScholarsRateLimiter {
   }
 }
 
-const publicLimiter = new ScholarsRateLimiter({ windowMs: 60 * 1000, maxRequests: 120 });
-const authLimiter = new ScholarsRateLimiter({ windowMs: 60 * 1000, maxRequests: 60 });
-const strictLimiter = new ScholarsRateLimiter({ windowMs: 60 * 1000, maxRequests: 10 });
-const loginLimiter = new ScholarsRateLimiter({ windowMs: 15 * 60 * 1000, maxRequests: 10 });
+const publicLimiter = new ScholarsRateLimiter({
+  name: 'public',
+  windowMs: 60 * 1000,
+  maxRequests: 120,
+});
+const authLimiter = new ScholarsRateLimiter({ name: 'auth', windowMs: 60 * 1000, maxRequests: 60 });
+const strictLimiter = new ScholarsRateLimiter({
+  name: 'strict',
+  windowMs: 60 * 1000,
+  maxRequests: 10,
+});
+const loginLimiter = new ScholarsRateLimiter({
+  name: 'login',
+  windowMs: 15 * 60 * 1000,
+  maxRequests: 10,
+});
 
 /**
  * Factory for Scholars-specific in-memory rate limit middleware.
@@ -112,26 +169,30 @@ function createScholarsRateLimit(endpointName, { tier = 'auth' } = {}) {
   }
   const limiter =
     tier === 'public' ? publicLimiter : tier === 'strict' ? strictLimiter : authLimiter;
-  return function scholarsRateLimitMiddleware(req, res, next) {
-    const ip = getClientIp(req);
-    const key = `${endpointName}:${ip}`;
-    const result = limiter.check(key);
+  return async function scholarsRateLimitMiddleware(req, res, next) {
+    try {
+      const ip = getClientIp(req);
+      const key = `${endpointName}:${ip}`;
+      const result = await limiter.checkAsync(key);
 
-    res.setHeader('X-RateLimit-Limit', String(result.limit));
-    res.setHeader('X-RateLimit-Remaining', String(result.remaining));
-    res.setHeader('X-RateLimit-Reset', String(Math.floor(result.resetAt / 1000)));
+      res.setHeader('X-RateLimit-Limit', String(result.limit));
+      res.setHeader('X-RateLimit-Remaining', String(result.remaining));
+      res.setHeader('X-RateLimit-Reset', String(Math.floor(result.resetAt / 1000)));
 
-    if (!result.allowed) {
-      const retryAfter = Math.ceil((result.resetAt - Date.now()) / 1000);
-      res.setHeader('Retry-After', String(retryAfter));
-      return res.status(429).json({
-        success: false,
-        error: 'Too many requests. Please slow down.',
-        retryAfter,
-      });
+      if (!result.allowed) {
+        const retryAfter = Math.ceil((result.resetAt - Date.now()) / 1000);
+        res.setHeader('Retry-After', String(retryAfter));
+        return res.status(429).json({
+          success: false,
+          error: 'Too many requests. Please slow down.',
+          retryAfter,
+        });
+      }
+
+      next();
+    } catch (err) {
+      next(err);
     }
-
-    next();
   };
 }
 

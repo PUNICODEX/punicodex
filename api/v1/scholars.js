@@ -7,7 +7,15 @@
  */
 
 const express = require('express');
+const { getDb } = require('../../platform/db/connection');
+const { migrate: migrateScholars } = require('../../platform/db/migrate-scholars');
+const { migrate: migrateQuality } = require('../../platform/db/migrate-scholars-quality');
 const scholarsRouter = require('../../platform/scholars/router');
+
+// Ensure Scholars tables exist before handling requests. Both migrations are
+// idempotent; safe to run on every serverless cold start.
+migrateScholars(getDb());
+migrateQuality(getDb());
 
 const app = express();
 app.use(scholarsRouter);

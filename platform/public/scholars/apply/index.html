@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css">
+<script src="/js/university-collaborators.js" defer></script>
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarly Edition — Sponsor | PUNYCODEX</title>
+    <meta name="description" content="Apply for university sponsorship of the PÚNYCODEX Scholarly Edition. Give your students provisioned access to contribute to flagship temples under a scholarly quality gate.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf17">
+
+    <style>
+        :root {
+            --apply-primary: #D4AF37;
+            --apply-primary-dim: #8B7355;
+            --apply-primary-bright: #F0D878;
+            --apply-void: #0A0A0A;
+            --apply-void-raised: #111111;
+            --apply-white: #F5F5F5;
+            --apply-white-dim: #A0A0A0;
+            --apply-border: rgba(255, 255, 255, 0.08);
+            --apply-success: #7fd67f;
+            --apply-danger: #ff7f7f;
+        }
+
+        body {
+            background: var(--apply-void);
+            color: var(--apply-white);
+            font-family: var(--font-body);
+            min-height: 100vh;
+        }
+
+        .global-strip {
+            background: rgba(0, 0, 0, 0.6);
+            border-bottom: 1px solid var(--apply-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+        }
+
+        .global-strip-inner {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0.75rem clamp(1rem, 5vw, 3rem);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .global-brand {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            letter-spacing: 0.18em;
+            color: var(--apply-white);
+            text-decoration: none;
+        }
+
+        .global-brand span {
+            color: var(--apply-primary);
+        }
+
+        .global-links {
+            display: flex;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .global-links a {
+            color: var(--apply-white-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+
+        .global-links a:hover {
+            color: var(--apply-primary);
+        }
+
+        .apply-hero {
+            padding: 4rem 1rem 2.5rem;
+            text-align: center;
+        }
+
+        .apply-eyebrow {
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--apply-primary);
+            margin-bottom: 1rem;
+        }
+
+        .apply-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.25rem);
+            color: var(--apply-white);
+            letter-spacing: 0.03em;
+            margin-bottom: 0.75rem;
+        }
+
+        .apply-subtitle {
+            color: var(--apply-white-dim);
+            max-width: 720px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .apply-page {
+            display: flex;
+            justify-content: center;
+            padding: 1rem 1rem 5rem;
+        }
+
+        .apply-card {
+            width: 100%;
+            max-width: 560px;
+            background: var(--apply-void-raised);
+            border: 1px solid var(--apply-border);
+            border-radius: 12px;
+            padding: clamp(2rem, 6vw, 3rem);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .apply-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--apply-primary), transparent);
+        }
+
+        .apply-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            text-align: left;
+        }
+
+        .apply-form[hidden] {
+            display: none;
+        }
+
+        .apply-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+        }
+
+        .apply-field label {
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--apply-primary-dim);
+        }
+
+        .apply-field input,
+        .apply-field textarea {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--apply-border);
+            border-radius: 6px;
+            padding: 0.75rem 0.9rem;
+            color: var(--apply-white);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .apply-field textarea {
+            min-height: 110px;
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        .apply-field input:focus,
+        .apply-field textarea:focus {
+            outline: none;
+            border-color: var(--apply-primary);
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.12);
+        }
+
+        .apply-hint {
+            font-size: 0.8rem;
+            color: var(--apply-white-dim);
+            line-height: 1.5;
+        }
+
+        .apply-hp {
+            position: absolute;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+
+        .apply-submit {
+            width: 100%;
+            padding: 0.85rem 1.25rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid var(--apply-primary);
+            background: var(--apply-primary);
+            color: #000;
+            transition: all 0.2s;
+            margin-top: 0.5rem;
+        }
+
+        .apply-submit:hover {
+            background: var(--apply-primary-bright);
+            border-color: var(--apply-primary-bright);
+        }
+
+        .apply-submit:focus-visible {
+            outline: 2px solid var(--apply-primary-bright);
+            outline-offset: 2px;
+        }
+
+        .apply-submit:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .apply-message {
+            margin-top: 1rem;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            display: none;
+        }
+
+        .apply-message.visible {
+            display: block;
+        }
+
+        .apply-message.error {
+            color: var(--apply-danger);
+            background: rgba(255, 127, 127, 0.08);
+            border: 1px solid rgba(255, 127, 127, 0.25);
+        }
+
+        .apply-message.success {
+            color: var(--apply-success);
+            background: rgba(127, 214, 127, 0.08);
+            border: 1px solid rgba(127, 214, 127, 0.25);
+        }
+
+        .apply-success[hidden] {
+            display: none;
+        }
+
+        .apply-success-title {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            color: var(--apply-success);
+            letter-spacing: 0.03em;
+            margin-bottom: 0.5rem;
+        }
+
+        .apply-success-ref {
+            color: var(--apply-white-dim);
+            font-size: 0.85rem;
+            font-family: var(--font-mono);
+            margin-bottom: 1.25rem;
+        }
+
+        .apply-success-text {
+            color: var(--apply-white-dim);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .apply-steps {
+            margin: 0;
+            padding-left: 1.25rem;
+            color: var(--apply-white-dim);
+            line-height: 1.8;
+        }
+
+        .apply-steps li {
+            margin-bottom: 0.5rem;
+        }
+
+        .apply-steps strong {
+            color: var(--apply-white);
+            font-weight: 600;
+        }
+
+        .apply-help {
+            margin-top: 1.75rem;
+            padding-top: 1.75rem;
+            border-top: 1px solid var(--apply-border);
+            color: var(--apply-white-dim);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .apply-help a {
+            color: var(--apply-primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .apply-help a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 640px) {
+            .global-strip-inner {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .global-links {
+                gap: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="/" class="global-brand">P<span>U</span>NYCODEX</a>
+            <div class="global-links">
+                <a href="/pantheon/">Pantheon</a>
+                <a href="/lexicon/">Lexicon</a>
+                <a href="/type/">Type</a>
+                <a href="/search.html">Search</a>
+                <a href="/tiers/">Tiers</a>
+                <a href="/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <header class="apply-hero">
+        <div class="apply-eyebrow">PUNYCODEX Scholarly Edition</div>
+        <h1 class="apply-title">Sponsor the Scholarly Edition</h1>
+        <p class="apply-subtitle">A university sponsors PÚNYCODEX; its departments receive provisioned student access to contribute to flagship temples under a scholarly quality gate. Approved student work is published with institutional attribution, and the university appears as an Academic Collaborator across the site.</p>
+    </header>
+
+    <main class="apply-page">
+        <div class="apply-card">
+            <form class="apply-form" id="apply-form" novalidate>
+                <div class="apply-field">
+                    <label for="institution-name">Institution Name *</label>
+                    <input type="text" id="institution-name" name="institution-name" placeholder="University of Example" autocomplete="organization" required>
+                </div>
+                <div class="apply-field">
+                    <label for="domain">Institution Domain *</label>
+                    <input type="text" id="domain" name="domain" placeholder="university.edu" autocomplete="off" required>
+                    <span class="apply-hint">The domain your students will sign in from.</span>
+                </div>
+                <div class="apply-field">
+                    <label for="contact-name">Contact Name *</label>
+                    <input type="text" id="contact-name" name="contact-name" placeholder="Dr. Jane Scholar" autocomplete="name" required>
+                </div>
+                <div class="apply-field">
+                    <label for="contact-email">Contact Email *</label>
+                    <input type="email" id="contact-email" name="contact-email" placeholder="scholar@university.edu" autocomplete="email" required>
+                </div>
+                <div class="apply-field">
+                    <label for="department-focus">Department Focus <span class="apply-hint">(optional)</span></label>
+                    <input type="text" id="department-focus" name="department-focus" placeholder="Classics, Archaeology" autocomplete="off">
+                    <span class="apply-hint">Comma-separated. Leave blank to open sponsorship to all departments.</span>
+                </div>
+                <div class="apply-field">
+                    <label for="message">Message <span class="apply-hint">(optional)</span></label>
+                    <textarea id="message" name="message" placeholder="Tell us about your program and how your students would contribute…"></textarea>
+                </div>
+                <div class="apply-hp" aria-hidden="true">
+                    <label for="website">Website</label>
+                    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                </div>
+                <button type="submit" class="apply-submit" id="apply-submit">Submit Application</button>
+            </form>
+
+            <div class="apply-success" id="apply-success" tabindex="-1" hidden>
+                <h2 class="apply-success-title">Application received</h2>
+                <p class="apply-success-ref">Reference: <span id="apply-ref">—</span></p>
+                <p class="apply-success-text">Thank you for your interest in the Scholarly Edition. What happens next:</p>
+                <ol class="apply-steps">
+                    <li>The <strong>curator reviews</strong> every application by hand.</li>
+                    <li>On approval, the contact you listed <strong>receives institution admin credentials out-of-band</strong>.</li>
+                    <li>Sponsorship then <strong>activates for the departments listed</strong>, and your students sign in with their university email.</li>
+                </ol>
+            </div>
+
+            <div class="apply-message" id="apply-message" role="alert" aria-live="polite"></div>
+
+            <div class="apply-help">
+                <p>Already sponsored? <a href="/scholars/login/">Sign in</a> · Learn more in the <a href="/university-sponsorship">sponsorship overview</a>.</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+    (function() {
+        const apiBase = '/api/v1/scholars/';
+        const form = document.getElementById('apply-form');
+        const submitBtn = document.getElementById('apply-submit');
+        const messageEl = document.getElementById('apply-message');
+        const successEl = document.getElementById('apply-success');
+
+        const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const DOMAIN_RE = /^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)+$/i;
+
+        function showMessage(text, type) {
+            messageEl.textContent = text;
+            messageEl.className = 'apply-message visible ' + (type === 'success' ? 'success' : 'error');
+        }
+
+        function clearMessage() {
+            messageEl.textContent = '';
+            messageEl.className = 'apply-message';
+        }
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            clearMessage();
+
+            const institutionName = document.getElementById('institution-name').value.trim();
+            const domain = document.getElementById('domain').value.trim();
+            const contactName = document.getElementById('contact-name').value.trim();
+            const contactEmail = document.getElementById('contact-email').value.trim();
+            const departmentFocus = document.getElementById('department-focus').value.trim();
+            const message = document.getElementById('message').value.trim();
+            const website = document.getElementById('website').value;
+
+            if (!institutionName || !domain || !contactName || !contactEmail) {
+                showMessage('Please fill in all required fields.', 'error');
+                return;
+            }
+
+            if (!DOMAIN_RE.test(domain)) {
+                showMessage('Please enter a valid institution domain (e.g. university.edu).', 'error');
+                return;
+            }
+
+            if (!EMAIL_RE.test(contactEmail)) {
+                showMessage('Please enter a valid contact email address.', 'error');
+                return;
+            }
+
+            const payload = {
+                institutionName: institutionName,
+                domain: domain,
+                contactName: contactName,
+                contactEmail: contactEmail,
+                website: website,
+            };
+            if (departmentFocus) payload.departmentFocus = departmentFocus;
+            if (message) payload.message = message;
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting…';
+
+            try {
+                const res = await fetch(apiBase + '/sponsorship/apply', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload),
+                });
+                const data = await res.json().catch(function() { return { success: false, error: 'Invalid response from server' }; });
+
+                if (res.status === 201 && data && data.data && data.data.received) {
+                    form.hidden = true;
+                    clearMessage();
+                    document.getElementById('apply-ref').textContent = data.data.applicationId || '—';
+                    successEl.hidden = false;
+                    successEl.focus();
+                    return;
+                }
+
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Application';
+
+                if (res.status === 429) {
+                    const retry = Number(data && data.retryAfter);
+                    showMessage(retry > 0
+                        ? 'Too many requests — please try again in ' + retry + ' seconds.'
+                        : 'Too many requests — please try again shortly.', 'error');
+                } else {
+                    showMessage((data && data.error) || 'Submission failed. Please try again.', 'error');
+                }
+            } catch (err) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Application';
+                showMessage('Network error — please check your connection and try again.', 'error');
+            }
+        });
+    })();
+    </script>
+
+
+
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+</body>
+</html>

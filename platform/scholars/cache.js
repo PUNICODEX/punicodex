@@ -119,6 +119,31 @@ async function del(key) {
   getMemoryCache().del(key);
 }
 
+/**
+ * Delete every key beginning with `prefix`. Used for namespace invalidation
+ * (e.g. purging all cached search results after a section is published).
+ */
+async function delByPrefix(prefix) {
+  const redis = getRedisClient();
+  if (redis && mode === 'redis') {
+    try {
+      let cursor = '0';
+      do {
+        const [next, keys] = await redis.scan(cursor, 'MATCH', `${prefix}*`, 'COUNT', 200);
+        cursor = next;
+        if (keys.length) await redis.del(...keys);
+      } while (cursor !== '0');
+      return;
+    } catch {
+      mode = 'memory';
+    }
+  }
+  const cache = getMemoryCache();
+  for (const key of cache.store.keys()) {
+    if (key.startsWith(prefix)) cache.store.delete(key);
+  }
+}
+
 function cacheKey(namespace, id) {
   return `scholars:${namespace}:${id}`;
 }
@@ -127,6 +152,7 @@ module.exports = {
   get,
   set,
   del,
+  delByPrefix,
   cacheKey,
   getCacheMode: () => mode,
 };

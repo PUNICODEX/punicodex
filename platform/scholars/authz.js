@@ -51,7 +51,28 @@ function isActiveUser(user) {
 }
 
 function isActiveSponsorship(institution) {
-  return institution && institution.sponsorship_status === 'active';
+  if (!institution || institution.sponsorship_status !== 'active') return false;
+  // Sponsorship expiry: NULL means no expiry; a past timestamp lapses the
+  // sponsorship even if the status column has not been flipped yet. Enforced
+  // at read time so access ends the moment the term does.
+  const expiresAt = parseSqliteUtc(institution.sponsorship_expires_at);
+  if (expiresAt !== null && expiresAt <= Date.now()) return false;
+  return true;
+}
+
+/**
+ * Parse a SQLite datetime ('YYYY-MM-DD HH:MM:SS', treated as UTC) or an ISO
+ * 8601 string into epoch milliseconds. Returns null for empty/unparseable
+ * values.
+ */
+function parseSqliteUtc(value) {
+  if (value === null || value === undefined) return null;
+  const raw = String(value).trim();
+  if (!raw) return null;
+  const iso = raw.includes('T') ? raw : raw.replace(' ', 'T');
+  const withZone = /([zZ]|[+-]\d{2}:?\d{2})$/.test(iso) ? iso : `${iso}Z`;
+  const t = Date.parse(withZone);
+  return Number.isNaN(t) ? null : t;
 }
 
 function isFrozenTarget(target) {
@@ -228,6 +249,7 @@ module.exports = {
   sameInstitution,
   isActiveUser,
   isActiveSponsorship,
+  parseSqliteUtc,
   canSubmitEdit,
   canReviewEdit,
   canApproveAny,

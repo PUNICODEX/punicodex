@@ -679,6 +679,198 @@
             padding: 0.4rem 0.65rem;
         }
 
+        .app-count-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.25rem 0.65rem;
+            border-radius: 999px;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--admin-primary);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+        }
+
+        .app-pills {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .app-pill {
+            padding: 0.45rem 0.9rem;
+            border-radius: 999px;
+            border: 1px solid var(--admin-border);
+            background: transparent;
+            color: var(--admin-white-dim);
+            font-family: var(--font-display);
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .app-pill:hover {
+            color: var(--admin-white);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .app-pill:focus-visible {
+            outline: 2px solid var(--admin-primary);
+            outline-offset: 2px;
+        }
+
+        .app-pill.active {
+            background: var(--admin-primary);
+            border-color: var(--admin-primary);
+            color: #000;
+        }
+
+        .admin-status.app-pending {
+            background: rgba(240, 216, 120, 0.12);
+            color: var(--admin-warn);
+        }
+
+        .admin-status.app-approved {
+            background: rgba(127, 214, 127, 0.12);
+            color: var(--admin-success);
+        }
+
+        .admin-status.app-rejected {
+            background: rgba(255, 127, 127, 0.12);
+            color: var(--admin-danger);
+        }
+
+        .app-fields {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .app-field-label {
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--admin-primary-dim);
+            margin-bottom: 0.3rem;
+        }
+
+        .app-field-value {
+            color: var(--admin-white);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .app-field-value a {
+            color: var(--admin-primary);
+            text-decoration: none;
+        }
+
+        .app-field-value a:hover {
+            text-decoration: underline;
+        }
+
+        .app-expand-btn {
+            margin-top: 0.4rem;
+            background: transparent;
+            border: 1px solid var(--admin-border);
+            color: var(--admin-white-dim);
+            padding: 0.35rem 0.7rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-family: var(--font-display);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .app-expand-btn:hover {
+            color: var(--admin-primary);
+            border-color: var(--admin-primary);
+        }
+
+        .app-comment-input {
+            flex: 1 1 220px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--admin-border);
+            border-radius: 6px;
+            padding: 0.55rem 0.75rem;
+            color: var(--admin-white);
+            font-family: inherit;
+            font-size: 0.9rem;
+        }
+
+        .app-comment-input:focus {
+            outline: none;
+            border-color: var(--admin-primary);
+        }
+
+        .app-card-status {
+            padding: 0 1.25rem;
+            font-size: 0.85rem;
+        }
+
+        .app-card-status.processing {
+            color: var(--admin-warn);
+            padding-bottom: 1rem;
+        }
+
+        .app-card-status.error {
+            color: var(--admin-danger);
+            padding-bottom: 1rem;
+        }
+
+        .credential-reveal {
+            margin: 0 1.25rem 1.25rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            border-radius: 12px;
+            padding: 1.25rem;
+        }
+
+        .credential-warning {
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--admin-warn);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .credential-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.75rem;
+        }
+
+        .credential-label {
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--admin-primary-dim);
+            min-width: 150px;
+        }
+
+        .credential-value {
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            color: var(--admin-white);
+            word-break: break-all;
+            flex: 1;
+        }
+
+        .credential-note {
+            color: var(--admin-white-dim);
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
         @media (max-width: 640px) {
             .admin-card-header {
                 grid-template-columns: 1fr;
@@ -843,12 +1035,14 @@
                 </div>
 
                 <div class="admin-tabs">
-                    <button class="admin-tab active" data-tab="institutions">Institutions</button>
+                    <button class="admin-tab active" data-tab="applications">Applications</button>
+                    <button class="admin-tab" data-tab="institutions">Institutions</button>
                     <button class="admin-tab" data-tab="users">Users</button>
                     <button class="admin-tab" data-tab="overview">Overview</button>
                 </div>
 
-                <div class="admin-panel active" id="panel-institutions"></div>
+                <div class="admin-panel active" id="panel-applications"></div>
+                <div class="admin-panel" id="panel-institutions"></div>
                 <div class="admin-panel" id="panel-users"></div>
                 <div class="admin-panel" id="panel-overview"></div>
             `;
@@ -905,9 +1099,410 @@
             institutionsData = institutionsRes.ok && institutionsRes.data && institutionsRes.data.data ? institutionsRes.data.data : [];
             usersData = usersRes.ok && usersRes.data && usersRes.data.data ? usersRes.data.data : [];
 
+            renderApplicationsPanel();
             renderInstitutionsPanel(institutionsData);
             renderUsersPanel(usersData);
             renderOverviewPanel(stats);
+        }
+
+        // ---- Sponsorship Applications ----
+        const applicationsState = {
+            status: 'pending',
+            items: [],
+            total: 0,
+            pendingCount: 0,
+            offset: 0,
+            limit: 20,
+        };
+
+        function handleUnauthorized() {
+            localStorage.removeItem('scholars_session');
+            renderLoginPrompt();
+        }
+
+        function copyText(text, btn) {
+            function markDone() {
+                btn.textContent = 'Copied';
+                setTimeout(function() { btn.textContent = 'Copy'; }, 1500);
+            }
+            function fallback() {
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                try { document.execCommand('copy'); } catch (err) { /* no-op */ }
+                ta.remove();
+            }
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(markDone).catch(function() {
+                    fallback();
+                    markDone();
+                });
+            } else {
+                fallback();
+                markDone();
+            }
+        }
+
+        function setApplicationsMessage(text, type) {
+            const el = document.getElementById('applications-message');
+            if (!el) return;
+            el.textContent = text || '';
+            el.className = 'admin-message' + (text ? ' ' + (type || 'error') : '');
+        }
+
+        function updatePendingBadge() {
+            const badge = document.getElementById('applications-pending-badge');
+            if (badge) badge.textContent = applicationsState.pendingCount + ' pending';
+        }
+
+        function applicationsEmptyText() {
+            if (applicationsState.status === 'pending') return { title: 'No pending applications', text: 'New sponsorship applications will appear here for review.' };
+            if (applicationsState.status === 'approved') return { title: 'No approved applications', text: 'Approved sponsorship applications will appear here.' };
+            if (applicationsState.status === 'rejected') return { title: 'No rejected applications', text: 'Rejected sponsorship applications will appear here.' };
+            return { title: 'No applications yet', text: 'Sponsorship applications from universities will appear here.' };
+        }
+
+        function appendReviewInfo(card, item) {
+            const fields = card.querySelector('.app-fields');
+            if (!fields) return;
+            let html = '';
+            if (item.review_comment) {
+                html += '<div class="app-field"><div class="app-field-label">Review Comment</div><div class="app-field-value">' + escapeHtml(item.review_comment) + '</div></div>';
+            }
+            if (item.reviewed_at) {
+                html += '<div class="app-field"><div class="app-field-label">Reviewed</div><div class="app-field-value">' + escapeHtml(formatDate(item.reviewed_at)) + '</div></div>';
+            }
+            fields.insertAdjacentHTML('beforeend', html);
+        }
+
+        function transformCardApproved(card, item, payload) {
+            const badge = card.querySelector('.admin-card-header .admin-status');
+            if (badge) {
+                badge.textContent = 'approved';
+                badge.className = 'admin-status app-approved';
+            }
+            const footer = card.querySelector('.admin-card-footer');
+            if (footer) footer.remove();
+            const statusEl = card.querySelector('.app-card-status');
+            if (statusEl) {
+                statusEl.textContent = '';
+                statusEl.className = 'app-card-status';
+            }
+            appendReviewInfo(card, item);
+
+            const reveal = document.createElement('div');
+            reveal.className = 'credential-reveal';
+            reveal.innerHTML = `
+                <div class="credential-warning">Shown once — relay these credentials to the university out-of-band. They cannot be retrieved again.</div>
+                <div class="credential-row">
+                    <span class="credential-label">Admin Email</span>
+                    <code class="credential-value">${escapeHtml(payload.adminEmail || '')}</code>
+                    <button type="button" class="admin-btn credential-copy" data-copy="${escapeHtml(payload.adminEmail || '')}">Copy</button>
+                </div>
+                <div class="credential-row">
+                    <span class="credential-label">Temporary Password</span>
+                    <code class="credential-value">${escapeHtml(payload.adminPassword || '')}</code>
+                    <button type="button" class="admin-btn credential-copy" data-copy="${escapeHtml(payload.adminPassword || '')}">Copy</button>
+                </div>
+                <div class="credential-note">Application approved — the institution and its admin account have been created.</div>
+            `;
+            card.appendChild(reveal);
+
+            reveal.querySelectorAll('.credential-copy').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    copyText(btn.dataset.copy, btn);
+                });
+            });
+        }
+
+        function transformCardRejected(card, item) {
+            const badge = card.querySelector('.admin-card-header .admin-status');
+            if (badge) {
+                badge.textContent = 'rejected';
+                badge.className = 'admin-status app-rejected';
+            }
+            const footer = card.querySelector('.admin-card-footer');
+            if (footer) footer.remove();
+            const statusEl = card.querySelector('.app-card-status');
+            if (statusEl) {
+                statusEl.textContent = '';
+                statusEl.className = 'app-card-status';
+            }
+            appendReviewInfo(card, item);
+        }
+
+        function createApplicationCard(item) {
+            const card = document.createElement('div');
+            card.className = 'admin-card app-card';
+            card.dataset.applicationId = item.id;
+
+            const status = item.status || 'pending';
+            const departments = String(item.department_focus || '')
+                .split(',')
+                .map(function(d) { return d.trim(); })
+                .filter(Boolean);
+            const message = String(item.message || '').trim();
+            const isLongMessage = message.length > 280;
+            const excerpt = isLongMessage ? message.slice(0, 280).trimEnd() + '…' : message;
+
+            card.innerHTML = `
+                <div class="admin-card-header">
+                    <div>
+                        <div class="admin-card-title">${escapeHtml(item.institution_name || 'Unknown institution')}</div>
+                        <div class="admin-card-meta">${escapeHtml(item.domain || '—')}</div>
+                    </div>
+                    <span class="admin-status app-${escapeHtml(status)}">${escapeHtml(status)}</span>
+                </div>
+                <div class="admin-card-body">
+                    <div class="app-fields">
+                        <div class="app-field">
+                            <div class="app-field-label">Contact</div>
+                            <div class="app-field-value">
+                                ${escapeHtml(item.contact_name || '—')} ·
+                                <a href="mailto:${escapeHtml(item.contact_email || '')}">${escapeHtml(item.contact_email || '—')}</a>
+                            </div>
+                        </div>
+                        <div class="app-field">
+                            <div class="app-field-label">Submitted</div>
+                            <div class="app-field-value">${formatDate(item.created_at)}</div>
+                        </div>
+                        ${departments.length ? `
+                            <div class="app-field">
+                                <div class="app-field-label">Department Focus</div>
+                                <div class="allowlist-tags">${departments.map(function(d) { return '<span class="allowlist-tag">' + escapeHtml(d) + '</span>'; }).join('')}</div>
+                            </div>
+                        ` : ''}
+                        ${message ? `
+                            <div class="app-field">
+                                <div class="app-field-label">Message</div>
+                                <div class="app-field-value app-message-text">${escapeHtml(excerpt)}</div>
+                                ${isLongMessage ? '<button type="button" class="app-expand-btn">Show full message</button>' : ''}
+                            </div>
+                        ` : ''}
+                        ${status !== 'pending' && item.review_comment ? `
+                            <div class="app-field">
+                                <div class="app-field-label">Review Comment</div>
+                                <div class="app-field-value">${escapeHtml(item.review_comment)}</div>
+                            </div>
+                        ` : ''}
+                        ${status !== 'pending' && item.reviewed_at ? `
+                            <div class="app-field">
+                                <div class="app-field-label">Reviewed</div>
+                                <div class="app-field-value">${formatDate(item.reviewed_at)}${item.reviewed_by ? ' by ' + escapeHtml(String(item.reviewed_by)) : ''}</div>
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+                ${status === 'pending' ? `
+                    <div class="admin-card-footer">
+                        <input type="text" class="app-comment-input" placeholder="Optional review comment…" maxlength="500">
+                        <button type="button" class="admin-btn success app-approve-btn">Approve</button>
+                        <button type="button" class="admin-btn danger app-reject-btn">Reject</button>
+                    </div>
+                ` : ''}
+                <div class="app-card-status" aria-live="polite"></div>
+            `;
+
+            const expandBtn = card.querySelector('.app-expand-btn');
+            if (expandBtn) {
+                expandBtn.addEventListener('click', function() {
+                    const textEl = card.querySelector('.app-message-text');
+                    const expanded = expandBtn.dataset.expanded === 'true';
+                    textEl.textContent = expanded ? excerpt : message;
+                    expandBtn.textContent = expanded ? 'Show full message' : 'Show less';
+                    expandBtn.dataset.expanded = expanded ? 'false' : 'true';
+                });
+            }
+
+            const approveBtn = card.querySelector('.app-approve-btn');
+            const rejectBtn = card.querySelector('.app-reject-btn');
+            const commentInput = card.querySelector('.app-comment-input');
+            const cardStatus = card.querySelector('.app-card-status');
+
+            if (approveBtn) {
+                approveBtn.addEventListener('click', async function() {
+                    const comment = commentInput ? commentInput.value.trim() : '';
+                    approveBtn.disabled = true;
+                    rejectBtn.disabled = true;
+                    cardStatus.textContent = 'Approving…';
+                    cardStatus.className = 'app-card-status processing';
+
+                    const { ok, status: resStatus, data } = await api('/sponsorship/applications/' + encodeURIComponent(item.id) + '/approve', {
+                        method: 'POST',
+                        body: JSON.stringify(comment ? { reviewComment: comment } : {}),
+                    });
+
+                    if (resStatus === 401) {
+                        handleUnauthorized();
+                        return;
+                    }
+
+                    if (ok && data && data.data && data.data.approved === true) {
+                        item.status = 'approved';
+                        item.review_comment = comment || item.review_comment;
+                        item.reviewed_at = new Date().toISOString();
+                        applicationsState.pendingCount = Math.max(0, applicationsState.pendingCount - 1);
+                        updatePendingBadge();
+                        transformCardApproved(card, item, data.data);
+                    } else {
+                        cardStatus.textContent = (data && data.error) || 'Approval failed.';
+                        cardStatus.className = 'app-card-status error';
+                        approveBtn.disabled = false;
+                        rejectBtn.disabled = false;
+                    }
+                });
+            }
+
+            if (rejectBtn) {
+                rejectBtn.addEventListener('click', async function() {
+                    if (!confirm('Reject this sponsorship application?')) return;
+                    const comment = commentInput ? commentInput.value.trim() : '';
+                    approveBtn.disabled = true;
+                    rejectBtn.disabled = true;
+                    cardStatus.textContent = 'Rejecting…';
+                    cardStatus.className = 'app-card-status processing';
+
+                    const { ok, status: resStatus, data } = await api('/sponsorship/applications/' + encodeURIComponent(item.id) + '/reject', {
+                        method: 'POST',
+                        body: JSON.stringify(comment ? { reviewComment: comment } : {}),
+                    });
+
+                    if (resStatus === 401) {
+                        handleUnauthorized();
+                        return;
+                    }
+
+                    if (ok && data && data.data && data.data.rejected === true) {
+                        item.status = 'rejected';
+                        item.review_comment = comment || item.review_comment;
+                        item.reviewed_at = new Date().toISOString();
+                        applicationsState.pendingCount = Math.max(0, applicationsState.pendingCount - 1);
+                        updatePendingBadge();
+                        transformCardRejected(card, item);
+                    } else {
+                        cardStatus.textContent = (data && data.error) || 'Rejection failed.';
+                        cardStatus.className = 'app-card-status error';
+                        approveBtn.disabled = false;
+                        rejectBtn.disabled = false;
+                    }
+                });
+            }
+
+            return card;
+        }
+
+        async function loadApplications(reset) {
+            const list = document.getElementById('applications-list');
+            const loadMoreBtn = document.getElementById('applications-load-more');
+            if (!list) return;
+
+            setApplicationsMessage('', '');
+
+            if (reset) {
+                applicationsState.offset = 0;
+                applicationsState.items = [];
+                list.innerHTML = '<div class="admin-empty"><p>Loading applications…</p></div>';
+            }
+
+            const params = new URLSearchParams();
+            if (applicationsState.status) params.set('status', applicationsState.status);
+            params.set('limit', String(applicationsState.limit));
+            params.set('offset', String(applicationsState.offset));
+
+            const { ok, status, data } = await api('/sponsorship/applications?' + params.toString());
+
+            if (status === 401) {
+                handleUnauthorized();
+                return;
+            }
+
+            if (!ok) {
+                if (reset) {
+                    list.innerHTML = `
+                        <div class="admin-empty">
+                            <h2>Could not load applications</h2>
+                            <p>${escapeHtml((data && data.error) || 'Failed to load sponsorship applications.')}</p>
+                            <p style="margin-top: 1rem;"><button type="button" class="admin-btn" id="applications-retry">Retry</button></p>
+                        </div>
+                    `;
+                    document.getElementById('applications-retry').addEventListener('click', function() {
+                        loadApplications(true);
+                    });
+                } else {
+                    setApplicationsMessage((data && data.error) || 'Failed to load more applications.', 'error');
+                }
+                return;
+            }
+
+            const payload = data && data.data ? data.data : {};
+            const items = Array.isArray(payload.items) ? payload.items : [];
+            applicationsState.total = Number(payload.total) || items.length;
+            applicationsState.pendingCount = Number(payload.pendingCount) || 0;
+            applicationsState.offset += items.length;
+            applicationsState.items = applicationsState.items.concat(items);
+
+            updatePendingBadge();
+
+            if (reset) list.innerHTML = '';
+
+            if (applicationsState.items.length === 0) {
+                const empty = applicationsEmptyText();
+                list.innerHTML = '<div class="admin-empty"><h2>' + escapeHtml(empty.title) + '</h2><p>' + escapeHtml(empty.text) + '</p></div>';
+            } else {
+                const placeholder = list.querySelector('.admin-empty');
+                if (placeholder) placeholder.remove();
+                items.forEach(function(item) {
+                    list.appendChild(createApplicationCard(item));
+                });
+            }
+
+            if (loadMoreBtn) {
+                loadMoreBtn.style.display = applicationsState.offset < applicationsState.total ? '' : 'none';
+            }
+        }
+
+        function renderApplicationsPanel() {
+            const panel = document.getElementById('panel-applications');
+            panel.innerHTML = `
+                <div class="admin-toolbar">
+                    <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+                        <span class="admin-card-title" style="font-size: 1.05rem;">Sponsorship Applications</span>
+                        <span class="app-count-badge" id="applications-pending-badge">— pending</span>
+                    </div>
+                    <div class="app-pills" role="group" aria-label="Filter applications by status">
+                        <button type="button" class="app-pill" data-status="pending">Pending</button>
+                        <button type="button" class="app-pill" data-status="approved">Approved</button>
+                        <button type="button" class="app-pill" data-status="rejected">Rejected</button>
+                        <button type="button" class="app-pill" data-status="">All</button>
+                    </div>
+                </div>
+                <div id="applications-message" class="admin-message" role="alert" aria-live="polite"></div>
+                <div id="applications-list"></div>
+                <div style="text-align: center; margin-top: 1rem;">
+                    <button type="button" class="admin-btn" id="applications-load-more" style="display: none;">Load More</button>
+                </div>
+            `;
+
+            panel.querySelectorAll('.app-pill').forEach(function(pill) {
+                pill.classList.toggle('active', pill.dataset.status === applicationsState.status);
+                pill.addEventListener('click', function() {
+                    if (applicationsState.status === pill.dataset.status) return;
+                    applicationsState.status = pill.dataset.status;
+                    panel.querySelectorAll('.app-pill').forEach(function(p) {
+                        p.classList.toggle('active', p === pill);
+                    });
+                    loadApplications(true);
+                });
+            });
+
+            panel.querySelector('#applications-load-more').addEventListener('click', function() {
+                loadApplications(false);
+            });
+
+            loadApplications(true);
         }
 
         function renderInstitutionsPanel(institutions) {

@@ -27,7 +27,7 @@
 
 ---
 
-## Phase 2 — Governance Charter
+## Phase 2 — Governance Charter ✅
 
 **Objective:** Define the legal, editorial, and institutional rules before any backend code is written.
 
@@ -49,7 +49,7 @@
 
 ---
 
-## Phase 3 — Reference Architecture
+## Phase 3 — Reference Architecture ✅
 
 **Objective:** Produce the canonical technical blueprint that every subsequent phase obeys.
 
@@ -93,7 +93,7 @@
 
 ---
 
-## Phase 5 — Data Model & Schema Design
+## Phase 5 — Data Model & Schema Design ✅
 
 **Objective:** Design the database schema for institutions, users, edits, approvals, history, and rendered snapshots.
 
@@ -115,7 +115,7 @@
 
 ---
 
-## Phase 6 — Database Layer & Connection Pool
+## Phase 6 — Database Layer & Connection Pool ✅
 
 **Objective:** Build the production-grade database access layer.
 
@@ -137,7 +137,7 @@
 
 ---
 
-## Phase 7 — University Identity & Authentication
+## Phase 7 — University Identity & Authentication ✅
 
 **Objective:** Let verified students and faculty log in through their institutions.
 
@@ -159,7 +159,7 @@
 
 ---
 
-## Phase 8 — Editor Personas & Authorization
+## Phase 8 — Editor Personas & Authorization ✅
 
 **Objective:** Enforce who can do what, where, and under whose supervision.
 
@@ -225,7 +225,7 @@
 
 ---
 
-## Phase 11 — Scholars API Foundation
+## Phase 11 — Scholars API Foundation ✅
 
 **Objective:** Build the REST API surface that powers the Scholarly Edition.
 
@@ -247,7 +247,7 @@
 
 ---
 
-## Phase 12 — Edit Submission API
+## Phase 12 — Edit Submission API ✅
 
 **Objective:** Allow authenticated users to propose edits to any section.
 
@@ -269,7 +269,7 @@
 
 ---
 
-## Phase 13 — Approval Workflow Engine
+## Phase 13 — Approval Workflow Engine ✅
 
 **Objective:** Ensure every edit is reviewed before it becomes public.
 
@@ -291,7 +291,7 @@
 
 ---
 
-## Phase 14 — Version Control & Diff Engine
+## Phase 14 — Version Control & Diff Engine ✅
 
 **Objective:** Make every change visible, attributable, and reversible.
 
@@ -313,7 +313,7 @@
 
 ---
 
-## Phase 15 — Attribution Engine
+## Phase 15 — Attribution Engine ✅
 
 **Objective:** Credit universities, departments, and individual contributors accurately.
 
@@ -335,7 +335,7 @@
 
 ---
 
-## Phase 16 — Content Rendering Pipeline
+## Phase 16 — Content Rendering Pipeline ✅
 
 **Objective:** Render Scholarly Edition content safely and beautifully into static pages.
 
@@ -445,7 +445,7 @@
 
 ---
 
-## Phase 21 — Review Queue UI
+## Phase 21 — Review Queue UI ✅
 
 **Objective:** Give reviewers a fast, authoritative workflow.
 
@@ -467,7 +467,7 @@
 
 ---
 
-## Phase 22 — University Dashboard
+## Phase 22 — University Dashboard ✅
 
 **Objective:** Give institutions visibility into their contributors and impact.
 
@@ -489,7 +489,7 @@
 
 ---
 
-## Phase 23 — Admin Oversight Tools
+## Phase 23 — Admin Oversight Tools ✅
 
 **Objective:** Give PUNYCODEX curators full visibility and control.
 
@@ -511,7 +511,7 @@
 
 ---
 
-## Phase 24 — Content Migration from lore-catalog.json
+## Phase 24 — Content Migration from lore-catalog.json ✅
 
 **Objective:** Seed Scholarly Edition sections from the existing authoritative lore catalog.
 
@@ -533,7 +533,7 @@
 
 ---
 
-## Phase 25 — Quality & Accuracy Gates
+## Phase 25 — Quality & Accuracy Gates ✅
 
 **Objective:** Protect the scholarly integrity of every public section.
 
@@ -555,7 +555,7 @@
 
 ---
 
-## Phase 26 — Performance & Caching
+## Phase 26 — Performance & Caching ✅
 
 **Objective:** Ensure the Scholarly Edition is fast at scale.
 
@@ -577,7 +577,7 @@
 
 ---
 
-## Phase 27 — Security & Abuse Prevention
+## Phase 27 — Security & Abuse Prevention ✅
 
 **Objective:** Keep the platform safe from attacks, spam, and misuse.
 
@@ -599,7 +599,7 @@
 
 ---
 
-## Phase 28 — Analytics & Reporting
+## Phase 28 — Analytics & Reporting ✅
 
 **Objective:** Measure impact and continuously improve the platform.
 
@@ -621,7 +621,7 @@
 
 ---
 
-## Phase 29 — Documentation & Onboarding
+## Phase 29 — Documentation & Onboarding ✅
 
 **Objective:** Make the Scholarly Edition usable for students, faculty, and admins.
 
@@ -734,6 +734,7 @@
 ## Execution Notes
 
 - Phases marked ✅ are already complete.
-- Phases 2 and 3 should be finalized before backend implementation begins.
+- Phases 17 (citation engine/export formats), 18 (S3/WebP media pipeline), 19 (facets, autocomplete, feeds), and 20 (webhooks) are partially implemented — core flows exist; the remaining checklist items are tracked as future work.
+- Phases 30–33 depend on real university pilots and launch decisions; they remain open.
 - Each phase gates the next: no backend code until architecture is signed off; no launch until beta is successful.
 - The plan is additive to existing PUNYCODEX infrastructure and does not modify canonical sources except through the existing governance workflow.

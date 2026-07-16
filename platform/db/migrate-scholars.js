@@ -225,6 +225,28 @@ const SCHOLARS_SCHEMA = `
   CREATE INDEX IF NOT EXISTS idx_scholars_audit_action ON scholars_audit_log(action);
   CREATE INDEX IF NOT EXISTS idx_scholars_audit_resource ON scholars_audit_log(resource_type, resource_id);
   CREATE INDEX IF NOT EXISTS idx_scholars_audit_created ON scholars_audit_log(created_at);
+
+  -- Sponsorship applications (self-serve university onboarding)
+  CREATE TABLE IF NOT EXISTS scholars_sponsorship_applications (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    institution_name TEXT NOT NULL,
+    domain TEXT NOT NULL,
+    contact_name TEXT NOT NULL,
+    contact_email TEXT NOT NULL,
+    department_focus TEXT,
+    message TEXT,
+    status TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('pending', 'approved', 'rejected')),
+    review_comment TEXT,
+    reviewed_by INTEGER,
+    created_institution_id INTEGER,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    reviewed_at DATETIME,
+    FOREIGN KEY (reviewed_by) REFERENCES scholars_users(id),
+    FOREIGN KEY (created_institution_id) REFERENCES scholars_institutions(id)
+  );
+
+  CREATE INDEX IF NOT EXISTS idx_scholars_applications_status ON scholars_sponsorship_applications(status);
+  CREATE INDEX IF NOT EXISTS idx_scholars_applications_created ON scholars_sponsorship_applications(created_at);
 `;
 
 const IDEMPOTENT_ALTERATIONS = [

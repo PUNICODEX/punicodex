@@ -297,6 +297,96 @@ test('canManageInstitution rejects admin managing other institution', () => {
   assert.ok(!authz.canManageInstitution(admin, 999));
 });
 
+// ─── Sponsorship expiry ───
+
+test('isActiveSponsorship accepts active sponsorship with no expiry', () => {
+  assert.ok(authz.isActiveSponsorship(buildInstitution({ sponsorship_expires_at: null })));
+});
+
+test('isActiveSponsorship accepts active sponsorship with future expiry', () => {
+  const future = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)
+    .toISOString()
+    .slice(0, 19)
+    .replace('T', ' ');
+  assert.ok(authz.isActiveSponsorship(buildInstitution({ sponsorship_expires_at: future })));
+});
+
+test('isActiveSponsorship rejects active status with past expiry (SQLite format)', () => {
+  const past = new Date(Date.now() - 60 * 1000).toISOString().slice(0, 19).replace('T', ' ');
+  assert.ok(!authz.isActiveSponsorship(buildInstitution({ sponsorship_expires_at: past })));
+});
+
+test('isActiveSponsorship rejects active status with past expiry (ISO 8601)', () => {
+  const past = new Date(Date.now() - 60 * 1000).toISOString();
+  assert.ok(!authz.isActiveSponsorship(buildInstitution({ sponsorship_expires_at: past })));
+});
+
+test('isActiveSponsorship rejects non-active status regardless of expiry', () => {
+  assert.ok(!authz.isActiveSponsorship(buildInstitution({ sponsorshipStatus: 'pending' })));
+  assert.ok(!authz.isActiveSponsorship(buildInstitution({ sponsorshipStatus: 'expired' })));
+  assert.ok(!authz.isActiveSponsorship(null));
+});
+
+test('canSubmitEdit rejects student whose institution sponsorship has lapsed', () => {
+  const past = new Date(Date.now() - 60 * 1000).toISOString().slice(0, 19).replace('T', ' ');
+  const institution = db.createInstitution({
+    name: 'Lapsed University',
+    slug: 'lapsed-university',
+    domain: 'lapsed.test',
+    accreditation: 'test',
+  });
+  const lapsedId = institution.lastInsertRowid;
+  db.updateInstitutionSponsorship(lapsedId, {
+    sponsorshipStatus: 'active',
+    sponsorshipExpiresAt: past,
+  });
+  db.updateInstitutionAllowlist(lapsedId, ['Classics']);
+  const student = buildUser({ institutionId: lapsedId });
+  const target = buildTarget({ id: openSectionId });
+  assert.ok(!authz.canSubmitEdit(student, null, target));
+});
+
+test('expireLapsedSponsorships flips only lapsed active sponsorships', () => {
+  const past = new Date(Date.now() - 60 * 1000).toISOString().slice(0, 19).replace('T', ' ');
+  const future = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)
+    .toISOString()
+    .slice(0, 19)
+    .replace('T', ' ');
+
+  const lapsed = db.createInstitution({
+    name: 'Cron Lapsed University',
+    slug: 'cron-lapsed-university',
+    domain: 'cron-lapsed.test',
+    accreditation: 'test',
+  });
+  const lapsedId = lapsed.lastInsertRowid;
+  db.updateInstitutionSponsorship(lapsedId, {
+    sponsorshipStatus: 'active',
+    sponsorshipExpiresAt: past,
+  });
+
+  const fresh = db.createInstitution({
+    name: 'Cron Fresh University',
+    slug: 'cron-fresh-university',
+    domain: 'cron-fresh.test',
+    accreditation: 'test',
+  });
+  const freshId = fresh.lastInsertRowid;
+  db.updateInstitutionSponsorship(freshId, {
+    sponsorshipStatus: 'active',
+    sponsorshipExpiresAt: future,
+  });
+
+  const flipped = db.expireLapsedSponsorships();
+  assert.ok(flipped >= 1, `expected at least 1 flip, got ${flipped}`);
+  assert.strictEqual(db.getInstitutionById(lapsedId).sponsorship_status, 'expired');
+  assert.strictEqual(db.getInstitutionById(freshId).sponsorship_status, 'active');
+  // Idempotent: second run flips nothing new for these rows.
+  const second = db.expireLapsedSponsorships();
+  assert.strictEqual(db.getInstitutionById(freshId).sponsorship_status, 'active');
+  assert.ok(second <= flipped);
+});
+
 closeDb();
 
 console.log('\nScholars authz tests complete.');

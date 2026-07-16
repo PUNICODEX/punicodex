@@ -112,6 +112,96 @@ function updateInstitutionAllowlist(id, departmentAllowlist) {
     .run(json(departmentAllowlist), id);
 }
 
+/**
+ * Flip every active sponsorship whose expiry timestamp has passed to
+ * 'expired'. Uses SQLite's datetime() so both 'YYYY-MM-DD HH:MM:SS' and ISO
+ * 8601 stored values compare correctly. Returns the number of rows flipped.
+ * Read-time enforcement lives in scholars/authz.js#isActiveSponsorship; this
+ * is the housekeeping pass that keeps the stored status honest.
+ */
+function expireLapsedSponsorships() {
+  const db = getDb();
+  return db
+    .prepare(
+      `UPDATE scholars_institutions
+       SET sponsorship_status = 'expired'
+       WHERE sponsorship_status = 'active'
+         AND sponsorship_expires_at IS NOT NULL
+         AND datetime(sponsorship_expires_at) <= datetime('now')`
+    )
+    .run().changes;
+}
+
+// ─────────────────────────────────────────────────────────────
+// Sponsorship applications
+// ─────────────────────────────────────────────────────────────
+
+function createSponsorshipApplication({
+  institutionName,
+  domain,
+  contactName,
+  contactEmail,
+  departmentFocus = '',
+  message = '',
+}) {
+  const db = getDb();
+  return db
+    .prepare(
+      `INSERT INTO scholars_sponsorship_applications
+        (institution_name, domain, contact_name, contact_email, department_focus, message)
+       VALUES (?, ?, ?, ?, ?, ?)`
+    )
+    .run(institutionName, domain, contactName, contactEmail, departmentFocus, message);
+}
+
+function getSponsorshipApplicationById(id) {
+  const db = getDb();
+  return db.prepare('SELECT * FROM scholars_sponsorship_applications WHERE id = ?').get(id);
+}
+
+function listSponsorshipApplications({ status, limit = 100, offset = 0 } = {}) {
+  const db = getDb();
+  const conditions = [];
+  const params = [];
+  if (status) {
+    conditions.push('status = ?');
+    params.push(status);
+  }
+  const where = conditions.length ? `WHERE ${conditions.join(' AND ')}` : '';
+  return db
+    .prepare(
+      `SELECT * FROM scholars_sponsorship_applications ${where}
+       ORDER BY created_at DESC LIMIT ? OFFSET ?`
+    )
+    .all(...params, limit, offset);
+}
+
+function countSponsorshipApplications({ status } = {}) {
+  const db = getDb();
+  if (status) {
+    return db
+      .prepare('SELECT COUNT(*) AS c FROM scholars_sponsorship_applications WHERE status = ?')
+      .get(status).c;
+  }
+  return db.prepare('SELECT COUNT(*) AS c FROM scholars_sponsorship_applications').get().c;
+}
+
+function updateSponsorshipApplicationStatus(
+  id,
+  status,
+  { reviewComment = null, reviewedBy = null, createdInstitutionId = null } = {}
+) {
+  const db = getDb();
+  return db
+    .prepare(
+      `UPDATE scholars_sponsorship_applications
+       SET status = ?, review_comment = ?, reviewed_by = ?, created_institution_id = ?,
+           reviewed_at = CURRENT_TIMESTAMP
+       WHERE id = ?`
+    )
+    .run(status, reviewComment, reviewedBy, createdInstitutionId, id);
+}
+
 function createInstitutionWithAdmin({
   name,
   slug,
@@ -464,6 +554,21 @@ function deleteSession(id) {
   db.prepare('DELETE FROM scholars_sessions WHERE id = ?').run(id);
 }
 
+/**
+ * Revoke every session belonging to a user, optionally keeping one session
+ * alive (used when a user changes their own password and stays signed in).
+ * Returns the number of sessions removed.
+ */
+function deleteSessionsForUser(userId, { exceptId = null } = {}) {
+  const db = getDb();
+  if (exceptId) {
+    return db
+      .prepare('DELETE FROM scholars_sessions WHERE user_id = ? AND id != ?')
+      .run(userId, exceptId);
+  }
+  return db.prepare('DELETE FROM scholars_sessions WHERE user_id = ?').run(userId);
+}
+
 // ─────────────────────────────────────────────────────────────
 // Temples
 // ─────────────────────────────────────────────────────────────
@@ -731,6 +836,31 @@ function updateEditStatus(id, status, comment) {
   db.prepare(
     'UPDATE scholars_edits SET status = ?, comment = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?'
   ).run(status, comment, id);
+}
+
+/**
+ * List every edit a user has authored, newest first — powers the student
+ * dashboard ("My Submissions"). Includes section/temple context so the UI can
+ * link each submission back to its temple.
+ */
+function listEditsForUser(userId, { limit = 200, offset = 0 } = {}) {
+  const db = getDb();
+  const rows = db
+    .prepare(`
+    SELECT e.*, s.key AS section_key, s.label AS section_label, t.entry_id, t.name AS temple_name
+    FROM scholars_edits e
+    JOIN scholars_sections s ON e.section_id = s.id
+    JOIN scholars_temples t ON s.temple_id = t.id
+    WHERE e.user_id = ?
+    ORDER BY e.created_at DESC
+    LIMIT ? OFFSET ?
+  `)
+    .all(userId, limit, offset);
+  return rows.map((r) => ({
+    ...r,
+    proposed_sources: parseJson(r.proposed_sources, []),
+    proposed_media: parseJson(r.proposed_media, []),
+  }));
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -1616,6 +1746,60 @@ function countViewsByDay(days = 30) {
     .all(`-${days} days`);
 }
 
+// ─── Institution-scoped analytics ───
+
+function countEditsByDayForInstitution(institutionId, days = 30) {
+  const db = getDb();
+  return db
+    .prepare(
+      `
+      SELECT DATE(e.created_at) AS day, COUNT(*) AS count
+      FROM scholars_edits e
+      JOIN scholars_users u ON e.user_id = u.id
+      WHERE u.institution_id = ? AND e.created_at >= DATE('now', ?)
+      GROUP BY DATE(e.created_at)
+      ORDER BY day ASC
+    `
+    )
+    .all(institutionId, `-${days} days`);
+}
+
+function countApprovalsByDayForInstitution(institutionId, days = 30) {
+  const db = getDb();
+  return db
+    .prepare(
+      `
+      SELECT DATE(r.reviewed_at) AS day, COUNT(*) AS count
+      FROM scholars_reviews r
+      JOIN scholars_edits e ON r.edit_id = e.id
+      JOIN scholars_users u ON e.user_id = u.id
+      WHERE u.institution_id = ? AND r.decision = 'approved' AND r.reviewed_at >= DATE('now', ?)
+      GROUP BY DATE(r.reviewed_at)
+      ORDER BY day ASC
+    `
+    )
+    .all(institutionId, `-${days} days`);
+}
+
+function topEditedTemplesForInstitution(institutionId, limit = 10) {
+  const db = getDb();
+  return db
+    .prepare(
+      `
+      SELECT t.id, t.entry_id, t.name, COUNT(e.id) AS edit_count
+      FROM scholars_edits e
+      JOIN scholars_users u ON e.user_id = u.id
+      JOIN scholars_sections s ON e.section_id = s.id
+      JOIN scholars_temples t ON s.temple_id = t.id
+      WHERE u.institution_id = ?
+      GROUP BY t.id
+      ORDER BY edit_count DESC
+      LIMIT ?
+    `
+    )
+    .all(institutionId, limit);
+}
+
 // ─────────────────────────────────────────────────────────────
 // Transactions
 // ─────────────────────────────────────────────────────────────
@@ -1638,6 +1822,13 @@ module.exports = {
   countInstitutions,
   updateInstitutionSponsorship,
   updateInstitutionAllowlist,
+  expireLapsedSponsorships,
+  // Sponsorship applications
+  createSponsorshipApplication,
+  getSponsorshipApplicationById,
+  listSponsorshipApplications,
+  countSponsorshipApplications,
+  updateSponsorshipApplicationStatus,
   isDepartmentAllowed,
   // Users
   createUser,
@@ -1663,6 +1854,7 @@ module.exports = {
   getSessionById,
   getSessionWithUser,
   deleteSession,
+  deleteSessionsForUser,
   // Temples
   createTemple,
   getTempleByEntryId,
@@ -1683,6 +1875,7 @@ module.exports = {
   createEdit,
   getEditById,
   listPendingEdits,
+  listEditsForUser,
   updateEditStatus,
   countPendingEdits,
   countEditsByInstitution,
@@ -1743,6 +1936,9 @@ module.exports = {
   listAuditLog,
   // Analytics
   countEditsByDay,
+  countEditsByDayForInstitution,
+  countApprovalsByDayForInstitution,
+  topEditedTemplesForInstitution,
   countApprovalsByDay,
   topContributingInstitutions,
   topEditedTemples,

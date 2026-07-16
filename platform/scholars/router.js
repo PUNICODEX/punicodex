@@ -38,6 +38,7 @@ const {
   createEdit,
   getEditById,
   listPendingEdits,
+  listEditsForUser,
   countPendingEdits,
   updateEditStatus,
   createReview,
@@ -62,6 +63,9 @@ const {
   countEditsByInstitution,
   countAttributedSectionsByInstitution,
   countEditsByDay,
+  countEditsByDayForInstitution,
+  countApprovalsByDayForInstitution,
+  topEditedTemplesForInstitution,
   countApprovalsByDay,
   topContributingInstitutions,
   topEditedTemples,
@@ -81,6 +85,13 @@ const {
   updateUserRole,
   updateUserProfile,
   listStudentsByInstitution,
+  deleteSessionsForUser,
+  getInstitutionBySlug,
+  createSponsorshipApplication,
+  getSponsorshipApplicationById,
+  listSponsorshipApplications,
+  countSponsorshipApplications,
+  updateSponsorshipApplicationStatus,
 } = require('../db/scholars');
 const { generateBlankManifest } = require('./taxonomy');
 const { scoreEdit, validateEdit, buildQualityReason, MIN_SCORE } = require('./quality');
@@ -88,9 +99,16 @@ const {
   securityHeaders,
   createScholarsRateLimit,
   validateInputLength,
+  validatePassword,
   auditLog,
 } = require('./security');
-const { get: cacheGet, set: cacheSet, del: cacheDel, cacheKey } = require('./cache');
+const {
+  get: cacheGet,
+  set: cacheSet,
+  del: cacheDel,
+  delByPrefix: cacheDelByPrefix,
+  cacheKey,
+} = require('./cache');
 
 const router = express.Router();
 
@@ -117,7 +135,11 @@ function cacheMiddleware(namespace, ttlSeconds = 60) {
 function invalidateTempleCache(entryId) {
   cacheDel(cacheKey('temple', `/api/v1/scholars/temples/${entryId}`)).catch(() => {});
   cacheDel(cacheKey('temple', `/api/v1/scholars/temples/${entryId}/manifest`)).catch(() => {});
-  cacheDel(cacheKey('search', '*')).catch(() => {});
+  cacheDelByPrefix(cacheKey('search', '')).catch(() => {});
+  // Section bodies change on approval; section cache keys are URL-based
+  // (both /sections/:id and /temples/:id/sections/:key), so purge the
+  // namespace — invalidation is rare and entries re-cache within 60s.
+  cacheDelByPrefix(cacheKey('section', '')).catch(() => {});
 }
 
 router.use(securityHeaders);
@@ -310,9 +332,6 @@ router.post(
     if (!currentPassword || typeof currentPassword !== 'string') {
       return res.status(400).json(error('Current password is required'));
     }
-    if (!newPassword || typeof newPassword !== 'string' || newPassword.length < 8) {
-      return res.status(400).json(error('New password must be at least 8 characters'));
-    }
 
     const user = getUserById(req.user.id);
     if (!user) return res.status(404).json(error('User not found', 404));
@@ -320,7 +339,20 @@ router.post(
       return res.status(401).json(error('Current password is incorrect', 401));
     }
 
+    const passwordCheck = validatePassword(newPassword);
+    if (!passwordCheck.valid) {
+      return res
+        .status(400)
+        .json(error(`New password is too weak: ${passwordCheck.errors.join('; ')}`));
+    }
+
     updateUserPassword(user.id, hashPassword(newPassword));
+
+    // Revoke every other session for this account; the session that proved
+    // knowledge of the old password stays signed in.
+    const currentSessionId = req.cookies?.scholars_session || req.headers['x-scholars-session'];
+    deleteSessionsForUser(user.id, { exceptId: currentSessionId });
+
     res.json(success({ changed: true }));
   })
 );
@@ -352,6 +384,9 @@ router.post(
 
     const tempPassword = generateTempPassword();
     updateUserPassword(target.id, hashPassword(tempPassword));
+
+    // Immediate revocation: all existing sessions for this account die now.
+    deleteSessionsForUser(target.id);
 
     res.json(success({ reset: true, tempPassword }));
   })
@@ -615,6 +650,20 @@ router.get(
 );
 
 router.get(
+  '/edits/mine',
+  requireAuth,
+  createScholarsRateLimit('edits:mine'),
+  asyncHandler(async (req, res) => {
+    const { limit = 200, offset = 0 } = req.query;
+    const edits = listEditsForUser(req.user.id, {
+      limit: Math.min(Number(limit) || 200, 500),
+      offset: Number(offset) || 0,
+    });
+    res.json(success(edits));
+  })
+);
+
+router.get(
   '/edits/:id',
   requireAuth,
   createScholarsRateLimit('edits:detail'),
@@ -622,6 +671,29 @@ router.get(
     const edit = getEditById(Number(req.params.id));
     if (!edit) return res.status(404).json(error('Edit not found', 404));
     res.json(success(edit));
+  })
+);
+
+router.post(
+  '/edits/:id/withdraw',
+  requireAuth,
+  createScholarsRateLimit('edits:withdraw'),
+  auditLog('edit_withdrawn', {
+    getResourceType: () => 'edit',
+    getResourceId: (req) => req.params.id,
+    getDetails: (_req, res) => ({ statusCode: res.statusCode }),
+  }),
+  asyncHandler(async (req, res) => {
+    const edit = getEditById(Number(req.params.id));
+    if (!edit) return res.status(404).json(error('Edit not found', 404));
+    if (edit.user_id !== req.user.id) {
+      return res.status(403).json(error('You can only withdraw your own edits'));
+    }
+    if (!['pending', 'needs_revision'].includes(edit.status)) {
+      return res.status(400).json(error(`Cannot withdraw an edit with status '${edit.status}'`));
+    }
+    updateEditStatus(edit.id, 'withdrawn', edit.comment);
+    res.json(success({ withdrawn: true, editId: edit.id }));
   })
 );
 
@@ -885,6 +957,29 @@ router.get(
 );
 
 router.get(
+  '/institution/analytics',
+  requireAuth,
+  requireInstitutionAdmin,
+  createScholarsRateLimit('institution:analytics'),
+  asyncHandler(async (req, res) => {
+    const institutionId = req.user.institutionId;
+    if (!institutionId) {
+      return res.status(400).json(error('No institution is associated with this account'));
+    }
+    const days = Math.min(Math.max(Number(req.query.days) || 30, 1), 365);
+    const limit = Math.min(Math.max(Number(req.query.limit) || 10, 1), 100);
+    res.json(
+      success({
+        periodDays: days,
+        editsByDay: countEditsByDayForInstitution(institutionId, days),
+        approvalsByDay: countApprovalsByDayForInstitution(institutionId, days),
+        topTemples: topEditedTemplesForInstitution(institutionId, limit),
+      })
+    );
+  })
+);
+
+router.get(
   '/institution/students',
   requireAuth,
   requireInstitutionAdmin,
@@ -921,8 +1016,13 @@ router.post(
     if (!email || typeof email !== 'string' || !email.includes('@')) {
       return res.status(400).json(error('A valid email is required'));
     }
-    if (password !== undefined && (typeof password !== 'string' || password.length < 8)) {
-      return res.status(400).json(error('Password must be at least 8 characters'));
+    if (password !== undefined) {
+      const passwordCheck = validatePassword(password);
+      if (!passwordCheck.valid) {
+        return res
+          .status(400)
+          .json(error(`Password is too weak: ${passwordCheck.errors.join('; ')}`));
+      }
     }
 
     const institution = getInstitutionById(institutionId);
@@ -1100,6 +1200,9 @@ router.post(
     const tempPassword = generateTempPassword();
     updateUserPassword(target.id, hashPassword(tempPassword));
 
+    // Immediate revocation: all existing sessions for this account die now.
+    deleteSessionsForUser(target.id);
+
     audit({
       actorId: req.user.id,
       action: 'student_password_reset',
@@ -1130,6 +1233,10 @@ router.delete(
     }
 
     updateUserStatus(target.id, 'disabled');
+
+    // Immediate revocation: disabling an account kills its sessions now,
+    // not at the 7-day session expiry.
+    deleteSessionsForUser(target.id);
 
     audit({
       actorId: req.user.id,
@@ -1547,6 +1654,11 @@ router.patch(
 
     updateUserStatus(userId, accountStatus);
 
+    // Immediate revocation: any non-active status kills existing sessions.
+    if (accountStatus !== 'active') {
+      deleteSessionsForUser(userId);
+    }
+
     audit({
       actorId: req.user.id,
       action: 'user_status_changed',
@@ -1613,6 +1725,14 @@ router.post(
     }
     if (!adminEmail.includes('@')) {
       return res.status(400).json(error('A valid adminEmail is required'));
+    }
+    if (adminPassword !== undefined) {
+      const passwordCheck = validatePassword(adminPassword);
+      if (!passwordCheck.valid) {
+        return res
+          .status(400)
+          .json(error(`Admin password is too weak: ${passwordCheck.errors.join('; ')}`));
+      }
     }
 
     const password = adminPassword || generateTempPassword(20);
@@ -1749,6 +1869,215 @@ router.post(
       details: { isFrozen },
     });
     res.json(success({ frozen: Boolean(isFrozen) }));
+  })
+);
+
+// ─────────────────────────────────────────────────────────────
+// Sponsorship applications (self-serve university onboarding)
+// ─────────────────────────────────────────────────────────────
+
+const APPLICATION_EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const APPLICATION_DOMAIN_RE = /^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)+$/i;
+
+function slugifyInstitutionName(name) {
+  const base = String(name)
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 80);
+  return base || 'institution';
+}
+
+function uniqueInstitutionSlug(name) {
+  const base = slugifyInstitutionName(name);
+  let candidate = base;
+  let suffix = 2;
+  while (getInstitutionBySlug(candidate)) {
+    candidate = `${base}-${suffix}`;
+    suffix += 1;
+  }
+  return candidate;
+}
+
+router.post(
+  '/sponsorship/apply',
+  createScholarsRateLimit('sponsorship:apply', { tier: 'strict' }),
+  validateInputLength([
+    { key: 'institutionName', max: 200 },
+    { key: 'domain', max: 200 },
+    { key: 'contactName', max: 200 },
+    { key: 'contactEmail', max: 254 },
+    { key: 'departmentFocus', max: 300 },
+    { key: 'message', max: 5000 },
+    { key: 'website', max: 200 },
+  ]),
+  asyncHandler(async (req, res) => {
+    const {
+      institutionName,
+      domain,
+      contactName,
+      contactEmail,
+      departmentFocus = '',
+      message = '',
+      website,
+    } = req.body || {};
+
+    // Honeypot: bots that fill the hidden 'website' field get a fake success.
+    if (website) {
+      return res.status(201).json(success({ received: true }));
+    }
+
+    if (!institutionName || !domain || !contactName || !contactEmail) {
+      return res
+        .status(400)
+        .json(error('institutionName, domain, contactName, and contactEmail are required'));
+    }
+    if (!APPLICATION_EMAIL_RE.test(contactEmail)) {
+      return res.status(400).json(error('contactEmail must be a valid email address'));
+    }
+    if (!APPLICATION_DOMAIN_RE.test(domain)) {
+      return res
+        .status(400)
+        .json(error('domain must be a valid domain name (e.g. university.edu)'));
+    }
+
+    const result = createSponsorshipApplication({
+      institutionName: institutionName.trim(),
+      domain: domain.trim().toLowerCase(),
+      contactName: contactName.trim(),
+      contactEmail: contactEmail.trim().toLowerCase(),
+      departmentFocus: String(departmentFocus).trim(),
+      message: String(message).trim(),
+    });
+
+    audit({
+      actorId: null,
+      action: 'sponsorship_application_received',
+      resourceType: 'sponsorship_application',
+      resourceId: result.lastInsertRowid,
+      details: { domain: domain.trim().toLowerCase() },
+      ipHash: null,
+    });
+
+    res.status(201).json(success({ received: true, applicationId: result.lastInsertRowid }));
+  })
+);
+
+router.get(
+  '/sponsorship/applications',
+  requireAuth,
+  requireCurator,
+  createScholarsRateLimit('sponsorship:applications:list'),
+  asyncHandler(async (req, res) => {
+    const status = req.query.status || undefined;
+    if (status && !['pending', 'approved', 'rejected'].includes(status)) {
+      return res.status(400).json(error('Invalid status filter'));
+    }
+    const limit = Math.min(Math.max(Number(req.query.limit) || 100, 1), 500);
+    const offset = Math.max(Number(req.query.offset) || 0, 0);
+    const items = listSponsorshipApplications({ status, limit, offset });
+    const total = countSponsorshipApplications({ status });
+    const pendingCount = countSponsorshipApplications({ status: 'pending' });
+    res.json(success({ items, total, pendingCount, limit, offset }));
+  })
+);
+
+router.post(
+  '/sponsorship/applications/:id/approve',
+  requireAuth,
+  requireCurator,
+  createScholarsRateLimit('sponsorship:applications:approve', { tier: 'strict' }),
+  validateInputLength([{ key: 'reviewComment', max: 2000 }]),
+  auditLog('sponsorship_application_approved', {
+    getResourceType: () => 'sponsorship_application',
+    getResourceId: (req) => req.params.id,
+    getDetails: (_req, res) => ({ statusCode: res.statusCode }),
+  }),
+  asyncHandler(async (req, res) => {
+    const application = getSponsorshipApplicationById(Number(req.params.id));
+    if (!application) return res.status(404).json(error('Application not found', 404));
+    if (application.status !== 'pending') {
+      return res.status(400).json(error(`Application has already been ${application.status}`));
+    }
+
+    const tempPassword = generateTempPassword();
+    const slug = uniqueInstitutionSlug(application.institution_name);
+
+    let created;
+    try {
+      created = createInstitutionWithAdmin({
+        name: application.institution_name,
+        slug,
+        domain: application.domain,
+        accreditation: '',
+        metadata: { source: 'sponsorship_application', applicationId: application.id },
+        sponsorshipStatus: 'active',
+        departmentAllowlist: application.department_focus
+          ? application.department_focus
+              .split(',')
+              .map((d) => d.trim())
+              .filter(Boolean)
+          : [],
+        adminEmail: application.contact_email,
+        adminPasswordHash: hashPassword(tempPassword),
+        adminDisplayName: application.contact_name,
+        adminDepartment: null,
+      });
+    } catch (err) {
+      if (String(err.message).includes('UNIQUE')) {
+        return res
+          .status(409)
+          .json(error('An institution or admin account with this slug/email already exists', 409));
+      }
+      throw err;
+    }
+
+    updateSponsorshipApplicationStatus(application.id, 'approved', {
+      reviewComment: req.body?.reviewComment || null,
+      reviewedBy: req.user.id,
+      createdInstitutionId: created.institutionId,
+    });
+
+    // The temp password is shown to the curator exactly once so it can be
+    // relayed to the university out-of-band (email delivery is not wired up).
+    res.json(
+      success({
+        approved: true,
+        institutionId: created.institutionId,
+        adminId: created.adminId,
+        adminEmail: application.contact_email,
+        adminPassword: tempPassword,
+      })
+    );
+  })
+);
+
+router.post(
+  '/sponsorship/applications/:id/reject',
+  requireAuth,
+  requireCurator,
+  createScholarsRateLimit('sponsorship:applications:reject', { tier: 'strict' }),
+  validateInputLength([{ key: 'reviewComment', max: 2000 }]),
+  auditLog('sponsorship_application_rejected', {
+    getResourceType: () => 'sponsorship_application',
+    getResourceId: (req) => req.params.id,
+    getDetails: (_req, res) => ({ statusCode: res.statusCode }),
+  }),
+  asyncHandler(async (req, res) => {
+    const application = getSponsorshipApplicationById(Number(req.params.id));
+    if (!application) return res.status(404).json(error('Application not found', 404));
+    if (application.status !== 'pending') {
+      return res.status(400).json(error(`Application has already been ${application.status}`));
+    }
+
+    updateSponsorshipApplicationStatus(application.id, 'rejected', {
+      reviewComment: req.body?.reviewComment || null,
+      reviewedBy: req.user.id,
+    });
+
+    res.json(success({ rejected: true }));
   })
 );
 
