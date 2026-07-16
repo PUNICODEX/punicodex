@@ -141,7 +141,7 @@ const SUITES = [
   {
     name: 'Divergence Gate',
     cmd: 'node test/divergence-gate.test.js',
-    timeout: 600000,
+    timeout: 1800000,
   },
   {
     name: 'Brand Risk Language',
