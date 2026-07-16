@@ -27,9 +27,18 @@ let cachedArchetypes = null;
 
 function loadTaxonomy() {
   if (cachedTaxonomy) return cachedTaxonomy;
-  const raw = fs.readFileSync(TAXONOMY_PATH, 'utf8');
-  cachedTaxonomy = JSON.parse(raw);
-  return cachedTaxonomy;
+  try {
+    // Preferred: a static require so serverless bundlers (Vercel nft) trace
+    // and include the JSON in the function bundle. The fs read below fails
+    // in bundles where the file was not traced.
+    cachedTaxonomy = require('../../docs/scholarly-edition/scholarly-section-taxonomy-v0.1.json');
+    return cachedTaxonomy;
+  } catch {
+    // Local fallback: read from disk.
+    const raw = fs.readFileSync(TAXONOMY_PATH, 'utf8');
+    cachedTaxonomy = JSON.parse(raw);
+    return cachedTaxonomy;
+  }
 }
 
 function loadArchetypes() {
