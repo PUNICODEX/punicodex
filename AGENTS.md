@@ -123,9 +123,10 @@ mismatches it reports.
 12. `scripts/gen-sitemap.js`
 13. `scripts/inject-analytics.js`
 14. `scripts/update-data-version.js`
-15. `scripts/generate-scholars-content.js`
-16. `scripts/generate-scholars-manifests.js`
-17. `scripts/generate-scholars.js`
+15. `scripts/generate-scholars-taxonomy.js`
+16. `scripts/generate-scholars-content.js`
+17. `scripts/generate-scholars-manifests.js`
+18. `scripts/generate-scholars.js`
 
 ### Scholarly Edition
 
@@ -148,6 +149,10 @@ the `/api/v1/scholars/` API.
 - `platform/scholars/manifests/{id}.json` — per-temple section manifests
   (blank taxonomy structure with the content files merged in as published
   sections)
+- `platform/scholars/taxonomy-data.js` — JS copy of the canonical taxonomy
+  registry (by `scripts/generate-scholars-taxonomy.js`); required because
+  Vercel function bundles do not include runtime JSON/fs reads, so the API
+  loads the taxonomy through this module. Excluded from biome formatting.
 - `sites/{id}/scholars/index.html` — Scholarly Edition pages
 
 **Database:**

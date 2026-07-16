@@ -1,0 +1,566 @@
+/**
+ * GENERATED FILE — DO NOT EDIT BY HAND.
+ * Canonical source: docs/scholarly-edition/scholarly-section-taxonomy-v0.1.json
+ * Regenerate with: node scripts/generate-scholars-taxonomy.js
+ */
+module.exports = {
+  "version": "0.2.0",
+  "generatedAt": "2026-07-07T09:14:01.039Z",
+  "basedOn": "Phase 1 archaeology of 123 flagship temples",
+  "empirical": {
+    "flagshipsAnalyzed": 123,
+    "flagshipsWithLoreCatalogEntry": 111,
+    "catalogSectionFrequency": {
+      "pronunciation": 111,
+      "domains": 111,
+      "symbols": 111,
+      "mythology": 111,
+      "syncretism": 111,
+      "culturalLegacy": 111,
+      "extendedMeditation": 102,
+      "sources": 111,
+      "archaeology": 111,
+      "originalScriptNote": 44
+    },
+    "renderedLoreSectionFrequency": {
+      "hero": 123,
+      "the-name": 123,
+      "pronunciation": 123,
+      "symbols": 123,
+      "mythology": 123,
+      "related": 123,
+      "extended-lore-cta": 123,
+      "provenance": 67
+    },
+    "extendedPageSectionFrequency": {
+      "hero": 123,
+      "quick-facts": 123,
+      "etymology": 123,
+      "unicode-breakdown": 123,
+      "cultural-significance": 123,
+      "faq": 123,
+      "sources": 123,
+      "back-to-lore": 123
+    }
+  },
+  "taxonomy": {
+    "universal": {
+      "description": "Every flagship Scholarly Edition must contain these sections, even if initially blank.",
+      "sections": [
+        {
+          "key": "overview",
+          "label": "Overview",
+          "purpose": "Concise scholarly summary of the figure, name, tradition, and significance."
+        },
+        {
+          "key": "the-name",
+          "label": "The Name",
+          "purpose": "Etymology, ASCII constraint, Unicode restoration, name variations, tier classification."
+        },
+        {
+          "key": "pronunciation",
+          "label": "Pronunciation",
+          "purpose": "IPA reconstruction, phoneme breakdown, approximation, kin forms."
+        },
+        {
+          "key": "original-script",
+          "label": "Original Script & Provenance",
+          "purpose": "Original writing system, transliteration steps, uncertainty markers, font/display notes."
+        },
+        {
+          "key": "domains",
+          "label": "Domains & Attributes",
+          "purpose": "Sphere of influence, titles, epithets, domain cards."
+        },
+        {
+          "key": "symbols",
+          "label": "Symbols",
+          "purpose": "Iconography, attributes, and their meanings."
+        },
+        {
+          "key": "mythology",
+          "label": "Mythology",
+          "purpose": "Core myths, primary narratives, and textual evidence."
+        },
+        {
+          "key": "syncretism",
+          "label": "Syncretism & Reception",
+          "purpose": "Cross-cultural identification, later adaptations, and interpretatio."
+        },
+        {
+          "key": "cultural-legacy",
+          "label": "Cultural Legacy",
+          "purpose": "Modern influence, literature, art, popular culture, and contemporary practice."
+        },
+        {
+          "key": "archaeology",
+          "label": "Archaeology & Material Evidence",
+          "purpose": "Sites, inscriptions, artifacts, and physical attestations."
+        },
+        {
+          "key": "scholarly-sources",
+          "label": "Scholarly Sources",
+          "purpose": "Cited primary and secondary sources with full bibliographic metadata."
+        },
+        {
+          "key": "edit-history",
+          "label": "Edit History",
+          "purpose": "Immutable revision timeline and attribution."
+        },
+        {
+          "key": "attribution",
+          "label": "Attribution",
+          "purpose": "Universities and students credited for contributions."
+        }
+      ]
+    },
+    "common": {
+      "description": "Sections present in most flagships and promoted to first-class status in the Scholarly Edition.",
+      "sections": [
+        {
+          "key": "meditation",
+          "label": "Meditation & Reflection",
+          "purpose": "Contemplative or interpretive essay on the figure's enduring meaning.",
+          "empiricalSource": "extendedMeditation (102/111 flagships)"
+        }
+      ]
+    },
+    "pantheonKits": {
+      "description": "Per-tradition section kits automatically activated by pantheon.",
+      "pantheonAliases": {
+        "description": "Archetype pantheon values (js/archetypes-v2.js) that resolve to a kit of another tradition. Greek sub-pantheons share the Greek kit.",
+        "olympian": "greek",
+        "chthonic": "greek",
+        "titan": "greek",
+        "other": "greek"
+      },
+      "kits": {
+        "greek": {
+          "sections": [
+            {
+              "key": "homeric-hymns",
+              "label": "Homeric Hymns"
+            },
+            {
+              "key": "epithets",
+              "label": "Epithets & Epicleses"
+            },
+            {
+              "key": "oracle-sites",
+              "label": "Oracle & Cult Sites"
+            },
+            {
+              "key": "iconography",
+              "label": "Iconography"
+            }
+          ]
+        },
+        "greek-location": {
+          "sections": [
+            {
+              "key": "topography",
+              "label": "Topography"
+            },
+            {
+              "key": "historical-sources",
+              "label": "Historical Sources"
+            },
+            {
+              "key": "modern-site",
+              "label": "Modern Site & Excavations"
+            }
+          ]
+        },
+        "norse": {
+          "sections": [
+            {
+              "key": "poetic-edda",
+              "label": "Poetic Edda"
+            },
+            {
+              "key": "prose-edda",
+              "label": "Prose Edda"
+            },
+            {
+              "key": "runic-evidence",
+              "label": "Runic Evidence"
+            },
+            {
+              "key": "sagas",
+              "label": "Sagas & Medieval Sources"
+            }
+          ]
+        },
+        "egyptian": {
+          "sections": [
+            {
+              "key": "hieroglyphic-evidence",
+              "label": "Hieroglyphic Evidence"
+            },
+            {
+              "key": "pyramid-texts",
+              "label": "Pyramid Texts"
+            },
+            {
+              "key": "coffin-texts",
+              "label": "Coffin Texts"
+            },
+            {
+              "key": "book-of-the-dead",
+              "label": "Book of the Dead"
+            }
+          ]
+        },
+        "canaanite": {
+          "sections": [
+            {
+              "key": "ugaritic-tablets",
+              "label": "Ugaritic Tablets"
+            },
+            {
+              "key": "tanakh-references",
+              "label": "Tanakh References"
+            },
+            {
+              "key": "inscriptions",
+              "label": "Inscriptions & Seals"
+            }
+          ]
+        },
+        "phoenician": {
+          "sections": [
+            {
+              "key": "phoenician-inscriptions",
+              "label": "Phoenician Inscriptions"
+            },
+            {
+              "key": "biblical-references",
+              "label": "Biblical References"
+            },
+            {
+              "key": "classical-sources",
+              "label": "Classical Sources"
+            }
+          ]
+        },
+        "mesopotamian": {
+          "sections": [
+            {
+              "key": "cuneiform-sources",
+              "label": "Cuneiform Sources"
+            },
+            {
+              "key": "enuma-elish",
+              "label": "Enūma Eliš"
+            },
+            {
+              "key": "atra-hasis",
+              "label": "Atra-Ḫasīs"
+            }
+          ]
+        },
+        "sanskrit": {
+          "sections": [
+            {
+              "key": "vedic-references",
+              "label": "Vedic References"
+            },
+            {
+              "key": "upanishads",
+              "label": "Upaniṣads"
+            },
+            {
+              "key": "puranas",
+              "label": "Purāṇas"
+            },
+            {
+              "key": "mantras",
+              "label": "Mantras & Stotras"
+            }
+          ]
+        },
+        "chinese": {
+          "sections": [
+            {
+              "key": "classical-texts",
+              "label": "Classical Texts"
+            },
+            {
+              "key": "daoist-sources",
+              "label": "Daoist Sources"
+            },
+            {
+              "key": "buddhist-sources",
+              "label": "Buddhist Sources"
+            },
+            {
+              "key": "calligraphy",
+              "label": "Calligraphy & Script"
+            }
+          ]
+        },
+        "taoist": {
+          "sections": [
+            {
+              "key": "daoist-canon",
+              "label": "Daoist Canon (Daozang)"
+            },
+            {
+              "key": "yijing",
+              "label": "Yijing & Hexagrams"
+            },
+            {
+              "key": "neidan",
+              "label": "Inner Alchemy (Neidan)"
+            }
+          ]
+        },
+        "japanese": {
+          "sections": [
+            {
+              "key": "kojiki-nihonshoki",
+              "label": "Kojiki & Nihon Shoki"
+            },
+            {
+              "key": "shinto-sources",
+              "label": "Shinto Sources"
+            },
+            {
+              "key": "buddhist-japanese",
+              "label": "Japanese Buddhist Sources"
+            }
+          ]
+        },
+        "nahuatl": {
+          "sections": [
+            {
+              "key": "florentine-codex",
+              "label": "Florentine Codex"
+            },
+            {
+              "key": "aztec-sources",
+              "label": "Aztec Sources"
+            },
+            {
+              "key": "colonial-sources",
+              "label": "Colonial-Era Sources"
+            }
+          ]
+        },
+        "incan": {
+          "sections": [
+            {
+              "key": "colonial-chronicles",
+              "label": "Colonial Chronicles"
+            },
+            {
+              "key": "archaeological-sites",
+              "label": "Archaeological Sites"
+            }
+          ]
+        },
+        "zoroastrian": {
+          "sections": [
+            {
+              "key": "avesta",
+              "label": "Avesta"
+            },
+            {
+              "key": "gathas",
+              "label": "Gathas"
+            },
+            {
+              "key": "middle-persian",
+              "label": "Middle Persian Sources"
+            }
+          ]
+        },
+        "celtic": {
+          "sections": [
+            {
+              "key": "irish-cycles",
+              "label": "Irish Mythological Cycles"
+            },
+            {
+              "key": "welsh-sources",
+              "label": "Welsh Sources"
+            },
+            {
+              "key": "inscriptions",
+              "label": "Inscriptions & Ogham"
+            }
+          ]
+        },
+        "yoruba": {
+          "sections": [
+            {
+              "key": "ifa",
+              "label": "Ifá Corpus"
+            },
+            {
+              "key": "oral-tradition",
+              "label": "Oral Tradition"
+            },
+            {
+              "key": "diaspora",
+              "label": "Diaspora Traditions"
+            }
+          ]
+        },
+        "polynesian": {
+          "sections": [
+            {
+              "key": "oral-narratives",
+              "label": "Oral Narratives"
+            },
+            {
+              "key": "ethnographic-sources",
+              "label": "Ethnographic Sources"
+            }
+          ]
+        },
+        "slavic": {
+          "sections": [
+            {
+              "key": "primary-chronicle",
+              "label": "Primary Chronicle"
+            },
+            {
+              "key": "folk-sources",
+              "label": "Folk Sources"
+            }
+          ]
+        },
+        "hittite": {
+          "sections": [
+            {
+              "key": "hittite-texts",
+              "label": "Hittite Texts"
+            },
+            {
+              "key": "cuneiform-archives",
+              "label": "Cuneiform Archives"
+            }
+          ]
+        },
+        "abrahamic": {
+          "sections": [
+            {
+              "key": "hebrew-bible",
+              "label": "Hebrew Bible / Old Testament"
+            },
+            {
+              "key": "new-testament",
+              "label": "New Testament"
+            },
+            {
+              "key": "midrash",
+              "label": "Midrash & Targumim"
+            },
+            {
+              "key": "quranic",
+              "label": "Qur'ānic References"
+            }
+          ]
+        },
+        "buddhist": {
+          "sections": [
+            {
+              "key": "pali-canon",
+              "label": "Pāli Canon"
+            },
+            {
+              "key": "mahayana-sutras",
+              "label": "Mahāyāna Sūtras"
+            },
+            {
+              "key": "commentarial-tradition",
+              "label": "Commentarial Tradition"
+            }
+          ]
+        },
+        "baltic": {
+          "sections": [
+            {
+              "key": "dainas",
+              "label": "Dainas & Folklore"
+            },
+            {
+              "key": "baltic-chronicles",
+              "label": "Chronicles & Historical Sources"
+            }
+          ]
+        }
+      }
+    },
+    "optional": {
+      "description": "Sections curators or universities may add when justified.",
+      "sections": [
+        {
+          "key": "maps-and-sites",
+          "label": "Maps & Sacred Sites"
+        },
+        {
+          "key": "art-and-iconography",
+          "label": "Art & Iconography Gallery"
+        },
+        {
+          "key": "timeline",
+          "label": "Historical Timeline"
+        },
+        {
+          "key": "genealogy",
+          "label": "Genealogy"
+        },
+        {
+          "key": "related-names",
+          "label": "Related Names"
+        },
+        {
+          "key": "comparative-mythology",
+          "label": "Comparative Mythology"
+        },
+        {
+          "key": "modern-practice",
+          "label": "Modern Practice & Devotion"
+        },
+        {
+          "key": "bibliography",
+          "label": "Full Bibliography"
+        }
+      ]
+    },
+    "deprecated": {
+      "description": "Legacy sections that should not be used in the Scholarly Edition.",
+      "sections": [
+        {
+          "key": "extended-lore-cta",
+          "label": "Extended Lore CTA",
+          "reason": "Presentation-only shell; replaced by direct section navigation."
+        },
+        {
+          "key": "back-to-lore",
+          "label": "Back to Lore",
+          "reason": "Navigation shell, not scholarly content."
+        }
+      ]
+    }
+  },
+  "sectionSchema": {
+    "title": "string",
+    "body": "markdown",
+    "sources": "array of source citation objects",
+    "media": "array of media objects",
+    "editorNotes": "string (internal)",
+    "status": "empty | draft-pending | approved | needs-update",
+    "taxonomyVersion": "string"
+  },
+  "notes": [
+    "The 12 flagships without lore-catalog.json entries are the newest acquisitions; they will begin blank and use this taxonomy.",
+    "Original script provenance is promoted from rare (44/111) to universal because every name has an original writing tradition.",
+    "The current rendered lore pages are intentionally thin; Scholarly Edition exposes all canonical sections as first-class content.",
+    "Domains/attributes data currently folded into symbols/hero is restored as a standalone section.",
+    "Pantheon kits are activated by the flagship's pantheon value in js/archetypes-v2.js.",
+    "v0.2.0: pantheonAliases map Greek sub-pantheons (olympian, chthonic, titan, other) to the Greek kit; new buddhist and baltic kits; the common bucket (meditation) is promoted into generated manifests, placed after pantheon-kit sections; edit-history and attribution are always ordered last."
+  ]
+};

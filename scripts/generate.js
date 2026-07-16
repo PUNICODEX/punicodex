@@ -47,6 +47,7 @@ const scripts = [
   'scripts/sync-public-copy.js',
   'scripts/generate-temples.js',
   'scripts/create-flagship.js --regenerate-all',
+  'scripts/generate-scholars-taxonomy.js',
   'scripts/generate-scholars-content.js',
   'scripts/generate-scholars-manifests.js',
   'scripts/generate-scholars.js',

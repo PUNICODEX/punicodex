@@ -28,13 +28,14 @@ let cachedArchetypes = null;
 function loadTaxonomy() {
   if (cachedTaxonomy) return cachedTaxonomy;
   try {
-    // Preferred: a static require so serverless bundlers (Vercel nft) trace
-    // and include the JSON in the function bundle. The fs read below fails
-    // in bundles where the file was not traced.
-    cachedTaxonomy = require('../../docs/scholarly-edition/scholarly-section-taxonomy-v0.1.json');
+    // Preferred: the generated .js module, which serverless bundlers always
+    // include in the function's require graph. Runtime fs reads of the
+    // canonical JSON (and JSON requires outside the traced set) are absent
+    // from Vercel function bundles.
+    cachedTaxonomy = require('./taxonomy-data.js');
     return cachedTaxonomy;
   } catch {
-    // Local fallback: read from disk.
+    // Local fallback: read the canonical registry from disk.
     const raw = fs.readFileSync(TAXONOMY_PATH, 'utf8');
     cachedTaxonomy = JSON.parse(raw);
     return cachedTaxonomy;
