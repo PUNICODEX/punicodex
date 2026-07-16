@@ -2,7 +2,11 @@
   "trailingSlash": true,
   "functions": {
     "api/**/*.js": {
-      "includeFiles": "platform/db/**"
+      "includeFiles": [
+        "platform/db/**",
+        "docs/scholarly-edition/**",
+        "platform/scholars/manifests/**"
+      ]
     }
   },
   "rewrites": [
