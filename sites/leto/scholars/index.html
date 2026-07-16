@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,12 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#homeric-hymns">14 &mdash; Homeric Hymns</a></li>
-<li><a href="#epithets">15 &mdash; Epithets & Epicleses</a></li>
-<li><a href="#oracle-sites">16 &mdash; Oracle & Cult Sites</a></li>
-<li><a href="#iconography">17 &mdash; Iconography</a></li>
+<li><a href="#homeric-hymns">12 &mdash; Homeric Hymns</a></li>
+<li><a href="#epithets">13 &mdash; Epithets & Epicleses</a></li>
+<li><a href="#oracle-sites">14 &mdash; Oracle & Cult Sites</a></li>
+<li><a href="#iconography">15 &mdash; Iconography</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -281,14 +297,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Lētō</strong> (<em>leto</em>) — Motherhood, Night · Lady, forgotten one — belongs to the Greek tradition, where it is catalogued under the domain &quot;Motherhood, Night&quot;. The name means &quot;Lady, forgotten one&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>Lētō is the <strong>mother of Apollo and Artemis</strong>, pursued across land and sea by Hera&#39;s jealousy, and at last given refuge by the floating island of Delos. She is the goddess of the hidden journey, the patience of motherhood, and the sanctuary that becomes holy because it sheltered the gods.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Lētō</strong> and serves its temple at <a class="scholars-ext" href="https://xn--lt-wma7u.com" rel="noopener noreferrer" target="_blank">lētō.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>leto</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Homeric Hymn to Apollo.</li><li id="src-overview-2">Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-overview-3">Callimachus, Hymn to Delos.</li></ol></div>
     </div>
 </section>
 
@@ -296,14 +311,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Greek as <strong>Λητώ</strong>. Etymologically it means &quot;Lady, forgotten one&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The ASCII form <em>leto</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Lētō</strong> recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>l</strong> → <strong>L</strong> — Lambda</li><li><strong>e</strong> → <strong>ē</strong> — Eta: long epsilon</li><li><strong>t</strong> → <strong>t</strong> — Tau</li><li><strong>o</strong> → <strong>ō</strong> — Omega: long omicron</li></ul>
+<p>Attested and derived spellings of the name:</p>
+<ul class="scholars-list"><li><strong>Leto</strong> — ASCII form: Plain ASCII form</li></ul>
+<p>The project holds the domain <strong>lētō.com</strong> (xn--lt-wma7u.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Homeric Hymn to Apollo.</li><li id="src-the-name-2">Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -311,14 +329,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/leː.tɔ̌ː/</strong> — Ancient Greek Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>L-</strong> — Voiced alveolar lateral approximant [l].</li><li><strong>-ē-</strong> — Long close-mid front vowel [eː], written eta.</li><li><strong>-t-</strong> — Voiceless alveolar stop [t].</li><li><strong>-ō</strong> — Long open-mid back rounded vowel [ɔː], with circumflex marking length and falling pitch.</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;LAY-toh&#39; — hold the first vowel long like &#39;lay&#39; without the off-glide, and let the final &#39;oh&#39; carry a gentle rise-and-fall pitch.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Greek</strong> — Λητώ (Lētṓ), mother of Apollo and Artemis.</li><li><strong>Roman</strong> — Latona, the Latin adaptation worshipped at the Letoon.</li><li><strong>Lycian</strong> — Lada, a local goddess linked to Leto in the Xanthos trilingual.</li></ul>
+<p>Lētō is Tier 1: the Greek original contains both length (ē and ō) and the circumflex pitch contour. The English &#39;Leto&#39; preserves neither.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Homeric Hymn to Apollo.</li></ol></div>
     </div>
 </section>
 
@@ -326,14 +347,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is written in Greek as <strong>Λητώ</strong>. This original script is the form against which the ASCII fallback <em>leto</em> and the PÚNYCODEX restoration <strong>Lētō</strong> are measured: the restoration preserves its vowel quantity of the written form, so that a reader typing the modern address still speaks the ancient name.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The Greek is Λητώ. The first vowel is eta (ē), long [eː]; the final omega (ō) is long [ɔː] with a circumflex accent indicating a falling pitch on a long vowel. The Roman form Latona loses both the vowel length and the pitch contour. PUNYCODEX restores Lētō with the macron on ē and the circumflex on ō, since the full Greek breathing marks are not registrable.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Homeric Hymn to Apollo.</li></ol></div>
     </div>
 </section>
 
@@ -341,14 +360,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>Lētō is the <strong>mother of Apollo and Artemis</strong>, pursued across land and sea by Hera&#39;s jealousy, and at last given refuge by the floating island of Delos. She is the goddess of the hidden journey, the patience of motherhood, and the sanctuary that becomes holy because it sheltered the gods.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Mother of Twins</h3>
+<p>She bore Apollo and Artemis, the archer gods of light and wilderness.</p>
+<h3 class="scholars-h3">Refugee Goddess</h3>
+<p>Hera denied her a fixed birthplace; Delos alone offered sanctuary.</p>
+<h3 class="scholars-h3">Letoön</h3>
+<p>Her great sanctuary near Xanthos in Lycia, shared with her children.</p>
+<h3 class="scholars-h3">Chthonic Mother</h3>
+<p>Her links to night and Lycian cults give her a darker, older dimension.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -356,14 +380,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Lētō concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Date palm</strong> — The tree to which Lētō clung while giving birth on Delos.</li><li><strong>Wolf</strong> — The animal associated with Apollo and the wilderness of Lētō&#39;s wanderings.</li><li><strong>Island</strong> — Delos, the unstable rock that became fixed because it received the gods.</li><li><strong>Bow and lyre</strong> — The attributes of her children, Apollo and Artemis.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Homeric Hymn to Apollo.</li></ol></div>
     </div>
 </section>
 
@@ -371,14 +393,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Lētō&#39;s mythology is dominated by one of the most famous birth narratives in Greek religion: the persecution of a pregnant goddess and the founding of a holy island.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Wanderings of Lētō (Hymn)</h3>
+<p>Hera, furious that Zeus had fathered children by Lētō, sent the serpent Pýthōn to pursue her and forbade any land under the sun to receive her. Lētō wandered through many lands until she reached Delos, a barren, floating island. The island trembled at first, fearing Apollo&#39;s wrath, but Lētō swore that her son would make it famous and rich. There, clinging to a palm tree, she gave birth first to Artemis and then, with Artemis&#39;s help, to Apollo.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Latona and the Lycian Peasants (Ovid)</h3>
+<p>In Ovid&#39;s version, the thirsty Latona stopped at a Lycian pool to drink. Local peasants stirred the mud to prevent her. In anger she transformed them into frogs, condemning them to croak forever in the mire. The story explains the croaking of frogs and warns against insulting a goddess in need.</p>
+<h3 class="scholars-h3">The Letoon of Lycia (Cult)</h3>
+<p>At the Letoon near Xanthos, Lētō was worshipped alongside Apollo and Artemis as a triad. The site was so important that its priests could grant asylum, and the Lycian confederation held meetings there. The great Xanthos trilingual inscription was set up to honour the sanctuary, linking Greek, Lycian, and Aramaic conceptions of the goddess.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-mythology-2">Callimachus, Hymn to Delos.</li></ol></div>
     </div>
 </section>
 
@@ -386,14 +411,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>The Romans knew Lētō as Latona, and her cult spread through Italy with that of Apollo. In Lycia she was identified with a local mother goddess, Lada, and the Letoon became a centre of syncretic worship. Later European art remembered her chiefly through the story of Latona and the Lycian peasants, a favourite subject of Baroque painters exploring divine wrath and metamorphosis.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Greek tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/acheron/">Achérōn</a>, <a class="scholars-xlink" href="/sites/adamas/">Adámas</a>, <a class="scholars-xlink" href="/sites/aer/">Aḗr</a>, <a class="scholars-xlink" href="/sites/aither/">Aithḗr</a>, <a class="scholars-xlink" href="/sites/ananke/">Anánkē</a>, and <a class="scholars-xlink" href="/sites/andromeda/">Andromedē</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Homeric Hymn to Apollo.</li></ol></div>
     </div>
 </section>
 
@@ -401,14 +424,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Lētō&#39;s most enduring legacy is Delos itself, one of the most important archaeological sites in Greece and a UNESCO World Heritage centre. Her story of persecution and sanctuary also resonates in later narratives of divine mothers and exiled queens. The name Leto appears in literature, astronomy, and even botany (the lotus is sometimes called the lotos in her honour), while her Roman form Latona adorns fountains and gardens across Europe.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Homeric Hymn to Apollo.</li></ol></div>
     </div>
 </section>
 
@@ -416,14 +436,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>No monument, inscription, or artifact in the current PÚNYCODEX corpus is yet assigned to Lētō with certainty. That absence should be read honestly: for a Greek name of this type the material record is expected to be thin, and the primary evidence remains the textual testimony gathered in the Scholarly Sources section<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup>.</p>
+<p>Were such evidence to surface, it would take recognizable forms: votive or dedicatory inscriptions naming Λητώ, sanctuary or cult remains tied to motherhood and iconography matching its traditional attributes (date palm and wolf). Each candidate would be weighed against the reconstructed form of the name before entering the scholarly record.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Homeric Hymn to Apollo.</li></ol></div>
     </div>
 </section>
 
@@ -431,135 +449,103 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Lētō given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Homeric Hymn to Apollo.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Callimachus, Hymn to Delos.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Ovid, Metamorphoses.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> LSJ (Liddell-Scott-Jones).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Homeric Hymn to Apollo.</li><li id="src-scholarly-sources-2">Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-3">Callimachus, Hymn to Delos.</li><li id="src-scholarly-sources-4">Ovid, Metamorphoses.</li><li id="src-scholarly-sources-5">LSJ (Liddell-Scott-Jones).</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="homeric-hymns">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Homeric Hymns</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>No hymn is addressed to Lētō herself, but she is the dramatic centre of the Delian half of the third Homeric Hymn, To Apollo: rejected by every land that fears her son, she wanders until barren Delos accepts her, swears the island its future glory, leans on the palm tree, and bears Apollo after nine days of labor prolonged by Hera&#39;s withholding of Eileithyia.<sup class="scholars-cite"><a href="#src-homeric-hymns-1">[1]</a></sup> Homer already knows her as Apollo&#39;s mother — the Iliad opens by naming him &#39;son of Lētō and Zeus&#39; — and in Iliad 21 she quietly gathers Artemis&#39;s scattered bow and arrows after the battle of the gods.<sup class="scholars-cite"><a href="#src-homeric-hymns-2">[2]</a></sup> Callimachus&#39; Hymn to Delos later retells her wanderings at full Alexandrian length.<sup class="scholars-cite"><a href="#src-homeric-hymns-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-homeric-hymns-1">Homeric Hymn to Apollo (Delian part).</li><li id="src-homeric-hymns-2">Homer, Iliad.</li><li id="src-homeric-hymns-3">Callimachus, Hymn to Delos.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="epithets">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Epithets & Epicleses</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <ul class="scholars-list"><li><strong>κυανόπεπλος</strong> (<em>kyanópeplos</em>) — &#39;dark-robed&#39; — Hesiod&#39;s adjective for her in the Theogony&#39;s account of Koîos and Phoíbē.<sup class="scholars-cite"><a href="#src-epithets-1">[1]</a></sup></li><li><strong>ἤπιος</strong> (<em>ḗpios</em>) — &#39;gentle&#39; — the same passage praises her as ever gentle to mortals and immortals.<sup class="scholars-cite"><a href="#src-epithets-1">[1]</a></sup></li><li><strong>μείλιχος</strong> (<em>meílichos</em>) — &#39;mild, gracious&#39; — Theogony: &#39;mild from the beginning, most kindly within Olympus&#39;.<sup class="scholars-cite"><a href="#src-epithets-1">[1]</a></sup></li><li><strong>Latona</strong> — her Roman name, under which she was worshipped in Italy and invoked by Virgil and Ovid.<sup class="scholars-cite"><a href="#src-epithets-2">[2]</a></sup></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-epithets-1">Hesiod, Theogony, Loeb Classical Library No. 57. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-epithets-2">Ovid, Metamorphoses (Book 6, Latona and the Lycian peasants).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="oracle-sites">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Oracle & Cult Sites</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Lētō had no oracle of her own; her cult travels with her children&#39;s. Two sites dominate. Delos, where the hymn fixed her labor, honoured her within Apollo&#39;s great sanctuary — the sacred lake and the palm tree of her birth scene remained landmarks into the Classical period.<sup class="scholars-cite"><a href="#src-oracle-sites-1">[1]</a></sup> The Letoon near Xanthos in Lycia was her grandest seat: the federal sanctuary of the Lycian League, shared with Apollo and Artemis, and the findspot of the famous Xanthian trilingual inscription in Greek, Lycian, and Aramaic.<sup class="scholars-cite"><a href="#src-oracle-sites-2">[2]</a></sup> Elsewhere her temples are few and modest, generally annexed to cults of the divine twins.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-oracle-sites-1">Homeric Hymn to Apollo (Delian part).</li><li id="src-oracle-sites-2">Xanthian trilingual inscription, from the Letoon of Xanthos.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="iconography">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Iconography</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Lētō&#39;s images cluster around the Delian birth: on Attic vases she stands or kneels grasping the palm tree while Eileithyia and the attendant goddesses gather round, a type fixed by the Homeric Hymn&#39;s account.<sup class="scholars-cite"><a href="#src-iconography-1">[1]</a></sup> In Classical and later art she appears as a dignified, veiled matron beside Apollo and Artemis — the triad of Delos and the Letoon — rather than as an independent protagonist.<sup class="scholars-cite"><a href="#src-iconography-2">[2]</a></sup> Roman art took up the Ovidian episode of Latona at the Lycian pond, repulsed by the peasants she turns to frogs, a scene of metamorphosis popular on sarcophagi. No lone cult statue of hers ever rivalled her children&#39;s.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-iconography-1">Lexicon Iconographicum Mythologiae Classicae (LIMC), s.v. &#39;Leto&#39;.</li><li id="src-iconography-2">Ovid, Metamorphoses (Book 6).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Lētō is the goddess of the difficult birth. Hounded, homeless, and in labour, she finds the one place willing to receive her and makes it the axis of the Greek world. Her story is a reminder that holiness often begins in refusal: every other island said no, and so Delos became yes.</p>
+<p>She is also the mother who disappears behind her children. Apollo and Artemis take the myths; Lētō takes the labour. To remember her is to remember the hidden work that makes glory possible—the wandering, the waiting, the palm tree, the sweat. The divine twins were born because she would not stop looking for a place to rest.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Homeric Hymn to Apollo.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="homeric-hymns">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Homeric Hymns</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Homeric Hymns →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="epithets">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Epithets & Epicleses</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Epithets & Epicleses →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="oracle-sites">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Oracle & Cult Sites</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Oracle & Cult Sites →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="iconography">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">17</span>
-        <h2 class="scholars-section-title">Iconography</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Iconography →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">19</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -597,6 +583,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'leto';
@@ -630,14 +751,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -731,6 +844,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -742,18 +856,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -765,6 +880,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -809,6 +926,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

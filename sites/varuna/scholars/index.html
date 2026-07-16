@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,12 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#vedic-references">14 &mdash; Vedic References</a></li>
-<li><a href="#upanishads">15 &mdash; Upaniṣads</a></li>
-<li><a href="#puranas">16 &mdash; Purāṇas</a></li>
-<li><a href="#mantras">17 &mdash; Mantras & Stotras</a></li>
+<li><a href="#vedic-references">12 &mdash; Vedic References</a></li>
+<li><a href="#upanishads">13 &mdash; Upaniṣads</a></li>
+<li><a href="#puranas">14 &mdash; Purāṇas</a></li>
+<li><a href="#mantras">15 &mdash; Mantras & Stotras</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -281,14 +297,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Varuṇa</strong> (<em>varuna</em>) — He who covers — belongs to the Sanskrit tradition, where it is catalogued under the domain &quot;Cosmic Order, Oceans, Law&quot;. The name means &quot;‘Allenveloping Sky’, N. of an Āditya (in the Veda commonly associated with Mitra [q.v.] and presiding over the night as Mitra over the day, but often celebrated separately&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>Varuṇa is the <strong>Vedic sovereign of ṛta</strong>, the cosmic order that binds gods and mortals alike. He is the lord of all waters — rivers, seas, rain, and the underworld streams — and the guardian of truth who sends a thousand spies to watch the world. To swear falsely before Varuṇa is to invite disease, disaster, and the loosening of the bonds that hold existence together.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Varuṇa</strong> and serves its temple at <a class="scholars-ext" href="https://xn--varua-6l1b.com" rel="noopener noreferrer" target="_blank">varuṇa.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>varuna</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Ṛgveda Saṃhitā, Translated by Ralph T. H. Griffith, 1500 BCE. <a class="scholars-ext" href="https://sacred-texts.com/hin/rigveda/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-overview-2">Atharvaveda.</li><li id="src-overview-3">Monier-Williams Sanskrit-English Dictionary.</li></ol></div>
     </div>
 </section>
 
@@ -296,14 +311,18 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Devanagari as <strong>वरुण</strong>. Etymologically it means &quot;‘Allenveloping Sky’, N. of an Āditya (in the Veda commonly associated with Mitra [q.v.] and presiding over the night as Mitra over the day, but often celebrated separately&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The reconstructed proto-form is <em>u̯er-</em> (proto-indo-european, &quot;to cover, bind, enclose&quot;). Usually derived from Sanskrit vṛ- &#39;to cover, encompass&#39;, with a proposed Proto-Indo-European root *u̯er- &#39;to cover, bind&#39;; the exact formation and prehistory remain disputed.</p>
+<p>Cognate forms across related languages:</p>
+<ul class="scholars-list"><li><strong>Vourunaša / Vouruna</strong> (avestan) — Iranian counterpart linked to waters and oaths (Avesta)</li></ul>
+<p>The ASCII form <em>varuna</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Varuṇa</strong> recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>v</strong> → <strong>V</strong> — Same</li><li><strong>a</strong> → <strong>a</strong> — Same</li><li><strong>r</strong> → <strong>r</strong> — Same</li><li><strong>u</strong> → <strong>u</strong> — Same</li><li><strong>n</strong> → <strong>ṇ</strong> — N with dot below</li><li><strong>a</strong> → <strong>a</strong> — Same</li></ul>
+<p>The project holds the domain <strong>varuṇa.com</strong> (xn--varua-6l1b.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Ṛgveda Saṃhitā, Translated by Ralph T. H. Griffith, 1500 BCE. <a class="scholars-ext" href="https://sacred-texts.com/hin/rigveda/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-the-name-2">Atharvaveda.</li></ol></div>
     </div>
 </section>
 
@@ -311,14 +330,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/ˈʋɐ.ru.ɳɐ/</strong> — Sanskrit/Vedic Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>V-</strong> — Labiodental approximant [ʋ], softer than English v, followed by short open [ɐ].</li><li><strong>-ru-</strong> — Alveolar tap or trill [r] plus short [u] — the syllable that names the rolling waters.</li><li><strong>-ṇa</strong> — Retroflex nasal [ɳ] plus short [ɐ]; the dot beneath the n marks the tongue-tip curl distinctive to Sanskrit.</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;VUH-roo-nah&#39; — start with a soft &#39;v&#39;, keep the middle syllable light, and end with a tongue-tip-curled &#39;n&#39; like an American &#39;r&#39; pressed against the roof of the mouth.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Sanskrit</strong> — वरुण (Varuṇa), the Vedic lord of waters, oaths, and cosmic order</li><li><strong>Avestan</strong> — Vourunaša / Vouruna, the Iranian counterpart associated with waters and binding oaths</li><li><strong>PIE</strong> — *u̯er- (&#39;to cover, bind, enclose&#39;) — the root behind Varuṇa&#39;s name and his noose</li></ul>
+<p>Varuṇa is Tier 2 because the registrable form Varuṇa preserves the retroflex ṇ (a phonemic distinction central to Sanskrit) but carries no stress or length mark. The name is traditionally derived from the root vṛ- &#39;to cover, encompass,&#39; fitting a god who covers the waters, the night sky, and the hidden deeds of humankind.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Ṛgveda Saṃhitā, Translated by Ralph T. H. Griffith, 1500 BCE. <a class="scholars-ext" href="https://sacred-texts.com/hin/rigveda/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -326,14 +348,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Devanagari as <strong>वरुण</strong> — Brahmic abugida, attested Vedic – present, c. 1500 BCE –, in South Asia. The script is written left-to-right.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Varuṇa</em> (IAST), giving the normalized reading /ˈʋɐ.ru.ɳə/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>Sanskrit Varuṇa is written वरुण in Devanagari.</li><li>Each aksara combines a consonant with an inherent or explicit vowel.</li><li>IAST diacritics preserve length, retroflexion, and aspiration lost in plain ASCII.</li><li>The Devanagari form is not used as the primary domain because Indic scripts are not in the .com IDN table.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Macdonell, Sanskrit-English Dictionary.</li><li id="src-original-script-2">Mayrhofer, EWAia.</li><li id="src-original-script-3">Monier-Williams Sanskrit-English Dictionary.</li></ol></div>
     </div>
 </section>
 
@@ -341,14 +363,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>Varuṇa is the <strong>Vedic sovereign of ṛta</strong>, the cosmic order that binds gods and mortals alike. He is the lord of all waters — rivers, seas, rain, and the underworld streams — and the guardian of truth who sends a thousand spies to watch the world. To swear falsely before Varuṇa is to invite disease, disaster, and the loosening of the bonds that hold existence together.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Cosmic Order</h3>
+<p>As guardian of ṛta, Varuṇa keeps sun, moon, seasons, and sacrifice moving in their proper courses.</p>
+<h3 class="scholars-h3">Waters</h3>
+<p>Rivers, rain, oceans, and the hidden springs all flow by his authority; drought is his noose tightened.</p>
+<h3 class="scholars-h3">Oaths and Justice</h3>
+<p>He binds oath-breakers with the pāśa noose and loosens it for those who confess and speak truth.</p>
+<h3 class="scholars-h3">The Night Sky</h3>
+<p>His thousand eyes are the stars; he sees the path of ships, the flight of birds, and the secrets of hearts.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Atharvaveda.</li></ol></div>
     </div>
 </section>
 
@@ -356,14 +383,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Varuṇa concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Noose (pāśa)</strong> — The cosmic bond that ties wrongdoers to their crimes and releases the penitent.</li><li><strong>Conch and waters</strong> — All freshwater and salt water are his body; the conch announces his presence.</li><li><strong>Makara (crocodile) vehicle</strong> — The aquatic monster on which he rides, linking him to rivers, seas, and monsoon floods.</li><li><strong>Thousand eyes</strong> — His spies and stars; nothing done in darkness escapes his vigil.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Ṛgveda Saṃhitā, Translated by Ralph T. H. Griffith, 1500 BCE. <a class="scholars-ext" href="https://sacred-texts.com/hin/rigveda/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -371,14 +396,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p><strong>Varuṇa</strong> is the Vedic sovereign of the cosmic order (<em>ṛta</em>), the lord of waters, and the guardian of truth. He binds offenders with his noose (<em>pāśa</em>), sends a thousand spies to watch the world, and holds the night sky in his sway. To swear falsely before Varuṇa is to invite disease, disaster, and cosmic rupture.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Thousand-Eyed Watcher (Omniscience)</h3>
+<p>Varuṇa is praised in the <em>Ṛgveda</em> as the god who sees all and knows all. His spies — the thousand-eyed — move through the world observing every act, every lie, every hidden crime. Unlike a distant judge, Varuṇa is intimately present: he knows the wandering of birds, the path of ships, and the secret thoughts of human beings. Nothing done in darkness escapes him.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Varuṇa&#39;s Noose (Justice)</h3>
+<p>The <em>pāśa</em>, Varuṇa&#39;s noose, is both punishment and release. He binds those who break <em>ṛta</em>, the cosmic law, and he loosens the bonds of those who confess and atone. Disease, misfortune, and drought are understood as the tightening of the noose; sacrifice, truth, and repentance loosen it. Varuṇa is therefore a god of both terror and mercy, the enforcer of a law that can be repaired.</p>
+<h3 class="scholars-h3">Lord of Ṛta and the Waters (Cosmology)</h3>
+<p>Varuṇa dwells in the waters — rivers, seas, rain, and the cosmic ocean — and through them he sustains <em>ṛta</em>. The regular fall of rain, the flow of rivers, and the cycle of seasons are all expressions of his order. In later tradition he becomes a sea-god, but in the Vedas he is something larger: the divine principle that keeps truth liquid, moving, and inescapable.</p>
+<h3 class="scholars-h3">Varuṇa and Indra (Mythic Friendship)</h3>
+<p>Varuṇa is often paired with Indra, the warrior-storm god. Where Indra acts with thunderbolt and force, Varuṇa governs by law and vigilance. Together they represent the two faces of sovereignty: power and justice. Some hymns call them kings side by side, and in ritual they receive offerings together. The pairing expresses the Vedic ideal that might must be answerable to <em>ṛta</em>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Atharvaveda.</li><li id="src-mythology-2">Monier-Williams Sanskrit-English Dictionary.</li></ol></div>
     </div>
 </section>
 
@@ -386,14 +416,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Varuṇa&#39;s sovereignty over waters and oaths has ancient Indo-Iranian roots. The Avestan Vourunaša and the Mitanni treaties&#39; Mitravaruna pair show his name and function reached from Anatolia to the Indian subcontinent before the Ṛgveda was fixed in writing. In later Hinduism he becomes the sea-god Samudra and the guardian of the western quarter among the dikpālas. His judicial functions partly pass to Yama, while his waters are absorbed into the mythology of Gaṅgā and the cosmic ocean. Buddhist and Jain texts remember him as a great king of the devas, and Southeast Asian cosmology places him among the guardian deities of the quarters.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include <a class="scholars-xlink" href="/sites/poseidon/">Poseidôn</a> (sea / cosmic water), <a class="scholars-xlink" href="/sites/aseratu/">Ašeratu</a> (sea / water), <a class="scholars-xlink" href="/sites/babaluaye/">Ọbalúayé</a> (sea / water), <a class="scholars-xlink" href="/sites/ea/">Ēa</a> (sea / water), <a class="scholars-xlink" href="/sites/manannan/">Manannán</a> (sea / water), and <a class="scholars-xlink" href="/sites/njordr/">Njǫrðr</a> (sea / water).</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Ṛgveda Saṃhitā, Translated by Ralph T. H. Griffith, 1500 BCE. <a class="scholars-ext" href="https://sacred-texts.com/hin/rigveda/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -401,14 +429,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Varuṇa&#39;s name survives in the Indian Ocean (Hindu cosmology&#39;s &#39;Varuṇa&#39;s ocean&#39;), in classical Sanskrit drama where kings swear by him, and in modern Indian languages where varun evokes rain and the monsoon. His thousand-eyed vigil became a metaphor for conscience in Indian literature, while his noose influenced later images of cosmic bondage and release. Naval traditions and coastal rituals along the Arabian Sea and Bay of Bengal still carry echoes of the old water-god, even where his cult has been absorbed into Viṣṇu, Śiva, and local guardian deities.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Ṛgveda Saṃhitā, Translated by Ralph T. H. Griffith, 1500 BCE. <a class="scholars-ext" href="https://sacred-texts.com/hin/rigveda/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -416,14 +441,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The Indo-Iranian antiquity of Varuṇa is confirmed by the Mitanni treaty from Boğazköy (c. 1380 BCE), which invokes Mitravaruna in Hittite cuneiform. In India, the earliest visual references appear on Maurya-Sunga railing medallions at Bharhut and Sanchi, where a water-guardian with a noose may represent him. Gupta and medieval temples from Deogarh to Khajuraho include Varuṇa among the dikpālas, usually mounted on a makara. Coastal shrines and stepwells across Gujarat and Maharashtra preserve his association with waters.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Ṛgveda Saṃhitā, Translated by Ralph T. H. Griffith, 1500 BCE. <a class="scholars-ext" href="https://sacred-texts.com/hin/rigveda/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -431,135 +453,103 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Varuṇa given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Ṛgveda Saṃhitā, Translated by Ralph T. H. Griffith, 1500 BCE. <a class="scholars-ext" href="https://sacred-texts.com/hin/rigveda/" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Atharvaveda.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Monier-Williams Sanskrit-English Dictionary.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Aitareya Brāhmaṇa.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Mahābhārata.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Ṛgveda Saṃhitā 7.86–89 (Varuṇa hymns and the confession of the sinner).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Ṛgveda Saṃhitā 7.33 (birth of Vasiṣṭha from Mitra-Varuṇa).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Taittirīya Saṃhitā 2.1.11 (Varuṇa and the waters).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Śatapatha Brāhmaṇa 5.4.4 (Śunaḥśepa narrative and royal vow).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Ṛgveda Saṃhitā, Translated by Ralph T. H. Griffith, 1500 BCE. <a class="scholars-ext" href="https://sacred-texts.com/hin/rigveda/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-2">Atharvaveda.</li><li id="src-scholarly-sources-3">Monier-Williams Sanskrit-English Dictionary.</li><li id="src-scholarly-sources-4">Aitareya Brāhmaṇa.</li><li id="src-scholarly-sources-5">Mahābhārata.</li><li id="src-scholarly-sources-6">Ṛgveda Saṃhitā 7.86–89 (Varuṇa hymns and the confession of the sinner).</li><li id="src-scholarly-sources-7">Ṛgveda Saṃhitā 7.33 (birth of Vasiṣṭha from Mitra-Varuṇa).</li><li id="src-scholarly-sources-8">Taittirīya Saṃhitā 2.1.11 (Varuṇa and the waters).</li><li id="src-scholarly-sources-9">Śatapatha Brāhmaṇa 5.4.4 (Śunaḥśepa narrative and royal vow).</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="vedic-references">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Vedic References</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Varuṇa is one of the great Ṛgvedic sovereigns, hymned in some two dozen sūktas. RV 1.25 opens the confessional register that defines him — &#39;whatever law of yours, O god, we mortals violate day by day, do not deliver us over to death&#39; — and RV 7.86–89, Vasiṣṭha&#39;s cycle, pleads for release from the bonds of sin.<sup class="scholars-cite"><a href="#src-vedic-references-1">[1]</a></sup> As Mitra&#39;s partner he receives hymns across the family books, and the Atharvaveda (4.16) celebrates the king whose thousand spies watch earth and heaven, from whom no secret deed is hid.<sup class="scholars-cite"><a href="#src-vedic-references-2">[2]</a></sup> His antiquity is confirmed from abroad: the Mitanni treaty from Boğazköy (c. 1380 BCE) invokes Mitra and Varuna in Hittite cuneiform as witnesses to a royal oath — his own theology of binding, preserved on diplomatic record.<sup class="scholars-cite"><a href="#src-vedic-references-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-vedic-references-1">Ṛgveda 1.25 and 7.86–89 (Varuṇa hymns and confessionals).</li><li id="src-vedic-references-2">Atharvaveda 4.16 (Varuṇa&#39;s thousand spies).</li><li id="src-vedic-references-3">Mitanni treaty, Boğazköy, c. 1380 BCE (Mi-it-ra and U-ru-wa-na).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="upanishads">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Upaniṣads</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>As a personal sovereign Varuṇa is effectively absent from the principal Upaniṣads — a striking index of how thoroughly the upaniṣadic turn displaced the old Ādityas. Where the texts enumerate the gods, he appears only as a subordinate function: lord of waters, guardian of the western quarter, one devatā among the many that the knowing Self outranks.<sup class="scholars-cite"><a href="#src-upanishads-1">[1]</a></sup> His deeper legacy is structural rather than personal: the confessional psychology of his hymns — guilt, bondage, release — passes into the upaniṣadic language of the fetters of ignorance, and the <a class="scholars-xlink" href="/sites/rta/">ṛta</a> he guarded survives, transformed, as the ground of dharma.<sup class="scholars-cite"><a href="#src-upanishads-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-upanishads-1">Macdonell, A. A., Vedic Mythology (1897), ch. on Varuṇa.</li><li id="src-upanishads-2">Lüders, H., Varuṇa und das Ṛta (1951–1959).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="puranas">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Purāṇas</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>In the epic and Purāṇas Varuṇa is demoted from sovereign to lokapāla — guardian of the west, riding the makara, noose in hand, dwelling in the ocean. Yet he keeps memorable scenes. In the Mahābhārata&#39;s Khāṇḍava episode (Ādi Parvan) Agni procures for Arjuna from Varuṇa&#39;s keeping the Gāṇḍīva bow and the two inexhaustible quivers.<sup class="scholars-cite"><a href="#src-puranas-1">[1]</a></sup> The epic also retells the Vedic story of the sage Vasiṣṭha, born from the seed of Mitra and Varuṇa at the sight of the apsaras Urvaśī.<sup class="scholars-cite"><a href="#src-puranas-2">[2]</a></sup> In the Bhāgavata Purāṇa (10.28) his attendants seize Nanda for bathing in the Yamunā at an improper hour, and Kṛṣṇa descends to the water-realm to free him — a pointed scene in which the old sovereign of law bows to the new god.<sup class="scholars-cite"><a href="#src-puranas-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-puranas-1">Mahābhārata, Ādi Parvan (Khāṇḍava-dāha; the Gāṇḍīva).</li><li id="src-puranas-2">Ṛgveda 7.33.11 and epic tradition (birth of Vasiṣṭha).</li><li id="src-puranas-3">Bhāgavata Purāṇa 10.28 (Nanda seized by Varuṇa&#39;s attendants).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="mantras">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Mantras & Stotras</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Varuṇa has no bīja syllable and no living mantra-cult; his mantras are the ṛgvedic hymns themselves, which remain the confessional core of Vedic recitation. The Aitareya Brāhmaṇa (7.13–18) dramatizes their power: Śunaḥśepa, bound to the sacrificial stake as an offering to Varuṇa, praises the gods hymn by hymn until the bonds fall from him and his father&#39;s vow is undone — the legend by which tradition assigns him the authorship of RV 1.24–30.<sup class="scholars-cite"><a href="#src-mantras-1">[1]</a></sup> In the śrauta cycle he receives the Varuṇapraghāsa oblations at the four-monthly rites, where the sacrificer&#39;s household ritually confesses its faults so that the noose may loosen.<sup class="scholars-cite"><a href="#src-mantras-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mantras-1">Aitareya Brāhmaṇa 7.13–18 (Śunaḥśepa narrative).</li><li id="src-mantras-2">Śatapatha Brāhmaṇa (Varuṇapraghāsa liturgy).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>To contemplate Varuṇa is to hold the idea of cosmic Order, Oceans, Law in the mind and to ask what of it endures. The name means &quot;‘Allenveloping Sky’, N. of an Āditya (in the Veda commonly associated with Mitra [q.v.] and presiding over the night as Mitra over the day, but often celebrated separately&quot;<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup> — and a name that carries its meaning so openly invites meditation rather than mere recollection. The tradition remembers the name as he who covers.</p>
+<p>Sit with the restored form — Varuṇa — and the diacritics themselves become the practice: each mark is a small act of attention, a refusal to let the plain ASCII form <em>varuna</em> stand in for the whole. What the tradition preserved in this name, the restoration asks the reader to preserve in turn.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Ṛgveda Saṃhitā, Translated by Ralph T. H. Griffith, 1500 BCE. <a class="scholars-ext" href="https://sacred-texts.com/hin/rigveda/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="vedic-references">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Vedic References</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Vedic References →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="upanishads">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Upaniṣads</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Upaniṣads →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="puranas">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Purāṇas</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Purāṇas →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="mantras">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">17</span>
-        <h2 class="scholars-section-title">Mantras & Stotras</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mantras & Stotras →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">19</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -597,6 +587,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'varuna';
@@ -630,14 +755,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -731,6 +848,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -742,18 +860,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -765,6 +884,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -809,6 +930,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

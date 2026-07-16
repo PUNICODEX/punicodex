@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,12 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#homeric-hymns">14 &mdash; Homeric Hymns</a></li>
-<li><a href="#epithets">15 &mdash; Epithets & Epicleses</a></li>
-<li><a href="#oracle-sites">16 &mdash; Oracle & Cult Sites</a></li>
-<li><a href="#iconography">17 &mdash; Iconography</a></li>
+<li><a href="#homeric-hymns">12 &mdash; Homeric Hymns</a></li>
+<li><a href="#epithets">13 &mdash; Epithets & Epicleses</a></li>
+<li><a href="#oracle-sites">14 &mdash; Oracle & Cult Sites</a></li>
+<li><a href="#iconography">15 &mdash; Iconography</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -281,14 +297,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Érōs</strong> (<em>eros</em>) — Love, desire (from ἔραμαι) — belongs to the Greek tradition, where it is catalogued under the domain &quot;Love, Desire, Attraction&quot;. The name means &quot;Love, desire (from ἔραμαι)&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>Érōs is not merely romance. He is the <strong>attraction that makes things move toward each other</strong>: fire upward, water downward, god toward mortal, atom toward atom. In the earliest Greek cosmogonies, Érōs is a primordial power; only later does he become the mischievous child of Aphrodite.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Érōs</strong> and serves its temple at <a class="scholars-ext" href="https://xn--rs-9ia51b.com" rel="noopener noreferrer" target="_blank">Érōs.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>eros</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-overview-2">Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a class="scholars-ext" href="https://brill.com/view/title/17858" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-overview-3">Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -296,14 +311,18 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Greek as <strong>Ἔρως</strong>. Etymologically it means &quot;Love, desire (from ἔραμαι)&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>From Greek ἔρως, derived from the verb ἔραμαι / ἐράω &#39;to love, desire&#39;; the further Indo-European etymology is uncertain.</p>
+<p>Cognate forms across related languages:</p>
+<ul class="scholars-list"><li><strong>ἔραμαι</strong> (greek) — Verb &#39;to love, desire&#39; (LSJ, Beekes)</li></ul>
+<p>The ASCII form <em>eros</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Érōs</strong> recovers both the stress accent and the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>e</strong> → <strong>É</strong> — Epsilon with acute</li><li><strong>r</strong> → <strong>r</strong> — Rho</li><li><strong>o</strong> → <strong>ō</strong> — Omega: long omicron</li><li><strong>s</strong> → <strong>s</strong> — Sigma</li></ul>
+<p>The project holds the domain <strong>Érōs.com</strong> (xn--rs-9ia51b.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-the-name-2">Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a class="scholars-ext" href="https://brill.com/view/title/17858" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -311,14 +330,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/eˈrɔːs/</strong> — Attic Greek Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>E-</strong> — Smooth breathing; short epsilon opens the name without aspiration.</li><li><strong>-r-</strong> — Single rho, a liquid that rolls between the vowels.</li><li><strong>-ōs</strong> — Long omega [ɔː], the sustained note at the end — desire prolonged.</li></ul>
+<p>For the modern speaker, the closest approximation is: &quot;eh-ROSS&quot; — with the second syllable held longer than English allows; the o is deep and sustained.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Greek</strong> — ἔραμαι (eramai), &quot;to desire, love&quot;; ἔρως is the noun of desire</li><li><strong>Beekes</strong> — possibly Pre-Greek; no secure Indo-European etymology</li></ul>
+<p>Érōs is Tier 1 because the Greek Ἔρως contains both stress (acute on the initial epsilon) and length (the long omega). The acute on the initial É preserves the stress, while the macron on the final ō preserves the long vowel. The name is the full scholarly form of the force that moves the cosmos.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -326,14 +348,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Greek as <strong>Ἔρως</strong> — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Érōs</em> (Greek alphabet with polytonic accents), giving the normalized reading /ˈe.rɔːs/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The Greek form Ἔρως is written in the Classical Greek alphabet.</li><li>Letters with acute, grave, or circumflex accents preserve the pitch accent of Ancient Greek.</li><li>Macrons and omegas (η, ω) mark long vowels, a feature lost in the plain ASCII form.</li><li>The Unicode restoration Érōs encodes the scholarly spelling as a registrable domain name.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Beekes, Etymological Dictionary of Greek.</li><li id="src-original-script-2">Chantraine, Dictionnaire étymologique de la langue grecque.</li><li id="src-original-script-3">Liddell-Scott-Jones (LSJ).</li><li id="src-original-script-4">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a class="scholars-ext" href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -341,14 +363,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>Érōs is not merely romance. He is the <strong>attraction that makes things move toward each other</strong>: fire upward, water downward, god toward mortal, atom toward atom. In the earliest Greek cosmogonies, Érōs is a primordial power; only later does he become the mischievous child of Aphrodite.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Bow</h3>
+<p>His weapon makes the limbs go slack and the mind unmade; no god or mortal is immune.</p>
+<h3 class="scholars-h3">Wings</h3>
+<p>Desire is swift and sudden; it arrives before reason can arrange a defense.</p>
+<h3 class="scholars-h3">The Heart Aflame</h3>
+<p>The fire of longing — physical, spiritual, cosmic.</p>
+<h3 class="scholars-h3">The Rose</h3>
+<p>Flower of Aphrodite and Érōs; beauty that wounds as it invites.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a class="scholars-ext" href="https://brill.com/view/title/17858" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -356,14 +383,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Érōs concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Bow and arrows</strong> — The sudden wound of desire</li><li><strong>Wings</strong> — The speed and inconstancy of longing</li><li><strong>Torch</strong> — Illumination and the burning of the heart</li><li><strong>Rose</strong> — Beauty and the thorn of love</li><li><strong>Heart</strong> — The seat of emotion and the target of the god</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -371,14 +396,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Érōs stands at the beginning in Hesiod and at the margins in Homer. He is one of the oldest gods, yet his stories are few — because his power is everywhere.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Fourth of the Primordials (Theogony)</h3>
+<p>Hesiod places Érōs fourth in the procession of being: after Cháos, Gaia, and Tartarus, but before the children of Night. &quot;He is the most beautiful among the immortal gods,&quot; Hesiod writes, &quot;he makes the limbs go limp and overcomes the intelligence and prudent counsel in the breasts of all gods and men&quot; (<em>Theogony</em> 120–122).<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">First of All (Parmenides)</h3>
+<p>The pre-Socratic philosopher Parmenides made Érōs the first of all gods to come into being — not a child of Aphrodite but the primal force of attraction that organizes reality. In this philosophical reading, love is not an emotion; it is a <strong>cosmological principle</strong>.</p>
+<h3 class="scholars-h3">The Cosmic Egg (Aristophanes)</h3>
+<p>In Aristophanes&#39; <em>Birds</em> (414 BCE), a parody of Orphic cosmogony, Érōs is born from an egg laid by Night. He then mates with Chaos in the womb of Erebus to produce the race of birds. The image preserves the older idea of Érōs as a self-generating power of union.</p>
+<h3 class="scholars-h3">The Roman Eros (Psyche)</h3>
+<p>In Apuleius&#39; Latin novel <em>The Golden Ass</em>, Érōs becomes Cupid, the lover of Psyche (&quot;Soul&quot;). The tale — of forbidden love, betrayal, and divine reconciliation — became the template for countless later stories, though it belongs to Roman, not archaic Greek, tradition.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a class="scholars-ext" href="https://brill.com/view/title/17858" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-mythology-2">Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -386,14 +416,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>The Roman <em>Cupido</em> inherited Érōs&#39;s arrows and wings but gradually shrank from a handsome youth into a plump, blindfolded infant — the Renaissance putto. In Plato&#39;s <em>Symposium</em>, Érōs is redefined as the longing for beauty and the ladder from physical desire to the Form of the Good. For the Stoics, Érōs was a natural affinity (<em>oikeiōsis</em>) that binds the cosmos. Freud divided the psyche into <em>Eros</em> and <em>Thanatos</em>, life-drive and death-drive, making the Greek god the name of everything in us that seeks connection, pleasure, and life.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include <a class="scholars-xlink" href="/sites/aphrodite/">Aphrodítē</a>, <a class="scholars-xlink" href="/sites/ishtar/">Ištar</a>, and <a class="scholars-xlink" href="/sites/oshun/">Ọṣun</a>, each linked through love / beauty / desire.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -401,14 +429,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Érōs is one of the most productive words in European languages: &quot;erotic,&quot; &quot;erogenous,&quot; &quot;erosion&quot; (via the wearing-away of desire). He appears on Valentine&#39;s cards, in pop songs, in perfume advertisements, and in psychoanalytic theory. The image of the winged child with a bow — Cupid — is one of the most recognizable figures in Western art. Yet the archaic Érōs was more formidable: a beautiful young man who could unmake kings and gods. To restore the name <em>Érōs</em> with its long omega is to remember that desire is not trivial; it is one of the forces that turns the world.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -416,14 +441,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The material record for Érōs survives in a small number of securely identified remains, catalogued below; the corpus is thin but unambiguous, and each site is tied to the name by ancient testimony<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup>.</p>
+<p>Numerous red-figure and black-figure vases depict Eros as a winged youth or child; the so-called Erotes appear on wedding vessels and funerary reliefs. No major sanctuary, but the Erotes were honored in gymnasia and private devotion.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -431,135 +454,105 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Érōs given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a class="scholars-ext" href="https://brill.com/view/title/17858" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Aristophanes, Birds.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Plato, Symposium.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Apuleius, The Golden Ass.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Orphic Hymns.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-2">Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a class="scholars-ext" href="https://brill.com/view/title/17858" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-3">Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-4">Aristophanes, Birds.</li><li id="src-scholarly-sources-5">Plato, Symposium.</li><li id="src-scholarly-sources-6">Apuleius, The Golden Ass.</li><li id="src-scholarly-sources-7">Orphic Hymns.</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="homeric-hymns">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Homeric Hymns</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>No Homeric Hymn to Érōs survives — the archaic corpus passes him by, though the late Orphic <em>Hymn to Eros</em> (58) salutes him as the great, winged, two-natured power whose arrows reach gods and mortals alike.<sup class="scholars-cite"><a href="#src-homeric-hymns-1">[1]</a></sup></p>
+<p>The earliest attestations divide into person and pressure. Hesiod makes Érōs the fourth being of the universe, after Chaos, Gaia, and Tartaros: &#39;most beautiful among the immortal gods, the limb-loosener, who overpowers the mind and shrewd counsel in the breast of every god and mortal&#39; (<em>Theogony</em> 120–122). Homer, by contrast, never personifies him: in the <em>Iliad</em> ἔρως is the force itself, striking Zeús at the sight of Hēra &#39;as when first they mingled in love&#39; (14.294).<sup class="scholars-cite"><a href="#src-homeric-hymns-2">[2]</a></sup> Between the two — Hesiod&#39;s god and Homer&#39;s experience — lies the whole later history of the figure.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-homeric-hymns-1">Orphic Hymn 58 (to Eros).</li><li id="src-homeric-hymns-2">Hesiod, Theogony 120–122; Homer, Iliad 14.294.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="epithets">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Epithets & Epicleses</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <ul class="scholars-list"><li><strong>κάλλιστος ἐν ἀθανάτοισι θεοῖσι (kállistos en athanátoisi theoîsi)</strong> — &#39;most beautiful among the immortal gods,&#39; Hesiod&#39;s predicate at his first appearance (<em>Theogony</em> 120).<sup class="scholars-cite"><a href="#src-epithets-1">[1]</a></sup></li><li><strong>λυσιμελής (lysimelḗs)</strong> — &#39;limb-loosening,&#39; Hesiod&#39;s defining epithet (<em>Theogony</em> 121), which Sappho takes up and makes her own: &#39;once again limb-loosening Érōs shakes me.&#39;<sup class="scholars-cite"><a href="#src-epithets-2">[2]</a></sup></li><li><strong>γλυκύπικρος (glykýpikros)</strong> — &#39;sweetbitter,&#39; Sappho&#39;s coinage for desire — &#39;the irresistible creeping thing&#39; (fr. 130): the most influential two syllables in the history of love poetry.<sup class="scholars-cite"><a href="#src-epithets-2">[2]</a></sup></li><li><strong>πτερόεις (pteróeis)</strong> — &#39;winged,&#39; his standard poetic and artistic predicate from lyric onward, the quality on which Plato&#39;s <em>Phaedrus</em> builds its great myth of the soul.<sup class="scholars-cite"><a href="#src-epithets-3">[3]</a></sup></li><li><strong>Cupido / Amor</strong> — the Roman names under which the god, shrinking from youth to child, conquered Western art.<sup class="scholars-cite"><a href="#src-epithets-4">[4]</a></sup></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-epithets-1">Hesiod, Theogony 120–122.</li><li id="src-epithets-2">Sappho, fr. 130 (Voigt).</li><li id="src-epithets-3">Plato, Phaedrus 246a–257b.</li><li id="src-epithets-4">Apuleius, Metamorphoses 4.28–6.24 (Cupid and Psyche).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="oracle-sites">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Oracle & Cult Sites</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Érōs had no oracle, but — unusually for a personification — he had real cult. Its heart was <strong>Thespiae</strong> in Boeotia, whose citizens honoured him above all other gods in the form of an <strong>unwrought stone</strong>, an aniconic image of great antiquity; their festival, the Erotidia, celebrated him with music and athletic contests, and the town later treasured Praxiteles&#39; marble Érōs as its pride.<sup class="scholars-cite"><a href="#src-oracle-sites-1">[1]</a></sup> In <strong>Athens</strong> an altar of Érōs stood before the entrance of the Academy — said to be the first ever dedicated to him — fittingly at the gate of a gymnasium, since in <strong>Elis</strong> and elsewhere he shared altars with Hermēs, and with Anteros, &#39;Love returned,&#39; in the gymnasia where boys and men exercised together.<sup class="scholars-cite"><a href="#src-oracle-sites-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-oracle-sites-1">Pausanias, Description of Greece 9.27.1–5 (Thespiae).</li><li id="src-oracle-sites-2">Pausanias, Description of Greece 1.30.1 (the Academy) and 6.23 (Elis).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="iconography">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Iconography</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Érōs&#39;s body ages in reverse. On fifth-century Attic red-figure he is a <strong>beautiful winged youth</strong> — long-haired, wreathed — hovering at <a class="scholars-xlink" href="/sites/aphrodite/">Aphrodítē</a>&#39;s shoulder, attending brides on nuptial vessels, or flying toward the beloved with hare, wreath, or fillet; the <strong>bow and arrows</strong> that define him later are present but not yet his identity.<sup class="scholars-cite"><a href="#src-iconography-1">[1]</a></sup> In the fourth century Praxiteles&#39; <strong>Érōs of Thespiae</strong> gave him his most admired sculptural form, a standing youth of melancholy beauty which Roman emperors carried off and copied.<sup class="scholars-cite"><a href="#src-iconography-2">[2]</a></sup></p>
+<p>The Hellenistic age made him a <strong>child</strong>, then multiplied him into the playful <strong>Erotes</strong> — sleeping, flying, stringing the bow, riding lions and dolphins — who fill gems, sarcophagi, and Pompeian walls. From there the line runs unbroken to the Roman <strong>Cupid</strong> and the Renaissance putto: Hesiod&#39;s primordial power ends, in art, as a toddler with a bow.<sup class="scholars-cite"><a href="#src-iconography-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-iconography-1">Lexicon Iconographicum Mythologiae Classicae (LIMC), s.v. Eros.</li><li id="src-iconography-2">Pausanias, Description of Greece 9.27.3–5.</li><li id="src-iconography-3">LIMC s.v. Eros/Amor; Apuleius, Metamorphoses 4.28–6.24.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Érōs is the least visible of the great powers because we experience him from inside. He is not a storm you watch from a window; he is the weather inside the room. Every longing — for a person, for a place, for a version of yourself — is a local manifestation of the same force Hesiod placed at the foundation of the cosmos.</p>
+<p>The modern world speaks of desire mostly as consumer appetite or romantic plot. But the Greek Érōs is larger: he is the pull that holds atoms together and tears empires apart. To name him correctly is to admit that attraction is not an interruption of reason but one of its oldest engines. The heart has its own logic, and Érōs wrote it.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="homeric-hymns">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Homeric Hymns</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Homeric Hymns →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="epithets">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Epithets & Epicleses</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Epithets & Epicleses →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="oracle-sites">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Oracle & Cult Sites</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Oracle & Cult Sites →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="iconography">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">17</span>
-        <h2 class="scholars-section-title">Iconography</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Iconography →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">19</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -597,6 +590,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'eros';
@@ -630,14 +758,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -731,6 +851,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -742,18 +863,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -765,6 +887,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -809,6 +933,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

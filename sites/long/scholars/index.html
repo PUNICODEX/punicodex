@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,12 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#classical-texts">14 &mdash; Classical Texts</a></li>
-<li><a href="#daoist-sources">15 &mdash; Daoist Sources</a></li>
-<li><a href="#buddhist-sources">16 &mdash; Buddhist Sources</a></li>
-<li><a href="#calligraphy">17 &mdash; Calligraphy & Script</a></li>
+<li><a href="#classical-texts">12 &mdash; Classical Texts</a></li>
+<li><a href="#daoist-sources">13 &mdash; Daoist Sources</a></li>
+<li><a href="#buddhist-sources">14 &mdash; Buddhist Sources</a></li>
+<li><a href="#calligraphy">15 &mdash; Calligraphy & Script</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -281,14 +297,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Lóng</strong> (<em>long</em>) — Dragon · Chinese dragon — belongs to the Chinese tradition, where it is catalogued under the domain &quot;Dragon&quot;. The name means &quot;Chinese dragon&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p><strong>Lóng</strong> is not the fire-breathing tyrant of Western fairy tales. The Chinese dragon is a composite being — antlers of a stag, head of a camel, eyes of a demon, neck of a snake, belly of a clam, scales of a carp, claws of an eagle, pads of a tiger — and yet it moves as a single fluid force. It is the spirit of water in all its forms: the river, the rain, the mist, and the storm. It is also the imperial emblem of absolute legitimacy, the yang counterweight to the phoenix&#39;s yin, and the power that makes the fields fertile.</p>
+<p>Wherever Chinese civilization spread, the dragon went with it: carved on jade, coiled around columns, embroidered on silk, and raised above temples as a promise that heaven still listened.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Lóng</strong> and serves its temple at <a class="scholars-ext" href="https://xn--lng-gna.com" rel="noopener noreferrer" target="_blank">lóng.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>long</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Shanhaijing (Classic of Mountains and Seas). <a class="scholars-ext" href="https://ctext.org/shan-hai-jing" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-overview-2">Sima Qian, Shiji (Records of the Grand Historian).</li><li id="src-overview-3">Shuowen Jiezi.</li></ol></div>
     </div>
 </section>
 
@@ -296,14 +312,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Chinese characters as <strong>龍</strong>. Etymologically it means &quot;Chinese dragon&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The ASCII form <em>long</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Lóng</strong> recovers the stress accent of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>l</strong> → <strong>L</strong> — Same, capitalized</li><li><strong>o</strong> → <strong>ó</strong> — Second tone</li><li><strong>n</strong> → <strong>n</strong> — Same</li><li><strong>g</strong> → <strong>g</strong> — Same</li></ul>
+<p>The project holds the domain <strong>lóng.com</strong> (xn--lng-gna.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Shanhaijing (Classic of Mountains and Seas). <a class="scholars-ext" href="https://ctext.org/shan-hai-jing" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-the-name-2">Sima Qian, Shiji (Records of the Grand Historian).</li></ol></div>
     </div>
 </section>
 
@@ -311,14 +328,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/lʊŋ˧˥/</strong> — Modern Standard Mandarin (Pinyin).<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>lóng</strong> — Single syllable with voiced alveolar lateral approximant [l], final [ʊŋ] (close-mid back rounded vowel + velar nasal), and Tone 2 (rising, ˧˥). Pinyin &#39;o&#39; before &#39;ng&#39; corresponds to IPA [ʊ].</li></ul>
+<p>For the modern speaker, the closest approximation is: LUHNG — the &#39;o&#39; is like the &#39;oo&#39; in &#39;book&#39;, and the tone rises from mid to high, as in a questioning intonation.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Traditional</strong> — 龍</li><li><strong>Simplified</strong> — 龙</li><li><strong>Wade-Giles</strong> — lung²</li><li><strong>Cantonese</strong> — lung⁴</li><li><strong>Related terms</strong> — 龍王 Lóngwáng (Dragon King); 龍鳳 lóngfèng (dragon and phoenix)</li></ul>
+<p>龍 denotes the Chinese dragon, an emblem of imperial authority, fertility, and cosmic yang force. The Modern Standard Mandarin reading is lóng (Tone 2), as recorded in the Unihan Database (Unicode Consortium, kMandarin) and standard Mandarin dictionaries. Baxter &amp; Sagart (2014) reconstruct the Old Chinese form as *[m]-roŋ (GSR 1193a). The tone-marked Pinyin restoration Lóng preserves the citation rising tone of the second tone; in connected speech the contour may be compressed, but the lexical tone remains Tone 2.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Shanhaijing (Classic of Mountains and Seas). <a class="scholars-ext" href="https://ctext.org/shan-hai-jing" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -326,14 +346,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Chinese characters as <strong>龍</strong> — Hanzi (Sino-Tibetan), attested Oracle-bone – present, c. 1200 BCE –, in China. The script is written left-to-right; traditional top-to-bottom.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Lóng</em> (Hanyu Pinyin with tone mark), giving the normalized reading /lʊŋ/ or /loŋ/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The Chinese character 龍 (simplified 龙) represents the dragon, a central cosmological creature in Chinese religion and imperial symbolism.</li><li>Modern Mandarin reading is lóng (second tone), written in Pinyin with an acute accent.</li><li>Old Chinese reconstructions include <em>C-rjoŋ or </em>mə-roŋ (Baxter-Sagart); the initial consonant cluster is debated.</li><li>The Unicode restoration Lóng preserves the Mandarin tone mark; the ASCII form loses tone and therefore meaning-distinctive information.</li></ul>
+<p>The original script is 龍 in traditional Chinese and 龙 in simplified. Pinyin <em>Lóng</em> (Tone 2) is the Modern Standard Mandarin reading, recorded in the Unihan Database and standard dictionaries. The registrable Unicode restoration uses tone-marked Pinyin rather than the hanzi because PUNYCODEX renders the original character in the temple&#39;s &#39;Original Script&#39; card while keeping the domain label pronounceable and internationally registrable. Baxter &amp; Sagart (2014) reconstruct the Old Chinese form as *[m]-roŋ.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Unihan Database, U+9F8D 龍.</li><li id="src-original-script-2">Baxter-Sagart Reconstruction of Old Chinese.</li><li id="src-original-script-3">Hanyu Da Zidian.</li></ol></div>
     </div>
 </section>
 
@@ -341,14 +362,20 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p><strong>Lóng</strong> is not the fire-breathing tyrant of Western fairy tales. The Chinese dragon is a composite being — antlers of a stag, head of a camel, eyes of a demon, neck of a snake, belly of a clam, scales of a carp, claws of an eagle, pads of a tiger — and yet it moves as a single fluid force. It is the spirit of water in all its forms: the river, the rain, the mist, and the storm. It is also the imperial emblem of absolute legitimacy, the yang counterweight to the phoenix&#39;s yin, and the power that makes the fields fertile.</p>
+<p>Wherever Chinese civilization spread, the dragon went with it: carved on jade, coiled around columns, embroidered on silk, and raised above temples as a promise that heaven still listened.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Water and Weather</h3>
+<p>Dragons command rivers, lakes, clouds, and rain; drought is read as the dragon&#39;s withdrawal, flood as its untimely arrival.</p>
+<h3 class="scholars-h3">Imperial Authority</h3>
+<p>The five-clawed dragon was reserved for the Son of Heaven; to usurp it was treason, to bear it legitimately was to claim the mandate of heaven.</p>
+<h3 class="scholars-h3">The Pearl of Wisdom</h3>
+<p>The dragon chasing a flaming pearl symbolizes the pursuit of enlightenment, potency, and the luminous source of all things.</p>
+<h3 class="scholars-h3">Cosmic Yang</h3>
+<p>As the active, ascending, bright principle, the dragon pairs with the phoenix to model the complementary dynamism of the cosmos.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Sima Qian, Shiji (Records of the Grand Historian).</li></ol></div>
     </div>
 </section>
 
@@ -356,14 +383,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Lóng concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Dragon pearl</strong> — Wisdom, spiritual energy, and the moon or sun the dragon protects</li><li><strong>Antlers and horns</strong> — Vitality, longevity, and the stag-like generative power of nature</li><li><strong>Carp scales</strong> — Transformation — the carp that leaps the Dragon Gate becomes a dragon</li><li><strong>Clouds and waves</strong> — The dragon&#39;s medium; it does not fly through air but swims through mist and rain</li><li><strong>Five claws</strong> — Imperial supremacy; fewer claws marked nobility or vassal states</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Shanhaijing (Classic of Mountains and Seas). <a class="scholars-ext" href="https://ctext.org/shan-hai-jing" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -371,14 +396,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Chinese dragon lore is less a single narrative than a vast ecology of stories about transformation, weather, and sovereignty. The dragon is not born from an egg alone; it is earned, summoned, or revealed.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Yinglong, the Winged Dragon (Shanhaijing)</h3>
+<p>In the <em>Classic of Mountains and Seas</em>, the winged dragon Yinglong answers the Yellow Emperor&#39;s call at the Battle of Zhuolu. Chiyou, the rebel, has raised fog so thick that armies lose their way; Yinglong slays Chiyou and ends the war. Afterward the dragon is said to be bound to the earth, unable to return to heaven — a mythic echo of the cost of using cosmic power for mortal victory.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Carp at Dragon Gate (Folklore)</h3>
+<p>Each year carp swim upstream against the Yellow River&#39;s rapids at Longmen. Those that leap the falls are transformed into dragons. The tale turned the phrase <em>lǐ yú tiào lóng mén</em> into a metaphor for success in the imperial examinations — the small, persistent creature who becomes a sovereign force.</p>
+<h3 class="scholars-h3">The Dragon Kings of the Four Seas (Daoist and Popular Religion)</h3>
+<p>Four Dragon Kings rule the eastern, southern, western, and northern seas. They control tides, storms, and the water table; villages propitiated them with offerings during drought. The best known is the Dragon King of the Eastern Sea, Ao Guang, whose treasury and temper feature in tales from the <em>Journey to the West</em>.</p>
+<h3 class="scholars-h3">The Azure Dragon of the East (Astronomy and Iconography)</h3>
+<p>Qīnglóng, the Azure Dragon, is one of the Four Symbols guarding the cardinal directions. It corresponds to spring, the east, and the wood phase. Ancient star maps trace its sinuous body across the eastern sky, a celestial dragon that marks the season of planting and renewal.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Sima Qian, Shiji (Records of the Grand Historian).</li><li id="src-mythology-2">Shuowen Jiezi.</li></ol></div>
     </div>
 </section>
 
@@ -386,14 +416,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>The Chinese dragon absorbed and influenced dragon imagery across East Asia. The Japanese <em>ryū</em> and <em>tatsu</em>, the Korean <em>yong</em>, and the Vietnamese <em>rồng</em> all descend from the same visual and cosmological root, though each culture adjusted claw count, temperament, and symbolic color. Indian <em>nāgas</em> — serpent deities of water and the underworld — entered Chinese Buddhism and were often depicted as dragon-like guardians, especially at temple gates and in rain-making rituals. The Western dragon, by contrast, is a distinct tradition: a hoarding, fire-breathing antagonist shaped by Near Eastern and medieval European warfare, only superficially related to the Chinese rain-bringing sovereign. Modern global culture often conflates the two, but they answer to different cosmologies.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Chinese tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/bagua/">Bāguà</a>, <a class="scholars-xlink" href="/sites/taichi/">Tàijí</a>, <a class="scholars-xlink" href="/sites/taishang/">Tàishàng</a>, <a class="scholars-xlink" href="/sites/tian/">Tiān</a>, <a class="scholars-xlink" href="/sites/tiandi/">Tiāndì</a>, and <a class="scholars-xlink" href="/sites/wuxing/">Wǔxíng</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Shanhaijing (Classic of Mountains and Seas). <a class="scholars-ext" href="https://ctext.org/shan-hai-jing" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -401,14 +429,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>The dragon never left Chinese public life. The Qing imperial flag was a five-clawed dragon on a yellow field; the Republic of China and early People&#39;s Republic used dragon motifs on currency, stamps, and regalia. Today the dragon dance winds through Lunar New Year streets worldwide, and the Year of the Dragon is the most auspicious sign in the zodiac. In feng shui, dragon imagery channels <em>qi</em>; in martial arts, <em>Long Xing Mo Qiao</em> and other styles imitate its coiling power. The dragon has also become a contested nationalist symbol — claimed by state propaganda, diaspora communities, and pop culture alike as a badge of Chinese identity, ambition, and ancestral continuity.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Shanhaijing (Classic of Mountains and Seas). <a class="scholars-ext" href="https://ctext.org/shan-hai-jing" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -416,14 +441,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The earliest dragon image in China may be the C-shaped jade &#39;pig-dragon&#39; of the Hongshan culture (c. 4700–2900 BCE) from Inner Mongolia and Liaoning. The Erlitou culture (c. 1900–1500 BCE) produced a turquoise-inlaid dragon plaque, while Shang and Zhou bronzes feature dragon-derived <em>taotie</em> masks. Han dynasty tomb murals and stone reliefs show dragons pulling chariots, guarding ascents to immortality, and separating heaven from earth. Textual witnesses range from oracle-bone inscriptions onward, with the dragon firmly established as a royal and meteorological symbol by the Western Zhou.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Shanhaijing (Classic of Mountains and Seas). <a class="scholars-ext" href="https://ctext.org/shan-hai-jing" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -431,135 +453,107 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Lóng given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Shanhaijing (Classic of Mountains and Seas). <a class="scholars-ext" href="https://ctext.org/shan-hai-jing" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Sima Qian, Shiji (Records of the Grand Historian).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Shuowen Jiezi.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Yijing (Book of Changes).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Baxter &amp; Sagart, Old Chinese Reconstruction. <a class="scholars-ext" href="http://ocbaxtersagart.lsait.lsa.umich.edu/" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Eberhard, A Dictionary of Chinese Symbols.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Liu, The Chinese Dragon.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Unihan Database (Unicode Consortium). <a class="scholars-ext" href="https://www.unicode.org/charts/unihan.html" rel="noopener noreferrer" target="_blank">Full text</a></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Shanhaijing (Classic of Mountains and Seas). <a class="scholars-ext" href="https://ctext.org/shan-hai-jing" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-2">Sima Qian, Shiji (Records of the Grand Historian).</li><li id="src-scholarly-sources-3">Shuowen Jiezi.</li><li id="src-scholarly-sources-4">Yijing (Book of Changes).</li><li id="src-scholarly-sources-5">Baxter &amp; Sagart, Old Chinese Reconstruction. <a class="scholars-ext" href="http://ocbaxtersagart.lsait.lsa.umich.edu/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-6">Eberhard, A Dictionary of Chinese Symbols.</li><li id="src-scholarly-sources-7">Liu, The Chinese Dragon.</li><li id="src-scholarly-sources-8">Unihan Database (Unicode Consortium). <a class="scholars-ext" href="https://www.unicode.org/charts/unihan.html" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="classical-texts">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Classical Texts</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The creature enters the classical corpus most memorably through the <em>Yijing</em>. The line statements of the first hexagram, Qián 乾, trace the dragon&#39;s career: the &#39;hidden dragon&#39; (潛龍) that must not yet act, the dragon appearing in the field, the flying dragon in the heavens, and finally the &#39;overreaching dragon&#39; (亢龍) that has cause to repent — a complete parable of power and timing.<sup class="scholars-cite"><a href="#src-classical-texts-1">[1]</a></sup></p>
+<p>The <em>Shijing</em> knows the dragon chiefly on ritual banners: sacrificial odes describe dragon-flags (龍旂) streaming above the royal chariots as emblems of rank.<sup class="scholars-cite"><a href="#src-classical-texts-2">[2]</a></sup> The <em>Zuozhuan</em> records dragons appearing at the suburbs of Jiàng, the Jìn capital, and appends a learned discourse on the ancient offices once charged with rearing and taming dragons — early statecraft treating the creature as a rare but administrative fact.<sup class="scholars-cite"><a href="#src-classical-texts-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-classical-texts-1">Yijing (Book of Changes), Qian hexagram line statements. <a class="scholars-ext" href="https://ctext.org/book-of-changes" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-classical-texts-2">Shijing (Book of Poetry), sacrificial odes. <a class="scholars-ext" href="https://ctext.org/book-of-poetry" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-classical-texts-3">Zuozhuan (Chunqiu Zuozhuan), Duke Zhao 29. <a class="scholars-ext" href="https://ctext.org/chun-qiu-zuo-zhuan" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="daoist-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Daoist Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>In Daoist literature the dragon images the Dao&#39;s power of transformation. The <em>Zhuangzi</em> opens with the spirit-man of Mount Gūshè, who &#39;rides the clouds, drives flying dragons, and wanders beyond the four seas&#39;.<sup class="scholars-cite"><a href="#src-daoist-sources-1">[1]</a></sup> Elsewhere in the book, Confucius returns speechless from an audience with Laozi and declares that at last he has seen a dragon — the compliment, also recorded by Sima Qian, that fixed the dragon as the sage&#39;s emblem, later inherited by <a class="scholars-xlink" href="/sites/taishang/">Tàishàng Lǎojūn</a>.<sup class="scholars-cite"><a href="#src-daoist-sources-2">[2]</a></sup></p>
+<p>The <em>Zhuangzi</em> can also turn the image against empty technique: Zhū Píngmàn spent his whole fortune mastering dragon-slaughter and never found a dragon to kill.<sup class="scholars-cite"><a href="#src-daoist-sources-1">[1]</a></sup> Organized Daoism later installed the Azure Dragon of the East among the directional spirits and enrolled the dragon kings of rain and flood in its ritual registers.<sup class="scholars-cite"><a href="#src-daoist-sources-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-daoist-sources-1">Zhuangzi, chapters 1 (Xiaoyaoyou), 14 (Tianyun), 32 (Lie Yukou). <a class="scholars-ext" href="https://ctext.org/zhuangzi" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-daoist-sources-2">Sima Qian, Shiji (Records of the Grand Historian), Laozi biography.</li><li id="src-daoist-sources-3">Daozang (Daoist Canon).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="buddhist-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Buddhist Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>When Buddhism entered China, translators faced a zoological problem: the Indian <strong>nāga</strong> — a divine serpent of water and treasure — had no native counterpart. They rendered it 龍, &#39;dragon&#39;, and the identification stuck. The <em>Lotus Sūtra</em>, in Kumārajīva&#39;s translation, places eight great nāga kings in the opening assembly, and its Devadatta chapter narrates the instantaneous awakening of the nāga king&#39;s eight-year-old daughter (龍女) — a locus classicus for universal Buddhahood.<sup class="scholars-cite"><a href="#src-buddhist-sources-1">[1]</a></sup></p>
+<p>The philosopher Nāgārjuna became Lóngshù 龍樹, &#39;Dragon Tree&#39;; Chan praises a monk of great capacity as a &#39;dragon-elephant&#39; (龍象). Because nāgas govern water, Indian rain-rite merged with the native dragon cult, and the Dragon Kings of the Four Seas acquired sūtra pedigrees.<sup class="scholars-cite"><a href="#src-buddhist-sources-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-buddhist-sources-1">Lotus Sūtra (Saddharmapuṇḍarīka), tr. Kumārajīva (Taishō 262), Devadatta chapter.</li><li id="src-buddhist-sources-2">Buswell &amp; Lopez, The Princeton Dictionary of Buddhism.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="calligraphy">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Calligraphy & Script</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p><strong>龍</strong> (simplified <strong>龙</strong>) is among the oldest legible graphs in the script. Oracle-bone and bronze forms are frankly pictographic: a sinuous, horned beast with gaping jaws, sometimes crowned with a crest. Through the seal and clerical reforms the animal&#39;s anatomy abstracted into the modern character.<sup class="scholars-cite"><a href="#src-calligraphy-1">[1]</a></sup></p>
+<p>The <em>Shuowen Jiezi</em> (c. 100 CE) glosses 龍 as &#39;chief of the scaly creatures&#39;, which &#39;can darken and brighten, shrink and swell, shorten and lengthen&#39; — a licence calligraphers have taken literally. In cursive script (草書) the whole graph is written in a single whiplash gesture, and the brushed 龍 became a stand-alone emblem of virtuosity, hung in temple halls and imperial studios as one character performing the animal it names.<sup class="scholars-cite"><a href="#src-calligraphy-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-calligraphy-1">Qiu Xigui, Chinese Writing (trans. Mattos &amp; Norman).</li><li id="src-calligraphy-2">Xu Shen, Shuowen Jiezi.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>The Chinese dragon teaches that power need not be hard. It is water made conscious: yielding enough to flow around any obstacle, forceful enough to wear down mountains. Unlike the Western dragon guarding a static hoard, the Chinese dragon is process — rain becoming river, river becoming mist, mist returning to cloud. It is a reminder that sovereignty in the Chinese imagination is less about domination than about maintaining the dynamic balance that lets life flourish.</p>
+<p>To name a domain <em>Lóng</em> is therefore to claim something older than empire: the claim that the cosmos itself pulses with living, transformative energy. The dragon does not ask to be worshipped from a distance; it asks to be recognized in the rain on the field, the mist on the mountain, and the long coiling body of a river moving toward the sea.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Shanhaijing (Classic of Mountains and Seas). <a class="scholars-ext" href="https://ctext.org/shan-hai-jing" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="classical-texts">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Classical Texts</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Classical Texts →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="daoist-sources">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Daoist Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Daoist Sources →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="buddhist-sources">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Buddhist Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Buddhist Sources →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="calligraphy">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">17</span>
-        <h2 class="scholars-section-title">Calligraphy & Script</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Calligraphy & Script →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">19</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -597,6 +591,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'long';
@@ -630,14 +759,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -731,6 +852,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -742,18 +864,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -765,6 +888,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -809,6 +934,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

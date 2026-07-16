@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,12 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#hieroglyphic-evidence">14 &mdash; Hieroglyphic Evidence</a></li>
-<li><a href="#pyramid-texts">15 &mdash; Pyramid Texts</a></li>
-<li><a href="#coffin-texts">16 &mdash; Coffin Texts</a></li>
-<li><a href="#book-of-the-dead">17 &mdash; Book of the Dead</a></li>
+<li><a href="#hieroglyphic-evidence">12 &mdash; Hieroglyphic Evidence</a></li>
+<li><a href="#pyramid-texts">13 &mdash; Pyramid Texts</a></li>
+<li><a href="#coffin-texts">14 &mdash; Coffin Texts</a></li>
+<li><a href="#book-of-the-dead">15 &mdash; Book of the Dead</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -281,14 +297,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Bꜣ</strong> (<em>ba</em>) — The soul, personality, or manifestation of a person. One of the five components of the Egyptian soul. — belongs to the Egyptian tradition, where it is catalogued under the domain &quot;Soul, Personality, Manifestation&quot;. The name means &quot;The soul, personality, or manifestation of a person. One of the five components of the Egyptian soul.&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>The <strong>bꜣ</strong> is not the Egyptian word for &#39;soul&#39; in the modern, singular sense. It is the mobile, recognisable aspect of a person — the part that leaves the body at death, flies above the marshes, boards the sun-bark, and returns to the tomb. In life it is personality; in death it becomes the self that moves between worlds. Where the <em>ka</em> stays with the corpse and eats the offerings, the <em>ba</em> is the one who goes abroad.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Bꜣ</strong> and serves its temple at <a class="scholars-ext" href="https://xn--b-yw3e.com" rel="noopener noreferrer" target="_blank">Bꜣ.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>ba</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Faulkner, A Concise Dictionary of Middle Egyptian.</li><li id="src-overview-2">Wörterbuch der ägyptischen Sprache (Wb), bꜣ.</li><li id="src-overview-3">Gardiner, Egyptian Grammar.</li></ol></div>
     </div>
 </section>
 
@@ -296,14 +311,16 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Hieroglyphs as <strong>𓅡𓏤</strong>. Etymologically it means &quot;The soul, personality, or manifestation of a person. One of the five components of the Egyptian soul.&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>From Egyptian bꜣ, written b-aleph, denoting the mobile aspect of the soul or personality; the original vocalization is unknown.</p>
+<p>The ASCII form <em>ba</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Bꜣ</strong> recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>b</strong> → <strong>B</strong> — Same, capitalized</li><li><strong>a</strong> → <strong>ꜣ</strong> — Egyptological aleph — glottal stop or specific vocalic quality</li></ul>
+<p>The project holds the domain <strong>Bꜣ.com</strong> (xn--b-yw3e.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Faulkner, A Concise Dictionary of Middle Egyptian.</li><li id="src-the-name-2">Wörterbuch der ägyptischen Sprache (Wb), bꜣ.</li></ol></div>
     </div>
 </section>
 
@@ -311,14 +328,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/baːʕ/</strong> — Egyptological Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>B-</strong> — Voiced bilabial stop [b], as in English &#39;bone&#39; — the sound of manifestation taking shape.</li><li><strong>-aː-</strong> — Long open vowel reconstructed between the consonants; Egyptian hieroglyphs do not write vowels, so the length is inferred from Coptic and Semitic parallels.</li><li><strong>-ʕ</strong> — Final ꜣ (Egyptian alef), representing a voiced pharyngeal fricative or glottal catch — the breath that keeps the name open at the back of the throat.</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;BAH-ah&#39; — but close the final syllable with a soft catch in the throat, as if the name itself were a wing-beat.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Egyptian</strong> — bꜣ — the noun for &#39;manifestation, impressive appearance, personality&#39;</li><li><strong>Coptic</strong> — ⲃⲏ (bē), a late reflex of the same root meaning &#39;soul&#39;</li><li><strong>Semitic comparison</strong> — Arabic baʿīr (&#39;beast, mount&#39;) and related roots suggest a core sense of &#39;that which carries or shows forth&#39;</li></ul>
+<p>Egyptian is written without vowels. The transliteration Bꜣ uses Gardiner&#39;s ꜣ (reversed glottal stop / alef) for the final guttural. The dot under ḥ in other entries marks a voiceless pharyngeal fricative; here the ꜣ marks a voiced counterpart or a glottal catch. The ba is Tier 2 in the PUNYCODEX system because the restoration preserves one primary prosodic feature — the long vowel conventionally marked by the macron-less but historically long final syllable.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Faulkner, A Concise Dictionary of Middle Egyptian.</li></ol></div>
     </div>
 </section>
 
@@ -326,14 +346,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Hieroglyphs as <strong>𓅡𓏤</strong> — Egyptian hieroglyphic, attested Old Kingdom – Late Antiquity, c. 2600 BCE – 400 CE, in Egypt. The script is written right-to-left / top-to-bottom.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Bꜣ</em> (Egyptological conventional), giving the normalized reading Original vocalisation unknown; Egyptological /baːʕ/..</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The Egyptian name is written 𓅡𓏤 in hieroglyphs.</li><li>Hieroglyphs combine logograms, phonograms, and determinatives; the exact function of each sign depends on context.</li><li>Egyptian writing does not record vowels; the vocalised form is a modern convention reconstructed from Coptic and Greek evidence.</li><li>The Unicode restoration Bꜣ uses Egyptological alef/ayin and other registrable characters; the hieroglyphic form is not registrable in .com.</li></ul>
+<p>The hieroglyphic spelling of <em>bꜣ</em> is normally written with the jabiru bird (Gardiner G29) as a phonogram followed by the seated-bird determinative (Gardiner G14), sometimes with the walking-legs determinative to stress mobility. The transliteration <strong>ꜣ</strong> (Latin &#39;alef&#39;, reversed glottal stop) represents a final consonant that Egyptologists reconstruct as a voiced pharyngeal or glottal catch; it is not the vowel &#39;a&#39;. The dot under <strong>ḥ</strong> in related entries marks a voiceless pharyngeal fricative absent here.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">James P. Allen, Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs, Cambridge University Press, 2000. <a class="scholars-ext" href="https://www.cambridge.org/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-original-script-2">Faulkner, A Concise Dictionary of Middle Egyptian.</li><li id="src-original-script-3">Gardiner, Egyptian Grammar.</li><li id="src-original-script-4">Hannig, Ägyptisches Wörterbuch.</li></ol></div>
     </div>
 </section>
 
@@ -341,14 +362,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>The <strong>bꜣ</strong> is not the Egyptian word for &#39;soul&#39; in the modern, singular sense. It is the mobile, recognisable aspect of a person — the part that leaves the body at death, flies above the marshes, boards the sun-bark, and returns to the tomb. In life it is personality; in death it becomes the self that moves between worlds. Where the <em>ka</em> stays with the corpse and eats the offerings, the <em>ba</em> is the one who goes abroad.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Personality</h3>
+<p>The distinct presence that makes a person recognisable — &#39;what shows forth&#39; of the self.</p>
+<h3 class="scholars-h3">Manifestation</h3>
+<p>The ba appears — to gods, to the dead, and even to the living in dreams — as a visible sign of the person.</p>
+<h3 class="scholars-h3">Mobility</h3>
+<p>Depicted as a human-headed bird, the ba can leave the tomb, fly through the sky, and travel the Duat.</p>
+<h3 class="scholars-h3">Reunion</h3>
+<p>If the ba and ka reunite after judgment, the deceased becomes an akh — an effective, transfigured spirit.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Wörterbuch der ägyptischen Sprache (Wb), bꜣ.</li></ol></div>
     </div>
 </section>
 
@@ -356,14 +382,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Bꜣ concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Human-headed bird</strong> — The union of human identity with avian mobility; the ba in its standard iconographic form</li><li><strong>Ba-bird</strong> — A small falcon or sparrowhawk body bearing the face of the deceased</li><li><strong>Heart scarab</strong> — The heart (ib) is weighed; the ba depends on the heart&#39;s truth for its continued freedom</li><li><strong>Sun-bark</strong> — The vessel on which the ba journeys with Re across the day and night skies</li><li><strong>Cartouche</strong> — The ren (name) must survive for the ba to be remembered and effective</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Faulkner, A Concise Dictionary of Middle Egyptian.</li></ol></div>
     </div>
 </section>
 
@@ -371,14 +395,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>The bꜣ enters literature as a fully formed theological concept in the Pyramid Texts and remains central through the Coffin Texts and the Book of the Dead. Its mythology is not a single story but a set of possibilities: the ba may ascend, return, lament, or be transformed, depending on the rites performed for it.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Components of the Egyptian Person (The Fivefold Self)</h3>
+<p>Egyptian anthropology is relational and composite. The most widely cited &#39;five components&#39; are the <strong>ka</strong> (vital double, life-force sustained by offerings), the <strong>ba</strong> (mobile personality), the <strong>akh</strong> (transfigured effective spirit achieved after judgment), the <strong>ren</strong> (name, the marker of identity), and the <strong>sheut</strong> (shadow, the protective silhouette). To these some sources add the <strong>ib</strong> (heart), the seat of thought and moral record. None of these map neatly onto a single Western &#39;soul&#39;; together they form a networked self sustained by ritual, memory, and ma&#39;at.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">A Man with His Ba (The Dialogue)</h3>
+<p>The Middle Kingdom text known as the <em>Dialogue of a Man with His Ba</em> is one of the most intimate documents in Egyptian literature. A man, despairing of life, argues with his ba, which urges him to accept death and the continuity of the name. The ba speaks as a separate, wiser self — proof that the Egyptians experienced personality not as a unity but as a conversation. The text ends with the man reconciled, preparing for the rites that will let his ba prosper.</p>
+<h3 class="scholars-h3">Flying with Re (The Solar Journey)</h3>
+<p>Book of the Dead spells assure the deceased that their ba will leave the tomb at will, &#39;go forth by day&#39;, and join the sun-god Re in his bark. Pyramid Texts describe the king&#39;s ba ascending to the circumpolar stars. This mobility is the ba&#39;s defining privilege: unlike the ka, which is tied to the corpse and the offering table, the ba is free to travel the cosmos.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Wörterbuch der ägyptischen Sprache (Wb), bꜣ.</li><li id="src-mythology-2">Gardiner, Egyptian Grammar.</li></ol></div>
     </div>
 </section>
 
@@ -386,14 +413,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Later Egyptian texts sometimes speak of the <em>ba</em> of gods — Re travels the underworld as a ram-headed ba, and Banebdjedet of Mendes is identified with the <em>ba</em> of Osiris. In Greco-Roman Egypt, the ba was partially mapped onto the Greek <em>psyche</em>, though the Greek concept lacks the ba&#39;s specifically mobile, bird-shaped iconography. Coptic Christianity inherited the word as <em>bē</em>, now meaning &#39;soul&#39; in a more unitary sense, smoothing away the older plurality. Through Theosophy and modern Kemetic revival, the ba has returned as a term for the traversable, dream-capable aspect of the self.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Egyptian tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/ab/">Ꜣb</a>, <a class="scholars-xlink" href="/sites/akh/">Ꜣḫ</a>, <a class="scholars-xlink" href="/sites/amun/">Ꜣmun</a>, <a class="scholars-xlink" href="/sites/ankh/">ꜥnḫ</a>, <a class="scholars-xlink" href="/sites/apep/">Ꜥpp</a>, and <a class="scholars-xlink" href="/sites/bastet/">Bꜣstt</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Faulkner, A Concise Dictionary of Middle Egyptian.</li></ol></div>
     </div>
 </section>
 
@@ -401,14 +426,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>The idea that the self has more than one component — that part of us stays with the body while another part flies free — is one of Egypt&#39;s most enduring gifts to the imagination. Medieval alchemy, Renaissance hermeticism, and modern psychology all found in the ba a precedent for divided or layered personhood. Today the ba appears in fantasy fiction, in role-playing games, and in contemporary pagan practice as the &#39;astral body&#39; or &#39;travelling soul&#39;. The human-headed bird remains one of the most recognisable images of the afterlife, a visual shorthand for the conviction that we are not finished when the body stops breathing.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Faulkner, A Concise Dictionary of Middle Egyptian.</li></ol></div>
     </div>
 </section>
 
@@ -416,14 +438,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The human-headed ba-bird is attested in tomb paintings from Deir el-Medina and the Valley of the Kings, notably in the tomb of Sennedjem (TT1) and on the papyrus of Ani. Gold-leaf ba-amulets and wooden ba-bird figures have been recovered from Twenty-first-Dynasty coffins at Thebes. Stelae and Book of the Dead papyri in the British Museum and Egyptian Museum Cairo depict the ba leaving the tomb by day and returning to the mummy.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Faulkner, A Concise Dictionary of Middle Egyptian.</li></ol></div>
     </div>
 </section>
 
@@ -431,135 +450,107 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Bꜣ given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Faulkner, A Concise Dictionary of Middle Egyptian.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Wörterbuch der ägyptischen Sprache (Wb), bꜣ.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Gardiner, Egyptian Grammar.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> James P. Allen, Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs, Cambridge University Press, 2000. <a class="scholars-ext" href="https://www.cambridge.org/" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Pyramid Texts.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Coffin Texts.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Book of the Dead, Spells 17, 26–30.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Book of the Dead, Spell 15B (the ba goes forth by day with the gods).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Book of the Dead, Spell 37A (preventing the ka of a man from being taken away).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> Book of the Dead, Spell 38A (preventing the ba from being taken away in the necropolis).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-11">[11]</a></sup> Coffin Texts, Spell 75 (the ba and the solar circuit).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Faulkner, A Concise Dictionary of Middle Egyptian.</li><li id="src-scholarly-sources-2">Wörterbuch der ägyptischen Sprache (Wb), bꜣ.</li><li id="src-scholarly-sources-3">Gardiner, Egyptian Grammar.</li><li id="src-scholarly-sources-4">James P. Allen, Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs, Cambridge University Press, 2000. <a class="scholars-ext" href="https://www.cambridge.org/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-5">Pyramid Texts.</li><li id="src-scholarly-sources-6">Coffin Texts.</li><li id="src-scholarly-sources-7">Book of the Dead, Spells 17, 26–30.</li><li id="src-scholarly-sources-8">Book of the Dead, Spell 15B (the ba goes forth by day with the gods).</li><li id="src-scholarly-sources-9">Book of the Dead, Spell 37A (preventing the ka of a man from being taken away).</li><li id="src-scholarly-sources-10">Book of the Dead, Spell 38A (preventing the ba from being taken away in the necropolis).</li><li id="src-scholarly-sources-11">Coffin Texts, Spell 75 (the ba and the solar circuit).</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="hieroglyphic-evidence">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Hieroglyphic Evidence</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The word is transliterated <strong>bꜣ</strong> and written with the <strong>saddle-billed stork</strong> (Gardiner G29), the jabiru, a bird whose ancient Egyptian name <em>bꜣ</em> made it the perfect rebus for the word. The stork sign functions as phonogram and ideogram, commonly followed by the seated-bird determinative; from the New Kingdom the writing can be joined by the famous <strong>human-headed bird</strong>, the ba&#39;s mature iconographic form.<sup class="scholars-cite"><a href="#src-hieroglyphic-evidence-1">[1]</a></sup></p>
+<p>The word&#39;s semantic range is wide and old: &#39;manifestation, impressive presence, power, personality&#39;. Egyptian speaks of the <em>bꜣw</em> (plural) of gods and cities — the manifestations of their power — and the Pyramid Texts already know the &#39;bas of Pe and Nekhen&#39;, the ancestral spirits of Buto and Hierakonpolis. The ba is thus &#39;soul&#39; only by approximation: it is the self insofar as the self shows forth and moves.<sup class="scholars-cite"><a href="#src-hieroglyphic-evidence-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-hieroglyphic-evidence-1">Erman, A. &amp; Grapow, H. Wörterbuch der ägyptischen Sprache, s.v. bꜣ, bꜣw.</li><li id="src-hieroglyphic-evidence-2">Gardiner, A. Egyptian Grammar, sign-list G29.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pyramid-texts">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Pyramid Texts</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The ba enters the written record in the Pyramid Texts, where it already carries its signature mobility. The king&#39;s ba is promised flight: he ascends to the sky as a bird, &#39;a great ba&#39;, joining the <strong>bas of Pe and Nekhen</strong> (<em>bꜣw Pw</em>, <em>bꜣw Nḫn</em>) — the ancestral spirits of the twin archaic capitals who receive him into their company. The corpus also knows the ba of gods, the manifestations of divine power that the king absorbs or becomes.<sup class="scholars-cite"><a href="#src-pyramid-texts-1">[1]</a></sup></p>
+<p>Notably, the Old Kingdom texts do not yet picture the ba as the human-headed bird of later art; the word functions as power, presence, and the capacity to move between realms. The Pyramid Texts&#39; contribution is the concept&#39;s foundation: the ba as the aspect of the person that is <em>not</em> bound to the corpse, free to ascend where the body cannot follow.<sup class="scholars-cite"><a href="#src-pyramid-texts-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pyramid-texts-1">Faulkner, R. O. The Ancient Egyptian Pyramid Texts. Oxford: Clarendon, 1969.</li><li id="src-pyramid-texts-2">Allen, J. P. The Ancient Egyptian Pyramid Texts. Atlanta: SBL, 2005.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="coffin-texts">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Coffin Texts</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Coffin Texts elaborate the ba&#39;s defining privilege — <strong>going out</strong>. Spells across the corpus assure the deceased that his ba will not be confined, seized, or turned back: it will leave the tomb, traverse the Duat, board the solar barque, and return to the body at will. The corpus&#39;s air- and transformation-spells repeatedly equip the ba for this circulation between the worlds.<sup class="scholars-cite"><a href="#src-coffin-texts-1">[1]</a></sup></p>
+<p>The Middle Kingdom also supplies the ba&#39;s great literary document outside the funerary corpus: the <em>Dialogue of a Man with His Ba</em>, in which a despairing man debates death with his own ba, which speaks as a distinct, wiser voice. The text is contemporaneous with the Coffin Texts and proves how fully the Egyptians experienced the ba as a separable partner of the self rather than an abstract &#39;soul&#39;.<sup class="scholars-cite"><a href="#src-coffin-texts-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-coffin-texts-1">Faulkner, R. O. The Ancient Egyptian Coffin Texts. Warminster: Aris &amp; Phillips, 1973–1978.</li><li id="src-coffin-texts-2">Lichtheim, M. Ancient Egyptian Literature, vol. I (The Dialogue of a Man with His Ba). Berkeley: University of California Press, 1975.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="book-of-the-dead">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Book of the Dead</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Book of the Dead is the ba&#39;s fullest charter. <strong>Spell 85</strong>, &#39;for becoming a living ba&#39;, secures the owner&#39;s status as a ba that lives and does not die again; <strong>Spell 89</strong>, &#39;for causing the ba to be united to its body in the realm of the dead&#39;, stages the corpus&#39;s most tender image — the ba-bird hovering over the mummy, returning to the flesh it left — and other chapters promise that the ba will not be taken away or barred from the tomb&#39;s door.<sup class="scholars-cite"><a href="#src-book-of-the-dead-1">[1]</a></sup></p>
+<p>The corpus&#39;s own ancient title, <em>rꜣw nw prt m hrw</em> (&#39;spells of going forth by day&#39;), names the ba&#39;s essential freedom. New Kingdom vignettes fix its iconography forever: the human-headed bird perched at the tomb shaft, drinking from the pool, or resting on the mummy — the visible, mobile, recognisable self that survives the body&#39;s stillness.<sup class="scholars-cite"><a href="#src-book-of-the-dead-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-book-of-the-dead-1">Faulkner, R. O. (trans.); Andrews, C. (ed.). The Ancient Egyptian Book of the Dead. London: British Museum Press, 1985.</li><li id="src-book-of-the-dead-2">Book of the Dead, Spells 85 and 89 (Papyrus of Ani, BM EA 10470).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>To think about the ba is to think about what in us is portable. The Egyptians did not believe that a person simply survived death; they believed that a person survived in several different modes at once. The corpse stayed in the tomb, the life-force fed at the offering table, the name waited to be spoken, and the ba — the ba went out into the light. This is not confusion. It is a more honest anthropology than the single, disembodied soul that later traditions inherited.</p>
+<p>The ba asks us to recognise that identity is not a substance but a relationship: between body and image, memory and presence, the one who stays and the one who goes. When we say of someone that they &#39;live on in memory&#39;, we are speaking the language of the ba. When we feel our own personality leave a room and travel elsewhere in a dream, we are touching what the Egyptians named. The ba is the part of us that is visible to others even when the body is absent — the manifest self, still in motion.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Faulkner, A Concise Dictionary of Middle Egyptian.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="hieroglyphic-evidence">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Hieroglyphic Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Hieroglyphic Evidence →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="pyramid-texts">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Pyramid Texts</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pyramid Texts →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="coffin-texts">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Coffin Texts</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Coffin Texts →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="book-of-the-dead">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">17</span>
-        <h2 class="scholars-section-title">Book of the Dead</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Book of the Dead →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">19</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -597,6 +588,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'ba';
@@ -630,14 +756,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -731,6 +849,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -742,18 +861,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -765,6 +885,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -809,6 +931,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

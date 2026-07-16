@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,11 +279,12 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#florentine-codex">14 &mdash; Florentine Codex</a></li>
-<li><a href="#aztec-sources">15 &mdash; Aztec Sources</a></li>
-<li><a href="#colonial-sources">16 &mdash; Colonial-Era Sources</a></li>
+<li><a href="#florentine-codex">12 &mdash; Florentine Codex</a></li>
+<li><a href="#aztec-sources">13 &mdash; Aztec Sources</a></li>
+<li><a href="#colonial-sources">14 &mdash; Colonial-Era Sources</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -280,14 +296,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Quetzalcōātl</strong> (<em>quetzalcoatl</em>) — Wind, Wisdom, Morning Star · Feathered serpent — belongs to the Nahuatl tradition, where it is catalogued under the domain &quot;Wind, Wisdom, Morning Star&quot;. The name means &quot;Feathered serpent&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>Quetzalcōātl is the <strong>living bridge between heaven and earth</strong>, between the iridescent quetzal of the cloud forest and the coiled serpent of the underworld. In Nahuatl thought he moves through every medium: the wind that carries speech, the dawn light of Venus, the ink and paper of the calmecac school, and the breath that animates the craftsman. He is less a storm god than a <em>motion</em> — the intelligent current that makes culture possible.</p>
+<p>Unlike his shadow-twin Tezcatlipoca, the Smoking Mirror who rules night, sorcery, and the arbitrary turn of fate, Quetzalcōātl stands for daylight learning, measured speech, and the priestly arts. Where Tezcatlipoca deceives, Quetzalcōātl instructs. Yet the two are inseparable: creation itself required their partnership, and every age ends in their struggle.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Quetzalcōātl</strong> and serves its temple at <a class="scholars-ext" href="https://xn--quetzalctl-1fb52g.com" rel="noopener noreferrer" target="_blank">quetzalcōātl.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>quetzalcoatl</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Sahagún, Florentine Codex (General History of the Things of New Spain).</li><li id="src-overview-2">Leyenda de los Soles (Legend of the Suns).</li><li id="src-overview-3">Anales de Cuauhtitlan.</li></ol></div>
     </div>
 </section>
 
@@ -295,14 +311,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Colonial Nahuatl (Latin script) as <strong>Quetzalcōātl</strong>. Etymologically it means &quot;Feathered serpent&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The ASCII form <em>quetzalcoatl</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Quetzalcōātl</strong> recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>q</strong> → <strong>Q</strong> — Same</li><li><strong>u</strong> → <strong>u</strong> — Same</li><li><strong>e</strong> → <strong>e</strong> — Same</li><li><strong>t</strong> → <strong>t</strong> — Same</li><li><strong>z</strong> → <strong>z</strong> — Same</li><li><strong>a</strong> → <strong>a</strong> — Same</li><li><strong>l</strong> → <strong>l</strong> — Same</li><li><strong>c</strong> → <strong>c</strong> — Same</li><li><strong>o</strong> → <strong>ō</strong> — Macron: long vowel</li><li><strong>a</strong> → <strong>ā</strong> — Macron: long vowel</li><li><strong>t</strong> → <strong>t</strong> — Same</li><li><strong>l</strong> → <strong>l</strong> — Same</li></ul>
+<p>The project holds the domain <strong>quetzalcōātl.com</strong> (xn--quetzalctl-1fb52g.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Sahagún, Florentine Codex (General History of the Things of New Spain).</li><li id="src-the-name-2">Leyenda de los Soles (Legend of the Suns).</li></ol></div>
     </div>
 </section>
 
@@ -310,14 +327,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/két͡saɬˈkoː(w)aːt͡ɬ/</strong> — Classical Nahuatl Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Quet-</strong> — Voiceless velar stop [k] plus [e], then the affricate [t͡s]. In Classical Nahuatl, qu before e/i is /k/ (not /kw/), and tz is /t͡s/.</li><li><strong>-zal-</strong> — Open [a] plus voiceless alveolar lateral fricative [ɬ] — the Nahuatl l is a &#39;whispered l,&#39; not the English approximant.</li><li><strong>-cō-</strong> — Voiceless velar stop [k] plus long back rounded [oː]. Classical Nahuatl had no /u/ sound; the macron marks vowel length.</li><li><strong>-ātl</strong> — Long open [aː] plus lateral affricate [t͡ɬ] — final -tl is a single Nahuatl sound, not separate t + l.</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;ket-SAHL-KOH-wahtl&#39; — the &#39;tl&#39; at the end is one sound, the &#39;z&#39; is like &#39;ts,&#39; and the whispered &#39;l&#39; in &#39;zal&#39; is Nahuatl ɬ.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Classical Nahuatl</strong> — Quetzalcōātl — from quetzalli &#39;quetzal tail-feather&#39; + cōātl &#39;snake&#39;</li><li><strong>Spanish</strong> — Quetzalcóatl, the colonial spelling</li><li><strong>Yucatec Maya</strong> — Kukulkan, the feathered-serpent counterpart</li><li><strong>English gloss</strong> — Feathered Serpent</li></ul>
+<p>Classical Nahuatl had no /u/; qu before e/i is /k/ and cu is /kw/. The long vowels ō and ā are preserved in the PUNYCODEX restoration, and the final -tl is a lateral affricate [t͡ɬ], not English &#39;tuhl.&#39; The [w] glide between ō and ā is common in natural speech but optional. Tier 1: the two macrons preserve reconstructed vowel length. Sources: Andrews Introduction to Classical Nahuatl, Karttunen An Analytical Dictionary of Nahuatl, Wiktionary Nahuatl.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Sahagún, Florentine Codex (General History of the Things of New Spain).</li></ol></div>
     </div>
 </section>
 
@@ -325,14 +345,16 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Colonial Nahuatl (Latin script) as <strong>Quetzalcōātl</strong> — Nahuatl (Uto-Aztecan) in colonial alphabetic sources, attested Postclassic – colonial, c. 1300–1600 CE, in Central Mexico. The script is written left-to-right.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Quetzalcōātl</em> (Classical Nahuatl orthography with macrons), giving the normalized reading /ke.t͡salˈkoː.waːt͡ɬ/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>Nahuatl was recorded by Spanish and native scribes in Latin alphabets from the sixteenth century onward.</li><li>The name is a compound: quetzalli &#39;precious green feather&#39; + cōātl &#39;snake&#39;.</li><li>Macrons mark long vowels in scholarly Classical Nahuatl orthography.</li><li>The Unicode restoration Quetzalcōātl preserves vowel length; there is no indigenous logographic spelling for the personal name.</li></ul>
+<p>The name is composed of two Classical Nahuatl words: <em>quetzalli</em>, the long tail-feather of the resplendent quetzal bird, and <em>cōātl</em>, &#39;snake&#39; or &#39;twin.&#39; In colonial Nahuatl orthography the word is often written <em>Quetzalcóatl</em> with an acute accent on the first <em>o</em>; that spelling reflects Spanish convention, not an attested Nahuatl pitch accent. The PUNYCODEX restoration uses macrons on <em>ō</em> and <em>ā</em> to mark reconstructed vowel length, the distinctive prosodic feature that makes the name Tier 1.</p>
+<p>Classical Nahuatl had no /u/ sound; <em>qu</em> before <em>e/i</em> represents /k/, not /kw/. The letter <em>tz</em> is the affricate /ts/, and final <em>-tl</em> is a single lateral affricate /tɬ/. The lateral fricative <em>ɬ</em> in the middle of the name is the &#39;whispered l&#39; of Nahuatl, distinct from the English approximant. We write the name in Latin transcription because the original logophonetic script of the Nahua — a tradition of pictographic and glyphic writing now partly lost — does not survive as a fully readable text for this theonym.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Sahagún, Florentine Codex.</li><li id="src-original-script-2">Karttunen, An Analytical Dictionary of Nahuatl.</li><li id="src-original-script-3">Bierhorst, History and Mythology of the Aztecs.</li></ol></div>
     </div>
 </section>
 
@@ -340,14 +362,20 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>Quetzalcōātl is the <strong>living bridge between heaven and earth</strong>, between the iridescent quetzal of the cloud forest and the coiled serpent of the underworld. In Nahuatl thought he moves through every medium: the wind that carries speech, the dawn light of Venus, the ink and paper of the calmecac school, and the breath that animates the craftsman. He is less a storm god than a <em>motion</em> — the intelligent current that makes culture possible.</p>
+<p>Unlike his shadow-twin Tezcatlipoca, the Smoking Mirror who rules night, sorcery, and the arbitrary turn of fate, Quetzalcōātl stands for daylight learning, measured speech, and the priestly arts. Where Tezcatlipoca deceives, Quetzalcōātl instructs. Yet the two are inseparable: creation itself required their partnership, and every age ends in their struggle.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Wind and Breath</h3>
+<p>As Ehecatl, the wind, he is the breath that precedes speech and the storm that scatters the old sun; his temple is a cylinder because the wind has no corners.</p>
+<h3 class="scholars-h3">Learning and the Priesthood</h3>
+<p>Patron of the calmecac, the school for noble youths; he invented the calendar, established fasting and penance, and taught the arts of the feather-worker and goldsmith.</p>
+<h3 class="scholars-h3">Venus, the Morning Star</h3>
+<p>The planet Venus as Tlahuizcalpantecuhtli, Lord of the Dawn; his return each morning heralds the sun and the renewal of time.</p>
+<h3 class="scholars-h3">Creation and Sustenance</h3>
+<p>He shaped the Fifth Sun from the bones of the previous age and brought maize out of secrecy so that humankind could eat and flourish.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Leyenda de los Soles (Legend of the Suns).</li></ol></div>
     </div>
 </section>
 
@@ -355,14 +383,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Quetzalcōātl concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Feathered serpent</strong> — The union of sky (quetzal feathers) and earth (serpent); the animate conduit between cosmic levels</li><li><strong>Conch shell (tecciztli)</strong> — The wind-shell blown by Ehecatl; a token of breath, sound, and the east from which Quetzalcōātl departed</li><li><strong>Cut shell mask (Ehecatl)</strong> — The duck-billed mask of the wind manifestation; worn by priests and dancers to become the moving air</li><li><strong>Jade and quetzal plumes</strong> — Signs of preciousness, life, and the verdant east; the quetzal cannot be kept in captivity, so its feathers are gifts of the wild</li><li><strong>Venus glyph</strong> — The morning-star symbol that marks Quetzalcōātl as a lord of time, recurrence, and celestial order</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Sahagún, Florentine Codex (General History of the Things of New Spain).</li></ol></div>
     </div>
 </section>
 
@@ -370,14 +396,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Quetzalcōātl&#39;s myths are not a single linear biography but a shifting constellation of roles: creator, priest-king, culture hero, exiled lord, and promised return. The narratives collected by Sahagún and other early colonial writers preserve the memory of a deity whose generosity and restraint are inseparable from his grief.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Fifth Sun from the Bones of the Old Age (Creation myth)</h3>
+<p>After the collapse of the Fourth Sun, the gods gathered at Teotihuacan to create a new era. Quetzalcōātl descended into Mictlān, the land of the dead, to retrieve the bones of the previous races. Mictlantecuhtli, Lord of the Underworld, agreed on condition that Quetzalcōātl not look at them on his way out. Unable to resist, Quetzalcōātl glanced down; the bones shattered. He gathered the fragments and, in Tamoanchan, ground them like cornmeal. The other gods bled their penises onto the meal, and from that sacrifice the humans of the Fifth Sun were formed. (Florentine Codex VI; Leyenda de los Soles.)<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Theft and Gift of Maize (Culture myth)</h3>
+<p>Maize was originally hidden inside a mountain, guarded by the ants. Quetzalcōātl, taking the form of a black ant or following an ant&#39;s trail, discovered the hidden grain and carried it back to the surface for humankind. The mountain split open; red, yellow, white, and black corns emerged. This myth binds Quetzalcōātl to agriculture, to the nourishment of the people, and to the colour-coded directions of Mesoamerican cosmology.</p>
+<h3 class="scholars-h3">Ce Acatl Topiltzin at Tula (Legendary history)</h3>
+<p>The historical and mythic dimensions merge in the figure of Ce Acatl Topiltzin Quetzalcōātl, a Toltec priest-king said to have founded Tollan (Tula). Under his rule, learning flourished, sacrifices were bloodless, and jade and quetzal feathers outnumbered obsidian blades. But Tezcatlipoca, playing on human weakness, tricked or shamed him into drunkenness and incest. Exiled, Quetzalcōātl abandoned Tula toward the east, burning his houses, burying his treasures, and promising to return across the sea in a year named One Reed.</p>
+<h3 class="scholars-h3">The Promise and the Conquest (Colonial aftermath)</h3>
+<p>When Hernán Cortés landed on the Gulf Coast in 1519 — a One Reed year in the Mesoamerican calendar — Moctezuma and others interpreted the event through the prophecy of Quetzalcōātl&#39;s return. The reliability of this account is debated: it served Spanish interests, and some modern scholars see it as a post-conquest rationalisation. What is certain is that the myth became a powerful interpretive frame, turning a deity of wind and wisdom into a symbol of interrupted sovereignty.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Leyenda de los Soles (Legend of the Suns).</li><li id="src-mythology-2">Anales de Cuauhtitlan.</li></ol></div>
     </div>
 </section>
 
@@ -385,14 +416,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>The feathered-serpent image predates the Nahuatl name by centuries. At Teotihuacan, the so-called Tlaloc-Quetzalcōātl imagery of the Temple of the Feathered Serpent shows a similar composite being, though its precise name and meaning remain disputed. Among the Maya, the counterpart is Kukulkan (&#39;Feathered Serpent&#39; in Yucatec); among the K&#39;iche&#39; Maya, Gucumatz carries the same cosmogonic role. The Mixtec and Zapotec had their own serpent-sky figures, suggesting that the image circulated across language boundaries as a shared Mesoamerican icon.</p>
+<p>Within Nahuatl religion, Quetzalcōātl overlaps with Ehecatl, the wind; with Tlahuizcalpantecuhtli, the morning star; and with the aged creator couple Ometecuhtli and Omecihuatl. Spanish friars and indigenous writers after the conquest sometimes drew parallels with Christian figures — St. Thomas the apostle, or Christ in his sacrificial and resurrected aspects — but these equations tell us more about colonial translation than about pre-contact belief. Modern New Age and nationalist movements have embraced Quetzalcōātl as a symbol of indigenous wisdom, often smoothing away the deity&#39;s darker, more violent partnerships.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include <a class="scholars-xlink" href="/sites/ahuramazda/">AhuraMazdā</a>, <a class="scholars-xlink" href="/sites/athena/">Athénā</a>, <a class="scholars-xlink" href="/sites/ganesha/">Gaṇeśa</a>, <a class="scholars-xlink" href="/sites/odinn/">Óðinn</a>, <a class="scholars-xlink" href="/sites/orunmila/">Ọrúnmìlà</a>, and <a class="scholars-xlink" href="/sites/thoth/">Ḏḥwty</a>, each linked through wisdom / knowledge.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Sahagún, Florentine Codex (General History of the Things of New Spain).</li></ol></div>
     </div>
 </section>
 
@@ -400,14 +430,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Quetzalcōātl is now inseparable from Mexican national identity. He appears on the flag as the eagle-and-serpent emblem&#39;s feathered ancestor, in the names of parks and universities, and in the architecture of museums that evoke his coils. The feathered serpent remains a shorthand for Mesoamerican civilisation itself: learned, stratified, and visually spectacular. Artists from Diego Rivera to contemporary muralists have returned to his image, and the quetzal bird has become an icon of endangered beauty across Central America.</p>
+<p>In popular culture he has become a default &#39;Aztec god&#39; — sometimes reduced to a dragon or a vague sage, sometimes invoked in fantasy games and speculative fiction as a lost-knowledge figure. More responsibly, astronomers and archaeologists continue to use Quetzalcōātl-related alignments — especially at Chichén Itzá, where the equinox shadow crawls down the Castillo pyramid like a serpent — as entry points into the precision of Mesoamerican sky-watching. The name endures wherever the Americas confront their deep past: not as a simple hero, but as a question about knowledge, power, and what it costs to be wise.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Sahagún, Florentine Codex (General History of the Things of New Spain).</li></ol></div>
     </div>
 </section>
 
@@ -415,14 +443,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The earliest monumental feathered serpent appears at Teotihuacan, where the Temple of the Feathered Serpent (c. 200 CE) preserves carved serpent heads amid offerings of sacrificed warriors and sacrificial goods. At Chichén Itzá, the Castillo pyramid stages the equinox descent of a serpent-shadow down its northern stairway, linking the architecture to solar and Venus cycles. Tula (Tollan) supplies the Toltec warrior columns and Atlantean figures associated with the legendary reign of Ce Acatl Topiltzin. Tenochtitlan&#39;s Templo Mayor contained dual shrines to Tlaloc and Huitzilopochtli, but Quetzalcōātl-Ehecatl imagery appears on sculptural reliefs and the round temple of the wind. Painted books such as the Codex Borgia and the Telleriano-Remensis preserve his calendar and ritual associations in post-contact indigenous art.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Sahagún, Florentine Codex (General History of the Things of New Spain).</li></ol></div>
     </div>
 </section>
 
@@ -430,120 +455,92 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Quetzalcōātl given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Sahagún, Florentine Codex (General History of the Things of New Spain).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Leyenda de los Soles (Legend of the Suns).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Anales de Cuauhtitlan.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Durán, Book of the Gods and Rites and the Ancient Calendar.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Alvarado Tezozómoc, Crónica Mexicayotl.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Andrews, Introduction to Classical Nahuatl.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Karttunen, An Analytical Dictionary of Nahuatl.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> López Austin, The Rabbit on the Face of the Moon.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Carrasco, Quetzalcoatl and the Irony of Empire.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> Nicholson, Topiltzin Quetzalcoatl: The Once and Future Lord of the Toltecs.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Sahagún, Florentine Codex (General History of the Things of New Spain).</li><li id="src-scholarly-sources-2">Leyenda de los Soles (Legend of the Suns).</li><li id="src-scholarly-sources-3">Anales de Cuauhtitlan.</li><li id="src-scholarly-sources-4">Durán, Book of the Gods and Rites and the Ancient Calendar.</li><li id="src-scholarly-sources-5">Alvarado Tezozómoc, Crónica Mexicayotl.</li><li id="src-scholarly-sources-6">Andrews, Introduction to Classical Nahuatl.</li><li id="src-scholarly-sources-7">Karttunen, An Analytical Dictionary of Nahuatl.</li><li id="src-scholarly-sources-8">López Austin, The Rabbit on the Face of the Moon.</li><li id="src-scholarly-sources-9">Carrasco, Quetzalcoatl and the Irony of Empire.</li><li id="src-scholarly-sources-10">Nicholson, Topiltzin Quetzalcoatl: The Once and Future Lord of the Toltecs.</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="florentine-codex">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Florentine Codex</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Sahagún&#39;s informants place Quetzalcōātl among the first and most venerated of the gods. Book 1 (The Gods) describes his insignia — the conch-shell pendant, the curved ear ornaments, the quetzal-feather headdress — and his identity with Ehēcatl, the wind.<sup class="scholars-cite"><a href="#src-florentine-codex-1">[1]</a></sup> Book 3 (The Origin of the Gods) preserves the cosmogonies in which he acts alongside Tezcatlipoca, while Book 6 (Rhetoric and Moral Philosophy) transmits the prayers and formal addresses invoking him as patron of the calmecac and of the arts. The earlier <em>Primeros Memoriales</em>, compiled with Tepepulco informants, likewise lists his regalia and priestly costume.<sup class="scholars-cite"><a href="#src-florentine-codex-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-florentine-codex-1">Sahagún, Florentine Codex, Books 1, 3, and 6 (The Gods; The Origin of the Gods; Rhetoric and Moral Philosophy).</li><li id="src-florentine-codex-2">Sahagún, Primeros Memoriales (Tepepulco, c. 1559–1561).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="aztec-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Aztec Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The two richest Nahuatl narratives come from the Codex Chimalpopoca corpus. The <em>Leyenda de los Soles</em> (1558) tells how Quetzalcōātl descended to Mictlān, deceived <a class="scholars-xlink" href="/sites/mictlantecutli/">Mictlāntēcutli</a> with a worm-bored conch, and recovered the bones of the former age from which humanity was remade; it also credits him with discovering maize hidden inside Tonacatépetl.<sup class="scholars-cite"><a href="#src-aztec-sources-1">[1]</a></sup> The <em>Anales de Cuauhtitlan</em> supplies the Topiltzin Ce Ácatl cycle: the priest-king of Tula, his temptation by Tezcatlipoca&#39;s sorcerers, his eastward exile, immolation, and apotheosis as the morning star.<sup class="scholars-cite"><a href="#src-aztec-sources-2">[2]</a></sup> Ritual-divinatory imagery of Quetzalcōātl-Ehēcatl fills the Codex Borgia and its cognates.<sup class="scholars-cite"><a href="#src-aztec-sources-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-aztec-sources-1">Leyenda de los Soles (Codex Chimalpopoca, 1558).</li><li id="src-aztec-sources-2">Anales de Cuauhtitlan (Codex Chimalpopoca).</li><li id="src-aztec-sources-3">Codex Borgia (with Seler&#39;s commentary).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="colonial-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Colonial-Era Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Durán devotes substantial chapters to Quetzalcōātl&#39;s cult, his round temples, and the legend of the Toltec priest-king Topiltzin, drawing on informants who still remembered the pre-conquest order.<sup class="scholars-cite"><a href="#src-colonial-sources-1">[1]</a></sup> Motolinía records him as a penitent culture-hero who taught fasting and the arts, and Ixtlilxóchitl&#39;s <em>Historia de la nación chichimeca</em> preserves a euhemerized Topiltzin as a Toltec lawgiver. The French <em>Histoire du Méchique</em>, derived from a lost Spanish manuscript, transmits the fullest early account of Quetzalcōātl and Tezcatlipoca creating the earth from the dismembered body of the earth monster.<sup class="scholars-cite"><a href="#src-colonial-sources-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-colonial-sources-1">Durán, Book of the Gods and Rites and the Ancient Calendar.</li><li id="src-colonial-sources-2">Histoire du Méchique (in Garibay, Teogonía e historia de los mexicanos); cf. Motolinía, Historia de los Indios de la Nueva España; Ixtlilxóchitl, Historia de la nación chichimeca.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Quetzalcōātl is the god who knows too much. Unlike warriors who win by force, he wins — and loses — by intelligence, restraint, and the discipline of the fast. His myths keep returning to the same wound: a gifted being, too civilised for his own good, undone by a single lapse. That lapse may be a glance at forbidden bones, a cup of pulque, or a trust placed in the wrong companion. In every version, knowledge is fragile; the one who teaches humanity to live must also learn, too late, that living is harder than teaching.</p>
+<p>There is something deeply Mesoamerican in this ambivalence. Quetzalcōātl does not promise salvation from the world; he provides the tools to endure it: maize, calendar, script, breath, and the morning star&#39;s reliable return. He is not a saviour descending from a perfect realm but a fellow traveller who has been wounded by the same cosmos he explains. The serpent sheds its skin; the quetzal cannot be caged; the wind moves where it will. These are not metaphors for escape but for the discipline of renewal.</p>
+<p>To name him Quetzalcōātl — with the macrons that hold Classical Nahuatl vowel length, with the whispered lateral fricative, with the final -tl as one release of the tongue — is to refuse the flattened &#39;Quetzalcoatl&#39; of airport gift shops. It is to insist that this figure still carries a specific acoustic world: the rustle of iridescent tail-feathers, the hiss of a snake moving through dry leaves, the breath before speech. He is the serpent who flies, the wind that remembers, and the question of what a civilisation chooses to keep alive.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Sahagún, Florentine Codex (General History of the Things of New Spain).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="florentine-codex">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Florentine Codex</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Florentine Codex →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="aztec-sources">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Aztec Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Aztec Sources →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="colonial-sources">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Colonial-Era Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Colonial-Era Sources →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">17</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -581,6 +578,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'quetzalcoatl';
@@ -614,14 +746,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -715,6 +839,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -726,18 +851,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -749,6 +875,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -793,6 +921,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

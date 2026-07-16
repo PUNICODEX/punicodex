@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,12 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#hieroglyphic-evidence">14 &mdash; Hieroglyphic Evidence</a></li>
-<li><a href="#pyramid-texts">15 &mdash; Pyramid Texts</a></li>
-<li><a href="#coffin-texts">16 &mdash; Coffin Texts</a></li>
-<li><a href="#book-of-the-dead">17 &mdash; Book of the Dead</a></li>
+<li><a href="#hieroglyphic-evidence">12 &mdash; Hieroglyphic Evidence</a></li>
+<li><a href="#pyramid-texts">13 &mdash; Pyramid Texts</a></li>
+<li><a href="#coffin-texts">14 &mdash; Coffin Texts</a></li>
+<li><a href="#book-of-the-dead">15 &mdash; Book of the Dead</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -281,14 +297,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Rꜥ</strong> (<em>ra</em>) — Sun (from Egyptian rꜥ) — belongs to the Egyptian tradition, where it is catalogued under the domain &quot;Sun, Creation, Kingship&quot;. The name means &quot;Sun (from Egyptian rꜥ)&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>In the egyptian tradition, <strong>Rꜥ</strong> governed sun, creation, kingship. The name encodes a sphere of power that shaped ritual, narrative, and social order.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Rꜥ</strong> and serves its temple at <a class="scholars-ext" href="https://xn--r-2w3e.com" rel="noopener noreferrer" target="_blank">rꜥ.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>ra</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">The Pyramid Texts; The Coffin Texts; The Book of the Dead.</li><li id="src-overview-2">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li id="src-overview-3">Egyptian material evidence includes temple reliefs, statuary, papyri, amulets, and tomb inscriptions from the Pharaonic through Ptolemaic periods.</li></ol></div>
     </div>
 </section>
 
@@ -296,14 +311,18 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Hieroglyphs as <strong>𓂋𓂝𓇳</strong>. Etymologically it means &quot;Sun (from Egyptian rꜥ)&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The reconstructed proto-form is <em>rꜥ</em> (proto-afro-asiatic, &quot;sun, day&quot;). From Egyptian rꜥ &quot;sun, day&quot;. The solar creator god.</p>
+<p>The ASCII form <em>ra</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Rꜥ</strong> recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>r</strong> → <strong>R</strong> — Same</li><li><strong>a</strong> → <strong>ꜥ</strong> — Ayin: pharyngeal fricative</li></ul>
+<p>Attested and derived spellings of the name:</p>
+<ul class="scholars-list"><li><strong>Rá</strong> — alternate stress, scholarly variant: Modern stress form: the acute marks the stressed vowel in the conventional vocalization &quot;Ra&quot;. The Egyptological spelling records only the consonants rꜥ.</li></ul>
+<p>The project holds the domain <strong>rꜥ.com</strong> (xn--r-2w3e.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">The Pyramid Texts; The Coffin Texts; The Book of the Dead.</li><li id="src-the-name-2">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li></ol></div>
     </div>
 </section>
 
@@ -311,14 +330,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/raʕ/</strong> — Egyptological Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>r</strong> — Alveolar trill or tap [r], the first consonant of the solar god&#39;s name</li><li><strong>ꜥ</strong> — Voiced pharyngeal fricative [ʕ], the ayin that closes the Egyptian root rꜥ</li><li><strong>a</strong> — Short open vowel [a], supplied by convention; Egyptian writing gave only rꜥ</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;rah-ʿA&#39; — a rolled or tapped &#39;r&#39;, then a deep throaty &#39;ah&#39; like the Arabic ع.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Egyptian</strong> — rꜥ, the standard hieroglyphic writing of the sun god&#39;s name</li><li><strong>Coptic</strong> — ⲣⲏ (rē), the late Egyptian reading of the solar name</li><li><strong>Greek</strong> — Ῥα (Rha), the Graeco-Egyptian rendering used in Hellenistic texts</li></ul>
+<p>Rꜥ is a Tier-2 consonantal restoration. Egyptologists vocalise the name as Ra or Rꜥa, but the hieroglyphs record only rꜥ. The ayin (ꜥ) is the defining non-English sound; the acute variant Rá is a modern stress marker, not an ancient vowel sign.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">The Pyramid Texts; The Coffin Texts; The Book of the Dead.</li></ol></div>
     </div>
 </section>
 
@@ -326,14 +348,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Hieroglyphs as <strong>𓂋𓂝𓇳</strong> — Egyptian hieroglyphic, attested Old Kingdom – Late Antiquity, c. 2600 BCE – 400 CE, in Heliopolis, Egypt. The script is written right-to-left / top-to-bottom.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Rꜥ</em> (Egyptological conventional), giving the normalized reading /raː/ (conventional).</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The name is written rꜥ (𓂋𓂝) with the sun-disk (𓇳) as a determinative/rebus for &#39;sun&#39;.</li><li>The consonantal skeleton r-ꜥ is vocalised as Ra in Egyptological convention; the original vocalisation is unknown.</li><li>Coptic ⲣⲏ provides a late phonetic reflex.</li><li>From the New Kingdom onward Ra is frequently combined with Amun as Amun-Ra.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Faulkner, A Concise Dictionary of Middle Egyptian.</li><li id="src-original-script-2">Wörterbuch der ägyptischen Sprache (Wb), rꜥ.</li><li id="src-original-script-3">James P. Allen, Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs, Cambridge University Press, 2000. <a class="scholars-ext" href="https://www.cambridge.org/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -341,14 +363,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>In the egyptian tradition, <strong>Rꜥ</strong> governed sun, creation, kingship. The name encodes a sphere of power that shaped ritual, narrative, and social order.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Solar Barque</h3>
+<p>Ra sails the Mandjet by day and the Mesektet through the underworld, defeating Apophis each night.</p>
+<h3 class="scholars-h3">Khepri, Ra, Atum</h3>
+<p>He is the scarab at dawn, the reigning sun at noon, and the weary creator at evening.</p>
+<h3 class="scholars-h3">Eye of Ra</h3>
+<p>His eye, embodied as Sekhmet or Hathor, punishes rebellion and returns as the protective uraeus on his brow.</p>
+<h3 class="scholars-h3">Kingship</h3>
+<p>The pharaoh rules as Ra&#39;s son; every obelisk is a frozen ray of the sun-god&#39;s first light.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li></ol></div>
     </div>
 </section>
 
@@ -356,14 +383,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Rꜥ concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Solar barque (Mandjet)</strong> — The morning boat in which Ra crosses the sky from east to west</li><li><strong>Scarab beetle (khepri)</strong> — The self-begetting form of the sun at dawn, pushing the disk like dung</li><li><strong>Falcon head with sun-disk</strong> — Ra as sky-falcon, the dominant icon of the solar god</li><li><strong>Bennu heron</strong> — The soul of Ra and the prototype of the phoenix, rising from the Persea tree</li><li><strong>Eye of Ra (wedjat)</strong> — The aggressive solar eye that destroys enemies and restores cosmic order</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">The Pyramid Texts; The Coffin Texts; The Book of the Dead.</li></ol></div>
     </div>
 </section>
 
@@ -371,14 +396,16 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Rꜥ is the Egyptian sun-god in whom creation, kingship, and cosmic law converge. Each dawn he is born from the eastern horizon as Khepri, the scarab-beetle pushing the sun-disk into the sky; at noon he reigns in full splendor; at evening he becomes Atum, the weary creator entering the western Duat. The pharaoh rules as Rꜥ&#39;s son, and every temple obelisk is a frozen ray of his first light. To name Rꜥ is to name the power that makes day possible.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Barque of Millions of Years (Solar Theology)</h3>
+<p>The central image of Rꜥ theology is the solar barque, the Mesektet or Mandjet, in which the god sails across the sky by day and through the underworld by night. The <em>Book of the Dead</em> and the Books of the Underworld describe this voyage in exhaustive detail: Rꜥ is defended by other gods against Apophis, the serpent of chaos who waits in the Duat to swallow the sun. Each sunrise is therefore a victory, the reassertion of ordered light over the formless dark.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Distant Goddess and the First Men (Myth of the Eye)</h3>
+<p>One of Egypt&#39;s most widespread myths tells how Rꜥ sent his eye—embodied as the goddess Sekhmet or Hathor—to punish rebellious mankind. The eye&#39;s rage proved so terrible that Rꜥ had to trick it into drunkenness by dyeing beer the color of blood, saving humanity from annihilation. When the eye returned, it was restored as the uraeus on Rꜥ&#39;s brow, the cobra of protective wrath that no enemy could withstand. The myth encodes a theology of divine kingship: the sun-god&#39;s power can be terrible, but it is also carefully measured to preserve the world.</p>
+<p>In later temple theology, the Eye of Rꜥ became a cosmic principle in its own right, identified with the moon, the royal uraeus, and the goddess Maat. Its departure and return were rehearsed in annual festivals, making Rꜥ not only the source of light but the guarantor that light would always return.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li id="src-mythology-2">Egyptian material evidence includes temple reliefs, statuary, papyri, amulets, and tomb inscriptions from the Pharaonic through Ptolemaic periods.</li></ol></div>
     </div>
 </section>
 
@@ -386,14 +413,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Egyptian deities were syncretized with one another and, in the Greco-Roman period, with Greek and Roman gods; temple theology developed complex composite forms.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include <a class="scholars-xlink" href="/sites/apollon/">Apóllōn</a>, <a class="scholars-xlink" href="/sites/dazhbog/">Dažbog</a>, <a class="scholars-xlink" href="/sites/helios/">Hēlios</a>, <a class="scholars-xlink" href="/sites/huitzilopochtli/">Huitzilopōchtli</a>, <a class="scholars-xlink" href="/sites/shamash/">Šamaš</a>, and <a class="scholars-xlink" href="/sites/shapash/">Šāpšu</a>, each linked through sun / light.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">The Pyramid Texts; The Coffin Texts; The Book of the Dead.</li></ol></div>
     </div>
 </section>
 
@@ -401,14 +426,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>The name survives in Egyptological scholarship, museum collections, modern spirituality, and the global fascination with Pharaonic civilization. Restoring <em>Rꜥ</em> in Unicode preserves the name&#39;s cultural specificity against the flattening force of plain ASCII.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">The Pyramid Texts; The Coffin Texts; The Book of the Dead.</li></ol></div>
     </div>
 </section>
 
@@ -416,14 +438,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>Solar cult is visible in pyramid complexes, solar temples such as Nyuserre&#39;s at Abu Ghurab, and the great temples of Heliopolis, Karnak, and Abu Simbel. The Amarna boundary stelae and the Great Hymn to the Aten preserve Akhenaten&#39;s solar theology. Tomb paintings from the Valley of the Kings show Ra in his day- and night-barks, surrounded by protective deities.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">The Pyramid Texts; The Coffin Texts; The Book of the Dead.</li></ol></div>
     </div>
 </section>
 
@@ -431,135 +450,106 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Rꜥ given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> The Pyramid Texts; The Coffin Texts; The Book of the Dead.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Egyptian material evidence includes temple reliefs, statuary, papyri, amulets, and tomb inscriptions from the Pharaonic through Ptolemaic periods.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Book of the Dead, Spell 15 (hymn to Ra in the Mandjet-barque).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Book of Gates (Ra&#39;s nocturnal journey and the defeat of Apophis).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Great Hymn to the Aten (solar liturgy from the Amarna Period).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Hymn to Ra from the Tomb of Nefertari (New Kingdom solar theology).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">The Pyramid Texts; The Coffin Texts; The Book of the Dead.</li><li id="src-scholarly-sources-2">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li id="src-scholarly-sources-3">Egyptian material evidence includes temple reliefs, statuary, papyri, amulets, and tomb inscriptions from the Pharaonic through Ptolemaic periods.</li><li id="src-scholarly-sources-4">Book of the Dead, Spell 15 (hymn to Ra in the Mandjet-barque).</li><li id="src-scholarly-sources-5">Book of Gates (Ra&#39;s nocturnal journey and the defeat of Apophis).</li><li id="src-scholarly-sources-6">Great Hymn to the Aten (solar liturgy from the Amarna Period).</li><li id="src-scholarly-sources-7">Hymn to Ra from the Tomb of Nefertari (New Kingdom solar theology).</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="hieroglyphic-evidence">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Hieroglyphic Evidence</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The name is transliterated <strong>rꜥ</strong>, the ordinary Egyptian word for &#39;sun&#39;. It is written with the mouth sign r (Gardiner D21) and the arm ꜥ (D36), completed by the <strong>sun disk</strong> (Gardiner N5, 𓇳) serving as ideogram or determinative; in many contexts the disk alone, sometimes with the seated-god determinative, writes the god&#39;s name.<sup class="scholars-cite"><a href="#src-hieroglyphic-evidence-1">[1]</a></sup></p>
+<p>The earliest secure attestations are royal names: the Second-Dynasty king <strong>Nebra (Raneb)</strong> is conventionally read as the first ruler to incorporate the god&#39;s name, and from the Fourth Dynasty the element explodes in the titulary — Djedefre, Khafre (&#39;He appears as Re&#39;), Menkaure — culminating in the Fifth-Dynasty solar temples at Abu Ghurab and the formal adoption of the title &#39;Son of Re&#39; (<em>sꜣ Rꜥ</em>). Heliopolis (Iunu) remained the name&#39;s cultic home.<sup class="scholars-cite"><a href="#src-hieroglyphic-evidence-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-hieroglyphic-evidence-1">Erman, A. &amp; Grapow, H. Wörterbuch der ägyptischen Sprache, s.v. rꜥ.</li><li id="src-hieroglyphic-evidence-2">Gardiner, A. Egyptian Grammar, sign-list N5, D21, D36.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pyramid-texts">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Pyramid Texts</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Re dominates the Pyramid Texts more thoroughly than any other deity. The corpus&#39;s central promise is that the dead king will ascend to the sky and <strong>join Re in his solar barque</strong> — sailing by day in the Mandjet (&#39;Barque of Millions of Years&#39;) and by night in the Mesektet, rowing among the stars or standing at the god&#39;s side. Re-Atum heads the Heliopolitan Ennead into which the king is received, and the sun-god is repeatedly invoked as the king&#39;s father.<sup class="scholars-cite"><a href="#src-pyramid-texts-1">[1]</a></sup></p>
+<p>These utterances are the earliest large-scale statement of Egyptian solar theology: the daily circuit, the defeat of chaos, and the identity of royal destiny with the sun&#39;s unending voyage. Nearly every ascension text in the corpus presupposes Re&#39;s cosmos.<sup class="scholars-cite"><a href="#src-pyramid-texts-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pyramid-texts-1">Faulkner, R. O. The Ancient Egyptian Pyramid Texts. Oxford: Clarendon, 1969.</li><li id="src-pyramid-texts-2">Allen, J. P. The Ancient Egyptian Pyramid Texts. Atlanta: SBL, 2005.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="coffin-texts">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Coffin Texts</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Coffin Texts give the sun-god a voice. In the great creation cycle of <strong>Spells 75–80</strong>, the creator — Atum-Re — speaks in the first person: &#39;I was alone in the <a class="scholars-xlink" href="/sites/nun/">Nun</a>&#39; before the world existed, and from himself he brings forth <a class="scholars-xlink" href="/sites/shu/">Šw</a> and <a class="scholars-xlink" href="/sites/tefnut/">Tefnut</a> and the ordered creation. These are the most sustained creator speeches to survive from ancient Egypt, and they ground all later solar theology.<sup class="scholars-cite"><a href="#src-coffin-texts-1">[1]</a></sup></p>
+<p>The <strong>Book of Two Ways</strong>, mapped on coffin floors, turns Re&#39;s daily and nightly circuit into the very geography of the afterlife: the deceased must travel the sun-god&#39;s roads, pass his gates, and join his entourage. What the Pyramid Texts promised the king, the Coffin Texts extended to every justified dead person — a place in the barque of Re.<sup class="scholars-cite"><a href="#src-coffin-texts-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-coffin-texts-1">Faulkner, R. O. The Ancient Egyptian Coffin Texts. Warminster: Aris &amp; Phillips, 1973–1978.</li><li id="src-coffin-texts-2">de Buck, A. The Egyptian Coffin Texts. Chicago: University of Chicago Press, 1935–1961.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="book-of-the-dead">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Book of the Dead</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Re stands at the head of the Book of the Dead&#39;s liturgy. <strong>Spell 15</strong>, preserved most fully in the Papyrus of Ani, comprises the great hymns &#39;to Re when he rises&#39; and &#39;when he sets&#39;, addressing the god in his three forms — <a class="scholars-xlink" href="/sites/khepri/">Khepri</a> at dawn, Re at noon, Atum at evening — and cataloguing his manifestations, victories over the serpent of chaos, and care for the dead.<sup class="scholars-cite"><a href="#src-book-of-the-dead-1">[1]</a></sup></p>
+<p><strong>Spell 17</strong>, among the corpus&#39;s longest and most glossed chapters, lets the deceased identify with the solar cycle itself (&#39;I am Atum when I was alone in the Nun... I am Re at his first rising&#39;). The New Kingdom royal tombs add the <em>Litany of Re</em>, a related but distinct underworld composition saluting the god&#39;s seventy-five forms. Throughout, the Book of the Dead&#39;s purpose is solar: to secure the owner&#39;s place in Re&#39;s circuit of renewal.<sup class="scholars-cite"><a href="#src-book-of-the-dead-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-book-of-the-dead-1">Faulkner, R. O. (trans.); Andrews, C. (ed.). The Ancient Egyptian Book of the Dead. London: British Museum Press, 1985.</li><li id="src-book-of-the-dead-2">Book of the Dead, Spells 15 and 17 (Papyrus of Ani, BM EA 10470).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Names are not merely labels; they are compressed worlds. <strong>Rꜥ</strong> carries within it a egyptian understanding of sun (from egyptian rꜥ). Unicode restoration returns that world to readable form.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">The Pyramid Texts; The Coffin Texts; The Book of the Dead.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="hieroglyphic-evidence">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Hieroglyphic Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Hieroglyphic Evidence →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="pyramid-texts">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Pyramid Texts</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pyramid Texts →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="coffin-texts">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Coffin Texts</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Coffin Texts →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="book-of-the-dead">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">17</span>
-        <h2 class="scholars-section-title">Book of the Dead</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Book of the Dead →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">19</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -597,6 +587,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'ra';
@@ -630,14 +755,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -731,6 +848,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -742,18 +860,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -765,6 +884,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -809,6 +930,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

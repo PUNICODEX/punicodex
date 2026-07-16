@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,12 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#classical-texts">14 &mdash; Classical Texts</a></li>
-<li><a href="#daoist-sources">15 &mdash; Daoist Sources</a></li>
-<li><a href="#buddhist-sources">16 &mdash; Buddhist Sources</a></li>
-<li><a href="#calligraphy">17 &mdash; Calligraphy & Script</a></li>
+<li><a href="#classical-texts">12 &mdash; Classical Texts</a></li>
+<li><a href="#daoist-sources">13 &mdash; Daoist Sources</a></li>
+<li><a href="#buddhist-sources">14 &mdash; Buddhist Sources</a></li>
+<li><a href="#calligraphy">15 &mdash; Calligraphy & Script</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -281,14 +297,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Tiāndì</strong> (<em>tiandi</em>) — Cosmology, Heaven and Earth, Order · Heaven and Earth; the natural order of the cosmos — belongs to the Chinese tradition, where it is catalogued under the domain &quot;Cosmology, Heaven and Earth, Order&quot;. The name means &quot;Heaven and Earth; the natural order of the cosmos&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p><strong>Tiāndì</strong> is the Chinese cosmos in two characters. <em>Tiān</em> is Heaven: not a place above the clouds but the supreme moral and natural order, the source of seasons, rain, and legitimacy. <em>Dì</em> is Earth: the receptive ground that bears all things, the source of grain, minerals, and burial. Together they name the whole within which human life finds its proper place.</p>
+<p>The concept shaped everything in traditional China: agriculture, architecture, ethics, and the theory of government. The emperor was called the Son of Heaven because he stood between Tiān and dì, mediating their order for human society.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Tiāndì</strong> and serves its temple at <a class="scholars-ext" href="https://xn--tind-tpa7j.com" rel="noopener noreferrer" target="_blank">tiāndì.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>tiandi</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">I Ching (Yijing).</li><li id="src-overview-2">Laozi, Daodejing.</li><li id="src-overview-3">Shujing (Book of Documents).</li></ol></div>
     </div>
 </section>
 
@@ -296,14 +312,18 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Chinese characters as <strong>天地</strong>. Etymologically it means &quot;Heaven and Earth; the natural order of the cosmos&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The reconstructed proto-form is <em>l̥ˤin</em> (proto-sino-tibetan, &quot;heaven, sky&quot;). Tiān 天 (heaven/sky) + dì 地 (earth/ground). The compound expresses the dyad that frames Chinese cosmology.</p>
+<p>Cognate forms across related languages:</p>
+<ul class="scholars-list"><li><strong>Tiān</strong> (chinese) — Heaven as a standalone concept</li><li><strong>Dì</strong> (chinese) — Earth as a standalone concept</li></ul>
+<p>The ASCII form <em>tiandi</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Tiāndì</strong> recovers both the stress accent and the vowel length of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>t</strong> → <strong>T</strong> — Same, capitalized</li><li><strong>i</strong> → <strong>i</strong> — Same</li><li><strong>a</strong> → <strong>ā</strong> — Macron: first tone</li><li><strong>n</strong> → <strong>n</strong> — Same</li><li><strong>d</strong> → <strong>d</strong> — Same</li><li><strong>i</strong> → <strong>ì</strong> — Grave: fourth tone</li></ul>
+<p>The project holds the domain <strong>tiāndì.com</strong> (xn--tind-tpa7j.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">I Ching (Yijing).</li><li id="src-the-name-2">Laozi, Daodejing.</li></ol></div>
     </div>
 </section>
 
@@ -311,14 +331,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/tʰjɛn˥˥ ti˥˩/</strong> — Modern Standard Mandarin (Pinyin).<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>tiān</strong> — Aspirated alveolar stop [tʰ], palatal approximant [j], open-mid front vowel [ɛ], and Tone 1 (high level, ˥˥). Pinyin &#39;ian&#39; corresponds to [jɛn] in standard Mandarin.</li><li><strong>dì</strong> — Unaspirated alveolar stop [t], close front vowel [i], and Tone 4 (falling, ˥˩).</li></ul>
+<p>For the modern speaker, the closest approximation is: TYEHN-DEE — &#39;tian&#39; high and level, like a held note; &#39;di&#39; sharp and falling, like a command.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Traditional</strong> — 天地</li><li><strong>Classical Chinese</strong> — Tiāndì, the dyad of Heaven and Earth that orders the cosmos.</li><li><strong>Wade-Giles</strong> — t&#39;ien¹-ti⁴</li><li><strong>Related terms</strong> — 天人合一 tiān rén hé yī (unity of heaven and humanity); 天道 tiāndào (the way of heaven)</li></ul>
+<p>Tiāndì literally means &#39;Heaven and Earth.&#39; It is not a personal god but the cosmological pair that grounds Chinese natural philosophy, state ritual, and ethics. The Pinyin restoration preserves the citation tones: first tone on tiān, fourth tone on dì.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">I Ching (Yijing).</li></ol></div>
     </div>
 </section>
 
@@ -326,14 +349,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is written in Chinese characters as <strong>天地</strong>. This original script is the form against which the ASCII fallback <em>tiandi</em> and the PÚNYCODEX restoration <strong>Tiāndì</strong> are measured: the restoration preserves both its pitch accent and its vowel quantity of the written form, so that a reader typing the modern address still speaks the ancient name.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">I Ching (Yijing).</li></ol></div>
     </div>
 </section>
 
@@ -341,14 +361,20 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p><strong>Tiāndì</strong> is the Chinese cosmos in two characters. <em>Tiān</em> is Heaven: not a place above the clouds but the supreme moral and natural order, the source of seasons, rain, and legitimacy. <em>Dì</em> is Earth: the receptive ground that bears all things, the source of grain, minerals, and burial. Together they name the whole within which human life finds its proper place.</p>
+<p>The concept shaped everything in traditional China: agriculture, architecture, ethics, and the theory of government. The emperor was called the Son of Heaven because he stood between Tiān and dì, mediating their order for human society.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Cosmic Dyad</h3>
+<p>Heaven is active and round; Earth is receptive and square. Together they generate the ten thousand things.</p>
+<h3 class="scholars-h3">Imperial Legitimacy</h3>
+<p>The emperor ruled by the Mandate of Heaven, sacrificing at the Altar of Heaven and Earth.</p>
+<h3 class="scholars-h3">Agricultural Order</h3>
+<p>The calendar, the seasons, and the harvest depend on the harmony of heaven above and earth below.</p>
+<h3 class="scholars-h3">Moral Cosmos</h3>
+<p>Right action aligns with the way of heaven; disaster signals its disruption.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Laozi, Daodejing.</li></ol></div>
     </div>
 </section>
 
@@ -356,14 +382,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Tiāndì concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Round heaven and square earth</strong> — The circular altar and square terrace of the Temple of Heaven encode the cosmic dyad.</li><li><strong>Jade disc (bì)</strong> — The ritual jade offered to heaven, round like the sky and green like life.</li><li><strong>Yellow earth</strong> — The soil of the central plain, offered at the Altar of Earth and symbolising the nation&#39;s foundation.</li><li><strong>North Star</strong> — The pivot of heaven around which all stars turn; the emperor&#39;s celestial model.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">I Ching (Yijing).</li></ol></div>
     </div>
 </section>
 
@@ -371,14 +395,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Tiāndì is not a mythic protagonist but the setting within which Chinese myths unfold. Its stories are cosmogonic and ritual rather than heroic.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Pangu Separates Heaven and Earth (Cosmogony)</h3>
+<p>In the best-known Chinese creation myth, Pangu grows inside a cosmic egg for eighteen thousand years. When he awakens, he pushes the heavy earth downward and the light heaven upward, growing taller each day. After his death his body becomes the landscape: breath the wind, voice the thunder, eyes the sun and moon, limbs the mountains, blood the rivers. Tiāndì is the result of his immense labour.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Son of Heaven at the Altars (State Ritual)</h3>
+<p>The emperor&#39;s most sacred duty was to sacrifice to Heaven at the winter solstice and to Earth at the summer solstice. The Temple of Heaven in Beijing is the surviving monument to this rite. By performing it correctly, the emperor maintained the Mandate of Heaven; by failing, he risked cosmic disorder and rebellion.</p>
+<h3 class="scholars-h3">Heaven, Earth, and the Ten Thousand Things (Philosophy)</h3>
+<p>The <em>Dàodéjīng</em> says that the Dao gives birth to One, One gives birth to Two, Two gives birth to Three, and Three gives birth to the ten thousand things. In many readings, the Two is the dyad of heaven and earth, the first differentiation from which all phenomena arise. Tiāndì is therefore not merely a physical pair but the ontological frame of Chinese thought.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Laozi, Daodejing.</li><li id="src-mythology-2">Shujing (Book of Documents).</li></ol></div>
     </div>
 </section>
 
@@ -386,14 +413,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Tiāndì absorbed and was absorbed by many Chinese religious currents. Confucian state ritual made the worship of Heaven and Earth the monopoly of the emperor. Popular religion localised the pair as the Jade Emperor (Heaven) and the Goddess of the Earth (Tǔdìgōng). Daoism reinterpreted Tiān as the celestial Dao and dì as the material field it orders. Buddhism, entering China, had to explain its Indic heavens and hells within a Tiāndì-shaped cosmology. Modern Chinese nationalism has claimed Tiān as a proto-monotheistic deity, while environmental thinkers see in Tiāndì an early ecological holism.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Chinese tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/bagua/">Bāguà</a>, <a class="scholars-xlink" href="/sites/long/">Lóng</a>, <a class="scholars-xlink" href="/sites/taichi/">Tàijí</a>, <a class="scholars-xlink" href="/sites/taishang/">Tàishàng</a>, <a class="scholars-xlink" href="/sites/tian/">Tiān</a>, and <a class="scholars-xlink" href="/sites/wuxing/">Wǔxíng</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">I Ching (Yijing).</li></ol></div>
     </div>
 </section>
 
@@ -401,14 +426,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Tiāndì remains the backbone of Chinese cosmological language. The phrase <em>tiān xià</em> — &#39;all under heaven&#39; — still names the world. The Temple of Heaven in Beijing is a UNESCO World Heritage site and one of the most visited monuments in China. The idea of the Mandate of Heaven survives in political rhetoric, and the concept of harmony between heaven, earth, and humanity shapes everything from traditional medicine to urban feng shui. Even in secular China, &#39;heaven&#39; and &#39;earth&#39; are not merely physical terms; they carry the weight of moral and cultural order.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">I Ching (Yijing).</li></ol></div>
     </div>
 </section>
 
@@ -416,14 +438,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The cult of Heaven and Earth is materialised in China&#39;s imperial ritual landscape, above all the Temple of Heaven (Tiāntán) and the Altar of Earth (Dìtán) in Beijing. Oracle-bone inscriptions from the Shang dynasty record sacrifices to Shàngdì (&#39;Supreme Deity&#39; or &#39;Supreme Ancestor&#39;), an early precursor to Tiān. Zhou bronze inscriptions and classical texts consolidate the dyad of Tiāndì as the foundation of political and cosmological legitimacy.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">I Ching (Yijing).</li></ol></div>
     </div>
 </section>
 
@@ -431,135 +450,107 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Tiāndì given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> I Ching (Yijing).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Laozi, Daodejing.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Shujing (Book of Documents).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Liji (Book of Rites).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Sima Qian, Shiji.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Baxter &amp; Sagart, Old Chinese Reconstruction. <a class="scholars-ext" href="http://ocbaxtersagart.lsait.lsa.umich.edu/" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Unihan Database (Unicode Consortium). <a class="scholars-ext" href="https://www.unicode.org/charts/unihan.html" rel="noopener noreferrer" target="_blank">Full text</a></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">I Ching (Yijing).</li><li id="src-scholarly-sources-2">Laozi, Daodejing.</li><li id="src-scholarly-sources-3">Shujing (Book of Documents).</li><li id="src-scholarly-sources-4">Liji (Book of Rites).</li><li id="src-scholarly-sources-5">Sima Qian, Shiji.</li><li id="src-scholarly-sources-6">Baxter &amp; Sagart, Old Chinese Reconstruction. <a class="scholars-ext" href="http://ocbaxtersagart.lsait.lsa.umich.edu/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-7">Unihan Database (Unicode Consortium). <a class="scholars-ext" href="https://www.unicode.org/charts/unihan.html" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="classical-texts">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Classical Texts</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The dyad <strong>天地</strong> runs through the earliest strata of Chinese letters. The <em>Shijing</em> hymn <em>Zhēngmín</em> opens, &#39;Heaven gave birth to the teeming people; for every thing there is its norm&#39; (天生烝民，有物有則) — the line later thinkers quote to ground human nature in Heaven&#39;s order.<sup class="scholars-cite"><a href="#src-classical-texts-1">[1]</a></sup></p>
+<p>The <em>Shangshu</em> makes the pair the world&#39;s parents: &#39;Heaven and Earth are the father and mother of the myriad creatures, and of them man is the most intelligent&#39; — a formula echoed across the classical tradition.<sup class="scholars-cite"><a href="#src-classical-texts-2">[2]</a></sup> The <em>Yijing</em>&#39;s <em>Xīcí zhuàn</em> fixes the dyad metaphysically: &#39;Heaven is exalted and Earth is low; thus Qián and Kūn are established&#39; (天尊地卑，乾坤定矣), mapping the two primal hexagrams onto the cosmos&#39;s vertical frame.<sup class="scholars-cite"><a href="#src-classical-texts-3">[3]</a></sup> The <em>Zuozhuan</em> measures human affairs against the same frame, judging the &#39;way of man&#39; by its distance from the &#39;way of Heaven&#39;.<sup class="scholars-cite"><a href="#src-classical-texts-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-classical-texts-1">Shijing (Book of Poetry), &#39;Zhengmin&#39; (Da Ya). <a class="scholars-ext" href="https://ctext.org/book-of-poetry" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-classical-texts-2">Shangshu (Book of Documents), Tai shi (Great Declaration).</li><li id="src-classical-texts-3">Yijing (Book of Changes), Xici zhuan (Great Treatise). <a class="scholars-ext" href="https://ctext.org/book-of-changes" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-classical-texts-4">Zuozhuan (Chunqiu Zuozhuan). <a class="scholars-ext" href="https://ctext.org/chun-qiu-zuo-zhuan" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="daoist-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Daoist Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The <em>Daodejing</em> turns 天地 from objects of worship into evidence for the Dao. Chapter 5 delivers the famous shock: &#39;Heaven and Earth are not benevolent; they treat the myriad creatures as straw dogs&#39; — the cosmos is not a parent but a process. Chapter 25 then ranks the dyad inside a deeper hierarchy: &#39;Man models himself on Earth, Earth on Heaven, Heaven on the Dao, and the Dao on what is naturally so.&#39;<sup class="scholars-cite"><a href="#src-daoist-sources-1">[1]</a></sup></p>
+<p>The <em>Zhuangzi</em> radicalizes the point: &#39;Heaven and Earth were born together with me, and the myriad things and I are one&#39;,<sup class="scholars-cite"><a href="#src-daoist-sources-2">[2]</a></sup> and its dying adept entrusts his body to &#39;Heaven and Earth as the great forge&#39;, content to be recast by the process that cast him. Later liturgy gave the pair temples and titles, but the philosophical texts keep the cooler reading: 天地 is what the Dao does.<sup class="scholars-cite"><a href="#src-daoist-sources-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-daoist-sources-1">Laozi, Daodejing, chapters 5 and 25. <a class="scholars-ext" href="https://ctext.org/dao-de-jing" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-daoist-sources-2">Zhuangzi, chapters 2 (Qiwulun) and 6 (Da Zong Shi). <a class="scholars-ext" href="https://ctext.org/zhuangzi" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-daoist-sources-3">Kohn, Daoism and Chinese Culture.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="buddhist-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Buddhist Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Chinese Buddhist translators put the native dyad to work. 天 became the standard rendering of Sanskrit <em>deva</em> and of the heavens the gods inhabit, while 天地 named the mundane world as a whole — which Buddhist cosmology promptly dwarfed: our heaven-and-earth is one small world-system among billions, one turn of a wheel among countless cycles.<sup class="scholars-cite"><a href="#src-buddhist-sources-1">[1]</a></sup></p>
+<p>Apologists negotiated the two frames openly. The <em>Mouzi Lihuolun</em> argues in heaven-and-earth language that the Buddha&#39;s teaching completes rather than contradicts the classical order; the Tiāntái school, named for Mount Tiāntái, folded the vertical dyad into a contemplative map of three thousand realms within a single thought-moment. Popular practice simply stacked the systems: the Jade Emperor administers Heaven above, while the Buddha stands beyond all heavens.<sup class="scholars-cite"><a href="#src-buddhist-sources-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-buddhist-sources-1">Buswell &amp; Lopez, The Princeton Dictionary of Buddhism.</li><li id="src-buddhist-sources-2">Zürcher, The Buddhist Conquest of China.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="calligraphy">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Calligraphy & Script</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p><strong>天地</strong> pairs the most analyzed of characters with one of the most transparent. <strong>天</strong> in oracle-bone form is a standing human figure with the head emphasized — the sky written as the crown above man; the <em>Shuowen Jiezi</em> glosses it as 顛 &#39;the crown, the summit&#39;, &#39;the highest, above which there is nothing&#39;, formed from 一 over 大.<sup class="scholars-cite"><a href="#src-calligraphy-1">[1]</a></sup> <strong>地</strong> joins the earth radical 土 to the phonetic 也, its seal form setting the mound of soil beside the sound-element.</p>
+<p>The compound heads the Chinese copybook tradition: the <em>Thousand Character Classic</em> (千字文), the primer from which children learned the script for over a millennium, opens with 天地玄黃 — &#39;Heaven and Earth, dark and yellow&#39; — so generations of calligraphers began by writing this very dyad.<sup class="scholars-cite"><a href="#src-calligraphy-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-calligraphy-1">Xu Shen, Shuowen Jiezi.</li><li id="src-calligraphy-2">Zhou Xingsi, Qianzi wen (Thousand Character Classic).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Tiāndì is the oldest Chinese statement of relationship. Before there are gods, humans, or rituals, there is the pair: the active above and the receptive below. Everything else — morality, agriculture, architecture, family — is an elaboration of this pairing.</p>
+<p>To think Tiāndì is to think positionally. Where do I stand between heaven and earth? Am I aligned with the seasons? Does my conduct echo the order above or disturb it? The question is not whether I believe in a personal god but whether I participate in the pattern that makes life possible. Tiāndì does not demand worship; it demands alignment. The rain falls, the earth yields, and the human task is to fit oneself into that generosity without breaking it.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">I Ching (Yijing).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="classical-texts">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Classical Texts</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Classical Texts →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="daoist-sources">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Daoist Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Daoist Sources →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="buddhist-sources">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Buddhist Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Buddhist Sources →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="calligraphy">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">17</span>
-        <h2 class="scholars-section-title">Calligraphy & Script</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Calligraphy & Script →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">19</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -597,6 +588,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'tiandi';
@@ -630,14 +756,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -731,6 +849,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -742,18 +861,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -765,6 +885,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -809,6 +931,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

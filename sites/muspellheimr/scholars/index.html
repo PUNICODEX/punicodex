@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,12 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#poetic-edda">14 &mdash; Poetic Edda</a></li>
-<li><a href="#prose-edda">15 &mdash; Prose Edda</a></li>
-<li><a href="#runic-evidence">16 &mdash; Runic Evidence</a></li>
-<li><a href="#sagas">17 &mdash; Sagas & Medieval Sources</a></li>
+<li><a href="#poetic-edda">12 &mdash; Poetic Edda</a></li>
+<li><a href="#prose-edda">13 &mdash; Prose Edda</a></li>
+<li><a href="#runic-evidence">14 &mdash; Runic Evidence</a></li>
+<li><a href="#sagas">15 &mdash; Sagas & Medieval Sources</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -281,14 +297,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Muspellheimr</strong> (<em>muspellheimr</em>) — Muspel-home (world-ender) — belongs to the Norse tradition, where it is catalogued under the domain &quot;World of Fire&quot;. The name means &quot;Muspel-home (world-ender)&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>In the norse tradition, <strong>Muspellheimr</strong> governed world of fire. The name encodes a sphere of power that shaped ritual, narrative, and social order.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Muspellheimr</strong> and serves its temple at <a class="scholars-ext" href="https://muspellheimr.com" rel="noopener noreferrer" target="_blank">muspellheimr.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>muspellheimr</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li><li id="src-overview-2">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li id="src-overview-3">Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora.</li></ol></div>
     </div>
 </section>
 
@@ -296,14 +311,16 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Younger Futhark as <strong>ᛘᚢᛋᛒᛁᛚᛚᚼᛁᛘᚱ</strong>. Etymologically it means &quot;Muspel-home (world-ender)&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The reconstructed proto-form is <em>Muspell-</em> (proto-indo-european, &quot;world-destroying fire&quot;). Uncertain; possibly from PGmc *muspell- &quot;world-end fire&quot;. The realm of fire.</p>
+<p>The ASCII form <em>muspellheimr</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Muspellheimr</strong> recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>m</strong> → <strong>M</strong> — Same, capitalized</li><li><strong>u</strong> → <strong>u</strong> — Same</li><li><strong>s</strong> → <strong>s</strong> — Same</li><li><strong>p</strong> → <strong>p</strong> — Same</li><li><strong>e</strong> → <strong>e</strong> — Same</li><li><strong>l</strong> → <strong>l</strong> — Same</li><li><strong>l</strong> → <strong>l</strong> — Same</li><li><strong>h</strong> → <strong>h</strong> — Same</li><li><strong>e</strong> → <strong>e</strong> — Same</li><li><strong>i</strong> → <strong>i</strong> — Same</li><li><strong>m</strong> → <strong>m</strong> — Same</li><li><strong>r</strong> → <strong>r</strong> — Same</li></ul>
+<p>The project holds the domain <strong>muspellheimr.com</strong> (muspellheimr.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li><li id="src-the-name-2">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li></ol></div>
     </div>
 </section>
 
@@ -311,14 +328,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/ˈmus.pelˌhɛi̯mr/</strong> — Old Norse Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Mus-</strong> — Short [u] between voiced [m] and voiceless [s]; the first element Muspell- is of uncertain origin</li><li><strong>-pell-</strong> — Voiceless bilabial [p] plus short [ɛ] and alveolar lateral [l]</li><li><strong>-heimr</strong> — Diphthong [ɛi̯] in heimr, &#39;home, world&#39;, with bilabial [m] and tapped [r]</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;MOOS-pel-haymr&#39; — stress the first syllable, keep the vowels short, and glide through the final &#39;haymer&#39;.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Old Norse</strong> — Muspell, the personified fire-world, possibly a loan or archaic word</li><li><strong>Poetic Edda</strong> — Muspells lýti, &#39;the destroyer of Muspell&#39;, a kenning for Surtr</li><li><strong>Old English</strong> — Muspel, a rare gloss in Anglo-Saxon homiletic tradition</li></ul>
+<p>Muspellheimr is Tier 2: no vowel is marked long or stressed. The first element Muspell is not a native transparent compound; its prehistory is debated, which is why the pronunciation stays conservative and the etymology is not invented.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li></ol></div>
     </div>
 </section>
 
@@ -326,14 +346,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Younger Futhark as <strong>ᛘᚢᛋᛒᛁᛚᛚᚼᛁᛘᚱ</strong> — Germanic runic, attested Viking Age, c. 800–1100 CE, in Scandinavia. The script is written left-to-right, top-to-bottom.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Muspellheimr</em> (normalized Old Norse), giving the normalized reading /ˈmus.pɛl.hɛi̯mr/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The Younger Futhark form ᛘᚢᛋᛒᛁᛚᛚᚼᛁᛘᚱ provides a Viking-Age runic attestation or normalized reconstruction.</li><li>Younger Futhark has only sixteen runes and does not distinguish short/long vowels or voiced/voiceless stops.</li><li>The normalized Old Norse form is based on 13th-century manuscript tradition (Poetic and Prose Eddas).</li><li>The Unicode restoration Muspellheimr uses Thorn (Þ) and accented vowels registrable in .com.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Barnes, Runes: A Handbook.</li><li id="src-original-script-2">Cleasby-Vigfusson, An Icelandic-English Dictionary.</li><li id="src-original-script-3">Snorri Sturluson, Prose Edda, trans. Anthony Faulkes, Everyman / Viking Society for Northern Research, 1220. <a class="scholars-ext" href="http://vsnrweb-publications.org.uk/EDDArestr.pdf" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-original-script-4">Zoëga, A Concise Dictionary of Old Icelandic.</li></ol></div>
     </div>
 </section>
 
@@ -341,14 +361,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>In the norse tradition, <strong>Muspellheimr</strong> governed world of fire. The name encodes a sphere of power that shaped ritual, narrative, and social order.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Surtr&#39;s Fire</h3>
+<p>The fire giant Surtr will lead Muspell&#39;s sons across Bifröst, burning the world at Ragnarǫk.</p>
+<h3 class="scholars-h3">First Melting</h3>
+<p>Sparks from Muspellheimr met Niflheimr&#39;s ice in Ginnungagap, melting the primordial rime from which Ymir emerged.</p>
+<h3 class="scholars-h3">Fire Giants</h3>
+<p>Muspellheimr&#39;s inhabitants are burning beings for whom order itself is fuel; no gods dwell there.</p>
+<h3 class="scholars-h3">Apocalyptic South</h3>
+<p>The southern realm of flame is both the furnace of creation and the terminal conflagration of the cosmos.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li></ol></div>
     </div>
 </section>
 
@@ -356,14 +381,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Muspellheimr concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Surtr&#39;s flaming sword</strong> — The giant&#39;s bright blade that burns the world at Ragnarǫk</li><li><strong>Lava field</strong> — The volcanic landscape of Iceland that medieval Norse readers imagined as Muspell</li><li><strong>Spark-shower</strong> — The fire that flies from Muspellheimr to kindle sun, moon, and stars</li><li><strong>Fire-giant&#39;s crown</strong> — Surtr as the ruler of the flaming realm, sometimes shown with a crown of flames</li><li><strong>World-ash blackened</strong> — The burned Yggdrasil after the fire of Muspell has passed</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li></ol></div>
     </div>
 </section>
 
@@ -371,14 +394,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p><strong>Muspellheimr</strong> is the world of fire, the southern realm of flame that existed even before the ordered cosmos was shaped. It is the home of Surtr, the fire giant who will lead its sons across Bifröst at Ragnarǫk, burning the world and slaying Freyr. Unlike Niflheimr&#39;s ice, Muspellheimr represents unconstrained destruction and the heat that first melted the primordial rime, allowing Ymir to emerge from Ginnungagap. No gods dwell there permanently; its inhabitants are fire giants and burning beings for whom order itself is fuel. Medieval Icelanders, living in the shadow of Hekla and Eldgjá, knew this fire firsthand; their lava fields gave empirical weight to the idea of a southern world of flame. Its fire is both creative and terminal, the furnace and the final conflagration. Muspell&#39;s fire is older than creation and will survive its end. Snorri&#39;s account makes it the southern origin of the world-destroying force that surges under Surtr&#39;s leadership at Ragnarǫk. The realm thus embodies the apocalyptic insight that the same heat that first quickens life will finally consume the ordered cosmos.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Surtr Comes from the South (Völuspá)</h3>
+<p>The seeress of <em>Völuspá</em> foretells that Surtr will come from the south with fire, his sword brighter than the sun. The bridge Bifröst breaks beneath the tread of Muspell&#39;s sons; the fire giant slays the beautiful god Freyr, who gave away his own sword for love. The flames spread until heaven itself is consumed.</p>
+<p>This is Muspellheimr&#39;s decisive mythic appearance: not as a realm to be visited but as a force that arrives at the end of time. Its fire does not discriminate; it burns gods, giants, and the world-tree alike, making Muspellheimr the agent of universal dissolution.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The First Melting (Gylfaginning)</h3>
+<p>Before the worlds were made, the cold rivers of Niflheimr flowed into Ginnungagap and froze into rime, while sparks and molten fragments from Muspellheimr flew into the same void. Where the fire met the ice, the ice began to drip, and from those drops the body of Ymir was formed.</p>
+<p>Thus Muspellheimr is not merely the world&#39;s destroyer but also one of its two creative poles. Without its heat, the primordial drip would never have quickened into life. The realm holds destruction and genesis in a single burning paradox.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li id="src-mythology-2">Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora.</li></ol></div>
     </div>
 </section>
 
@@ -386,14 +412,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Norse tradition absorbed and reworked Germanic, Celtic, and Christian influences; medieval Icelandic compilers preserved the myths while Christian frameworks shaped their presentation.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Norse tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/alfheimr/">Álfheimr</a>, <a class="scholars-xlink" href="/sites/buri/">Búri</a>, <a class="scholars-xlink" href="/sites/eggther/">Eggþér</a>, <a class="scholars-xlink" href="/sites/helheimr/">Helheimr</a>, <a class="scholars-xlink" href="/sites/jormungandr/">Jǫrmungandr</a>, and <a class="scholars-xlink" href="/sites/jotunheimr/">Jötunheimr</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li></ol></div>
     </div>
 </section>
 
@@ -401,14 +425,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>The name lives on in modern fantasy, Neopagan practice, Scandinavian heritage, and the global reception of Viking-Age literature. Restoring <em>Muspellheimr</em> in Unicode preserves the name&#39;s cultural specificity against the flattening force of plain ASCII. Muspell&#39;s fire resonates in apocalyptic imagination, volcanic disaster narratives, and climate change discourse. The Old Norse form <em>Muspellheimr</em> preserves a medieval intuition that creation and destruction are fueled by the same primordial heat.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li></ol></div>
     </div>
 </section>
 
@@ -416,14 +437,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The fiery south is anchored in the volcanic geology witnessed by medieval Icelanders. The Eldgjá fissure eruption of c. 939 CE and repeated Hekla eruptions supplied an empirical model for a world of flame. The name Muspell itself echoes continental Germanic eschatological fire poems such as the Old High German Muspilli, preserved in the manuscript at the Bavarian State Library.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li></ol></div>
     </div>
 </section>
 
@@ -431,135 +449,102 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Muspellheimr given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> The Poetic Edda; The Prose Edda of Snorri Sturluson.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Poetic Edda: Vafþrúðnismál (Surtalogi, the black flame that will consume the world).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Poetic Edda: Grímnismál (cosmological enumeration of the worlds and their boundaries).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Saxo Grammaticus, Gesta Danorum (eschatological fire and the fall of the gods).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li><li id="src-scholarly-sources-2">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li id="src-scholarly-sources-3">Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora.</li><li id="src-scholarly-sources-4">Poetic Edda: Vafþrúðnismál (Surtalogi, the black flame that will consume the world).</li><li id="src-scholarly-sources-5">Poetic Edda: Grímnismál (cosmological enumeration of the worlds and their boundaries).</li><li id="src-scholarly-sources-6">Saxo Grammaticus, Gesta Danorum (eschatological fire and the fall of the gods).</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="poetic-edda">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Poetic Edda</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Strictly speaking, the Poetic Edda never names Muspellheimr as a realm; the fire-world enters the poetry through its ruler. <em>Völuspá</em> gives <a class="scholars-xlink" href="/sites/surtr/">Surtr</a> the decisive entrance at the doom: &#39;Surtr fares from the south with the bane of branches&#39; — fire — &#39;the sun of the slaughter-gods shines from his sword&#39;.<sup class="scholars-cite"><a href="#src-poetic-edda-1">[1]</a></sup> <em>Lokasenna</em> seals <a class="scholars-xlink" href="/sites/freyr/">Freyr</a>&#39;s fatal bargain: having given away his sword for Gerðr, he must face Surtr weaponless when Surtr and the Æsir meet in battle; <em>Fáfnismál</em> adds Óskópnir, the island where the gods will hold their final spear-play.<sup class="scholars-cite"><a href="#src-poetic-edda-2">[2]</a></sup> The word Muspell itself belongs to Snorri&#39;s prose geography, which the poetry everywhere presupposes.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-poetic-edda-1">Poetic Edda, Völuspá (Surtr&#39;s advance from the south).</li><li id="src-poetic-edda-2">Poetic Edda, Lokasenna and Fáfnismál (Freyr&#39;s doom; the island Óskópnir).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="prose-edda">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Prose Edda</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>It is Snorri who turns Muspell into a geography. <em>Gylfaginning</em> describes Muspellheimr as the southern world of fire, bright and hot, blazing and impassable to all but its native sons; at its frontier sits <a class="scholars-xlink" href="/sites/surtr/">Surtr</a> with a flaming sword, appointed its defender until the end.<sup class="scholars-cite"><a href="#src-prose-edda-1">[1]</a></sup> In the creation sequence, sparks and molten spray from Muspellheimr fly into Ginnungagap, meet the rime flowing north out of <a class="scholars-xlink" href="/sites/niflheimr/">Niflheimr</a>, and kindle the quickening drip from which Ymir emerges; the same sparks are then set in the sky as the lights of heaven.<sup class="scholars-cite"><a href="#src-prose-edda-2">[2]</a></sup> At Ragnarǫk, Snorri has Muspell&#39;s sons ride out and burn the world.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-prose-edda-1">Snorri Sturluson, Edda, Gylfaginning (Muspellheimr and Surtr).</li><li id="src-prose-edda-2">Snorri Sturluson, Edda, Gylfaginning (creation from fire and ice; Muspell&#39;s sons at Ragnarǫk).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="runic-evidence">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Runic Evidence</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>No runic inscription anywhere attests Muspell or Muspellheimr, and the word has no secure etymology; in Norse it surfaces only in the Eddic eschatological register.<sup class="scholars-cite"><a href="#src-runic-evidence-1">[1]</a></sup> Its antiquity is proved instead by continental relatives: the ninth-century Old High German poem <em>Muspilli</em>, which narrates the world&#39;s end in fire, and the Old Saxon <em>Heliand</em>, where <em>mutspelli</em> names the day of doom — manuscript witnesses, not inscriptions.<sup class="scholars-cite"><a href="#src-runic-evidence-2">[2]</a></sup> The distribution suggests an old Germanic word for the eschatological fire that survived in Scandinavia only as a frozen mythological name.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-runic-evidence-1">Simek, Rudolf. Dictionary of Northern Mythology (Muspell).</li><li id="src-runic-evidence-2">The Old High German Muspilli and the Old Saxon Heliand (mutspelli).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="sagas">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Sagas & Medieval Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The saga corpus does not know Muspellheimr. The term belongs to the cosmological register of the Eddas, and neither the family sagas nor the fornaldarsögur use it; even Snorri&#39;s Heimskringla, rich in euhemerized myth, never borrows the name.<sup class="scholars-cite"><a href="#src-sagas-1">[1]</a></sup> Its medieval life is confined to the mythographic and poetic tradition — the Codex Regius and Hauksbók texts of <em>Völuspá</em>, Snorri&#39;s Edda, and the skaldic diction those works preserve.<sup class="scholars-cite"><a href="#src-sagas-2">[2]</a></sup> The gap is instructive: Muspellheimr was a word for the end of the world, not a place on any navigable map.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-sagas-1">Simek, Rudolf. Dictionary of Northern Mythology (Muspell).</li><li id="src-sagas-2">The Hauksbók manuscript (AM 544 4to) text of Völuspá.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Names are not merely labels; they are compressed worlds. <strong>Muspellheimr</strong> carries within it a norse understanding of muspel-home (world-ender). Unicode restoration returns that world to readable form.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="poetic-edda">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Poetic Edda</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Poetic Edda →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="prose-edda">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Prose Edda</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Prose Edda →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="runic-evidence">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Runic Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Runic Evidence →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="sagas">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">17</span>
-        <h2 class="scholars-section-title">Sagas & Medieval Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Sagas & Medieval Sources →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">19</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -597,6 +582,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'muspellheimr';
@@ -630,14 +750,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -731,6 +843,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -742,18 +855,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -765,6 +879,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -809,6 +925,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

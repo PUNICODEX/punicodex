@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,11 +279,12 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#daoist-canon">14 &mdash; Daoist Canon (Daozang)</a></li>
-<li><a href="#yijing">15 &mdash; Yijing & Hexagrams</a></li>
-<li><a href="#neidan">16 &mdash; Inner Alchemy (Neidan)</a></li>
+<li><a href="#daoist-canon">12 &mdash; Daoist Canon (Daozang)</a></li>
+<li><a href="#yijing">13 &mdash; Yijing & Hexagrams</a></li>
+<li><a href="#neidan">14 &mdash; Inner Alchemy (Neidan)</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -280,14 +296,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Yīnyáng</strong> (<em>yinyang</em>) — Cosmic Duality · Interdependence of opposites — belongs to the Daoist tradition, where it is catalogued under the domain &quot;Cosmic Duality&quot;. The name means &quot;Interdependence of opposites&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p><strong>Yīnyáng</strong> is not a battle between good and evil. It is the Chinese understanding that every phenomenon is shaped by the pull of two complementary tendencies: dark and bright, still and active, receptive and assertive, earth and heaven. The earliest meanings of the words were topographical — <em>yīn</em> the shady north side of a hill, <em>yáng</em> the sunny south side — and from that concrete root grew a cosmology that underlies medicine, statecraft, martial arts, and divination.</p>
+<p>What makes yin and yang powerful is not their opposition but their interdependence. Each contains a seed of the other, and each turns into the other at its extreme.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Yīnyáng</strong> and serves its temple at <a class="scholars-ext" href="https://xn--ynyng-zqa92c.com" rel="noopener noreferrer" target="_blank">yīnyáng.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>yinyang</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Yijing (Book of Changes). <a class="scholars-ext" href="https://ctext.org/book-of-changes" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-overview-2">Laozi, Daodejing. <a class="scholars-ext" href="https://ctext.org/dao-de-jing" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-overview-3">Zuo Zhuan.</li></ol></div>
     </div>
 </section>
 
@@ -295,14 +311,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Chinese characters as <strong>陰陽</strong>. Etymologically it means &quot;Interdependence of opposites&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The ASCII form <em>yinyang</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Yīnyáng</strong> recovers both the stress accent and the vowel length of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>y</strong> → <strong>Y</strong> — Same, capitalized</li><li><strong>i</strong> → <strong>ī</strong> — Macron: level tone</li><li><strong>n</strong> → <strong>n</strong> — Same</li><li><strong>y</strong> → <strong>y</strong> — Same</li><li><strong>a</strong> → <strong>á</strong> — Second tone</li><li><strong>n</strong> → <strong>n</strong> — Same</li><li><strong>g</strong> → <strong>g</strong> — Same</li></ul>
+<p>Attested and derived spellings of the name:</p>
+<ul class="scholars-list"><li><strong>Yīn-yáng</strong> — owned form: Owned domain form with hyphen</li></ul>
+<p>The project holds the domain <strong>yīnyáng.com</strong> (xn--ynyng-zqa92c.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Yijing (Book of Changes). <a class="scholars-ext" href="https://ctext.org/book-of-changes" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-the-name-2">Laozi, Daodejing. <a class="scholars-ext" href="https://ctext.org/dao-de-jing" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -310,14 +329,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/in˥ jaŋ˧˥/</strong> — Modern Standard Mandarin (Pinyin).<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>yīn</strong> — Syllable with high front glide [j] (written &#39;y&#39; in Pinyin), high front vowel [i], alveolar nasal [n], and Tone 1 (high level, ˥).</li><li><strong>yáng</strong> — Syllable with glide [j], open vowel [a], velar nasal [ŋ], and Tone 2 (rising, ˧˥). The final &#39;-ng&#39; is a single velar nasal, not a cluster.</li></ul>
+<p>For the modern speaker, the closest approximation is: YIN-YAHNG — first syllable high and level, second syllable rising from mid to high.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Traditional</strong> — 陰陽</li><li><strong>Simplified</strong> — 阴阳</li><li><strong>Wade-Giles</strong> — yin¹-yang²</li><li><strong>Related terms</strong> — 兩儀 liǎngyí (the two modes); 太極 tàijí (supreme ultimate)</li></ul>
+<p>陰陽 (Yīnyáng) denotes the complementary cosmic dualities—dark/passive/female and bright/active/male—central to Daoist cosmology, traditional Chinese medicine, and the Yijing. The Modern Standard Mandarin reading is yīn (Tone 1) + yáng (Tone 2), as given in the Unihan Database (kMandarin). For historical context, Baxter &amp; Sagart (2014) reconstruct 陰 as <em>q(r)um (GSR 0651y, &#39;dark&#39;) and 陽 as </em>laŋ (GSR 0720e, &#39;bright&#39;). The tone-marked Pinyin restoration Yīnyáng accurately preserves the citation tones.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Yijing (Book of Changes). <a class="scholars-ext" href="https://ctext.org/book-of-changes" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -325,14 +347,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Chinese characters as <strong>陰陽</strong> — Hanzi (Sino-Tibetan), attested Oracle-bone – present, c. 1200 BCE –, in China. The script is written left-to-right; traditional top-to-bottom.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Yīnyáng</em> (Hanyu Pinyin with tone mark), giving the normalized reading /ín.jǎŋ/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The name is written with the Chinese characters 陰陽.</li><li>Each character is a logogram that encodes meaning and historical pronunciation.</li><li>Hanyu Pinyin with tone marks preserves Mandarin pronunciation; the ASCII form loses tone.</li><li>The Unicode restoration Yīnyáng is the registrable form because hanzi are outside the .com IDN table.</li></ul>
+<p>The original script is 陰陽 in traditional Chinese and 阴阳 in simplified. The Modern Standard Mandarin reading is <em>Yīnyáng</em> (Tone 1 + Tone 2). The domain label <em>yīn-yáng.com</em> inserts an ASCII hyphen between the syllables for readability and registrability; this is a DNS convention and does not alter the Pinyin. The tone marks are preserved so the restoration remains phonetically accurate. Baxter &amp; Sagart reconstruct 陰 as <em>q(r)um and 陽 as </em>laŋ.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Chinese classical texts, Chinese Text Project, 500 BCE. <a class="scholars-ext" href="https://ctext.org/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-original-script-2">I Ching (Yijing / Book of Changes), Chinese Text Project, 1000 BCE. <a class="scholars-ext" href="https://ctext.org/book-of-changes" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-original-script-3">Karlgren, Grammata Serica Recensa.</li><li id="src-original-script-4">Pulleyblank, Lexicon of Reconstructed Pronunciation.</li><li id="src-original-script-5">Schuessler, ABC Etymological Dictionary of Old Chinese.</li></ol></div>
     </div>
 </section>
 
@@ -340,14 +363,20 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p><strong>Yīnyáng</strong> is not a battle between good and evil. It is the Chinese understanding that every phenomenon is shaped by the pull of two complementary tendencies: dark and bright, still and active, receptive and assertive, earth and heaven. The earliest meanings of the words were topographical — <em>yīn</em> the shady north side of a hill, <em>yáng</em> the sunny south side — and from that concrete root grew a cosmology that underlies medicine, statecraft, martial arts, and divination.</p>
+<p>What makes yin and yang powerful is not their opposition but their interdependence. Each contains a seed of the other, and each turns into the other at its extreme.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Darkness and Light</h3>
+<p>Yin is not merely dark; it is the capacity to receive, to hold, to rest. Yang is not merely bright; it is the capacity to act, to extend, to warm.</p>
+<h3 class="scholars-h3">Cyclic Transformation</h3>
+<p>At its height, yang becomes yin; at its depth, yin becomes yang. This is the engine of seasons, days, and human fortunes.</p>
+<h3 class="scholars-h3">Cosmic Balance</h3>
+<p>Health, harmony, and good government all depend on keeping yin and yang in dynamic equilibrium rather than crushing one side.</p>
+<h3 class="scholars-h3">Medical Diagnosis</h3>
+<p>Traditional Chinese medicine reads illness as yin-yang imbalance: too much heat, too little moisture, excess above, deficiency below.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Laozi, Daodejing. <a class="scholars-ext" href="https://ctext.org/dao-de-jing" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -355,14 +384,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Yīnyáng concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>The taijitu</strong> — The black-and-white emblem of interpenetrating yin and yang, each with a dot of the other</li><li><strong>Broken and solid lines</strong> — Yin (broken) and yang (solid) as the grammar of the Yijing</li><li><strong>Sun and moon</strong> — The brightest yang and the darkest yin luminaries</li><li><strong>Tiger and dragon</strong> — Two paired energies, often yin and yang, in martial and alchemical symbolism</li><li><strong>Water and fire</strong> — The canonical yin and yang elements in the body and cosmos</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Yijing (Book of Changes). <a class="scholars-ext" href="https://ctext.org/book-of-changes" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -370,14 +397,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Yīnyáng has no origin myth in the usual sense. It is a lens through which Chinese thinkers read the origin of everything. Its stories are therefore cosmological and medical rather than biographical.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">One Yin, One Yang (Yijing)</h3>
+<p>The <em>Xici</em> appendices of the <em>Yijing</em> state: &#39;One yin and one yang, this is called the Dao.&#39; The cosmos is not governed by a personal deity but by the alternation of these two modes. Divination is the art of reading where one stands in that alternation.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">All Things Carry Yin and Embrace Yang (Daodejing)</h3>
+<p>Daodejing 42 says that the ten thousand things &#39;carry yin on their backs and embrace yang in their arms,&#39; achieving harmony through the blending of <em>chongqi</em> — the empty or vital breath. Yin and yang are not external forces but the internal structure of every existing thing.</p>
+<h3 class="scholars-h3">Yin-Yang as Natural Philosophy (Zuo Zhuan)</h3>
+<p>By the fourth century BCE, court physicians and astronomers were explaining disease and celestial anomalies in terms of yin-yang imbalance. The <em>Zuo Zhuan</em> records a physician diagnosing a ruler&#39;s illness by identifying which of the six natural qi — including yin, yang, wind, rain, darkness, and light — had become excessive.</p>
+<h3 class="scholars-h3">The Han Synthesis (Dong Zhongshu)</h3>
+<p>In the second century BCE, Dong Zhongshu integrated yin-yang cosmology with imperial Confucianism. He argued that natural disasters were heaven&#39;s response to human misconduct — a theory that made yin-yang balance into a political as well as a metaphysical concern.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Laozi, Daodejing. <a class="scholars-ext" href="https://ctext.org/dao-de-jing" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-mythology-2">Zuo Zhuan.</li></ol></div>
     </div>
 </section>
 
@@ -385,14 +417,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Yīnyáng traveled with Chinese civilization into Korea (<em>eum-yang</em>), Japan (<em>in&#39;yō</em>), and Vietnam (<em>âm-dương</em>), where it shaped local medicine, martial arts, and geomancy. In the early modern West, Leibniz saw in the Yijing&#39;s broken and solid lines a precursor to binary arithmetic, while Hegel read yin and yang as an early dialectic. Contemporary New Age culture has turned yin-yang into a universal emblem of balance, often severed from its technical roles in medicine and divination. The symbol also appears in Unicode as ☯ (U+262F), one of the most widely recognized non-Western glyphs in digital culture.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Daoist tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/laozi/">Lǎozǐ</a> and <a class="scholars-xlink" href="/sites/wuji/">Wújí</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Yijing (Book of Changes). <a class="scholars-ext" href="https://ctext.org/book-of-changes" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -400,14 +430,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Every acupuncture needle, feng shui compass, and tai chi form is a working application of yin-yang theory. In Traditional Chinese Medicine, diagnosis begins by asking whether a symptom is hot or cold, deficient or excess, interior or exterior, yin or yang. Martial artists use yin to absorb and yang to strike. Architects orient buildings to capture yang light and yin shade. The concept has also entered global popular culture as a shorthand for balance, duality, and counterculture — surfacing in music, fashion, tattoo art, and even psychology, where &#39;shadow&#39; work loosely parallels the yin within yang. Yet the most rigorous legacy remains clinical: yin-yang is still the organizing axis of a living medical tradition.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Yijing (Book of Changes). <a class="scholars-ext" href="https://ctext.org/book-of-changes" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -415,14 +442,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The oldest layer of yin-yang thought is embedded in the <em>Yijing</em> itself, transmitted through Warring States bamboo and silk manuscripts such as the Mawangdui silk <em>Yijing</em> (c. 168 BCE) and the Guodian Chu slips (c. 300 BCE). The <em>Zuo Zhuan</em> preserves early medical and astrological uses of yin-yang terminology, while Han dynasty tomb texts and visual art pair the two principles with the Four Spirits and the five phases. The iconic two-tone taijitu diagram is a Song-era visual innovation, though the conceptual pairing it depicts is ancient.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Yijing (Book of Changes). <a class="scholars-ext" href="https://ctext.org/book-of-changes" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -430,120 +454,91 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Yīnyáng given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Yijing (Book of Changes). <a class="scholars-ext" href="https://ctext.org/book-of-changes" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Laozi, Daodejing. <a class="scholars-ext" href="https://ctext.org/dao-de-jing" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Zuo Zhuan.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Dong Zhongshu, Chunqiu fanlu.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Graham, Disputers of the Tao.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Unschuld, Medicine in China.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Baxter &amp; Sagart, Old Chinese Reconstruction. <a class="scholars-ext" href="http://ocbaxtersagart.lsait.lsa.umich.edu/" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Unihan Database (Unicode Consortium). <a class="scholars-ext" href="https://www.unicode.org/charts/unihan.html" rel="noopener noreferrer" target="_blank">Full text</a></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Yijing (Book of Changes). <a class="scholars-ext" href="https://ctext.org/book-of-changes" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-2">Laozi, Daodejing. <a class="scholars-ext" href="https://ctext.org/dao-de-jing" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-3">Zuo Zhuan.</li><li id="src-scholarly-sources-4">Dong Zhongshu, Chunqiu fanlu.</li><li id="src-scholarly-sources-5">Graham, Disputers of the Tao.</li><li id="src-scholarly-sources-6">Unschuld, Medicine in China.</li><li id="src-scholarly-sources-7">Baxter &amp; Sagart, Old Chinese Reconstruction. <a class="scholars-ext" href="http://ocbaxtersagart.lsait.lsa.umich.edu/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-8">Unihan Database (Unicode Consortium). <a class="scholars-ext" href="https://www.unicode.org/charts/unihan.html" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="daoist-canon">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Daoist Canon (Daozang)</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The <em>Daozang</em> contains no single &#39;Scripture of Yin and Yang&#39;; the pair instead functions as the canon&#39;s operating grammar. The earliest great scripture, the Han-dynasty <em>Taiping jing</em> (Scripture of Great Peace), already treats heaven, earth, and humankind as expressions of yin and yang whose imbalance breeds cosmic and social disorder, so that restoring their harmony becomes the aim of both rule and self-cultivation.<sup class="scholars-cite"><a href="#src-daoist-canon-1">[1]</a></sup> Through the medieval canon — Shangqing meditation scriptures, Lingbao liturgies, and the <em>Huangdi neijing</em> medical corpus preserved within it — deities, directions, organs, seasons, and talismans are all classified along the yin-yang axis, and the Ming <em>Zhengtong Daozang</em> (1445) transmits this material wholesale.<sup class="scholars-cite"><a href="#src-daoist-canon-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-daoist-canon-1">Taiping jing (Scripture of Great Peace), Han-dynasty Daoist scripture.</li><li id="src-daoist-canon-2">Schipper &amp; Verellen (eds.), The Taoist Canon: A Historical Companion to the Daozang (University of Chicago Press, 2004).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="yijing">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Yijing & Hexagrams</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The <em>Yijing</em> is the textual matrix in which yin and yang became the grammar of Chinese divination. Its sixty-four hexagrams are built from only two kinds of line — solid for yang, broken for yin — so that every situation the oracle describes is formally a shading of the pair.<sup class="scholars-cite"><a href="#src-yijing-1">[1]</a></sup> The <em>Xici zhuan</em> (Great Treatise) states the doctrine outright: &#39;One yin and one yang, this is called the Dao.&#39; Hexagram 1, <em>Qian</em> ䷀, stacks six yang lines as pure creativity; hexagram 2, <em>Kun</em> ䷁, six yin lines as pure receptivity, and the two are read as parents of the remaining sixty-two. Hexagrams 11 (<em>Tai</em>, Peace) and 12 (<em>Pi</em>, Standstill) model union and blockage through the rising of yang and the sinking of yin, while 63 (<em>Jiji</em>, After Completion) and 64 (<em>Weiji</em>, Before Completion) set the water and fire trigrams in perfected and inverted order.<sup class="scholars-cite"><a href="#src-yijing-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-yijing-1">Yijing (Zhouyi), hexagrams 1, 2, 11, 12, 63, 64. <a class="scholars-ext" href="https://ctext.org/book-of-changes" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-yijing-2">Yijing, Xici zhuan (Great Treatise appendix): &#39;One yin and one yang, this is called the Dao.&#39;</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="neidan">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Inner Alchemy (Neidan)</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>In internal alchemy (<em>neidan</em>), yin and yang stop being cosmological abstractions and become the practitioner&#39;s own body. The trigrams <em>kan</em> 坎 (water) and <em>li</em> 離 (fire) name the pair as it appears in the human frame: true yang hidden within yin below, true yin hidden within yang above, and the work is to draw them out and join them.<sup class="scholars-cite"><a href="#src-neidan-1">[1]</a></sup> The foundational alchemical classic, the <em>Zhouyi Cantong qi</em> (The Seal of the Unity of the Three, ascribed to the Han adept Wei Boyang), borrows <em>Yijing</em> hexagrams to schedule the &#39;firing times&#39; (<em>huohou</em>) — the waxing and waning rhythm at which yang qi is kindled and yin withdrawn through the day, month, and year. Later manuals recast the pair as dragon and tiger or lead and mercury, joined in the lower dantian to form the inner elixir.<sup class="scholars-cite"><a href="#src-neidan-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-neidan-1">Zhouyi Cantong qi (The Seal of the Unity of the Three), ascribed to Wei Boyang.</li><li id="src-neidan-2">Pregadio, The Seal of the Unity of the Three: A Study and Translation of the Cantong qi (Golden Elixir Press, 2011).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Yīnyáng is an invitation to stop choosing sides. It says that what looks like opposition is really relationship: day has no meaning without night, speaking has no meaning without silence, strength has no meaning without vulnerability. The small dot in each half of the taijitu is the most radical part of the symbol: nothing is pure; everything carries the seed of its seeming opposite.</p>
+<p>This is not relativism. Yin and yang are real, measurable, and consequential — but they are not moral categories. To call something yin is not to demean it; to call something yang is not to praise it. The question is always one of balance: too much yang burns, too much yin stagnates. The wise move, in medicine as in life, is to notice which way the scales are tipping and to restore the dynamic exchange.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Yijing (Book of Changes). <a class="scholars-ext" href="https://ctext.org/book-of-changes" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="daoist-canon">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Daoist Canon (Daozang)</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Daoist Canon (Daozang) →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="yijing">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Yijing & Hexagrams</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Yijing & Hexagrams →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="neidan">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Inner Alchemy (Neidan)</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Inner Alchemy (Neidan) →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">17</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -581,6 +576,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'yinyang';
@@ -614,14 +744,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -715,6 +837,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -726,18 +849,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -749,6 +873,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -793,6 +919,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

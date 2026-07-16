@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,12 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#vedic-references">14 &mdash; Vedic References</a></li>
-<li><a href="#upanishads">15 &mdash; Upaniṣads</a></li>
-<li><a href="#puranas">16 &mdash; Purāṇas</a></li>
-<li><a href="#mantras">17 &mdash; Mantras & Stotras</a></li>
+<li><a href="#vedic-references">12 &mdash; Vedic References</a></li>
+<li><a href="#upanishads">13 &mdash; Upaniṣads</a></li>
+<li><a href="#puranas">14 &mdash; Purāṇas</a></li>
+<li><a href="#mantras">15 &mdash; Mantras & Stotras</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -281,14 +297,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Prajāpati</strong> (<em>prajapati</em>) — Lord of offspring — belongs to the Sanskrit tradition, where it is catalogued under the domain &quot;Lord of Creatures&quot;. The name means &quot;lord of creatures, creator, RV. &amp;c. &amp;c. (N. of a supreme god above or among the Vedic deities [RV. (only x, 21, 10); AV.; VS.; Br.] but in later times also applied to Viṣṇu, Śiva&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>Prajāpati is not a god of thunder or war. He is the slow, patient power of generation itself — the one who broods over the waters, performs tapas (ascetic heat), and brings forth creatures by sacrifice. In the Brāhmaṇas he becomes the supreme creator; in the Purāṇas, he passes his crown to Brahmā.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Prajāpati</strong> and serves its temple at <a class="scholars-ext" href="https://xn--prajpati-k7a.com" rel="noopener noreferrer" target="_blank">Prajāpati.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>prajapati</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Monier-Williams Sanskrit Dictionary. <a class="scholars-ext" href="https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-overview-2">Mayrhofer, EWAia.</li><li id="src-overview-3">Ṛgveda 10.90, Puruṣa Sūkta.</li></ol></div>
     </div>
 </section>
 
@@ -296,14 +311,18 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Devanagari as <strong>प्रजापति</strong>. Etymologically it means &quot;lord of creatures, creator, RV. &amp;c. &amp;c. (N. of a supreme god above or among the Vedic deities [RV. (only x, 21, 10); AV.; VS.; Br.] but in later times also applied to Viṣṇu, Śiva&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>Sanskrit tatpuruṣa compound prajā- &#39;offspring, creatures&#39; + pati- &#39;lord, master&#39;, meaning &#39;Lord of Creatures&#39;.</p>
+<p>Cognate forms across related languages:</p>
+<ul class="scholars-list"><li><strong>prajā-</strong> (sanskrit) — &#39;offspring, creatures&#39; (MW, RV)</li><li><strong>pati-</strong> (sanskrit) — &#39;lord, master&#39; (MW, RV)</li></ul>
+<p>The ASCII form <em>prajapati</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Prajāpati</strong> recovers the vowel length of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>p</strong> → <strong>P</strong> — Same, capitalized</li><li><strong>r</strong> → <strong>r</strong> — Same</li><li><strong>a</strong> → <strong>a</strong> — Same</li><li><strong>j</strong> → <strong>j</strong> — Same</li><li><strong>a</strong> → <strong>ā</strong> — Long vowel</li><li><strong>p</strong> → <strong>p</strong> — Same</li><li><strong>a</strong> → <strong>a</strong> — Same</li><li><strong>t</strong> → <strong>t</strong> — Same</li><li><strong>i</strong> → <strong>i</strong> — Same</li></ul>
+<p>The project holds the domain <strong>Prajāpati.com</strong> (xn--prajpati-k7a.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Monier-Williams Sanskrit Dictionary. <a class="scholars-ext" href="https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-the-name-2">Mayrhofer, EWAia.</li></ol></div>
     </div>
 </section>
 
@@ -311,14 +330,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/prɐ.dʑaː.pɐ.ti/</strong> — Sanskrit/Vedic Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Pra-</strong> — Initial [p] with r-colored short [ɐ], the forward-thrusting prefix meaning &#39;forth, forward&#39;.</li><li><strong>-jā-</strong> — Voiced affricate [dʑ] plus long [aː], from jan- (&#39;to be born, to procreate&#39;) — the generative core of the name.</li><li><strong>-pati</strong> — Unaspirated [p] plus short [ɐ] and [ti], the lord or master of what precedes.</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;pruh-JAH-puh-tee&#39; — the second syllable is long and bright; the j is soft, like the &#39;j&#39; in &#39;judge&#39; but lighter.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Sanskrit</strong> — प्रजापति (Prajāpati), from pra-ja- (&#39;progeny&#39;) + pati (&#39;lord&#39;)</li><li><strong>Vedic usage</strong> — In the Ṛgveda, &#39;Prajāpati&#39; is rare; the title becomes central in the Brāhmaṇas</li><li><strong>Later Hinduism</strong> — Merged with Brahmā as &#39;Prajāpati Brahmā,&#39; the creator of the Purāṇic triad</li></ul>
+<p>The IAST form Prajāpati marks the long ā in the second syllable and the unaspirated p. The compound literally means &#39;Lord of Offspring&#39; or &#39;Lord of Creatures.&#39; Devanagari प्रजापति is the form used in Vedic recitation and later theistic texts.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Monier-Williams Sanskrit Dictionary. <a class="scholars-ext" href="https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -326,14 +348,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Devanagari as <strong>प्रजापति</strong> — Brahmic abugida, attested Vedic – present, c. 1500 BCE –, in South Asia. The script is written left-to-right.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Prajāpati</em> (IAST), giving the normalized reading /prəˈdʒaːpəti/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>Sanskrit Prajāpati is written प्रजापति in Devanagari.</li><li>Each aksara combines a consonant with an inherent or explicit vowel.</li><li>IAST diacritics preserve length, retroflexion, and aspiration lost in plain ASCII.</li><li>The Devanagari form is not used as the primary domain because Indic scripts are not in the .com IDN table.</li></ul>
+<p>The Devanagari form is <strong>प्रजापति</strong>. IAST marks the long <em>ā</em> in the second syllable. The compound is transparent: <em>prajā</em> (&#39;offspring, creatures&#39;) + <em>pati</em> (&#39;lord, master&#39;). In Vedic sandhi the initial <em>pra-</em> often carries a sense of forward motion or emergence.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Macdonell, Sanskrit-English Dictionary.</li><li id="src-original-script-2">Mayrhofer, EWAia.</li><li id="src-original-script-3">Monier-Williams Sanskrit-English Dictionary.</li><li id="src-original-script-4">Ṛgveda Saṃhitā, Translated by Ralph T. H. Griffith, 1500 BCE. <a class="scholars-ext" href="https://sacred-texts.com/hin/rigveda/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -341,14 +364,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>Prajāpati is not a god of thunder or war. He is the slow, patient power of generation itself — the one who broods over the waters, performs tapas (ascetic heat), and brings forth creatures by sacrifice. In the Brāhmaṇas he becomes the supreme creator; in the Purāṇas, he passes his crown to Brahmā.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Creation by Tapas</h3>
+<p>He heats himself by ascetic ardor until the cosmos condenses from his sweat and seminal emission.</p>
+<h3 class="scholars-h3">Lord of Sacrifice</h3>
+<p>The ritual fire altar is his body; every sacrifice reconstructs the world from his dismembered form.</p>
+<h3 class="scholars-h3">Father of the Veda</h3>
+<p>He produces the triple Veda from himself so that gods and humans may speak the language of order.</p>
+<h3 class="scholars-h3">Cosmic Egg</h3>
+<p>From the waters an egg develops; its shell becomes earth, its inner fire becomes sun and life.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Mayrhofer, EWAia.</li></ol></div>
     </div>
 </section>
 
@@ -356,14 +384,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Prajāpati concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Egg (aṇḍa)</strong> — The golden egg from which Prajāpati hatches; the universe in embryonic form.</li><li><strong>Fire altar</strong> — The Vedic ritual ground laid out as his body; sacrifice as cosmic engineering.</li><li><strong>Year</strong> — Prajāpati is identified with the year; his joints are the seasons.</li><li><strong>Puruṣa</strong> — The Cosmic Man whose sacrifice generates the varṇas, heavens, and earth.</li><li><strong>Swan or goose (haṃsa)</strong> — In Purāṇic iconography, his mount; the bird that separates milk from water, essence from accretion.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Monier-Williams Sanskrit Dictionary. <a class="scholars-ext" href="https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -371,14 +397,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Prajāpati&#39;s mythology is cosmogonic speculation cast as narrative. He is the One who becomes many, the undifferentiated whole who divides himself so that time, space, and species can exist.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">From Tapas to Cosmic Egg (Creation)</h3>
+<p>In the Śatapatha Brāhmaṇa, Prajāpati exists first as the nonmanifest unity-totality. Desire (<em>kāma</em>) moves him to reproduce, so he heats himself by ascetic ardor (<em>tapas</em>) until he creates the triple Veda, then the Waters, and finally enters them. An egg develops; from it he is born as the year, the sacrifice, and the ordered cosmos. Exhausted by creation, he must be restored through ritual — which is why every sacrifice is said to be Prajāpati.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Puruṣa Sūkta (Puruṣa)</h3>
+<p>Ṛgveda 10.90 hymns the Puruṣa, the Cosmic Man whose body is the whole universe. The gods sacrifice him, and from his parts arise the four varṇas, the sun, moon, and earth, and all creatures. In the Brāhmaṇas this Puruṣa is identified with Prajāpati: &#39;Puruṣa is Prajāpati; Puruṣa is the Year.&#39; Creation is therefore not manufacture but self-sacrifice — the deity giving himself to become the world.</p>
+<h3 class="scholars-h3">From Prajāpati to Brahmā (Brahmanization)</h3>
+<p>As Vedic speculation gives way to theistic Purāṇic narrative, the abstract creator becomes the four-faced god Brahmā. Prajāpati&#39;s functions — creation, Vedic knowledge, and sovereignty over creatures — are inherited by Brahmā, who is often called Prajāpati Brahmā. The older name survives as a title rather than a separate deity, though it is still used in mantras and rituals of conception, pregnancy, and childbirth.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Mayrhofer, EWAia.</li><li id="src-mythology-2">Ṛgveda 10.90, Puruṣa Sūkta.</li></ol></div>
     </div>
 </section>
 
@@ -386,14 +415,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Prajāpati is the bridge between Vedic impersonality and Purāṇic theism. His identification with Puruṣa links him to cosmic-sacrifice theology; his absorption into Brahmā links him to the later Trimūrti. The Atharvaveda already calls him the first physician, connecting creation with healing. In some strands of Vedānta, Prajāpati becomes a name for the personal god who presides over the lower Brahman, while the higher Brahman remains unnamed. His absence of cultic statues in the Vedic period makes him a pure concept: the generative ground before the gods take shape.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Sanskrit tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/durga/">Durgā</a>, <a class="scholars-xlink" href="/sites/ganesha/">Gaṇeśa</a>, <a class="scholars-xlink" href="/sites/kali/">Kālī</a>, <a class="scholars-xlink" href="/sites/lakshmi/">Lakṣmī</a>, <a class="scholars-xlink" href="/sites/nirmata/">Nirmātā</a>, and <a class="scholars-xlink" href="/sites/om/">Oṃ</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Monier-Williams Sanskrit Dictionary. <a class="scholars-ext" href="https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -401,14 +428,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Prajāpati never became a popular devotional deity with mass temples, but his influence is foundational. The Puruṣa Sūkta remains one of the most recited hymns in Hindu ritual, used in weddings, housewarmings, and temple consecrations. The varṇa imagery derived from the cosmic body has shaped Indian social theory for millennia — debated, resisted, and reinterpreted, but never ignored. In modern India, &#39;Prajāpati&#39; is a common surname and a title of honor. The idea that creation is a sacrifice rather than a manufacture continues to inform Hindu ecological and ritual thinking: the world is not raw material but a living body.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Monier-Williams Sanskrit Dictionary. <a class="scholars-ext" href="https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -416,14 +440,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>Prajāpati&#39;s archaeology is ritual rather than sculptural. The Agnicayana fire-altar construction, documented by Frits Staal among Kerala Nambudiri Brahmins in 1975, preserves the śrauta technology in which the altar is Prajāpati&#39;s body. The Puruṣa iconography appears in Gupta relief, notably at Deogarh&#39;s Dashavatara temple (6th century CE). Satavahana, Gupta, and Chola royal consecration inscriptions invoke Prajāpati as the source of kingship and cosmic generation.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Monier-Williams Sanskrit Dictionary. <a class="scholars-ext" href="https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -431,135 +452,103 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Prajāpati given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Monier-Williams Sanskrit Dictionary. <a class="scholars-ext" href="https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Mayrhofer, EWAia.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Ṛgveda 10.90, Puruṣa Sūkta.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Śatapatha Brāhmaṇa.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Taittirīya Brāhmaṇa, Jaiminīya Brāhmaṇa.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Brahmāṇḍa Purāṇa.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Ṛgveda Saṃhitā 10.121, Hiraṇyagarbha Sūkta.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Atharvaveda 19.53 (Prajāpati as first physician).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Chāndogya Upaniṣad 8.13–15 (Prajāpati teaching the Self).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> Manusmṛti 1.34 (Prajāpati&#39;s ten mind-born sons).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Monier-Williams Sanskrit Dictionary. <a class="scholars-ext" href="https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-2">Mayrhofer, EWAia.</li><li id="src-scholarly-sources-3">Ṛgveda 10.90, Puruṣa Sūkta.</li><li id="src-scholarly-sources-4">Śatapatha Brāhmaṇa.</li><li id="src-scholarly-sources-5">Taittirīya Brāhmaṇa, Jaiminīya Brāhmaṇa.</li><li id="src-scholarly-sources-6">Brahmāṇḍa Purāṇa.</li><li id="src-scholarly-sources-7">Ṛgveda Saṃhitā 10.121, Hiraṇyagarbha Sūkta.</li><li id="src-scholarly-sources-8">Atharvaveda 19.53 (Prajāpati as first physician).</li><li id="src-scholarly-sources-9">Chāndogya Upaniṣad 8.13–15 (Prajāpati teaching the Self).</li><li id="src-scholarly-sources-10">Manusmṛti 1.34 (Prajāpati&#39;s ten mind-born sons).</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="vedic-references">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Vedic References</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The title is nearly absent from the Ṛgveda itself. Its one great occurrence is the closing verse of the Hiraṇyagarbha Sūkta: &#39;O Prajāpati, no one other than you has encompassed all these born things&#39; (RV 10.121.10), which retrospectively names the golden-embryo creator hymned through the preceding nine verses.<sup class="scholars-cite"><a href="#src-vedic-references-1">[1]</a></sup> The Atharvaveda and the Vājasaneyī Saṃhitā enlarge his role, and in the Brāhmaṇas — above all the Śatapatha Brāhmaṇa — he becomes the supreme deity: &#39;Prajāpati is the sacrifice&#39;, &#39;Prajāpati is the year&#39;, the one who creates by tapas, is emptied out by creation, and must be perpetually reassembled by ritual.<sup class="scholars-cite"><a href="#src-vedic-references-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-vedic-references-1">Ṛgveda 10.121.10 (Hiraṇyagarbha Sūkta).</li><li id="src-vedic-references-2">Lévi, S., La doctrine du sacrifice dans les Brâhmaṇas (1898).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="upanishads">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Upaniṣads</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Prajāpati survives into the principal Upaniṣads as a teacher of the Self. In the Chāndogya (8.7–12) gods and demons send Indra and Virocana to him to learn the ātman; he leads them through a graded instruction — the self of the reflection, of dream, of dreamless sleep — to the bodiless Self &#39;free from evil, ageless, deathless, sorrowless&#39;.<sup class="scholars-cite"><a href="#src-upanishads-1">[1]</a></sup> The Bṛhadāraṇyaka (5.2) gives him his most enduring scene: to his threefold offspring — gods, humans, asuras — he utters the single syllable <em>da</em>, heard as <em>dāmyata</em> (restrain yourselves), <em>datta</em> (give), and <em>dayadhvam</em> (be compassionate); the thunder still repeats all three.<sup class="scholars-cite"><a href="#src-upanishads-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-upanishads-1">Chāndogya Upaniṣad 8.7–12 (Prajāpati instructs Indra and Virocana).</li><li id="src-upanishads-2">Bṛhadāraṇyaka Upaniṣad 5.2 (the threefold &#39;da&#39;).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="puranas">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Purāṇas</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>In the Purāṇas the abstract creator yields to <a class="scholars-xlink" href="/sites/brahma/">Brahmā</a>, and &#39;Prajāpati&#39; becomes a class: the mind-born lords of creatures — Marīci, Atri, Aṅgiras, Pulastya, Pulaha, Kratu, Pracetas (or Dakṣa), Vasiṣṭha, Bhṛgu, Nārada — enumerated already in Manusmṛti 1.34–35 and throughout Purāṇic genealogies.<sup class="scholars-cite"><a href="#src-puranas-1">[1]</a></sup> Among them Dakṣa Prajāpati dominates the narrative record: his great sacrifice, to which he refuses to invite <a class="scholars-xlink" href="/sites/shiva/">Śiva</a>, ends in Satī&#39;s self-immolation and the ruin of the rite — told most fully in the fourth book of the Bhāgavata Purāṇa, where Dakṣa is beheaded and restored with a goat&#39;s head.<sup class="scholars-cite"><a href="#src-puranas-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-puranas-1">Manusmṛti 1.34–35 (the mind-born Prajāpatis).</li><li id="src-puranas-2">Bhāgavata Purāṇa 4 (Dakṣa&#39;s sacrifice).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="mantras">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Mantras & Stotras</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Prajāpati has no personal mantra cult and no bīja syllable; he is a ritual presence rather than a devotional god. The śrauta liturgy knows him through oblations concluding <em>prajāpataye svāhā</em> and through the year-long Agnicayana, whose brick altar is explicitly built as his dismembered body.<sup class="scholars-cite"><a href="#src-mantras-1">[1]</a></sup> The tradition also credits him with uttering creation&#39;s primal speech: brooding in tapas over the three worlds, he &#39;milked&#39; from them the three Vedas, from the Vedas the vyāhṛtis — <em>bhūr, bhuvaḥ, svaḥ</em> — and from the vyāhṛtis the syllable <a class="scholars-xlink" href="/sites/om/">oṃ</a>, the essence of every mantra.<sup class="scholars-cite"><a href="#src-mantras-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mantras-1">Śatapatha Brāhmaṇa (Agnicayana as Prajāpati&#39;s body).</li><li id="src-mantras-2">Manusmṛti 1.23 (Prajāpati milking the Vedas and vyāhṛtis).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Before there was a world, there was only the will to become. That is Prajāpati. Not a craftsman standing outside his work, but the work itself in the moment before it knows it is a work. His tapas is the concentrated energy that precedes all making — the silence so full that it must become sound, the darkness so dense that it must become light. Every creative act repeats his gesture: the painter before the canvas, the writer before the blank page, the parent before the child. To create is to risk dismemberment, to give pieces of oneself so that something else can live.</p>
+<p>Prajāpati teaches that creation is not a one-time event. It is continuous, renewed at every sacrifice, every dawn, every breath. The cosmos is not a machine set running; it is a fire that must be fed. To remember his name is to remember that we too are made of sacrifice — the generations before us, the beings that feed us, the sun that burns for us. We are the children of Prajāpati, and one day we too must become his body.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Monier-Williams Sanskrit Dictionary. <a class="scholars-ext" href="https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="vedic-references">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Vedic References</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Vedic References →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="upanishads">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Upaniṣads</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Upaniṣads →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="puranas">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Purāṇas</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Purāṇas →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="mantras">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">17</span>
-        <h2 class="scholars-section-title">Mantras & Stotras</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mantras & Stotras →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">19</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -597,6 +586,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'prajapati';
@@ -630,14 +754,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -731,6 +847,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -742,18 +859,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -765,6 +883,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -809,6 +929,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,8 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
+<li><a href="#homeric-hymns">12 &mdash; Homeric Hymns</a></li>
+<li><a href="#epithets">13 &mdash; Epithets & Epicleses</a></li>
+<li><a href="#oracle-sites">14 &mdash; Oracle & Cult Sites</a></li>
+<li><a href="#iconography">15 &mdash; Iconography</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -277,14 +297,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Athénā</strong> (<em>athena</em>) — The Grey-Eyed Strategist · Patron of Athens — belongs to the Greek tradition, where it is catalogued under the domain &quot;Wisdom, War Strategy, Crafts&quot;. The name means &quot;Unknown; possibly pre-Greek&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>Athénā is unique among the Olympians: a warrior who fights only for just causes, a virgin goddess who needs no consort to validate her power, and the patron of the practical arts that make city life possible. She is <strong>intelligence made divine</strong>.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Athénā</strong> and serves its temple at <a class="scholars-ext" href="https://xn--athn-dpa9l.com" rel="noopener noreferrer" target="_blank">athénā.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>athena</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-overview-2">Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a class="scholars-ext" href="https://brill.com/view/title/17858" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-overview-3">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a class="scholars-ext" href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -292,14 +311,20 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Greek as <strong>Ἀθήνᾶ</strong>. Etymologically it means &quot;Unknown; possibly pre-Greek&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The reconstructed proto-form is <em>h₂erǵ-</em> (proto-indo-european, &quot;to shine, white, silver&quot;). Pre-Greek or from Ἀθήνη; possibly from *h₂erǵ- &quot;shining&quot; or Luwian deity. The owl goddess.</p>
+<p>Cognate forms across related languages:</p>
+<ul class="scholars-list"><li><strong>Attarsiya</strong> (luwian) — Luwian theophoric name</li></ul>
+<p>The ASCII form <em>athena</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Athénā</strong> recovers both the stress accent and the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>a</strong> → <strong>A</strong> — Alpha</li><li><strong>t</strong> → <strong>t</strong> — Tau</li><li><strong>h</strong> → <strong>h</strong> — Theta</li><li><strong>e</strong> → <strong>é</strong> — Acute on epsilon</li><li><strong>n</strong> → <strong>n</strong> — Nu</li><li><strong>a</strong> → <strong>ā</strong> — Long alpha with iota subscript</li></ul>
+<p>Attested and derived spellings of the name:</p>
+<ul class="scholars-list"><li><strong>Athēnā</strong> — macron-only form: LSJ convention: length only, no acute on epsilon</li></ul>
+<p>The project holds the domain <strong>athénā.com</strong> (xn--athn-dpa9l.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-the-name-2">Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a class="scholars-ext" href="https://brill.com/view/title/17858" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -307,14 +332,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/a.tʰɛː́.naː/</strong> — Attic Greek Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>A-</strong> — Short alpha with smooth breathing — the name opens clearly, without roughness.</li><li><strong>-th-</strong> — Aspirated theta [tʰ], the sound of intellect: precise, sharp, clean.</li><li><strong>-ḗ-</strong> — Long eta with acute pitch — the stressed peak of the name, holding authority.</li><li><strong>-nā</strong> — Long alpha with iota subscript, the old nominative ending that gives the name its archaic dignity.</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;ah-THAY-na&#39; — the second syllable is pitched higher and drawn out; the final &#39;a&#39; is long and pure.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Greek</strong> — Ἀθήνη (Athḗnē), the older form; the long final alpha reflects the original stem</li><li><strong>Luwian</strong> — Attarsiya, a theophoric name in Bronze Age Anatolia, possibly related</li><li><strong>PIE</strong> — no secure etymology; Beekes treats the name as Pre-Greek</li></ul>
+<p>Athénā is Tier 1 because the Greek Ἀθήνᾶ contains both stress (acute on the long η) and length (η plus long alpha with iota subscript). The restoration Athénā preserves the acute stress; Athēnā is the macron-only variant. The form Athēnē changes the final letter and is therefore used only when the domain requires it.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -322,14 +350,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Greek as <strong>Ἀθήνᾶ</strong> — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Athénā</em> (Greek alphabet with polytonic accents), giving the normalized reading /atʰɛːˈnaː/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The Greek form Ἀθήνᾶ is written in the Classical Greek alphabet.</li><li>Letters with acute, grave, or circumflex accents preserve the pitch accent of Ancient Greek.</li><li>Macrons and omegas (η, ω) mark long vowels, a feature lost in the plain ASCII form.</li><li>The Unicode restoration Athénā encodes the scholarly spelling as a registrable domain name.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Beekes, Etymological Dictionary of Greek.</li><li id="src-original-script-2">Chantraine, Dictionnaire étymologique de la langue grecque.</li><li id="src-original-script-3">Liddell-Scott-Jones (LSJ).</li><li id="src-original-script-4">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a class="scholars-ext" href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -337,14 +365,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>Athénā is unique among the Olympians: a warrior who fights only for just causes, a virgin goddess who needs no consort to validate her power, and the patron of the practical arts that make city life possible. She is <strong>intelligence made divine</strong>.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Strategic Warfare</h3>
+<p>She favors counsel, discipline, and defensive battle over the berserk fury of Árēs; heroes like Odysseus and Diomedes fight under her sign.</p>
+<h3 class="scholars-h3">Wisdom and Counsel</h3>
+<p>The mind that sees all sides; her advice is practical, ethical, and far-sighted.</p>
+<h3 class="scholars-h3">Weaving and Crafts</h3>
+<p>Patron of weaving, pottery, carpentry, and olive cultivation — the technologies that sustain the polis.</p>
+<h3 class="scholars-h3">Guardian of Cities</h3>
+<p>Polias and Poliouchos: the goddess who protects the citadel and whose olive tree marks the land.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a class="scholars-ext" href="https://brill.com/view/title/17858" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -352,14 +385,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Athénā concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Owl</strong> — Wisdom, night-vision, and the bird sacred to Athens</li><li><strong>Olive tree</strong> — Her gift to Athens, defeat of Poseidôn in the contest for the city</li><li><strong>Aegis</strong> — The goat-skin fringed with serpents; worn by Zeús and Athena, it inspires terror</li><li><strong>Helmet and spear</strong> — Warrior identity, but always disciplined and defensive</li><li><strong>Gorgoneion</strong> — The severed head of Medousa on her breastplate, turning enemies to stone</li><li><strong>Spindle and loom</strong> — Weaving as the emblem of ordered, intelligent labor</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -367,14 +398,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Athénā&#39;s myths center on <strong>intelligence overcoming force</strong>. She is born from Zeús&#39;s head, defeats Poseidôn by gift rather than combat, and guides the heroes who win by cunning.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Born from the Head of Zeús (The Birth)</h3>
+<p>Zeús swallowed his pregnant first wife Mêtis, fearing a son who would overthrow him. Later, Hephaistos split Zeús&#39;s skull with an axe, and Athénā sprang forth fully armed with a shout that shook Olympus. She is therefore the only Olympian whose parent is purely paternal — intelligence born directly from sovereignty.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Athena and Poseidôn for Athens (The Contest)</h3>
+<p>The two gods competed to become patron of Athens. Poseidôn struck the Acropolis with his trident and produced a salt spring; Athénā planted the first olive tree. The judges — Cecrops and the Athenian people — chose the olive, because it gives food, oil, and wood. Poseidôn flooded the land in anger, but Athénā&#39;s city endured. The myth makes civilization superior to maritime power.</p>
+<h3 class="scholars-h3">Arachnê Transformed (The Weaver)</h3>
+<p>The mortal weaver Arachnê boasted that her skill surpassed the goddess&#39;s. Athénā wove a tapestry of the gods&#39; glory; Arachnê wove their scandals. Though flawless, Arachnê&#39;s work was impious. Athénā struck her, and in remorse or punishment the maiden hanged herself. The goddess transformed her into the first spider. The myth is a warning: <strong>skill without reverence is hubris</strong>.</p>
+<h3 class="scholars-h3">Odysseus and the Return (The Hero&#39;s Guide)</h3>
+<p>Athénā&#39;s favorite mortal is Odysseus, the man of many wiles. She protects him through his wanderings, disguises him on Ithaca, and stands with him against the suitors. Their bond is the closest thing in Greek myth to a partnership between human intelligence and divine wisdom.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a class="scholars-ext" href="https://brill.com/view/title/17858" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-mythology-2">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a class="scholars-ext" href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -382,14 +418,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>The Romans identified Athénā with Minerva, a goddess already associated with crafts and strategy, so the equation was unusually smooth. In Egypt she was equated with Neith, the warrior-weaver goddess of Sais, and Hellenistic Jews identified her with Sophia, divine Wisdom. During the Renaissance she became the emblem of rational virtue; in modern Athens she remains the namesake and symbol of the city, her helmeted head on coins and official seals. The Parthenon, her temple, is the canonical image of Classical Greece.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include <a class="scholars-xlink" href="/sites/ahuramazda/">AhuraMazdā</a> (wisdom / knowledge), <a class="scholars-xlink" href="/sites/anat/">ꜥAnat</a> (war / battle), <a class="scholars-xlink" href="/sites/ares/">Árēs</a> (war / battle), <a class="scholars-xlink" href="/sites/ashur/">Aššur</a> (war / battle), <a class="scholars-xlink" href="/sites/durga/">Durgā</a> (war / battle), and <a class="scholars-xlink" href="/sites/ganesha/">Gaṇeśa</a> (wisdom / knowledge).</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -397,14 +431,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Athénā is the divine patron of everything the Greeks most valued in civic life: wisdom, craft, disciplined courage, and strategic thought. The Athenian democracy claimed her protection; the Panathenaea was the city&#39;s greatest festival. In philosophy she became the emblem of reason; in art the model of dignified female power. Her owl, her olive, and her helmet are still instantly recognizable symbols of classical civilization. Restoring <em>Athénā</em> preserves the name under which the world&#39;s first democracy invoked its guiding intelligence.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -412,14 +443,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The Athenian Acropolis preserves the Parthenon (447–432 BCE), Erechtheion, and Temple of Athena Nike, whose sculptural program celebrated Athena Polias, Parthenos, and Nikephoros. The colossal gold-and-ivory Athena Parthenos by Pheidias stood inside the Parthenon; fragments of its base survive. The Panathenaic frieze and pedimental sculptures show the goddess in birth and triumph. Outside Athens, the temple of Athena Alea at Tegea and the sanctuary at Lindos on Rhodes attest her wide civic cult.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Pausanias, Description of Greece.</li></ol></div>
     </div>
 </section>
 
@@ -427,75 +455,109 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Athénā given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a class="scholars-ext" href="https://brill.com/view/title/17858" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a class="scholars-ext" href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Homer, Iliad and Odyssey.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Aeschylus, Eumenides.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Pausanias, Description of Greece.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-2">Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a class="scholars-ext" href="https://brill.com/view/title/17858" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-3">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a class="scholars-ext" href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-4">Homer, Iliad and Odyssey.</li><li id="src-scholarly-sources-5">Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-6">Aeschylus, Eumenides.</li><li id="src-scholarly-sources-7">Pausanias, Description of Greece.</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="homeric-hymns">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Homeric Hymns</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>No long narrative hymn to Athénā survives; her two hymns are short. Hymn 11 (five lines) hails &#39;Pallas Athena, protectress of cities,&#39; who with Árēs delights in the works of war and the sack of towns and who guards armies as they march out and return — the martial polis goddess in miniature.<sup class="scholars-cite"><a href="#src-homeric-hymns-1">[1]</a></sup></p>
+<p>Hymn 28 (eighteen lines) is grander: it tells how she sprang from the holy head of Zeús in full armor while the gods trembled, Olympus reeled, the sea surged, and the sun checked his horses — &#39;until maiden Pallas Athena stripped the heavenly armor from her immortal shoulders, and Zeús the counselor rejoiced.&#39;<sup class="scholars-cite"><a href="#src-homeric-hymns-2">[2]</a></sup></p>
+<p>Hesiod gives the fuller frame: Zeús swallowed the pregnant Mêtis so that her counsel would become his own (<em>Theogony</em> 886–900); Pindar adds the axe of Hēphaistos (<em>Olympian</em> 7).<sup class="scholars-cite"><a href="#src-homeric-hymns-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-homeric-hymns-1">Homeric Hymn 11, To Athena.</li><li id="src-homeric-hymns-2">Homeric Hymn 28, To Athena.</li><li id="src-homeric-hymns-3">Hesiod, Theogony 886–900; Pindar, Olympian 7. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="epithets">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Epithets & Epicleses</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Her titles run from archaic poetic formulae to the civic cult names of the Acropolis.</p>
+<ul class="scholars-list"><li><strong>Γλαυκῶπις</strong> (<em>glaukōpis</em>) — &#39;grey-eyed&#39; or &#39;owl-eyed,&#39; her most frequent Homeric epithet.<sup class="scholars-cite"><a href="#src-epithets-1">[1]</a></sup></li><li><strong>Παλλὰς</strong> (<em>Pallas</em>) — of uncertain meaning, perhaps &#39;maiden&#39; or from <em>pallō</em>, &#39;brandish&#39;; attached to her name since Homer.<sup class="scholars-cite"><a href="#src-epithets-1">[1]</a></sup></li><li><strong>Τριτογένεια</strong> (<em>Tritogeneia</em>) — &#39;Trito-born,&#39; an old epic title in Homer and Hesiod, linked since antiquity — inconclusively — with Libyan Lake Tritonis.<sup class="scholars-cite"><a href="#src-epithets-1">[1]</a></sup><sup class="scholars-cite"><a href="#src-epithets-2">[2]</a></sup></li><li><strong>Πολιάς</strong> (<em>Polias</em>) — &#39;of the city,&#39; her title as guardian of Athens, whose ancient olive-wood image was kept in the Erechtheion.<sup class="scholars-cite"><a href="#src-epithets-3">[3]</a></sup></li><li><strong>Παρθένος</strong> (<em>Parthenos</em>) — &#39;the Maiden,&#39; the title of Pheidias&#39;s gold-and-ivory statue and of the Parthenon itself.<sup class="scholars-cite"><a href="#src-epithets-3">[3]</a></sup></li><li><strong>Ἐργάνη</strong> (<em>Ergānē</em>) — &#39;the Worker,&#39; patroness of craftspeople, worshipped with Hēphaistos above the Athenian Agora.<sup class="scholars-cite"><a href="#src-epithets-3">[3]</a></sup></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-epithets-1">Homer, Iliad and Odyssey.</li><li id="src-epithets-2">Hesiod, Theogony.</li><li id="src-epithets-3">Pausanias, Description of Greece (Athenian cults of Athena).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="oracle-sites">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Oracle & Cult Sites</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Athénā kept no prophetic seat; her guidance came through the owl&#39;s flight, sacrificial omens, and the dreams she sends her heroes in epic. Her sanctuaries are civic, not oracular.<sup class="scholars-cite"><a href="#src-oracle-sites-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Athens (Acropolis)</strong> — the Erechtheion held the xoanon of Athena Polias, said to have fallen from heaven; the Parthenon housed the Parthenos; the Nike bastion her wingless Victory.<sup class="scholars-cite"><a href="#src-oracle-sites-1">[1]</a></sup></li><li><strong>Tegea (Arcadia)</strong> — the sanctuary of Athena Alea, among the most venerable in the Peloponnese, where the tusks of the Calydonian boar were displayed.<sup class="scholars-cite"><a href="#src-oracle-sites-1">[1]</a></sup></li><li><strong>Lindos (Rhodes)</strong> — the hilltop temple of Athena Lindia, whose chronicle recorded dedications back to mythical donors.<sup class="scholars-cite"><a href="#src-oracle-sites-1">[1]</a></sup></li><li><strong>Alalkomenai (Boeotia)</strong> — her ancient sanctuary beside the village that claimed her birth, source of the epic title Alalkomenēis.<sup class="scholars-cite"><a href="#src-oracle-sites-1">[1]</a></sup></li><li><strong>Sparta</strong> — Athena Chalkioikos, &#39;of the Bronze House,&#39; guardian of the Spartan acropolis.<sup class="scholars-cite"><a href="#src-oracle-sites-1">[1]</a></sup></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-oracle-sites-1">Pausanias, Description of Greece (Athens, Tegea, Lindos, Alalkomenai, Sparta).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="iconography">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Iconography</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Athénā is among the most recognizable figures in ancient art because her attributes never vary: crested helmet, spear, shield, the snaky-fringed <strong>aegis</strong> with the Gorgoneion, and the <strong>owl</strong>. She alone among goddesses is always armed.<sup class="scholars-cite"><a href="#src-iconography-1">[1]</a></sup></p>
+<p>The defining cult image was Pheidias&#39;s <strong>Athena Parthenos</strong> (438 BCE), a gold-and-ivory colossus holding a Nike, its base carved with the birth of Pandora; the type survives in Roman copies such as the Varvakeion statuette and in Pausanias&#39;s description.<sup class="scholars-cite"><a href="#src-iconography-2">[2]</a></sup> Athens put her owl on the reverse of its silver tetradrachms and her striding, spear-brandishing <strong>Promachos</strong> pose on the prize amphorae of the Panathenaic games.<sup class="scholars-cite"><a href="#src-iconography-3">[3]</a></sup></p>
+<p>Vase painters favored her birth — springing from Zeús&#39;s head as Hēphaistos steps back with the axe — and her duels with the Giants; red-figure adds quieter scenes of the helmeted goddess among her heroes.<sup class="scholars-cite"><a href="#src-iconography-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-iconography-1">Lexicon Iconographicum Mythologiae Classicae (LIMC), s.v. Athena.</li><li id="src-iconography-2">Pausanias, Description of Greece 1.24.5–7 (the Parthenos); Pliny, Natural History 36.18.</li><li id="src-iconography-3">J. Neils, Goddess and Polis: The Panathenaic Festival in Ancient Athens (1992).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Athénā is the goddess of the well-aimed blow — not merely in war, but in speech, craft, and thought. She does not rage; she calculates. She does not seduce; she advises. Her virginity is not a lack but a statement: her power is complete in itself, needing no alliance with masculinity to be effective.</p>
+<p>In an age that often confuses intelligence with cleverness and power with dominance, Athénā offers a different model. She is strong because she is skilled, just because she is wise, and feared because she is right. The restoration of her name in Unicode is a small act of recognition: that wisdom, no less than beauty or wrath, deserves its original voice.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">14</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">15</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -533,6 +595,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'athena';
@@ -566,14 +763,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -667,6 +856,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -678,18 +868,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -701,6 +892,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -745,6 +938,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

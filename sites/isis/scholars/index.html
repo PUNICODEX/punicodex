@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,12 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#hieroglyphic-evidence">14 &mdash; Hieroglyphic Evidence</a></li>
-<li><a href="#pyramid-texts">15 &mdash; Pyramid Texts</a></li>
-<li><a href="#coffin-texts">16 &mdash; Coffin Texts</a></li>
-<li><a href="#book-of-the-dead">17 &mdash; Book of the Dead</a></li>
+<li><a href="#hieroglyphic-evidence">12 &mdash; Hieroglyphic Evidence</a></li>
+<li><a href="#pyramid-texts">13 &mdash; Pyramid Texts</a></li>
+<li><a href="#coffin-texts">14 &mdash; Coffin Texts</a></li>
+<li><a href="#book-of-the-dead">15 &mdash; Book of the Dead</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -281,14 +297,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Ꜣst</strong> (<em>isis</em>) — Magic, Motherhood, Throne · Throne (Egyptian ꜣst) — belongs to the Egyptian tradition, where it is catalogued under the domain &quot;Magic, Motherhood, Throne&quot;. The name means &quot;Throne (Egyptian ꜣst)&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>Ꜣst is the <strong>throne that walks</strong>. Her very name is written with the hieroglyph of a seat (O29), and the king sits on her lap as on the throne of Egypt itself. She is the sister-wife of Osiris, the mother of Horus, and the most formidable magician in the Egyptian cosmos — a goddess who knows the secret names of things and is not afraid to use them.</p>
+<p>Where other gods rule by force or decree, Ꜣst rules by devotion, cunning, and love. She reassembles the murdered Osiris, hides her infant son from Set, and outwits the sun-god Re himself to extract his hidden name. Her story is the Egyptian closest approach to a gospel: a god who dies, a mother who saves, a child who inherits.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Ꜣst</strong> and serves its temple at <a class="scholars-ext" href="https://xn--st-rq8h.com" rel="noopener noreferrer" target="_blank">ꜣst.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>isis</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Allen, Middle Egyptian (2014).</li><li id="src-overview-2">Faulkner, A Concise Dictionary of Middle Egyptian, s.v. ꜣst.</li><li id="src-overview-3">Wörterbuch der ägyptischen Sprache I, s.v. ꜣst.</li></ol></div>
     </div>
 </section>
 
@@ -296,14 +312,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Hieroglyphs as <strong>𓊨𓏏𓆇</strong>. Etymologically it means &quot;Throne (Egyptian ꜣst)&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The ASCII form <em>isis</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Ꜣst</strong> recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>i</strong> → <strong>Ꜣ</strong> — Alef: glottal stop, voiced</li><li><strong>s</strong> → <strong>s</strong> — Same</li><li><strong>i</strong> → <strong>t</strong> — T: unwritten vowel position</li><li><strong>s</strong> → <strong>—</strong> — Dropped: not represented in Egyptological</li></ul>
+<p>Attested and derived spellings of the name:</p>
+<ul class="scholars-list"><li><strong>Ísis</strong> — alternate stress, scholarly variant: Acute on iota: alternate stress position</li></ul>
+<p>The project holds the domain <strong>ꜣst.com</strong> (xn--st-rq8h.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Allen, Middle Egyptian (2014).</li><li id="src-the-name-2">Faulkner, A Concise Dictionary of Middle Egyptian, s.v. ꜣst.</li></ol></div>
     </div>
 </section>
 
@@ -311,14 +330,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/ˈʔaːsət/</strong> — Egyptological Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Ꜣ-</strong> — Glottal stop [ʔ], the Egyptological alef (U+A723); at the beginning of the name it functions as a consonantal onset before the vowel.</li><li><strong>-aː-</strong> — Long open vowel in the first syllable; hieroglyphic ꜣst records no vowels, so the quality depends on Coptic and Greek evidence.</li><li><strong>-s</strong> — Voiceless alveolar fricative [s], as in English &#39;see&#39;.</li><li><strong>-t</strong> — Voiceless alveolar stop [t]; the final -t is the feminine suffix, often unpronounced in later Egyptian and absent in Coptic.</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;AH-set&#39; — begin with a slight catch in the throat (the alef), then &#39;set&#39; with a crisp or silent final t. The variant &#39;EE-set&#39; is also widely defended.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Coptic</strong> — ⲎⲤⲈ (Ēse), the Late Egyptian/Early Coptic form</li><li><strong>Greek</strong> — Ἶσις (Isis), the Hellenized form from which the modern name derives</li><li><strong>Meroitic</strong> — Wos(a) / Wusa, the Nubian reflex</li><li><strong>Late Egyptian</strong> — ʾĒsə, the stage immediately before Coptic</li></ul>
+<p>This entry is the Egyptian goddess ꜣst (Aset/Iset), not the later Greek name Isis. Hieroglyphs record only ꜣ-s-t; the vowel evolution is reconstructed as Rūsat &gt; Rūsaʾ &gt; ʾŪsaʾ &gt; ʾĒsə, whence Coptic ⲎⲤⲈ and Greek Ἶσις. The ꜣ is a glottal stop, and the final -t is a feminine marker often silent in speech. PUNYCODEX uses the registrable alef ꜣ (U+A723) to signal the historic consonant; this is a Tier 2 restoration. Sources: Allen, Middle Egyptian (2014); Faulkner, A Concise Dictionary of Middle Egyptian, s.v. ꜣst; Wörterbuch der ägyptischen Sprache I, s.v. ꜣst; Hoch, Semitic Words in Egyptian Texts (1994), on the representation of Egyptian alef in Semitic transcriptions.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Allen, Middle Egyptian (2014).</li></ol></div>
     </div>
 </section>
 
@@ -326,14 +348,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Hieroglyphs as <strong>𓊨𓏏𓆇</strong> — Egyptian hieroglyphic, attested Old Kingdom – Late Antiquity, c. 2600 BCE – 400 CE, in Egypt. The script is written right-to-left / top-to-bottom.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Ꜣst</em> (Egyptological conventional), giving the normalized reading Original vocalisation unknown; Egyptological /ˈiː.sɪs/..</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The Egyptian name is written 𓊨𓏏𓆇 in hieroglyphs.</li><li>Hieroglyphs combine logograms, phonograms, and determinatives; the exact function of each sign depends on context.</li><li>Egyptian writing does not record vowels; the vocalised form is a modern convention reconstructed from Coptic and Greek evidence.</li><li>The Unicode restoration Ꜣst uses Egyptological alef/ayin and other registrable characters; the hieroglyphic form is not registrable in .com.</li></ul>
+<p>The name is written with the throne hieroglyph (O29), functioning as a phonogram ꜣ, followed by s and t: ꜣ-s-t. The throne sign is also the name&#39;s semantic core: Isis is the throne. The initial ꜣ is an Egyptological alef, a glottal stop represented in PÚNYCODEX by U+A723. Coptic writes the name ⲎⲤⲈ (Ēse), while Greek Ἶσις gave rise to the modern &#39;Isis.&#39; Because hieroglyphs omit vowels, the precise pronunciation of the pharaonic form is reconstructed; the registrable Ꜣst preserves the consonantal skeleton and the throne icon embedded in the goddess&#39;s identity.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">James P. Allen, Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs, Cambridge University Press, 2000. <a class="scholars-ext" href="https://www.cambridge.org/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-original-script-2">Faulkner, A Concise Dictionary of Middle Egyptian.</li><li id="src-original-script-3">Hannig, Ägyptisches Wörterbuch.</li><li id="src-original-script-4">Wörterbuch der ägyptischen Sprache (Wb).</li></ol></div>
     </div>
 </section>
 
@@ -341,14 +364,20 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>Ꜣst is the <strong>throne that walks</strong>. Her very name is written with the hieroglyph of a seat (O29), and the king sits on her lap as on the throne of Egypt itself. She is the sister-wife of Osiris, the mother of Horus, and the most formidable magician in the Egyptian cosmos — a goddess who knows the secret names of things and is not afraid to use them.</p>
+<p>Where other gods rule by force or decree, Ꜣst rules by devotion, cunning, and love. She reassembles the murdered Osiris, hides her infant son from Set, and outwits the sun-god Re himself to extract his hidden name. Her story is the Egyptian closest approach to a gospel: a god who dies, a mother who saves, a child who inherits.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Throne</h3>
+<p>Her name and form are bound to the royal seat; every pharaoh is enthroned on Isis.</p>
+<h3 class="scholars-h3">Words of Power</h3>
+<p>She commands heka, the force that animates ritual speech, and knows names that even Re keeps secret.</p>
+<h3 class="scholars-h3">Mother of Horus</h3>
+<p>She conceives Horus after Osiris&#39;s death and nurses him in the papyrus thickets of Chemmis.</p>
+<h3 class="scholars-h3">The Protectress</h3>
+<p>With outspread wings she shelters the living, the dead, and especially children and kings.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Faulkner, A Concise Dictionary of Middle Egyptian, s.v. ꜣst.</li></ol></div>
     </div>
 </section>
 
@@ -356,14 +385,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Ꜣst concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Throne hieroglyph</strong> — Her name and body; the seat on which the king is established</li><li><strong>Outspread wings</strong> — Protection of the living and the dead; the winged goddess sheltering Osiris or the king</li><li><strong>Ankh</strong> — The life she grants to Horus, the king, and the justified dead</li><li><strong>Sistrum</strong> — Musical power used to frighten enemies and celebrate the goddess</li><li><strong>Tyet knot</strong> — The &#39;blood of Isis,&#39; a protective amulet associated with her menstrual and life-giving power</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Allen, Middle Egyptian (2014).</li></ol></div>
     </div>
 </section>
 
@@ -371,14 +398,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Isis&#39;s mythology is the central drama of the Osirian cycle: love, murder, fragmentation, and restoration. It is also a handbook of magical power, because Isis does not accept loss as final.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Lament and the Search (Myth of Osiris)</h3>
+<p>When Set dismembers Osiris and scatters his body across Egypt, Ꜣst wanders the land in mourning, gathering the pieces with her sister Nephthys. She reassembles them, anoints the body, and, by her magic, conceives Horus. The Pyramid Texts and later Plutarch&#39;s <em>On Isis and Osiris</em> preserve different versions of the story, but the core is constant: Isis makes wholeness out of what was torn apart.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Chemmis (Birth of Horus)</h3>
+<p>Pregnant and hunted, Isis hides in the marshes of Chemmis (Khemmis) to give birth to Horus. She protects him from scorpions, snakes, and the agents of Set, nursing him until he is old enough to claim his father&#39;s throne. The &#39;Isis lactans&#39; image — Isis suckling Horus — became one of the most potent icons of divine motherhood in the ancient world.</p>
+<h3 class="scholars-h3">The Secret Name (Magic of Re)</h3>
+<p>In a New Kingdom narrative, Isis plots to learn the hidden name of Re, source of his power. She fashions a serpent from his spittle and earth, and its bite brings the sun-god to agony. Only when he reveals his true name does she provide the cure. The tale is a theological statement: even the supreme god is vulnerable to the one who knows the true word.</p>
+<h3 class="scholars-h3">A Mother&#39;s Rage (The Seven Scorpions)</h3>
+<p>While fleeing Set, Isis travels with seven scorpions. When a rich woman shuts her door, the scorpions sting the woman&#39;s child; Isis, moved by pity, heals the boy with her voice and magic, then turns the venom back on the scorpion goddess Serqet. The story binds maternal vengeance to maternal mercy.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Faulkner, A Concise Dictionary of Middle Egyptian, s.v. ꜣst.</li><li id="src-mythology-2">Wörterbuch der ägyptischen Sprache I, s.v. ꜣst.</li></ol></div>
     </div>
 </section>
 
@@ -386,14 +418,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Ꜣst absorbed or was identified with many goddesses: Hathor in her solar-mother aspect, Mut as consort of Amun, and Serqet in protective magic. Greeks identified her with Demeter, both searching goddesses of grain and mourning, and with Aphrodite in her erotic power. Roman Egypt made Isis a universal saviour whose cult spread across the Mediterranean, reaching Pompeii, London, and the Danube. Early Christianity drew on her iconography for the Virgin Mary: the nursing mother, the queen of heaven, the star-crowned woman of Revelation. The Copts rendered her name as ⲎⲤⲈ, a sound that still haunts the modern name &#39;Isis.&#39;<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Egyptian tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/ab/">Ꜣb</a>, <a class="scholars-xlink" href="/sites/akh/">Ꜣḫ</a>, <a class="scholars-xlink" href="/sites/amun/">Ꜣmun</a>, <a class="scholars-xlink" href="/sites/ankh/">ꜥnḫ</a>, <a class="scholars-xlink" href="/sites/apep/">Ꜥpp</a>, and <a class="scholars-xlink" href="/sites/ba/">Bꜣ</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Allen, Middle Egyptian (2014).</li></ol></div>
     </div>
 </section>
 
@@ -401,14 +431,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Isis gave the ancient Mediterranean one of its first truly international mystery religions. Her temples offered initiation, personal salvation, and a goddess who heard individual prayers. After Egypt became Christian, her images were redeployed for the Virgin and Child. In modern times the name &#39;Isis&#39; has been borrowed by terrorist groups, a sad irony that has nothing to do with the goddess. Contemporary Pagans, Kemetics, and feminist theologians reclaim her as a goddess of magic, motherhood, and political resistance. Her throne hieroglyph still sits at the center of every royal image in which a king is &#39;established&#39; on the goddess herself.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Allen, Middle Egyptian (2014).</li></ol></div>
     </div>
 </section>
 
@@ -416,14 +443,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The temple of Isis at Philae, relocated to Agilkia by UNESCO, preserves the last known hieroglyphic inscription (394 CE). Earlier shrines flourished at Abydos, Behbeit el-Hagar, and Giza. The Hymn to Osiris from the Eighteenth Dynasty tomb of Khaemwaset and the Metternich Stela celebrate her magical protection of Horus. Bronze statuettes of Isis lactans, faience amulets, and temple reliefs from the Delta to Nubia attest her popularity across three millennia.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Allen, Middle Egyptian (2014).</li></ol></div>
     </div>
 </section>
 
@@ -431,135 +455,103 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Ꜣst given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Allen, Middle Egyptian (2014).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Faulkner, A Concise Dictionary of Middle Egyptian, s.v. ꜣst.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Wörterbuch der ägyptischen Sprache I, s.v. ꜣst.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Lichtheim, Ancient Egyptian Literature, vol. 2.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Assmann, The Search for God in Ancient Egypt.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Plutarch, On Isis and Osiris.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Pyramid Texts, Utterances 219–222.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Metternich Stela.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Book of the Dead, Spell 156.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Allen, Middle Egyptian (2014).</li><li id="src-scholarly-sources-2">Faulkner, A Concise Dictionary of Middle Egyptian, s.v. ꜣst.</li><li id="src-scholarly-sources-3">Wörterbuch der ägyptischen Sprache I, s.v. ꜣst.</li><li id="src-scholarly-sources-4">Lichtheim, Ancient Egyptian Literature, vol. 2.</li><li id="src-scholarly-sources-5">Assmann, The Search for God in Ancient Egypt.</li><li id="src-scholarly-sources-6">Plutarch, On Isis and Osiris.</li><li id="src-scholarly-sources-7">Pyramid Texts, Utterances 219–222.</li><li id="src-scholarly-sources-8">Metternich Stela.</li><li id="src-scholarly-sources-9">Book of the Dead, Spell 156.</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="hieroglyphic-evidence">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Hieroglyphic Evidence</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The name <em>ꜣst</em> is written with the throne sign used logographically — the goddess&#39;s name and her emblem are the same object — together with the loaf <em>t</em> and the seated-goddess determinative; fuller phonetic spellings add the vulture (G1, <em>ꜣ</em>). Remarkably for so great a goddess, Isis is absent from the early dynastic record: her first secure attestations are the Pyramid Texts of the late Fifth Dynasty, where she arrives fully formed as mourning sister and nursing mother.<sup class="scholars-cite"><a href="#src-hieroglyphic-evidence-1">[1]</a></sup> Coptic ⲎⲤⲈ (Ēse) and Greek Ἶσις preserve the name&#39;s later phonetic life, and her Meroitic form Wosa carries it deep into Nubia.<sup class="scholars-cite"><a href="#src-hieroglyphic-evidence-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-hieroglyphic-evidence-1">Münster, Untersuchungen zur Göttin Isis bis zum Ende des Neuen Reiches (1968).</li><li id="src-hieroglyphic-evidence-2">Wörterbuch der ägyptischen Sprache I, s.v. ꜣst.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pyramid-texts">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Pyramid Texts</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Pyramid Texts are Isis&#39;s debut in Egyptian writing. With her sister Nephthys she mourns and protects the dead king-Osiris, searching for the body, gathering it, and fanning life back into it with her wings; as mother she suckles the young Horus, and the king, identified with Horus, is likewise offered her breast so that he may be restored as her son.<sup class="scholars-cite"><a href="#src-pyramid-texts-1">[1]</a></sup> These late-Fifth-Dynasty chambers thus contain in embryo the whole Osirian drama later elaborated in the Coffin Texts, the healing stelae, and, for the Greek-speaking world, in Plutarch&#39;s <em>On Isis and Osiris</em>.<sup class="scholars-cite"><a href="#src-pyramid-texts-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pyramid-texts-1">Faulkner, The Ancient Egyptian Pyramid Texts (1969).</li><li id="src-pyramid-texts-2">Münster, Untersuchungen zur Göttin Isis bis zum Ende des Neuen Reiches (1968).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="coffin-texts">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Coffin Texts</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>In the Coffin Texts Isis&#39;s protection extends beyond royalty to every dead person. Spells place the deceased under her wings, assign her and Nephthys the lamentation over the dead person as over Osiris, and invoke her heka — the magic she commands — against the dangers of the beyond.<sup class="scholars-cite"><a href="#src-coffin-texts-1">[1]</a></sup> The corpus supplies the myth&#39;s building blocks as funerary equipment: the search for Osiris, the conception and concealment of Horus, and the power of the true word, made standard on Middle Kingdom coffins from el-Bersha to Thebes.<sup class="scholars-cite"><a href="#src-coffin-texts-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-coffin-texts-1">Faulkner, The Ancient Egyptian Coffin Texts I–III (1973–78).</li><li id="src-coffin-texts-2">Griffiths, The Origins of Osiris and His Cult (2nd ed., 1980).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="book-of-the-dead">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Book of the Dead</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Isis&#39;s clearest Book of the Dead signature is an amulet. Spell 156, the spell of the red jasper <em>tyet</em> knot, invokes &#39;the blood of Isis, the power of Isis, the magic of Isis&#39; as protection for the deceased, and its rubric orders the knot fastened at the mummy&#39;s neck.<sup class="scholars-cite"><a href="#src-book-of-the-dead-1">[1]</a></sup> Beyond it she stands at the judgment: vignettes of Spell 125 show her with Nephthys flanking Osiris or mantling him with her wings, and the vindication formula echoes the verdict she won for her husband. The Metternich Stela later elaborates her spells for the child Horus into Egypt&#39;s most copied magical text.<sup class="scholars-cite"><a href="#src-book-of-the-dead-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-book-of-the-dead-1">Faulkner, The Ancient Egyptian Book of the Dead (ed. Andrews, 1985), Spell 156.</li><li id="src-book-of-the-dead-2">Borghouts, Ancient Egyptian Magical Texts (1978).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Isis is the goddess who refuses to let death have the last word. She does not bargain with the underworld; she walks into it, collects the fragments, and reassembles the beloved. Her power is not the thunderbolt but the patient knot, the hidden name, the breast that keeps a threatened child alive.</p>
+<p>In a world that often splits love from power, Isis holds them together. She is the throne and the lap, the magician and the mother, the one who outwits the sun and weeps for a murdered husband. She teaches that sovereignty is not domination but the capacity to make broken things whole again. To call on Isis is to call on the part of the soul that will not stop searching until what was lost is found.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Allen, Middle Egyptian (2014).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="hieroglyphic-evidence">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Hieroglyphic Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Hieroglyphic Evidence →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="pyramid-texts">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Pyramid Texts</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pyramid Texts →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="coffin-texts">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Coffin Texts</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Coffin Texts →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="book-of-the-dead">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">17</span>
-        <h2 class="scholars-section-title">Book of the Dead</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Book of the Dead →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">19</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -597,6 +589,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'isis';
@@ -630,14 +757,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -731,6 +850,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -742,18 +862,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -765,6 +886,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -809,6 +932,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

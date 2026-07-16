@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,8 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
+<li><a href="#homeric-hymns">12 &mdash; Homeric Hymns</a></li>
+<li><a href="#epithets">13 &mdash; Epithets & Epicleses</a></li>
+<li><a href="#oracle-sites">14 &mdash; Oracle & Cult Sites</a></li>
+<li><a href="#iconography">15 &mdash; Iconography</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -277,14 +297,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Apóllōn</strong> (<em>apollon</em>) — The Shining One · Lord of the Lyre — belongs to the Greek tradition, where it is catalogued under the domain &quot;Light, Music, Prophecy&quot;. The name means &quot;Possibly &#39;destroyer&#39; or &#39;purifier&#39; (from ἀπόλλυμι)&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>Apóllōn is the most Greek of the gods: not a chthonic power or a primal element, but the <strong>embodiment of measured excellence</strong>. He is the archer whose arrows strike from unseen distance, the musician whose lyre imposes order on chaos, the prophet who speaks only what Zeus permits, and the healer whose touch can lift plague as surely as his arrows bring it.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Apóllōn</strong> and serves its temple at <a class="scholars-ext" href="https://xn--aplln-1ta64d.com" rel="noopener noreferrer" target="_blank">apóllōn.com</a>. The original carries both stress and vowel length and admits multiple historically valid spellings, so the temple presents both forms of the pair as a dual-tier restoration. The plain ASCII form <em>apollon</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-overview-2">Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a class="scholars-ext" href="https://brill.com/view/title/17858" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-overview-3">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a class="scholars-ext" href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -292,14 +311,20 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Greek as <strong>Ἀπόλλων</strong>. Etymologically it means &quot;Possibly &#39;destroyer&#39; or &#39;purifier&#39; (from ἀπόλλυμι)&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The reconstructed proto-form is <em>h₂epél-yōn</em> (proto-indo-european, &quot;destroyer, purifier&quot;). Uncertain; possibly from ἀπόλλυμι &quot;to destroy&quot;, or pre-Greek. Associated with Lycian god Apaliunas.</p>
+<p>Cognate forms across related languages:</p>
+<ul class="scholars-list"><li><strong>Apaliunas</strong> (lycian) — Lycian god of the plague</li></ul>
+<p>The ASCII form <em>apollon</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Apóllōn</strong> recovers both the stress accent and the vowel length of the original directly in the address bar. The original carries both stress and vowel length and admits multiple historically valid spellings, so the temple presents both forms of the pair as a dual-tier restoration.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>a</strong> → <strong>A</strong> — Alpha</li><li><strong>p</strong> → <strong>p</strong> — Pi</li><li><strong>o</strong> → <strong>ó</strong> — Acute on omicron</li><li><strong>l</strong> → <strong>l</strong> — Lambda</li><li><strong>l</strong> → <strong>l</strong> — Lambda</li><li><strong>o</strong> → <strong>ō</strong> — Omega: long omicron</li><li><strong>n</strong> → <strong>n</strong> — Nu</li></ul>
+<p>Attested and derived spellings of the name:</p>
+<ul class="scholars-list"><li><strong>Apṓllōn</strong> — ideal form: Stacked acute+macron on omicron: philologically ideal, untypeable on phones</li><li><strong>Apollōn</strong> — macron-only form: LSJ convention: length only, no stress mark</li></ul>
+<p>The project holds the domain <strong>apóllōn.com</strong> (xn--aplln-1ta64d.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-the-name-2">Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a class="scholars-ext" href="https://brill.com/view/title/17858" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -307,14 +332,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/a.pól.lɔːn/</strong> — Attic Greek Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>A-</strong> — Short alpha, smooth breathing — the name opens without roughness, like light arriving.</li><li><strong>-pól-</strong> — Pi plus acute on short omicron. The pitch peak falls on the second syllable, a rising call that carries across distance.</li><li><strong>-lōn</strong> — Lambda, long omega, nu. The long final vowel sustains and resolves the name like a held musical note.</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;ah-POL-lone&#39; — stress the second syllable and hold the final &#39;o&#39; roughly twice as long as English allows.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Greek</strong> — ἀπόλλυμι (apollymi), &#39;to destroy, to put an end to&#39; — the traditional Greek etymology</li><li><strong>Lycian</strong> — Apaliunas, divine name attested in the Lycian script, possibly an Anatolian counterpart</li><li><strong>PIE</strong> — no secure Indo-European etymology; Beekes argues for a Pre-Greek origin</li></ul>
+<p>Apóllōn is dual-tier because the Greek Ἀπόλλων carries both stress (acute on the second syllable) and length (omega in the final syllable), and because two historically defensible restorations exist: Apóllōn with acute stress and Apollōn with macron-only length. Both forms are owned and both are philologically legitimate.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -322,14 +350,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Greek as <strong>Ἀπόλλων</strong> — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Apóllōn</em> (Greek alphabet with polytonic accents), giving the normalized reading /aˈpol.lɔːn/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The Greek form Ἀπόλλων is written in the Classical Greek alphabet.</li><li>Letters with acute, grave, or circumflex accents preserve the pitch accent of Ancient Greek.</li><li>Macrons and omegas (η, ω) mark long vowels, a feature lost in the plain ASCII form.</li><li>The Unicode restoration Apóllōn encodes the scholarly spelling as a registrable domain name.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Beekes, Etymological Dictionary of Greek.</li><li id="src-original-script-2">Chantraine, Dictionnaire étymologique de la langue grecque.</li><li id="src-original-script-3">Liddell-Scott-Jones (LSJ).</li><li id="src-original-script-4">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a class="scholars-ext" href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -337,14 +365,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>Apóllōn is the most Greek of the gods: not a chthonic power or a primal element, but the <strong>embodiment of measured excellence</strong>. He is the archer whose arrows strike from unseen distance, the musician whose lyre imposes order on chaos, the prophet who speaks only what Zeus permits, and the healer whose touch can lift plague as surely as his arrows bring it.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Solar Radiance</h3>
+<p>The eye that sees all and the fire that nourishes; Apóllōn&#39;s chariot drives the sun across the sky, though Helios increasingly takes over this role in later poetry.</p>
+<h3 class="scholars-h3">Music and Harmony</h3>
+<p>His lyre, won from Hermês, orders emotion itself; music, mathematics, and cosmic proportion fall under his patronage.</p>
+<h3 class="scholars-h3">Prophetic Sight</h3>
+<p>At Delphoí, through the Pythia, he speaks in enigmatic verse; prophecy is not fortune-telling but the disciplined interpretation of divine will.</p>
+<h3 class="scholars-h3">Healer and Purifier</h3>
+<p>The same bow that sends plague can avert it; his epithets Alexikakos and Paiôn mark him as protector from evil and god of healing.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a class="scholars-ext" href="https://brill.com/view/title/17858" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -352,14 +385,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Apóllōn concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Laurel wreath</strong> — Victory, poetic achievement, and the nymph Daphnê transformed to escape him</li><li><strong>Lyre</strong> — Cosmic harmony and the arts; the instrument he received from Hermês</li><li><strong>Bow and arrows</strong> — Far-reaching power: disease, death, and divine justice</li><li><strong>Tripod</strong> — The Delphic seat of prophecy</li><li><strong>Raven or swan</strong> — Solar bird and messenger; the swan circled Delos at his birth</li><li><strong>Wolf</strong> — His archaic epithet Lykeios connects him with wolves and perhaps with light</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -367,14 +398,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Apóllōn&#39;s myths are unusually coherent because they consistently dramatize the same theme: <strong>the distance between divine perfection and mortal limitation</strong>. He is never ridiculous, but he is often terrifying.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Born on the Wandering Island (The Birth)</h3>
+<p>Hêra, in jealousy, cursed Lētô so that no land fixed to the earth could give her shelter. All islands refused her — until Dêlos, a floating rock, offered itself. There Lētô clung to a palm tree and bore Apóllōn and his twin sister Artemis. Swans circled the island seven times, and light flooded the Aegean. Dêlos became fixed forever — <strong>the weight of divinity anchors what chaos cannot hold</strong>.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Slayer of Pythô (The Oracle)</h3>
+<p>Apóllōn seized Delphoí by killing the she-dragon Pythôn who guarded the site. From her corpse the oracle took its name: Pythia. The Homeric <em>Hymn to Apollo</em> describes his journey from Delos to Delphi as a triumphal procession; every place he passes becomes Greek through recognition of his power.</p>
+<h3 class="scholars-h3">Marsyas and the Limits of Hubris (The Mortal Cost)</h3>
+<p>The satyr Marsyas found the aulos that Athena had discarded and challenged Apóllōn to a musical contest. The god won and flayed Marsyas alive for his presumption. The myth is brutal, but its logic is consistent: <strong>no mortal art can rival divine order</strong>, and to claim equality with a god is to invite destruction.</p>
+<h3 class="scholars-h3">Daphnê and the Laurel (Unrequited Love)</h3>
+<p>Pursued by Apóllōn, the nymph Daphnê prayed to her father the river-god Peneus and was transformed into a laurel tree. Apóllōn made the laurel his sacred plant, and it became the crown of poets, athletes, and conquerors. The myth turns loss into symbol: what cannot be possessed becomes the sign of achievement.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a class="scholars-ext" href="https://brill.com/view/title/17858" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-mythology-2">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a class="scholars-ext" href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -382,14 +418,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Apóllōn was one of the most widely exported Greek gods. In Egypt he was identified with Hôros, in Italy with Apollo himself (the Romans adopted him directly without renaming), and in Anatolia with local solar deities. The emperor Augustus made Apóllōn a patron of the Roman state, dedicating a magnificent temple on the Palatine. In Neoplatonism he became the principle of intellect and light; in Renaissance art he embodied the ideal male form. His most durable legacy is linguistic: &#39;Apollo&#39; still names the brightest, most ordered aspect of civilization, from the space program to the god of poetry.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include <a class="scholars-xlink" href="/sites/helios/">Hēlios</a>, <a class="scholars-xlink" href="/sites/ra/">Rꜥ</a>, <a class="scholars-xlink" href="/sites/dazhbog/">Dažbog</a>, <a class="scholars-xlink" href="/sites/huitzilopochtli/">Huitzilopōchtli</a>, <a class="scholars-xlink" href="/sites/shamash/">Šamaš</a>, and <a class="scholars-xlink" href="/sites/shapash/">Šāpšu</a>, each linked through sun / light.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -397,14 +431,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Apóllōn never stopped shaping Western culture. The Pythian Games at Delphoí were one of the four great Panhellenic festivals; their musical and athletic contests set the model for later competitions. The Delphic maxims — &#39;Know thyself,&#39; &#39;Nothing in excess&#39; — were attributed to him. In art, the &#39;Apollo Belvedere&#39; became the canonical image of male beauty for centuries. The name survives in NASA&#39;s Apollo program, in countless operas and symphonies, and in the very idea of the &#39;Apollonian&#39; as orderly, luminous, rational — set against the &#39;Dionysian&#39; by Nietzsche. To restore <em>Apóllōn</em> with its full Greek accents is to restore the original sound of this civilizing force.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -412,14 +443,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The material record for Apóllōn survives in a small number of securely identified remains, catalogued below; the corpus is thin but unambiguous, and each site is tied to the name by ancient testimony<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup>.</p>
+<p>Delphi: temple of Apollo, theatre, stadium, and the Omphalos; the Pythian Games. Delos: sanctuary of Apollo and Artemis, birthplace cult.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -427,75 +456,105 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Apóllōn given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a class="scholars-ext" href="https://brill.com/view/title/17858" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a class="scholars-ext" href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Homeric Hymn to Apollo.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Aeschylus, Eumenides.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Plato, Republic.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-2">Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a class="scholars-ext" href="https://brill.com/view/title/17858" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-3">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a class="scholars-ext" href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-4">Homeric Hymn to Apollo.</li><li id="src-scholarly-sources-5">Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-6">Aeschylus, Eumenides.</li><li id="src-scholarly-sources-7">Plato, Republic.</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="homeric-hymns">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Homeric Hymns</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Apóllōn receives the grandest hymn in the corpus. <strong>Hymn 3</strong> is composite. The <strong>Delian</strong> part narrates Lētô&#39;s wandering search for a birthplace, the birth beneath the palm on Dēlos, and the Ionian festival held in the god&#39;s honor; the <strong>Pythian</strong> part follows the newborn god to Krisa, his slaying of the she-dragon, and his seizure of a Cretan ship — he leaps aboard in dolphin form (hence Delphínios), installs the sailors as his priests, and declares that here his temple will give unerring counsel to mortals<sup class="scholars-cite"><a href="#src-homeric-hymns-1">[1]</a></sup>. The short <strong>Hymn 21</strong> invokes Phoibos: of him the swan sings, and the lyre answers. These hymns are the primary archaic sources for the birth myth and the Delphic foundation legend.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-homeric-hymns-1">Homeric Hymn to Apollo (Hymn 3), with Hymn 21; Loeb Classical Library No. 496.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="epithets">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Epithets & Epicleses</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Apóllōn carries one of the richest epithet stocks in Greek religion.</p>
+<ul class="scholars-list"><li><strong>Φοῖβος (Phoîbos)</strong> — &#39;the Bright, Shining One&#39;; Homer&#39;s constant companion-name for the god<sup class="scholars-cite"><a href="#src-epithets-1">[1]</a></sup>.</li><li><strong>ἑκηβόλος (hekēbólos)</strong> — &#39;far-shooting&#39;; of the bow that strikes from afar, from <em>Iliad</em> 1 onward<sup class="scholars-cite"><a href="#src-epithets-1">[1]</a></sup>.</li><li><strong>Πύθιος (Pýthios)</strong> — &#39;of Pythō&#39;; from the she-dragon slain at Delphi, his oracular title<sup class="scholars-cite"><a href="#src-epithets-2">[2]</a></sup>.</li><li><strong>Δελφίνιος (Delphínios)</strong> — &#39;of the dolphin&#39;; from the epiphany to the Cretan sailors, a cult title at Athens and across the Aegean<sup class="scholars-cite"><a href="#src-epithets-2">[2]</a></sup>.</li><li><strong>Λύκειος (Lýkeios)</strong> — &#39;wolf-god&#39; (or &#39;of Lycia&#39;); title of his ancient Argive sanctuary<sup class="scholars-cite"><a href="#src-epithets-3">[3]</a></sup>.</li><li><strong>Σμινθεύς (Smintheús)</strong> — &#39;lord of mice&#39; (or &#39;of Sminthe&#39;); Chryses&#39; invocation in <em>Iliad</em> 1<sup class="scholars-cite"><a href="#src-epithets-1">[1]</a></sup>.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-epithets-1">Homer, Iliad 1 (Smintheus, Phoibos, hekēbolos).</li><li id="src-epithets-2">Homeric Hymn to Apollo 3.</li><li id="src-epithets-3">Pausanias, Description of Greece 2.19.3 (Apollo Lykeios at Argos).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="oracle-sites">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Oracle & Cult Sites</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Apóllōn is the oracular god par excellence; his sites anchor Greek prophecy.</p>
+<ul class="scholars-list"><li><strong>Delphi (Pythō)</strong> — the navel of the world; the Pythia on the tripod, the maxims &#39;Know thyself&#39; and &#39;Nothing in excess&#39;, seat of the Pythian Games<sup class="scholars-cite"><a href="#src-oracle-sites-1">[1]</a></sup>.</li><li><strong>Didyma (Branchidai)</strong> — the great Ionian oracle near Milētos, famous for its archaic responses and its vast unfinished temple<sup class="scholars-cite"><a href="#src-oracle-sites-2">[2]</a></sup>.</li><li><strong>Klaros</strong> — oracle of Apollo Klarios near Kolophōn, consulted by cities well into the Roman period<sup class="scholars-cite"><a href="#src-oracle-sites-2">[2]</a></sup>.</li><li><strong>Dēlos</strong> — his birth-island, whose oracle the Homeric Hymn already celebrates<sup class="scholars-cite"><a href="#src-oracle-sites-3">[3]</a></sup>.</li><li><strong>Abai</strong> — venerable Phokian oracle, one of those Kroisos consulted<sup class="scholars-cite"><a href="#src-oracle-sites-2">[2]</a></sup>.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-oracle-sites-1">Fontenrose, The Delphic Oracle (Berkeley, 1978).</li><li id="src-oracle-sites-2">Herodotus, Histories 1.46 (Kroisos tests the oracles).</li><li id="src-oracle-sites-3">Homeric Hymn to Apollo 3 (Delos).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="iconography">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Iconography</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Apóllōn is the defining image of the Greek kouros: a beardless, long-haired youth. The colossal marble Apollo dedicated by the Naxians on Dēlos (c. 600 BCE) fixed the monumental type<sup class="scholars-cite"><a href="#src-iconography-1">[1]</a></sup>. His attributes mark his provinces — bow and quiver, kithara or lyre, laurel branch, tripod and omphalos, raven, wolf, and dolphin. Classical masterpieces such as the Apollo Belvedere and Praxiteles&#39; <strong>Sauroktónos</strong> (the lizard-slayer leaning on a tree) set the canon of serene male beauty<sup class="scholars-cite"><a href="#src-iconography-2">[2]</a></sup>. On vases he sits on the Delphic tripod, contends with Marsyas, or joins Lētô and <a class="scholars-xlink" href="/sites/artemis/">Ártemis</a>; Sicilian Leontinoi put his laureate head on tetradrachms<sup class="scholars-cite"><a href="#src-iconography-1">[1]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-iconography-1">LIMC II, s.v. &#39;Apollon&#39; (Zurich, 1984).</li><li id="src-iconography-2">Boardman, Greek Sculpture: The Archaic and Classical Periods.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Apóllōn is the god who makes distance felt. His arrows come from far away; his oracle speaks in riddles; his music imposes pattern on emotion from above. He is not the warm sun but the clear, hard light that reveals every flaw. That is why he is both healer and destroyer: the same clarity that diagnoses disease also pronounces sentence.</p>
+<p>In a digital age, Apóllōn&#39;s legacy is ambiguous. We have made machines that calculate, order, and predict with terrifying precision — Apollonian powers. Yet we have also learned that information without wisdom is a plague of arrows. The name <em>Apóllōn</em>, restored in Unicode, can remind us that light is not warmth, order is not kindness, and prophecy is not control.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">14</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">15</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -533,6 +592,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'apollon';
@@ -566,14 +760,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -667,6 +853,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -678,18 +865,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -701,6 +889,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -745,6 +935,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

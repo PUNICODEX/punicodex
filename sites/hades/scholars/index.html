@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,8 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
+<li><a href="#homeric-hymns">12 &mdash; Homeric Hymns</a></li>
+<li><a href="#epithets">13 &mdash; Epithets & Epicleses</a></li>
+<li><a href="#oracle-sites">14 &mdash; Oracle & Cult Sites</a></li>
+<li><a href="#iconography">15 &mdash; Iconography</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -277,14 +297,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Hádēs</strong> (<em>hades</em>) — The Unseen One · Lord of the Dead — belongs to the Greek tradition, where it is catalogued under the domain &quot;Underworld, Wealth&quot;. The name means &quot;The Unseen One (from ἀ- + εἶδον)&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>Hádēs is not evil; he is <strong>the necessary guardian of the dead</strong>. His realm is not hell but the place beneath the earth where all souls go — good and bad alike. He is also Plouton, the wealthy one, because the earth holds grain, metals, and the buried dead.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Hádēs</strong> and serves its temple at <a class="scholars-ext" href="https://xn--hds-ela5w.com" rel="noopener noreferrer" target="_blank">hádēs.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>hades</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-overview-2">Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a class="scholars-ext" href="https://brill.com/view/title/17858" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-overview-3">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a class="scholars-ext" href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -292,14 +311,20 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Greek as <strong>Ἅιδης</strong>. Etymologically it means &quot;The Unseen One (from ἀ- + εἶδον)&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The reconstructed proto-form is <em>n̥-wid-</em> (proto-indo-european, &quot;unseen, invisible&quot;). From ἀ- (privative) + εἶδον &quot;to see&quot;, lit. &quot;the unseen one&quot;.</p>
+<p>Cognate forms across related languages:</p>
+<ul class="scholars-list"><li><strong>εἶδον</strong> (greek) — Aorist of ὁράω &quot;to see&quot;</li></ul>
+<p>The ASCII form <em>hades</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Hádēs</strong> recovers both the stress accent and the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>h</strong> → <strong>H</strong> — Rough breathing implied</li><li><strong>a</strong> → <strong>á</strong> — Acute on alpha</li><li><strong>d</strong> → <strong>d</strong> — Delta</li><li><strong>e</strong> → <strong>ē</strong> — Eta: long epsilon</li><li><strong>s</strong> → <strong>s</strong> — Sigma</li></ul>
+<p>Attested and derived spellings of the name:</p>
+<ul class="scholars-list"><li><strong>Hādēs</strong> — alternate stress, scholarly variant: Macron on alpha: length-preserved variant without acute</li></ul>
+<p>The project holds the domain <strong>hádēs.com</strong> (xn--hds-ela5w.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-the-name-2">Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a class="scholars-ext" href="https://brill.com/view/title/17858" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -307,14 +332,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/há.dɛːs/</strong> — Attic Greek Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Ha-</strong> — Rough breathing on short alpha — the name expires outward, like a breath seen in cold air.</li><li><strong>-dēs</strong> — Delta plus long eta, the long vowel that opens the name into the unseen.</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;HAH-dace&#39; — the first syllable is pitched high and sharp; the second is long and level, like the floor of the underworld.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Greek</strong> — Ἅιδης (Haidēs), from ἀ- (privative) + ἰδεῖν (idein), &#39;the unseen&#39;</li><li><strong>PIE</strong> — *ǵʰew-, &#39;to see&#39; — the same root gives Greek οἶδα (oida), &#39;I know&#39;</li></ul>
+<p>Hádēs is Tier 1 because the Greek Ἅιδης contains both stress (acute on the first alpha) and length (long η). The name literally means &#39;the Unseen,&#39; and the acute on the first syllable gives it the force of a warning.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -322,14 +350,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Greek as <strong>Ἅιδης</strong> — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Hádēs</em> (Greek alphabet with polytonic accents), giving the normalized reading /ˈhaː.dɛːs/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The Greek form Ἅιδης is written in the Classical Greek alphabet.</li><li>Letters with acute, grave, or circumflex accents preserve the pitch accent of Ancient Greek.</li><li>Macrons and omegas (η, ω) mark long vowels, a feature lost in the plain ASCII form.</li><li>The Unicode restoration Hádēs encodes the scholarly spelling as a registrable domain name.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Beekes, Etymological Dictionary of Greek.</li><li id="src-original-script-2">Chantraine, Dictionnaire étymologique de la langue grecque.</li><li id="src-original-script-3">Liddell-Scott-Jones (LSJ).</li><li id="src-original-script-4">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a class="scholars-ext" href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -337,14 +365,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>Hádēs is not evil; he is <strong>the necessary guardian of the dead</strong>. His realm is not hell but the place beneath the earth where all souls go — good and bad alike. He is also Plouton, the wealthy one, because the earth holds grain, metals, and the buried dead.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Underworld</h3>
+<p>Not a place of torment but the common destination of all mortals, ruled with strict impartiality.</p>
+<h3 class="scholars-h3">Wealth of the Earth</h3>
+<p>As Plouton he owns gold, silver, and the fertility that rises from below.</p>
+<h3 class="scholars-h3">The House of Hádēs</h3>
+<p>A place of shadow, gates, and the three-headed dog Kerberos who allows entry but not exit.</p>
+<h3 class="scholars-h3">Immovable Justice</h3>
+<p>Unlike other gods, Hádēs almost never intervenes in human affairs; his realm is governed by law.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a class="scholars-ext" href="https://brill.com/view/title/17858" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -352,14 +385,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Hádēs concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Cornucopia</strong> — Wealth and the fertility of the earth</li><li><strong>Bident or sceptre</strong> — Sovereignty over the dead</li><li><strong>Cerberus</strong> — The boundary between life and death</li><li><strong>Cypress</strong> — The mourning tree, sacred to the underworld</li><li><strong>Narcissus</strong> — The flower that lured Persephonē</li><li><strong>Key</strong> — He holds the keys to the underworld gates</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -367,14 +398,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Hádēs appears rarely in Greek myth because his realm is separate from the world of the living. His most important myth is the abduction of Persephonē, which explains the seasons and establishes his connection to Demeter.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Rape of Persephonē (The Abduction)</h3>
+<p>With Zeús&#39;s permission, Hádēs burst from the earth in a golden chariot and seized Persephonē while she gathered flowers in a meadow. Demeter&#39;s grief caused famine and winter until Zeús negotiated a compromise: Persephonē spends part of the year above with her mother and part below with her husband. This is the Greek explanation for the seasons — <strong>life and death take turns because even gods must share</strong>.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Judges of the Dead (The Law)</h3>
+<p>In the underworld, the dead are judged by Minos, Aiakos, and Rhadamanthys — three former mortals made just. The wicked go to Tartaros, the ordinary dead to the fields of Asphodel, and the heroic few to Elysium. Hádēs presides over this system without passion; his justice is administrative, not punitive.</p>
+<h3 class="scholars-h3">Orpheus and Eurydice (The Visitor)</h3>
+<p>Orpheus descended to Hádēs&#39;s realm to retrieve his dead wife Eurydice. His music moved even the underworld king, who allowed her to follow on the condition that Orpheus not look back. At the threshold of the upper world, Orpheus looked, and she was lost. The myth shows Hádēs as capable of pity but bound by the law of his realm.</p>
+<h3 class="scholars-h3">The Cap of Darkness (The Helm)</h3>
+<p>The Cyclopes gave Hádēs a helmet that made the wearer invisible. He lent it to Athena in the Gigantomachy and to Perseus for his mission against Medousa. The cap is the material form of his nature: Hádēs is the unseen, and his power is to make others unseen as well.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a class="scholars-ext" href="https://brill.com/view/title/17858" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-mythology-2">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a class="scholars-ext" href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -382,14 +418,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>The Romans called him Pluto or Dis Pater, emphasizing his wealth rather than his dread. In mystery cults — especially the Eleusinian Mysteries — he and Persephonē were central figures who promised initiates a better afterlife. Christian writers later used Hades as a name for the underworld itself and, in the New Testament, as a temporary abode of the dead. The name passed into English as the word for the realm of the dead, though the Greek god is morally neutral.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include <a class="scholars-xlink" href="/sites/kanaloa/">Kānāloa</a>, <a class="scholars-xlink" href="/sites/ker/">Kēr</a>, <a class="scholars-xlink" href="/sites/mot/">Mōt</a>, <a class="scholars-xlink" href="/sites/persephone/">Persephonē</a>, and <a class="scholars-xlink" href="/sites/thanatos/">Thánatos</a>, each linked through underworld / death.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -397,14 +431,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Hádēs remains the archetype of the underworld ruler in Western imagination. Unlike the Christian devil, he is neither tempter nor torturer; he is the strict, fair administrator of death. The Eleusinian Mysteries, which honored Demeter and Persephonē, were among the most important religious institutions of the ancient Mediterranean and influenced later ideas of salvation. In modern fantasy, Hades appears in countless adaptations, usually darker than his Greek original. Restoring <em>Hádēs</em> restores the name of the god who receives everyone in the end.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -412,14 +443,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>Eleusis preserves the Telesterion and the Ploutonion, the cave from which Hades was said to have emerged to seize Persephone. The Nekromanteion at Ephyra on the Acheron was an oracle of the dead visited by Odysseus in the Nekyia. In Asia Minor, the Ploutonion at Hierapolis (Pamukkale) emitted suffocating gases and was enclosed as a sanctuary of Pluto. Votive reliefs from Locri Epizephyrii and Athens show the god with Cerberus and Persephone.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -427,75 +455,107 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Hádēs given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a class="scholars-ext" href="https://brill.com/view/title/17858" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a class="scholars-ext" href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Homer, Odyssey.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Homeric Hymn to Demeter.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Plato, Phaedo.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-2">Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a class="scholars-ext" href="https://brill.com/view/title/17858" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-3">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a class="scholars-ext" href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-4">Homer, Odyssey.</li><li id="src-scholarly-sources-5">Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-6">Homeric Hymn to Demeter.</li><li id="src-scholarly-sources-7">Plato, Phaedo.</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="homeric-hymns">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Homeric Hymns</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>No dedicated Homeric Hymn to Hádēs survives; the lord of the dead never received an independent hymn in the archaic corpus. His most substantial hymnic appearance is as the abductor in the Homeric <em>Hymn to Demeter</em>, where under the lengthened name <strong>Aidōneus</strong> he carries off <a class="scholars-xlink" href="/sites/persephone/">Persephonē</a> with the consent of Zeús and surrenders her again only by compromise.<sup class="scholars-cite"><a href="#src-homeric-hymns-1">[1]</a></sup></p>
+<p>The earliest hexameter attestations are otherwise brief but formulaic. In the <em>Iliad</em> Agamemnon&#39;s envoys declare that Hades is &#39;unbending and unsubdued, and therefore the most hateful of gods to mortals&#39; (<em>Il.</em> 9.158), and the <em>Odyssey</em> gives its fullest picture of his realm in the Nekyia of Book 11.<sup class="scholars-cite"><a href="#src-homeric-hymns-2">[2]</a></sup> Hesiod describes &#39;the echoing halls of strong Hades and dread Persephone,&#39; guarded by the pitiless hound who fawns on those who enter but lets none go back out (<em>Theogony</em> 767–774).<sup class="scholars-cite"><a href="#src-homeric-hymns-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-homeric-hymns-1">Homeric Hymn to Demeter (Hymn 2), especially lines 1–39 and 334–433.</li><li id="src-homeric-hymns-2">Homer, Iliad 9.158; Odyssey 11 (the Nekyia).</li><li id="src-homeric-hymns-3">Hesiod, Theogony 767–774.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="epithets">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Epithets & Epicleses</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>A god so feared was seldom named outright; his titles are euphemisms around a taboo.</p>
+<ul class="scholars-list"><li><strong>Ἀΐδωνεύς (Aidōneús)</strong> — &#39;the Unseen One&#39; in lengthened hymnic form; the god&#39;s standing name in the Homeric <em>Hymn to Demeter</em>.<sup class="scholars-cite"><a href="#src-epithets-1">[1]</a></sup></li><li><strong>Πλούτων (Ploútōn)</strong> — &#39;the Wealthy One,&#39; joining the lord of the dead to the riches stored beneath the earth; Plato already plays on the etymology, and it becomes his normal cult name.<sup class="scholars-cite"><a href="#src-epithets-2">[2]</a></sup></li><li><strong>Κλυμένος (Klyménos)</strong> — &#39;the Renowned One,&#39; his cult title at Hermione in the Argolid, beside the chasm where Heraklēs was said to have dragged up Kerberos.<sup class="scholars-cite"><a href="#src-epithets-3">[3]</a></sup></li><li><strong>ἀμείλιχος ἠδ᾽ ἀδάμαστος (ameílichos ēd&#39; adámastos)</strong> — &#39;unbending and unsubdued,&#39; the <em>Iliad</em>&#39;s formula for the god most hated by mortals (9.158).<sup class="scholars-cite"><a href="#src-epithets-4">[4]</a></sup></li><li><strong>Ζεὺς καταχθόνιος (Zeùs katachthónios)</strong> — &#39;Zeus of the world below,&#39; invoked with dread Persephone at <em>Il.</em> 9.457 — his kingdom a shadow of his brother&#39;s.<sup class="scholars-cite"><a href="#src-epithets-4">[4]</a></sup></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-epithets-1">Homeric Hymn to Demeter (Hymn 2).</li><li id="src-epithets-2">Plato, Cratylus 403a; Liddell-Scott-Jones s.v. Πλούτων.</li><li id="src-epithets-3">Pausanias, Description of Greece 2.35.9–10 (Hermione).</li><li id="src-epithets-4">Homer, Iliad 9.158 and 9.457.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="oracle-sites">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Oracle & Cult Sites</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>No true oracle of Hádēs is attested; the Greeks consulted the dead rather than their king. The nearest institution was the <strong>Nekromanteion of Ephyra</strong> in Thesprotia, above the river Acherōn, where the ghosts of the dead were called up for questioning: Herodotus reports that the Corinthian tyrant Periander sent there to consult the spirit of his murdered wife Melissa.<sup class="scholars-cite"><a href="#src-oracle-sites-1">[1]</a></sup></p>
+<p>His remaining &#39;sites&#39; are cultic rather than oracular: the <strong>Ploutonion of Eleusis</strong>, the cave-gate of the underworld beside the Telesterion; the sanctuary of <strong>Klymenos at Hermione</strong>, with its chasm and &#39;Acherusian lake&#39;; and the gaseous <strong>Ploutonion at Hierapolis</strong> in Phrygia, whose vapours killed animals and men at once — only the Galloi who served the place, Strabo says, could enter unharmed.<sup class="scholars-cite"><a href="#src-oracle-sites-2">[2]</a></sup><sup class="scholars-cite"><a href="#src-oracle-sites-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-oracle-sites-1">Herodotus, Histories 5.92 (Periander and Melissa).</li><li id="src-oracle-sites-2">Strabo, Geography 13.4.14 (the Ploutonion at Hierapolis).</li><li id="src-oracle-sites-3">Pausanias, Description of Greece 2.35.9–10 (Hermione); Mylonas, Eleusis and the Eleusinian Mysteries (1961).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="iconography">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Iconography</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Greek art rarely dared to picture the Unseen One, and no cult idol of him is known. When he appears, he is a <strong>mature, dark-bearded god</strong> of Zeus-like build, marked off by his attributes: the <strong>bident</strong> or plain sceptre of sovereignty, the <strong>cornucopia</strong> and grain he carries as Ploutōn, the <strong>key</strong> of the gates, and the three-headed <strong>Kerberos</strong> at his feet.<sup class="scholars-cite"><a href="#src-iconography-1">[1]</a></sup></p>
+<p>His most frequent scene is narrative rather than cultic: the abduction of Persephonē on Attic and South Italian vases, driving the chariot that bursts from the earth. In the fourth century the <strong>Apulian underworld vases</strong> and the <strong>Locrian pinakes</strong> give him a fixed type — enthroned beside Persephonē in a pillared palace, sceptre in hand, receiving Heraklēs, Orpheus, or the souls of the initiated. Roman art inherited this Ploutōn type essentially unchanged.<sup class="scholars-cite"><a href="#src-iconography-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-iconography-1">Lexicon Iconographicum Mythologiae Classicae (LIMC), s.v. Hades, Plouton.</li><li id="src-iconography-2">Prückner, Die lokrischen Tonreliefs (Mainz, 1968); Apulian red-figure underworld vases.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Hádēs is the god we do not want to meet. Not because he is cruel, but because meeting him means the story is over. He is the final impartiality: rich and poor, hero and coward, all pass through his gates. The Greeks found this terrifying but also just. There is no favoritism in death.</p>
+<p>In a culture that often denies death, Hádēs is a corrective. He does not threaten; he waits. The restoration of his name in Unicode is a small acknowledgment that the Greeks had a vocabulary for the end of life that was neither sentimental nor despairing — simply true.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">14</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">15</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -533,6 +593,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'hades';
@@ -566,14 +761,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -667,6 +854,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -678,18 +866,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -701,6 +890,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -745,6 +936,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

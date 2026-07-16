@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,12 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#poetic-edda">14 &mdash; Poetic Edda</a></li>
-<li><a href="#prose-edda">15 &mdash; Prose Edda</a></li>
-<li><a href="#runic-evidence">16 &mdash; Runic Evidence</a></li>
-<li><a href="#sagas">17 &mdash; Sagas & Medieval Sources</a></li>
+<li><a href="#poetic-edda">12 &mdash; Poetic Edda</a></li>
+<li><a href="#prose-edda">13 &mdash; Prose Edda</a></li>
+<li><a href="#runic-evidence">14 &mdash; Runic Evidence</a></li>
+<li><a href="#sagas">15 &mdash; Sagas & Medieval Sources</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -281,14 +297,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Óðinn</strong> (<em>odinn</em>) — The Frenzied One · Lord of the Hanged — belongs to the Norse tradition, where it is catalogued under the domain &quot;Wisdom, War, Death, Poetry&quot;. The name means &quot;Fury, possession (from *wōđanaz)&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>In the norse tradition, <strong>Óðinn</strong> governed wisdom, war, death, poetry. The name encodes a sphere of power that shaped ritual, narrative, and social order.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Óðinn</strong> and serves its temple at <a class="scholars-ext" href="https://xn--inn-2mao.com" rel="noopener noreferrer" target="_blank">óðinn.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>odinn</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li><li id="src-overview-2">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li id="src-overview-3">Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora.</li></ol></div>
     </div>
 </section>
 
@@ -296,14 +311,20 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Younger Futhark as <strong>ᚢᚦᛁᚾ</strong>. Etymologically it means &quot;Fury, possession (from *wōđanaz)&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The reconstructed proto-form is <em>Wōdanaz</em> (proto-indo-european, &quot;fury, possession, poetry&quot;). PGmc <em>Wōdanaz &quot;the furious one&quot;, from </em>wōđ- &quot;fury, inspiration&quot;. Cognate with Latin vātēs &quot;poet-seer&quot;.</p>
+<p>Cognate forms across related languages:</p>
+<ul class="scholars-list"><li><strong>Wōden</strong> (old-english) — Anglo-Saxon counterpart</li><li><strong>Wuotan</strong> (old-high-german) — Continental Germanic counterpart</li><li><strong>Óðinn</strong> (old-norse) — Norse form with eth</li></ul>
+<p>The ASCII form <em>odinn</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Óðinn</strong> recovers the stress accent of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>o</strong> → <strong>Ó</strong> — Acute on O</li><li><strong>d</strong> → <strong>ð</strong> — Eth: voiced dental fricative</li><li><strong>i</strong> → <strong>i</strong> — Same</li><li><strong>n</strong> → <strong>n</strong> — Same</li><li><strong>n</strong> → <strong>n</strong> — Same</li></ul>
+<p>Attested and derived spellings of the name:</p>
+<ul class="scholars-list"><li><strong>Oðinn</strong> — ideal form: Eth variant: Oðinn (strict orthography)</li></ul>
+<p>The project holds the domain <strong>óðinn.com</strong> (xn--inn-2mao.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li><li id="src-the-name-2">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li></ol></div>
     </div>
 </section>
 
@@ -311,14 +332,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/ˈɔːðinː/</strong> — Old Norse Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Ó-</strong> — Long open-mid back [ɔː] with acute marking stress and length; the name derives from *Wōđanaz, &#39;the furious&#39;</li><li><strong>-ð-</strong> — Voiced dental fricative [ð], the eth; it replaced Proto-Germanic *đ and gives the name its Norse colour</li><li><strong>-in-</strong> — Short close front [i] and alveolar nasal [n]; the participial/derivative suffix</li><li><strong>-n</strong> — Final alveolar nasal [n], geminated in Old Norse orthography as nn</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;OH-thin&#39; — hold the first vowel long like &#39;awe&#39;, then a soft &#39;th&#39; as in &#39;this&#39;, and a crisp &#39;nin&#39;.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Old English</strong> — Wōden, the Anglo-Saxon name of the same god</li><li><strong>Old High German</strong> — Wuotan, the continental Germanic form</li><li><strong>Proto-Germanic</strong> — *Wōđanaz, &#39;the possessed, the furious one&#39;, ancestor of all Germanic Odin-names</li></ul>
+<p>Óðinn is accent-preserving Tier 2: the acute on Ó marks stress and length on the first syllable, but the remaining vowels are short. The name descends from <em>Wōđanaz; the initial w- was lost in West Norse, giving Óðinn rather than </em>Wóðinn.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li></ol></div>
     </div>
 </section>
 
@@ -326,14 +350,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Younger Futhark as <strong>ᚢᚦᛁᚾ</strong> — Germanic runic, attested Viking Age, c. 800–1100 CE, in Scandinavia. The script is written left-to-right, top-to-bottom.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Óðinn</em> (normalized Old Norse), giving the normalized reading /ˈoːðinː/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The Younger Futhark form ᚢᚦᛁᚾ provides a Viking-Age runic attestation or normalized reconstruction.</li><li>Younger Futhark has only sixteen runes and does not distinguish short/long vowels or voiced/voiceless stops.</li><li>The normalized Old Norse form is based on 13th-century manuscript tradition (Poetic and Prose Eddas).</li><li>The Unicode restoration Óðinn uses Thorn (Þ) and accented vowels registrable in .com.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Barnes, Runes: A Handbook.</li><li id="src-original-script-2">Cleasby-Vigfusson, An Icelandic-English Dictionary.</li><li id="src-original-script-3">Zoëga, A Concise Dictionary of Old Icelandic.</li></ol></div>
     </div>
 </section>
 
@@ -341,14 +365,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>In the norse tradition, <strong>Óðinn</strong> governed wisdom, war, death, poetry. The name encodes a sphere of power that shaped ritual, narrative, and social order.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Hávamál Sacrifice</h3>
+<p>Óðinn hung nine nights on Yggdrasill, pierced by a spear, to seize the runes in an act of self-willed death.</p>
+<h3 class="scholars-h3">Mead of Poetry</h3>
+<p>He stole the fermented mead of inspiration from the giant Suttungr and carried it back to Ásgarðr in his belly.</p>
+<h3 class="scholars-h3">Valkyries</h3>
+<p>His shield-maidens choose the slain and bear the worthy to Valhöll, the hall of the battle-dead.</p>
+<h3 class="scholars-h3">Runes and Revelation</h3>
+<p>Óðinn&#39;s ceaseless quest for wisdom drives him to summon dead seeresses, bargain with Mímir, and read fate itself.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li></ol></div>
     </div>
 </section>
 
@@ -356,14 +385,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Óðinn concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Spear Gungnir</strong> — The never-missing weapon that Odin hurls at the start of battle</li><li><strong>Two ravens Huginn and Muninn</strong> — Thought and Memory, who fly across the worlds and report to his shoulder</li><li><strong>Valknut</strong> — The triple-knot associated with Odin&#39;s power to bind and release the slain</li><li><strong>Sleipnir</strong> — The eight-legged horse that carries Odin between worlds</li><li><strong>Mímir&#39;s severed head</strong> — The consulted source of hidden wisdom, kept by Odin at the well</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li></ol></div>
     </div>
 </section>
 
@@ -371,14 +398,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p><strong>Óðinn</strong> is the Allfather, a god of contradictions: warlord and poet, shaman and king, gallows-god and guest at the mead-feast. He wanders the nine worlds in a broad-brimmed hat, seeking wisdom whatever the cost. He gave one eye for a drink from Mímir&#39;s well, hung nine nights on the wind-wracked tree to seize the runes, and sends his valkyries to choose the slain for Valhöll. He is also the thief of the mead of poetry, outwitting the giant Suttungr to carry the fermented inspiration of the gods back to Ásgarðr in his belly. That mead, brewed from the blood of the wise Kvasir, made every poet who tasted it a vessel of divine utterance. His domain is not merely death but the power that knowledge, sacrifice, and inspired speech can wring from death. Óðinn&#39;s cult left traces in royal genealogies, skaldic verse, and place-names across Scandinavia and Anglo-Saxon England. Viking Age elites claimed descent from him, and poets invoked him before composition. After Christianization, his figure survived in folklore as the wandering old man, the leader of the Wild Hunt, and the namesake of Wednesday.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Hangim of Yggdrasill (Hávamál)</h3>
+<p>In <em>Hávamál</em>, Óðinn speaks of a sacrifice &#39;to myself, to myself&#39;: he hung nine nights on the wind-wracked ash Yggdrasill, pierced by a spear, given neither bread nor drinking horn. From that ordeal he seized the runes, the letters of power that carry knowledge, healing, and sorcery through the worlds.</p>
+<p>The passage is one of the most striking shamanic initiations in European literature. Óðinn does not receive wisdom as a gift; he wins it by dying in a controlled way, suspended between worlds. The gallows and the spear become his ritual tools, and the tree becomes the axis along which the initiate ascends.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Seeress&#39;s Vision (Völuspá)</h3>
+<p>Óðinn summons a dead völva and compels her to answer his questions about the origins of the world and the coming doom. She tells him of the golden age of the gods, the murder of Ymir, the creation of dwarves, and finally of Ragnarǫk: the wolf Fenrir&#39;s release, the serpent&#39;s rising, the darkening of the sun, and the fall of the gods.</p>
+<p>The poem dramatizes Óðinn&#39;s defining obsession: he already knows much, yet he cannot stop seeking more. Even foreknowledge does not grant escape. The myth presents him as a king who pays for wisdom with the anxiety of certainty, a god who knows precisely how his reign will end.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li id="src-mythology-2">Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora.</li></ol></div>
     </div>
 </section>
 
@@ -386,14 +416,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Norse tradition absorbed and reworked Germanic, Celtic, and Christian influences; medieval Icelandic compilers preserved the myths while Christian frameworks shaped their presentation.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include <a class="scholars-xlink" href="/sites/hermes/">Hermês</a> (wisdom / psychopomp), <a class="scholars-xlink" href="/sites/zeus/">Zeús</a> (sky father / sovereign), <a class="scholars-xlink" href="/sites/ahuramazda/">AhuraMazdā</a> (wisdom / knowledge), <a class="scholars-xlink" href="/sites/anat/">ꜥAnat</a> (war / battle), <a class="scholars-xlink" href="/sites/ares/">Árēs</a> (war / battle), and <a class="scholars-xlink" href="/sites/ashur/">Aššur</a> (war / battle).</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li></ol></div>
     </div>
 </section>
 
@@ -401,14 +429,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>The name lives on in modern fantasy, Neopagan practice, Scandinavian heritage, and the global reception of Viking-Age literature. Restoring <em>Óðinn</em> in Unicode preserves the name&#39;s cultural specificity against the flattening force of plain ASCII. Óðinn has become one of the most recognizable Norse gods in global popular culture, appearing in comics, films, novels, and neopagan practice. Behind the modern imagery lies a complex deity of war, poetry, death, and kingship whose name still commands attention.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li></ol></div>
     </div>
 </section>
 
@@ -416,14 +441,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>Adam of Bremen describes the great temple at Uppsala (c. 1070s), where Óðinn was honored alongside Þórr and Freyr. The Rök runestone (Ög 136) alludes to Baldr&#39;s death and doom; the Torslunda plate depicts a one-eyed dancer often identified with Óðinn. Valkyrie pendants and spear-god silver figurines from sites such as Lunda and Uppåkra point to his warrior cult.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li></ol></div>
     </div>
 </section>
 
@@ -431,135 +453,102 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Óðinn given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> The Poetic Edda; The Prose Edda of Snorri Sturluson.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Poetic Edda: Lokasenna (Óðinn&#39;s exchanges with Loki at Ægir&#39;s feast).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Saxo Grammaticus, Gesta Danorum (Othinus as king of the gods and giver of laws).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Rök runestone, Ög 136 (allusive account of Baldr&#39;s death and the doom of the gods).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li><li id="src-scholarly-sources-2">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li id="src-scholarly-sources-3">Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora.</li><li id="src-scholarly-sources-4">Poetic Edda: Lokasenna (Óðinn&#39;s exchanges with Loki at Ægir&#39;s feast).</li><li id="src-scholarly-sources-5">Saxo Grammaticus, Gesta Danorum (Othinus as king of the gods and giver of laws).</li><li id="src-scholarly-sources-6">Rök runestone, Ög 136 (allusive account of Baldr&#39;s death and the doom of the gods).</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="poetic-edda">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Poetic Edda</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Óðinn dominates the mythological poems. <em>Hávamál</em> is his book: the winning of Suttungr&#39;s mead, the catalogue of rune-wisdom, and above all the stanzas of the self-sacrifice, where he hangs &#39;on the wind-wracked tree nine whole nights, wounded by a spear, given to Óðinn, myself to myself&#39;, and seizes the runes.<sup class="scholars-cite"><a href="#src-poetic-edda-1">[1]</a></sup> <em>Völuspá</em> stages his questioning of the dead seeress, his eye pledged in Mímir&#39;s well; <em>Vafþrúðnismál</em> shows him out-questioning the wisest giant; <em>Grímnismál</em> traps him, disguised as Grímnir, between King Geirrøðr&#39;s fires.<sup class="scholars-cite"><a href="#src-poetic-edda-2">[2]</a></sup> <em>Lokasenna</em> and <em>Hárbarðsljóð</em> complete the portrait of a god of masks.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-poetic-edda-1">Poetic Edda, Hávamál (the self-sacrifice and the runes).</li><li id="src-poetic-edda-2">Poetic Edda, Völuspá, Vafþrúðnismál, Grímnismál (the seeress; the wisdom contest; the fire ordeal).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="prose-edda">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Prose Edda</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Snorri&#39;s <em>Gylfaginning</em> opens the divine hierarchy with Óðinn: highest and oldest of the Æsir, Allfather, from whom every line of the gods descends. His are the hall Valaskjálf and the throne Hliðskjálf, from which he surveys all worlds; the ravens Huginn and Muninn; the wolves Geri and Freki; the eight-legged Sleipnir; and wine alone for meat and drink.<sup class="scholars-cite"><a href="#src-prose-edda-1">[1]</a></sup> The same work narrates the death of <a class="scholars-xlink" href="/sites/baldr/">Baldr</a>, which his wisdom cannot prevent, and his own foretold end, swallowed by <a class="scholars-xlink" href="/sites/fenrir/">Fenrir</a> at <a class="scholars-xlink" href="/sites/ragnarok/">Ragnarǫk</a>.<sup class="scholars-cite"><a href="#src-prose-edda-2">[2]</a></sup> <em>Skáldskaparmál</em> tells how he stole the mead of poetry from Suttungr and catalogues his names: Hangatýr, Valfǫðr, Grímnir, Gangleri.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-prose-edda-1">Snorri Sturluson, Edda, Gylfaginning (Óðinn&#39;s hall, attributes, and household).</li><li id="src-prose-edda-2">Snorri Sturluson, Edda, Skáldskaparmál (the mead of poetry; the Óðinn-names).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="runic-evidence">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Runic Evidence</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Óðinn&#39;s name is genuinely attested in early Germanic epigraphy, though on the Continent rather than in Scandinavia: the seventh-century Nordendorf I fibula from Bavaria bears an Elder Futhark inscription reading <em>logaþore wodan wigiþonar</em>, naming Wodan beside Þonar.<sup class="scholars-cite"><a href="#src-runic-evidence-1">[1]</a></sup> Within Scandinavia the god survives chiefly in theophoric place-names — Odense (Óðinsvé, &#39;Óðinn&#39;s sanctuary&#39;) in Denmark, Onsala (Óðinssalr) in Sweden, and a dense belt of Odens-names across the Norse world — alongside Wednesday itself, from Old English Wōden.<sup class="scholars-cite"><a href="#src-runic-evidence-2">[2]</a></sup> The Rök stone (Ög 136) has been read as alluding to <a class="scholars-xlink" href="/sites/baldr/">Baldr</a>&#39;s death and the doom of the powers, the myths in which Óðinn is most deeply implicated.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-runic-evidence-1">The Nordendorf I fibula inscription (logaþore wodan wigiþonar).</li><li id="src-runic-evidence-2">Simek, Rudolf. Dictionary of Northern Mythology (Óðinn; the theophoric place-name record); Holmberg, Gräslund, Olofsson, and Williams on the Rök stone, Ög 136.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="sagas">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Sagas & Medieval Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Snorri&#39;s <em>Ynglinga saga</em> euhemerizes Óðinn as a migrant warlord from the Ásgarðr by Tanais who conquers Sweden, founds Sigtuna, establishes its laws, and dies of sickness — &#39;the Swedes believed he went home to the ancient Ásgarðr and would live there for ever&#39;, the founding fiction of sacral kingship.<sup class="scholars-cite"><a href="#src-sagas-1">[1]</a></sup> In <em>Vǫlsunga saga</em> he is the one-eyed stranger who thrusts a sword into the tree Barnstokkr for Sigmundr to draw, and later the ferryman Hnikarr who shatters that sword at Sigmundr&#39;s last battle.<sup class="scholars-cite"><a href="#src-sagas-2">[2]</a></sup> <em>Hrólfs saga kraka</em> adds the shadowy patron Hrani, in whom the king&#39;s men come to recognize the god.<sup class="scholars-cite"><a href="#src-sagas-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-sagas-1">Snorri Sturluson, Heimskringla, Ynglinga saga (Óðinn as founding king).</li><li id="src-sagas-2">Vǫlsunga saga (Barnstokkr and the ferryman Hnikarr).</li><li id="src-sagas-3">Hrólfs saga kraka (the figure of Hrani).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Names are not merely labels; they are compressed worlds. <strong>Óðinn</strong> carries within it a norse understanding of fury, possession (from *wōđanaz). Unicode restoration returns that world to readable form.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="poetic-edda">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Poetic Edda</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Poetic Edda →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="prose-edda">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Prose Edda</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Prose Edda →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="runic-evidence">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Runic Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Runic Evidence →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="sagas">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">17</span>
-        <h2 class="scholars-section-title">Sagas & Medieval Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Sagas & Medieval Sources →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">19</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -597,6 +586,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'odinn';
@@ -630,14 +754,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -731,6 +847,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -742,18 +859,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -765,6 +883,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -809,6 +929,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

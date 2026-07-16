@@ -10,12 +10,25 @@ const express = require('express');
 const { getDb } = require('../../platform/db/connection');
 const { migrate: migrateScholars } = require('../../platform/db/migrate-scholars');
 const { migrate: migrateQuality } = require('../../platform/db/migrate-scholars-quality');
+const { seedScholarsFromManifests } = require('../../platform/db/scholars/seed');
 const scholarsRouter = require('../../platform/scholars/router');
 
 // Ensure Scholars tables exist before handling requests. Both migrations are
 // idempotent; safe to run on every serverless cold start.
 migrateScholars(getDb());
 migrateQuality(getDb());
+
+// Seed canonical manifest content into the (on Vercel, ephemeral) database.
+// Idempotent: repeat cold starts skip existing temples and never touch
+// sections that already carry content. A seed failure must never take the
+// API down, so it is logged and swallowed.
+try {
+  seedScholarsFromManifests({
+    logger: { log: () => {}, warn: () => {}, error: console.error },
+  });
+} catch (err) {
+  console.error('[scholars] seed failed:', err);
+}
 
 const app = express();
 app.use(scholarsRouter);

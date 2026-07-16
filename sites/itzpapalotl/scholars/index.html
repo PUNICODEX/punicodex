@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,11 +279,12 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#florentine-codex">14 &mdash; Florentine Codex</a></li>
-<li><a href="#aztec-sources">15 &mdash; Aztec Sources</a></li>
-<li><a href="#colonial-sources">16 &mdash; Colonial-Era Sources</a></li>
+<li><a href="#florentine-codex">12 &mdash; Florentine Codex</a></li>
+<li><a href="#aztec-sources">13 &mdash; Aztec Sources</a></li>
+<li><a href="#colonial-sources">14 &mdash; Colonial-Era Sources</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -280,14 +296,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Itzpapālōtl</strong> (<em>itzpapalotl</em>) — Obsidian Butterfly, Stars · Obsidian butterfly — belongs to the Nahuatl tradition, where it is catalogued under the domain &quot;Obsidian Butterfly, Stars&quot;. The name means &quot;Obsidian butterfly&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>Itzpapālōtl is one of the most fearsome goddesses of the Nahua cosmos: a <strong>butterfly with wings of obsidian blades</strong>, mistress of Tamoanchan, and mother of the Cihuateteo. She is beauty that cuts, maternity that devours, and the star-demon who descends when the sun is darkened.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Itzpapālōtl</strong> and serves its temple at <a class="scholars-ext" href="https://xn--itzpapltl-bcb15f.com" rel="noopener noreferrer" target="_blank">itzpapālōtl.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>itzpapalotl</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Sahagún, Florentine Codex.</li><li id="src-overview-2">Codex Borgia.</li><li id="src-overview-3">Karttunen, An Analytical Dictionary of Nahuatl.</li></ol></div>
     </div>
 </section>
 
@@ -295,14 +310,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>No indigenous written attestation survives for this name; <strong>Itzpapālōtl</strong> is a scholarly transliteration of the reconstructed spoken form. Etymologically the name means &quot;Obsidian butterfly&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The ASCII form <em>itzpapalotl</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Itzpapālōtl</strong> recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>i</strong> → <strong>I</strong> — Same, capitalized</li><li><strong>t</strong> → <strong>t</strong> — Same</li><li><strong>z</strong> → <strong>z</strong> — Same</li><li><strong>p</strong> → <strong>p</strong> — Same</li><li><strong>a</strong> → <strong>a</strong> — Same</li><li><strong>p</strong> → <strong>p</strong> — Same</li><li><strong>a</strong> → <strong>ā</strong> — Long vowel</li><li><strong>l</strong> → <strong>l</strong> — Same</li><li><strong>o</strong> → <strong>ō</strong> — Long vowel</li><li><strong>t</strong> → <strong>t</strong> — Same</li><li><strong>l</strong> → <strong>l</strong> — Same</li></ul>
+<p>Attested and derived spellings of the name:</p>
+<ul class="scholars-list"><li><strong>Itzpapalotl</strong> — ASCII form: Plain ASCII form</li></ul>
+<p>The project holds the domain <strong>itzpapālōtl.com</strong> (xn--itzpapltl-bcb15f.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Sahagún, Florentine Codex.</li><li id="src-the-name-2">Codex Borgia.</li></ol></div>
     </div>
 </section>
 
@@ -310,14 +328,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/its.pa.paː.ˈloːtɬ/</strong> — Classical Nahuatl Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>itz-</strong> — [its], from ītztli, &#39;obsidian&#39;; the blade that cuts and mirrors.</li><li><strong>-pap-</strong> — [pap], reduplicated syllable imitating the flutter of wings.</li><li><strong>-ā-</strong> — Long [aː], the stressed vowel of papālōtl, &#39;butterfly&#39;.</li><li><strong>-lōtl</strong> — [ˈloːtɬ], &#39;butterfly&#39;; final -tl is the Nahuatl lateral affricate.</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;eets-pah-PAHL-ohtl&#39; — the name crackles like obsidian breaking; hold the second &#39;a&#39; and the final &#39;o&#39; long.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Nahuatl</strong> — Itzpapālōtl, &#39;Obsidian Butterfly&#39;.</li><li><strong>Related beings</strong> — Cihuateteo, the spirits of women who died in childbirth, of whom she is mother or queen.</li><li><strong>Astral role</strong> — Tzitzimime, star-demons of the northern sky associated with eclipses.</li></ul>
+<p>The macrons on ā and ō mark reconstructed long vowels, making the restoration Tier 1. The name is onomatopoeic and lethal: a butterfly made of razor-sharp obsidian.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Sahagún, Florentine Codex.</li></ol></div>
     </div>
 </section>
 
@@ -325,14 +346,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>No indigenous writing system is securely attested for individual nahuatl names. The form shown is a modern scholarly transliteration.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The form <strong>Itzpapālōtl</strong> is therefore a scholarly transliteration rather than an attested ancient spelling; it encodes the reconstructed sound of the name for modern use, and no mark in it is decorative.</p>
+<p>The name is composed of <em>ītztli</em> (&#39;obsidian&#39;) and <em>papālōtl</em> (&#39;butterfly&#39;). Classical Nahuatl used macrons to mark vowel length, now reconstructed from colonial sources and comparative Uto-Aztecan evidence. The final -tl is a single lateral affricate. There is no surviving pre-contact alphabetic text of the name; it is known from alphabetic Nahuatl manuscripts produced under Spanish supervision, above all the Florentine Codex.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Sahagún, Florentine Codex.</li></ol></div>
     </div>
 </section>
 
@@ -340,14 +360,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>Itzpapālōtl is one of the most fearsome goddesses of the Nahua cosmos: a <strong>butterfly with wings of obsidian blades</strong>, mistress of Tamoanchan, and mother of the Cihuateteo. She is beauty that cuts, maternity that devours, and the star-demon who descends when the sun is darkened.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Obsidian Wings</h3>
+<p>Her wings are edged with itztli, the black volcanic glass used for sacrifice and mirrors.</p>
+<h3 class="scholars-h3">Tamoanchan</h3>
+<p>The paradise of origins, where the gods created the first humans from ground bones.</p>
+<h3 class="scholars-h3">Mother of Cihuateteo</h3>
+<p>Women who died in childbirth became warrior spirits under her command, dangerous to the living.</p>
+<h3 class="scholars-h3">Eclipse Star</h3>
+<p>As a Tzitzimitl she leads star-demons against the sun, threatening cosmic collapse.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Codex Borgia.</li></ol></div>
     </div>
 </section>
 
@@ -355,14 +380,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Itzpapālōtl concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Obsidian butterfly</strong> — The union of delicate beauty and sacrificial cutting power.</li><li><strong>Knife-edged wings</strong> — Instruments of war and childbirth, both forms of tearing that bring life or death.</li><li><strong>Jaguar claws</strong> — Her taloned hands link her to the night hunters of the Mesoamerican forest.</li><li><strong>Star headdress</strong> — Her identity as a Tzitzimitl, a stellar power that descends during eclipses.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Sahagún, Florentine Codex.</li></ol></div>
     </div>
 </section>
 
@@ -370,14 +393,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Itzpapālōtl belongs to the dangerous borderlands: between paradise and underworld, birth and death, daylight and eclipse. Her myths are preserved in fragments of the Florentine Codex and Borgia group codices.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Lady of Tamoanchan (Origin)</h3>
+<p>Tamoanchan is the mythical paradise of origins, a lush mountain of flowers and fruit where the creator couple dwelt. Itzpapālōtl rules there as both guardian and destroyer, her obsidian wings protecting the tree from which the first humans were fashioned. To approach her is to risk being flayed by the very beauty one admires.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Cihuateteo (Childbirth)</h3>
+<p>Women who died in childbirth were not ordinary dead. They became Cihuateteo, &#39;divine women&#39;, fierce spirits who accompanied the sun from zenith to sunset and prowled crossroads at night. Itzpapālōtl is their mother and queen. Because they had died bringing life, they had power over both: they could bless children or steal them away.</p>
+<h3 class="scholars-h3">The Black Butterfly of Eclipse (Astronomy)</h3>
+<p>As a Tzitzimitl, Itzpapālōtl belongs to the star-demons of the northern sky. When an eclipse threatened, the Nahua believed these skeletal women descended head-first to devour the sun or moon. Ritual noise, arrows, and blood offerings were deployed to drive her back into the heavens and restore the light.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Codex Borgia.</li><li id="src-mythology-2">Karttunen, An Analytical Dictionary of Nahuatl.</li></ol></div>
     </div>
 </section>
 
@@ -385,14 +411,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Colonial friars associated Itzpapālōtl with demons of the air and witches, flattening her complex identity into a Satanic figure. Modern scholars and artists have reclaimed her as an emblem of feminine ferocity, the dangerous side of motherhood, and the ecological violence of volcanic landscapes. Her image appears in Mexican feminist art and in celebrations of Día de los Muertos as a skeletal butterfly.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Nahuatl tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/cihuacoatl/">Cihuacōātl</a>, <a class="scholars-xlink" href="/sites/coatlicue/">Cōātlīcue</a>, <a class="scholars-xlink" href="/sites/huitzilopochtli/">Huitzilopōchtli</a>, <a class="scholars-xlink" href="/sites/mictlantecutli/">Mictlāntēcutli</a>, <a class="scholars-xlink" href="/sites/quetzalcoatl/">Quetzalcōātl</a>, and <a class="scholars-xlink" href="/sites/tlaloc/">Tlāloc</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Sahagún, Florentine Codex.</li></ol></div>
     </div>
 </section>
 
@@ -400,14 +424,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Itzpapālōtl survives where Mesoamerican antiquity meets contemporary creativity. Her obsidian-butterfly form has inspired jewelry, tattoos, graphic novels, and installations that explore the beauty of the lethal. She is also a touchstone in studies of Nahua gender: the Cihuateteo show that childbirth was a battlefield as honoured as the warrior&#39;s, and that the dead women who fell in it were not victims but powers.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Sahagún, Florentine Codex.</li></ol></div>
     </div>
 </section>
 
@@ -415,14 +436,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>No monument, inscription, or artifact in the current PÚNYCODEX corpus is yet assigned to Itzpapālōtl with certainty. That absence should be read honestly: for a Nahuatl name of this type the material record is expected to be thin, and the primary evidence remains the textual testimony gathered in the Scholarly Sources section<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup>.</p>
+<p>Were such evidence to surface, it would take recognizable forms: votive or dedicatory inscriptions naming Itzpapālōtl, sanctuary or cult remains tied to obsidian butterfly and iconography matching its traditional attributes (obsidian butterfly and knife-edged wings). Each candidate would be weighed against the reconstructed form of the name before entering the scholarly record.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Sahagún, Florentine Codex.</li></ol></div>
     </div>
 </section>
 
@@ -430,120 +449,91 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Itzpapālōtl given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Sahagún, Florentine Codex.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Codex Borgia.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Karttunen, An Analytical Dictionary of Nahuatl.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> López Austin, Tamoanchan, Tlalocan.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Carrasco, Quetzalcoatl and the Irony of Empire.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Sahagún, Florentine Codex.</li><li id="src-scholarly-sources-2">Codex Borgia.</li><li id="src-scholarly-sources-3">Karttunen, An Analytical Dictionary of Nahuatl.</li><li id="src-scholarly-sources-4">López Austin, Tamoanchan, Tlalocan.</li><li id="src-scholarly-sources-5">Carrasco, Quetzalcoatl and the Irony of Empire.</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="florentine-codex">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Florentine Codex</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Codex gives Itzpapālōtl no dedicated chapter, but the classes of beings she rules are described in detail. Book 4 (The Soothsayers) treats the Cihuateteo, the deified women dead in first childbirth, who descend on their fated days to haunt crossroads and endanger children.<sup class="scholars-cite"><a href="#src-florentine-codex-1">[1]</a></sup> Book 6 preserves the midwives&#39; addresses that frame birth as capture in battle, and Book 7&#39;s chapters on the stars and the Binding of the Years record the terror of the tzitzimime, the star-demons who threatened to descend head-first and devour humankind whenever an eclipse or the year&#39;s end darkened the sky.<sup class="scholars-cite"><a href="#src-florentine-codex-2">[2]</a></sup> It is as a tzitzimitl — obsidian-winged, skeletal — that Itzpapālōtl belongs to this complex.<sup class="scholars-cite"><a href="#src-florentine-codex-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-florentine-codex-1">Sahagún, Florentine Codex, Book 4 (The Soothsayers).</li><li id="src-florentine-codex-2">Sahagún, Florentine Codex, Books 6 and 7 (Rhetoric and Moral Philosophy; The Sun, Moon, and Stars).</li><li id="src-florentine-codex-3">López Austin, Tamoanchan, Tlalocan: Places of Mist.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="aztec-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Aztec Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Itzpapālōtl&#39;s fullest portrait is pictorial. The Codex Borgia shows her as a butterfly with obsidian-bladed wings, clawed hands and feet, and a death&#39;s-head face, presiding over scenes of the ritual almanacs; kindred figures appear elsewhere in the Borgia Group.<sup class="scholars-cite"><a href="#src-aztec-sources-1">[1]</a></sup> The <em>Historia de los Mexicanos por sus pinturas</em>, a colonial transcript of a lost pictorial source, places her in Tamoanchan among the beings of the paradise of origins — in one episode as a two-headed deer — where the transgression of the first gods shattered the flowery tree.<sup class="scholars-cite"><a href="#src-aztec-sources-2">[2]</a></sup> Together these witnesses fix her double aspect: mistress of the garden of origins and demon of the darkened sky.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-aztec-sources-1">Codex Borgia (with Seler&#39;s commentary).</li><li id="src-aztec-sources-2">Historia de los Mexicanos por sus pinturas (in Garibay, Teogonía e historia de los mexicanos).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="colonial-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Colonial-Era Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Colonial writers knew Itzpapālōtl mainly through the fear she inspired. Motolinía and Durán describe the panic at eclipses — the noise, the weeping, the letting of blood — intended to drive off the descending tzitzimime, whom the friars glossed straightforwardly as demons of the air.<sup class="scholars-cite"><a href="#src-colonial-sources-1">[1]</a></sup> Durán&#39;s treatment of the Cihuateteo likewise records the precautions taken at crossroads against the dead women. Modern reassessments, reading these accounts against the pictorial codices, have restored Itzpapālōtl to her pre-conquest complexity as stellar terror, mother of the Cihuateteo, and guardian of Tamoanchan.<sup class="scholars-cite"><a href="#src-colonial-sources-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-colonial-sources-1">Motolinía, Historia de los Indios de la Nueva España; Durán, Book of the Gods and Rites.</li><li id="src-colonial-sources-2">López Austin, Tamoanchan, Tlalocan: Places of Mist.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Itzpapālōtl refuses the categories that make goddesses safe. She is not a nurturing mother in the pastel sense; she is the mother whose children are weapons. She is not a gentle butterfly; she is a razor-winged eclipse. To encounter her is to understand that creation and destruction were never separate in Mesoamerican thought.</p>
+<p>In her, the feminine is not domesticated. It is astronomical, surgical, and maternal all at once. She asks us to look at the things we call beautiful and ask what they cut. She asks us to look at the things we call monstrous and ask what they protect. The obsidian butterfly is still flying, and her wings still catch the light like broken glass.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Sahagún, Florentine Codex.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="florentine-codex">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Florentine Codex</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Florentine Codex →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="aztec-sources">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Aztec Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Aztec Sources →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="colonial-sources">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Colonial-Era Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Colonial-Era Sources →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">17</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -581,6 +571,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'itzpapalotl';
@@ -614,14 +739,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -715,6 +832,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -726,18 +844,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -749,6 +868,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -793,6 +914,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

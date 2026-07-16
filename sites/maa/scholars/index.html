@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,12 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#hieroglyphic-evidence">14 &mdash; Hieroglyphic Evidence</a></li>
-<li><a href="#pyramid-texts">15 &mdash; Pyramid Texts</a></li>
-<li><a href="#coffin-texts">16 &mdash; Coffin Texts</a></li>
-<li><a href="#book-of-the-dead">17 &mdash; Book of the Dead</a></li>
+<li><a href="#hieroglyphic-evidence">12 &mdash; Hieroglyphic Evidence</a></li>
+<li><a href="#pyramid-texts">13 &mdash; Pyramid Texts</a></li>
+<li><a href="#coffin-texts">14 &mdash; Coffin Texts</a></li>
+<li><a href="#book-of-the-dead">15 &mdash; Book of the Dead</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -281,14 +297,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Mꜥ</strong> (<em>maa</em>) — To see, to perceive, to understand. A core verb root, extremely common in texts — belongs to the Egyptian tradition, where it is catalogued under the domain &quot;Vision, Perception, Understanding&quot;. The name means &quot;To see, to perceive, to understand. A core verb root, extremely common in texts&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>In the egyptian tradition, <strong>Mꜥ</strong> governed vision, perception, understanding. The name encodes a sphere of power that shaped ritual, narrative, and social order.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Mꜥ</strong> and serves its temple at <a class="scholars-ext" href="https://xn--m-2w3e.com" rel="noopener noreferrer" target="_blank">mꜥ.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>maa</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">The Pyramid Texts; The Coffin Texts; The Book of the Dead.</li><li id="src-overview-2">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li id="src-overview-3">Egyptian material evidence includes temple reliefs, statuary, papyri, amulets, and tomb inscriptions from the Pharaonic through Ptolemaic periods.</li></ol></div>
     </div>
 </section>
 
@@ -296,14 +311,16 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Hieroglyphs as <strong>𓌳𓂝</strong>. Etymologically it means &quot;To see, to perceive, to understand. A core verb root, extremely common in texts&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The reconstructed proto-form is <em>mꜣʿ</em> (proto-afro-asiatic, &quot;truth, justice, order&quot;). From Egyptian mꜣʿt &quot;truth, justice, cosmic order&quot;. The divine principle of harmony.</p>
+<p>The ASCII form <em>maa</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Mꜥ</strong> recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>m</strong> → <strong>M</strong> — Same, capitalized</li><li><strong>a</strong> → <strong>ꜥ</strong> — Ayin: voiced pharyngeal</li><li><strong>a</strong> → <strong>—</strong> — Dropped: vowel not written</li></ul>
+<p>The project holds the domain <strong>mꜥ.com</strong> (xn--m-2w3e.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">The Pyramid Texts; The Coffin Texts; The Book of the Dead.</li><li id="src-the-name-2">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li></ol></div>
     </div>
 </section>
 
@@ -311,14 +328,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/maʕ/</strong> — Egyptological Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>m</strong> — Bilabial nasal [m], the first consonant of the root mꜣʿ &#39;to see, to be straight&#39;</li><li><strong>ꜥ</strong> — Voiced pharyngeal fricative [ʕ], a deep tightening in the throat; the Egyptological ayin (ꜥ) marks this sound</li><li><strong>a</strong> — Short open vowel [a], supplied by convention; hieroglyphs record only m-ꜥ</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;mah-ʿA&#39; — a gentle &#39;m&#39;, then a deep throaty &#39;ah&#39; like the Arabic ع; the final vowel is very light.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Egyptian</strong> — mꜣꜥt (Maat), the abstract noun &#39;truth, justice, order&#39; from the same root</li><li><strong>Coptic</strong> — ⲙⲉ (me), &#39;truth, justice&#39;, a late Egyptian reflex</li><li><strong>Semitic</strong> — cf. Hebrew יָשָׁר (yāšār), &#39;straight, right&#39;, a distant Afro-Asiatic parallel to the &#39;straightness&#39; root</li></ul>
+<p>Egyptian Mꜥ is consonantal; the vowel is a modern Egyptological convenience. The Tier-2 form preserves the ayin (ꜥ), a distinctive Afro-Asiatic phoneme absent from English. The root mꜣʿ also yields Maat, the goddess of cosmic order.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">The Pyramid Texts; The Coffin Texts; The Book of the Dead.</li></ol></div>
     </div>
 </section>
 
@@ -326,14 +346,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Hieroglyphs as <strong>𓌳𓂝</strong> — Egyptian hieroglyphic, attested Old Kingdom – Late Antiquity, c. 2600 BCE – 400 CE, in Egypt. The script is written right-to-left / top-to-bottom.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Mꜥ</em> (Egyptological conventional), giving the normalized reading Original vocalisation unknown; Egyptological /maːʕ/..</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The Egyptian name is written 𓌳𓂝 in hieroglyphs.</li><li>Hieroglyphs combine logograms, phonograms, and determinatives; the exact function of each sign depends on context.</li><li>Egyptian writing does not record vowels; the vocalised form is a modern convention reconstructed from Coptic and Greek evidence.</li><li>The Unicode restoration Mꜥ uses Egyptological alef/ayin and other registrable characters; the hieroglyphic form is not registrable in .com.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">James P. Allen, Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs, Cambridge University Press, 2000. <a class="scholars-ext" href="https://www.cambridge.org/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-original-script-2">Faulkner, A Concise Dictionary of Middle Egyptian.</li><li id="src-original-script-3">Hannig, Ägyptisches Wörterbuch.</li><li id="src-original-script-4">Wörterbuch der ägyptischen Sprache (Wb).</li></ol></div>
     </div>
 </section>
 
@@ -341,14 +361,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>In the egyptian tradition, <strong>Mꜥ</strong> governed vision, perception, understanding. The name encodes a sphere of power that shaped ritual, narrative, and social order.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">True Perception</h3>
+<p>Mꜥ names the act of seeing that becomes understanding, the eye that recognizes and the heart that grasps.</p>
+<h3 class="scholars-h3">Royal Discernment</h3>
+<p>The pharaoh is the one whose eyes perceive Maat; his judgment is a continuation of cosmic sight.</p>
+<h3 class="scholars-h3">Instruction of Ptahhotep</h3>
+<p>The maxims teach that true speech flows from a heart that has first perceived the good path.</p>
+<h3 class="scholars-h3">From Sight to Justice</h3>
+<p>The same root moves from mꜥ, &quot;to see,&quot; to Maat, the straightness that holds the cosmos in order.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li></ol></div>
     </div>
 </section>
 
@@ -356,14 +381,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Mꜥ concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Open eye (irt)</strong> — The seeing eye, the hieroglyphic and conceptual root of mꜣ &#39;to see, to perceive&#39;</li><li><strong>Maat feather</strong> — The ostrich feather of truth and straightness from the same mꜣʿ root</li><li><strong>Scribe&#39;s palette</strong> — The tool of Thoth, the perceptive god whose wisdom depends on mꜣ</li><li><strong>Sun-disk with rays</strong> — The solar eye that sees and knows all, an extension of divine perception</li><li><strong>Square plumb-line</strong> — The literal &#39;straightness&#39; that underlies the abstract sense of justice</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">The Pyramid Texts; The Coffin Texts; The Book of the Dead.</li></ol></div>
     </div>
 </section>
 
@@ -371,14 +394,18 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Mꜥ is the Egyptian root for seeing that becomes understanding. In a language where vision and knowledge are not cleanly separated, mꜥ names the act of perceiving truly: the eye that recognizes, the heart that grasps, the king who judges rightly. It is the verbal foundation of Maat, the goddess of cosmic order, because to “see” Maat is already to align oneself with truth. Mꜥ is therefore one of the most consequential roots in Egyptian thought, binding cognition, ethics, and royal authority into a single gesture of clear sight. In royal titulary, the king is the one who perceives Maat, the one whose senses align with cosmic order. Temple reliefs show him offering Maat to the gods, thereby renewing the world. This act of perception was not passive sight but judicial and ritual discernment, making Maa the divine faculty that justified rule and sustained creation.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Heart That Sees (Instruction of Ptahhotep)</h3>
+<p>The Middle Kingdom <em>Instruction of Ptahhotep</em>, attributed to a vizier of the Fifth Dynasty, is a manual for cultivating mꜥ in conduct. Its maxims advise the young official to listen, to reflect, and to “see” the good path before speaking. True speech, Ptahhotep insists, flows from a heart that has perceived Maat; false speech is the product of a clouded gaze. The text thus transforms mꜥ from a physical faculty into a moral discipline, the quality that distinguishes the wise man from the merely clever one.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Speaking Truth Before the Forty-Two Judges (Negative Confession)</h3>
+<p>In <em>Book of the Dead</em> Spell 125, the deceased stands before the tribunal of the forty-two assessor gods and recites the Negative Confession, denying every conceivable sin. The rubric repeatedly invokes mꜣꜥ—“I have not done that which is not maat”—using the same root as Mꜥ to insist that the speaker perceived, understood, and avoided wrongdoing. The confession is not merely a list of denials; it is a performative claim that the deceased&#39;s heart has “seen” truth clearly enough to be weighed against the feather of Maat.</p>
+<p>When the scales balance, the deceased is declared mꜣꜥ-ḫrw, “true of voice,” a phrase built from the same root. This means that accurate perception has become effective speech: the one who truly sees can speak rightly before gods and never be turned back at the gates of the afterlife.</p>
+<h3 class="scholars-h3">The King Who Perceives Maat (Royal Ideology)</h3>
+<p>Egyptian royal ritual identifies the pharaoh as the one whose eyes perceive mꜥ on behalf of the land. In the daily temple liturgy and during the Sed-festival, the king presents a small figure of Maat to the gods with the declaration that he has &#39;seen&#39; her—that is, perceived and enacted truth. This gesture is more than symbolism: it asserts that legitimate rule depends on the ruler&#39;s capacity for accurate perception, the same mꜥ that the gods exercise when they judge the cosmos. To see Maat rightly is to keep the world aligned with its own nature.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li id="src-mythology-2">Egyptian material evidence includes temple reliefs, statuary, papyri, amulets, and tomb inscriptions from the Pharaonic through Ptolemaic periods.</li></ol></div>
     </div>
 </section>
 
@@ -386,14 +413,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Egyptian deities were syncretized with one another and, in the Greco-Roman period, with Greek and Roman gods; temple theology developed complex composite forms.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Egyptian tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/ab/">Ꜣb</a>, <a class="scholars-xlink" href="/sites/akh/">Ꜣḫ</a>, <a class="scholars-xlink" href="/sites/amun/">Ꜣmun</a>, <a class="scholars-xlink" href="/sites/ankh/">ꜥnḫ</a>, <a class="scholars-xlink" href="/sites/apep/">Ꜥpp</a>, and <a class="scholars-xlink" href="/sites/ba/">Bꜣ</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">The Pyramid Texts; The Coffin Texts; The Book of the Dead.</li></ol></div>
     </div>
 </section>
 
@@ -401,14 +426,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>The name survives in Egyptological scholarship, museum collections, modern spirituality, and the global fascination with Pharaonic civilization. Restoring <em>Mꜥ</em> in Unicode preserves the name&#39;s cultural specificity against the flattening force of plain ASCII. The concept of Maa as right perception influenced later Egyptian ethics and found echoes in Greek philosophy&#39;s emphasis on reason and cosmic order. The Unicode restoration preserves a word that meant not merely &#39;truth&#39; but the act of seeing straight. Restoring the name in Unicode preserves a concept for which no single English word—truth, justice, order, perception—is sufficient. In this sense, Maa is less a thing than a practice: the disciplined act of seeing the world as it truly is. Every royal ritual, from coronation to temple offering, was an enactment of Maa made visible.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">The Pyramid Texts; The Coffin Texts; The Book of the Dead.</li></ol></div>
     </div>
 </section>
 
@@ -416,14 +438,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>Maat is personified in temple reliefs and royal offering scenes from the Old Kingdom onward. The Karnak cachette and Luxor temple depict kings presenting Maat to Amun-Ra. Tomb paintings show the feather of Maat on the scales of judgment, while instructional texts such as Ptahhotep and Amenemope anchor the concept in daily ethics.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">The Pyramid Texts; The Coffin Texts; The Book of the Dead.</li></ol></div>
     </div>
 </section>
 
@@ -431,135 +450,106 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Mꜥ given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> The Pyramid Texts; The Coffin Texts; The Book of the Dead.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Egyptian material evidence includes temple reliefs, statuary, papyri, amulets, and tomb inscriptions from the Pharaonic through Ptolemaic periods.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Instruction of Ptahhotep (maxims on true perception and Maat).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Instruction of Amenemope (the heart that sees Maat).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Book of the Dead, Spell 42 (Negative Confession invoking mꜣꜥ before Maat).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">The Pyramid Texts; The Coffin Texts; The Book of the Dead.</li><li id="src-scholarly-sources-2">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li id="src-scholarly-sources-3">Egyptian material evidence includes temple reliefs, statuary, papyri, amulets, and tomb inscriptions from the Pharaonic through Ptolemaic periods.</li><li id="src-scholarly-sources-4">Instruction of Ptahhotep (maxims on true perception and Maat).</li><li id="src-scholarly-sources-5">Instruction of Amenemope (the heart that sees Maat).</li><li id="src-scholarly-sources-6">Book of the Dead, Spell 42 (Negative Confession invoking mꜣꜥ before Maat).</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="hieroglyphic-evidence">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Hieroglyphic Evidence</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The verb <strong>mꜥ</strong> &#39;to see, to perceive&#39; is written phonetically with the <strong>sickle sign</strong> (Gardiner U1), which carries the biliteral value mꜥ, followed by the arm ꜥ (D36) and a determinative from the eye series (the <em>irt</em> eye, Gardiner D4), signalling the domain of sight. The writing is attested from the earliest continuous Egyptian texts and remains one of the commonest verbs in the language across three millennia.<sup class="scholars-cite"><a href="#src-hieroglyphic-evidence-1">[1]</a></sup></p>
+<p>Scholars conventionally distinguish mꜥ &#39;to see&#39; from the homophonous root mꜣꜥ &#39;to be straight, true&#39; that yields the noun <em>mꜣꜥt</em> (<a class="scholars-xlink" href="/sites/maat/">Mꜣꜥt</a>). Egyptian thought, however, allowed the two to resonate: to see truly and to be true were neighbouring ideas, and scribal practice exploited the proximity. The Unicode restoration <strong>Mꜥ</strong> records the seeing root with its pharyngeal ayin intact.<sup class="scholars-cite"><a href="#src-hieroglyphic-evidence-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-hieroglyphic-evidence-1">Erman, A. &amp; Grapow, H. Wörterbuch der ägyptischen Sprache, s.v. mꜥ (sehen) and mꜣꜥ (gerade sein).</li><li id="src-hieroglyphic-evidence-2">Gardiner, A. Egyptian Grammar, sign-list U1, D4, D36.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pyramid-texts">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Pyramid Texts</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>No personified deity &#39;Maa&#39; exists, and the Pyramid Texts present the word strictly as a verb — which is itself the valuable observation. The corpus is saturated with the vocabulary of vision: the king is promised that he will <strong>see</strong> <a class="scholars-xlink" href="/sites/ra/">Rꜥ</a> and the gods face to face, that the gods will see him and rejoice, and that the Eye of <a class="scholars-xlink" href="/sites/horus/">Horus</a> (<em>irt Ḥr</em>) will be restored to him whole. Seeing, in these utterances, is never passive: it is recognition, participation, and the beginning of knowledge.<sup class="scholars-cite"><a href="#src-pyramid-texts-1">[1]</a></sup></p>
+<p>The frequency of mꜥ in the Pyramid Texts makes it one of the best-attested Old Kingdom verbs; the resurrection of the king is repeatedly described as the recovery of sight after the blindness of death.<sup class="scholars-cite"><a href="#src-pyramid-texts-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pyramid-texts-1">Faulkner, R. O. The Ancient Egyptian Pyramid Texts. Oxford: Clarendon, 1969.</li><li id="src-pyramid-texts-2">Allen, J. P. The Ancient Egyptian Pyramid Texts. Atlanta: SBL, 2005.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="coffin-texts">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Coffin Texts</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Coffin Texts extend the Old Kingdom usage: mꜥ functions as the ordinary verb of seeing, now inflected through the hopes of non-royal dead. The deceased asks to <strong>see</strong> the sun-god at his rising, to see the gates of the afterlife opened, and to be seen by the gods as one of their own. In the <em>Book of Two Ways</em>, vision merges with knowledge — the rubrics promise that the deceased will &#39;know&#39; (<em>rḫ</em>) the two ways and &#39;see&#39; the beings who guard them.<sup class="scholars-cite"><a href="#src-coffin-texts-1">[1]</a></sup></p>
+<p>No cult, icon, or divine personification of Maa is attested in this corpus either; the root&#39;s power lies precisely in its ubiquity as the Egyptian verb of true perception, the faculty on which all successful passage through the Duat depends.<sup class="scholars-cite"><a href="#src-coffin-texts-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-coffin-texts-1">Faulkner, R. O. The Ancient Egyptian Coffin Texts. Warminster: Aris &amp; Phillips, 1973–1978.</li><li id="src-coffin-texts-2">de Buck, A. The Egyptian Coffin Texts. Chicago: University of Chicago Press, 1935–1961.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="book-of-the-dead">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Book of the Dead</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>In the Book of the Dead, mꜥ remains a verb, but its contexts are the corpus&#39;s highest stakes. The solar hymns of <strong>Spell 15</strong> describe all creation beholding <a class="scholars-xlink" href="/sites/ra/">Rꜥ</a> at dawn — &#39;the gods and the justified dead see you when you shine&#39; — and the deceased asks to join that act of seeing daily. The judgement spells convert perception into ethics: in <strong>Spell 125</strong> the deceased denies wrongdoing using the mꜣꜥ vocabulary (&#39;I have not done what is not-Maat&#39;), performing the claim that he both saw and kept the straight path.<sup class="scholars-cite"><a href="#src-book-of-the-dead-1">[1]</a></sup></p>
+<p>Spells of &#39;going forth by day&#39; (<em>prt m hrw</em>, the corpus&#39;s own ancient title) promise the freedom to leave the tomb and see the sun disk. Honest accounting matters here: the Book of the Dead contains no &#39;chapter of Maa&#39;, because the word never crystallised into a deity — it stayed what it was, the language&#39;s core verb of perception.<sup class="scholars-cite"><a href="#src-book-of-the-dead-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-book-of-the-dead-1">Faulkner, R. O. (trans.); Andrews, C. (ed.). The Ancient Egyptian Book of the Dead. London: British Museum Press, 1985.</li><li id="src-book-of-the-dead-2">Book of the Dead, Spells 15 and 125 (Papyrus of Ani, BM EA 10470).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Names are not merely labels; they are compressed worlds. <strong>Mꜥ</strong> carries within it a egyptian understanding of to see, to perceive, to understand. a core verb root, extremely common in texts. Unicode restoration returns that world to readable form.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">The Pyramid Texts; The Coffin Texts; The Book of the Dead.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="hieroglyphic-evidence">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Hieroglyphic Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Hieroglyphic Evidence →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="pyramid-texts">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Pyramid Texts</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pyramid Texts →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="coffin-texts">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Coffin Texts</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Coffin Texts →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="book-of-the-dead">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">17</span>
-        <h2 class="scholars-section-title">Book of the Dead</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Book of the Dead →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">19</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -597,6 +587,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'maa';
@@ -630,14 +755,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -731,6 +848,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -742,18 +860,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -765,6 +884,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -809,6 +930,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

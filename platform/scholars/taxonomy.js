@@ -62,9 +62,19 @@ function getDeprecatedSections() {
   return loadTaxonomy().taxonomy.deprecated.sections;
 }
 
+function getPantheonAliases() {
+  return loadTaxonomy().taxonomy.pantheonKits.pantheonAliases || {};
+}
+
+function resolvePantheonAlias(pantheon) {
+  const aliases = getPantheonAliases();
+  const resolved = aliases[pantheon];
+  return typeof resolved === 'string' ? resolved : pantheon;
+}
+
 function getPantheonKit(pantheon) {
   const kits = loadTaxonomy().taxonomy.pantheonKits.kits;
-  const kit = kits[pantheon];
+  const kit = kits[resolvePantheonAlias(pantheon)];
   if (!kit) return [];
   return kit.sections || [];
 }
@@ -120,6 +130,8 @@ function getSectionDefinition(key) {
   return null;
 }
 
+const META_SECTION_KEYS = ['edit-history', 'attribution'];
+
 function getSectionsForEntry(entry) {
   const archetype = resolveArchetype(entry);
   if (!archetype) {
@@ -127,14 +139,19 @@ function getSectionsForEntry(entry) {
   }
   const universal = getUniversalSections();
   const kit = getPantheonKit(archetype.pantheon);
+  const common = getCommonSections();
+  const contentSections = universal.filter((s) => !META_SECTION_KEYS.includes(s.key));
+  const metaSections = universal.filter((s) => META_SECTION_KEYS.includes(s.key));
   return [
-    ...universal.map((s) => ({ ...s, required: true, source: 'universal' })),
+    ...contentSections.map((s) => ({ ...s, required: true, source: 'universal' })),
     ...kit.map((s) => ({
       ...s,
       required: true,
       source: 'pantheon-kit',
-      pantheon: archetype.pantheon,
+      pantheon: resolvePantheonAlias(archetype.pantheon),
     })),
+    ...common.map((s) => ({ ...s, required: true, source: 'common' })),
+    ...metaSections.map((s) => ({ ...s, required: true, source: 'universal' })),
   ];
 }
 
@@ -222,6 +239,7 @@ module.exports = {
   getOptionalSections,
   getDeprecatedSections,
   getPantheonKit,
+  resolvePantheonAlias,
   getAllSectionKeys,
   validateSectionKey,
   isPantheonKitSection,

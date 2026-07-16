@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,12 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#classical-texts">14 &mdash; Classical Texts</a></li>
-<li><a href="#daoist-sources">15 &mdash; Daoist Sources</a></li>
-<li><a href="#buddhist-sources">16 &mdash; Buddhist Sources</a></li>
-<li><a href="#calligraphy">17 &mdash; Calligraphy & Script</a></li>
+<li><a href="#classical-texts">12 &mdash; Classical Texts</a></li>
+<li><a href="#daoist-sources">13 &mdash; Daoist Sources</a></li>
+<li><a href="#buddhist-sources">14 &mdash; Buddhist Sources</a></li>
+<li><a href="#calligraphy">15 &mdash; Calligraphy & Script</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -281,14 +297,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Bāguà</strong> (<em>bagua</em>) — Cosmology, Divination · Eight trigrams — belongs to the Chinese tradition, where it is catalogued under the domain &quot;Cosmology, Divination&quot;. The name means &quot;Eight trigrams&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p><strong>Bāguà</strong> is the Chinese universe reduced to eight three-line figures. Each trigram — 乾 Qián, 坤 Kūn, 震 Zhèn, 巽 Xùn, 坎 Kǎn, 離 Lí, 艮 Gèn, 兌 Duì — stacks yin and yang lines in every possible combination of three, producing a complete symbolic alphabet for describing situations, forces, and transformations. From the trigrams come the sixty-four hexagrams of the <em>Yijing</em>, the oldest continuously used divination manual in the world.</p>
+<p>Bāguà is not only a fortune-telling tool. It is a map of reality: directions, seasons, family roles, body parts, and moral qualities all attach to the eight figures.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Bāguà</strong> and serves its temple at <a class="scholars-ext" href="https://xn--bgu-cla6n.com" rel="noopener noreferrer" target="_blank">bāguà.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>bagua</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Yijing (Book of Changes). <a class="scholars-ext" href="https://ctext.org/book-of-changes" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-overview-2">Wilhelm/Baynes, I Ching.</li><li id="src-overview-3">Shaughnessy, I Ching: The Classic of Changes.</li></ol></div>
     </div>
 </section>
 
@@ -296,14 +312,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Chinese characters as <strong>八卦</strong>. Etymologically it means &quot;Eight trigrams&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The ASCII form <em>bagua</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Bāguà</strong> recovers both the stress accent and the vowel length of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>b</strong> → <strong>B</strong> — Same, capitalized</li><li><strong>a</strong> → <strong>ā</strong> — Long vowel</li><li><strong>g</strong> → <strong>g</strong> — Same</li><li><strong>u</strong> → <strong>u</strong> — Same</li><li><strong>a</strong> → <strong>à</strong> — Stress on a</li></ul>
+<p>The project holds the domain <strong>bāguà.com</strong> (xn--bgu-cla6n.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Yijing (Book of Changes). <a class="scholars-ext" href="https://ctext.org/book-of-changes" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-the-name-2">Wilhelm/Baynes, I Ching.</li></ol></div>
     </div>
 </section>
 
@@ -311,14 +328,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/pa˥ kwa˥˩/</strong> — Modern Standard Mandarin (Pinyin).<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>bā</strong> — Syllable with unaspirated bilabial stop [p], open front vowel [a], and Tone 1 (high level, ˥). Pinyin &#39;b&#39; is unaspirated, unlike English &#39;b&#39; in word-initial position.</li><li><strong>guà</strong> — Syllable with unaspirated velar stop [k], labio-velar glide [w], open vowel [a], and Tone 4 (falling, ˥˩). The &#39;u&#39; after &#39;g&#39; indicates labialization [kʷ].</li></ul>
+<p>For the modern speaker, the closest approximation is: BAH-GWAH — first syllable high and level, second syllable falling (high to low) like a command.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Traditional</strong> — 八卦</li><li><strong>Simplified</strong> — 八卦</li><li><strong>Wade-Giles</strong> — pa¹-kua⁴</li><li><strong>Related terms</strong> — 易經 Yìjīng (I Ching); 六十四卦 liùshísì guà (sixty-four hexagrams)</li></ul>
+<p>八卦 (Bāguà) refers to the eight trigrams of the Yijing: 乾 qián, 坤 kūn, 震 zhèn, 巽 xùn, 坎 kǎn, 離 lí, 艮 gèn, and 兌 duì. The Modern Standard Mandarin reading is bā (Tone 1) + guà (Tone 4), as recorded in the Unihan Database (kMandarin). For historical context, Baxter &amp; Sagart (2014) reconstruct 八 as <em>pret (GSR 0281a) and 卦 as </em>[k]ʷre-s (GSR 0879s). The tone-marked Pinyin restoration Bāguà correctly shows the high level tone of &#39;eight&#39; and the falling tone of &#39;trigram&#39;.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Yijing (Book of Changes). <a class="scholars-ext" href="https://ctext.org/book-of-changes" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -326,14 +346,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Chinese characters as <strong>八卦</strong> — Hanzi (Sino-Tibetan), attested Oracle-bone – present, c. 1200 BCE –, in China. The script is written left-to-right; traditional top-to-bottom.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Bāguà</em> (Hanyu Pinyin with tone mark), giving the normalized reading /pa˥ ku̯a˥˩/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The name is written with the Chinese characters 八卦.</li><li>Each character is a logogram that encodes meaning and historical pronunciation.</li><li>Hanyu Pinyin with tone marks preserves Mandarin pronunciation; the ASCII form loses tone.</li><li>The Unicode restoration Bāguà is the registrable form because hanzi are outside the .com IDN table.</li></ul>
+<p>The original script is 八卦; traditional and simplified forms are identical. The Modern Standard Mandarin reading is <em>Bāguà</em> (Tone 1 + Tone 4). <em>Bā</em> means &#39;eight&#39; and <em>guà</em> means &#39;trigram&#39; or &#39;hexagram&#39; in divinatory usage. The registrable form uses tone-marked Pinyin so the domain remains readable across scripts; the characters are displayed in the Original Script card. Baxter &amp; Sagart reconstruct 八 as <em>pret and 卦 as </em>[k]ʷre-s.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Chinese classical texts, Chinese Text Project, 500 BCE. <a class="scholars-ext" href="https://ctext.org/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-original-script-2">I Ching (Yijing / Book of Changes), Chinese Text Project, 1000 BCE. <a class="scholars-ext" href="https://ctext.org/book-of-changes" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-original-script-3">Karlgren, Grammata Serica Recensa.</li><li id="src-original-script-4">Pulleyblank, Lexicon of Reconstructed Pronunciation.</li><li id="src-original-script-5">Schuessler, ABC Etymological Dictionary of Old Chinese.</li></ol></div>
     </div>
 </section>
 
@@ -341,14 +362,20 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p><strong>Bāguà</strong> is the Chinese universe reduced to eight three-line figures. Each trigram — 乾 Qián, 坤 Kūn, 震 Zhèn, 巽 Xùn, 坎 Kǎn, 離 Lí, 艮 Gèn, 兌 Duì — stacks yin and yang lines in every possible combination of three, producing a complete symbolic alphabet for describing situations, forces, and transformations. From the trigrams come the sixty-four hexagrams of the <em>Yijing</em>, the oldest continuously used divination manual in the world.</p>
+<p>Bāguà is not only a fortune-telling tool. It is a map of reality: directions, seasons, family roles, body parts, and moral qualities all attach to the eight figures.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Three Lines</h3>
+<p>A solid line is yang; a broken line is yin. Three lines yield 2³ = 8 trigrams, the elementary vocabulary of change.</p>
+<h3 class="scholars-h3">Heaven and Earth</h3>
+<p>Qián ☰, three solid lines, is heaven and creative power; Kūn ☷, three broken lines, is earth and receptive yielding.</p>
+<h3 class="scholars-h3">Cosmic Directions</h3>
+<p>The Later Heaven arrangement assigns each trigram to a direction, a season, and a domain of human life.</p>
+<h3 class="scholars-h3">Divination Method</h3>
+<p>Yarrow stalks, coins, and milfoil turn trigrams into hexagrams, turning a question into a reading of timing and transformation.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Wilhelm/Baynes, I Ching.</li></ol></div>
     </div>
 </section>
 
@@ -356,14 +383,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Bāguà concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Qián ☰ (Heaven)</strong> — Creativity, strength, the father, the creative impulse</li><li><strong>Kūn ☷ (Earth)</strong> — Receptivity, devotion, the mother, the power of bearing</li><li><strong>Zhèn ☳ (Thunder)</strong> — Arousal, movement, the eldest son, sudden change</li><li><strong>Xùn ☴ (Wind/Wood)</strong> — Gentle penetration, the eldest daughter, influence</li><li><strong>Kǎn ☵ (Water)</strong> — The abyss, danger, the middle son, the testing flow</li><li><strong>Lí ☲ (Fire)</strong> — Clarity, attachment, the middle daughter, brightness</li><li><strong>Gèn ☶ (Mountain)</strong> — Stillness, keeping still, the youngest son, boundary</li><li><strong>Duì ☱ (Lake)</strong> — Joy, openness, the youngest daughter, completion</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Yijing (Book of Changes). <a class="scholars-ext" href="https://ctext.org/book-of-changes" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -371,14 +396,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>The Bāguà are surrounded by origin stories that credit culture heroes, sages, and even river creatures with their discovery. Whether these are history, legend, or mythic shorthand, they reveal how seriously the Chinese tradition took the trigrams as a key to cosmic order.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Trigrams from the River (Legend of Fuxi)</h3>
+<p>Tradition says that the culture hero Fuxi observed the patterns on a dragon-horse that emerged from the Yellow River — the <em>Hétú</em> — and derived the eight trigrams. The <em>Luoshu</em>, a numeric diagram borne by a turtle from the Luo River, later supplied the magic-square arrangement used in feng shui.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">King Wen and the Sixty-Four Hexagrams (Yijing Tradition)</h3>
+<p>King Wen of Zhou, imprisoned by the Shang king, stacked the eight trigrams into sixty-four hexagrams and composed the hexagram statements. His son, the Duke of Zhou, added line statements. Confucius or his school later wrote the Ten Wings, transforming a divination manual into a philosophical classic.</p>
+<h3 class="scholars-h3">The Sage Who Invented the Yijing (Xici)</h3>
+<p>The <em>Xici</em> appendix claims that in antiquity the sages invented knotted cords, writing, agriculture, and the Yijing in response to human need. The trigrams were not abstract speculation but practical tools devised by wise rulers to help people navigate change.</p>
+<h3 class="scholars-h3">Bagua Mirrors and Protective Charms (Daoist Usage)</h3>
+<p>In popular religion the eight trigrams are arranged around a central taijitu and mounted as a mirror to deflect harmful <em>qi</em>. The bagua mirror is still hung above doors across the Chinese diaspora, a compact cosmogram that claims the whole of space and time in a single octagon.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Wilhelm/Baynes, I Ching.</li><li id="src-mythology-2">Shaughnessy, I Ching: The Classic of Changes.</li></ol></div>
     </div>
 </section>
 
@@ -386,14 +416,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Bāguà is shared by Confucian, Daoist, and folk-religious traditions, each giving the trigrams a different emphasis. Confucians read them as moral archetypes; Daoists use them in talismans and internal alchemy; feng shui masters arrange buildings by their directions. The arrangement called the Early Heaven sequence is associated with Fuxi and cosmogony, while the Later Heaven sequence is associated with King Wen and the flow of time. In Korea, the trigrams appear on the national flag; in Japan, they influenced Onmyōdō cosmology. Richard Wilhelm&#39;s 1923 German translation, rendered into English by Cary Baynes, introduced the <em>I Ching</em> to modern Europe and America, where it became a countercultural classic.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Chinese tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/long/">Lóng</a>, <a class="scholars-xlink" href="/sites/taichi/">Tàijí</a>, <a class="scholars-xlink" href="/sites/taishang/">Tàishàng</a>, <a class="scholars-xlink" href="/sites/tian/">Tiān</a>, <a class="scholars-xlink" href="/sites/tiandi/">Tiāndì</a>, and <a class="scholars-xlink" href="/sites/wuxing/">Wǔxíng</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Yijing (Book of Changes). <a class="scholars-ext" href="https://ctext.org/book-of-changes" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -401,14 +429,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>The Bāguà are everywhere once you know how to look. The Korean flag places four of the trigrams at its corners; martial artists practice <em>Baguazhang</em>, the Eight Trigram Palm, walking in circles that map the directions; computer scientists and designers use the Unicode trigram block (U+2630–U+2637) as glyphs for menus and progress indicators. Feng shui consultants still lay the octagonal bagua over floor plans to diagnose relationships, wealth, career, and health. The <em>I Ching</em> itself has been translated into dozens of languages and consulted by everyone from Carl Jung to John Cage. The trigrams have proved durable because they are not answers; they are a grammar for asking better questions about change.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Yijing (Book of Changes). <a class="scholars-ext" href="https://ctext.org/book-of-changes" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -416,14 +441,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The Bāguà are rooted in the Shang dynasty practice of pyromancy on oracle bones and turtle plastrons, though the trigram system itself reaches written maturity in the Zhou period. The oldest <em>Yijing</em> manuscripts include the Mawangdui silk <em>Zhouyi</em> (c. 168 BCE) and the Warring States bamboo slips from Guodian and Shanghai Museum collections. Han dynasty commentaries, including the <em>Xici</em>, fixed the philosophical interpretation of the trigrams, while Song and Ming editions transmitted the diagrams that remain standard today.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Yijing (Book of Changes). <a class="scholars-ext" href="https://ctext.org/book-of-changes" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -431,135 +453,107 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Bāguà given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Yijing (Book of Changes). <a class="scholars-ext" href="https://ctext.org/book-of-changes" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Wilhelm/Baynes, I Ching.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Shaughnessy, I Ching: The Classic of Changes.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Lynn, The Classic of Changes.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Huainanzi, Liu An; Chinese Text Project, 139 BCE. <a class="scholars-ext" href="https://ctext.org/huainanzi" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Shiji (Records of the Grand Historian).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Baxter &amp; Sagart, Old Chinese Reconstruction. <a class="scholars-ext" href="http://ocbaxtersagart.lsait.lsa.umich.edu/" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Unihan Database (Unicode Consortium). <a class="scholars-ext" href="https://www.unicode.org/charts/unihan.html" rel="noopener noreferrer" target="_blank">Full text</a></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Yijing (Book of Changes). <a class="scholars-ext" href="https://ctext.org/book-of-changes" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-2">Wilhelm/Baynes, I Ching.</li><li id="src-scholarly-sources-3">Shaughnessy, I Ching: The Classic of Changes.</li><li id="src-scholarly-sources-4">Lynn, The Classic of Changes.</li><li id="src-scholarly-sources-5">Huainanzi, Liu An; Chinese Text Project, 139 BCE. <a class="scholars-ext" href="https://ctext.org/huainanzi" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-6">Shiji (Records of the Grand Historian).</li><li id="src-scholarly-sources-7">Baxter &amp; Sagart, Old Chinese Reconstruction. <a class="scholars-ext" href="http://ocbaxtersagart.lsait.lsa.umich.edu/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-8">Unihan Database (Unicode Consortium). <a class="scholars-ext" href="https://www.unicode.org/charts/unihan.html" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="classical-texts">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Classical Texts</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The eight trigrams are the atoms of the <em>Yijing</em> (<em>Zhōuyì</em>): every one of its sixty-four hexagrams is a stack of two. The <em>Shuōguà zhuàn</em> (&#39;Discussion of the Trigrams&#39;), one of the Ten Wings, is the classical lexicon of their meanings, assigning each trigram its images, family members, animals, and body parts.<sup class="scholars-cite"><a href="#src-classical-texts-1">[1]</a></sup></p>
+<p>The practice they serve is older than the appendices. The <em>Shangshu</em>&#39;s <em>Hóngfàn</em> chapter lists the &#39;examination of doubts&#39; among the royal categories, with turtle-shell and milfoil-stalk divination as its paired instruments.<sup class="scholars-cite"><a href="#src-classical-texts-2">[2]</a></sup> The <em>Zuozhuan</em> then preserves numerous narratives in which nobles consult the <em>Zhōuyì</em> by stalks and quote hexagram and line statements to decide marriages, battles, and successions — the trigram system at work in real politics, centuries before the commentaries explained it.<sup class="scholars-cite"><a href="#src-classical-texts-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-classical-texts-1">Yijing (Book of Changes), Shuogua zhuan (Discussion of the Trigrams). <a class="scholars-ext" href="https://ctext.org/book-of-changes" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-classical-texts-2">Shangshu (Book of Documents), Hongfan (The Great Plan). <a class="scholars-ext" href="https://ctext.org/shang-shu/hong-fan" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-classical-texts-3">Zuozhuan (Chunqiu Zuozhuan). <a class="scholars-ext" href="https://ctext.org/chun-qiu-zuo-zhuan" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="daoist-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Daoist Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Daoism adopted the trigrams wholesale and put them to work far beyond divination. The <em>Zhōuyì Cāntóng qì</em> (&#39;Kinship of the Three&#39;, c. 2nd century CE), the founding scripture of alchemy, uses trigrams and hexagrams as both clock and furnace-map: the moon&#39;s phases, the firing times of the elixir, and the circulation of yin and yáng in the body are all charted through them — above all Kǎn ☵ (water) and Lí ☲ (fire), whose hidden true-yáng and true-yīn the alchemist must exchange.<sup class="scholars-cite"><a href="#src-daoist-sources-1">[1]</a></sup></p>
+<p>Later ritual and <em>neidan</em> Daoism rings the <em>tàijítú</em> with the eight trigrams on robes, registers, and talismans, while the &#39;pre-heaven&#39; (先天) and &#39;post-heaven&#39; (後天) arrangements ascribed to Fúxī and King Wén map respectively the timeless structure of the Dao and the world&#39;s unfolding in time.<sup class="scholars-cite"><a href="#src-daoist-sources-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-daoist-sources-1">Zhouyi Cantong qi (Kinship of the Three), attr. Wei Boyang.</li><li id="src-daoist-sources-2">Pregadio, The Encyclopedia of Taoism.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="buddhist-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Buddhist Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Formally, Buddhist monks were barred from the mantic arts. The Chinese <em>Dīrgha Āgama</em> preserves the Buddha&#39;s catalogue of &#39;wrong livelihoods&#39;, which includes casting lots, reading omens, and kindred practices; a monk who cast trigrams for pay broke the rule.<sup class="scholars-cite"><a href="#src-buddhist-sources-1">[1]</a></sup></p>
+<p>In practice the boundary blurred. The great Táng monk-astronomer <strong>Yīxíng</strong> (683–727) studied the <em>Yijing</em> deeply, and its numerology stands behind the very name of his Dàyǎn calendar. Chinese apologists borrowed trigram language when debating Daoists; esoteric maṇḍalas, with their directional deities, were read through a cosmology the trigrams had made native. And in popular religion the bagua mirror hangs beside Buddhist door-gods with no sense of contradiction — the formal prohibition intact, the lived synthesis complete.<sup class="scholars-cite"><a href="#src-buddhist-sources-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-buddhist-sources-1">Dīrgha Āgama (Chang Ahan jing, Taishō 1).</li><li id="src-buddhist-sources-2">Needham, Science and Civilisation in China.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="calligraphy">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Calligraphy & Script</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p><strong>八卦</strong> pairs a numeral with a diviner&#39;s technical term. <strong>八</strong> &#39;eight&#39; is two curved strokes parting — the <em>Shuowen Jiezi</em> glosses it as &#39;to divide&#39; — and that ancient sense survives in compounds like 分. <strong>卦</strong> combines 圭, a jade tablet doubling as phonetic, with 卜 &#39;to divine&#39;, a radical that itself pictures the crack in a heated oracle bone: the character for the trigram carries the whole history of Chinese divination in its two halves.<sup class="scholars-cite"><a href="#src-calligraphy-1">[1]</a></sup></p>
+<p>The trigram glyphs — ☰ ☷ ☳ ☴ ☵ ☲ ☶ ☱ — are the system&#39;s oldest &#39;calligraphy&#39;: stacks of solid yáng and broken yīn lines, brushed identically since Han editions and now encoded in the Unicode standard at U+2630–U+2637.<sup class="scholars-cite"><a href="#src-calligraphy-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-calligraphy-1">Xu Shen, Shuowen Jiezi.</li><li id="src-calligraphy-2">The Unicode Standard, Miscellaneous Symbols block (U+2600–U+26FF). <a class="scholars-ext" href="https://www.unicode.org/charts/PDF/U2600.pdf" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Bāguà is the intuition that reality can be modeled without being exhausted. Eight figures, each only three lines long, are enough to describe marriages, wars, harvests, illnesses, and revolutions because the trigrams do not describe events; they describe tendencies. A trigram is a weather pattern, not a weather report.</p>
+<p>To consult the <em>Yijing</em> is to accept that you already know the answer but cannot yet see its shape. The trigram does not predict the future like a calendar; it clarifies the present like a mirror. In this sense Bāguà is less occult than psychological: it forces the questioner to recognize which forces are active, which are latent, and which direction the situation is turning. The eight figures are not magic. They are a discipline of attention.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Yijing (Book of Changes). <a class="scholars-ext" href="https://ctext.org/book-of-changes" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="classical-texts">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Classical Texts</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Classical Texts →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="daoist-sources">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Daoist Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Daoist Sources →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="buddhist-sources">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Buddhist Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Buddhist Sources →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="calligraphy">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">17</span>
-        <h2 class="scholars-section-title">Calligraphy & Script</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Calligraphy & Script →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">19</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -597,6 +591,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'bagua';
@@ -630,14 +759,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -731,6 +852,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -742,18 +864,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -765,6 +888,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -809,6 +934,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

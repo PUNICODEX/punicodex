@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,12 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#homeric-hymns">14 &mdash; Homeric Hymns</a></li>
-<li><a href="#epithets">15 &mdash; Epithets & Epicleses</a></li>
-<li><a href="#oracle-sites">16 &mdash; Oracle & Cult Sites</a></li>
-<li><a href="#iconography">17 &mdash; Iconography</a></li>
+<li><a href="#homeric-hymns">12 &mdash; Homeric Hymns</a></li>
+<li><a href="#epithets">13 &mdash; Epithets & Epicleses</a></li>
+<li><a href="#oracle-sites">14 &mdash; Oracle & Cult Sites</a></li>
+<li><a href="#iconography">15 &mdash; Iconography</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -281,14 +297,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Gaîa</strong> (<em>gaia</em>) — Earth (from γαῖα) — belongs to the Greek tradition, where it is catalogued under the domain &quot;Earth, Mother of All&quot;. The name means &quot;Earth (from γαῖα)&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>Gaia is not a goddess of the earth; she <em>is</em> the earth. In Hesiod&#39;s cosmogony she is the first thing to emerge from Chaos, the ever-stable foundation from which sky, sea, mountains, and gods are born. <strong>She is the original mother, the ground of being</strong>.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Gaîa</strong> and serves its temple at <a class="scholars-ext" href="https://xn--gaa-wma.com" rel="noopener noreferrer" target="_blank">gaîa.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>gaia</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-overview-2">Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a class="scholars-ext" href="https://brill.com/view/title/17858" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-overview-3">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a class="scholars-ext" href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -296,14 +311,16 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Greek as <strong>Γαῖα</strong>. Etymologically it means &quot;Earth (from γαῖα)&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>Earth (from γαῖα)</p>
+<p>The ASCII form <em>gaia</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Gaîa</strong> recovers the stress accent of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>g</strong> → <strong>G</strong> — Gamma</li><li><strong>a</strong> → <strong>a</strong> — Alpha</li><li><strong>i</strong> → <strong>î</strong> — Circumflex on iota</li><li><strong>a</strong> → <strong>a</strong> — Alpha</li></ul>
+<p>The project holds the domain <strong>gaîa.com</strong> (xn--gaa-wma.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-the-name-2">Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a class="scholars-ext" href="https://brill.com/view/title/17858" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -311,14 +328,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/ɡaɪ.a/</strong> — Attic Greek Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Gai-</strong> — Gamma plus diphthong αι — the sound of the earth opening its mouth.</li><li><strong>-a</strong> — Short alpha — the final vowel is open and elemental.</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;GUY-ah&#39; — the diphthong glides like the earth yielding; the final vowel is simple and vast.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>PIE</strong> — *dʰeh₁- &#39;earth&#39; — root of Greek χθών (chthōn) and Latin humus</li><li><strong>Greek</strong> — γῆ (gē), &#39;earth&#39; — the Attic word; Gaia is the poetic/personified form</li><li><strong>Mycenaean</strong> — Ma-ga-ri, possibly an early form of Gaia in Linear B</li></ul>
+<p>Gaia is Tier 2 because the Greek Γαῖα preserves only the αι diphthong (a long vowel for accentual purposes) without an acute or circumflex stress mark in the standard nominative form. She is primordial: older than the Olympians, older than the Titans, the first power to arise after Chaos.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -326,14 +346,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Greek as <strong>Γαῖα</strong> — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Gaîa</em> (Greek alphabet with polytonic accents), giving the normalized reading /ˈɡaː.i.a/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The Greek form Γαῖα is written in the Classical Greek alphabet.</li><li>Letters with acute, grave, or circumflex accents preserve the pitch accent of Ancient Greek.</li><li>Macrons and omegas (η, ω) mark long vowels, a feature lost in the plain ASCII form.</li><li>The Unicode restoration Gaîa encodes the scholarly spelling as a registrable domain name.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Beekes, Etymological Dictionary of Greek.</li><li id="src-original-script-2">Chantraine, Dictionnaire étymologique de la langue grecque.</li><li id="src-original-script-3">Liddell-Scott-Jones (LSJ).</li><li id="src-original-script-4">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a class="scholars-ext" href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -341,14 +361,21 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>Gaia is not a goddess of the earth; she <em>is</em> the earth. In Hesiod&#39;s cosmogony she is the first thing to emerge from Chaos, the ever-stable foundation from which sky, sea, mountains, and gods are born. <strong>She is the original mother, the ground of being</strong>.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Living Earth</h3>
+<p>Mountains, plains, seas, and caves are her body; earthquakes are her movements.</p>
+<h3 class="scholars-h3">Mother of Gods</h3>
+<p>She bore Ouranos, Pontos, the Titans, the Cyclopes, and the Hundred-Handers.</p>
+<h3 class="scholars-h3">Oracle and Prophet</h3>
+<p>Her oracle at Delphi was the first; she is the voice of the earth before Apollo&#39;s arrival.</p>
+<h3 class="scholars-h3">Revenge and Justice</h3>
+<p>When Ouranos imprisoned her children, she forged the sickle and set Kronos against him.</p>
+<h3 class="scholars-h3">Scholarly Controversy</h3>
+<p>The Mycenaean evidence for Gaia remains disputed: Linear B forms such as Ma-ga-ri may or may not refer to the goddess. Modern scholars also debate whether the Gaia hypothesis is a legitimate scientific theory or a metaphor for ecological interdependence. Both debates keep her name alive at the boundary of science and myth.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a class="scholars-ext" href="https://brill.com/view/title/17858" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -356,14 +383,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Gaîa concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>The globe or earth</strong> — The planet as living body</li><li><strong>Cornucopia</strong> — The endless fertility of the soil</li><li><strong>Sickle</strong> — The weapon used to castrate Ouranos</li><li><strong>Serpent</strong> — The earth&#39;s chthonic, regenerative power</li><li><strong>Oak tree</strong> — The deep-rooted tree sacred to her oracle at Dodona</li><li><strong>Breast</strong> — Maternal nourishment; the earth feeds all creatures</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -371,14 +396,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Gaia&#39;s myths are cosmogonic. She is the stage on which everything else happens, but she is also an actor who intervenes when cosmic order threatens her children.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">First After Chaos (The Birth)</h3>
+<p>Hesiod&#39;s <em>Theogony</em> (116–122) begins with Chaos, then Gaia &#39;broad-bosomed,&#39; then Tartaros and Eros. Gaia immediately gives birth to Ouranos (Sky), the Ourea (Mountains), and Pontos (Sea) without mating. She is the self-generating foundation. The repetition of &#39;Gaia&#39; at the opening of the cosmos makes her the first identifiable reality.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Castration of Ouranos (The Revenge)</h3>
+<p>Ouranos hated the children Gaia bore him and pushed them back into her womb. In pain and anger, Gaia fashioned a great sickle of adamant and persuaded her youngest son Kronos to ambush his father. Kronos castrated Ouranos; from the falling blood sprang the Erinyes, the Giants, and the Meliai. The act establishes the pattern of Greek cosmogony: each generation overthrows the one before, and Gaia is always on the side of the next power.</p>
+<h3 class="scholars-h3">Gaia at Delphi (The Oracle)</h3>
+<p>Before Apóllōn, Delphi belonged to Gaia (or Themis, her daughter). The dragon Pythôn guarded Gaia&#39;s oracle until Apóllōn slew it and took the site. Pausanias (10.5.5–7) preserves the tradition that the oldest cult at Delphi was Earth&#39;s. The succession from Gaia to Themis to Phoibe to Apóllōn maps the transition from chthonic prophecy to Olympian clarity.</p>
+<h3 class="scholars-h3">The Gigantomachy (The Giants)</h3>
+<p>When the Olympians defeated the Titans, Gaia mated with Tartaros and bore the Giants to avenge her fallen children. The Gigantomachy became the great war between gods and earth-born monsters, depicted on the Pergamon Altar and countless vases. Once again, Gaia defended the old against the new — and once again, the new gods won, burying the Giants under volcanoes.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a class="scholars-ext" href="https://brill.com/view/title/17858" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-mythology-2">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a class="scholars-ext" href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -386,14 +416,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>The Romans identified Gaia with Terra Mater, the earth mother, though Terra never achieved the philosophical and cosmological prominence of her Greek counterpart. In later antiquity Gaia was syncretized with Cybele, the Phrygian mountain mother, and with various Near Eastern earth goddesses. In the Scientific Revolution, her name was revived for the Gaia hypothesis — James Lovelock&#39;s theory that the earth functions as a self-regulating living system. Modern environmental movements have made Gaia the personification of the planet itself, though this is a philosophical rather than strictly ancient usage.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include <a class="scholars-xlink" href="/sites/demeter/">Dēmētēr</a>, <a class="scholars-xlink" href="/sites/babaluaye/">Ọbalúayé</a>, <a class="scholars-xlink" href="/sites/bastet/">Bꜣstt</a>, <a class="scholars-xlink" href="/sites/coatlicue/">Cōātlīcue</a>, <a class="scholars-xlink" href="/sites/dagan/">Dāgan</a>, and <a class="scholars-xlink" href="/sites/ishtar/">Ištar</a>, each linked through earth / mother / fertility.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -401,14 +429,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Gaia is the oldest and most persistent name for the earth as a living whole. Geology, geography, and geometry all derive from her root <em>gē</em>. The Gaia hypothesis gave her name to modern ecological thought; &#39;Mother Earth&#39; in many languages translates the same image. In feminist spirituality, Gaia represents the primordial feminine principle and the sanctity of nature. Restoring <em>Gaia</em> restores the first name the Greeks gave to the ground beneath their feet. <strong>Scholarly controversy:</strong> The Mycenaean evidence for Gaia remains disputed, and modern ecology debates whether the Gaia hypothesis is science or metaphor.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -416,14 +441,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>At Delphi the stone Omphalos marked the &#39;navel&#39; of Ge before Apollo&#39;s arrival; the goddess&#39;s sanctuary lies beneath the later Apollo precinct. Pausanias describes altars of Ge at Olympia, including the oracle of Ge, and at Athens the Boule honored Ge Kourotrophos and Demeter Chloe. Votive reliefs from the Athenian Agora and Eleusinion show worshippers approaching a seated Mother Earth with cornucopia and phiale.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Pausanias, Description of Greece.</li></ol></div>
     </div>
 </section>
 
@@ -431,135 +453,110 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Gaîa given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a class="scholars-ext" href="https://brill.com/view/title/17858" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a class="scholars-ext" href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Homer, Iliad.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Pausanias, Description of Greece.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Lovelock, Gaia: A New Look at Life on Earth.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-2">Etymological Dictionary of Greek, 2 vols., Brill, 2010. <a class="scholars-ext" href="https://brill.com/view/title/17858" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-3">Wörterbuch der griechischen Eigennamen, 3rd ed., 1863. <a class="scholars-ext" href="https://archive.org/details/bub_gb_8SMSAAAAIAAJ" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-4">Hesiod, Theogony, Loeb Classical Library No. 57, 700 BCE. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-5">Homer, Iliad.</li><li id="src-scholarly-sources-6">Pausanias, Description of Greece.</li><li id="src-scholarly-sources-7">Lovelock, Gaia: A New Look at Life on Earth.</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="homeric-hymns">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Homeric Hymns</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Gaîa has one short hymn, the thirtieth of the collection, &#39;To Earth the Mother of All&#39; (nineteen lines). It praises her as the eldest being, who feeds every creature on land and sea: &#39;from you are fine children and fair fruit, mistress, and on you it depends to give life or take it from mortal men.&#39; It closes by asking her, in return for the song, to grant a cheerful heart and prosperity — the oldest surviving Greek prayer to the Earth as a person.<sup class="scholars-cite"><a href="#src-homeric-hymns-1">[1]</a></sup></p>
+<p>No narrative hymn to her exists; her story is cosmogony itself. Hesiod&#39;s <em>Theogony</em> (116–132) makes her the first solid thing after Chaos, mother without mating of Ouranos, the Mountains, and Pontos, and then — with Ouranos — of the Titans, Cyclopes, and Hundred-Handers.<sup class="scholars-cite"><a href="#src-homeric-hymns-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-homeric-hymns-1">Homeric Hymn 30, To Earth the Mother of All.</li><li id="src-homeric-hymns-2">Hesiod, Theogony 116–132. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0129" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="epithets">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Epithets & Epicleses</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Her antiquity shows in her formulae: they are cosmic descriptions rather than the civic cult titles of the Olympians.</p>
+<ul class="scholars-list"><li><strong>Εὐρύστερνος</strong> (<em>eurysternos</em>) — &#39;broad-bosomed,&#39; her standing Hesiodic epithet, in the line that calls her &#39;the ever-sure foundation of all.&#39;<sup class="scholars-cite"><a href="#src-epithets-1">[1]</a></sup></li><li><strong>Πάντων μήτηρ</strong> (<em>pantōn mētēr</em>) — &#39;mother of all,&#39; the opening address of her Homeric hymn.<sup class="scholars-cite"><a href="#src-epithets-2">[2]</a></sup></li><li><strong>Παμμήτειρα</strong> (<em>pammeteira</em>) — &#39;all-mother,&#39; the form preferred by later poetry and the Orphic hymn to Earth.<sup class="scholars-cite"><a href="#src-epithets-3">[3]</a></sup></li><li><strong>Κουροτρόφος</strong> (<em>Kourotrophos</em>) — &#39;nurse of children,&#39; her most concrete cult title, attested for Ge at Athens in inscriptions and oath formulae.<sup class="scholars-cite"><a href="#src-epithets-4">[4]</a></sup></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-epithets-1">Hesiod, Theogony 117–118.</li><li id="src-epithets-2">Homeric Hymn 30, To Earth the Mother of All.</li><li id="src-epithets-3">Orphic Hymn 26, To Earth.</li><li id="src-epithets-4">Pausanias, Description of Greece 1.22.3 (Ge Kourotrophos at Athens).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="oracle-sites">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Oracle & Cult Sites</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Gaîa is the one Greek deity whose oracle tradition is genuinely archaic: Delphi was hers before it was Apollo&#39;s. In the prologue of Aeschylus&#39;s <em>Eumenides</em> the Pythia herself recites the succession — Gaia first, then Themis, then Phoibe, who yielded the seat to Phoibos <a class="scholars-xlink" href="/sites/apollon/">Apóllōn</a>.<sup class="scholars-cite"><a href="#src-oracle-sites-1">[1]</a></sup> Pausanias repeats the tradition and notes that the oldest hymns sung at Delphi were to Earth.<sup class="scholars-cite"><a href="#src-oracle-sites-2">[2]</a></sup></p>
+<p>Other traces of chthonic prophecy:</p>
+<ul class="scholars-list"><li><strong>Olympia</strong> — Pausanias records that in ancient times an oracle of Earth existed beside the altar of Gaia in the Altis.<sup class="scholars-cite"><a href="#src-oracle-sites-2">[2]</a></sup></li><li><strong>Athens</strong> — the sanctuary of Ge Kourotrophos, &#39;nurse of children,&#39; near the Acropolis.<sup class="scholars-cite"><a href="#src-oracle-sites-2">[2]</a></sup></li><li><strong>Delphi</strong> — the omphalos stone, marking the earth&#39;s navel, preserved her presence inside Apollo&#39;s own sanctuary.<sup class="scholars-cite"><a href="#src-oracle-sites-1">[1]</a></sup><sup class="scholars-cite"><a href="#src-oracle-sites-2">[2]</a></sup></li></ul>
+<p>Her displacement by the Olympian sky god is the classic case of a chthonic oracle absorbed into an Olympian cult.<sup class="scholars-cite"><a href="#src-oracle-sites-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-oracle-sites-1">Aeschylus, Eumenides 1–19 (the Pythia’s prologue).</li><li id="src-oracle-sites-2">Pausanias, Description of Greece 10.5 and 5.14.10.</li><li id="src-oracle-sites-3">W. Burkert, Greek Religion.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="iconography">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Iconography</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Gaîa has no Archaic iconographic type: the early Greeks apparently did not picture the earth they stood on. She enters art in the fifth century as a <strong>matron half-risen from the ground</strong> — the &#39;Anesidora&#39; of Attic vase painting, a female torso emerging from the soil, sometimes handing the infant Erichthonios to <a class="scholars-xlink" href="/sites/athena/">Athénā</a>.<sup class="scholars-cite"><a href="#src-iconography-1">[1]</a></sup></p>
+<p>Her most famous sculpted appearance is the Great Frieze of the Pergamon Altar (c. 180–160 BCE), where, in the Gigantomachy, she rises from the earth beside the falling giant Alkyoneus, reaching toward Athénā in a plea the composition makes hopeless.<sup class="scholars-cite"><a href="#src-iconography-2">[2]</a></sup></p>
+<p>Roman <strong>Tellus</strong> continues the type: a reclining matron with cornucopia and children, as on the &#39;Tellus&#39; panel of the Ara Pacis (13–9 BCE) — though whether that figure is Tellus, Italia, Venus, or Pax is still debated, a reminder that Earth was read through fertility rather than cult.<sup class="scholars-cite"><a href="#src-iconography-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-iconography-1">Lexicon Iconographicum Mythologiae Classicae (LIMC), s.v. Ge/Gaia.</li><li id="src-iconography-2">E. Simon, Pergamon und Hesiod (1975).</li><li id="src-iconography-3">P. Zanker, The Power of Images in the Age of Augustus (1988).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Gaia is the only Greek deity who needs no temple because she is the temple. Every mountain, every field, every cave is her body. The Greeks did not worship her by escaping nature but by recognizing that they were already inside her.</p>
+<p>Modernity has largely forgotten this. We speak of &#39;the environment&#39; as if it were a surrounding thing, separate from us. Gaia&#39;s name reminds us that we are not on the earth but of it. The restoration of her name is more than philology; it is a statement that the planet is not a resource but a presence.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Liddell-Scott-Jones Greek-English Lexicon, 9th ed. with 1996 supplement, 1843. <a class="scholars-ext" href="https://www.perseus.tufts.edu/hopper/resolveform?type=exact&amp;redirect=true&amp;lang=greek" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="homeric-hymns">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Homeric Hymns</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Homeric Hymns →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="epithets">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Epithets & Epicleses</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Epithets & Epicleses →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="oracle-sites">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Oracle & Cult Sites</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Oracle & Cult Sites →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="iconography">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">17</span>
-        <h2 class="scholars-section-title">Iconography</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Iconography →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">19</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -597,6 +594,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'gaia';
@@ -630,14 +762,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -731,6 +855,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -742,18 +867,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -765,6 +891,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -809,6 +937,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

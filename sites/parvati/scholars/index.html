@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,12 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#vedic-references">14 &mdash; Vedic References</a></li>
-<li><a href="#upanishads">15 &mdash; Upaniṣads</a></li>
-<li><a href="#puranas">16 &mdash; Purāṇas</a></li>
-<li><a href="#mantras">17 &mdash; Mantras & Stotras</a></li>
+<li><a href="#vedic-references">12 &mdash; Vedic References</a></li>
+<li><a href="#upanishads">13 &mdash; Upaniṣads</a></li>
+<li><a href="#puranas">14 &mdash; Purāṇas</a></li>
+<li><a href="#mantras">15 &mdash; Mantras & Stotras</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -281,14 +297,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Pārvatī</strong> (<em>parvati</em>) — Mountains, Fertility, Devotion · of the god Śiva&#39;s wife (as daughter of Himavat, king of the snowy mountains), Up.; MBh.; Kāv. — belongs to the Sanskrit tradition, where it is catalogued under the domain &quot;Mountains, Fertility, Devotion&quot;. The name means &quot;of the god Śiva&#39;s wife (as daughter of Himavat, king of the snowy mountains), Up.; MBh.; Kāv.&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p><strong>Pārvatī</strong> is the mountain goddess whose devotion transforms the absolute into a husband. Born as the daughter of Himavat, the personified Himalaya, she is Satī reborn, destined to marry Śiva and bridge the abyss between his fierce asceticism and the needs of the world. She is gentle, patient, and resolute — the feminine power (<em>śakti</em>) without whom the great yogin remains withdrawn from creation.</p>
+<p>Her domain is the sacred marriage itself: the union of opposites that makes the cosmos fertile. Through her, the renouncer becomes householder, the destroyer becomes father, and the snow-capped peak becomes a bridal chamber.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Pārvatī</strong> and serves its temple at <a class="scholars-ext" href="https://xn--prvat-fwa21a.com" rel="noopener noreferrer" target="_blank">pārvatī.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>parvati</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Śiva Purāṇa, Satī Khaṇḍa and Pārvatī Khaṇḍa.</li><li id="src-overview-2">Kālidāsa, Kumārasambhava.</li><li id="src-overview-3">Skanda Purāṇa (birth of Gaṇeśa).</li></ol></div>
     </div>
 </section>
 
@@ -296,14 +312,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Devanagari as <strong>पार्वती</strong>. Etymologically it means &quot;of the god Śiva&#39;s wife (as daughter of Himavat, king of the snowy mountains), Up.; MBh.; Kāv.&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The ASCII form <em>parvati</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Pārvatī</strong> recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>p</strong> → <strong>P</strong> — Same</li><li><strong>a</strong> → <strong>ā</strong> — Macron: long a</li><li><strong>r</strong> → <strong>r</strong> — Same</li><li><strong>v</strong> → <strong>v</strong> — Same</li><li><strong>a</strong> → <strong>a</strong> — Same</li><li><strong>t</strong> → <strong>t</strong> — Same</li><li><strong>i</strong> → <strong>ī</strong> — Macron: long i</li></ul>
+<p>The project holds the domain <strong>pārvatī.com</strong> (xn--prvat-fwa21a.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Śiva Purāṇa, Satī Khaṇḍa and Pārvatī Khaṇḍa.</li><li id="src-the-name-2">Kālidāsa, Kumārasambhava.</li></ol></div>
     </div>
 </section>
 
@@ -311,14 +328,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/ˈpaːr.ʋə.tiː/</strong> — Sanskrit Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Pār-</strong> — Voiceless bilabial stop [p] plus long open [aː], followed by voiced labiodental approximant [ʋ] — softer than English &#39;v&#39;</li><li><strong>-va-</strong> — Short open [a], the second syllable is light and unstressed</li><li><strong>-tī</strong> — Voiceless alveolar stop [t] plus long close front [iː]; the macron marks length, giving Tier-1 status</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;PAHR-vuh-tee&#39; — hold the first &#39;pahr&#39; and final &#39;tee&#39; long; the &#39;v&#39; is light, almost like a &#39;w&#39;.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Sanskrit</strong> — पार्वती (pārvatī), &#39;she who is from the mountain (parvata)&#39;, daughter of Himavat</li><li><strong>Earlier names</strong> — Satī, the first wife of Śiva who immolated herself and was reborn as Pārvatī</li><li><strong>Tamil</strong> — பார்வதி (Pārvati), the goddess of the Tamil Śaiva devotional tradition</li></ul>
+<p>Pārvatī is Tier 1 because both the initial ā and final ī are long. The name is a transparent feminine derivative of parvata, &#39;mountain,&#39; specifically the Himalaya.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Śiva Purāṇa, Satī Khaṇḍa and Pārvatī Khaṇḍa.</li></ol></div>
     </div>
 </section>
 
@@ -326,14 +346,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Devanagari as <strong>पार्वती</strong> — Brahmic abugida, attested Vedic – present, c. 1500 BCE –, in South Asia. The script is written left-to-right.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Pārvatī</em> (IAST), giving the normalized reading /ˈpaːr.ʋə.tiː/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>Sanskrit Pārvatī is written पार्वती in Devanagari.</li><li>Each aksara combines a consonant with an inherent or explicit vowel.</li><li>IAST diacritics preserve length, retroflexion, and aspiration lost in plain ASCII.</li><li>The Devanagari form is not used as the primary domain because Indic scripts are not in the .com IDN table.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Macdonell, Sanskrit-English Dictionary.</li><li id="src-original-script-2">Mayrhofer, EWAia.</li><li id="src-original-script-3">Monier-Williams Sanskrit-English Dictionary.</li></ol></div>
     </div>
 </section>
 
@@ -341,14 +361,20 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p><strong>Pārvatī</strong> is the mountain goddess whose devotion transforms the absolute into a husband. Born as the daughter of Himavat, the personified Himalaya, she is Satī reborn, destined to marry Śiva and bridge the abyss between his fierce asceticism and the needs of the world. She is gentle, patient, and resolute — the feminine power (<em>śakti</em>) without whom the great yogin remains withdrawn from creation.</p>
+<p>Her domain is the sacred marriage itself: the union of opposites that makes the cosmos fertile. Through her, the renouncer becomes householder, the destroyer becomes father, and the snow-capped peak becomes a bridal chamber.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Tapas and Devotion</h3>
+<p>She wins Śiva not by beauty alone but by the heat of her own ascetic discipline, matching his severity with hers.</p>
+<h3 class="scholars-h3">Divine Mother</h3>
+<p>As mother of Gaṇeśa and Skanda/Kārttikeya, she grounds the divine family in domestic love and protective power.</p>
+<h3 class="scholars-h3">Śakti of Śiva</h3>
+<p>She is the active energy that complements Śiva&#39;s stillness; without her, he cannot move toward the world.</p>
+<h3 class="scholars-h3">Mountain and Fertility</h3>
+<p>Her Himalayan birth links her to snow, purity, and the life-giving rivers that descend from the heights.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Kālidāsa, Kumārasambhava.</li></ol></div>
     </div>
 </section>
 
@@ -356,14 +382,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Pārvatī concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Lotus</strong> — Purity and the unfolding of devotion; she often holds a blue lotus</li><li><strong>Lion or tiger</strong> — Her vehicle, combining maternal gentleness with sovereign ferocity</li><li><strong>Coral and gold ornaments</strong> — The beauty and auspiciousness of the married goddess</li><li><strong>Two-armed and four-armed forms</strong> — The range of her iconography from modest wife to cosmic deity</li><li><strong>The Himalaya</strong> — Her father and birthplace, the axis of the world and source of sacred rivers</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Śiva Purāṇa, Satī Khaṇḍa and Pārvatī Khaṇḍa.</li></ol></div>
     </div>
 </section>
 
@@ -371,14 +395,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Pārvatī&#39;s mythology is the story of a love that refuses to fail. From Satī&#39;s tragic death to Pārvatī&#39;s disciplined courtship, her narratives explore how devotion can soften even the most remote ascetic and how the feminine divine restores the world when the masculine principle withdraws too far.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Birth and Penance of Pārvatī (Śiva Purāṇa)</h3>
+<p>After Satī immolated herself in protest against her father Dakṣa&#39;s insult to Śiva, the goddess was reborn as Pārvatī, daughter of the mountain king Himavat. From childhood she was drawn to Śiva, who sat motionless in meditation, clad in ash and serpents. While her parents worried, Pārvatī undertook severe tapas in the snowy forests, repeating his name until the earth trembled. Her ascetic power grew so great that the gods themselves grew alarmed and urged Śiva to accept her.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Marriage of Śiva and Pārvatī (Kumārasambhava)</h3>
+<p>Kālidāsa&#39;s <em>Kumārasambhava</em> tells the courtship in exquisite verse. Śiva tests Pārvatī by appearing as a wandering ascetic who speaks against his own worth. Pārvatī&#39;s calm defense of the god reveals the depth of her understanding, and Śiva reveals himself. Their marriage is celebrated by the whole cosmos, and from their union is born Skanda, the commander of the gods&#39; armies.</p>
+<h3 class="scholars-h3">The Birth of Gaṇeśa (Skanda Purāṇa)</h3>
+<p>In one widely told story, Pārvatī creates Gaṇeśa from the turmeric paste of her own body to guard her door while she bathes. When Śiva returns and is stopped by the boy, he strikes off his head in anger. Stricken with remorse, Śiva restores the boy to life with the head of an elephant, and Gaṇeśa becomes the beloved son of Pārvatī and the remover of obstacles.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Kālidāsa, Kumārasambhava.</li><li id="src-mythology-2">Skanda Purāṇa (birth of Gaṇeśa).</li></ol></div>
     </div>
 </section>
 
@@ -386,14 +413,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Pārvatī is inseparable from the broader network of Śiva&#39;s consorts and energies. She is Satī reborn, Umā in the Vedas, Gaurī the fair one, and Caṇḍī or Durgā when wrathful. In South India she merges with the Tamil goddess Taṇṇammai; in Bengal and Assam she is identified with the mother goddess. Tantric traditions further multiply her forms, seeing her as the gentle face of the supreme śakti whose fierce aspect is Kālī. The mountain-goddess type has Indo-European echoes — the goddess born from or dwelling on the high peaks — but Pārvatī&#39;s specific identity as Śiva&#39;s wife and the mother of Gaṇeśa is distinctively Hindu.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include <a class="scholars-xlink" href="/sites/babaluaye/">Ọbalúayé</a>, <a class="scholars-xlink" href="/sites/bastet/">Bꜣstt</a>, <a class="scholars-xlink" href="/sites/coatlicue/">Cōātlīcue</a>, <a class="scholars-xlink" href="/sites/dagan/">Dāgan</a>, <a class="scholars-xlink" href="/sites/demeter/">Dēmētēr</a>, and <a class="scholars-xlink" href="/sites/gaia/">Gaîa</a>, each linked through earth / mother / fertility.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Śiva Purāṇa, Satī Khaṇḍa and Pārvatī Khaṇḍa.</li></ol></div>
     </div>
 </section>
 
@@ -401,14 +426,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Pārvatī remains a model of the devoted wife, the disciplined yoginī, and the protective mother in Hindu culture. Her marriage to Śiva is re-enacted in countless festivals, dance dramas, and domestic rituals; images of the divine couple (<em>umāmaheśvara</em>) grace temples and home shrines from Nepal to Tamil Nadu. In classical dance, especially Bharatanatyam and Odissi, her narratives are central. Feminist scholars have reclaimed her tapas as an assertion of female spiritual agency, while popular film and television continue to tell her stories to mass audiences. The name Pārvatī is also widely chosen for girls, embodying the ideal of strength cloaked in gentleness.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Śiva Purāṇa, Satī Khaṇḍa and Pārvatī Khaṇḍa.</li></ol></div>
     </div>
 </section>
 
@@ -416,14 +438,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>Images of Umā and Pārvatī appear from the Gupta period onward, often as part of the Umāmaheśvara motif showing Śiva in intimate embrace with his consort. Cave temples at Elephanta, Ellora, and Badami include major sculptural groups of the divine couple. Medieval temples across North and South India dedicated to Pārvatī, Gaurī, or the Goddess in her gentle form preserve her iconography as a beautiful, four-armed goddess seated on a lion or tiger. The annual festival of Gaurī/Gaurī Tṛtīyā and local celebrations of her marriage remain important in Maharashtra, Rajasthan, and South India.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Śiva Purāṇa, Satī Khaṇḍa and Pārvatī Khaṇḍa.</li></ol></div>
     </div>
 </section>
 
@@ -431,135 +450,103 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Pārvatī given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Śiva Purāṇa, Satī Khaṇḍa and Pārvatī Khaṇḍa.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Kālidāsa, Kumārasambhava.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Skanda Purāṇa (birth of Gaṇeśa).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Devībhāgavata Purāṇa.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Monier-Williams, Sanskrit-English Dictionary (pārvatī).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Kinsley, Hindu Goddesses: Visions of the Divine Feminine.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Handelman and Shulman, Śiva in the Forest of Pines.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Śiva Purāṇa, Satī Khaṇḍa and Pārvatī Khaṇḍa.</li><li id="src-scholarly-sources-2">Kālidāsa, Kumārasambhava.</li><li id="src-scholarly-sources-3">Skanda Purāṇa (birth of Gaṇeśa).</li><li id="src-scholarly-sources-4">Devībhāgavata Purāṇa.</li><li id="src-scholarly-sources-5">Monier-Williams, Sanskrit-English Dictionary (pārvatī).</li><li id="src-scholarly-sources-6">Kinsley, Hindu Goddesses: Visions of the Divine Feminine.</li><li id="src-scholarly-sources-7">Handelman and Shulman, Śiva in the Forest of Pines.</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="vedic-references">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Vedic References</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Pārvatī appears nowhere in the Ṛgveda; her Vedic ancestry is indirect, traced through figures adjacent to Rudra. The Yajurveda knows Ambikā as Rudra&#39;s sister (Vājasaneyi Saṃhitā 3.57), a name later borne by the Goddess herself, and the Vedic Rudra already dwells in the mountains that will give Pārvatī her name.<sup class="scholars-cite"><a href="#src-vedic-references-1">[1]</a></sup> The transition from these scattered notices to a mountain-born daughter of Himavat belongs to the epic and Purāṇic period, where Umā first steps forward as the named consort of Rudra-Śiva.<sup class="scholars-cite"><a href="#src-vedic-references-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-vedic-references-1">Vājasaneyi Saṃhitā 3.57 (Ambikā, sister of Rudra).</li><li id="src-vedic-references-2">Kinsley, Hindu Goddesses: Visions of the Divine Feminine (Pārvatī&#39;s Vedic antecedents).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="upanishads">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Upaniṣads</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The principal Upaniṣads know Pārvatī under her older name Umā, exactly once — but memorably. In the Kena Upaniṣad (3.1–4.9), when the gods grow proud of a victory that Brahman alone had won, it is &#39;Umā Haimavatī&#39;, the daughter of the snows, who appears to Indra in the sky and identifies the mysterious yakṣa as Brahman, humbling divine pride into knowledge.<sup class="scholars-cite"><a href="#src-upanishads-1">[1]</a></sup> The later Śākta Upaniṣads of the Muktikā canon address the Goddess in her own right, but Umā&#39;s brief cameo remains the earliest Upaniṣadic appearance of the figure who becomes Pārvatī.<sup class="scholars-cite"><a href="#src-upanishads-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-upanishads-1">Kena Upaniṣad 3.1–4.9 (Umā Haimavatī and the yakṣa).</li><li id="src-upanishads-2">Kinsley, Hindu Goddesses: Visions of the Divine Feminine (Umā to Pārvatī).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="puranas">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Purāṇas</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Śiva Purāṇa gives Pārvatī her fullest narrative: the Pārvatī Khaṇḍa recounts her birth to Himavat and Menā, Nārada&#39;s prophecy of her marriage, her severe tapas in the forest, and the wedding that unites the mountain&#39;s daughter with the lord of ascetics.<sup class="scholars-cite"><a href="#src-puranas-1">[1]</a></sup> The Mārkaṇḍeya Purāṇa&#39;s Devī-Māhātmya knows her as the goddess from whose body-sheath the warrior Kauśikī emerges, leaving Pārvatī herself dark — one of the Purāṇa&#39;s etiologies of her fair and fierce forms.<sup class="scholars-cite"><a href="#src-puranas-2">[2]</a></sup> The Skanda Purāṇa and allied texts round out her household with the births of <a class="scholars-xlink" href="/sites/ganesha/">Gaṇeśa</a> and Skanda.<sup class="scholars-cite"><a href="#src-puranas-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-puranas-1">Śiva Purāṇa, Pārvatī Khaṇḍa (birth, tapas, and marriage).</li><li id="src-puranas-2">Mārkaṇḍeya Purāṇa, Devī-Māhātmya (the emergence of Kauśikī).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="mantras">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Mantras & Stotras</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Pārvatī&#39;s worship is liturgically folded into the cult of <a class="scholars-xlink" href="/sites/shiva/">Śiva</a> and the Goddess, so her best-known formulas are shared ones: the joint salutation &#39;oṃ umā-maheśvarābhyāṃ namaḥ&#39; honors the divine couple in temple rite and domestic pūjā.<sup class="scholars-cite"><a href="#src-mantras-1">[1]</a></sup> Simple name-mantras such as &#39;oṃ pārvatyai namaḥ&#39; and &#39;oṃ gauryai namaḥ&#39; accompany her festivals, and later Gāyatrī adaptations address her as the daughter of the mountain and the beloved of Śiva.<sup class="scholars-cite"><a href="#src-mantras-1">[1]</a></sup> In the Śākta liturgy she is finally subsumed in the great formulas of the Devī, above all the Navārṇa mantra of the Devī-Māhātmya.<sup class="scholars-cite"><a href="#src-mantras-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mantras-1">Kinsley, Hindu Goddesses: Visions of the Divine Feminine (Pārvatī&#39;s worship).</li><li id="src-mantras-2">Mārkaṇḍeya Purāṇa, Devī-Māhātmya (Navārṇa mantra).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Pārvatī teaches that love can be a form of asceticism. She does not pursue Śiva through seduction or demand; she becomes so still, so focused, so burning with intention that the universe rearranges itself to bring them together. Her devotion is not submission but a discipline of matching power.</p>
+<p>In a world that often pits independence against intimacy, Pārvatī offers a third path: the one who is fully herself and fully given. She is the mountain — immovable, clear, life-giving — and she is the river that descends from it, reaching everywhere. To remember her is to remember that the greatest strength can wear the gentlest face.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Śiva Purāṇa, Satī Khaṇḍa and Pārvatī Khaṇḍa.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="vedic-references">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Vedic References</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Vedic References →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="upanishads">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Upaniṣads</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Upaniṣads →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="puranas">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Purāṇas</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Purāṇas →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="mantras">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">17</span>
-        <h2 class="scholars-section-title">Mantras & Stotras</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mantras & Stotras →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">19</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -597,6 +584,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'parvati';
@@ -630,14 +752,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -731,6 +845,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -742,18 +857,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -765,6 +881,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -809,6 +927,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

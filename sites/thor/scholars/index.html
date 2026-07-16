@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,12 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#poetic-edda">14 &mdash; Poetic Edda</a></li>
-<li><a href="#prose-edda">15 &mdash; Prose Edda</a></li>
-<li><a href="#runic-evidence">16 &mdash; Runic Evidence</a></li>
-<li><a href="#sagas">17 &mdash; Sagas & Medieval Sources</a></li>
+<li><a href="#poetic-edda">12 &mdash; Poetic Edda</a></li>
+<li><a href="#prose-edda">13 &mdash; Prose Edda</a></li>
+<li><a href="#runic-evidence">14 &mdash; Runic Evidence</a></li>
+<li><a href="#sagas">15 &mdash; Sagas & Medieval Sources</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -281,14 +297,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Þórr</strong> (<em>thor</em>) — Thunder (from <em>þunraz) — belongs to the Norse tradition, where it is catalogued under the domain &quot;Thunder, Storms, Oak&quot;. The name means &quot;Thunder (from </em>þunraz)&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>In the norse tradition, <strong>Þórr</strong> governed thunder, storms, oak. The name encodes a sphere of power that shaped ritual, narrative, and social order.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Þórr</strong> and serves its temple at <a class="scholars-ext" href="https://xn--rr-4ja7b.com" rel="noopener noreferrer" target="_blank">þórr.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>thor</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li><li id="src-overview-2">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li id="src-overview-3">Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora.</li></ol></div>
     </div>
 </section>
 
@@ -296,14 +311,20 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Younger Futhark as <strong>ᚦᚢᚱ</strong>. Etymologically it means &quot;Thunder (from *þunraz)&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The reconstructed proto-form is <em>Þunraz</em> (proto-indo-european, &quot;thunder&quot;). PGmc <em>Þunraz &quot;thunder&quot;, from PIE </em>(s)tenh₂- &quot;to thunder&quot;. The thunder god.</p>
+<p>Cognate forms across related languages:</p>
+<ul class="scholars-list"><li><strong>Þunor</strong> (old-english) — Anglo-Saxon thunder god</li><li><strong>tonāre</strong> (latin) — To thunder</li></ul>
+<p>The ASCII form <em>thor</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Þórr</strong> recovers both the stress accent and the vowel length of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>t</strong> → <strong>Þ</strong> — Thorn: voiceless dental fricative</li><li><strong>h</strong> → <strong>—</strong> — Dropped: merged with t into thorn</li><li><strong>o</strong> → <strong>ó</strong> — Acute on o</li><li><strong>r</strong> → <strong>rr</strong> — Geminate: double r in Old Norse</li></ul>
+<p>Attested and derived spellings of the name:</p>
+<ul class="scholars-list"><li><strong>Thorr</strong> — alternate stress, scholarly variant: Alternate: Thorr (length on o)</li></ul>
+<p>The project holds the domain <strong>þórr.com</strong> (xn--rr-4ja7b.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li><li id="src-the-name-2">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li></ol></div>
     </div>
 </section>
 
@@ -311,14 +332,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/ˈθɔːrː/</strong> — Old Norse Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Þ</strong> — Voiceless dental fricative [θ], the thorn; it is the hard &#39;th&#39; of &#39;thin&#39;, not the voiced &#39;th&#39; of &#39;this&#39;</li><li><strong>ó</strong> — Long open-mid back [ɔː] with acute marking stress and length</li><li><strong>rr</strong> — Long or geminated alveolar trill [rː], written double in Old Norse to show length</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;THORR&#39; — begin with the breathy &#39;th&#39; of &#39;thin&#39;, hold the &#39;o&#39; long like &#39;awe&#39;, and trill the final r slightly longer than usual.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Old English</strong> — Þunor, the Anglo-Saxon thunder god, cognate with Norse Þórr</li><li><strong>Old High German</strong> — Donar, the continental Germanic thunder god</li><li><strong>Proto-Germanic</strong> — *Þunraz, &#39;thunder&#39;, the common ancestor of all Germanic thunder-god names</li></ul>
+<p>Þórr is accent-preserving Tier 2: the acute on ó marks stress and length on the first syllable, while the geminate rr preserves the Old Norse long consonant. The English name Thor has lost both the thorn sound and the long rolled r.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li></ol></div>
     </div>
 </section>
 
@@ -326,14 +350,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Younger Futhark as <strong>ᚦᚢᚱ</strong> — Germanic runic, attested Viking Age, c. 800–1100 CE, in Scandinavia. The script is written left-to-right, top-to-bottom.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Þórr</em> (normalized Old Norse), giving the normalized reading /ˈθoːrː/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The Viking-Age runic form ᚦᚢᚱ (þur) is attested on artefacts such as the Mannegårde coin graffiti.</li><li>The normalized Old Norse name is Þórr, with long /oː/ and geminate /rː/.</li><li>The name continues Proto-Germanic *Þunraz (&#39;thunder&#39;), with loss of the medial nasal and contraction.</li><li>Younger Futhark does not distinguish short/long vowels or voiced/voiceless stops, so ᚦᚢᚱ is a minimal phonetic skeleton.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Zoëga, A Concise Dictionary of Old Icelandic.</li><li id="src-original-script-2">Cleasby-Vigfusson, An Icelandic-English Dictionary.</li><li id="src-original-script-3">Poetic Edda (Eddukvæði), ed. Neckel-Kuhn; trans. Carolyn Larrington, Oxford World&#39;s Classics (2014), 1270. <a class="scholars-ext" href="https://sacred-texts.com/neu/poe/index.htm" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-original-script-4">Snorri Sturluson, Prose Edda, trans. Anthony Faulkes, Everyman / Viking Society for Northern Research, 1220. <a class="scholars-ext" href="http://vsnrweb-publications.org.uk/EDDArestr.pdf" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -341,14 +365,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>In the norse tradition, <strong>Þórr</strong> governed thunder, storms, oak. The name encodes a sphere of power that shaped ritual, narrative, and social order.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Mjölnir</h3>
+<p>The returning hammer shatters giants and hallows brides; without it, the gods cannot defend cosmic order.</p>
+<h3 class="scholars-h3">Þrymskviða</h3>
+<p>Disguised as Freyja, Þórr recovered Mjölnir from the giant Þrymr and slew every jotunn in the wedding hall.</p>
+<h3 class="scholars-h3">Hymiskviða</h3>
+<p>Using an ox-head for bait, Þórr hooked the Miðgarðsormr and dragged the world serpent to the surface.</p>
+<h3 class="scholars-h3">Oak and Storm</h3>
+<p>Farmers and sailors invoked Þórr for protection; his name survives in Thursday and in the Anglo-Saxon Thunor.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li></ol></div>
     </div>
 </section>
 
@@ -356,14 +385,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Þórr concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Mjöllnir</strong> — The short-handled hammer that returns to his hand and strikes down giants</li><li><strong>Járngreipr (iron gloves)</strong> — The gloves that allow Thor to grasp the hammer&#39;s searing haft</li><li><strong>Megingjörð (strength belt)</strong> — The belt that doubles Thor&#39;s already formidable strength</li><li><strong>Goat-drawn chariot</strong> — Tanngrisnir and Tanngnjóstr, the goats who pull his thundering cart</li><li><strong>Oak tree</strong> — The tree sacred to Thor in Germanic folk practice, struck by lightning</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li></ol></div>
     </div>
 </section>
 
@@ -371,14 +398,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p><strong>Þórr</strong> is the thunder-god, the defender of Ásgarðr and the strongest of the Æsir. Where Óðinn seeks wisdom through sacrifice and stratagem, Þórr meets threats with his hammer Mjölnir and his belt of strength Megingjörð. Giants fear him, fishermen invoke him, and farmers bless their fields in his name. His chariot, drawn by the goats Tanngnjóstr and Tanngrisnir, rumbles across the sky as thunder, while Mjölnir returns to his hand after every throw, making him the unstoppable guardian of cosmic order. Þórr&#39;s popularity continued into the Viking Age and Christianization, when Mjǫllnir amulets were worn alongside crosses as protective symbols. His cult left place-names across Scandinavia and influenced the Anglo-Saxon thunder-god Thunor, whose name survives in Thursday. Medieval and modern revivals have made him a global icon of Norse strength.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Recovery of Mjölnir (Þrymskviða)</h3>
+<p>When the giant Þrymr steals Mjölnir and demands Freyja as ransom, the gods cannot pay. Instead, they dress Þórr as the bride, veil his beard, and send him to Jötunheimr with Loki as his maidservant. At the wedding feast, Þrymr places the hammer in the bride&#39;s lap to hallow her, and Þórr seizes it, slays every giant in the hall, and returns to Ásgarðr.</p>
+<p>The myth is comic, but its premise is serious: without Mjölnir, the gods cannot defend the order of the world. Þórr&#39;s willingness to wear women&#39;s clothing underscores that his masculinity is secure enough to be performed as disguise, and the hammer&#39;s return restores cosmic equilibrium.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Fishing for the Miðgarðsormr (Hymiskviða)</h3>
+<p>Þórr goes fishing with the giant Hymir, using the head of the giant&#39;s finest ox as bait. He hooks the Miðgarðsormr, the World Serpent that encircles Miðgarðr, and pulls it up until the venom drips and the sea boils. Hymir, terrified, cuts the line, and the serpent sinks back into the deep.</p>
+<p>The episode foreshadows the final battle of Ragnarǫk, when Þórr and the serpent will kill one another. It also shows Þórr&#39;s role as the god who tests the boundaries of the world: he alone dares to drag the creature that holds Miðgarðr together to the surface of its own sea.</p>
+<h3 class="scholars-h3">The Journey to Geirröðr (Skáldskaparmál)</h3>
+<p>The giant Geirröðr stole a pair of iron gloves, a belt, and a staff that belonged to the giantess Gríðr, who warned Þórr of the danger. He crossed the Vimur river, which rose to his shoulders, and broke into Geirröðr&#39;s hall. The giant hurled a glowing iron at him; Þórr caught it and threw it back through Geirröðr and the wall behind him, killing every giant in the room. The tale reinforces Þórr&#39;s identity as the god who survives traps and returns violence to its sender.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li id="src-mythology-2">Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora.</li></ol></div>
     </div>
 </section>
 
@@ -386,14 +418,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Norse tradition absorbed and reworked Germanic, Celtic, and Christian influences; medieval Icelandic compilers preserved the myths while Christian frameworks shaped their presentation.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include <a class="scholars-xlink" href="/sites/zeus/">Zeús</a> (thunder sovereignty), <a class="scholars-xlink" href="/sites/baal/">Baꜥal</a> (thunder / storm sovereignty), <a class="scholars-xlink" href="/sites/enlil/">Enlīl</a> (thunder / storm sovereignty), <a class="scholars-xlink" href="/sites/oya/">Ọya</a> (thunder / storm sovereignty), <a class="scholars-xlink" href="/sites/perkunas/">Perkūnas</a> (thunder / storm sovereignty), and <a class="scholars-xlink" href="/sites/shango/">Ṣàngó</a> (thunder / storm sovereignty).</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li></ol></div>
     </div>
 </section>
 
@@ -401,14 +431,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>The name lives on in modern fantasy, Neopagan practice, Scandinavian heritage, and the global reception of Viking-Age literature. Restoring <em>Þórr</em> in Unicode preserves the name&#39;s cultural specificity against the flattening force of plain ASCII. Þórr has become a global pop-culture icon, yet his medieval cult was rooted in the daily protection of farmers, sailors, and households. The thorn character and acute accent in <em>Þórr</em> restore the name&#39;s Old Norse specificity. The transition from Þórr of the Viking Age to Thor of modern media illustrates how medieval deities become global archetypes.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li></ol></div>
     </div>
 </section>
 
@@ -416,14 +443,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The Altuna runestone in Uppland (U 1161) depicts Þórr fishing for the Miðgarðsormr, the most direct pictorial attestation of his myth. Mjölnir pendants are found by the thousand from Birka, Hedeby, and across the Norse diaspora; the Eyrarland bronze statuette from Iceland may represent the thunder-god with his hammer. The Jelling stones and runestones such as the Glavendrup stone invoke his protection.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li></ol></div>
     </div>
 </section>
 
@@ -431,135 +455,102 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Þórr given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> The Poetic Edda; The Prose Edda of Snorri Sturluson.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Poetic Edda: Grímnismál (Þórr&#39;s dwelling at Þrúðvangar and his power among the gods).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Poetic Edda: Lokasenna (Þórr&#39;s confrontation with Loki and defense of the gods&#39; order).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Saxo Grammaticus, Gesta Danorum (Thorkil and the deeds of the thunder-god among the northern peoples).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li><li id="src-scholarly-sources-2">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li id="src-scholarly-sources-3">Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora.</li><li id="src-scholarly-sources-4">Poetic Edda: Grímnismál (Þórr&#39;s dwelling at Þrúðvangar and his power among the gods).</li><li id="src-scholarly-sources-5">Poetic Edda: Lokasenna (Þórr&#39;s confrontation with Loki and defense of the gods&#39; order).</li><li id="src-scholarly-sources-6">Saxo Grammaticus, Gesta Danorum (Thorkil and the deeds of the thunder-god among the northern peoples).</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="poetic-edda">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Poetic Edda</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Þórr is the most narrated god of the Poetic Edda. <em>Þrymskviða</em> sends him to <a class="scholars-xlink" href="/sites/jotunheimr/">Jötunheimr</a> veiled as <a class="scholars-xlink" href="/sites/freyja/">Freyja</a> to reclaim the stolen Mjǫllnir; <em>Hymiskviða</em> has him fetch the brewing cauldron from Hymir and hook the <a class="scholars-xlink" href="/sites/jormungandr/">world serpent</a> on an ox-head.<sup class="scholars-cite"><a href="#src-poetic-edda-1">[1]</a></sup> <em>Hárbarðsljóð</em> casts his homecoming from the east as a flyting with a one-eyed ferryman who is Óðinn in disguise, and <em>Alvíssmál</em> shows his cunning, talking the dwarf Alvíss through the night until the sun turns him to stone.<sup class="scholars-cite"><a href="#src-poetic-edda-2">[2]</a></sup> <em>Völuspá</em> seals his fate: Óðinn&#39;s son slays the serpent and falls dead nine paces from its venom.<sup class="scholars-cite"><a href="#src-poetic-edda-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-poetic-edda-1">Poetic Edda, Þrymskviða and Hymiskviða (the hammer-recovery; the fishing).</li><li id="src-poetic-edda-2">Poetic Edda, Hárbarðsljóð and Alvíssmál (the flyting; the dwarf).</li><li id="src-poetic-edda-3">Poetic Edda, Völuspá (Þórr&#39;s death at the doom).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="prose-edda">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Prose Edda</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Snorri introduces Þórr in <em>Gylfaginning</em> as foremost of the gods, Ása-Þórr or Ǫku-Þórr, strongest of gods and men, with three treasures: Mjǫllnir, the belt Megingjǫrð that doubles his strength, and the iron gloves Járngreipr; his hall is Bilskirnir in Þrúðvangr, and the goats Tanngrisnir and Tanngnjóstr draw his chariot.<sup class="scholars-cite"><a href="#src-prose-edda-1">[1]</a></sup> The long Útgarða-Loki narrative humbles and exalts him at once — the horn joined to the sea, the wrestler named Old Age, the cat that was the world serpent — and <em>Skáldskaparmál</em> adds the duel with Hrungnir, in whose head a whetstone splinter lodges, and the crossing of Vimur to Geirrøðr&#39;s courts.<sup class="scholars-cite"><a href="#src-prose-edda-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-prose-edda-1">Snorri Sturluson, Edda, Gylfaginning (Þórr&#39;s attributes; the Útgarða-Loki episode).</li><li id="src-prose-edda-2">Snorri Sturluson, Edda, Skáldskaparmál (Hrungnir; Geirrøðr).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="runic-evidence">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Runic Evidence</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Þórr is the only Norse god directly invoked on Scandinavian runestones. Three stones carry the formula <em>Þórr vigi</em>, &#39;may Þórr hallow&#39;: the Glavendrup stone on Fyn (DR 209) asks him to hallow the runes and curses any disturber, the Sønder Kirkeby stone on Falster (DR 220) repeats &#39;may Þórr hallow these runes&#39;, and the Velanda stone in Västergötland (Vg 150) closes with the same invocation.<sup class="scholars-cite"><a href="#src-runic-evidence-1">[1]</a></sup> Earlier still, the continental Nordendorf I fibula names <em>wigiþonar</em> beside Wodan.<sup class="scholars-cite"><a href="#src-runic-evidence-2">[2]</a></sup> The image tradition matches the words: the Altuna stone (U 1161) carves the fishing for the serpent, and thousands of Mjǫllnir pendants from graves and hoards show the hammer worn as a counter-symbol to the cross.<sup class="scholars-cite"><a href="#src-runic-evidence-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-runic-evidence-1">The Glavendrup (DR 209), Sønder Kirkeby (DR 220), and Velanda (Vg 150) inscriptions (the Þórr vigi formula).</li><li id="src-runic-evidence-2">The Nordendorf I fibula inscription (wigiþonar).</li><li id="src-runic-evidence-3">The Altuna stone, U 1161, and the Mjǫllnir amulet finds of the Viking Age.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="sagas">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Sagas & Medieval Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The sagas remember Þórr above all as the god of the land-taking colonists and of the conversion struggle. <em>Eyrbyggja saga</em> opens with Þórólfr Mostrarskegg, a most devout worshipper of Þórr, who emigrates to Iceland guided by his Þórr-pillars, dedicates the headland Þórsnes, and founds its hof and þing.<sup class="scholars-cite"><a href="#src-sagas-1">[1]</a></sup> In Heimskringla, Þórr is the chief god the missionary kings must break: <em>Óláfs saga Tryggvasonar</em> narrates how Óláfr had the great image of Þórr at Mærin in Trøndelag struck down and the temple burned.<sup class="scholars-cite"><a href="#src-sagas-2">[2]</a></sup> <em>Landnámabók</em> registers the cult in dozens of Þórr-compounded settler names — Þórólfr, Þórðr, Þórgunnr.<sup class="scholars-cite"><a href="#src-sagas-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-sagas-1">Eyrbyggja saga (Þórólfr Mostrarskegg and the settlement of Þórsnes).</li><li id="src-sagas-2">Snorri Sturluson, Heimskringla, Óláfs saga Tryggvasonar (the breaking of Þórr&#39;s image at Mærin).</li><li id="src-sagas-3">Landnámabók (Þórr-theophoric settler names).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Names are not merely labels; they are compressed worlds. <strong>Þórr</strong> carries within it a norse understanding of thunder (from *þunraz). Unicode restoration returns that world to readable form.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="poetic-edda">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Poetic Edda</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Poetic Edda →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="prose-edda">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Prose Edda</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Prose Edda →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="runic-evidence">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Runic Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Runic Evidence →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="sagas">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">17</span>
-        <h2 class="scholars-section-title">Sagas & Medieval Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Sagas & Medieval Sources →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">19</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -597,6 +588,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'thor';
@@ -630,14 +756,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -731,6 +849,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -742,18 +861,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -765,6 +885,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -809,6 +931,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

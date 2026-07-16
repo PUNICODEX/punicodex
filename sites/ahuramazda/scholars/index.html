@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,11 +279,12 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#avesta">14 &mdash; Avesta</a></li>
-<li><a href="#gathas">15 &mdash; Gathas</a></li>
-<li><a href="#middle-persian">16 &mdash; Middle Persian Sources</a></li>
+<li><a href="#avesta">12 &mdash; Avesta</a></li>
+<li><a href="#gathas">13 &mdash; Gathas</a></li>
+<li><a href="#middle-persian">14 &mdash; Middle Persian Sources</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -280,14 +296,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>AhuraMazdā</strong> (<em>ahuramazda</em>) — Supreme Creator, Wisdom, Light · Wise lord — belongs to the Zoroastrian tradition, where it is catalogued under the domain &quot;Supreme Creator, Wisdom, Light&quot;. The name means &quot;Wise lord&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p><strong>AhuraMazdā</strong> is the highest god of Zoroastrianism, the uncreated creator who thinks the cosmos into being and sustains it through truth (Aša), good thought, and the Holy Immortals. He is not a storm warrior or a tribal patron but a cosmic architect whose weapon is wisdom and whose enemy is the lie (Druj). In the Gāthās, the oldest Zoroastrian hymns, he speaks directly to the prophet Zarathustra, asking humanity to choose between good purpose and evil.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>AhuraMazdā</strong> and serves its temple at <a class="scholars-ext" href="https://xn--ahuramazd-ecb.com" rel="noopener noreferrer" target="_blank">ahuramazdā.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>ahuramazda</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Avesta, Gāthās (Yasna 28–34, 43–51, 53).</li><li id="src-overview-2">Avesta, Yasna Haptaŋhāiti.</li><li id="src-overview-3">Bundaahišn (Zoroastrian cosmogony).</li></ol></div>
     </div>
 </section>
 
@@ -295,14 +310,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Avestan as <strong>𐬀𐬵𐬎𐬭𐬀 𐬨𐬀𐬰𐬛𐬁</strong>. Etymologically it means &quot;Wise lord&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The ASCII form <em>ahuramazda</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>AhuraMazdā</strong> recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>a</strong> → <strong>A</strong> — Same</li><li><strong>h</strong> → <strong>h</strong> — Same</li><li><strong>u</strong> → <strong>u</strong> — Same</li><li><strong>r</strong> → <strong>r</strong> — Same</li><li><strong>a</strong> → <strong>a</strong> — Same</li><li><strong>m</strong> → <strong>M</strong> — Same</li><li><strong>a</strong> → <strong>a</strong> — Same</li><li><strong>z</strong> → <strong>z</strong> — Same</li><li><strong>d</strong> → <strong>d</strong> — Same</li><li><strong>a</strong> → <strong>ā</strong> — Macron: long a</li></ul>
+<p>The project holds the domain <strong>ahuramazdā.com</strong> (xn--ahuramazd-ecb.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Avesta, Gāthās (Yasna 28–34, 43–51, 53).</li><li id="src-the-name-2">Avesta, Yasna Haptaŋhāiti.</li></ol></div>
     </div>
 </section>
 
@@ -310,14 +326,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/aːˈhuːɾə ˈmazdaː/</strong> — Avestan Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Ahu-</strong> — Long [aː] plus voiceless glottal fricative [h] and close back rounded vowel [uː]; the first element means &#39;lord, master&#39;</li><li><strong>-ra</strong> — Rhotic [ɾ], the final consonant of Ahura</li><li><strong>Maz-</strong> — Voiced bilabial nasal [m] plus open central vowel [a] and voiced alveolar fricative [z]; from Avestan maz- &#39;great&#39;</li><li><strong>-dā</strong> — Long [aː], the final vowel of &#39;wisdom&#39; (Avestan dā- &#39;to know, place&#39;)</li></ul>
+<p>For the modern speaker, the closest approximation is: ah-HOO-ruh MAHZ-dah — the first &#39;a&#39; is long, the &#39;u&#39; is long and rounded, and the final &#39;dah&#39; is drawn out.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Avestan</strong> — Ahura Mazdā, the name of the supreme god in the Gāthās and Younger Avesta</li><li><strong>Old Persian</strong> — Auramazdā, the form used in Achaemenid royal inscriptions</li><li><strong>Middle Persian</strong> — Ohrmazd / Hormazd, the Zoroastrian creator in the Pahlavi books</li></ul>
+<p>AhuraMazdā is a Tier-1 restoration: the long vowels in both Ahura and Mazdā are preserved. The compound is written as a single word in the PUNYCODEX domain to keep the name registrable as one Unicode string, following the project&#39;s convention for the Zoroastrian supreme being.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Avesta, Gāthās (Yasna 28–34, 43–51, 53).</li></ol></div>
     </div>
 </section>
 
@@ -325,14 +344,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Avestan as <strong>𐬀𐬵𐬎𐬭𐬀 𐬨𐬀𐬰𐬛𐬁</strong> — Iranian religious alphabet, attested Avestan, c. 1000 BCE – 400 CE (manuscripts later), in Iran / Central Asia. The script is written right-to-left.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>AhuraMazdā</em> (Avestan scholarly transliteration), giving the normalized reading /aˈhuː.ra mazˈdaː/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The Avestan form 𐬀𐬵𐬎𐬭𐬀 𐬨𐬀𐬰𐬛𐬁 writes the sounds of the Avesta phonetically.</li><li>Long vowels and special fricatives have distinct Avestan letters.</li><li>The Unicode restoration preserves length and the postalveolar/velar nasal distinctions in a registrable Latin form.</li><li>The Unicode restoration AhuraMazdā is registrable in .com; the Avestan script is not in the .com IDN table.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Altiranisches Wörterbuch, Strassburg: Trübner, 1904.</li><li id="src-original-script-2">Bartholomae, Altiranisches Wörterbuch.</li><li id="src-original-script-3">Geldner, Avesta.</li><li id="src-original-script-4">Kellens, Les textes vieil-avestiques.</li></ol></div>
     </div>
 </section>
 
@@ -340,14 +359,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p><strong>AhuraMazdā</strong> is the highest god of Zoroastrianism, the uncreated creator who thinks the cosmos into being and sustains it through truth (Aša), good thought, and the Holy Immortals. He is not a storm warrior or a tribal patron but a cosmic architect whose weapon is wisdom and whose enemy is the lie (Druj). In the Gāthās, the oldest Zoroastrian hymns, he speaks directly to the prophet Zarathustra, asking humanity to choose between good purpose and evil.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Creator by Thought</h3>
+<p>AhuraMazdā first conceived the cosmic order in his mind and then spoke it into existence.</p>
+<h3 class="scholars-h3">Lord of Aša</h3>
+<p>Truth, righteousness, and cosmic order (Aša) are his first creation and his greatest gift.</p>
+<h3 class="scholars-h3">The Amesha Spentas</h3>
+<p>Six divine attributes — Vohu Manah, Aša, Khshathra, Spenta Ārmaiti, Haurvatāt, Ameretāt — emanate from him.</p>
+<h3 class="scholars-h3">Fire and Light</h3>
+<p>Fire is his visible presence; Zoroastrian temples guard an eternal flame in his honor.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Avesta, Yasna Haptaŋhāiti.</li></ol></div>
     </div>
 </section>
 
@@ -355,14 +379,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with AhuraMazdā concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Faravahar</strong> — The winged disk symbolizing divine guardianship and the human soul&#39;s choice between good and evil</li><li><strong>Sacred fire</strong> — The visible presence of AhuraMazdā and the focus of Zoroastrian worship</li><li><strong>Sun and light</strong> — The radiance of wisdom and the purity that drives away darkness and the lie</li><li><strong>The ring of sovereignty</strong> — The divine covenant and the righteous rule of kings under Aša</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Avesta, Gāthās (Yasna 28–34, 43–51, 53).</li></ol></div>
     </div>
 </section>
 
@@ -370,14 +392,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>The mythology of AhuraMazdā is not a cycle of adventures but a grand cosmology: the creation of the world, the fall of the first man Yima, the choice offered to Zarathustra, and the final renovation (Frashokereti) when evil will be destroyed and the world made perfect. Every human moral choice participates in this cosmic drama.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Call of Zarathustra (Gāthās)</h3>
+<p>In the Gāthās, AhuraMazdā approaches Zarathustra and asks him to choose between the two primordial spirits: Spenta Mainyu, the holy creative spirit, and Angra Mainyu, the destructive spirit of the lie. Zarathustra chooses good thought, good words, and good deeds, becoming the prophet of the one wise lord. The myth is less a narrative than a summons: every person must make the same choice.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Seven Creations and the Assault of Ahriman (Creation Myth)</h3>
+<p>In later Zoroastrian texts, AhuraMazdā creates the world in seven stages: sky, water, earth, plants, animals, humans, and fire. Angra Mainyu (Ahriman) responds by introducing drought, predators, disease, and death. The cosmos becomes a mixed battlefield in which good will ultimately triumph at Frashokereti, the making-fresh of the world.</p>
+<h3 class="scholars-h3">Frashokereti, the Renovation (Eschatology)</h3>
+<p>At the end of time, a savior named Saoshyant will arise, the dead will be resurrected, and AhuraMazdā will purify the world with molten metal and a great flood of wine. The lie and its creatures will be annihilated, and all beings will live forever in righteousness. This vision of cosmic renewal is one of Zoroastrianism&#39;s most distinctive contributions to world religion.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Avesta, Yasna Haptaŋhāiti.</li><li id="src-mythology-2">Bundaahišn (Zoroastrian cosmogony).</li></ol></div>
     </div>
 </section>
 
@@ -385,14 +410,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Under the Achaemenid empire, AhuraMazdā was identified by Greeks and others with Zeus or the supreme sky god, and Persian kings dedicated monuments to him across their vast realm. In later Zoroastrian tradition he is paired with Angra Mainyu (Ahriman) in a dualistic opposition that some scholars trace back to Zarathustra&#39;s own teaching and others see as a later development. The figure of a single creator god opposed by a personified evil influenced Jewish, Christian, and Islamic eschatology, though the exact lines of influence remain debated.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include <a class="scholars-xlink" href="/sites/athena/">Athénā</a>, <a class="scholars-xlink" href="/sites/ganesha/">Gaṇeśa</a>, <a class="scholars-xlink" href="/sites/odinn/">Óðinn</a>, <a class="scholars-xlink" href="/sites/orunmila/">Ọrúnmìlà</a>, <a class="scholars-xlink" href="/sites/quetzalcoatl/">Quetzalcōātl</a>, and <a class="scholars-xlink" href="/sites/thoth/">Ḏḥwty</a>, each linked through wisdom / knowledge.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Avesta, Gāthās (Yasna 28–34, 43–51, 53).</li></ol></div>
     </div>
 </section>
 
@@ -400,14 +423,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>AhuraMazdā is the enduring name of God in Zoroastrianism, one of the world&#39;s oldest continuously practiced religions. His call to &#39;good thoughts, good words, good deeds&#39; remains the religion&#39;s central ethical formula. The Faravahar has become an emblem of Iranian identity worldwide, and Zoroastrian ideas of final judgment, resurrection, and cosmic battle shaped the religious landscape of late antiquity. In modern interfaith discourse, AhuraMazdā represents an early vision of a single moral creator whose worship asks for ethical action rather than blood sacrifice.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Avesta, Gāthās (Yasna 28–34, 43–51, 53).</li></ol></div>
     </div>
 </section>
 
@@ -415,14 +435,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>AhuraMazdā is invoked in Achaemenid royal inscriptions at Bisotun, Persepolis, Naqsh-e Rustam, and Susa, usually in the Old Persian form Auramazdā. The Apadana reliefs at Persepolis show the king in ritual gestures beneath the winged-disk symbol. Zoroastrian fire temples (atešgāhs) from the Sasanian and later periods preserve the cult of fire as his visible presence. Avestan manuscripts, copied in India and Iran, transmit the Gāthās and the liturgical corpus.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Avesta, Gāthās (Yasna 28–34, 43–51, 53).</li></ol></div>
     </div>
 </section>
 
@@ -430,120 +447,90 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of AhuraMazdā given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Avesta, Gāthās (Yasna 28–34, 43–51, 53).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Avesta, Yasna Haptaŋhāiti.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Bundaahišn (Zoroastrian cosmogony).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Bartholomae, Altiranisches Wörterbuch.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> AirWb (Avestan digital dictionary).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Boyce, Zoroastrians: Their Religious Beliefs and Practices.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Skjærvø, The Spirit of Zoroastrianism.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Narten, Die Aməša Spəntas im Avesta.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Avesta, Gāthās (Yasna 28–34, 43–51, 53).</li><li id="src-scholarly-sources-2">Avesta, Yasna Haptaŋhāiti.</li><li id="src-scholarly-sources-3">Bundaahišn (Zoroastrian cosmogony).</li><li id="src-scholarly-sources-4">Bartholomae, Altiranisches Wörterbuch.</li><li id="src-scholarly-sources-5">AirWb (Avestan digital dictionary).</li><li id="src-scholarly-sources-6">Boyce, Zoroastrians: Their Religious Beliefs and Practices.</li><li id="src-scholarly-sources-7">Skjærvø, The Spirit of Zoroastrianism.</li><li id="src-scholarly-sources-8">Narten, Die Aməša Spəntas im Avesta.</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="avesta">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Avesta</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Ahura Mazdā stands at the head of the entire Avesta. Every Yasna opens with his invocation, and the ancient prose liturgy of the <strong>Yasna Haptaŋhāiti</strong> (Yasna 35–41) worships him together with the Aməša Spəntas as creator of the good world; the confession of faith, the Fravarānē (Yasna 12), begins with the profession &#39;I am a Mazda-worshipper&#39;. The Younger Avesta gives him his own hymn, the <strong>Ahura Mazdā Yašt (Yt 1)</strong>, in which he reveals to Zarathustra his twenty names — epithets declaring him giver, keeper, furtherer of the world, and most beneficent — so that their recitation will protect the faithful against the creatures of Angra Mainyu. Throughout the yašts he is invoked simply as the Creator, through whom and to whom all sacrifice is offered.<sup class="scholars-cite"><a href="#src-avesta-1">[1]</a></sup><sup class="scholars-cite"><a href="#src-avesta-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-avesta-1">Avesta, Yasna Haptaŋhāiti (Y 35–41) and Fravarānē (Y 12).</li><li id="src-avesta-2">Avesta, Ahura Mazdā Yašt (Yt 1), the revelation of the twenty names.</li><li id="src-avesta-3">Boyce, Zoroastrians: Their Religious Beliefs and Practices.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="gathas">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Gathas</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Gāthās are framed as a dialogue between Zarathustra and Ahura Mazdā, and nearly every stanza addresses him directly as <strong>Mazdā Ahura</strong>. In Yasna 29 the soul of the cow laments to heaven, and Mazda answers by appointing Zarathustra to carry the teaching that will protect her. In Yasna 30 the prophet proclaims the two primal spirits whose choice between good and evil structures all existence. In Yasna 43 he recounts his progressive recognition of Mazda — &#39;I realized that Thou art holy&#39; — whenever good thought came to him, and in Yasna 44 he interrogates the Lord with the refrain &#39;This I ask Thee, tell me truly, Lord&#39;: who holds the earth and clouds from falling, who made the waters and the plants, who is the founder of Good Thought? The Gāthās&#39; answer is constant: Mazda, father of <a class="scholars-xlink" href="/sites/asa/">Aša</a>, of Good Thought, and of the world&#39;s ordered course.<sup class="scholars-cite"><a href="#src-gathas-1">[1]</a></sup><sup class="scholars-cite"><a href="#src-gathas-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-gathas-1">Avesta, Gāthās (Yasna 28–34, 43–51, 53), esp. Y 29, 30, 43, 44.</li><li id="src-gathas-2">Insler, The Gāthās of Zarathustra (Acta Iranica 8, Brill, 1975).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="middle-persian">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Middle Persian Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>As <strong>Ohrmazd</strong> he rules the Pahlavi books. The Bundahishn opens with him dwelling &#39;in omniscience and goodness&#39; in the unbounded light, opposed by Ahriman in the darkness &#39;in backward knowledge and lust to destroy&#39;; it then narrates his creation of the spiritual (mēnōg) and material (gētīg) worlds, Ahriman&#39;s assault, and the final Renovation in which Ohrmazd&#39;s victory is assured because his knowledge is unbounded and his adversary&#39;s is not. The Dēnkard elaborates this wisdom theology across its books, and the wisdom dialogue <strong>Mēnōg ī Xrad</strong> (&#39;Spirit of Wisdom&#39;) unfolds the knowledge that proceeds from him. Sasanian royal inscriptions likewise name Ohrmazd as granter of kingship and of the royal glory (xwarrah).<sup class="scholars-cite"><a href="#src-middle-persian-1">[1]</a></sup><sup class="scholars-cite"><a href="#src-middle-persian-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-middle-persian-1">Bundahishn (Greater Bundahišn), opening cosmogony and eschatology.</li><li id="src-middle-persian-2">Dēnkard and Mēnōg ī Xrad (Pahlavi wisdom literature).</li><li id="src-middle-persian-3">Sasanian royal inscriptions (Ka&#39;ba-ye Zardošt, Paikuli), naming Ohrmazd.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>AhuraMazdā asks each person to become a co-worker in the creation of goodness. The world is not finished; it is a project, and every choice between truth and the lie either builds or tears it down. In a time of environmental crisis and moral confusion, this vision is radical: the cosmos is not a machine to be used but a garden to be healed, and the divine is present not in miracle but in the steady practice of wisdom and care.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Avesta, Gāthās (Yasna 28–34, 43–51, 53).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="avesta">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Avesta</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Avesta →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="gathas">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Gathas</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Gathas →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="middle-persian">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Middle Persian Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Middle Persian Sources →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">17</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -581,6 +568,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'ahuramazda';
@@ -614,14 +736,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -715,6 +829,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -726,18 +841,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -749,6 +865,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -793,6 +911,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

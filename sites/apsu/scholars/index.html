@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,11 +279,12 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#cuneiform-sources">14 &mdash; Cuneiform Sources</a></li>
-<li><a href="#enuma-elish">15 &mdash; Enūma Eliš</a></li>
-<li><a href="#atra-hasis">16 &mdash; Atra-Ḫasīs</a></li>
+<li><a href="#cuneiform-sources">12 &mdash; Cuneiform Sources</a></li>
+<li><a href="#enuma-elish">13 &mdash; Enūma Eliš</a></li>
+<li><a href="#atra-hasis">14 &mdash; Atra-Ḫasīs</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -280,14 +296,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Apsû</strong> (<em>apsu</em>) — Phonological Reconstruction Hub — studying the pronunciation of Apsu (Sumerian AB.ZU) — belongs to the Mesopotamian tradition, where it is catalogued under the domain &quot;Phonological Reconstruction, Fresh Water, Abyss&quot;. The name means &quot;Reconstruction node for the Mesopotamian abyss Apsu (Sumerian Abzu): the circumflex marks a discussable vowel length, not a canonical spelling claim.&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>The name is written 𒀊𒍪. Standard Assyriology transliterates it as <strong>Apsu</strong> (Akkadian) or <strong>Abzu</strong> (Sumerian). But the length of the final vowel in Akkadian Apsû remains an open question — and it is here, in the space between the written sign and the spoken sound, that this temple operates. This node of PÚNYCODEX is dedicated to the <strong>phonological reconstruction and didactic grammar</strong> of the ancient Near East. We mark vowel length not because it is certain, but because it is discussable. The circumflex is a question mark made visible.</p>
+<p><strong>Apsû</strong> is nevertheless the sweet-water ocean that lies beneath the world — the cosmic freshwater reservoir from which springs, rivers, and wells draw their life. In Mesopotamian cosmogony, Apsû is both a place and a primordial power, the male depths that mingle with Tiamat&#39;s salt sea to beget the gods.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Apsû</strong> and serves its temple at <a class="scholars-ext" href="https://xn--aps-foa.com" rel="noopener noreferrer" target="_blank">apsû.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>apsu</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Enuma Elish: The Babylonian Epic of Creation, Standard Babylonian version, 1200 BCE. <a class="scholars-ext" href="http://etana.org/node/581" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-overview-2">CAD (Chicago Assyrian Dictionary).</li><li id="src-overview-3">ETCSL (Electronic Text Corpus of Sumerian Literature).</li></ol></div>
     </div>
 </section>
 
@@ -295,14 +311,20 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Cuneiform as <strong>𒀊𒍪</strong>. Etymologically it means &quot;Reconstruction node for the Mesopotamian abyss Apsu (Sumerian Abzu): the circumflex marks a discussable vowel length, not a canonical spelling claim.&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>Standard Assyriology transliterates the primordial freshwater abyss as Apsu (Akkadian) or Abzu (Sumerian 𒀊𒍪). The length of the final vowel in Akkadian Apsû is reconstructed from linguistic convention, not from the cuneiform signs themselves; the circumflex on Apsû is a pedagogical mark that makes that open question visible, not a claim of canonical spelling.</p>
+<p>Cognate forms across related languages:</p>
+<ul class="scholars-list"><li><strong>abzu (AB.ZU)</strong> (sumerian) — Sumerian &#39;abyss, primeval water&#39; (ETCSL, Black-Green)</li></ul>
+<p>The ASCII form <em>apsu</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Apsû</strong> recovers the vowel length of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>a</strong> → <strong>A</strong> — Same, capitalized</li><li><strong>p</strong> → <strong>p</strong> — Same</li><li><strong>s</strong> → <strong>s</strong> — Same</li><li><strong>u</strong> → <strong>û</strong> — Circumflex: a visible question mark — the length of Apsu&#39;s final vowel is discussable, not certain</li></ul>
+<p>Attested and derived spellings of the name:</p>
+<ul class="scholars-list"><li><strong>Apsu</strong> — ASCII form: Standard unmarked Assyriological transliteration</li><li><strong>Abzu</strong> — scholarly variant: Sumerian form of the primordial freshwater abyss</li></ul>
+<p>The project holds the domain <strong>apsû.com</strong> (xn--aps-foa.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Enuma Elish: The Babylonian Epic of Creation, Standard Babylonian version, 1200 BCE. <a class="scholars-ext" href="http://etana.org/node/581" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-the-name-2">CAD (Chicago Assyrian Dictionary).</li></ol></div>
     </div>
 </section>
 
@@ -310,14 +332,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/apˈsuː/</strong> — Sumerian/Akkadian Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Ap-</strong> — Open vowel [a] followed by voiceless bilabial stop [p], the sound of water meeting a lip.</li><li><strong>-sû</strong> — Voiceless sibilant [s] plus long close back vowel [uː], carrying stress; the circumflex marks length.</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;ahp-SOO&#39; — stress the second syllable and draw out the final vowel like a deep reservoir.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Sumerian</strong> — 𒀊𒍪 (abzu), the primordial freshwater abyss beneath the earth</li><li><strong>Akkadian</strong> — apsû, the subterranean freshwater ocean and Ea&#39;s dwelling</li><li><strong>Hebrew comparison</strong> — tĕhôm, the primordial deep of Genesis 1:2, possibly cognate with Tiamat</li></ul>
+<p>Apsû is Tier 2 because the circumflex on the final u does not record a canonical Greek-style stress or a universally agreed long vowel. It is a pedagogical mark: a visible question that invites discussion about how the name was pronounced in Sumerian and Akkadian. Standard Assyriology writes Apsu or Abzu; the Unicode form Apsû belongs to PÚNYCODEX&#39;s phonological reconstruction hub.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Enuma Elish: The Babylonian Epic of Creation, Standard Babylonian version, 1200 BCE. <a class="scholars-ext" href="http://etana.org/node/581" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -325,14 +350,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Cuneiform as <strong>𒀊𒍪</strong> — Sumero-Akkadian cuneiform, attested Sumerian / Old Babylonian – Neo-Assyrian, c. 2600–600 BCE, in Mesopotamia. The script is written left-to-right / top-to-bottom.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Apsû</em> (Sumerian logogram + Akkadian scholarly), giving the normalized reading /ˈap.suː/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The name is written 𒀊𒍪 in cuneiform.</li><li>Sumerian logograms may be read with Akkadian values; the divine determinative 𒀭 marks theonyms.</li><li>Macrons in the Unicode restoration mark long vowels inferred from Akkadian and Sumerian convention.</li><li>The Unicode restoration Apsû is registrable in .com; the cuneiform form is not supported in the .com IDN table.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Black &amp; Green, Gods, Demons and Symbols of Ancient Mesopotamia.</li><li id="src-original-script-2">Chicago Assyrian Dictionary (CAD).</li><li id="src-original-script-3">Electronic Text Corpus of Sumerian Literature (ETCSL).</li><li id="src-original-script-4">Enuma Elish: The Babylonian Epic of Creation, Standard Babylonian version, 1200 BCE. <a class="scholars-ext" href="http://etana.org/node/581" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -340,14 +365,20 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>The name is written 𒀊𒍪. Standard Assyriology transliterates it as <strong>Apsu</strong> (Akkadian) or <strong>Abzu</strong> (Sumerian). But the length of the final vowel in Akkadian Apsû remains an open question — and it is here, in the space between the written sign and the spoken sound, that this temple operates. This node of PÚNYCODEX is dedicated to the <strong>phonological reconstruction and didactic grammar</strong> of the ancient Near East. We mark vowel length not because it is certain, but because it is discussable. The circumflex is a question mark made visible.</p>
+<p><strong>Apsû</strong> is nevertheless the sweet-water ocean that lies beneath the world — the cosmic freshwater reservoir from which springs, rivers, and wells draw their life. In Mesopotamian cosmogony, Apsû is both a place and a primordial power, the male depths that mingle with Tiamat&#39;s salt sea to beget the gods.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Freshwater Ocean</h3>
+<p>The subterranean source of all sweet water, the matrix of civilization in Mesopotamia.</p>
+<h3 class="scholars-h3">Ea&#39;s House</h3>
+<p>After Apsû&#39;s defeat, Ea built his splendid abode upon the slain abyss.</p>
+<h3 class="scholars-h3">Father of Marduk</h3>
+<p>Marduk was born in the abzu, the house built on Apsû&#39;s transformed body.</p>
+<h3 class="scholars-h3">Cosmic Foundation</h3>
+<p>Temples and cities were literally and symbolically anchored to the abzu below.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">CAD (Chicago Assyrian Dictionary).</li></ol></div>
     </div>
 </section>
 
@@ -355,14 +386,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Apsû concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Underground water</strong> — The invisible freshwater feeding springs, rivers, and wells</li><li><strong>Ea&#39;s temple</strong> — The abzu as the house of wisdom, built upon the defeated abyss</li><li><strong>Mingled waters</strong> — Apsû and Tiamat as the primordial couple from whom the gods arise</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Enuma Elish: The Babylonian Epic of Creation, Standard Babylonian version, 1200 BCE. <a class="scholars-ext" href="http://etana.org/node/581" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -370,14 +399,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p><strong>Apsu</strong> is the Mesopotamian primordial freshwater abyss — the sweet water that lies beneath the earth and mingles with <strong>Tiamat</strong>, the salt sea, to bring forth the first generations of gods. In the <em>Enuma Elish</em>, Apsu is not a god of personality but a cosmic place that becomes, through violence and architecture, the foundation of divine kingship.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Freshwater Abyss (Cosmogony)</h3>
+<p>Before sky was separated from earth, there was only Apsu, the fresh water, and Tiamat, the salt water. Their waters mingled and produced the oldest gods: Lahmu and Lahamu, then Anshar and Kishar, then Anu, and finally Ea, the wisest. Apsu is thus the original reservoir — not merely a sea but the possibility of form, the liquid matrix from which order emerges.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Apsu and Tiamat (Conflict)</h3>
+<p>The younger gods disturbed Apsu with their noise and commotion. Apsu, wishing to sleep, resolved to destroy them, but Tiamat refused. Ea learned of the plot, cast a spell on Apsu, and slew him. From Apsu&#39;s body Ea built his splendid abode, and there, with his consort Damkina, he begot Marduk, the storm-god who would later defeat Tiamat and create the world from her corpse.</p>
+<h3 class="scholars-h3">The Slayer Ea (Transformation)</h3>
+<p>Ea does not simply kill Apsu; he appropriates him. The abyss becomes Ea&#39;s house, the source of his wisdom and the place from which he dispenses me, the divine decrees. In Mesopotamian cult, the abzu remains the underground water that feeds wells, rivers, and marshes — the invisible freshwater that makes civilization possible. To possess Apsu is to possess the hidden knowledge beneath the world.</p>
+<h3 class="scholars-h3">Marduk Born in Apsu (Legacy)</h3>
+<p>The god Marduk is born in the abzu, the house built upon Apsu&#39;s slain body. His birth there binds him to both wisdom and violence: he is the child of Ea&#39;s cunning and Apsu&#39;s primordial depth. When Tiamat raises an army of monsters, Marduk emerges from the abzu to confront her, armed with winds, floods, and the authority of the deep. Apsu, killed at the beginning, thus fathers the god who orders the cosmos.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">CAD (Chicago Assyrian Dictionary).</li><li id="src-mythology-2">ETCSL (Electronic Text Corpus of Sumerian Literature).</li></ol></div>
     </div>
 </section>
 
@@ -385,14 +419,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>The abzu travelled far beyond Mesopotamia.</p>
+<p>The Unicode form <strong>Apsû</strong> is a reconstruction node: standard Assyriology writes Apsu or Abzu, while the circumflex makes visible the open question of final-vowel length. In the Hebrew Bible, the primordial <em>tĕhôm</em> (&#39;deep&#39;) of Genesis 1:2 likely preserves a memory of Tiamat and Apsû. Greek sources knew Mesopotamian cosmology through Berossus, whose <em>Babyloniaca</em> described Oannes emerging from the Erythraean Sea, an avatar of the apkallu sage associated with the abzu. In later esoteric traditions, the abyss became a symbol of hidden knowledge and the unconscious. The abzu is thus one of the ancient Near East&#39;s most influential geographical ideas: a freshwater deep beneath the world, the source of both physical fertility and divine wisdom.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Mesopotamian tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/anu/">Anû</a>, <a class="scholars-xlink" href="/sites/ashur/">Aššur</a>, <a class="scholars-xlink" href="/sites/ea/">Ēa</a>, <a class="scholars-xlink" href="/sites/enlil/">Enlīl</a>, <a class="scholars-xlink" href="/sites/ishtar/">Ištar</a>, and <a class="scholars-xlink" href="/sites/shamash/">Šamaš</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Enuma Elish: The Babylonian Epic of Creation, Standard Babylonian version, 1200 BCE. <a class="scholars-ext" href="http://etana.org/node/581" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -400,14 +433,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>The idea of a watery abyss beneath the earth has never disappeared.</p>
+<p>It survives in the biblical &#39;fountains of the great deep&#39; (Genesis 7:11), in medieval maps showing subterranean rivers, and in modern geology&#39;s aquifers and groundwater systems. Science fiction and fantasy continue to imagine hidden freshwater seas beneath the crust. The name Apsû itself has been revived in games, novels, and occult cosmologies as a primordial power. PÚNYCODEX keeps the circumflex not as a settled fact but as an invitation: every visitor is invited into the philological conversation. What began as a Mesopotamian explanation of wells and springs became one of the West&#39;s foundational images of depth, origin, and the unconscious.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Enuma Elish: The Babylonian Epic of Creation, Standard Babylonian version, 1200 BCE. <a class="scholars-ext" href="http://etana.org/node/581" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -415,14 +446,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>Archaeological evidence for the abzu centers on temple architecture and textual deposits. The abzu shrine of Enki at Eridu — among the earliest sacred structures in southern Mesopotamia — was rebuilt repeatedly from the Ubaid period onward as the cosmic freshwater source. At Babylon, Esagila&#39;s cella of Ea and its apsû-basin embodied the god&#39;s dwelling upon the primordial deep. Cuneiform copies of the Enuma Elish from Nineveh and Sippar preserve the myth of Apsû&#39;s defeat.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Enuma Elish: The Babylonian Epic of Creation, Standard Babylonian version, 1200 BCE. <a class="scholars-ext" href="http://etana.org/node/581" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -430,120 +458,91 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Apsû given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Enuma Elish: The Babylonian Epic of Creation, Standard Babylonian version, 1200 BCE. <a class="scholars-ext" href="http://etana.org/node/581" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> CAD (Chicago Assyrian Dictionary).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> ETCSL (Electronic Text Corpus of Sumerian Literature).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Jacobsen, The Treasures of Darkness.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Epic of Gilgamesh, Tablet XI (Standard Babylonian version: Utnapištim recounts Ea&#39;s counsel from the Apsû).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Atrahasis (Akkadian Flood Story: Ea dwells in the Apsû and warns Atraḫasis of the deluge).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Enki and Ninhursag (Sumerian myth of the abzu and the paradise of Dilmun).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Enki and the World Order (Sumerian hymn: Enki assigns the me from the Apsû).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Enuma Elish: The Babylonian Epic of Creation, Standard Babylonian version, 1200 BCE. <a class="scholars-ext" href="http://etana.org/node/581" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-2">CAD (Chicago Assyrian Dictionary).</li><li id="src-scholarly-sources-3">ETCSL (Electronic Text Corpus of Sumerian Literature).</li><li id="src-scholarly-sources-4">Jacobsen, The Treasures of Darkness.</li><li id="src-scholarly-sources-5">Epic of Gilgamesh, Tablet XI (Standard Babylonian version: Utnapištim recounts Ea&#39;s counsel from the Apsû).</li><li id="src-scholarly-sources-6">Atrahasis (Akkadian Flood Story: Ea dwells in the Apsû and warns Atraḫasis of the deluge).</li><li id="src-scholarly-sources-7">Enki and Ninhursag (Sumerian myth of the abzu and the paradise of Dilmun).</li><li id="src-scholarly-sources-8">Enki and the World Order (Sumerian hymn: Enki assigns the me from the Apsû).</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="cuneiform-sources">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Cuneiform Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The abzu/apsû is attested across the whole cuneiform record, but as cosmic place and temple name rather than as a deity with a cult. Sumerian texts locate it beneath the earth at Eridu, where Enki&#39;s temple — the E-abzu, &#39;House of the Abyss&#39; — was rebuilt from the Ubaid period onward, and incantations call it the pure place, source of lustral water and of the sages (apkallu).<sup class="scholars-cite"><a href="#src-cuneiform-sources-1">[1]</a></sup> God-lists treat Apsû among the primordial entities, and the lexical tradition gathered in the Chicago Assyrian Dictionary documents <em>apsû</em> both as the mythic abyss and as the basins in temples that embodied it.<sup class="scholars-cite"><a href="#src-cuneiform-sources-2">[2]</a></sup> No hymn, prayer, or offering list addressed to Apsû as a personal god is known.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cuneiform-sources-1">Electronic Text Corpus of Sumerian Literature, Oxford Oriental Institute. <a class="scholars-ext" href="https://etcsl.orinst.ox.ac.uk/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-cuneiform-sources-2">The Assyrian Dictionary of the Oriental Institute of the University of Chicago (CAD), s.v. apsû.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="enuma-elish">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Enūma Eliš</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Apsû opens the <em>Enuma Elish</em>: in Tablet I the sweet deep and <a class="scholars-xlink" href="/sites/tiamat/">Tiāmat</a> mingle their waters and beget Lahmu and Lahamu, Anshar and Kishar, Anu, and finally Ea.<sup class="scholars-cite"><a href="#src-enuma-elish-1">[1]</a></sup> Disturbed by the younger gods&#39; tumult, Apsû — urged on by his vizier Mummu and against Tiamat&#39;s protest — resolves to destroy them; Ea learns of the plan, subdues him with a spell, and slays him. From the slain abyss Ea fashions his dwelling, and there Marduk is born and raised.<sup class="scholars-cite"><a href="#src-enuma-elish-2">[2]</a></sup> Apsû functions less as villain than as the epic&#39;s first sacrifice: the primordial depth appropriated, architecturalized, and made the seat of wisdom from which the champion of the new order emerges.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-enuma-elish-1">Foster, Before the Muses: An Anthology of Akkadian Literature.</li><li id="src-enuma-elish-2">Jacobsen, The Treasures of Darkness: A History of Mesopotamian Religion.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="atra-hasis">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Atra-Ḫasīs</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Apsû is not a character in <em>Atra-hasis</em> — the poem&#39;s divine actors are Anu, <a class="scholars-xlink" href="/sites/enlil/">Enlīl</a>, Enki, and the birth-goddess — but his domain frames the action. Enki dwells in the freshwater deep, and it is as lord of that deep that he acts as Atra-hasis&#39;s patron and engineers humanity&#39;s survival of the flood.<sup class="scholars-cite"><a href="#src-atra-hasis-1">[1]</a></sup> Mesopotamian cosmology placed the abzu among the waters that could both sustain and destroy: the deluge is unleashed by storm and river, while the subterranean ocean remains Enki&#39;s unfailing reservoir of counsel.<sup class="scholars-cite"><a href="#src-atra-hasis-2">[2]</a></sup> The composition thus presupposes the cosmic geography the <em>Enuma Elish</em> narrates without repeating its theogony.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-atra-hasis-1">Lambert &amp; Millard, Atra-ḫasīs: The Babylonian Story of the Flood.</li><li id="src-atra-hasis-2">Black &amp; Green, Gods, Demons and Symbols of Ancient Mesopotamia.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>To contemplate Apsû is to hold the idea of phonological Reconstruction, Fresh Water, Abyss in the mind and to ask what of it endures. The name means &quot;Reconstruction node for the Mesopotamian abyss Apsu (Sumerian Abzu): the circumflex marks a discussable vowel length, not a canonical spelling claim.&quot;<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup> — and a name that carries its meaning so openly invites meditation rather than mere recollection. The tradition remembers the name as phonological Reconstruction Hub — studying the pronunciation of Apsu (Sumerian AB.ZU).</p>
+<p>Sit with the restored form — Apsû — and the diacritics themselves become the practice: each mark is a small act of attention, a refusal to let the plain ASCII form <em>apsu</em> stand in for the whole. What the tradition preserved in this name, the restoration asks the reader to preserve in turn.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Enuma Elish: The Babylonian Epic of Creation, Standard Babylonian version, 1200 BCE. <a class="scholars-ext" href="http://etana.org/node/581" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="cuneiform-sources">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Cuneiform Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cuneiform Sources →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="enuma-elish">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Enūma Eliš</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Enūma Eliš →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="atra-hasis">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Atra-Ḫasīs</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Atra-Ḫasīs →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">17</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -581,6 +580,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'apsu';
@@ -614,14 +748,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -715,6 +841,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -726,18 +853,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -749,6 +877,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -793,6 +923,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

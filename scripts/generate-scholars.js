@@ -2,8 +2,13 @@
 /**
  * PÚNYCODEX — Scholarly Edition Page Generator
  *
- * Generates blank `/sites/{id}/scholars/index.html` pages for all 123
- * flagships using the canonical section taxonomy. Idempotent: safe to
+ * Generates `/sites/{id}/scholars/index.html` pages for all 123 flagships
+ * using the canonical section taxonomy. When a merged manifest exists at
+ * `platform/scholars/manifests/{id}.json`, published section content is
+ * baked statically into the HTML (SEO / no-flash path); otherwise the page
+ * falls back to a blank manifest with "Awaiting Contribution" states. The
+ * same markdown renderer is inlined into the page so the browser runtime
+ * re-renders API content with byte-identical logic. Idempotent: safe to
  * re-run without touching existing lore/gallery/home content.
  */
 
@@ -26,6 +31,30 @@ const {
   generateBlankManifest,
   getSectionDefinition,
 } = require(path.join(ROOT, 'platform', 'scholars', 'taxonomy'));
+const {
+  renderMarkdown,
+  renderSources,
+} = require(path.join(ROOT, 'platform', 'scholars', 'markdown.js'));
+
+const MANIFESTS_DIR = path.join(ROOT, 'platform', 'scholars', 'manifests');
+
+// Raw renderer source, inlined into every Scholars page so the browser
+// runtime uses byte-identical rendering logic (window.PxScholarsMarkdown).
+const MARKDOWN_RENDERER_JS = fs.readFileSync(
+  path.join(ROOT, 'platform', 'scholars', 'markdown.js'),
+  'utf8'
+);
+
+// Meta sections are fed by the Scholars API at runtime (edit history and
+// attribution), never by manifest content, so they get bespoke empty copy
+// and no contribute CTA.
+const META_SECTION_KEYS = new Set(['edit-history', 'attribution']);
+const META_EMPTY_COPY = {
+  'edit-history':
+    'Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.',
+  attribution:
+    'Verified universities and their students will be credited here as the Scholarly Edition grows.',
+};
 
 const BESPOKE_EFFECTS = (() => {
   try {
@@ -176,24 +205,51 @@ function buildTocItems(manifest) {
     .join('\n');
 }
 
+function buildSectionBodyHtml(section) {
+  const published =
+    section.status === 'published' &&
+    typeof section.body === 'string' &&
+    section.body.trim() !== '';
+  if (published) {
+    return (
+      renderMarkdown(section.body, { sectionKey: section.key }) +
+      renderSources(section.sources, { sectionKey: section.key })
+    );
+  }
+  if (META_SECTION_KEYS.has(section.key)) {
+    return `<div class="scholars-empty-state">
+            <p>${META_EMPTY_COPY[section.key]}</p>
+        </div>`;
+  }
+  return `<div class="scholars-empty-state">
+            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
+            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to ${section.label} →</a>
+        </div>`;
+}
+
 function buildSectionsHtml(manifest) {
   return manifest.sections
     .map((section, index) => {
       const num = String(index + 1).padStart(2, '0');
       const def = getSectionDefinition(section.key);
       const purpose = def?.purpose ? `<p class="scholars-section-purpose">${def.purpose}</p>` : '';
-      return `<section class="scholars-section" id="${section.key}">
+      const published =
+        section.status === 'published' &&
+        typeof section.body === 'string' &&
+        section.body.trim() !== '';
+      const statusHtml = published
+        ? '<span class="scholars-section-status">Published</span>'
+        : '<span class="scholars-section-status empty">Awaiting Contribution</span>';
+      const extraClass = section.key === 'edit-history' ? ' scholars-edit-history' : '';
+      return `<section class="scholars-section${extraClass}" id="${section.key}">
     <div class="scholars-section-header">
         <span class="scholars-section-number">${num}</span>
         <h2 class="scholars-section-title">${section.label}</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        ${statusHtml}
     </div>
     <div class="scholars-section-body">
         ${purpose}
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to ${section.label} →</a>
-        </div>
+        ${buildSectionBodyHtml(section)}
     </div>
 </section>`;
     })
@@ -231,13 +287,25 @@ function buildFooter(templeId, unicode, entry) {
 </footer>`;
 }
 
-function generateScholarsPage(templeId) {
+function loadManifestFromDisk(templeId) {
+  try {
+    const raw = fs.readFileSync(path.join(MANIFESTS_DIR, `${templeId}.json`), 'utf8');
+    const manifest = JSON.parse(raw);
+    if (!manifest || !Array.isArray(manifest.sections)) return null;
+    return manifest;
+  } catch {
+    return null;
+  }
+}
+
+function generateScholarsPage(templeId, manifestOverride) {
   const entry = getLexiconEntry(templeId);
   if (!entry) {
     throw new Error(`No lexicon entry found for ${templeId}`);
   }
 
-  const manifest = generateBlankManifest(templeId);
+  const manifest =
+    manifestOverride || loadManifestFromDisk(templeId) || generateBlankManifest(templeId);
   const palette = paletteFor(entry);
 
   const vars = {
@@ -257,8 +325,7 @@ function generateScholarsPage(templeId) {
     PATTERNS_TAB: buildPatternsTab(),
     TOC_ITEMS: buildTocItems(manifest),
     SECTIONS_HTML: buildSectionsHtml(manifest),
-    ATTRIBUTION_NUMBER: String(manifest.sections.length + 1).padStart(2, '0'),
-    EDIT_HISTORY_NUMBER: String(manifest.sections.length + 2).padStart(2, '0'),
+    MARKDOWN_RENDERER_JS,
     FOOTER: buildFooter(templeId, getUnicode(entry), entry),
   };
 

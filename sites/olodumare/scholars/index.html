@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,11 +279,12 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#ifa">14 &mdash; Ifá Corpus</a></li>
-<li><a href="#oral-tradition">15 &mdash; Oral Tradition</a></li>
-<li><a href="#diaspora">16 &mdash; Diaspora Traditions</a></li>
+<li><a href="#ifa">12 &mdash; Ifá Corpus</a></li>
+<li><a href="#oral-tradition">13 &mdash; Oral Tradition</a></li>
+<li><a href="#diaspora">14 &mdash; Diaspora Traditions</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -280,14 +296,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Olódùmarè</strong> (<em>olodumare</em>) — Supreme Creator · Owner of the universe — belongs to the Yoruba tradition, where it is catalogued under the domain &quot;Supreme Creator&quot;. The name means &quot;Owner of the universe&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p><strong>Olódùmarè</strong> is the high god of Yoruba religion, the sole creator who owns heaven and earth and everything that breathes. Unlike the orishas, who mediate between humans and the sacred, Olódùmarè is remote, self-sufficient, and without need of offerings. He delegates: the orishas govern the world, but they do so on his behalf.</p>
+<p>He is the source of <em>àṣàyàn</em> (destiny) and the one before whom all orishas bow. In Yoruba theology he is not one god among many but the ground from which the many arise.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Olódùmarè</strong> and serves its temple at <a class="scholars-ext" href="https://xn--oldmar-8ua7frc.com" rel="noopener noreferrer" target="_blank">olódùmarè.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>olodumare</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Idowu, Olódùmarè: God in Yoruba Belief.</li><li id="src-overview-2">Bascom, Ifa Divination.</li><li id="src-overview-3">Abraham, Dictionary of Modern Yoruba.</li></ol></div>
     </div>
 </section>
 
@@ -295,14 +311,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>No indigenous written attestation survives for this name; <strong>Olódùmarè</strong> is a scholarly transliteration of the reconstructed spoken form. Etymologically the name means &quot;Owner of the universe&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The ASCII form <em>olodumare</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Olódùmarè</strong> recovers the stress accent of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>o</strong> → <strong>O</strong> — Same, capitalized</li><li><strong>l</strong> → <strong>l</strong> — Same</li><li><strong>o</strong> → <strong>ó</strong> — Acute on o</li><li><strong>d</strong> → <strong>d</strong> — Same</li><li><strong>u</strong> → <strong>ù</strong> — Grave on u</li><li><strong>m</strong> → <strong>m</strong> — Same</li><li><strong>a</strong> → <strong>a</strong> — Same</li><li><strong>r</strong> → <strong>r</strong> — Same</li><li><strong>e</strong> → <strong>è</strong> — Grave on e</li></ul>
+<p>The project holds the domain <strong>olódùmarè.com</strong> (xn--oldmar-8ua7frc.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Idowu, Olódùmarè: God in Yoruba Belief.</li><li id="src-the-name-2">Bascom, Ifa Divination.</li></ol></div>
     </div>
 </section>
 
@@ -310,14 +327,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/ɔ̀.ló.dù.má.rè/</strong> — Yoruba Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>O-</strong> — Open-mid back rounded vowel [ɔ] with low tone; the initial vowel is written without dot below in the lexical form.</li><li><strong>-ló-</strong> — Voiced alveolar lateral approximant [l] followed by close-mid back rounded vowel [o] with high tone.</li><li><strong>-dù-</strong> — Voiced alveolar stop [d] followed by close back rounded vowel [u] with low tone.</li><li><strong>-má-</strong> — Voiced bilabial nasal [m] followed by open [a] with high tone.</li><li><strong>-rè</strong> — Voiced alveolar tap or trill [r] followed by mid front vowel [e] with low tone.</li></ul>
+<p>For the modern speaker, the closest approximation is: aw-loh-doo-MAH-reh — low &#39;aw&#39;, high &#39;loh&#39;, low &#39;doo&#39;, high &#39;MAH&#39;, low &#39;reh&#39;.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Yoruba</strong> — Olódùmarè, the Supreme Creator and owner of the universe.</li><li><strong>Lucumí</strong> — Olodumare, the remote high god who delegates the orishas.</li><li><strong>Related title</strong> — Olodumare is sometimes addressed as Olorun (&#39;Owner of Heaven&#39;).</li></ul>
+<p>Olódùmarè is Tier 2: the acute accents on ó and á preserve high tones, while the grave accents on ù and è preserve low tones. Tonal distinctions are crucial to Yoruba meaning but are not length marks.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Idowu, Olódùmarè: God in Yoruba Belief.</li></ol></div>
     </div>
 </section>
 
@@ -325,14 +345,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>No indigenous writing system is securely attested for individual yoruba names. The form shown is a modern scholarly transliteration.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The form <strong>Olódùmarè</strong> is therefore a scholarly transliteration rather than an attested ancient spelling; it encodes the reconstructed sound of the name for modern use, and no mark in it is decorative.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Idowu, Olódùmarè: God in Yoruba Belief.</li></ol></div>
     </div>
 </section>
 
@@ -340,14 +358,20 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p><strong>Olódùmarè</strong> is the high god of Yoruba religion, the sole creator who owns heaven and earth and everything that breathes. Unlike the orishas, who mediate between humans and the sacred, Olódùmarè is remote, self-sufficient, and without need of offerings. He delegates: the orishas govern the world, but they do so on his behalf.</p>
+<p>He is the source of <em>àṣàyàn</em> (destiny) and the one before whom all orishas bow. In Yoruba theology he is not one god among many but the ground from which the many arise.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Supreme Creator</h3>
+<p>He alone creates ex nihilo; the orishas shape and govern what he has made.</p>
+<h3 class="scholars-h3">Destiny</h3>
+<p>He assigns àyẹ̀wò, the destiny chosen by each soul before birth.</p>
+<h3 class="scholars-h3">Final Authority</h3>
+<p>No orisha can override his decree; even Ọrúnmìlà interprets rather than changes fate.</p>
+<h3 class="scholars-h3">Transcendence</h3>
+<p>He needs no temple image; he is worshipped through the sky, the sun, and the breath of life.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Bascom, Ifa Divination.</li></ol></div>
     </div>
 </section>
 
@@ -355,14 +379,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Olódùmarè concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>The sky (ọ̀run)</strong> — His visible throne; the firmament is his temple and his garment.</li><li><strong>The rainbow (ọ̀ṣùmàrè)</strong> — The serpent-arch that links heaven and earth, sometimes called his messenger.</li><li><strong>Cool wind and breath</strong> — The invisible life-force he breathes into the bodies shaped by Ọbatalá.</li><li><strong>White light</strong> — Pure, imageless presence; Olódùmarè has no anthropomorphic cult statue.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Idowu, Olódùmarè: God in Yoruba Belief.</li></ol></div>
     </div>
 </section>
 
@@ -370,14 +392,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Olódùmarè&#39;s mythology is theology: it concerns the origin of the world, the distribution of destiny, and the hierarchy between the high god and the orishas.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Creation of the World (Cosmogony)</h3>
+<p>Olódùmarè created the universe and then sent the orishas down to finish it. Ọbatalá shaped human bodies from clay, and Olódùmarè himself breathed life into them. The story preserves a strict division: the creator originates, the orishas administer, and humans receive both matter and spirit.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Distribution of Àyẹ̀wò (Destiny)</h3>
+<p>Before birth, each soul travels to the house of Àjàláyé, the potter of heads, to choose a destiny. Olódùmarè authorises the choices and gives each person the breath that makes the destiny live. Once chosen, destiny can be mitigated by sacrifice and wisdom but not abolished. Olódùmarè is the final guarantor of this contract.</p>
+<h3 class="scholars-h3">Why the High God is Remote (Theodicy)</h3>
+<p>Yoruba tradition explains Olódùmarè&#39;s distance by saying that he is too pure and too great to be approached directly. Humans therefore relate to him through the orishas, who are his ministers. This does not diminish his supremacy; it structures it. Olódùmarè is the king who rules through a court of divine officials.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Bascom, Ifa Divination.</li><li id="src-mythology-2">Abraham, Dictionary of Modern Yoruba.</li></ol></div>
     </div>
 </section>
 
@@ -385,14 +410,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Because Olódùmarè is a remote, imageless high god, he was easily mapped onto the Christian God by enslaved Yoruba people and their descendants. In Cuban Santería and Brazilian Candomblé, Olódumare is often identified with God the Father or with the transcendent Creator, while the orishas correspond to saints and angels. The theological structure — one high god above a host of intermediaries — made the Yoruba pantheon adaptable to monotheistic frameworks without losing its polytheistic texture.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Yoruba tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/aganju/">Aganjú</a>, <a class="scholars-xlink" href="/sites/babaluaye/">Ọbalúayé</a>, <a class="scholars-xlink" href="/sites/eshu/">Ẹṣu</a>, <a class="scholars-xlink" href="/sites/obatala/">Ọbatálá</a>, <a class="scholars-xlink" href="/sites/orunmila/">Ọrúnmìlà</a>, and <a class="scholars-xlink" href="/sites/oshun/">Ọṣun</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Idowu, Olódùmarè: God in Yoruba Belief.</li></ol></div>
     </div>
 </section>
 
@@ -400,14 +423,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Olódùmarè remains the theological centre of Yoruba religion and its diaspora. The phrase &#39;Olódùmarè willing&#39; structures daily speech; the idea that destiny is chosen but not arbitrary shapes Yoruba ethics. In African philosophy, Olódùmarè has become a key figure in debates about monotheism and polytheism, destiny and freedom. He also appears in reggae, Afrobeat, and global spirituality as a name for the supreme source, a reminder that African theology has always had a place for the One beyond the many.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Idowu, Olódùmarè: God in Yoruba Belief.</li></ol></div>
     </div>
 </section>
 
@@ -415,14 +435,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>As a transcendent deity without anthropomorphic cult images, Olódùmarè leaves few direct archaeological traces. His presence is inferred from sky-oriented shrines, prayers recorded in Ifá corpora, and the cosmological vocabulary of Yoruba ritual sites. Diaspora altars often place him symbolically above the orishas, represented by the sky, a white cloth, or an empty throne.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Idowu, Olódùmarè: God in Yoruba Belief.</li></ol></div>
     </div>
 </section>
 
@@ -430,120 +447,91 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Olódùmarè given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Idowu, Olódùmarè: God in Yoruba Belief.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Bascom, Ifa Divination.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Abraham, Dictionary of Modern Yoruba.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Mason, Four New World Yoruba Rituals.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Verger, Notes sur le Culte des Orisa et Vodun.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Idowu, Olódùmarè: God in Yoruba Belief.</li><li id="src-scholarly-sources-2">Bascom, Ifa Divination.</li><li id="src-scholarly-sources-3">Abraham, Dictionary of Modern Yoruba.</li><li id="src-scholarly-sources-4">Mason, Four New World Yoruba Rituals.</li><li id="src-scholarly-sources-5">Verger, Notes sur le Culte des Orisa et Vodun.</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="ifa">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Ifá Corpus</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Olódùmarè is not one of the orishas consulted through Ifá; he is the authority Ifá invokes. The verses address him as the one who assigns àyẹ̀wò, the destiny chosen before birth, and as the final court beyond which no sacrifice appeals. When diviners recite the creation narratives, he is the commissioner who sent the orishas down, the breather of life into <a class="scholars-xlink" href="/sites/obatala/">Ọbatalá</a>&#39;s clay, and the guarantor who authorised <a class="scholars-xlink" href="/sites/orunmila/">Ọrúnmìlà</a>&#39;s knowledge of all beginnings. The corpus never bargains with him: his decrees frame the game within which the odù speak. Ifá can reveal and mitigate, Yoruba theology holds, but only Olódùmarè&#39;s word founds.<sup class="scholars-cite"><a href="#src-ifa-1">[1]</a></sup><sup class="scholars-cite"><a href="#src-ifa-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-ifa-1">Idowu, Olódùmarè: God in Yoruba Belief.</li><li id="src-ifa-2">Abimbola, Ifá: An Exposition of Ifá Literary Corpus.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="oral-tradition">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Oral Tradition</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>His praise names are the creed of Yoruba theology recited in shorthand: Olọ́run, <em>owner of heaven</em>; Ẹlẹ́dáà, <em>the creator</em>; Aláàyé, <em>owner of life</em>; and Olódùmarè itself, glossed as <em>owner of the universe</em> or of inexhaustible fullness. He has no shrine choir, yet everyday Yoruba speech is saturated with his names — &#39;if Olódùmarè wills it,&#39; &#39;thanks be to Olọ́run&#39; — so that his oríkì live in the grammar of daily hope and resignation rather than in festival chant. The want of cult poetry for a god this great is itself doctrinal: the source of all praise cannot be flattered.<sup class="scholars-cite"><a href="#src-oral-tradition-1">[1]</a></sup><sup class="scholars-cite"><a href="#src-oral-tradition-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-oral-tradition-1">Idowu, Olódùmarè: God in Yoruba Belief.</li><li id="src-oral-tradition-2">Abraham, Dictionary of Modern Yoruba.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="diaspora">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Diaspora Traditions</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Because he was imageless, Olódùmarè crossed the Middle Passage without needing disguise: enslaved Yoruba mapped him onto the Christian God, and the Lukumí triad Olorún–Olofi–Olódùmarè preserved his remoteness inside a Catholic-looking monotheism, Olofi — <em>owner of the palace</em> — standing as his more proximate face. In Candomblé the same logic holds: the orixás receive the cult, while Olorum receives the acknowledgement. The elegance of this arrangement — one supreme source, many approachable powers — allowed the Yoruba cosmos to survive under regimes that punished every god but one.<sup class="scholars-cite"><a href="#src-diaspora-1">[1]</a></sup><sup class="scholars-cite"><a href="#src-diaspora-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-diaspora-1">Idowu, Olódùmarè: God in Yoruba Belief.</li><li id="src-diaspora-2">Murphy, Santería: African Spirits in America.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Olódùmarè is the god who needs nothing. He does not eat sacrifices the way the orishas do; he does not possess dancers or demand festivals. He simply is — the owner of the universe, the breath in every body, the sky above every shrine. This makes him easy to overlook and impossible to escape.</p>
+<p>In a religious landscape full of colourful, approachable deities, Olódùmarè is the silence behind the drum. He asks us to distinguish between what we need and what we want, between the god who answers prayers and the source from which prayer itself arises. To remember him is to remember that the orishas, however powerful, are not ultimate. Something older owns even them.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Idowu, Olódùmarè: God in Yoruba Belief.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="ifa">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Ifá Corpus</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Ifá Corpus →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="oral-tradition">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Oral Tradition</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Oral Tradition →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="diaspora">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Diaspora Traditions</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Diaspora Traditions →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">17</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -581,6 +569,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'olodumare';
@@ -614,14 +737,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -715,6 +830,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -726,18 +842,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -749,6 +866,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -793,6 +912,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

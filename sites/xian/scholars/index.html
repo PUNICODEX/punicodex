@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,12 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#classical-texts">14 &mdash; Classical Texts</a></li>
-<li><a href="#daoist-sources">15 &mdash; Daoist Sources</a></li>
-<li><a href="#buddhist-sources">16 &mdash; Buddhist Sources</a></li>
-<li><a href="#calligraphy">17 &mdash; Calligraphy & Script</a></li>
+<li><a href="#classical-texts">12 &mdash; Classical Texts</a></li>
+<li><a href="#daoist-sources">13 &mdash; Daoist Sources</a></li>
+<li><a href="#buddhist-sources">14 &mdash; Buddhist Sources</a></li>
+<li><a href="#calligraphy">15 &mdash; Calligraphy & Script</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -281,14 +297,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Xiān</strong> (<em>xian</em>) — Immortal, Transcendent · Immortal — belongs to the Chinese tradition, where it is catalogued under the domain &quot;Immortal, Transcendent&quot;. The name means &quot;Immortal&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p><strong>Xiān</strong> is the Chinese immortal: a human being who has refined body and spirit until death no longer applies. Unlike the gods of popular religion, who receive offerings and grant petitions, the xiān has escaped the bureaucracy of heaven and earth. He or she dwells in mountains, rides clouds or cranes, and appears unpredictably to those who have cultivated the Dao.</p>
+<p>The path to becoming xiān is not faith but practice: meditation, breath control, diet, alchemy, and moral discipline. Immortality is an achievement, not a gift.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Xiān</strong> and serves its temple at <a class="scholars-ext" href="https://xian.com" rel="noopener noreferrer" target="_blank">xian.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>xian</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Daozang (Daoist Canon).</li><li id="src-overview-2">Campany, To Live as Long as Heaven and Earth.</li><li id="src-overview-3">Kohn, Daoism and Chinese Culture.</li></ol></div>
     </div>
 </section>
 
@@ -296,14 +312,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Chinese characters as <strong>仙</strong>. Etymologically it means &quot;Immortal&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The ASCII form <em>xian</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Xiān</strong> recovers the vowel length of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>x</strong> → <strong>X</strong> — Same, capitalized</li><li><strong>i</strong> → <strong>i</strong> — Same</li><li><strong>a</strong> → <strong>ā</strong> — Long vowel</li><li><strong>n</strong> → <strong>n</strong> — Same</li></ul>
+<p>The canonical temple for this name is served at <strong>xian.com</strong><sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Daozang (Daoist Canon).</li><li id="src-the-name-2">Campany, To Live as Long as Heaven and Earth.</li></ol></div>
     </div>
 </section>
 
@@ -311,14 +328,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/ɕjɛn˥˥/</strong> — Modern Standard Mandarin (Pinyin).<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>xiān</strong> — Voiceless alveolo-palatal fricative [ɕ], palatal approximant [j], open-mid front vowel [ɛ], and Tone 1 (high level, ˥˥). Pinyin &#39;x&#39; before front vowels is [ɕ], never English &#39;ks&#39; or &#39;z&#39;.</li></ul>
+<p>For the modern speaker, the closest approximation is: SHYEHN — a high, level tone held steady, with a light &#39;sh&#39; that touches the palate.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Traditional</strong> — 仙</li><li><strong>Classical Chinese</strong> — Xiān, an immortal, transcendent, or perfected being.</li><li><strong>Wade-Giles</strong> — hsien¹</li><li><strong>Related terms</strong> — 神仙 shénxiān (god-immortal); 仙人 xiānrén (immortal person); 八仙 Bāxiān (Eight Immortals)</li></ul>
+<p>仙 denotes a transcendent being in Daoism, distinct from ordinary gods (shén) and from Buddhist arhats or bodhisattvas. The character combines 人 (person) with 山 (mountain), suggesting one who withdraws to the heights. The Pinyin restoration Xiān preserves the high level tone.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Daozang (Daoist Canon).</li></ol></div>
     </div>
 </section>
 
@@ -326,14 +346,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is written in Chinese characters as <strong>仙</strong>. This original script is the form against which the ASCII fallback <em>xian</em> and the PÚNYCODEX restoration <strong>Xiān</strong> are measured: the restoration preserves its vowel quantity of the written form, so that a reader typing the modern address still speaks the ancient name.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Daozang (Daoist Canon).</li></ol></div>
     </div>
 </section>
 
@@ -341,14 +358,20 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p><strong>Xiān</strong> is the Chinese immortal: a human being who has refined body and spirit until death no longer applies. Unlike the gods of popular religion, who receive offerings and grant petitions, the xiān has escaped the bureaucracy of heaven and earth. He or she dwells in mountains, rides clouds or cranes, and appears unpredictably to those who have cultivated the Dao.</p>
+<p>The path to becoming xiān is not faith but practice: meditation, breath control, diet, alchemy, and moral discipline. Immortality is an achievement, not a gift.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Longevity</h3>
+<p>The xiān has overcome ageing and death through disciplined transformation of the body.</p>
+<h3 class="scholars-h3">Mountain Dwelling</h3>
+<p>Immortals withdraw to peaks and grottoes where the qi is pure and the world is far.</p>
+<h3 class="scholars-h3">Internal Alchemy</h3>
+<p>Neidan refines the three treasures — jīng, qì, shén — into an immortal embryo.</p>
+<h3 class="scholars-h3">Freedom from Bureaucracy</h3>
+<p>Unlike gods bound by celestial office, the xiān wanders freely between realms.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Campany, To Live as Long as Heaven and Earth.</li></ol></div>
     </div>
 </section>
 
@@ -356,14 +379,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Xiān concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Crane</strong> — The mount and companion of immortals; a thousand-year lifespan.</li><li><strong>Peach of immortality</strong> — The fruit of the Queen Mother of the West&#39;s garden, ripening every three thousand years.</li><li><strong>Gourd</strong> — The bottle that holds elixirs, medicines, and the boundless space of the Dao.</li><li><strong>Clouds and mist</strong> — The medium through which immortals travel and the boundary between mortal and transcendent realms.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Daozang (Daoist Canon).</li></ol></div>
     </div>
 </section>
 
@@ -371,14 +392,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Xiān mythology is a vast gallery of individual adepts, each with a distinctive method of transcendence. They are less a pantheon than a community of perfected beings.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Eight Immortals (Bāxiān) (Hagiography)</h3>
+<p>The most famous xiān are the Eight Immortals, each representing a different social type and a different path to transcendence. Zhōnglí Quán was a general; Lǚ Dòngbīn a scholar; Hé Xiāngū a woman who nourished her spirit; Lán Cǎihé a gender-ambiguous beggar; and so on. Their collective journeys show that immortality is open to anyone who cultivates the Dao, regardless of birth.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Queen Mother of the West&#39;s Peach Banquet (Cosmology)</h3>
+<p>Every three thousand years, the peaches of immortality ripen in the garden of Xīwángmǔ, the Queen Mother of the West. The xiān gather to feast and renew their transcendence. The myth links immortality to cosmic time: it is not a single event but a continual nourishment by celestial cycles.</p>
+<h3 class="scholars-h3">The Shījié or Corpse Liberation (Practice)</h3>
+<p>Some xiān are said to achieve transcendence through <em>shījié</em>, &#39;liberation from the corpse.&#39; The adept appears to die and leave a body behind — sometimes a sword or a bamboo staff transformed to look like a corpse — while the true person departs as a xiān. The motif resolves the paradox of physical immortality: the body that is left is not the body that ascends.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Campany, To Live as Long as Heaven and Earth.</li><li id="src-mythology-2">Kohn, Daoism and Chinese Culture.</li></ol></div>
     </div>
 </section>
 
@@ -386,14 +410,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>The xiān tradition absorbed many influences. Indigenous Chinese quest for longevity merged with shamanic flight, alchemical experimentation, and Buddhist meditation techniques. The figure of the wandering immortal influenced Chan Buddhism, Confucian self-cultivation, and Chinese poetry and painting. In popular religion, local spirits and historical figures were posthumously enrolled as xiān. The West knows the xiān chiefly through the Eight Immortals and martial-arts films, where they appear as eccentric sages with superhuman powers. Modern Daoist lineages continue to practice neidan in pursuit of the same goal.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Chinese tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/bagua/">Bāguà</a>, <a class="scholars-xlink" href="/sites/long/">Lóng</a>, <a class="scholars-xlink" href="/sites/taichi/">Tàijí</a>, <a class="scholars-xlink" href="/sites/taishang/">Tàishàng</a>, <a class="scholars-xlink" href="/sites/tian/">Tiān</a>, and <a class="scholars-xlink" href="/sites/tiandi/">Tiāndì</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Daozang (Daoist Canon).</li></ol></div>
     </div>
 </section>
 
@@ -401,14 +423,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Xiān permeate Chinese culture. They appear in landscape painting as tiny figures on misty peaks, in New Year prints carrying peaches and gourds, and in countless novels, operas, and films. The aspiration to longevity shapes Chinese medicine, diet, and exercise practices such as tai chi and qigong. The word <em>xiān</em> is also used for extraordinary people: a great cook is a &#39;food immortal,&#39; a beautiful woman a &#39;fairy.&#39; In global spirituality, the xiān offers an alternative to Western heaven: not a reward after death but a transformation of life itself, achieved through sustained practice.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Daozang (Daoist Canon).</li></ol></div>
     </div>
 </section>
 
@@ -416,14 +435,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The xiān tradition is attested in Warring States and Han dynasty texts, tomb art showing feathered immortals ascending to heaven, and the Mawangdui tomb manuscripts on longevity and breath cultivation. Medieval Daoist caves and temple murals depict the Eight Immortals and other transcendent figures. Alchemists&#39; stoves, elixir recipes, and neidan manuals survive in the Daozang and in archaeological contexts from the Han through the Song dynasties.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Daozang (Daoist Canon).</li></ol></div>
     </div>
 </section>
 
@@ -431,135 +447,107 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Xiān given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Daozang (Daoist Canon).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Campany, To Live as Long as Heaven and Earth.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Kohn, Daoism and Chinese Culture.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Pregadio, The Encyclopedia of Taoism.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Bokenkamp, Early Daoist Scriptures.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Unihan Database (Unicode Consortium). <a class="scholars-ext" href="https://www.unicode.org/charts/unihan.html" rel="noopener noreferrer" target="_blank">Full text</a></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Daozang (Daoist Canon).</li><li id="src-scholarly-sources-2">Campany, To Live as Long as Heaven and Earth.</li><li id="src-scholarly-sources-3">Kohn, Daoism and Chinese Culture.</li><li id="src-scholarly-sources-4">Pregadio, The Encyclopedia of Taoism.</li><li id="src-scholarly-sources-5">Bokenkamp, Early Daoist Scriptures.</li><li id="src-scholarly-sources-6">Unihan Database (Unicode Consortium). <a class="scholars-ext" href="https://www.unicode.org/charts/unihan.html" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="classical-texts">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Classical Texts</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Honest scholarship must begin with an absence: the word <strong>仙</strong> (older <strong>僊</strong>) is younger than the classics — the <em>Shijing</em>, <em>Shangshu</em>, and <em>Yijing</em> know nothing of it. What the late classical age supplies instead is the desire. The <em>Chǔcí</em> poem <em>Yuǎnyóu</em> (&#39;Far-off Journey&#39;) already sends its speaker flying beyond the dust to feast on pure vapours and outlast the world.<sup class="scholars-cite"><a href="#src-classical-texts-1">[1]</a></sup></p>
+<p>The cult then enters documentary history. The <em>Shǐjì</em> records how Qín Shǐhuáng, hearing of the immortals&#39; isles Pénglái, Fāngzhàng, and Yíngzhōu, sent Xú Fú with thousands of youths to find them — a voyage that never returned.<sup class="scholars-cite"><a href="#src-classical-texts-2">[2]</a></sup> Its &#39;Treatise on the Fēng and Shàn Sacrifices&#39; recounts Hàn Wǔdì&#39;s equally lavish, equally disappointed pursuit of the 仙人 and their elixirs: the earliest full record of the obsession that religious Daoism would discipline into practice.<sup class="scholars-cite"><a href="#src-classical-texts-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-classical-texts-1">Chuci (Songs of Chu), &#39;Yuan you&#39; (Far-off Journey). <a class="scholars-ext" href="https://ctext.org/chu-ci" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-classical-texts-2">Sima Qian, Shiji (Records of the Grand Historian), Annals of Qin Shi Huang.</li><li id="src-classical-texts-3">Sima Qian, Shiji, Treatise on the Feng and Shan Sacrifices (Fengshan shu).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="daoist-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Daoist Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The xiān is Daoism&#39;s distinctive creation, codified above all by <strong>Gě Hóng</strong> (283–343). His <em>Bàopúzǐ Nèipiān</em> argues that immortality is real, rare, and learnable, and ranks its graduates: celestial immortals who ascend in daylight, terrestrial immortals who wander the famous mountains, and the corpse-liberated who seem to die and slip away.<sup class="scholars-cite"><a href="#src-daoist-sources-1">[1]</a></sup></p>
+<p>Around it grows a hagiographic genre: the <em>Shénxiān Zhuàn</em> (&#39;Biographies of Divine Immortals&#39;) collects the careers of adepts who reached the goal through elixirs, breath-work, diet, and virtue.<sup class="scholars-cite"><a href="#src-daoist-sources-2">[2]</a></sup> The Zhuangzian prototypes — the spirit-man of Mount Gūshè who rides clouds and dragons — were retrospectively enrolled as xiān, and the medieval Shàngqīng revelations fixed the celestial registers on which a successful adept&#39;s name is written. The later <em>Tàishàng Gǎnyìng Piān</em> adds the moral ledger: no ascent without accumulated merit.<sup class="scholars-cite"><a href="#src-daoist-sources-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-daoist-sources-1">Ge Hong, Baopuzi Neipian (The Master Who Embraces Simplicity, Inner Chapters).</li><li id="src-daoist-sources-2">Shenxian Zhuan (Biographies of Divine Immortals), attr. Ge Hong.</li><li id="src-daoist-sources-3">Campany, To Live as Long as Heaven and Earth.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="buddhist-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Buddhist Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Chinese Buddhist translators borrowed 仙 for an Indian figure: the <em>ṛṣi</em>, the forest seer of Brahmanical tradition, became 仙人 — &#39;immortal man&#39; — and sūtras place such seers, including the Bodhisattva&#39;s own early teachers, among them.<sup class="scholars-cite"><a href="#src-buddhist-sources-1">[1]</a></sup></p>
+<p>Doctrinally, Buddhism kept a polite distance: a xiān, however long-lived, remains inside <em>saṃsāra</em> — mortal on a long fuse, short of nirvāṇa — and Buddhist polemic used exactly this point to rank liberation above longevity.<sup class="scholars-cite"><a href="#src-buddhist-sources-2">[2]</a></sup> The exchange still ran both ways: Buddhist concentration and breath meditation entered Daoist inner cultivation, while immortal-vocabulary coloured the Chinese imagination of the bodhisattva who comes and goes at will. Popular temples ignore the distinction entirely and set the Eight Immortals beside the arhats.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-buddhist-sources-1">Buswell &amp; Lopez, The Princeton Dictionary of Buddhism.</li><li id="src-buddhist-sources-2">Campany, To Live as Long as Heaven and Earth.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="calligraphy">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Calligraphy & Script</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p><strong>仙</strong> is one of the most legible characters in the script: the person radical 亻 beside 山 &#39;mountain&#39; — the immortal written as &#39;a human being in the mountains&#39;, an associative compound that advertises the recluse&#39;s path.<sup class="scholars-cite"><a href="#src-calligraphy-1">[1]</a></sup></p>
+<p>The older graph <strong>僊</strong>, preserved in the <em>Shuowen Jiezi</em>, tells the fuller story: a person (人) with a phonetic cognate of 遷 &#39;to shift, to ascend&#39;, glossed as &#39;long-lived, ascending away&#39; — the immortal defined not by where he dwells but by the fact that he departs. Both forms circulated through the medieval period before the simpler mountain-man graph prevailed. On talismans and temple boards the character is often brushed with the mountain&#39;s three peaks exaggerated into a crown of clouds — calligraphy performing the ascent it names.<sup class="scholars-cite"><a href="#src-calligraphy-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-calligraphy-1">Xu Shen, Shuowen Jiezi.</li><li id="src-calligraphy-2">Kohn, Daoism and Chinese Culture.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Xiān is the promise that the human body is not a prison. Unlike religions that split soul from flesh, Daoist immortality aims to refine the body until it becomes light, durable, and free. The xiān does not escape the world; the world loses its grip.</p>
+<p>This is a demanding hope. It requires decades of breath, diet, meditation, and moral care. It asks whether we are willing to treat our own embodiment as a craft rather than a given. The immortal on the crane is not a tourist in transcendence but an artisan of spirit. To name a domain <em>Xiān</em> is to claim that the highest human possibility is not power or knowledge but freedom — the freedom that comes from having made oneself compatible with the Dao.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Daozang (Daoist Canon).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="classical-texts">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Classical Texts</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Classical Texts →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="daoist-sources">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Daoist Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Daoist Sources →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="buddhist-sources">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Buddhist Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Buddhist Sources →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="calligraphy">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">17</span>
-        <h2 class="scholars-section-title">Calligraphy & Script</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Calligraphy & Script →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">19</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -597,6 +585,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'xian';
@@ -630,14 +753,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -731,6 +846,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -742,18 +858,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -765,6 +882,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -809,6 +928,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

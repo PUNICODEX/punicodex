@@ -19,7 +19,7 @@ function test(name, fn) {
 console.log('Running taxonomy engine tests...');
 
 test('loads taxonomy with expected version', () => {
-  assert.strictEqual(taxonomy.getTaxonomyVersion(), '0.1.0');
+  assert.strictEqual(taxonomy.getTaxonomyVersion(), '0.2.0');
 });
 
 test('returns 13 universal sections', () => {
@@ -54,9 +54,25 @@ test('resolves archetype from id and generates manifest', () => {
   const manifest = taxonomy.generateBlankManifest('nike');
   assert.strictEqual(manifest.entryId, 'nike');
   assert.strictEqual(manifest.pantheon, 'olympian');
-  assert.strictEqual(manifest.sections.length, 13);
+  // 11 universal content sections + Greek kit (via olympian alias) + meditation + 2 meta sections
+  assert.strictEqual(manifest.sections.length, 18);
   assert(manifest.sections.some((s) => s.key === 'overview'));
+  assert(manifest.sections.some((s) => s.key === 'homeric-hymns'));
+  assert(manifest.sections.some((s) => s.key === 'meditation'));
   assert(manifest.sections.every((s) => s.status === 'empty'));
+  // Meta sections are always ordered last.
+  const keys = manifest.sections.map((s) => s.key);
+  assert.deepStrictEqual(keys.slice(-2), ['edit-history', 'attribution']);
+});
+
+test('pantheon aliases resolve Greek sub-pantheons to the Greek kit', () => {
+  for (const alias of ['olympian', 'chthonic', 'titan', 'other']) {
+    const kit = taxonomy.getPantheonKit(alias);
+    assert(
+      kit.some((s) => s.key === 'homeric-hymns'),
+      `${alias} should resolve to the Greek kit`
+    );
+  }
 });
 
 test('resolves archetype from object and generates manifest', () => {

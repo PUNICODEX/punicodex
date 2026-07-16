@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,11 +279,12 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#ugaritic-tablets">14 &mdash; Ugaritic Tablets</a></li>
-<li><a href="#tanakh-references">15 &mdash; Tanakh References</a></li>
-<li><a href="#inscriptions">16 &mdash; Inscriptions & Seals</a></li>
+<li><a href="#ugaritic-tablets">12 &mdash; Ugaritic Tablets</a></li>
+<li><a href="#tanakh-references">13 &mdash; Tanakh References</a></li>
+<li><a href="#inscriptions">14 &mdash; Inscriptions & Seals</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -280,14 +296,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>ꜥAnat</strong> (<em>anat</em>) — The Virgin Warrior · Sister of the Storm — belongs to the Canaanite tradition, where it is catalogued under the domain &quot;Goddess of War and the Hunt&quot;. The name means &quot;Canaanite warrior goddess, sister and ally of Baꜥal&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>ꜥAnat is the <strong>maiden who refuses to grow up</strong> into the domestic sphere. In the Ugaritic texts she is neither wife nor mother but a singular force: a warrior who wades knee-deep in the blood of her enemies, a huntress who ranges the wilderness, and the most faithful ally of Baꜥal. Her title <em>btlt</em> — &quot;maiden&quot; — marks her as marriageable in social terms, yet mythologically she remains unattached, unpredictable, and absolutely devoted to her brother.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>ꜥAnat</strong> and serves its temple at <a class="scholars-ext" href="https://xn--anat-pe8o.com" rel="noopener noreferrer" target="_blank">ꜥanat.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>anat</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">KTU (Ugaritic texts).</li><li id="src-overview-2">Corpus Inscriptionum Semiticarum, Académie des Inscriptions et Belles-Lettres, Paris, 1881. <a class="scholars-ext" href="https://aibl.fr/travaux/le-cabinet-du-corpus-inscriptionum-semiticarum/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-overview-3">Coogan, Stories from Ancient Canaan.</li></ol></div>
     </div>
 </section>
 
@@ -295,14 +310,20 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Ugaritic as <strong>𐎓𐎐𐎚</strong>. Etymologically it means &quot;Canaanite warrior goddess, sister and ally of Baꜥal&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The reconstructed proto-form is <em>ʿanatu</em> (proto-afro-asiatic, &quot;warrior goddess&quot;). From Ugaritic ʿnṯ/ʿnt; the initial pharyngeal is rendered with Egyptian Ain (ꜥ) as the registrable workaround</p>
+<p>Cognate forms across related languages:</p>
+<ul class="scholars-list"><li><strong>עֲנָת (ʿĂnāt)</strong> (Hebrew)</li><li><strong>𐤏𐤍𐤕 (ʿnt)</strong> (Phoenician)</li><li><strong>عَنَت (ʿanat)</strong> (Arabic)</li></ul>
+<p>The ASCII form <em>anat</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>ꜥAnat</strong> recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>a</strong> → <strong>ꜥA</strong> — Egyptian Ain (ꜥ) represents the Semitic ʿayin, followed by the capital alpha present in the Unicode restoration</li><li><strong>n</strong> → <strong>n</strong> — Same</li><li><strong>a</strong> → <strong>a</strong> — Same</li><li><strong>t</strong> → <strong>t</strong> — Same</li></ul>
+<p>Attested and derived spellings of the name:</p>
+<ul class="scholars-list"><li><strong>ʿAnat</strong> — ideal form: Ugaritic/Phoenician ʿayin (ʿ) is ideal but not registrable at the DNS root</li><li><strong>ꜥanat</strong> — owned form: Lowercase owned form</li><li><strong>Anát</strong> — scholarly variant: Stress-only alternate transliteration (previous Phoenician entry)</li></ul>
+<p>The project holds the domain <strong>ꜥanat.com</strong> (xn--anat-pe8o.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">KTU (Ugaritic texts).</li><li id="src-the-name-2">Corpus Inscriptionum Semiticarum, Académie des Inscriptions et Belles-Lettres, Paris, 1881. <a class="scholars-ext" href="https://aibl.fr/travaux/le-cabinet-du-corpus-inscriptionum-semiticarum/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -310,14 +331,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/ʕa.nat/</strong> — Ugaritic/Phoenician Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>ʕa-</strong> — Voiced pharyngeal fricative [ʕ] — a deep, tightening sound in the throat, followed by open [a]. The Egyptian Ain (ꜥ) is used as the registrable stand-in.</li><li><strong>-nat</strong> — Plain alveolar sounds: [n], [a], [t]. The final -t is a feminine marker, common in Semitic divine names.</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;AH-naht&#39; — start with a rough, throaty &#39;ah&#39; (like Arabic ع), then &#39;naht&#39; with a crisp final t.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Ugaritic</strong> — 𐎓𐎐𐎚 (ʿnt), the warrior goddess&#39;s name in the alphabetic cuneiform of Ras Shamra</li><li><strong>Hebrew</strong> — עֲנָת (ʿĂnāt), attested as a place and divine name; the name is not etymologically transparent</li><li><strong>Egyptian</strong> — ʿnṯr, an early loan/adaptation showing her cult reached the Nile Delta</li></ul>
+<p>The ideal spelling would use Semitic ʿayin (ʿ), but that character is rejected by the DNS root zone. We therefore render the pharyngeal with the Egyptological Ain (ꜥ, U+A724), the only registrable Unicode workaround that signals the original consonant. The name is Tier 2: it preserves the ʿayin (a distinctive phoneme) but lacks the long-vowel mark that would make it Tier 1.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">KTU (Ugaritic texts).</li></ol></div>
     </div>
 </section>
 
@@ -325,14 +349,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Ugaritic as <strong>𐎓𐎐𐎚</strong> — Northwest Semitic cuneiform alphabet, attested Late Bronze Age, c. 1400–1200 BCE, in Ugarit (modern Ras Shamra, Syria). The script is written left-to-right.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>ꜥAnat</em> (Ugaritic alphabetic cuneiform), giving the normalized reading /ʕaˈnaːt/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The name is written 𐎓𐎐𐎚 in the Ugaritic cuneiform alphabet.</li><li>Ugaritic ʿayin is rendered with Egyptological Ain (ꜥ) for DNS registrability.</li><li>Long vowels are reconstructed from Hebrew and Akkadian cognates and marked with macrons.</li><li>The Unicode restoration ꜥAnat is registrable in .com; the Ugaritic cuneiform form is not supported in the .com IDN table.</li></ul>
+<p>The name is written in Ugaritic alphabetic cuneiform as 𐎓𐎐𐎚 (ʿ-n-t). The first sign is ʿayin, a voiced pharyngeal fricative absent from English and from standard Latin transcription. Because the standard IPA ʿ is blocked at the DNS root, PUNYCODEX represents it with the Latin Capital/Small Letter Egyptological Ain (ꜥ / U+A724), preserving visual recognition while remaining registrable.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Corpus Inscriptionum Semiticarum, Académie des Inscriptions et Belles-Lettres, Paris, 1881. <a class="scholars-ext" href="https://aibl.fr/travaux/le-cabinet-du-corpus-inscriptionum-semiticarum/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-original-script-2">Coogan, Stories from Ancient Canaan.</li><li id="src-original-script-3">John V. Day, Indo-European Origins: The Anthropological Evidence, Institute for the Study of Man, 2001.</li><li id="src-original-script-4">KTU².</li><li id="src-original-script-5">Smith, The Ugaritic Baal Cycle.</li><li id="src-original-script-6">Ugaritic Textual Corpus, Ras Shamra–Ugarit corpus (KTU / CUSAS), 1200 BCE. <a class="scholars-ext" href="https://www.ancientneareast.net/ugarit-ras-shamra/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -340,14 +365,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>ꜥAnat is the <strong>maiden who refuses to grow up</strong> into the domestic sphere. In the Ugaritic texts she is neither wife nor mother but a singular force: a warrior who wades knee-deep in the blood of her enemies, a huntress who ranges the wilderness, and the most faithful ally of Baꜥal. Her title <em>btlt</em> — &quot;maiden&quot; — marks her as marriageable in social terms, yet mythologically she remains unattached, unpredictable, and absolutely devoted to her brother.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Divine Warfare</h3>
+<p>She fights both armies and cosmic foes, wielding bow, spear, and sword; KTU 1.3 ii describes her battle fury in graphic detail.</p>
+<h3 class="scholars-h3">The Hunt</h3>
+<p>She ranges mountains and heights in search of game or vengeance; her pursuit of Aqhat turns the hunt into tragic myth.</p>
+<h3 class="scholars-h3">Loyal Sister</h3>
+<p>Baꜥal&#39;s most passionate advocate; she confronts El, avenges Baꜥal&#39;s death, and restores the storm to the world.</p>
+<h3 class="scholars-h3">Unbound Feminine Power</h3>
+<p>A young woman operating in male-coded spheres without condemnation — a figure of autonomous, even terrifying, agency.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Corpus Inscriptionum Semiticarum, Académie des Inscriptions et Belles-Lettres, Paris, 1881. <a class="scholars-ext" href="https://aibl.fr/travaux/le-cabinet-du-corpus-inscriptionum-semiticarum/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -355,14 +385,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with ꜥAnat concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Bow</strong> — Her favored weapon and the cause of the Aqhat tragedy</li><li><strong>Spear and sword</strong> — Instruments of her martial rage against divine and human armies</li><li><strong>Lion</strong> — Her leonine ferocity; she is linked to the Mistress of Animals tradition</li><li><strong>Dew and rain</strong> — After battle she is purified by the dew of heaven and the rain of the Cloud-Rider</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">KTU (Ugaritic texts).</li></ol></div>
     </div>
 </section>
 
@@ -370,14 +398,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>ꜥAnat&#39;s mythology is preserved chiefly in the Ugaritic Baꜥal Cycle and the Epic of Aqhat. She is not a fertility goddess in the usual sense; she is force itself, concentrated in a young woman&#39;s body, and her stories turn on violence, loyalty, and the refusal to accept limits.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Wading in Blood (The Baal Cycle)</h3>
+<p>In KTU 1.3 ii, ꜥAnat returns from battle in exultation: &#39;Heads rolled beneath her like balls, hands flew over her like locusts.&#39; She fastens severed heads to her back and hands to her belt, then washes herself clean in the dew sent by Baꜥal, the Rider on the Clouds. The scene is shocking not because she is evil but because she is <em>unrestrained</em> — war as ecstasy, not duty.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Avenger of Baꜥal (The Baal Cycle)</h3>
+<p>When Mot, Death, swallows Baꜥal and the rains fail, ꜥAnat searches the wilderness for her brother. Finding Mot, she attacks him with a sword, winnows him like grain, burns him, grinds him, and scatters him in a field (KTU 1.6 ii 30–35). Her violence is the engine of Baꜥal&#39;s return and the renewal of fertility.</p>
+<h3 class="scholars-h3">The Bow of the Hero (Epic of Aqhat)</h3>
+<p>In KTU 1.17–19, the craftsman god Kothar-wa-Ḫasīs gives the hero Aqhat a marvelous bow. ꜥAnat covets it and offers Aqhat life without death in exchange; he refuses, telling her that womenfolk do not hunt. Enraged, she has the Sutean warrior Yatpan murder Aqhat. The bow is broken, the land withers, and Aqhat&#39;s sister Pughat eventually avenges him.</p>
+<h3 class="scholars-h3">Mistress of the Highlands (Hymn)</h3>
+<p>A hymn to Anat (KTU 1.13) praises her as a swift huntress and protector of the king. She is invoked as a divine patron of royalty and warfare, her energy channeled from chaotic fury into guardian power.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Corpus Inscriptionum Semiticarum, Académie des Inscriptions et Belles-Lettres, Paris, 1881. <a class="scholars-ext" href="https://aibl.fr/travaux/le-cabinet-du-corpus-inscriptionum-semiticarum/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-mythology-2">Coogan, Stories from Ancient Canaan.</li></ol></div>
     </div>
 </section>
 
@@ -385,14 +418,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>In Egypt, ꜥAnat was worshipped as a war goddess alongside her sister Aštart, especially at Tanis and Memphis; she appears on scarabs and in the Egyptian pantheon as ʿnṯr. Greeks and Romans later identified her with Athena/Minerva in her martial aspect. Some scholars have argued for an early equation with the Mesopotamian Ishtar/Inanna, since both are young, autonomous warrior goddesses, but the Ugaritic texts treat ꜥAnat as a distinct Levantine figure. In the Hebrew Bible, place names such as Anathoth preserve her memory without endorsing her cult.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include <a class="scholars-xlink" href="/sites/ares/">Árēs</a> (war / battle), <a class="scholars-xlink" href="/sites/artemis/">Ártemis</a> (hunt / wild), <a class="scholars-xlink" href="/sites/ashur/">Aššur</a> (war / battle), <a class="scholars-xlink" href="/sites/athena/">Athénā</a> (war / battle), <a class="scholars-xlink" href="/sites/durga/">Durgā</a> (war / battle), and <a class="scholars-xlink" href="/sites/huitzilopochtli/">Huitzilopōchtli</a> (war / battle).</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">KTU (Ugaritic texts).</li></ol></div>
     </div>
 </section>
 
@@ -400,14 +431,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>The name ꜥAnat echoes across millennia in unexpected ways. The Israelite town of <em>Anathoth</em> (Jeremiah&#39;s birthplace) carries her name. Medieval Jewish folklore remembered her in the figure of the warrior woman, and modern Levantine archaeology has recovered countless amulets and plaques bearing her image. In contemporary literature, film, and Neopagan practice, Anat resurfaces as an icon of untamed female power — a goddess who will not be domesticated, who fights for those she loves, and who makes the boundaries between love and violence uncomfortably thin.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">KTU (Ugaritic texts).</li></ol></div>
     </div>
 </section>
 
@@ -415,14 +443,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The Ugaritic tablets from Ras Shamra (KTU 1.3, 1.6, 1.17–19) preserve her warrior mythology in alphabetic cuneiform. In Egypt, bronze figurines and scarabs from Tanis, Memphis, and the eastern Delta identify her as ʿnṯr, a Levantine war goddess absorbed into the New Kingdom pantheon. The stela from Beth-Shean and Israelite place names such as Anathoth and the epithet Shamgar ben-Anath attest her cult west of the Jordan.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">KTU (Ugaritic texts).</li></ol></div>
     </div>
 </section>
 
@@ -430,120 +455,94 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of ꜥAnat given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> KTU (Ugaritic texts).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Corpus Inscriptionum Semiticarum, Académie des Inscriptions et Belles-Lettres, Paris, 1881. <a class="scholars-ext" href="https://aibl.fr/travaux/le-cabinet-du-corpus-inscriptionum-semiticarum/" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Coogan, Stories from Ancient Canaan.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Smith, The Ugaritic Baal Cycle.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Day, Anat in Ugaritic Narrative.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Wyatt, Religious Texts from Ugarit.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> KTU 1.3 (Baal Cycle: Anat&#39;s battle fury and purification).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> KTU 1.6 (Baal Cycle: Anat avenges Baal against Mot).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> KTU 1.17–1.19 (Epic of Aqhat: the bow and the hunt).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> Hebrew Bible, Judges 3:31; 5:6; Joshua 19:38 (Shamgar ben Anath and Anathoth).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">KTU (Ugaritic texts).</li><li id="src-scholarly-sources-2">Corpus Inscriptionum Semiticarum, Académie des Inscriptions et Belles-Lettres, Paris, 1881. <a class="scholars-ext" href="https://aibl.fr/travaux/le-cabinet-du-corpus-inscriptionum-semiticarum/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-3">Coogan, Stories from Ancient Canaan.</li><li id="src-scholarly-sources-4">Smith, The Ugaritic Baal Cycle.</li><li id="src-scholarly-sources-5">Day, Anat in Ugaritic Narrative.</li><li id="src-scholarly-sources-6">Wyatt, Religious Texts from Ugarit.</li><li id="src-scholarly-sources-7">KTU 1.3 (Baal Cycle: Anat&#39;s battle fury and purification).</li><li id="src-scholarly-sources-8">KTU 1.6 (Baal Cycle: Anat avenges Baal against Mot).</li><li id="src-scholarly-sources-9">KTU 1.17–1.19 (Epic of Aqhat: the bow and the hunt).</li><li id="src-scholarly-sources-10">Hebrew Bible, Judges 3:31; 5:6; Joshua 19:38 (Shamgar ben Anath and Anathoth).</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="ugaritic-tablets">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Ugaritic Tablets</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>ꜥAnat appears across Ugarit&#39;s mythological tablets with a consistency matched by few goddesses. In the Baꜥal Cycle she celebrates battle in KTU 1.3 ii (&quot;heads rolled under her like balls&quot;), flies to threaten Ēl himself until he grants <a class="scholars-xlink" href="/sites/baal/">Baꜥal</a> a palace (KTU 1.3 iii–iv), and after Baꜥal&#39;s death searches the steppe for his body, then seizes <a class="scholars-xlink" href="/sites/mot/">Mōt</a> — splitting, winnowing, burning, grinding, and sowing him (KTU 1.6 ii).<sup class="scholars-cite"><a href="#src-ugaritic-tablets-1">[1]</a></sup></p>
+<p>In the Epic of Aqhat (KTU 1.17–1.19) she covets the hero&#39;s bow, offers immortality for it, and when refused engineers his death through the mercenary Yatpan; the bow is lost in the sea and drought follows. The fragmentary hymn KTU 1.13 praises her as huntress and patroness of the king, and she shares hunting and feasting scenes with Aštart (KTU 1.114). The god lists and offering texts (KTU 1.47; 1.118) name her among Ugarit&#39;s principal deities.<sup class="scholars-cite"><a href="#src-ugaritic-tablets-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-ugaritic-tablets-1">Dietrich, Loretz &amp; Sanmartín, The Cuneiform Alphabetic Texts from Ugarit (KTU): KTU 1.3; 1.6; 1.13; 1.17–1.19; 1.114.</li><li id="src-ugaritic-tablets-2">Wyatt, Religious Texts from Ugarit, 2nd ed.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="tanakh-references">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Tanakh References</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Tanakh preserves no narrative of ꜥAnat&#39;s cult; her memory survives in names. Judges 3:31 and 5:6 record Shamgar ben Anat, &quot;son of Anat,&quot; a deliverer of Israel whose patronymic is the clearest personal echo of the goddess west of the Jordan.<sup class="scholars-cite"><a href="#src-tanakh-references-1">[1]</a></sup></p>
+<p>Toponymy carries the rest: Anathoth, a levitical town in Benjamin and the birthplace of Jeremiah (Joshua 21:18; Jeremiah 1:1), and Beth-Anath in Naphtali (Joshua 19:38; Judges 1:33), &quot;house of Anat,&quot; implying former shrines. Some scholars also detect the goddess behind the &quot;Queen of Heaven&quot; condemned in Jeremiah 7:18 and 44:15–19, though that title fits Aštart or <a class="scholars-xlink" href="/sites/asherah/">ꜥAsherah</a> at least as well, and the identification with Anat remains conjectural. The silence itself is the datum: by the monarchic period her living cult had receded, leaving fossil traces in geography and genealogy.<sup class="scholars-cite"><a href="#src-tanakh-references-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-tanakh-references-1">Hebrew Bible, Judges 3:31; 5:6; Joshua 19:38; 21:18; Jeremiah 1:1; 7:18; 44:15–19.</li><li id="src-tanakh-references-2">Day, Yahweh and the Gods and Goddesses of Canaan.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="inscriptions">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Inscriptions & Seals</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The firmest epigraphic trail for ꜥAnat runs through Egypt, where New Kingdom pharaohs adopted her as a war goddess. She is styled &quot;daughter of Raꜥ&quot; in Egyptian texts; Ramesses II named a daughter Bint-Anat (&quot;daughter of Anat&quot;), and Ramesside monuments present Anat and Aštart as the pharaoh&#39;s shield in battle. A votive stela from Beth-Shean (Iron Age I) depicts her in Egyptian dress.<sup class="scholars-cite"><a href="#src-inscriptions-1">[1]</a></sup></p>
+<p>Aramaic evidence comes from the 5th-century BCE Jewish colony at Elephantine, whose papyri swear by and name Anat-Yahu (&quot;Anat of YHWH&quot;) and Anat-Bethel — apparently hypostatized forms of the goddess within a YHWH cult. Phoenician onomastics compounds her name in personal names across the KAI corpus. No monumental inscription from Ugarit itself names her; her Levantine presence is literary and iconographic rather than epigraphic.<sup class="scholars-cite"><a href="#src-inscriptions-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-inscriptions-1">Kraeling, The Brooklyn Museum Aramaic Papyri (Elephantine: Anat-Yahu, Anat-Bethel).</li><li id="src-inscriptions-2">Day, Yahweh and the Gods and Goddesses of Canaan; Gibson, Textbook of Syrian Semitic Inscriptions.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>ꜥAnat disturbs the modern imagination because she refuses our categories. She is a young woman and a killer, a sister and an avenger, a goddess of life-giving rain and of blood-soaked battlefields. In a world that still struggles to imagine female power without apology, she stands as a difficult ancestor: not a nurturer, not a consort, but a self-possessed force.</p>
+<p>Yet her loyalty is unmistakable. Everything she does for Baꜥal — confronting El, destroying Mot, mourning in the wilderness — she does out of love that does not negotiate. To meditate on ꜥAnat is to meditate on the sacredness of rage rightly aimed, on the ferocity that protects rather than merely consumes. She asks us: What would you fight for, without limit, without consent, because it is yours?<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">KTU (Ugaritic texts).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="ugaritic-tablets">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Ugaritic Tablets</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Ugaritic Tablets →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="tanakh-references">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Tanakh References</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Tanakh References →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="inscriptions">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Inscriptions & Seals</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Inscriptions & Seals →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">17</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -581,6 +580,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'anat';
@@ -614,14 +748,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -715,6 +841,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -726,18 +853,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -749,6 +877,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -793,6 +923,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

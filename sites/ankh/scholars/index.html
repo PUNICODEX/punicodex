@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,12 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#hieroglyphic-evidence">14 &mdash; Hieroglyphic Evidence</a></li>
-<li><a href="#pyramid-texts">15 &mdash; Pyramid Texts</a></li>
-<li><a href="#coffin-texts">16 &mdash; Coffin Texts</a></li>
-<li><a href="#book-of-the-dead">17 &mdash; Book of the Dead</a></li>
+<li><a href="#hieroglyphic-evidence">12 &mdash; Hieroglyphic Evidence</a></li>
+<li><a href="#pyramid-texts">13 &mdash; Pyramid Texts</a></li>
+<li><a href="#coffin-texts">14 &mdash; Coffin Texts</a></li>
+<li><a href="#book-of-the-dead">15 &mdash; Book of the Dead</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -281,14 +297,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>ꜥnḫ</strong> (<em>ankh</em>) — Symbol of Life · Life; Egyptian ankh sign — belongs to the Egyptian tradition, where it is catalogued under the domain &quot;Symbol of Life&quot;. The name means &quot;Life; Egyptian ankh sign&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>The <strong>ꜥnḫ</strong> is not merely a symbol; in Egyptian thought it is the shape of life itself. A looped cross that seems to join sandal-strap, mirror, and pelvic girdle, it appears in the hands of every god and goddess who grants the king life, stability, and dominion. To be given the ankh is to be given breath, heartbeat, and the right to exist.</p>
+<p>Its written form, ꜥ-n-ḫ, means &quot;life,&quot; &quot;to live,&quot; &quot;alive,&quot; and, by extension, &quot;salvation.&quot; Gods hold it to the lips of the pharaoh; the dead receive it as a promise that the afterlife is not death but continued living. Few signs in any writing system carry so much weight in so few strokes.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>ꜥnḫ</strong> and serves its temple at <a class="scholars-ext" href="https://xn--n-bom2786d.com" rel="noopener noreferrer" target="_blank">ꜥnḫ.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>ankh</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Allen, Middle Egyptian (2014).</li><li id="src-overview-2">Faulkner, A Concise Dictionary of Middle Egyptian, s.v. ꜥnḫ.</li><li id="src-overview-3">Wörterbuch der ägyptischen Sprache I, s.v. ꜥnḫ.</li></ol></div>
     </div>
 </section>
 
@@ -296,14 +312,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Hieroglyphs as <strong>𓋹</strong>. Etymologically it means &quot;Life; Egyptian ankh sign&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The ASCII form <em>ankh</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>ꜥnḫ</strong> recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>a</strong> → <strong>ꜥ</strong> — Glottal stop ꜥ</li><li><strong>n</strong> → <strong>n</strong> — Same</li><li><strong>k</strong> → <strong>ḫ</strong> — Voiceless velar fricative ḫ</li><li><strong>h</strong> → <strong>—</strong> — Dropped: English placeholder</li></ul>
+<p>The project holds the domain <strong>ꜥnḫ.com</strong> (xn--n-bom2786d.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Allen, Middle Egyptian (2014).</li><li id="src-the-name-2">Faulkner, A Concise Dictionary of Middle Egyptian, s.v. ꜥnḫ.</li></ol></div>
     </div>
 </section>
 
@@ -311,14 +328,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/ˈʕaːnax/</strong> — Egyptological Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Ꜥ-</strong> — Voiced pharyngeal fricative [ʕ], the Egyptological Ain (U+A724) used as a registrable stand-in for the original guttural; deeper than English &#39;a&#39; and pronounced far back in the throat.</li><li><strong>-aː-</strong> — Long open vowel reconstructed between the consonants; Egyptian hieroglyphs do not write vowels, and the quality is inferred from Coptic ⲱⲛϩ (ōnh) and from Semitic cognates.</li><li><strong>-n</strong> — Alveolar nasal [n], as in English &#39;no&#39;.</li><li><strong>-ḫ</strong> — Voiceless velar fricative [x], like the &#39;ch&#39; in Scottish &#39;loch&#39; or German &#39;Bach&#39;; Egyptology also allows a voiced [ɣ] in some periods.</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;AH-nakh&#39; — say &#39;ah&#39; from the back of the throat, then &#39;nakh&#39; with the final consonant like Scottish &#39;loch&#39; (not a hard English k).</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Coptic</strong> — ⲱⲛϩ (ōnh), the late reflex meaning &#39;life, live&#39;</li><li><strong>Greek / Latin</strong> — crux ansata, the handled cross adopted by Coptic Christianity</li><li><strong>Egyptian derivative</strong> — sꜥnḫ, &#39;cause to live, nourish&#39;</li></ul>
+<p>Hieroglyphic writing records only the consonants Ꜥ-n-ḫ; the vowels are reconstructed from Coptic ⲱⲛϩ and from comparative Semitic evidence. The Ꜥ is a voiced pharyngeal fricative and the ḫ is a voiceless velar fricative, neither of which English possesses. In the PUNYCODEX system the Egyptological Ain ꜥ (U+A724) serves as the only registrable DNS stand-in for the pharyngeal; this is a Tier 2 restoration that preserves a distinctive consonant but cannot encode vowel length or stress. Sources: Allen, Middle Egyptian (2014), pp. 18–19, 30; Faulkner, A Concise Dictionary of Middle Egyptian, s.v. ꜥnḫ; Wörterbuch der ägyptischen Sprache I, 170–171; Hoch, Semitic Words in Egyptian Texts (1994), on Egyptian–Semitic velar and pharyngeal correspondences.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Allen, Middle Egyptian (2014).</li></ol></div>
     </div>
 </section>
 
@@ -326,14 +346,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Hieroglyphs as <strong>𓋹</strong> — Egyptian hieroglyphic, attested Old Kingdom – Late Antiquity, c. 2600 BCE – 400 CE, in Egypt. The script is written right-to-left / top-to-bottom.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>ꜥnḫ</em> (Egyptological conventional), giving the normalized reading Original vocalisation unknown; Egyptological /ˈɑːn.x/..</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The Egyptian name is written 𓋹 in hieroglyphs.</li><li>Hieroglyphs combine logograms, phonograms, and determinatives; the exact function of each sign depends on context.</li><li>Egyptian writing does not record vowels; the vocalised form is a modern convention reconstructed from Coptic and Greek evidence.</li><li>The Unicode restoration ꜥnḫ uses Egyptological alef/ayin and other registrable characters; the hieroglyphic form is not registrable in .com.</li></ul>
+<p>The word is written in hieroglyphs as ꜥ-n-ḫ (Gardiner S34, the ankh sign, often used as both phonogram and logogram). Egyptian script records consonants only; the vowels are reconstructed from Coptic ⲱⲛϩ and from Greek transcriptions. The ꜥ represents a voiced pharyngeal fricative for which standard Latin transcription has no registrable equivalent; PÚNYCODEX uses the Egyptological Ain (ꜥ, U+A724). The ḫ is a voiceless velar fricative, represented by h-breve (U+1E2B). Because hieroglyphs write the sign itself, the registrable form is unusually close to the original grapheme: the ankh on your screen is a lineal descendant of the sign held by Amun.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">James P. Allen, Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs, Cambridge University Press, 2000. <a class="scholars-ext" href="https://www.cambridge.org/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-original-script-2">Faulkner, A Concise Dictionary of Middle Egyptian.</li><li id="src-original-script-3">Gardiner, Egyptian Grammar.</li><li id="src-original-script-4">Hannig, Ägyptisches Wörterbuch.</li></ol></div>
     </div>
 </section>
 
@@ -341,14 +362,20 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>The <strong>ꜥnḫ</strong> is not merely a symbol; in Egyptian thought it is the shape of life itself. A looped cross that seems to join sandal-strap, mirror, and pelvic girdle, it appears in the hands of every god and goddess who grants the king life, stability, and dominion. To be given the ankh is to be given breath, heartbeat, and the right to exist.</p>
+<p>Its written form, ꜥ-n-ḫ, means &quot;life,&quot; &quot;to live,&quot; &quot;alive,&quot; and, by extension, &quot;salvation.&quot; Gods hold it to the lips of the pharaoh; the dead receive it as a promise that the afterlife is not death but continued living. Few signs in any writing system carry so much weight in so few strokes.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Sign of Life</h3>
+<p>The looped cross (Gardiner S34) represents the breath and circulation that distinguish the living from the dead; it is offered in countless tomb and temple reliefs.</p>
+<h3 class="scholars-h3">Divine Gift</h3>
+<p>Deities extend the ankh toward the king&#39;s nose, giving him the breath of life; the sign is both noun and verb, object and action.</p>
+<h3 class="scholars-h3">Amulet and Passport</h3>
+<p>Carved in faience, wood, or precious stone, ankh amulets protected the body and served as talismans for rebirth in the Duat.</p>
+<h3 class="scholars-h3">Eternity in Time</h3>
+<p>The ankh transforms mortal life into an eternal recurrence: to die is to live again in the Field of Reeds.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Faulkner, A Concise Dictionary of Middle Egyptian, s.v. ꜥnḫ.</li></ol></div>
     </div>
 </section>
 
@@ -356,14 +383,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with ꜥnḫ concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Ankh hieroglyph</strong> — The looped cross itself, logogram and phonogram for &#39;life&#39;</li><li><strong>Breath / nostril</strong> — The air of life that gods deliver by pressing the ankh to the nose</li><li><strong>Shen ring</strong> — Eternity; often paired with the ankh on royal cartouches</li><li><strong>Was scepter</strong> — Dominion and vitality, frequently held alongside the ankh in divine hands</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Allen, Middle Egyptian (2014).</li></ol></div>
     </div>
 </section>
 
@@ -371,14 +396,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>The ankh has no single mythic biography because it is older than biography. It enters the cosmos at the moment the gods begin to give life, and it never leaves their hands.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The First Giving of Life (Cosmogony)</h3>
+<p>In Heliopolitan cosmogony, the creator Atum speaks or sneezes the first gods into being and then gives them life through the ankh. The sign appears in creation scenes as the instrument by which the sun-god Re enlivens the nostrils of the king and the gods. It is not a gift from one person to another but the medium of divine animation itself.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Breath of the King (Temple ritual)</h3>
+<p>In the daily temple ritual, the cult statue is anointed, dressed, and offered the ankh — life itself — by the officiating priest. Reliefs at Karnak, Luxor, and Edfu show the king receiving the ankh from Amun, Mut, or Khonsu, a transaction that renews both royal and cosmic vitality.</p>
+<h3 class="scholars-h3">The Ankh in the Duat (Funerary texts)</h3>
+<p>The Book of the Dead and the Book of Breathings promise the deceased that they will &#39;live again&#39; (sꜥnḫ) and breathe by means of the ankh. Spells equate the amulet with the heart&#39;s continued beating and the soul&#39;s freedom to move in the afterlife.</p>
+<h3 class="scholars-h3">Gods at the Nostrils (Iconography)</h3>
+<p>The standard pose — a god holding an ankh to the king&#39;s nose — is one of the most common images in Egyptian art. It means that life is not earned but bestowed, a divine current that flows through the pharaoh to the land.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Faulkner, A Concise Dictionary of Middle Egyptian, s.v. ꜥnḫ.</li><li id="src-mythology-2">Wörterbuch der ägyptischen Sprache I, s.v. ꜥnḫ.</li></ol></div>
     </div>
 </section>
 
@@ -386,14 +416,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>The ankh outlived pharaonic religion. Coptic Christians adopted it as the <em>crux ansata</em>, the &#39;handled cross,&#39; seeing in its loop the triumph of eternal life over death. Some early Christian writers interpreted the loop as a halo or the risen Christ. In the twentieth century the ankh became an emblem of Black identity, Afrofuturism, and Kemetic spirituality, often detached from its specific Egyptian context. It also entered fantasy fiction, gothic fashion, and popular occultism as a generic symbol of immortality — a remarkable afterlife for a sign that began on the lips of gods.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Egyptian tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/ab/">Ꜣb</a>, <a class="scholars-xlink" href="/sites/akh/">Ꜣḫ</a>, <a class="scholars-xlink" href="/sites/amun/">Ꜣmun</a>, <a class="scholars-xlink" href="/sites/apep/">Ꜥpp</a>, <a class="scholars-xlink" href="/sites/ba/">Bꜣ</a>, and <a class="scholars-xlink" href="/sites/bastet/">Bꜣstt</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Allen, Middle Egyptian (2014).</li></ol></div>
     </div>
 </section>
 
@@ -401,14 +429,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>No Egyptian symbol is more recognizable today. The ankh appears on jewelry, tattoos, album covers, and video-game inventory screens, usually as a token of life or undead persistence. In Coptic Christianity it remains a baptismal and funerary emblem. Scholars of African diaspora religions note its power as a reclaimed icon of Nile Valley civilization. Whether worn as faith, fashion, or fandom, the ankh still asks the same question it asked in the tombs: What does it mean to live beyond the limits of a single body?<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Allen, Middle Egyptian (2014).</li></ol></div>
     </div>
 </section>
 
@@ -416,14 +441,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The ankh sign appears from the First Dynasty onward on seal impressions, labels, and pottery. It dominates royal stelae such as the Sphinx Stela of Thutmose IV and the Kamutef scenes at Luxor Temple, where Amun offers life to the divine birth of the king. Thousands of ankh amulets survive from New Kingdom tombs, including examples from the Valley of the Kings and the burial of Tutankhamun. The sign is painted on coffins, papyri, and tomb walls from Saqqara to Nubia.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Allen, Middle Egyptian (2014).</li></ol></div>
     </div>
 </section>
 
@@ -431,135 +453,103 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of ꜥnḫ given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Allen, Middle Egyptian (2014).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Faulkner, A Concise Dictionary of Middle Egyptian, s.v. ꜥnḫ.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Wörterbuch der ägyptischen Sprache I, s.v. ꜥnḫ.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Gardiner, Egyptian Grammar.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Hornung, The Ancient Egyptian Books of the Afterlife.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Pyramid Texts, Utterance 600.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Book of the Dead, Spell 17.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Book of Breathings.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Wilkinson, Reading Egyptian Art.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Allen, Middle Egyptian (2014).</li><li id="src-scholarly-sources-2">Faulkner, A Concise Dictionary of Middle Egyptian, s.v. ꜥnḫ.</li><li id="src-scholarly-sources-3">Wörterbuch der ägyptischen Sprache I, s.v. ꜥnḫ.</li><li id="src-scholarly-sources-4">Gardiner, Egyptian Grammar.</li><li id="src-scholarly-sources-5">Hornung, The Ancient Egyptian Books of the Afterlife.</li><li id="src-scholarly-sources-6">Pyramid Texts, Utterance 600.</li><li id="src-scholarly-sources-7">Book of the Dead, Spell 17.</li><li id="src-scholarly-sources-8">Book of Breathings.</li><li id="src-scholarly-sources-9">Wilkinson, Reading Egyptian Art.</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="hieroglyphic-evidence">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Hieroglyphic Evidence</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The word <em>ꜥnḫ</em>, &#39;life,&#39; is written with the looped cross itself (Gardiner S34) as logogram and phonogram; the causative <em>sꜥnḫ</em>, &#39;to cause to live, nourish,&#39; is nearly as common. What the sign depicts is uncertain — a sandal strap, homophonous in Egyptian, is the classic guess — but its use is unambiguous from the First Dynasty onward, on seal impressions and labels.<sup class="scholars-cite"><a href="#src-hieroglyphic-evidence-1">[1]</a></sup> Royal names carry the blessing <em>ꜥnḫ wḏꜣ snb</em>, &#39;life, prosperity, health,&#39; after the cartouche, and gods press the sign to the king&#39;s nostrils in the standard &#39;given life&#39; gesture of temple relief.<sup class="scholars-cite"><a href="#src-hieroglyphic-evidence-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-hieroglyphic-evidence-1">Gardiner, Egyptian Grammar (3rd ed., 1957), sign-list S34.</li><li id="src-hieroglyphic-evidence-2">Faulkner, A Concise Dictionary of Middle Egyptian, s.v. ꜥnḫ.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pyramid-texts">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Pyramid Texts</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>In the Pyramid Texts <em>ꜥnḫ</em> is less a theme than the point: the corpus exists so that the king may live after death. The offering liturgy provides him &#39;life and dominion,&#39; ascension spells declare that he lives as the gods live, and the standard divine gift formula — &#39;given all life, stability, and dominion forever&#39; — attaches the ankh to his name in every chamber.<sup class="scholars-cite"><a href="#src-pyramid-texts-1">[1]</a></sup> Carved among the utterances of Unas&#39;s pyramid and its successors, the sign is simultaneously the word for the goal and the picture of it.<sup class="scholars-cite"><a href="#src-pyramid-texts-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pyramid-texts-1">Faulkner, The Ancient Egyptian Pyramid Texts (1969).</li><li id="src-pyramid-texts-2">Allen, The Ancient Egyptian Pyramid Texts (2005).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="coffin-texts">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Coffin Texts</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Coffin Texts turn the royal vocabulary of life into a universal afterlife program: rubrics promise that the deceased &#39;shall live&#39; in the necropolis, spells supply the breath of life, and the causative <em>sꜥnḫ</em> marks utterances whose purpose is to keep the dead person and his ka alive.<sup class="scholars-cite"><a href="#src-coffin-texts-1">[1]</a></sup> The corpus also knows the &#39;second death&#39;: declarations that the deceased will not perish again presuppose that life (<em>ꜥnḫ</em>) in the beyond is real enough to be lost. The ankh rides the coffin friezes and funerary masks of the period as word and talisman at once.<sup class="scholars-cite"><a href="#src-coffin-texts-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-coffin-texts-1">Faulkner, The Ancient Egyptian Coffin Texts I–III (1973–78).</li><li id="src-coffin-texts-2">Hornung, The Ancient Egyptian Books of the Afterlife (1999).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="book-of-the-dead">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Book of the Dead</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Book of the Dead spells out what &#39;living&#39; requires. A series of spells equips the deceased to breathe air and have power over water in the necropolis — the practical mechanics of <em>ꜥnḫ</em> — while Spell 175, &#39;for not dying a second time,&#39; confronts the possibility that existence after death can itself end.<sup class="scholars-cite"><a href="#src-book-of-the-dead-1">[1]</a></sup> Vignettes supply the icon: gods extend the ankh to the deceased, and Osiris holds it as lord of the living dead. The Roman-period Book of Breathings, heir to this tradition, takes its very name from the ankh&#39;s promise: the breath that makes one live again.<sup class="scholars-cite"><a href="#src-book-of-the-dead-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-book-of-the-dead-1">Faulkner, The Ancient Egyptian Book of the Dead (ed. Andrews, 1985), Spell 175.</li><li id="src-book-of-the-dead-2">Hornung, The Ancient Egyptian Books of the Afterlife (1999).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>The ankh is a quiet god. It does not speak, fight, or weep; it simply offers. In a culture obsessed with heroic narratives, a symbol whose whole theology is &#39;here, breathe&#39; can seem too simple. But that simplicity is its depth. The ankh reminds us that life is not a possession we secure through effort; it is a current we receive and pass on.</p>
+<p>Every time a deity in a temple relief presses the ankh to a king&#39;s nostrils, Egypt is teaching a physics of grace: existence flows from the divine into the human, from the human into the land, from the land into the memory of those who come after. To carry the ankh is to join that circulation. It is the oldest imaginable promise, written in three consonants and one elegant loop: you are alive, you can be alive again.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Allen, Middle Egyptian (2014).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="hieroglyphic-evidence">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Hieroglyphic Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Hieroglyphic Evidence →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="pyramid-texts">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Pyramid Texts</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pyramid Texts →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="coffin-texts">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Coffin Texts</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Coffin Texts →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="book-of-the-dead">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">17</span>
-        <h2 class="scholars-section-title">Book of the Dead</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Book of the Dead →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">19</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -597,6 +587,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'ankh';
@@ -630,14 +755,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -731,6 +848,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -742,18 +860,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -765,6 +884,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -809,6 +930,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

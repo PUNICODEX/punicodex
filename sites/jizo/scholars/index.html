@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,11 +279,12 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#kojiki-nihonshoki">14 &mdash; Kojiki & Nihon Shoki</a></li>
-<li><a href="#shinto-sources">15 &mdash; Shinto Sources</a></li>
-<li><a href="#buddhist-japanese">16 &mdash; Japanese Buddhist Sources</a></li>
+<li><a href="#kojiki-nihonshoki">12 &mdash; Kojiki & Nihon Shoki</a></li>
+<li><a href="#shinto-sources">13 &mdash; Shinto Sources</a></li>
+<li><a href="#buddhist-japanese">14 &mdash; Japanese Buddhist Sources</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -280,14 +296,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Jizō</strong> (<em>jizo</em>) — Protection of Children, Travelers · Earth treasury — belongs to the Japanese tradition, where it is catalogued under the domain &quot;Protection of Children, Travelers&quot;. The name means &quot;Earth treasury&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>Jizō is the <strong>Bodhisattva Kṣitigarbha as known and loved in Japan</strong>: a gentle monk-like figure who refuses buddhahood until all beings, especially those in hell and the spirits of dead children, are saved. His statues stand by roadsides, cemeteries, and temples, clothed in red bibs and caps offered by grieving parents.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Jizō</strong> and serves its temple at <a class="scholars-ext" href="https://xn--jiz-sxa.com" rel="noopener noreferrer" target="_blank">jizō.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>jizo</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Kṣitigarbha Bodhisattva Sutra.</li><li id="src-overview-2">Faure, The Power of Denial.</li><li id="src-overview-3">Reader and Tanabe, Practically Religious.</li></ol></div>
     </div>
 </section>
 
@@ -295,14 +310,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Japanese Kanji (Jinmeiyō) as <strong>地蔵</strong>. Etymologically it means &quot;Earth treasury&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The ASCII form <em>jizo</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Jizō</strong> recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>j</strong> → <strong>J</strong> — Same, capitalized</li><li><strong>i</strong> → <strong>i</strong> — Same</li><li><strong>z</strong> → <strong>z</strong> — Same</li><li><strong>o</strong> → <strong>ō</strong> — Long vowel</li></ul>
+<p>Attested and derived spellings of the name:</p>
+<ul class="scholars-list"><li><strong>Jizo</strong> — ASCII form: Plain ASCII form</li></ul>
+<p>The project holds the domain <strong>jizō.com</strong> (xn--jiz-sxa.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Kṣitigarbha Bodhisattva Sutra.</li><li id="src-the-name-2">Faure, The Power of Denial.</li></ol></div>
     </div>
 </section>
 
@@ -310,14 +328,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/dʑi.zoː/</strong> — Japanese / Sanskrit Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>J-</strong> — Voiced palatal affricate [dʑ], like English &#39;j&#39; but with the tongue closer to the hard palate.</li><li><strong>-i-</strong> — Short close front vowel [i].</li><li><strong>-zō-</strong> — Voiced alveolar fricative [z] plus long [oː], marked by the macron.</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;JEE-zoh&#39; — the first syllable is like &#39;jee&#39;, the second is a long, drawn &#39;zoh&#39;.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Japanese</strong> — 地蔵 (Jizō), &#39;Earth Treasury&#39;, a Bodhisattva of hell-beings and children.</li><li><strong>Chinese</strong> — 地藏 (Dìzàng), &#39;Earth Store&#39;, from the Sanskrit Kṣitigarbha.</li><li><strong>Sanskrit</strong> — Kṣitigarbha /kʂi.ti.ɡɐr.bʱɐ/, &#39;Womb/Treasury of the Earth&#39;.</li></ul>
+<p>Jizō is Tier 1: the macron on ō marks the long vowel of the Japanese reading. The full Sanskrit name would require retroflex and aspirated consonants not registrable in the DNS root zone.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Kṣitigarbha Bodhisattva Sutra.</li></ol></div>
     </div>
 </section>
 
@@ -325,14 +346,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Japanese Kanji (Jinmeiyō) as <strong>地蔵</strong> — Hanzi / Kanji (Sinitic logographic), attested Heian period – present, c. 9th c. CE –, in Japan. The script is written left-to-right; traditional top-to-bottom.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Jizō</em> (Hepburn romanisation with macron), giving the normalized reading /dʑi.zoː/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>Sanskrit Kṣitigarbha (&#39;Earth Treasury&#39; or &#39;Earth Womb&#39;) was translated into Chinese as 地藏 (Dìzàng).</li><li>Japanese borrowed the compound as 地蔵, read in Sino-Japanese as Jizō.</li><li>Hepburn romanisation writes the long vowel with a macron: Jizō.</li><li>The ASCII form jizo loses the length mark, collapsing the distinction between short and long ō.</li><li>The Unicode restoration Jizō is registrable in .com; the kanji form is not supported in the .com IDN table.</li></ul>
+<p>The Japanese name 地蔵 is read Jizō, from Middle Chinese 地藏 Dìzàng, which translates the Sanskrit Kṣitigarbha. 地 (ji) means &#39;earth&#39; and 藏 (zō) means &#39;storehouse&#39; or &#39;womb&#39;. The macron on ō marks the long vowel of the Japanese reading. The full Sanskrit would require retroflex ṣ, aspirated bh, and other characters not registrable in the DNS root zone, so PUNYCODEX uses the Japanese form.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Taishō Tripiṭaka 412 (Kṣitigarbha Sūtra).</li><li id="src-original-script-2">Buswell &amp; Lopez, The Princeton Dictionary of Buddhism.</li><li id="src-original-script-3">Nelson, The Original Modern Reader&#39;s Japanese-English Character Dictionary.</li></ol></div>
     </div>
 </section>
 
@@ -340,14 +362,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>Jizō is the <strong>Bodhisattva Kṣitigarbha as known and loved in Japan</strong>: a gentle monk-like figure who refuses buddhahood until all beings, especially those in hell and the spirits of dead children, are saved. His statues stand by roadsides, cemeteries, and temples, clothed in red bibs and caps offered by grieving parents.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Guardian of Children</h3>
+<p>He protects children, including mizuko, the spirits of miscarried and aborted foetuses.</p>
+<h3 class="scholars-h3">Savior of Hell-beings</h3>
+<p>He descends into the hell realms to rescue those tormented by their karma.</p>
+<h3 class="scholars-h3">Patron of Travelers</h3>
+<p>Roadside Jizō guide and protect those on journeys, both living and dead.</p>
+<h3 class="scholars-h3">Bodhisattva Vow</h3>
+<p>He postpones his own enlightenment until every hell is emptied.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Faure, The Power of Denial.</li></ol></div>
     </div>
 </section>
 
@@ -355,14 +382,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Jizō concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Staff (khakkhara)</strong> — The ringing staff that warns small creatures and opens the gates of hell.</li><li><strong>Wish-fulfilling jewel (cintāmaṇi)</strong> — The gem that grants all needs and dispels darkness.</li><li><strong>Red bib or cap</strong> — Offerings by parents for the protection of their children in the afterlife.</li><li><strong>Lotus seat</strong> — Purity within the muddy world of suffering.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Kṣitigarbha Bodhisattva Sutra.</li></ol></div>
     </div>
 </section>
 
@@ -370,14 +395,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Jizō&#39;s mythology blends Indian scripture, Chinese translation, and Japanese folk belief. He is one of the most actively worshipped Buddhist figures in Japan.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Original Vow (Sutra)</h3>
+<p>The Kṣitigarbha Sutra recounts that in a previous life the Bodhisattva was a Brahmin maiden whose mother had slandered the Dharma. After her mother&#39;s death, the daughter made offerings at a temple and was transported to hell, where she met a demon guardian. Moved by the suffering there, she vowed to save all beings in the hell realms, life after life, until not a single one remained.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Sai no Kawara (Japanese lore)</h3>
+<p>On the banks of Sai no Kawara, the riverbed between life and rebirth, the souls of dead children are forced to pile stones as penance. Demons scatter their work, but Jizō appears in the guise of a monk to hide the children in his robes and comfort them. The red bibs and caps placed on his statues are gifts intended to warm these child-spirits.</p>
+<h3 class="scholars-h3">The Monk Who Was Jizō (Folk tale)</h3>
+<p>Countless Japanese tales tell of a wandering monk who helps a traveller in distress, only to disappear, leaving behind a statue of Jizō. The stories encode a popular theology: Jizō is not distant in a pure land; he is present on the road, in the rain, at the crossroads where ordinary people lose their way.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Faure, The Power of Denial.</li><li id="src-mythology-2">Reader and Tanabe, Practically Religious.</li></ol></div>
     </div>
 </section>
 
@@ -385,14 +413,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Kṣitigarbha entered China from India and absorbed functions of local earth gods and tomb guardians. In Japan he merged with the kami of roads and boundaries (Sae no Kami / Dōsojin) and with popular protectors of children. He is also syncretised with the Christian St. Christopher in some hidden-Christian communities. The result is a uniquely Japanese figure: a Buddhist Bodhisattva who feels, to many worshippers, like a local spirit.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Japanese tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/fujin/">Fūjin</a>, <a class="scholars-xlink" href="/sites/kobe/">Kōbe</a>, <a class="scholars-xlink" href="/sites/kyoto/">Kyōto</a>, <a class="scholars-xlink" href="/sites/nikko/">Nikkō</a>, and <a class="scholars-xlink" href="/sites/osaka/">Ōsaka</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Kṣitigarbha Bodhisattva Sutra.</li></ol></div>
     </div>
 </section>
 
@@ -400,14 +426,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Jizō is everywhere in Japan: thousands of stone statues line mountain paths, village boundaries, and temple precincts. The practice of mizuko kuyō—memorial rites for foetal and infant deaths—centres on him, making him a focus of modern debates about abortion, grief, and maternal responsibility. Contemporary artists and writers return to Jizō as an emblem of patient, non-judgmental compassion.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Kṣitigarbha Bodhisattva Sutra.</li></ol></div>
     </div>
 </section>
 
@@ -415,14 +438,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>No monument, inscription, or artifact in the current PÚNYCODEX corpus is yet assigned to Jizō with certainty. That absence should be read honestly: for a Japanese name of this type the material record is expected to be thin, and the primary evidence remains the textual testimony gathered in the Scholarly Sources section<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup>.</p>
+<p>Were such evidence to surface, it would take recognizable forms: votive or dedicatory inscriptions naming 地蔵, sanctuary or cult remains tied to protection of children and iconography matching its traditional attributes (staff (khakkhara) and wish-fulfilling jewel (cintāmaṇi)). Each candidate would be weighed against the reconstructed form of the name before entering the scholarly record.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Kṣitigarbha Bodhisattva Sutra.</li></ol></div>
     </div>
 </section>
 
@@ -430,120 +451,91 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Jizō given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Kṣitigarbha Bodhisattva Sutra.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Faure, The Power of Denial.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Reader and Tanabe, Practically Religious.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Harrison, &#39;The Many Faces of Kṣitigarbha&#39;.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Japanese folk collections.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Kṣitigarbha Bodhisattva Sutra.</li><li id="src-scholarly-sources-2">Faure, The Power of Denial.</li><li id="src-scholarly-sources-3">Reader and Tanabe, Practically Religious.</li><li id="src-scholarly-sources-4">Harrison, &#39;The Many Faces of Kṣitigarbha&#39;.</li><li id="src-scholarly-sources-5">Japanese folk collections.</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="kojiki-nihonshoki">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Kojiki & Nihon Shoki</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Jizō is a Buddhist bodhisattva and appears nowhere in the <em>Kojiki</em> or the <em>Nihon Shoki</em>; no honest reading of the chronicles can supply him a kami genealogy. What the chronicles do contain are the road and boundary kami later absorbed into his popular cult. Sarutahiko, the towering earthly kami who meets the heavenly grandson Ninigi at the celestial crossroads (<em>yachimata</em>) in the descent myth, became the archetype of the <em>dōsojin</em>, the &#39;road-ancestor&#39; guardians whose stones stand at village limits and crossroads.<sup class="scholars-cite"><a href="#src-kojiki-nihonshoki-1">[1]</a></sup> In the medieval centuries dōsojin stones and images of Jizō were erected side by side and often fused, the bodhisattva inheriting the crossroads from the kami. The <em>Nihon Shoki</em>&#39;s record of Buddhism&#39;s arrival at the Soga court, traditionally dated 552, marks the channel through which Kṣitigarbha eventually reached Japan.<sup class="scholars-cite"><a href="#src-kojiki-nihonshoki-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-kojiki-nihonshoki-1">Kojiki (Records of Ancient Matters), 712; trans. D. L. Philippi. <a class="scholars-ext" href="https://sacred-texts.com/shi/kojiki.htm" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-kojiki-nihonshoki-2">Nihon Shoki (Chronicles of Japan), 720; trans. W. G. Aston. <a class="scholars-ext" href="https://sacred-texts.com/shi/nihon0.htm" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="shinto-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Shinto Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Shinto canonical texts know no Jizō: he has no entry in the <em>Engishiki</em>&#39;s register of shrines, and no <em>norito</em> addresses him. His Shinto presence is the product of <em>shinbutsu shūgō</em>, the medieval synthesis that read kami and buddhas as local and universal faces of one reality. The clearest case is Shōgun Jizō, &#39;Jizō of Victory&#39;, the martial form of the bodhisattva enshrined with the kami of Mount Atago and venerated by warriors.<sup class="scholars-cite"><a href="#src-shinto-sources-1">[1]</a></sup> At the popular level the dōsojin road-kami and roadside Jizō long shared stones, festivals and red offerings — a fusion the Meiji separation edicts of 1868 tried to undo by purging Buddhist images from shrine precincts, though village practice left the two guardians intertwined.<sup class="scholars-cite"><a href="#src-shinto-sources-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-shinto-sources-1">Teeuwen, Mark, and John Breen, A New History of Shinto (shinbutsu shūgō and the Atago cult).</li><li id="src-shinto-sources-2">Faure, Bernard, The Power of Denial (Jizō and the dōsojin in popular religion).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="buddhist-japanese">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Japanese Buddhist Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The scriptural foundation of the cult is the <em>Kṣitigarbha Bodhisattva Pūrvapraṇidhāna Sūtra</em>, translated into Chinese by Śikṣānanda around 700, which narrates the bodhisattva&#39;s vow — made in a former life as a Brahmin maiden whose mother had fallen into hell — to empty the hell realms before accepting buddhahood.<sup class="scholars-cite"><a href="#src-buddhist-japanese-1">[1]</a></sup> In Japan the cult spread from the Heian period, when Genshin&#39;s <em>Ōjōyōshū</em> (985) fixed popular attention on precisely those hell realms; sets of Six Jizōs, one for each state of rebirth, came to guard cemetery gates and roadsides.<sup class="scholars-cite"><a href="#src-buddhist-japanese-2">[2]</a></sup> Medieval belief placed the souls of dead children on the Sai no Kawara riverbed, where Jizō shelters them in his sleeves; the modern <em>mizuko kuyō</em> memorial rites continue that role, and the summer Jizō-bon keeps him a neighbourhood presence.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-buddhist-japanese-1">Kṣitigarbha Bodhisattva Pūrvapraṇidhāna Sūtra (Jizō bosatsu hongan-kyō), trans. Śikṣānanda, ca. 700.</li><li id="src-buddhist-japanese-2">Genshin, Ōjōyōshū (985); Reader and Tanabe, Practically Religious (the Japanese Jizō cult).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Jizō is the Bodhisattva of refusal: he refuses to leave until everyone is safe. That sounds impossible, and it is. But the vow is not a plan; it is a posture. It says that the last and least worthy soul matters as much as the first enlightened one.</p>
+<p>In a world that often measures worth by productivity, Jizō sits still. He does not conquer hell; he keeps it company. He does not fix grief; he clothes it in red and stays through the night. His presence beside roads and cemeteries is a reminder that the spiritual life is not an escape from suffering but a vow to remain with it.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Kṣitigarbha Bodhisattva Sutra.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="kojiki-nihonshoki">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Kojiki & Nihon Shoki</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Kojiki & Nihon Shoki →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="shinto-sources">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Shinto Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Shinto Sources →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="buddhist-japanese">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Japanese Buddhist Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Japanese Buddhist Sources →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">17</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -581,6 +573,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'jizo';
@@ -614,14 +741,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -715,6 +834,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -726,18 +846,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -749,6 +870,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -793,6 +916,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

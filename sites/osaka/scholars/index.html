@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,11 +279,12 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#kojiki-nihonshoki">14 &mdash; Kojiki & Nihon Shoki</a></li>
-<li><a href="#shinto-sources">15 &mdash; Shinto Sources</a></li>
-<li><a href="#buddhist-japanese">16 &mdash; Japanese Buddhist Sources</a></li>
+<li><a href="#kojiki-nihonshoki">12 &mdash; Kojiki & Nihon Shoki</a></li>
+<li><a href="#shinto-sources">13 &mdash; Shinto Sources</a></li>
+<li><a href="#buddhist-japanese">14 &mdash; Japanese Buddhist Sources</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -280,14 +296,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Ōsaka</strong> (<em>osaka</em>) — Large hill or slope — belongs to the Japanese tradition, where it is catalogued under the domain &quot;Merchant City, Kansai&quot;. The name means &quot;Large hill or slope&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p><strong>Ōsaka</strong> began as the ancient port of Naniwa, briefly an imperial capital, and grew into the merchant city par excellence of early modern Japan. Where Kyōto was aristocratic and Edo samurai, Ōsaka was the place where money, rice, and popular culture flowed together.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Ōsaka</strong> and serves its temple at <a class="scholars-ext" href="https://xn--saka-k3a.com" rel="noopener noreferrer" target="_blank">ōsaka.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>osaka</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Ōsaka City official historical overview.</li><li id="src-overview-2">Nihon Shoki (Chronicles of Japan).</li><li id="src-overview-3">Osaka Museum of History.</li></ol></div>
     </div>
 </section>
 
@@ -295,14 +310,16 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Japanese characters as <strong>大阪</strong>. Etymologically it means &quot;Large hill or slope&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The reconstructed proto-form is <em>大阪</em> (proto-sino-tibetan, &quot;large + slope, hill&quot;). From Japanese 大阪 &quot;large hill&quot;; ancient commercial capital.</p>
+<p>The ASCII form <em>osaka</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Ōsaka</strong> recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>o</strong> → <strong>Ō</strong> — Macron: long vowel</li><li><strong>s</strong> → <strong>s</strong> — Same</li><li><strong>a</strong> → <strong>a</strong> — Same</li><li><strong>k</strong> → <strong>k</strong> — Same</li><li><strong>a</strong> → <strong>a</strong> — Same</li></ul>
+<p>The project holds the domain <strong>ōsaka.com</strong> (xn--saka-k3a.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Ōsaka City official historical overview.</li><li id="src-the-name-2">Nihon Shoki (Chronicles of Japan).</li></ol></div>
     </div>
 </section>
 
@@ -310,14 +327,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/oːsaka/</strong> — Hepburn Japanese Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Ō-</strong> — Long open back vowel [oː], marked by the macron; the two-mora length makes the name Tier 1.</li><li><strong>-sa-</strong> — Voiceless alveolar fricative [s] plus short open front vowel [a], the middle syllable of the old name Naniwa.</li><li><strong>-ka</strong> — Voiceless velar stop [k] plus short open front vowel [a], a common place-name ending meaning &#39;place, slope&#39;.</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;OH-sah-kah&#39; — the first vowel is long; the following syllables are short and level in pitch.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Old Japanese</strong> — Naniwa (難波), the ancient port and first imperial capital on the site of modern Ōsaka</li><li><strong>Japanese</strong> — 大阪 (ō-saka), &#39;large hill&#39; or &#39;large slope&#39;, the name that replaced Naniwa in the medieval period</li><li><strong>Japanese</strong> — 天下の台所 (tenka no daidokoro), &#39;the nation&#39;s kitchen&#39;, the Edo-period nickname for the merchant city</li></ul>
+<p>Ōsaka is Tier 1 because the Hepburn restoration preserves the long initial vowel ō. As with other Japanese entries, the macron records length rather than pitch accent, which is not registrable at the DNS root.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Ōsaka City official historical overview.</li></ol></div>
     </div>
 </section>
 
@@ -325,14 +345,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Japanese characters as <strong>大阪</strong> — Kanji (Sino-Japanese logographs), attested Heian – present, in Japan. The script is written left-to-right; traditional top-to-bottom.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Ōsaka</em> (Hepburn romanisation with macron), giving the normalized reading /oːsaka/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The name is written with the kanji 大阪.</li><li>Each kanji carries both a semantic meaning and Sino-Japanese (on&#39;yomi) and native Japanese (kun&#39;yomi) readings.</li><li>Hepburn romanisation with macron marks long vowels, which the ASCII form loses.</li><li>The Unicode restoration Ōsaka is used for DNS because the kanji form is not supported in the .com IDN table.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Hepburn Romanisation Standard.</li><li id="src-original-script-2">Kanjidic.</li><li id="src-original-script-3">Kojiki (Records of Ancient Matters), Translated by Basil Hall Chamberlain, 712. <a class="scholars-ext" href="https://sacred-texts.com/shi/kj/index.htm" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-original-script-4">Nelson, Japanese-English Character Dictionary.</li><li id="src-original-script-5">Shinmeikai Kokugo Jiten.</li></ol></div>
     </div>
 </section>
 
@@ -340,14 +360,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p><strong>Ōsaka</strong> began as the ancient port of Naniwa, briefly an imperial capital, and grew into the merchant city par excellence of early modern Japan. Where Kyōto was aristocratic and Edo samurai, Ōsaka was the place where money, rice, and popular culture flowed together.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Ōsaka Castle</h3>
+<p>Hideyoshi&#39;s fortress rose on the ruins of the Ishiyama Hongan-ji and became the symbol of Toyotomi ambition.</p>
+<h3 class="scholars-h3">Port of Naniwa</h3>
+<p>The ancient harbour received envoys, Buddhism, and trade from Korea and China before the city was called Ōsaka.</p>
+<h3 class="scholars-h3">Bunraku and Kabuki</h3>
+<p>Merchant patronage made Ōsaka a cradle of popular theatre, especially the puppet art of bunraku.</p>
+<h3 class="scholars-h3">Merchant Culture</h3>
+<p>The Dōjima rice exchange and canal-side warehouses turned Ōsaka into Japan&#39;s financial and distribution hub.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Nihon Shoki (Chronicles of Japan).</li></ol></div>
     </div>
 </section>
 
@@ -355,14 +380,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Ōsaka concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Castle tower</strong> — The reconstructed donjon of Ōsaka Castle, icon of the city&#39;s warrior and merchant history</li><li><strong>Bunraku puppet</strong> — The articulated puppet of the National Bunraku Theatre, symbol of Ōsaka&#39;s popular arts</li><li><strong>Merchant&#39;s scale</strong> — The balance of the Dōjima rice exchange, where futures trading first took shape in Japan</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Ōsaka City official historical overview.</li></ol></div>
     </div>
 </section>
 
@@ -370,14 +393,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p><strong>Ōsaka</strong> began as the ancient port of Naniwa, gateway to the Asian continent and briefly an imperial capital. It later became the merchant city par excellence — the &#39;kitchen of the nation&#39; — and the fortress from which Toyotomi Hideyoshi sought to rule a unified Japan.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Naniwa, the First Imperial Port (Origins)</h3>
+<p>Long before it was called Ōsaka, the area was known as Naniwa. The Nihon Shoki records that Emperor Nintoku&#39;s great tomb rose on the Osaka plain, and in 645 Emperor Kōtoku moved the capital to Naniwa Nagara Toyosaki-no-miya, making it Japan&#39;s first official capital. The city of Ōsaka notes that Naniwazu port served as the arrival point for envoys, Buddhism, ceramics, and metallurgy from Korea and China, technologies that then spread across the archipelago.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Shitennō-ji and Prince Shōtoku (Religion)</h3>
+<p>In 593 Prince Shōtoku founded Shitennō-ji, one of Japan&#39;s oldest Buddhist temples, in what is now Ōsaka. The temple was both a religious centre and a diplomatic statement: it marked the region&#39;s role as a point of contact with the continental mainland. Shitennō-ji&#39;s pagoda and gate still stand, a reminder that Ōsaka&#39;s identity was shaped by international exchange as much as by trade.</p>
+<h3 class="scholars-h3">Hideyoshi&#39;s Castle Town (Unification)</h3>
+<p>In 1583 Toyotomi Hideyoshi, who had completed the military unification of Japan, began construction of Ōsaka Castle on the site of the former Ishiyama Hongan-ji fortress. He intended the castle to be the centre of a new political order. After his death the Toyotomi were destroyed by Tokugawa Ieyasu in the sieges of 1614–1615, but the castle kept its symbolic place as the heart of the Kansai merchant capital.</p>
+<h3 class="scholars-h3">The Nation&#39;s Kitchen (Commerce)</h3>
+<p>During the Edo period (1603–1868) Ōsaka became Japan&#39;s principal distribution centre for rice, sake, and luxury goods. The city&#39;s network of canals earned it the nickname <em>tenka no daidokoro</em>, &#39;the nation&#39;s kitchen&#39;. Merchant culture flourished here: bunraku puppet theatre, kabuki, and the money markets of Dōjima made Ōsaka an urban culture distinct from the aristocracy of Kyōto and the samurai of Edo.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Nihon Shoki (Chronicles of Japan).</li><li id="src-mythology-2">Osaka Museum of History.</li></ol></div>
     </div>
 </section>
 
@@ -385,14 +413,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Ōsaka&#39;s identity was forged by mixing sacred and commercial cultures.</p>
+<p>Prince Shōtoku&#39;s Shitennō-ji made it one of Japan&#39;s earliest Buddhist centres, while the port received continental technologies, Chinese learning, and Korean crafts. In the Edo period the city became a meeting ground for samurai, merchants, and entertainers; its comedy, food, and theatre borrowed from Kyōto, Edo, and the immigrant communities of Nankinmachi. Modern Ōsaka remains Japan&#39;s most openly mercantile major city, proud of its dialect, its food, and its history of making deals across boundaries.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Japanese tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/fujin/">Fūjin</a>, <a class="scholars-xlink" href="/sites/jizo/">Jizō</a>, <a class="scholars-xlink" href="/sites/kobe/">Kōbe</a>, <a class="scholars-xlink" href="/sites/kyoto/">Kyōto</a>, and <a class="scholars-xlink" href="/sites/nikko/">Nikkō</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Ōsaka City official historical overview.</li></ol></div>
     </div>
 </section>
 
@@ -400,14 +427,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Ōsaka is the city that taught Japan to laugh, eat, and trade.</p>
+<p>Its merchant culture produced bunraku, manzai comedy, and the regional cuisine celebrated in takoyaki, okonomiyaki, and kushi-katsu. The Dōjima rice exchange pioneered futures markets, and the city&#39;s canals and warehouses shaped the physical landscape of Kansai. Today Ōsaka is a global business hub, the gateway to the Kansai region, and a rival to Tōkyō in sports, food, and popular culture. It represents the Japan of merchants and migrants as much as the Japan of emperors and samurai.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Ōsaka City official historical overview.</li></ol></div>
     </div>
 </section>
 
@@ -415,14 +440,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>Naniwa Palace Ruins Park preserves the Daigokuden audience hall, warehouse complexes, and wharf remains of Emperor Kōtoku&#39;s capital. The Mozu-Furuichi Kofun Group, including the Daisenryō Kofun attributed to Emperor Nintoku, dominates the southern plain. Excavated Toyotomi stone walls, granite ramparts, and the reconstructed donjon of Ōsaka Castle document the city&#39;s transformation from port to mortuary landscape to fortress.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Ōsaka City official historical overview.</li></ol></div>
     </div>
 </section>
 
@@ -430,120 +452,91 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Ōsaka given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Ōsaka City official historical overview.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Nihon Shoki (Chronicles of Japan).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Osaka Museum of History.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> World Bank, Osaka Case Study.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Kojiki (Records of Ancient Matters, 712 CE).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Man&#39;yōshū (Collection of Ten Thousand Leaves, ca. 759 CE).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Engishiki (Procedures of the Engi Era, 927 CE).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Ōsaka City official historical overview.</li><li id="src-scholarly-sources-2">Nihon Shoki (Chronicles of Japan).</li><li id="src-scholarly-sources-3">Osaka Museum of History.</li><li id="src-scholarly-sources-4">World Bank, Osaka Case Study.</li><li id="src-scholarly-sources-5">Kojiki (Records of Ancient Matters, 712 CE).</li><li id="src-scholarly-sources-6">Man&#39;yōshū (Collection of Ten Thousand Leaves, ca. 759 CE).</li><li id="src-scholarly-sources-7">Engishiki (Procedures of the Engi Era, 927 CE).</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="kojiki-nihonshoki">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Kojiki & Nihon Shoki</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Ōsaka enters the chronicles under its older name, Naniwa. The <em>Kojiki</em> and <em>Nihon Shoki</em> both seat Emperor Nintoku&#39;s palace at Naniwa (Naniwa no Takatsu no miya), and the Nihon Shoki preserves the celebrated passage in which Nintoku, seeing no cooking-smoke rise from the capital&#39;s roofs, remits the people&#39;s taxes for three years rather than rule over an impoverished realm.<sup class="scholars-cite"><a href="#src-kojiki-nihonshoki-1">[1]</a></sup> The chronicles present Naniwa as the court&#39;s diplomatic harbour, where embassies from the Korean kingdoms were received; in 645, amid the Taika reforms, Emperor Kōtoku transferred the capital to Naniwa Nagara-Toyosaki-no-miya, making the Ōsaka plain the seat of the reform government.<sup class="scholars-cite"><a href="#src-kojiki-nihonshoki-2">[2]</a></sup> The name Ōsaka, &#39;large slope&#39;, replaces Naniwa only in medieval documents.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-kojiki-nihonshoki-1">Nihon Shoki (Chronicles of Japan), 720; trans. W. G. Aston. <a class="scholars-ext" href="https://sacred-texts.com/shi/nihon0.htm" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-kojiki-nihonshoki-2">Kojiki (Records of Ancient Matters), 712; trans. D. L. Philippi. <a class="scholars-ext" href="https://sacred-texts.com/shi/kojiki.htm" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="shinto-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Shinto Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Sumiyoshi Taisha, among the oldest shrines of the Ōsaka plain, enshrines the three Sumiyoshi kami — Sokotsutsuo, Nakatsutsuo and Uwatsutsuo — born from Izanagi&#39;s purification in the sea in the <em>Kojiki</em>, together with Empress Jingū; the purification myth is the shrine&#39;s charter text.<sup class="scholars-cite"><a href="#src-shinto-sources-1">[1]</a></sup> Tutelary of seafarers departing Naniwa and later patron of <em>waka</em> poetry, Sumiyoshi is registered in the <em>Engishiki</em> as a premier shrine (<em>myojin taisha</em>) of Settsu province with state offerings.<sup class="scholars-cite"><a href="#src-shinto-sources-2">[2]</a></sup> Within the modern city, Ōsaka Tenmangū anchors the Tenjin cult of the deified Sugawara no Michizane, and its Tenjin Matsuri ranks among Japan&#39;s three great festivals.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-shinto-sources-1">Kojiki (Records of Ancient Matters), 712; trans. D. L. Philippi. <a class="scholars-ext" href="https://sacred-texts.com/shi/kojiki.htm" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-shinto-sources-2">Engishiki (Procedures of the Engi Era), 927, Jinmyōchō register of Settsu province shrines.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="buddhist-japanese">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Japanese Buddhist Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Shitennō-ji, founded in 593 under the patronage of Prince Shōtoku, is traditionally Japan&#39;s first state-sponsored Buddhist temple; the <em>Nihon Shoki</em> records its construction as the institutional fruit of the Four Heavenly Kings&#39; vow to protect the realm.<sup class="scholars-cite"><a href="#src-buddhist-japanese-1">[1]</a></sup> Eleven centuries later the plain hosted the Ikko-ikki: Ishiyama Hongan-ji, fortress-headquarters of the Jōdo Shinshū orders, withstood Oda Nobunaga&#39;s decade-long siege before surrendering in 1580, and Toyotomi Hideyoshi raised his castle on its ruins.<sup class="scholars-cite"><a href="#src-buddhist-japanese-2">[2]</a></sup> The merchant city that followed kept its devotional life in parish temples, the summer Jizō-bon rites of its neighbourhoods, and a bunraku stage steeped in Buddhist karma and impermanence.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-buddhist-japanese-1">Nihon Shoki (Chronicles of Japan), 720; trans. W. G. Aston. <a class="scholars-ext" href="https://sacred-texts.com/shi/nihon0.htm" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-buddhist-japanese-2">McMullin, Neil, Buddhism and the State in Sixteenth-Century Japan (the Ishiyama Hongan-ji war).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>To contemplate Ōsaka is to hold the idea of merchant City, Kansai in the mind and to ask what of it endures. The name means &quot;Large hill or slope&quot;<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup> — and a name that carries its meaning so openly invites meditation rather than mere recollection. The tradition remembers the name as large hill or slope.</p>
+<p>Sit with the restored form — Ōsaka — and the diacritics themselves become the practice: each mark is a small act of attention, a refusal to let the plain ASCII form <em>osaka</em> stand in for the whole. What the tradition preserved in this name, the restoration asks the reader to preserve in turn.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Ōsaka City official historical overview.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="kojiki-nihonshoki">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Kojiki & Nihon Shoki</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Kojiki & Nihon Shoki →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="shinto-sources">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Shinto Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Shinto Sources →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="buddhist-japanese">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Japanese Buddhist Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Japanese Buddhist Sources →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">17</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -581,6 +574,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'osaka';
@@ -614,14 +742,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -715,6 +835,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -726,18 +847,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -749,6 +871,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -793,6 +917,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

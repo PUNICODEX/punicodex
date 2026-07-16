@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,12 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#hieroglyphic-evidence">14 &mdash; Hieroglyphic Evidence</a></li>
-<li><a href="#pyramid-texts">15 &mdash; Pyramid Texts</a></li>
-<li><a href="#coffin-texts">16 &mdash; Coffin Texts</a></li>
-<li><a href="#book-of-the-dead">17 &mdash; Book of the Dead</a></li>
+<li><a href="#hieroglyphic-evidence">12 &mdash; Hieroglyphic Evidence</a></li>
+<li><a href="#pyramid-texts">13 &mdash; Pyramid Texts</a></li>
+<li><a href="#coffin-texts">14 &mdash; Coffin Texts</a></li>
+<li><a href="#book-of-the-dead">15 &mdash; Book of the Dead</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -281,14 +297,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Ḥr</strong> (<em>horus</em>) — The Distant One (Egyptian ḥr) — belongs to the Egyptian tradition, where it is catalogued under the domain &quot;Sky, Kingship, Falcon&quot;. The name means &quot;The Distant One (Egyptian ḥr)&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p><strong>Ḥr</strong> is the falcon of the sky, whose eyes are the sun and the moon, whose wings outspread are the heavens, and whose incarnation on earth is the living pharaoh. He is not one god but a constellation of related gods — Horus the Elder, the primordial sky; Horus the Younger, son of Osiris and Isis; and Re-Horakhty, the solar synthesis. Through all his forms he stands for one thing: legitimate authority defending cosmic order against chaos.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Ḥr</strong> and serves its temple at <a class="scholars-ext" href="https://xn--r-xnm.com" rel="noopener noreferrer" target="_blank">Ḥr.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>horus</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Faulkner, The Ancient Egyptian Pyramid Texts.</li><li id="src-overview-2">Wörterbuch der ägyptischen Sprache (Wb), ḥr.</li><li id="src-overview-3">Gardiner, Egyptian Grammar.</li></ol></div>
     </div>
 </section>
 
@@ -296,14 +311,16 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Hieroglyphs as <strong>𓅃</strong>. Etymologically it means &quot;The Distant One (Egyptian ḥr)&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>From Egyptian ḥr, written with the falcon sign and interpreted as &#39;the distant/high one&#39; or &#39;falcon&#39;; the original vowels are not recorded in hieroglyphs.</p>
+<p>The ASCII form <em>horus</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Ḥr</strong> recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>h</strong> → <strong>Ḥ</strong> — H-with-dot: voiceless pharyngeal</li><li><strong>o</strong> → <strong>—</strong> — Dropped: vowel not written</li><li><strong>r</strong> → <strong>r</strong> — Same</li><li><strong>u</strong> → <strong>—</strong> — Dropped: vowel not written</li><li><strong>s</strong> → <strong>—</strong> — Dropped: not in standard</li></ul>
+<p>The project holds the domain <strong>Ḥr.com</strong> (xn--r-xnm.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Faulkner, The Ancient Egyptian Pyramid Texts.</li><li id="src-the-name-2">Wörterbuch der ägyptischen Sprache (Wb), ḥr.</li></ol></div>
     </div>
 </section>
 
@@ -311,14 +328,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/ˈħaːru/</strong> — Egyptological Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Ḥ-</strong> — Voiceless pharyngeal fricative [ħ], the same dry throat-sound that opens Heka and Hu.</li><li><strong>-aː-</strong> — Long stressed vowel; the name&#39;s peak, carrying the god&#39;s height and distance.</li><li><strong>-r-</strong> — Alveolar tap or trill [r], like a brief roll of the tongue.</li><li><strong>-u</strong> — Final short vowel, reconstructed from Coptic ⲟⲩⲣ (our) / ⲏⲣⲟ (hēro).</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;HAH-roo&#39; — the first syllable is throaty and drawn out, the second light and ascending, like a falcon rising.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Egyptian</strong> — ḥr, &#39;the distant one&#39; or &#39;the one on high&#39;</li><li><strong>Coptic</strong> — ϩⲱⲣ (hōr) / ⲏⲣⲟ (hēro), &#39;Horus&#39;</li><li><strong>Greek</strong> — Ὧρος (Hōros), borrowed and Hellenised</li></ul>
+<p>Horus is Tier 2 because the Egyptian Ḥr preserves length in the first syllable but no stress accent in the Greek sense. The name is onomatopoeically apt: the throaty ḥ and the final u suggest a cry from far above. The Greek borrowing Hōros adds an omega, but the original Egyptian root is simply ḥr.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Faulkner, The Ancient Egyptian Pyramid Texts.</li></ol></div>
     </div>
 </section>
 
@@ -326,14 +346,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Hieroglyphs as <strong>𓅃</strong> — Egyptian hieroglyphic, attested Old Kingdom – Late Antiquity, c. 2600 BCE – 400 CE, in Egypt. The script is written right-to-left / top-to-bottom.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Ḥr</em> (Egyptological conventional), giving the normalized reading Original vocalisation unknown; Egyptological /ˈhaː.rʊs/..</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The Egyptian name is written 𓅃 in hieroglyphs.</li><li>Hieroglyphs combine logograms, phonograms, and determinatives; the exact function of each sign depends on context.</li><li>Egyptian writing does not record vowels; the vocalised form is a modern convention reconstructed from Coptic and Greek evidence.</li><li>The Unicode restoration Ḥr uses Egyptological alef/ayin and other registrable characters; the hieroglyphic form is not registrable in .com.</li></ul>
+<p>The name <em>ḥr</em> is written with the falcon-on-perch hieroglyph (Gardiner G5), often used as a logogram for the god himself. The initial <strong>ḥ</strong> is a voiceless pharyngeal fricative; the final <strong>r</strong> is an alveolar liquid. Because Egyptian does not write vowels, the pronunciation has to be reconstructed from Coptic forms such as ϩⲱⲣ and from Greek Ὧρος. The meaning &#39;distant one&#39; or &#39;one on high&#39; is well attested.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">James P. Allen, Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs, Cambridge University Press, 2000. <a class="scholars-ext" href="https://www.cambridge.org/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-original-script-2">Faulkner, A Concise Dictionary of Middle Egyptian.</li><li id="src-original-script-3">Hannig, Ägyptisches Wörterbuch.</li><li id="src-original-script-4">Wörterbuch der ägyptischen Sprache (Wb).</li></ol></div>
     </div>
 </section>
 
@@ -341,14 +362,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p><strong>Ḥr</strong> is the falcon of the sky, whose eyes are the sun and the moon, whose wings outspread are the heavens, and whose incarnation on earth is the living pharaoh. He is not one god but a constellation of related gods — Horus the Elder, the primordial sky; Horus the Younger, son of Osiris and Isis; and Re-Horakhty, the solar synthesis. Through all his forms he stands for one thing: legitimate authority defending cosmic order against chaos.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Sky</h3>
+<p>Horus soars across the heavens; his right eye is the sun, his left the moon, and his body the luminous air.</p>
+<h3 class="scholars-h3">Divine Kingship</h3>
+<p>Every pharaoh is the &#39;Living Horus&#39;; the Horus-name is the first and oldest of the five royal names.</p>
+<h3 class="scholars-h3">The Falcon</h3>
+<p>The lanner or peregrine falcon — swift, far-seeing, and deadly — is Horus&#39;s living embodiment.</p>
+<h3 class="scholars-h3">The Wedjat Eye</h3>
+<p>The restored eye of Horus is Egypt&#39;s supreme symbol of protection, wholeness, and royal health.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Wörterbuch der ägyptischen Sprache (Wb), ḥr.</li></ol></div>
     </div>
 </section>
 
@@ -356,14 +382,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Ḥr concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Falcon</strong> — The sky itself and the king&#39;s predatory vigilance</li><li><strong>Double crown (pschent)</strong> — The unity of Upper and Lower Egypt under Horus&#39;s rule</li><li><strong>Wedjat eye</strong> — Healing, restoration, and protection; the eye wounded by Set and made whole by Thoth</li><li><strong>Serekh</strong> — The palace-façade frame that encloses the king&#39;s Horus-name</li><li><strong>Sun disk with wings</strong> — Re-Horakhty, Horus fused with the sun-god Re</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Faulkner, The Ancient Egyptian Pyramid Texts.</li></ol></div>
     </div>
 </section>
 
@@ -371,14 +395,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Horus&#39;s mythology is the political theology of Egypt made personal. It tells how the rightful heir, born from a murdered father and a resourceful mother, defeats the usurper and restores the throne. The story was never merely entertainment; it was the charter of kingship, replayed in temples for three thousand years.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Elder and Younger (The Two Horuses)</h3>
+<p><strong>Horus the Elder</strong> (Haroeris) is an ancient sky-god, brother of Osiris and Set, whose eyes are the luminaries. <strong>Horus the Younger</strong> (Harsiese) is the son of Osiris and Isis, the avenger of his father. Over time these figures merged, so that the Horus of Edfu is simultaneously the primordial falcon and the royal heir. The Egyptians themselves were not always precise about the distinction; what mattered was the constellation of meanings gathered under the name.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Horus and Set (The Contendings)</h3>
+<p>After Set murders Osiris and seizes the throne, Isis hides the infant Horus in the Delta marshes. When he comes of age, Horus challenges Set before the Ennead. Their contest lasts eighty years, filling the satirical <em>Contendings of Horus and Set</em> with trials, tricks, and humiliations. Set tears out Horus&#39;s left eye; Horus castrates Set. Finally the tribunal rules for Horus, establishing that legitimate succession triumphs over brute force.</p>
+<h3 class="scholars-h3">The Wedjat (The Eye Restored)</h3>
+<p>Thoth restores Horus&#39;s damaged eye, creating the <em>wedjat</em> (&#39;the whole one&#39;). The six parts of the eye correspond to the fractions 1/2, 1/4, 1/8, 1/16, 1/32, and 1/64, summing to 63/64; the missing fraction is supplied by Thoth&#39;s magic. The eye thus becomes a symbol of wholeness recovered, and its image is worn on amulets by the living and painted on mummies for the dead.</p>
+<h3 class="scholars-h3">The Living Horus (Divine Kingship)</h3>
+<p>From the earliest dynasties, the pharaoh was the living Horus. Upon death he became Osiris; his successor became the new Horus. This cycle bound every reign to the original mythic victory and made the king responsible for maintaining ma&#39;at against the chaos that Set represents. The festival at Edfu annually re-enacted Horus&#39;s triumph, renewing the cosmos by re-enacting its founding.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Wörterbuch der ägyptischen Sprache (Wb), ḥr.</li><li id="src-mythology-2">Gardiner, Egyptian Grammar.</li></ol></div>
     </div>
 </section>
 
@@ -386,14 +415,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Horus absorbed and was absorbed by many gods. As <strong>Re-Horakhty</strong> he united the falcon with the solar disk; as <strong>Harpocrates</strong> he became the finger-to-lips divine child of Greco-Roman Egypt; as <strong>Sokar</strong> and <strong>Montu</strong> he shared falcon imagery with other deities of death and war. Plutarch&#39;s <em>De Iside et Osiride</em> transmitted the Osiris-Horus myth to the Greek and Roman world, where it influenced conceptions of divine sonship and resurrection. Some later interpreters, from early Christians to modern comparative mythologists, have drawn parallels between Horus and other divine-child figures, though many of these claims are exaggerated or unsupported by Egyptian evidence.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Egyptian tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/ab/">Ꜣb</a>, <a class="scholars-xlink" href="/sites/akh/">Ꜣḫ</a>, <a class="scholars-xlink" href="/sites/amun/">Ꜣmun</a>, <a class="scholars-xlink" href="/sites/ankh/">ꜥnḫ</a>, <a class="scholars-xlink" href="/sites/apep/">Ꜥpp</a>, and <a class="scholars-xlink" href="/sites/ba/">Bꜣ</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Faulkner, The Ancient Egyptian Pyramid Texts.</li></ol></div>
     </div>
 </section>
 
@@ -401,14 +428,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>The Eye of Horus is arguably the most widely recognised symbol of ancient Egypt. It appears on jewellery, tattoos, amulets, and corporate logos across the globe, usually as a generic sign of protection. In popular culture, Horus features in films, comics, and games as a falcon-headed warrior or sky-god. For modern Kemetics and Egyptian pagans, Horus remains a living deity of kingship, justice, and rightful authority. The name has also entered astronomy: 1924 Nekhen, the Horus-name city, and the Falcon Heavy&#39;s Egyptian echoes remind us that the distant one still watches from above.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Faulkner, The Ancient Egyptian Pyramid Texts.</li></ol></div>
     </div>
 </section>
 
@@ -416,14 +440,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The falcon-god Horus is attested from the earliest dynastic period: the Narmer Palette shows a falcon protecting the king, and the serekh with Horus-name became the oldest royal titulary. The temple of Horus at Edfu, built during the Ptolemaic period, preserves the longest surviving ancient Egyptian temple inscription, including the myth of Horus defeating Set. Falcon mummies and votive falcon coffins have been found at Saqqara, Abydos, and Hierakonpolis — the latter city being Horus&#39;s ancient cult center.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Faulkner, The Ancient Egyptian Pyramid Texts.</li></ol></div>
     </div>
 </section>
 
@@ -431,135 +452,103 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Ḥr given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Faulkner, The Ancient Egyptian Pyramid Texts.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Wörterbuch der ägyptischen Sprache (Wb), ḥr.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Gardiner, Egyptian Grammar.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Allen, Genesis in Egypt.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Plutarch, De Iside et Osiride.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Pyramid Texts.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Coffin Texts.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Book of the Dead, Spell 17.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> The Contendings of Horus and Set.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> Pyramid Texts, Utterance 478 (Horus recovers the wedjat eye from Seth).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-11">[11]</a></sup> Pyramid Texts, Utterance 570 (the king identified with Horus).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-12">[12]</a></sup> Book of the Dead, Spell 125 (Horus presents the justified to Osiris).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-13">[13]</a></sup> Metternich Stela / Horus Cippi (healing and protective heka of Horus).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Faulkner, The Ancient Egyptian Pyramid Texts.</li><li id="src-scholarly-sources-2">Wörterbuch der ägyptischen Sprache (Wb), ḥr.</li><li id="src-scholarly-sources-3">Gardiner, Egyptian Grammar.</li><li id="src-scholarly-sources-4">Allen, Genesis in Egypt.</li><li id="src-scholarly-sources-5">Plutarch, De Iside et Osiride.</li><li id="src-scholarly-sources-6">Pyramid Texts.</li><li id="src-scholarly-sources-7">Coffin Texts.</li><li id="src-scholarly-sources-8">Book of the Dead, Spell 17.</li><li id="src-scholarly-sources-9">The Contendings of Horus and Set.</li><li id="src-scholarly-sources-10">Pyramid Texts, Utterance 478 (Horus recovers the wedjat eye from Seth).</li><li id="src-scholarly-sources-11">Pyramid Texts, Utterance 570 (the king identified with Horus).</li><li id="src-scholarly-sources-12">Book of the Dead, Spell 125 (Horus presents the justified to Osiris).</li><li id="src-scholarly-sources-13">Metternich Stela / Horus Cippi (healing and protective heka of Horus).</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="hieroglyphic-evidence">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Hieroglyphic Evidence</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The name <em>ḥr</em> is written with the falcon hieroglyph (Gardiner G5), used logographically for the god; phonetic writings add the reed shelter (O4, <em>h</em>) and the mouth (D21, <em>r</em>) as complements, with the seated-god determinative. The falcon is among the oldest divine signs in Egyptian writing: falcon-topped serekhs carrying royal Horus-names appear in Dynasty 0, and the Narmer Palette (c. 3100 BCE) already shows the falcon in the king&#39;s service.<sup class="scholars-cite"><a href="#src-hieroglyphic-evidence-1">[1]</a></sup> The name proliferates into cultic compounds: <em>ḥr-ꜣḫty</em> (Horakhty, &#39;Horus of the Two Horizons&#39;), <em>ḥr-sꜣ-ꜣst</em> (Harsiese, &#39;Horus son of Isis&#39;), <em>ḥr-pꜣ-ẖrd</em> (Harpokrates, &#39;Horus the Child&#39;), and <em>ḥr-bḥdty</em> (Horus of Behdet, at Edfu).<sup class="scholars-cite"><a href="#src-hieroglyphic-evidence-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-hieroglyphic-evidence-1">Gardiner, Egyptian Grammar (3rd ed., 1957), sign-list G5.</li><li id="src-hieroglyphic-evidence-2">Wilkinson, Early Dynastic Egypt (1999).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pyramid-texts">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Pyramid Texts</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Horus saturates the Pyramid Texts: the living king is Horus, the dead king is Osiris, and the liturgy stages Horus&#39;s care for his father. Utterance 570, among the longest in the corpus, identifies the king with Horus ascending to claim his inheritance; Utterance 478 dramatizes the recovery of the wounded eye from Set, the eye that becomes every offering made to the dead.<sup class="scholars-cite"><a href="#src-pyramid-texts-1">[1]</a></sup> Throughout the offering sequences the formula &#39;take to yourself the eye of Horus&#39; names each gift — bread, beer, oil — as the restored eye, so that feeding the dead repeats the myth&#39;s happy ending.<sup class="scholars-cite"><a href="#src-pyramid-texts-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pyramid-texts-1">Faulkner, The Ancient Egyptian Pyramid Texts (1969), Utterances 478, 570.</li><li id="src-pyramid-texts-2">Allen, The Ancient Egyptian Pyramid Texts (2005).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="coffin-texts">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Coffin Texts</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>In the Coffin Texts the royal theology passes to the private dead: the deceased is now &#39;Osiris NN,&#39; and Horus serves as advocate, protector, and avenger for every justified person. Spells place the dead under his guardianship, equate the embalmed body with his recovered eye, and invoke the four sons of Horus — Imsety, Hapy, Duamutef, and Qebehsenuef — to guard the organs and the coffin&#39;s sides, a duty they keep on canopic equipment for the rest of pharaonic history.<sup class="scholars-cite"><a href="#src-coffin-texts-1">[1]</a></sup> Other spells let the deceased declare &#39;I am Horus,&#39; appropriating the falcon&#39;s sight and strength for the journey through the beyond.<sup class="scholars-cite"><a href="#src-coffin-texts-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-coffin-texts-1">Faulkner, The Ancient Egyptian Coffin Texts I–III (1973–78).</li><li id="src-coffin-texts-2">Griffiths, The Origins of Osiris and His Cult (2nd ed., 1980).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="book-of-the-dead">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Book of the Dead</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Horus anchors the Book of the Dead&#39;s two great scenes. In Spell 125 he presides over the weighing of the heart and presents the vindicated deceased to <a class="scholars-xlink" href="/sites/osiris/">Osiris</a>: &#39;Horus son of Isis&#39; acts as the dead man&#39;s advocate, as he once vindicated his father.<sup class="scholars-cite"><a href="#src-book-of-the-dead-1">[1]</a></sup> Spell 78, a spell for taking the form of a divine falcon, lets the deceased wear the god&#39;s own shape and far-seeing eyes, and vignettes across New Kingdom papyri show Horus leading the justified by the hand into the judgment hall.<sup class="scholars-cite"><a href="#src-book-of-the-dead-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-book-of-the-dead-1">Faulkner, The Ancient Egyptian Book of the Dead (ed. Andrews, 1985), Spells 78, 125.</li><li id="src-book-of-the-dead-2">Hornung, The Ancient Egyptian Books of the Afterlife (1999).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Horus is the god of the long view. The falcon sees what the ground-dweller cannot; the king must see beyond his own reign. To call on Horus is to remember that authority is not merely power but rightfulness — the triumph of ma&#39;at over isfet, of inheritance over usurpation, of the whole over the torn.</p>
+<p>The myth of Horus and Set is not a simple story of good versus evil. In some periods Set was the protector of Re&#39;s bark; in others he was the murderer of Osiris. The conflict is structural: order and disorder are relatives, not strangers, and their contention is what keeps the world awake. Horus wins not because he is strongest but because he is legitimate. That is the Egyptian lesson: cosmic order is maintained not by force alone but by the recognition of rightful place. The restored eye is the image of that order — broken, then made whole, then worn as a pledge that wholeness can be recovered.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Faulkner, The Ancient Egyptian Pyramid Texts.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="hieroglyphic-evidence">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Hieroglyphic Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Hieroglyphic Evidence →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="pyramid-texts">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Pyramid Texts</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pyramid Texts →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="coffin-texts">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Coffin Texts</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Coffin Texts →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="book-of-the-dead">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">17</span>
-        <h2 class="scholars-section-title">Book of the Dead</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Book of the Dead →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">19</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -597,6 +586,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'horus';
@@ -630,14 +754,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -731,6 +847,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -742,18 +859,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -765,6 +883,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -809,6 +929,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

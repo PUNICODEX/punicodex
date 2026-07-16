@@ -421,10 +421,29 @@ router.get(
 router.get(
   '/temples/:id/manifest',
   createScholarsRateLimit('temples:manifest', { tier: 'public' }),
+  cacheMiddleware('temple', 60),
   asyncHandler(async (req, res) => {
     const temple = getTempleByEntryId(req.params.id);
     if (!temple) return res.status(404).json(error('Temple not found', 404));
+    // Taxonomy defines the section structure; database sections merge over
+    // the blank form so the manifest serves the real published content.
     const manifest = generateBlankManifest(req.params.id);
+    const dbSections = new Map(listSectionsByTemple(temple.id).map((s) => [s.key, s]));
+    manifest.sections = manifest.sections.map((section) => {
+      const dbSection = dbSections.get(section.key);
+      if (!dbSection) return section;
+      const updater = dbSection.updated_by ? getUserById(dbSection.updated_by) : null;
+      return {
+        ...section,
+        body: dbSection.body || '',
+        sources: dbSection.sources || [],
+        media: dbSection.media || [],
+        editorNotes: dbSection.editor_notes || '',
+        status: dbSection.status || section.status,
+        lastModifiedAt: dbSection.updated_at || null,
+        lastModifiedBy: (updater && updater.display_name) || null,
+      };
+    });
     res.json(success(manifest));
   })
 );

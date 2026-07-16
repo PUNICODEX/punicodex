@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,12 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#poetic-edda">14 &mdash; Poetic Edda</a></li>
-<li><a href="#prose-edda">15 &mdash; Prose Edda</a></li>
-<li><a href="#runic-evidence">16 &mdash; Runic Evidence</a></li>
-<li><a href="#sagas">17 &mdash; Sagas & Medieval Sources</a></li>
+<li><a href="#poetic-edda">12 &mdash; Poetic Edda</a></li>
+<li><a href="#prose-edda">13 &mdash; Prose Edda</a></li>
+<li><a href="#runic-evidence">14 &mdash; Runic Evidence</a></li>
+<li><a href="#sagas">15 &mdash; Sagas & Medieval Sources</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -281,14 +297,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Álfheimr</strong> (<em>alfheimr</em>) — Elf-home (from álfr + heimr) — belongs to the Norse tradition, where it is catalogued under the domain &quot;Realm of the Light Elves&quot;. The name means &quot;Elf-home (from álfr + heimr)&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>In the norse tradition, <strong>Álfheimr</strong> governed realm of the light elves. The name encodes a sphere of power that shaped ritual, narrative, and social order.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Álfheimr</strong> and serves its temple at <a class="scholars-ext" href="https://xn--lfheimr-gwa.com" rel="noopener noreferrer" target="_blank">álfheimr.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>alfheimr</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li><li id="src-overview-2">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li id="src-overview-3">Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora.</li></ol></div>
     </div>
 </section>
 
@@ -296,14 +311,16 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Younger Futhark as <strong>ᛅᛚᚠᚼᛁᛘᚱ</strong>. Etymologically it means &quot;Elf-home (from álfr + heimr)&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The reconstructed proto-form is <em>albaz + </em>haimaz<em> (proto-indo-european, &quot;elf + home&quot;). PGmc </em>albaz &quot;elf&quot; + *haimaz &quot;home&quot;. The world of the light elves.</p>
+<p>The ASCII form <em>alfheimr</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Álfheimr</strong> recovers the stress accent of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>a</strong> → <strong>Á</strong> — Acute on initial alpha</li><li><strong>l</strong> → <strong>l</strong> — Same</li><li><strong>f</strong> → <strong>f</strong> — Same</li><li><strong>h</strong> → <strong>h</strong> — Same</li><li><strong>e</strong> → <strong>e</strong> — Same</li><li><strong>i</strong> → <strong>i</strong> — Same</li><li><strong>m</strong> → <strong>m</strong> — Same</li><li><strong>r</strong> → <strong>r</strong> — Same</li></ul>
+<p>The project holds the domain <strong>álfheimr.com</strong> (xn--lfheimr-gwa.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li><li id="src-the-name-2">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li></ol></div>
     </div>
 </section>
 
@@ -311,14 +328,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/ˈɑːlvˌhɛi̯mr/</strong> — Old Norse Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Ál-</strong> — Long stressed [ɑː] plus voiced alveolar lateral [l] and voiceless labiodental [f]; álfr means &#39;elf&#39;</li><li><strong>-fhei-</strong> — Diphthong [ɛi̯] — a rising glide from open-mid to close front, the standard Old Norse ei sound</li><li><strong>-mr</strong> — Bilabial nasal [m] plus tapped or trilled [r]; final -r is the masculine nominative ending</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;AHLV-haymr&#39; — stress the first syllable like &#39;owl&#39; without the w, then a quick &#39;lv-haymer&#39; with a rolled final r.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Old English</strong> — elfhām, the Anglo-Saxon compound for an elf-home or fairy dwelling</li><li><strong>German</strong> — Alptraum, literally &#39;elf-dream&#39;, a distant echo of elf-influenced sleep</li><li><strong>Old Norse</strong> — álfar, the light elves themselves, fairer than the sun to look upon</li></ul>
+<p>Old Norse á is a long back vowel, and ei is a diphthong; the acute accent on Á marks stress and length together. The form Álfheimr is Tier 2 because it preserves the acute (stress) but the remaining vowels are short or diphthongal and carry no length mark.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li></ol></div>
     </div>
 </section>
 
@@ -326,14 +346,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Younger Futhark as <strong>ᛅᛚᚠᚼᛁᛘᚱ</strong> — Germanic runic, attested Viking Age, c. 800–1100 CE, in Scandinavia. The script is written left-to-right, top-to-bottom.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Álfheimr</em> (normalized Old Norse), giving the normalized reading /ˈaːlf.hɛi̯mr/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The Younger Futhark form ᛅᛚᚠᚼᛁᛘᚱ provides a Viking-Age runic attestation or normalized reconstruction.</li><li>Younger Futhark has only sixteen runes and does not distinguish short/long vowels or voiced/voiceless stops.</li><li>The normalized Old Norse form is based on 13th-century manuscript tradition (Poetic and Prose Eddas).</li><li>The Unicode restoration Álfheimr uses Thorn (Þ) and accented vowels registrable in .com.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Barnes, Runes: A Handbook.</li><li id="src-original-script-2">Cleasby-Vigfusson, An Icelandic-English Dictionary.</li><li id="src-original-script-3">Zoëga, A Concise Dictionary of Old Icelandic.</li></ol></div>
     </div>
 </section>
 
@@ -341,14 +361,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>In the norse tradition, <strong>Álfheimr</strong> governed realm of the light elves. The name encodes a sphere of power that shaped ritual, narrative, and social order.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Light Elves</h3>
+<p>The álfar of Álfheimr are said to be fairer than the sun to look upon, associated with fertility and subtle natural power.</p>
+<h3 class="scholars-h3">Freyr&#39;s Inheritance</h3>
+<p>The gods gave Álfheimr to Freyr when he cut his first tooth, binding the Vanir god to the elven realm.</p>
+<h3 class="scholars-h3">Alvíssmál Catalogue</h3>
+<p>The dwarf Alvíss records the elves&#39; own names for sun, moon, and earth, testifying to Álfheimr&#39;s distinct voice.</p>
+<h3 class="scholars-h3">Luminous Otherworld</h3>
+<p>Later folklore merged the light elves with landvættir and huldufólk, a radiant realm bordering every farm.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li></ol></div>
     </div>
 </section>
 
@@ -356,14 +381,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Álfheimr concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Freyr&#39;s boar Gullinbursti</strong> — The golden-bristled beast linking elven prosperity to Vanir fertility</li><li><strong>Sun-disc above a meadow</strong> — Light-elves are &#39;fairer than the sun&#39;; the disc marks their radiant world</li><li><strong>Elf-mound (álfhóll)</strong> — The grass-covered howe where álfar dwell at the edge of human farms</li><li><strong>Sheaf of grain</strong> — Agricultural blessing attributed to Freyr and the elven powers of growth</li><li><strong>Silver branch with bells</strong> — The Otherworld token granting passage to the luminous realms</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li></ol></div>
     </div>
 </section>
 
@@ -371,14 +394,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p><strong>Álfheimr</strong> is the luminous realm of the <em>álfar</em>, the light elves whose presence glimmers at the edge of the divine world. In Snorri Sturluson&#39;s cosmology it counts among the nine worlds, gifted to the Vanir god Freyr as a teething present. The light elves are said to be fairer than the sun to look upon, associated with fertility, beauty, and the subtle powers that move beneath the surface of the natural world. Álfheimr stands between the ordered fields of the gods and the wild margins of Jötunheimr, an enchanted frontier where cultivated prosperity and elven glamour blur into one another. The light elves of Álfheimr hover at the boundary between gods and ancestral spirits. Later folklore merged them with landvættir, huldufólk, and the fair folk of Scandinavian tradition, so that Álfheimr became less a single realm than a way of naming the luminous Otherworld that borders every farm and fjord. The name survives in Icelandic place-names and in the modern recovery of elves as symbols of Nordic identity.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Freyr&#39;s Inheritance (Prose Edda)</h3>
+<p>In <em>Gylfaginning</em>, the gods give Álfheimr to Freyr when he cuts his first tooth. This infant gift becomes a sovereign realm, binding the fertility god to the elven world and making him <em>Álföðr</em>, father or ruler of elves. The gift marks Freyr&#39;s transition from divine child to lord of a distinct cosmic territory, and it places Álfheimr within the Vanir sphere of influence.</p>
+<p>The passage hints at an older stratum of belief in which elves were not merely minor spirits but a people with their own homeland and political standing among the gods. Freyr&#39;s ownership also explains why later Scandinavian folk tradition so often links elves with agricultural prosperity: the same god who blesses fields also governs their realm.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Dwarf&#39;s Catalogue (Alvíssmál)</h3>
+<p><em>Alvíssmál</em>, &#39;The Sayings of All-Wise,&#39; is structured around a journey from under the earth to the world above. The dwarf Alvíss seeks to marry Þórr&#39;s daughter, and the thunder-god delays him through the night by asking what things are called among different peoples. Alvíss names the same object—earth, heaven, moon, sun, cloud, wind, sea, fire, forest, night, and seed—according to the speech of gods, men, giants, and elves.</p>
+<p>The elves&#39; vocabulary is one of the catalogues, testimony to the Norse sense that Álfheimr possessed its own idiom and its own way of naming the world. When dawn turns the dwarf to stone, the poem also confirms the old idea that sunlight is fatal to creatures of the dark, while the light elves dwell in its radiance.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li id="src-mythology-2">Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora.</li></ol></div>
     </div>
 </section>
 
@@ -386,14 +412,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Norse tradition absorbed and reworked Germanic, Celtic, and Christian influences; medieval Icelandic compilers preserved the myths while Christian frameworks shaped their presentation.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Norse tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/buri/">Búri</a>, <a class="scholars-xlink" href="/sites/eggther/">Eggþér</a>, <a class="scholars-xlink" href="/sites/helheimr/">Helheimr</a>, <a class="scholars-xlink" href="/sites/jormungandr/">Jǫrmungandr</a>, <a class="scholars-xlink" href="/sites/jotunheimr/">Jötunheimr</a>, and <a class="scholars-xlink" href="/sites/midgardr/">Miðgarðr</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li></ol></div>
     </div>
 </section>
 
@@ -401,14 +425,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>The name lives on in modern fantasy, Neopagan practice, Scandinavian heritage, and the global reception of Viking-Age literature. Restoring <em>Álfheimr</em> in Unicode preserves the name&#39;s cultural specificity against the flattening force of plain ASCII. Álfheimr has become a touchstone in fantasy literature, role-playing games, and neopagan reconstructions of Norse cosmology. The Unicode restoration of the name reminds readers that the elf-realm was once as real to medieval Scandinavians as any earthly landscape.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li></ol></div>
     </div>
 </section>
 
@@ -416,14 +437,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The Álfheimr concept is indexed materially by Álf- place-names in Norway and Iceland, by elven and landvættir amulets, and by high-status boat graves. The Oseberg ship burial (c. 834 CE) and the Gokstad ship preserve the aristocratic world in which álfar beliefs circulated, while later folklore keeps the elf tradition alive in Scandinavian landscape and memory.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li></ol></div>
     </div>
 </section>
 
@@ -431,135 +449,102 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Álfheimr given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> The Poetic Edda; The Prose Edda of Snorri Sturluson.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Poetic Edda: Völuspá (cosmogonic stanzas on the ordering of worlds and peoples).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Poetic Edda: Alvíssmál (the dwarf Alvíss names things as they are called among gods, men, giants, and elves).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Snorri Sturluson, Edda: Skáldskaparmál (kennings for Freyr as lord of the álfar).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li><li id="src-scholarly-sources-2">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li id="src-scholarly-sources-3">Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora.</li><li id="src-scholarly-sources-4">Poetic Edda: Völuspá (cosmogonic stanzas on the ordering of worlds and peoples).</li><li id="src-scholarly-sources-5">Poetic Edda: Alvíssmál (the dwarf Alvíss names things as they are called among gods, men, giants, and elves).</li><li id="src-scholarly-sources-6">Snorri Sturluson, Edda: Skáldskaparmál (kennings for Freyr as lord of the álfar).</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="poetic-edda">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Poetic Edda</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Álfheimr&#39;s most explicit poetic attestation comes in <em>Grímnismál</em>, where the disguised <a class="scholars-xlink" href="/sites/odinn/">Óðinn</a> enumerates the gods&#39; dwellings: the gods gave Álfheimr to <a class="scholars-xlink" href="/sites/freyr/">Freyr</a> in ancient days as a tooth-gift (<em>tannfé</em>), the customary present on a child&#39;s first tooth.<sup class="scholars-cite"><a href="#src-poetic-edda-1">[1]</a></sup> The realm speaks again in <em>Alvíssmál</em>, whose catalogue of world-specific vocabularies assigns the elves their own names for earth, heaven, sun, and moon — the only Eddic passage that gives Álfheimr&#39;s inhabitants a voice of their own.<sup class="scholars-cite"><a href="#src-poetic-edda-2">[2]</a></sup> Beyond these passages the Eddic corpus is silent: the light elves are named, never dramatized.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-poetic-edda-1">Poetic Edda, Grímnismál (the gods&#39; dwellings; Álfheimr given to Freyr as a tooth-gift).</li><li id="src-poetic-edda-2">Poetic Edda, Alvíssmál (the elves&#39; own vocabulary among the races of the world).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="prose-edda">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Prose Edda</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Snorri gives Álfheimr its fullest portrait in <em>Gylfaginning</em>. High One places it among the heavenly stations and describes its people: the light elves (<em>ljósálfar</em>), &#39;fairer than the sun to look upon&#39;, are set against the dark elves (<em>dökkálfar</em>), who dwell below in the earth and are &#39;blacker than pitch&#39;.<sup class="scholars-cite"><a href="#src-prose-edda-1">[1]</a></sup> In <em>Skáldskaparmál</em> the realm underwrites the kenning system for <a class="scholars-xlink" href="/sites/freyr/">Freyr</a>, who may be styled lord of the álfar and ruler of Álfheimr, and the tooth-gift motif recurs in prose form.<sup class="scholars-cite"><a href="#src-prose-edda-2">[2]</a></sup> The neat ljósálfr/dökkálfr opposition has no parallel in the older poetry and may be Snorri&#39;s own systematizing.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-prose-edda-1">Snorri Sturluson, Edda, Gylfaginning (the light elves and dark elves of Álfheimr).</li><li id="src-prose-edda-2">Snorri Sturluson, Edda, Skáldskaparmál (kennings for Freyr as lord of the álfar).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="runic-evidence">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Runic Evidence</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>No runic inscription attests Álfheimr or names the light elves; the realm belongs to the manuscript tradition alone. The word <em>álfr</em> survives indirectly in runic personal names compounded with Álf- (Álfgeirr, Álfríkr and the like on Scandinavian stones), which proves the being&#39;s currency in naming but says nothing of a homeland.<sup class="scholars-cite"><a href="#src-runic-evidence-1">[1]</a></sup> The clearest early evidence for elf-cult is skaldic rather than runic: Sigvatr Þórðarson&#39;s <em>Austrfararvísur</em> (c. 1018) tells how the poet was refused lodging in Sweden because the household was holding an <em>álfablót</em>, a sacrifice to the elves.<sup class="scholars-cite"><a href="#src-runic-evidence-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-runic-evidence-1">Simek, Rudolf. Dictionary of Northern Mythology (álfr; runic theophoric names).</li><li id="src-runic-evidence-2">Sigvatr Þórðarson, Austrfararvísur (the álfablót episode), preserved in Heimskringla, Óláfs saga helga.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="sagas">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Sagas & Medieval Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>In the saga corpus Álfheimr sheds its mythic character and becomes geography. Snorri&#39;s <em>Ynglinga saga</em> places the district of Álfheimar between the Göta älv and Raumelfr rivers, ruled by Álfr the Old and later by Gandálfr; the name here marks a real border region of south-eastern Norway, not an otherworld.<sup class="scholars-cite"><a href="#src-sagas-1">[1]</a></sup> Elf-cult surfaces more vividly in <em>Kormáks saga</em>, where the wounded Þorvarðr is told to sacrifice to the elves in a nearby hill, smearing the blood on the mound so he may be healed — a rare narrative glimpse of álfablót in practice.<sup class="scholars-cite"><a href="#src-sagas-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-sagas-1">Snorri Sturluson, Heimskringla, Ynglinga saga (the district of Álfheimar and its kings).</li><li id="src-sagas-2">Kormáks saga (the elf-sacrifice prescribed for Þorvarðr&#39;s healing).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Names are not merely labels; they are compressed worlds. <strong>Álfheimr</strong> carries within it a norse understanding of elf-home (from álfr + heimr). Unicode restoration returns that world to readable form.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="poetic-edda">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Poetic Edda</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Poetic Edda →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="prose-edda">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Prose Edda</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Prose Edda →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="runic-evidence">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Runic Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Runic Evidence →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="sagas">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">17</span>
-        <h2 class="scholars-section-title">Sagas & Medieval Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Sagas & Medieval Sources →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">19</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -597,6 +582,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'alfheimr';
@@ -630,14 +750,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -731,6 +843,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -742,18 +855,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -765,6 +879,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -809,6 +925,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

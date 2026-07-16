@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,12 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#hebrew-bible">14 &mdash; Hebrew Bible / Old Testament</a></li>
-<li><a href="#new-testament">15 &mdash; New Testament</a></li>
-<li><a href="#midrash">16 &mdash; Midrash & Targumim</a></li>
-<li><a href="#quranic">17 &mdash; Qur'ānic References</a></li>
+<li><a href="#hebrew-bible">12 &mdash; Hebrew Bible / Old Testament</a></li>
+<li><a href="#new-testament">13 &mdash; New Testament</a></li>
+<li><a href="#midrash">14 &mdash; Midrash & Targumim</a></li>
+<li><a href="#quranic">15 &mdash; Qur'ānic References</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -281,14 +297,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Šəlōmōh</strong> (<em>solomon</em>) — King, Sage · Third king of Israel, builder of the Temple — belongs to the Canaanite tradition, where it is catalogued under the domain &quot;King, Sage&quot;. The name means &quot;Third king of Israel, builder of the Temple&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>Šəlōmōh is the <strong>king who turns peace into architecture</strong>. Son of David, he inherits a united kingdom and spends it on cedar, gold, and wisdom. His Temple in Jerusalem becomes the fixed center of Israelite worship; his judgment becomes proverbial; his trade fleets reach the edges of the known world. Yet his story ends in fracture: the kingdom he built splits the moment he dies.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Šəlōmōh</strong> and serves its temple at <a class="scholars-ext" href="https://xn--lmh-qxab0ju2f.com" rel="noopener noreferrer" target="_blank">šəlōmōh.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>solomon</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">HALOT s.v. שְׁלֹמֹה.</li><li id="src-overview-2">TDOT s.v. Solomon.</li><li id="src-overview-3">1 Kings 1–11; 2 Chronicles 1–9.</li></ol></div>
     </div>
 </section>
 
@@ -296,14 +311,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Hebrew as <strong>שְׁלֹמֹה</strong>. Etymologically it means &quot;Third king of Israel, builder of the Temple&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The ASCII form <em>solomon</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Šəlōmōh</strong> recovers the vowel length of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>s</strong> → <strong>Š</strong> — Same, capitalized and fricative</li><li><strong>o</strong> → <strong>ə</strong> — Schwa vowel</li><li><strong>l</strong> → <strong>l</strong> — Same</li><li><strong>o</strong> → <strong>ō</strong> — Macron: long vowel</li><li><strong>m</strong> → <strong>m</strong> — Same</li><li><strong>o</strong> → <strong>ō</strong> — Macron: long vowel</li><li><strong>n</strong> → <strong>h</strong> — Heh h</li></ul>
+<p>The project holds the domain <strong>šəlōmōh.com</strong> (xn--lmh-qxab0ju2f.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">HALOT s.v. שְׁלֹמֹה.</li><li id="src-the-name-2">TDOT s.v. Solomon.</li></ol></div>
     </div>
 </section>
 
@@ -311,14 +327,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/ʃəloːˈmoː(h)/</strong> — Biblical Hebrew (Tiberian/Masoretic).<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>šə-</strong> — Voiceless postalveolar fricative [ʃ] — Hebrew shin, marked by the upper right dot — with a short vocal sheva [ə].</li><li><strong>-lō-</strong> — Lateral approximant [l] followed by long [oː], the holam under ל.</li><li><strong>-mō(h)</strong> — Bilabial nasal [m] plus long [oː], the holam under מ; the final ה is silent, a mater lectionis for the long vowel.</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;shuh-LOH-moh&#39; — start with a quick &#39;shuh&#39;; both later &#39;o&#39; sounds are long and steady, like &#39;show&#39;.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Hebrew root</strong> — š-l-m, &#39;to be whole, complete, at peace&#39; — the name is a qal passive participle or noun form</li><li><strong>Aramaic</strong> — שְׁלֹמֹה (Šəlōmōh), as in the Targumim</li><li><strong>Arabic</strong> — Sulaymān (سُلَيْمَان), a distinct but etymologically related form from the same s-l-m root</li></ul>
+<p>BHS points the name שְׁלֹמֹה (1 Kings 1:1). The initial shewa is vocal (šəwa naʿ) because it opens the word; the two holams are long [oː]. The final he is silent. Modern Israeli Hebrew flattens the vowels to [o] and often elides the shewa, but the Tiberian tradition distinguishes length. HALOT s.v. שְׁלֹמֹה; TDOT s.v. Solomon.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">HALOT s.v. שְׁלֹמֹה.</li></ol></div>
     </div>
 </section>
 
@@ -326,14 +345,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Hebrew as <strong>שְׁלֹמֹה</strong> — Northwest Semitic cuneiform alphabet, attested Late Bronze Age, c. 1400–1200 BCE, in Ugarit (modern Ras Shamra, Syria). The script is written left-to-right.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Šəlōmōh</em> (Ugaritic alphabetic cuneiform), giving the normalized reading /ʃə.loˈmoː/ (Tiberian).</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The name is written שְׁלֹמֹה in the Ugaritic cuneiform alphabet.</li><li>Ugaritic ʿayin is rendered with Egyptological Ain (ꜥ) for DNS registrability.</li><li>Long vowels are reconstructed from Hebrew and Akkadian cognates and marked with macrons.</li><li>The Unicode restoration Šəlōmōh is registrable in .com; the Ugaritic cuneiform form is not supported in the .com IDN table.</li></ul>
+<p>The Hebrew name is written שְׁלֹמֹה: the initial shin carries a vocal sheva, and the two occurrences of lamed and mem carry long holam vowels. The final <em>he</em> is silent, serving only as a mater lectionis for the last long <em>o</em>. PUNYCODEX renders the name as <strong>Šəlōmōh</strong>, using the caron on <strong>š</strong> for the Hebrew shin and macrons to mark the long Tiberian holams. This Latin transcription is registrable as a domain while preserving the consonantal skeleton and vowel length of the Masoretic Text.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Abraham (biblical patriarch / Genesis narrative), Book of Genesis, 1000 BCE.</li><li id="src-original-script-2">Biblia Hebraica Stuttgartensia (BHS).</li><li id="src-original-script-3">Brown-Driver-Briggs Hebrew Lexicon.</li><li id="src-original-script-4">Hebrew and Aramaic Lexicon of the Old Testament (HALOT).</li></ol></div>
     </div>
 </section>
 
@@ -341,14 +361,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>Šəlōmōh is the <strong>king who turns peace into architecture</strong>. Son of David, he inherits a united kingdom and spends it on cedar, gold, and wisdom. His Temple in Jerusalem becomes the fixed center of Israelite worship; his judgment becomes proverbial; his trade fleets reach the edges of the known world. Yet his story ends in fracture: the kingdom he built splits the moment he dies.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Temple</h3>
+<p>A house of cedar, stone, and gold for the name of YHWH, built with Phoenician artisans and dedicated with fire and cloud (1 Kings 6–8).</p>
+<h3 class="scholars-h3">Wisdom and Judgment</h3>
+<p>His prayer at Gibeon asks for wisdom, and his famous verdict — to cut the disputed child in two — reveals the true mother (1 Kings 3).</p>
+<h3 class="scholars-h3">Fleet and Trade</h3>
+<p>A navy at Ezion-Geber and an alliance with Hiram of Tyre bring gold, silver, ivory, apes, and peacocks from Ophir (1 Kings 9–10).</p>
+<h3 class="scholars-h3">Proverbs and Song</h3>
+<p>Tradition ascribes to him the books of Proverbs, Ecclesiastes, and the Song of Songs — wisdom literature that ranges from proverb to eros to despair.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">TDOT s.v. Solomon.</li></ol></div>
     </div>
 </section>
 
@@ -356,14 +381,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Šəlōmōh concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Temple</strong> — The fixed house of YHWH in Jerusalem, the center of Israelite cult and identity</li><li><strong>Seal / signet</strong> — The legendary ring that commanded demons and animals in later Jewish and Islamic folklore</li><li><strong>Scales</strong> — The instrument of his wise judgment and the balance of peace (šālôm)</li><li><strong>Peacock and gold</strong> — The exotic wealth of his international trade and the opulence of his court</li><li><strong>Crown</strong> — The throne of ivory overlaid with gold and the apex of Israelite royal power</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">HALOT s.v. שְׁלֹמֹה.</li></ol></div>
     </div>
 </section>
 
@@ -371,14 +394,21 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Šəlōmōh&#39;s mythology is the story of <strong>wisdom tested by excess</strong>. He begins with a prayer for understanding and ends with idolatrous shrines built for his foreign wives. His reign is Israel&#39;s golden age and its cautionary tale at once.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Dream at Gibeon (1 Kings 3)</h3>
+<p>When Solomon becomes king, God appears to him at Gibeon and offers whatever he asks. Solomon does not ask for riches or long life but for &#39;an understanding mind to govern your people.&#39; Pleased, God grants him wisdom and adds wealth and honor besides. The episode establishes Solomon as the archetype of the wise ruler.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Judgment of the Two Mothers (1 Kings 3)</h3>
+<p>Two women come before the king, each claiming to be the mother of a living infant. Solomon orders the child cut in two. One woman pleads for the baby&#39;s life even if it means giving him up; the other agrees to the division. Solomon gives the child to the one willing to lose him, recognizing true motherhood by self-sacrifice rather than claim.</p>
+<h3 class="scholars-h3">The Building and Dedication of the Temple (1 Kings 6–8)</h3>
+<p>Solomon contracts with Hiram of Tyre for cedar and skilled workers. The Temple takes seven years to build: an outer court, a hekhal (sanctuary), and a debir (holy of holies) housing the ark. At the dedication, fire descends and the glory-cloud fills the house; Solomon kneels and prays that God will hear prayers directed toward this place, including the prayers of foreigners and exiles.</p>
+<h3 class="scholars-h3">The Queen of Sheba (1 Kings 10)</h3>
+<p>The queen of Sheba journeys to Jerusalem with a caravan of spices, gold, and precious stones to test Solomon&#39;s wisdom with hard questions. She leaves astonished, praising both his insight and the God who blessed him. The encounter makes Solomon a figure of international prestige and marks the southern trade route as a channel of legend.</p>
+<h3 class="scholars-h3">The Fall and the Divided Kingdom (1 Kings 11)</h3>
+<p>In his old age, Solomon&#39;s foreign wives turn his heart after their gods, and he builds high places for Chemosh, Milcom, and Astarte. YHWH tears the kingdom from his son, leaving only one tribe for David&#39;s sake. The golden age ends not in invasion but in internal apostasy, and the united monarchy dies with its builder.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">TDOT s.v. Solomon.</li><li id="src-mythology-2">1 Kings 1–11; 2 Chronicles 1–9.</li></ol></div>
     </div>
 </section>
 
@@ -386,14 +416,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>In Islam, Solomon is Sulaymān, a prophet who commands the wind, speaks with birds, and rules over jinn under God&#39;s permission (Qur&#39;an 27). Jewish tradition expands him into a master of demons, a magician-king whose seal controls spirits. Christianity sees him as a type of Christ the wise king and builder of a spiritual temple. Ethiopian legend makes him the father of Menelik I through the Queen of Sheba, founding the Solomonic dynasty claimed by Ethiopian emperors into the twentieth century. The figure of Solomon thus drifts from history into legend, from king into archetype.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Canaanite tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/abel/">Hāḇel</a>, <a class="scholars-xlink" href="/sites/anat/">ꜥAnat</a>, <a class="scholars-xlink" href="/sites/asherah/">ꜥAsherah</a>, <a class="scholars-xlink" href="/sites/baal/">Baꜥal</a>, <a class="scholars-xlink" href="/sites/cain/">Qāyīn</a>, and <a class="scholars-xlink" href="/sites/david/">Dāwîḏ</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">HALOT s.v. שְׁלֹמֹה.</li></ol></div>
     </div>
 </section>
 
@@ -401,14 +429,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Šəlōmōh gave the world the idea of the <strong>wise king</strong> whose wealth is justified by understanding. The &#39;judgment of Solomon&#39; has entered legal and popular language as a decision that exposes truth by risking loss. The Temple he built remains the imagined heart of Jerusalem, mourned in Jewish liturgy and yearned for in apocalyptic expectation. His attributed writings — Proverbs, Ecclesiastes, Song of Songs — are among the most read books of the Bible, while the Seal of Solomon became a protective amulet across Jewish, Christian, and Islamic magic. In modern archaeology, Solomon is also a battleground: the dating of Iron Age monumental gates at Megiddo, Hazor, and Gezer is central to debates about the historicity and scale of his kingdom.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">HALOT s.v. שְׁלֹמֹה.</li></ol></div>
     </div>
 </section>
 
@@ -416,14 +441,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The Temple Mount in Jerusalem, now the Haram al-Sharif, is the traditional site of Solomon&#39;s Temple, though no Iron Age remains have been excavated there for religious and political reasons. Monumental six-chambered gates at Megiddo, Hazor, and Gezer have been attributed by some to Solomon&#39;s building program, while others date them later to the Omride dynasty. The site of Khirbet Qeiyafa and the Stepped Stone Structure in the City of David are debated as evidence of an early Judahite state. Saba (Sheba) in modern Yemen, with its dam and inscriptions at Marib, confirms the existence of the South Arabian kingdom that the Queen of Sheba legend reflects.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">HALOT s.v. שְׁלֹמֹה.</li></ol></div>
     </div>
 </section>
 
@@ -431,135 +453,103 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Šəlōmōh given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> HALOT s.v. שְׁלֹמֹה.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> TDOT s.v. Solomon.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> 1 Kings 1–11; 2 Chronicles 1–9.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Proverbs; Ecclesiastes; Song of Songs.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Kitchen, On the Reliability of the Old Testament.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Finkelstein &amp; Silberman, The Bible Unearthed.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Kebra Nagast (Ethiopian tradition).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">HALOT s.v. שְׁלֹמֹה.</li><li id="src-scholarly-sources-2">TDOT s.v. Solomon.</li><li id="src-scholarly-sources-3">1 Kings 1–11; 2 Chronicles 1–9.</li><li id="src-scholarly-sources-4">Proverbs; Ecclesiastes; Song of Songs.</li><li id="src-scholarly-sources-5">Kitchen, On the Reliability of the Old Testament.</li><li id="src-scholarly-sources-6">Finkelstein &amp; Silberman, The Bible Unearthed.</li><li id="src-scholarly-sources-7">Kebra Nagast (Ethiopian tradition).</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="hebrew-bible">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Hebrew Bible / Old Testament</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Solomon&#39;s reign is narrated in 1 Kings 1–11 and retold in glorifying terms in 2 Chronicles 1–9. The Kings account moves from the contested succession (1 Kings 1–2) through the dream at Gibeon and the judgment between the two mothers (1 Kings 3), the administrative lists and the catalogue of wisdom — &#39;three thousand proverbs and a thousand and five songs&#39; (1 Kings 4:32) — to the building and dedication of the Temple (1 Kings 5–8) and the visit of the Queen of Sheba (1 Kings 10).<sup class="scholars-cite"><a href="#src-hebrew-bible-1">[1]</a></sup> The final chapter reverses the idyll: foreign wives turn his heart, adversaries arise, and the kingdom moves toward division (1 Kings 11). Three biblical books open under his name — Proverbs, Song of Songs, and Qohelet — and the deuterocanonical Wisdom of Solomon later speaks in his persona.<sup class="scholars-cite"><a href="#src-hebrew-bible-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-hebrew-bible-1">1 Kings 1–11; 2 Chronicles 1–9.</li><li id="src-hebrew-bible-2">Proverbs 1:1; Song of Songs 1:1; Ecclesiastes 1:1; Wisdom of Solomon 7–9.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="new-testament">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">New Testament</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Solomon&#39;s New Testament footprint is small but pointed. Jesus sets his proverbial splendor against the lilies of the field — &#39;even Solomon in all his glory was not clothed like one of these&#39; (Matthew 6:29; Luke 12:27) — and warns that the queen of the South will rise at the judgment against a generation that ignores &#39;something greater than Solomon&#39; (Matthew 12:42; Luke 11:31).<sup class="scholars-cite"><a href="#src-new-testament-1">[1]</a></sup> Matthew&#39;s genealogy notes pointedly that David fathered Solomon &#39;by the wife of Uriah&#39; (Matthew 1:6), keeping Bathsheba&#39;s shadow inside the messianic line. Stephen&#39;s speech recalls that Solomon built the Temple (Acts 7:47), and &#39;Solomon&#39;s Portico&#39; names the colonnade where Jesus teaches and the apostles later gather (John 10:23; Acts 3:11; 5:12). The epistles never cite him.<sup class="scholars-cite"><a href="#src-new-testament-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-new-testament-1">Matthew 6:29; 12:42; Luke 11:31; 12:27.</li><li id="src-new-testament-2">Matthew 1:6; Acts 7:47; John 10:23; Acts 3:11; 5:12.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="midrash">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Midrash & Targumim</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Aggadah makes Solomon both the wisest of kings and the great cautionary tale of overreach. Song of Songs Rabbah distributes his three books across his life — the Song to youth, Proverbs to maturity, Qohelet to disillusioned old age.<sup class="scholars-cite"><a href="#src-midrash-1">[1]</a></sup> His demon lore is anchored in b. Gittin (68a–b): Solomon captures Ashmedai, king of demons, to learn the secret of the shamir, the creature that splits stone without iron so the Temple can rise without tools of war; released, Ashmedai hurls him far from Jerusalem and reigns in his likeness while the true king wanders as a beggar — the sages&#39; explanation of Qohelet&#39;s strange &#39;I was king over Israel.&#39;<sup class="scholars-cite"><a href="#src-midrash-2">[2]</a></sup> The sages also debated his books, seeking to withdraw Qohelet for its contradictions before its acceptance (b. Shabbat 30b).<sup class="scholars-cite"><a href="#src-midrash-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-midrash-1">Song of Songs Rabbah 1 (three books, three ages).</li><li id="src-midrash-2">b. Gittin 68a–b (Ashmedai and the shamir).</li><li id="src-midrash-3">b. Shabbat 30b (suppression of Qohelet).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="quranic">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Qur'ānic References</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Sulaymān inherits David&#39;s prophethood and kingdom: &#39;Solomon was David&#39;s heir,&#39; and his signature gift is understanding the speech of animals — he smiles at an ant warning her colony of his approaching hosts, whose ranks are marshaled from jinn, humans, and birds (27:15–19).<sup class="scholars-cite"><a href="#src-quranic-1">[1]</a></sup> Surah 27 (al-Naml) narrates the Sheba embassy at length: the hoopoe scouts the land of Saba, carries Solomon&#39;s letter to its queen, and her throne is transported to him &#39;before your glance returns to you&#39;; tested and convinced, she submits &#39;with Solomon, to God, Lord of the worlds&#39; (27:20–44).<sup class="scholars-cite"><a href="#src-quranic-2">[2]</a></sup> The winds run at his command (21:81; 34:12), jinn build for him and a fount of molten brass flows (34:12–13), and even his death is a sign: propped on his staff, he stands until a creature of the earth gnaws it and he falls — only then do the jinn know he has died (34:14).<sup class="scholars-cite"><a href="#src-quranic-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-quranic-1">Qur&#39;an 27:15–19 (the ant; hosts of jinn, humans, birds).</li><li id="src-quranic-2">Qur&#39;an 27:20–44 (the hoopoe and the queen of Saba).</li><li id="src-quranic-3">Qur&#39;an 21:81; 34:12–14 (wind, brass, death).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Šəlōmōh is the king who gets exactly what he asks for and then loses himself in what he does not need. His wisdom is real — it cuts through lies and builds a temple — but it cannot protect him from his own appetites. In that, he is a mirror for every culture that confuses accumulation with meaning.</p>
+<p>The Temple he builds is beautiful, yet its completion already contains the warning that no building can house the infinite. When the cloud fills the house, it is a sign not of possession but of presence that exceeds architecture. Solomon&#39;s legacy is therefore double: he is the builder of a house and the proof that houses, however splendid, cannot save the builder. To remember him is to ask what we are building, and whether our wisdom is strong enough to refuse what our power can take.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">HALOT s.v. שְׁלֹמֹה.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="hebrew-bible">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Hebrew Bible / Old Testament</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Hebrew Bible / Old Testament →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="new-testament">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">New Testament</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to New Testament →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="midrash">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Midrash & Targumim</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Midrash & Targumim →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="quranic">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">17</span>
-        <h2 class="scholars-section-title">Qur'ānic References</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Qur'ānic References →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">19</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -597,6 +587,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'solomon';
@@ -630,14 +755,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -731,6 +848,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -742,18 +860,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -765,6 +884,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -809,6 +930,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

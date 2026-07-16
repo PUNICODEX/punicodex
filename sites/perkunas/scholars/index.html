@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,8 +279,11 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
+<li><a href="#dainas">12 &mdash; Dainas & Folklore</a></li>
+<li><a href="#baltic-chronicles">13 &mdash; Chronicles & Historical Sources</a></li>
+<li><a href="#meditation">14 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">15 &mdash; Edit History</a></li>
+<li><a href="#attribution">16 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -277,14 +295,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Perkūnas</strong> (<em>perkunas</em>) — God of Thunder, Lightning and Storms · Lithuanian/Baltic thunder deity, cognate with Slavic Perun and Indo-Iranian Parjanya. — belongs to the Baltic tradition, where it is catalogued under the domain &quot;God of Thunder, Lightning and Storms&quot;. The name means &quot;Lithuanian/Baltic thunder deity, cognate with Slavic Perun and Indo-Iranian Parjanya.&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p><strong>Perkūnas</strong> is the Lithuanian thunder god, the voice of the oak and the bolt that strikes the unjust. In Baltic folklore he rides across the sky in a flaming chariot, hurling stone axes and lightning arrows at demons, liars, and those who break their oaths. He is not merely weather; he is the moral sky, the enforcer of cosmic law in a world of dark forests and hidden spirits.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Perkūnas</strong> and serves its temple at <a class="scholars-ext" href="https://xn--perknas-3sb.com" rel="noopener noreferrer" target="_blank">perkūnas.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>perkunas</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Lithuanian folklore collections (Lietuvių mitologija, Jonas Basanavičius).</li><li id="src-overview-2">Latvian dainas (Krišjānis Barons, Latvju dainas).</li><li id="src-overview-3">Old Prussian Catechisms (Percunis).</li></ol></div>
     </div>
 </section>
 
@@ -292,14 +309,20 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>No indigenous written attestation survives for this name; <strong>Perkūnas</strong> is a scholarly transliteration of the reconstructed spoken form. Etymologically the name means &quot;Lithuanian/Baltic thunder deity, cognate with Slavic Perun and Indo-Iranian Parjanya.&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The reconstructed proto-form is <em>perkʷu-</em> (proto-indo-european, &quot;oak, thunder&quot;). From Proto-Baltic <em>Perkūnas, from PIE </em>perkʷu- &quot;oak; thunderer&quot;, also reflected in Slavic Perun and Vedic Parjanya.</p>
+<p>Cognate forms across related languages:</p>
+<ul class="scholars-list"><li><strong>Perun</strong> (slavic) — Slavic thunder god</li><li><strong>Parjanya</strong> (sanskrit) — Vedic thunder/storm deity</li></ul>
+<p>The ASCII form <em>perkunas</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Perkūnas</strong> recovers the vowel length of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>p</strong> → <strong>P</strong> — Same, capitalized</li><li><strong>e</strong> → <strong>e</strong> — Same</li><li><strong>r</strong> → <strong>r</strong> — Same</li><li><strong>k</strong> → <strong>k</strong> — Same</li><li><strong>u</strong> → <strong>ū</strong> — Macron marks long u</li><li><strong>n</strong> → <strong>n</strong> — Same</li><li><strong>a</strong> → <strong>a</strong> — Same</li><li><strong>s</strong> → <strong>s</strong> — Same</li></ul>
+<p>Attested and derived spellings of the name:</p>
+<ul class="scholars-list"><li><strong>perkūnas.com</strong> — owned form: Owned domain form</li><li><strong>perkunas</strong> — ASCII form: Plain ASCII form</li></ul>
+<p>The project holds the domain <strong>perkūnas.com</strong> (xn--perknas-3sb.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Lithuanian folklore collections (Lietuvių mitologija, Jonas Basanavičius).</li><li id="src-the-name-2">Latvian dainas (Krišjānis Barons, Latvju dainas).</li></ol></div>
     </div>
 </section>
 
@@ -307,14 +330,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/pʲɛrˈkuːnɐs/</strong> — Lithuanian/Baltic Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>P</strong> — Voiceless bilabial plosive [p], slightly palatalized before the front vowel</li><li><strong>e</strong> — Open-mid front unrounded vowel [ɛ], like English &#39;bet&#39;</li><li><strong>r</strong> — Alveolar trill or tap [r], rolled more distinctly than in most English dialects</li><li><strong>kū</strong> — Voiceless velar plosive [k] plus long close back rounded vowel [uː], the thunder-syllable</li><li><strong>nas</strong> — Alveolar nasal [n] plus reduced vowel [ɐ] and alveolar fricative [s], the old masculine nominative ending</li></ul>
+<p>For the modern speaker, the closest approximation is: pyair-KOO-nuss — roll the &#39;r,&#39; make the &#39;oo&#39; long, and give the final syllable a light hiss.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Lithuanian</strong> — Perkūnas, the thunder god preserved in folklore and theonymy</li><li><strong>Latvian</strong> — Pērkons, the Latvian thunder deity</li><li><strong>Old Prussian</strong> — Percunis, attested in the sixteenth-century Catechisms</li><li><strong>Slavic</strong> — Perun, the cognate Slavic thunder god</li></ul>
+<p>Perkūnas is a Tier-2 macron restoration. The long ū is the preserved non-English feature. The name descends from Proto-Baltic *Perkūnas and is cognate with Slavic Perun, reflecting a common Indo-European thunder deity.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Lithuanian folklore collections (Lietuvių mitologija, Jonas Basanavičius).</li></ol></div>
     </div>
 </section>
 
@@ -322,14 +348,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>No indigenous writing system is securely attested for individual baltic names. The form shown is a modern scholarly transliteration.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The form <strong>Perkūnas</strong> is therefore a scholarly transliteration rather than an attested ancient spelling; it encodes the reconstructed sound of the name for modern use, and no mark in it is decorative.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Lithuanian folklore collections (Lietuvių mitologija, Jonas Basanavičius).</li></ol></div>
     </div>
 </section>
 
@@ -337,14 +361,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p><strong>Perkūnas</strong> is the Lithuanian thunder god, the voice of the oak and the bolt that strikes the unjust. In Baltic folklore he rides across the sky in a flaming chariot, hurling stone axes and lightning arrows at demons, liars, and those who break their oaths. He is not merely weather; he is the moral sky, the enforcer of cosmic law in a world of dark forests and hidden spirits.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Thunder and Lightning</h3>
+<p>His voice is thunder and his weapon is the lightning bolt that splits the sky.</p>
+<h3 class="scholars-h3">The Sacred Oak</h3>
+<p>The oak is his tree; sacrifices were made at oak groves and stones struck by lightning.</p>
+<h3 class="scholars-h3">Divine Justice</h3>
+<p>He punishes oath-breakers, murderers, and those who wrong the innocent.</p>
+<h3 class="scholars-h3">Foe of the Underworld</h3>
+<p>He battles Velnias, the devil or forest spirit, and other chthonic forces.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Latvian dainas (Krišjānis Barons, Latvju dainas).</li></ol></div>
     </div>
 </section>
 
@@ -352,14 +381,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Perkūnas concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Stone axe or hammer</strong> — The thunderbolt weapon that Perkūnas hurls and that Neolithic axes symbolized as fallen from the sky</li><li><strong>Oak tree</strong> — His sacred tree, struck by lightning and used for offerings</li><li><strong>Flaming chariot or goat-drawn cart</strong> — His vehicle as he travels the sky</li><li><strong>Fire and spark</strong> — The sacred fire struck from the sky and preserved in Baltic ritual</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Lithuanian folklore collections (Lietuvių mitologija, Jonas Basanavičius).</li></ol></div>
     </div>
 </section>
 
@@ -367,14 +394,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Perkūnas&#39;s mythology is preserved largely in Lithuanian and Latvian folklore recorded in the nineteenth and early twentieth centuries. The medieval church had suppressed his cult, but the peasants remembered him as the thunderer who defended the moral order against devils, witches, and the chaos of the wilderness.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Perkūnas and the Oak (Baltic Folklore)</h3>
+<p>In Lithuanian folklore, Perkūnas strikes the oak with lightning, and the fire that results is sacred. Oak groves were his temples, and people would kindle new fire from a tree hit by his bolt. The oak&#39;s hardness and height made it the natural home of the sky-god&#39;s power, and acorns were gathered as protective amulets.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Pērkons Judges the Liar (Latvian Dainas)</h3>
+<p>Latvian dainas (folk songs) sing of Pērkons striking the homes of those who swear false oaths or cheat their neighbors. The thunder god is not indifferent weather; he is a moral agent who punishes hidden crimes that human courts cannot reach. A clap of thunder during a dispute was read as his verdict.</p>
+<h3 class="scholars-h3">The Battle with Velnias (Baltic Cosmology)</h3>
+<p>Perkūnas frequently battles Velnias, a devil-like figure associated with the forest, cattle, and the underworld. In some tales Velnias steals the celestial cows or hides the sun; Perkūnas pursues him with thunder and lightning. The combat re-enacts the Indo-European opposition between the bright sky and the dark earth.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Latvian dainas (Krišjānis Barons, Latvju dainas).</li><li id="src-mythology-2">Old Prussian Catechisms (Percunis).</li></ol></div>
     </div>
 </section>
 
@@ -382,14 +412,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Perkūnas is cognate with Slavic Perun and Indo-Iranian Parjanya, all descendants of a Proto-Indo-European thunder deity. Slavic Perun, worshipped at Kiev and other centers, is the closest historical parallel. In Christianized folklore, Perkūnas was partially displaced by Saint Michael, Elijah, or God the Father, but his oak cult, thunder lore, and moral role survived under Christian names. Scholars have also compared him to Germanic Thor, Greek Zeus, and Vedic Indra, though each culture shaped the thunder god according to its own landscape.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include <a class="scholars-xlink" href="/sites/baal/">Baꜥal</a>, <a class="scholars-xlink" href="/sites/enlil/">Enlīl</a>, <a class="scholars-xlink" href="/sites/oya/">Ọya</a>, <a class="scholars-xlink" href="/sites/shango/">Ṣàngó</a>, <a class="scholars-xlink" href="/sites/thor/">Þórr</a>, and <a class="scholars-xlink" href="/sites/trengtreng/">Trengtreng</a>, each linked through thunder / storm sovereignty.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Lithuanian folklore collections (Lietuvių mitologija, Jonas Basanavičius).</li></ol></div>
     </div>
 </section>
 
@@ -397,14 +425,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Perkūnas remains a living symbol of Lithuanian and Latvian national identity. His name appears in place names, folk songs, and contemporary pagan (Romuva) revival rituals. Oak groves are still protected in the Baltic states as natural and cultural heritage, and the thunder god features in metal music, fantasy literature, and neo-pagan art. For linguists, Perkūnas is a key witness to the survival of Indo-European theonyms in a region that preserved archaic traditions longer than most of Europe.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Lithuanian folklore collections (Lietuvių mitologija, Jonas Basanavičius).</li></ol></div>
     </div>
 </section>
 
@@ -412,14 +437,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>Direct archaeological evidence for Perkūnas&#39;s cult is limited because it was largely suppressed and conducted in natural settings. However, Baltic hillforts, sacred oak groves, and deposits of stone axes interpreted as thunderstones attest to sky-god veneration. Neolithic and Bronze Age stone axes were often kept as protective thunderstones in Baltic households. Christian churches and crosses sometimes occupy former sacred oak sites, and Latvian dainas preserve the oral memory of a once-widespread thunder cult.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Lithuanian folklore collections (Lietuvių mitologija, Jonas Basanavičius).</li></ol></div>
     </div>
 </section>
 
@@ -427,75 +449,78 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Perkūnas given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Lithuanian folklore collections (Lietuvių mitologija, Jonas Basanavičius).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Latvian dainas (Krišjānis Barons, Latvju dainas).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Old Prussian Catechisms (Percunis).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Ivanov &amp; Toporov, Issledovanija v oblasti slavjanskikh drevnostej.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Mallory &amp; Adams, The Oxford Introduction to Proto-Indo-European and the Proto-Indo-European World.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Gimbutas, The Balts.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Greimas, Of Gods and Men: Studies in Lithuanian Mythology.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Kūlgrinda and Romuva ritual traditions.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Lithuanian folklore collections (Lietuvių mitologija, Jonas Basanavičius).</li><li id="src-scholarly-sources-2">Latvian dainas (Krišjānis Barons, Latvju dainas).</li><li id="src-scholarly-sources-3">Old Prussian Catechisms (Percunis).</li><li id="src-scholarly-sources-4">Ivanov &amp; Toporov, Issledovanija v oblasti slavjanskikh drevnostej.</li><li id="src-scholarly-sources-5">Mallory &amp; Adams, The Oxford Introduction to Proto-Indo-European and the Proto-Indo-European World.</li><li id="src-scholarly-sources-6">Gimbutas, The Balts.</li><li id="src-scholarly-sources-7">Greimas, Of Gods and Men: Studies in Lithuanian Mythology.</li><li id="src-scholarly-sources-8">Kūlgrinda and Romuva ritual traditions.</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="dainas">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Dainas & Folklore</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The <strong>dainas</strong> — the short, formulaic folk songs of Latvia and Lithuania — are the largest single body of evidence for the thunder god after Christianization. In Krišjānis Barons&#39;s monumental <em>Latvju dainas</em> (1894–1915) <strong>Pērkons</strong> appears in hundreds of quatrains: he rumbles across the sky in a wagon or on horseback, strikes the devil and the unjust, forges in the celestial smithy, and arrives with his sons at the cosmic weddings of Sun and Moon.<sup class="scholars-cite"><a href="#src-dainas-1">[1]</a></sup> Lithuanian dainos likewise greet Perkūnas as the purifier who splits rotted trees and drives off devils; collectors found thunder lore still interwoven with prayer, curse, and weather proverb, and a storm breaking over a false oath was heard as his verdict.<sup class="scholars-cite"><a href="#src-dainas-2">[2]</a></sup> The daina Pērkons is no abstraction: farmers addressed him directly, and the songs preserve a living relationship that the chronicles only glimpse.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-dainas-1">Barons, Krišjānis, Latvju dainas (1894–1915).</li><li id="src-dainas-2">Greimas, Algirdas Julien, Of Gods and Men: Studies in Lithuanian Mythology.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="baltic-chronicles">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Chronicles & Historical Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Medieval and early modern chroniclers noticed the Baltic thunder cult repeatedly, if briefly. The <strong>Livländische Reimchronik</strong> (c. 1290s) reports Lithuanian veneration of thunder and the sun and has the Semigallians break off a battle when thunder — their god&#39;s voice — rolled overhead.<sup class="scholars-cite"><a href="#src-baltic-chronicles-1">[1]</a></sup> <strong>Peter von Dusburg</strong>&#39;s <em>Chronicon Terrae Prussiae</em> (c. 1331) describes the sacred oak and perpetual fire of the Prussian sanctuary at Romowe, the cultic world in which Percunis belonged.<sup class="scholars-cite"><a href="#src-baltic-chronicles-2">[2]</a></sup> The fullest late catalogues come after the grand duchy&#39;s Christianization: Maciej Stryjkowski&#39;s <em>Kronika Polska</em> (1582) lists Perkūnas among the chief Lithuanian gods, and Jan Łasicki&#39;s <em>De diis Samagitarum</em> (c. 1582) records him as <em>Parkuns</em>, lord of fire and oak, receiver of offerings.<sup class="scholars-cite"><a href="#src-baltic-chronicles-3">[3]</a></sup> Hostile or antiquarian witnesses all, their agreement with the later folklore is exact.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-baltic-chronicles-1">Livländische Reimchronik (c. 1290s), on the Lithuanian thunder cult.</li><li id="src-baltic-chronicles-2">Peter von Dusburg, Chronicon Terrae Prussiae (c. 1331), on Romowe.</li><li id="src-baltic-chronicles-3">Stryjkowski, Kronika Polska (1582); Łasicki, De diis Samagitarum (c. 1582).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Perkūnas is the sky&#39;s conscience. His thunder is not random noise but a voice that says: there is a limit to what can be hidden. In an age of corporate crime and political lies, his mythology still resonates — the belief that some justice arrives not from human courts but from the sheer force of nature. To remember Perkūnas is to remember that the sky is watching, and that oaths once mattered enough to call down lightning.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Lithuanian folklore collections (Lietuvių mitologija, Jonas Basanavičius).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">16</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">14</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">15</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -533,6 +558,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'perkunas';
@@ -566,14 +726,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -667,6 +819,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -678,18 +831,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -701,6 +855,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -745,6 +901,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

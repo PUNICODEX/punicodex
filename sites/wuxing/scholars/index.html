@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,12 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#classical-texts">14 &mdash; Classical Texts</a></li>
-<li><a href="#daoist-sources">15 &mdash; Daoist Sources</a></li>
-<li><a href="#buddhist-sources">16 &mdash; Buddhist Sources</a></li>
-<li><a href="#calligraphy">17 &mdash; Calligraphy & Script</a></li>
+<li><a href="#classical-texts">12 &mdash; Classical Texts</a></li>
+<li><a href="#daoist-sources">13 &mdash; Daoist Sources</a></li>
+<li><a href="#buddhist-sources">14 &mdash; Buddhist Sources</a></li>
+<li><a href="#calligraphy">15 &mdash; Calligraphy & Script</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -281,14 +297,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Wǔxíng</strong> (<em>wuxing</em>) — Five Elements, Change · Five phases — belongs to the Chinese tradition, where it is catalogued under the domain &quot;Five Elements, Change&quot;. The name means &quot;Five phases&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p><strong>Wǔxíng</strong> is often mistranslated as &#39;five elements,&#39; but <em>xíng</em> means movement, conduct, or phase. Wood, fire, earth, metal, and water are not static substances but dynamic processes: wood grows, fire flames, earth ripens, metal contracts, water descends. Together they form a grammar of transformation that Chinese thinkers applied to seasons, organs, emotions, dynasties, and military strategy.</p>
+<p>The system works through two main cycles: the generating cycle (wood feeds fire, fire makes earth, earth bears metal, metal carries water, water nourishes wood) and the controlling cycle (wood parts earth, earth absorbs water, water quenches fire, fire melts metal, metal chops wood).<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Wǔxíng</strong> and serves its temple at <a class="scholars-ext" href="https://xn--wxng-wpa89k.com" rel="noopener noreferrer" target="_blank">wǔxíng.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>wuxing</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Shangshu, Hongfan (The Great Plan). <a class="scholars-ext" href="https://ctext.org/shang-shu/hong-fan" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-overview-2">Huangdi Neijing.</li><li id="src-overview-3">Huainanzi, Liu An; Chinese Text Project, 139 BCE. <a class="scholars-ext" href="https://ctext.org/huainanzi" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -296,14 +312,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Chinese characters as <strong>五行</strong>. Etymologically it means &quot;Five phases&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The ASCII form <em>wuxing</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Wǔxíng</strong> recovers the stress accent of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>w</strong> → <strong>W</strong> — Same, capitalized</li><li><strong>u</strong> → <strong>ǔ</strong> — Special character</li><li><strong>x</strong> → <strong>x</strong> — Same</li><li><strong>i</strong> → <strong>í</strong> — Stress on i</li><li><strong>n</strong> → <strong>n</strong> — Same</li><li><strong>g</strong> → <strong>g</strong> — Same</li></ul>
+<p>The project holds the domain <strong>wǔxíng.com</strong> (xn--wxng-wpa89k.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Shangshu, Hongfan (The Great Plan). <a class="scholars-ext" href="https://ctext.org/shang-shu/hong-fan" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-the-name-2">Huangdi Neijing.</li></ol></div>
     </div>
 </section>
 
@@ -311,14 +328,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/u˨˩˦ ɕiŋ˧˥/</strong> — Modern Standard Mandarin (Pinyin).<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>wǔ</strong> — Syllable beginning with labio-velar glide [w], high back rounded vowel [u], and Tone 3 (falling-rising, ˨˩˦). In connected speech before a non-third tone, this is often realized as a &#39;half-third&#39; low falling tone.</li><li><strong>xíng</strong> — Syllable with voiceless alveolo-palatal fricative [ɕ], high front vowel [i], velar nasal [ŋ], and Tone 2 (rising, ˧˥). Pinyin &#39;x&#39; before front vowels is always [ɕ], like an extended &#39;sh&#39; in &#39;she&#39;.</li></ul>
+<p>For the modern speaker, the closest approximation is: WOO-SHING — &#39;wu&#39; dips low and rises (or stays low in fast speech), and &#39;xing&#39; rises like &#39;sheen&#39; with a rising tone.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Traditional</strong> — 五行</li><li><strong>Simplified</strong> — 五行</li><li><strong>Wade-Giles</strong> — wu³-hsing²</li><li><strong>Related terms</strong> — 金木水火土 jīn-mù-shuǐ-huǒ-tǔ (metal, wood, water, fire, earth)</li></ul>
+<p>五行 (Wǔxíng) denotes the &#39;Five Phases&#39; or &#39;Five Agents&#39;—wood, fire, earth, metal, and water—the cyclical modes of transformation in Chinese cosmology, medicine, and feng shui. The Modern Standard Mandarin reading in this philosophical context is wǔ (Tone 3) + xíng (Tone 2), as given by the Unihan Database (kMandarin) and the Hanyu Pinyin scheme. Baxter &amp; Sagart (2014) reconstruct 五 as <em>C.ŋˤaʔ (GSR 0058a) and 行 in the sense &#39;walk, conduct&#39; as </em>C.[g]raŋ (GSR 0748a). The Unicode restoration Wǔxíng preserves the citation tones; note that 行 is disyllabically distinguished from the reading háng (&#39;row, profession&#39;).</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Shangshu, Hongfan (The Great Plan). <a class="scholars-ext" href="https://ctext.org/shang-shu/hong-fan" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -326,14 +346,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Chinese characters as <strong>五行</strong> — Hanzi (Sino-Tibetan), attested Oracle-bone – present, c. 1200 BCE –, in China. The script is written left-to-right; traditional top-to-bottom.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Wǔxíng</em> (Hanyu Pinyin with tone mark), giving the normalized reading /u˨˩˦ ɕiŋ˧˥/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The name is written with the Chinese characters 五行.</li><li>Each character is a logogram that encodes meaning and historical pronunciation.</li><li>Hanyu Pinyin with tone marks preserves Mandarin pronunciation; the ASCII form loses tone.</li><li>The Unicode restoration Wǔxíng is the registrable form because hanzi are outside the .com IDN table.</li></ul>
+<p>The original script is 五行; traditional and simplified forms are identical. The Modern Standard Mandarin reading in the philosophical sense is <em>Wǔxíng</em> (Tone 3 + Tone 2), per Hanyu Pinyin and the Unihan Database. Note that 行 has a separate reading <em>háng</em> (&#39;row, profession&#39;); here it means &#39;movement, conduct, phase.&#39; The registrable form preserves the tone marks; the characters are displayed in the Original Script card. Baxter &amp; Sagart reconstruct 五 as <em>C.ŋˤaʔ and 行 in the sense &#39;walk, conduct&#39; as </em>C.[g]raŋ.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Chinese classical texts, Chinese Text Project, 500 BCE. <a class="scholars-ext" href="https://ctext.org/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-original-script-2">I Ching (Yijing / Book of Changes), Chinese Text Project, 1000 BCE. <a class="scholars-ext" href="https://ctext.org/book-of-changes" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-original-script-3">Karlgren, Grammata Serica Recensa.</li><li id="src-original-script-4">Pulleyblank, Lexicon of Reconstructed Pronunciation.</li><li id="src-original-script-5">Schuessler, ABC Etymological Dictionary of Old Chinese.</li></ol></div>
     </div>
 </section>
 
@@ -341,14 +362,20 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p><strong>Wǔxíng</strong> is often mistranslated as &#39;five elements,&#39; but <em>xíng</em> means movement, conduct, or phase. Wood, fire, earth, metal, and water are not static substances but dynamic processes: wood grows, fire flames, earth ripens, metal contracts, water descends. Together they form a grammar of transformation that Chinese thinkers applied to seasons, organs, emotions, dynasties, and military strategy.</p>
+<p>The system works through two main cycles: the generating cycle (wood feeds fire, fire makes earth, earth bears metal, metal carries water, water nourishes wood) and the controlling cycle (wood parts earth, earth absorbs water, water quenches fire, fire melts metal, metal chops wood).<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Generation Cycle</h3>
+<p>Each phase gives birth to the next in a circle of mutual nourishment and support.</p>
+<h3 class="scholars-h3">Control Cycle</h3>
+<p>Each phase checks another, preventing any one process from running to destructive excess.</p>
+<h3 class="scholars-h3">Correspondence System</h3>
+<p>Every phase maps to a direction, season, color, organ, emotion, taste, and musical note.</p>
+<h3 class="scholars-h3">Cosmic Calendar</h3>
+<p>The phases organize the year: wood/spring, fire/summer, earth/late summer, metal/autumn, water/winter.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Huangdi Neijing.</li></ol></div>
     </div>
 </section>
 
@@ -356,14 +383,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Wǔxíng concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Wood</strong> — Growth, spring, the east, the liver, the color green/blue, the wind</li><li><strong>Fire</strong> — Flaming, summer, the south, the heart, the color red, heat</li><li><strong>Earth</strong> — Ripening, late summer, the center, the spleen, the color yellow, dampness</li><li><strong>Metal</strong> — Contracting, autumn, the west, the lungs, the color white, dryness</li><li><strong>Water</strong> — Descending, winter, the north, the kidneys, the color black/dark, cold</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Shangshu, Hongfan (The Great Plan). <a class="scholars-ext" href="https://ctext.org/shang-shu/hong-fan" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -371,14 +396,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Wǔxíng has no divine biography, but its intellectual history is dramatic: it began as a description of natural processes, became a theory of state legitimacy, and ended as the diagnostic language of Traditional Chinese Medicine.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Great Plan (Shangshu, Hongfan)</h3>
+<p>The <em>Hongfan</em> chapter of the <em>Shangshu</em> presents the five phases as the first of the &#39;Nine Categories&#39; revealed to Yu the Great. Water, fire, wood, metal, and earth each have their nature: water soaks and descends, fire blazes and ascends, wood bends and straightens, metal yields and changes, earth sows and gathers. This is the earliest systematic statement of Wǔxíng cosmology.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Yin-Yang and Five Phases School (Zou Yan)</h3>
+<p>The philosopher Zou Yan (c. 324–250 BCE) applied the five phases to history, arguing that dynasties rise and fall according to which phase they embody. Each new dynasty was thought to possess the virtue of the next phase, giving cosmic legitimacy to political revolution.</p>
+<h3 class="scholars-h3">Five Phases as Cosmic Seasons (Huainanzi)</h3>
+<p>The <em>Huainanzi</em> (c. 139 BCE) integrates Wǔxíng with astronomy, music, and politics, mapping the phases onto the calendar, the directions, and the musical pitch pipes. The text shows the system at its most encyclopedic, linking microcosm and macrocosm through a single set of correspondences.</p>
+<h3 class="scholars-h3">The Body as Landscape (Huangdi Neijing)</h3>
+<p>The <em>Huangdi Neijing</em> turns Wǔxíng into medicine. The liver belongs to wood, the heart to fire, the spleen to earth, the lungs to metal, and the kidneys to water. Health is the smooth circulation of these phases; disease is their obstruction or excess.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Huangdi Neijing.</li><li id="src-mythology-2">Huainanzi, Liu An; Chinese Text Project, 139 BCE. <a class="scholars-ext" href="https://ctext.org/huainanzi" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -386,14 +416,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Wǔxíng was sometimes compared by Western observers to the Greek four elements, but the comparison is misleading. The Greek elements are building blocks of substance; the Chinese phases are patterns of change. A closer Indian analogue is the <em>pañca mahābhūta</em>, though the correspondences differ. Wǔxíng entered Japan as <em>gogyō</em> and Korea as <em>ohaeng</em>, shaping East Asian medicine, astrology, and martial arts. In modern times, Wǔxíng has been invoked — and sometimes distorted — in management theory, martial-arts branding, and popular spirituality, often reduced to a color-coded personality test. The medical tradition, however, continues to use the five phases as a sophisticated heuristic for pattern differentiation.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Chinese tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/bagua/">Bāguà</a>, <a class="scholars-xlink" href="/sites/long/">Lóng</a>, <a class="scholars-xlink" href="/sites/taichi/">Tàijí</a>, <a class="scholars-xlink" href="/sites/taishang/">Tàishàng</a>, <a class="scholars-xlink" href="/sites/tian/">Tiān</a>, and <a class="scholars-xlink" href="/sites/tiandi/">Tiāndì</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Shangshu, Hongfan (The Great Plan). <a class="scholars-ext" href="https://ctext.org/shang-shu/hong-fan" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -401,14 +429,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Wǔxíng is the hidden scaffolding of much that looks merely &#39;Chinese&#39; on the surface. The five flavors, five colors, five notes, five grains, and five directions all derive from it. Traditional Chinese Medicine diagnoses in its terms; feng shui designs spaces by it; Xingyiquan organizes its five basic fists around it; Chinese astrology assigns each year an element. The system even colored imperial ritual: the Yellow Emperor claimed earth, the Qin chose black water to overcome Zhou red fire. Today Wǔxíng survives in video-game elemental mechanics, wellness branding, and martial-arts school names — sometimes faithfully, often trivially. Its deepest legacy is a habit of mind: the tendency to see nature not as a collection of things but as a field of interactive processes.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Shangshu, Hongfan (The Great Plan). <a class="scholars-ext" href="https://ctext.org/shang-shu/hong-fan" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -416,14 +441,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The textual foundation of Wǔxíng appears in the <em>Shangshu</em>&#39;s <em>Hongfan</em> chapter, transmitted through Warring States and Han manuscript traditions. The Mawangdui tomb library preserves early medical manuscripts that apply the five phases to diagnosis and treatment, while the <em>Huangdi Neijing</em> became the canonical medical synthesis. Han dynasty lacquerware, bronze mirrors, and tomb murals display the color-direction correspondences of the five phases. Unlike a deity, Wǔxíng has no temple, but its logic is inscribed across the material culture of state ritual, medicine, and calendrical science.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Shangshu, Hongfan (The Great Plan). <a class="scholars-ext" href="https://ctext.org/shang-shu/hong-fan" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -431,135 +453,107 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Wǔxíng given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Shangshu, Hongfan (The Great Plan). <a class="scholars-ext" href="https://ctext.org/shang-shu/hong-fan" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Huangdi Neijing.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Huainanzi, Liu An; Chinese Text Project, 139 BCE. <a class="scholars-ext" href="https://ctext.org/huainanzi" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Shiji (Records of the Grand Historian).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Graham, Yin-Yang and the Nature of Correlative Thinking.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Sivin, Medicine, Philosophy and Religion in Ancient China.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Unschuld, Medicine in China.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Baxter &amp; Sagart, Old Chinese Reconstruction. <a class="scholars-ext" href="http://ocbaxtersagart.lsait.lsa.umich.edu/" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Unihan Database (Unicode Consortium). <a class="scholars-ext" href="https://www.unicode.org/charts/unihan.html" rel="noopener noreferrer" target="_blank">Full text</a></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Shangshu, Hongfan (The Great Plan). <a class="scholars-ext" href="https://ctext.org/shang-shu/hong-fan" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-2">Huangdi Neijing.</li><li id="src-scholarly-sources-3">Huainanzi, Liu An; Chinese Text Project, 139 BCE. <a class="scholars-ext" href="https://ctext.org/huainanzi" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-4">Shiji (Records of the Grand Historian).</li><li id="src-scholarly-sources-5">Graham, Yin-Yang and the Nature of Correlative Thinking.</li><li id="src-scholarly-sources-6">Sivin, Medicine, Philosophy and Religion in Ancient China.</li><li id="src-scholarly-sources-7">Unschuld, Medicine in China.</li><li id="src-scholarly-sources-8">Baxter &amp; Sagart, Old Chinese Reconstruction. <a class="scholars-ext" href="http://ocbaxtersagart.lsait.lsa.umich.edu/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-9">Unihan Database (Unicode Consortium). <a class="scholars-ext" href="https://www.unicode.org/charts/unihan.html" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="classical-texts">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Classical Texts</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The locus classicus of <strong>五行</strong> is the <em>Hóngfàn</em> (&#39;Great Plan&#39;) chapter of the <em>Shangshu</em>, where the phases head the Nine Categories revealed to Yǔ the Great: &#39;The first is called water, the second fire, the third wood, the fourth metal, the fifth earth&#39; — each with its characteristic action: water soaks and descends, fire blazes and ascends, wood bends and straightens, metal yields and changes, earth receives sowing and reaping.<sup class="scholars-cite"><a href="#src-classical-texts-1">[1]</a></sup></p>
+<p>The term&#39;s earliest occurrence is older and stranger: the <em>Gān shì</em> (&#39;Speech at Gān&#39;) charges the lord of Hù with &#39;violently insulting the five phases&#39; (威侮五行), though its archaic meaning there is still debated.<sup class="scholars-cite"><a href="#src-classical-texts-2">[2]</a></sup> The <em>Zuozhuan</em> and <em>Guóyǔ</em> show the system maturing, pairing the five processes with five tastes, colours, and notes; the <em>Shijing</em> never uses the term — Wǔxíng belongs to statecraft and cosmology, not to the lyric tradition.<sup class="scholars-cite"><a href="#src-classical-texts-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-classical-texts-1">Shangshu (Book of Documents), Hongfan (The Great Plan). <a class="scholars-ext" href="https://ctext.org/shang-shu/hong-fan" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-classical-texts-2">Shangshu (Book of Documents), Gan shi (Speech at Gan).</li><li id="src-classical-texts-3">Zuozhuan; Guoyu (Discourses of the States).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="daoist-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Daoist Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Neither the <em>Daodejing</em> nor the <em>Zhuangzi</em> builds on the five phases — the early masters worked with the Dao, the one, and yīn–yáng — but from the Han synthesis onward the two vocabularies fused. The <em>Huainanzi</em>, the great Han compendium steeped in Daoist cosmology, maps the five phases onto the year, the directions, the pitch-pipes, and the art of government with encyclopedic thoroughness.<sup class="scholars-cite"><a href="#src-daoist-sources-1">[1]</a></sup></p>
+<p>Religious Daoism then naturalized Wǔxíng within the body. Inner-alchemy traditions seat the phases in the five viscera — liver wood, heart fire, spleen earth, lungs metal, kidneys water — and <em>neidan</em> practice labours to harmonize their generating and controlling cycles: the cosmic order of the phases becomes a regimen of breath, diet, and visualization.<sup class="scholars-cite"><a href="#src-daoist-sources-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-daoist-sources-1">Huainanzi. <a class="scholars-ext" href="https://ctext.org/huainanzi" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-daoist-sources-2">Pregadio, The Encyclopedia of Taoism.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="buddhist-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Buddhist Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Indian Buddhism arrived carrying its own elemental grammar — the four great elements (四大): earth, water, fire, and wind — and Chinese readers immediately weighed it against the native five phases. Apologists debated which scheme was fundamental; Buddhist writers generally answered that the 四大 describe the composition of matter, not moral or cosmic process.<sup class="scholars-cite"><a href="#src-buddhist-sources-1">[1]</a></sup></p>
+<p><strong>Zōngmì</strong>&#39;s <em>Yuánrén lùn</em> delivers the classic high-level critique, treating yīn–yáng, the five phases, and 太極 together as &#39;spontaneous&#39; cosmologies that cannot account for karmic causation.<sup class="scholars-cite"><a href="#src-buddhist-sources-2">[2]</a></sup> Esoteric Buddhism quietly closed the gap: in the Zhenyán maṇḍalas the five buddha-families correlate with five elements and five directions — a structure Chinese exegetes could read comfortably through Wǔxíng eyes.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-buddhist-sources-1">Buswell &amp; Lopez, The Princeton Dictionary of Buddhism.</li><li id="src-buddhist-sources-2">Zongmi, Yuanren lun (Inquiry into the Origin of Humanity).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="calligraphy">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Calligraphy & Script</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p><strong>五行</strong> is written identically in traditional and simplified scripts. <strong>五</strong> &#39;five&#39; is ancient: oracle-bone forms set a simple cross between two horizontal bars, a tally-mark the <em>Shuowen Jiezi</em> later moralized into yīn and yáng crossing between heaven and earth.<sup class="scholars-cite"><a href="#src-calligraphy-1">[1]</a></sup></p>
+<p><strong>行</strong> is the term&#39;s philosophical heart. Its oracle-bone form draws a crossroads — two roads intersecting — and its primary meaning is &#39;to go, to move, to carry out&#39;; &#39;row&#39; and &#39;profession&#39; are later extensions. That the five are named 行 and not 元素 &#39;elements&#39; is therefore written into the script itself: wood, fire, earth, metal, and water are movements, not substances — a point of grammar that is also a point of cosmology.<sup class="scholars-cite"><a href="#src-calligraphy-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-calligraphy-1">Xu Shen, Shuowen Jiezi.</li><li id="src-calligraphy-2">Qiu Xigui, Chinese Writing (trans. Mattos &amp; Norman).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Wǔxíng teaches that nothing is only what it is. Wood is also the process of becoming fire; fire is also the ash that becomes earth; earth is also the ore that becomes metal; metal is also the condensation that becomes water; water is also the nourishment that becomes wood. Identity, in this system, is a verb.</p>
+<p>This has practical consequences. To treat a symptom in Chinese medicine is not to kill a germ but to rebalance a process. To choose an auspicious date is not to appease a god but to align with seasonal momentum. To practice Xingyiquan is to embody the five phases until they move through the body the way they move through the year. Wǔxíng is less a belief than a method: look for the pattern of change, and work with it rather than against it.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Shangshu, Hongfan (The Great Plan). <a class="scholars-ext" href="https://ctext.org/shang-shu/hong-fan" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="classical-texts">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Classical Texts</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Classical Texts →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="daoist-sources">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Daoist Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Daoist Sources →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="buddhist-sources">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Buddhist Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Buddhist Sources →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="calligraphy">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">17</span>
-        <h2 class="scholars-section-title">Calligraphy & Script</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Calligraphy & Script →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">19</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -597,6 +591,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'wuxing';
@@ -630,14 +759,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -731,6 +852,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -742,18 +864,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -765,6 +888,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -809,6 +934,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

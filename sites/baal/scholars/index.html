@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,11 +279,12 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#ugaritic-tablets">14 &mdash; Ugaritic Tablets</a></li>
-<li><a href="#tanakh-references">15 &mdash; Tanakh References</a></li>
-<li><a href="#inscriptions">16 &mdash; Inscriptions & Seals</a></li>
+<li><a href="#ugaritic-tablets">12 &mdash; Ugaritic Tablets</a></li>
+<li><a href="#tanakh-references">13 &mdash; Tanakh References</a></li>
+<li><a href="#inscriptions">14 &mdash; Inscriptions & Seals</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -280,14 +296,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Baꜥal</strong> (<em>baal</em>) — Rider of the Clouds · Lord of the Storm — belongs to the Canaanite tradition, where it is catalogued under the domain &quot;Storm God, Lord of the Heavens&quot;. The name means &quot;Canaanite storm and fertility god; the title &quot;Lord&quot; (baʿlu) was also applied to local deities&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>Baꜥal is the <strong>storm made king</strong>. In a land where rain is life and drought is death, he is the deity who rides the clouds, shatters the sea-monster, and opens his palace windows so that the rains may fall. He is young, vigorous, and hungry for a throne — yet even his kingship depends on the older god Ēl. The Baꜥal Cycle is the great myth of his rise, death, and return.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Baꜥal</strong> and serves its temple at <a class="scholars-ext" href="https://xn--baal-re8o.com" rel="noopener noreferrer" target="_blank">baꜥal.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>baal</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">KTU (Ugaritic texts).</li><li id="src-overview-2">Corpus Inscriptionum Semiticarum, Académie des Inscriptions et Belles-Lettres, Paris, 1881. <a class="scholars-ext" href="https://aibl.fr/travaux/le-cabinet-du-corpus-inscriptionum-semiticarum/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-overview-3">Coogan, Stories from Ancient Canaan.</li></ol></div>
     </div>
 </section>
 
@@ -295,14 +310,20 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Ugaritic as <strong>𐎁𐎓𐎍</strong>. Etymologically it means &quot;Canaanite storm and fertility god; the title &quot;Lord&quot; (baʿlu) was also applied to local deities&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The reconstructed proto-form is <em>baʿl-</em> (proto-afro-asiatic, &quot;lord, owner, husband&quot;). From Common Semitic baʿlu, &quot;lord&quot;; the pharyngeal is written with Egyptian Ain (ꜥ) as the only registrable Unicode workaround</p>
+<p>Cognate forms across related languages:</p>
+<ul class="scholars-list"><li><strong>בַּעַל (Baʿal)</strong> (Hebrew)</li><li><strong>𐤁𐤏𐤋 (Bʿl)</strong> (Phoenician)</li><li><strong>بَعْل (Baʿl)</strong> (Arabic)</li></ul>
+<p>The ASCII form <em>baal</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Baꜥal</strong> recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>b</strong> → <strong>B</strong> — Capital beta</li><li><strong>a</strong> → <strong>a</strong> — Same</li><li><strong>a</strong> → <strong>ꜥa</strong> — Egyptian Ain (ꜥ) used as the only DNS-registrable stand-in for Semitic ʿayin, followed by the vowel present in the Unicode restoration</li><li><strong>l</strong> → <strong>l</strong> — Same</li></ul>
+<p>Attested and derived spellings of the name:</p>
+<ul class="scholars-list"><li><strong>Baʿal</strong> — ideal form: Ugaritic/Phoenician ʿayin (ʿ) is the ideal consonant, but is rejected by the DNS root zone</li><li><strong>baꜥal</strong> — owned form: Lowercase owned form</li><li><strong>Baál</strong> — scholarly variant: Stress-only alternate transliteration (previous Phoenician entry)</li></ul>
+<p>The project holds the domain <strong>baꜥal.com</strong> (xn--baal-re8o.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">KTU (Ugaritic texts).</li><li id="src-the-name-2">Corpus Inscriptionum Semiticarum, Académie des Inscriptions et Belles-Lettres, Paris, 1881. <a class="scholars-ext" href="https://aibl.fr/travaux/le-cabinet-du-corpus-inscriptionum-semiticarum/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -310,14 +331,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/baʕ.al/</strong> — Ugaritic/Phoenician Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>ba-</strong> — Plain voiced bilabial [b] plus open [a]; the word means &#39;lord, owner, husband&#39; across Semitic languages.</li><li><strong>-ʕal</strong> — Voiced pharyngeal fricative [ʕ] plus [a] and [l]. The pharyngeal is the signature consonant; we render it with Egyptological Ain (ꜥ) for registrability.</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;BAH-ahl&#39; — the middle consonant is a deep, throaty &#39;ʿ&#39; (like Arabic ع), not a glottal stop or silent letter.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Ugaritic</strong> — 𐎁𐎓𐎍 (bʿl), &#39;lord&#39;; as divine name often paired with Hadad/Haddu, the storm/thunder god</li><li><strong>Hebrew</strong> — בַּעַל (Baʿal), &#39;lord, husband&#39;; later a polemical name for Canaanite gods</li><li><strong>Akkadian</strong> — Adad/Hadad (dIM), the storm god with whom Baꜥal was equated</li></ul>
+<p>Baꜥal is technically a title (&#39;Lord&#39;) that became a name. The ideal form includes Semitic ʿayin, which is blocked at the DNS root; the Egyptological Ain (ꜥ) is the registrable compromise. The name is Tier 2 because it preserves the ʿayin as a distinctive phoneme but carries no stress or length mark. In texts he is often &#39;Baꜥlu-Haddu&#39; or simply the &#39;Rider on the Clouds.&#39;</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">KTU (Ugaritic texts).</li></ol></div>
     </div>
 </section>
 
@@ -325,14 +349,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Ugaritic as <strong>𐎁𐎓𐎍</strong> — Northwest Semitic cuneiform alphabet, attested Late Bronze Age, c. 1400–1200 BCE, in Ugarit (modern Ras Shamra, Syria). The script is written left-to-right.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Baꜥal</em> (Ugaritic alphabetic cuneiform), giving the normalized reading /ˈbaʕlu/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The name is written 𐎁𐎓𐎍 in the Ugaritic cuneiform alphabet.</li><li>Ugaritic ʿayin is rendered with Egyptological Ain (ꜥ) for DNS registrability.</li><li>Long vowels are reconstructed from Hebrew and Akkadian cognates and marked with macrons.</li><li>The Unicode restoration Baꜥal is registrable in .com; the Ugaritic cuneiform form is not supported in the .com IDN table.</li></ul>
+<p>Ugaritic writes the name 𐎁𐎓𐎍 (b-ʿ-l), literally &#39;lord.&#39; The middle sign is ʿayin, a voiced pharyngeal fricative. Because Semitic ʿayin is blocked at the DNS root, PUNYCODEX renders it with the Egyptological Ain (ꜥ / U+A724). In many contexts the name is an appellative rather than a personal name; at Ugarit the storm god is often called Baꜥlu-Haddu.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Corpus Inscriptionum Semiticarum, Académie des Inscriptions et Belles-Lettres, Paris, 1881. <a class="scholars-ext" href="https://aibl.fr/travaux/le-cabinet-du-corpus-inscriptionum-semiticarum/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-original-script-2">Coogan, Stories from Ancient Canaan.</li><li id="src-original-script-3">Johannes C. de Moor, An Anthology of Religious Texts from Ugarit, Brill, Leiden, 1987.</li><li id="src-original-script-4">KTU².</li><li id="src-original-script-5">Smith, The Ugaritic Baal Cycle.</li><li id="src-original-script-6">Ugaritic Textual Corpus, Ras Shamra–Ugarit corpus (KTU / CUSAS), 1200 BCE. <a class="scholars-ext" href="https://www.ancientneareast.net/ugarit-ras-shamra/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -340,14 +365,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>Baꜥal is the <strong>storm made king</strong>. In a land where rain is life and drought is death, he is the deity who rides the clouds, shatters the sea-monster, and opens his palace windows so that the rains may fall. He is young, vigorous, and hungry for a throne — yet even his kingship depends on the older god Ēl. The Baꜥal Cycle is the great myth of his rise, death, and return.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Storm and Thunder</h3>
+<p>His voice is thunder, his weapon lightning; he gathers clouds, wind, and rain around his chariot.</p>
+<h3 class="scholars-h3">Lord of Mount Zaphon</h3>
+<p>His cedar palace stands on the mountain of the north, the axis mundi from which he governs the cosmos.</p>
+<h3 class="scholars-h3">Fertility of Field and Flock</h3>
+<p>When he lives, bread, wine, and oil abound; when he descends to Mot, the land withers.</p>
+<h3 class="scholars-h3">Divine Warrior</h3>
+<p>He defeats Yamm, the primordial Sea, and shatters the seven-headed serpent Lotan.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Corpus Inscriptionum Semiticarum, Académie des Inscriptions et Belles-Lettres, Paris, 1881. <a class="scholars-ext" href="https://aibl.fr/travaux/le-cabinet-du-corpus-inscriptionum-semiticarum/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -355,14 +385,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Baꜥal concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Bull</strong> — His father&#39;s animal and a sign of fertility and storm power</li><li><strong>Lightning club</strong> — The divine weapon forged by Kothar-wa-Ḫasīs</li><li><strong>Window</strong> — The palace window through which Baꜥal&#39;s thunder and rain go forth to the world</li><li><strong>Cloud chariot</strong> — His vehicle, the storm cloud itself</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">KTU (Ugaritic texts).</li></ol></div>
     </div>
 </section>
 
@@ -370,14 +398,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>The Ugaritic Baꜥal Cycle (KTU 1.1–1.6) is the central myth of Canaanite religion. It tells how Baꜥal wins kingship from the chaotic Sea, builds his palace, confronts Death, and returns to bring back the rains. The cycle is a seasonal drama of drought and renewal, but also a political statement about divine legitimacy.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Baꜥal and Yamm (The Baal Cycle)</h3>
+<p>Ēl grants kingship to Yamm, the Sea, who sends messengers demanding that Baꜥal be delivered as a slave. Baꜥal refuses. The craftsman god Kothar-wa-Ḫasīs forges two clubs, Yagrush (&#39;Chaser&#39;) and Ayamur (&#39;Driver&#39;). With them Baꜥal strikes Yamm on the skull and scatters the chaotic waters, claiming the throne for himself (KTU 1.2 iv).<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Palace on Zaphon (The Baal Cycle)</h3>
+<p>Victorious, Baꜥal still has no palace. He sends ꜥAnat to petition Ēl, but it is Asherah who finally secures permission. Kothar-wa-Ḫasīs builds a cedar palace on Mount Zaphon. Baꜥal hesitates over a window — it will let his voice out, but it may also let Death in. He opens it, and his thunder resounds across the earth (KTU 1.3–1.4).</p>
+<h3 class="scholars-h3">Descent into Mot (The Baal Cycle)</h3>
+<p>Death, personified as Mot, invites Baꜥal to the underworld. Baꜥal descends with his clouds, winds, and rains; the earth dries up. His sisters ꜥAnat and Aštart mourn him, and ꜥAnat destroys Mot, scattering his body like seed. Baꜥal returns, the rains resume, and fertility is restored (KTU 1.5–1.6).</p>
+<h3 class="scholars-h3">Protector of Ugarit (Cult)</h3>
+<p>A ritual prayer from Ugarit (KTU 1.119) invokes Baꜥal to drive the enemy from the city gates and walls. Votive anchors from his temple show his importance to seafarers; having conquered Yamm, he protects those who sail the waters he once defeated.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Corpus Inscriptionum Semiticarum, Académie des Inscriptions et Belles-Lettres, Paris, 1881. <a class="scholars-ext" href="https://aibl.fr/travaux/le-cabinet-du-corpus-inscriptionum-semiticarum/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-mythology-2">Coogan, Stories from Ancient Canaan.</li></ol></div>
     </div>
 </section>
 
@@ -385,14 +418,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Baꜥal is inseparable from the older West Semitic storm god Hadad/Haddu; in texts and inscriptions the two names are often combined as Baꜥal-Haddu. In Mesopotamia he was equated with Adad (dIM), and in Egypt he influenced the Levantine storm god imported during the New Kingdom. The Greeks saw in him a Near Eastern Zeus, a sky-storm king, though they did not directly worship him. In the Hebrew Bible, Baꜥal became the archetype of apostasy, the &#39;false god&#39; opposed by Elijah on Mount Carmel. Later Jewish and Christian tradition demonized the name, turning &#39;Baal&#39; into a byword for idolatry and, in medieval occultism, for a class of demons.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include <a class="scholars-xlink" href="/sites/enlil/">Enlīl</a>, <a class="scholars-xlink" href="/sites/oya/">Ọya</a>, <a class="scholars-xlink" href="/sites/perkunas/">Perkūnas</a>, <a class="scholars-xlink" href="/sites/shango/">Ṣàngó</a>, <a class="scholars-xlink" href="/sites/thor/">Þórr</a>, and <a class="scholars-xlink" href="/sites/trengtreng/">Trengtreng</a>, each linked through thunder / storm sovereignty.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">KTU (Ugaritic texts).</li></ol></div>
     </div>
 </section>
 
@@ -400,14 +431,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>No Canaanite name was more reviled or more enduring than Baꜥal. The prophets of Israel spent generations attacking his cult, yet his imagery — the storm god who rides the clouds, defeats the sea, and sends rain — was quietly absorbed into the figure of Yahweh. In the New Testament, Beelzebub (&#39;Lord of the Flies,&#39; probably a distortion of Baꜥal-Zebul, &#39;Prince Baꜥal&#39;) becomes a name for Satan. In modern fantasy and occult literature, Baal persists as a demon-king. But beneath the polemic remains the old Levantine truth: a god of storm and fertility whose absence means drought and whose return means life.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">KTU (Ugaritic texts).</li></ol></div>
     </div>
 </section>
 
@@ -415,14 +443,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The Temple of Baal at Ugarit, excavated by Claude Schaeffer, yielded stelae, votive anchors, and the Baʿal Cycle tablets (KTU 1.1–1.6). The Karatepe bilingual pairs Baʿal with King Azatiwada in Phoenician and Luwian. At Palmyra the great Temple of Baal-Shamin dominated the city; at Carthage, Baʿal-Hammon received child sacrifice in the tophet sanctuary. Hazor, Megiddo, and Mount Carmel provide Levantine cultic contexts attacked by biblical polemic.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">KTU (Ugaritic texts).</li></ol></div>
     </div>
 </section>
 
@@ -430,120 +455,94 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Baꜥal given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> KTU (Ugaritic texts).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Corpus Inscriptionum Semiticarum, Académie des Inscriptions et Belles-Lettres, Paris, 1881. <a class="scholars-ext" href="https://aibl.fr/travaux/le-cabinet-du-corpus-inscriptionum-semiticarum/" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Coogan, Stories from Ancient Canaan.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Smith, The Ugaritic Baal Cycle.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> De Moor, The Seasonal Pattern in the Ugaritic Myth of Baʿlu.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Wyatt, Religious Texts from Ugarit.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> KTU 1.1–1.6 (Ugaritic Baal Cycle).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Karatepe bilingual inscription (Phoenician Baal and Azatiwada).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Hebrew Bible, Psalm 29 (storm theophany over the waters).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> Hebrew Bible, 1 Kings 18 (Elijah and the prophets of Baal on Carmel).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">KTU (Ugaritic texts).</li><li id="src-scholarly-sources-2">Corpus Inscriptionum Semiticarum, Académie des Inscriptions et Belles-Lettres, Paris, 1881. <a class="scholars-ext" href="https://aibl.fr/travaux/le-cabinet-du-corpus-inscriptionum-semiticarum/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-3">Coogan, Stories from Ancient Canaan.</li><li id="src-scholarly-sources-4">Smith, The Ugaritic Baal Cycle.</li><li id="src-scholarly-sources-5">De Moor, The Seasonal Pattern in the Ugaritic Myth of Baʿlu.</li><li id="src-scholarly-sources-6">Wyatt, Religious Texts from Ugarit.</li><li id="src-scholarly-sources-7">KTU 1.1–1.6 (Ugaritic Baal Cycle).</li><li id="src-scholarly-sources-8">Karatepe bilingual inscription (Phoenician Baal and Azatiwada).</li><li id="src-scholarly-sources-9">Hebrew Bible, Psalm 29 (storm theophany over the waters).</li><li id="src-scholarly-sources-10">Hebrew Bible, 1 Kings 18 (Elijah and the prophets of Baal on Carmel).</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="ugaritic-tablets">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Ugaritic Tablets</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Baꜥal dominates the largest surviving Ugaritic composition, the six-tablet Baꜥal Cycle (KTU 1.1–1.6, copied by the scribe Ilimilku in the 14th–13th century BCE). It narrates his combat with <a class="scholars-xlink" href="/sites/yam/">Yām</a> (KTU 1.2), the building of his palace on Mount Ṣaphon with the contested window (KTU 1.3–1.4), and his death at the hands of <a class="scholars-xlink" href="/sites/mot/">Mōt</a>, his mourning by <a class="scholars-xlink" href="/sites/anat/">ꜥAnat</a>, and his return (KTU 1.5–1.6).<sup class="scholars-cite"><a href="#src-ugaritic-tablets-1">[1]</a></sup></p>
+<p>Beyond the cycle, KTU 1.119 preserves a prayer to &quot;Baꜥal of Ugarit&quot; to drive an enemy from the city&#39;s gates, and the god lists and ritual tablets (KTU 1.47, 1.118, 1.148) repeatedly enumerate &quot;Baꜥal of Ṣaphon&quot; (bʿl ṣpn) among the recipients of royal sacrifice. Administrative tablets recording offerings and temple personnel show the myth anchored in daily cult, and inscribed votive anchors from his temple link the texts to practice.<sup class="scholars-cite"><a href="#src-ugaritic-tablets-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-ugaritic-tablets-1">Smith, The Ugaritic Baal Cycle, vol. 1.</li><li id="src-ugaritic-tablets-2">Wyatt, Religious Texts from Ugarit, 2nd ed.: KTU 1.119; 1.47; 1.118; 1.148.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="tanakh-references">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Tanakh References</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>No Canaanite deity is named more often — or more polemically — in the Tanakh. The narrative set piece is 1 Kings 18: Elijah confronts the 450 prophets of Baal on Mount Carmel over whose god answers with fire and rain. Judges 2:11–13 and 6:25–32 (Gideon/Jerubbaal cuts down his father&#39;s altar of Baal), Numbers 25 (Baal-Peor), and 2 Kings 10:18–28 (Jehu&#39;s purge of Baal&#39;s temple in Samaria) mark the cult as the archetypal apostasy.<sup class="scholars-cite"><a href="#src-tanakh-references-1">[1]</a></sup></p>
+<p>The prophets sharpen the polemic: Hosea 2 anticipates a day when Israel will no longer call YHWH &quot;my Baal&quot; (Hosea 2:16–18); Jeremiah denounces the Tophet fires &quot;which I did not command&quot; (Jeremiah 19:5; cf. 2:8, 23); Zephaniah 1:4 vows to cut off &quot;every remnant of Baal&quot; from Jerusalem. Theophoric royal names — Eshbaal, Meribbaal, Jerubbaal, later bowdlerized to Ishbosheth and Mephibosheth — show the name&#39;s once-neutral currency.<sup class="scholars-cite"><a href="#src-tanakh-references-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-tanakh-references-1">Hebrew Bible, 1 Kings 18; Judges 2:11–13; 6:25–32; Numbers 25; 2 Kings 10:18–28; Hosea 2; Jeremiah 19:5; Zephaniah 1:4.</li><li id="src-tanakh-references-2">Day, Yahweh and the Gods and Goddesses of Canaan.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="inscriptions">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Inscriptions & Seals</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Phoenician and Punic epigraphy preserves Baꜥal as title and god across a millennium. The Yehimilk inscription from Byblos (KAI 4, 10th century BCE) names Baꜥal-shamem, &quot;Lord of the Heavens&quot;; the Kilamuwa stele from Zincirli (KAI 24) invokes Baꜥal-Semed and Baꜥal-Hamman; the Karatepe bilingual (KAI 26) equates Phoenician Baꜥal with the Luwian storm god Tarhunza.<sup class="scholars-cite"><a href="#src-inscriptions-1">[1]</a></sup></p>
+<p>In the Punic west, thousands of votive stelae from the tophets of Carthage and related sites (the CIS I corpus) are dedicated &quot;to the lord, to Baꜥal-Ḥammon,&quot; usually paired with the goddess Tanit and recording vows by named individuals — the single largest epigraphic dossier for any Canaanite cult. At Ugarit itself, inscribed votive anchors from the Baꜥal temple and the Baꜥal au foudre stela tie the god of the tablets to stone and bronze.<sup class="scholars-cite"><a href="#src-inscriptions-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-inscriptions-1">Donner &amp; Röllig, Kanaanäische und aramäische Inschriften (KAI): KAI 4; 24; 26.</li><li id="src-inscriptions-2">Gibson, Textbook of Syrian Semitic Inscriptions, vol. 3 (Phoenician); Corpus Inscriptionum Semiticarum I (Punic tophet stelae).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Baꜥal is the god of the necessary storm. He does not create the world; he saves it from chaos, builds a house for his voice, and dies so that the cycle of rain may continue. His mythology is not about transcendence but about recurrence — the eternal return of the waters that make civilization possible.</p>
+<p>In a warming world, Baꜥal&#39;s story takes on new weight. The storm is no longer merely symbolic; it is the weather that either nourishes or destroys. To remember Baꜥal is to remember that divine kingship, in the ancient imagination, was bound to the rains. The health of the cosmos and the legitimacy of the king rose and fell together. That is a theology we have not outgrown, however much we have renamed it.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">KTU (Ugaritic texts).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="ugaritic-tablets">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Ugaritic Tablets</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Ugaritic Tablets →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="tanakh-references">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Tanakh References</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Tanakh References →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="inscriptions">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Inscriptions & Seals</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Inscriptions & Seals →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">17</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -581,6 +580,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'baal';
@@ -614,14 +748,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -715,6 +841,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -726,18 +853,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -749,6 +877,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -793,6 +923,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

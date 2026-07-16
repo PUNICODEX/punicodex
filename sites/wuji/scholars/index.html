@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,11 +279,12 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#daoist-canon">14 &mdash; Daoist Canon (Daozang)</a></li>
-<li><a href="#yijing">15 &mdash; Yijing & Hexagrams</a></li>
-<li><a href="#neidan">16 &mdash; Inner Alchemy (Neidan)</a></li>
+<li><a href="#daoist-canon">12 &mdash; Daoist Canon (Daozang)</a></li>
+<li><a href="#yijing">13 &mdash; Yijing & Hexagrams</a></li>
+<li><a href="#neidan">14 &mdash; Inner Alchemy (Neidan)</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -280,14 +296,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Wújí</strong> (<em>wuji</em>) — Limitless, Ultimate Nothing · The primordial state of emptiness — belongs to the Daoist tradition, where it is catalogued under the domain &quot;Limitless, Ultimate Nothing&quot;. The name means &quot;The primordial state of emptiness&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p><strong>Wújí</strong> is the boundless before the bounded, the empty circle before the diagram is drawn. In Zhou Dunyi&#39;s cosmology it precedes Tàijí; in Daoist meditation it names the state of no-limit, no-position, no-preference from which the ten thousand things arise. It is not nihilistic emptiness but a plenum of undifferentiated potential — the silence that contains every possible note.</p>
+<p>To think about Wújí is to practice standing at the edge of language, where names have not yet been attached to things.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Wújí</strong> and serves its temple at <a class="scholars-ext" href="https://xn--wj-oja4c.com" rel="noopener noreferrer" target="_blank">wújí.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>wuji</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Zhou Dunyi, Taijitu shuo.</li><li id="src-overview-2">Laozi, Daodejing. <a class="scholars-ext" href="https://ctext.org/dao-de-jing" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-overview-3">Zhuangzi, Zhuangzi; Chinese Text Project, 300 BCE. <a class="scholars-ext" href="https://ctext.org/zhuangzi" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -295,14 +311,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Chinese characters as <strong>無極</strong>. Etymologically it means &quot;The primordial state of emptiness&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The ASCII form <em>wuji</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Wújí</strong> recovers the stress accent of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>w</strong> → <strong>W</strong> — Same, capitalized</li><li><strong>u</strong> → <strong>ú</strong> — Second tone</li><li><strong>j</strong> → <strong>j</strong> — Same</li><li><strong>i</strong> → <strong>í</strong> — Second tone</li></ul>
+<p>The project holds the domain <strong>wújí.com</strong> (xn--wj-oja4c.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Zhou Dunyi, Taijitu shuo.</li><li id="src-the-name-2">Laozi, Daodejing. <a class="scholars-ext" href="https://ctext.org/dao-de-jing" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -310,14 +327,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/u˧˥ tɕi˧˥/</strong> — Modern Standard Mandarin (Pinyin).<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>wú</strong> — Syllable beginning with labio-velar glide [w] (written &#39;w&#39; in Pinyin), high back rounded vowel [u], and Tone 2 (rising, ˧˥).</li><li><strong>jí</strong> — Syllable with unaspirated alveolo-palatal affricate [tɕ], high front vowel [i], and Tone 2 (rising, ˧˥). Pinyin &#39;j&#39; is always [tɕ] before front vowels.</li></ul>
+<p>For the modern speaker, the closest approximation is: WOO-JEE — both syllables carry a rising tone (mid to high), like a gentle question on each half.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Traditional</strong> — 無極</li><li><strong>Simplified</strong> — 无极</li><li><strong>Wade-Giles</strong> — wu²-chi²</li><li><strong>Related terms</strong> — 太極 tàijí (supreme ultimate); 道 dào (the Way); 無極而太極 wújí ér tàijí</li></ul>
+<p>無極 (Wújí) means &#39;Limitless&#39; or &#39;Ultimate Nothing&#39;, the undifferentiated state before the emergence of Tàijí in Zhou Dunyi&#39;s Taijitu shuo. The Modern Standard Mandarin reading is wú (Tone 2) + jí (Tone 2), per the Hanyu Pinyin scheme and the Unihan Database (kMandarin). Baxter &amp; Sagart (2014) reconstruct 無 as <em>ma (GSR 0103a, &#39;not have&#39;) and 極 as </em>[g](r)ək (GSR 0910e, &#39;extreme&#39;). The Unicode restoration Wújí preserves the parallel rising tones of both syllables.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Zhou Dunyi, Taijitu shuo.</li></ol></div>
     </div>
 </section>
 
@@ -325,14 +345,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Chinese characters as <strong>無極</strong> — Hanzi (Sino-Tibetan), attested Oracle-bone – present, c. 1200 BCE –, in China. The script is written left-to-right; traditional top-to-bottom.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Wújí</em> (Hanyu Pinyin with tone mark), giving the normalized reading /u˧˥ tɕi˧˥/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The name is written with the Chinese characters 無極.</li><li>Each character is a logogram that encodes meaning and historical pronunciation.</li><li>Hanyu Pinyin with tone marks preserves Mandarin pronunciation; the ASCII form loses tone.</li><li>The Unicode restoration Wújí is the registrable form because hanzi are outside the .com IDN table.</li></ul>
+<p>The original script is 無極 in traditional Chinese and 无极 in simplified. The Modern Standard Mandarin reading is <em>Wújí</em> (Tone 2 + Tone 2), per Hanyu Pinyin and the Unihan Database. The registrable form uses tone-marked Pinyin; the hanzi are displayed in the Original Script card. Baxter &amp; Sagart reconstruct 無 as <em>ma and 極 as </em>[g](r)ək.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Dao De Jing (Tao Te Ching), Laozi; Chinese Text Project, 500 BCE. <a class="scholars-ext" href="https://ctext.org/dao-de-jing" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-original-script-2">Daozang (Daoist Canon), Ming Zhengtong Daozang, 1445. <a class="scholars-ext" href="https://www2.kenyon.edu/Depts/Religion/Fac/Adler/Reln270/Daozang.htm" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-original-script-3">Karlgren, Grammata Serica Recensa.</li><li id="src-original-script-4">Pulleyblank, Lexicon of Reconstructed Pronunciation.</li><li id="src-original-script-5">Schuessler, ABC Etymological Dictionary of Old Chinese.</li></ol></div>
     </div>
 </section>
 
@@ -340,14 +361,20 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p><strong>Wújí</strong> is the boundless before the bounded, the empty circle before the diagram is drawn. In Zhou Dunyi&#39;s cosmology it precedes Tàijí; in Daoist meditation it names the state of no-limit, no-position, no-preference from which the ten thousand things arise. It is not nihilistic emptiness but a plenum of undifferentiated potential — the silence that contains every possible note.</p>
+<p>To think about Wújí is to practice standing at the edge of language, where names have not yet been attached to things.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Boundless Void</h3>
+<p>No center, no edge, no direction: Wújí is the canvas on which all distinctions are later painted.</p>
+<h3 class="scholars-h3">Pre-Cosmic Stillness</h3>
+<p>Before movement and stillness differentiate, there is a quiet so complete that even &#39;silence&#39; is too noisy a word.</p>
+<h3 class="scholars-h3">Source of Tàijí</h3>
+<p>Wújí is not a rival to Tàijí but its ground; the limitless opens naturally into the supreme ultimate, and the supreme ultimate never leaves the limitless.</p>
+<h3 class="scholars-h3">Daoist Meditation</h3>
+<p>Meditative and martial traditions use Wújí as a posture of total neutrality — empty, alert, and ready to become any response.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Laozi, Daodejing. <a class="scholars-ext" href="https://ctext.org/dao-de-jing" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -355,14 +382,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Wújí concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>The empty circle</strong> — The standard visual representation of Wújí — a boundary with nothing inside it</li><li><strong>Primordial mist</strong> — The undifferentiated <em>hundun</em> or chaos that precedes cosmic order</li><li><strong>The uncarved block</strong> — <em>Pu</em>, the uncarved wood that is still capable of becoming any implement</li><li><strong>The number one</strong> — The pre-dual unity from which yin and yang are differentiated</li><li><strong>The meditation stance</strong> — The Wújí posture in internal arts: standing without agenda</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Zhou Dunyi, Taijitu shuo.</li></ol></div>
     </div>
 </section>
 
@@ -370,14 +395,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Wújí belongs to cosmogony rather than narrative. Its myths are stories about the origin of differentiation, told by philosophers, alchemists, and meditators across two millennia.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Wújí ér Tàijí (Zhou Dunyi, Taijitu shuo)</h3>
+<p>Zhou Dunyi&#39;s famous line, &#39;Wújí ér Tàijí,&#39; can be translated as &#39;The Limitless, and yet the Supreme Ultimate.&#39; The phrase caused centuries of debate: does Wújí come before Tàijí, or are they two names for the same reality? Zhu Xi, the great synthesizer, argued that Wújí is simply the name for Tàijí&#39;s lack of form.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Valley Spirit (Daodejing)</h3>
+<p>Laozi praises emptiness as the source of usefulness: &#39;Thirty spokes share one hub; it is the empty center that makes the wheel useful.&#39; Wújí is the great empty center of the cosmos, the valley spirit that never runs dry.</p>
+<h3 class="scholars-h3">The North Sea and the Great Beginning (Zhuangzi)</h3>
+<p>The <em>Zhuangzi</em> delights in undermining fixed categories. In one passage it asks about the Great Beginning: &#39;In the beginning there was nothing; from nothing came the one; from the one came form; from form came things.&#39; Wújí is that &#39;nothing&#39; which is paradoxically generative.</p>
+<h3 class="scholars-h3">Refining the Elixir in Stillness (Neidan (Internal Alchemy))</h3>
+<p>Daoist internal alchemists sit in Wújí before beginning their practice. The posture is not laziness but a deliberate return to the pre-differentiated state, the better to let <em>jing</em>, <em>qi</em>, and <em>shen</em> reorganize themselves without the meddling of the discriminating mind.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Laozi, Daodejing. <a class="scholars-ext" href="https://ctext.org/dao-de-jing" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-mythology-2">Zhuangzi, Zhuangzi; Chinese Text Project, 300 BCE. <a class="scholars-ext" href="https://ctext.org/zhuangzi" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -385,14 +415,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Wújí overlaps with the Buddhist concept of <em>śūnyatā</em> (emptiness), and the two were often fused in later Chinese Buddhism, especially in Chan. Neo-Confucians borrowed Wújí from Daoist diagrams and reinterpreted it as the formless aspect of moral principle. In Western thought, Wújí has been compared to the Neoplatonic One beyond being, to Spinoza&#39;s substance, and to the quantum vacuum — though these analogies are loose and should not be pressed too hard. The common thread is the intuition that fullness and emptiness are not opposites but phases of a single reality.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Daoist tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/laozi/">Lǎozǐ</a> and <a class="scholars-xlink" href="/sites/yinyang/">Yīnyáng</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Zhou Dunyi, Taijitu shuo.</li></ol></div>
     </div>
 </section>
 
@@ -400,14 +428,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Wújí survives in names and practices. Wujiquan and Wuji standing meditation open many internal-arts sessions. The empty-circle motif appears in minimalist art, architecture, and graphic design as an emblem of potential. In popular culture, Wújí is the name of games, albums, martial-arts schools, and wellness brands — often used more for atmosphere than precision. Yet the underlying idea remains potent: before the first move, before the first word, there is a spaciousness that contains everything. Modern contemplative traditions, from mindfulness to certain psychotherapies, independently rediscover what Wújí named two thousand years ago.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Zhou Dunyi, Taijitu shuo.</li></ol></div>
     </div>
 </section>
 
@@ -415,14 +440,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>Like Tàijí, Wújí is primarily a textual and diagrammatic concept. Its classic formulation appears in Zhou Dunyi&#39;s <em>Taijitu shuo</em> and the commentaries of Zhu Xi, transmitted through Song and Ming woodblock editions. Daoist internal-alchemical texts from the Tang through Qing dynasties return to Wújí as a meditative stage. Archaeologically, the empty circle appears on steles, talismans, and altar cloths, though the concept itself is not tied to a single excavation site.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Zhou Dunyi, Taijitu shuo.</li></ol></div>
     </div>
 </section>
 
@@ -430,120 +452,91 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Wújí given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Zhou Dunyi, Taijitu shuo.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Laozi, Daodejing. <a class="scholars-ext" href="https://ctext.org/dao-de-jing" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Zhuangzi, Zhuangzi; Chinese Text Project, 300 BCE. <a class="scholars-ext" href="https://ctext.org/zhuangzi" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Zhu Xi, Zhouyi benyi / commentary tradition.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Needham, Science and Civilisation in China.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Graham, Disputers of the Tao.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Baxter &amp; Sagart, Old Chinese Reconstruction. <a class="scholars-ext" href="http://ocbaxtersagart.lsait.lsa.umich.edu/" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Unihan Database (Unicode Consortium). <a class="scholars-ext" href="https://www.unicode.org/charts/unihan.html" rel="noopener noreferrer" target="_blank">Full text</a></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Zhou Dunyi, Taijitu shuo.</li><li id="src-scholarly-sources-2">Laozi, Daodejing. <a class="scholars-ext" href="https://ctext.org/dao-de-jing" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-3">Zhuangzi, Zhuangzi; Chinese Text Project, 300 BCE. <a class="scholars-ext" href="https://ctext.org/zhuangzi" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-4">Zhu Xi, Zhouyi benyi / commentary tradition.</li><li id="src-scholarly-sources-5">Needham, Science and Civilisation in China.</li><li id="src-scholarly-sources-6">Graham, Disputers of the Tao.</li><li id="src-scholarly-sources-7">Baxter &amp; Sagart, Old Chinese Reconstruction. <a class="scholars-ext" href="http://ocbaxtersagart.lsait.lsa.umich.edu/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-8">Unihan Database (Unicode Consortium). <a class="scholars-ext" href="https://www.unicode.org/charts/unihan.html" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="daoist-canon">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Daoist Canon (Daozang)</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The term <em>wújí</em> enters the Daoist corpus from the <em>Daodejing</em> itself: chapter 28 enjoins the adept to &#39;know the white yet keep to the black,&#39; holding fast to constant virtue and thereby &#39;returning to the limitless&#39; (<em>fugui yu wuji</em>).<sup class="scholars-cite"><a href="#src-daoist-canon-1">[1]</a></sup> From that single occurrence the canon elaborated the word in two directions: cosmologically, wuji names the unbounded pre-state of the Dao before differentiation; soteriologically, it names the adept&#39;s destination when the work of refinement is complete. The Ming <em>Zhengtong Daozang</em> (1445) transmits the word across meditation manuals, liturgies, and inner-alchemical treatises, and Daoist cosmogonies regularly place a stage of wuji at the head of the emanation sequence that ends with the ten thousand things.<sup class="scholars-cite"><a href="#src-daoist-canon-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-daoist-canon-1">Laozi, Daodejing, chapter 28: &#39;return to the limitless (wuji).&#39; <a class="scholars-ext" href="https://ctext.org/dao-de-jing" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-daoist-canon-2">Schipper &amp; Verellen (eds.), The Taoist Canon: A Historical Companion to the Daozang (University of Chicago Press, 2004).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="yijing">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Yijing & Hexagrams</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The received <em>Yijing</em> never uses the word <em>wújí</em>; the honest record begins with that absence. The <em>Xici zhuan</em> names <em>tàijí</em> — &#39;in change there is the Supreme Ultimate, which generates the two modes&#39; — but of any state beyond or before taiji the classic is silent.<sup class="scholars-cite"><a href="#src-yijing-1">[1]</a></sup> Wuji entered the <em>Yijing</em> tradition only in the eleventh century, when Zhou Dunyi opened his <em>Taijitu shuo</em> (Explanation of the Diagram of the Supreme Ultimate) with the contested phrase <em>wuji er taiji</em> — &#39;the Limitless, and yet the Supreme Ultimate.&#39; Zhu Xi, the great synthesizer, argued the words assert taiji&#39;s formlessness rather than a stage preceding it; critics heard a Daoist interpolation into Confucian cosmology. The quarrel fixed wuji permanently into the commentary tradition.<sup class="scholars-cite"><a href="#src-yijing-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-yijing-1">Yijing, Xici zhuan (Great Treatise appendix): &#39;In change there is the Supreme Ultimate (taiji), which generates the two modes.&#39; <a class="scholars-ext" href="https://ctext.org/book-of-changes" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-yijing-2">Zhou Dunyi, Taijitu shuo (Explanation of the Diagram of the Supreme Ultimate), 11th century.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="neidan">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Inner Alchemy (Neidan)</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Neidan manuals treat wuji as both the starting posture and the final stage of the work. Practically, the adept begins from stillness — standing or sitting in the &#39;wuji state,&#39; before movement has differentiated into <a class="scholars-xlink" href="/sites/yinyang/">yin and yang</a> — so that essence, qi, and spirit are gathered from an undivided ground.<sup class="scholars-cite"><a href="#src-neidan-1">[1]</a></sup> Teleologically, the standard ladder of refinement runs: refine essence into qi, qi into spirit, spirit back into emptiness, and finally &#39;refine emptiness to merge with the Dao,&#39; a last phase many authors explicitly describe as returning to wuji. Ming and Qing primers illustrate the round trip with diagram sequences that open with the empty circle of wuji and close with the adept&#39;s reabsorption into it, the cosmos of the body folded back into its formless source.<sup class="scholars-cite"><a href="#src-neidan-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-neidan-1">Pregadio (ed.), The Encyclopedia of Taoism (Routledge, 2008), entries on neidan and wuji.</li><li id="src-neidan-2">Despeux, Taoism and Self Knowledge: The Chart for the Cultivation of Perfection (Xiuzhen tu) (Brill, 2018).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Wújí is the permission slip to not yet be anything. In a world that rewards definition — what do you do, where do you stand, what do you believe — Wújí is the value of the unmarked state. It is the silence before the opinion, the blank page before the sketch, the open hand before it grasps.</p>
+<p>This is not a denial of form. The Daoist sage does not stay in Wújí; she lets forms arise and pass through it. Wújí is the home base to which one returns after every action, the awareness that no label ever exhausts what a thing is. To name a domain Wújí is almost a joke: the moment you name it, it is no longer Wújí. But it is also a serious gesture — a reminder that every web page, every brand, every word is born from the unnameable ground that precedes it.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Zhou Dunyi, Taijitu shuo.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="daoist-canon">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Daoist Canon (Daozang)</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Daoist Canon (Daozang) →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="yijing">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Yijing & Hexagrams</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Yijing & Hexagrams →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="neidan">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Inner Alchemy (Neidan)</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Inner Alchemy (Neidan) →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">17</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -581,6 +574,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'wuji';
@@ -614,14 +742,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -715,6 +835,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -726,18 +847,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -749,6 +871,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -793,6 +917,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,11 +279,12 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#cuneiform-sources">14 &mdash; Cuneiform Sources</a></li>
-<li><a href="#enuma-elish">15 &mdash; Enūma Eliš</a></li>
-<li><a href="#atra-hasis">16 &mdash; Atra-Ḫasīs</a></li>
+<li><a href="#cuneiform-sources">12 &mdash; Cuneiform Sources</a></li>
+<li><a href="#enuma-elish">13 &mdash; Enūma Eliš</a></li>
+<li><a href="#atra-hasis">14 &mdash; Atra-Ḫasīs</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -280,14 +296,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Enlīl</strong> (<em>enlil</em>) — Phonological Reconstruction Hub — studying the pronunciation of Enlil (Sumerian EN.LIL) — belongs to the Mesopotamian tradition, where it is catalogued under the domain &quot;Phonological Reconstruction, Wind, Air, Storms, Kingship&quot;. The name means &quot;Reconstruction node for the Sumerian/Akkadian deity Enlil: the macron marks a discussable vowel length, not a canonical spelling claim.&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>The name is written 𒂗𒇸. Standard Assyriology transliterates it as <strong>Enlil</strong>. But in the phonological grammar of Sumerian and Akkadian, the length of the second vowel remains an open question — and it is here, in the space between the written sign and the spoken sound, that this temple operates. This node of PÚNYCODEX is dedicated to the <strong>phonological reconstruction and didactic grammar</strong> of the ancient Near East. We mark vowel length not because it is certain, but because it is discussable. The macron is a question mark made visible.</p>
+<p>Enlīl is nevertheless the <strong>king of the Sumerian gods</strong>, the invisible sovereign whose breath is the wind and whose word is fate. He rules from the <strong>Ekur</strong>, the &#39;Mountain House&#39; at Nippur, the cosmic axis where heaven and earth meet. Storms are his messengers; kingship is his gift.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Enlīl</strong> and serves its temple at <a class="scholars-ext" href="https://xn--enll-sya.com" rel="noopener noreferrer" target="_blank">enlīl.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>enlil</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Electronic Text Corpus of Sumerian Literature, Oxford Oriental Institute, 1998. <a class="scholars-ext" href="https://etcsl.orinst.ox.ac.uk/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-overview-2">The Assyrian Dictionary of the Oriental Institute of the University of Chicago, 21 vols., Oriental Institute, Chicago (completed 2010), 1956. <a class="scholars-ext" href="https://isac.uchicago.edu/research/publications/assyrian-dictionary-oriental-institute-university-chicago" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-overview-3">Akkadisches Handwörterbuch, 3 vols., Harrassowitz, Wiesbaden (completed 1981), 1965.</li></ol></div>
     </div>
 </section>
 
@@ -295,14 +311,20 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Cuneiform as <strong>𒀭𒂗𒆤</strong>. Etymologically it means &quot;Reconstruction node for the Sumerian/Akkadian deity Enlil: the macron marks a discussable vowel length, not a canonical spelling claim.&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The reconstructed proto-form is <em>EN.LIL</em> (isolate, &quot;lord of the wind / air&quot;). Standard Assyriology transliterates the god as Enlil (𒀭𒂗𒇸). The Sumerian signs EN.LIL mean &#39;lord wind/air,&#39; and the Akkadian rendering is Ellil. The length of the second vowel is reconstructed from comparative and orthographic evidence, not explicitly encoded in the cuneiform; the macron on Enlīl is a pedagogical mark that makes that open question visible, not a claim of canonical spelling.</p>
+<p>Cognate forms across related languages:</p>
+<ul class="scholars-list"><li><strong>EN.LIL</strong> (Sumerian)</li><li><strong>Ellil</strong> (Akkadian)</li></ul>
+<p>The ASCII form <em>enlil</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Enlīl</strong> recovers the vowel length of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>e</strong> → <strong>E</strong> — Same, capitalized</li><li><strong>n</strong> → <strong>n</strong> — Same</li><li><strong>l</strong> → <strong>l</strong> — Same</li><li><strong>i</strong> → <strong>ī</strong> — Macron: a visible question mark — the length of Enlil&#39;s second vowel is discussable, not certain</li><li><strong>l</strong> → <strong>l</strong> — Same</li></ul>
+<p>Attested and derived spellings of the name:</p>
+<ul class="scholars-list"><li><strong>enlīl</strong> — owned form: Lowercase owned domain form</li><li><strong>Enlil</strong> — ASCII form: Standard unmarked Assyriological transliteration</li><li><strong>Ellil</strong> — scholarly variant: Akkadian variant reflecting late pronunciation</li></ul>
+<p>The project holds the domain <strong>enlīl.com</strong> (xn--enll-sya.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Electronic Text Corpus of Sumerian Literature, Oxford Oriental Institute, 1998. <a class="scholars-ext" href="https://etcsl.orinst.ox.ac.uk/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-the-name-2">The Assyrian Dictionary of the Oriental Institute of the University of Chicago, 21 vols., Oriental Institute, Chicago (completed 2010), 1956. <a class="scholars-ext" href="https://isac.uchicago.edu/research/publications/assyrian-dictionary-oriental-institute-university-chicago" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -310,14 +332,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/enˈliːl/</strong> — Sumerian Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>En-</strong> — Short [e] plus nasal [n] — the Sumerian &#39;lord,&#39; here bearing the full weight of kingship.</li><li><strong>-līl</strong> — Long [iː] followed by lateral [l] — the Sumerian word for &#39;wind&#39; or &#39;air,&#39; the invisible element that fills heaven and earth.</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;en-LEEL&#39; — the second syllable is drawn out, like a sustained breath across the plain.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Sumerian</strong> — 𒂗𒇸 (EN.LÍL), &#39;lord of the wind/air&#39; — the chief deity of the Sumerian pantheon</li><li><strong>Akkadian</strong> — Ellil, the Semitic rendering of the same theonym</li><li><strong>Cuneiform</strong> — 𒀭𒂗𒇸 (den-líl), with divine determinative</li></ul>
+<p>Enlīl is Tier 2 because the macron on the second i does not record a canonical Greek-style stress or a universally agreed long vowel. It is a pedagogical mark: a visible question that invites discussion about how the name was pronounced in Sumerian and Akkadian. Standard Assyriology writes Enlil; the Unicode form Enlīl belongs to PÚNYCODEX&#39;s phonological reconstruction hub.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Electronic Text Corpus of Sumerian Literature, Oxford Oriental Institute, 1998. <a class="scholars-ext" href="https://etcsl.orinst.ox.ac.uk/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -325,14 +350,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Cuneiform as <strong>𒀭𒂗𒆤</strong> — Sumero-Akkadian cuneiform, attested Sumerian / Old Babylonian, c. 2600–1600 BCE, in Nippur, Mesopotamia. The script is written left-to-right / top-to-bottom.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Enlīl</em> (Sumerian logogram + Akkadian scholarly), giving the normalized reading /ɛnˈliːl/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The name is written as the Sumerogram EN.LÍL (𒂗𒆤), literally &#39;lord of the wind/air&#39;.</li><li>The divine determinative 𒀭 (dingir) marks the name as a deity; it is silent in pronunciation.</li><li>In Akkadian scholarly tradition the long vowel is marked with a macron: Enlīl.</li><li>Enlīl was the chief god of the Sumerian pantheon, dwelling in the Ekur temple at Nippur.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Chicago Assyrian Dictionary (CAD), Enlil.</li><li id="src-original-script-2">ETCSL, Enlil texts.</li><li id="src-original-script-3">Jacobsen, The Treasures of Darkness.</li></ol></div>
     </div>
 </section>
 
@@ -340,14 +365,20 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>The name is written 𒂗𒇸. Standard Assyriology transliterates it as <strong>Enlil</strong>. But in the phonological grammar of Sumerian and Akkadian, the length of the second vowel remains an open question — and it is here, in the space between the written sign and the spoken sound, that this temple operates. This node of PÚNYCODEX is dedicated to the <strong>phonological reconstruction and didactic grammar</strong> of the ancient Near East. We mark vowel length not because it is certain, but because it is discussable. The macron is a question mark made visible.</p>
+<p>Enlīl is nevertheless the <strong>king of the Sumerian gods</strong>, the invisible sovereign whose breath is the wind and whose word is fate. He rules from the <strong>Ekur</strong>, the &#39;Mountain House&#39; at Nippur, the cosmic axis where heaven and earth meet. Storms are his messengers; kingship is his gift.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Wind</h3>
+<p>The air that animates the world and carries the voice of command across the Mesopotamian plain.</p>
+<h3 class="scholars-h3">The Ekur</h3>
+<p>The &#39;Mountain House&#39; at Nippur, the temple that anchors cosmic order in physical space.</p>
+<h3 class="scholars-h3">Kingship</h3>
+<p>The grantor of the me of kingship; no Sumerian city could rule without Enlīl&#39;s mandate.</p>
+<h3 class="scholars-h3">Storm and Decree</h3>
+<p>The thunderous voice that pronounces destinies and sends the destructive storm when order is violated.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">The Assyrian Dictionary of the Oriental Institute of the University of Chicago, 21 vols., Oriental Institute, Chicago (completed 2010), 1956. <a class="scholars-ext" href="https://isac.uchicago.edu/research/publications/assyrian-dictionary-oriental-institute-university-chicago" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -355,14 +386,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Enlīl concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Horned crown</strong> — The tiered crown of divine kingship, worn by Enlīl and the supreme gods</li><li><strong>Storm winds</strong> — The seven winds or destructive storms at his command</li><li><strong>Mountain</strong> — The Ekur, the cosmic mountain at Nippur that connects heaven and earth</li><li><strong>Bull</strong> — The strength and procreative power of the king of gods</li><li><strong>Scepter and crook</strong> — The emblems of legitimate authority and shepherd-kingship</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Electronic Text Corpus of Sumerian Literature, Oxford Oriental Institute, 1998. <a class="scholars-ext" href="https://etcsl.orinst.ox.ac.uk/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -370,14 +399,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Enlīl&#39;s myths are myths of <strong>sovereignty and consequence</strong>. He gives kingship, but he also sends the flood; he decrees fate, but he must bow to the assembly of the gods. His power is supreme within the Sumerian cosmos, yet it is not arbitrary — it is bound to the maintenance of order.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Enlīl and Ninlil (The Sacred Marriage)</h3>
+<p>The myth <em>Enlīl and Ninlil</em> tells how the young god was banished from Nippur for impregnating Ninlil by the canal. In the Underworld he meets her three times in disguise — as the gatekeeper, the river-man, and the ferryman — begetting three underworld deities: Nergal, Ninazu, and Enbilulu. The story explains the origin of the netherworld gods and the theological necessity that even the king of the air must descend into darkness to generate its powers.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Enlīl Sends the Deluge (The Flood)</h3>
+<p>In <em>Atrahasis</em>, the human race has grown too noisy and disturbed Enlīl&#39;s sleep. He persuades the divine council to send a flood to wipe them out. Only Enki&#39;s secret warning to Atrahasīs preserves life. After the flood, Enlīl accepts the compromise by which humanity is given death, disease, and stillbirth to keep numbers in check — a grim etiology of mortality.</p>
+<h3 class="scholars-h3">Enlīl and the Me (Destiny)</h3>
+<p>In <em>Enlil in the Ekur</em> and related hymnic texts, Enlīl is praised as the god who &#39;decrees destinies&#39; (<em>nam-tar</em>). The Sumerian king rules only because Enlīl has placed the crown upon his head; the city prospers only because Enlīl has confirmed its shepherd. Kings from Ur-Nammu to Hammurabi invoke Enlīl as the source of their legitimacy.</p>
+<h3 class="scholars-h3">Enlīl in the Enuma Elish (Transfer of Power)</h3>
+<p>In the Babylonian <em>Enuma Elish</em>, the older sky-god Anu yields authority to Enlīl/Ellil, who in turn grants kingship to Marduk after Marduk defeats Tiamat. The hymn proclaims Marduk&#39;s fifty names, many of which assimilate Enlīl&#39;s functions. This is the theological mechanism by which Babylon&#39;s local god becomes king of the cosmos.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">The Assyrian Dictionary of the Oriental Institute of the University of Chicago, 21 vols., Oriental Institute, Chicago (completed 2010), 1956. <a class="scholars-ext" href="https://isac.uchicago.edu/research/publications/assyrian-dictionary-oriental-institute-university-chicago" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-mythology-2">Akkadisches Handwörterbuch, 3 vols., Harrassowitz, Wiesbaden (completed 1981), 1965.</li></ol></div>
     </div>
 </section>
 
@@ -385,14 +419,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>The Unicode form <strong>Enlīl</strong> is a reconstruction node: standard Assyriology writes Enlil, while the macron makes visible the open question of vowel length. The Akkadians called him <em>Ellil</em> and continued to venerate him as king of the gods well into the first millennium BCE. The Assyrians identified their national god <em>Aššur</em> with Enlīl, so that the king of Assyria ruled by Enlīl-Aššur&#39;s mandate. In Hittite and Hurrian sources, Enlīl&#39;s functions were distributed among <em>Taru</em>, <em>Kumarbi</em>, and <em>Teššub</em>. Later Greek and Roman writers had no direct equivalent: Zeus/Jupiter overlaps in sovereignty, but Enlīl&#39;s specific association with wind, air, and the mountain temple has no precise Mediterranean counterpart.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include <a class="scholars-xlink" href="/sites/baal/">Baꜥal</a>, <a class="scholars-xlink" href="/sites/oya/">Ọya</a>, <a class="scholars-xlink" href="/sites/perkunas/">Perkūnas</a>, <a class="scholars-xlink" href="/sites/shango/">Ṣàngó</a>, <a class="scholars-xlink" href="/sites/thor/">Þórr</a>, and <a class="scholars-xlink" href="/sites/trengtreng/">Trengtreng</a>, each linked through thunder / storm sovereignty.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Electronic Text Corpus of Sumerian Literature, Oxford Oriental Institute, 1998. <a class="scholars-ext" href="https://etcsl.orinst.ox.ac.uk/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -400,14 +432,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Enlīl&#39;s legacy is the idea of <strong>legitimate kingship as a sacred mandate</strong>. The doctrine that the ruler derives authority from the chief god of the pantheon influenced Israelite, Persian, and later Christian theories of monarchy. The Ekur at Nippur remained a symbolic center long after political power shifted to Babylon and Assyria. In modern fantasy, Enlīl often appears as the storm-king, the patriarchal sky-father whose breath is the wind. PÚNYCODEX keeps the macron not as a settled fact but as an invitation: every visitor is invited into the philological conversation. The name still means: <strong>the authority that fills the air.</strong><sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Electronic Text Corpus of Sumerian Literature, Oxford Oriental Institute, 1998. <a class="scholars-ext" href="https://etcsl.orinst.ox.ac.uk/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -415,14 +444,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The Ekur sanctuary at Nippur — excavated by the University of Pennsylvania and later Iraqi teams — remains the central archaeological witness to Enlīl&#39;s cult. Its mud-brick ziggurat, temple platform, and surrounding tablet house yielded thousands of Sumerian hymns, royal inscriptions, and school texts invoking Enlīl as king of gods. Votive statuettes and foundation figurines from the site name him as the grantor of kingship to Ur-Nammu, Shulgi, and later Mesopotamian rulers.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Electronic Text Corpus of Sumerian Literature, Oxford Oriental Institute, 1998. <a class="scholars-ext" href="https://etcsl.orinst.ox.ac.uk/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -430,120 +456,91 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Enlīl given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Electronic Text Corpus of Sumerian Literature, Oxford Oriental Institute, 1998. <a class="scholars-ext" href="https://etcsl.orinst.ox.ac.uk/" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> The Assyrian Dictionary of the Oriental Institute of the University of Chicago, 21 vols., Oriental Institute, Chicago (completed 2010), 1956. <a class="scholars-ext" href="https://isac.uchicago.edu/research/publications/assyrian-dictionary-oriental-institute-university-chicago" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Akkadisches Handwörterbuch, 3 vols., Harrassowitz, Wiesbaden (completed 1981), 1965.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Black &amp; Green, Gods, Demons and Symbols of Ancient Mesopotamia.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Jacobsen, The Treasures of Darkness.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Kramer, Sumerian Literary Texts from Nippur.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Atrahasis.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Enuma Elish: The Babylonian Epic of Creation, Standard Babylonian version, 1200 BCE. <a class="scholars-ext" href="http://etana.org/node/581" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Sumerian Hymn to Enlil (ETCSL 1.2.1: Enlil in the Ekur as source of cosmic order).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> Anzu Epic (Akkadian/Sumerian: Anzu steals the Tablet of Destinies from Enlil).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-11">[11]</a></sup> Atrahasis (Akkadian Flood Story: Enlil sends the deluge to quiet humankind).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-12">[12]</a></sup> Code of Hammurabi prologue (invokes Enlil as the source of kingship over the land).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Electronic Text Corpus of Sumerian Literature, Oxford Oriental Institute, 1998. <a class="scholars-ext" href="https://etcsl.orinst.ox.ac.uk/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-2">The Assyrian Dictionary of the Oriental Institute of the University of Chicago, 21 vols., Oriental Institute, Chicago (completed 2010), 1956. <a class="scholars-ext" href="https://isac.uchicago.edu/research/publications/assyrian-dictionary-oriental-institute-university-chicago" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-3">Akkadisches Handwörterbuch, 3 vols., Harrassowitz, Wiesbaden (completed 1981), 1965.</li><li id="src-scholarly-sources-4">Black &amp; Green, Gods, Demons and Symbols of Ancient Mesopotamia.</li><li id="src-scholarly-sources-5">Jacobsen, The Treasures of Darkness.</li><li id="src-scholarly-sources-6">Kramer, Sumerian Literary Texts from Nippur.</li><li id="src-scholarly-sources-7">Atrahasis.</li><li id="src-scholarly-sources-8">Enuma Elish: The Babylonian Epic of Creation, Standard Babylonian version, 1200 BCE. <a class="scholars-ext" href="http://etana.org/node/581" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-9">Sumerian Hymn to Enlil (ETCSL 1.2.1: Enlil in the Ekur as source of cosmic order).</li><li id="src-scholarly-sources-10">Anzu Epic (Akkadian/Sumerian: Anzu steals the Tablet of Destinies from Enlil).</li><li id="src-scholarly-sources-11">Atrahasis (Akkadian Flood Story: Enlil sends the deluge to quiet humankind).</li><li id="src-scholarly-sources-12">Code of Hammurabi prologue (invokes Enlil as the source of kingship over the land).</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="cuneiform-sources">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Cuneiform Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Enlīl dominates the Sumerian literary corpus more thoroughly than any other deity. The Nippur tablet collections preserve hymns such as <em>Enlil in the Ekur</em>, myths including <em>Enlil and Ninlil</em> and <em>Enlil and Sud</em>, and the Sumerian forerunner of the Akkadian Anzu epic, in which the storm-bird steals the Tablet of Destinies from Enlīl&#39;s sanctuary.<sup class="scholars-cite"><a href="#src-cuneiform-sources-1">[1]</a></sup> Nearly all of this survives in Old Babylonian school copies from Nippur&#39;s scribal quarter — testimony to his temple&#39;s role as the seat of learning. Royal inscriptions from the Early Dynastic period to Hammurabi invoke him as the god who names kings and decrees fates, and the canonical god-list <em>An = Anum</em> fixes his place beside Anu at the head of the pantheon.<sup class="scholars-cite"><a href="#src-cuneiform-sources-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cuneiform-sources-1">Electronic Text Corpus of Sumerian Literature, Oxford Oriental Institute. <a class="scholars-ext" href="https://etcsl.orinst.ox.ac.uk/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-cuneiform-sources-2">Jacobsen, The Treasures of Darkness: A History of Mesopotamian Religion.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="enuma-elish">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Enūma Eliš</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Enlīl never appears as a character in the <em>Enuma Elish</em> — and that absence is the epic&#39;s argument. The poem reassigns the office that Nippur theology called Enlīl-ship, supreme kingship and the decree of destinies, to Marduk of Babylon: the assembly of gods elects him, and after his victory over <a class="scholars-xlink" href="/sites/tiamat/">Tiāmat</a> they proclaim his fifty names, several of which transfer functions once belonging to Enlīl.<sup class="scholars-cite"><a href="#src-enuma-elish-1">[1]</a></sup> Scholars accordingly read the composition as a Babylonian expropriation of the Enlīl tradition, standing in a line of texts — above all the Anzu epic — that dramatize how fragile Enlīl&#39;s hold on the Tablet of Destinies could be.<sup class="scholars-cite"><a href="#src-enuma-elish-2">[2]</a></sup> An Assyrian recension carries the logic further still, substituting <a class="scholars-xlink" href="/sites/ashur/">Aššur</a> for Marduk.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-enuma-elish-1">Foster, Before the Muses: An Anthology of Akkadian Literature.</li><li id="src-enuma-elish-2">Jacobsen, The Treasures of Darkness: A History of Mesopotamian Religion.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="atra-hasis">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Atra-Ḫasīs</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Enlīl is the antagonist of <em>Atra-hasis</em>. When the noise of multiplying humanity disturbs his sleep, he compels the divine assembly to send plague, drought, and famine; when humankind survives each blow through Enki&#39;s counsel, Enlīl binds the gods by oath and looses the flood itself, narrated in Tablet III of the Old Babylonian poem.<sup class="scholars-cite"><a href="#src-atra-hasis-1">[1]</a></sup> After the waters recede he discovers Atra-hasis&#39;s boat and rages at the breach of the oath, but Enki&#39;s defense of humanity wins him over: the poem ends with Enlīl accepting new limits on human numbers — the infant-snatching demon, the stillbirth, and classes of women who do not bear — a grim etiology of mortality.<sup class="scholars-cite"><a href="#src-atra-hasis-2">[2]</a></sup> His portrait here, sovereign but shortsighted, shaped the flood story inherited by Gilgameš.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-atra-hasis-1">Lambert &amp; Millard, Atra-ḫasīs: The Babylonian Story of the Flood.</li><li id="src-atra-hasis-2">Dalley, Myths from Mesopotamia: Creation, the Flood, Gilgamesh, and Others.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Enlīl is the god of atmosphere in its political sense: the medium through which command travels. A king&#39;s proclamation is heard because the air carries it; a storm arrives because the lord of the air sends it. This is not metaphor but Mesopotamian metaphysics: power is a physical force, and the god who rules the air rules the channel through which all other powers flow.</p>
+<p>To name Enlīl is to remember that sovereignty is never merely human. It is atmospheric — a condition of the shared medium in which we breathe, speak, and obey. The Ekur, his mountain temple, was built not to dominate the landscape but to concentrate it: to make the invisible wind visible as authority. Every throne room is, in its way, a small Ekur. The macron on the second i is a small philological compass: it points to the distance between what the cuneiform records and what the voice once said, and it asks us to keep that distance open.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Electronic Text Corpus of Sumerian Literature, Oxford Oriental Institute, 1998. <a class="scholars-ext" href="https://etcsl.orinst.ox.ac.uk/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="cuneiform-sources">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Cuneiform Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cuneiform Sources →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="enuma-elish">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Enūma Eliš</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Enūma Eliš →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="atra-hasis">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Atra-Ḫasīs</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Atra-Ḫasīs →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">17</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -581,6 +578,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'enlil';
@@ -614,14 +746,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -715,6 +839,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -726,18 +851,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -749,6 +875,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -793,6 +921,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,12 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#vedic-references">14 &mdash; Vedic References</a></li>
-<li><a href="#upanishads">15 &mdash; Upaniṣads</a></li>
-<li><a href="#puranas">16 &mdash; Purāṇas</a></li>
-<li><a href="#mantras">17 &mdash; Mantras & Stotras</a></li>
+<li><a href="#vedic-references">12 &mdash; Vedic References</a></li>
+<li><a href="#upanishads">13 &mdash; Upaniṣads</a></li>
+<li><a href="#puranas">14 &mdash; Purāṇas</a></li>
+<li><a href="#mantras">15 &mdash; Mantras & Stotras</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -281,14 +297,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Viṣṇu</strong> (<em>vishnu</em>) — All-pervading (from विष्णु) — belongs to the Sanskrit tradition, where it is catalogued under the domain &quot;Preservation, Protection, Universe&quot;. The name means &quot;N. of one of the principal Hindū deities (in the later mythology regarded as ‘the preserver’, and with Brahmā ‘the creator’ and Śiva ‘the destroyer’, constituting the wellknown&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>Viṣṇu is the second great power of the Hindu triad, the one who sustains what Brahmā creates and what Śiva will one day dissolve. But preservation is not passivity. It requires constant intervention, which is why Viṣṇu descends again and again as an <strong>avatāra</strong> — a deliberate crossing-down into history.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Viṣṇu</strong> and serves its temple at <a class="scholars-ext" href="https://xn--viu-j5ytg.com" rel="noopener noreferrer" target="_blank">Viṣṇu.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>vishnu</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Monier-Williams Sanskrit Dictionary. <a class="scholars-ext" href="https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-overview-2">Mayrhofer, EWAia.</li><li id="src-overview-3">Ṛgveda 1.154, 7.99.</li></ol></div>
     </div>
 </section>
 
@@ -296,14 +311,16 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Devanagari as <strong>विष्णु</strong>. Etymologically it means &quot;N. of one of the principal Hindū deities (in the later mythology regarded as ‘the preserver’, and with Brahmā ‘the creator’ and Śiva ‘the destroyer’, constituting the wellknown&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>From Sanskrit viṣṇu- &#39;all-pervading&#39;, traditionally derived from the root viṣ- &#39;to pervade, be active&#39;; a secure Proto-Indo-European reconstruction and the name&#39;s prehistory remain disputed.</p>
+<p>The ASCII form <em>vishnu</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Viṣṇu</strong> recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>v</strong> → <strong>V</strong> — Same</li><li><strong>i</strong> → <strong>i</strong> — Short /i/</li><li><strong>s</strong> → <strong>ṣ</strong> — S-dot-under: retroflex /ʂ/</li><li><strong>h</strong> → <strong>—</strong> — Dropped: digraph simplified</li><li><strong>n</strong> → <strong>ṇ</strong> — N-dot-under: retroflex /ɳ/</li><li><strong>u</strong> → <strong>u</strong> — Short /u/</li></ul>
+<p>The project holds the domain <strong>Viṣṇu.com</strong> (xn--viu-j5ytg.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Monier-Williams Sanskrit Dictionary. <a class="scholars-ext" href="https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-the-name-2">Mayrhofer, EWAia.</li></ol></div>
     </div>
 </section>
 
@@ -311,14 +328,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/ʋɪʂ.ɳʊ/</strong> — Sanskrit/Vedic Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Vi-</strong> — Labiodental or dental approximant [ʋ] plus short [ɪ] — the prefix of pervasion, the sound that spreads.</li><li><strong>-ṣṇu</strong> — Retroflex sibilant [ʂ] plus retroflex nasal cluster [ɳʊ], from the root viṣ- (&#39;to pervade, to work&#39;) — the name&#39;s active core.</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;VISH-noo&#39; — the first syllable has a crisp, tongue-tip sh; the second is short and resonant.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Sanskrit</strong> — विष्णु (Viṣṇu), from viṣ- / viś- (&#39;to pervade, enter, settle&#39;)</li><li><strong>Vedic</strong> — In the Ṛgveda a relatively minor solar deity; his three strides make him &#39;the wide-strider&#39;</li><li><strong>Later epithets</strong> — Trivikrama (&#39;three strides&#39;), Nārāyaṇa (&#39;son of the primal waters&#39;), Hari</li></ul>
+<p>The IAST form Viṣṇu marks the retroflex ṣ and the retroflex nasal ṇ. Etymologically the name means &#39;All-Pervading.&#39; Devanagari विष्णु is the most common theistic spelling; in Vedic mantras the accent may fall differently depending on grammatical case.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Monier-Williams Sanskrit Dictionary. <a class="scholars-ext" href="https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -326,14 +346,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Devanagari as <strong>विष्णु</strong> — Brahmic abugida, attested Vedic – present, c. 1500 BCE –, in South Asia. The script is written left-to-right.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Viṣṇu</em> (IAST), giving the normalized reading /ˈʋɪʂɳʊ/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>Sanskrit Viṣṇu is written विष्णु in Devanagari.</li><li>Each aksara combines a consonant with an inherent or explicit vowel.</li><li>IAST diacritics preserve length, retroflexion, and aspiration lost in plain ASCII.</li><li>The Devanagari form is not used as the primary domain because Indic scripts are not in the .com IDN table.</li></ul>
+<p>The Devanagari form is <strong>विष्णु</strong>. IAST <em>Viṣṇu</em> marks the retroflex sibilant <em>ṣ</em> and the retroflex nasal <em>ṇ</em>. The name is traditionally derived from the root <em>viś</em> (&#39;to enter, pervade&#39;), though Monier-Williams also notes the root <em>viṣ</em> (&#39;to work, be active&#39;). The semantic core is pervasion: the god who is everywhere.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Macdonell, Sanskrit-English Dictionary.</li><li id="src-original-script-2">Mayrhofer, EWAia.</li><li id="src-original-script-3">Monier-Williams Sanskrit-English Dictionary.</li></ol></div>
     </div>
 </section>
 
@@ -341,14 +362,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>Viṣṇu is the second great power of the Hindu triad, the one who sustains what Brahmā creates and what Śiva will one day dissolve. But preservation is not passivity. It requires constant intervention, which is why Viṣṇu descends again and again as an <strong>avatāra</strong> — a deliberate crossing-down into history.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Preservation</h3>
+<p>He maintains cosmic order (dharma) across the ages, keeping the universe from collapsing into chaos.</p>
+<h3 class="scholars-h3">The Three Strides</h3>
+<p>As Trivikrama he measures earth, sky, and heaven in three steps; as Vāmana he does it as a dwarf.</p>
+<h3 class="scholars-h3">Avatāras</h3>
+<p>From fish to future horseman, he enters the world whenever dharma declines and adharma rises.</p>
+<h3 class="scholars-h3">Cosmic Sleep</h3>
+<p>Between cosmic cycles he sleeps on Śeṣa, the thousand-hooded serpent, floating on the ocean of milk.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Mayrhofer, EWAia.</li></ol></div>
     </div>
 </section>
 
@@ -356,14 +382,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Viṣṇu concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Discus (cakra)</strong> — Sudarśana, the wheel of divine will that cuts through illusion and evil.</li><li><strong>Conch (śaṅkha)</strong> — The primeval sound Oṃ, announcing divine presence and the dissolution of boundaries.</li><li><strong>Mace (gadā)</strong> — The power of knowledge; often identified with Kāmadeva or the force of cosmic law.</li><li><strong>Lotus (padma)</strong> — Purity and the unfolding of creation; Brahmā is born from the lotus rising from Viṣṇu&#39;s navel.</li><li><strong>Garuda</strong> — The eagle-king, his mount, symbolizing the Vedas and the swiftness of divine knowledge.</li><li><strong>Śeṣa</strong> — The cosmic serpent upon whom Viṣṇu reclines between universes.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Monier-Williams Sanskrit Dictionary. <a class="scholars-ext" href="https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -371,14 +395,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Viṣṇu&#39;s mythology grows from a minor Vedic solar figure into the preserver of the cosmos. Its center is movement: the three strides, the ten descents, the sleep between worlds.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Three Strides (Vedic)</h3>
+<p>In Ṛgveda 1.154, Viṣṇu strides out three times. With each step he measures a realm — earth, atmosphere, and heaven — until the gods themselves find his third step unreachable. This is the seed of his later title Trivikrama, &#39;he who makes three strides.&#39; The myth imagines the sun&#39;s daily arc as the god&#39;s footfall across the cosmos.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Daśāvatāra (Avatāra)</h3>
+<p>The Purāṇas systematize Viṣṇu&#39;s descents into ten principal incarnations: Matsya the fish, Kūrma the tortoise, Varāha the boar, Narasiṃha the man-lion, Vāmana the dwarf, Paraśurāma the axe-bearer, Rāma the prince, Kṛṣṇa the cowherd, the Buddha, and the future Kalkī. Each appears in a different cosmic age to counter a specific threat. The list itself is a theology of history: divine response to evolving evil.</p>
+<h3 class="scholars-h3">Rāma and Kṛṣṇa (Epic)</h3>
+<p>The Rāmāyaṇa tells of Rāma, the ideal king whose exile, fidelity, and war against Rāvaṇa define dharmic rule. The Mahābhārata tells of Kṛṣṇa, the divine charioteer whose Bhagavad Gītā transforms a battlefield into a discourse on duty, devotion, and knowledge. These two avatāras are the most widely worshipped forms of Viṣṇu in India and the diaspora.</p>
+<h3 class="scholars-h3">The Cosmic Sleep (Cosmology)</h3>
+<p>At the end of each cosmic cycle, Viṣṇu withdraws the universe into himself and sleeps on the serpent Śeṣa, floating on the causal ocean of milk. From his navel sprouts a lotus, and from the lotus emerges Brahmā to begin creation anew. This image is one of Hinduism&#39;s most sublime visions: preservation as rest, creation as dream, and the universe as the breathing of one divine body.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Mayrhofer, EWAia.</li><li id="src-mythology-2">Ṛgveda 1.154, 7.99.</li></ol></div>
     </div>
 </section>
 
@@ -386,14 +415,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Viṣṇu absorbed countless regional deities: Kṛṣṇa of the Yādava cowherds, Rāma of the Ikṣvāku line, Nārāyaṇa of the Vedic waters, and the cosmic Puruṣa of speculative Brahmanism. In South India he merges with Śrī (Lakṣmī) and Bhū (earth) in temple theology; in Bengal, he is the serene Nārāyaṇa beside the fierce Kālī. Buddhism knows him as a guardian and as Upagupta; Jainism honors him as a yakṣa. Vaishnavism became one of the largest religious communities on earth, spanning philosophical schools from the non-dualist Śaṅkara to the dualist Madhva and the devotional Gaudīya tradition of Bengal.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Sanskrit tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/durga/">Durgā</a>, <a class="scholars-xlink" href="/sites/ganesha/">Gaṇeśa</a>, <a class="scholars-xlink" href="/sites/kali/">Kālī</a>, <a class="scholars-xlink" href="/sites/lakshmi/">Lakṣmī</a>, <a class="scholars-xlink" href="/sites/nirmata/">Nirmātā</a>, and <a class="scholars-xlink" href="/sites/om/">Oṃ</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Monier-Williams Sanskrit Dictionary. <a class="scholars-ext" href="https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -401,14 +428,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Viṣṇu&#39;s presence is woven into the texture of South Asian civilization. The Rāmāyaṇa and Mahābhārata are national epics, performed in village plays, televised during festivals, and cited in political speech. The Hare Kṛṣṇa movement carried Gaudīya Vaishnavism to the West; ISKCON temples now stand on every continent. Viṣṇu&#39;s symbols — the conch, the discus, the tilaka mark — identify millions of devotees. The ideal of the avatāra, a divine descent to restore justice, has influenced Indian political thought, literature, and popular cinema. In an unstable world, Viṣṇu remains the god who promises to come again.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Monier-Williams Sanskrit Dictionary. <a class="scholars-ext" href="https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -416,14 +440,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The earliest material evidence of Viṣṇu devotion is the Heliodorus pillar at Besnagar (Vidisha, c. 110 BCE), whose Garuda capital and Brahmi inscription identify Heliodorus as a Bhāgavata Greek ambassador. Gupta-period monuments include the Varāha panel at Udayagiri Cave 5 and the Anantaśāyin relief at Deogarh. The Changu Narayan temple in Nepal (5th century CE) is among the oldest standing Vaishnava shrines. Medieval sites such as Tirupati and Angkor Wat testify to Vaishnava temple culture across South and Southeast Asia.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Monier-Williams Sanskrit Dictionary. <a class="scholars-ext" href="https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -431,135 +452,105 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Viṣṇu given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Monier-Williams Sanskrit Dictionary. <a class="scholars-ext" href="https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Mayrhofer, EWAia.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Ṛgveda 1.154, 7.99.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Śatapatha Brāhmaṇa.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Rāmāyaṇa, Mahābhārata.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Bhagavad Gītā.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Viṣṇu Purāṇa, Bhāgavata Purāṇa.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Ṛgveda Saṃhitā 7.99 (Viṣṇu hymns and the wide-strider).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Yaska, Nirukta 12.19–21 (etymology and analysis of Viṣṇu).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> Bhāgavata Purāṇa 10 (Kṛṣṇa līlā and divine descent).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-11">[11]</a></sup> Brahma Sūtras / Vedānta Sūtras (Viṣṇu as the personal Brahman).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Monier-Williams Sanskrit Dictionary. <a class="scholars-ext" href="https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-2">Mayrhofer, EWAia.</li><li id="src-scholarly-sources-3">Ṛgveda 1.154, 7.99.</li><li id="src-scholarly-sources-4">Śatapatha Brāhmaṇa.</li><li id="src-scholarly-sources-5">Rāmāyaṇa, Mahābhārata.</li><li id="src-scholarly-sources-6">Bhagavad Gītā.</li><li id="src-scholarly-sources-7">Viṣṇu Purāṇa, Bhāgavata Purāṇa.</li><li id="src-scholarly-sources-8">Ṛgveda Saṃhitā 7.99 (Viṣṇu hymns and the wide-strider).</li><li id="src-scholarly-sources-9">Yaska, Nirukta 12.19–21 (etymology and analysis of Viṣṇu).</li><li id="src-scholarly-sources-10">Bhāgavata Purāṇa 10 (Kṛṣṇa līlā and divine descent).</li><li id="src-scholarly-sources-11">Brahma Sūtras / Vedānta Sūtras (Viṣṇu as the personal Brahman).</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="vedic-references">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Vedic References</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Viṣṇu is a minor but distinctive Ṛgvedic deity, celebrated in about half a dozen hymns. RV 1.154 sings his three strides measuring earth, atmosphere, and heaven; RV 1.22.16–21 contains the charter-verse of later Vaishnavism — &#39;the sages ever gaze upon that highest step of Viṣṇu, like an eye stretched across the sky&#39; (1.22.20).<sup class="scholars-cite"><a href="#src-vedic-references-1">[1]</a></sup> Vasiṣṭha&#39;s book preserves two further hymns (RV 7.99–100), and the hymns habitually pair him with <a class="scholars-xlink" href="/sites/indra/">Indra</a>, for whom his strides open the space to strike Vṛtra. In the Brāhmaṇas comes the decisive promotion: the Śatapatha Brāhmaṇa identifies Viṣṇu with the sacrifice itself, the pivot on which his later supremacy turns.<sup class="scholars-cite"><a href="#src-vedic-references-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-vedic-references-1">Ṛgveda 1.154 and 1.22.20 (the three strides and the highest step).</li><li id="src-vedic-references-2">Śatapatha Brāhmaṇa (Viṣṇu identified with the sacrifice).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="upanishads">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Upaniṣads</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The personal god is nearly absent from the early Upaniṣads, but two footholds matter historically. The Chāndogya (3.17.6) names Kṛṣṇa Devakīputra — &#39;Kṛṣṇa, son of Devakī&#39; — as a pupil of the seer Ghora Āṅgirasa: the oldest textual hint of the Kṛṣṇa tradition, whatever its exact relation to the later god.<sup class="scholars-cite"><a href="#src-upanishads-1">[1]</a></sup> The Mahānārāyaṇa Upaniṣad, the late tenth book of the Taittirīya Āraṇyaka, exalts Nārāyaṇa as the all-pervading deity and preserves the Nārāyaṇa Gāyatrī; the still later sectarian Vaiṣṇava Upaniṣads carry the elevation further.<sup class="scholars-cite"><a href="#src-upanishads-2">[2]</a></sup> The speculative Self of the middle Upaniṣads meanwhile supplies the metaphysics that Viṣṇu&#39;s theologians — from the Pāñcarātrikas to Rāmānuja — will claim as their own.<sup class="scholars-cite"><a href="#src-upanishads-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-upanishads-1">Chāndogya Upaniṣad 3.17.6 (Kṛṣṇa Devakīputra).</li><li id="src-upanishads-2">Mahānārāyaṇa Upaniṣad (Taittirīya Āraṇyaka 10).</li><li id="src-upanishads-3">Carman, J. B., The Theology of Rāmānuja (1974).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="puranas">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Purāṇas</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Viṣṇu Purāṇa is the sect&#39;s charter-text: the avatāra doctrine, the Dhruva and Prahlāda cycles, and Kṛṣṇa&#39;s birth form its backbone.<sup class="scholars-cite"><a href="#src-puranas-1">[1]</a></sup> The Bhāgavata Purāṇa becomes the supreme scripture of Kṛṣṇa devotion — its tenth book narrates the Vraja childhood, the rāsa dance, and the departure from Mathurā, while its first book (1.3) gives the classic catalogue of descents.<sup class="scholars-cite"><a href="#src-puranas-2">[2]</a></sup> The Matsya, Kūrma, Varāha, and Vāmana Purāṇas monumentalize individual avatāras, and the Padma and Nārada Purāṇas legislate Vaiṣṇava observance.<sup class="scholars-cite"><a href="#src-puranas-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-puranas-1">Viṣṇu Purāṇa (avatāras, Dhruva, Prahlāda).</li><li id="src-puranas-2">Bhāgavata Purāṇa 1.3 and 10 (avatāra catalogue; Kṛṣṇa līlā).</li><li id="src-puranas-3">Rocher, L., The Purāṇas (1986).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="mantras">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Mantras & Stotras</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Three mantras define Vaiṣṇava devotion.</p>
+<ul class="scholars-list"><li><strong>oṃ namo nārāyaṇāya</strong> — the aṣṭākṣara (&#39;eight-syllable&#39;) mantra, the heart of Śrīvaiṣṇava initiation, transmitted to Rāmānuja by his teacher Tirukkoṣṭiyūr Nambi.<sup class="scholars-cite"><a href="#src-mantras-1">[1]</a></sup></li><li><strong>oṃ namo bhagavate vāsudevāya</strong> — the dvādaśākṣara (&#39;twelve-syllable&#39;) mantra of the Pāñcarātra and Bhāgavata traditions, invoked at consecrations and daily worship.<sup class="scholars-cite"><a href="#src-mantras-1">[1]</a></sup></li><li><strong>Nārāyaṇa Gāyatrī</strong> — <em>nārāyaṇāya vidmahe, vāsudevāya dhīmahi, tanno viṣṇuḥ pracodayāt</em> — preserved in the Mahānārāyaṇa Upaniṣad.<sup class="scholars-cite"><a href="#src-mantras-2">[2]</a></sup></li></ul>
+<p>The ṛgvedic <em>tad viṣṇoḥ paramaṃ padam</em> (RV 1.22.20) remains the tradition&#39;s most ancient mantra, recited at funerals and temple rites.<sup class="scholars-cite"><a href="#src-mantras-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mantras-1">Carman, J. B., The Theology of Rāmānuja (1974), on the aṣṭākṣara and dvādaśākṣara.</li><li id="src-mantras-2">Mahānārāyaṇa Upaniṣad (Nārāyaṇa Gāyatrī).</li><li id="src-mantras-3">Ṛgveda 1.22.20.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Viṣṇu teaches that the highest power is not the power that destroys but the power that keeps things going. Maintenance is harder than creation; it requires patience, repetition, and the willingness to return to the same task age after age. Every parent who wakes in the night, every farmer who plants again after a flood, every healer who stays with a patient long after the drama has faded — they are images of Viṣṇu.</p>
+<p>His three strides remind us that the cosmos is measured, not random. His avatāras remind us that when order collapses, the sacred does not abandon the world but enters it. His sleep on the serpent reminds us that endings are also wombs. To call on Viṣṇu is to choose the long work of preservation over the short thrill of annihilation. It is to believe that the world, for all its wounds, is worth saving.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Monier-Williams Sanskrit Dictionary. <a class="scholars-ext" href="https://www.sanskrit-lexicon.uni-koeln.de/monier/index.html" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="vedic-references">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Vedic References</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Vedic References →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="upanishads">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Upaniṣads</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Upaniṣads →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="puranas">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Purāṇas</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Purāṇas →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="mantras">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">17</span>
-        <h2 class="scholars-section-title">Mantras & Stotras</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mantras & Stotras →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">19</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -597,6 +588,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'vishnu';
@@ -630,14 +756,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -731,6 +849,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -742,18 +861,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -765,6 +885,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -809,6 +931,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

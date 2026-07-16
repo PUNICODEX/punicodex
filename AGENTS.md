@@ -123,8 +123,9 @@ mismatches it reports.
 12. `scripts/gen-sitemap.js`
 13. `scripts/inject-analytics.js`
 14. `scripts/update-data-version.js`
-15. `scripts/generate-scholars-manifests.js`
-16. `scripts/generate-scholars.js`
+15. `scripts/generate-scholars-content.js`
+16. `scripts/generate-scholars-manifests.js`
+17. `scripts/generate-scholars.js`
 
 ### Scholarly Edition
 
@@ -136,15 +137,27 @@ the `/api/v1/scholars/` API.
 - `docs/scholarly-edition/scholarly-section-taxonomy-v0.1.json` — section registry
 - `docs/scholarly-edition/GOVERNANCE.md` — editorial rules
 - `docs/scholarly-edition/ARCHITECTURE.md` — technical blueprint
+- `platform/scholars/content/{id}.json` — per-temple scholarly content
+  (markdown bodies + sources per section). Bootstrapped by
+  `scripts/generate-scholars-content.js` (fill-only-missing: it synthesizes
+  missing sections from lore-catalog/lexicon/archetypes/original-scripts/
+  source-catalog/similarities and never overwrites a non-empty body), then
+  treated as canonical — hand edits survive regeneration.
 
 **Generated (do not edit by hand):**
 - `platform/scholars/manifests/{id}.json` — per-temple section manifests
+  (blank taxonomy structure with the content files merged in as published
+  sections)
 - `sites/{id}/scholars/index.html` — Scholarly Edition pages
 
 **Database:**
 - `platform/db/migrate-scholars.js` — core Scholars schema
 - `platform/db/migrate-scholars-quality.js` — quality gate column
-- Seed with `node platform/db/scholars/seed.js`
+- Seed with `node platform/db/scholars/seed.js` — publishes manifest content
+  under the "PÚNYCODEX Admin" identity (curator account with an unguessable
+  random password hash) with full edit-history attribution; never overwrites
+  a section whose body is non-empty. `api/v1/scholars.js` runs the same seed
+  on every cold start so the ephemeral Vercel DB serves real content.
 - Migrate lore-catalog content with `node scripts/migrate-lore-to-scholars.js`
 
 **Key pages:**
@@ -176,7 +189,8 @@ and re-copies the directory. Edit `platform/public/scholars/` only.
 - Scholars rate limiting is Redis-backed when `REDIS_URL` is set (prefix
   `punycodex:rl:scholars:{tier}:...`), in-memory otherwise.
 - `api/v1/scholars.js` runs the scholars + quality migrations on cold start
-  (idempotent), matching the creatives handler.
+  (idempotent), matching the creatives handler, and then seeds the ephemeral
+  database from the generated manifests (`seedScholarsFromManifests`).
 - Known limitations: SQLite on Vercel `/tmp` is ephemeral (production
   persistence needs an external DB); transactional email is not wired up, so
   temp passwords are relayed out-of-band by curators/admins; the `dept_admin`

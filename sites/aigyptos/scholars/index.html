@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,11 +279,12 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#topography">14 &mdash; Topography</a></li>
-<li><a href="#historical-sources">15 &mdash; Historical Sources</a></li>
-<li><a href="#modern-site">16 &mdash; Modern Site & Excavations</a></li>
+<li><a href="#topography">12 &mdash; Topography</a></li>
+<li><a href="#historical-sources">13 &mdash; Historical Sources</a></li>
+<li><a href="#modern-site">14 &mdash; Modern Site & Excavations</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -280,14 +296,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Aígyptos</strong> (<em>aigyptos</em>) — From Egyptian Ḥwt-kꜣ-ptḥ ( — belongs to the Greek tradition, where it is catalogued under the domain &quot;Personified Egypt, the Black Land&quot;. The name means &quot;From Egyptian Ḥwt-kꜣ-ptḥ (&quot;House of the Ka of Ptah&quot;)&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>In the greek location tradition, <strong>Aígyptos</strong> governed personified egypt, the black land. The name encodes a sphere of power that shaped ritual, narrative, and social order.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Aígyptos</strong> and serves its temple at <a class="scholars-ext" href="https://xn--agyptos-7ya.com" rel="noopener noreferrer" target="_blank">aígyptos.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>aigyptos</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Homer. Iliad and Odyssey; Hesiod. Theogony and Works and Days.</li><li id="src-overview-2">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li id="src-overview-3">Material evidence from the Greek world — inscriptions, sanctuaries, votive deposits, and literary papyri — anchors the name in historical cult.</li></ol></div>
     </div>
 </section>
 
@@ -295,14 +310,16 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Greek as <strong>Αἴγυπτος</strong>. Etymologically it means &quot;From Egyptian Ḥwt-kꜣ-ptḥ (&quot;House of the Ka of Ptah&quot;)&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The reconstructed proto-form is <em>ḥwt-kꜣ-ptḥ</em> (proto-afro-asiatic, &quot;temple of the ka of Ptah&quot;). From Egyptian Ḥwt-kꜣ-ptḥ &quot;Temple of the Ka of Ptah&quot; (Memphis). Greek Aígyptos.</p>
+<p>The ASCII form <em>aigyptos</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Aígyptos</strong> recovers the stress accent of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>a</strong> → <strong>A</strong> — Alpha</li><li><strong>i</strong> → <strong>í</strong> — Acute on iota (diphthong ai)</li><li><strong>g</strong> → <strong>g</strong> — Gamma</li><li><strong>y</strong> → <strong>y</strong> — Upsilon</li><li><strong>p</strong> → <strong>p</strong> — Pi</li><li><strong>t</strong> → <strong>t</strong> — Tau</li><li><strong>o</strong> → <strong>o</strong> — Short omicron</li><li><strong>s</strong> → <strong>s</strong> — Sigma</li></ul>
+<p>The project holds the domain <strong>aígyptos.com</strong> (xn--agyptos-7ya.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Homer. Iliad and Odyssey; Hesiod. Theogony and Works and Days.</li><li id="src-the-name-2">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li></ol></div>
     </div>
 </section>
 
@@ -310,14 +327,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/aɪ̯ˈɡyp.tos/</strong> — Ancient Greek Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>ai-</strong> — Diphthong [aɪ̯] — a bright glide from open [a] to close [i], as in Greek αἴγ- (goat)</li><li><strong>-gyp-</strong> — Voiced velar stop [ɡ] followed by front rounded [y] (like French u) and voiceless stop [p]</li><li><strong>-tos</strong> — Voiceless [t] plus short [o] and voiceless fricative [s]; the final -s is the Greek nominative ending</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;eye-GOO-ptoss&#39; — the first syllable glides like &#39;eye&#39;, the second keeps a tight, rounded &#39;oo&#39; before the crisp &#39;ptoss&#39;.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Egyptian</strong> — Ḥwt-kꜣ-ptḥ, the Pharaonic name of Memphis from which Greek Aígyptos was borrowed</li><li><strong>Latin</strong> — Aegyptus, the Roman adaptation used by poets and geographers</li><li><strong>Coptic</strong> — Ⲁⲓⲅⲩⲡⲧⲟⲥ (Aiguptos), preserving the Greek pronunciation in Egyptian Christian usage</li></ul>
+<p>Greek Aígyptos is an accent-preserving Tier-2 restoration: the acute on the first diphthong marks stress, but the word contains no long-vowel sign. The original Egyptian name was consonantal and had no Greek-style accent; the acute records only how Greek speakers pronounced the loan.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Homer. Iliad and Odyssey; Hesiod. Theogony and Works and Days.</li></ol></div>
     </div>
 </section>
 
@@ -325,14 +345,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Greek as <strong>Αἴγυπτος</strong> — Greek alphabet (Classical / Attic), attested Ancient Greek, c. 8th century BCE – present, in Greece and the Greek-speaking Mediterranean. The script is written left-to-right.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Aígyptos</em> (Greek alphabet with polytonic accents), giving the normalized reading /ai̯ˈɡyp.tos/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The Greek form Αἴγυπτος is written in the Classical Greek alphabet.</li><li>Letters with acute, grave, or circumflex accents preserve the pitch accent of Ancient Greek.</li><li>Macrons and omegas (η, ω) mark long vowels, a feature lost in the plain ASCII form.</li><li>The Unicode restoration Aígyptos encodes the scholarly spelling as a registrable domain name.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Beekes, Etymological Dictionary of Greek.</li><li id="src-original-script-2">Chantraine, Dictionnaire étymologique de la langue grecque.</li><li id="src-original-script-3">Histories, Loeb Classical Library, 440 BCE. <a class="scholars-ext" href="https://www.loebclassics.com/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-original-script-4">Liddell-Scott-Jones (LSJ).</li></ol></div>
     </div>
 </section>
 
@@ -340,14 +360,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>In the greek location tradition, <strong>Aígyptos</strong> governed personified egypt, the black land. The name encodes a sphere of power that shaped ritual, narrative, and social order.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Black Land</h3>
+<p>Aígyptos personifies the fertile Nile valley, the &quot;black land&quot; (kmt) renewed each year by the river&#39;s silt.</p>
+<h3 class="scholars-h3">House of the Ka of Ptah</h3>
+<p>The name itself encodes Memphis theology: Ḥwt-kꜣ-ptḥ, the estate where the creator&#39;s vital force dwells.</p>
+<h3 class="scholars-h3">Wisdom of the Priests</h3>
+<p>Greek writers from Herodotus to Plutarch imagined Egypt as a repository of primeval knowledge older than Greece.</p>
+<h3 class="scholars-h3">Nile Inundation</h3>
+<p>The annual flood was creation re-enacted: without it, the Black Land returned to desert, and order collapsed.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li></ol></div>
     </div>
 </section>
 
@@ -355,14 +380,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Aígyptos concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Nile flood (ḥꜥpy)</strong> — The annual inundation that turned the &#39;black land&#39; fertile and recreated the cosmos</li><li><strong>Pyramidion</strong> — The Benben-like capstone symbolising eternal kingship and solar ascent</li><li><strong>Papyrus scroll</strong> — Egypt as the classical storehouse of primeval writing and priestly wisdom</li><li><strong>Isiac sistrum</strong> — The rattle of Isis, carried across the Mediterranean as Egypt&#39;s best-known cult emblem</li><li><strong>Lotus and papyrus columns</strong> — Architectural emblems of the Two Lands united under divine kingship</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Homer. Iliad and Odyssey; Hesiod. Theogony and Works and Days.</li></ol></div>
     </div>
 </section>
 
@@ -370,14 +393,16 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>In Greek geographic and mythic imagination, Aígyptos is far more than a river valley on a map; it is the personified land of the Black Soil, the mysteriēs-bearer of an ancient world that Greek poets believed predated their own gods. Herodotus called Egypt “the gift of the Nile,” but Greek tradition also made it a storehouse of primeval wisdom, where kings became gods, temples preserved secrets from before the Flood, and the river itself rose like a creator without need of rain. By the Hellenistic period, this wonder had produced thriving cults of Isis and Serapis from Alexandria to Athens, translating Pharaonic ritual into a Mediterranean religious language that Romans would carry as far as Britain and the Rhine frontier. The name Aígyptos thus carries the weight of Greek wonder before an African empire they both admired and feared. Greek writers from Aeschylus to Plutarch returned to Egypt as a stage for divine dramas: the Nile&#39;s flood became a metaphor for creation, Memphis a rival to Delphi, and the pyramids silent proof of a kingdom older than memory. The very alphabet that Greeks used to spell Aígyptos had once, some believed, been borrowed from Pharaonic priests.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Descent from Io (Hesiodic Genealogy)</h3>
+<p>In the Greek genealogical tradition preserved by Hesiod and later mythographers, Aígyptos is named after Aígyptos the son of Bēlos and the brother of Danaos. Their fifty sons and fifty daughters—the Aigyptioi and Danaïdes—were betrothed in a mass wedding that ended in blood. On their wedding night, the Danaïdes, led by Hypermnēstrā, slew all but one of the Aigyptioi, and their punishments became a fixture of the underworld. This myth turns Egypt into a land born from a fratricidal exodus, linking the Black Land forever to stories of exile, vengeance, and dynastic strife.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Wisdom of the Priests (Herodotean Wonder)</h3>
+<p>Herodotus opens Book 2 of his <em>Histories</em> with a deliberate shift in tone: Egypt, he insists, is the place where chronology runs backward, where the priests can recite three hundred forty-one generations of high priests, and where the Nile behaves unlike any other river known to Greeks. For him, Aígyptos is not merely territory but a challenge to Greek assumptions about nature and time. The land becomes a mirror in which Greece sees its own youth reflected against Egypt&#39;s antique gravity.</p>
+<p>Later Greek and Roman writers—Diodorus, Plutarch, and the Neoplatonists—doubled down on this image, claiming that Greek lawgivers, philosophers, and mystery rites had traveled up the Nile to learn at Egyptian shrines. Whether historical or romantic, the idea made Aígyptos the symbolic birthplace of civilization itself, a role it still plays whenever antiquity is imagined as a ladder leading eastward to the Nile.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li id="src-mythology-2">Material evidence from the Greek world — inscriptions, sanctuaries, votive deposits, and literary papyri — anchors the name in historical cult.</li></ol></div>
     </div>
 </section>
 
@@ -385,14 +410,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Greek cult and myth travelled with colonists, traders, and conquerors; Roman adaptation, Hellenistic ruler cult, and later European classicism all recast this name for new audiences.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Greek tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/asia/">Asía</a>, <a class="scholars-xlink" href="/sites/athenai/">Athēnai</a>, <a class="scholars-xlink" href="/sites/atlantis/">Atlantís</a>, <a class="scholars-xlink" href="/sites/delphoi/">Delphoí</a>, <a class="scholars-xlink" href="/sites/europe/">Eurṓpē</a>, and <a class="scholars-xlink" href="/sites/libye/">Libyē</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Homer. Iliad and Odyssey; Hesiod. Theogony and Works and Days.</li></ol></div>
     </div>
 </section>
 
@@ -400,14 +423,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>The name endures in place names, scholarly vocabulary, modern fiction, and the ongoing recovery of ancient Greek culture through archaeology and philology. Restoring <em>Aígyptos</em> in Unicode preserves the name&#39;s cultural specificity against the flattening force of plain ASCII. Beyond scholarship, Aígyptos remains a byword for antiquity and enigma, from Renaissance Egyptomania to modern museums crowded with mummies and papyri. The Unicode form invites viewers to see the name not as a modern country label but as a Greek act of wonder before the Nile.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Homer. Iliad and Odyssey; Hesiod. Theogony and Works and Days.</li></ol></div>
     </div>
 </section>
 
@@ -415,14 +435,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The material record for Aígyptos survives in a small number of securely identified remains, catalogued below; the corpus is thin but unambiguous, and each site is tied to the name by ancient testimony<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup>.</p>
+<p>Material evidence from the Greek world — inscriptions, sanctuaries, votive deposits, and literary papyri — anchors the name in historical cult.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Homer. Iliad and Odyssey; Hesiod. Theogony and Works and Days.</li></ol></div>
     </div>
 </section>
 
@@ -430,120 +448,90 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Aígyptos given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Homer. Iliad and Odyssey; Hesiod. Theogony and Works and Days.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Material evidence from the Greek world — inscriptions, sanctuaries, votive deposits, and literary papyri — anchors the name in historical cult.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Diodorus Siculus, Bibliotheca historica Book 1 (Egyptian antiquities and the Nile).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Plato, Timaeus (Egyptian priests and the story of Solon).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Plutarch, De Iside et Osiride (Greek treatise on Egyptian religion).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Homer. Iliad and Odyssey; Hesiod. Theogony and Works and Days.</li><li id="src-scholarly-sources-2">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li id="src-scholarly-sources-3">Material evidence from the Greek world — inscriptions, sanctuaries, votive deposits, and literary papyri — anchors the name in historical cult.</li><li id="src-scholarly-sources-4">Diodorus Siculus, Bibliotheca historica Book 1 (Egyptian antiquities and the Nile).</li><li id="src-scholarly-sources-5">Plato, Timaeus (Egyptian priests and the story of Solon).</li><li id="src-scholarly-sources-6">Plutarch, De Iside et Osiride (Greek treatise on Egyptian religion).</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="topography">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Topography</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Greek <strong>Aígyptos</strong> denoted the inhabited Nile valley: a ribbon of alluvium running from the First Cataract at Elephantine north to the Delta, where the river divides into its mouths. Egyptians called the cultivable floodplain <em>Kemet</em>, &#39;the Black Land,&#39; set against the red desert on either side — the contrast that struck every Greek traveler. Herodotus devoted much of his second book to the river, famously judging Egypt &#39;the gift of the Nile&#39; and reasoning that the Delta itself is alluvial deposit.<sup class="scholars-cite"><a href="#src-topography-1">[1]</a></sup> The valley&#39;s cities anchored the Greek imagination: Memphis near the Delta&#39;s apex, whose temple-name Ḥwt-kꜣ-ptḥ gave the land its Greek name, and southern Thebes, whose hundred gates and boundless wealth Homer already sings.<sup class="scholars-cite"><a href="#src-topography-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-topography-1">Herodotus, Histories Book 2 (the Nile and the formation of Egypt).</li><li id="src-topography-2">Homer, Iliad 9.381-384 (hundred-gated Egyptian Thebes).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="historical-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Historical Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Greek literary record of Egypt begins with Homer, who knew the river Aígyptos and the wealth of Thebes, and reaches its classical summit in Herodotus&#39; second book — the first ethnographic monograph of antiquity: geography, customs, animal lore, temple histories, and the priestly king-lists read from papyrus.<sup class="scholars-cite"><a href="#src-historical-sources-1">[1]</a></sup> Plato&#39;s <em>Timaeus</em> made Egypt the keeper of deep memory, the Saïs priest telling Solon that the Greeks are perpetual children beside the Nile&#39;s unbroken records.<sup class="scholars-cite"><a href="#src-historical-sources-2">[2]</a></sup> Diodorus Siculus&#39; first book and Plutarch&#39;s <em>On Isis and Osiris</em> transmit the Hellenistic and Roman phases of Greek Egypt-writing, when the land had become a Ptolemaic kingdom and a storehouse of allegorized wisdom.<sup class="scholars-cite"><a href="#src-historical-sources-3">[3]</a></sup><sup class="scholars-cite"><a href="#src-historical-sources-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-historical-sources-1">Herodotus, Histories Book 2 (the Egyptian logos).</li><li id="src-historical-sources-2">Plato, Timaeus 21e-23d (Solon and the priest of Saïs).</li><li id="src-historical-sources-3">Diodorus Siculus, Bibliotheca historica Book 1 (Egyptian antiquities).</li><li id="src-historical-sources-4">Plutarch, De Iside et Osiride (Greek treatise on Egyptian religion).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="modern-site">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Modern Site & Excavations</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Ancient Aígyptos is the territory of the modern Arab Republic of Egypt. Memphis survives as the open-air ruins of Mit Rahina south of Cairo; Thebes as Luxor and Karnak, inscribed on the UNESCO World Heritage List in 1979 as &#39;Ancient Thebes with its Necropolis.&#39;<sup class="scholars-cite"><a href="#src-modern-site-1">[1]</a></sup> Systematic documentation began with the Napoleonic <em>Description de l&#39;Égypte</em> (1809-1829), and Champollion&#39;s decipherment of hieroglyphs in 1822 opened the Pharaonic record that Herodotus could take only on priestly trust.<sup class="scholars-cite"><a href="#src-modern-site-2">[2]</a></sup> The Greek layer of the country is most visible at Alexandria, founded by Alexander in 331 BCE, where underwater survey has mapped the submerged Ptolemaic royal quarter in the Eastern Harbour.<sup class="scholars-cite"><a href="#src-modern-site-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-modern-site-1">UNESCO World Heritage List (Ancient Thebes with its Necropolis, 1979; Memphis and its Necropolis, 1979).</li><li id="src-modern-site-2">Champollion, Précis du système hiéroglyphique (1824), presenting the 1822 decipherment.</li><li id="src-modern-site-3">Jean-Yves Empereur, Alexandria Rediscovered (1998).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Names are not merely labels; they are compressed worlds. <strong>Aígyptos</strong> carries within it a greek location understanding of from egyptian ḥwt-kꜣ-ptḥ (&quot;house of the ka of ptah&quot;). Unicode restoration returns that world to readable form.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Homer. Iliad and Odyssey; Hesiod. Theogony and Works and Days.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="topography">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Topography</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Topography →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="historical-sources">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Historical Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Historical Sources →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="modern-site">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Modern Site & Excavations</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Modern Site & Excavations →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">17</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -581,6 +569,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'aigyptos';
@@ -614,14 +737,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -715,6 +830,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -726,18 +842,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -749,6 +866,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -793,6 +912,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

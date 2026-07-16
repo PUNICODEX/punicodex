@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,11 +279,12 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#ugaritic-tablets">14 &mdash; Ugaritic Tablets</a></li>
-<li><a href="#tanakh-references">15 &mdash; Tanakh References</a></li>
-<li><a href="#inscriptions">16 &mdash; Inscriptions & Seals</a></li>
+<li><a href="#ugaritic-tablets">12 &mdash; Ugaritic Tablets</a></li>
+<li><a href="#tanakh-references">13 &mdash; Tanakh References</a></li>
+<li><a href="#inscriptions">14 &mdash; Inscriptions & Seals</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -280,14 +296,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Liwyāṯān</strong> (<em>leviathan</em>) — Sea Serpent, Chaos · Coiled sea serpent — belongs to the Canaanite tradition, where it is catalogued under the domain &quot;Sea Serpent, Chaos&quot;. The name means &quot;Coiled sea serpent&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>Liwyāṯān is the <strong>serpent that the sea cannot contain and the storm-god cannot ignore</strong>. In Canaanite myth he is the seven-headed dragon Lôtān, crushed by Baʿal; in the Hebrew Bible he becomes the beast that only YHWH dares to hook, play, and slay. He is chaos given scales and breath — fire from his mouth, smoke from his nostrils, armor that no weapon can pierce.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Liwyāṯān</strong> and serves its temple at <a class="scholars-ext" href="https://xn--liwyn-iwaa5831d.com" rel="noopener noreferrer" target="_blank">liwyāṯān.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>leviathan</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">HALOT s.v. לִוְיָתָן.</li><li id="src-overview-2">TDOT s.v. Leviathan.</li><li id="src-overview-3">Day, Yahweh and the Gods and Goddesses of Canaan.</li></ol></div>
     </div>
 </section>
 
@@ -295,14 +310,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Hebrew as <strong>לִוְיָתָן</strong>. Etymologically it means &quot;Coiled sea serpent&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The ASCII form <em>leviathan</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Liwyāṯān</strong> recovers the vowel length of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>l</strong> → <strong>L</strong> — Same, capitalized</li><li><strong>e</strong> → <strong>i</strong> — Hebrew i vowel</li><li><strong>v</strong> → <strong>w</strong> — Semivowel w</li><li><strong>i</strong> → <strong>y</strong> — Semivowel y</li><li><strong>a</strong> → <strong>ā</strong> — Macron: long vowel</li><li><strong>t</strong> → <strong>ṯ</strong> — T with line below: emphatic tav</li><li><strong>h</strong> → <strong>—</strong> — Dropped: silent in Hebrew</li><li><strong>a</strong> → <strong>ā</strong> — Macron: long vowel</li><li><strong>n</strong> → <strong>n</strong> — Same</li></ul>
+<p>The project holds the domain <strong>liwyāṯān.com</strong> (xn--liwyn-iwaa5831d.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">HALOT s.v. לִוְיָתָן.</li><li id="src-the-name-2">TDOT s.v. Leviathan.</li></ol></div>
     </div>
 </section>
 
@@ -310,14 +326,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/liwjaːˈθaːn/</strong> — Biblical Hebrew (Tiberian/Masoretic).<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>li-</strong> — Alveolar lateral [l] followed by short [i], the hireq under ל.</li><li><strong>-wə-</strong> — Labio-velar approximant [w], the waw functioning as a consonant, with a short vocal sheva [ə].</li><li><strong>-yā-</strong> — Palatal approximant [j], the yod functioning as a consonant, followed by long [ɔː], the qamets gadol under י.</li><li><strong>-ṯān</strong> — Voiceless interdental fricative [θ] — spirantized taw without dagesh — plus long [ɔː], the qamets gadol under ת, and final [n].</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;liw-yah-THAHN&#39; — &#39;liw&#39; rhymes with &#39;live&#39;; the middle &#39;yah&#39; is long and stressed; the final &#39;th&#39; is soft as in &#39;think&#39;, and the last &#39;a&#39; is drawn out.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Ugaritic</strong> — 𐎍𐎚𐎐 (ltn), the seven-headed dragon Lôtān/Lītan, defeated by Baʿlu in the Baʿal Cycle (KTU 1.5 i 1–3)</li><li><strong>Hebrew</strong> — לִוְיָתָן (Liwyāṯān), the biblical sea monster of Job 3:8; Isaiah 27:1; Psalms 74:14; 104:26</li><li><strong>Aramaic</strong> — לִוְיָתָן (Livyāṯān), as in Jewish Aramaic and the Targumim</li></ul>
+<p>BHS points the name לִוְיָתָן (Job 3:8). The form is a nominal derivative from l-w-h &#39;to twist, turn&#39; with the -ān suffix; the medial waw and yod are consonantal, yielding the sequence [liwjaː-]. Both qamets vowels are long [ɔː]. The taw lacks dagesh and is therefore spirantized [θ] in the Tiberian tradition. The Ugaritic cognate ltn (KTU 1.5 i 1–3) is vocalized by scholars as /lītan-/ or /lōtanu/. HALOT s.v. לִוְיָתָן; TDOT s.v. Leviathan; Day, Yahweh and the Gods and Goddesses of Canaan, 105–6.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">HALOT s.v. לִוְיָתָן.</li></ol></div>
     </div>
 </section>
 
@@ -325,14 +344,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Hebrew as <strong>לִוְיָתָן</strong> — Northwest Semitic cuneiform alphabet, attested Late Bronze Age, c. 1400–1200 BCE, in Ugarit (modern Ras Shamra, Syria). The script is written left-to-right.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Liwyāṯān</em> (Ugaritic alphabetic cuneiform), giving the normalized reading /li.vjaˈtɔn/ (Tiberian).</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The name is written לִוְיָתָן in the Ugaritic cuneiform alphabet.</li><li>Ugaritic ʿayin is rendered with Egyptological Ain (ꜥ) for DNS registrability.</li><li>Long vowels are reconstructed from Hebrew and Akkadian cognates and marked with macrons.</li><li>The Unicode restoration Liwyāṯān is registrable in .com; the Ugaritic cuneiform form is not supported in the .com IDN table.</li></ul>
+<p>The Hebrew name is written לִוְיָתָן: the lamed carries a short hireq, the waw is consonantal with sheva, the yod carries a long qamets, and the final taw carries a long qamets plus nun. Because the taw lacks dagesh, it is spirantized to the interdental fricative [θ] in Tiberian pronunciation. PUNYCODEX renders the name as <strong>Liwyāṯān</strong>: the macrons preserve the long qamets vowels, and the dot under <strong>ṯ</strong> marks the spirantized taw. The Ugaritic cognate is written ltn in alphabetic cuneiform, vocalized by scholars as Lôtān or Lītan. This Latin form is a Tier-2 restoration that signals both the Hebrew and the older Canaanite dragon.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Biblia Hebraica Stuttgartensia (BHS).</li><li id="src-original-script-2">Brown-Driver-Briggs Hebrew Lexicon.</li><li id="src-original-script-3">Hebrew and Aramaic Lexicon of the Old Testament (HALOT).</li></ol></div>
     </div>
 </section>
 
@@ -340,14 +360,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>Liwyāṯān is the <strong>serpent that the sea cannot contain and the storm-god cannot ignore</strong>. In Canaanite myth he is the seven-headed dragon Lôtān, crushed by Baʿal; in the Hebrew Bible he becomes the beast that only YHWH dares to hook, play, and slay. He is chaos given scales and breath — fire from his mouth, smoke from his nostrils, armor that no weapon can pierce.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Seven Heads</h3>
+<p>The Ugaritic Lôtān has seven heads, a motif that survives in biblical and apocalyptic dragon imagery (KTU 1.5 i; Psalm 74:14; Revelation 12).</p>
+<h3 class="scholars-h3">Fire-Breather</h3>
+<p>Job 41 describes flames streaming from his mouth and smoke from his nostrils, like a boiling pot or burning torch.</p>
+<h3 class="scholars-h3">YHWH&#39;s Trophy</h3>
+<p>Psalm 74 says God crushed the heads of Leviathan and gave him as food to the creatures of the wilderness — a sign of divine supremacy over chaos.</p>
+<h3 class="scholars-h3">Pair with Behemoth</h3>
+<p>In Job 40–41, Behemoth rules the land and Leviathan the sea as twin masterpieces of primal power, both beneath God&#39;s authority.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">TDOT s.v. Leviathan.</li></ol></div>
     </div>
 </section>
 
@@ -355,14 +380,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Liwyāṯān concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Serpent or dragon</strong> — The chaotic waters personified as a coiling, many-headed reptile</li><li><strong>Sea</strong> — The untamed deep that Leviathan inhabits and that YHWH alone can command</li><li><strong>Fire and smoke</strong> — The breath of the beast in Job 41, a terror beyond human weapons</li><li><strong>Bronze scales</strong> — Impenetrable armor that makes Leviathan invulnerable to human attack</li><li><strong>Hook and cord</strong> — The fishing gear that only God can use to play and subdue the monster</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">HALOT s.v. לִוְיָתָן.</li></ol></div>
     </div>
 </section>
 
@@ -370,14 +393,21 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Liwyāṯān&#39;s mythology is the <strong>combat myth of the ancient Near East</strong> in sea-serpent form. The dragon embodies the chaos that threatens ordered creation, and his defeat is the act by which the storm-god — whether Baʿal or YHWH — establishes cosmic kingship.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Lôtān and Baʿal (KTU 1.5 i 1–3)</h3>
+<p>In the Ugaritic Baʿal Cycle, the seven-headed dragon Lôtān (ltn) is the ally or pet of Yamm, the sea. Baʿal defeats him with a mace and scatters his body. The episode is the Canaanite version of the chaoskampf, the battle against the sea that establishes divine kingship. The Hebrew Leviathan is widely recognized as the same figure, adapted into Israelite monotheism.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Crushing of the Heads (Psalm 74:12–17)</h3>
+<p>The psalmist, lamenting the destruction of the sanctuary, calls on God to remember his ancient victories: &#39;You divided the sea by your might; you broke the heads of the sea monsters on the waters. You crushed the heads of Leviathan; you gave him as food for the creatures of the wilderness.&#39; The defeat of Leviathan is proof that YHWH can save his people again.</p>
+<h3 class="scholars-h3">The Beast No Mortal Can Master (Job 40:25–41:26)</h3>
+<p>In Job, God speaks from the whirlwind and challenges Job to consider Leviathan. No hook can hold him; he laughs at the javelin; his scales are his pride, each one shut up tight as with a seal; fire comes from his mouth; he makes the deep boil like a pot. The point is not that Leviathan is evil but that he is <em>unmasterable by any human</em>. Only God can play with him as with a bird.</p>
+<h3 class="scholars-h3">The Eschatological Dragon (Isaiah 27:1)</h3>
+<p>On that day, the LORD will punish Leviathan the fleeing serpent, Leviathan the twisting serpent, and he will slay the dragon that is in the sea. The old chaos-monster becomes a figure of the final defeat of evil, a prophecy that echoes into later Jewish and Christian apocalyptic, where the dragon is identified with Satan or the forces opposed to God.</p>
+<h3 class="scholars-h3">Leviathan as God&#39;s Creature (Psalm 104:24–26)</h3>
+<p>In this hymn of creation, Leviathan is not an enemy but a creature formed to sport in the sea. &#39;There is the sea, great and wide... there go the ships, and Leviathan, which you formed to play in it.&#39; The monster of chaos has been domesticated into a pet of the creator, a sign that the sea itself is bounded and purposeful.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">TDOT s.v. Leviathan.</li><li id="src-mythology-2">Day, Yahweh and the Gods and Goddesses of Canaan.</li></ol></div>
     </div>
 </section>
 
@@ -385,14 +415,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Liwyāṯān is part of a family of ancient Near Eastern chaos monsters. The Mesopotamian Tiamat, the salt-water dragon split by Marduk in the <em>Enuma Elish</em>, is his closest cousin. The Hebrew <em>Rahab</em> and <em>Tannin</em> play similar roles. Greek Typhon and Python are land- and serpent-shaped rebels against the Olympian order. In the New Testament&#39;s Revelation, the great red dragon with seven heads draws directly on Leviathan and the chaos-dragon tradition, now identified with the devil. Medieval Jewish and Islamic texts continued to describe a great sea monster, sometimes paired with Behemoth, whose flesh will feed the righteous in the world to come.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include <a class="scholars-xlink" href="/sites/apep/">Ꜥpp</a>, <a class="scholars-xlink" href="/sites/chaos/">Cháos</a>, <a class="scholars-xlink" href="/sites/jormungandr/">Jǫrmungandr</a>, <a class="scholars-xlink" href="/sites/tiamat/">Tiāmat</a>, <a class="scholars-xlink" href="/sites/typhon/">Typhōn</a>, and <a class="scholars-xlink" href="/sites/yam/">Yām</a>, each linked through chaos / primordial / world serpent.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">HALOT s.v. לִוְיָתָן.</li></ol></div>
     </div>
 </section>
 
@@ -400,14 +428,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Liwyāṯān outlived his myth to become one of the West&#39;s most powerful symbols of overwhelming power. Thomas Hobbes named his treatise on the sovereign state <em>Leviathan</em>, making the sea-monster an image of the commonwealth that holds all individual wills in awe. Herman Melville&#39;s white whale, <em>Moby-Dick</em>, is a Leviathan for the modern age: beautiful, inscrutable, and deadly. In <em>Paradise Lost</em>, Milton&#39;s Leviathan is so vast that sailors mistake him for an island. The name still means something larger and more terrible than ordinary life can contain: a force of nature, a state, a corporation, a dread that swims beneath the surface of order.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">HALOT s.v. לִוְיָתָן.</li></ol></div>
     </div>
 </section>
 
@@ -415,14 +440,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The Ugaritic tablets from Ras Shamra (KTU 1.5 i) preserve the Canaanite dragon Lôtān/Litan in alphabetic cuneiform, providing the closest ancient parallel to the biblical Leviathan. Mesopotamian cylinder seals and reliefs depict gods battling sea serpents and composite dragons, iconographic ancestors of the chaoskampf motif. In the Levant, Iron Age seals and pottery sometimes show serpents and aquatic monsters, though direct depictions of Leviathan are rare. The biblical descriptions in Job and the Psalms are literary rather than archaeological witnesses, drawing on a shared ancient Near Eastern repertoire of sea-dragon imagery.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">HALOT s.v. לִוְיָתָן.</li></ol></div>
     </div>
 </section>
 
@@ -430,120 +452,94 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Liwyāṯān given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> HALOT s.v. לִוְיָתָן.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> TDOT s.v. Leviathan.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Day, Yahweh and the Gods and Goddesses of Canaan.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> KTU 1.5 i (Ugaritic Baal Cycle).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Job 40:25–41:26.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Psalm 74:12–17; Psalm 104:24–26.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Isaiah 27:1.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Revelation 12.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">HALOT s.v. לִוְיָתָן.</li><li id="src-scholarly-sources-2">TDOT s.v. Leviathan.</li><li id="src-scholarly-sources-3">Day, Yahweh and the Gods and Goddesses of Canaan.</li><li id="src-scholarly-sources-4">KTU 1.5 i (Ugaritic Baal Cycle).</li><li id="src-scholarly-sources-5">Job 40:25–41:26.</li><li id="src-scholarly-sources-6">Psalm 74:12–17; Psalm 104:24–26.</li><li id="src-scholarly-sources-7">Isaiah 27:1.</li><li id="src-scholarly-sources-8">Revelation 12.</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="ugaritic-tablets">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Ugaritic Tablets</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Ugaritic ancestor of Leviathan is Lôtān (ltn). In KTU 1.5 i 1–3, at the climax of the Baꜥal Cycle, the text acclaims the storm god: &quot;When you smote Lôtān the fleeing serpent, finished off the twisting serpent, the mighty one with seven heads&quot; — the precise stock of titles the Bible later reapplies to Leviathan.<sup class="scholars-cite"><a href="#src-ugaritic-tablets-1">[1]</a></sup></p>
+<p>KTU 1.3 iii 38–42 assigns the same victory to <a class="scholars-xlink" href="/sites/anat/">ꜥAnat</a>&#39;s own boast: she claims to have crushed <a class="scholars-xlink" href="/sites/yam/">Yām</a>, the dragon Tunnanu, and &quot;the twisting serpent, the close-coiling one with seven heads,&quot; together with the other monsters of Ēl&#39;s menagerie. The double attribution — to Baꜥal and to Anat — marks the combat as a formulaic topos rather than a single event, and fragmentary incantations such as KTU 1.83 invoke a serpent bound in the deep. These dozen verses are the entire Ugaritic dossier: small, but the direct fountainhead of the biblical dragon.<sup class="scholars-cite"><a href="#src-ugaritic-tablets-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-ugaritic-tablets-1">Dietrich, Loretz &amp; Sanmartín, The Cuneiform Alphabetic Texts from Ugarit (KTU): KTU 1.5 i; 1.3 iii; 1.83.</li><li id="src-ugaritic-tablets-2">Wyatt, Religious Texts from Ugarit, 2nd ed.; Day, Yahweh and the Gods and Goddesses of Canaan.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="tanakh-references">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Tanakh References</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Leviathan appears five times in the Tanakh, each time transformed by monotheism. Job 3:8 names him as what professional cursers rouse; Job 41 gives the longest portrait — hook-proof, iron-scaled, fire-breathing, &quot;king over all the sons of pride&quot; — the second of God&#39;s two showpieces after Behemoth.<sup class="scholars-cite"><a href="#src-tanakh-references-1">[1]</a></sup></p>
+<p>Psalm 74:13–14 remembers God crushing &quot;the heads of Leviathan&quot; and feeding him to the wilderness creatures, framing the chaos battle as creation; Psalm 104:26 demotes him to a creature formed to play in the sea; Isaiah 27:1 projects him into the future — YHWH&#39;s sword against &quot;Leviathan the fleeing serpent, Leviathan the twisting serpent,&quot; the dragon in the sea — vocabulary lifted almost verbatim from KTU 1.5 i. The kin terms tannin, Rahab, and tehom orbit the same complex (Genesis 1:21; Isaiah 51:9; Psalm 89:10–11; Job 26:12–13).<sup class="scholars-cite"><a href="#src-tanakh-references-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-tanakh-references-1">Hebrew Bible, Job 3:8; 40:25–41:26; Psalm 74:13–14; 104:26; Isaiah 27:1; 51:9; Genesis 1:21.</li><li id="src-tanakh-references-2">Day, Yahweh and the Gods and Goddesses of Canaan; TDOT s.v. Leviathan.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="inscriptions">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Inscriptions & Seals</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>No inscription anywhere names Leviathan or Lôtān; he is a purely literary being, and honest epigraphy begins with that absence. The sole ancient attestation of the figure is the Ugaritic tablet tradition itself (KTU 1.5 i; 1.3 iii) — clay, not stone.<sup class="scholars-cite"><a href="#src-inscriptions-1">[1]</a></sup></p>
+<p>The chaos-combat imagery surrounding him, however, is archaeologically real: Mesopotamian and Syrian cylinder seals show a warrior god spearing a horned serpent or many-headed dragon, and the Baꜥal au foudre stela from Ugarit plants the storm god&#39;s spear above stylized waves. Later Jewish tradition kept the monster textual rather than epigraphic — 1 Enoch 60:7–10, 2 Esdras 6:49–52, and 2 Baruch 29:4 all know Leviathan and Behemoth as creatures reserved for the end-time feast — so the material record of Leviathan is a library, not a corpus of inscriptions.<sup class="scholars-cite"><a href="#src-inscriptions-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-inscriptions-1">Day, Yahweh and the Gods and Goddesses of Canaan (chaos-combat iconography).</li><li id="src-inscriptions-2">1 Enoch 60:7–10; 2 Esdras 6:49–52; 2 Baruch 29:4 (Jewish apocalyptic literature).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Liwyāṯān is the monster we cannot domesticate. Job learns that the world contains powers beyond human management — not because they are evil, but because they are <em>other</em>. Leviathan does not sin; he simply is: fire, scale, depth, and indifference. To face him is to face the limits of human strength and the necessity of humility before whatever is greater.</p>
+<p>Yet the biblical poets do not leave him there. For them, Leviathan is also a measure of God&#39;s playfulness: the creator made this terror and lets it sport in the sea. The same dragon that no army can subdue is, to God, a creature to be enjoyed. That reversal — from threat to pet — is the heart of the chaoskampf: not the destruction of danger, but its bounding. To name Liwyāṯān is to remember that the sea has limits, and that what looks like chaos from the shore may be play from the throne.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">HALOT s.v. לִוְיָתָן.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="ugaritic-tablets">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Ugaritic Tablets</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Ugaritic Tablets →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="tanakh-references">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Tanakh References</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Tanakh References →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="inscriptions">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Inscriptions & Seals</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Inscriptions & Seals →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">17</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -581,6 +577,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'leviathan';
@@ -614,14 +745,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -715,6 +838,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -726,18 +850,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -749,6 +874,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -793,6 +920,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

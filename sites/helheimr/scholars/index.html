@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,12 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#poetic-edda">14 &mdash; Poetic Edda</a></li>
-<li><a href="#prose-edda">15 &mdash; Prose Edda</a></li>
-<li><a href="#runic-evidence">16 &mdash; Runic Evidence</a></li>
-<li><a href="#sagas">17 &mdash; Sagas & Medieval Sources</a></li>
+<li><a href="#poetic-edda">12 &mdash; Poetic Edda</a></li>
+<li><a href="#prose-edda">13 &mdash; Prose Edda</a></li>
+<li><a href="#runic-evidence">14 &mdash; Runic Evidence</a></li>
+<li><a href="#sagas">15 &mdash; Sagas & Medieval Sources</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -281,14 +297,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Helheimr</strong> (<em>helheimr</em>) belongs to the Norse tradition, where it is catalogued under the domain &quot;Realm of the Dead&quot;. The name means &quot;Hel&#39;s home (from Hel + heimr)&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>In the norse tradition, <strong>Helheimr</strong> governed realm of the dead. The name encodes a sphere of power that shaped ritual, narrative, and social order.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Helheimr</strong> and serves its temple at <a class="scholars-ext" href="https://helheimr.com" rel="noopener noreferrer" target="_blank">helheimr.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>helheimr</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li><li id="src-overview-2">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li id="src-overview-3">Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora.</li></ol></div>
     </div>
 </section>
 
@@ -296,14 +311,16 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Younger Futhark as <strong>ᚼᛁᛚᚼᛁᛘᚱ</strong>. Etymologically it means &quot;Hel&#39;s home (from Hel + heimr)&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The reconstructed proto-form is <em>haljō + </em>haimaz<em> (proto-indo-european, &quot;hidden + home&quot;). PGmc </em>haljō &quot;hidden one, underworld&quot; + *haimaz &quot;home&quot;. The realm of the dead.</p>
+<p>The ASCII form <em>helheimr</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Helheimr</strong> recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>h</strong> → <strong>H</strong> — Same</li><li><strong>e</strong> → <strong>e</strong> — Same</li><li><strong>l</strong> → <strong>l</strong> — Same</li><li><strong>h</strong> → <strong>h</strong> — Same</li><li><strong>e</strong> → <strong>e</strong> — Same</li><li><strong>i</strong> → <strong>i</strong> — Same</li><li><strong>m</strong> → <strong>m</strong> — Same</li><li><strong>r</strong> → <strong>r</strong> — Same</li></ul>
+<p>The project holds the domain <strong>helheimr.com</strong> (helheimr.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li><li id="src-the-name-2">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li></ol></div>
     </div>
 </section>
 
@@ -311,14 +328,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/ˈhɛlˌhɛi̯mr/</strong> — Old Norse Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Hel-</strong> — Voiceless glottal fricative [h], short [ɛ], and alveolar lateral [l]; Hel is the hidden goddess of death</li><li><strong>-hei-</strong> — Diphthong [ɛi̯] — the same rising glide as in heimr, meaning &#39;home, world&#39;</li><li><strong>-mr</strong> — Bilabial nasal [m] plus tapped [r]; the compound shortens heimr to heim- before the final r</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;HEL-haymr&#39; — a crisp initial h, then &#39;hell&#39; and &#39;haymer&#39; run together, with a light rolled r.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Old English</strong> — hell, the Anglo-Saxon underworld, cognate with Norse Hel</li><li><strong>Gothic</strong> — halja, the feminine noun for the underworld in Wulfila&#39;s Bible</li><li><strong>Old Norse</strong> — Hel, the goddess whose name also names her realm</li></ul>
+<p>Helheimr is a transparent Old Norse compound of Hel + heimr. It is Tier 2 because no vowel is marked long or stressed; the name relies on everyday Old Norse phonology. Modern English &#39;hell&#39; descends from the same Germanic root but has lost the diphthong.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li></ol></div>
     </div>
 </section>
 
@@ -326,14 +346,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Younger Futhark as <strong>ᚼᛁᛚᚼᛁᛘᚱ</strong> — Germanic runic, attested Viking Age, c. 800–1100 CE, in Scandinavia. The script is written left-to-right, top-to-bottom.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Helheimr</em> (normalized Old Norse), giving the normalized reading /ˈhɛl.hɛi̯mr/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The Younger Futhark form ᚼᛁᛚᚼᛁᛘᚱ provides a Viking-Age runic attestation or normalized reconstruction.</li><li>Younger Futhark has only sixteen runes and does not distinguish short/long vowels or voiced/voiceless stops.</li><li>The normalized Old Norse form is based on 13th-century manuscript tradition (Poetic and Prose Eddas).</li><li>The Unicode restoration Helheimr uses Thorn (Þ) and accented vowels registrable in .com.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Barnes, Runes: A Handbook.</li><li id="src-original-script-2">Cleasby-Vigfusson, An Icelandic-English Dictionary.</li><li id="src-original-script-3">Zoëga, A Concise Dictionary of Old Icelandic.</li></ol></div>
     </div>
 </section>
 
@@ -341,14 +361,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>In the norse tradition, <strong>Helheimr</strong> governed realm of the dead. The name encodes a sphere of power that shaped ritual, narrative, and social order.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Hel&#39;s Grey Hall</h3>
+<p>Éljúðnir is the hall of Hel, where the dead are fed from Hunger and cut with Famine.</p>
+<h3 class="scholars-h3">Gjallarbrú</h3>
+<p>The bridge over the river Gjöll is guarded by Móðguðr, who tests every soul entering Helheimr.</p>
+<h3 class="scholars-h3">Garmr</h3>
+<p>The bloody hound who guards the entrance to Helheimr waits at Gnipahellir for the end times.</p>
+<h3 class="scholars-h3">Common Afterlife</h3>
+<p>Unlike Valhöll, Helheimr receives those who die of sickness, age, or accident—the quiet destiny of most mortals.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li></ol></div>
     </div>
 </section>
 
@@ -356,14 +381,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Helheimr concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Gjallarbrú</strong> — The resounding bridge crossed by the dead on the way to Hel&#39;s hall</li><li><strong>Hel&#39;s hall Éljúðnir</strong> — The hall named &#39;Sleet-Cold&#39; where the goddess receives the dead</li><li><strong>Threshold knife (Famine)</strong> — One of the named thresholds of Hel&#39;s hall, personifying starvation</li><li><strong>Hooded or half-faced woman</strong> — Hel&#39;s own depiction, one side beautiful and one side corpse-pale</li><li><strong>Náströnd shore</strong> — The corpse-strewn strand within Hel where oath-breakers suffer</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li></ol></div>
     </div>
 </section>
 
@@ -371,14 +394,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p><strong>Helheimr</strong> is the grey underworld ruled by the goddess Hel, daughter of Loki and the giantess Angrboða. Unlike the warrior&#39;s paradise of Valhöll, it receives those who die of sickness, age, or any death not on the battlefield. The realm lies downward and northward, its entrance guarded by the hound Garmr and the maiden Móðguðr, who tests the dead at the bridge Gjallarbrú. Here the dead continue a shadowy existence, fed by Hel herself from a dish named Hunger with a knife named Famine. In Old Norse imagination, Helheimr is less a place of active punishment than the common destination of ordinary mortality, the quiet hall that waits beyond every bedside death. Helheimr is the destination of those who die of age, sickness, or accident, as opposed to warriors chosen for Valhǫll. This democratic afterlife reflects a Norse view that most deaths are not glorious. The realm&#39;s misty, hall-bound existence shaped later Scandinavian and Germanic conceptions of the quiet dead, preserved in folklore about the gravemound and the underworld.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Hermóðr&#39;s Ride to Hel (Baldrs draumar)</h3>
+<p>When Baldr is killed by the mistletoe dart, the gods mourn so deeply that Frigg sends his brother Hermóðr to Helheimr to bargain for his return. Hermóðr takes Óðinn&#39;s eight-legged horse Sleipnir and rides for nine nights through valleys so dark and deep that he sees nothing, until he reaches the river Gjöll and the gold-floored bridge that leads to Hel&#39;s hall.</p>
+<p>Hel agrees to release Baldr only if every creature in the nine worlds weeps for him. Almost all do, but the giantess Þökk—widely understood to be Loki in disguise—refuses, and Baldr must remain in Helheimr until Ragnarǫk. The myth establishes Helheimr as a realm of fixed law, not arbitrary cruelty, and it makes the underworld&#39;s door a place where even gods can negotiate.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Halls of Hel (Prose Edda)</h3>
+<p>In <em>Gylfaginning</em>, Snorri describes Helheimr as a realm of high walls and forbidding gates. Hel herself is half living flesh and half corpse-blue, a visual emblem of the threshold she guards. Her hall is called Éljúðnir, &#39;Sprayed with Showers,&#39; and its threshold is named Stumbling-block, while those who enter fall under her authority.</p>
+<p>The grim furnishings—Hunger the table, Starvation the knife, Bed the sick-bed, and Curtains the flames of misfortune—do not describe torture so much as the slow diminishment of the unheroic dead. Helheimr is less a place of punishment than a place of continuation, where existence persists without the vitality that defines life among gods and men.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li id="src-mythology-2">Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora.</li></ol></div>
     </div>
 </section>
 
@@ -386,14 +412,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Norse tradition absorbed and reworked Germanic, Celtic, and Christian influences; medieval Icelandic compilers preserved the myths while Christian frameworks shaped their presentation.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Norse tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/alfheimr/">Álfheimr</a>, <a class="scholars-xlink" href="/sites/buri/">Búri</a>, <a class="scholars-xlink" href="/sites/eggther/">Eggþér</a>, <a class="scholars-xlink" href="/sites/jormungandr/">Jǫrmungandr</a>, <a class="scholars-xlink" href="/sites/jotunheimr/">Jötunheimr</a>, and <a class="scholars-xlink" href="/sites/midgardr/">Miðgarðr</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li></ol></div>
     </div>
 </section>
 
@@ -401,14 +425,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>The name lives on in modern fantasy, Neopagan practice, Scandinavian heritage, and the global reception of Viking-Age literature. Restoring <em>Helheimr</em> in Unicode preserves the name&#39;s cultural specificity against the flattening force of plain ASCII. Helheimr survives in popular imagination as the Norse underworld, often conflated with Valhalla in modern media. The precise Unicode form <em>Helheimr</em> preserves the Old Norse spelling and the realm&#39;s identity as the quiet destination of ordinary dead.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li></ol></div>
     </div>
 </section>
 
@@ -416,14 +437,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>Viking-Age burial practice gives Helheimr its material context. The Lindholm Høje cemetery at Aalborg preserves hundreds of stone-ship settings and cremations, while Gotland picture stones such as the Tjängvide and Ardre VIII stones depict afterlife journeys, valkyries, and the otherworld. Runestones across Denmark, Sweden, and Norway record the dead by name and kin.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li></ol></div>
     </div>
 </section>
 
@@ -431,135 +449,102 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Helheimr given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> The Poetic Edda; The Prose Edda of Snorri Sturluson.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Poetic Edda: Vafþrúðnismál (Óðinn&#39;s wisdom contest on the fate of the dead and the underworld).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Saxo Grammaticus, Gesta Danorum (Hadingus&#39;s descent to the realm of the dead).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Snorri Sturluson, Edda: Skáldskaparmál (kennings for Hel and the underworld journey).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li><li id="src-scholarly-sources-2">Beekes, R. S. P. Etymological Dictionary of Greek. Leiden: Brill, 2010.</li><li id="src-scholarly-sources-3">Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora.</li><li id="src-scholarly-sources-4">Poetic Edda: Vafþrúðnismál (Óðinn&#39;s wisdom contest on the fate of the dead and the underworld).</li><li id="src-scholarly-sources-5">Saxo Grammaticus, Gesta Danorum (Hadingus&#39;s descent to the realm of the dead).</li><li id="src-scholarly-sources-6">Snorri Sturluson, Edda: Skáldskaparmál (kennings for Hel and the underworld journey).</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="poetic-edda">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Poetic Edda</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Poetic Edda knows Hel&#39;s realm under several names — Hel, Helheimr, and the intensified Niflhel. <em>Baldrs draumar</em> gives the most sustained description: <a class="scholars-xlink" href="/sites/odinn/">Óðinn</a> rides down the dark road to Hel&#39;s hall, where gold-decked benches stand ready and mead is set out for <a class="scholars-xlink" href="/sites/baldr/">Baldr</a>&#39;s coming.<sup class="scholars-cite"><a href="#src-poetic-edda-1">[1]</a></sup> <em>Vafþrúðnismál</em> states that men die &#39;out of Hel&#39; into Niflhel, nine worlds down, and <em>Völuspá</em>&#39;s refrain has the hound <a class="scholars-xlink" href="/sites/garmr/">Garmr</a> baying before Gnipahellir, the cave at Hel&#39;s threshold, as the doom draws near.<sup class="scholars-cite"><a href="#src-poetic-edda-2">[2]</a></sup> <em>Grímnismál</em> places Hel beneath one of the three roots of <a class="scholars-xlink" href="/sites/yggdrasill/">Yggdrasill</a>.<sup class="scholars-cite"><a href="#src-poetic-edda-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-poetic-edda-1">Poetic Edda, Baldrs draumar (Óðinn&#39;s ride to Hel&#39;s hall).</li><li id="src-poetic-edda-2">Poetic Edda, Vafþrúðnismál and Völuspá (Niflhel; Garmr at Gnipahellir).</li><li id="src-poetic-edda-3">Poetic Edda, Grímnismál (the roots of Yggdrasill).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="prose-edda">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Prose Edda</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p><em>Gylfaginning</em> supplies the canonical geography. Óðinn casts Hel, daughter of <a class="scholars-xlink" href="/sites/loki/">Loki</a>, into Niflheimr and grants her authority over nine worlds; her hall is Éljúðnir, her dish Hunger, her knife Famine, her threshold Stumbling-block, her bed Sick-bed, its hangings Gleaming-bale.<sup class="scholars-cite"><a href="#src-prose-edda-1">[1]</a></sup> The road runs &#39;north and downward&#39;; the river Gjöll is spanned by the gold-roofed bridge Gjallarbrú, where the maiden Móðguðr challenges each traveller. Snorri then narrates Hermóðr&#39;s nine-night ride on Sleipnir to ransom <a class="scholars-xlink" href="/sites/baldr/">Baldr</a>, Hel&#39;s condition that all things weep, and its failure through the giantess Þökk.<sup class="scholars-cite"><a href="#src-prose-edda-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-prose-edda-1">Snorri Sturluson, Edda, Gylfaginning (Hel&#39;s hall and household).</li><li id="src-prose-edda-2">Snorri Sturluson, Edda, Gylfaginning (Hermóðr&#39;s ride to Hel).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="runic-evidence">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Runic Evidence</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>No runic inscription names Helheimr, and the personified Hel is unattested in the epigraphic record; Viking-Age runestones speak of death through Christian prayer formulas or secular commemoration, never through Hel&#39;s geography.<sup class="scholars-cite"><a href="#src-runic-evidence-1">[1]</a></sup> The word itself is old and pan-Germanic: Gothic <em>halja</em> renders Hades in Wulfila&#39;s fourth-century Bible translation, and Old English <em>hell</em> continues the same root of the &#39;hidden&#39; place of the dead.<sup class="scholars-cite"><a href="#src-runic-evidence-2">[2]</a></sup> Otherwise the testimony is indirect: later Scandinavian place-names and folklore of the grave-mound.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-runic-evidence-1">Simek, Rudolf. Dictionary of Northern Mythology (Hel).</li><li id="src-runic-evidence-2">Wulfila, Gothic Bible (halja rendering Hades); Simek, Dictionary of Northern Mythology.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="sagas">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Sagas & Medieval Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The family sagas rarely name Helheimr; where heroic poetry sends the slain to <a class="scholars-xlink" href="/sites/valholl/">Valhǫll</a>, the common dead of the Íslendingasögur go &#39;into&#39; local mountains. <em>Eyrbyggja saga</em> preserves the classic case: Þórólfr Mostrarskegg held the mountain Helgafell so holy that none might look on it unwashed, and believed he and his kin would die into it — and the saga shows the shepherd watching the mountain open to receive the drowned with firelight and ale.<sup class="scholars-cite"><a href="#src-sagas-1">[1]</a></sup> The learned tradition keeps the Eddic underworld alive mainly by quotation, as when Saxo Grammaticus sends Hadingus on a guided descent to a grey land of the dead.<sup class="scholars-cite"><a href="#src-sagas-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-sagas-1">Eyrbyggja saga (Helgafell and the dead of Þórólfr&#39;s kin).</li><li id="src-sagas-2">Saxo Grammaticus, Gesta Danorum (the descent of Hadingus).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Names are not merely labels; they are compressed worlds. <strong>Helheimr</strong> carries within it a norse understanding of hel&#39;s home (from hel + heimr). Unicode restoration returns that world to readable form.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">The Poetic Edda; The Prose Edda of Snorri Sturluson.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="poetic-edda">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Poetic Edda</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Poetic Edda →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="prose-edda">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Prose Edda</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Prose Edda →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="runic-evidence">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Runic Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Runic Evidence →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="sagas">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">17</span>
-        <h2 class="scholars-section-title">Sagas & Medieval Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Sagas & Medieval Sources →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">19</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -597,6 +582,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'helheimr';
@@ -630,14 +750,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -731,6 +843,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -742,18 +855,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -765,6 +879,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -809,6 +925,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

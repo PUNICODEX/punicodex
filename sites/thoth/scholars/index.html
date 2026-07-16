@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,12 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#hieroglyphic-evidence">14 &mdash; Hieroglyphic Evidence</a></li>
-<li><a href="#pyramid-texts">15 &mdash; Pyramid Texts</a></li>
-<li><a href="#coffin-texts">16 &mdash; Coffin Texts</a></li>
-<li><a href="#book-of-the-dead">17 &mdash; Book of the Dead</a></li>
+<li><a href="#hieroglyphic-evidence">12 &mdash; Hieroglyphic Evidence</a></li>
+<li><a href="#pyramid-texts">13 &mdash; Pyramid Texts</a></li>
+<li><a href="#coffin-texts">14 &mdash; Coffin Texts</a></li>
+<li><a href="#book-of-the-dead">15 &mdash; Book of the Dead</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -281,14 +297,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Ḏḥwty</strong> (<em>thoth</em>) — Writing, Wisdom, Moon · He who is like the ibis — belongs to the Egyptian tradition, where it is catalogued under the domain &quot;Writing, Wisdom, Moon&quot;. The name means &quot;He who is like the ibis&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p><strong>Ḏḥwty</strong> is the ibis-headed scribe of the gods, the measurer of time, the reckoner of accounts, and the moon whose light lets humans see at night. He invented writing, preserved the laws of Maat, and stands beside Osiris in the Hall of Judgment to record the verdict of the heart. Where Ptḥ creates by speaking, Thoth creates by writing: he is the god who makes knowledge durable.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Ḏḥwty</strong> and serves its temple at <a class="scholars-ext" href="https://xn--wty-2yy4e.com" rel="noopener noreferrer" target="_blank">ḏḥwty.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>thoth</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Book of the Dead, Spell 125 (Thoth records the weighing of the heart).</li><li id="src-overview-2">The Contendings of Horus and Seth (papyrus Chester Beatty I).</li><li id="src-overview-3">Faulkner, A Concise Dictionary of Middle Egyptian.</li></ol></div>
     </div>
 </section>
 
@@ -296,14 +311,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Hieroglyphs as <strong>𓅜𓏏</strong>. Etymologically it means &quot;He who is like the ibis&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The ASCII form <em>thoth</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Ḏḥwty</strong> recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>t</strong> → <strong>Ḏ</strong> — D-with-dot-below: palatalized d</li><li><strong>h</strong> → <strong>ḥ</strong> — H-with-dot: voiceless pharyngeal</li><li><strong>o</strong> → <strong>w</strong> — W: bilabial glide</li><li><strong>t</strong> → <strong>t</strong> — Same</li><li><strong>h</strong> → <strong>y</strong> — Y: palatal approximant</li></ul>
+<p>Attested and derived spellings of the name:</p>
+<ul class="scholars-list"><li><strong>Thóth</strong> — alternate stress, scholarly variant: Acute on omicron: alternate stress position</li></ul>
+<p>The project holds the domain <strong>ḏḥwty.com</strong> (xn--wty-2yy4e.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Book of the Dead, Spell 125 (Thoth records the weighing of the heart).</li><li id="src-the-name-2">The Contendings of Horus and Seth (papyrus Chester Beatty I).</li></ol></div>
     </div>
 </section>
 
@@ -311,14 +329,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/tɨˈχuːtiː/</strong> — Egyptological Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Ḏ</strong> — Palatalized voiced alveolar stop [ɟ] or affricate, written with d-dot-below; the first consonant of Ḏḥwty</li><li><strong>ḥ</strong> — Voiceless pharyngeal fricative [ħ], the dotted h that follows the palatal d</li><li><strong>w</strong> — Bilabial glide [w], represented in writing by the quail-chick sign</li><li><strong>ty</strong> — Final consonants t-y, with the y indicating a palatalization or the Greek ending -is</li></ul>
+<p>For the modern speaker, the closest approximation is: tji-HOO-tee — the first consonant is like a &#39;dj&#39; made against the hard palate, and the middle h is a dry throat-fricative.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Egyptian hieroglyphs</strong> — 𓄟𓊃𓂧𓏏𓆇 (ḏḥwty), the ibis god&#39;s name written with the ibis and moon signs</li><li><strong>Coptic</strong> — Ⲑⲱⲟⲩⲧ (Thōout), the lunar month named after the god</li><li><strong>Greek</strong> — Θώθ (Thōth) / Ἑρμῆς (Hermes), the Graeco-Egyptian Hermes Trismegistus</li></ul>
+<p>Ḏḥwty is a Tier-2 consonantal restoration. Egyptian writing records only the consonants ḏ-ḥ-w-ty; the vowels are reconstructed from Coptic and Greek sources. The initial palatal ḏ and the pharyngeal ḥ are both non-English sounds preserved in the Unicode form.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Book of the Dead, Spell 125 (Thoth records the weighing of the heart).</li></ol></div>
     </div>
 </section>
 
@@ -326,14 +347,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Hieroglyphs as <strong>𓅜𓏏</strong> — Egyptian hieroglyphs, attested Egyptian hieroglyphic, c. 3200 BCE – 4th century CE, in Nile Valley, Egypt. The script is written right-to-left / top-to-bottom / multidirectional.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Ḏḥwty</em> (Egyptological transliteration), giving the normalized reading Original vocalisation unknown; Egyptological /ˈθoːθ/ or /ˈtʰoːt/..</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>Ibis (𓅜) + bread sign (𓏏), logogram for the moon-god of writing</li><li>Full phonetic spelling 𓆓𓏌𓏏𓆇 is also attested</li><li>The initial Ḏ marks a voiced palato-alveolar affricate</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">James P. Allen, Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs, Cambridge University Press, 2000. <a class="scholars-ext" href="https://www.cambridge.org/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-original-script-2">Faulkner, A Concise Dictionary of Middle Egyptian.</li><li id="src-original-script-3">Hannig, Ägyptisches Wörterbuch.</li><li id="src-original-script-4">Wb, ḏḥwty.</li></ol></div>
     </div>
 </section>
 
@@ -341,14 +362,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p><strong>Ḏḥwty</strong> is the ibis-headed scribe of the gods, the measurer of time, the reckoner of accounts, and the moon whose light lets humans see at night. He invented writing, preserved the laws of Maat, and stands beside Osiris in the Hall of Judgment to record the verdict of the heart. Where Ptḥ creates by speaking, Thoth creates by writing: he is the god who makes knowledge durable.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Moon and Measurement</h3>
+<p>Thoth is the moon that measures months, festivals, and the night hours of the Duat.</p>
+<h3 class="scholars-h3">Scribe of Maat</h3>
+<p>He records the weighing of the heart and knows the spells that protect the justified dead.</p>
+<h3 class="scholars-h3">Mediator and Healer</h3>
+<p>He intervenes in disputes among gods, restores the Eye of Horus, and masters medicine and magic.</p>
+<h3 class="scholars-h3">Hermopolis</h3>
+<p>His city Khemenu, &#39;Eight-Town,&#39; was a center of learning and the cult of the Ogdoad.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">The Contendings of Horus and Seth (papyrus Chester Beatty I).</li></ol></div>
     </div>
 </section>
 
@@ -356,14 +382,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Ḏḥwty concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Ibis</strong> — The bird whose curved beak and measured step made it emblematic of writing and calculation</li><li><strong>Baboon</strong> — Thoth&#39;s other sacred animal, associated with the dawn and the rising moon</li><li><strong>Scribal palette and reed pens</strong> — The tools of the divine scribe who records all deeds and spells</li><li><strong>Crescent moon and disk</strong> — The lunar phases by which Thoth measures time and renews the cosmic order</li><li><strong>Eye of Horus (wedjat)</strong> — Restored by Thoth after the conflict of Horus and Seth, symbolizing wholeness regained</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Book of the Dead, Spell 125 (Thoth records the weighing of the heart).</li></ol></div>
     </div>
 </section>
 
@@ -371,14 +395,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Thoth moves through Egyptian myth as the indispensable companion: he is present at creation, mediates divine quarrels, heals the wounded eye, and judges the dead. His stories are less about his own ambition than about the power of knowledge, writing, and measured speech to resolve conflict and preserve order.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Word That Organized Creation (Heliopolitan Cosmogony)</h3>
+<p>In some versions of Egyptian cosmogony, Thoth is the tongue of Ptḥ, the means by which the creator&#39;s thoughts become articulate commands. He is also credited with inventing hieroglyphs, numbers, and the calendar, giving humanity the tools to maintain Maat. Without Thoth, creation would remain unspoken and unrecorded.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Mediator of the Gods (Contendings of Horus and Seth)</h3>
+<p>In the New Kingdom narrative &#39;The Contendings of Horus and Seth,&#39; Thoth acts as scribe and arbitrator before the divine tribunal. When Horus&#39;s eye is torn out and Seth&#39;s testicles are injured, Thoth heals both wounds and records the final verdict that makes Horus king of the living. His role is neither warrior nor king but the one who makes conflict resolvable through law and writing.</p>
+<h3 class="scholars-h3">The Scribe of the Weighing (Funerary Theology)</h3>
+<p>In Spell 125 of the <em>Book of the Dead</em>, Thoth stands beside the scales in the Hall of Judgment and records the result of the weighing of the heart against the feather of Maat. His testimony is decisive: a favorable record means passage into the afterlife, while an unfavorable one means destruction by Ammit. The deceased often identifies himself with Thoth, claiming mastery of the sacred words that protect the soul.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">The Contendings of Horus and Seth (papyrus Chester Beatty I).</li><li id="src-mythology-2">Faulkner, A Concise Dictionary of Middle Egyptian.</li></ol></div>
     </div>
 </section>
 
@@ -386,14 +413,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Thoth&#39;s most enduring syncretism is with the Greek Hermes, producing Hermes Trismegistus, &#39;Thrice-Great Hermes,&#39; the legendary author of the Hermetic corpus. This Graeco-Egyptian figure became a cornerstone of late antique mysticism, alchemy, and astrology, and was reclaimed by Renaissance humanists such as Ficino and Pico della Mirandola. In Coptic Egypt, Thoth&#39;s month name (Thōout) survived in the Christian calendar. His ibis and baboon forms influenced medieval bestiaries and early modern emblem books.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include <a class="scholars-xlink" href="/sites/ganesha/">Gaṇeśa</a> (wisdom / writing), <a class="scholars-xlink" href="/sites/hermes/">Hermês</a> (messenger / travel / wisdom), <a class="scholars-xlink" href="/sites/ahuramazda/">AhuraMazdā</a> (wisdom / knowledge), <a class="scholars-xlink" href="/sites/artemis/">Ártemis</a> (moon / lunar), <a class="scholars-xlink" href="/sites/athena/">Athénā</a> (wisdom / knowledge), and <a class="scholars-xlink" href="/sites/hekate/">Hekátē</a> (moon / lunar).</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Book of the Dead, Spell 125 (Thoth records the weighing of the heart).</li></ol></div>
     </div>
 </section>
 
@@ -401,14 +426,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Thoth lives on as the patron of writers, scholars, librarians, and occultists. The figure of Hermes Trismegistus shaped Western esotericism for nearly two millennia, and the word &#39;hermetic&#39; still signals sealed, secret knowledge. In popular culture, Thoth appears as a wise moon-god, a keeper of arcane books, and a judge of souls. For Egyptologists, he embodies the Egyptian conviction that writing is a form of magic: the right words, properly recorded, can preserve a person beyond death.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Book of the Dead, Spell 125 (Thoth records the weighing of the heart).</li></ol></div>
     </div>
 </section>
 
@@ -416,14 +438,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>Thoth&#39;s principal cult center was Khemenu (Hermopolis Magna) in Middle Egypt, where remains of his temple and the nearby ibis and baboon cemeteries have been excavated. Thousands of mummified ibises and baboons were deposited as votive offerings at Saqqara, Tuna el-Gebel, and other sites. Temple reliefs from the New Kingdom onward show Thoth as scribe, healer, and lunar measurer. The Graeco-Roman Hermetic texts and Coptic references preserve his later reputation as Hermes Trismegistus.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Book of the Dead, Spell 125 (Thoth records the weighing of the heart).</li></ol></div>
     </div>
 </section>
 
@@ -431,135 +450,103 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Ḏḥwty given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Book of the Dead, Spell 125 (Thoth records the weighing of the heart).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> The Contendings of Horus and Seth (papyrus Chester Beatty I).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Faulkner, A Concise Dictionary of Middle Egyptian.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Wb, ḏḥwty (Erman &amp; Grapow).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Allen, Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Copenhaver, Hermetica: The Greek Corpus Hermeticum and the Latin Asclepius.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Fowden, The Egyptian Hermes: A Historical Approach to the Late Pagan Mind.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Jasnow &amp; Zauzich, The Ancient Egyptian Book of Thoth.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Book of the Dead, Spell 125 (Thoth records the weighing of the heart).</li><li id="src-scholarly-sources-2">The Contendings of Horus and Seth (papyrus Chester Beatty I).</li><li id="src-scholarly-sources-3">Faulkner, A Concise Dictionary of Middle Egyptian.</li><li id="src-scholarly-sources-4">Wb, ḏḥwty (Erman &amp; Grapow).</li><li id="src-scholarly-sources-5">Allen, Middle Egyptian: An Introduction to the Language and Culture of Hieroglyphs.</li><li id="src-scholarly-sources-6">Copenhaver, Hermetica: The Greek Corpus Hermeticum and the Latin Asclepius.</li><li id="src-scholarly-sources-7">Fowden, The Egyptian Hermes: A Historical Approach to the Late Pagan Mind.</li><li id="src-scholarly-sources-8">Jasnow &amp; Zauzich, The Ancient Egyptian Book of Thoth.</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="hieroglyphic-evidence">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Hieroglyphic Evidence</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The name ḏḥwty is most often written logographically: the sacred ibis on a perch, sometimes with the phonetic complement t and the divine determinative, while fully phonetic spellings ḏ-ḥ-w-t-y are attested from an early date. The habit is telling — the ibis is the name, which is why the traditional gloss runs &#39;he who is like the ibis&#39;. The Greek rendering Θώθ (Thōth) and the Coptic month-name Ⲑⲱⲟⲩⲧ (Thōout) preserve the later vocalisation.<sup class="scholars-cite"><a href="#src-hieroglyphic-evidence-1">[1]</a></sup></p>
+<p>Thoth is attested from the earliest phases of Egyptian writing: ibis standards appear in Predynastic and Early Dynastic material, and by the Old Kingdom his cult centre Khemenu — &#39;Eight-town&#39;, Greek Hermopolis — is established in Middle Egypt.<sup class="scholars-cite"><a href="#src-hieroglyphic-evidence-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-hieroglyphic-evidence-1">Faulkner, A Concise Dictionary of Middle Egyptian, s.v. ḏḥwty.</li><li id="src-hieroglyphic-evidence-2">Wilkinson, The Complete Gods and Goddesses of Ancient Egypt (2003), s.v. Thoth.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pyramid-texts">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Pyramid Texts</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Thoth is one of the busiest gods of the Pyramid Texts. He appears throughout the corpus in the roles that define him for three millennia: he fetches and restores the Eye of <a class="scholars-xlink" href="/sites/horus/">Horus</a> after the conflict with Seth, acting as physician and reconciler; he serves as scribe and herald of the gods, recording and announcing; and he guides the king&#39;s ascent, carrying or conducting him to the sky. Already he is served by the baboon as well as the ibis, and already he is the god whose command of sacred words decides between perishing and ascending — precisely the function the funerary texts themselves exist to serve.<sup class="scholars-cite"><a href="#src-pyramid-texts-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pyramid-texts-1">Faulkner, The Ancient Egyptian Pyramid Texts (1969), corpus survey.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="coffin-texts">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Coffin Texts</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Coffin Texts deepen Thoth&#39;s judicial and salvific profile. He vindicates — the formula &#39;Thoth has justified <a class="scholars-xlink" href="/sites/osiris/">Osiris</a> against his foes&#39; becomes a template the deceased now claims for himself — and he heals, restoring the damaged Eye and mending what Seth has broken. Middle Kingdom spells also make the deceased a master of Thoth&#39;s own craft: to know the words of Thoth is to command the afterlife, and the identification of the dead scribe with the divine scribe becomes one of the corpus&#39;s most durable strategies of salvation.<sup class="scholars-cite"><a href="#src-coffin-texts-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-coffin-texts-1">Faulkner, The Ancient Egyptian Coffin Texts, 3 vols (1973–78).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="book-of-the-dead">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Book of the Dead</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Thoth is woven through the Book of the Dead at its most decisive points. In Spell 125 he stands at the scales in the Hall of the Two Truths, palette in hand, recording the weighing of the heart against the feather of <a class="scholars-xlink" href="/sites/maat/">Maat</a> — the most famous image in Egyptian religion. Spell 18 preserves a litany of his vindications of Osiris before the successive divine tribunals, recited so the deceased may claim the same justification; Spell 175 stages a dialogue in which the dead question him about the perils of the underworld and receive assurance of an immeasurable lifespan. The corpus is, in a real sense, his own book: the words of Thoth placed in human hands.<sup class="scholars-cite"><a href="#src-book-of-the-dead-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-book-of-the-dead-1">Book of the Dead, Spells 18, 125, and 175 (Andrews ed., British Museum Press).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Thoth is the god who believes that what is written endures. In a world of disappearing messages and ephemeral speech, he reminds us that some words must be preserved: laws, treaties, poems, names. To invoke Thoth is to take seriously the responsibility of the scribe — the one who decides what gets remembered and how. His moonlight is not the blazing sun of Ra but the softer light by which we read, measure, and think.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Book of the Dead, Spell 125 (Thoth records the weighing of the heart).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="hieroglyphic-evidence">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Hieroglyphic Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Hieroglyphic Evidence →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="pyramid-texts">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Pyramid Texts</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pyramid Texts →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="coffin-texts">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Coffin Texts</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Coffin Texts →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="book-of-the-dead">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">17</span>
-        <h2 class="scholars-section-title">Book of the Dead</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Book of the Dead →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">19</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -597,6 +584,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'thoth';
@@ -630,14 +752,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -731,6 +845,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -742,18 +857,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -765,6 +881,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -809,6 +927,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

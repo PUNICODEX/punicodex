@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,11 +279,12 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#phoenician-inscriptions">14 &mdash; Phoenician Inscriptions</a></li>
-<li><a href="#biblical-references">15 &mdash; Biblical References</a></li>
-<li><a href="#classical-sources">16 &mdash; Classical Sources</a></li>
+<li><a href="#phoenician-inscriptions">12 &mdash; Phoenician Inscriptions</a></li>
+<li><a href="#biblical-references">13 &mdash; Biblical References</a></li>
+<li><a href="#classical-sources">14 &mdash; Classical Sources</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -280,14 +296,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Ašeratu</strong> (<em>aseratu</em>) — Sea, Mother Goddess · She who treads on the sea — belongs to the Phoenician tradition, where it is catalogued under the domain &quot;Sea, Mother Goddess&quot;. The name means &quot;She who treads on the sea&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>Ašeratu is the <strong>great mother of the Canaanite pantheon</strong>, the consort of Ēl and the goddess whose footsteps quiet the sea. Her full Ugaritic title <em>rbt ʾaṯrt ym</em> — “Lady Ašeratu of the Sea” — and the Phoenician form <em>ʾšrt</em> name her as both cosmic navigator and divine ancestress. Where Ēl is the distant father, Ašeratu is the active queen mother who knows how to approach him.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Ašeratu</strong> and serves its temple at <a class="scholars-ext" href="https://xn--aeratu-bkb.com" rel="noopener noreferrer" target="_blank">ašeratu.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>aseratu</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">KTU (Ugaritic texts).</li><li id="src-overview-2">Smith, The Ugaritic Baal Cycle.</li><li id="src-overview-3">Coogan, Stories from Ancient Canaan.</li></ol></div>
     </div>
 </section>
 
@@ -295,14 +310,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Phoenician as <strong>𐤀𐤔𐤓𐤕</strong>. Etymologically it means &quot;She who treads on the sea&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The ASCII form <em>aseratu</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Ašeratu</strong> recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>a</strong> → <strong>A</strong> — Same, capitalized</li><li><strong>s</strong> → <strong>š</strong> — Special character</li><li><strong>e</strong> → <strong>e</strong> — Same</li><li><strong>r</strong> → <strong>r</strong> — Same</li><li><strong>a</strong> → <strong>a</strong> — Same</li><li><strong>t</strong> → <strong>t</strong> — Same</li><li><strong>u</strong> → <strong>u</strong> — Same</li></ul>
+<p>The project holds the domain <strong>ašeratu.com</strong> (xn--aeratu-bkb.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">KTU (Ugaritic texts).</li><li id="src-the-name-2">Smith, The Ugaritic Baal Cycle.</li></ol></div>
     </div>
 </section>
 
@@ -310,14 +326,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/ʔa.ʃe.ˈra.tu/</strong> — Canaanite/Phoenician Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>ʔa-</strong> — Glottal stop [ʔ] followed by open [a]; the initial aleph of the Canaanite name (not a pharyngeal ʿayin, so the registrable form uses plain A).</li><li><strong>-še-</strong> — Voiceless postalveolar fricative [ʃ] plus mid front [e]. The š reflects the Phoenician/Canaanite sibilant; Ugaritic wrote the same consonant as ṯ (probably [θ]).</li><li><strong>-ra-</strong> — Tapped or trilled [r] plus open [a].</li><li><strong>-tu</strong> — Voiceless alveolar stop [t] plus close back rounded vowel [u], the final nominative case vowel of the divine name in Ugaritic and Phoenician.</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;ah-she-RAH-too&#39; — begin with a slight catch in the throat, then &#39;she&#39; with a crisp sh, roll or tap the r, and end with &#39;rah-too&#39;.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Ugaritic</strong> — 𐎀𐎘𐎗𐎚 (ʾaṯrt), consort of ʾEl in the Baal Cycle</li><li><strong>Phoenician</strong> — 𐤀𐤔𐤓𐤕 (ʾšrt), attested in inscriptions and theophoric names</li><li><strong>Hebrew</strong> — אֲשֵׁרָה (ʾĂšērāh), the goddess and her cult object</li><li><strong>Akkadian</strong> — 𒀀𒅆𒋥 (Aširatu), the Amorite-Akkadian form</li></ul>
+<p>Reconstruction follows the Phoenician/Ugaritic nominative form ʾAšeratu. The initial consonant is a glottal stop (aleph), not a pharyngeal, so the PUNYCODEX form uses plain A rather than Egyptological Ain. The medial š marks the Canaanite/Phoenician reflex of Proto-Semitic *ṯ, while Ugaritic retains the older ṯ (probably [θ]); the final -u is the case vowel, dropped in Hebrew Asherah. Tier 2: the caron on š preserves a distinctive Semitic phoneme, but there is no long-vowel or Greek-style stress feature. Sources: KTU, CIS/KAI, Smith The Ugaritic Baal Cycle, Day Yahweh and the Gods and Goddesses of Canaan.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">KTU (Ugaritic texts).</li></ol></div>
     </div>
 </section>
 
@@ -325,14 +344,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Phoenician as <strong>𐤀𐤔𐤓𐤕</strong> — Northwest Semitic abjad, attested Iron Age, c. 1050–800 BCE, in Levant. The script is written right-to-left.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Ašeratu</em> (Phoenician abjad), giving the normalized reading /ʔaʃeˈraː.tu/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The name is written 𐤀𐤔𐤓𐤕 in the Phoenician abjad.</li><li>Phoenician writing records consonants only; vowels are supplied by modern scholars from cognate languages.</li><li>The final vowel markings in the transliteration are inferred from older Northwest Semitic case endings.</li><li>The Unicode restoration Ašeratu is registrable in .com; the Phoenician form is not in the .com IDN table.</li></ul>
+<p>Ugaritic writes the name 𐎀𐎘𐎗𐎚 (ʾ-a-ṯ-r-t), while Phoenician writes 𐤀𐤔𐤓𐤕 (ʾ-š-r-t). The caron on <strong>š</strong> marks the Canaanite/Phoenician reflex of the consonant; Ugaritic retains the older ṯ, probably [θ]. The final <strong>-u</strong> of Ašeratu is the nominative case vowel of the divine name, dropped in Hebrew אֲשֵׁרָה. The initial consonant is a glottal stop (aleph), not a pharyngeal, so the PUNYCODEX form uses plain A. Tier 2: the š preserves a distinctive Semitic phoneme, but there is no long vowel or Greek-style stress mark.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Corpus Inscriptionum Semiticarum, Académie des Inscriptions et Belles-Lettres, Paris, 1881. <a class="scholars-ext" href="https://aibl.fr/travaux/le-cabinet-du-corpus-inscriptionum-semiticarum/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-original-script-2">Kanaanäische und Aramäische Inschriften, 3 vols., Harrassowitz, Wiesbaden (completed 1971), 1962. <a class="scholars-ext" href="https://www.harrassowitz-verlag.de/titel_544.ahtml" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-original-script-3">Krahmalkov, Phoenician-Punic Dictionary.</li><li id="src-original-script-4">Ugaritic Textual Corpus, Ras Shamra–Ugarit corpus (KTU / CUSAS), 1200 BCE. <a class="scholars-ext" href="https://www.ancientneareast.net/ugarit-ras-shamra/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -340,14 +360,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>Ašeratu is the <strong>great mother of the Canaanite pantheon</strong>, the consort of Ēl and the goddess whose footsteps quiet the sea. Her full Ugaritic title <em>rbt ʾaṯrt ym</em> — “Lady Ašeratu of the Sea” — and the Phoenician form <em>ʾšrt</em> name her as both cosmic navigator and divine ancestress. Where Ēl is the distant father, Ašeratu is the active queen mother who knows how to approach him.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Mother of the Gods</h3>
+<p>Called qnyt ʾilm, &#39;Creatress of the Gods&#39;; the seventy sons of Ašeratu populate the divine council (KTU 1.4 vi 46).</p>
+<h3 class="scholars-h3">Lady of the Sea</h3>
+<p>Her epithet rbt ʾaṯrt ym links her to the Mediterranean, to fishing, and to the cosmic waters tamed by her presence.</p>
+<h3 class="scholars-h3">Royal Intercessor</h3>
+<p>In KTU 1.4 she travels to Ēl&#39;s tent, petitions on Baꜥal&#39;s behalf, and secures permission for the storm-god&#39;s palace.</p>
+<h3 class="scholars-h3">Domestic Sovereignty</h3>
+<p>Spindle, weaving, and nursing imagery mark her as the divine model of women&#39;s labor raised to cosmic scale.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Smith, The Ugaritic Baal Cycle.</li></ol></div>
     </div>
 </section>
 
@@ -355,14 +380,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Ašeratu concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Sea</strong> — The waters she treads and tames, source of fertility and commerce for coastal Ugarit</li><li><strong>Tree or pole</strong> — The biblical ʾăšērâ, a wooden cult object that represents or embodies her presence</li><li><strong>Spindle</strong> — Her attribute in Ugaritic and Hittite iconography; symbol of feminine labor and cosmic order</li><li><strong>Donkey</strong> — The beast she rides when approaching Ēl&#39;s tent in the Baꜥal Cycle</li><li><strong>Nursing breast</strong> — The nourishment she gives to gods and kings; kings may be called her nurslings</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">KTU (Ugaritic texts).</li></ol></div>
     </div>
 </section>
 
@@ -370,14 +393,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Ašeratu&#39;s mythology is the mythology of influence. She does not fight; she intercedes. Her journeys to Ēl&#39;s tent, her titles as creatrix and nurse, and her treading of the sea all mark her as the figure who turns raw divine power into ordered legitimacy.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Queen Mother&#39;s Journey (The Baal Cycle)</h3>
+<p>In KTU 1.4, Baꜥal longs for a palace but cannot win Ēl&#39;s approval directly. He turns to Ašeratu. She prepares herself with care, harnesses her donkey, and travels to the source of the divine rivers. There she prostrates before Ēl, praises his wisdom, and asks that Baꜥal be granted a house &#39;like the gods&#39;. Ēl laughs, welcomes her, and consents. Without her diplomacy, Baꜥal would remain homeless.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Creatress of the Gods (The Baal Cycle)</h3>
+<p>Ašeratu is repeatedly called <em>qnyt ʾilm</em>, &#39;Creatress of the Gods&#39; (KTU 1.3 v 25–26; 1.4 i 23; iii 26). The seventy sons of Ašeratu (KTU 1.4 vi 46) are the divine council itself; when Baꜥal disappears into Mot&#39;s realm, it is she who is asked to choose a successor from among her sons.</p>
+<h3 class="scholars-h3">Nurse of the Divine (Myth of the Gracious Gods)</h3>
+<p>In KTU 1.23, the &#39;Birth of the Gracious Gods,&#39; Ašeratu appears in the background of a sacred-marriage and birth narrative, associated with suckling and nourishment. The newborn gods drink from her breasts, a motif that links her to royal legitimation: kings may be called her nurslings.</p>
+<h3 class="scholars-h3">Treader of the Sea (Iconography)</h3>
+<p>Her epithet &#39;Lady Ašeratu of the Sea&#39; (<em>rbt ʾaṯrt ym</em>) has been interpreted as &#39;she who treads on sea.&#39; Whether the sea is the Mediterranean that fed Ugarit&#39;s economy, the cosmic watery chaos, or both, the title makes Ašeratu a boundary-goddess: she walks where land and water meet and brings the wild under domestic sovereignty.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Smith, The Ugaritic Baal Cycle.</li><li id="src-mythology-2">Coogan, Stories from Ancient Canaan.</li></ol></div>
     </div>
 </section>
 
@@ -385,14 +413,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Ašeratu&#39;s reach extended across the ancient Near East. In Hittite treaties she appears as Ašertu, the consort of Elkunirša and a weaving goddess with dozens of divine children. In Egypt she was identified with Hathor and venerated as Qudšu, &#39;Holiness.&#39; In Israel and Judah she became the Bible&#39;s most controversial goddess: the Asherah, the Queen of Heaven, perhaps the consort of Yahweh in inscriptions from Kuntillet ʿAjrud and Khirbet el-Qom. The Deuteronomistic reformers condemned her wooden pole and the women who baked cakes for her, but the very polemics testify to her persistent hold.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include <a class="scholars-xlink" href="/sites/babaluaye/">Ọbalúayé</a>, <a class="scholars-xlink" href="/sites/ea/">Ēa</a>, <a class="scholars-xlink" href="/sites/manannan/">Manannán</a>, <a class="scholars-xlink" href="/sites/njordr/">Njǫrðr</a>, <a class="scholars-xlink" href="/sites/pontos/">Póntos</a>, and <a class="scholars-xlink" href="/sites/poseidon/">Poseidôn</a>, each linked through sea / water.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">KTU (Ugaritic texts).</li></ol></div>
     </div>
 </section>
 
@@ -400,14 +426,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Ašeratu is the divine feminine the Hebrew Bible tried to erase and failed. Her tree, her pole, and her cakes survived in folk religion; her name survived in place names and theophoric roots; her image survived, some argue, in the Shekhinah and in the maternal iconography of the Virgin Mary. Modern feminist theologians and Canaanite- and Goddess-oriented movements have reclaimed her as a symbol of the sacred feminine suppressed by later monotheism. To restore her name with the Phoenician <em>š</em> and the Ugaritic nominative <em>-u</em> is to recover a sound that once rang in temples from Ras Shamra to Jerusalem.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">KTU (Ugaritic texts).</li></ol></div>
     </div>
 </section>
 
@@ -415,14 +438,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The Ugaritic tablets from Ras Shamra (KTU 1.3–1.4, 1.23) preserve Ašeratu&#39;s titles and intercessory role in alphabetic cuneiform. The Hittite Elkunirša myth from Boğazköy-Hattusa adapts her as Ašertu, consort of Elkunirša and a weaver of divine children. Phoenician inscriptions (CIS/KAI) attest ʾšrt in theophoric names. In Israel and Judah, the Kuntillet ʿAjrud and Khirbet el-Qom inscriptions, the Taanach cult stands, and the Jerusalem temple asherah (2 Kings 23) provide material and textual witnesses to her contested cult.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">KTU (Ugaritic texts).</li></ol></div>
     </div>
 </section>
 
@@ -430,120 +450,94 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Ašeratu given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> KTU (Ugaritic texts).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Smith, The Ugaritic Baal Cycle.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Coogan, Stories from Ancient Canaan.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Day, Yahweh and the Gods and Goddesses of Canaan.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Hadley, The Cult of Asherah in Ancient Israel and Judah.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Wiggins, A Reassessment of Asherah.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> KTU 1.4 (Baal Cycle: Ašeratu intercedes with El).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> KTU 1.23 (Birth of the Gracious Gods).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Hebrew Bible, Deuteronomy 16:21; Judges 6:25–26 (asherah poles).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> Hebrew Bible, 1 Kings 18:19; 2 Kings 21:7; 23:4–7 (prophets and Josianic reform).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-11">[11]</a></sup> Kuntillet ʿAjrud inscriptions (KH1–KH3: &#39;Yahweh and his Asherah&#39;).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-12">[12]</a></sup> Hittite Elkunirša myth (Ašertu, consort of Elkunirša).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">KTU (Ugaritic texts).</li><li id="src-scholarly-sources-2">Smith, The Ugaritic Baal Cycle.</li><li id="src-scholarly-sources-3">Coogan, Stories from Ancient Canaan.</li><li id="src-scholarly-sources-4">Day, Yahweh and the Gods and Goddesses of Canaan.</li><li id="src-scholarly-sources-5">Hadley, The Cult of Asherah in Ancient Israel and Judah.</li><li id="src-scholarly-sources-6">Wiggins, A Reassessment of Asherah.</li><li id="src-scholarly-sources-7">KTU 1.4 (Baal Cycle: Ašeratu intercedes with El).</li><li id="src-scholarly-sources-8">KTU 1.23 (Birth of the Gracious Gods).</li><li id="src-scholarly-sources-9">Hebrew Bible, Deuteronomy 16:21; Judges 6:25–26 (asherah poles).</li><li id="src-scholarly-sources-10">Hebrew Bible, 1 Kings 18:19; 2 Kings 21:7; 23:4–7 (prophets and Josianic reform).</li><li id="src-scholarly-sources-11">Kuntillet ʿAjrud inscriptions (KH1–KH3: &#39;Yahweh and his Asherah&#39;).</li><li id="src-scholarly-sources-12">Hittite Elkunirša myth (Ašertu, consort of Elkunirša).</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="phoenician-inscriptions">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Phoenician Inscriptions</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Direct Phoenician dedications to Aširat are surprisingly rare; her alphabetic epigraphy is overwhelmingly Ugaritic. In the tablets of Ras Shamra she is aṯrt, one of the most frequently named deities of the corpus: the god lists rank her beside Ēl, ritual and offering texts assign her sacrifices, and the Baal Cycle gives her the full titles rbt aṯrt ym, &#39;Lady Ašeratu of the Sea&#39;, and qnyt ʾilm, &#39;Creatress of the Gods&#39;. In Phoenician and Punic onomastics the name ʾšrt survives chiefly within theophoric personal names.<sup class="scholars-cite"><a href="#src-phoenician-inscriptions-1">[1]</a></sup></p>
+<p>The most discussed Iron Age attestations are Hebrew, not Phoenician: the blessing formulae from Kuntillet ʿAjrud, &#39;I bless you by Yahweh of Samaria and by his asherah&#39;, and from Khirbet el-Qom, &#39;blessed be Uriyahu by Yahweh... and by his asherah&#39;. Whether &#39;his asherah&#39; names the goddess or her wooden symbol remains one of the central debates of Israelite religion.<sup class="scholars-cite"><a href="#src-phoenician-inscriptions-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-phoenician-inscriptions-1">KTU (Ugaritic god lists, ritual texts, and Baal Cycle: aṯrt and her titles).</li><li id="src-phoenician-inscriptions-2">Kuntillet ʿAjrud and Khirbet el-Qom inscriptions; Hadley, The Cult of Asherah in Ancient Israel and Judah.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="biblical-references">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Biblical References</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Under the name ʾăšērâ the goddess — or her wooden cult object — appears some forty times in the Hebrew Bible, always in polemic. Deuteronomy 16:21 forbids planting &#39;an asherah of any kind of tree&#39; beside Yahweh&#39;s altar; Judges 6:25–30 has Gideon cut down his father&#39;s asherah and burn it; 1 Kings 15:13 reports that the queen mother Maacah made &#39;an abominable image for Asherah&#39;. The four hundred prophets of Asherah eat at Jezebel&#39;s table in 1 Kings 18:19.<sup class="scholars-cite"><a href="#src-biblical-references-1">[1]</a></sup></p>
+<p>The monarchy itself hosted her: Manasseh set a carved Asherah in the Jerusalem temple (2 Kings 21:7), and Josiah&#39;s reform dragged it out, burned it, and ground it to dust (2 Kings 23:4–7). Whether the biblical ʾăšērâ is the goddess Ašeratu, a stylized tree symbol, or both, the Deuteronomists&#39; fury testifies to a cult that would not die — the same mother-goddess Ugarit knew as Lady of the Sea.<sup class="scholars-cite"><a href="#src-biblical-references-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-biblical-references-1">Hebrew Bible, Deuteronomy 16:21; Judges 6:25–30; 1 Kings 15:13; 18:19 (the asherah in polemic).</li><li id="src-biblical-references-2">Hebrew Bible, 2 Kings 21:7; 23:4–7; Wiggins, A Reassessment of Asherah.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="classical-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Classical Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>No Greek or Latin author preserves a recognizable form of the name Ašeratu, and no classical writer describes her cult. The silence reflects history: by the Hellenistic period the goddess&#39;s independent identity had faded on the coast, absorbed into the great coastal figures of <a class="scholars-xlink" href="/sites/astart/">Aštart</a>-Aphrodite and the Syrian Goddess. Philo of Byblos&#39; catalogue of Phoenician gods, our fullest classical account of that pantheon, names Astarte, Dagon, and El-Cronus but no Asherah.<sup class="scholars-cite"><a href="#src-classical-sources-1">[1]</a></sup></p>
+<p>The nearest classical neighborhood is the Dea Syria — Atargatis of Hierapolis Bambyce, whose temple Lucian describes — but scholars derive her name from a fusion of ʿAṯtar(t) and ʿAnat, not Ašeratu. Ašeratu&#39;s classical afterlife therefore runs not through Greek texts but through the Hebrew Bible&#39;s polemic and its later Jewish and Christian readers.<sup class="scholars-cite"><a href="#src-classical-sources-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-classical-sources-1">Eusebius, Praeparatio Evangelica 1.10 (Philo of Byblos&#39; pantheon).</li><li id="src-classical-sources-2">Lucian, De Dea Syria; Hadley, The Cult of Asherah in Ancient Israel and Judah.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Ašeratu teaches that power does not have to shout. She walks between sea and shore, between the high god&#39;s tent and the storm-god&#39;s need, between motherhood and sovereignty. Her influence is relational, patient, and therefore easy to discount — yet without her intercession, Baꜥal has no palace and the cosmos has no house for the rain.</p>
+<p>In an age that rewards noise, Ašeratu is a reminder that the threads holding a world together are often invisible: a spindle, a whispered petition, a mother&#39;s milk, a tree by a shrine. To remember her is not to retreat into nostalgia; it is to recognize that the divine has never been exclusively masculine, and that the names we were taught to forget can still be spoken.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">KTU (Ugaritic texts).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="phoenician-inscriptions">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Phoenician Inscriptions</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Phoenician Inscriptions →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="biblical-references">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Biblical References</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Biblical References →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="classical-sources">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Classical Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Classical Sources →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">17</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -581,6 +575,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'aseratu';
@@ -614,14 +743,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -715,6 +836,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -726,18 +848,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -749,6 +872,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -793,6 +918,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

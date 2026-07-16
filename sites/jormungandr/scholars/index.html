@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,12 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#poetic-edda">14 &mdash; Poetic Edda</a></li>
-<li><a href="#prose-edda">15 &mdash; Prose Edda</a></li>
-<li><a href="#runic-evidence">16 &mdash; Runic Evidence</a></li>
-<li><a href="#sagas">17 &mdash; Sagas & Medieval Sources</a></li>
+<li><a href="#poetic-edda">12 &mdash; Poetic Edda</a></li>
+<li><a href="#prose-edda">13 &mdash; Prose Edda</a></li>
+<li><a href="#runic-evidence">14 &mdash; Runic Evidence</a></li>
+<li><a href="#sagas">15 &mdash; Sagas & Medieval Sources</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -281,14 +297,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Jǫrmungandr</strong> (<em>jormungandr</em>) — World Serpent · Huge monster (from jǫrmun + gandr) — belongs to the Norse tradition, where it is catalogued under the domain &quot;World Serpent&quot;. The name means &quot;Huge monster (from jǫrmun + gandr)&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>Jǫrmungandr is the <strong>great serpent that encircles Miðgarðr, biting its own tail</strong>. One of the three monstrous children of Loki and Angrboða, it was cast into the ocean by Óðinn and grew until it surrounded the entire world. It is the nemesis of Þórr, and at Ragnarök the two will finally kill one another.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Jǫrmungandr</strong> and serves its temple at <a class="scholars-ext" href="https://xn--jrmungandr-ejd.com" rel="noopener noreferrer" target="_blank">jǫrmungandr.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>jormungandr</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Poetic Edda: Hymiskviða (Þórr fishes for Jǫrmungandr).</li><li id="src-overview-2">Poetic Edda: Völuspá (the serpent rises at Ragnarök).</li><li id="src-overview-3">Snorri Sturluson, Prose Edda: Gylfaginning (birth, casting into the sea, and final battle).</li></ol></div>
     </div>
 </section>
 
@@ -296,14 +311,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Younger Futhark as <strong>ᛁᚢᚱᛘᚢᚾᚴᛅᚾᛏᚱ</strong>. Etymologically it means &quot;Huge monster (from jǫrmun + gandr)&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The ASCII form <em>jormungandr</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Jǫrmungandr</strong> recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>j</strong> → <strong>J</strong> — Same</li><li><strong>o</strong> → <strong>ǫ</strong> — O-hook: short /ɔ/ vowel</li><li><strong>r</strong> → <strong>r</strong> — Same</li><li><strong>m</strong> → <strong>m</strong> — Same</li><li><strong>u</strong> → <strong>u</strong> — Same</li><li><strong>n</strong> → <strong>n</strong> — Same</li><li><strong>g</strong> → <strong>g</strong> — Same</li><li><strong>a</strong> → <strong>a</strong> — Same</li><li><strong>n</strong> → <strong>n</strong> — Same</li><li><strong>d</strong> → <strong>d</strong> — Same</li><li><strong>r</strong> → <strong>r</strong> — Same</li></ul>
+<p>The project holds the domain <strong>jǫrmungandr.com</strong> (xn--jrmungandr-ejd.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Poetic Edda: Hymiskviða (Þórr fishes for Jǫrmungandr).</li><li id="src-the-name-2">Poetic Edda: Völuspá (the serpent rises at Ragnarök).</li></ol></div>
     </div>
 </section>
 
@@ -311,14 +327,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/ˈjɔrˌmun.ɡan.dr/</strong> — Old Norse Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>J-</strong> — Palatal approximant [j], the y-glide as in English &#39;yes&#39;.</li><li><strong>-ǫr-</strong> — Short open-mid back rounded [ɔ] plus trilled [r], the first syllable carrying stress.</li><li><strong>-mun-</strong> — Bilabial nasal [m], close back rounded [u], and alveolar nasal [n].</li><li><strong>-gandr</strong> — Voiced velar [ɡ], open front [a], alveolar nasal [n], and trilled [r].</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;YOR-mun-gand-r&#39; — stress the first syllable, pronounce the &#39;or&#39; like the &#39;o&#39; in &#39;hot&#39; with an r-color, and keep the final r light and trilled.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Old Norse components</strong> — jǫrmun-, &#39;mighty, vast&#39; (also in Jǫrmunrekr, Jǫrmungrund) + gandr, &#39;monster, magic staff, wolf&#39;</li><li><strong>Alternate name</strong> — Miðgarðsormr, &#39;the Midgard serpent, the worm that encircles the world&#39;</li><li><strong>Family</strong> — Son of Loki and Angrboða; brother of Fenrir and Hel</li></ul>
+<p>Jǫrmungandr is Tier 2: the ǫ preserves the distinctive Old Norse rounded back vowel, but the name carries no stress accent or length mark. The first element is related to words for &#39;great&#39; or &#39;universal&#39;; gandr can mean monster, wand, or wolf, making the compound a &#39;mighty monster&#39; or &#39;vast beast&#39;.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Poetic Edda: Hymiskviða (Þórr fishes for Jǫrmungandr).</li></ol></div>
     </div>
 </section>
 
@@ -326,14 +345,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Younger Futhark as <strong>ᛁᚢᚱᛘᚢᚾᚴᛅᚾᛏᚱ</strong>.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>iurmunkantr</em>.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>ᛁ (ís) writes both /i/ and /e/</li><li>ᚢ (úr) writes the rounded back vowels /u, o, ø, ǫ, y/ and /w/</li><li>ᚱ (reið) writes /r/</li><li>The spelling iurmunkantr is a normalized phonetic reconstruction; Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">An Icelandic-English Dictionary, 2nd ed. with supplement, 1874. <a class="scholars-ext" href="https://old-norse.net/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-original-script-2">Poetic Edda (Eddukvæði), ed. Neckel-Kuhn; trans. Carolyn Larrington, Oxford World&#39;s Classics (2014), 1270. <a class="scholars-ext" href="https://sacred-texts.com/neu/poe/index.htm" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-original-script-3">Snorri Sturluson, Prose Edda, trans. Anthony Faulkes, Everyman / Viking Society for Northern Research, 1220. <a class="scholars-ext" href="http://vsnrweb-publications.org.uk/EDDArestr.pdf" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-original-script-4">A Concise Dictionary of Old Icelandic, Oxford, 1910. <a class="scholars-ext" href="https://old-norse.net/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -341,14 +360,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>Jǫrmungandr is the <strong>great serpent that encircles Miðgarðr, biting its own tail</strong>. One of the three monstrous children of Loki and Angrboða, it was cast into the ocean by Óðinn and grew until it surrounded the entire world. It is the nemesis of Þórr, and at Ragnarök the two will finally kill one another.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Encircler of Worlds</h3>
+<p>So vast that it grips its own tail beneath the ocean that surrounds the human world.</p>
+<h3 class="scholars-h3">Nemesis of Thor</h3>
+<p>Their enmity shapes two myths: the fishing trip and the final battle at Ragnarök.</p>
+<h3 class="scholars-h3">Child of Loki</h3>
+<p>Born of Loki and the giantess Angrboða in Jötunheimr, then hurled into the sea.</p>
+<h3 class="scholars-h3">Ouroboros</h3>
+<p>The tail-biting serpent becomes an image of cyclical time and cosmic boundary.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Poetic Edda: Völuspá (the serpent rises at Ragnarök).</li></ol></div>
     </div>
 </section>
 
@@ -356,14 +380,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Jǫrmungandr concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Coiled serpent biting its tail</strong> — The ouroboros, an image of the world bounded by a single endless body</li><li><strong>Ocean</strong> — The watery realm into which Jǫrmungandr was cast and in which it grew</li><li><strong>Ox-head bait</strong> — The bait Þórr used when he fished for the serpent in Hymiskviða</li><li><strong>Venom</strong> — The poison that will kill Þórr even after he slays the worm at Ragnarök</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Poetic Edda: Hymiskviða (Þórr fishes for Jǫrmungandr).</li></ol></div>
     </div>
 </section>
 
@@ -371,14 +393,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Jǫrmungandr is one of the three great threats to the gods, alongside Fenrir and Hel. It does not speak in the myths, yet its body defines the shape of the world and its final battle with Þórr is one of the climactic moments of Ragnarök.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Casting into the Sea (Gylfaginning)</h3>
+<p>When the gods learned that Loki and Angrboða had produced three monstrous children — Fenrir, Jǫrmungandr, and Hel — they seized them. Fenrir they bound, Hel they cast into Niflhel, and Jǫrmungandr they threw into the sea that surrounds all lands. There it grew so large that it encircled Miðgarðr and bit its own tail. The gods&#39; attempt to neutralize the threat merely made it cosmic.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Fishing for the World Serpent (Hymiskviða)</h3>
+<p>Þórr goes fishing with the giant Hymir, using the head of Hymir&#39;s best ox as bait. He hooks Jǫrmungandr and pulls it up until its venom drips and the sea boils around the boat. Hymir, terrified, cuts the line, and the serpent sinks back into the deep. The episode foreshadows their final meeting: the fisher who hooks the world is fated to be killed by it.</p>
+<h3 class="scholars-h3">The Death of Thor (Völuspá / Gylfaginning)</h3>
+<p>At Ragnarök, Jǫrmungandr will rise from the sea and poison land and sky. Þórr will slay it with Mjölnir, but after walking nine paces he will fall dead from the serpent&#39;s venom. It is a mutual killing: the guardian of order and the beast of chaos destroy each other, leaving the world to be inherited by quieter gods.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Poetic Edda: Völuspá (the serpent rises at Ragnarök).</li><li id="src-mythology-2">Snorri Sturluson, Prose Edda: Gylfaginning (birth, casting into the sea, and final battle).</li></ol></div>
     </div>
 </section>
 
@@ -386,14 +411,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>The tail-biting serpent is not unique to Norse myth. Comparable figures include the Greek Ouroboros, the Egyptian Mehen, and various Indo-European and Near Eastern dragon-serpents that encircle the cosmos or guard the boundary between worlds. Some scholars see Jǫrmungandr as a specifically Germanic development of an Indo-European &#39;chaos monster&#39; defeated by a thunder-god, comparable to the Vedic Vṛtra slain by Indra or the Babylonian Tiamat defeated by Marduk. The figure of the world-serpent also influenced medieval Christian art and early modern alchemy, where the ouroboros became a symbol of cyclical renewal.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include <a class="scholars-xlink" href="/sites/apep/">Ꜥpp</a>, <a class="scholars-xlink" href="/sites/chaos/">Cháos</a>, <a class="scholars-xlink" href="/sites/leviathan/">Liwyāṯān</a>, <a class="scholars-xlink" href="/sites/tiamat/">Tiāmat</a>, <a class="scholars-xlink" href="/sites/typhon/">Typhōn</a>, and <a class="scholars-xlink" href="/sites/yam/">Yām</a>, each linked through chaos / primordial / world serpent.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Poetic Edda: Hymiskviða (Þórr fishes for Jǫrmungandr).</li></ol></div>
     </div>
 </section>
 
@@ -401,14 +424,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Jǫrmungandr has become one of the most iconic images of Norse mythology, appearing in comics, films, video games, and fantasy novels as the world-serpent and the destined killer of Thor. Its ouroboros form has been adopted by esoteric traditions as a symbol of eternity, self-reflexivity, and cosmic wholeness. In modern Heathenry, Jǫrmungandr is honored as a force of necessary limitation — the boundary that holds the world together even as it threatens to crush it.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Poetic Edda: Hymiskviða (Þórr fishes for Jǫrmungandr).</li></ol></div>
     </div>
 </section>
 
@@ -416,14 +436,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The Altuna runestone in Uppland, Sweden (U 1161) is the most famous pictorial attestation of Þórr fishing for Jǫrmungandr, showing the god in a boat with his hammer raised and the serpent at the line. Gosforth Cross in Cumbria and other Scandinavian runestones depict related scenes. Mjöllnir amulets, though not directly depicting the serpent, belong to the same visual culture in which Þórr&#39;s cosmic battles were central. The ouroboros motif appears independently in Greek, Egyptian, and medieval European iconography.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Poetic Edda: Hymiskviða (Þórr fishes for Jǫrmungandr).</li></ol></div>
     </div>
 </section>
 
@@ -431,135 +448,103 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Jǫrmungandr given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Poetic Edda: Hymiskviða (Þórr fishes for Jǫrmungandr).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Poetic Edda: Völuspá (the serpent rises at Ragnarök).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Snorri Sturluson, Prose Edda: Gylfaginning (birth, casting into the sea, and final battle).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Cleasby &amp; Vigfusson, An Icelandic-English Dictionary (1874), s.v. jǫrmun-, gandr.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Zoëga, A Concise Dictionary of Old Icelandic (1910).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> de Vries, Jan, Altgermanische Religionsgeschichte.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Simek, Rudolf, Dictionary of Northern Mythology.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Poetic Edda: Hymiskviða (Þórr fishes for Jǫrmungandr).</li><li id="src-scholarly-sources-2">Poetic Edda: Völuspá (the serpent rises at Ragnarök).</li><li id="src-scholarly-sources-3">Snorri Sturluson, Prose Edda: Gylfaginning (birth, casting into the sea, and final battle).</li><li id="src-scholarly-sources-4">Cleasby &amp; Vigfusson, An Icelandic-English Dictionary (1874), s.v. jǫrmun-, gandr.</li><li id="src-scholarly-sources-5">Zoëga, A Concise Dictionary of Old Icelandic (1910).</li><li id="src-scholarly-sources-6">de Vries, Jan, Altgermanische Religionsgeschichte.</li><li id="src-scholarly-sources-7">Simek, Rudolf, Dictionary of Northern Mythology.</li><li id="src-scholarly-sources-8">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs.</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="poetic-edda">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Poetic Edda</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Two poems stage the serpent. <em>Hymiskviða</em> (sts. 21–24) narrates the fishing: Þórr rows out with <a class="scholars-xlink" href="/sites/hymir/">Hymir</a>, farther than the giant wishes, baits his hook with the head of Hymir&#39;s best ox, and hauls up the &#39;gleaming snake&#39; until venom spatters and the mountains shake — the poem&#39;s ending is famously terse, leaving the giant pale and the serpent&#39;s fate unresolved. <em>Völuspá</em> sets the serpent inside the Ragnarök sequence: Jǫrmungandr &#39;writhes in giant-rage&#39; as Naglfar breaks loose, and in the final battle Þórr, &#39;Óðinn&#39;s son,&#39; strikes it dead and staggers nine paces, &#39;unflinching,&#39; before falling beside the slain beast. The poetic corpus thus fixes the serpent&#39;s two functions: cosmic boundary and Þórr&#39;s doom.<sup class="scholars-cite"><a href="#src-poetic-edda-1">[1]</a></sup><sup class="scholars-cite"><a href="#src-poetic-edda-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-poetic-edda-1">Poetic Edda: Hymiskviða 21–24 (Þórr fishes for the serpent with Hymir).</li><li id="src-poetic-edda-2">Poetic Edda: Völuspá (the Ragnarök sequence: the serpent’s rising and Þórr’s nine paces).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="prose-edda">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Prose Edda</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Snorri supplies the serpent&#39;s biography. <em>Gylfaginning</em> 34 introduces Loki&#39;s three children by Angrboða and Óðinn&#39;s preemptive disposal of them: the serpent is thrown into &#39;the deep sea that lies around all lands,&#39; where it grows until it encircles the earth and bites its own tail. Chapter 47 retells the fishing at length — the ox Himinhrjótr, the drawn-up head, <a class="scholars-xlink" href="/sites/hymir/">Hymir</a> cutting the line — and adds Snorri&#39;s famous skeptical note that those who claim Þórr struck off the serpent&#39;s head then and there &#39;have not told the truth,&#39; since it lives until Ragnarök. Chapter 51 gives the end: Þórr slays the Miðgarðsormr, walks nine paces, and falls dead from its venom. <em>Skáldskaparmál</em> preserves the skaldic witnesses — Bragi&#39;s <em>Ragnarsdrápa</em>, Eysteinn Valdason, and Úlfr Uggason&#39;s <em>Húsdrápa</em> — proving the fishing was painted in Viking-Age halls.<sup class="scholars-cite"><a href="#src-prose-edda-1">[1]</a></sup><sup class="scholars-cite"><a href="#src-prose-edda-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-prose-edda-1">Snorri Sturluson, Prose Edda: Gylfaginning 34, 47, 51 (casting into the sea, the fishing, and the mutual killing).</li><li id="src-prose-edda-2">Snorri Sturluson, Prose Edda: Skáldskaparmál (quotations of Ragnarsdrápa, Eysteinn Valdason, and Húsdrápa).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="runic-evidence">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Runic Evidence</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The serpent&#39;s name is absent from runic texts, but its defining myth is carved on runestones. The Altuna stone (U 1161, Uppland, Sweden) shows Þórr with his foot through the boat&#39;s bottom, hammer raised, the fishing-line taut to the coiling beast — the fishing scene made monumental on a Christian memorial. The Hørdum stone (Denmark) and the Gosforth &#39;fishing stone&#39; (Cumbria, England) depict the same episode, and the Ardre VIII picture stone (Gotland) has been read in the same tradition, though not without dispute. Together they show the myth was a pan-Scandinavian — indeed North-Atlantic — visual property centuries before Snorri wrote, anchoring <em>Hymiskviða</em>&#39;s account in the Viking Age rather than in medieval imagination.<sup class="scholars-cite"><a href="#src-runic-evidence-1">[1]</a></sup><sup class="scholars-cite"><a href="#src-runic-evidence-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-runic-evidence-1">Altuna runestone U 1161 (Uppland) — Þórr fishing for the serpent; Samnordisk runtextdatabas.</li><li id="src-runic-evidence-2">Lindow, Norse Mythology (Hørdum, Gosforth, and Ardre VIII as pictorial witnesses to the fishing myth).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="sagas">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Sagas & Medieval Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The prose sagas, committed to human actors, never narrate Jǫrmungandr; no konungasaga or Íslendingasaga brings the serpent on stage. What the saga age preserved instead is the skaldic evidence embedded in the Prose Edda, and a broader <em>ormr</em> tradition in the fornaldarsögur — dragons such as Fáfnir in Völsunga saga, who guards cursed gold and is slain by a hero from below. The world-serpent and the treasure-dragon are distinct beings, but Icelandic writers clearly grouped them as kinds of <em>ormr</em>, and Saxo Grammaticus&#39;s Latin sea-monsters show the type traveling into historiography. Jǫrmungandr itself remains, properly, where the sources put it: in the sea, waiting for the last day.<sup class="scholars-cite"><a href="#src-sagas-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-sagas-1">Simek, Dictionary of Northern Mythology, s.v. Miðgarðsormr (distribution of the serpent myth across genres).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Jǫrmungandr is the boundary made flesh. It holds the world in place by encircling it, yet its very presence is a threat. The serpent is not evil in a moral sense; it is simply too large, too ancient, too other to coexist peacefully with the gods.</p>
+<p>The myth teaches that every order contains its own undoing. The ocean that protects Miðgarðr also nourishes the beast that will drown it. Þórr&#39;s final walk of nine paces after killing the serpent is one of the most moving images in the corpus: victory and death arrive together, and even the strongest god cannot save himself from the venom of the world he defended.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Poetic Edda: Hymiskviða (Þórr fishes for Jǫrmungandr).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="poetic-edda">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Poetic Edda</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Poetic Edda →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="prose-edda">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Prose Edda</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Prose Edda →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="runic-evidence">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Runic Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Runic Evidence →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="sagas">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">17</span>
-        <h2 class="scholars-section-title">Sagas & Medieval Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Sagas & Medieval Sources →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">19</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -597,6 +582,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'jormungandr';
@@ -630,14 +750,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -731,6 +843,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -742,18 +855,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -765,6 +879,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -809,6 +925,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

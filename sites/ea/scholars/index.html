@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,11 +279,12 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#cuneiform-sources">14 &mdash; Cuneiform Sources</a></li>
-<li><a href="#enuma-elish">15 &mdash; Enūma Eliš</a></li>
-<li><a href="#atra-hasis">16 &mdash; Atra-Ḫasīs</a></li>
+<li><a href="#cuneiform-sources">12 &mdash; Cuneiform Sources</a></li>
+<li><a href="#enuma-elish">13 &mdash; Enūma Eliš</a></li>
+<li><a href="#atra-hasis">14 &mdash; Atra-Ḫasīs</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -280,14 +296,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Ēa</strong> (<em>ea</em>) — Phonological Reconstruction Hub — studying the pronunciation of Ea (Sumerian Enki) — belongs to the Mesopotamian tradition, where it is catalogued under the domain &quot;Phonological Reconstruction, Water, Wisdom&quot;. The name means &quot;Reconstruction node for the Akkadian deity Ea (Sumerian Enki): the macron marks a discussable vowel length, not a canonical spelling.&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>The name is written 𒀭𒂍𒀀. Standard Assyriology transliterates it as <strong>Ea</strong>. But in the phonological grammar of Akkadian, the first vowel&#39;s length remains an open question — and it is here, in the space between the written sign and the spoken sound, that this temple operates. This node of PÚNYCODEX is dedicated to the <strong>phonological reconstruction and didactic grammar</strong> of the ancient Near East. We mark vowel length not because it is certain, but because it is discussable. The macron is a question mark made visible.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Ēa</strong> and serves its temple at <a class="scholars-ext" href="https://xn--a-oia.com" rel="noopener noreferrer" target="_blank">ēa.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>ea</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Electronic Text Corpus of Sumerian Literature, Oxford Oriental Institute, 1998. <a class="scholars-ext" href="https://etcsl.orinst.ox.ac.uk/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-overview-2">The Assyrian Dictionary of the Oriental Institute of the University of Chicago, 21 vols., Oriental Institute, Chicago (completed 2010), 1956. <a class="scholars-ext" href="https://isac.uchicago.edu/research/publications/assyrian-dictionary-oriental-institute-university-chicago" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-overview-3">Akkadisches Handwörterbuch, 3 vols., Harrassowitz, Wiesbaden (completed 1981), 1965.</li></ol></div>
     </div>
 </section>
 
@@ -295,14 +310,20 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Cuneiform as <strong>𒀭𒂍𒀀</strong>. Etymologically it means &quot;Reconstruction node for the Akkadian deity Ea (Sumerian Enki): the macron marks a discussable vowel length, not a canonical spelling.&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>Standard Assyriology transliterates the god as Ea (𒀭𒂍𒀀). The Sumerian counterpart is Enki (EN.KI), &#39;lord of the earth.&#39; The length of the first vowel in Akkadian Ea is an open phonological question; the macron on Ēa is a pedagogical mark that makes that question visible, not a claim of canonical spelling.</p>
+<p>Cognate forms across related languages:</p>
+<ul class="scholars-list"><li><strong>Enki (EN.KI)</strong> (sumerian) — Sumerian &#39;lord of the earth&#39; (CAD, Black-Green)</li></ul>
+<p>The ASCII form <em>ea</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Ēa</strong> recovers the vowel length of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>e</strong> → <strong>Ē</strong> — Macron: a visible question mark — the length of Ea&#39;s first vowel is discussable, not certain</li><li><strong>a</strong> → <strong>a</strong> — Same</li></ul>
+<p>Attested and derived spellings of the name:</p>
+<ul class="scholars-list"><li><strong>Ea</strong> — ASCII form: Standard Assyriological transliteration</li></ul>
+<p>The project holds the domain <strong>ēa.com</strong> (xn--a-oia.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Electronic Text Corpus of Sumerian Literature, Oxford Oriental Institute, 1998. <a class="scholars-ext" href="https://etcsl.orinst.ox.ac.uk/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-the-name-2">The Assyrian Dictionary of the Oriental Institute of the University of Chicago, 21 vols., Oriental Institute, Chicago (completed 2010), 1956. <a class="scholars-ext" href="https://isac.uchicago.edu/research/publications/assyrian-dictionary-oriental-institute-university-chicago" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -310,14 +331,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/ˈeː.a/</strong> — Akkadian Reconstruction (discussable).<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Ē-</strong> — Long or tense [eː] — the macron marks a reconstructed vowel length that Assyriologists debate; the sign 𒂍 does not itself encode length.</li><li><strong>-a</strong> — Open central [a] — the second element of the divine name, written with the sign 𒀀.</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;EH-ah&#39; — two level syllables, with the first vowel held slightly longer to signal the open question of length.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Sumerian</strong> — 𒂗𒆠 (EN.KI), &#39;lord of the earth&#39; — cuneiform title and theonym</li><li><strong>Akkadian</strong> — Ea (𒂍𒀀), standard Assyriological transliteration; vowel length is reconstructed, not sign-given</li><li><strong>Logogram</strong> — 𒀭𒂍𒀀 (dE-a), the divine determinative plus Ea</li></ul>
+<p>Ēa is Tier 2 because the macron does not record a canonical Greek-style stress or a universally agreed long vowel. It is a pedagogical mark: a visible question that invites discussion about how the name was pronounced in Akkadian. The standard Assyriological spelling is Ea; the Unicode form Ēa belongs to PÚNYCODEX&#39;s phonological reconstruction hub.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Electronic Text Corpus of Sumerian Literature, Oxford Oriental Institute, 1998. <a class="scholars-ext" href="https://etcsl.orinst.ox.ac.uk/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -325,14 +349,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Cuneiform as <strong>𒀭𒂍𒀀</strong> — Sumero-Akkadian cuneiform, attested Sumerian / Old Babylonian – Neo-Assyrian, c. 2600–600 BCE, in Mesopotamia. The script is written left-to-right / top-to-bottom.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Ēa</em> (Sumerian logogram + Akkadian scholarly), giving the normalized reading /ˈeː.a/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The name is written 𒀭𒂍𒀀 in cuneiform.</li><li>Sumerian logograms may be read with Akkadian values; the divine determinative 𒀭 marks theonyms.</li><li>Macrons in the Unicode restoration mark long vowels inferred from Akkadian and Sumerian convention.</li><li>The Unicode restoration Ēa is registrable in .com; the cuneiform form is not supported in the .com IDN table.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Akkadisches Handwörterbuch (AHw).</li><li id="src-original-script-2">Black &amp; Green, Gods, Demons and Symbols of Ancient Mesopotamia.</li><li id="src-original-script-3">Chicago Assyrian Dictionary (CAD).</li><li id="src-original-script-4">Electronic Text Corpus of Sumerian Literature (ETCSL).</li></ol></div>
     </div>
 </section>
 
@@ -340,14 +364,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>The name is written 𒀭𒂍𒀀. Standard Assyriology transliterates it as <strong>Ea</strong>. But in the phonological grammar of Akkadian, the first vowel&#39;s length remains an open question — and it is here, in the space between the written sign and the spoken sound, that this temple operates. This node of PÚNYCODEX is dedicated to the <strong>phonological reconstruction and didactic grammar</strong> of the ancient Near East. We mark vowel length not because it is certain, but because it is discussable. The macron is a question mark made visible.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Abzu</h3>
+<p>The subterranean freshwater ocean; Enki&#39;s temple at Eridu, the E-abzu, was built over it.</p>
+<h3 class="scholars-h3">Wisdom and Counsel</h3>
+<p>The god who knows the secret plans of the universe and whispers them to the righteous king.</p>
+<h3 class="scholars-h3">The Craftsman</h3>
+<p>Patron of exorcists, potters, smiths, and scribes; the divine engineer who devises solutions.</p>
+<h3 class="scholars-h3">Magic and Incantation</h3>
+<p>The ashipu-priest invokes Enki to undo sickness, demons, and the curses of fate.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">The Assyrian Dictionary of the Oriental Institute of the University of Chicago, 21 vols., Oriental Institute, Chicago (completed 2010), 1956. <a class="scholars-ext" href="https://isac.uchicago.edu/research/publications/assyrian-dictionary-oriental-institute-university-chicago" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -355,14 +384,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Ēa concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Goat-fish (suhurmašu)</strong> — The hybrid sea-goat, Capricorn&#39;s ancestor, linking the Abzu with the stars</li><li><strong>Flowing water</strong> — Streams issuing from his shoulders or a vase — life-giving freshwater</li><li><strong>Tortoise</strong> — A creature of the marshy border between water and land, sacred to Enki</li><li><strong>Eridu</strong> — His primordial city, the first city in Sumerian king lists and cosmology</li><li><strong>Caduceus-like staff</strong> — The rod of magic and authority, sometimes twined with serpents</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Electronic Text Corpus of Sumerian Literature, Oxford Oriental Institute, 1998. <a class="scholars-ext" href="https://etcsl.orinst.ox.ac.uk/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -370,14 +397,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>The myths of Ea / Enki are stories of <strong>intelligent intervention</strong> — and they are also data. Every text that names him, from the Sumerian <em>Enki and the World Order</em> to the Babylonian <em>Enuma Elish</em>, is evidence for how the name was read, pronounced, and transmitted. This temple treats those texts as a phonological corpus: each occurrence is a clue to the vowels, stress, and syllable weight that cuneiform signs leave underspecified.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Enki and Ninhursag (Dilmun)</h3>
+<p>In the Sumerian myth <em>Enki and Ninhursag</em>, the land of Dilmun is a paradise without sickness or death but also without water. Enki impregnates Ninhursag, who gives birth to eight plants. When Enki eats the forbidden plants, Ninhursag curses him with eight ailments, one for each body part. She is later persuaded to heal him, creating eight deities from his afflicted limbs — a myth of botanical origin, sexual cosmogony, and the healing power that flows from the Abzu.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Enki Warns Ziusudra (The Flood)</h3>
+<p>In the <em>Atrahasis</em> epic and the Sumerian <em>Eridu Genesis</em>, the gods decide to send a flood to destroy humanity. Enki breaks the divine assembly&#39;s oath of silence and warns the pious king Ziusudra (later Utnapishtim) in a dream or through the reed wall of his house. Because of Enki, humankind survives; because of the flood, the gods learn that they need human labor. This is the earliest known flood narrative in world literature.</p>
+<h3 class="scholars-h3">Enki and the World Order (Cosmic Order)</h3>
+<p>In <em>Enki and the World Order</em>, the god assigns the me — the divine powers and offices of civilization — to the gods of Sumer. He establishes the Tigris and Euphrates, appoints the herding god, and regulates the sea, the winds, and the rains. The poem is a theodicy of culture: every institution has its divine origin in Enki&#39;s dispensation.</p>
+<h3 class="scholars-h3">Ea and Apsu in the Enuma Elish (Chaoskampf Parallel)</h3>
+<p>In the Babylonian <em>Enuma Elish</em>, Ea (Enki) is the son of Apsu, the freshwater primal father, and Tiamat, the saltwater primal mother. When Apsu plots to destroy the noisy younger gods, Ea casts a spell and kills him, taking Apsu&#39;s place as ruler of the waters. His son Marduk will later defeat Tiamat. The pattern — older water-god supplanted by storm-god — parallels the Hittite Kumarbi-Taru and Greek Uranus-Kronos cycles.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">The Assyrian Dictionary of the Oriental Institute of the University of Chicago, 21 vols., Oriental Institute, Chicago (completed 2010), 1956. <a class="scholars-ext" href="https://isac.uchicago.edu/research/publications/assyrian-dictionary-oriental-institute-university-chicago" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-mythology-2">Akkadisches Handwörterbuch, 3 vols., Harrassowitz, Wiesbaden (completed 1981), 1965.</li></ol></div>
     </div>
 </section>
 
@@ -385,14 +417,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Ea is the Akkadian pronunciation and reinterpretation of the Sumerian <em>Enki</em>. The shift from EN.KI to E-a is not only theological; it is phonological — a new language pronouncing an old name with new vowels. Greek writers later identified him with <em>Poseidôn</em> because of his aquatic domain, though Ea&#39;s freshwater wisdom is quite unlike Poseidon&#39;s saltwater tempests. In Hellenistic and Gnostic currents, Ea/Enki was linked with <em>Oannes</em>, the fish-tailed culture-bringer described by Berossus. His iconography — water flowing from the shoulders — influenced later depictions of river gods and even of Saint Christopher in some Byzantine traditions. Each syncretism is a data point in the long history of how the name was heard.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include <a class="scholars-xlink" href="/sites/aseratu/">Ašeratu</a>, <a class="scholars-xlink" href="/sites/babaluaye/">Ọbalúayé</a>, <a class="scholars-xlink" href="/sites/manannan/">Manannán</a>, <a class="scholars-xlink" href="/sites/njordr/">Njǫrðr</a>, <a class="scholars-xlink" href="/sites/pontos/">Póntos</a>, and <a class="scholars-xlink" href="/sites/poseidon/">Poseidôn</a>, each linked through sea / water.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Electronic Text Corpus of Sumerian Literature, Oxford Oriental Institute, 1998. <a class="scholars-ext" href="https://etcsl.orinst.ox.ac.uk/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -400,14 +430,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Ea survives most visibly as a <strong>method</strong>: the deity who knows secrets and uses them to save rather than destroy. The flood story, transmitted through <em>Atrahasis</em> and the Epic of Gilgamesh, entered the biblical Noah narrative. The goat-fish became the constellation Capricorn. In modern scholarship, Ea has become a test case for how cuneiform signs map onto spoken sound. The macron on Ēa is our contribution to that conversation — a way of marking uncertainty honestly while keeping the question in view. The name still means: <strong>the intelligence that moves in deep water.</strong><sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Electronic Text Corpus of Sumerian Literature, Oxford Oriental Institute, 1998. <a class="scholars-ext" href="https://etcsl.orinst.ox.ac.uk/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -415,14 +442,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The E-abzu temple of Enki at Eridu, excavated by Iraqi and British teams across the twentieth century, lies at the edge of the ancient marshland. Its sequence of shrines, bitumen-lined platforms, and fish-offering deposits marks one of Mesopotamia&#39;s longest continuous cults. Babylonian cylinder seals depict Enki/Ea with water streams or in the goat-fish (suhurmašu) form; temple libraries at Nineveh and Babylon preserve the Adapa myth and incantations invoking his wisdom.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Electronic Text Corpus of Sumerian Literature, Oxford Oriental Institute, 1998. <a class="scholars-ext" href="https://etcsl.orinst.ox.ac.uk/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -430,120 +454,91 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Ēa given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Electronic Text Corpus of Sumerian Literature, Oxford Oriental Institute, 1998. <a class="scholars-ext" href="https://etcsl.orinst.ox.ac.uk/" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> The Assyrian Dictionary of the Oriental Institute of the University of Chicago, 21 vols., Oriental Institute, Chicago (completed 2010), 1956. <a class="scholars-ext" href="https://isac.uchicago.edu/research/publications/assyrian-dictionary-oriental-institute-university-chicago" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Akkadisches Handwörterbuch, 3 vols., Harrassowitz, Wiesbaden (completed 1981), 1965.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Black &amp; Green, Gods, Demons and Symbols of Ancient Mesopotamia.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Jacobsen, The Treasures of Darkness.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Kramer, Sumerian Literary Texts from Nippur.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Enuma Elish (Tablet I).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Atrahasis.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Epic of Gilgamesh, Tablets I and XI (Ea as divine counselor and architect of human survival).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> Enki and the World Order (Sumerian hymn, ETCSL 1.1.3: Ea/Enki dispenses the me).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-11">[11]</a></sup> Enki and Ninhursag (Sumerian myth, ETCSL 1.1.1: Enki&#39;s creative power in Dilmun).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-12">[12]</a></sup> Adapa (Akkadian myth of the sage whom Ea endowed with wisdom but not immortality).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Electronic Text Corpus of Sumerian Literature, Oxford Oriental Institute, 1998. <a class="scholars-ext" href="https://etcsl.orinst.ox.ac.uk/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-2">The Assyrian Dictionary of the Oriental Institute of the University of Chicago, 21 vols., Oriental Institute, Chicago (completed 2010), 1956. <a class="scholars-ext" href="https://isac.uchicago.edu/research/publications/assyrian-dictionary-oriental-institute-university-chicago" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-3">Akkadisches Handwörterbuch, 3 vols., Harrassowitz, Wiesbaden (completed 1981), 1965.</li><li id="src-scholarly-sources-4">Black &amp; Green, Gods, Demons and Symbols of Ancient Mesopotamia.</li><li id="src-scholarly-sources-5">Jacobsen, The Treasures of Darkness.</li><li id="src-scholarly-sources-6">Kramer, Sumerian Literary Texts from Nippur.</li><li id="src-scholarly-sources-7">Enuma Elish (Tablet I).</li><li id="src-scholarly-sources-8">Atrahasis.</li><li id="src-scholarly-sources-9">Epic of Gilgamesh, Tablets I and XI (Ea as divine counselor and architect of human survival).</li><li id="src-scholarly-sources-10">Enki and the World Order (Sumerian hymn, ETCSL 1.1.3: Ea/Enki dispenses the me).</li><li id="src-scholarly-sources-11">Enki and Ninhursag (Sumerian myth, ETCSL 1.1.1: Enki&#39;s creative power in Dilmun).</li><li id="src-scholarly-sources-12">Adapa (Akkadian myth of the sage whom Ea endowed with wisdom but not immortality).</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="cuneiform-sources">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Cuneiform Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Enki/Ea stands at the center of the Sumerian myth corpus from Nippur: <em>Enki and the World Order</em>, <em>Enki and Ninhursag</em>, <em>Enki&#39;s Journey to Nippur</em>, and <em>Enki and Ninmah</em> present him as the organizer of the cosmos and the cunning patron of humankind.<sup class="scholars-cite"><a href="#src-cuneiform-sources-1">[1]</a></sup> In Akkadian literature he is the wise counselor of the gods in <em>Atra-hasis</em>, <em>Adapa</em>, and the <em>Enuma Elish</em>, and the incantation tradition formalized his role in the dialogue pattern that pairs him with his son Asalluhi/Marduk: the son sees the demon-afflicted patient, reports to Ea, and receives the ritual solution.<sup class="scholars-cite"><a href="#src-cuneiform-sources-2">[2]</a></sup> That pattern underlies the great exorcistic series Šurpu and Maqlû.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cuneiform-sources-1">Electronic Text Corpus of Sumerian Literature, Oxford Oriental Institute. <a class="scholars-ext" href="https://etcsl.orinst.ox.ac.uk/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-cuneiform-sources-2">Black &amp; Green, Gods, Demons and Symbols of Ancient Mesopotamia.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="enuma-elish">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Enūma Eliš</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Ea is the hinge of the <em>Enuma Elish</em>. In Tablet I he alone masters the crisis of the primordial gods: discovering <a class="scholars-xlink" href="/sites/apsu/">Apsû</a>&#39;s plot to destroy the younger gods, he casts a spell, slays him, binds the vizier Mummu, and builds his dwelling upon the abyss — where his son Marduk is born.<sup class="scholars-cite"><a href="#src-enuma-elish-1">[1]</a></sup> In Tablet VI it is Ea who devises the creation of humankind, singling out the rebel Kingu, from whose blood humanity is fashioned to bear the gods&#39; labor.<sup class="scholars-cite"><a href="#src-enuma-elish-2">[2]</a></sup> The epic thus makes Babylonian order rest twice on Ea&#39;s wisdom, even as it passes kingship to his son.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-enuma-elish-1">Foster, Before the Muses: An Anthology of Akkadian Literature.</li><li id="src-enuma-elish-2">Dalley, Myths from Mesopotamia: Creation, the Flood, Gilgamesh, and Others.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="atra-hasis">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Atra-Ḫasīs</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Ea is the protector-protagonist of <em>Atra-hasis</em>. In Tablet I he and the birth-goddess create humankind from clay mixed with the flesh and blood of a slain rebel god, producing the worker whose labor frees the junior gods.<sup class="scholars-cite"><a href="#src-atra-hasis-1">[1]</a></sup> When <a class="scholars-xlink" href="/sites/enlil/">Enlīl</a> later sends plague, drought, and finally the flood, Ea honors the letter of his oath while breaking its spirit — speaking to the reed wall of Atra-hasis&#39;s house so that the pious man overhears and builds the boat.<sup class="scholars-cite"><a href="#src-atra-hasis-2">[2]</a></sup> After the flood it is Ea who defends human survival before the furious Enlīl and engineers the compromise of regulated mortality. The poem is, in effect, a theodicy of his wisdom.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-atra-hasis-1">Lambert &amp; Millard, Atra-ḫasīs: The Babylonian Story of the Flood.</li><li id="src-atra-hasis-2">Dalley, Myths from Mesopotamia: Creation, the Flood, Gilgamesh, and Others.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>This temple does not claim that <em>Ēa</em> is the canonical spelling of the god&#39;s name. Standard Assyriology writes <em>Ea</em>, and we honor that convention. What we claim is something different: that the space between the cuneiform sign and the modern pronunciation is worth studying, and that Unicode can be used to make that study visible.</p>
+<p>The macron on the first vowel is a pedagogical tool. It says, &#39;The length of this vowel is discussable.&#39; It turns a silent scholarly debate into a public invitation: learn the grammar, read the tablets, listen to the reconstructions, and decide for yourself. In an era of misinformation, there is radical honesty in marking what we do not know. Ea becomes not a claim, but a question — and questions, like fresh water, are what sustain civilization.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Electronic Text Corpus of Sumerian Literature, Oxford Oriental Institute, 1998. <a class="scholars-ext" href="https://etcsl.orinst.ox.ac.uk/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="cuneiform-sources">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Cuneiform Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cuneiform Sources →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="enuma-elish">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Enūma Eliš</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Enūma Eliš →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="atra-hasis">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Atra-Ḫasīs</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Atra-Ḫasīs →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">17</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -581,6 +576,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'ea';
@@ -614,14 +744,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -715,6 +837,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -726,18 +849,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -749,6 +873,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -793,6 +919,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

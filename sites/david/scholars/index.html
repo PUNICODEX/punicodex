@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,12 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#hebrew-bible">14 &mdash; Hebrew Bible / Old Testament</a></li>
-<li><a href="#new-testament">15 &mdash; New Testament</a></li>
-<li><a href="#midrash">16 &mdash; Midrash & Targumim</a></li>
-<li><a href="#quranic">17 &mdash; Qur'ānic References</a></li>
+<li><a href="#hebrew-bible">12 &mdash; Hebrew Bible / Old Testament</a></li>
+<li><a href="#new-testament">13 &mdash; New Testament</a></li>
+<li><a href="#midrash">14 &mdash; Midrash & Targumim</a></li>
+<li><a href="#quranic">15 &mdash; Qur'ānic References</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -281,14 +297,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Dāwîḏ</strong> (<em>david</em>) — King, Psalmist · Second king of Israel — belongs to the Canaanite tradition, where it is catalogued under the domain &quot;King, Psalmist&quot;. The name means &quot;Second king of Israel&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>Dāwîḏ is the <strong>shepherd who slays a giant and becomes the paradigm of kingship</strong>. His story is Israel&#39;s national epic in miniature: anointed in secret, hunted by the king he is destined to replace, triumphant in battle, flawed in power, and remembered above all as the sweet singer of Israel. The Psalter carries his name; Jerusalem carries his city.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Dāwîḏ</strong> and serves its temple at <a class="scholars-ext" href="https://xn--dw-rja8e207q.com" rel="noopener noreferrer" target="_blank">dāwîḏ.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>david</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">HALOT s.v. דָּוִד.</li><li id="src-overview-2">TDOT s.v. David.</li><li id="src-overview-3">1–2 Samuel.</li></ol></div>
     </div>
 </section>
 
@@ -296,14 +311,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Hebrew as <strong>דָּוִד</strong>. Etymologically it means &quot;Second king of Israel&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The ASCII form <em>david</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Dāwîḏ</strong> recovers the vowel length of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>d</strong> → <strong>D</strong> — Same, capitalized</li><li><strong>a</strong> → <strong>ā</strong> — Macron: long vowel</li><li><strong>v</strong> → <strong>w</strong> — Waw w</li><li><strong>i</strong> → <strong>î</strong> — Circumflex: long vowel</li><li><strong>d</strong> → <strong>ḏ</strong> — Dalet with line below</li></ul>
+<p>The project holds the domain <strong>dāwîḏ.com</strong> (xn--dw-rja8e207q.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">HALOT s.v. דָּוִד.</li><li id="src-the-name-2">TDOT s.v. David.</li></ol></div>
     </div>
 </section>
 
@@ -311,14 +327,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/dɔːˈwiːð/</strong> — Biblical Hebrew (Tiberian/Masoretic).<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>dā-</strong> — Voiced alveolar plosive [d] — dalet with dagesh — followed by long [ɔː], the qamets gadol under ד.</li><li><strong>-wî-</strong> — Labio-velar approximant [w], the waw functioning as a consonant, plus long [iː] from the hireq-yod combination.</li><li><strong>-ḏ</strong> — Voiced dental fricative [ð] — spirantized dalet without dagesh. Some reading traditions keep the final consonant plosive [d], so the exact realization is uncertain.</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;daw-EEDH&#39; — draw out the first &#39;aw&#39; like &#39;dawn&#39;; the middle sound is &#39;wee&#39; with a glide; the final consonant is a soft &#39;th&#39; as in &#39;this&#39;.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Hebrew root</strong> — d-w-d, &#39;beloved, uncle&#39; — the name is a qal passive participle or hypocoristic</li><li><strong>Aramaic</strong> — דָּוִד (Dāwîḏ), identical in the Targumim</li><li><strong>Arabic</strong> — Dāwūd (دَاوُود), the Qur&#39;anic king and prophet</li></ul>
+<p>BHS points the royal name דָּוִד (1 Samuel 16:13). The initial dalet carries a dagesh (plosive [d]) and a long qamets [ɔː]; the medial waw functions as a consonant [w] with hireq [iː]; the final dalet is spirantized [ð] in Tiberian because it lacks dagesh, though the phonetic realization of a final fricative is debated. HALOT s.v. דָּוִד; TDOT s.v. David.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">HALOT s.v. דָּוִד.</li></ol></div>
     </div>
 </section>
 
@@ -326,14 +345,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Hebrew as <strong>דָּוִד</strong> — Northwest Semitic abjad, attested Biblical Hebrew, c. 1000–500 BCE, in Israel / Judah. The script is written right-to-left.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Dāwîḏ</em> (BHS / SBL academic), giving the normalized reading /daːˈwiːd/ or /dɔːˈviːd/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The Masoretic spelling דָּוִד (Dāwîḏ) is preserved in the Biblia Hebraica Stuttgartensia.</li><li>The first dalet carries a dagesh (דּ) because it follows a silent shewa at the beginning of the word, marking the stop /d/.</li><li>The vav (ו) with qāmeṣ and ḥīreq points indicates the diphthongal sequence /awī/.</li><li>The name is traditionally explained as from the root d-w-d &#39;beloved&#39;, though some scholars connect it to a Northwest Semitic theophoric element.</li></ul>
+<p>The Hebrew name is written דָּוִד: the initial <em>dalet</em> carries a dagesh (plosive [d]) and a long qamets, while the final <em>dalet</em> is spirantized to [ð] because it lacks dagesh. The medial <em>waw</em> functions as a consonant [w] with hireq-yod giving the long [iː]. PUNYCODEX renders the name as <strong>Dāwîḏ</strong>: the macron marks the long vowel, the circumflex marks the long [iː] in traditional scholarly transcription, and the dot under the final <strong>ḏ</strong> marks the spirantized dalet. This is a Tier-2 restoration that preserves registrable Latin characters while signaling Tiberian phonetics.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Biblia Hebraica Stuttgartensia (BHS), 1–2 Samuel.</li><li id="src-original-script-2">HALOT, דָּוִד.</li><li id="src-original-script-3">TDOT, דוד.</li></ol></div>
     </div>
 </section>
 
@@ -341,14 +361,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>Dāwîḏ is the <strong>shepherd who slays a giant and becomes the paradigm of kingship</strong>. His story is Israel&#39;s national epic in miniature: anointed in secret, hunted by the king he is destined to replace, triumphant in battle, flawed in power, and remembered above all as the sweet singer of Israel. The Psalter carries his name; Jerusalem carries his city.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Shepherd&#39;s Sling</h3>
+<p>With a stone and a sling he fells the Philistine champion Goliath, refusing Saul&#39;s armor because he has not tested it (1 Samuel 17).</p>
+<h3 class="scholars-h3">The Royal Musician</h3>
+<p>His lyre soothes Saul&#39;s tormenting spirit and becomes the emblem of the Psalms attributed to him (1 Samuel 16; Psalms).</p>
+<h3 class="scholars-h3">Captor of Jerusalem</h3>
+<p>He captures the Jebusite stronghold and makes it his capital, bringing the ark into the city (2 Samuel 5–6).</p>
+<h3 class="scholars-h3">The Davidic Covenant</h3>
+<p>YHWH promises that David&#39;s house and throne will endure forever, a promise later read as messianic prophecy (2 Samuel 7).</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">TDOT s.v. David.</li></ol></div>
     </div>
 </section>
 
@@ -356,14 +381,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Dāwîḏ concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Lyre / kinnor</strong> — The instrument of the Psalms and the sound that calms an afflicted king</li><li><strong>Sling and stone</strong> — The weapons of the underdog; the defeat of Goliath by faith and skill</li><li><strong>Crown</strong> — Kingship over Judah and Israel, and later the symbol of the Davidic line</li><li><strong>Ark of the Covenant</strong> — The sacred chest David brings to Jerusalem, making the city a religious as well as political capital</li><li><strong>Star of David (later emblem)</strong> — A medieval and modern symbol that claims descent from and allegiance to the house of David</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">HALOT s.v. דָּוִד.</li></ol></div>
     </div>
 </section>
 
@@ -371,14 +394,21 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Dāwîḏ&#39;s mythology is a study in <strong>contrast</strong>: shepherd and king, poet and killer, beloved of God and adulterer, fugitive and founder. The narratives that surround him are among the most psychologically acute in the Hebrew Bible.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Anointed in Secret (1 Samuel 16)</h3>
+<p>The prophet Samuel is sent to Bethlehem to anoint a new king from among Jesse&#39;s sons. One by one the tall and impressive brothers pass by, but YHWH rejects them. The youngest, David, is kept in the fields tending sheep. Samuel anoints him, and &#39;the spirit of the LORD rushed upon David from that day forward.&#39; Kingship begins in obscurity.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">David and Goliath (1 Samuel 17)</h3>
+<p>The Philistine champion Goliath challenges Israel to single combat. David, still a boy, refuses Saul&#39;s armor and goes out with a staff, a sling, and five stones. &#39;You come to me with a sword and with a spear,&#39; he says, &#39;but I come to you in the name of the LORD of hosts.&#39; A single stone sinks into the giant&#39;s forehead, and David beheads him with his own sword. The story becomes the archetype of the weak overcoming the strong.</p>
+<h3 class="scholars-h3">The Fugitive Prince (1 Samuel 18–31)</h3>
+<p>David&#39;s popularity awakens Saul&#39;s jealousy. He flees into the wilderness, gathers a band of outlaws, and twice spares Saul&#39;s life when he could have killed him. His friendship with Saul&#39;s son Jonathan is intense and tragic; Jonathan recognizes that David, not he, will be king. These years forge David&#39;s reputation as both a skilled warrior and a man of mercy.</p>
+<h3 class="scholars-h3">Bathsheba and the Prophet&#39;s Rebuke (2 Samuel 11–12)</h3>
+<p>At the height of his power, David sees Bathsheba bathing, sleeps with her, and arranges the death of her husband Uriah the Hittite. The prophet Nathan confronts him with a parable about a rich man who steals a poor man&#39;s lamb. David condemns himself; the child born of the adultery dies, and the royal house is promised turmoil. Psalm 51, &#39;Create in me a clean heart, O God,&#39; is traditionally ascribed to this moment.</p>
+<h3 class="scholars-h3">Absalom&#39;s Rebellion (2 Samuel 15–18)</h3>
+<p>David&#39;s son Absalom steals the hearts of Israel and drives his father from Jerusalem. David weeps as he flees, cries out &#39;O my son Absalom, my son, my son!&#39; when the rebellion is crushed, and returns to the city across the Kidron Valley. The story turns the king into a figure of public grief and private failure, even in victory.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">TDOT s.v. David.</li><li id="src-mythology-2">1–2 Samuel.</li></ol></div>
     </div>
 </section>
 
@@ -386,14 +416,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>In Islam, David is Dāwūd, a prophet-king who received the Zabūr (Psalms), could soften iron, and was granted a wise judgment. Christianity reads David as the ancestor of Jesus and the model of the messianic king; the Gospels open with his genealogy and the Psalms with his voice. Jewish tradition makes him the sweet singer of Israel and the founder of the liturgical year. Armenian, Ethiopian, and Samaritan traditions all claim aspects of his legacy. Across these traditions, David remains the same complex figure: beloved, flawed, and foundational.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Canaanite tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/abel/">Hāḇel</a>, <a class="scholars-xlink" href="/sites/anat/">ꜥAnat</a>, <a class="scholars-xlink" href="/sites/asherah/">ꜥAsherah</a>, <a class="scholars-xlink" href="/sites/baal/">Baꜥal</a>, <a class="scholars-xlink" href="/sites/cain/">Qāyīn</a>, and <a class="scholars-xlink" href="/sites/el/">Ēl</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">HALOT s.v. דָּוִד.</li></ol></div>
     </div>
 </section>
 
@@ -401,14 +429,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Dāwîḏ gave the West one of its most enduring books of prayer and poetry. The Psalms have been recited in temples, churches, and mosques for millennia; their language of lament, thanksgiving, and royal trust shaped later liturgy and literature. The &#39;David and Goliath&#39; narrative became shorthand for any victory of the weak over the strong, while the Star of David became the emblem of Judaism and later the state of Israel. Michelangelo&#39;s marble David, Renaissance Florence&#39;s civic ideal, reimagines the shepherd boy as the concentrated power of republican virtue. In popular culture, David is king, poet, sinner, and hero all at once.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">HALOT s.v. דָּוִד.</li></ol></div>
     </div>
 </section>
 
@@ -416,14 +441,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The Tel Dan Stele (ninth century BCE) contains the phrase bytdwd, &#39;House of David,&#39; the earliest extra-biblical reference to the Davidic dynasty. The Mesha Stele may also allude to the &#39;House of David,&#39; though the reading is disputed. Excavations in the City of David have uncovered Iron Age fortifications, the Siloam Tunnel, and residential quarters, but the scale of David&#39;s united kingdom remains contested between &#39;high chronology&#39; and &#39;low chronology&#39; interpretations. Khirbet Qeiyafa, a fortified site on the Judah-Philistia border, has been proposed by some as evidence of an early tenth-century Judahite state, though this is debated.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">HALOT s.v. דָּוִד.</li></ol></div>
     </div>
 </section>
 
@@ -431,135 +453,103 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Dāwîḏ given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> HALOT s.v. דָּוִד.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> TDOT s.v. David.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> 1–2 Samuel.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Psalms.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> McCarter, 1 Samuel / 2 Samuel (Anchor Bible).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Halpern, David&#39;s Secret Demons.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Baden, The Historical David.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">HALOT s.v. דָּוִד.</li><li id="src-scholarly-sources-2">TDOT s.v. David.</li><li id="src-scholarly-sources-3">1–2 Samuel.</li><li id="src-scholarly-sources-4">Psalms.</li><li id="src-scholarly-sources-5">McCarter, 1 Samuel / 2 Samuel (Anchor Bible).</li><li id="src-scholarly-sources-6">Halpern, David&#39;s Secret Demons.</li><li id="src-scholarly-sources-7">Baden, The Historical David.</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="hebrew-bible">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Hebrew Bible / Old Testament</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>David&#39;s story fills 1 Samuel 16 through 1 Kings 2, among the longest continuous narratives of the Hebrew Bible: the secret anointing at Bethlehem (1 Samuel 16), the duel with Goliath (1 Samuel 17), the fugitive years under Saul (1 Samuel 18–31), kingship over Judah at Hebron and then over all Israel (2 Samuel 2–5), the capture of Jerusalem and the transfer of the ark (2 Samuel 5–6), and Nathan&#39;s oracle of an everlasting house (2 Samuel 7). The second half is a court history of unusual candor — Bathsheba and Uriah (2 Samuel 11–12), Amnon and Tamar, Absalom&#39;s revolt (2 Samuel 13–20), the census plague (2 Samuel 24).<sup class="scholars-cite"><a href="#src-hebrew-bible-1">[1]</a></sup> Seventy-three psalms of the Masoretic Psalter bear the superscription le-Dāwid, &#39;of David,&#39; and Chronicles recasts him as the Temple&#39;s planner and the founder of its liturgy.<sup class="scholars-cite"><a href="#src-hebrew-bible-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-hebrew-bible-1">1 Samuel 16–1 Kings 2 (David narratives).</li><li id="src-hebrew-bible-2">The Psalter, Masoretic superscriptions le-Dāwid; 1 Chronicles 15–16; 23–25.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="new-testament">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">New Testament</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>In the New Testament David functions chiefly as the messianic ancestor. Both genealogies derive Jesus from him (Matthew 1; Luke 3), and the infancy narrative locates the birth in Bethlehem, &#39;the city of David&#39; (Luke 2:4–11). The acclamation &#39;Son of David&#39; runs through the healings and the entry into Jerusalem (Mark 10:47–48; Matthew 21:9).<sup class="scholars-cite"><a href="#src-new-testament-1">[1]</a></sup> Jesus cites David&#39;s eating of the consecrated bread as precedent (Mark 2:25–26) and turns Psalm 110:1 into a riddle: David himself calls his descendant &#39;Lord&#39; (Mark 12:35–37). Peter&#39;s Pentecost sermon reads Psalm 16 as David&#39;s prophecy of the resurrection (Acts 2:25–36); Paul opens Romans with the Son &#39;descended from David according to the flesh&#39; (Romans 1:3); and the Apocalypse names Jesus &#39;the Root of David&#39; (Revelation 5:5; 22:16).<sup class="scholars-cite"><a href="#src-new-testament-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-new-testament-1">Mark 10:47–48; Matthew 21:9; Luke 2:4–11 (&#39;Son of David&#39; and Bethlehem).</li><li id="src-new-testament-2">Mark 12:35–37; Acts 2:25–36; Romans 1:3; Revelation 5:5; 22:16.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="midrash">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Midrash & Targumim</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The rabbis remember David less as warrior than as the sleepless psalmist. A celebrated passage of b. Berakhot describes a harp hung above his bed whose strings the north wind stirred at midnight, whereupon David rose to study Torah until dawn — the aggadic charter of the midnight vigil (Berakhot 3b–4a).<sup class="scholars-cite"><a href="#src-midrash-1">[1]</a></sup> Bava Batra credits him with the Psalter, gathering into it the songs of ten elders from Adam to Ezra (14b–15a), and Midrash Tehillim reads nearly every superscription as a window into his life.<sup class="scholars-cite"><a href="#src-midrash-2">[2]</a></sup> David is also the horizon of hope: the eschatological chapters of Sanhedrin structure the world&#39;s waiting around &#39;the son of David&#39; (97a–99a), a longing already fixed in the daily Amidah&#39;s prayer for the sprouting of his horn.<sup class="scholars-cite"><a href="#src-midrash-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-midrash-1">b. Berakhot 3b–4a (David&#39;s harp at midnight).</li><li id="src-midrash-2">b. Bava Batra 14b–15a; Midrash Tehillim.</li><li id="src-midrash-3">b. Sanhedrin 97a–99a (&#39;son of David&#39; eschatology).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="quranic">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Qur'ānic References</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Dāwūd is prophet and king in one: &#39;We gave David and Solomon judgment&#39; (21:79), and to David specifically God gave the Zabūr, the scripture generally identified with the Psalms (4:163; 17:55).<sup class="scholars-cite"><a href="#src-quranic-1">[1]</a></sup> His kingship is cosmic in texture — the mountains and birds join his glorification at evening and sunrise (34:10; 38:18–19), iron is made pliable so that he fashions coats of mail (34:10–11), and God addresses him as khalīfa, vicegerent on earth, bound to judge justly (38:26). The Qur&#39;an retells Nathan&#39;s parable as the case of two litigants disputing ninety-nine ewes and one, after which David &#39;understood that We had tested him,&#39; sought forgiveness, and fell prostrate (38:21–25).<sup class="scholars-cite"><a href="#src-quranic-2">[2]</a></sup> He is also the slayer of Jālūt (Goliath), after whose defeat &#39;God gave him kingship and wisdom and taught him what He willed&#39; (2:251).<sup class="scholars-cite"><a href="#src-quranic-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-quranic-1">Qur&#39;an 4:163; 17:55 (the Zabūr).</li><li id="src-quranic-2">Qur&#39;an 34:10–11; 38:18–26 (mountains, iron, the litigants).</li><li id="src-quranic-3">Qur&#39;an 2:251 (Dāwūd and Jālūt).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Dāwîḏ is the king who never stops being a poet. Even when he holds a crown, he reaches for a lyre; even when he holds power, he is undone by desire and restored by lament. His greatness lies not in moral perfection but in the capacity to be named and to name himself — to hear Nathan&#39;s parable and say, &#39;I have sinned against the LORD.&#39;</p>
+<p>Modern politics rarely tolerates such public contrition, yet David&#39;s story suggests that legitimacy depends on it. The poet-king is the ruler who remembers that power is borrowed and that the song outlasts the sword. To meditate on Dāwîḏ is to meditate on the possibility that art and authority, violence and vulnerability, can inhabit a single life without being reconciled.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">HALOT s.v. דָּוִד.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="hebrew-bible">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Hebrew Bible / Old Testament</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Hebrew Bible / Old Testament →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="new-testament">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">New Testament</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to New Testament →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="midrash">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Midrash & Targumim</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Midrash & Targumim →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="quranic">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">17</span>
-        <h2 class="scholars-section-title">Qur'ānic References</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Qur'ānic References →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">19</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -597,6 +587,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'david';
@@ -630,14 +755,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -731,6 +848,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -742,18 +860,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -765,6 +884,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -809,6 +930,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

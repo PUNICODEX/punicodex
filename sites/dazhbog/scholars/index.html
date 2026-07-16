@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,10 +279,11 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#primary-chronicle">14 &mdash; Primary Chronicle</a></li>
-<li><a href="#folk-sources">15 &mdash; Folk Sources</a></li>
+<li><a href="#primary-chronicle">12 &mdash; Primary Chronicle</a></li>
+<li><a href="#folk-sources">13 &mdash; Folk Sources</a></li>
+<li><a href="#meditation">14 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">15 &mdash; Edit History</a></li>
+<li><a href="#attribution">16 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -279,14 +295,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Dažbog</strong> (<em>dazhbog</em>) — Sun, Wealth, Giving · Giving god — belongs to the Slavic tradition, where it is catalogued under the domain &quot;Sun, Wealth, Giving&quot;. The name means &quot;Giving god&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>Dažbog is the <strong>Slavic sun god, son of the smith-god Svarog, and a giver of wealth and agricultural bounty</strong>. His name means &#39;giving god,&#39; and in the medieval East Slavic sources he is honored alongside Perun, Svarog, and other members of the Kievan pantheon. Although the Christian chroniclers dismissed him as a demon, folk memory preserved him in blessings, oaths, and the figure of Dabog.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Dažbog</strong> and serves its temple at <a class="scholars-ext" href="https://xn--dabog-vib.com" rel="noopener noreferrer" target="_blank">dažbog.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>dazhbog</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Primary Chronicle / Povest&#39; vremennykh let (Tale of Bygone Years), Laurentian and Hypatian recensions.</li><li id="src-overview-2">Miklosich, Franz, Etymologisches Wörterbuch der slavischen Sprachen.</li><li id="src-overview-3">Vasmer, Max, Russisches etymologisches Wörterbuch.</li></ol></div>
     </div>
 </section>
 
@@ -294,14 +309,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Church Slavonic / East Slavic Cyrillic as <strong>Дажбог</strong>. Etymologically it means &quot;Giving god&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The ASCII form <em>dazhbog</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Dažbog</strong> recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>d</strong> → <strong>D</strong> — Same</li><li><strong>a</strong> → <strong>a</strong> — Same</li><li><strong>z</strong> → <strong>ž</strong> — Z with caron</li><li><strong>h</strong> → <strong>—</strong> — Not written</li><li><strong>b</strong> → <strong>b</strong> — Same</li><li><strong>o</strong> → <strong>o</strong> — Same</li><li><strong>g</strong> → <strong>g</strong> — Same</li></ul>
+<p>The project holds the domain <strong>dažbog.com</strong> (xn--dabog-vib.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Primary Chronicle / Povest&#39; vremennykh let (Tale of Bygone Years), Laurentian and Hypatian recensions.</li><li id="src-the-name-2">Miklosich, Franz, Etymologisches Wörterbuch der slavischen Sprachen.</li></ol></div>
     </div>
 </section>
 
@@ -309,14 +325,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/ˈdaʒ.boɡ/</strong> — Common Slavic / East Slavic Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>D-</strong> — Voiced alveolar stop [d], as in English &#39;day&#39;.</li><li><strong>-a-</strong> — Short open front [a], the first unstressed syllable in the compound.</li><li><strong>-ž-</strong> — Voiced postalveolar fricative [ʒ], the Slavic &#39;zh&#39; sound written with a caron.</li><li><strong>-bog</strong> — Voiced bilabial stop [b], open-mid back rounded [ɔ], and voiced velar [ɡ]; means &#39;god&#39;.</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;DAHZH-bog&#39; — crisp &#39;dah&#39;, then the &#39;zh&#39; sound of &#39;measure&#39;, and end with &#39;bog&#39; as in &#39;god&#39; (which is what the word means).</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Common Slavic</strong> — <em>dažь bogъ, &#39;giving god&#39; (from </em>dati, &#39;to give&#39;, + *bogъ, &#39;god&#39;)</li><li><strong>Old East Slavic / Russian</strong> — Dažĭbogŭ, son of Svarog in the Primary Chronicle</li><li><strong>Serbian/Croatian folk tradition</strong> — Dabog or Dajbog, invoked in blessings and oaths</li></ul>
+<p>Dažbog is Tier 2: the caron on ž preserves the distinctive Common Slavic fricative, but the name carries no stress accent or length mark. The h in the lexicon&#39;s ASCII form is silent, reflecting an older East Slavic spelling convention (Daždbog / Dadzbog) that was later simplified. We do not invent an etymology beyond the attested compound &#39;giving god&#39;.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Primary Chronicle / Povest&#39; vremennykh let (Tale of Bygone Years), Laurentian and Hypatian recensions.</li></ol></div>
     </div>
 </section>
 
@@ -324,14 +343,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Church Slavonic / East Slavic Cyrillic as <strong>Дажбог</strong> — Cyrillic, attested Old East Slavic, c. 10th–12th c. CE, in Kievan Rus&#39;. The script is written left-to-right.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Dažbog</em> (Scientific transliteration of Old East Slavic), giving the normalized reading /ˈdaʒ.boɡ/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The name is attested in East Slavic chronicles as Дажьбогъ (Dažĭbogŭ) and in the Primary Chronicle.</li><li>It is usually analyzed as daždĭ &#39;rain, gift&#39; + bogŭ &#39;god&#39;, hence &#39;giving god&#39; or &#39;rain god&#39;.</li><li>The modern Unicode restoration Dažbog uses the caron ž; the medieval Cyrillic spelling includes the reduced jer vowels ь and ъ.</li><li>The Cyrillic form is not registrable in .com; the Latin transliteration Dažbog is.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Cross &amp; Sherbowitz-Wetzor, The Russian Primary Chronicle.</li><li id="src-original-script-2">Vlasto, The Entry of the Slavs into Christendom.</li><li id="src-original-script-3">Mallory &amp; Adams, Encyclopedia of Indo-European Culture.</li></ol></div>
     </div>
 </section>
 
@@ -339,14 +358,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>Dažbog is the <strong>Slavic sun god, son of the smith-god Svarog, and a giver of wealth and agricultural bounty</strong>. His name means &#39;giving god,&#39; and in the medieval East Slavic sources he is honored alongside Perun, Svarog, and other members of the Kievan pantheon. Although the Christian chroniclers dismissed him as a demon, folk memory preserved him in blessings, oaths, and the figure of Dabog.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Sun</h3>
+<p>He is identified with the sun and its life-giving warmth; Christian chroniclers equated him with Helios.</p>
+<h3 class="scholars-h3">Son of Svarog</h3>
+<p>The Primary Chronicle lists him as son of the heavenly smith Svarog.</p>
+<h3 class="scholars-h3">Giver of Wealth</h3>
+<p>His name and cult link him to generosity, harvest, and prosperity.</p>
+<h3 class="scholars-h3">Folk Dabog</h3>
+<p>Survives in South Slavic oral tradition as Dabog or Dajbog, invoked in blessings.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Miklosich, Franz, Etymologisches Wörterbuch der slavischen Sprachen.</li></ol></div>
     </div>
 </section>
 
@@ -354,14 +378,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Dažbog concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Sun wheel or disk</strong> — The solar body with which Dažbog was identified</li><li><strong>Wheat or sheaf</strong> — The harvest produced by the sun&#39;s warmth and the god&#39;s generosity</li><li><strong>Gold and amber</strong> — Treasures associated with sunlight and divine wealth</li><li><strong>Horse or chariot</strong> — The solar vehicle common to Indo-European sun-god imagery</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Primary Chronicle / Povest&#39; vremennykh let (Tale of Bygone Years), Laurentian and Hypatian recensions.</li></ol></div>
     </div>
 </section>
 
@@ -369,14 +391,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Dažbog is known almost entirely from external, often hostile, sources. The Slavs left no extensive native mythology, so his story must be reconstructed from the fragments preserved by Christian chroniclers, folk invocations, and comparative Indo-European study.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Kievan Pantheon (Primary Chronicle)</h3>
+<p>The <em>Povest&#39; vremennykh let</em> (&#39;Tale of Bygone Years,&#39; c. 1113) records that after Prince Vladimir&#39;s conversion, the idols of Perun, Khors, Dazhbog, Stribog, Simargl, and Mokosh were thrown into the Dnieper. Dažbog is listed as the son of Svarog. The chroniclers&#39; contempt preserves the fact that he was once a major deity of the East Slavic pantheon.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Dabog the Giver (Folk tradition)</h3>
+<p>In Serbian and broader South Slavic folklore, <em>Dabog</em> or <em>Dajbog</em> appears in blessings and oaths: &#39;Dajbog da...&#39; (&#39;May God give that...&#39;). The name has been Christianized in form but preserves the old compound &#39;giving god.&#39; This survival suggests that Dažbog was once invoked wherever people asked for prosperity, health, or good fortune.</p>
+<h3 class="scholars-h3">The Indo-European Sun God (Comparative mythology)</h3>
+<p>Comparative Indo-European mythology places Dažbog in the company of solar deities who ride chariots across the sky and bestow wealth and fertility. The connection to Svarog (heaven/smith) and the sun-identification made by chroniclers align him with this pattern, though direct Slavic narratives have not survived.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Miklosich, Franz, Etymologisches Wörterbuch der slavischen Sprachen.</li><li id="src-mythology-2">Vasmer, Max, Russisches etymologisches Wörterbuch.</li></ol></div>
     </div>
 </section>
 
@@ -384,14 +409,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Christian chroniclers explicitly equated Dažbog with the Greek sun god <strong>Helios</strong>, reflecting both his solar identification and the Byzantine interpretatio Graeca favored in Kievan Rus&#39;. In South Slavic folk religion, Dabog/Dajbog blends with the Christian God while retaining the old &#39;giving&#39; epithet. Comparisons have also been made to the Vedic <em>Savitar</em> and the Roman <em>Sol Invictus</em>, both solar deities associated with bestowal. The Iranian Mithra has been proposed as a distant cousin, though the evidence is speculative. Dažbog illustrates a common pattern: a major pagan god is first demonized, then absorbed into popular Christian speech.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include <a class="scholars-xlink" href="/sites/apollon/">Apóllōn</a>, <a class="scholars-xlink" href="/sites/helios/">Hēlios</a>, <a class="scholars-xlink" href="/sites/huitzilopochtli/">Huitzilopōchtli</a>, <a class="scholars-xlink" href="/sites/ra/">Rꜥ</a>, <a class="scholars-xlink" href="/sites/shamash/">Šamaš</a>, and <a class="scholars-xlink" href="/sites/shapash/">Šāpšu</a>, each linked through sun / light.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Primary Chronicle / Povest&#39; vremennykh let (Tale of Bygone Years), Laurentian and Hypatian recensions.</li></ol></div>
     </div>
 </section>
 
@@ -399,14 +422,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Dažbog survives most clearly in South Slavic invocations of <em>Dajbog</em> and in place-names and personal names across Slavic-speaking regions. Modern Slavic Rodnovery (Native Faith) movements honor him as a solar and prosperity deity. In linguistics, his name is a textbook example of the Common Slavic compound *dažь bogъ. For scholars of medieval Slavic religion, Dažbog is a crucial but frustratingly elusive figure: important enough to be named by chroniclers, yet absent from the rich narrative cycles that preserve Norse or Greek mythology.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Primary Chronicle / Povest&#39; vremennykh let (Tale of Bygone Years), Laurentian and Hypatian recensions.</li></ol></div>
     </div>
 </section>
 
@@ -414,14 +434,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>No archaeological find names Dažbog directly. His attestation depends on the written sources, especially the Primary Chronicle, and on the survival of his name in South Slavic folklore. Solar imagery in Slavic folk art, including wheel-shaped amulets and spring-sun rituals, may indirectly reflect the cult of a solar deity, but none can be securely linked to Dažbog. The destruction of pagan idols ordered by Vladimir in 988 and the Christianization of Slavic religion mean that material evidence for major gods is sparse and ambiguous.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Primary Chronicle / Povest&#39; vremennykh let (Tale of Bygone Years), Laurentian and Hypatian recensions.</li></ol></div>
     </div>
 </section>
 
@@ -429,105 +446,79 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Dažbog given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Primary Chronicle / Povest&#39; vremennykh let (Tale of Bygone Years), Laurentian and Hypatian recensions.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Miklosich, Franz, Etymologisches Wörterbuch der slavischen Sprachen.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Vasmer, Max, Russisches etymologisches Wörterbuch.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Helmold of Bosau, Chronica Slavorum (12th-century account of Slavic religion).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Katicic, Radoslav, Illyrian iconography and Slavic mythology.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Zaroff, Roman, &#39;Organized Pagan Cult in Kievan Rus&#39;&#39;.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Ivanov, Vyacheslav, and Vladimir Toporov, Studies in Slavic mythology.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Primary Chronicle / Povest&#39; vremennykh let (Tale of Bygone Years), Laurentian and Hypatian recensions.</li><li id="src-scholarly-sources-2">Miklosich, Franz, Etymologisches Wörterbuch der slavischen Sprachen.</li><li id="src-scholarly-sources-3">Vasmer, Max, Russisches etymologisches Wörterbuch.</li><li id="src-scholarly-sources-4">Helmold of Bosau, Chronica Slavorum (12th-century account of Slavic religion).</li><li id="src-scholarly-sources-5">Katicic, Radoslav, Illyrian iconography and Slavic mythology.</li><li id="src-scholarly-sources-6">Zaroff, Roman, &#39;Organized Pagan Cult in Kievan Rus&#39;&#39;.</li><li id="src-scholarly-sources-7">Ivanov, Vyacheslav, and Vladimir Toporov, Studies in Slavic mythology.</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="primary-chronicle">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Primary Chronicle</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The <em>Povest&#39; vremennykh let</em> (&#39;Tale of Bygone Years,&#39; c. 1113) is the principal early witness to Dažbog. Under the year 980 it records that Prince Vladimir set up idols on the hill at Kiev: Perun first, and with him Khors, <strong>Dažbog</strong>, Stribog, Simargl, and Mokosh — a deliberate state pantheon for public sacrifice.<sup class="scholars-cite"><a href="#src-primary-chronicle-1">[1]</a></sup> Under 988 the same chronicle describes the baptism of Rus&#39; and the casting-down of the idols, Perun&#39;s image beaten and thrown into the Dnieper. The later Hypatian recension, weaving Byzantine chronography into the Rus&#39; narrative, glosses the solar hierarchy outright: Svarog is equated with Hephaestus, and his son the Sun — Svarozhich — is named as <strong>Dažbog</strong>, fixing his identity as sun god and son of the heavenly smith.<sup class="scholars-cite"><a href="#src-primary-chronicle-2">[2]</a></sup> His Baltic cognate <a class="scholars-xlink" href="/sites/perkunas/">Perkūnas</a> would outlast him in the chronicles of still-pagan Lithuania.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-primary-chronicle-1">Primary Chronicle / Povest&#39; vremennykh let, entry under 980 (Laurentian recension; trans. Cross &amp; Sherbowitz-Wetzor, The Russian Primary Chronicle).</li><li id="src-primary-chronicle-2">Hypatian Chronicle, Svarog–Svarozhich gloss on Dažbog as the Sun.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="folk-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Folk Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Slavic folklore kept Dažbog where the chronicles fell silent, but always in disguise. In Serbian and broader South Slavic usage the theonym survives as <strong>Dabog</strong> or <strong>Dajbog</strong>, fossilized inside everyday formulas of wish and oath — <em>Dabog da!</em> (&#39;may the god give!&#39;) — a compound worn so smooth that speakers no longer hear the deity within it.<sup class="scholars-cite"><a href="#src-folk-sources-1">[1]</a></sup> Nineteenth- and early twentieth-century ethnographers recorded the name in charms, curses, and seasonal customs, yet almost no narrative myth: the folk Dabog is a function — giving, granting — rather than a character with deeds.<sup class="scholars-cite"><a href="#src-folk-sources-2">[2]</a></sup> In the East Slavic lands the solar role passed to Christian figures and to the rites of the sun&#39;s year, while courtly literature still remembered the name&#39;s dignity: the <em>Slovo o polku Igoreve</em> (c. 1185) calls the Rus&#39; people the grandchildren of Dažbog.<sup class="scholars-cite"><a href="#src-folk-sources-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-folk-sources-1">Vasmer, Max, Russisches etymologisches Wörterbuch (s.v. bog, Dabog).</li><li id="src-folk-sources-2">Ivanov, V. V., and V. N. Toporov, Issledovanija v oblasti slavjanskikh drevnostej.</li><li id="src-folk-sources-3">Slovo o polku Igoreve (The Tale of Igor&#39;s Campaign, c. 1185).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Dažbog is the god of giving made visible in sunlight. Every harvest, every warm morning, every coin earned is a gift that his name once sanctified. The chroniclers called him a demon and threw his idol in the river, but the people kept saying his name whenever they hoped for something good.</p>
+<p>There is a quiet resistance in that survival. Dažbog did not need temples or epics; he needed only the human habit of asking. &#39;Giving god&#39; is not a description of power but a description of relationship: the deity who responds to need. In an age of scarcity and competition, his name is a reminder that the sun still rises without charge and that generosity can be sacred.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Primary Chronicle / Povest&#39; vremennykh let (Tale of Bygone Years), Laurentian and Hypatian recensions.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">16</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="primary-chronicle">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Primary Chronicle</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Primary Chronicle →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="folk-sources">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Folk Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Folk Sources →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">16</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">17</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -565,6 +556,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'dazhbog';
@@ -598,14 +724,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -699,6 +817,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -710,18 +829,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -733,6 +853,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -777,6 +899,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

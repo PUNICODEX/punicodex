@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,12 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#hebrew-bible">14 &mdash; Hebrew Bible / Old Testament</a></li>
-<li><a href="#new-testament">15 &mdash; New Testament</a></li>
-<li><a href="#midrash">16 &mdash; Midrash & Targumim</a></li>
-<li><a href="#quranic">17 &mdash; Qur'ānic References</a></li>
+<li><a href="#hebrew-bible">12 &mdash; Hebrew Bible / Old Testament</a></li>
+<li><a href="#new-testament">13 &mdash; New Testament</a></li>
+<li><a href="#midrash">14 &mdash; Midrash & Targumim</a></li>
+<li><a href="#quranic">15 &mdash; Qur'ānic References</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -281,14 +297,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Hāḇel</strong> (<em>habel</em>) — First Victim · Second son of Adam and Eve — belongs to the Canaanite tradition, where it is catalogued under the domain &quot;First Victim&quot;. The name means &quot;Second son of Adam and Eve&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>Hāḇel is the <strong>second son whose only crime is to be accepted</strong>. A keeper of sheep, he brings the firstborn of his flock and their fat portions, and God regards his offering. He does not speak a single recorded sentence in the Hebrew Bible. His entire life is told in a few verses, yet his name has become synonymous with innocence destroyed and blood that cannot be buried.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Hāḇel</strong> and serves its temple at <a class="scholars-ext" href="https://xn--hel-1oa4628a.com" rel="noopener noreferrer" target="_blank">hāḇel.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>habel</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">HALOT s.v. הֶבֶל.</li><li id="src-overview-2">TDOT s.v. Abel.</li><li id="src-overview-3">Genesis 4.</li></ol></div>
     </div>
 </section>
 
@@ -296,14 +311,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Hebrew as <strong>הֶבֶל</strong>. Etymologically it means &quot;Second son of Adam and Eve&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The ASCII form <em>habel</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Hāḇel</strong> recovers the vowel length of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>h</strong> → <strong>H</strong> — Same, capitalized</li><li><strong>a</strong> → <strong>ā</strong> — Macron: long vowel</li><li><strong>b</strong> → <strong>ḇ</strong> — Beth with line below</li><li><strong>e</strong> → <strong>e</strong> — Same</li><li><strong>l</strong> → <strong>l</strong> — Same</li></ul>
+<p>The project holds the domain <strong>hāḇel.com</strong> (xn--hel-1oa4628a.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">HALOT s.v. הֶבֶל.</li><li id="src-the-name-2">TDOT s.v. Abel.</li></ol></div>
     </div>
 </section>
 
@@ -311,14 +327,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/ˈhɛvɛl/</strong> — Biblical Hebrew (Tiberian/Masoretic).<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>hĕ-</strong> — Voiceless glottal fricative [h] — Hebrew he — followed by short [ɛ], the segol under ה.</li><li><strong>-vel</strong> — Voiced labiodental fricative [v] — Hebrew vet without dagesh, fricative [β]/[v] — plus short [ɛ], the segol under ב, ending in [l].</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;HEH-vel&#39; — both vowels are short &#39;e&#39; as in &#39;bed&#39;; the &#39;v&#39; is soft, and the stress falls on the first syllable.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Hebrew root</strong> — h-b-l, &#39;breath, vapor, vanity&#39; — the name is identical to the common noun</li><li><strong>Greek</strong> — Ἅβελ (Habel), the Septuagint form that influenced the Latin/English &#39;Abel&#39;</li><li><strong>Aramaic</strong> — הֶבֶל (Hevel), as in the Targumim</li><li><strong>Arabic</strong> — Hābīl (هَابِيل), the Qur&#39;anic figure</li></ul>
+<p>BHS points the name הֶבֶל (Genesis 4:2). The Tiberian/Masoretic pronunciation is Hevel [ˈhɛvɛl], with two short segol vowels and a fricative bet (vet). The PUNYCODEX display form Hāḇel follows the Greek/Latin conventional spelling (Ἅβελ / Abel) rather than the Masoretic vocalization; the macron on ā is not supported by the Tiberian pointing. HALOT s.v. הֶבֶל; TDOT s.v. Abel.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">HALOT s.v. הֶבֶל.</li></ol></div>
     </div>
 </section>
 
@@ -326,14 +345,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Hebrew as <strong>הֶבֶל</strong> — Northwest Semitic cuneiform alphabet, attested Late Bronze Age, c. 1400–1200 BCE, in Ugarit (modern Ras Shamra, Syria). The script is written left-to-right.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Hāḇel</em> (Ugaritic alphabetic cuneiform), giving the normalized reading /ˈhɛ.vɛl/ (Tiberian).</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The name is written הֶבֶל in the Ugaritic cuneiform alphabet.</li><li>Ugaritic ʿayin is rendered with Egyptological Ain (ꜥ) for DNS registrability.</li><li>Long vowels are reconstructed from Hebrew and Akkadian cognates and marked with macrons.</li><li>The Unicode restoration Hāḇel is registrable in .com; the Ugaritic cuneiform form is not supported in the .com IDN table.</li></ul>
+<p>The Masoretic Text points the name הֶבֶל, pronounced <em>Hevel</em> with two short segol vowels and a fricative <em>bet</em> (vet). PUNYCODEX displays the name as <strong>Hāḇel</strong>, following the Greek Septuagint form Ἅβελ and the Latin/English tradition &#39;Abel.&#39; The macron on <strong>ā</strong> is a scholarly convention not supported by the Tiberian pointing; the dot under <strong>ḇ</strong> marks the fricative pronunciation of <em>bet</em> without dagesh. This registrable Latin form thus reflects post-biblical reception as much as Masoretic phonetics.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Abraham (biblical patriarch / Genesis narrative), Book of Genesis, 1000 BCE.</li><li id="src-original-script-2">Biblia Hebraica Stuttgartensia (BHS).</li><li id="src-original-script-3">Brown-Driver-Briggs Hebrew Lexicon.</li><li id="src-original-script-4">Hebrew and Aramaic Lexicon of the Old Testament (HALOT).</li></ol></div>
     </div>
 </section>
 
@@ -341,14 +361,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>Hāḇel is the <strong>second son whose only crime is to be accepted</strong>. A keeper of sheep, he brings the firstborn of his flock and their fat portions, and God regards his offering. He does not speak a single recorded sentence in the Hebrew Bible. His entire life is told in a few verses, yet his name has become synonymous with innocence destroyed and blood that cannot be buried.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Keeper of Sheep</h3>
+<p>Abel&#39;s vocation is pastoral; he offers the firstlings and fat of his flock, and God looks on him with favor (Genesis 4:2, 4).</p>
+<h3 class="scholars-h3">The Shepherd&#39;s Crook</h3>
+<p>The gentle tool of his trade, later inverted into the Christian image of the Good Shepherd who lays down his life for the sheep.</p>
+<h3 class="scholars-h3">Accepted Offering</h3>
+<p>His sacrifice rises as smoke that pleases God, setting in motion the envy that destroys him.</p>
+<h3 class="scholars-h3">Blood That Cries</h3>
+<p>After his murder, God tells Cain that Abel&#39;s blood is crying out from the ground — the first biblical image of victimhood that demands justice (Genesis 4:10).</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">TDOT s.v. Abel.</li></ol></div>
     </div>
 </section>
 
@@ -356,14 +381,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Hāḇel concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Lamb</strong> — The firstling of the flock and the innocent animal whose death prefigures later sacrifice</li><li><strong>Shepherd&#39;s crook</strong> — His pastoral calling and, in Christian reading, the gentle authority of Christ</li><li><strong>Altar smoke</strong> — The sign of an offering accepted by God</li><li><strong>Blood</strong> — The blood that cries from the ground and that &#39;speaks a better word than the blood of Abel&#39; in the New Testament</li><li><strong>Silence</strong> — Abel never speaks; his voice is heard only after death</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">HALOT s.v. הֶבֶל.</li></ol></div>
     </div>
 </section>
 
@@ -371,14 +394,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Hāḇel&#39;s mythology is almost entirely passive. He does not choose his fate; he is chosen by God&#39;s favor and killed by his brother&#39;s envy. In that passivity, however, he becomes one of the most powerful symbols in the biblical tradition.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Favored Offering (Genesis 4:2–5)</h3>
+<p>Cain and Abel both bring offerings to the LORD. Cain brings fruit of the ground; Abel brings the firstborn of his flock and their fat portions. The LORD has regard for Abel and his offering, but not for Cain. The text does not explain the reason for the preference, though later readers have proposed faith, blood sacrifice, or quality of heart. Abel&#39;s acceptance is the catalyst for everything that follows.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Murder in the Field (Genesis 4:8)</h3>
+<p>Cain speaks to Abel, and when they are in the field, Cain rises up and kills him. Abel does not resist, bargain, or flee. His death is as sudden and unexplained as his acceptance was mysterious. In Christian tradition this silence becomes prophetic: like the lamb led to slaughter, Abel is the innocent victim whose blood accuses rather than avenges.</p>
+<h3 class="scholars-h3">The Crying Blood (Genesis 4:9–10)</h3>
+<p>God asks Cain, &#39;Where is Abel your brother?&#39; and Cain lies. God answers: &#39;What have you done? The voice of your brother&#39;s blood is crying out to me from the ground.&#39; Abel, silent in life, becomes eloquent in death. The image of blood crying from the earth establishes a biblical principle: the dead can demand justice even when the living refuse to speak.</p>
+<h3 class="scholars-h3">The Replacement and the Memory (Genesis 4:25–26; later tradition)</h3>
+<p>Adam and Eve have another son, Seth, through whom the line continues. Abel has no descendants in the genealogy; his only afterlife is in memory. Yet that memory proves durable: Jesus speaks of &#39;the blood of Abel the righteous,&#39; and the author of Hebrews contrasts Abel&#39;s blood with Christ&#39;s, noting that Jesus&#39; blood &#39;speaks a better word than the blood of Abel.&#39; The victim becomes a type of every innocent killed.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">TDOT s.v. Abel.</li><li id="src-mythology-2">Genesis 4.</li></ol></div>
     </div>
 </section>
 
@@ -386,14 +414,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>In the Qur&#39;an, Abel is Hābīl, the righteous son of Adam who warns Cain against killing him and becomes a prophet-martyr. Christian tradition makes him a type of Christ: the innocent shepherd whose blood is shed by his own brother and whose death accuses the world. Medieval Jewish legend gives Abel a speaking role in the afterlife, where his blood testifies before God. The figure of the innocent, silent victim — whether Abel, Isaac, or the lamb — runs like a thread through the Abrahamic traditions, each retelling deepening the pathos of a life cut short.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Canaanite tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/anat/">ꜥAnat</a>, <a class="scholars-xlink" href="/sites/asherah/">ꜥAsherah</a>, <a class="scholars-xlink" href="/sites/baal/">Baꜥal</a>, <a class="scholars-xlink" href="/sites/cain/">Qāyīn</a>, <a class="scholars-xlink" href="/sites/david/">Dāwîḏ</a>, and <a class="scholars-xlink" href="/sites/el/">Ēl</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">HALOT s.v. הֶבֶל.</li></ol></div>
     </div>
 </section>
 
@@ -401,14 +427,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Hāḇel is the archetype of the <strong>innocent victim</strong>. His name has named countless characters in literature and film who suffer for their goodness, and the phrase &#39;Cain and Abel&#39; has become a shorthand for any fatal rivalry between brothers. In theology, Abel&#39;s blood becomes a symbol of justice that cannot be silenced; in psychology, the Abel-figure represents the vulnerable self destroyed by envy. The story also haunts discussions of sacrifice: why does divine favor fall on one offering and not another? Abel does not answer; his silence is the point.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">HALOT s.v. הֶבֶל.</li></ol></div>
     </div>
 </section>
 
@@ -416,14 +439,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>There is no archaeological evidence for Abel as an individual; his story belongs to the primeval cycle of Genesis. The pastoral way of life associated with him is well attested in the ancient Near East through zooarchaeological remains, rock art, and texts from Mesopotamia and the Levant. The contrast between farmers and herders that frames the Cain and Abel story reflects real tensions in early Near Eastern societies.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">HALOT s.v. הֶבֶל.</li></ol></div>
     </div>
 </section>
 
@@ -431,135 +451,103 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Hāḇel given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> HALOT s.v. הֶבֶל.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> TDOT s.v. Abel.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Genesis 4.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Matthew 23:35; Luke 11:51; Hebrews 11:4; 12:24.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Qur&#39;an, Surah 5:27–31.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">HALOT s.v. הֶבֶל.</li><li id="src-scholarly-sources-2">TDOT s.v. Abel.</li><li id="src-scholarly-sources-3">Genesis 4.</li><li id="src-scholarly-sources-4">Matthew 23:35; Luke 11:51; Hebrews 11:4; 12:24.</li><li id="src-scholarly-sources-5">Qur&#39;an, Surah 5:27–31.</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="hebrew-bible">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Hebrew Bible / Old Testament</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Abel&#39;s whole biblical life occupies a few verses (Genesis 4:2–10). He is introduced by his work — &#39;a keeper of sheep&#39; — and by his offering of &#39;the firstborn of his flock and their fat portions,&#39; which the LORD regards; he speaks no recorded word and dies in the field at his brother&#39;s hand.<sup class="scholars-cite"><a href="#src-hebrew-bible-1">[1]</a></sup> What follows is his true afterlife in the text: God declares that his brother&#39;s blood &#39;is crying out to me from the ground&#39; (Genesis 4:10), Scripture&#39;s first statement that spilled innocence has a voice. Eve names Seth &#39;another offspring in place of Abel, for Cain killed him&#39; (Genesis 4:25), and Abel receives no genealogy — his line is memory.<sup class="scholars-cite"><a href="#src-hebrew-bible-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-hebrew-bible-1">Genesis 4:2–10.</li><li id="src-hebrew-bible-2">Genesis 4:10, 25.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="new-testament">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">New Testament</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The New Testament gives Abel a denser afterlife than Genesis does. Jesus names him first in the roll of the murdered righteous: &#39;from the blood of righteous Abel to the blood of Zechariah&#39; (Matthew 23:35; Luke 11:51), framing the canon of martyrdom between the first shepherd and the last priest.<sup class="scholars-cite"><a href="#src-new-testament-1">[1]</a></sup> Hebrews twice builds theology on him: by faith Abel &#39;offered to God a more acceptable sacrifice than Cain&#39;s, through which he was approved as righteous... and through his faith, though he died, he still speaks&#39; (Hebrews 11:4); and the sprinkled blood of Jesus &#39;speaks a better word than the blood of Abel&#39; (Hebrews 12:24) — where Abel&#39;s blood cried for justice, Christ&#39;s speaks reconciliation.<sup class="scholars-cite"><a href="#src-new-testament-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-new-testament-1">Matthew 23:35; Luke 11:51.</li><li id="src-new-testament-2">Hebrews 11:4; 12:24.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="midrash">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Midrash & Targumim</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Rabbinic midrash says little about Abel directly — his silence in Genesis leaves almost nothing to expand — and most traditions reach him through his brother. Genesis Rabbah reconstructs the brothers&#39; quarrel and notes that the earth &#39;opened its mouth&#39; to receive his blood, making creation itself his mourner (22:7; cf. 22:9).<sup class="scholars-cite"><a href="#src-midrash-1">[1]</a></sup> Later Jewish tradition grows bolder: in the pseudepigraphal Testament of Abraham Abel sits as judge of the souls before the final assize, and medieval kabbalistic sources take up the idea that Abel&#39;s soul was reincarnated in Moses — the shepherd of the flock become the shepherd of Israel.<sup class="scholars-cite"><a href="#src-midrash-2">[2]</a></sup> His very name became the preacher&#39;s word: Qohelet&#39;s refrain havel havalim, &#39;vanity of vanities,&#39; plays on hevel, &#39;breath, vapor&#39; — life as a passing exhalation (Ecclesiastes 1:2).<sup class="scholars-cite"><a href="#src-midrash-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-midrash-1">Genesis Rabbah 22:7–9.</li><li id="src-midrash-2">Testament of Abraham 12–13; Zoharic and later gilgul traditions (Abel–Moses).</li><li id="src-midrash-3">Ecclesiastes 1:2 (hevel).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="quranic">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Qur'ānic References</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Like his brother, Abel is unnamed in the Qur&#39;an; tafsīr calls him Hābīl. His role in the story of the two sons of Adam (5:27–31) is to voice its piety: when his offering alone is accepted, he explains that &#39;God accepts only from the God-fearing,&#39; and threatened with death he refuses retaliation — &#39;I will not stretch my hand against you to kill you; I fear God, Lord of the worlds&#39; — choosing to be killed rather than to kill (5:27–29).<sup class="scholars-cite"><a href="#src-quranic-1">[1]</a></sup> Classical commentators treat him as the first martyr and the model of taqwā under persecution, and some traditions make his soul the first to enter paradise. The crow that teaches his brother burial completes the Qur&#39;an&#39;s portrait (5:31): as in Genesis, Abel instructs the world after death — here not through crying blood but through the lesson that even his murderer must learn from a bird.<sup class="scholars-cite"><a href="#src-quranic-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-quranic-1">Qur&#39;an 5:27–29.</li><li id="src-quranic-2">Qur&#39;an 5:31; al-Ṭabarī, Jāmiʿ al-bayān on 5:27 (Hābīl and Qābīl).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Hāḇel is the one who does nothing wrong and is destroyed for it. He offers what he has, accepts what comes, and dies without a recorded word. In a culture that celebrates agency, Abel is a difficult figure: he is important precisely because he does not act. His significance lies in being seen, being favored, and being killed — a progression that mirrors the fate of many who are noticed for qualities that provoke others.</p>
+<p>Yet Abel&#39;s silence is not emptiness. After his death, his blood speaks. The earth itself becomes his witness, refusing to absorb the crime quietly. In this, Abel anticipates every tradition that says the victim&#39;s voice must be heard, even — especially — when the victim can no longer speak. To remember Hāḇel is to remember that innocence is not a protection, but it is also not a waste. It cries out until it is answered.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">HALOT s.v. הֶבֶל.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="hebrew-bible">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Hebrew Bible / Old Testament</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Hebrew Bible / Old Testament →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="new-testament">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">New Testament</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to New Testament →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="midrash">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Midrash & Targumim</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Midrash & Targumim →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="quranic">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">17</span>
-        <h2 class="scholars-section-title">Qur'ānic References</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Qur'ānic References →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">19</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -597,6 +585,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'abel';
@@ -630,14 +753,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -731,6 +846,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -742,18 +858,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -765,6 +882,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -809,6 +928,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

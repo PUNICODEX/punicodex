@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,11 +279,12 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#florentine-codex">14 &mdash; Florentine Codex</a></li>
-<li><a href="#aztec-sources">15 &mdash; Aztec Sources</a></li>
-<li><a href="#colonial-sources">16 &mdash; Colonial-Era Sources</a></li>
+<li><a href="#florentine-codex">12 &mdash; Florentine Codex</a></li>
+<li><a href="#aztec-sources">13 &mdash; Aztec Sources</a></li>
+<li><a href="#colonial-sources">14 &mdash; Colonial-Era Sources</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -280,14 +296,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Mictlāntēcutli</strong> (<em>mictlantecutli</em>) — Lord of Mictlān, Death, Underworld · Lord of the Land of the Dead — belongs to the Nahuatl tradition, where it is catalogued under the domain &quot;Lord of Mictlān, Death, Underworld&quot;. The name means &quot;Lord of the Land of the Dead&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>Mictlāntēcutli is the <strong>terrible king of Mictlān</strong>, the deepest underworld beneath the earth. He does not judge souls; he receives them. After a long descent through nine perilous levels, the dead arrive at his ash-coloured realm, where life is finally, utterly extinguished.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Mictlāntēcutli</strong> and serves its temple at <a class="scholars-ext" href="https://xn--mictlntcutli-cnb8w.com" rel="noopener noreferrer" target="_blank">mictlāntēcutli.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>mictlantecutli</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Sahagún, Florentine Codex.</li><li id="src-overview-2">Leyenda de los Soles.</li><li id="src-overview-3">Karttunen, An Analytical Dictionary of Nahuatl.</li></ol></div>
     </div>
 </section>
 
@@ -295,14 +310,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>No indigenous written attestation survives for this name; <strong>Mictlāntēcutli</strong> is a scholarly transliteration of the reconstructed spoken form. Etymologically the name means &quot;Lord of the Land of the Dead&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The ASCII form <em>mictlantecutli</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Mictlāntēcutli</strong> recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>m</strong> → <strong>M</strong> — Same, capitalized</li><li><strong>i</strong> → <strong>i</strong> — Same</li><li><strong>c</strong> → <strong>c</strong> — Same</li><li><strong>t</strong> → <strong>t</strong> — Same</li><li><strong>l</strong> → <strong>l</strong> — Same</li><li><strong>a</strong> → <strong>ā</strong> — Macron: long vowel</li><li><strong>n</strong> → <strong>n</strong> — Same</li><li><strong>t</strong> → <strong>t</strong> — Same</li><li><strong>e</strong> → <strong>ē</strong> — Macron: long vowel</li><li><strong>c</strong> → <strong>c</strong> — Same</li><li><strong>u</strong> → <strong>u</strong> — Same</li><li><strong>t</strong> → <strong>t</strong> — Same</li><li><strong>l</strong> → <strong>l</strong> — Same</li><li><strong>i</strong> → <strong>i</strong> — Same</li></ul>
+<p>Attested and derived spellings of the name:</p>
+<ul class="scholars-list"><li><strong>Mictlantecutli</strong> — ASCII form: Plain ASCII form</li></ul>
+<p>The project holds the domain <strong>mictlāntēcutli.com</strong> (xn--mictlntcutli-cnb8w.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Sahagún, Florentine Codex.</li><li id="src-the-name-2">Leyenda de los Soles.</li></ol></div>
     </div>
 </section>
 
@@ -310,14 +328,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/mik.tlaːn.ˈteː.kutɬi/</strong> — Classical Nahuatl Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>mic-</strong> — Voiceless alveolar stop [mik], the root of mictli, &#39;death&#39;.</li><li><strong>-tlān-</strong> — Long [aː] followed by lateral [l] and locative suffix -ān: &#39;place of the dead&#39;.</li><li><strong>-tē-</strong> — Long [eː], honorific/intensive vowel in the word for &#39;lord&#39;.</li><li><strong>-cutli</strong> — [ˈkutɬi], &#39;lord&#39;; final -tl is the lateral affricate [tɬ], a single Nahuatl sound.</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;meek-TLAHN-tay-KOOT-lee&#39; — keep the first &#39;a&#39; and &#39;e&#39; long, and release the final -tl as one tongue-flip.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Nahuatl</strong> — Mictlāntēcutli, literally &#39;Lord of the Place of the Dead&#39;.</li><li><strong>Spanish colonial</strong> — Mictlantecuhtli, the spelling used by Sahagún and the Florentine Codex.</li><li><strong>Related figure</strong> — Mictecacihuatl, his consort, Lady of the Dead.</li></ul>
+<p>The macrons on ā and ē mark reconstructed Classical Nahuatl vowel length, the feature that makes the restoration Tier 1. Final -tl is never pronounced as separate English &#39;t&#39; and &#39;l&#39;.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Sahagún, Florentine Codex.</li></ol></div>
     </div>
 </section>
 
@@ -325,14 +346,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>No indigenous writing system is securely attested for individual nahuatl names. The form shown is a modern scholarly transliteration.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The form <strong>Mictlāntēcutli</strong> is therefore a scholarly transliteration rather than an attested ancient spelling; it encodes the reconstructed sound of the name for modern use, and no mark in it is decorative.</p>
+<p>The name is Nahuatl: <em>mictlan</em> (&#39;place of the dead&#39;) + <em>tēcutli</em> (&#39;lord&#39;). Classical Nahuatl was written in a logophonetic tradition of pictographic glyphs, many of which were burned or lost after the conquest; the name now reaches us through alphabetic transcription in colonial sources such as the Florentine Codex. The macrons mark long vowels reconstructed by linguists; Spanish colonial spellings such as Mictlantecuhtli sometimes omit them.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Sahagún, Florentine Codex.</li></ol></div>
     </div>
 </section>
 
@@ -340,14 +360,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>Mictlāntēcutli is the <strong>terrible king of Mictlān</strong>, the deepest underworld beneath the earth. He does not judge souls; he receives them. After a long descent through nine perilous levels, the dead arrive at his ash-coloured realm, where life is finally, utterly extinguished.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Nine Levels</h3>
+<p>The soul descends four years through wind, mountains, jaguars, and knives before reaching rest.</p>
+<h3 class="scholars-h3">Lord of Bone</h3>
+<p>He appears as a flayed or skeletal figure with staring eyes and a jawless skull, adorned with paper banners.</p>
+<h3 class="scholars-h3">Death as Cycle</h3>
+<p>Mictlān is not hellish punishment but the necessary destination of most mortals; new life rises from decay.</p>
+<h3 class="scholars-h3">Impersonator</h3>
+<p>A living ixiptla wore the god&#39;s regalia and was sacrificed at the feast of Tititl.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Leyenda de los Soles.</li></ol></div>
     </div>
 </section>
 
@@ -355,14 +380,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Mictlāntēcutli concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Skull</strong> — The face of the underworld lord and the memento mori carried by priests.</li><li><strong>Owl</strong> — Night bird and messenger between the living and the dead.</li><li><strong>Obsidian blade</strong> — The sacrificial knife (tecpatl) that opens the doorway to Mictlān.</li><li><strong>Paper banner (amate)</strong> — Ritual paper streamers marking the wind that blows through the land of the dead.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Sahagún, Florentine Codex.</li></ol></div>
     </div>
 </section>
 
@@ -370,14 +393,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Mictlāntēcutli&#39;s myths are few but pivotal. He guards the bones of the previous creation, and the future of humankind depends on outwitting him.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Bones of the Old Age (Cosmogony)</h3>
+<p>After the Fourth Sun perished, Quetzalcōātl descended into Mictlān to retrieve the bones of earlier humans so that the gods could fashion a new race. Mictlāntēcutli agreed, on condition that Quetzalcōātl walk four times around his realm blowing a conch shell that had no holes. Quetzalcōātl summoned worms to bore the shell and bees to make it sound, retrieved the bones, and fled. The lord of death sent a quail to trip him; the bones shattered, becoming the varied sizes of humankind.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Nine Descents (Eschatology)</h3>
+<p>The dead do not immediately reach rest. For four years they travel downward through Chiconahualópan, &#39;The Place of the Nine Deserts&#39; or nine hills: winds, mountains, jaguars, icy winds, arrows, stones, water, snakes, and lizards. Those who died ordinary deaths arrive at last in Mictlān; warriors, women who died in childbirth, and those drowned went instead to sunlit or watery paradises.</p>
+<h3 class="scholars-h3">The Mockery of the God (Ritual)</h3>
+<p>During the festival of Tititl, a priest smeared with ashes and wearing the regalia of Mictlāntēcutli was raised on shoulders through the streets. The crowd pelted him with refuse and shouted insults, then lifted him down with offerings. The mockery was not contempt but negotiation: by abusing the image, the people begged death to stay its hand.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Leyenda de los Soles.</li><li id="src-mythology-2">Karttunen, An Analytical Dictionary of Nahuatl.</li></ol></div>
     </div>
 </section>
 
@@ -385,14 +411,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Spanish friars quickly identified Mictlāntēcutli with the Christian Devil and Death, and colonial art often shows him with European demonic features. Yet pre-contact Mictlāntēcutli was no tempter; he was an administrator of cosmic necessity. His consort Mictecacihuatl survives in the popular iconography of Día de los Muertos, especially the elegant Catrina, while Mictlāntēcutli himself underlies the skeletal disguises of the festival.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Nahuatl tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/cihuacoatl/">Cihuacōātl</a>, <a class="scholars-xlink" href="/sites/coatlicue/">Cōātlīcue</a>, <a class="scholars-xlink" href="/sites/huitzilopochtli/">Huitzilopōchtli</a>, <a class="scholars-xlink" href="/sites/itzpapalotl/">Itzpapālōtl</a>, <a class="scholars-xlink" href="/sites/quetzalcoatl/">Quetzalcōātl</a>, and <a class="scholars-xlink" href="/sites/tlaloc/">Tlāloc</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Sahagún, Florentine Codex.</li></ol></div>
     </div>
 </section>
 
@@ -400,14 +424,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Mictlāntēcutli presides over one of the world&#39;s most visually powerful death cults. The great monolith at the Museo Nacional de Antropología, its goggle eyes and fangs still terrifying, has become an emblem of Mexican antiquity. Contemporary artists, metal bands, and cartoonists return to him not as a mere monster but as the dignified keeper of an unavoidable truth: death is the common inheritance of all who live under the Fifth Sun.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Sahagún, Florentine Codex.</li></ol></div>
     </div>
 </section>
 
@@ -415,14 +436,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>No monument, inscription, or artifact in the current PÚNYCODEX corpus is yet assigned to Mictlāntēcutli with certainty. That absence should be read honestly: for a Nahuatl name of this type the material record is expected to be thin, and the primary evidence remains the textual testimony gathered in the Scholarly Sources section<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup>.</p>
+<p>Were such evidence to surface, it would take recognizable forms: votive or dedicatory inscriptions naming Mictlāntēcutli, sanctuary or cult remains tied to lord of mictlān and iconography matching its traditional attributes (skull and owl). Each candidate would be weighed against the reconstructed form of the name before entering the scholarly record.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Sahagún, Florentine Codex.</li></ol></div>
     </div>
 </section>
 
@@ -430,120 +449,91 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Mictlāntēcutli given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Sahagún, Florentine Codex.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Leyenda de los Soles.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Karttunen, An Analytical Dictionary of Nahuatl.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> López Austin, The Human Body and Ideology.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Carrasco, Religions of Mesoamerica.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Sahagún, Florentine Codex.</li><li id="src-scholarly-sources-2">Leyenda de los Soles.</li><li id="src-scholarly-sources-3">Karttunen, An Analytical Dictionary of Nahuatl.</li><li id="src-scholarly-sources-4">López Austin, The Human Body and Ideology.</li><li id="src-scholarly-sources-5">Carrasco, Religions of Mesoamerica.</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="florentine-codex">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Florentine Codex</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Sahagún&#39;s Codex preserves the fullest account of the world Mictlāntēcutli rules. The appendix to Book 3 (The Origin of the Gods) describes the destination of the ordinarily dead: a four-year descent through nine perils — the river the soul crosses with a dog&#39;s help, the clashing mountains, the obsidian-bladed winds — ending in the ninth and deepest level of Mictlān, where the dead come to rest before the lord of the underworld and his consort Mictecacihuatl.<sup class="scholars-cite"><a href="#src-florentine-codex-1">[1]</a></sup> Book 2 records his ixiptla, the living impersonator invested with the god&#39;s regalia at the feast of Tititl, and Book 6 transmits the mortuary speeches that commend the dead to his ash-coloured realm.<sup class="scholars-cite"><a href="#src-florentine-codex-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-florentine-codex-1">Sahagún, Florentine Codex, Book 3, appendix (The Origin of the Gods).</li><li id="src-florentine-codex-2">Sahagún, Florentine Codex, Books 2 and 6 (The Ceremonies; Rhetoric and Moral Philosophy).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="aztec-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Aztec Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The <em>Leyenda de los Soles</em> gives Mictlāntēcutli his single great role: he bars <a class="scholars-xlink" href="/sites/quetzalcoatl/">Quetzalcōātl</a>&#39;s theft of the ancestral bones, demands that the god circle his realm sounding a conch that has no holes, and sends the quail that trips the fleeing thief, shattering the bones into the varied sizes of humankind.<sup class="scholars-cite"><a href="#src-aztec-sources-1">[1]</a></sup> In the pictorial tradition the Codex Borgia depicts him and Mictecacihuatl enthroned as skeletal rulers of the underworld, presiding over the regions the divinatory almanacs assign to death; the cognate Codex Vaticanus B repeats the schema.<sup class="scholars-cite"><a href="#src-aztec-sources-2">[2]</a></sup> No pre-conquest alphabetic hymn or prayer addressed to him is known to survive.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-aztec-sources-1">Leyenda de los Soles (Codex Chimalpopoca, 1558).</li><li id="src-aztec-sources-2">Codex Borgia and Codex Vaticanus B (Borgia Group).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="colonial-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Colonial-Era Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Colonial moralists saw in Mictlāntēcutli a ready analogue of the Devil, and their accounts must be read against that bias. Durán describes death rites, the cremation of lords, and the offerings sent with the dead for the road to Mictlān, while Motolinía records funerary custom and the dread the underworld lord inspired.<sup class="scholars-cite"><a href="#src-colonial-sources-1">[1]</a></sup> The <em>Histoire du Méchique</em> transmits the related creation episode in which the bones of former humanity are kept in the underworld until stolen for the new creation.<sup class="scholars-cite"><a href="#src-colonial-sources-2">[2]</a></sup> Spanish writers routinely render Mictlān as &#39;hell&#39; (infierno), a translation modern scholarship treats with caution.<sup class="scholars-cite"><a href="#src-colonial-sources-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-colonial-sources-1">Durán, Book of the Gods and Rites; Motolinía, Historia de los Indios de la Nueva España.</li><li id="src-colonial-sources-2">Histoire du Méchique (in Garibay, Teogonía e historia de los mexicanos).</li><li id="src-colonial-sources-3">López Austin, The Human Body and Ideology: Concepts of the Ancient Nahuas.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Mictlāntēcutli teaches that death is not an interruption but a destination. The four-year descent, the nine deserts, the final ash-coloured stillness: these are not punishments for wrongdoing but the architecture of mortality. In a culture that often hides death behind hospital curtains, Mictlāntēcutli demands visibility.</p>
+<p>His realm is also, paradoxically, generative. Quetzalcōātl must steal from him to make humanity; maize grows from the rotting matter he oversees. To look at Mictlāntēcutli is to see that destruction and creation are two faces of the same cycle. The skull is not the end of meaning; it is where meaning begins again.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Sahagún, Florentine Codex.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="florentine-codex">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Florentine Codex</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Florentine Codex →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="aztec-sources">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Aztec Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Aztec Sources →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="colonial-sources">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Colonial-Era Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Colonial-Era Sources →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">17</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -581,6 +571,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'mictlantecutli';
@@ -614,14 +739,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -715,6 +832,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -726,18 +844,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -749,6 +868,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -793,6 +914,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

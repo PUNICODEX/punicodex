@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,11 +279,12 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#ugaritic-tablets">14 &mdash; Ugaritic Tablets</a></li>
-<li><a href="#tanakh-references">15 &mdash; Tanakh References</a></li>
-<li><a href="#inscriptions">16 &mdash; Inscriptions & Seals</a></li>
+<li><a href="#ugaritic-tablets">12 &mdash; Ugaritic Tablets</a></li>
+<li><a href="#tanakh-references">13 &mdash; Tanakh References</a></li>
+<li><a href="#inscriptions">14 &mdash; Inscriptions & Seals</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -280,14 +296,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Ēl</strong> (<em>el</em>) — The Ancient High God · Father of the Divine Assembly — belongs to the Canaanite tradition, where it is catalogued under the domain &quot;Supreme God, Father of Gods&quot;. The name means &quot;The high god of the Canaanite pantheon; the common Semitic word for &quot;god&quot; and a divine name&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>Ēl is the <strong>ancient one at the center</strong> of the Canaanite pantheon. He is the father of gods and men, the Bull whose creative power generates the divine assembly, and the king whose distant authority nonetheless settles every dispute. Unlike Baꜥal, who acts, Ēl decrees. His throne is at the source of the rivers; his tent is where the gods come to receive judgment.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Ēl</strong> and serves its temple at <a class="scholars-ext" href="https://xn--l-oia.com" rel="noopener noreferrer" target="_blank">ēl.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>el</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">KTU (Ugaritic texts).</li><li id="src-overview-2">Corpus Inscriptionum Semiticarum, Académie des Inscriptions et Belles-Lettres, Paris, 1881. <a class="scholars-ext" href="https://aibl.fr/travaux/le-cabinet-du-corpus-inscriptionum-semiticarum/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-overview-3">Coogan, Stories from Ancient Canaan.</li></ol></div>
     </div>
 </section>
 
@@ -295,14 +310,20 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Ugaritic as <strong>𐎛𐎍</strong>. Etymologically it means &quot;The high god of the Canaanite pantheon; the common Semitic word for &quot;god&quot; and a divine name&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The reconstructed proto-form is <em>ʾil-</em> (proto-afro-asiatic, &quot;god, divine power&quot;). From Common Semitic ʾil-/ʾēl, with long /ē/ preserved by the macron</p>
+<p>Cognate forms across related languages:</p>
+<ul class="scholars-list"><li><strong>אֵל (ʾĒl)</strong> (Hebrew)</li><li><strong>إِلٰه (ʾilāh)</strong> (Arabic)</li><li><strong>ilu</strong> (Akkadian)</li></ul>
+<p>The ASCII form <em>el</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Ēl</strong> recovers the vowel length of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>e</strong> → <strong>Ē</strong> — Macron marks long /ē/; capitalized in the restoration</li><li><strong>l</strong> → <strong>l</strong> — Same</li></ul>
+<p>Attested and derived spellings of the name:</p>
+<ul class="scholars-list"><li><strong>ēl</strong> — owned form: Lowercase display form of the owned domain</li></ul>
+<p>The project holds the domain <strong>ēl.com</strong> (xn--l-oia.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">KTU (Ugaritic texts).</li><li id="src-the-name-2">Corpus Inscriptionum Semiticarum, Académie des Inscriptions et Belles-Lettres, Paris, 1881. <a class="scholars-ext" href="https://aibl.fr/travaux/le-cabinet-du-corpus-inscriptionum-semiticarum/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -310,14 +331,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/ʔeːl/</strong> — Ugaritic/Phoenician Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>ʔē-</strong> — Glottal stop [ʔ] plus long [eː], marked by macron; the long vowel distinguishes the divine name from the common noun &#39;god&#39; in some forms.</li><li><strong>-l</strong> — Voiced alveolar lateral approximant [l]; the root ʾil- means &#39;god, divine power&#39; throughout Semitic.</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;AYLE&#39; — like &#39;ale&#39; with a long vowel and a slight glottal catch at the beginning; the name is short and resonant.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Ugaritic</strong> — 𐎛𐎍 (ʾil), the high god; also 𐎛𐎍𐎁 (ʾil ʾib), &#39;god of the father&#39; / divine ancestor</li><li><strong>Hebrew</strong> — אֵל (ʾĒl), &#39;God&#39; or the name El; preserved in Israel, Bethel, Gabriel, Michael</li><li><strong>Arabic</strong> — إِلٰه (ʾilāh), &#39;god,&#39; and al-ʾilāh &gt; Allāh, &#39;the God&#39;</li><li><strong>Akkadian</strong> — ilu, the common word for &#39;god&#39;</li></ul>
+<p>Ēl is both a proper name and the common Semitic word for &#39;god.&#39; The macron marks the long vowel inferred from Hebrew אֵל and Ugaritic spellings. As a Tier-2 name it preserves length (macron) but not stress/accent, fitting the project&#39;s convention for registering a single distinctive prosodic feature.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">KTU (Ugaritic texts).</li></ol></div>
     </div>
 </section>
 
@@ -325,14 +349,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Ugaritic as <strong>𐎛𐎍</strong> — Northwest Semitic cuneiform alphabet, attested Late Bronze Age, c. 1400–1200 BCE, in Ugarit (modern Ras Shamra, Syria). The script is written left-to-right.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Ēl</em> (Ugaritic alphabetic cuneiform), giving the normalized reading /ˈʔiːl/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The name is written 𐎛𐎍 in the Ugaritic cuneiform alphabet.</li><li>Ugaritic ʿayin is rendered with Egyptological Ain (ꜥ) for DNS registrability.</li><li>Long vowels are reconstructed from Hebrew and Akkadian cognates and marked with macrons.</li><li>The Unicode restoration Ēl is registrable in .com; the Ugaritic cuneiform form is not supported in the .com IDN table.</li></ul>
+<p>Ugaritic writes the name 𐎛𐎍 (ʾ-i-l), the common word for &#39;god&#39; as well as the proper name of the high god. Phoenician writes 𐤀𐤋 (ʾ-l). The macron over ē in Ēl marks the long vowel inferred from Hebrew אֵל and from comparative Semitic evidence. The name is both appellative and proper name, a fact that makes Ēl uniquely elusive and foundational.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Corpus Inscriptionum Semiticarum, Académie des Inscriptions et Belles-Lettres, Paris, 1881. <a class="scholars-ext" href="https://aibl.fr/travaux/le-cabinet-du-corpus-inscriptionum-semiticarum/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-original-script-2">Coogan, Stories from Ancient Canaan.</li><li id="src-original-script-3">Frank Moore Cross, Canaanite Myth and Hebrew Epic: Essays in the History of the Religion of Israel, Harvard University Press, Cambridge, MA, 1973.</li><li id="src-original-script-4">KTU².</li><li id="src-original-script-5">Smith, The Ugaritic Baal Cycle.</li><li id="src-original-script-6">Ugaritic Textual Corpus, Ras Shamra–Ugarit corpus (KTU / CUSAS), 1200 BCE. <a class="scholars-ext" href="https://www.ancientneareast.net/ugarit-ras-shamra/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -340,14 +365,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>Ēl is the <strong>ancient one at the center</strong> of the Canaanite pantheon. He is the father of gods and men, the Bull whose creative power generates the divine assembly, and the king whose distant authority nonetheless settles every dispute. Unlike Baꜥal, who acts, Ēl decrees. His throne is at the source of the rivers; his tent is where the gods come to receive judgment.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Creator of Creatures</h3>
+<p>His epithet bny bnwt, &#39;Creator of Creatures,&#39; marks him as the ultimate source of all life.</p>
+<h3 class="scholars-h3">Bull El</h3>
+<p>The bull is his animal: strength, fertility, and patriarchal authority concentrated in one image.</p>
+<h3 class="scholars-h3">King and Judge</h3>
+<p>The divine assembly gathers before him; kingship is conferred by his word, whether for Baꜥal or for Athtar.</p>
+<h3 class="scholars-h3">Father of Gods and Men</h3>
+<p>He is &#39;ab ʾilm, &#39;father of the gods,&#39; and &#39;ab ʾadmi, &#39;father of man&#39; — the origin of all genealogies.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Corpus Inscriptionum Semiticarum, Académie des Inscriptions et Belles-Lettres, Paris, 1881. <a class="scholars-ext" href="https://aibl.fr/travaux/le-cabinet-du-corpus-inscriptionum-semiticarum/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -355,14 +385,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Ēl concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Bull</strong> — Strength, fertility, and the patriarchal authority of the high god</li><li><strong>Grey beard</strong> — His venerable age and wisdom; he is the &#39;father of years&#39;</li><li><strong>Source of rivers</strong> — The cosmic freshwater spring where his tent stands</li><li><strong>Winged sun or throne</strong> — His exalted kingship over the divine council</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">KTU (Ugaritic texts).</li></ol></div>
     </div>
 </section>
 
@@ -370,14 +398,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Ēl appears in almost every major Ugaritic myth, yet he rarely takes center stage. He is the one appealed to, the one who gives or withholds blessing, the one whose laughter signals cosmic assent. His mythology is the mythology of authority itself — distant, benevolent, sometimes foolish, always final.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Divine Kingmaker (The Baal Cycle)</h3>
+<p>In KTU 1.2 iii, Ēl initially grants kingship to Yamm, the Sea. Later, persuaded by Asherah, he approves Baꜥal&#39;s palace and kingship (KTU 1.3 v 36; 1.4 iv 48). Even Baꜥal&#39;s triumphant reign depends on the old king&#39;s word. Ēl is not the warrior; he is the source from which warrior-kingship flows.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Father of Years (The Baal Cycle)</h3>
+<p>When messengers approach Ēl, they find him at the source of the rivers, in the midst of the divine assembly. His epithet <em>ab šnm</em>, &#39;father of years,&#39; emphasizes that he is older than the seasons themselves. Yet he is also approachable, even convivial: in KTU 1.114 he gets drunk at a banquet and must be helped home.</p>
+<h3 class="scholars-h3">The Generous Patriarch (Epic of Kirta)</h3>
+<p>In the Epic of Kirta (KTU 1.14–16), Ēl appears to the king in a dream and grants him a son and victory. He is the divine patron of kings, the one who blesses the righteous ruler and ensures the continuity of his house. His mercy is a recurring theme, though it can look like passivity.</p>
+<h3 class="scholars-h3">The Procreator (Myth of the Gracious Gods)</h3>
+<p>In KTU 1.23, Ēl&#39;s sexual vitality is celebrated in a myth of the birth of the &#39;gracious gods&#39; (Shahar and Shalim, Dawn and Dusk). The text&#39;s coarse humor underscores the ancient connection between the high god&#39;s creative power and the fertility of the cosmos.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Corpus Inscriptionum Semiticarum, Académie des Inscriptions et Belles-Lettres, Paris, 1881. <a class="scholars-ext" href="https://aibl.fr/travaux/le-cabinet-du-corpus-inscriptionum-semiticarum/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-mythology-2">Coogan, Stories from Ancient Canaan.</li></ol></div>
     </div>
 </section>
 
@@ -385,14 +418,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Ēl is the common Semitic god par excellence. His name underlies Hebrew ʾĒl and its compounds (Israel, Gabriel, Michael), and it survives in Arabic Allāh (&lt; al-ʾilāh, &#39;the God&#39;). In the Greek world, the Phoenician high god was identified with Kronos, the aged father of Zeus, while Baꜥal was compared to Zeus himself. In Hurrian and Hittite treaties, Ēl appears as Elkunirša, paired with Asherah/Ašertu. The biblical tradition eventually absorbed Ēl into Yahweh: many of Israel&#39;s oldest poems use ʾĒl as a name or title for their own god, and the epithet ʾĒl Shaddai may preserve a Canaanite title of the high god.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Canaanite tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/abel/">Hāḇel</a>, <a class="scholars-xlink" href="/sites/anat/">ꜥAnat</a>, <a class="scholars-xlink" href="/sites/asherah/">ꜥAsherah</a>, <a class="scholars-xlink" href="/sites/baal/">Baꜥal</a>, <a class="scholars-xlink" href="/sites/cain/">Qāyīn</a>, and <a class="scholars-xlink" href="/sites/david/">Dāwîḏ</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">KTU (Ugaritic texts).</li></ol></div>
     </div>
 </section>
 
@@ -400,14 +431,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Ēl did not disappear; he was subsumed. His name lives in the word &#39;God&#39; itself across the Semitic languages, in countless theophoric personal names, and in the biblical title El Shaddai. The God of Abraham, Isaac, and Jacob is partly shaped by the old Canaanite high god: distant, paternal, creator, judge. In modern religious studies, Ēl has become a test case for how monotheism emerged not by inventing a new deity but by elevating and narrowing an old one. To name Ēl is therefore to name a ancestor shared by Judaism, Christianity, and Islam — and by the Canaanite religion they eventually superseded.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">KTU (Ugaritic texts).</li></ol></div>
     </div>
 </section>
 
@@ -415,14 +443,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>At Ugarit the Baʿal Cycle tablets (KTU 1.1–1.6) and the Epic of Keret (KTU 1.14–1.16) name ʾil as supreme judge and royal patron. The Karatepe bilingual invokes El as creator of the earth. Kuntillet ʿAjrud and Khirbet el-Qom inscriptions preserve El names in an Israelite religious context, while Tel Arad ostraca, Shechem, and Jerusalem temple texts show his continued prestige. His name underlies Biblical ʾĒl, ʾĒl ʿElyôn, and theophoric names such as Israel and Gabriel.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">KTU (Ugaritic texts).</li></ol></div>
     </div>
 </section>
 
@@ -430,120 +455,94 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Ēl given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> KTU (Ugaritic texts).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Corpus Inscriptionum Semiticarum, Académie des Inscriptions et Belles-Lettres, Paris, 1881. <a class="scholars-ext" href="https://aibl.fr/travaux/le-cabinet-du-corpus-inscriptionum-semiticarum/" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Coogan, Stories from Ancient Canaan.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Smith, The Origins of Biblical Monotheism.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Cross, Canaanite Myth and Hebrew Epic.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Wyatt, Religious Texts from Ugarit.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> KTU 1.1–1.6 (Ugaritic Baal Cycle: El&#39;s decrees and divine council).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> KTU 1.14–1.16 (Epic of Keret).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Hebrew Bible, Genesis 14:18–22 (El Elyon, Melchizedek of Salem).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> Hebrew Bible, Psalm 82; Deuteronomy 32:8–9 (El/Elyon and the divine council).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">KTU (Ugaritic texts).</li><li id="src-scholarly-sources-2">Corpus Inscriptionum Semiticarum, Académie des Inscriptions et Belles-Lettres, Paris, 1881. <a class="scholars-ext" href="https://aibl.fr/travaux/le-cabinet-du-corpus-inscriptionum-semiticarum/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-3">Coogan, Stories from Ancient Canaan.</li><li id="src-scholarly-sources-4">Smith, The Origins of Biblical Monotheism.</li><li id="src-scholarly-sources-5">Cross, Canaanite Myth and Hebrew Epic.</li><li id="src-scholarly-sources-6">Wyatt, Religious Texts from Ugarit.</li><li id="src-scholarly-sources-7">KTU 1.1–1.6 (Ugaritic Baal Cycle: El&#39;s decrees and divine council).</li><li id="src-scholarly-sources-8">KTU 1.14–1.16 (Epic of Keret).</li><li id="src-scholarly-sources-9">Hebrew Bible, Genesis 14:18–22 (El Elyon, Melchizedek of Salem).</li><li id="src-scholarly-sources-10">Hebrew Bible, Psalm 82; Deuteronomy 32:8–9 (El/Elyon and the divine council).</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="ugaritic-tablets">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Ugaritic Tablets</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Ēl pervades the alphabetic-cuneiform tablets from Ras Shamra. In the Baꜥal Cycle (KTU 1.1–1.6) he presides &quot;at the source of the rivers, amid the channels of the two deeps&quot; (<em>mbk nhrm, qrb apq thmtm</em>), enthroned in his tent, decreeing kingship first for <a class="scholars-xlink" href="/sites/yam/">Yām</a> and then for <a class="scholars-xlink" href="/sites/baal/">Baꜥal</a>. His fixed epithets — <em>ṯr ʾil</em> &quot;Bull El&quot;, <em>ab šnm</em> &quot;Father of Years&quot;, <em>bny bnwt</em> &quot;Creator of Creatures&quot; — structure nearly every scene.<sup class="scholars-cite"><a href="#src-ugaritic-tablets-1">[1]</a></sup></p>
+<p>In the Epic of Kirta (KTU 1.14–1.16) he grants the childless king an heir in a dream and later creates the healer Shaꜥtaqat; in the Epic of Aqhat (KTU 1.17–1.19) he answers Danel&#39;s plea for a son; in KTU 1.23 he fathers Shaḥar and Shalim; in KTU 1.114 he presides over a drinking feast and must be helped home. The god lists (KTU 1.47, 1.118) place ʾil at the head of the pantheon.<sup class="scholars-cite"><a href="#src-ugaritic-tablets-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-ugaritic-tablets-1">Dietrich, Loretz &amp; Sanmartín, The Cuneiform Alphabetic Texts from Ugarit (KTU): KTU 1.1–1.6; 1.14–1.19; 1.23; 1.114; 1.47; 1.118.</li><li id="src-ugaritic-tablets-2">Wyatt, Religious Texts from Ugarit, 2nd ed.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="tanakh-references">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Tanakh References</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Tanakh preserves ʾēl both as the common noun &quot;god&quot; and as an archaic divine name for Israel&#39;s own deity. The patriarchal narratives are densest: El Elyon, &quot;God Most High,&quot; at Salem (Genesis 14:18–22); El Roi (Genesis 16:13); El Olam (Genesis 21:33); El Bethel (Genesis 31:13; 35:7); and El Shaddai, the name by which God was known to the patriarchs (Exodus 6:3; cf. Genesis 17:1; 49:25).<sup class="scholars-cite"><a href="#src-tanakh-references-1">[1]</a></sup></p>
+<p>Psalm 82 opens with El standing in the divine council to judge the gods, and Deuteronomy 32:8–9 — read with the Qumran and Septuagint witnesses — depicts Elyon apportioning the nations among the sons of God, a passage widely understood as an Israelite reflex of the Ugaritic assembly. Theophoric names such as Israel, Bethel, Gabriel, and Michael keep the element ʾēl alive in everyday speech, evidence of the high god&#39;s absorption into YHWH rather than his erasure.<sup class="scholars-cite"><a href="#src-tanakh-references-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-tanakh-references-1">Hebrew Bible, Genesis 14:18–22; 16:13; 21:33; 31:13; 35:7; Exodus 6:3; Psalm 82; Deuteronomy 32:8–9.</li><li id="src-tanakh-references-2">Cross, Canaanite Myth and Hebrew Epic; Smith, The Origins of Biblical Monotheism.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="inscriptions">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Inscriptions & Seals</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Epigraphic attestations of ʾEl outside Ugarit are genuine but sparse. The Karatepe bilingual (KAI 26), a Phoenician–Hieroglyphic Luwian royal inscription of Azatiwada (c. 8th century BCE), invokes &quot;El, creator of the earth&quot; (ʾl qn ʾrṣ) in its curse formula — a title matching Genesis 14:19 and the Ugaritic creator epithets.<sup class="scholars-cite"><a href="#src-inscriptions-1">[1]</a></sup></p>
+<p>The Sefire treaty steles (KAI 222) list &quot;El and Elyan&quot; among the divine witnesses, pairing the high god with an Elyon figure, and the Deir ꜥAlla plaster texts (c. 800 BCE) place El at the head of a council of Shadday-gods in the Balaam narrative. Beyond these, the element ʾl pervades West Semitic onomastics: Israelite, Ammonite, Moabite, and Phoenician seals compound it constantly (yśrʾl, ʾlyšʿ, and the like) — the broadest epigraphic witness to his prestige.<sup class="scholars-cite"><a href="#src-inscriptions-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-inscriptions-1">Donner &amp; Röllig, Kanaanäische und aramäische Inschriften (KAI): KAI 26 (Karatepe); KAI 222 (Sefire).</li><li id="src-inscriptions-2">Gibson, Textbook of Syrian Semitic Inscriptions, vol. 1; Deir ꜥAlla plaster texts (Combination I).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Ēl is the god of &#39;and then what?&#39; He does not rush into battle; he sits at the source of the rivers and lets the younger gods come to him. His authority is so settled that he can afford to be slow, even tipsy, even outmaneuvered by his own wife and children. Yet when he speaks, the cosmos arranges itself around his word.</p>
+<p>There is a kind of spiritual maturity in Ēl that the modern world often undervalues. He represents the authority that does not need to prove itself, the father who does not compete with his children, the creator who can delegate the storm to Baꜥal without jealousy. To meditate on Ēl is to ask whether our own craving for action, novelty, and recognition allows room for the older, slower power that holds everything together.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">KTU (Ugaritic texts).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="ugaritic-tablets">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Ugaritic Tablets</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Ugaritic Tablets →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="tanakh-references">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Tanakh References</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Tanakh References →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="inscriptions">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Inscriptions & Seals</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Inscriptions & Seals →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">17</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -581,6 +580,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'el';
@@ -614,14 +748,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -715,6 +841,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -726,18 +853,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -749,6 +877,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -793,6 +923,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

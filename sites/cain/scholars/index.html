@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,12 +279,13 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#hebrew-bible">14 &mdash; Hebrew Bible / Old Testament</a></li>
-<li><a href="#new-testament">15 &mdash; New Testament</a></li>
-<li><a href="#midrash">16 &mdash; Midrash & Targumim</a></li>
-<li><a href="#quranic">17 &mdash; Qur'ānic References</a></li>
+<li><a href="#hebrew-bible">12 &mdash; Hebrew Bible / Old Testament</a></li>
+<li><a href="#new-testament">13 &mdash; New Testament</a></li>
+<li><a href="#midrash">14 &mdash; Midrash & Targumim</a></li>
+<li><a href="#quranic">15 &mdash; Qur'ānic References</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -281,14 +297,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Qāyīn</strong> (<em>qayin</em>) — First Murderer · First son of Adam and Eve — belongs to the Canaanite tradition, where it is catalogued under the domain &quot;First Murderer&quot;. The name means &quot;First son of Adam and Eve&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>Qāyīn is the <strong>first child of the first couple and the first human to shatter the world he was born into</strong>. A tiller of soil, he brings the fruit of his labor to God and sees it rejected while his brother&#39;s offering is accepted. The rejection does not merely disappoint him; it unlocks something ancient and violent. His story is the Bible&#39;s first meditation on envy, anger, and the blood that cries out from the ground.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Qāyīn</strong> and serves its temple at <a class="scholars-ext" href="https://xn--qyn-1oa5s.com" rel="noopener noreferrer" target="_blank">qāyīn.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>qayin</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">HALOT s.v. קַיִן.</li><li id="src-overview-2">TDOT s.v. Cain.</li><li id="src-overview-3">Genesis 4.</li></ol></div>
     </div>
 </section>
 
@@ -296,14 +311,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Hebrew as <strong>קַיִן</strong>. Etymologically it means &quot;First son of Adam and Eve&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The ASCII form <em>qayin</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Qāyīn</strong> recovers the vowel length of the original directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>q</strong> → <strong>Q</strong> — Same, capitalized</li><li><strong>a</strong> → <strong>ā</strong> — Macron: long vowel</li><li><strong>y</strong> → <strong>y</strong> — Same</li><li><strong>i</strong> → <strong>ī</strong> — Macron: long vowel</li><li><strong>n</strong> → <strong>n</strong> — Same</li></ul>
+<p>The project holds the domain <strong>qāyīn.com</strong> (xn--qyn-1oa5s.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">HALOT s.v. קַיִן.</li><li id="src-the-name-2">TDOT s.v. Cain.</li></ol></div>
     </div>
 </section>
 
@@ -311,14 +327,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/qaˈjiːn/</strong> — Biblical Hebrew (Tiberian/Masoretic).<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>qa-</strong> — Voiceless uvular plosive [q] — Hebrew qof — followed by short [a], the patah under ק.</li><li><strong>-yīn</strong> — Palatal approximant [j], the yod as consonant, plus long [iː] from the hireq-yod combination, ending in alveolar nasal [n].</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;kah-YEEN&#39; — the first consonant is a deep &#39;k&#39; made at the back of the throat (like Arabic qāf); the second syllable is a long &#39;yeen&#39;.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Hebrew root</strong> — q-n-h, &#39;to acquire, create&#39; — the name is punned in Genesis 4:1 (&#39;I have acquired a man&#39;)</li><li><strong>Ugaritic</strong> — qyn, possibly &#39;smith, metalworker&#39; (attested in Ugaritic texts)</li><li><strong>Aramaic</strong> — קַיִן (Qayin), as in the Targumim and Jewish Aramaic</li><li><strong>Arabic</strong> — Qābīl (قَابِيل), the Qur&#39;anic figure corresponding to Cain</li></ul>
+<p>BHS points the name קַיִן (Genesis 4:1). The first vowel is a short patah [a] in the Masoretic pointing, although the qāṭīl-pattern form historically had a long *ā (reflected in the PUNYCODEX macron convention Qāyīn); the second vowel is a long hireq-yod [iː]. The qof is a uvular [q], distinct from kaf. HALOT s.v. קַיִן; TDOT s.v. Cain.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">HALOT s.v. קַיִן.</li></ol></div>
     </div>
 </section>
 
@@ -326,14 +345,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Hebrew as <strong>קַיִן</strong> — Northwest Semitic cuneiform alphabet, attested Late Bronze Age, c. 1400–1200 BCE, in Ugarit (modern Ras Shamra, Syria). The script is written left-to-right.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Qāyīn</em> (Ugaritic alphabetic cuneiform), giving the normalized reading /kaˈjiːn/ (Tiberian).</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The name is written קַיִן in the Ugaritic cuneiform alphabet.</li><li>Ugaritic ʿayin is rendered with Egyptological Ain (ꜥ) for DNS registrability.</li><li>Long vowels are reconstructed from Hebrew and Akkadian cognates and marked with macrons.</li><li>The Unicode restoration Qāyīn is registrable in .com; the Ugaritic cuneiform form is not supported in the .com IDN table.</li></ul>
+<p>The Hebrew name is written קַיִן: the qof represents a voiceless uvular plosive [q], distinct from ordinary <em>k</em>; the patah under the qof is short, though scholars reconstruct an original long *ā in the qāṭīl-pattern form; and the yod with hireq gives the long [iː]. PUNYCODEX renders the name as <strong>Qāyīn</strong>, using a macron on <strong>ā</strong> to mark the historically long vowel and a macron on <strong>ī</strong> for the hireq-yod. The <strong>q</strong> is kept plain because there is no registrable Unicode qof, but the pronunciation note preserves its uvular character. This is a Tier-2 restoration that retains a distinctive Semitic consonant and vowel length.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Abraham (biblical patriarch / Genesis narrative), Book of Genesis, 1000 BCE.</li><li id="src-original-script-2">Biblia Hebraica Stuttgartensia (BHS).</li><li id="src-original-script-3">Brown-Driver-Briggs Hebrew Lexicon.</li><li id="src-original-script-4">Hebrew and Aramaic Lexicon of the Old Testament (HALOT).</li></ol></div>
     </div>
 </section>
 
@@ -341,14 +361,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>Qāyīn is the <strong>first child of the first couple and the first human to shatter the world he was born into</strong>. A tiller of soil, he brings the fruit of his labor to God and sees it rejected while his brother&#39;s offering is accepted. The rejection does not merely disappoint him; it unlocks something ancient and violent. His story is the Bible&#39;s first meditation on envy, anger, and the blood that cries out from the ground.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Tiller of the Ground</h3>
+<p>Cain works the soil, the oldest human vocation; his offering is the fruit of the earth he has labored over (Genesis 4:2–3).</p>
+<h3 class="scholars-h3">The Rejected Offering</h3>
+<p>God looks with favor on Abel&#39;s offering but not on Cain&#39;s; the text never explains why, leaving the reader with the mystery of divine preference (Genesis 4:4–5).</p>
+<h3 class="scholars-h3">The Mark of Cain</h3>
+<p>After the murder, God places a sign on Cain to protect him from vengeance, transforming the killer into a wandering, guarded man (Genesis 4:15).</p>
+<h3 class="scholars-h3">Builder of the First City</h3>
+<p>Cain names his city Enoch after his son, becoming the biblical ancestor of tent-dwellers, musicians, and metalworkers (Genesis 4:17–22).</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">TDOT s.v. Cain.</li></ol></div>
     </div>
 </section>
 
@@ -356,14 +381,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Qāyīn concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Plowshare</strong> — His identity as a worker of the soil, later ironically turned to violence</li><li><strong>Blood</strong> — The blood of Abel that cries out from the ground and cannot be silenced</li><li><strong>The mark</strong> — A protective sign whose exact nature is never described; later imagined as a horn, a letter, or a visible stigma</li><li><strong>City walls</strong> — Enoch, the first city, built by an outcast as a refuge against the world he has wounded</li><li><strong>Bronze and iron tools</strong> — Through his descendants Tubal-cain and others, Cain becomes associated with the crafts of metalwork</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">HALOT s.v. קַיִן.</li></ol></div>
     </div>
 </section>
 
@@ -371,14 +394,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Qāyīn&#39;s mythology is short, dense, and endlessly reinterpreted. In a few verses, Genesis gives us the first birth, the first vocation, the first sacrifice, the first rejection, the first murder, the first lie, the first curse, and the first city.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Two Brothers, Two Offerings (Genesis 4:1–5)</h3>
+<p>Cain brings an offering of the fruit of the ground; Abel brings the firstlings of his flock and their fat portions. The LORD has regard for Abel and his offering, but not for Cain. God warns Cain that sin is crouching at the door, desiring him, and urges him to master it. The warning is personal and immediate; Cain does not master it.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The First Murder (Genesis 4:6–8)</h3>
+<p>Cain speaks to Abel, and when they are in the field, he rises up and kills him. The narrative is brutally terse: no weapon is named, no motive rehearsed beyond the offering. Afterward, God asks Cain, &#39;Where is Abel your brother?&#39; and Cain answers with the first human lie: &#39;I do not know; am I my brother&#39;s keeper?&#39; The question reverberates through every subsequent ethics.</p>
+<h3 class="scholars-h3">The Curse and the Mark (Genesis 4:9–15)</h3>
+<p>God tells Cain that Abel&#39;s blood is crying out from the ground, and curses him from the soil he has tilled: it will no longer yield its strength to him. Cain complains that the punishment is more than he can bear and that anyone who meets him may kill him. God sets a mark on him as a warning against vengeance, and Cain goes away to the land of Nod, east of Eden. The murderer is punished, but also protected.</p>
+<h3 class="scholars-h3">The Line of Cain (Genesis 4:17–24)</h3>
+<p>Cain builds a city and names it after his son Enoch. His descendants become the ancestors of nomadic herders, lyre-and-pipe players, and bronze-and-iron workers. The line culminates in Lamech, who boasts to his wives that he has killed a man for wounding him and a boy for striking him, declaring that if Cain is avenged sevenfold, Lamech is avenged seventy-sevenfold. Violence has already learned to scale.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">TDOT s.v. Cain.</li><li id="src-mythology-2">Genesis 4.</li></ol></div>
     </div>
 </section>
 
@@ -386,14 +414,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>The Qur&#39;an tells the story of Qābīl and Hābīl, offering a more explicit motive — Cain threatens to kill Abel because God accepts only Abel&#39;s sacrifice — and making Abel the first prophet-martyr. Gnostic traditions, especially the Cainites, reversed the biblical valuation and celebrated Cain as the one who resisted the creator god. Medieval Jewish legend filled in the silences of Genesis: Cain grew a horn, the mark was a letter of the divine name, and he was eventually killed by the blind Lamech. John Milton gave him a Romantic afterlife in <em>Paradise Lost</em>, while Lord Byron made him a rebel against an unjust heaven. Across cultures, Cain is the figure who forces us to ask why violence begins and how it can be stopped.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Canaanite tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/abel/">Hāḇel</a>, <a class="scholars-xlink" href="/sites/anat/">ꜥAnat</a>, <a class="scholars-xlink" href="/sites/asherah/">ꜥAsherah</a>, <a class="scholars-xlink" href="/sites/baal/">Baꜥal</a>, <a class="scholars-xlink" href="/sites/david/">Dāwîḏ</a>, and <a class="scholars-xlink" href="/sites/el/">Ēl</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">HALOT s.v. קַיִן.</li></ol></div>
     </div>
 </section>
 
@@ -401,14 +427,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Qāyīn and his brother have become the archetype of fratricide — every killing of brother by brother carries their names. The &#39;mark of Cain&#39; has been misunderstood as a sign of racial blackness and used to justify slavery and racism, though the text gives no hint of ethnicity. In literature, Cain appears as the first rebel, the first exile, the first city-builder, and the first artist of violence. Psychologically, the &#39;Cain complex&#39; names the rivalry between siblings that can turn deadly. The story&#39;s central question — &#39;Am I my brother&#39;s keeper?&#39; — remains a test for every society.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">HALOT s.v. קַיִן.</li></ol></div>
     </div>
 </section>
 
@@ -416,14 +439,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>No archaeological evidence links to the individual Cain, whose story belongs to the primeval history of Genesis rather than to datable history. The narrative does reflect the broader transition to agricultural and pastoral lifeways in the ancient Levant during the Neolithic and Chalcolithic periods. Early settled communities, metallurgy, and the tension between farmers and herders are all part of the material backdrop against which the story was told.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">HALOT s.v. קַיִן.</li></ol></div>
     </div>
 </section>
 
@@ -431,135 +451,103 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Qāyīn given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> HALOT s.v. קַיִן.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> TDOT s.v. Cain.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Genesis 4.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Qur&#39;an, Surah 5:27–31.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Milton, Paradise Lost, Books 11–12.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Byron, Cain.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">HALOT s.v. קַיִן.</li><li id="src-scholarly-sources-2">TDOT s.v. Cain.</li><li id="src-scholarly-sources-3">Genesis 4.</li><li id="src-scholarly-sources-4">Qur&#39;an, Surah 5:27–31.</li><li id="src-scholarly-sources-5">Milton, Paradise Lost, Books 11–12.</li><li id="src-scholarly-sources-6">Byron, Cain.</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="hebrew-bible">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Hebrew Bible / Old Testament</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Cain&#39;s entire biblical career is Genesis 4:1–16 — birth, offering, warning, murder, curse, mark, and exile &#39;to the land of Nod, east of Eden&#39; — followed by his genealogy (Genesis 4:17–24), in which his line builds the first city and fathers nomadic herding, music, and metalwork through Jabal, Jubal, and Tubal-cain. The text&#39;s silence about why his offering was refused has driven interpretation ever since.<sup class="scholars-cite"><a href="#src-hebrew-bible-1">[1]</a></sup> Beyond Genesis the name echoes in the tribe of the Kenites (Hebrew qênî), metalworkers allied with Israel (Judges 4:11; 1 Samuel 15:6), and Balaam&#39;s oracle glances at &#39;Kain&#39; (Numbers 24:21–22); scholars have long suspected a tribal etiology behind the fratricide tale, though the identification remains debated.<sup class="scholars-cite"><a href="#src-hebrew-bible-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-hebrew-bible-1">Genesis 4:1–24.</li><li id="src-hebrew-bible-2">Numbers 24:21–22; Judges 4:11; 1 Samuel 15:6 (Kenites).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="new-testament">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">New Testament</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Cain appears three times in the New Testament, always as the archetype of murderous envy. 1 John grounds the command of love in his negative example: &#39;We must not be like Cain, who was from the evil one and murdered his brother... because his own deeds were evil and his brother&#39;s righteous&#39; (3:12).<sup class="scholars-cite"><a href="#src-new-testament-1">[1]</a></sup> Jude pronounces woe on false teachers who &#39;walk in the way of Cain,&#39; pairing him with Balaam and Korah (Jude 11). Hebrews reaches him through <a class="scholars-xlink" href="/sites/abel/">Hāḇel</a>: Abel offered &#39;a more acceptable sacrifice than Cain&#39;s&#39; (11:4), and the blood of Jesus &#39;speaks a better word than the blood of Abel&#39; (12:24) — the blood that has cried for justice since Genesis 4:10.<sup class="scholars-cite"><a href="#src-new-testament-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-new-testament-1">1 John 3:12; Jude 11.</li><li id="src-new-testament-2">Hebrews 11:4; 12:24.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="midrash">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Midrash & Targumim</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Aggadic tradition interrogates every gap in Genesis 4. What did the brothers quarrel about? Genesis Rabbah offers three answers — division of the world&#39;s goods, the twin sister born with Abel, or the site where each claimed the Temple would stand (22:7). What was the mark? Opinions range from a letter of the divine name branded on his forehead to a horn or the gift of Sabbath rest — protection, not stigma (22:12).<sup class="scholars-cite"><a href="#src-midrash-1">[1]</a></sup> The midrash also hears Cain&#39;s cry &#39;my punishment is greater than I can bear&#39; as the beginning of repentance: meeting Adam, Cain reports that he repented and was reconciled, and Adam answers with Psalm 92, &#39;It is good to give thanks to the LORD&#39; (22:13).<sup class="scholars-cite"><a href="#src-midrash-2">[2]</a></sup> A later legend in Tanḥuma makes his death poetic justice: the blind Lamech, guided by Tubal-cain, shoots at what they take for a horned beast and kills Cain himself (Bereshit 11).<sup class="scholars-cite"><a href="#src-midrash-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-midrash-1">Genesis Rabbah 22:7, 12 (the quarrel; the mark).</li><li id="src-midrash-2">Genesis Rabbah 22:13 (Cain&#39;s repentance; Psalm 92).</li><li id="src-midrash-3">Tanḥuma, Bereshit 11 (Lamech kills Cain).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="quranic">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Qur'ānic References</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Qur&#39;an never names Cain; tafsīr tradition calls him Qābīl, and the text itself speaks only of &#39;the two sons of Adam&#39; (5:27–31, al-Māʾidah). Both offer sacrifice, and it is accepted &#39;from one of them and not from the other.&#39; The Qur&#39;an&#39;s Cain speaks his threat outright — &#39;I will surely kill you&#39; — and his brother answers with the passage&#39;s moral center: &#39;Even if you stretch your hand against me to kill me, I will not stretch my hand against you to kill you; I fear God, Lord of the worlds&#39; (5:28).<sup class="scholars-cite"><a href="#src-quranic-1">[1]</a></sup> After the murder, God sends a crow scratching the earth to show him how to bury his brother&#39;s naked corpse, and the killer cries, &#39;Woe to me! Am I unable even to be like this crow?&#39; (5:31). The episode is sealed at once with the decree to Israel that whoever kills a soul &#39;it is as if he had killed humankind entirely&#39; (5:32).<sup class="scholars-cite"><a href="#src-quranic-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-quranic-1">Qur&#39;an 5:27–29 (al-Māʾidah).</li><li id="src-quranic-2">Qur&#39;an 5:31–32; classical tafsīr on 5:27 supplies the names Qābīl and Hābīl (e.g., al-Ṭabarī).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Qāyīn is the first human being who does not know what to do with failure. His offering is rejected, and instead of asking why or changing, he destroys the one whose offering was accepted. In that, he is the ancestor of every envious heart that mistakes another&#39;s success for its own diminishment.</p>
+<p>The ground that receives Abel&#39;s blood becomes a witness; it will not be silent. Cain is cursed from it because the earth has absorbed what should have lived. To meditate on Cain is to meditate on the moment before violence — the warning that sin is crouching at the door — and on how rarely we heed it. The story does not let us write him off as a monster; it shows us a farmer, a brother, a city-builder, a man who could have mastered the crouching thing and did not.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">HALOT s.v. קַיִן.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">18</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="hebrew-bible">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Hebrew Bible / Old Testament</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Hebrew Bible / Old Testament →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="new-testament">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">New Testament</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to New Testament →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="midrash">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Midrash & Targumim</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Midrash & Targumim →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="quranic">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">17</span>
-        <h2 class="scholars-section-title">Qur'ānic References</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Qur'ānic References →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">19</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -597,6 +585,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'cain';
@@ -630,14 +753,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -731,6 +846,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -742,18 +858,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -765,6 +882,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -809,6 +928,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

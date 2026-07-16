@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "0.2.0",
   "generatedAt": "2026-07-07T09:14:01.039Z",
   "basedOn": "Phase 1 archaeology of 123 flagship temples",
   "empirical": {
@@ -122,6 +122,13 @@
     },
     "pantheonKits": {
       "description": "Per-tradition section kits automatically activated by pantheon.",
+      "pantheonAliases": {
+        "description": "Archetype pantheon values (js/archetypes-v2.js) that resolve to a kit of another tradition. Greek sub-pantheons share the Greek kit.",
+        "olympian": "greek",
+        "chthonic": "greek",
+        "titan": "greek",
+        "other": "greek"
+      },
       "kits": {
         "greek": {
           "sections": [
@@ -264,6 +271,19 @@
             { "key": "midrash", "label": "Midrash & Targumim" },
             { "key": "quranic", "label": "Qur'ānic References" }
           ]
+        },
+        "buddhist": {
+          "sections": [
+            { "key": "pali-canon", "label": "Pāli Canon" },
+            { "key": "mahayana-sutras", "label": "Mahāyāna Sūtras" },
+            { "key": "commentarial-tradition", "label": "Commentarial Tradition" }
+          ]
+        },
+        "baltic": {
+          "sections": [
+            { "key": "dainas", "label": "Dainas & Folklore" },
+            { "key": "baltic-chronicles", "label": "Chronicles & Historical Sources" }
+          ]
         }
       }
     },
@@ -302,6 +322,7 @@
     "Original script provenance is promoted from rare (44/111) to universal because every name has an original writing tradition.",
     "The current rendered lore pages are intentionally thin; Scholarly Edition exposes all canonical sections as first-class content.",
     "Domains/attributes data currently folded into symbols/hero is restored as a standalone section.",
-    "Pantheon kits are activated by the flagship's pantheon value in js/archetypes-v2.js."
+    "Pantheon kits are activated by the flagship's pantheon value in js/archetypes-v2.js.",
+    "v0.2.0: pantheonAliases map Greek sub-pantheons (olympian, chthonic, titan, other) to the Greek kit; new buddhist and baltic kits; the common bucket (meditation) is promoted into generated manifests, placed after pantheon-kit sections; edit-history and attribution are always ordered last."
   ]
 }

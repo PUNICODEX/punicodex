@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,11 +279,12 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#ifa">14 &mdash; Ifá Corpus</a></li>
-<li><a href="#oral-tradition">15 &mdash; Oral Tradition</a></li>
-<li><a href="#diaspora">16 &mdash; Diaspora Traditions</a></li>
+<li><a href="#ifa">12 &mdash; Ifá Corpus</a></li>
+<li><a href="#oral-tradition">13 &mdash; Oral Tradition</a></li>
+<li><a href="#diaspora">14 &mdash; Diaspora Traditions</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -280,14 +296,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Ọṣun</strong> (<em>oshun</em>) — Love, Freshwater, Fertility · Sweet river — belongs to the Yoruba tradition, where it is catalogued under the domain &quot;Love, Freshwater, Fertility&quot;. The name means &quot;Sweet river&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p><strong>Ọṣun</strong> is the orixá of the river that bears her name, the Òṣun River that flows through Oshogbo in southwestern Nigeria. She is love that persuades rather than commands, fertility that arrives as pleasure, and the cool freshwater that balances Ṣàngó&#39;s fire. Where he is loud, she is honeyed; where he strikes, she seduces.</p>
+<p>Her mythology makes her indispensable. When the male orishas tried to create the world without consulting a woman, their work failed until Ọṣun used her sweetness to complete what force could not finish.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Ọṣun</strong> and serves its temple at <a class="scholars-ext" href="https://xn--un-2zs1w.com" rel="noopener noreferrer" target="_blank">ọṣun.com</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>oshun</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Bascom, Ifa Divination.</li><li id="src-overview-2">Drewal, Yoruba Ritual: Performers, Play, Agency.</li><li id="src-overview-3">Murphy, Santería: African Spirits in America.</li></ol></div>
     </div>
 </section>
 
@@ -295,14 +311,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Yoruba (modern Latin orthography) as <strong>Ọ̀ṣun</strong>. Etymologically it means &quot;Sweet river&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The ASCII form <em>oshun</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Ọṣun</strong> recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>o</strong> → <strong>Ọ</strong> — O with dot below</li><li><strong>s</strong> → <strong>ṣ</strong> — S with dot below</li><li><strong>h</strong> → <strong>—</strong> — Not written</li><li><strong>u</strong> → <strong>u</strong> — Same</li><li><strong>n</strong> → <strong>n</strong> — Same</li></ul>
+<p>The project holds the domain <strong>ọṣun.com</strong> (xn--un-2zs1w.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Bascom, Ifa Divination.</li><li id="src-the-name-2">Drewal, Yoruba Ritual: Performers, Play, Agency.</li></ol></div>
     </div>
 </section>
 
@@ -310,14 +327,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/ɔ̀.ʃṹ/</strong> — Yoruba Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Ọ-</strong> — Open-mid back rounded vowel [ɔ] with low tone, written with a dot below.</li><li><strong>-ṣun</strong> — Voiceless postalveolar fricative [ʃ] with dot below, close back rounded vowel [u], and high tone; the syllable is nasalised in many pronunciations.</li></ul>
+<p>For the modern speaker, the closest approximation is: aw-SHOON — start low on &#39;aw&#39;, then rise to a bright, slightly nasal &#39;SHOON&#39;.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Yoruba</strong> — Ọṣun, the orixá of the river, love, fertility, and sweetness.</li><li><strong>Brazilian Candomblé</strong> — Oxum, the golden orixá of fresh water, beauty, and prosperity.</li><li><strong>Cuban Santería</strong> — Ochún, syncretised with Our Lady of Charity (La Virgen de la Caridad).</li></ul>
+<p>Ọṣun is Tier 2: the dot below ọ marks the open [ɔ] vowel, and the acute accent on ú marks high tone. Neither tone nor vowel length is registrable in the Greek sense, but the distinctive open vowel and tone are preserved where possible.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Bascom, Ifa Divination.</li></ol></div>
     </div>
 </section>
 
@@ -325,14 +345,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Yoruba (modern Latin orthography) as <strong>Ọ̀ṣun</strong> — Yoruba (Niger-Congo) in Latin script, attested 19th c. CE – present; oral tradition much older, in Yorubaland (Nigeria, Benin, Togo) and diaspora. The script is written left-to-right.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Ọ̀ṣun</em> (Yoruba standard orthography), giving the normalized reading /ɔ̀.ʃṹ/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>Yoruba has been written in the Latin alphabet since the 1840s, with diacritics for tone and vowel quality.</li><li>The name Ọ̀ṣun is composed of the low-tone /ɔ̀/ prefix plus ṣun, a root associated with the river and the goddess.</li><li>The underdot distinguishes /ɔ/ and /ʃ/ from their plain counterparts; tone marks distinguish lexical meaning.</li><li>The Unicode restoration Ọ̀ṣun preserves tone and vowel quality; the ASCII form loses both.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Abraham, Dictionary of Modern Yoruba.</li><li id="src-original-script-2">Ifá divination corpus.</li><li id="src-original-script-3">Bascom, Ifa Divination.</li></ol></div>
     </div>
 </section>
 
@@ -340,14 +360,20 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p><strong>Ọṣun</strong> is the orixá of the river that bears her name, the Òṣun River that flows through Oshogbo in southwestern Nigeria. She is love that persuades rather than commands, fertility that arrives as pleasure, and the cool freshwater that balances Ṣàngó&#39;s fire. Where he is loud, she is honeyed; where he strikes, she seduces.</p>
+<p>Her mythology makes her indispensable. When the male orishas tried to create the world without consulting a woman, their work failed until Ọṣun used her sweetness to complete what force could not finish.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Freshwater</h3>
+<p>Rivers, streams, and springs are her body; she governs fertility, bathing, and healing.</p>
+<h3 class="scholars-h3">Love and Seduction</h3>
+<p>Honey, perfume, and gold are her tools; she wins by making herself irresistible.</p>
+<h3 class="scholars-h3">Women&#39;s Power</h3>
+<p>She represents the agency of women in a world that often forgets to ask them.</p>
+<h3 class="scholars-h3">Fertility</h3>
+<p>Barren women, failing crops, and blocked creativity all come under her care.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Drewal, Yoruba Ritual: Performers, Play, Agency.</li></ol></div>
     </div>
 </section>
 
@@ -355,14 +381,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Ọṣun concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Brass fan (àbẹ̀bẹ̀)</strong> — Her emblem of beauty, cooling breeze, and ceremonial authority.</li><li><strong>Honey</strong> — The sweetness of her words and the bait of her persuasion.</li><li><strong>Yellow beads and gold</strong> — Her colours, associated with the river&#39;s sunlight and material prosperity.</li><li><strong>Peacock</strong> — A diaspora symbol of her pride, beauty, and watchful eye.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Bascom, Ifa Divination.</li></ol></div>
     </div>
 </section>
 
@@ -370,14 +394,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Ọṣun&#39;s stories are told in Ifá verses, river rituals, and the annual Oshogbo festival. They centre on the power of sweetness, the necessity of women&#39;s wisdom, and the river as a living goddess.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Ọṣun and the Failed World (Creation)</h3>
+<p>When the male orishas set out to create the world, they ignored Ọṣun. Their work collapsed: what they built fell apart, what they planted withered, and what they decided proved unjust. They finally asked Ọṣun for help. With her honey, her laughter, and her river, she completed the creation they could not finish. The myth is a charter for the necessity of feminine power in any ordered cosmos.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Òṣun River and Oshogbo (River)</h3>
+<p>The city of Oshogbo was founded where Ọṣun appeared to a hunter and the first king, establishing the sacred grove that is now a UNESCO World Heritage site. The river is not merely her symbol; it is believed to be her body. Each year during the Osun-Osogbo Festival, devotees process to the river with offerings of flowers, coins, and prayers.</p>
+<h3 class="scholars-h3">Ọṣun and Ṣàngó (Marriage)</h3>
+<p>Ọṣun is one of Ṣàngó&#39;s wives, and their pairing joins fire and water. In one story, Ọṣun wins Ṣàngó&#39;s love by feeding him honey and by being the only one who can calm his rage. Their union is one of the most celebrated in Yoruba religion, modelling the balance of passion and sweetness.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Drewal, Yoruba Ritual: Performers, Play, Agency.</li><li id="src-mythology-2">Murphy, Santería: African Spirits in America.</li></ol></div>
     </div>
 </section>
 
@@ -385,14 +412,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>In Brazilian Candomblé, Ọṣun became Oxum, the golden orixá of rivers and wealth, often syncretised with Our Lady of the Conception. In Cuban Santería she is Ochún, paired with Our Lady of Charity (La Virgen de la Caridad del Cobre), the patroness of Cuba. The Catholic Virgin&#39;s dark skin and association with water made the identification natural. In Haitian Vodou she overlaps with Erzulie, though Erzulie carries additional Kongo and Fon influences. The diaspora consistently preserves her association with beauty, money, and the river.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include <a class="scholars-xlink" href="/sites/aphrodite/">Aphrodítē</a> (love / beauty / desire), <a class="scholars-xlink" href="/sites/babaluaye/">Ọbalúayé</a> (earth / mother / fertility), <a class="scholars-xlink" href="/sites/bastet/">Bꜣstt</a> (earth / mother / fertility), <a class="scholars-xlink" href="/sites/coatlicue/">Cōātlīcue</a> (earth / mother / fertility), <a class="scholars-xlink" href="/sites/dagan/">Dāgan</a> (earth / mother / fertility), and <a class="scholars-xlink" href="/sites/demeter/">Dēmētēr</a> (earth / mother / fertility).</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Bascom, Ifa Divination.</li></ol></div>
     </div>
 </section>
 
@@ -400,14 +425,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Ọṣun is one of the most widely honoured orishas in the world. The Osun-Osogbo Sacred Grove is a UNESCO World Heritage site, one of the last remaining sacred forests of the Yoruba. Her image appears in Nigerian film, Brazilian Carnival, Cuban Santería altars, and global feminist spirituality. The phrase &#39;honey in the mouth&#39; captures her ethics: that persuasion, beauty, and pleasure are legitimate and necessary forms of power. In an age that often splits love and politics, Ọṣun insists they cannot be separated.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Bascom, Ifa Divination.</li></ol></div>
     </div>
 </section>
 
@@ -415,14 +437,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The Osun-Osogbo Sacred Grove in Nigeria is the most important archaeological and living site associated with Ọṣun, containing shrines, sculptures, and the river itself as a sacred landscape. Brass àbẹ̀bẹ̀ fans, gold jewellery, and yellow-bead necklaces are recovered from Yoruba sites and conserved in diaspora religious houses. The grove&#39;s twentieth-century restoration by Austrian artist Susanne Wenger added modern sculptural installations to an ancient ritual geography.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Bascom, Ifa Divination.</li></ol></div>
     </div>
 </section>
 
@@ -430,120 +449,91 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Ọṣun given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Bascom, Ifa Divination.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Drewal, Yoruba Ritual: Performers, Play, Agency.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Murphy, Santería: African Spirits in America.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Mason, Four New World Yoruba Rituals.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Verger, Notes sur le Culte des Orisa et Vodun.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> UNESCO, Osun-Osogbo Sacred Grove.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Bascom, Ifa Divination.</li><li id="src-scholarly-sources-2">Drewal, Yoruba Ritual: Performers, Play, Agency.</li><li id="src-scholarly-sources-3">Murphy, Santería: African Spirits in America.</li><li id="src-scholarly-sources-4">Mason, Four New World Yoruba Rituals.</li><li id="src-scholarly-sources-5">Verger, Notes sur le Culte des Orisa et Vodun.</li><li id="src-scholarly-sources-6">UNESCO, Osun-Osogbo Sacred Grove.</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="ifa">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Ifá Corpus</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Ọ̀ṣẹ́ Méjì, the odù that carries the echo of her name, is traditionally read as Ọṣun&#39;s own — a sign of sweetness, pleasure, and victories won by attraction rather than force. Ifá narratives also tell how the odù, coming to earth, ignored Ọṣun, and how their affairs failed until <a class="scholars-xlink" href="/sites/olodumare/">Olódùmarè</a> sent them back to her: the etiological charter for a woman&#39;s necessary place in every council. Her devotees consult Ifá and the cowries alike, and diviners treat her signs as counsel to soften — to use honey where the axe has failed. In the corpus she is indispensable precisely because the other powers could not complete the world without her.<sup class="scholars-cite"><a href="#src-ifa-1">[1]</a></sup><sup class="scholars-cite"><a href="#src-ifa-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-ifa-1">Abimbola, Ifá: An Exposition of Ifá Literary Corpus.</li><li id="src-ifa-2">Bascom, Ifa Divination.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="oral-tradition">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Oral Tradition</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Her oríkì call her Yèyé, the sweet mother, owner of brass and honey, the one whose mirror never lies and whose river never fails. At her grove in Oshogbo the annual festival resounds with her praises before crowds in the hundreds of thousands, and the river itself is saluted as her body. The poetry dwells on persuasion: she does not command the flood; she is the current. Singers liken her to brass — soft, golden, and outlasting iron — an oríkì compressed into a metal. To chant her names is to rehearse the argument that sweetness is not weakness but a slower, surer strength.<sup class="scholars-cite"><a href="#src-oral-tradition-1">[1]</a></sup><sup class="scholars-cite"><a href="#src-oral-tradition-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-oral-tradition-1">Barber, I Could Speak Until Tomorrow: Oríkì, Women and the Past in a Yoruba Town.</li><li id="src-oral-tradition-2">Drewal, Yoruba Ritual: Performers, Play, Agency.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="diaspora">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Diaspora Traditions</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>In Brazil she is Oxum, the golden lady of fresh water, syncretised with Marian figures such as Nossa Senhora da Conceição. In Cuba she is Ochún, identified with the Virgen de la Caridad del Cobre — Cuba&#39;s national patroness — so that the island&#39;s saint and the Yoruba river became one face. Her honey, her brass fan, her yellow beads, and her number five anchor altars from Salvador to Miami. Haitian Vodou honours kindred river-and-love powers in the Erzulie family, and Trinidad, Grenada, and the United States keep her feast. She remains among the most widely honoured orishas on earth.<sup class="scholars-cite"><a href="#src-diaspora-1">[1]</a></sup><sup class="scholars-cite"><a href="#src-diaspora-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-diaspora-1">Murphy, Santería: African Spirits in America.</li><li id="src-diaspora-2">Verger, Notes sur le Culte des Orisa et Vodun.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Ọṣun is the argument for sweetness. Not sentimentality, not weakness, but the disciplined art of making oneself and the world more attractive to the good. She does not force the river to flow; she is the river. She does not conquer Ṣàngó; she dissolves his rage in honey.</p>
+<p>To worship Ọṣun is to refuse the dichotomy between pleasure and principle. Her festival is not an escape from politics; it is a political act that says the city depends on the river, the grove, and the women who have kept both alive. She asks: what if the most transformative force is not the thunderbolt but the current that wears down stone, the voice that persuades the angry, the beauty that makes justice desirable?<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Bascom, Ifa Divination.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="ifa">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Ifá Corpus</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Ifá Corpus →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="oral-tradition">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Oral Tradition</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Oral Tradition →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="diaspora">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Diaspora Traditions</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Diaspora Traditions →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">17</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -581,6 +571,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'oshun';
@@ -614,14 +739,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -715,6 +832,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -726,18 +844,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -749,6 +868,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -793,6 +914,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

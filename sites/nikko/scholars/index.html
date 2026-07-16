@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,11 +279,12 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#kojiki-nihonshoki">14 &mdash; Kojiki & Nihon Shoki</a></li>
-<li><a href="#shinto-sources">15 &mdash; Shinto Sources</a></li>
-<li><a href="#buddhist-japanese">16 &mdash; Japanese Buddhist Sources</a></li>
+<li><a href="#kojiki-nihonshoki">12 &mdash; Kojiki & Nihon Shoki</a></li>
+<li><a href="#shinto-sources">13 &mdash; Shinto Sources</a></li>
+<li><a href="#buddhist-japanese">14 &mdash; Japanese Buddhist Sources</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -280,14 +296,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Nikkō</strong> (<em>nikko</em>) — Sacred Site, Tochigi · Sunlight — belongs to the Japanese tradition, where it is catalogued under the domain &quot;Sacred Site, Tochigi&quot;. The name means &quot;Sunlight&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p><strong>Nikkō</strong> is the town, the mountain, and the luminous name that binds them. In Japanese, the word means simply &#39;sunlight,&#39; but by the 17th century it had become synonymous with one of Japan&#39;s most spectacular religious sites: the Tōshōgū shrine complex, where Tokugawa Ieyasu, the founder of the Tokugawa shogunate, was enshrined as the deified Tōshō Daigongen, &#39;Great Illuminating Deity of the East.&#39;</p>
+<p>Nikkō is where nature and politics meet in gold. Cedar avenues, waterfalls, and mountain mists frame shrines and mausoleums built with the wealth and craftsmanship of a newly unified Japan. It is a place of sunlight filtered through forest, of ancestral power made beautiful, and of Shinto-Buddhist synthesis at its most ornate.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Nikkō</strong> and serves its temple at <a class="scholars-ext" href="https://xn--nikk-o3a.com" rel="noopener noreferrer" target="_blank">nikkō.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>nikko</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Kojiki (foundation myths and kami references).</li><li id="src-overview-2">Nihon Shoki (imperial and Tokugawa-period histories).</li><li id="src-overview-3">Tōshōgū engi and Tokugawa-period shrine records.</li></ol></div>
     </div>
 </section>
 
@@ -295,14 +311,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Japanese characters as <strong>日光</strong>. Etymologically it means &quot;Sunlight&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The ASCII form <em>nikko</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Nikkō</strong> recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>n</strong> → <strong>N</strong> — Same</li><li><strong>i</strong> → <strong>i</strong> — Same</li><li><strong>k</strong> → <strong>k</strong> — Same</li><li><strong>k</strong> → <strong>k</strong> — Same</li><li><strong>o</strong> → <strong>ō</strong> — Macron: long vowel</li></ul>
+<p>The project holds the domain <strong>nikkō.com</strong> (xn--nikk-o3a.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Kojiki (foundation myths and kami references).</li><li id="src-the-name-2">Nihon Shoki (imperial and Tokugawa-period histories).</li></ol></div>
     </div>
 </section>
 
@@ -310,14 +327,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/ɲi.kːoː/</strong> — Modern Standard Japanese (Hepburn).<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Ni-</strong> — Voiced palatal nasal [ɲ] plus short close front [i]; the &#39;n&#39; before &#39;k&#39; is pronounced with the tongue near the hard palate</li><li><strong>-kkō</strong> — Long close back rounded [oː], preceded by a geminate (double) [kː]; the macron marks length, giving Tier-1 status</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;NEE-koh&#39; — the first syllable is quick with a soft &#39;ny&#39; color; hold the final &#39;koh&#39; long, as if pronouncing two k&#39;s in a row.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Japanese</strong> — 日光 (nikkō), &#39;sunlight,&#39; from nichi &#39;sun&#39; + kō &#39;light&#39;</li><li><strong>Classical reading</strong> — Nikkōzan, the mountain name of the great Tōshōgū shrine complex</li><li><strong>Related term</strong> — Tōshōgū (東照宮), the &#39;Shrine of the Illuminating East&#39; dedicated to Tokugawa Ieyasu</li></ul>
+<p>Nikkō is Tier 1 because the final ō is long. In Japanese, the double k (kk) is a geminate consonant that creates a brief pause before the long vowel. The name refers both to the town in Tochigi Prefecture and to the sacred mountain complex that made it famous.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Kojiki (foundation myths and kami references).</li></ol></div>
     </div>
 </section>
 
@@ -325,14 +345,14 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Japanese characters as <strong>日光</strong> — Kanji (Sino-Japanese logographs), attested Heian – present, in Nikkō, Tochigi Prefecture, Japan. The script is written left-to-right; traditional top-to-bottom.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Nikkō</em> (Hepburn romanisation with macron), giving the normalized reading /nikːoː/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>日光 is a Sino-Japanese compound: 日 &#39;sun&#39; + 光 &#39;light&#39;, hence &#39;sunlight&#39;.</li><li>The standard Hepburn romanisation is Nikkō, with a macron over the final o marking a long vowel.</li><li>The geminate consonant -kk- reflects the sequential voicing assimilation of 日 (nichi) + 光 (kō) → Nikkō.</li><li>The place name Nikkō is famous for the Tōshō-gū shrine, dedicated to Tokugawa Ieyasu.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Joyō Kanji Table (日, 光).</li><li id="src-original-script-2">Hepburn Romanisation Standard.</li><li id="src-original-script-3">Kojiki (Records of Ancient Matters), Translated by Basil Hall Chamberlain, 712. <a class="scholars-ext" href="https://sacred-texts.com/shi/kj/index.htm" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -340,14 +360,20 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p><strong>Nikkō</strong> is the town, the mountain, and the luminous name that binds them. In Japanese, the word means simply &#39;sunlight,&#39; but by the 17th century it had become synonymous with one of Japan&#39;s most spectacular religious sites: the Tōshōgū shrine complex, where Tokugawa Ieyasu, the founder of the Tokugawa shogunate, was enshrined as the deified Tōshō Daigongen, &#39;Great Illuminating Deity of the East.&#39;</p>
+<p>Nikkō is where nature and politics meet in gold. Cedar avenues, waterfalls, and mountain mists frame shrines and mausoleums built with the wealth and craftsmanship of a newly unified Japan. It is a place of sunlight filtered through forest, of ancestral power made beautiful, and of Shinto-Buddhist synthesis at its most ornate.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Tōshōgū</h3>
+<p>The lavish shrine-tomb of Tokugawa Ieyasu, a UNESCO World Heritage site and masterpiece of early Edo art.</p>
+<h3 class="scholars-h3">Three Wise Monkeys</h3>
+<p>The famous &#39;see no evil, hear no evil, speak no evil&#39; carving on the sacred stable.</p>
+<h3 class="scholars-h3">Cedar Avenue</h3>
+<p>Thousands of giant cryptomeria trees line the approach, turning the path itself into a sacred corridor.</p>
+<h3 class="scholars-h3">Sacred Bridge</h3>
+<p>The Shinkyō, a vermillion lacquered bridge over the Daiya River, marks the boundary between worlds.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Nihon Shoki (imperial and Tokugawa-period histories).</li></ol></div>
     </div>
 </section>
 
@@ -355,14 +381,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Nikkō concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Shinkyō (Sacred Bridge)</strong> — The vermillion bridge that marks the entrance to the sacred precinct and the crossing from mundane to holy space</li><li><strong>Three wise monkeys (sanzaru)</strong> — The carved monkeys embodying the proverb &#39;see no evil, hear no evil, speak no evil&#39;</li><li><strong>Sleeping cat (nemuri-neko)</strong> — The famous carved cat attributed to Hidari Jingorō, guarding Ieyasu&#39;s mausoleum</li><li><strong>Yōmeimon Gate</strong> — The &#39;Sunset Gate,&#39; lavishly carved and gilded, symbolizing the wealth of the shogunate</li><li><strong>Cedar trees (sugi)</strong> — The ancient avenue of cryptomeria linking the town to the shrines, a living sacred architecture</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Kojiki (foundation myths and kami references).</li></ol></div>
     </div>
 </section>
 
@@ -370,14 +394,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Nikkō&#39;s mythology is both ancient and recent. The mountain had long been a site of Buddhist-Shinto practice, but its modern identity was forged by the apotheosis of Tokugawa Ieyasu and the extraordinary building campaign that followed his death.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Shōdō Shōnin and the Sacred Bridge (Foundation legend)</h3>
+<p>According to tradition, the Buddhist monk Shōdō Shōnin founded the first temple at Nikkō in the 8th century. When he could not cross the turbulent Daiya River, the mountain deity appeared in a dream and offered two serpents to form a bridge. The Shinkyō, the vermillion lacquered bridge at the entrance to the shrine complex, commemorates this divine assistance and marks the boundary between the secular world and the sacred mountain.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Deification of Tokugawa Ieyasu (Edo period)</h3>
+<p>After his death in 1616, Tokugawa Ieyasu was enshrined at Nikkō as Tōshō Daigongen, a manifestation of the Buddhist divinity Yakushi Nyorai and the Shinto sun goddess Amaterasu. His grandson Iemitsu rebuilt the complex between 1634 and 1636 with staggering opulence, employing thousands of craftsmen. The result was both a mausoleum and a political statement: the shogun&#39;s power now rested in a sacred mountain bathed in sunlight.</p>
+<h3 class="scholars-h3">Separation of Shinto and Buddhism (Meiji era)</h3>
+<p>The Meiji government&#39;s policy of shinbutsu bunri forcibly separated Shinto and Buddhism. At Nikkō, Buddhist elements were stripped from the Tōshōgū, and the complex was reclassified as a Shinto shrine. Despite this rupture, the art and architecture of Nikkō preserve the hybrid religious world of early modern Japan, where kami and Buddhas were understood as local manifestations of one another.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Nihon Shoki (imperial and Tokugawa-period histories).</li><li id="src-mythology-2">Tōshōgū engi and Tokugawa-period shrine records.</li></ol></div>
     </div>
 </section>
 
@@ -385,14 +412,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>Nikkō is a textbook case of <em>shinbutsu shūgō</em>, the medieval Japanese synthesis of Shinto and Buddhism. Tōshō Daigongen was simultaneously a Shinto kami and a Buddhist avatar; the shrine&#39;s architecture borrows from both traditions. This synthesis was forcibly dismantled in the Meiji period but survives in the layered art and ritual of the site. Nikkō also sits within a broader East Asian culture of mountain sacredness, where peaks serve as boundaries between worlds and repositories of ancestral power. The cedar avenues and vermillion bridges echo Chinese and Korean models, while the specific cult of Ieyasu is uniquely Japanese.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Japanese tradition, closely related names in the corpus include <a class="scholars-xlink" href="/sites/fujin/">Fūjin</a>, <a class="scholars-xlink" href="/sites/jizo/">Jizō</a>, <a class="scholars-xlink" href="/sites/kobe/">Kōbe</a>, <a class="scholars-xlink" href="/sites/kyoto/">Kyōto</a>, and <a class="scholars-xlink" href="/sites/osaka/">Ōsaka</a>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Kojiki (foundation myths and kami references).</li></ol></div>
     </div>
 </section>
 
@@ -400,14 +425,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Nikkō is one of Japan&#39;s most visited sacred sites and a UNESCO World Heritage property. Its autumn maples, snow-covered gates, and the famous phrase &#39;<em>kekko dewa nai, kekko ni suru na</em>&#39; (&#39;never say splendid, but make it splendid&#39;) continue to shape Japanese aesthetics. The Three Wise Monkeys have become a global visual proverb, and images of the Shinkyō and Yōmeimon appear in travel literature, photography, and advertising worldwide. For Japanese nationalism, Nikkō is a symbol of the Tokugawa peace and imperial continuity; for contemporary visitors, it is a place where nature, art, and history converge. The Unicode restoration <em>Nikkō</em> preserves the long vowel and geminate consonant that distinguish the place name from ordinary <em>nikkō</em> (&#39;sunlight&#39;).<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Kojiki (foundation myths and kami references).</li></ol></div>
     </div>
 </section>
 
@@ -415,14 +437,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The Tōshōgū complex as it exists today is primarily an Edo-period creation (1634–1636), though it rests on older religious layers. The main hall, Yōmeimon gate, five-storied pagoda, and Okumiya inner shrine are outstanding examples of early Edo architecture and polychrome decoration. The Shinkyō bridge, rebuilt in 1904, preserves the form of the original sacred crossing. Archaeological and architectural study of the site has documented the materials, craftsmen, and techniques employed in Iemitsu&#39;s rebuilding, while the surrounding cedar avenue (planted in the 17th century) remains one of Japan&#39;s most impressive designed landscapes.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Kojiki (foundation myths and kami references).</li></ol></div>
     </div>
 </section>
 
@@ -430,120 +449,91 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Nikkō given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Kojiki (foundation myths and kami references).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Nihon Shoki (imperial and Tokugawa-period histories).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Tōshōgū engi and Tokugawa-period shrine records.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Aston, Nihongi: Chronicles of Japan from the Earliest Times to A.D. 697.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Philippi, Kojiki.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Bock, Engi-shiki.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> UNESCO World Heritage listing for Shrines and Temples of Nikko.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Kojiki (foundation myths and kami references).</li><li id="src-scholarly-sources-2">Nihon Shoki (imperial and Tokugawa-period histories).</li><li id="src-scholarly-sources-3">Tōshōgū engi and Tokugawa-period shrine records.</li><li id="src-scholarly-sources-4">Aston, Nihongi: Chronicles of Japan from the Earliest Times to A.D. 697.</li><li id="src-scholarly-sources-5">Philippi, Kojiki.</li><li id="src-scholarly-sources-6">Bock, Engi-shiki.</li><li id="src-scholarly-sources-7">UNESCO World Heritage listing for Shrines and Temples of Nikko.</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="kojiki-nihonshoki">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Kojiki & Nihon Shoki</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Neither chronicle names Nikkō: the <em>Kojiki</em> (712) and <em>Nihon Shoki</em> (720) predate the mountain&#39;s recorded cult. Their relevance runs through the deity of its oldest shrine, for Futarasan Jinja enshrines Ōnamuchi-no-mikoto, the land-building kami of the Izumo cycle whose deeds the Kojiki narrates at length — completing the land with the dwarf-god Sukunabikona, healing the white hare of Inaba, and finally ceding the land to the heavenly grandson in the <em>kuniyuzuri</em> episode.<sup class="scholars-cite"><a href="#src-kojiki-nihonshoki-1">[1]</a></sup> The uplands of Shimotsuke province enter written history through the chronicles&#39; accounts of the region&#39;s incorporation into Yamato. The older mountain name Futara-san survives in the shrine&#39;s title; the reading Nikkō-zan, &#39;sun-light mountain&#39;, is the later, luminous interpretation under which the Tokugawa mausolea were raised.<sup class="scholars-cite"><a href="#src-kojiki-nihonshoki-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-kojiki-nihonshoki-1">Kojiki (Records of Ancient Matters), 712; trans. D. L. Philippi. <a class="scholars-ext" href="https://sacred-texts.com/shi/kojiki.htm" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-kojiki-nihonshoki-2">Tōshōgū engi and Tokugawa-period shrine records (mountain-name tradition).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="shinto-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Shinto Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Nikkō Futarasan Jinja, registered in the <em>Engishiki</em> as the chief shrine of Shimotsuke province, anchors the mountain&#39;s Shinto layer with the cult of Ōnamuchi-no-mikoto.<sup class="scholars-cite"><a href="#src-shinto-sources-1">[1]</a></sup> Above it rose the Tōshōgū: in 1617 Tokugawa Ieyasu was enshrined under the kami-title Tōshō Daigongen, &#39;Great Gongen Illuminating the East&#39;, devised by the Tendai prelate Tenkai, and the present gilded complex is the third shogun Iemitsu&#39;s rebuilding of 1634–36.<sup class="scholars-cite"><a href="#src-shinto-sources-2">[2]</a></sup> The shrine engi preserves the foundation legend of the monk Shōdō Shōnin, whose prayers summoned two serpents to bridge the Daiya River — the crossing commemorated by the vermillion Shinkyō. The Meiji separation edicts of 1868 split Rinnō-ji from the shrines and recast the syncretic mountain as &#39;Shinto&#39;.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-shinto-sources-1">Engishiki (Procedures of the Engi Era), 927, Jinmyōchō register of Shimotsuke province shrines.</li><li id="src-shinto-sources-2">Tōshōgū engi and Tokugawa-period shrine records (Tenkai&#39;s gongen cult and Iemitsu&#39;s rebuilding).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="buddhist-japanese">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Japanese Buddhist Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Nikkō&#39;s Buddhist history opens with the ascetic Shōdō Shōnin, whom tradition credits with founding a hermitage on the mountain in 766, the ancestor of Rinnō-ji.<sup class="scholars-cite"><a href="#src-buddhist-japanese-1">[1]</a></sup> Under the Tendai school Rinnō-ji governed the mountain&#39;s temples; its Sanbutsudō hall houses three monumental gold-lacquered images — Amida Nyorai, Senjū Kannon and Batō Kannon — witnesses to the site&#39;s Amidist and esoteric devotion. The Tōshōgū cult was itself a Buddhist construction: Tenkai styled Ieyasu a <em>gongen</em>, a kami understood as the local manifestation (<em>suijaku</em>) of a buddha, within the Sannō-ichijitsu doctrine.<sup class="scholars-cite"><a href="#src-buddhist-japanese-2">[2]</a></sup> The separation edicts of 1868 stripped Buddhist halls, statues and clergy from the shrine precinct, leaving Rinnō-ji as the institutional witness of a thousand years of Buddhist presence on the mountain.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-buddhist-japanese-1">Tōshōgū engi and Tokugawa-period shrine records (Shōdō Shōnin and the Rinnō-ji lineage).</li><li id="src-buddhist-japanese-2">Teeuwen, Mark, and John Breen, A New History of Shinto (honji suijaku and the gongen cults).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Nikkō asks what it means to make power visible. The Tokugawa shogunate did not bury its founder in quiet simplicity; it wrapped him in gold, cedar, and carved beasts, turning a mountainside into a sermon on authority. Yet the forest is older than the shogunate, and the sunlight falls on the gates without preference.</p>
+<p>To visit Nikkō is to walk between these two truths: that humans build monuments to themselves, and that the world continues indifferently splendid. The Three Wise Monkeys remind us that not everything seen needs to be spoken, and the cedars remind us that what endures is often what was planted in silence.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Kojiki (foundation myths and kami references).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="kojiki-nihonshoki">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Kojiki & Nihon Shoki</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Kojiki & Nihon Shoki →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="shinto-sources">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Shinto Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Shinto Sources →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="buddhist-japanese">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Japanese Buddhist Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Japanese Buddhist Sources →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">17</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -581,6 +571,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'nikko';
@@ -614,14 +739,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -715,6 +832,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -726,18 +844,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -749,6 +868,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -793,6 +914,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 

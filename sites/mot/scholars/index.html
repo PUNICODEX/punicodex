@@ -77,7 +77,22 @@
         .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
         .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
         .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
         .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
         .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
         .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
@@ -264,11 +279,12 @@
 <li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
 <li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
 <li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
-<li><a href="#edit-history">12 &mdash; Edit History</a></li>
-<li><a href="#attribution">13 &mdash; Attribution</a></li>
-<li><a href="#phoenician-inscriptions">14 &mdash; Phoenician Inscriptions</a></li>
-<li><a href="#biblical-references">15 &mdash; Biblical References</a></li>
-<li><a href="#classical-sources">16 &mdash; Classical Sources</a></li>
+<li><a href="#phoenician-inscriptions">12 &mdash; Phoenician Inscriptions</a></li>
+<li><a href="#biblical-references">13 &mdash; Biblical References</a></li>
+<li><a href="#classical-sources">14 &mdash; Classical Sources</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
                 </ol>
             </nav>
         </div>
@@ -280,14 +296,13 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">01</span>
         <h2 class="scholars-section-title">Overview</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Overview →</a>
-        </div>
+        <p><strong>Mōt</strong> (<em>mot</em>) — Death, Underworld · Death — belongs to the Phoenician tradition, where it is catalogued under the domain &quot;Death, Underworld&quot;. The name means &quot;Death&quot;<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup>.</p>
+<p>Mōt is the <strong>personified appetite of death</strong> in Canaanite myth — not a reaper with a scythe but a being whose throat is a chasm and whose jaws grind gods and mortals alike. In the Baꜥal Cycle he is the necessary opposite of the storm-god: where Baꜥal brings rain, Mōt brings the parched season when growth stops and the world turns to dust.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PÚNYCODEX restores the name as <strong>Mōt</strong> and serves its temple at <a class="scholars-ext" href="https://xn--mt-vra.com" rel="noopener noreferrer" target="_blank">mōt.com</a>. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1. The plain ASCII form <em>mot</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">KTU (Ugaritic texts).</li><li id="src-overview-2">Smith, The Ugaritic Baal Cycle.</li><li id="src-overview-3">Coogan, Stories from Ancient Canaan.</li></ol></div>
     </div>
 </section>
 
@@ -295,14 +310,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">02</span>
         <h2 class="scholars-section-title">The Name</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to The Name →</a>
-        </div>
+        <p>The name is attested in Phoenician as <strong>𐤌𐤕</strong>. Etymologically it means &quot;Death&quot;<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup>.</p>
+<p>The ASCII form <em>mot</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Mōt</strong> recovers the vowel length of the original directly in the address bar. The original carries both stress and vowel length, and exactly one historically valid Unicode restoration exists, which places the name in Tier 1.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>m</strong> → <strong>M</strong> — Same, capitalized</li><li><strong>o</strong> → <strong>ō</strong> — Long vowel</li><li><strong>t</strong> → <strong>t</strong> — Same</li></ul>
+<p>The project holds the domain <strong>mōt.com</strong> (xn--mt-vra.com) as the canonical home of this name<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup>.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">KTU (Ugaritic texts).</li><li id="src-the-name-2">Smith, The Ugaritic Baal Cycle.</li></ol></div>
     </div>
 </section>
 
@@ -310,14 +326,17 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">03</span>
         <h2 class="scholars-section-title">Pronunciation</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Pronunciation →</a>
-        </div>
+        <p>The reconstructed pronunciation of the name is <strong>/moːt/</strong> — Canaanite/Phoenician Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>m</strong> — Voiced bilabial nasal [m].</li><li><strong>ō</strong> — Long back-mid rounded vowel [oː]; the macron marks length only. The exact quality varies by dialect (Phoenician mūt, Hebrew māwet, Ugaritic mt is vowelless in writing).</li><li><strong>t</strong> — Voiceless alveolar stop [t], unaspirated.</li></ul>
+<p>For the modern speaker, the closest approximation is: &#39;MOHT&#39; — one syllable with a long, drawn-out o (or oo) and a crisp final t.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Ugaritic</strong> — 𐎎𐎚 (mt), the personified Death of the Baal Cycle</li><li><strong>Phoenician</strong> — 𐤌𐤕 (mūt), the divine name in Philo of Byblos/Sanchuniathon</li><li><strong>Hebrew</strong> — מָוֶת (māweṯ), &#39;death&#39;</li><li><strong>Akkadian</strong> — 𒍗 (mūtu), the common noun for death</li></ul>
+<p>The name is the Canaanite word for &#39;death.&#39; The macron on the registrable Mōt signals vowel length, not a fixed quality: Phoenician has mūt, Hebrew māwet, and Ugaritic mt gives no vowels. We follow the PUNYCODEX macron convention with /moːt/; hear a long low/back vowel rather than the short English &#39;o.&#39; Tier 1: the macron preserves a reconstructed long vowel. Sources: KTU, CIS/KAI, Smith The Ugaritic Baal Cycle, Day Yahweh and the Gods and Goddesses of Canaan.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">KTU (Ugaritic texts).</li></ol></div>
     </div>
 </section>
 
@@ -325,14 +344,15 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">04</span>
         <h2 class="scholars-section-title">Original Script & Provenance</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Original Script & Provenance →</a>
-        </div>
+        <p>The name is preserved in Phoenician as <strong>𐤌𐤕</strong> — Northwest Semitic abjad, attested Iron Age, c. 1050–800 BCE, in Levant. The script is written right-to-left.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p>
+<p>The scholarly transliteration is <em>Mōt</em> (Phoenician abjad), giving the normalized reading /ˈmoːt/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The name is written 𐤌𐤕 in the Phoenician abjad.</li><li>Phoenician writing records consonants only; vowels are supplied by modern scholars from cognate languages.</li><li>The final vowel markings in the transliteration are inferred from older Northwest Semitic case endings.</li><li>The Unicode restoration Mōt is registrable in .com; the Phoenician form is not in the .com IDN table.</li></ul>
+<p>Ugaritic writes the name 𐎎𐎚 (m-t), Phoenician 𐤌𐤕 (m-t), and Hebrew מות (m-w-t). The macron over <strong>ō</strong> in Mōt marks a reconstructed long vowel; the actual quality differs by dialect (Phoenician mūt, Hebrew māwet), while Ugaritic mt is vowelless in writing. The name is the common Canaanite word for &#39;death,&#39; here personified as a god. Tier 1: the macron preserves a reconstructed long vowel.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Corpus Inscriptionum Semiticarum, Académie des Inscriptions et Belles-Lettres, Paris, 1881. <a class="scholars-ext" href="https://aibl.fr/travaux/le-cabinet-du-corpus-inscriptionum-semiticarum/" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-original-script-2">Kanaanäische und Aramäische Inschriften, 3 vols., Harrassowitz, Wiesbaden (completed 1971), 1962. <a class="scholars-ext" href="https://www.harrassowitz-verlag.de/titel_544.ahtml" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-original-script-3">Krahmalkov, Phoenician-Punic Dictionary.</li><li id="src-original-script-4">Ugaritic Textual Corpus, Ras Shamra–Ugarit corpus (KTU / CUSAS), 1200 BCE. <a class="scholars-ext" href="https://www.ancientneareast.net/ugarit-ras-shamra/" rel="noopener noreferrer" target="_blank">↗</a></li></ol></div>
     </div>
 </section>
 
@@ -340,14 +360,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">05</span>
         <h2 class="scholars-section-title">Domains & Attributes</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Domains & Attributes →</a>
-        </div>
+        <p>Mōt is the <strong>personified appetite of death</strong> in Canaanite myth — not a reaper with a scythe but a being whose throat is a chasm and whose jaws grind gods and mortals alike. In the Baꜥal Cycle he is the necessary opposite of the storm-god: where Baꜥal brings rain, Mōt brings the parched season when growth stops and the world turns to dust.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Personified Death</h3>
+<p>The name itself is the Canaanite word for death; in Ugaritic he is a god, not merely an abstraction.</p>
+<h3 class="scholars-h3">Insatiable Hunger</h3>
+<p>KTU 1.5 i describes a throat like a lion&#39;s, a gullet like a whale&#39;s, and an appetite that swallows armies.</p>
+<h3 class="scholars-h3">Seasonal Drought</h3>
+<p>His victory over Baꜥal brings years of barrenness; his defeat restores the rains and the fertility of the land.</p>
+<h3 class="scholars-h3">Underworld Sovereign</h3>
+<p>He rules the arṣ, the land of death to which every living thing must eventually descend.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Smith, The Ugaritic Baal Cycle.</li></ol></div>
     </div>
 </section>
 
@@ -355,14 +380,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">06</span>
         <h2 class="scholars-section-title">Symbols</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Symbols →</a>
-        </div>
+        <p>The iconography associated with Mōt concentrates in a small set of recurring attributes, each a compressed statement about the name:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Devouring mouth</strong> — His throat is the underworld itself; his jaws crush gods and mortals</li><li><strong>Dust and dry earth</strong> — The landscape of his kingdom and the sign of his victory over Baꜥal</li><li><strong>Sword and winnowing fan</strong> — The tools ꜥAnat uses to split, scatter, and destroy him</li><li><strong>Seven portions</strong> — The meal Mōt demands; he eats by double handfuls and drinks a river</li><li><strong>Desert wasteland</strong> — The parched country where death&#39;s rule is felt most keenly</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">KTU (Ugaritic texts).</li></ol></div>
     </div>
 </section>
 
@@ -370,14 +393,19 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">07</span>
         <h2 class="scholars-section-title">Mythology</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Mythology →</a>
-        </div>
+        <p>Mōt&#39;s mythology is the dark season of the year made personal. His stories are preserved in the Baꜥal Cycle, where he confronts Baꜥal, kills him, and is in turn destroyed and reborn in a cycle that explains drought, death, and the return of fertility.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Summons (The Baal Cycle)</h3>
+<p>In KTU 1.4 vii–viii, Mōt sends word to Baꜥal: because he was not invited to the storm-god&#39;s feast, he will feast on Baꜥal himself. His messengers describe a throat like a lion&#39;s, a gullet like a whale&#39;s, and an appetite that devours by the double handful. Baꜥal&#39;s own envoys are warned not to come too close, &#39;lest he make you like a lamb in his mouth&#39; (KTU 1.4 viii 17–20).<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Descent and Death (The Baal Cycle)</h3>
+<p>In KTU 1.5, Baꜥal submits. He descends into Mōt&#39;s mouth and dies. Ēl mourns on the ground, cutting himself with stones; the rains fail and the earth grows dry. Even the high god cannot reverse Mōt&#39;s claim — at least, not directly. The cosmos enters the season of death.</p>
+<h3 class="scholars-h3">Anat&#39;s Harvest (The Baal Cycle)</h3>
+<p>In KTU 1.6 ii, ꜥAnat searches for Baꜥal, buries him on Mount Zaphon, then confronts Mōt. She seizes him, splits him with a sword, winnows him like grain, burns him with fire, grinds him under a millstone, and scatters him over a field. The act is agricultural as much as martial: death itself is threshed, ground, and sown away so that Baꜥal may return.</p>
+<h3 class="scholars-h3">The Rematch (The Baal Cycle)</h3>
+<p>Seven years later Mōt returns (KTU 1.6 vi). He and Baꜥal fight like bulls, serpents, and stallions, neither able to prevail. Finally the sun-goddess Shapash warns Mōt that Ēl will overturn his throne if he does not yield. Mōt submits, and Baꜥal&#39;s kingship is restored. The cycle is not a once-for-all victory but the turning of the seasons: death returns, and is pushed back again.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Smith, The Ugaritic Baal Cycle.</li><li id="src-mythology-2">Coogan, Stories from Ancient Canaan.</li></ol></div>
     </div>
 </section>
 
@@ -385,14 +413,12 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">08</span>
         <h2 class="scholars-section-title">Syncretism & Reception</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Syncretism & Reception →</a>
-        </div>
+        <p>The Hellenistic Phoenician account preserved by Eusebius of Caesarea — quoting Philo of Byblos, who summarized Sanchuniathon — makes Mōt (Muth) a son of El and Rhea, deified after death and identified by the Phoenicians with the Greek Thanatos and Pluto. A more speculative cosmogonic strand in the same tradition makes Mōt arise from primal mud or putrefaction, the source from which the seeds of creation emerge. In the Hebrew Bible the common noun <em>māwet</em> (&#39;death&#39;) sometimes appears almost personified, especially in Hosea 13:14, suggesting that the Canaanite figure lingered in Israelite imagination even where he was no longer worshipped.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Kindred figures in the PÚNYCODEX cross-tradition index include <a class="scholars-xlink" href="/sites/hades/">Hádēs</a>, <a class="scholars-xlink" href="/sites/kanaloa/">Kānāloa</a>, <a class="scholars-xlink" href="/sites/ker/">Kēr</a>, <a class="scholars-xlink" href="/sites/persephone/">Persephonē</a>, and <a class="scholars-xlink" href="/sites/thanatos/">Thánatos</a>, each linked through underworld / death.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">KTU (Ugaritic texts).</li></ol></div>
     </div>
 </section>
 
@@ -400,14 +426,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">09</span>
         <h2 class="scholars-section-title">Cultural Legacy</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Cultural Legacy →</a>
-        </div>
+        <p>Mōt&#39;s name survives in Hebrew <em>māwet</em>, Arabic <em>mawt</em>, and the Semitic root for death itself. His myth helped shape later personifications of death in biblical and apocalyptic literature, and the Baꜥal-Mōt cycle has long fascinated scholars of ancient religion as a Near Eastern parallel to — and a warning against facile equations with — later dying-and-rising god traditions. In modern fantasy, games, and Neopagan reconstructions, Mōt appears as the Canaanite lord of the underworld, a reminder that every pantheon must make room for the figure who says, &#39;All feasting ends here.&#39;<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">KTU (Ugaritic texts).</li></ol></div>
     </div>
 </section>
 
@@ -415,14 +438,11 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">10</span>
         <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Archaeology & Material Evidence →</a>
-        </div>
+        <p>The Baꜥal Cycle tablets from Ras Shamra (KTU 1.4–1.6) are the principal witnesses to Mōt&#39;s mythology, preserving his threats, his swallowing of Baꜥal, and his dismemberment by ꜥAnat in alphabetic cuneiform. The Hellenistic Phoenician cosmogony survives only in the excerpts of Philo of Byblos transmitted by Eusebius. No distinct sanctuary of Mōt has been identified, but the widespread West Semitic word for death — Ugaritic mt, Phoenician mūt, Hebrew māwet, Akkadian mūtu — testifies to the concept&#39;s deep cultural reach.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">KTU (Ugaritic texts).</li></ol></div>
     </div>
 </section>
 
@@ -430,120 +450,94 @@
     <div class="scholars-section-header">
         <span class="scholars-section-number">11</span>
         <h2 class="scholars-section-title">Scholarly Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
+        <span class="scholars-section-status">Published</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Scholarly Sources →</a>
-        </div>
+        <p>The account of Mōt given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> KTU (Ugaritic texts).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Smith, The Ugaritic Baal Cycle.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Coogan, Stories from Ancient Canaan.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Day, Yahweh and the Gods and Goddesses of Canaan.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Eusebius, Praeparatio Evangelica (quoting Philo of Byblos/Sanchuniathon). <a class="scholars-ext" href="https://www.tertullian.org/fathers/eusebius_pe_01_book1.htm" rel="noopener noreferrer" target="_blank">Full text</a></li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Hebrew Bible, Hosea 13:14 (personified death).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> KTU 1.4 vii–viii (Mot&#39;s summons).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> KTU 1.5 (Baal&#39;s descent into Mot).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> KTU 1.6 (Anat defeats Mot; the rematch).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">KTU (Ugaritic texts).</li><li id="src-scholarly-sources-2">Smith, The Ugaritic Baal Cycle.</li><li id="src-scholarly-sources-3">Coogan, Stories from Ancient Canaan.</li><li id="src-scholarly-sources-4">Day, Yahweh and the Gods and Goddesses of Canaan.</li><li id="src-scholarly-sources-5">Eusebius, Praeparatio Evangelica (quoting Philo of Byblos/Sanchuniathon). <a class="scholars-ext" href="https://www.tertullian.org/fathers/eusebius_pe_01_book1.htm" rel="noopener noreferrer" target="_blank">↗</a></li><li id="src-scholarly-sources-6">Hebrew Bible, Hosea 13:14 (personified death).</li><li id="src-scholarly-sources-7">KTU 1.4 vii–viii (Mot&#39;s summons).</li><li id="src-scholarly-sources-8">KTU 1.5 (Baal&#39;s descent into Mot).</li><li id="src-scholarly-sources-9">KTU 1.6 (Anat defeats Mot; the rematch).</li></ol></div>
     </div>
 </section>
 
-<section class="scholars-section" id="edit-history">
+<section class="scholars-section" id="phoenician-inscriptions">
     <div class="scholars-section-header">
         <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Phoenician Inscriptions</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>No dedication, temple record, or theophoric name in Phoenician or Punic epigraphy can be securely connected with the god Mōt. Death received no cult: the consonants m-t occur in Phoenician texts only as the common noun &#39;death&#39;, never as the recipient of offerings. The god&#39;s epigraphic life belongs to Ugarit, where the alphabetic tablets of the Baal Cycle (KTU 1.4–1.6) preserve his speeches and threats, and where ritual texts name the dead and the powers below.<sup class="scholars-cite"><a href="#src-phoenician-inscriptions-1">[1]</a></sup></p>
+<p>The silence is itself evidence. West Semitic religion acknowledged Death as a cosmic force while refusing it a household cult; one does not build altars to the power one hopes to avoid. The only later Phoenician witness to Mōt as a god is literary: Philo of Byblos&#39; Muth, transmitted in Greek by Eusebius.<sup class="scholars-cite"><a href="#src-phoenician-inscriptions-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-phoenician-inscriptions-1">KTU 1.4–1.6 (the Ugaritic Baal Cycle); Donner &amp; Röllig, Kanaanäische und Aramäische Inschriften (for the epigraphic absence).</li><li id="src-phoenician-inscriptions-2">Eusebius, Praeparatio Evangelica 1.10 (Philo of Byblos&#39; Muth).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="biblical-references">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Biblical References</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The deity Mōt is never named as a god in the Hebrew Bible, but his shadow falls across the personifications of māweṯ, &#39;death&#39;. Isaiah promises that the LORD &#39;will swallow up death for ever&#39; (Isaiah 25:8) — an ironic reversal, since swallowing is Mōt&#39;s own signature act in the Baal Cycle — and mocks those who have cut &#39;a covenant with death&#39; (Isaiah 28:15, 18). Jeremiah pictures Death climbing in through the windows to claim the children (Jeremiah 9:21), and Habakkuk 2:5 describes the arrogant man whose appetite is &#39;wide as Sheol&#39; and who, &#39;like death, is never satisfied&#39;.<sup class="scholars-cite"><a href="#src-biblical-references-1">[1]</a></sup></p>
+<p>Hosea 13:14 — &#39;O Death, where are your plagues? O Sheol, where is your destruction?&#39; — taunts a nearly personal Death, and scholars have long read these passages against the Canaanite mythology of Mōt. The root m-w-t remains the ordinary Hebrew word for death: the god survives as grammar.<sup class="scholars-cite"><a href="#src-biblical-references-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-biblical-references-1">Hebrew Bible, Isaiah 25:8; 28:15, 18; Jeremiah 9:21; Habakkuk 2:5 (death personified).</li><li id="src-biblical-references-2">Hebrew Bible, Hosea 13:14; Day, Yahweh and the Gods and Goddesses of Canaan (Mōt and biblical death imagery).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="classical-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Classical Sources</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Greek and Latin literature preserves exactly one explicit witness to Mōt: Philo of Byblos&#39; Phoenician History, excerpted by Eusebius (Praeparatio Evangelica 1.10). Philo names Muth as a son of Cronus (Ēl) and Rhea, &#39;whom the Phoenicians call Thanatos and Pluto&#39;. An earlier cosmogonic fragment in the same work derives the created order from &#39;Mot&#39;, which some explain as mud and others as the putrefaction of a watery mixture — the primal sludge from which the seeds of all things emerged.<sup class="scholars-cite"><a href="#src-classical-sources-1">[1]</a></sup></p>
+<p>Beyond Philo, classical authors are silent; no Greek writer names a Canaanite death-god. The Septuagint renders Hebrew māweṯ as thanatos — the Greek <a class="scholars-xlink" href="/sites/thanatos/">Thánatos</a> — and Hosea 13:14&#39;s taunt re-enters Greek literature at 1 Corinthians 15:55, where Paul mocks Death in the same words.<sup class="scholars-cite"><a href="#src-classical-sources-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-classical-sources-1">Eusebius, Praeparatio Evangelica 1.10 (Philo of Byblos on Muth).</li><li id="src-classical-sources-2">Septuagint and 1 Corinthians 15:55 (quoting Hosea 13:14); Smith, The Ugaritic Baal Cycle.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Published</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Mōt is the god nobody wants to meet and nobody can avoid. He is not evil; he is <strong>hungry</strong>. His throat does not distinguish between good and bad, rich and poor, god and mortal. That is what makes him terrifying, and that is what makes him honest. Every other deity in the pantheon has favorites; Mōt has only appetite.</p>
+<p>Yet Mōt is also necessary. Without the dry season, the seed would rot. Without the limit of death, life would have no shape. The Canaanites did not deny him; they told stories about how to survive him — how a sister&#39;s rage, a sun-goddess&#39;s warning, and a storm&#39;s return could push death back into its season. Mōt teaches that mortality is not a punishment but a boundary, and that the boundary is what makes the feast possible.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">KTU (Ugaritic texts).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
         <h2 class="scholars-section-title">Edit History</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Edit History →</a>
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
         </div>
     </div>
 </section>
 
 <section class="scholars-section" id="attribution">
     <div class="scholars-section-header">
-        <span class="scholars-section-number">13</span>
+        <span class="scholars-section-number">17</span>
         <h2 class="scholars-section-title">Attribution</h2>
         <span class="scholars-section-status empty">Awaiting Contribution</span>
     </div>
     <div class="scholars-section-body">
         <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
         <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Attribution →</a>
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
         </div>
     </div>
 </section>
-
-<section class="scholars-section" id="phoenician-inscriptions">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">14</span>
-        <h2 class="scholars-section-title">Phoenician Inscriptions</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Phoenician Inscriptions →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="biblical-references">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">15</span>
-        <h2 class="scholars-section-title">Biblical References</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Biblical References →</a>
-        </div>
-    </div>
-</section>
-
-<section class="scholars-section" id="classical-sources">
-    <div class="scholars-section-header">
-        <span class="scholars-section-number">16</span>
-        <h2 class="scholars-section-title">Classical Sources</h2>
-        <span class="scholars-section-status empty">Awaiting Contribution</span>
-    </div>
-    <div class="scholars-section-body">
-        
-        <div class="scholars-empty-state">
-            <p>This section is blank and ready for scholarly contribution. Verified universities and students may propose content through the PUNYCODEX Scholarly Edition workflow.</p>
-            <a href="#" class="contribute-cta" data-scholars-contribute>Contribute to Classical Sources →</a>
-        </div>
-    </div>
-</section>
-
-        <!-- Attribution -->
-        <section class="scholars-section" id="attribution">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">17</span>
-                <h2 class="scholars-section-title">Attribution</h2>
-                <span class="scholars-section-status empty">Awaiting Contributors</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>No university contributions have been published yet. Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
-                    <a href="#" class="contribute-cta" data-scholars-contribute>Learn how to contribute →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Edit History -->
-        <section class="scholars-section scholars-edit-history" id="edit-history">
-            <div class="scholars-section-header">
-                <span class="scholars-section-number">18</span>
-                <h2 class="scholars-section-title">Edit History</h2>
-                <span class="scholars-section-status empty">No Revisions</span>
-            </div>
-            <div class="scholars-section-body">
-                <div class="scholars-empty-state">
-                    <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
-                </div>
-            </div>
-        </section>
     </main>
 
 
@@ -581,6 +575,141 @@
     <script src="/js/px-core.js?v=perf8"></script>
     <script src="/js/temple-base.js?v=perf5"></script>
     <script src="../script.js?v=perf4"></script>
+    <script>/**
+ * PÚNYCODEX — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/sites/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
     <script>
     (function() {
         const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'mot';
@@ -614,14 +743,6 @@
 
         function escapeHtml(str) {
             return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-        }
-
-        function renderMarkdown(text) {
-            // Minimal scholarly markup: paragraphs and citations.
-            return escapeHtml(text)
-                .split(/\n\n+/)
-                .map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-                .join('');
         }
 
         function getLoginUrl() {
@@ -715,6 +836,7 @@
             if (!ok || !data?.data) return;
             const temple = data.data;
             const sections = temple.sections || [];
+            const contributors = new Map();
 
             for (const section of sections) {
                 const el = document.getElementById(section.key);
@@ -726,18 +848,19 @@
                     statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
                 }
                 if (section.status === 'published' && section.body) {
-                    bodyEl.innerHTML = renderMarkdown(section.body);
-                    if (section.sources && section.sources.length > 0) {
-                        const sourcesHtml = section.sources.map((s) => `<li>${escapeHtml(typeof s === 'string' ? s : s.citation || JSON.stringify(s))}</li>`).join('');
-                        bodyEl.innerHTML += `<div class="scholars-sources"><h4>Sources</h4><ol>${sourcesHtml}</ol></div>`;
-                    }
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
                     const history = await loadSectionHistory(section.id);
                     if (history.length > 0) {
                         const latest = history[0];
                         const attr = latest.attribution || {};
-                        const credit = attr.userId ? `Contributed by ${escapeHtml(latest.display_name || latest.email || 'a scholar')} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
                         bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
                         addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
                     }
                 }
                 if (canProposeEdit()) {
@@ -749,6 +872,8 @@
                     if (header) header.appendChild(editBtn);
                 }
             }
+
+            renderAttribution(contributors);
 
             document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -793,6 +918,48 @@
                 item.className = 'scholars-history-item';
                 item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
                 list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
             }
         }
 
