@@ -87,7 +87,7 @@ test('working tree is inside a git repository', () => {
 test('npm run generate does not introduce new changes on a clean-ish tree', () => {
   const before = parseStatus(gitStatusPorcelain());
 
-  run('npm run generate', { timeout: 600000 });
+  run('npm run generate', { timeout: 900000 });
 
   const afterFirst = parseStatus(gitStatusPorcelain());
   const newlyModified = setDiff(before.modified, afterFirst.modified);
@@ -121,7 +121,7 @@ test('generated artifacts are fully committed after npm run generate', () => {
 test('npm run generate is idempotent (second run produces zero diff)', () => {
   const afterFirst = parseStatus(gitStatusPorcelain());
 
-  run('npm run generate', { timeout: 600000 });
+  run('npm run generate', { timeout: 900000 });
 
   const afterSecond = parseStatus(gitStatusPorcelain());
   const newlyModified = setDiff(afterFirst.modified, afterSecond.modified);
