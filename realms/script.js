@@ -62,19 +62,21 @@
 
     /* ── Mobile Nav Toggle ────────────────────────────────────────────────── */
     const navToggle = document.getElementById('nav-toggle');
-    const navLinks = document.querySelector('.nav-links');
+    const mobileMenu = document.getElementById('mobile-menu');
 
-    if (navToggle && navLinks) {
+    if (navToggle && mobileMenu) {
         navToggle.addEventListener('click', () => {
-            navToggle.classList.toggle('active');
-            navLinks.classList.toggle('active');
-            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+            const active = navToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active', active);
+            document.body.classList.toggle('menu-open', active);
+            document.body.style.overflow = active ? 'hidden' : '';
         });
 
-        navLinks.querySelectorAll('.nav-link').forEach(link => {
+        mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 navToggle.classList.remove('active');
-                navLinks.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.classList.remove('menu-open');
                 document.body.style.overflow = '';
             });
         });

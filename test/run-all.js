@@ -151,6 +151,10 @@ const SUITES = [
     cmd: 'node test/base-temple-mobile-nav.test.js',
   },
   {
+    name: 'Mobile Menu Consistency Tests',
+    cmd: 'node --test test/mobile-menu-consistency.test.js',
+  },
+  {
     name: 'Provenance Mobile Regression',
     cmd: 'node test/provenance-mobile-regression.test.js',
   },

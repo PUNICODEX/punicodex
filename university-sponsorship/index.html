@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
-<link rel="stylesheet" href="/css/university-collaborators.css">
-<script src="/js/university-collaborators.js" defer></script>
-<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
-
-
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>University Sponsorship — PUNYCODEX</title>
@@ -48,7 +41,7 @@
     }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    .container { max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    .container { max-width: 860px; margin: 0 auto; padding: calc(var(--nav-height, 72px) + 1.5rem) 1.5rem 4rem; }
     .header {
       text-align: center;
       padding: 3.5rem 0 2.5rem;
@@ -185,7 +178,7 @@
     }
 
     @media (max-width: 600px) {
-      .container { padding: 1rem; }
+      .container { padding: calc(var(--nav-height, 72px) + 0.5rem) 1rem 3rem; }
       .benefit-grid { grid-template-columns: 1fr; }
       .section { padding: 1.5rem; }
     }
@@ -199,15 +192,58 @@
       <a href="/" class="nav-wordmark">P<span class="accent">U</span>NYCODEX</a>
       <div class="nav-links">
         <a href="/pantheon/" class="nav-link">Pantheon</a>
+        <a href="/realms/" class="nav-link">Realms</a>
         <a href="/lexicon/" class="nav-link">Lexicon</a>
+        <a href="/tiers/" class="nav-link">Tier System</a>
         <a href="/type/" class="nav-link">Type</a>
         <a href="/search.html" class="nav-link">Search</a>
         <a href="/codex/" class="nav-link">Codex</a>
         <a href="/api/v1/docs/" class="nav-link">API</a>
+        <a href="/store/" class="nav-link">Store</a>
         <a href="/about/" class="nav-link">About</a>
+        <a href="/contact/" class="nav-link">Contact</a>
       </div>
+      <a href="/pantheon/" class="nav-cta"><span>Enter</span></a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="mobile-menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-section">
+            <span class="mobile-menu-title">Explore</span>
+            <div class="mobile-menu-group">
+                <a href="/pantheon/">Pantheon</a>
+                <a href="/realms/">Realms</a>
+                <a href="/lexicon/">Lexicon</a>
+                <a href="/connections/">Connections</a>
+            </div>
+        </div>
+        <div class="mobile-menu-section">
+            <span class="mobile-menu-title">Tools</span>
+            <div class="mobile-menu-group">
+                <a href="/type/">Type</a>
+                <a href="/search.html">Search</a>
+                <a href="/tiers/">Tier System</a>
+                <a href="/oracle.html">Oracle</a>
+            </div>
+        </div>
+        <div class="mobile-menu-section">
+            <span class="mobile-menu-title">Resources</span>
+            <div class="mobile-menu-group">
+                <a href="/codex/">Codex</a>
+                <a href="/api/v1/docs/">API</a>
+                <a href="/appraise/">Appraise</a>
+                <a href="/store/">Store</a>
+            </div>
+        </div>
+        <div class="mobile-menu-section">
+            <span class="mobile-menu-title">About</span>
+            <div class="mobile-menu-group">
+                <a href="/about/">About</a>
+                <a href="/contact/">Contact</a>
+            </div>
+        </div>
+    </div>
 
   <div class="container">
     <header class="header">
@@ -273,15 +309,46 @@
   
 
 
-<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
-<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
-<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
 <footer class="site-footer">
-    <div class="footer-inner">
-      <p class="footer-meta">© PÚNYCODEX. Empowering the next generation of Unicode restoration.</p>
-      <p class="footer-links"><a href="/terms/">Terms</a> · <a href="/terms/data-use/">Data Use</a> · <a href="/privacy/">Privacy</a></p>
+    <div class="container footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="footer-wordmark">P<span class="accent">U</span>NYCODEX</a>
+          <p class="footer-tagline">Restoring the original names of the gods to the digital realm.</p>
+        </div>
+        <div class="footer-column">
+          <h4 class="footer-heading">Explore</h4>
+          <a href="/pantheon/">Pantheon</a>
+          <a href="/realms/">Realms</a>
+          <a href="/lexicon/">Lexicon</a>
+          <a href="/tiers/">Tier System</a>
+          <a href="/type/">Type</a>
+          <a href="/search.html">Search</a>
+        </div>
+        <div class="footer-column">
+          <h4 class="footer-heading">Resources</h4>
+          <a href="/codex/">Codex</a>
+          <a href="/api/v1/docs/">API</a>
+          <a href="/appraise/">Appraise</a>
+          <a href="/authenticity/">Authenticity</a>
+          <a href="/oracle.html">Oracle</a>
+        </div>
+        <div class="footer-column">
+          <h4 class="footer-heading">Connect</h4>
+          <a href="/about/">About</a>
+          <a href="/contact/">Contact</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/terms/">Terms</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 PÚNYCODEX. All rites reserved.</p>
+      </div>
     </div>
   </footer>
+
+  <script src="/js/px-core.js?v=perf8"></script>
+  <script src="/js/main.js?v=perf8" defer></script>
 
 </body>
 </html>

@@ -1,0 +1,145 @@
+/**
+ * PÚNYCODEX — Mobile menu consistency tests
+ *
+ * Every non-temple navigation page must expose the same canonical,
+ * sectioned enterprise mobile menu (Explore / Tools / Resources / About),
+ * with a working toggle wired either through js/px-core.js or a local
+ * page script that references the menu. Guards the unification shipped
+ * with scripts/sync-mobile-menu.js.
+ */
+
+'use strict';
+
+const assert = require('node:assert');
+const test = require('node:test');
+const fs = require('node:fs');
+const path = require('node:path');
+
+const ROOT = path.resolve(__dirname, '..');
+const {
+  CANONICAL_MENU,
+  MENU_OPEN,
+  TARGETS,
+  findBalancedDivEnd,
+  menuForPage,
+} = require('../scripts/sync-mobile-menu.js');
+
+const CANONICAL_LINKS = [
+  '/pantheon/',
+  '/realms/',
+  '/lexicon/',
+  '/connections/',
+  '/type/',
+  '/search.html',
+  '/tiers/',
+  '/oracle.html',
+  '/codex/',
+  '/api/v1/docs/',
+  '/appraise/',
+  '/store/',
+  '/about/',
+  '/contact/',
+];
+
+function readPage(rel) {
+  return fs.readFileSync(path.join(ROOT, rel), 'utf8');
+}
+
+test('canonical menu covers all 14 navigation links', () => {
+  for (const href of CANONICAL_LINKS) {
+    assert.ok(CANONICAL_MENU.includes(`href="${href}"`), `menu links to ${href}`);
+  }
+  assert.strictEqual((CANONICAL_MENU.match(/mobile-menu-section/g) || []).length, 4);
+});
+
+test('every navigation page carries the exact canonical mobile menu', () => {
+  assert.ok(TARGETS.length >= 15, 'target list covers the navigation pages');
+  for (const target of TARGETS) {
+    const rel = target.page;
+    const html = readPage(rel);
+    const startIdx = html.indexOf(MENU_OPEN);
+    assert.ok(startIdx !== -1, `${rel} has a .mobile-menu`);
+    const endIdx = findBalancedDivEnd(html, startIdx);
+    assert.ok(endIdx !== -1, `${rel} menu div is balanced`);
+    assert.strictEqual(
+      html.slice(startIdx, endIdx),
+      menuForPage(target.active),
+      `${rel} menu is canonical (active: ${target.active || 'none'})`
+    );
+  }
+});
+
+test('every navigation page has a toggle wired to the menu', () => {
+  for (const target of TARGETS) {
+    const rel = target.page;
+    const html = readPage(rel);
+    assert.ok(html.includes('nav-toggle'), `${rel} has a nav-toggle button`);
+    const usesPxCore = html.includes('/js/px-core.js');
+    const localWiring =
+      /mobile-menu/.test(html) && /<script[^>]+src="[^"]*(script|main|oracle)\.js/.test(html);
+    assert.ok(usesPxCore || localWiring, `${rel} wires the toggle (px-core or local script)`);
+  }
+});
+
+test('pages whose own link is in the menu carry the active marker', () => {
+  for (const target of TARGETS) {
+    if (!target.active) continue;
+    const html = readPage(target.page);
+    assert.ok(
+      html.includes(`<a href="${target.active}" class="active">`),
+      `${target.page} marks ${target.active} active in its menu`
+    );
+  }
+});
+
+test('university-sponsorship page is free of the collaborators strip', () => {
+  const html = readPage(path.join('university-sponsorship', 'index.html'));
+  assert.ok(
+    !html.includes('PUNYCODEX-UNIVERSITY-COLLABORATORS'),
+    'no strip markers on the sponsorship page'
+  );
+  assert.ok(!html.includes('university-collaborators-strip'), 'no strip container');
+  assert.ok(html.includes('footer-grid'), 'standard enterprise footer');
+  assert.ok(html.includes('nav-toggle'), 'hamburger present');
+  assert.ok(html.includes('/js/px-core.js'), 'px-core wired');
+});
+
+test('collaborators injector excludes the sponsorship page', () => {
+  const injector = readPage(path.join('scripts', 'inject-university-collaborators.js'));
+  assert.ok(injector.includes('EXCLUDED_PAGES'), 'injector has an exclusion list');
+  assert.ok(
+    injector.includes("path.join('university-sponsorship', 'index.html')") &&
+      injector.includes('EXCLUDED_PAGES'),
+    'sponsorship page is excluded'
+  );
+});
+
+test('creatives strip mirrors the flagship temple strip links', () => {
+  const html = readPage(path.join('creatives', 'index.html'));
+  const templeStripLinks = [
+    '/pantheon/',
+    '/lexicon/',
+    '/connections/',
+    '/type/',
+    '/search.html',
+    '/tiers/',
+    '/oracle.html',
+    '/about/',
+  ];
+  const linksMatch = html.match(/<div class="global-links"[^>]*>([\s\S]*?)<\/div>/);
+  assert.ok(linksMatch, 'creatives has a global-links strip');
+  for (const href of templeStripLinks) {
+    assert.ok(linksMatch[1].includes(`href="${href}"`), `creatives strip links to ${href}`);
+  }
+});
+
+test('realms local script toggles the mobile menu, not the hidden nav-links', () => {
+  const script = readPage(path.join('realms', 'script.js'));
+  assert.ok(script.includes('mobile-menu'), 'realms script references mobile-menu');
+  assert.ok(
+    !/navLinks\.classList\.toggle\('active'\)/.test(script),
+    'realms no longer toggles the display:none nav-links'
+  );
+});
+
+console.log('Mobile menu consistency test module loaded.');

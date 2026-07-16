@@ -94,9 +94,7 @@ function injectIntoFile(filePath, headSnippet, bodySnippet) {
 
   // Remove any previously injected snippets.
   let cleaned = removeMarkedBlock(html, HEAD_MARKER_START, HEAD_MARKER_END);
-  cleaned = removeMarkedBlock(cleaned, BODY_MARKER_START, BODY_MARKER_END);
-
-  // Inject head resources after <head>.
+  cleaned = removeMarkedBlock(cleaned, BODY_MARKER_START, BODY_MARKER_END);  // Inject head resources after <head>.
   const headMatch = cleaned.match(/<head[^>]*>/i);
   if (!headMatch) return false;
   const headInsertPos = headMatch.index + headMatch[0].length;
@@ -120,10 +118,33 @@ function injectIntoFile(filePath, headSnippet, bodySnippet) {
   return true;
 }
 
+// Pages that must NEVER carry the strip (e.g. the sponsorship landing page,
+// whose empty slots would link back to itself). Any marked blocks found in
+// these files are stripped instead of injected.
+const EXCLUDED_PAGES = new Set([path.join('university-sponsorship', 'index.html')]);
+
+function stripFromFile(filePath) {
+  const html = withRetry(() => fs.readFileSync(filePath, 'utf8'));
+  let cleaned = removeMarkedBlock(html, HEAD_MARKER_START, HEAD_MARKER_END);
+  cleaned = removeMarkedBlock(cleaned, BODY_MARKER_START, BODY_MARKER_END);
+  if (cleaned !== html) {
+    withRetry(() => fs.writeFileSync(filePath, cleaned, 'utf8'));
+    return true;
+  }
+  return false;
+}
+
 function main() {
   const headSnippet = buildHeadSnippet();
   const bodySnippet = buildBodySnippet();
   const targets = [];
+
+  for (const rel of EXCLUDED_PAGES) {
+    const full = path.join(ROOT, rel);
+    if (fs.existsSync(full) && stripFromFile(full)) {
+      console.log(`Stripped Academic Collaborators strip from excluded page: ${rel}`);
+    }
+  }
 
   walk(path.join(ROOT, 'sites'), (p) => targets.push(p));
   walk(path.join(ROOT, 'platform', 'public'), (p) => targets.push(p));
@@ -158,7 +179,6 @@ function main() {
     path.join('tiers', 'index.html'),
     path.join('type', 'index.html'),
     path.join('type', 'test.html'),
-    path.join('university-sponsorship', 'index.html'),
   ];
 
   for (const p of rootPages) {
