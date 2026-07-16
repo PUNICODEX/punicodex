@@ -4,9 +4,9 @@
  * lexicon entry id, e.g. /api/v1/cards/zeus
  */
 
-const { createApiHandler } = require('../../../platform/api/api-handler.js');
-const { success, error } = require('../../../platform/api/api-response.js');
-const cardsService = require('../../../platform/api/cards-service.js');
+const { createApiHandler } = require('../../../../platform/api/api-handler.js');
+const { success, error } = require('../../../../platform/api/api-response.js');
+const cardsService = require('../../../../platform/api/cards-service.js');
 
 module.exports = createApiHandler(async (req, res) => {
   if (req.method !== 'GET') {
@@ -14,7 +14,9 @@ module.exports = createApiHandler(async (req, res) => {
     return;
   }
 
-  const entryId = (req.query && req.query.id) || (req.params && req.params.id);
+  const fromQuery = (req.query && req.query.id) || (req.params && req.params.id);
+  const pathname = (req.url || '').split('?')[0].replace(/\/+$/, '');
+  const entryId = fromQuery || pathname.split('/').pop();
   if (!entryId || typeof entryId !== 'string') {
     error(res, 'VALIDATION_ERROR', 'A card entry id is required.', { status: 400 });
     return;

@@ -18,7 +18,7 @@ resetLimiters();
 
 const cardsService = require('../platform/api/cards-service.js');
 const listHandler = require('../api/v1/cards/index.js');
-const detailHandler = require('../api/v1/cards/[id].js');
+const detailHandler = require('../api/v1/cards/[id]/index.js');
 
 const ARCHETYPES_MODULE = require(path.join(__dirname, '..', 'js', 'archetypes-v2.js'));
 const ARCHETYPES = Array.isArray(ARCHETYPES_MODULE)

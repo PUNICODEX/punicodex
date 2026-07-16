@@ -107,7 +107,7 @@ async function runTests() {
   const nameBreakdown = require('../api/v1/names/[id]/breakdown.js');
   const nameOriginalScript = require('../api/v1/names/[id]/original-script.js');
   const pantheons = require('../api/v1/pantheons/index.js');
-  const pantheon = require('../api/v1/pantheons/[name].js');
+  const pantheon = require('../api/v1/pantheons/[name]/index.js');
   const tiers = require('../api/v1/tiers/index.js');
   const autocomplete = require('../api/v1/autocomplete/index.js');
   const convert = require('../api/v1/convert/index.js');
