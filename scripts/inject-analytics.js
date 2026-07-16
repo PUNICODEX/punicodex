@@ -111,11 +111,16 @@ function busyWait(ms) {
 function injectIntoFile(filePath) {
   let html = withRetry(() => fs.readFileSync(filePath, 'utf8'));
 
-  // Remove any previously injected snippet.
+  // Remove any previously injected snippet, plus adjacent newlines so blank
+  // lines do not accumulate across repeated runs.
   const startIdx = html.indexOf(MARKER_START);
   const endIdx = html.indexOf(MARKER_END);
   if (startIdx !== -1 && endIdx !== -1) {
-    html = html.slice(0, startIdx) + html.slice(endIdx + MARKER_END.length);
+    let removeStart = startIdx;
+    while (removeStart > 0 && html[removeStart - 1] === '\n') removeStart--;
+    let removeEnd = endIdx + MARKER_END.length;
+    while (removeEnd < html.length && html[removeEnd] === '\n') removeEnd++;
+    html = html.slice(0, removeStart) + '\n' + html.slice(removeEnd);
   }
 
   // Inject immediately after <head>.

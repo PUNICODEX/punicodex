@@ -59,7 +59,11 @@ function removeMarkedBlock(html, startMarker, endMarker) {
   const startIdx = html.indexOf(startMarker);
   const endIdx = html.indexOf(endMarker);
   if (startIdx !== -1 && endIdx !== -1) {
-    return html.slice(0, startIdx) + html.slice(endIdx + endMarker.length);
+    let removeStart = startIdx;
+    while (removeStart > 0 && html[removeStart - 1] === '\n') removeStart--;
+    let removeEnd = endIdx + endMarker.length;
+    while (removeEnd < html.length && html[removeEnd] === '\n') removeEnd++;
+    return html.slice(0, removeStart) + '\n' + html.slice(removeEnd);
   }
   return html;
 }
