@@ -20,320 +20,31 @@
     }
   ],
   "paths": {
-    "/names": {
-      "get": {
-        "summary": "List and search Unicode names",
-        "operationId": "listNames",
-        "parameters": [
-          { "$ref": "#/components/parameters/QueryQ" },
-          { "$ref": "#/components/parameters/QueryPantheon" },
-          { "$ref": "#/components/parameters/QueryTier" },
-          { "$ref": "#/components/parameters/QueryHasSite" },
-          { "$ref": "#/components/parameters/QuerySort" },
-          { "$ref": "#/components/parameters/QueryLimit" },
-          { "$ref": "#/components/parameters/QueryOffset" }
-        ],
-        "responses": {
-          "200": { "$ref": "#/components/responses/NameListResponse" },
-          "400": { "$ref": "#/components/responses/ValidationError" },
-          "429": { "$ref": "#/components/responses/RateLimitError" }
-        }
-      }
-    },
-    "/names/batch": {
-      "post": {
-        "summary": "Batch look up names by ID",
-        "operationId": "getNamesBatch",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "ids": { "type": "array", "items": { "type": "string" }, "maxItems": 100 }
-                },
-                "required": ["ids"]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": { "$ref": "#/components/responses/NameBatchResponse" },
-          "400": { "$ref": "#/components/responses/ValidationError" },
-          "429": { "$ref": "#/components/responses/RateLimitError" }
-        }
-      }
-    },
-    "/names/{id}": {
-      "get": {
-        "summary": "Get a single Unicode name record",
-        "operationId": "getName",
-        "parameters": [{ "$ref": "#/components/parameters/PathId" }],
-        "responses": {
-          "200": { "$ref": "#/components/responses/NameDetailResponse" },
-          "404": { "$ref": "#/components/responses/NotFound" }
-        }
-      }
-    },
-    "/names/{id}/variants": {
-      "get": {
-        "summary": "Get variant Unicode forms",
-        "operationId": "getVariants",
-        "parameters": [{ "$ref": "#/components/parameters/PathId" }],
-        "responses": {
-          "200": { "$ref": "#/components/responses/VariantsResponse" },
-          "404": { "$ref": "#/components/responses/NotFound" }
-        }
-      }
-    },
-    "/names/{id}/breakdown": {
-      "get": {
-        "summary": "Get character-by-character ASCII → Unicode breakdown",
-        "operationId": "getBreakdown",
-        "parameters": [{ "$ref": "#/components/parameters/PathId" }],
-        "responses": {
-          "200": { "$ref": "#/components/responses/BreakdownResponse" },
-          "404": { "$ref": "#/components/responses/NotFound" }
-        }
-      }
-    },
-    "/names/{id}/original-script": {
-      "get": {
-        "summary": "Get original script and provenance",
-        "operationId": "getOriginalScript",
-        "parameters": [{ "$ref": "#/components/parameters/PathId" }],
-        "responses": {
-          "200": { "$ref": "#/components/responses/OriginalScriptResponse" },
-          "404": { "$ref": "#/components/responses/NotFound" }
-        }
-      }
-    },
-    "/names/{id}/etymology": {
-      "get": {
-        "summary": "Get etymology data",
-        "operationId": "getEtymology",
-        "parameters": [{ "$ref": "#/components/parameters/PathId" }],
-        "responses": {
-          "200": { "$ref": "#/components/responses/EtymologyResponse" },
-          "404": { "$ref": "#/components/responses/NotFound" }
-        }
-      }
-    },
-    "/names/{id}/availability": {
-      "get": {
-        "summary": "Get domain availability and registrar links",
-        "operationId": "getAvailability",
-        "parameters": [{ "$ref": "#/components/parameters/PathId" }],
-        "responses": {
-          "200": { "$ref": "#/components/responses/AvailabilityResponse" },
-          "404": { "$ref": "#/components/responses/NotFound" }
-        }
-      }
-    },
-    "/names/{id}/site": {
-      "get": {
-        "summary": "Get live indexed site metadata",
-        "operationId": "getSite",
-        "parameters": [{ "$ref": "#/components/parameters/PathId" }],
-        "responses": {
-          "200": { "$ref": "#/components/responses/SiteResponse" },
-          "404": { "$ref": "#/components/responses/NotFound" }
-        }
-      }
-    },
-    "/names/{id}/slots": {
-      "get": {
-        "summary": "Get ad-slot inventory and pricing",
-        "operationId": "getSlots",
-        "parameters": [{ "$ref": "#/components/parameters/PathId" }],
-        "responses": {
-          "200": { "$ref": "#/components/responses/SlotsResponse" },
-          "404": { "$ref": "#/components/responses/NotFound" }
-        }
-      }
-    },
-    "/names/{id}/lore": {
-      "get": {
-        "summary": "Get flagship narrative lore",
-        "operationId": "getLore",
-        "parameters": [{ "$ref": "#/components/parameters/PathId" }],
-        "responses": {
-          "200": { "$ref": "#/components/responses/LoreResponse" },
-          "404": { "$ref": "#/components/responses/NotFound" }
-        }
-      }
-    },
-    "/names/{id}/pronunciation": {
-      "get": {
-        "summary": "Get pronunciation guide",
-        "operationId": "getPronunciation",
-        "parameters": [{ "$ref": "#/components/parameters/PathId" }],
-        "responses": {
-          "200": { "$ref": "#/components/responses/PronunciationResponse" },
-          "404": { "$ref": "#/components/responses/NotFound" }
-        }
-      }
-    },
-    "/names/{id}/mythology": {
-      "get": {
-        "summary": "Get mythology section",
-        "operationId": "getMythology",
-        "parameters": [{ "$ref": "#/components/parameters/PathId" }],
-        "responses": {
-          "200": { "$ref": "#/components/responses/MythologyResponse" },
-          "404": { "$ref": "#/components/responses/NotFound" }
-        }
-      }
-    },
-    "/names/{id}/archaeology": {
-      "get": {
-        "summary": "Get archaeology section",
-        "operationId": "getArchaeology",
-        "parameters": [{ "$ref": "#/components/parameters/PathId" }],
-        "responses": {
-          "200": { "$ref": "#/components/responses/ArchaeologyResponse" },
-          "404": { "$ref": "#/components/responses/NotFound" }
-        }
-      }
-    },
-    "/names/{id}/patterns": {
-      "get": {
-        "summary": "Get industry-pattern profile for an entry",
-        "operationId": "getNamePatterns",
-        "parameters": [{ "$ref": "#/components/parameters/PathId" }],
-        "responses": {
-          "200": { "$ref": "#/components/responses/IndustryPatternProfileResponse" },
-          "404": { "$ref": "#/components/responses/NotFound" },
-          "429": { "$ref": "#/components/responses/RateLimitError" }
-        }
-      }
-    },
-    "/similarities": {
-      "get": {
-        "summary": "Get full cross-cultural similarity graph",
-        "operationId": "getSimilarityGraph",
-        "responses": {
-          "200": { "$ref": "#/components/responses/SimilarityGraphResponse" },
-          "404": { "$ref": "#/components/responses/NotFound" },
-          "429": { "$ref": "#/components/responses/RateLimitError" }
-        }
-      }
-    },
-    "/industry-patterns": {
-      "get": {
-        "summary": "Get full industry-pattern map",
-        "operationId": "getIndustryPatterns",
-        "responses": {
-          "200": { "$ref": "#/components/responses/IndustryPatternsResponse" },
-          "404": { "$ref": "#/components/responses/NotFound" },
-          "429": { "$ref": "#/components/responses/RateLimitError" }
-        }
-      }
-    },
-    "/industry-patterns/industries": {
-      "get": {
-        "summary": "List industries with member counts",
-        "operationId": "listIndustries",
-        "responses": {
-          "200": { "$ref": "#/components/responses/IndustryDirectoryResponse" },
-          "404": { "$ref": "#/components/responses/NotFound" },
-          "429": { "$ref": "#/components/responses/RateLimitError" }
-        }
-      }
-    },
-    "/pantheons": {
-      "get": {
-        "summary": "List pantheons",
-        "operationId": "listPantheons",
-        "responses": {
-          "200": { "$ref": "#/components/responses/PantheonsResponse" }
-        }
-      }
-    },
-    "/pantheons/{name}": {
-      "get": {
-        "summary": "Get entries in a pantheon",
-        "operationId": "getPantheon",
-        "parameters": [{ "$ref": "#/components/parameters/PathName" }],
-        "responses": {
-          "200": { "$ref": "#/components/responses/PantheonDetailResponse" },
-          "404": { "$ref": "#/components/responses/NotFound" }
-        }
-      }
-    },
-    "/tiers": {
-      "get": {
-        "summary": "Get tier system documentation",
-        "operationId": "listTiers",
-        "responses": {
-          "200": { "$ref": "#/components/responses/TiersResponse" }
-        }
-      }
-    },
-    "/autocomplete": {
-      "get": {
-        "summary": "Autocomplete names by prefix",
-        "operationId": "autocompleteNames",
-        "parameters": [
-          { "name": "q", "in": "query", "required": true, "schema": { "type": "string" } },
-          { "name": "limit", "in": "query", "schema": { "type": "integer", "default": 8 } },
-          { "$ref": "#/components/parameters/QueryPantheon" }
-        ],
-        "responses": {
-          "200": { "$ref": "#/components/responses/AutocompleteResponse" },
-          "400": { "$ref": "#/components/responses/ValidationError" }
-        }
-      }
-    },
-    "/convert": {
-      "get": {
-        "summary": "Convert ASCII/Unicode to punycode and lexicon match",
-        "operationId": "convertName",
-        "parameters": [
-          { "name": "q", "in": "query", "required": true, "schema": { "type": "string" } }
-        ],
-        "responses": {
-          "200": { "$ref": "#/components/responses/ConvertResponse" },
-          "400": { "$ref": "#/components/responses/ValidationError" }
-        }
-      }
-    },
-    "/convert/batch": {
-      "post": {
-        "summary": "Batch convert names",
-        "operationId": "convertBatch",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "queries": { "type": "array", "items": { "type": "string" }, "maxItems": 100 }
-                },
-                "required": ["queries"]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": { "$ref": "#/components/responses/BatchConvertResponse" },
-          "400": { "$ref": "#/components/responses/ValidationError" }
-        }
-      }
-    },
     "/appraise": {
       "get": {
         "summary": "Appraise a Unicode domain name",
         "operationId": "appraiseDomain",
         "parameters": [
-          { "name": "q", "in": "query", "required": true, "description": "Domain name to appraise.", "schema": { "type": "string" } }
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "description": "Domain name to appraise.",
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "responses": {
-          "200": { "$ref": "#/components/responses/AppraisalResponse" },
-          "400": { "$ref": "#/components/responses/ValidationError" },
-          "429": { "$ref": "#/components/responses/RateLimitError" }
+          "200": {
+            "$ref": "#/components/responses/AppraisalResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          }
         }
       }
     },
@@ -348,16 +59,28 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "domains": { "type": "array", "items": { "type": "string" }, "maxItems": 100 }
+                  "domains": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "maxItems": 100
+                  }
                 },
-                "required": ["domains"]
+                "required": [
+                  "domains"
+                ]
               }
             }
           }
         },
         "responses": {
-          "200": { "$ref": "#/components/responses/AppraisalBatchResponse" },
-          "400": { "$ref": "#/components/responses/ValidationError" }
+          "200": {
+            "$ref": "#/components/responses/AppraisalBatchResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationError"
+          }
         }
       }
     },
@@ -371,20 +94,31 @@
             "in": "query",
             "required": true,
             "description": "The name, domain, or URL to classify.",
-            "schema": { "type": "string" }
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "name": "type",
             "in": "query",
             "required": false,
             "description": "Classification mode: auto, term, domain, or url.",
-            "schema": { "type": "string", "default": "auto" }
+            "schema": {
+              "type": "string",
+              "default": "auto"
+            }
           }
         ],
         "responses": {
-          "200": { "$ref": "#/components/responses/AuthenticityCheckResponse" },
-          "400": { "$ref": "#/components/responses/ValidationError" },
-          "429": { "$ref": "#/components/responses/RateLimitError" }
+          "200": {
+            "$ref": "#/components/responses/AuthenticityCheckResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          }
         }
       }
     },
@@ -399,17 +133,32 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "inputs": { "type": "array", "items": { "type": "string" }, "maxItems": 100 },
-                  "type": { "type": "string", "default": "auto" }
+                  "inputs": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "maxItems": 100
+                  },
+                  "type": {
+                    "type": "string",
+                    "default": "auto"
+                  }
                 },
-                "required": ["inputs"]
+                "required": [
+                  "inputs"
+                ]
               }
             }
           }
         },
         "responses": {
-          "200": { "$ref": "#/components/responses/AuthenticityBatchCheckResponse" },
-          "400": { "$ref": "#/components/responses/ValidationError" }
+          "200": {
+            "$ref": "#/components/responses/AuthenticityBatchCheckResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationError"
+          }
         }
       }
     },
@@ -424,19 +173,628 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "input": { "type": "string" },
-                  "type": { "type": "string", "default": "auto" },
-                  "comment": { "type": "string" },
-                  "reporterToken": { "type": "string" }
+                  "input": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string",
+                    "default": "auto"
+                  },
+                  "comment": {
+                    "type": "string"
+                  },
+                  "reporterToken": {
+                    "type": "string"
+                  }
                 },
-                "required": ["input"]
+                "required": [
+                  "input"
+                ]
               }
             }
           }
         },
         "responses": {
-          "200": { "$ref": "#/components/responses/AuthenticityReportResponse" },
-          "400": { "$ref": "#/components/responses/ValidationError" }
+          "200": {
+            "$ref": "#/components/responses/AuthenticityReportResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      }
+    },
+    "/autocomplete": {
+      "get": {
+        "summary": "Autocomplete names by prefix",
+        "operationId": "autocompleteNames",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 8
+            }
+          },
+          {
+            "$ref": "#/components/parameters/QueryPantheon"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/AutocompleteResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      }
+    },
+    "/cards": {
+      "get": {
+        "summary": "List and search the generated card set",
+        "description": "Returns cards derived from the canonical lexicon by the generation flywheel. Every flagship entry has a legendary card; original-script foils are mythic.",
+        "operationId": "listCards",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/QueryQ"
+          },
+          {
+            "$ref": "#/components/parameters/QueryPantheon"
+          },
+          {
+            "$ref": "#/components/parameters/QueryRarity"
+          },
+          {
+            "$ref": "#/components/parameters/QueryVariant"
+          },
+          {
+            "$ref": "#/components/parameters/QueryFlagship"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "name",
+                "rarity",
+                "cost",
+                "power",
+                "pantheon"
+              ],
+              "default": "rarity"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/QueryLimit"
+          },
+          {
+            "$ref": "#/components/parameters/QueryOffset"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CardListResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          }
+        }
+      }
+    },
+    "/cards/{id}": {
+      "get": {
+        "summary": "Get every card variant for a lexicon entry",
+        "operationId": "getCard",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PathId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CardDetailResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          }
+        }
+      }
+    },
+    "/convert": {
+      "get": {
+        "summary": "Convert ASCII/Unicode to punycode and lexicon match",
+        "operationId": "convertName",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ConvertResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      }
+    },
+    "/convert/batch": {
+      "post": {
+        "summary": "Batch convert names",
+        "operationId": "convertBatch",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "queries": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "maxItems": 100
+                  }
+                },
+                "required": [
+                  "queries"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/BatchConvertResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationError"
+          }
+        }
+      }
+    },
+    "/industry-patterns": {
+      "get": {
+        "summary": "Get full industry-pattern map",
+        "operationId": "getIndustryPatterns",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/IndustryPatternsResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          }
+        }
+      }
+    },
+    "/industry-patterns/industries": {
+      "get": {
+        "summary": "List industries with member counts",
+        "operationId": "listIndustries",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/IndustryDirectoryResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          }
+        }
+      }
+    },
+    "/names": {
+      "get": {
+        "summary": "List and search Unicode names",
+        "operationId": "listNames",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/QueryQ"
+          },
+          {
+            "$ref": "#/components/parameters/QueryPantheon"
+          },
+          {
+            "$ref": "#/components/parameters/QueryTier"
+          },
+          {
+            "$ref": "#/components/parameters/QueryHasSite"
+          },
+          {
+            "$ref": "#/components/parameters/QuerySort"
+          },
+          {
+            "$ref": "#/components/parameters/QueryLimit"
+          },
+          {
+            "$ref": "#/components/parameters/QueryOffset"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/NameListResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          }
+        }
+      }
+    },
+    "/names/batch": {
+      "post": {
+        "summary": "Batch look up names by ID",
+        "operationId": "getNamesBatch",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "maxItems": 100
+                  }
+                },
+                "required": [
+                  "ids"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/NameBatchResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          }
+        }
+      }
+    },
+    "/names/{id}": {
+      "get": {
+        "summary": "Get a single Unicode name record",
+        "operationId": "getName",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PathId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/NameDetailResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/names/{id}/archaeology": {
+      "get": {
+        "summary": "Get archaeology section",
+        "operationId": "getArchaeology",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PathId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ArchaeologyResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/names/{id}/availability": {
+      "get": {
+        "summary": "Get domain availability and registrar links",
+        "operationId": "getAvailability",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PathId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/AvailabilityResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/names/{id}/breakdown": {
+      "get": {
+        "summary": "Get character-by-character ASCII → Unicode breakdown",
+        "operationId": "getBreakdown",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PathId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/BreakdownResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/names/{id}/etymology": {
+      "get": {
+        "summary": "Get etymology data",
+        "operationId": "getEtymology",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PathId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/EtymologyResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/names/{id}/lore": {
+      "get": {
+        "summary": "Get flagship narrative lore",
+        "operationId": "getLore",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PathId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/LoreResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/names/{id}/mythology": {
+      "get": {
+        "summary": "Get mythology section",
+        "operationId": "getMythology",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PathId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/MythologyResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/names/{id}/original-script": {
+      "get": {
+        "summary": "Get original script and provenance",
+        "operationId": "getOriginalScript",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PathId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/OriginalScriptResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/names/{id}/patterns": {
+      "get": {
+        "summary": "Get industry-pattern profile for an entry",
+        "operationId": "getNamePatterns",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PathId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/IndustryPatternProfileResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          }
+        }
+      }
+    },
+    "/names/{id}/pronunciation": {
+      "get": {
+        "summary": "Get pronunciation guide",
+        "operationId": "getPronunciation",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PathId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/PronunciationResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/names/{id}/site": {
+      "get": {
+        "summary": "Get live indexed site metadata",
+        "operationId": "getSite",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PathId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/SiteResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/names/{id}/slots": {
+      "get": {
+        "summary": "Get ad-slot inventory and pricing",
+        "operationId": "getSlots",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PathId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/SlotsResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/names/{id}/variants": {
+      "get": {
+        "summary": "Get variant Unicode forms",
+        "operationId": "getVariants",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PathId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/VariantsResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/pantheons": {
+      "get": {
+        "summary": "List pantheons",
+        "operationId": "listPantheons",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/PantheonsResponse"
+          }
+        }
+      }
+    },
+    "/pantheons/{name}": {
+      "get": {
+        "summary": "Get entries in a pantheon",
+        "operationId": "getPantheon",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PathName"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/PantheonDetailResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/similarities": {
+      "get": {
+        "summary": "Get full cross-cultural similarity graph",
+        "operationId": "getSimilarityGraph",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/SimilarityGraphResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitError"
+          }
+        }
+      }
+    },
+    "/tiers": {
+      "get": {
+        "summary": "Get tier system documentation",
+        "operationId": "listTiers",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/TiersResponse"
+          }
         }
       }
     },
@@ -445,7 +803,9 @@
         "summary": "Get current dataset version and counts",
         "operationId": "getVersion",
         "responses": {
-          "200": { "$ref": "#/components/responses/VersionResponse" }
+          "200": {
+            "$ref": "#/components/responses/VersionResponse"
+          }
         }
       }
     }
@@ -456,76 +816,183 @@
         "name": "id",
         "in": "path",
         "required": true,
-        "schema": { "type": "string", "example": "zeus" }
+        "schema": {
+          "type": "string",
+          "example": "zeus"
+        }
       },
       "PathName": {
         "name": "name",
         "in": "path",
         "required": true,
-        "schema": { "type": "string", "example": "greek" }
+        "schema": {
+          "type": "string",
+          "example": "greek"
+        }
       },
       "QueryQ": {
         "name": "q",
         "in": "query",
-        "schema": { "type": "string" },
+        "schema": {
+          "type": "string"
+        },
         "description": "Search query (ASCII, Unicode, or Greek)"
       },
       "QueryPantheon": {
         "name": "pantheon",
         "in": "query",
-        "schema": { "type": "string" },
+        "schema": {
+          "type": "string"
+        },
         "description": "Filter by pantheon"
       },
       "QueryTier": {
         "name": "tier",
         "in": "query",
-        "schema": { "type": "string", "enum": ["dual", "1", "2"] },
+        "schema": {
+          "type": "string",
+          "enum": [
+            "dual",
+            "1",
+            "2"
+          ]
+        },
         "description": "Filter by tier"
       },
       "QueryHasSite": {
         "name": "hasSite",
         "in": "query",
-        "schema": { "type": "boolean" },
+        "schema": {
+          "type": "boolean"
+        },
         "description": "Filter to entries with/without an indexed site"
       },
       "QuerySort": {
         "name": "sort",
         "in": "query",
-        "schema": { "type": "string", "enum": ["relevance", "alphabetical", "tier"], "default": "relevance" }
+        "schema": {
+          "type": "string",
+          "enum": [
+            "relevance",
+            "alphabetical",
+            "tier"
+          ],
+          "default": "relevance"
+        }
       },
       "QueryLimit": {
         "name": "limit",
         "in": "query",
-        "schema": { "type": "integer", "default": 20, "maximum": 100 }
+        "schema": {
+          "type": "integer",
+          "default": 20,
+          "maximum": 100
+        }
       },
       "QueryOffset": {
         "name": "offset",
         "in": "query",
-        "schema": { "type": "integer", "default": 0 }
+        "schema": {
+          "type": "integer",
+          "default": 0
+        }
+      },
+      "QueryRarity": {
+        "name": "rarity",
+        "in": "query",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "common",
+            "uncommon",
+            "rare",
+            "epic",
+            "legendary",
+            "mythic"
+          ]
+        },
+        "description": "Filter by card rarity"
+      },
+      "QueryVariant": {
+        "name": "variant",
+        "in": "query",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "standard",
+            "original-script"
+          ]
+        },
+        "description": "Filter by card variant (original-script = mythic foil)"
+      },
+      "QueryFlagship": {
+        "name": "flagship",
+        "in": "query",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "true",
+            "false"
+          ]
+        },
+        "description": "Filter to cards of flagship (owned-domain) entries"
       }
     },
     "schemas": {
       "Name": {
         "type": "object",
         "properties": {
-          "id": { "type": "string" },
-          "ascii": { "type": "string" },
-          "unicode": { "type": "string" },
-          "punycode": { "type": "string", "nullable": true },
-          "pantheon": { "type": "string" },
-          "pantheonLabel": { "type": "string" },
-          "pantheonEmoji": { "type": "string" },
-          "tier": { "type": "string" },
-          "tierLabel": { "type": "string" },
-          "domain": { "type": "string", "nullable": true },
-          "meaning": { "type": "string", "nullable": true },
-          "hasFlagship": { "type": "boolean" },
+          "id": {
+            "type": "string"
+          },
+          "ascii": {
+            "type": "string"
+          },
+          "unicode": {
+            "type": "string"
+          },
+          "punycode": {
+            "type": "string",
+            "nullable": true
+          },
+          "pantheon": {
+            "type": "string"
+          },
+          "pantheonLabel": {
+            "type": "string"
+          },
+          "pantheonEmoji": {
+            "type": "string"
+          },
+          "tier": {
+            "type": "string"
+          },
+          "tierLabel": {
+            "type": "string"
+          },
+          "domain": {
+            "type": "string",
+            "nullable": true
+          },
+          "meaning": {
+            "type": "string",
+            "nullable": true
+          },
+          "hasFlagship": {
+            "type": "boolean"
+          },
           "links": {
             "type": "object",
             "properties": {
-              "self": { "type": "string" },
-              "temple": { "type": "string" },
-              "type": { "type": "string" }
+              "self": {
+                "type": "string"
+              },
+              "temple": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              }
             }
           }
         }
@@ -533,14 +1000,23 @@
       "Envelope": {
         "type": "object",
         "properties": {
-          "success": { "type": "boolean" },
+          "success": {
+            "type": "boolean"
+          },
           "data": {},
           "meta": {
             "type": "object",
             "properties": {
-              "requestId": { "type": "string" },
-              "version": { "type": "string" },
-              "timestamp": { "type": "string", "format": "date-time" }
+              "requestId": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              },
+              "timestamp": {
+                "type": "string",
+                "format": "date-time"
+              }
             }
           }
         }
@@ -548,9 +1024,154 @@
       "Error": {
         "type": "object",
         "properties": {
-          "code": { "type": "string" },
-          "message": { "type": "string" },
-          "details": { "type": "object" }
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "object"
+          }
+        }
+      },
+      "Card": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "zeus-standard"
+          },
+          "entryId": {
+            "type": "string",
+            "example": "zeus"
+          },
+          "variant": {
+            "type": "string",
+            "enum": [
+              "standard",
+              "original-script"
+            ]
+          },
+          "setId": {
+            "type": "string",
+            "example": "first-restoration"
+          },
+          "name": {
+            "type": "string",
+            "example": "Zeús"
+          },
+          "ascii": {
+            "type": "string",
+            "example": "zeus"
+          },
+          "original": {
+            "type": "string",
+            "nullable": true,
+            "example": "Ζεύς"
+          },
+          "pantheon": {
+            "type": "string",
+            "example": "greek"
+          },
+          "category": {
+            "type": "string",
+            "example": "celestial"
+          },
+          "tier": {
+            "type": "string",
+            "enum": [
+              "dual",
+              "1",
+              "2"
+            ]
+          },
+          "tierLabel": {
+            "type": "string",
+            "example": "Tier 1"
+          },
+          "domain": {
+            "type": "string",
+            "example": "Sky, Thunder, King of Gods"
+          },
+          "rarity": {
+            "type": "string",
+            "enum": [
+              "common",
+              "uncommon",
+              "rare",
+              "epic",
+              "legendary",
+              "mythic"
+            ]
+          },
+          "cost": {
+            "type": "integer",
+            "example": 9
+          },
+          "power": {
+            "type": "integer",
+            "example": 80
+          },
+          "health": {
+            "type": "integer",
+            "example": 88
+          },
+          "speed": {
+            "type": "integer",
+            "example": 8
+          },
+          "ability": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string",
+                "example": "Thunderstrike"
+              },
+              "description": {
+                "type": "string"
+              },
+              "trigger": {
+                "type": "string",
+                "enum": [
+                  "on_play",
+                  "on_attack",
+                  "on_death",
+                  "passive"
+                ]
+              },
+              "effect": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            }
+          },
+          "flavor": {
+            "type": "string",
+            "nullable": true
+          },
+          "flagship": {
+            "type": "boolean"
+          },
+          "ownedDomain": {
+            "type": "string",
+            "nullable": true,
+            "example": "zeús.com"
+          },
+          "art": {
+            "type": "object",
+            "nullable": true,
+            "additionalProperties": true
+          },
+          "links": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
         }
       }
     },
@@ -560,11 +1181,17 @@
         "content": {
           "application/json": {
             "schema": {
-              "allOf": [{ "$ref": "#/components/schemas/Envelope" }],
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              ],
               "properties": {
                 "data": {
                   "type": "array",
-                  "items": { "$ref": "#/components/schemas/Name" }
+                  "items": {
+                    "$ref": "#/components/schemas/Name"
+                  }
                 }
               }
             }
@@ -576,18 +1203,33 @@
         "content": {
           "application/json": {
             "schema": {
-              "allOf": [{ "$ref": "#/components/schemas/Envelope" }],
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              ],
               "properties": {
                 "data": {
                   "type": "array",
-                  "items": { "$ref": "#/components/schemas/Name" }
+                  "items": {
+                    "$ref": "#/components/schemas/Name"
+                  }
                 },
                 "meta": {
                   "type": "object",
                   "properties": {
-                    "requested": { "type": "integer" },
-                    "returned": { "type": "integer" },
-                    "missing": { "type": "array", "items": { "type": "string" } }
+                    "requested": {
+                      "type": "integer"
+                    },
+                    "returned": {
+                      "type": "integer"
+                    },
+                    "missing": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
                   }
                 }
               }
@@ -597,127 +1239,371 @@
       },
       "NameDetailResponse": {
         "description": "Full scholarly record",
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
       },
       "VariantsResponse": {
         "description": "Variant forms",
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
       },
       "BreakdownResponse": {
         "description": "Character breakdown",
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
       },
       "OriginalScriptResponse": {
         "description": "Original script data",
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
       },
       "EtymologyResponse": {
         "description": "Etymology data",
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
       },
       "AvailabilityResponse": {
         "description": "Availability data",
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
       },
       "SiteResponse": {
         "description": "Site data",
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
       },
       "SlotsResponse": {
         "description": "Ad slot inventory",
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
       },
       "SimilarityGraphResponse": {
         "description": "Full cross-cultural similarity graph",
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
       },
       "IndustryPatternsResponse": {
         "description": "Full industry-pattern map: sectors, industries, members, and per-entry profiles",
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
       },
       "IndustryPatternProfileResponse": {
         "description": "Industry-pattern profile for a single entry with aligned temples",
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
       },
       "IndustryDirectoryResponse": {
         "description": "Directory of industries with member counts",
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
       },
       "LoreResponse": {
         "description": "Flagship narrative lore",
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
       },
       "PronunciationResponse": {
         "description": "Pronunciation guide",
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
       },
       "MythologyResponse": {
         "description": "Mythology section",
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
       },
       "ArchaeologyResponse": {
         "description": "Archaeology section",
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
       },
       "PantheonsResponse": {
         "description": "List of pantheons",
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
       },
       "PantheonDetailResponse": {
         "description": "Pantheon entries",
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
       },
       "TiersResponse": {
         "description": "Tier documentation",
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
       },
       "AutocompleteResponse": {
         "description": "Autocomplete results",
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
       },
       "ConvertResponse": {
         "description": "Conversion results",
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
       },
       "BatchConvertResponse": {
         "description": "Batch conversion results",
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
       },
       "AppraisalResponse": {
         "description": "Domain appraisal result",
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
       },
       "AppraisalBatchResponse": {
         "description": "Batch domain appraisal results",
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
       },
       "AuthenticityCheckResponse": {
         "description": "Authenticity classification for a single input",
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
       },
       "AuthenticityBatchCheckResponse": {
         "description": "Authenticity classification for a batch of inputs",
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
       },
       "AuthenticityReportResponse": {
         "description": "Acknowledgement of a threat report",
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
       },
       "VersionResponse": {
         "description": "Dataset version and canonical source hashes",
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
       },
       "ValidationError": {
         "description": "Validation error",
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
       },
       "NotFound": {
         "description": "Not found",
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
       },
       "RateLimitError": {
         "description": "Rate limit exceeded",
-        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Envelope" } } }
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Envelope"
+            }
+          }
+        }
+      },
+      "CardListResponse": {
+        "description": "Paginated list of cards",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/Envelope"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Card"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "CardDetailResponse": {
+        "description": "Every card variant for one lexicon entry",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/Envelope"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "entryId": {
+                          "type": "string"
+                        },
+                        "variants": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/Card"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
       }
     }
   }

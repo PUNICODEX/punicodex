@@ -186,12 +186,10 @@ function requireAuth(req, res, next) {
   // session expiry. The session itself is destroyed so it cannot be reused.
   if (session.user_account_status && session.user_account_status !== 'active') {
     deleteSession(sessionId);
-    return res
-      .status(403)
-      .json({
-        error: 'Account is not active. Contact your institution admin.',
-        code: 'account_inactive',
-      });
+    return res.status(403).json({
+      error: 'Account is not active. Contact your institution admin.',
+      code: 'account_inactive',
+    });
   }
   req.scholarsSession = session;
   req.user = {

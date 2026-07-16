@@ -1,700 +1,1096 @@
-/**
- * PÚNYCODEX — Mythic Duel client
- *
- * Handles navigation, collection, deck building, pack opening, and battle.
- */
+/* ═══════════════════════════════════════════════════════════════════════════
+   PÚNYCODEX Mythic Duel — game client
+
+   Tabs: Lobby / Collection / Packs / Battle.
+   All dynamic DOM is built with createElement + property assignment (never
+   HTML string injection). No alert/confirm/prompt — toasts and modals only.
+   Battle logic lives entirely in game/engine.js (window.CardEngine).
+   ═══════════════════════════════════════════════════════════════════════════ */
 
 (function () {
   'use strict';
 
-  const MAX_MANA = 10;
-  const HERO_HEALTH = 30;
-  const STARTING_HAND = 3;
-  const DECK_SIZE = 30;
+  var Engine = window.CardEngine;
 
-  // ── State ─────────────────────────────────────────────────────────────────
-  let allCards = [];
-  let collection = loadCollection();
-  let deck = loadDeck();
-  let playerCurrencies = loadCurrencies();
-  let state = null;
+  /* ── Constants ───────────────────────────────────────────────────────── */
 
-  // ── DOM helpers ───────────────────────────────────────────────────────────
-  function el(id) {
-    return document.getElementById(id);
-  }
+  var STORAGE_KEY = 'punycodex.cards.v1';
+  var STARTER_INK = 150;
+  var STARTER_UNIQUE = 24;
+  var REWARDS = { win: 50, loss: 15, draw: 15 };
+  var RARITY_LADDER = ['mythic', 'legendary', 'epic', 'rare', 'uncommon', 'common'];
+  var RARITIES = ['common', 'uncommon', 'rare', 'epic', 'legendary', 'mythic'];
+  var STANDARD_WEIGHTS = { common: 68, uncommon: 22, rare: 7, epic: 2.4, legendary: 0.55, mythic: 0.05 };
+  var FORCED_WEIGHTS = { rare: 70, epic: 22, legendary: 7, mythic: 1 };
 
-  function create(tag, className, text) {
-    const e = document.createElement(tag);
-    if (className) e.className = className;
-    if (text !== undefined) e.textContent = text;
-    return e;
-  }
+  var PACK_DEFS = [
+    {
+      id: 'seeker',
+      name: 'Seeker Pack',
+      cost: 100,
+      size: 5,
+      desc: 'Five cards drawn from the full First Restoration set. The scholarly staple.',
+    },
+    {
+      id: 'pantheon',
+      name: 'Pantheon Pack',
+      cost: 150,
+      size: 5,
+      desc: 'Five cards drawn from a single pantheon of your choice. Focus your collection.',
+      pantheonChoice: true,
+    },
+    {
+      id: 'mythic',
+      name: 'Mythic Pack',
+      cost: 300,
+      size: 5,
+      desc: 'Five cards with one slot guaranteed rare or better — and sharply elevated legendary and mythic odds.',
+      forcedSlot: true,
+    },
+  ];
 
-  function shuffle(array) {
-    const copy = [...array];
-    for (let i = copy.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [copy[i], copy[j]] = [copy[j], copy[i]];
-    }
-    return copy;
-  }
+  /* ── State ───────────────────────────────────────────────────────────── */
 
-  // ── Persistence ───────────────────────────────────────────────────────────
-  function loadCollection() {
-    try {
-      const raw = localStorage.getItem('punycodex_collection');
-      return raw ? JSON.parse(raw) : {};
-    } catch {
-      return {};
-    }
-  }
+  var cards = []; // display cards (battle-scale stats + foil flag)
+  var byId = {};
+  var pantheons = [];
+  var save = null;
+  var battle = null;
+  var packResults = null;
+  var packActions = null;
 
-  function saveCollection() {
-    localStorage.setItem('punycodex_collection', JSON.stringify(collection));
-  }
+  var ui = {
+    section: 'lobby',
+    search: '',
+    pantheon: 'all',
+    tier: 'all',
+    rarity: 'all',
+    deckSearch: '',
+    pendingPlay: null, // { handIndex, targetSide }
+    selectedAttacker: null, // board index
+    aiThinking: false,
+  };
 
-  function loadDeck() {
-    try {
-      const raw = localStorage.getItem('punycodex_deck');
-      return raw ? JSON.parse(raw) : [];
-    } catch {
-      return [];
-    }
-  }
+  /* ── Tiny DOM helpers ────────────────────────────────────────────────── */
 
-  function saveDeck() {
-    localStorage.setItem('punycodex_deck', JSON.stringify(deck));
-  }
-
-  function loadCurrencies() {
-    try {
-      const raw = localStorage.getItem('punycodex_currencies');
-      return raw ? JSON.parse(raw) : { ink: 500, dust: 0, gold: 0 };
-    } catch {
-      return { ink: 500, dust: 0, gold: 0 };
-    }
-  }
-
-  function saveCurrencies() {
-    localStorage.setItem('punycodex_currencies', JSON.stringify(playerCurrencies));
-  }
-
-  function grantStartingCollection() {
-    if (Object.keys(collection).length > 0) return;
-    const starter = shuffle(allCards).slice(0, 15);
-    starter.forEach((card) => {
-      addCardToCollection(card);
-    });
-    saveCollection();
-  }
-
-  function addCardToCollection(card) {
-    collection[card.id] = (collection[card.id] || 0) + 1;
-  }
-
-  // ── Navigation ────────────────────────────────────────────────────────────
-  function initNavigation() {
-    document.querySelectorAll('.nav-tab').forEach((tab) => {
-      tab.addEventListener('click', () => {
-        const section = tab.dataset.section;
-        document.querySelectorAll('.nav-tab').forEach((t) => t.classList.remove('active'));
-        document.querySelectorAll('.game-section').forEach((s) => s.classList.remove('active'));
-        tab.classList.add('active');
-        el(section).classList.add('active');
-        onSectionShown(section);
-      });
-    });
-  }
-
-  function onSectionShown(section) {
-    if (section === 'collection') renderCollection();
-    if (section === 'deck') renderDeckBuilder();
-    if (section === 'packs') resetPackView();
-  }
-
-  // ── Currency display ──────────────────────────────────────────────────────
-  function updateCurrencies() {
-    el('ink-count').textContent = playerCurrencies.ink;
-    el('dust-count').textContent = playerCurrencies.dust;
-    el('gold-count').textContent = playerCurrencies.gold;
-  }
-
-  // ── Card rendering ────────────────────────────────────────────────────────
-  function renderCard(card, options = {}) {
-    const node = create('div', `card ${card.rarity}`);
-    node.dataset.cardId = card.id;
-    node.dataset.entryId = card.entryId;
-
-    const style = CardGameData.pantheonStyle(card.pantheon);
-    node.style.setProperty('--pantheon-hue', style.hue);
-
-    const glow = create('div', 'card-glow');
-    node.appendChild(glow);
-
-    const frame = create('div', 'card-frame');
-    node.appendChild(frame);
-
-    const topBar = create('div', 'card-top-bar');
-    const cost = create('span', 'cost-badge', String(card.cost));
-    const catIcon = create('span', 'category-icon', card.categoryIcon);
-    topBar.appendChild(cost);
-    topBar.appendChild(catIcon);
-    node.appendChild(topBar);
-
-    const rarityStamp = create('span', 'rarity-stamp', card.rarity);
-    node.appendChild(rarityStamp);
-
-    const art = create('div', 'card-art');
-    const mascot = create('div', 'mascot-placeholder', card.categoryIcon);
-    art.appendChild(mascot);
-    node.appendChild(art);
-
-    const info = create('div', 'card-info');
-    const name = create('h4', 'card-name', card.name);
-    const meta = create('div', 'card-meta');
-    meta.appendChild(create('span', '', card.categoryLabel));
-    meta.appendChild(create('span', '', card.pantheon));
-    info.appendChild(name);
-    info.appendChild(meta);
-    if (card.artist) {
-      const artist = create('div', '', `Art: ${card.artist}`);
-      artist.style.fontSize = '0.6rem';
-      artist.style.color = 'var(--accent)';
-      artist.style.marginTop = '0.2rem';
-      info.appendChild(artist);
-    }
-    node.appendChild(info);
-
-    const stats = create('div', 'card-stats');
-    stats.appendChild(createStat('power', 'PWR', card.power));
-    stats.appendChild(createStat('health', 'HP', card.health));
-    stats.appendChild(createStat('speed', 'SPD', card.speed));
-    node.appendChild(stats);
-
-    if (!options.noClick) {
-      node.addEventListener('click', () => showCardModal(card));
-    }
-
+  function el(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text != null) node.textContent = text;
     return node;
   }
 
-  function createStat(key, label, value) {
-    const stat = create('div', `stat ${key}`);
-    stat.appendChild(create('span', 'stat-value', String(value)));
-    stat.appendChild(create('span', 'stat-label', label));
-    return stat;
+  function $(id) {
+    return document.getElementById(id);
+  }
+
+  function showToast(text) {
+    var container = $('toast-container');
+    var toast = el('div', 'toast', text);
+    container.appendChild(toast);
+    requestAnimationFrame(function () {
+      toast.classList.add('show');
+    });
+    setTimeout(function () {
+      toast.classList.remove('show');
+      setTimeout(function () {
+        if (toast.parentNode) toast.parentNode.removeChild(toast);
+      }, 300);
+    }, 3200);
+  }
+
+  function openModal(buildContent) {
+    var overlay = $('modal-overlay');
+    var content = $('modal-content');
+    content.replaceChildren();
+    var close = el('button', 'modal-close', '×');
+    close.setAttribute('aria-label', 'Close');
+    close.addEventListener('click', closeModal);
+    content.appendChild(close);
+    buildContent(content);
+    overlay.hidden = false;
+  }
+
+  function closeModal() {
+    $('modal-overlay').hidden = true;
+  }
+
+  function prettyPantheon(p) {
+    return String(p || '')
+      .replace(/-/g, ' ')
+      .replace(/\b\w/g, function (ch) {
+        return ch.toUpperCase();
+      });
+  }
+
+  /* ── Persistence ─────────────────────────────────────────────────────── */
+
+  function defaultSave() {
+    return {
+      v: 1,
+      ink: STARTER_INK,
+      collection: {},
+      deck: [],
+      stats: { packsOpened: 0, wins: 0, losses: 0, draws: 0 },
+    };
+  }
+
+  function loadSave() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return null;
+      var data = JSON.parse(raw);
+      if (!data || data.v !== 1 || !data.collection || !data.stats) return null;
+      data.ink = Math.max(0, Math.floor(Number(data.ink) || 0));
+      if (!Array.isArray(data.deck)) data.deck = [];
+      return data;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function persist() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(save));
+    } catch (e) {
+      // Storage unavailable (private mode) — play continues in memory.
+    }
+  }
+
+  // First visit: 1 random rare + commons/uncommons up to 24 unique cards.
+  function starterGrant() {
+    var rand = Engine.mulberry32((Date.now() ^ 0x9e3779b9) >>> 0);
+    var grant = {};
+
+    var rares = cards.filter(function (c) {
+      return c.rarity === 'rare';
+    });
+    if (rares.length > 0) {
+      grant[rares[Math.floor(rand() * rares.length)].id] = 1;
+    }
+    var commons = poolByRarity(cards, 'common');
+    var uncommons = poolByRarity(cards, 'uncommon');
+    var guard = 0;
+    while (Object.keys(grant).length < STARTER_UNIQUE && guard++ < 500) {
+      var pool = rand() < 0.75 ? commons : uncommons; // weighted 75 / 25
+      if (pool.length === 0) continue;
+      var pick = pool[Math.floor(rand() * pool.length)];
+      if (!grant[pick.id]) grant[pick.id] = 1;
+    }
+    save.collection = grant;
+    persist();
+    showToast('Welcome, scholar — a starter archive of ' + Object.keys(grant).length + ' cards and ' + STARTER_INK + ' ✦ Ink awaits you.');
+  }
+
+  /* ── Shared render helpers ───────────────────────────────────────────── */
+
+  function renderCurrencies() {
+    $('ink-count').textContent = String(save.ink);
+  }
+
+  function buildArt(card, className) {
+    var wrap = el('div', className || 'card-art');
+    if (card.art && card.art.mascot) {
+      var img = document.createElement('img');
+      img.src = card.art.mascot;
+      img.alt = card.name;
+      img.loading = 'lazy';
+      wrap.appendChild(img);
+    } else {
+      wrap.classList.add('fallback');
+      if (card.art && card.art.colors && card.art.colors.primary) {
+        wrap.style.background =
+          'linear-gradient(160deg, ' + card.art.colors.primary + '33, #0c1018)';
+      }
+      wrap.appendChild(el('span', 'fallback-icon', card.categoryIcon || '✦'));
+    }
+    return wrap;
+  }
+
+  function buildCardEl(card, opts) {
+    opts = opts || {};
+    var node = el('div', 'game-card rarity-' + card.rarity + (card.foil ? ' foil' : ''));
+    node.setAttribute('tabindex', '0');
+    node.appendChild(buildArt(card));
+
+    var body = el('div', 'card-body');
+    body.appendChild(el('div', 'card-name', card.name));
+    body.appendChild(el('div', 'card-sub', prettyPantheon(card.pantheon) + ' · ' + card.tierLabel));
+
+    var stats = el('div', 'card-stats');
+    stats.appendChild(el('span', 'stat-cost', '✦ ' + card.cost));
+    stats.appendChild(el('span', null, '⚔ ' + card.power));
+    stats.appendChild(el('span', null, '♥ ' + card.health));
+    stats.appendChild(el('span', null, '≫ ' + card.speed));
+    body.appendChild(stats);
+
+    body.appendChild(
+      el('div', 'card-ability', card.ability ? card.ability.name + ' — ' + card.ability.description : 'No ability.')
+    );
+    node.appendChild(body);
+
+    if (opts.count != null && opts.count > 1) {
+      node.appendChild(el('div', 'card-count', '×' + opts.count));
+    }
+
+    function open() {
+      openCardModal(card, opts.count);
+    }
+    node.addEventListener('click', open);
+    node.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Enter' || ev.key === ' ') {
+        ev.preventDefault();
+        open();
+      }
+    });
+    return node;
+  }
+
+  function openCardModal(card, count) {
+    openModal(function (content) {
+      content.appendChild(buildArt(card, 'modal-art'));
+      content.appendChild(el('h2', 'modal-title', card.name));
+      if (card.original && card.original !== '—' && card.original !== card.name) {
+        content.appendChild(el('div', 'modal-original', card.original));
+      }
+      content.appendChild(
+        el('div', 'modal-sub', prettyPantheon(card.pantheon) + ' · ' + card.categoryLabel + (count ? ' · Owned ×' + count : ''))
+      );
+
+      var tags = el('div', 'modal-tags');
+      var rarityTag = el('span', 'tag rarity-tag', card.rarity);
+      rarityTag.style.color = 'var(--rarity-' + card.rarity + ')';
+      tags.appendChild(rarityTag);
+      tags.appendChild(el('span', 'tag', card.tierLabel));
+      if (card.foil) tags.appendChild(el('span', 'tag', 'Foil'));
+      if (card.variant === 'original-script') tags.appendChild(el('span', 'tag', 'Original Script'));
+      if (card.flagship) tags.appendChild(el('span', 'tag', 'Flagship'));
+      content.appendChild(tags);
+
+      var stats = el('div', 'modal-stats');
+      [
+        ['Cost', '✦ ' + card.cost],
+        ['Power', '⚔ ' + card.power],
+        ['Health', '♥ ' + card.health],
+        ['Speed', '≫ ' + card.speed],
+      ].forEach(function (pair) {
+        var cell = el('div', 'mstat');
+        cell.appendChild(el('span', 'mstat-value', pair[1]));
+        cell.appendChild(el('span', 'mstat-label', pair[0]));
+        stats.appendChild(cell);
+      });
+      content.appendChild(stats);
+
+      if (card.ability) {
+        var ability = el('div', 'modal-ability');
+        ability.appendChild(el('strong', null, card.ability.name + ': '));
+        ability.appendChild(document.createTextNode(card.ability.description));
+        content.appendChild(ability);
+      }
+
+      if (card.flavor) {
+        content.appendChild(el('p', 'modal-flavor', card.flavor));
+      }
+
+      if (card.domain) {
+        content.appendChild(el('p', 'modal-sub', 'Domain: ' + card.domain));
+      }
+
+      var lore = document.createElement('a');
+      lore.className = 'modal-lore';
+      lore.href = '/sites/' + card.entryId + '/';
+      lore.textContent = 'Visit the temple of ' + card.name + ' →';
+      content.appendChild(lore);
+    });
+  }
+
+  /* ── Lobby ───────────────────────────────────────────────────────────── */
+
+  function renderLobby() {
+    var total = Object.keys(save.collection).length;
+    var copies = 0;
+    Object.keys(save.collection).forEach(function (id) {
+      copies += save.collection[id];
+    });
+    var stats = $('lobby-stats');
+    stats.replaceChildren();
+    [
+      [total + ' / ' + cards.length, 'Unique cards'],
+      [String(copies), 'Total cards'],
+      [String(save.stats.packsOpened), 'Packs opened'],
+      [save.stats.wins + 'W · ' + save.stats.losses + 'L', 'Battle record'],
+      [save.ink + ' ✦', 'Ink'],
+    ].forEach(function (pair) {
+      var cell = el('div', 'stat-card');
+      cell.appendChild(el('span', 'stat-value', pair[0]));
+      cell.appendChild(el('span', 'stat-label', pair[1]));
+      stats.appendChild(cell);
+    });
+
+    var featured = $('featured-cards');
+    featured.replaceChildren();
+    cards
+      .filter(function (c) {
+        return c.foil && c.art && c.art.mascot;
+      })
+      .slice(0, 6)
+      .forEach(function (c) {
+        featured.appendChild(buildCardEl(c, { count: save.collection[c.id] || 0 }));
+      });
+  }
+
+  /* ── Collection ──────────────────────────────────────────────────────── */
+
+  function renderPantheonSelect() {
+    var select = $('collection-pantheon');
+    select.replaceChildren();
+    var all = document.createElement('option');
+    all.value = 'all';
+    all.textContent = 'All pantheons';
+    select.appendChild(all);
+    pantheons.forEach(function (p) {
+      var opt = document.createElement('option');
+      opt.value = p;
+      opt.textContent = prettyPantheon(p);
+      select.appendChild(opt);
+    });
+    select.value = ui.pantheon;
+  }
+
+  function renderPillGroup(containerId, values, labels, current, onPick) {
+    var container = $(containerId);
+    container.replaceChildren();
+    values.forEach(function (value, i) {
+      var pill = el('button', 'filter-pill' + (current === value ? ' active' : ''), labels[i]);
+      pill.addEventListener('click', function () {
+        onPick(value);
+      });
+      container.appendChild(pill);
+    });
+  }
+
+  function renderCollectionFilters() {
+    renderPillGroup(
+      'tier-filters',
+      ['all', 'dual', '1', '2'],
+      ['All tiers', 'Dual-Tier', 'Tier 1', 'Tier 2'],
+      ui.tier,
+      function (v) {
+        ui.tier = v;
+        renderCollection();
+      }
+    );
+    renderPillGroup(
+      'rarity-filters',
+      ['all'].concat(RARITIES),
+      ['All rarities'].concat(
+        RARITIES.map(function (r) {
+          return r;
+        })
+      ),
+      ui.rarity,
+      function (v) {
+        ui.rarity = v;
+        renderCollection();
+      }
+    );
+  }
+
+  function collectionMatches(card) {
+    if (!save.collection[card.id]) return false;
+    if (ui.tier !== 'all' && card.tier !== ui.tier) return false;
+    if (ui.rarity !== 'all' && card.rarity !== ui.rarity) return false;
+    if (ui.pantheon !== 'all' && card.pantheon !== ui.pantheon) return false;
+    if (ui.search) {
+      var hay = (card.name + ' ' + (card.ascii || '') + ' ' + (card.original || '') + ' ' + (card.domain || '')).toLowerCase();
+      if (hay.indexOf(ui.search.toLowerCase()) === -1) return false;
+    }
+    return true;
   }
 
   function renderCollection() {
-    const grid = el('collection-grid');
-    grid.innerHTML = '';
+    var owned = Object.keys(save.collection).length;
+    $('collection-summary').textContent =
+      owned + ' of ' + cards.length + ' unique cards collected. Click a card for its scholarly record.';
 
-    const ownedCards = allCards.filter((c) => collection[c.id]);
-    if (ownedCards.length === 0) {
-      grid.innerHTML = `
-        <div class="empty-state" style="grid-column: 1 / -1;">
-          <div class="icon">✦</div>
-          <h3>Your collection is empty</h3>
-          <p>Open packs to discover your first cards.</p>
-        </div>
-      `;
+    renderCollectionFilters();
+    var grid = $('collection-grid');
+    grid.replaceChildren();
+    var shown = cards.filter(collectionMatches);
+    if (shown.length === 0) {
+      grid.appendChild(el('p', 'deck-empty', 'No cards match — open packs to grow your archive.'));
       return;
     }
-
-    const filtered = filterCards(ownedCards, {
-      search: el('collection-search').value,
-      categories: getActiveFilters('category-filters'),
-      rarities: getActiveFilters('rarity-filters'),
-    });
-
-    filtered.forEach((card) => {
-      const count = collection[card.id] || 1;
-      const node = renderCard(card);
-      if (count > 1) {
-        const badge = create('span', 'cost-badge');
-        badge.textContent = `×${count}`;
-        badge.style.position = 'absolute';
-        badge.style.top = '0.35rem';
-        badge.style.left = '0.35rem';
-        badge.style.zIndex = '6';
-        node.appendChild(badge);
-      }
-      grid.appendChild(node);
+    shown.forEach(function (c) {
+      grid.appendChild(buildCardEl(c, { count: save.collection[c.id] }));
     });
   }
 
-  function filterCards(cards, filters) {
-    return cards.filter((card) => {
-      if (filters.search) {
-        const q = filters.search.toLowerCase();
-        const match =
-          card.name.toLowerCase().includes(q) ||
-          card.ascii.toLowerCase().includes(q) ||
-          card.pantheon.toLowerCase().includes(q) ||
-          card.domain.toLowerCase().includes(q);
-        if (!match) return false;
+  /* ── Packs ───────────────────────────────────────────────────────────── */
+
+  function pickRarity(rand, weights, pool) {
+    var total = 0;
+    RARITY_LADDER.forEach(function (r) {
+      total += weights[r] || 0;
+    });
+    var roll = rand() * total;
+    var picked = 'common';
+    for (var i = 0; i < RARITY_LADDER.length; i++) {
+      var r = RARITY_LADDER[i];
+      var w = weights[r] || 0;
+      if (roll < w) {
+        picked = r;
+        break;
       }
-      if (filters.categories && filters.categories.length > 0) {
-        if (!filters.categories.includes(card.category)) return false;
-      }
-      if (filters.rarities && filters.rarities.length > 0) {
-        if (!filters.rarities.includes(card.rarity)) return false;
-      }
-      return true;
+      roll -= w;
+    }
+    // Rarities with no cards in the pool (e.g. epic in this set) step down
+    // the ladder toward common until a non-empty rarity is found.
+    var idx = RARITY_LADDER.indexOf(picked);
+    while (idx < RARITY_LADDER.length - 1 && poolByRarity(pool, RARITY_LADDER[idx]).length === 0) {
+      idx++;
+    }
+    return RARITY_LADDER[idx];
+  }
+
+  function poolByRarity(pool, rarity) {
+    return pool.filter(function (c) {
+      return c.rarity === rarity;
     });
   }
 
-  function getActiveFilters(containerId) {
-    return Array.from(document.querySelectorAll(`#${containerId} .filter-chip.active`)).map((c) => c.dataset.value);
+  function drawPackCards(def, pantheon) {
+    var rand = Engine.mulberry32((Date.now() ^ (Math.random() * 0xffffffff)) >>> 0);
+    var pool = pantheon
+      ? cards.filter(function (c) {
+          return c.pantheon === pantheon;
+        })
+      : cards;
+    var results = [];
+    for (var slot = 0; slot < def.size; slot++) {
+      var weights = def.forcedSlot && slot === def.size - 1 ? FORCED_WEIGHTS : STANDARD_WEIGHTS;
+      var rarity = pickRarity(rand, weights, pool);
+      var rarityPool = poolByRarity(pool, rarity);
+      if (rarityPool.length === 0) rarityPool = pool; // tiny pantheon pools
+      results.push(rarityPool[Math.floor(rand() * rarityPool.length)]);
+    }
+    return results;
   }
 
-  function initCollectionFilters() {
-    const categories = ['deity', 'concept', 'place', 'celestial', 'mineral', 'primordial'];
-    const catContainer = el('category-filters');
-    categories.forEach((cat) => {
-      const chip = create('button', 'filter-chip', CardGameData.categoryLabel(cat));
-      chip.dataset.value = cat;
-      chip.addEventListener('click', () => {
-        chip.classList.toggle('active');
+  function renderPackShop() {
+    var shop = $('pack-shop');
+    shop.replaceChildren();
+    PACK_DEFS.forEach(function (def) {
+      var option = el('div', 'pack-option');
+      option.appendChild(el('div', 'pack-name', def.name));
+      option.appendChild(el('div', 'pack-desc', def.desc));
+      option.appendChild(el('div', 'pack-cost', def.size + ' cards · ' + def.cost + ' ✦ Ink'));
+      var btn = el('button', 'btn primary', 'Open for ' + def.cost + ' ✦');
+      btn.disabled = save.ink < def.cost;
+      btn.addEventListener('click', function () {
+        if (def.pantheonChoice) {
+          openPantheonPicker(def);
+        } else {
+          openPack(def, null);
+        }
+      });
+      option.appendChild(btn);
+      shop.appendChild(option);
+    });
+  }
+
+  function openPantheonPicker(def) {
+    openModal(function (content) {
+      content.appendChild(el('h2', 'modal-title', 'Choose a Pantheon'));
+      content.appendChild(el('p', 'modal-sub', 'All five cards will be drawn from this tradition.'));
+
+      var select = document.createElement('select');
+      select.className = 'filter-select';
+      select.style.width = '100%';
+      pantheons.forEach(function (p) {
+        var opt = document.createElement('option');
+        opt.value = p;
+        opt.textContent = prettyPantheon(p);
+        select.appendChild(opt);
+      });
+      content.appendChild(select);
+
+      var actions = el('div', 'modal-actions');
+      var confirm = el('button', 'btn primary', 'Open for ' + def.cost + ' ✦');
+      confirm.addEventListener('click', function () {
+        closeModal();
+        openPack(def, select.value);
+      });
+      var cancel = el('button', 'btn secondary', 'Cancel');
+      cancel.addEventListener('click', closeModal);
+      actions.appendChild(confirm);
+      actions.appendChild(cancel);
+      content.appendChild(actions);
+    });
+  }
+
+  function openPack(def, pantheon) {
+    if (save.ink < def.cost) {
+      showToast('Not enough Ink — win battles to earn more.');
+      return;
+    }
+    save.ink -= def.cost;
+    save.stats.packsOpened++;
+    packResults = drawPackCards(def, pantheon);
+    packResults.forEach(function (c) {
+      save.collection[c.id] = (save.collection[c.id] || 0) + 1;
+    });
+    persist();
+    renderCurrencies();
+    renderPackShop();
+
+    // Brief seal animation, then the reveal.
+    var stage = $('pack-stage');
+    var reveal = $('pack-reveal');
+    reveal.replaceChildren();
+    if (packActions) {
+      packActions.remove();
+      packActions = null;
+    }
+    stage.hidden = false;
+    setTimeout(function () {
+      stage.hidden = true;
+      packResults.forEach(function (c, i) {
+        var wrap = el('div', 'reveal-card');
+        wrap.style.animationDelay = i * 0.15 + 's';
+        wrap.appendChild(buildCardEl(c));
+        reveal.appendChild(wrap);
+      });
+      var done = el('div', 'pack-reveal-actions');
+      var btn = el('button', 'btn secondary', 'Collect');
+      btn.addEventListener('click', function () {
+        reveal.replaceChildren();
+        done.remove();
+        if (packActions === done) packActions = null;
         renderCollection();
       });
-      catContainer.appendChild(chip);
-    });
+      done.appendChild(btn);
+      reveal.parentNode.appendChild(done);
+      packActions = done;
+    }, 700);
+  }
 
-    const rarities = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
-    const rarityContainer = el('rarity-filters');
-    rarities.forEach((r) => {
-      const chip = create('button', 'filter-chip', r);
-      chip.dataset.value = r;
-      chip.addEventListener('click', () => {
-        chip.classList.toggle('active');
-        renderCollection();
+  /* ── Deck editor ─────────────────────────────────────────────────────── */
+
+  function deckCount(id) {
+    var n = 0;
+    for (var i = 0; i < save.deck.length; i++) if (save.deck[i] === id) n++;
+    return n;
+  }
+
+  function renderDeckEditor() {
+    var pool = $('deck-pool-grid');
+    pool.replaceChildren();
+    var query = ui.deckSearch.toLowerCase();
+    cards
+      .filter(function (c) {
+        if (!save.collection[c.id]) return false;
+        if (query && c.name.toLowerCase().indexOf(query) === -1 && (c.ascii || '').indexOf(query) === -1) return false;
+        return true;
+      })
+      .sort(function (a, b) {
+        return a.cost - b.cost || a.name.localeCompare(b.name);
+      })
+      .forEach(function (c) {
+        var inDeck = deckCount(c.id);
+        var cap = Math.min(save.collection[c.id], Engine.RULES.MAX_COPIES);
+        var maxed = inDeck >= cap || save.deck.length >= Engine.RULES.DECK_SIZE;
+        var row = el('div', 'pool-row' + (maxed ? ' maxed' : ''));
+        row.appendChild(el('span', 'pool-cost', String(c.cost)));
+        row.appendChild(el('span', 'pool-name', c.name));
+        row.appendChild(el('span', 'pool-meta', c.rarity + ' · ' + inDeck + '/' + cap));
+        if (!maxed) {
+          row.addEventListener('click', function () {
+            save.deck.push(c.id);
+            persist();
+            renderDeckEditor();
+          });
+        }
+        pool.appendChild(row);
       });
-      rarityContainer.appendChild(chip);
-    });
 
-    el('collection-search').addEventListener('input', () => renderCollection());
+    var slots = $('deck-slots');
+    slots.replaceChildren();
+    if (save.deck.length === 0) {
+      slots.appendChild(el('div', 'deck-empty', 'Your deck is empty — click cards on the left, or Auto-Build.'));
+    } else {
+      var grouped = {};
+      save.deck.forEach(function (id) {
+        grouped[id] = (grouped[id] || 0) + 1;
+      });
+      Object.keys(grouped)
+        .map(function (id) {
+          return byId[id];
+        })
+        .filter(Boolean)
+        .sort(function (a, b) {
+          return a.cost - b.cost || a.name.localeCompare(b.name);
+        })
+        .forEach(function (c) {
+          var row = el('div', 'deck-slot');
+          row.appendChild(el('span', 'slot-cost', String(c.cost)));
+          row.appendChild(el('span', 'slot-name', c.name));
+          row.appendChild(el('span', 'slot-count', '×' + grouped[c.id]));
+          row.title = 'Click to remove one copy';
+          row.addEventListener('click', function () {
+            var idx = save.deck.indexOf(c.id);
+            if (idx !== -1) save.deck.splice(idx, 1);
+            persist();
+            renderDeckEditor();
+          });
+          slots.appendChild(row);
+        });
+    }
+
+    $('deck-size').textContent = save.deck.length + ' / ' + Engine.RULES.DECK_SIZE;
+    $('start-battle').disabled = save.deck.length !== Engine.RULES.DECK_SIZE;
   }
 
-  // ── Lobby ─────────────────────────────────────────────────────────────────
-  function renderFeaturedCards() {
-    const grid = el('featured-cards');
-    grid.innerHTML = '';
-    const featured = shuffle(allCards)
-      .filter((c) => c.rarityOrder >= 4)
-      .slice(0, 5);
-    featured.forEach((card) => grid.appendChild(renderCard(card)));
-  }
-
-  // ── Deck builder ──────────────────────────────────────────────────────────
-  function renderDeckBuilder() {
-    const poolGrid = el('deck-pool-grid');
-    poolGrid.innerHTML = '';
-
-    const owned = allCards.filter((c) => collection[c.id]);
-    const q = el('deck-search').value.toLowerCase();
-    const filtered = owned.filter((c) => {
-      if (!q) return true;
-      return (
-        c.name.toLowerCase().includes(q) ||
-        c.ascii.toLowerCase().includes(q) ||
-        c.pantheon.toLowerCase().includes(q)
-      );
-    });
-
-    filtered.forEach((card) => {
-      const node = renderCard(card);
-      node.addEventListener('click', () => addToDeck(card));
-      poolGrid.appendChild(node);
-    });
-
-    renderDeckSlots();
-  }
-
-  function renderDeckSlots() {
-    const slots = el('deck-slots');
-    slots.innerHTML = '';
-    for (let i = 0; i < DECK_SIZE; i++) {
-      const slot = create('div', deck[i] ? 'deck-slot filled' : 'deck-slot');
-      if (deck[i]) {
-        slot.textContent = deck[i].name;
-        slot.title = deck[i].name;
-        slot.addEventListener('click', () => removeFromDeck(i));
-      } else {
-        slot.textContent = '+';
+  function autoBuild() {
+    var physical = [];
+    Object.keys(save.collection).forEach(function (id) {
+      var copies = Math.min(save.collection[id], Engine.RULES.MAX_COPIES);
+      for (var i = 0; i < copies; i++) {
+        if (byId[id]) physical.push(byId[id]);
       }
-      slots.appendChild(slot);
-    }
-    el('deck-size').textContent = `${deck.length} / ${DECK_SIZE}`;
-  }
-
-  function addToDeck(card) {
-    if (deck.length >= DECK_SIZE) {
-      alert('Deck is full (30 cards).');
+    });
+    if (physical.length < Engine.RULES.DECK_SIZE) {
+      showToast('Not enough cards to auto-build — open more packs first.');
       return;
     }
-    deck.push(card);
-    saveDeck();
-    renderDeckBuilder();
-  }
-
-  function removeFromDeck(index) {
-    deck.splice(index, 1);
-    saveDeck();
-    renderDeckBuilder();
-  }
-
-  function initDeckBuilder() {
-    el('deck-search').addEventListener('input', () => renderDeckBuilder());
-    el('save-deck').addEventListener('click', () => {
-      saveDeck();
-      alert('Deck saved.');
+    var built = Engine.autoBuildDeck(physical, (Date.now() ^ (Math.random() * 0xffffffff)) >>> 0);
+    save.deck = built.map(function (c) {
+      return c.id;
     });
-    el('clear-deck').addEventListener('click', () => {
-      deck = [];
-      saveDeck();
-      renderDeckBuilder();
+    persist();
+    renderDeckEditor();
+    showToast('The Oracle has assembled a 30-card deck for you.');
+  }
+
+  /* ── Battle ──────────────────────────────────────────────────────────── */
+
+  function startBattle() {
+    var playerDeck = save.deck.map(function (id) {
+      return Engine.toBattleCard(byId[id]);
     });
+    var seed = (Date.now() ^ (Math.random() * 0xffffffff)) >>> 0;
+    var aiDeck = Engine.autoBuildDeck(cards, seed ^ 0x5bd1e995);
+    battle = Engine.createGame({ playerDeck: playerDeck, aiDeck: aiDeck, seed: seed });
+    ui.pendingPlay = null;
+    ui.selectedAttacker = null;
+    ui.aiThinking = false;
+    $('deck-select').hidden = true;
+    $('battlefield-wrap').hidden = false;
+    $('reward-overlay').hidden = true;
+    renderBattle();
   }
 
-  // ── Card modal ────────────────────────────────────────────────────────────
-  function showCardModal(card) {
-    const modal = el('card-modal');
-    const content = el('modal-content');
-    content.innerHTML = '';
-
-    const close = create('button', 'modal-close', '×');
-    close.addEventListener('click', () => modal.classList.remove('active'));
-    content.appendChild(close);
-
-    const cardNode = renderCard(card, { noClick: true });
-    cardNode.style.margin = '1rem auto';
-    cardNode.style.maxWidth = '260px';
-    content.appendChild(cardNode);
-
-    const details = create('div', '', '');
-    details.style.padding = '0 1.25rem 1.25rem';
-
-    details.appendChild(create('h3', '', card.name));
-    details.appendChild(create('p', '', `ASCII: ${card.ascii}`));
-    details.appendChild(create('p', '', `Original: ${card.original}`));
-    details.appendChild(create('p', '', `Domain: ${card.domain}`));
-    details.appendChild(create('p', '', `Tier: ${card.tierLabel}`));
-
-    const ability = create('div', '', '');
-    ability.style.marginTop = '0.75rem';
-    ability.style.padding = '0.75rem';
-    ability.style.background = 'rgba(212, 175, 55, 0.08)';
-    ability.style.borderRadius = '0.5rem';
-    ability.appendChild(create('strong', '', card.ability.name));
-    ability.appendChild(create('p', '', card.ability.description));
-    details.appendChild(ability);
-
-    const count = collection[card.id] || 0;
-    details.appendChild(create('p', '', `Owned: ${count}`));
-
-    content.appendChild(details);
-    modal.classList.add('active');
+  function exitToDeck() {
+    battle = null;
+    ui.pendingPlay = null;
+    ui.selectedAttacker = null;
+    $('battlefield-wrap').hidden = true;
+    $('reward-overlay').hidden = true;
+    $('deck-select').hidden = false;
+    renderDeckEditor();
   }
 
-  el('card-modal').addEventListener('click', (e) => {
-    if (e.target.id === 'card-modal') {
-      el('card-modal').classList.remove('active');
+  function buildMinionEl(cardLike) {
+    // cardLike: battle card def or board minion — both carry name/art fields.
+    var def = cardLike.def || cardLike;
+    if (def.art && def.art.mascot) {
+      var img = document.createElement('img');
+      img.src = def.art.mascot;
+      img.alt = def.name;
+      img.loading = 'lazy';
+      return img;
     }
-  });
-
-  // ── Pack opening ──────────────────────────────────────────────────────────
-  function resetPackView() {
-    el('pack-stage').style.display = 'flex';
-    el('pack-reveal').classList.remove('active');
-    el('pack-reveal').innerHTML = '';
+    return el('span', null, def.categoryIcon || '✦');
   }
 
-  function openPack() {
-    const cost = 100;
-    if (playerCurrencies.ink < cost) {
-      alert('Not enough Ink.');
-      return;
+  function renderBoardMinion(m, playerIdx, legal) {
+    var node = el('div', 'minion');
+    var isMine = playerIdx === 0;
+    var ready =
+      isMine &&
+      battle.activePlayer === 0 &&
+      !battle.winner &&
+      legal.attacks.some(function (a) {
+        return a.attackerIndex === battle.players[0].board.indexOf(m);
+      });
+
+    if (m.sick) node.classList.add('sick');
+    if (ready) node.classList.add('ready');
+    if (ui.selectedAttacker != null && isMine && battle.players[0].board[ui.selectedAttacker] === m) {
+      node.classList.add('selected');
+    }
+    if (ui.pendingPlay && ((ui.pendingPlay.targetSide === 'enemy') !== isMine)) {
+      node.classList.add('targetable');
+    }
+    if (ui.selectedAttacker != null && !isMine) {
+      node.classList.add('targetable');
     }
 
-    playerCurrencies.ink -= cost;
-    saveCurrencies();
-    updateCurrencies();
+    var art = el('div', 'minion-art');
+    art.appendChild(buildMinionEl(m));
+    node.appendChild(art);
+    node.appendChild(el('div', 'minion-name', m.name));
 
-    const pack = CardGameData.openPack(allCards, { size: 5 });
-    pack.forEach((card) => addCardToCollection(card));
-    saveCollection();
+    var stats = el('div', 'minion-stats');
+    stats.appendChild(el('span', 'atk', String(Engine.effectivePower(battle, playerIdx, m))));
+    var hp = el('span', 'hp' + (m.health < m.maxHealth ? ' damaged' : ''), String(m.health + m.shield));
+    if (m.shield > 0) hp.title = m.health + ' health + ' + m.shield + ' shield';
+    stats.appendChild(hp);
+    node.appendChild(stats);
 
-    el('pack-stage').style.display = 'none';
-    const reveal = el('pack-reveal');
-    reveal.innerHTML = '';
-    reveal.classList.add('active');
+    if (m.shield > 0 || m.stunned > 0 || m.confused > 0) {
+      var status = el('div', 'minion-status');
+      if (m.shield > 0) status.appendChild(el('span', 'badge', '⛨'));
+      if (m.stunned > 0) status.appendChild(el('span', 'badge', '💫'));
+      if (m.confused > 0) status.appendChild(el('span', 'badge', '❓'));
+      node.appendChild(status);
+    }
 
-    pack.forEach((card, i) => {
-      const node = renderCard(card);
-      node.style.animationDelay = `${i * 0.12}s`;
-      reveal.appendChild(node);
+    node.addEventListener('click', function () {
+      onMinionClick(m, playerIdx);
     });
-
-    const again = create('button', 'btn primary', 'Open Another (100 ✦)');
-    again.style.marginTop = '1rem';
-    again.style.width = '100%';
-    again.addEventListener('click', () => {
-      resetPackView();
-      openPack();
-    });
-    reveal.appendChild(again);
+    return node;
   }
 
-  function initPacks() {
-    el('open-pack').addEventListener('click', openPack);
-    el('pack-item').addEventListener('click', openPack);
-  }
+  function onMinionClick(m, playerIdx) {
+    if (!battle || battle.winner || ui.aiThinking) return;
+    var isMine = playerIdx === 0;
+    var board = battle.players[playerIdx].board;
+    var index = board.indexOf(m);
 
-  // ── Battle ────────────────────────────────────────────────────────────────
-  function createDeck() {
-    const pool = deck.length >= 10 ? deck : CardGameData.starterDeck(allCards, 20);
-    return shuffle(pool).map((card) => ({ ...card, instanceId: Math.random().toString(36).slice(2) }));
-  }
-
-  function drawCard(player, count = 1) {
-    for (let i = 0; i < count; i++) {
-      if (player.deck.length === 0) {
-        log(`${player.name} has no cards left to draw.`);
+    // Resolving a targeted card play?
+    if (ui.pendingPlay) {
+      var side = ui.pendingPlay.targetSide;
+      if ((side === 'enemy') !== isMine) {
+        var target = side === 'enemy' ? index : { side: 'ally', index: index };
+        Engine.playCard(battle, ui.pendingPlay.handIndex, target);
+        ui.pendingPlay = null;
+        afterPlayerAction();
         return;
       }
-      const card = player.deck.shift();
-      player.hand.push(card);
+    }
+
+    // Resolving an attack on an enemy minion?
+    if (ui.selectedAttacker != null && !isMine) {
+      Engine.attack(battle, ui.selectedAttacker, index);
+      ui.selectedAttacker = null;
+      afterPlayerAction();
+      return;
+    }
+
+    // Selecting one of my ready minions as an attacker.
+    if (isMine && battle.activePlayer === 0) {
+      ui.pendingPlay = null;
+      ui.selectedAttacker = ui.selectedAttacker === index ? null : index;
+      renderBattle();
     }
   }
 
-  function log(message) {
-    const logEl = el('game-log');
-    const p = create('p', '', message);
-    logEl.appendChild(p);
-    logEl.scrollTop = logEl.scrollHeight;
-  }
+  function onHandClick(index) {
+    if (!battle || battle.winner || ui.aiThinking || battle.activePlayer !== 0) return;
+    var player = battle.players[0];
+    var card = player.hand[index];
+    if (!card) return;
 
-  function initGame() {
-    allCards = CardGameData.generateAllCards();
-    const playerDeck = createDeck();
-    const enemyDeck = createDeck();
+    if (ui.pendingPlay && ui.pendingPlay.handIndex === index) {
+      ui.pendingPlay = null; // tap again to cancel
+      renderBattle();
+      return;
+    }
+    if (card.cost > player.ink || player.board.length >= Engine.RULES.BOARD_LIMIT) return;
 
-    state = {
-      turn: 1,
-      playerTurn: true,
-      selectedCard: null,
-      player: {
-        name: 'You',
-        health: HERO_HEALTH,
-        maxMana: 1,
-        mana: 1,
-        deck: playerDeck,
-        hand: [],
-        board: [],
-      },
-      enemy: {
-        name: 'AI Oracle',
-        health: HERO_HEALTH,
-        maxMana: 1,
-        mana: 1,
-        deck: enemyDeck,
-        hand: [],
-        board: [],
-      },
-    };
-
-    drawCard(state.player, STARTING_HAND);
-    drawCard(state.enemy, STARTING_HAND);
-
-    renderBattle();
-    el('end-turn').disabled = false;
-    log('The duel begins. Your turn.');
-  }
-
-  function renderBattle() {
-    el('player-health').textContent = state.player.health;
-    el('enemy-health').textContent = state.enemy.health;
-    el('player-mana').textContent = state.player.mana;
-    el('player-max-mana').textContent = state.player.maxMana;
-    el('player-deck').textContent = state.player.deck.length;
-    el('enemy-deck').textContent = state.enemy.deck.length;
-    el('turn-banner').textContent = state.playerTurn ? 'Your Turn' : "Oracle's Turn";
-
-    renderBoard('player-board', state.player.board);
-    renderBoard('enemy-board', state.enemy.board);
-    renderHand();
-  }
-
-  function renderBoard(containerId, board) {
-    const container = el(containerId);
-    container.innerHTML = '';
-    board.forEach((card) => {
-      const node = renderCard(card);
-      node.style.width = '110px';
-      if (state.playerTurn && state.player.board.includes(card)) {
-        node.addEventListener('click', () => attack(card));
-      }
-      container.appendChild(node);
-    });
-  }
-
-  function renderHand() {
-    const hand = el('player-hand');
-    hand.innerHTML = '';
-    state.player.hand.forEach((card) => {
-      const node = renderCard(card);
-      node.style.width = '130px';
-      if (state.playerTurn && card.cost <= state.player.mana) {
-        node.style.cursor = 'pointer';
-        node.addEventListener('click', () => playCard(card));
-      } else {
-        node.style.opacity = '0.55';
-      }
-      hand.appendChild(node);
-    });
-  }
-
-  function playCard(card) {
-    if (!state.playerTurn || card.cost > state.player.mana) return;
-    state.player.mana -= card.cost;
-    state.player.hand = state.player.hand.filter((c) => c.instanceId !== card.instanceId);
-    state.player.board.push(card);
-    log(`You played ${card.name}.`);
-    renderBattle();
-  }
-
-  function attack(card) {
-    if (!state.playerTurn || !state.player.board.includes(card)) return;
-    const target = state.enemy.board.length ? state.enemy.board[0] : null;
-    if (target) {
-      target.health -= card.power;
-      card.health -= target.power;
-      log(`${card.name} attacks ${target.name}.`);
-      if (target.health <= 0) {
-        state.enemy.board = state.enemy.board.filter((c) => c.instanceId !== target.instanceId);
-        log(`${target.name} is defeated.`);
-      }
-      if (card.health <= 0) {
-        state.player.board = state.player.board.filter((c) => c.instanceId !== card.instanceId);
-        log(`${card.name} is defeated.`);
-      }
-    } else {
-      state.enemy.health -= card.power;
-      log(`${card.name} attacks the Oracle for ${card.power}.`);
-      if (state.enemy.health <= 0) {
-        log('You win!');
-        endGame();
+    var legal = Engine.getLegalActions(battle);
+    var play = null;
+    for (var i = 0; i < legal.plays.length; i++) {
+      if (legal.plays[i].handIndex === index) {
+        play = legal.plays[i];
+        break;
       }
     }
-    renderBattle();
+    if (!play) return;
+
+    ui.selectedAttacker = null;
+    if (play.needsTarget) {
+      ui.pendingPlay = { handIndex: index, targetSide: play.targetSide };
+      renderBattle();
+      showToast(play.targetSide === 'enemy' ? 'Choose an enemy minion.' : 'Choose a friendly minion.');
+      return;
+    }
+    Engine.playCard(battle, index);
+    afterPlayerAction();
   }
 
-  function endTurn() {
-    if (!state.playerTurn) return;
-    state.playerTurn = false;
+  function afterPlayerAction() {
     renderBattle();
+    if (battle.winner !== null) finishBattle();
+  }
 
-    setTimeout(() => {
-      enemyTurn();
+  function onEndTurn() {
+    if (!battle || battle.winner || ui.aiThinking || battle.activePlayer !== 0) return;
+    ui.pendingPlay = null;
+    ui.selectedAttacker = null;
+    ui.aiThinking = true;
+    Engine.endTurn(battle);
+    renderBattle();
+    setTimeout(function () {
+      Engine.runAiTurn(battle);
+      ui.aiThinking = false;
+      renderBattle();
+      if (battle.winner !== null) finishBattle();
     }, 600);
   }
 
-  function enemyTurn() {
-    const enemy = state.enemy;
-    if (enemy.maxMana < MAX_MANA) enemy.maxMana++;
-    enemy.mana = enemy.maxMana;
-    drawCard(enemy, 1);
+  function finishBattle() {
+    var outcome = battle.winner === 'draw' ? 'draw' : battle.winner === 0 ? 'win' : 'loss';
+    var reward = REWARDS[outcome];
+    save.ink += reward;
+    if (outcome === 'win') save.stats.wins++;
+    else if (outcome === 'loss') save.stats.losses++;
+    else save.stats.draws++;
+    persist();
+    renderCurrencies();
 
-    // Simple AI: play first affordable card, attack with first board card
-    const playable = enemy.hand.find((c) => c.cost <= enemy.mana);
-    if (playable) {
-      enemy.mana -= playable.cost;
-      enemy.hand = enemy.hand.filter((c) => c.instanceId !== playable.instanceId);
-      enemy.board.push(playable);
-      log(`Oracle played ${playable.name}.`);
+    var overlay = $('reward-overlay');
+    var content = $('reward-content');
+    content.replaceChildren();
+    var titles = { win: 'Victory', loss: 'Defeat', draw: 'A Storied Draw' };
+    content.appendChild(el('h2', 'reward-title ' + outcome, titles[outcome]));
+    var amount = el('p', 'reward-amount');
+    amount.appendChild(document.createTextNode('The archive pays you '));
+    amount.appendChild(el('strong', null, '+' + reward + ' ✦ Ink'));
+    content.appendChild(amount);
+    content.appendChild(
+      el('p', 'modal-sub', 'Record: ' + save.stats.wins + 'W · ' + save.stats.losses + 'L · ' + save.stats.draws + 'D')
+    );
+    var actions = el('div', 'reward-actions');
+    var rematch = el('button', 'btn primary', 'Rematch');
+    rematch.addEventListener('click', startBattle);
+    var edit = el('button', 'btn secondary', 'Edit Deck');
+    edit.addEventListener('click', exitToDeck);
+    actions.appendChild(rematch);
+    actions.appendChild(edit);
+    content.appendChild(actions);
+    overlay.hidden = false;
+  }
+
+  function renderBattle() {
+    if (!battle) return;
+    var me = battle.players[0];
+    var foe = battle.players[1];
+    var legal = Engine.getLegalActions(battle);
+
+    $('player-health').textContent = String(me.hero.hp);
+    $('enemy-health').textContent = String(foe.hero.hp);
+    $('player-deck').textContent = String(me.deck.length);
+    $('enemy-deck').textContent = String(foe.deck.length);
+    $('enemy-hand').textContent = String(foe.hand.length);
+
+    var pips = $('ink-pips');
+    pips.replaceChildren();
+    for (var i = 0; i < me.maxInk; i++) {
+      pips.appendChild(el('span', 'pip' + (i < me.ink ? ' full' : '')));
     }
+    pips.appendChild(el('span', 'ink-num', me.ink + '/' + me.maxInk));
 
-    const attacker = enemy.board[0];
-    if (attacker) {
-      const target = state.player.board.length ? state.player.board[0] : null;
-      if (target) {
-        target.health -= attacker.power;
-        attacker.health -= target.power;
-        log(`${attacker.name} attacks ${target.name}.`);
-        if (target.health <= 0) {
-          state.player.board = state.player.board.filter((c) => c.instanceId !== target.instanceId);
-          log(`${target.name} is defeated.`);
-        }
-        if (attacker.health <= 0) {
-          enemy.board = enemy.board.filter((c) => c.instanceId !== attacker.instanceId);
-          log(`${attacker.name} is defeated.`);
-        }
-      } else {
-        state.player.health -= attacker.power;
-        log(`${attacker.name} attacks you for ${attacker.power}.`);
-        if (state.player.health <= 0) {
-          log('The Oracle wins.');
-          endGame();
+    var banner = $('turn-banner');
+    if (battle.winner === 0) banner.textContent = 'Victory';
+    else if (battle.winner === 1) banner.textContent = 'Defeat';
+    else if (battle.winner === 'draw') banner.textContent = 'Draw';
+    else banner.textContent = battle.activePlayer === 0 ? 'Your Turn' : "Oracle's Turn";
+    banner.classList.toggle('enemy-turn', battle.winner === null && battle.activePlayer !== 0);
+
+    var enemyBoard = $('enemy-board');
+    enemyBoard.replaceChildren();
+    foe.board.forEach(function (m) {
+      enemyBoard.appendChild(renderBoardMinion(m, 1, legal));
+    });
+    var playerBoard = $('player-board');
+    playerBoard.replaceChildren();
+    me.board.forEach(function (m) {
+      playerBoard.appendChild(renderBoardMinion(m, 0, legal));
+    });
+
+    var enemyHero = $('enemy-hero-card');
+    enemyHero.classList.toggle('targetable', ui.selectedAttacker != null && !battle.winner);
+
+    var hand = $('player-hand');
+    hand.replaceChildren();
+    me.hand.forEach(function (card, index) {
+      var playable =
+        !battle.winner &&
+        battle.activePlayer === 0 &&
+        !ui.aiThinking &&
+        card.cost <= me.ink &&
+        me.board.length < Engine.RULES.BOARD_LIMIT;
+      var node = el('div', 'hand-card ' + (playable ? 'playable' : 'unplayable'));
+      if (ui.pendingPlay && ui.pendingPlay.handIndex === index) node.classList.add('selected');
+      node.appendChild(el('span', 'hand-cost', String(card.cost)));
+      var art = el('div', 'minion-art');
+      art.appendChild(buildMinionEl(card));
+      node.appendChild(art);
+      node.appendChild(el('div', 'hand-name', card.name));
+      node.appendChild(el('div', 'hand-stats', card.power + ' / ' + card.health + ' · ≫' + card.speed));
+      node.addEventListener('click', function () {
+        onHandClick(index);
+      });
+      hand.appendChild(node);
+    });
+
+    $('end-turn').disabled = battle.winner !== null || battle.activePlayer !== 0 || ui.aiThinking;
+
+    var log = $('game-log');
+    log.replaceChildren();
+    battle.log.slice(-40).forEach(function (entry) {
+      log.appendChild(el('div', 'log-entry log-' + entry.type, entry.text));
+    });
+    log.scrollTop = log.scrollHeight;
+  }
+
+  /* ── Navigation ──────────────────────────────────────────────────────── */
+
+  function showSection(name) {
+    ui.section = name;
+    document.querySelectorAll('.nav-tab').forEach(function (tab) {
+      tab.classList.toggle('active', tab.getAttribute('data-section') === name);
+    });
+    document.querySelectorAll('.game-section').forEach(function (section) {
+      section.classList.toggle('active', section.id === name);
+    });
+    if (name === 'lobby') renderLobby();
+    if (name === 'collection') renderCollection();
+    if (name === 'packs') renderPackShop();
+    if (name === 'battle' && !battle) renderDeckEditor();
+  }
+
+  /* ── Init ────────────────────────────────────────────────────────────── */
+
+  function wireEvents() {
+    document.querySelectorAll('.nav-tab').forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        showSection(tab.getAttribute('data-section'));
+      });
+    });
+    $('lobby-battle-btn').addEventListener('click', function () {
+      showSection('battle');
+    });
+    $('lobby-packs-btn').addEventListener('click', function () {
+      showSection('packs');
+    });
+
+    var searchTimer = null;
+    $('collection-search').addEventListener('input', function (ev) {
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(function () {
+        ui.search = ev.target.value.trim();
+        renderCollection();
+      }, 150);
+    });
+    $('collection-pantheon').addEventListener('change', function (ev) {
+      ui.pantheon = ev.target.value;
+      renderCollection();
+    });
+
+    $('deck-search').addEventListener('input', function (ev) {
+      ui.deckSearch = ev.target.value.trim();
+      renderDeckEditor();
+    });
+    $('auto-build').addEventListener('click', autoBuild);
+    $('clear-deck').addEventListener('click', function () {
+      save.deck = [];
+      persist();
+      renderDeckEditor();
+    });
+    $('start-battle').addEventListener('click', startBattle);
+    $('end-turn').addEventListener('click', onEndTurn);
+    $('concede').addEventListener('click', function () {
+      if (!battle || battle.winner) return;
+      openModal(function (content) {
+        content.appendChild(el('h2', 'modal-title', 'Concede the duel?'));
+        content.appendChild(el('p', 'modal-sub', 'The Oracle keeps the field. You still earn ' + REWARDS.loss + ' ✦.'));
+        var actions = el('div', 'modal-actions');
+        var yes = el('button', 'btn primary', 'Concede');
+        yes.addEventListener('click', function () {
+          closeModal();
+          battle.winner = 1;
+          renderBattle();
+          finishBattle();
+        });
+        var no = el('button', 'btn secondary', 'Fight on');
+        no.addEventListener('click', closeModal);
+        actions.appendChild(yes);
+        actions.appendChild(no);
+        content.appendChild(actions);
+      });
+    });
+
+    $('modal-overlay').addEventListener('click', function (ev) {
+      if (ev.target === $('modal-overlay')) closeModal();
+    });
+    document.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Escape') {
+        closeModal();
+        if (battle && (ui.pendingPlay || ui.selectedAttacker != null)) {
+          ui.pendingPlay = null;
+          ui.selectedAttacker = null;
+          renderBattle();
         }
       }
-    } else {
-      log('Oracle passes.');
-    }
-
-    state.turn++;
-    state.playerTurn = true;
-    if (state.player.maxMana < MAX_MANA) state.player.maxMana++;
-    state.player.mana = state.player.maxMana;
-    drawCard(state.player, 1);
-    renderBattle();
+    });
   }
 
-  function endGame() {
-    el('end-turn').disabled = true;
+  function init(data) {
+    cards = data.cards.map(function (raw) {
+      var display = Engine.toBattleCard(raw);
+      display.foil = !!raw.foil;
+      return display;
+    });
+    cards.forEach(function (c) {
+      byId[c.id] = c;
+    });
+    var seen = {};
+    cards.forEach(function (c) {
+      if (c.pantheon && !seen[c.pantheon]) {
+        seen[c.pantheon] = true;
+        pantheons.push(c.pantheon);
+      }
+    });
+    pantheons.sort();
+
+    save = loadSave();
+    var firstVisit = !save;
+    if (firstVisit) save = defaultSave();
+    // Drop deck entries the player no longer owns.
+    save.deck = save.deck.filter(function (id) {
+      return save.collection[id];
+    });
+    if (firstVisit) starterGrant();
+    else persist();
+
+    wireEvents();
+    renderCurrencies();
+    renderPantheonSelect();
+    renderLobby();
+    renderPackShop();
+    renderDeckEditor();
   }
 
-  function initBattle() {
-    el('new-game').addEventListener('click', initGame);
-    el('end-turn').addEventListener('click', endTurn);
-  }
-
-  // ── Initialization ────────────────────────────────────────────────────────
-  function attachMarketplaceArt() {
-    if (typeof ArtMarketplaceData === 'undefined') return;
-    try {
-      const gallery = ArtMarketplaceData.generateGallery(120);
-      const artworkMap = {};
-      gallery.forEach((art) => {
-        if (!artworkMap[art.entryId]) {
-          artworkMap[art.entryId] = art;
-        }
-      });
-      allCards = CardGameData.attachArtworks(allCards, artworkMap);
-    } catch (err) {
-      console.warn('Failed to attach marketplace art:', err);
-    }
-  }
-
-  function init() {
-    if (typeof LEXICON === 'undefined' || typeof CardGameData === 'undefined') {
-      document.body.innerHTML = '<p style="padding:2rem;color:#fff;">Failed to load game data.</p>';
-      return;
-    }
-
-    allCards = CardGameData.generateAllCards();
-    attachMarketplaceArt();
-    grantStartingCollection();
-    updateCurrencies();
-    initNavigation();
-    initCollectionFilters();
-    initDeckBuilder();
-    initPacks();
-    initBattle();
-
-    renderFeaturedCards();
-  }
-
-  init();
+  fetch('/game/cards.json')
+    .then(function (res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
+    })
+    .then(init)
+    .catch(function () {
+      showToast('Failed to load the First Restoration card set.');
+    });
 })();

@@ -13,6 +13,9 @@
   <title>PÚNYCODEX — Mythic Duel</title>
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/game/game.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="canonical" href="/game/">
   <meta name="description" content="A scholarly trading-card game built from the PÚNYCODEX Unicode restoration lexicon. Collect deities, concepts, realms, and celestial bodies.">
   <meta property="og:title" content="PÚNYCODEX — Mythic Duel">
@@ -28,133 +31,164 @@
       <div class="nav-tabs">
         <button class="nav-tab active" data-section="lobby">Lobby</button>
         <button class="nav-tab" data-section="collection">Collection</button>
-        <button class="nav-tab" data-section="deck">Deck</button>
-        <button class="nav-tab" data-section="battle">Battle</button>
         <button class="nav-tab" data-section="packs">Packs</button>
+        <button class="nav-tab" data-section="battle">Battle</button>
       </div>
       <div class="currencies">
-        <span class="currency-pill ink"><span class="icon">✦</span> <span id="ink-count">0</span></span>
-        <span class="currency-pill dust"><span class="icon">◈</span> <span id="dust-count">0</span></span>
-        <span class="currency-pill gold"><span class="icon">◎</span> <span id="gold-count">0</span></span>
+        <span class="currency-pill ink" title="Ink — earned in battle, spent on packs"><span class="icon">✦</span> <span id="ink-count">0</span></span>
       </div>
     </nav>
 
     <main class="game-main">
       <!-- Lobby -->
       <section id="lobby" class="game-section active">
-        <div class="section-header">
-          <h1>Mythic Duel <span class="badge prototype">Beta</span></h1>
-          <p>Collect cards forged from the Unicode restoration of mythological names, concepts, realms, and celestial bodies.</p>
+        <div class="lobby-hero">
+          <h1>Mythic Duel</h1>
+          <p class="tagline">A scholarly trading-card game forged from the Unicode restoration of mythological names. Collect the pantheons, master the ink, duel the Oracle.</p>
+          <div class="lobby-actions">
+            <button class="btn primary" id="lobby-battle-btn">Enter Battle</button>
+            <button class="btn secondary" id="lobby-packs-btn">Open Packs</button>
+          </div>
+          <div class="lobby-stats" id="lobby-stats"></div>
         </div>
 
+        <div class="section-header">
+          <h2>Featured Mythics</h2>
+          <p>Foil originals from the First Restoration set — the crown of any collection.</p>
+        </div>
         <div class="card-grid" id="featured-cards"></div>
+
+        <div class="section-header">
+          <h2>How to Play</h2>
+        </div>
+        <div class="rules-grid">
+          <div class="rule-card">
+            <h3>✦ Ink</h3>
+            <p>Ink is your only currency. Your maximum rises by one each round (up to 10) and refills every turn. Spend it to summon cards — and earn more of it in battle to buy packs.</p>
+          </div>
+          <div class="rule-card">
+            <h3>⚔ Combat</h3>
+            <p>Minions strike and counter-strike simultaneously. A minion cannot attack the turn it is played, and each minion attacks once per turn. Reduce the enemy hero from 30 HP to 0 to win.</p>
+          </div>
+          <div class="rule-card">
+            <h3>≫ Speed</h3>
+            <p>A faster attacker outmaneuvers its defender: the counter-attack is halved. Slow effects halve a minion's speed permanently — softening even the mightiest foe.</p>
+          </div>
+          <div class="rule-card">
+            <h3>✧ Abilities</h3>
+            <p>Battlecries fire when played, deathrattles when destroyed, passives while on board. Combo cards reward playing multiple cards in one turn. All 25 scholarly effect kinds are live.</p>
+          </div>
+        </div>
       </section>
 
       <!-- Collection -->
       <section id="collection" class="game-section">
         <div class="section-header">
           <h1>Collection</h1>
-          <p>Browse every card in your scholarly archive.</p>
+          <p id="collection-summary">Your scholarly archive.</p>
         </div>
 
         <div class="filter-bar">
-          <input type="text" class="search-input" id="collection-search" placeholder="Search cards…">
-          <div class="filter-group" id="category-filters"></div>
+          <input type="text" class="search-input" id="collection-search" placeholder="Search name, original script, domain…">
+          <select class="filter-select" id="collection-pantheon" aria-label="Filter by pantheon"></select>
+        </div>
+        <div class="filter-bar">
+          <div class="filter-group" id="tier-filters"></div>
           <div class="filter-group" id="rarity-filters"></div>
         </div>
 
         <div class="card-grid" id="collection-grid"></div>
       </section>
 
-      <!-- Deck -->
-      <section id="deck" class="game-section">
-        <div class="section-header">
-          <h1>Deck Builder</h1>
-          <p>Assemble a 30-card deck for battle.</p>
-        </div>
-
-        <div class="deck-builder">
-          <div class="deck-panel">
-            <h3>Available Cards</h3>
-            <div class="filter-bar">
-              <input type="text" class="search-input" id="deck-search" placeholder="Search cards to add…">
-            </div>
-            <div class="card-grid" id="deck-pool-grid"></div>
-          </div>
-          <div class="deck-panel">
-            <h3>Current Deck <span id="deck-size">0 / 30</span></h3>
-            <div class="deck-slots" id="deck-slots"></div>
-            <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">
-              <button class="btn primary" id="save-deck">Save Deck</button>
-              <button class="btn secondary" id="clear-deck">Clear</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Battle -->
-      <section id="battle" class="game-section">
-        <div class="section-header">
-          <h1>Battle</h1>
-          <p>Face the AI Oracle in a duel of mythic cards.</p>
-        </div>
-
-        <div class="battlefield">
-          <div class="hero-row enemy-hero">
-            <div class="hero-card">
-              <span>AI Oracle</span>
-              <span class="hero-health" id="enemy-health">30</span>
-            </div>
-            <div class="deck-count">Deck: <span id="enemy-deck">0</span></div>
-          </div>
-
-          <div class="board-row" id="enemy-board"></div>
-
-          <div class="turn-banner" id="turn-banner">Your Turn</div>
-
-          <div class="board-row" id="player-board"></div>
-
-          <div class="hero-row player-hero">
-            <div class="hero-card">
-              <span>You</span>
-              <span class="hero-health" id="player-health">30</span>
-            </div>
-            <div class="mana-pool">Ink: <span id="player-mana">0</span> / <span id="player-max-mana">1</span></div>
-            <div class="deck-count">Deck: <span id="player-deck">0</span></div>
-          </div>
-        </div>
-
-        <div class="hand-row" id="player-hand"></div>
-
-        <div class="controls">
-          <button id="new-game" class="btn primary">New Duel</button>
-          <button id="end-turn" class="btn secondary" disabled>End Turn</button>
-          <div class="game-log" id="game-log"></div>
-        </div>
-      </section>
-
       <!-- Packs -->
       <section id="packs" class="game-section">
         <div class="section-header">
           <h1>Open Packs</h1>
-          <p>Expand your collection with scholarly booster packs.</p>
+          <p>Spend Ink on booster packs from the First Restoration set. Duplicates stack in your collection.</p>
         </div>
 
-        <div class="pack-stage" id="pack-stage">
+        <div class="pack-shop" id="pack-shop"></div>
+
+        <div class="pack-stage" id="pack-stage" hidden>
           <div class="pack" id="pack-item">
             <div class="pack-seal">✦</div>
           </div>
-          <button class="btn primary" id="open-pack">Open Common Pack (100 ✦)</button>
         </div>
 
         <div class="pack-reveal" id="pack-reveal"></div>
       </section>
+
+      <!-- Battle -->
+      <section id="battle" class="game-section">
+        <div id="deck-select">
+          <div class="section-header">
+            <h1>Battle</h1>
+            <p>Assemble a 30-card deck (max 2 copies of a card), then face the AI Oracle. Victory pays 50 ✦; defeat still pays 15 ✦.</p>
+          </div>
+
+          <div class="deck-builder">
+            <div class="deck-panel">
+              <div class="deck-panel-head">
+                <h3>Collection</h3>
+                <input type="text" class="search-input" id="deck-search" placeholder="Search your cards…">
+              </div>
+              <div class="deck-pool" id="deck-pool-grid"></div>
+            </div>
+            <div class="deck-panel">
+              <h3>Current Deck <span id="deck-size">0 / 30</span></h3>
+              <div class="deck-slots" id="deck-slots"></div>
+              <div class="deck-actions">
+                <button class="btn primary" id="start-battle" disabled>Start Duel</button>
+                <button class="btn secondary" id="auto-build">Auto-Build</button>
+                <button class="btn secondary" id="clear-deck">Clear</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="battlefield-wrap" hidden>
+          <div class="battlefield">
+            <div class="hero-row enemy-hero">
+              <div class="hero-card enemy" id="enemy-hero-card">
+                <span class="hero-name">AI Oracle</span>
+                <span class="hero-health" id="enemy-health">30</span>
+              </div>
+              <div class="hero-side">
+                <div class="deck-count">Deck: <span id="enemy-deck">0</span></div>
+                <div class="deck-count">Hand: <span id="enemy-hand">0</span></div>
+              </div>
+            </div>
+
+            <div class="board-row" id="enemy-board"></div>
+
+            <div class="turn-banner" id="turn-banner">Your Turn</div>
+
+            <div class="board-row" id="player-board"></div>
+
+            <div class="hero-row player-hero">
+              <div class="hero-card" id="player-hero-card">
+                <span class="hero-name">You</span>
+                <span class="hero-health" id="player-health">30</span>
+              </div>
+              <div class="hero-side">
+                <div class="ink-pips" id="ink-pips" aria-label="Ink"></div>
+                <div class="deck-count">Deck: <span id="player-deck">0</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hand-row" id="player-hand"></div>
+
+          <div class="controls">
+            <button id="end-turn" class="btn primary" disabled>End Turn</button>
+            <button id="concede" class="btn secondary">Concede</button>
+            <div class="game-log" id="game-log"></div>
+          </div>
+        </div>
+      </section>
     </main>
 
-    
-
-
-<!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+    <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
 <div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
 <!-- PUNYCODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
 <footer class="game-footer">
@@ -163,13 +197,19 @@
   </div>
 
   <!-- Card detail modal -->
-  <div class="modal-overlay" id="card-modal">
+  <div class="modal-overlay" id="modal-overlay" hidden>
     <div class="modal-card" id="modal-content"></div>
   </div>
 
-  <script src="/type/js/lexicon.js"></script>
-  <script src="/js/art-marketplace-data.js"></script>
-  <script src="/js/card-game-data.js"></script>
+  <!-- Battle reward overlay -->
+  <div class="reward-overlay" id="reward-overlay" hidden>
+    <div class="reward-card" id="reward-content"></div>
+  </div>
+
+  <!-- Toasts -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="/game/engine.js"></script>
   <script src="/game/game.js"></script>
 </body>
 </html>

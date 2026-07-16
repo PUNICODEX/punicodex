@@ -78,7 +78,7 @@ test('art marketplace page exists and loads marketplace scripts', () => {
 test('card game page exists and loads game scripts', () => {
   const html = readHtml('game/index.html');
   assert.ok(html.includes('<title>'));
-  assert.ok(html.includes('card-game-data.js'));
+  assert.ok(html.includes('game/engine.js'));
   assert.ok(html.includes('game/game.js'));
 });
 

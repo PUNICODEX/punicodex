@@ -19,7 +19,9 @@ const C = {
 const SUITES = [
   { name: 'Lexicon Validator', cmd: 'node type/js/validate.js' },
   { name: 'Engine Unit Tests', cmd: 'node type/js/test-engine.js' },
-  { name: 'Card Game Tests', cmd: 'node test/card-game.test.js' },
+  { name: 'Card Engine Tests', cmd: 'node --test test/card-engine.test.js' },
+  { name: 'Generated Card Set Tests', cmd: 'node --test test/cards.test.js' },
+  { name: 'Cards API Tests', cmd: 'node --test test/cards-api.test.js' },
   { name: 'Scholars Taxonomy Tests', cmd: 'node platform/scholars/taxonomy.test.js' },
   { name: 'Scholars Quality Gate Tests', cmd: 'node platform/scholars/quality.test.js' },
   { name: 'Scholars DB Tests', cmd: 'node platform/db/scholars/index.test.js' },

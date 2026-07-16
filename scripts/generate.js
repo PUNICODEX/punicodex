@@ -14,6 +14,7 @@
  *   - android/app/src/main/assets/shared/lexicon.json
  *   - android/app/src/main/assets/shared/keyboard-palette.json
  *   - platform/browser/renderer/lexicon.json
+ *   - platform/api/cards.json + game/cards.json (card game set)
  *   - platform/api/similarities.json
  *   - platform/browser/renderer/similarities.json
  *   - js/owned-entries.js
@@ -41,6 +42,7 @@ const scripts = [
   'scripts/export-codex-data.js',
   'scripts/build-original-script-lookup.js',
   'scripts/export-lore-catalog.js',
+  'scripts/generate-cards.js',
   'scripts/sync-middleware-domains.js',
   'scripts/sync-public-copy.js',
   'scripts/generate-temples.js',
